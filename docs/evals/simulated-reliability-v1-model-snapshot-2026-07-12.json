@@ -1,0 +1,60 @@
+{
+  "schema_version": "lolla.simulated_reliability_model_snapshot.v1",
+  "status": "frozen_from_public_catalog_before_calibration",
+  "retrieved_at_utc": "2026-07-12T13:47:43Z",
+  "catalog_source": "https://openrouter.ai/api/v1/models",
+  "endpoint_source": "https://openrouter.ai/api/v1/models/google/gemini-3.5-flash/endpoints",
+  "model": {
+    "requested_canonical_slug": "google/gemini-3.5-flash-20260519",
+    "stable_alias": "google/gemini-3.5-flash",
+    "context_length": 1048576,
+    "maximum_completion_tokens": 65536,
+    "supported_parameters": [
+      "include_reasoning",
+      "max_tokens",
+      "reasoning",
+      "reasoning_effort",
+      "response_format",
+      "seed",
+      "stop",
+      "structured_outputs",
+      "temperature",
+      "tool_choice",
+      "tools",
+      "top_p"
+    ],
+    "standard_pricing_usd_per_token": {
+      "prompt": 0.0000015,
+      "completion": 0.000009,
+      "internal_reasoning": 0.000009,
+      "cache_read": 0.00000015
+    }
+  },
+  "provider_route": {
+    "openrouter_provider_slug": "google-vertex",
+    "canonical_endpoint_tag_observed": "google-vertex/global",
+    "order": ["google-vertex/global"],
+    "only": ["google-vertex"],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zdr": true,
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 1.5,
+      "completion": 9.0
+    }
+  },
+  "reasoning": {
+    "effort": "medium",
+    "exclude": true,
+    "temperature_supplied": false,
+    "top_p_supplied": false,
+    "seed_supplied": true
+  },
+  "non_claims": [
+    "catalog_support_does_not_prove_exact_schema_acceptance",
+    "model_strength_does_not_prove_source_fidelity",
+    "seed_does_not_guarantee_determinism",
+    "provider_processing_is_not_local_only"
+  ]
+}

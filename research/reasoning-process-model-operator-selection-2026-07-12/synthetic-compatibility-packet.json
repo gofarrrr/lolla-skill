@@ -1,0 +1,97 @@
+{
+  "context_alias_map": [],
+  "focal_alias_map": [
+    {
+      "alias": "e001",
+      "span_id": "span-eeb469185c54f726",
+      "speaker": "user",
+      "text_sha256": "eeb469185c54f726b660d94d1e7053387a27e8e8ad93b833949ea413e9b918bc",
+      "turn_index": 1
+    },
+    {
+      "alias": "e002",
+      "span_id": "span-a750d9804ad41f5e",
+      "speaker": "user",
+      "text_sha256": "a750d9804ad41f5ecdbfedd514850a1729bec5af1b301d3e6365058e639ebfac",
+      "turn_index": 1
+    },
+    {
+      "alias": "e003",
+      "span_id": "span-c6d6576b4ee6087f",
+      "speaker": "assistant",
+      "text_sha256": "c6d6576b4ee6087f61fa31aaba2ace0450d23c2f6bb07bc7abc353b875ccdb5a",
+      "turn_index": 1
+    },
+    {
+      "alias": "e004",
+      "span_id": "span-eff42cb338698721",
+      "speaker": "user",
+      "text_sha256": "eff42cb338698721b485290f7b325af3c7a0f0a48e3ddceac9c64e81fd460838",
+      "turn_index": 2
+    },
+    {
+      "alias": "e005",
+      "span_id": "span-bfdb601ddc01e322",
+      "speaker": "user",
+      "text_sha256": "bfdb601ddc01e3228162ea085149255c5e27489758a84e93b8dba77fa0292858",
+      "turn_index": 2
+    },
+    {
+      "alias": "e006",
+      "span_id": "span-6b739da6c295e143",
+      "speaker": "assistant",
+      "text_sha256": "6b739da6c295e143806c5ea97ac553b7d2c67c3d550099a9b476e638692c8393",
+      "turn_index": 2
+    }
+  ],
+  "metrics": {
+    "context_sentence_count": 0,
+    "focal_sentence_count": 6,
+    "future_max_records": 2,
+    "input_utf8_bytes": 496
+  },
+  "packet": {
+    "boundary": {
+      "auxiliary_ledger_included": false,
+      "deterministic_semantic_gate_performed": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_requested": false,
+      "protected_target_included": false,
+      "semantic_prefilter_performed": false,
+      "source_review_fixture_included": false
+    },
+    "case_id": "synthetic-wire-compatibility-color-choice",
+    "focal_region": {
+      "annotated_sentence_text": "[Turn 1 USER]\ne001\tFor this synthetic compatibility check, I am choosing a color for a prototype.\ne002\tI currently prefer blue, but I have not made a decision.\n[Turn 1 ASSISTANT]\ne003\tBlue is the current preference, not yet a selected course of action.\n[Turn 2 USER]\ne004\tI have decided to use green for the prototype.\ne005\tIf the accessibility check fails, I will return to blue.\n[Turn 2 ASSISTANT]\ne006\tThe current action is green, qualified by an explicit accessibility-based reopen condition.",
+      "citation_allowed": true,
+      "evidence_aliases": ["e001", "e002", "e003", "e004", "e005", "e006"]
+    },
+    "focal_turn_indices": [1, 2],
+    "prior_context": {
+      "annotated_sentence_text": "",
+      "evidence_aliases": [],
+      "general_citation_allowed": false,
+      "included": false,
+      "role_limited_citation_policy": "none"
+    },
+    "question": "How did the working position change, and what qualification remains capable of changing it?",
+    "response_contract": {
+      "auxiliary_observation_ids_allowed": false,
+      "free_form_source_quotes_allowed": false,
+      "global_synthesis_requested": false,
+      "maximum_records": 2,
+      "relationship_roles_unchanged_from_v3": true,
+      "valid_empty_output_allowed": true
+    },
+    "schema_version": "lolla.reasoning_process_chronological_shard_packet.v1",
+    "shard_id": "synthetic-wire-compatibility-color-choice-position-endpoint",
+    "shard_kind": "position_endpoint_comparison",
+    "source": {
+      "conversation_message_count": 4,
+      "source_path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-conversation.txt",
+      "source_sha256": "sha256:95aa25d04149fbc45948a8a2d9be19d857ce9e21ba351690d1b8a6816f3d8e6a"
+    },
+    "status": "synthetic_target_blind_wire_compatibility_shard",
+    "view_kind": "position_and_decision_trajectory"
+  }
+}

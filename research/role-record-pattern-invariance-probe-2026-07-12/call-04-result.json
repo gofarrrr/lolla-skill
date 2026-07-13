@@ -1,0 +1,273 @@
+{
+  "admitted_record_count": 0,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "patterns": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "source_role_record_ids": [
+          "rprolev22-qualification-01-57ec9924789fab"
+        ],
+        "state": "present",
+        "subject_scope": "user"
+      },
+      {
+        "mechanism_id": "ambiguous_signal_treated_as_commitment",
+        "source_role_record_ids": [
+          "rprolev22-current-01-82e982d064cd74"
+        ],
+        "state": "present",
+        "subject_scope": "user"
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "source_role_record_ids": [
+          "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "rprolev22-qualification-01-57ec9924789fab"
+        ],
+        "state": "present",
+        "subject_scope": "user"
+      },
+      {
+        "mechanism_id": "criteria_defined_after_commitment",
+        "source_role_record_ids": [
+          "rprolev22-current-01-82e982d064cd74"
+        ],
+        "state": "present",
+        "subject_scope": "user"
+      },
+      {
+        "mechanism_id": "initial_frame_persists_after_question_change",
+        "source_role_record_ids": [
+          "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "rprolev22-current-01-82e982d064cd74"
+        ],
+        "state": "present",
+        "subject_scope": "user"
+      },
+      {
+        "mechanism_id": "reversible_path_not_considered",
+        "source_role_record_ids": [
+          "rprolev22-qualification-01-57ec9924789fab"
+        ],
+        "state": "present",
+        "subject_scope": "assistant"
+      }
+    ]
+  },
+  "candidate_payload_sha256": "a1479ec23fa38fdfc279f356e10d5c60ec39cfc8e68dcdd98a683a8535f4b229",
+  "compiled": {
+    "fact_boundary": {
+      "case_quantities_included": false,
+      "dates_included": false,
+      "desired_outcome_included": false,
+      "entities_included": false,
+      "quotes_included": false,
+      "raw_text_included": false,
+      "topic_labels_included": false
+    },
+    "lint": {
+      "status": "passed",
+      "violations": []
+    },
+    "non_claims": [
+      "patterns_are_probabilistic_hypotheses",
+      "not_human_validation",
+      "not_reasoning_quality_proof",
+      "not_advice_correctness_proof",
+      "not_runtime_integration_authority"
+    ],
+    "packet_metadata": {
+      "graph_runtime_modified": false,
+      "interpretation_schema_version": "lolla.reasoning_pattern_role_record_response.v1",
+      "packet_id": "reasoning_pattern_packet:housing_source_first"
+    },
+    "pattern_hypotheses": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "pattern_id": "rp_001",
+        "routing_eligible": true,
+        "state": "present",
+        "subject_scope": "user",
+        "support_status": "provisional_role_record_linked"
+      },
+      {
+        "mechanism_id": "ambiguous_signal_treated_as_commitment",
+        "pattern_id": "rp_002",
+        "routing_eligible": true,
+        "state": "present",
+        "subject_scope": "user",
+        "support_status": "provisional_role_record_linked"
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "pattern_id": "rp_003",
+        "routing_eligible": true,
+        "state": "present",
+        "subject_scope": "user",
+        "support_status": "provisional_role_record_linked"
+      },
+      {
+        "mechanism_id": "criteria_defined_after_commitment",
+        "pattern_id": "rp_004",
+        "routing_eligible": true,
+        "state": "present",
+        "subject_scope": "user",
+        "support_status": "provisional_role_record_linked"
+      },
+      {
+        "mechanism_id": "initial_frame_persists_after_question_change",
+        "pattern_id": "rp_005",
+        "routing_eligible": true,
+        "state": "present",
+        "subject_scope": "user",
+        "support_status": "provisional_role_record_linked"
+      },
+      {
+        "mechanism_id": "reversible_path_not_considered",
+        "pattern_id": "rp_006",
+        "routing_eligible": true,
+        "state": "present",
+        "subject_scope": "assistant",
+        "support_status": "provisional_role_record_linked"
+      }
+    ],
+    "provenance": {
+      "call_id": "housing_source_first",
+      "model": "deepseek/deepseek-v4-flash",
+      "pattern_sources": [
+        {
+          "pattern_id": "rp_001",
+          "source_semantic_item_ids": [
+            "rprolev22-qualification-01-57ec9924789fab"
+          ]
+        },
+        {
+          "pattern_id": "rp_002",
+          "source_semantic_item_ids": [
+            "rprolev22-current-01-82e982d064cd74"
+          ]
+        },
+        {
+          "pattern_id": "rp_003",
+          "source_semantic_item_ids": [
+            "rprolev22-qualification-01-57ec9924789fab",
+            "rprolev22-starting-01-b0dbc0fe87a8ae"
+          ]
+        },
+        {
+          "pattern_id": "rp_004",
+          "source_semantic_item_ids": [
+            "rprolev22-current-01-82e982d064cd74"
+          ]
+        },
+        {
+          "pattern_id": "rp_005",
+          "source_semantic_item_ids": [
+            "rprolev22-current-01-82e982d064cd74",
+            "rprolev22-starting-01-b0dbc0fe87a8ae"
+          ]
+        },
+        {
+          "pattern_id": "rp_006",
+          "source_semantic_item_ids": [
+            "rprolev22-qualification-01-57ec9924789fab"
+          ]
+        }
+      ],
+      "producer_id": "deepseek/deepseek-v4-flash",
+      "producer_kind": "model_operator_eval",
+      "prompt_sha256": "sha256:e0b1586b964e6f73e7dc8a0f1c201ff59172df53386041c31566539751692983",
+      "raw_pattern_hashes": [
+        "sha256:9c144e8d43b7cd20afd0845f304b7873834b4543ed2abc88e838dcb8dca110e2",
+        "sha256:6fc7e8da016c15aad91d207ff889cd61cbe686702ae60f99b501bd189c2d3c73",
+        "sha256:42c1057208c66f6dd5d417a738462ea6cdd445dd06d38fe6c7f2030705700e4f",
+        "sha256:735ac4844e3f9013b04a782bcafbab43da205ab6e30fab7d83e6f26a5971cab8",
+        "sha256:6bfb7449e287e3e8ff4a30b93b66696daf8524b6480c40d00aa5f59e58b49db7",
+        "sha256:18c0baf3b12905d65a432b1b2ff656a368ae03b526c3200998887f0ceb1c4ddb"
+      ],
+      "raw_role_record_prose_in_routing_projection": false,
+      "source_role_record_packet_sha256": "31ad98b34ca16db1aef4407784edf58b26e04f2fbab07c8cbea4d81dd3c03717"
+    },
+    "routing_projection": {
+      "contains_case_context": false,
+      "pattern_edges": [],
+      "pattern_nodes": [
+        {
+          "mechanism_id": "acknowledged_constraint_not_gated",
+          "pattern_id": "rp_001",
+          "state": "present",
+          "subject_scope": "user"
+        },
+        {
+          "mechanism_id": "ambiguous_signal_treated_as_commitment",
+          "pattern_id": "rp_002",
+          "state": "present",
+          "subject_scope": "user"
+        },
+        {
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "pattern_id": "rp_003",
+          "state": "present",
+          "subject_scope": "user"
+        },
+        {
+          "mechanism_id": "criteria_defined_after_commitment",
+          "pattern_id": "rp_004",
+          "state": "present",
+          "subject_scope": "user"
+        },
+        {
+          "mechanism_id": "initial_frame_persists_after_question_change",
+          "pattern_id": "rp_005",
+          "state": "present",
+          "subject_scope": "user"
+        },
+        {
+          "mechanism_id": "reversible_path_not_considered",
+          "pattern_id": "rp_006",
+          "state": "present",
+          "subject_scope": "assistant"
+        }
+      ],
+      "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+    },
+    "schema_version": "lolla.reasoning_pattern_packet.v0"
+  },
+  "completion_tokens": 331,
+  "duration_seconds": 4.392,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.00020685,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 1631,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "311b0e648089cb79f9648762d6a79ff76755939600f51864c90e28eded82369c",
+  "provider_reported_cost_usd": 0.000307262,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "9424d558a040e9f29b0d005ff2392b7aa97efa393b19750d626c39d7df24b975",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "eadaa4c08c11c028665786ca1a65a276143e5ab4057440fe94b05742bcd9aab8",
+  "task_id": "housing_source_first",
+  "temperature": 0.0,
+  "total_tokens": 1962,
+  "user_prompt_sha256": "e0b1586b964e6f73e7dc8a0f1c201ff59172df53386041c31566539751692983",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

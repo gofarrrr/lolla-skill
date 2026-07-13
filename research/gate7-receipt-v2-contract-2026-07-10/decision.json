@@ -1,0 +1,99 @@
+{
+  "schema_version": "lolla.gate7_receipt_v2_contract_decision.v1",
+  "status": "complete_first_closed_case_transfer_observed",
+  "date": "2026-07-10",
+  "scope": "prospective_provider_free_receipt_contract_repair",
+  "artifacts": {
+    "schema": {
+      "path": "docs/evals/reasoning-run-receipt-v2.json",
+      "sha256": "dbd6aac6573eae2a3c2d2fa4aeb584889f18448d1fbee5455fad9aa0bcbb6b75"
+    },
+    "contract_doc": {
+      "path": "docs/evals/reasoning-run-receipt-v2.md",
+      "sha256": "5a5ad1cd6afe28c6fed247f9ca08b170af53bef26964bf8cd5e41b6e4fb7a3b2"
+    },
+    "cross_field_validator": {
+      "path": "scripts/evals/validate_reasoning_run_receipt_v2.py",
+      "sha256": "2eff05bd9b772194330ead9da4e8717c05a84729fd3f01dddcbeb47e06233dfe"
+    },
+    "prospective_fixture": {
+      "path": "tests/fixtures/reasoning_run_receipt_v2/prospective-valid.json",
+      "sha256": "96dc318d442da420c856f1a0540da1186c4108f21c6db07196136e1ea6ff656f"
+    },
+    "tests": {
+      "path": "tests/test_reasoning_run_receipt_v2.py",
+      "sha256": "a19d9ee93f7b8e19ff8f5f2e61037591f26ebb9b40333da57737091200a60636"
+    }
+  },
+  "repairs": {
+    "exact_source_end_action_and_deadline": true,
+    "bounded_custody_support_language": true,
+    "authorization_snapshot_as_of_scope": true,
+    "case_reader_and_human_question_split": true,
+    "graph_exposure_lineage_disposition_and_causality_split": true,
+    "normalized_duplicate_detection": true,
+    "empty_pressure_portfolio_allowed": true,
+    "exact_anonymous_outputs_and_reveal_mapping_self_contained": true,
+    "expected_and_observed_pressure_identity_separated": true,
+    "semantic_hearing_and_effect_consistency_separated": true,
+    "partial_token_evidence_scoped": true,
+    "v60_affordance_origin_named": true
+  },
+  "first_real_application_repair": {
+    "case_id": "case-06-friendship-money",
+    "stopped_before_receipt_assembly": true,
+    "provider_calls": 0,
+    "audit_path": "research/gate7-case06-receipt-v2-2026-07-10/v2-application-audit.json",
+    "audit_sha256": "3354fc15cee6ca267357ecf5470f70cfff72be157bd15d23fc72b07eb44ade45",
+    "finding": "The synthetic fixture missed exact pair payloads, expected-versus-returned identity, effect-consistency custody, partial token evidence, and V60 origin. The schema was repaired before any real receipt or reader call."
+  },
+  "first_closed_case_transfer": {
+    "case_id": "case-06-friendship-money",
+    "pipeline_rerun": false,
+    "receipt_built_from_frozen_evidence": true,
+    "reader_calls": 1,
+    "reader_retries": 0,
+    "evaluator_calls": 0,
+    "result": "partial_pass_stronger_than_case10",
+    "finding": "The repaired contract preserved exact pressure accountability, stand-down, bounded custody, graph non-claims, partial token scope, and as-of authorization through fresh-agent transfer. Deadline state, a material final user inference, exact lineage subtype, and exact operating figures still lost emphasis or precision.",
+    "package_path": "research/gate7-case06-receipt-v2-2026-07-10/"
+  },
+  "verification": {
+    "json_schema_draft_2020_12_valid": true,
+    "prospective_fixture_schema_valid": true,
+    "prospective_fixture_cross_field_status": "cross_field_valid",
+    "adversarial_tests": "17 passed",
+    "focused_gate7_tests": "22 passed",
+    "non_network_repository_suite": "4025 passed, 1 skipped",
+    "excluded_module": "tests/test_stability_check.py invokes live OpenAI embeddings and was not authorized for this provider-free gate",
+    "provider_calls": 0,
+    "semantic_quality_scored": false,
+    "runtime_changed": false
+  },
+  "frozen_case10_integrity": {
+    "receipt_json_sha256": "27f72cd9fb9dc26f59e8e3eaedb6ea1e163bac0958cf3a66f1b94317c91df2ce",
+    "receipt_markdown_sha256": "c907c29969024d478244057f7c306c2192473ee348d298a8ec0c8209a3e2a931",
+    "mutated": false,
+    "retuned": false
+  },
+  "boundary_decision": {
+    "receipt_v2_contract_repair_complete": true,
+    "next_holdout_selection_complete_no_safe_candidate": true,
+    "case06_replacement_receipt_complete": true,
+    "case06_reader_complete": true,
+    "next_holdout_provider_calls_authorized": false,
+    "gate_7_human_validation_complete": false,
+    "gate_6_paid_graph_ablation_authorized": false,
+    "gate_8_runtime_integration_authorized": false
+  },
+  "next_action": "Ask one compact human product question against the frozen Case 06 feedback surface. Preserve the answer separately and carry accepted repairs prospectively without rewriting the completed case.",
+  "non_claims": [
+    "not human validation",
+    "not evidence that receipt transfer is complete or human-useful",
+    "not answer-quality or decision-improvement evidence",
+    "not graph-value evidence",
+    "not authorization to rerun Case 10",
+    "not authorization for another provider call",
+    "not runtime-integration authority"
+  ]
+}

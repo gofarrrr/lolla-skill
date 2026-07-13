@@ -1,0 +1,106 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_contract.v1",
+  "status": "frozen_before_one_mechanism_call",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-mechanism-a1",
+  "case_id": "v1-case06-industry-funded-lab",
+  "arm_id": "v1-case06-industry-funded-lab-lite-probe",
+  "purpose": "Test whether the affordable operator can execute the existing nine-mechanism semantic assessment after the role portfolio is sealed, before deciding whether the mechanism stage also requires smaller tasks.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "role_portfolio_path": "research/simulated-reliability-v1-lite-role-joins-2026-07-13/a1/case06-role-portfolio.json",
+    "role_portfolio_sha256": "be3b4f0dd9320337b02f91680fe2fd476a332437a4ad22a547724aff309f867e",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+    "source_sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limit": {
+    "max_output_tokens": 6000,
+    "reasoning_effort": "low",
+    "wire_mode": "json_object_schema_in_prompt"
+  },
+  "repeat_id": "mechanism_probe",
+  "seed": 797,
+  "request_attestation": {
+    "packet_sha256": "2b597cd4cb597d079a846b7f89e6d36c0dbc6b4d43cefc28203918bc87d7cb79",
+    "controlled_mechanism_count": 9,
+    "assistant_contribution_count": 12,
+    "role_record_count": 3,
+    "system_prompt_sha256": "26518cd076403dfc719a9592b4d8620ce7bcb1e7dca79c73820092c4782d46e7",
+    "user_prompt_sha256": "63fe944224d5ec5843d8742a793fb3477b55f00a9259e9ff2c7c159a6196b2d6",
+    "response_schema_sha256": "011c6d3c878eef7b7a0c0f34a51717914d07640a6dc7c66a714ca9ed4f0d35cb"
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "review_contract": {
+    "wire_and_interface": "Exactly nine assessments compile with valid controlled IDs, source record IDs, assistant contribution IDs, status combinations, and fact-free routing projection.",
+    "source_fidelity": "Each user_process_status is judged from the role trajectory; each vanilla_answer_coverage is judged from assistant contributions; answer coverage is not mistaken for user adoption.",
+    "restraint": "Risk language or an acknowledged qualification does not automatically activate a controlled mechanism. Resolved or operationalized pressures stand down.",
+    "useful_activation": "Any routed mechanism must identify a genuinely unresolved reasoning-process weakness that the conversation did not operationalize.",
+    "separate_dimensions": [
+      "interface validity",
+      "source fidelity",
+      "assistant coverage attribution",
+      "routing restraint",
+      "useful activation",
+      "cost and latency"
+    ],
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "existing_monolithic_mechanism_contract_changed": false,
+    "mental_model_graph_runtime_effect": "none",
+    "pressure_arm_call_authorized": false,
+    "transfer_run_authorized": false,
+    "production_model_selection_authorized": false,
+    "Gemini_3_5_call_authorized": false,
+    "if_interface_fails": "Preserve the failure and design smaller mechanism microtasks provider-free; do not retry or raise model price.",
+    "if_interface_passes": "Perform source review before any routing or pressure call."
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_mechanism_probe_v1.py",
+      "sha256": "69e755e7c0f0faea63446a9d6ac7c1a19e9b9d12d7ca22026a511dbec99254e5"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-role-joins-2026-07-13/a1/case06-role-portfolio.json",
+      "sha256": "be3b4f0dd9320337b02f91680fe2fd476a332437a4ad22a547724aff309f867e"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-qualification-detail-2026-07-13/a1/source-review.json",
+      "sha256": "ddf576b9b12cf9b866038d11493bbdc8e39ae945645093e40fcedea8c9f12a9f"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+    }
+  ]
+}

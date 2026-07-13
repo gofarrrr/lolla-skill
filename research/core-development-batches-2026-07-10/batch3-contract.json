@@ -1,0 +1,112 @@
+{
+  "schema_version": "lolla.reasoning_pattern_invariance_shadow_contract.v0",
+  "status": "frozen_before_calls",
+  "experiment_id": "core-development-batch3-reasoning-pattern-invariance-2026-07-10",
+  "purpose": "Test whether a narrow LLM interpretation plus deterministic sealing and seed routing follows reasoning mechanics rather than case facts, without changing the live graph runtime.",
+  "fixtures": [
+    {
+      "fixture_id": "facts_a",
+      "path": "tests/fixtures/reasoning_pattern_invariance/facts_a.txt",
+      "sha256": "78f575475cf436bfd34ddf302d6e05debdb84f608d9281412fda94fd52a554c2",
+      "role": "base_reasoning_base_facts"
+    },
+    {
+      "fixture_id": "facts_b",
+      "path": "tests/fixtures/reasoning_pattern_invariance/facts_b.txt",
+      "sha256": "c98c9af968d328b1c2b21b17bc5b2c3935bd5cbdb7650c10c1d7dc2e2034f494",
+      "role": "same_reasoning_changed_facts"
+    },
+    {
+      "fixture_id": "mechanism_changed",
+      "path": "tests/fixtures/reasoning_pattern_invariance/mechanism_changed.txt",
+      "sha256": "8a42cc1735276fa2de84d380411c46c13e484af433a5b20b61428c70efe21541",
+      "role": "same_facts_changed_reasoning"
+    }
+  ],
+  "routing_contract": {
+    "path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+    "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"
+  },
+  "affordances_artifact": {
+    "path": "data/compiled/model_affordances/affordances_v60.json",
+    "sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8"
+  },
+  "engine_module": {
+    "path": "engine/system_b/reasoning_pattern_shadow.py",
+    "sha256": "1bf9dec64c893c7c97630a0eafb7ba2457326be1fec1fb8c368ae4f2818361ce"
+  },
+  "runner": {
+    "path": "scripts/evals/run_reasoning_pattern_invariance_shadow.py",
+    "sha256": "b24e96be8d7d0bb7013cd858d32137a12d6e29803436c2e4deeaa6d0b05ba93d"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0,
+    "max_output_tokens": 900,
+    "reasoning_effort": "none",
+    "timeout_seconds": 120,
+    "total_generation_calls": 3,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "estimated_cost_ceiling_usd": 0.03
+  },
+  "comparisons": [
+    {
+      "comparison_id": "fact_invariance",
+      "comparison_type": "same_reasoning_different_facts",
+      "fixture_ids": [
+        "facts_a",
+        "facts_b"
+      ],
+      "expect_projection_equal": true,
+      "expect_candidates_equal": true,
+      "required_left_mechanisms": [
+        "ambiguous_signal_treated_as_commitment",
+        "acknowledged_constraint_not_gated"
+      ],
+      "required_absent_right_mechanisms": []
+    },
+    {
+      "comparison_id": "mechanism_sensitivity",
+      "comparison_type": "same_facts_different_reasoning",
+      "fixture_ids": [
+        "facts_a",
+        "mechanism_changed"
+      ],
+      "expect_projection_equal": false,
+      "expect_candidates_equal": false,
+      "required_left_mechanisms": [
+        "ambiguous_signal_treated_as_commitment",
+        "acknowledged_constraint_not_gated"
+      ],
+      "required_absent_right_mechanisms": [
+        "ambiguous_signal_treated_as_commitment",
+        "acknowledged_constraint_not_gated"
+      ]
+    }
+  ],
+  "pass_conditions": [
+    "all_three_responses_pass_the_exact_typed_pattern_contract",
+    "same_reasoning_different_facts_yields_the_same_normalized_projection_and_seed_candidates",
+    "same_facts_changed_reasoning_yields_a_different_normalized_projection_and_seed_candidates",
+    "the_two_known_base_mechanisms_are_present_in_the_base_case_and_absent_after_the_reasoning_change",
+    "estimated_cost_does_not_exceed_the_frozen_ceiling",
+    "no_retry_or_evaluator_call_occurs",
+    "live_graph_runtime_remains_unchanged"
+  ],
+  "stop_rules": [
+    "do_not_retry_a_failed_or_invalid_fixture",
+    "do_not_change_the_vocabulary_prompt_fixture_or_routing_map_after_observing_results",
+    "record_topic_following_reasoning_insensitivity_or_contract_failure_as_batch_evidence",
+    "do_not_authorize_runtime_integration_from_this_fixture_test"
+  ],
+  "non_claims": [
+    "not_production_stability",
+    "not_semantic_accuracy_across_open_domain_conversations",
+    "not_mental_model_applicability_validation",
+    "not_reasoning_quality_or_advice_correctness_proof",
+    "not_permission_to_remove_facts_from_the_audit_record",
+    "not_runtime_integration_authority"
+  ]
+}

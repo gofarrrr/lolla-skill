@@ -1,0 +1,133 @@
+{
+  "schema_version": "lolla.reasoning_process_position_decomposition_probe_contract.v1",
+  "status": "frozen_before_at_most_four_reserved_case_calls",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-position-decomposition-agency-probe-v1",
+  "purpose": "Test whether one role-trajectory task plus fixed-role stance tasks preserve the reserved agency-acquisition position semantics better than the closed monolithic contract, while keeping deterministic work limited to schema, source, ID, budget, and join custody.",
+  "job": {
+    "case_id": "amb2-case03-agency-acquisition",
+    "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case03-agency-acquisition/position-endpoint.json",
+    "packet_sha256": "edacf58f0d2f501040ea191095af61c93d7e9db3c5737aec4f1735181b3a62e7",
+    "model": "deepseek/deepseek-v4-flash",
+    "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "pricing_per_token": {
+      "prompt": 1.34e-7,
+      "completion": 2.68e-7
+    },
+    "trajectory_request": {
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "user_prompt_sha256": "43961d088f83e68d6776564509f35cca0f8aec36286cee8f8aa8f66d99add26f",
+      "response_schema_sha256": "0946bfab7db04787acd41b232f5e7dffd6a836d9fefa532aa019554de816726f"
+    },
+    "stance_schema_sha256_by_role": {
+      "starting": "ed142565f676dae0c68a5d5402d6eef66cf0bf8b418c2d16c0e12e641555b0f9",
+      "current": "44b5011ca9efc65edac873dc9f6e5de2ad61fc6b9ca4d6204df6ef98dc79001c",
+      "qualification": "403a6013cf159909631235b3f0a97b4b950ae699084c679bd3184e2c97e6f2f5"
+    }
+  },
+  "protected_source_review": {
+    "path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01.json",
+    "sha256": "2a9c482cc5b08f77c6e67a6021f94ba6b6fd253f7193aa60186ab37516acc4f2",
+    "included_in_provider_context": false,
+    "used_for_prompt_tuning": false,
+    "post_call_source_first_review_only": true
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_position_decomposition_v1.py",
+      "sha256": "a062f507d5d7d9f7513b26a688c71461e2331a85595063eccca77ecc1ad77cf0"
+    },
+    {
+      "path": "scripts/evals/reasoning_process_position_decomposition_transport.py",
+      "sha256": "44d572988df71e5a5def9b3f5baa21b5e159bcb51fd163218c3f421eed7e7d95"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_position_decomposition_probe.py",
+      "sha256": "3fdca2cc23b7778bd36a91b1c22a391bd4123dd57f50018967d052c06a7f9f46"
+    },
+    {
+      "path": "research/reasoning-process-position-decomposition-v1-2026-07-12/report.json",
+      "sha256": "8004b989ad7692054ddf41da8a1b47719abcc03a5e4294d81f8df18747c323f6"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-structured-output-problem-class-research-2026-07-12.md",
+      "sha256": "2f8731e2cd7c6311cd0f144907f2ddac3875e9943d4f02c6f7e944825778e25b"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-model-operator-current-practice-2026-07-12.md",
+      "sha256": "22fd0c563e91b372dede50d488963eb7bc966153c528ca84091230fbf29cd845"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-model-operator-selection-result-2026-07-12.md",
+      "sha256": "73775d77efec31678c9470fb95ec3834408f92df66a7dffafc54a8b647863d7c"
+    },
+    {
+      "path": "docs/conversation-understanding/lolla-product-constitution-v3.md",
+      "sha256": "8890a7a2785a8b12edeea8e3c44ef07e138fcbfb9a0e5f42a25f53641806eaf9"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "custody": {
+    "write_started_marker_before_each_call": true,
+    "never_rerun_if_started_marker_exists": true,
+    "write_each_result_before_next_call": true,
+    "derive_and_write_role_packet_before_its_call": true,
+    "stop_after_first_wire_or_deterministic_admission_failure": true
+  },
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "wire_schema_accepted_for_every_required_task": true,
+    "provider_route_exactly_attributed": true,
+    "trajectory_record_count_minimum": 1,
+    "quarantined_record_count_maximum": 0,
+    "all_nonempty_roles_have_one_admitted_stance_record": true,
+    "exact_id_join_complete": true,
+    "source_first_review_required": true,
+    "semantic_case_floor": "starting, current, qualification, trajectory, stance object, expression, and exact evidence must each survive without material strengthening or omission"
+  },
+  "stop_rules": {
+    "one_call_per_derived_task_only": true,
+    "no_retry_fallback_response_healing_or_prompt_edit": true,
+    "stop_before_remaining_roles_after_wire_or_admission_failure": true,
+    "no_model_or_architecture_winner_from_wire_or_local_capacity": true,
+    "no_graph_runtime_or_downstream_reconsideration": true
+  },
+  "boundary": {
+    "development_case": true,
+    "independent_holdout": false,
+    "protected_review_excluded_from_provider": true,
+    "stance_packets_derived_only_from_model_trajectory_and_exact_source": true,
+    "deterministic_semantic_gate_added": false,
+    "semantic_join_performed": false,
+    "agency_acquisition_call_authorized": true,
+    "production_integration_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "lolla.post_run_v60_transport_repair.v1",
+  "date": "2026-07-10",
+  "status": "applied_after_terminal_run",
+  "file": "engine/system_b/pre_step6_private_table.py",
+  "frozen_run_version_sha256": "ae5e3c34837d8db33d69aba61e88de53925a53b4b56a273340ad59ebf6ae7d6d",
+  "repaired_version_sha256": "fef6f0ee57fbd13b4536ae2c9720e60725daf51ed2cc24ea301af1add18ddf3d",
+  "repair": [
+    "Render an affordance's mechanism when legacy text, summary, and chunk_text fields are absent.",
+    "Render an absence record's reason when legacy text fields are absent.",
+    "Persist selected, presented, and omitted V60 card counts and exact IDs.",
+    "Add an explicit bounded-table note whenever selected V60 cards are omitted by the five-card section limit."
+  ],
+  "why": "The terminal Case 04 run selected eight V60 cards but transported only five names and selection reasons, zero affordance mechanisms, and no disclosure of the three omitted cards.",
+  "semantic_selection_change": false,
+  "provider_prompt_change": false,
+  "model_calls_added": 0,
+  "applied_to_terminal_run": false,
+  "prospective_only": true,
+  "real_artifact_verification": {
+    "status": "passed_provider_free",
+    "source_pipeline_artifact": "research/stage-a-amb1-case04-2026-07-10/run/lolla_stage_a_amb1_case04_20260710_a1/pipeline-result.json",
+    "selected_cards": 8,
+    "presented_cards": 5,
+    "omitted_cards": 3,
+    "presented_affordance_mechanism_prefixes_rendered": 5,
+    "presented_absence_reason_prefixes_rendered": 5,
+    "omission_note_rendered": true,
+    "omitted_card_ids": [
+      "v60-card-006-problem-framing-and-reframing",
+      "v60-card-007-premortem",
+      "v60-card-008-confidence-calibration"
+    ],
+    "net_new_model_calls": 0
+  },
+  "focused_tests": {
+    "passed": 55,
+    "files": [
+      "tests/test_pre_step6_private_table.py",
+      "tests/test_pre_step6_private_consideration_ledger.py",
+      "tests/test_v60_enrichment_runtime.py",
+      "tests/test_run_pipeline_contract_default.py"
+    ]
+  }
+}

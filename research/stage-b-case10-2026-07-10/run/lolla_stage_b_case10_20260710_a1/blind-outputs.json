@@ -1,0 +1,187 @@
+{
+  "schema_version": "lolla.frozen_downstream_pair_blind_outputs.v1",
+  "run_id": "stage_b_case10_20260710_a1",
+  "case_id": "case-10-real-estate-bid",
+  "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5",
+  "review_status": "blind_review_required_before_arm_key",
+  "outputs": [
+    {
+      "blind_label": "A",
+      "call_attempted": true,
+      "requested_model": "openai/gpt-5.1-chat",
+      "prompt_sha256": "e16e0e6e5c2084e1a7a5c0e940eabe4c04be0cd74a58f9ff1e2d443816251cdc",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "User has selected a provisional ceiling of 925000 as their walk-away limit, with no commitment to raise above it and no claim that it is financially optimized. Decision is pending seller response and husband's alignment.",
+        "updated_position": "Maintain 925000 as the user's current ceiling, explicitly provisional and grounded in their values rather than numerical certainty.",
+        "what_survived": [
+          "User’s stated ceiling of 925000 as a values-based boundary.",
+          "Recognition that meaningful year‑one renovation needs exist (electrical required for insurance; roof timing uncertain; kitchen has functional problems).",
+          "Acknowledgment that the neighborhood scarcity and emotional value are real factors, not noise.",
+          "Awareness that entering with little liquidity margin increases household stress, though specifics remain unverified.",
+          "Understanding that bidding‑war dynamics can distort reference points and urgency."
+        ],
+        "take_backs_or_set_aside": [
+          "Remove implied certainty around renovation cost ranges; those were illustrative, not verified.",
+          "Avoid implying the couple would have zero buffer at any particular price—liquidity specifics were not established.",
+          "Do not treat kitchen stopgap costs as known or predictable.",
+          "Set aside any suggestion that losing the house will predictably produce later relief; that is not evidence‑based.",
+          "Do not treat $935K or $950K as analytically meaningful numbers without user‑provided financial context."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Replace invented repair ranges with uncertainty about actual costs.",
+            "source_basis": "Pressure to avoid assistant‑originated numbers in estimating buffer.",
+            "action_consequence": "Encourage verifying written quotes or contractor ranges before treating any ceiling as cost‑justified."
+          },
+          {
+            "shift": "Reframe the liquidity‑risk claim from near‑certain to unknown without household financial data.",
+            "source_basis": "Missing information about cash reserves beyond renovation savings.",
+            "action_consequence": "User should check real post‑closing liquidity rather than rely on assumptions."
+          },
+          {
+            "shift": "Clarify that scarcity and emotional value are legitimate inputs but not quantitative evidence.",
+            "source_basis": "Regret‑frame pressure.",
+            "action_consequence": "Keep emotions present but distinct from affordability facts."
+          }
+        ],
+        "pressure_dispositions": [
+          {
+            "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+            "strongest_plausible_application": "Check whether earlier reasoning treated illustrative renovation numbers as fact, which could distort perceived affordability at different bid levels.",
+            "disposition": "use",
+            "why": "It helps separate user‑supplied facts from assistant‑generated examples.",
+            "visible_effect": "Ceiling remains values‑based, not cost‑justified; no implied buffer calculations.",
+            "private_guardrail": "Avoid generating replacement cost numbers; anchor analysis on what is known.",
+            "risk_if_forced": "Overconfidence in affordability or risk magnitude.",
+            "risk_if_ignored": "User might treat illustrative numbers as verified facts."
+          },
+          {
+            "pressure_id": "regret_frame_not_probability_or_economics",
+            "strongest_plausible_application": "Treat both ‘regret walking away’ and ‘regret overspending’ as emotional signals, not evidence about future outcomes.",
+            "disposition": "use",
+            "why": "Helps maintain clear boundaries between values and financial facts.",
+            "visible_effect": "Preserves neighborhood importance without letting regret dictate economic conclusions.",
+            "private_guardrail": "Keep emotional reasoning from driving invented probabilities.",
+            "risk_if_forced": "Could suppress legitimate emotional preferences.",
+            "risk_if_ignored": "Emotions might be mistaken for market evidence."
+          },
+          {
+            "pressure_id": "zero_base_all_in_acquisition_test",
+            "strongest_plausible_application": "Ask whether the house’s all‑in cost, if known and de‑anchored from bidding dynamics, would still match user priorities.",
+            "disposition": "defer",
+            "why": "All‑in cost is not known—using this test now would rely on invented numbers.",
+            "visible_effect": "Ceiling remains a values call, not a full economic verdict.",
+            "private_guardrail": "Avoid constructing hypothetical total‑cost scenarios using non‑existent data.",
+            "risk_if_forced": "Would force fabricated repair or financing numbers.",
+            "risk_if_ignored": "User might accept an anchor‑driven ceiling without checking big‑picture fit."
+          }
+        ],
+        "next_actions": [
+          "Confirm actual post‑closing liquidity: cash reserves, emergency fund, room for year‑one work.",
+          "Obtain written or contractor‑level estimates for electrical and roof timelines/cost ranges.",
+          "Check insurance requirements for knob‑and‑tube removal—timeline and documentation needed.",
+          "Have a joint conversation with spouse using values, risks, and verified facts rather than invented numbers.",
+          "Prepare to communicate 925000 to the agent as the ceiling, if still aligned after reviewing the above."
+        ],
+        "uncertainties": [
+          "Actual cost ranges for electrical replacement, roof, and short‑term kitchen fixes.",
+          "Household income, reserves, and debt capacity.",
+          "Insurance carrier requirements and timing for electrical updates.",
+          "Competitive behavior of other bidders.",
+          "True year‑one vs deferred renovation timeline preferences."
+        ]
+      },
+      "validation_errors": [],
+      "served_model": "openai/gpt-5.1-chat-20251113",
+      "model_attribution_status": "served_version_alias",
+      "finish_reason": "stop",
+      "prompt_tokens": 2389,
+      "completion_tokens": 959,
+      "total_tokens": 3348,
+      "reasoning_tokens": 0,
+      "usage_evidence_state": "complete",
+      "response_sha256": "249eaccc8d5b85388aeaf3ba191983c67198b953e0ba0448d0526fca2029ac24",
+      "raw_provider_content_included": false,
+      "duration_seconds": 9.392
+    },
+    {
+      "blind_label": "B",
+      "call_attempted": true,
+      "requested_model": "openai/gpt-5.1-chat",
+      "prompt_sha256": "958494ad30c076df38608b24267a88c8d1e23bc105f50ef226745c69643ae96d",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "User has set a personal bidding ceiling of 925000 dollars and is preparing to communicate it, but this is a self-assessed comfort point rather than an externally validated affordability limit.",
+        "updated_position": "Ceiling stays at 925000 dollars as the user's stated limit, with no claim that this number is optimal or financially validated.",
+        "what_survived": [
+          "User’s savings amount and renovation needs are known only at rough estimates, not precise bids or contractor quotes.",
+          "Electrical work and insurance constraints remain relevant but the exact timing and cost are unverified.",
+          "Roof condition as reported by the inspector remains a usable but uncertain data point.",
+          "Kitchen’s stopgap costs remain plausible as a category but not as specific dollar amounts.",
+          "General concern about zero financial buffer in the first year stays relevant."
+        ],
+        "take_backs_or_set_aside": [
+          "Specific cost ranges for kitchen stopgaps, electrical work, or roof timing cannot be treated as reliable without quotes.",
+          "Implied certainty that a second major repair will appear cannot be treated as factual.",
+          "Any statements suggesting the household definitively cannot afford the home at higher bids need to be softened; affordability was not established from actual financial data.",
+          "Assumptions about regret trajectories or later relief should be treated as speculative emotional predictions.",
+          "The idea that middle-path bidding is categorically suboptimal cannot be treated as a fact; its effectiveness depends on unknown competing bids."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Renovation costs should be treated as high-variance estimates, not near-certain totals.",
+            "source_basis": "Inspector comments are informative but not equivalent to contractor bids.",
+            "action_consequence": "User may benefit from obtaining at least rough contractor estimates before assuming specific dollar gaps."
+          },
+          {
+            "shift": "Insurance timing risk remains but cost and required scope of electrical work are not confirmed.",
+            "source_basis": "Inspector statements suggest knob-and-tube but not a defined remediation plan.",
+            "action_consequence": "User should verify insurer requirements and electrical scope before assuming year-one full rewiring."
+          },
+          {
+            "shift": "Assessment of financial buffer should avoid assuming a zero-margin scenario without full household liquidity details.",
+            "source_basis": "Conversation lacks income, reserves beyond renovation savings, and access to credit.",
+            "action_consequence": "User should inventory total available liquidity, not just renovation savings, when evaluating stretch bids."
+          }
+        ],
+        "pressure_dispositions": [],
+        "next_actions": [
+          "Clarify actual cost ranges by soliciting preliminary contractor estimates for electrical, roof, and minimum kitchen fixes.",
+          "Verify insurer’s exact requirements and timeline for addressing knob-and-tube wiring.",
+          "List all available liquidity beyond the designated renovation savings to understand true buffer capacity.",
+          "Discuss with spouse what concrete conditions would justify a higher ceiling, distinguishing emotion from financial strategy.",
+          "Check whether any alternative financing (e.g., staged projects, HELOC after closing) is feasible without assuming it will be approved."
+        ],
+        "uncertainties": [
+          "True renovation costs could vary widely from initial assumptions.",
+          "Competing bids and seller behavior are unknown.",
+          "Household’s full financial picture, including income, reserves, and debt capacity, is unspecified.",
+          "Timing and extent of insurance-mandated electrical work are not confirmed.",
+          "The urgency of roof replacement is based on inspector judgment but not on a professional roofer’s assessment."
+        ]
+      },
+      "validation_errors": [],
+      "served_model": "openai/gpt-5.1-chat-20251113",
+      "model_attribution_status": "served_version_alias",
+      "finish_reason": "stop",
+      "prompt_tokens": 2039,
+      "completion_tokens": 640,
+      "total_tokens": 2679,
+      "reasoning_tokens": 0,
+      "usage_evidence_state": "complete",
+      "response_sha256": "80d24c5b879c9f293acbee3df41a1bf8f3b783a2f3ca82dc0d851936654cd4d0",
+      "raw_provider_content_included": false,
+      "duration_seconds": 7.108
+    }
+  ],
+  "arm_identity_included": false,
+  "non_claims": [
+    "not human review",
+    "not product proof",
+    "not financial real-estate insurance legal renovation or bidding advice",
+    "not an outcome-quality test",
+    "not evidence that the graph is necessary",
+    "not runtime-integration authority"
+  ]
+}

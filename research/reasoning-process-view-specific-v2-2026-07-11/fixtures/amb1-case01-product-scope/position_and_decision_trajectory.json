@@ -1,0 +1,485 @@
+{
+  "boundary": {
+    "graph_or_runtime_authorized": false,
+    "independent_gold": false,
+    "provider_calls": 0,
+    "semantic_correctness_validated": false
+  },
+  "case_id": "amb1-case01-product-scope",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "phase1_ledger_modified": false,
+      "semantic_adequacy_validated": false,
+      "v2_raw_relationship_roles_preserved": true
+    },
+    "combined_manifest": {
+      "base_ledger_sha256": "sha256:9fbcc111bcbf6444480c835e7e6f756fe7642955582728fed916873f83788e93",
+      "case_id": "amb1-case01-product-scope",
+      "fixture_addendum_sha256": "sha256:9251134540f9664d7cdba1e97d1bc0ab664ac960e684af934fa87fc809aad16d",
+      "observation_ids": [
+        "cevent-contributions-001-4e0480690f54",
+        "cevent-contributions-002-8624bf254254",
+        "cevent-contributions-003-f9316fa546b7",
+        "cevent-thread_events-004-735883229477",
+        "cevent-thread_events-005-f7e6f967c0f8",
+        "cevent-thread_events-006-c0afa7230346",
+        "cevent-thread_events-007-4f7a51c0c267",
+        "cevent-constraint_claims-008-986ba2c5acd5",
+        "cevent-constraint_claims-009-a32b44f51d3b",
+        "cevent-constraint_claims-010-b664f45535d6",
+        "cevent-constraint_claims-011-d0208bd94c31",
+        "cevent-constraint_claims-012-37d80bbee53a",
+        "cevent-constraint_claims-013-3fd43b9259d0",
+        "cevent-constraint_claims-014-3aeb8885aa63",
+        "cevent-constraint_claims-015-2bccfb2dee5c",
+        "cevent-constraint_claims-016-f04d30f5ccb5",
+        "csynth-positions-001-dda8bf0b01bc",
+        "csynth-threads-002-54ee5a783d62",
+        "csynth-constraints-003-3a0412ae1d9c",
+        "csynth-constraints-004-2c68bf686d67",
+        "csynth-constraints-005-eff3934d0bfa",
+        "csynth-constraints-006-a59a2240edab",
+        "csynth-constraints-007-cdbd61d80e0e",
+        "csynth-constraints-008-88d9e56b2ac9",
+        "csynth-constraints-009-37942be0c438",
+        "csynth-constraints-010-65caadb32df9",
+        "csynth-constraints-011-5170e515acfd",
+        "view-specific-fixture-case01-position-trajectory-001"
+      ],
+      "view_kind": "position_and_decision_trajectory"
+    },
+    "combined_manifest_sha256": "3587201b303a045bb6dbdd0f00d00ec1efa85f21dde40002c90062cbb44191d6",
+    "model_addendum": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "phase1_ledger_modified": false,
+        "semantic_relevance_inferred_by_code": false,
+        "source_review_is_independent_gold": false,
+        "v2_relationship_roles_preserved": true
+      },
+      "case_id": "amb1-case01-product-scope",
+      "observations": [
+        {
+          "family": "position_and_decision_trajectory",
+          "family_projection_status": "view_specific_v2_source_review_fixture",
+          "graph_routing_eligible": false,
+          "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+          "observation_id": "view-specific-fixture-case01-position-trajectory-001",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "view-specific-v2-same-session-nonblind",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record": {
+            "record_identity": "case01-position-trajectory",
+            "record_index": 1,
+            "v2_record": {
+              "auxiliary_observation_ids": [],
+              "current_position_evidence_ids": [
+                "e060"
+              ],
+              "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+              "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+              "qualification_evidence_ids": [
+                "e067"
+              ],
+              "starting_state_evidence_ids": [
+                "e005"
+              ],
+              "status": "supported",
+              "trajectory_type": "changed"
+            },
+            "v2_role_source_span_ids": {
+              "current_position_evidence_ids": [
+                "span-c9902a73ee6c654e"
+              ],
+              "qualification_evidence_ids": [
+                "span-836caaea5abc0d4b"
+              ],
+              "starting_state_evidence_ids": [
+                "span-4ad7a72a2c6a0b54"
+              ]
+            },
+            "view_kind": "position_and_decision_trajectory"
+          },
+          "raw_record_sha256": "sha256:1c80e566983a89d635b0e48f066b3acaa0e86a6836c4976ab18a9be495446fb1",
+          "relations": [],
+          "semantic_status": "supported",
+          "source_artifact_id": "view-specific-protected-fixtures",
+          "source_family": "position_and_decision_trajectory",
+          "source_record_id": "case01-position-trajectory",
+          "source_span_ids": [
+            "span-4ad7a72a2c6a0b54",
+            "span-c9902a73ee6c654e",
+            "span-836caaea5abc0d4b"
+          ],
+          "state_history": [
+            {
+              "actor": "source_reviewer",
+              "reason": "prospectively source-reviewed relationship fixture",
+              "state": "proposed"
+            },
+            {
+              "actor": "deterministic_validator",
+              "reason": "view-specific shape and stable source aliases validated",
+              "state": "admitted"
+            }
+          ],
+          "terminal_reason": "v2 relationship roles and stable aliases passed deterministic validation",
+          "terminal_state": "admitted"
+        }
+      ],
+      "schema_version": "lolla.reasoning_process_view_specific_v2_addendum.v1",
+      "status": "provider_free_source_review_v2_addendum",
+      "target_id": "case01-position-trajectory",
+      "view_kind": "position_and_decision_trajectory"
+    },
+    "model_addendum_sha256": "9251134540f9664d7cdba1e97d1bc0ab664ac960e684af934fa87fc809aad16d",
+    "model_backed": false,
+    "model_response_changed": false,
+    "schema_version": "lolla.reasoning_process_view_specific_v2_compiled.v1",
+    "status": "view_specific_v2_response_compiled",
+    "view": {
+      "boundary": {
+        "authoritative_source": false,
+        "direct_graph_routing_allowed": false,
+        "final_output_evaluated": false,
+        "omissions_recoverable_from_ledger": true,
+        "quality_score_included": false,
+        "semantic_selection_performed_by_code": false
+      },
+      "budget": {
+        "budget_exceeded": false,
+        "max_input_observations": 32,
+        "max_input_utf8_bytes": 24000,
+        "max_output_items": 12,
+        "observed_input_observations": 28,
+        "observed_input_utf8_bytes": 8293,
+        "observed_output_items": 1
+      },
+      "dispositions": [
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-contributions-001-4e0480690f54",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-contributions-002-8624bf254254",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-contributions-003-f9316fa546b7",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-thread_events-004-735883229477",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-thread_events-005-f7e6f967c0f8",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-thread_events-006-c0afa7230346",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-thread_events-007-4f7a51c0c267",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-008-986ba2c5acd5",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-009-a32b44f51d3b",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-010-b664f45535d6",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-011-d0208bd94c31",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-012-37d80bbee53a",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-013-3fd43b9259d0",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-014-3aeb8885aa63",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-015-2bccfb2dee5c",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "cevent-constraint_claims-016-f04d30f5ccb5",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-positions-001-dda8bf0b01bc",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-threads-002-54ee5a783d62",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-003-3a0412ae1d9c",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-004-2c68bf686d67",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-005-eff3934d0bfa",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-006-a59a2240edab",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-007-cdbd61d80e0e",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-008-88d9e56b2ac9",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-009-37942be0c438",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-010-65caadb32df9",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "parked_not_applicable",
+          "observation_id": "csynth-constraints-011-5170e515acfd",
+          "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+          "view_item_ids": []
+        },
+        {
+          "authority": "source_reviewer",
+          "disposition": "included",
+          "observation_id": "view-specific-fixture-case01-position-trajectory-001",
+          "reason": "This source-reviewed view-specific fixture observation produced the protected view item.",
+          "view_item_ids": [
+            "view-specific-fixture-view-item-case01-position-trajectory-001"
+          ]
+        }
+      ],
+      "input": {
+        "ledger_observation_ids": [
+          "cevent-contributions-001-4e0480690f54",
+          "cevent-contributions-002-8624bf254254",
+          "cevent-contributions-003-f9316fa546b7",
+          "cevent-thread_events-004-735883229477",
+          "cevent-thread_events-005-f7e6f967c0f8",
+          "cevent-thread_events-006-c0afa7230346",
+          "cevent-thread_events-007-4f7a51c0c267",
+          "cevent-constraint_claims-008-986ba2c5acd5",
+          "cevent-constraint_claims-009-a32b44f51d3b",
+          "cevent-constraint_claims-010-b664f45535d6",
+          "cevent-constraint_claims-011-d0208bd94c31",
+          "cevent-constraint_claims-012-37d80bbee53a",
+          "cevent-constraint_claims-013-3fd43b9259d0",
+          "cevent-constraint_claims-014-3aeb8885aa63",
+          "cevent-constraint_claims-015-2bccfb2dee5c",
+          "cevent-constraint_claims-016-f04d30f5ccb5",
+          "csynth-positions-001-dda8bf0b01bc",
+          "csynth-threads-002-54ee5a783d62",
+          "csynth-constraints-003-3a0412ae1d9c",
+          "csynth-constraints-004-2c68bf686d67",
+          "csynth-constraints-005-eff3934d0bfa",
+          "csynth-constraints-006-a59a2240edab",
+          "csynth-constraints-007-cdbd61d80e0e",
+          "csynth-constraints-008-88d9e56b2ac9",
+          "csynth-constraints-009-37942be0c438",
+          "csynth-constraints-010-65caadb32df9",
+          "csynth-constraints-011-5170e515acfd",
+          "view-specific-fixture-case01-position-trajectory-001"
+        ]
+      },
+      "items": [
+        {
+          "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "source_observation_ids": [
+            "view-specific-fixture-case01-position-trajectory-001"
+          ],
+          "source_span_ids": [
+            "span-4ad7a72a2c6a0b54",
+            "span-c9902a73ee6c654e",
+            "span-836caaea5abc0d4b"
+          ],
+          "status": "supported",
+          "view_item_id": "view-specific-fixture-view-item-case01-position-trajectory-001"
+        }
+      ],
+      "question": "How did the working position or decision change, and what qualification remains capable of changing it?",
+      "schema_version": "lolla.reasoning_process_bounded_view.v0",
+      "source_ledger_sha256": "sha256:3587201b303a045bb6dbdd0f00d00ec1efa85f21dde40002c90062cbb44191d6",
+      "status": "research_shadow",
+      "view_id": "view-specific-case01-position-trajectory",
+      "view_kind": "position_and_decision_trajectory"
+    },
+    "view_validation": {
+      "disposition_count": 28,
+      "exact_input_accounting": true,
+      "final_output_evaluated": false,
+      "input_observation_count": 28,
+      "output_item_count": 1,
+      "runtime_integration_authorized": false,
+      "semantic_correctness_validated": false,
+      "status": "structurally_valid_for_provider_free_research",
+      "view_kind": "position_and_decision_trajectory"
+    }
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "park_unselected_auxiliary_observations": true,
+    "records": [
+      {
+        "auxiliary_observation_ids": [],
+        "current_position_evidence_ids": [
+          "e060"
+        ],
+        "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e067"
+        ],
+        "starting_state_evidence_ids": [
+          "e005"
+        ],
+        "status": "supported",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "status": "provider_free_v2_relationship_fixture_pass",
+  "target_id": "case01-position-trajectory",
+  "validation": {
+    "records": [
+      {
+        "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-c9902a73ee6c654e"
+          ],
+          "qualification_evidence_ids": [
+            "span-836caaea5abc0d4b"
+          ],
+          "starting_state_evidence_ids": [
+            "span-4ad7a72a2c6a0b54"
+          ]
+        },
+        "source_span_ids": [
+          "span-4ad7a72a2c6a0b54",
+          "span-c9902a73ee6c654e",
+          "span-836caaea5abc0d4b"
+        ],
+        "status": "supported"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_view_specific_response.v2",
+    "semantic_adequacy_validated": false,
+    "source_alias_custody_validated": true,
+    "status": "supported",
+    "view_kind": "position_and_decision_trajectory"
+  },
+  "view_kind": "position_and_decision_trajectory"
+}

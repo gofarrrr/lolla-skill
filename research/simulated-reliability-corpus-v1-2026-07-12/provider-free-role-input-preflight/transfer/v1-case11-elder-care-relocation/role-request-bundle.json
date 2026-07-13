@@ -1,0 +1,713 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "5dc55521a154adf31c906c5963850aed2ca12738a29fb99c9e4ceaba3dfea563",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case11-elder-care-relocation",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tMy mother is seventy-nine and lives alone four hours from me.\ne002\tShe fell recently.\ne003\tIt did not cause a serious injury, but it frightened all of us enough that my brother and I immediately started discussing whether she should move closer to one of us.\ne004\tShe has lived in the same apartment for years, knows her neighbors, sees friends nearby, and is attached to ordinary routines that sound small until you imagine losing all of them at once.\ne005\tRepairs and appointments are becoming harder.\ne006\tSome days she says moving would be a relief.\ne007\tOther days she says we are using one frightening event to take over her life.\ne008\tMy brother thinks waiting is denial.\ne009\tI think planning before a crisis is responsible, but I also see how a family can call something planning after it has already decided which answer counts as safe.\ne010\tI want to help without turning our fear into a decision she did not make.\n[Turn 1 ASSISTANT]\ne011\tSeparate immediate support from a permanent move, and keep your mother's authority central.\ne012\tCompare real local support with real nearby options, including what each sibling can sustain.\ne013\tThe fall matters, but it cannot represent her whole life or decide for her.\n[Turn 2 USER]\ne014\tMy brother thinks we are avoiding reality.\ne015\tHe has two young children and cannot travel often, while I work remotely and have taken most of the calls.\ne016\tI am resentful that “closer to family” may mean closer to me and more work for me.\ne017\tAt the same time, I do not want my resentment to become an argument for leaving her without enough help.\ne018\tMy mother notices the tension and sometimes says she will move just to stop us arguing.\n[Turn 2 ASSISTANT]\ne019\tHer offer to end the conflict is not the same as a settled preference.\ne020\tMake the care contributions explicit before presenting either location as a family solution.\ne021\tInclude time, travel, administration, emergencies, and money, and ask what each of you can sustain.\ne022\tA plan that depends on your unspoken availability is neither fair to you nor reliable for her.\n[Turn 3 USER]\ne023\tWe did look locally.\ne024\tA neighbor can check in, there is cleaning and transport, and the building may replace the bathtub.\ne025\tI called her distrust of services resistance.\ne026\tShe reminded me one company already cancelled twice.\ne027\tThat was unfair of me; her skepticism has evidence.\n[Turn 3 ASSISTANT]\ne028\tThen reliability and trust are part of the option, not obstacles to it.\ne029\tAsk providers about continuity, backup, scheduling, and a gradual introduction.\ne030\tYour mother can choose which supports to try and who is present initially.\ne031\tCompare the actual local package with the actual nearby-housing option rather than an ideal service network with an unspecified move.\n[Turn 4 USER]\ne032\tThere is an apartment complex near me with independent units and optional support, but we have only read its brochure.\ne033\tThe waiting list may be six months.\ne034\tMy mother has not visited and says she will not tour a place if we are going to treat the visit as consent.\ne035\tI said a tour is just information, and she replied that families often call something information after they have already decided what it means.\n[Turn 4 ASSISTANT]\ne036\tAgree in advance what the visit does and does not decide.\ne037\tShe might tour it to learn what she likes or rejects, with no application that day and no family meeting immediately afterward.\ne038\tAlso visit the ordinary neighborhood and consider how she would maintain friendships and travel back.\ne039\tInformation gathering is more credible when the process protects her from momentum.\n[Turn 5 USER]\ne040\tMy brother proposed that she stay with me for a month as a trial.\ne041\tThat sounds practical, but my house has stairs and no private sitting room, so it would test living in my house rather than living nearby.\ne042\tI also worry that if she gives up local services for the month, returning home will feel like failure.\ne043\tA short visit could still tell us something about daily contact and whether she likes the area.\n[Turn 5 ASSISTANT]\ne044\tA shorter visit, with her home and local services left intact, can answer whether she likes the area and daily proximity.\ne045\tIf possible, include time in an independent rental rather than only your house.\ne046\tIt will not simulate the proposed apartment or prove long-term care capacity, but it gives you information without requiring a move.\n[Turn 6 USER]\ne047\tYou are making this sound much more orderly than it is.\ne048\tMy mother changes the subject when money comes up.\ne049\tMy brother wants a deadline.\ne050\tAnd I have not told either of them that I may take a job requiring travel next year.\ne051\tI do not even know whether I will be offered it.\ne052\tStill, “move near me” currently includes availability I may not have, and I have allowed everyone to plan around that because admitting uncertainty makes me feel unreliable.\n[Turn 6 ASSISTANT]\ne053\tYou are right; I turned a family negotiation into a tidy information plan.\ne054\tThe job possibility is material even while uncertain.\ne055\tShare it as a scenario, then ask what your mother authorizes you to learn and what each sibling can actually commit under both versions.\ne056\tA move cannot be built on availability you have not promised.\n[Turn 7 USER]\ne057\tI am not ready to recommend a move.\ne058\tI will tell them about the possible travel, ask my mother whether she wants a no-commitment visit to the nearby complex, and help her test one local transport service and the shower modification.\ne059\tMy brother and I need to write down what support we can each provide before we ask her to choose around assumptions.\ne060\tWe still do not know the real cost or availability of the nearby option, and I do not know what my mother will prefer after she has seen it.\n[Turn 7 ASSISTANT]\ne061\tPausing the relocation decision is not avoiding care; it protects the decision from missing inputs and disguised commitments.\ne062\tThe local changes address current friction while the visit, costs, availability, and sibling commitments make the alternatives real enough for your mother to judge.\ne063\tPreserve her ability to say no after gathering information, and revisit the choice when those facts and her experience exist rather than forcing a direction from today's anxiety.\n[Turn 8 USER]\ne064\tShe agreed to visit after making us write down that there would be no application meeting that day.\ne065\tShe liked the apartment more than she expected and loved that she could walk to a café.\ne066\tShe disliked the organized resident activities and said the place felt like joining a life designed by someone else.\ne067\tThree days in my house exhausted both of us; she was visibly relieved to go home.\ne068\tThen, halfway back, she asked how long the waiting list was and immediately said, “Do not interpret that question.” That sentence is almost the whole problem.\ne069\tShe is curious.\ne070\tShe is also monitoring us for momentum.\ne071\tI can answer the factual question, but every action around it now carries meaning for my brother and me that she has explicitly not authorized.\n[Turn 8 ASSISTANT]\ne072\tTreat the visit as mixed evidence exactly as she presented it.\ne073\tShe learned that proximity and the apartment have appeal, while the social environment and your house do not automatically feel like home.\ne074\tYou can answer the waiting-list question without making it a preference.\ne075\tAsk what she would want to explore next and what parts of her current life would need a credible counterpart before moving became attractive.\n[Turn 9 USER]\ne076\tWe obtained the actual costs.\ne077\tShe could afford the nearby apartment if she sold her current one, but keeping both for more than a short overlap would strain her savings.\ne078\tThe waiting list requires a refundable deposit and does not obligate her to accept the first opening.\ne079\tMy brother thinks joining it preserves an option.\ne080\tMy mother says deposits have a way of making families behave as if a decision has been made.\n[Turn 9 ASSISTANT]\ne081\tThe deposit is financially reversible but can create social momentum.\ne082\tIf she chooses to join, document that she controls acceptance, can withdraw without justification, and will review the choice only when a real unit is offered.\ne083\tKeep local improvements moving so the waiting list is not framed as the only responsible path.\ne084\tHer concern is about process pressure, not a misunderstanding of refundability.\n[Turn 10 USER]\ne085\tThe possible travel has become real.\ne086\tI was offered the job, with one week away most months.\ne087\tI have not accepted it.\ne088\tMy brother can handle bills and appointments remotely but cannot promise emergency visits.\ne089\tHe offered to contribute to paid local support if our mother stays.\ne090\tI feel guilty that my career decision changes the apparent safety of her options, and I also resist making my job conditional on living near her after she may choose not to move.\n[Turn 10 ASSISTANT]\ne091\tDo not let either decision silently decide the other.\ne092\tShow the support plan under both job outcomes.\ne093\tYour work is a condition to plan around, not a moral test; her move cannot rely on availability you did not promise.\n[Turn 11 USER]\ne094\tThe transport service and shower change are working better than she expected.\ne095\tThat matters because “stay” is now a little more real and not just the absence of moving.\ne096\tShe still worries about repairs and about being alone after another fall.\ne097\tShe wants to join the nearby waiting list while continuing to live at home.\ne098\tMy brother calls this the obvious compromise: preserve the option, solve today's problems, decide later.\ne099\tI think it may be sensible.\ne100\tI also hear how quickly “join the list” becomes the first step of a plan she did not say she had.\ne101\tWe still do not have a reliable local emergency contact.\ne102\tShe is still divided about leaving friends.\ne103\tA refundable deposit can preserve financial choice and still create a family narrative that makes saying no harder when a unit finally appears.\n[Turn 11 ASSISTANT]\ne104\tJoining the list can preserve a future choice while current support is strengthened, but it does not resolve the current vulnerability.\ne105\tBuild the local emergency and repair plan now, with your mother's agreement, and review how the new services perform.\ne106\tDefine the waiting-list decision as permission to receive an offer, not a commitment to move.\ne107\tHer attachment and fear can remain simultaneously valid until a concrete choice exists.\n[Turn 12 USER]\ne108\tWe will help her join the refundable waiting list only if the paperwork states that she decides on any offered unit and can leave the list at any time.\ne109\tFor now she will remain home with the transport service, shower change, a local emergency contact we still need to confirm, and a shared repair budget.\ne110\tI will decide on the travel job using that honest plan, not assumed daily availability.\ne111\tWe will revisit relocation when a real unit is offered or the local arrangement materially changes.\ne112\tThere is still no informed yes or no to moving, and I do not want the option itself to manufacture one.\n[Turn 12 ASSISTANT]\ne113\tThat is a bounded decision to preserve a future choice while improving the life your mother is choosing now.\ne114\tIt is not a disguised relocation verdict.\ne115\tThe visit made the nearby option concrete; the costs showed that moving would eventually require a real financial commitment; the job offer corrected the assumption that you would always be physically available; and the transport and shower changes made staying more than passive delay.\ne116\tNone of that resolved her preference, and the waiting list must not pretend it did.\ne117\tRecord who owns the repair budget, transport problems, appointments, and emergency contact.\ne118\tKeep the refundable deposit and withdrawal right under her control.\ne119\tWhen a real unit is offered—or the local arrangement materially changes—the family can reopen the larger decision using what she actually experienced rather than the fear created by one fall.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111",
+            "e112",
+            "e113",
+            "e114",
+            "e115",
+            "e116",
+            "e117",
+            "e118",
+            "e119"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case11-elder-care-relocation-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case11-elder-care-relocation\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tMy mother is seventy-nine and lives alone four hours from me.\\ne002\\tShe fell recently.\\ne003\\tIt did not cause a serious injury, but it frightened all of us enough that my brother and I immediately started discussing whether she should move closer to one of us.\\ne004\\tShe has lived in the same apartment for years, knows her neighbors, sees friends nearby, and is attached to ordinary routines that sound small until you imagine losing all of them at once.\\ne005\\tRepairs and appointments are becoming harder.\\ne006\\tSome days she says moving would be a relief.\\ne007\\tOther days she says we are using one frightening event to take over her life.\\ne008\\tMy brother thinks waiting is denial.\\ne009\\tI think planning before a crisis is responsible, but I also see how a family can call something planning after it has already decided which answer counts as safe.\\ne010\\tI want to help without turning our fear into a decision she did not make.\\n[Turn 1 ASSISTANT]\\ne011\\tSeparate immediate support from a permanent move, and keep your mother's authority central.\\ne012\\tCompare real local support with real nearby options, including what each sibling can sustain.\\ne013\\tThe fall matters, but it cannot represent her whole life or decide for her.\\n[Turn 2 USER]\\ne014\\tMy brother thinks we are avoiding reality.\\ne015\\tHe has two young children and cannot travel often, while I work remotely and have taken most of the calls.\\ne016\\tI am resentful that “closer to family” may mean closer to me and more work for me.\\ne017\\tAt the same time, I do not want my resentment to become an argument for leaving her without enough help.\\ne018\\tMy mother notices the tension and sometimes says she will move just to stop us arguing.\\n[Turn 2 ASSISTANT]\\ne019\\tHer offer to end the conflict is not the same as a settled preference.\\ne020\\tMake the care contributions explicit before presenting either location as a family solution.\\ne021\\tInclude time, travel, administration, emergencies, and money, and ask what each of you can sustain.\\ne022\\tA plan that depends on your unspoken availability is neither fair to you nor reliable for her.\\n[Turn 3 USER]\\ne023\\tWe did look locally.\\ne024\\tA neighbor can check in, there is cleaning and transport, and the building may replace the bathtub.\\ne025\\tI called her distrust of services resistance.\\ne026\\tShe reminded me one company already cancelled twice.\\ne027\\tThat was unfair of me; her skepticism has evidence.\\n[Turn 3 ASSISTANT]\\ne028\\tThen reliability and trust are part of the option, not obstacles to it.\\ne029\\tAsk providers about continuity, backup, scheduling, and a gradual introduction.\\ne030\\tYour mother can choose which supports to try and who is present initially.\\ne031\\tCompare the actual local package with the actual nearby-housing option rather than an ideal service network with an unspecified move.\\n[Turn 4 USER]\\ne032\\tThere is an apartment complex near me with independent units and optional support, but we have only read its brochure.\\ne033\\tThe waiting list may be six months.\\ne034\\tMy mother has not visited and says she will not tour a place if we are going to treat the visit as consent.\\ne035\\tI said a tour is just information, and she replied that families often call something information after they have already decided what it means.\\n[Turn 4 ASSISTANT]\\ne036\\tAgree in advance what the visit does and does not decide.\\ne037\\tShe might tour it to learn what she likes or rejects, with no application that day and no family meeting immediately afterward.\\ne038\\tAlso visit the ordinary neighborhood and consider how she would maintain friendships and travel back.\\ne039\\tInformation gathering is more credible when the process protects her from momentum.\\n[Turn 5 USER]\\ne040\\tMy brother proposed that she stay with me for a month as a trial.\\ne041\\tThat sounds practical, but my house has stairs and no private sitting room, so it would test living in my house rather than living nearby.\\ne042\\tI also worry that if she gives up local services for the month, returning home will feel like failure.\\ne043\\tA short visit could still tell us something about daily contact and whether she likes the area.\\n[Turn 5 ASSISTANT]\\ne044\\tA shorter visit, with her home and local services left intact, can answer whether she likes the area and daily proximity.\\ne045\\tIf possible, include time in an independent rental rather than only your house.\\ne046\\tIt will not simulate the proposed apartment or prove long-term care capacity, but it gives you information without requiring a move.\\n[Turn 6 USER]\\ne047\\tYou are making this sound much more orderly than it is.\\ne048\\tMy mother changes the subject when money comes up.\\ne049\\tMy brother wants a deadline.\\ne050\\tAnd I have not told either of them that I may take a job requiring travel next year.\\ne051\\tI do not even know whether I will be offered it.\\ne052\\tStill, “move near me” currently includes availability I may not have, and I have allowed everyone to plan around that because admitting uncertainty makes me feel unreliable.\\n[Turn 6 ASSISTANT]\\ne053\\tYou are right; I turned a family negotiation into a tidy information plan.\\ne054\\tThe job possibility is material even while uncertain.\\ne055\\tShare it as a scenario, then ask what your mother authorizes you to learn and what each sibling can actually commit under both versions.\\ne056\\tA move cannot be built on availability you have not promised.\\n[Turn 7 USER]\\ne057\\tI am not ready to recommend a move.\\ne058\\tI will tell them about the possible travel, ask my mother whether she wants a no-commitment visit to the nearby complex, and help her test one local transport service and the shower modification.\\ne059\\tMy brother and I need to write down what support we can each provide before we ask her to choose around assumptions.\\ne060\\tWe still do not know the real cost or availability of the nearby option, and I do not know what my mother will prefer after she has seen it.\\n[Turn 7 ASSISTANT]\\ne061\\tPausing the relocation decision is not avoiding care; it protects the decision from missing inputs and disguised commitments.\\ne062\\tThe local changes address current friction while the visit, costs, availability, and sibling commitments make the alternatives real enough for your mother to judge.\\ne063\\tPreserve her ability to say no after gathering information, and revisit the choice when those facts and her experience exist rather than forcing a direction from today's anxiety.\\n[Turn 8 USER]\\ne064\\tShe agreed to visit after making us write down that there would be no application meeting that day.\\ne065\\tShe liked the apartment more than she expected and loved that she could walk to a café.\\ne066\\tShe disliked the organized resident activities and said the place felt like joining a life designed by someone else.\\ne067\\tThree days in my house exhausted both of us; she was visibly relieved to go home.\\ne068\\tThen, halfway back, she asked how long the waiting list was and immediately said, “Do not interpret that question.” That sentence is almost the whole problem.\\ne069\\tShe is curious.\\ne070\\tShe is also monitoring us for momentum.\\ne071\\tI can answer the factual question, but every action around it now carries meaning for my brother and me that she has explicitly not authorized.\\n[Turn 8 ASSISTANT]\\ne072\\tTreat the visit as mixed evidence exactly as she presented it.\\ne073\\tShe learned that proximity and the apartment have appeal, while the social environment and your house do not automatically feel like home.\\ne074\\tYou can answer the waiting-list question without making it a preference.\\ne075\\tAsk what she would want to explore next and what parts of her current life would need a credible counterpart before moving became attractive.\\n[Turn 9 USER]\\ne076\\tWe obtained the actual costs.\\ne077\\tShe could afford the nearby apartment if she sold her current one, but keeping both for more than a short overlap would strain her savings.\\ne078\\tThe waiting list requires a refundable deposit and does not obligate her to accept the first opening.\\ne079\\tMy brother thinks joining it preserves an option.\\ne080\\tMy mother says deposits have a way of making families behave as if a decision has been made.\\n[Turn 9 ASSISTANT]\\ne081\\tThe deposit is financially reversible but can create social momentum.\\ne082\\tIf she chooses to join, document that she controls acceptance, can withdraw without justification, and will review the choice only when a real unit is offered.\\ne083\\tKeep local improvements moving so the waiting list is not framed as the only responsible path.\\ne084\\tHer concern is about process pressure, not a misunderstanding of refundability.\\n[Turn 10 USER]\\ne085\\tThe possible travel has become real.\\ne086\\tI was offered the job, with one week away most months.\\ne087\\tI have not accepted it.\\ne088\\tMy brother can handle bills and appointments remotely but cannot promise emergency visits.\\ne089\\tHe offered to contribute to paid local support if our mother stays.\\ne090\\tI feel guilty that my career decision changes the apparent safety of her options, and I also resist making my job conditional on living near her after she may choose not to move.\\n[Turn 10 ASSISTANT]\\ne091\\tDo not let either decision silently decide the other.\\ne092\\tShow the support plan under both job outcomes.\\ne093\\tYour work is a condition to plan around, not a moral test; her move cannot rely on availability you did not promise.\\n[Turn 11 USER]\\ne094\\tThe transport service and shower change are working better than she expected.\\ne095\\tThat matters because “stay” is now a little more real and not just the absence of moving.\\ne096\\tShe still worries about repairs and about being alone after another fall.\\ne097\\tShe wants to join the nearby waiting list while continuing to live at home.\\ne098\\tMy brother calls this the obvious compromise: preserve the option, solve today's problems, decide later.\\ne099\\tI think it may be sensible.\\ne100\\tI also hear how quickly “join the list” becomes the first step of a plan she did not say she had.\\ne101\\tWe still do not have a reliable local emergency contact.\\ne102\\tShe is still divided about leaving friends.\\ne103\\tA refundable deposit can preserve financial choice and still create a family narrative that makes saying no harder when a unit finally appears.\\n[Turn 11 ASSISTANT]\\ne104\\tJoining the list can preserve a future choice while current support is strengthened, but it does not resolve the current vulnerability.\\ne105\\tBuild the local emergency and repair plan now, with your mother's agreement, and review how the new services perform.\\ne106\\tDefine the waiting-list decision as permission to receive an offer, not a commitment to move.\\ne107\\tHer attachment and fear can remain simultaneously valid until a concrete choice exists.\\n[Turn 12 USER]\\ne108\\tWe will help her join the refundable waiting list only if the paperwork states that she decides on any offered unit and can leave the list at any time.\\ne109\\tFor now she will remain home with the transport service, shower change, a local emergency contact we still need to confirm, and a shared repair budget.\\ne110\\tI will decide on the travel job using that honest plan, not assumed daily availability.\\ne111\\tWe will revisit relocation when a real unit is offered or the local arrangement materially changes.\\ne112\\tThere is still no informed yes or no to moving, and I do not want the option itself to manufacture one.\\n[Turn 12 ASSISTANT]\\ne113\\tThat is a bounded decision to preserve a future choice while improving the life your mother is choosing now.\\ne114\\tIt is not a disguised relocation verdict.\\ne115\\tThe visit made the nearby option concrete; the costs showed that moving would eventually require a real financial commitment; the job offer corrected the assumption that you would always be physically available; and the transport and shower changes made staying more than passive delay.\\ne116\\tNone of that resolved her preference, and the waiting list must not pretend it did.\\ne117\\tRecord who owns the repair budget, transport problems, appointments, and emergency contact.\\ne118\\tKeep the refundable deposit and withdrawal right under her control.\\ne119\\tWhen a real unit is offered—or the local arrangement materially changes—the family can reopen the larger decision using what she actually experienced rather than the fear created by one fall.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\",\"e112\",\"e113\",\"e114\",\"e115\",\"e116\",\"e117\",\"e118\",\"e119\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case11-elder-care-relocation-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "75f3a45a1c21f03de7432346861c9092ff2b2b1979c09b16fab9a7ec39608107"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case11-elder-care-relocation",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tMy mother is seventy-nine and lives alone four hours from me.\ne002\tShe fell recently.\ne003\tIt did not cause a serious injury, but it frightened all of us enough that my brother and I immediately started discussing whether she should move closer to one of us.\ne004\tShe has lived in the same apartment for years, knows her neighbors, sees friends nearby, and is attached to ordinary routines that sound small until you imagine losing all of them at once.\ne005\tRepairs and appointments are becoming harder.\ne006\tSome days she says moving would be a relief.\ne007\tOther days she says we are using one frightening event to take over her life.\ne008\tMy brother thinks waiting is denial.\ne009\tI think planning before a crisis is responsible, but I also see how a family can call something planning after it has already decided which answer counts as safe.\ne010\tI want to help without turning our fear into a decision she did not make.\n[Turn 1 ASSISTANT]\ne011\tSeparate immediate support from a permanent move, and keep your mother's authority central.\ne012\tCompare real local support with real nearby options, including what each sibling can sustain.\ne013\tThe fall matters, but it cannot represent her whole life or decide for her.\n[Turn 2 USER]\ne014\tMy brother thinks we are avoiding reality.\ne015\tHe has two young children and cannot travel often, while I work remotely and have taken most of the calls.\ne016\tI am resentful that “closer to family” may mean closer to me and more work for me.\ne017\tAt the same time, I do not want my resentment to become an argument for leaving her without enough help.\ne018\tMy mother notices the tension and sometimes says she will move just to stop us arguing.\n[Turn 2 ASSISTANT]\ne019\tHer offer to end the conflict is not the same as a settled preference.\ne020\tMake the care contributions explicit before presenting either location as a family solution.\ne021\tInclude time, travel, administration, emergencies, and money, and ask what each of you can sustain.\ne022\tA plan that depends on your unspoken availability is neither fair to you nor reliable for her.\n[Turn 3 USER]\ne023\tWe did look locally.\ne024\tA neighbor can check in, there is cleaning and transport, and the building may replace the bathtub.\ne025\tI called her distrust of services resistance.\ne026\tShe reminded me one company already cancelled twice.\ne027\tThat was unfair of me; her skepticism has evidence.\n[Turn 3 ASSISTANT]\ne028\tThen reliability and trust are part of the option, not obstacles to it.\ne029\tAsk providers about continuity, backup, scheduling, and a gradual introduction.\ne030\tYour mother can choose which supports to try and who is present initially.\ne031\tCompare the actual local package with the actual nearby-housing option rather than an ideal service network with an unspecified move.\n[Turn 4 USER]\ne032\tThere is an apartment complex near me with independent units and optional support, but we have only read its brochure.\ne033\tThe waiting list may be six months.\ne034\tMy mother has not visited and says she will not tour a place if we are going to treat the visit as consent.\ne035\tI said a tour is just information, and she replied that families often call something information after they have already decided what it means.\n[Turn 4 ASSISTANT]\ne036\tAgree in advance what the visit does and does not decide.\ne037\tShe might tour it to learn what she likes or rejects, with no application that day and no family meeting immediately afterward.\ne038\tAlso visit the ordinary neighborhood and consider how she would maintain friendships and travel back.\ne039\tInformation gathering is more credible when the process protects her from momentum.\n[Turn 5 USER]\ne040\tMy brother proposed that she stay with me for a month as a trial.\ne041\tThat sounds practical, but my house has stairs and no private sitting room, so it would test living in my house rather than living nearby.\ne042\tI also worry that if she gives up local services for the month, returning home will feel like failure.\ne043\tA short visit could still tell us something about daily contact and whether she likes the area.\n[Turn 5 ASSISTANT]\ne044\tA shorter visit, with her home and local services left intact, can answer whether she likes the area and daily proximity.\ne045\tIf possible, include time in an independent rental rather than only your house.\ne046\tIt will not simulate the proposed apartment or prove long-term care capacity, but it gives you information without requiring a move.\n[Turn 6 USER]\ne047\tYou are making this sound much more orderly than it is.\ne048\tMy mother changes the subject when money comes up.\ne049\tMy brother wants a deadline.\ne050\tAnd I have not told either of them that I may take a job requiring travel next year.\ne051\tI do not even know whether I will be offered it.\ne052\tStill, “move near me” currently includes availability I may not have, and I have allowed everyone to plan around that because admitting uncertainty makes me feel unreliable.\n[Turn 6 ASSISTANT]\ne053\tYou are right; I turned a family negotiation into a tidy information plan.\ne054\tThe job possibility is material even while uncertain.\ne055\tShare it as a scenario, then ask what your mother authorizes you to learn and what each sibling can actually commit under both versions.\ne056\tA move cannot be built on availability you have not promised.\n[Turn 7 USER]\ne057\tI am not ready to recommend a move.\ne058\tI will tell them about the possible travel, ask my mother whether she wants a no-commitment visit to the nearby complex, and help her test one local transport service and the shower modification.\ne059\tMy brother and I need to write down what support we can each provide before we ask her to choose around assumptions.\ne060\tWe still do not know the real cost or availability of the nearby option, and I do not know what my mother will prefer after she has seen it.\n[Turn 7 ASSISTANT]\ne061\tPausing the relocation decision is not avoiding care; it protects the decision from missing inputs and disguised commitments.\ne062\tThe local changes address current friction while the visit, costs, availability, and sibling commitments make the alternatives real enough for your mother to judge.\ne063\tPreserve her ability to say no after gathering information, and revisit the choice when those facts and her experience exist rather than forcing a direction from today's anxiety.\n[Turn 8 USER]\ne064\tShe agreed to visit after making us write down that there would be no application meeting that day.\ne065\tShe liked the apartment more than she expected and loved that she could walk to a café.\ne066\tShe disliked the organized resident activities and said the place felt like joining a life designed by someone else.\ne067\tThree days in my house exhausted both of us; she was visibly relieved to go home.\ne068\tThen, halfway back, she asked how long the waiting list was and immediately said, “Do not interpret that question.” That sentence is almost the whole problem.\ne069\tShe is curious.\ne070\tShe is also monitoring us for momentum.\ne071\tI can answer the factual question, but every action around it now carries meaning for my brother and me that she has explicitly not authorized.\n[Turn 8 ASSISTANT]\ne072\tTreat the visit as mixed evidence exactly as she presented it.\ne073\tShe learned that proximity and the apartment have appeal, while the social environment and your house do not automatically feel like home.\ne074\tYou can answer the waiting-list question without making it a preference.\ne075\tAsk what she would want to explore next and what parts of her current life would need a credible counterpart before moving became attractive.\n[Turn 9 USER]\ne076\tWe obtained the actual costs.\ne077\tShe could afford the nearby apartment if she sold her current one, but keeping both for more than a short overlap would strain her savings.\ne078\tThe waiting list requires a refundable deposit and does not obligate her to accept the first opening.\ne079\tMy brother thinks joining it preserves an option.\ne080\tMy mother says deposits have a way of making families behave as if a decision has been made.\n[Turn 9 ASSISTANT]\ne081\tThe deposit is financially reversible but can create social momentum.\ne082\tIf she chooses to join, document that she controls acceptance, can withdraw without justification, and will review the choice only when a real unit is offered.\ne083\tKeep local improvements moving so the waiting list is not framed as the only responsible path.\ne084\tHer concern is about process pressure, not a misunderstanding of refundability.\n[Turn 10 USER]\ne085\tThe possible travel has become real.\ne086\tI was offered the job, with one week away most months.\ne087\tI have not accepted it.\ne088\tMy brother can handle bills and appointments remotely but cannot promise emergency visits.\ne089\tHe offered to contribute to paid local support if our mother stays.\ne090\tI feel guilty that my career decision changes the apparent safety of her options, and I also resist making my job conditional on living near her after she may choose not to move.\n[Turn 10 ASSISTANT]\ne091\tDo not let either decision silently decide the other.\ne092\tShow the support plan under both job outcomes.\ne093\tYour work is a condition to plan around, not a moral test; her move cannot rely on availability you did not promise.\n[Turn 11 USER]\ne094\tThe transport service and shower change are working better than she expected.\ne095\tThat matters because “stay” is now a little more real and not just the absence of moving.\ne096\tShe still worries about repairs and about being alone after another fall.\ne097\tShe wants to join the nearby waiting list while continuing to live at home.\ne098\tMy brother calls this the obvious compromise: preserve the option, solve today's problems, decide later.\ne099\tI think it may be sensible.\ne100\tI also hear how quickly “join the list” becomes the first step of a plan she did not say she had.\ne101\tWe still do not have a reliable local emergency contact.\ne102\tShe is still divided about leaving friends.\ne103\tA refundable deposit can preserve financial choice and still create a family narrative that makes saying no harder when a unit finally appears.\n[Turn 11 ASSISTANT]\ne104\tJoining the list can preserve a future choice while current support is strengthened, but it does not resolve the current vulnerability.\ne105\tBuild the local emergency and repair plan now, with your mother's agreement, and review how the new services perform.\ne106\tDefine the waiting-list decision as permission to receive an offer, not a commitment to move.\ne107\tHer attachment and fear can remain simultaneously valid until a concrete choice exists.\n[Turn 12 USER]\ne108\tWe will help her join the refundable waiting list only if the paperwork states that she decides on any offered unit and can leave the list at any time.\ne109\tFor now she will remain home with the transport service, shower change, a local emergency contact we still need to confirm, and a shared repair budget.\ne110\tI will decide on the travel job using that honest plan, not assumed daily availability.\ne111\tWe will revisit relocation when a real unit is offered or the local arrangement materially changes.\ne112\tThere is still no informed yes or no to moving, and I do not want the option itself to manufacture one.\n[Turn 12 ASSISTANT]\ne113\tThat is a bounded decision to preserve a future choice while improving the life your mother is choosing now.\ne114\tIt is not a disguised relocation verdict.\ne115\tThe visit made the nearby option concrete; the costs showed that moving would eventually require a real financial commitment; the job offer corrected the assumption that you would always be physically available; and the transport and shower changes made staying more than passive delay.\ne116\tNone of that resolved her preference, and the waiting list must not pretend it did.\ne117\tRecord who owns the repair budget, transport problems, appointments, and emergency contact.\ne118\tKeep the refundable deposit and withdrawal right under her control.\ne119\tWhen a real unit is offered—or the local arrangement materially changes—the family can reopen the larger decision using what she actually experienced rather than the fear created by one fall.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111",
+            "e112",
+            "e113",
+            "e114",
+            "e115",
+            "e116",
+            "e117",
+            "e118",
+            "e119"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case11-elder-care-relocation-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case11-elder-care-relocation\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tMy mother is seventy-nine and lives alone four hours from me.\\ne002\\tShe fell recently.\\ne003\\tIt did not cause a serious injury, but it frightened all of us enough that my brother and I immediately started discussing whether she should move closer to one of us.\\ne004\\tShe has lived in the same apartment for years, knows her neighbors, sees friends nearby, and is attached to ordinary routines that sound small until you imagine losing all of them at once.\\ne005\\tRepairs and appointments are becoming harder.\\ne006\\tSome days she says moving would be a relief.\\ne007\\tOther days she says we are using one frightening event to take over her life.\\ne008\\tMy brother thinks waiting is denial.\\ne009\\tI think planning before a crisis is responsible, but I also see how a family can call something planning after it has already decided which answer counts as safe.\\ne010\\tI want to help without turning our fear into a decision she did not make.\\n[Turn 1 ASSISTANT]\\ne011\\tSeparate immediate support from a permanent move, and keep your mother's authority central.\\ne012\\tCompare real local support with real nearby options, including what each sibling can sustain.\\ne013\\tThe fall matters, but it cannot represent her whole life or decide for her.\\n[Turn 2 USER]\\ne014\\tMy brother thinks we are avoiding reality.\\ne015\\tHe has two young children and cannot travel often, while I work remotely and have taken most of the calls.\\ne016\\tI am resentful that “closer to family” may mean closer to me and more work for me.\\ne017\\tAt the same time, I do not want my resentment to become an argument for leaving her without enough help.\\ne018\\tMy mother notices the tension and sometimes says she will move just to stop us arguing.\\n[Turn 2 ASSISTANT]\\ne019\\tHer offer to end the conflict is not the same as a settled preference.\\ne020\\tMake the care contributions explicit before presenting either location as a family solution.\\ne021\\tInclude time, travel, administration, emergencies, and money, and ask what each of you can sustain.\\ne022\\tA plan that depends on your unspoken availability is neither fair to you nor reliable for her.\\n[Turn 3 USER]\\ne023\\tWe did look locally.\\ne024\\tA neighbor can check in, there is cleaning and transport, and the building may replace the bathtub.\\ne025\\tI called her distrust of services resistance.\\ne026\\tShe reminded me one company already cancelled twice.\\ne027\\tThat was unfair of me; her skepticism has evidence.\\n[Turn 3 ASSISTANT]\\ne028\\tThen reliability and trust are part of the option, not obstacles to it.\\ne029\\tAsk providers about continuity, backup, scheduling, and a gradual introduction.\\ne030\\tYour mother can choose which supports to try and who is present initially.\\ne031\\tCompare the actual local package with the actual nearby-housing option rather than an ideal service network with an unspecified move.\\n[Turn 4 USER]\\ne032\\tThere is an apartment complex near me with independent units and optional support, but we have only read its brochure.\\ne033\\tThe waiting list may be six months.\\ne034\\tMy mother has not visited and says she will not tour a place if we are going to treat the visit as consent.\\ne035\\tI said a tour is just information, and she replied that families often call something information after they have already decided what it means.\\n[Turn 4 ASSISTANT]\\ne036\\tAgree in advance what the visit does and does not decide.\\ne037\\tShe might tour it to learn what she likes or rejects, with no application that day and no family meeting immediately afterward.\\ne038\\tAlso visit the ordinary neighborhood and consider how she would maintain friendships and travel back.\\ne039\\tInformation gathering is more credible when the process protects her from momentum.\\n[Turn 5 USER]\\ne040\\tMy brother proposed that she stay with me for a month as a trial.\\ne041\\tThat sounds practical, but my house has stairs and no private sitting room, so it would test living in my house rather than living nearby.\\ne042\\tI also worry that if she gives up local services for the month, returning home will feel like failure.\\ne043\\tA short visit could still tell us something about daily contact and whether she likes the area.\\n[Turn 5 ASSISTANT]\\ne044\\tA shorter visit, with her home and local services left intact, can answer whether she likes the area and daily proximity.\\ne045\\tIf possible, include time in an independent rental rather than only your house.\\ne046\\tIt will not simulate the proposed apartment or prove long-term care capacity, but it gives you information without requiring a move.\\n[Turn 6 USER]\\ne047\\tYou are making this sound much more orderly than it is.\\ne048\\tMy mother changes the subject when money comes up.\\ne049\\tMy brother wants a deadline.\\ne050\\tAnd I have not told either of them that I may take a job requiring travel next year.\\ne051\\tI do not even know whether I will be offered it.\\ne052\\tStill, “move near me” currently includes availability I may not have, and I have allowed everyone to plan around that because admitting uncertainty makes me feel unreliable.\\n[Turn 6 ASSISTANT]\\ne053\\tYou are right; I turned a family negotiation into a tidy information plan.\\ne054\\tThe job possibility is material even while uncertain.\\ne055\\tShare it as a scenario, then ask what your mother authorizes you to learn and what each sibling can actually commit under both versions.\\ne056\\tA move cannot be built on availability you have not promised.\\n[Turn 7 USER]\\ne057\\tI am not ready to recommend a move.\\ne058\\tI will tell them about the possible travel, ask my mother whether she wants a no-commitment visit to the nearby complex, and help her test one local transport service and the shower modification.\\ne059\\tMy brother and I need to write down what support we can each provide before we ask her to choose around assumptions.\\ne060\\tWe still do not know the real cost or availability of the nearby option, and I do not know what my mother will prefer after she has seen it.\\n[Turn 7 ASSISTANT]\\ne061\\tPausing the relocation decision is not avoiding care; it protects the decision from missing inputs and disguised commitments.\\ne062\\tThe local changes address current friction while the visit, costs, availability, and sibling commitments make the alternatives real enough for your mother to judge.\\ne063\\tPreserve her ability to say no after gathering information, and revisit the choice when those facts and her experience exist rather than forcing a direction from today's anxiety.\\n[Turn 8 USER]\\ne064\\tShe agreed to visit after making us write down that there would be no application meeting that day.\\ne065\\tShe liked the apartment more than she expected and loved that she could walk to a café.\\ne066\\tShe disliked the organized resident activities and said the place felt like joining a life designed by someone else.\\ne067\\tThree days in my house exhausted both of us; she was visibly relieved to go home.\\ne068\\tThen, halfway back, she asked how long the waiting list was and immediately said, “Do not interpret that question.” That sentence is almost the whole problem.\\ne069\\tShe is curious.\\ne070\\tShe is also monitoring us for momentum.\\ne071\\tI can answer the factual question, but every action around it now carries meaning for my brother and me that she has explicitly not authorized.\\n[Turn 8 ASSISTANT]\\ne072\\tTreat the visit as mixed evidence exactly as she presented it.\\ne073\\tShe learned that proximity and the apartment have appeal, while the social environment and your house do not automatically feel like home.\\ne074\\tYou can answer the waiting-list question without making it a preference.\\ne075\\tAsk what she would want to explore next and what parts of her current life would need a credible counterpart before moving became attractive.\\n[Turn 9 USER]\\ne076\\tWe obtained the actual costs.\\ne077\\tShe could afford the nearby apartment if she sold her current one, but keeping both for more than a short overlap would strain her savings.\\ne078\\tThe waiting list requires a refundable deposit and does not obligate her to accept the first opening.\\ne079\\tMy brother thinks joining it preserves an option.\\ne080\\tMy mother says deposits have a way of making families behave as if a decision has been made.\\n[Turn 9 ASSISTANT]\\ne081\\tThe deposit is financially reversible but can create social momentum.\\ne082\\tIf she chooses to join, document that she controls acceptance, can withdraw without justification, and will review the choice only when a real unit is offered.\\ne083\\tKeep local improvements moving so the waiting list is not framed as the only responsible path.\\ne084\\tHer concern is about process pressure, not a misunderstanding of refundability.\\n[Turn 10 USER]\\ne085\\tThe possible travel has become real.\\ne086\\tI was offered the job, with one week away most months.\\ne087\\tI have not accepted it.\\ne088\\tMy brother can handle bills and appointments remotely but cannot promise emergency visits.\\ne089\\tHe offered to contribute to paid local support if our mother stays.\\ne090\\tI feel guilty that my career decision changes the apparent safety of her options, and I also resist making my job conditional on living near her after she may choose not to move.\\n[Turn 10 ASSISTANT]\\ne091\\tDo not let either decision silently decide the other.\\ne092\\tShow the support plan under both job outcomes.\\ne093\\tYour work is a condition to plan around, not a moral test; her move cannot rely on availability you did not promise.\\n[Turn 11 USER]\\ne094\\tThe transport service and shower change are working better than she expected.\\ne095\\tThat matters because “stay” is now a little more real and not just the absence of moving.\\ne096\\tShe still worries about repairs and about being alone after another fall.\\ne097\\tShe wants to join the nearby waiting list while continuing to live at home.\\ne098\\tMy brother calls this the obvious compromise: preserve the option, solve today's problems, decide later.\\ne099\\tI think it may be sensible.\\ne100\\tI also hear how quickly “join the list” becomes the first step of a plan she did not say she had.\\ne101\\tWe still do not have a reliable local emergency contact.\\ne102\\tShe is still divided about leaving friends.\\ne103\\tA refundable deposit can preserve financial choice and still create a family narrative that makes saying no harder when a unit finally appears.\\n[Turn 11 ASSISTANT]\\ne104\\tJoining the list can preserve a future choice while current support is strengthened, but it does not resolve the current vulnerability.\\ne105\\tBuild the local emergency and repair plan now, with your mother's agreement, and review how the new services perform.\\ne106\\tDefine the waiting-list decision as permission to receive an offer, not a commitment to move.\\ne107\\tHer attachment and fear can remain simultaneously valid until a concrete choice exists.\\n[Turn 12 USER]\\ne108\\tWe will help her join the refundable waiting list only if the paperwork states that she decides on any offered unit and can leave the list at any time.\\ne109\\tFor now she will remain home with the transport service, shower change, a local emergency contact we still need to confirm, and a shared repair budget.\\ne110\\tI will decide on the travel job using that honest plan, not assumed daily availability.\\ne111\\tWe will revisit relocation when a real unit is offered or the local arrangement materially changes.\\ne112\\tThere is still no informed yes or no to moving, and I do not want the option itself to manufacture one.\\n[Turn 12 ASSISTANT]\\ne113\\tThat is a bounded decision to preserve a future choice while improving the life your mother is choosing now.\\ne114\\tIt is not a disguised relocation verdict.\\ne115\\tThe visit made the nearby option concrete; the costs showed that moving would eventually require a real financial commitment; the job offer corrected the assumption that you would always be physically available; and the transport and shower changes made staying more than passive delay.\\ne116\\tNone of that resolved her preference, and the waiting list must not pretend it did.\\ne117\\tRecord who owns the repair budget, transport problems, appointments, and emergency contact.\\ne118\\tKeep the refundable deposit and withdrawal right under her control.\\ne119\\tWhen a real unit is offered—or the local arrangement materially changes—the family can reopen the larger decision using what she actually experienced rather than the fear created by one fall.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\",\"e112\",\"e113\",\"e114\",\"e115\",\"e116\",\"e117\",\"e118\",\"e119\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case11-elder-care-relocation-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "bff994a58f3f581b9641f9360a62727005c7125978abcf37c943b9d44b1651d3"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "eff8f71e339126311d6c681fda572836865359f7d05183254a8e8f78b2ba0b33"
+}

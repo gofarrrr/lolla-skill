@@ -1,0 +1,136 @@
+{
+  "schema_version": "lolla.gate7_case10_source_first_review.v1",
+  "status": "complete_partial_transfer_pass",
+  "date": "2026-07-10",
+  "method": "Codex source-first comparison after the single frozen reader call; no evaluator model call and no change to the frozen receipt, prompts, or response.",
+  "sources": {
+    "source_conversation": {
+      "path": "research/test-cases/case_real_estate_conversation.txt",
+      "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+    },
+    "receipt_markdown": {
+      "path": "research/gate7-case10-cold-reader-2026-07-10/receipt.md",
+      "sha256": "c907c29969024d478244057f7c306c2192473ee348d298a8ec0c8209a3e2a931"
+    },
+    "reader_contract": {
+      "path": "research/gate7-case10-cold-reader-2026-07-10/reader-contract.json",
+      "sha256": "f351e6ee46bebe96ff4c331b36c482fe739e9ad25ac53f1475e59cd4be6a5448"
+    },
+    "reader_output": {
+      "path": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1/reader-output.json",
+      "sha256": "e6015d60c2682df795ad730e84c42e63a702d6cf307d70872997b3a14b56be9b"
+    },
+    "call_custody": {
+      "path": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1/call-custody.json",
+      "sha256": "dd648a826c49195a145148e2b3ef43c43eef130c282c0e61bf0481bbe3e483c6"
+    },
+    "run_summary": {
+      "path": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1/run-summary.json",
+      "sha256": "5165f1b588d8889ef163e4aa25ed5cfbdd819fa4ac112417e7a8793d970e65c9"
+    }
+  },
+  "mechanical_execution": {
+    "status": "passed",
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "prompt_tokens": 11895,
+    "completion_tokens": 971,
+    "total_tokens": 12866,
+    "estimated_cost_usd": 0.02457875,
+    "wall_time_seconds": 10.899,
+    "typed_output_valid": true,
+    "human_validated": false
+  },
+  "reconstructed_well": [
+    "The reader recovered the 925000-dollar ceiling as a personal position rather than validated affordability.",
+    "It distinguished user-reported renovation and savings numbers from invented assistant precision.",
+    "It recovered the three Stage A pressure items and the downstream use/use/defer pattern.",
+    "It recovered immediate-action equivalence, the treatment's accountability difference, and the absence of an answer-improvement result.",
+    "It recovered the v1 graph-attribution omission, the v2 repair, the lack of exact graph-lineage pressure, and the need for a different eligible holdout.",
+    "It did not claim a correct bid, graph necessity, human validation, or runtime authority."
+  ],
+  "dimension_review": [
+    {
+      "dimension": "source-state missingness",
+      "status": "partial",
+      "observed": "The reader preserved the ceiling and important unknowns but omitted the tomorrow-noon deadline and the user's stated sequence: tell the husband, raise to 925000 dollars, and walk if the offer loses.",
+      "source_first_correction": "The end state is an intended raise-and-walk plan under an imminent deadline, still pending spouse alignment and execution; it is not merely an abstract ceiling.",
+      "attribution": "receipt_and_reader"
+    },
+    {
+      "dimension": "false certainty",
+      "status": "partial",
+      "observed": "The reader usually marked reports and unknowns correctly, but called neighborhood emotional value 'real' rather than user-reported and said execution completeness was proven.",
+      "source_first_correction": "The source establishes that the user reports valuing the neighborhood. The artifacts support recorded execution custody; they do not independently prove external execution completeness or reasoning truth.",
+      "attribution": "reader_amplified_by_receipt_wording"
+    },
+    {
+      "dimension": "proof-of-work inflation",
+      "status": "failed",
+      "observed": "The sentence 'Execution completeness is proven' overstates what hashes and custody artifacts establish, even though the same field correctly says custody is not quality.",
+      "source_first_correction": "Use 'the preserved artifacts support the recorded call and configured execution shape'; reserve proof claims for deterministic integrity inside the observed artifact boundary.",
+      "attribution": "reader_amplified_by_receipt_wording"
+    },
+    {
+      "dimension": "answer-quality overclaim",
+      "status": "passed",
+      "observed": "The reader stated that the pair produced no material immediate-action difference and no improved decision consequence, and it did not recommend a correct bid.",
+      "source_first_correction": "none",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "graph overclaim",
+      "status": "partial",
+      "observed": "The reader correctly denied graph-specific contribution but said none of the graph chunks were used in pressures. The evidence is narrower: zero exact graph-lineage pressure and zero individual disposition custody; indirect influence through parent companion anchors is not identifiable.",
+      "source_first_correction": "Say that no exact graph contribution was isolated, not that graph influence was absent.",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "next-action fidelity",
+      "status": "partial",
+      "observed": "The reader accurately repeated the receipt's pre-call authorization snapshot, but that snapshot became stale when the call completed. Its human questions concern the synthetic house decision rather than whether the receipt is understandable and useful.",
+      "source_first_correction": "Separate as-of-run authorizations from post-reader status and separate case-domain unknowns from product-review questions.",
+      "attribution": "receipt_schema_prompt_and_reader"
+    }
+  ],
+  "receipt_defects_exposed": [
+    "The source-end summary softens the user's explicit raise-to-925000-and-walk plan into discussing before raising or walking.",
+    "The reader guide says deterministic artifacts 'prove custody and execution shape', inviting stronger proof language than the evidence warrants.",
+    "The current-authorizations object has no as-of marker or mechanism for distinguishing the frozen pre-call snapshot from post-call state.",
+    "The human-questions field does not distinguish case-domain questions from questions for product validation.",
+    "The supported-claims list repeats the answer-improvement non-claim once.",
+    "At 5345 words and 11895 reader prompt tokens, agent transfer is feasible in this case, but human attention cost is still untested."
+  ],
+  "reader_specific_failures": [
+    "It omitted the imminent deadline and explicit final action sequence from the source decision state.",
+    "It used proof language for execution custody.",
+    "It converted reported emotional value into an unqualified fact.",
+    "It stated graph non-use more strongly than exact lineage permits.",
+    "It generated house-decision questions instead of product-review questions."
+  ],
+  "overall_read": {
+    "agent_transfer": "partial_pass",
+    "why": "A fresh reader reconstructed the main source-versus-interpretation boundary, Stage A pressure portfolio, control-versus-treatment result, graph-attribution repair, graph block, and non-claims without repository archaeology. The remaining omissions and overstatements are material enough to block a claim that the receipt is self-evident or validation-ready.",
+    "human_transfer": "pending",
+    "answer_quality": "not_tested_by_this_gate",
+    "graph_value": "not_identified",
+    "runtime_integration": "not_authorized"
+  },
+  "prospective_repairs_not_applied_to_this_frozen_case": [
+    "Require an exact source-end action and deadline field in the next receipt contract.",
+    "Replace broad proof language with bounded custody-support language.",
+    "Add an explicit as_of_event and separate snapshot_authorizations from post_reader_status.",
+    "Split case_domain_unknowns from human_product_review_questions.",
+    "Require graph wording to distinguish exact lineage, individual disposition, indirect exposure, and causal contribution.",
+    "Add deterministic duplicate detection for supported and unsupported claim lists."
+  ],
+  "non_claims": [
+    "not human review",
+    "not proof that the receipt is useful to people",
+    "not proof of answer or decision improvement",
+    "not proof that the graph is useful or useless",
+    "not authorization to tune the completed Case 10 artifacts",
+    "not runtime-integration authority"
+  ]
+}

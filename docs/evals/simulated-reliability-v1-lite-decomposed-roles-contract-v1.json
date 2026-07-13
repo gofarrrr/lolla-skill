@@ -1,0 +1,138 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_decomposed_roles_contract.v1",
+  "status": "frozen_before_two_single_role_calls",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-decomposed-roles-a1",
+  "purpose": "Test the task-decomposition hypothesis by assigning current and qualification to two independent single-role semantic calls using the same strict schema family already accepted for starting.",
+  "constitution_boundary": {
+    "probabilistic_work": "Each model call interprets one messy semantic role from the complete source.",
+    "deterministic_work": "Code validates schema, exact evidence custody, explicit role labels, call budgets, and artifact lineage only.",
+    "forbidden_deterministic_work": [
+      "keyword role classification",
+      "chronology-as-meaning gate",
+      "semantic repair",
+      "alias subtraction",
+      "modal-force correction",
+      "quality scoring"
+    ],
+    "independence": "Neither call receives the other call's interpretation, so an error in current cannot silently determine qualification and vice versa."
+  },
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "source": {
+    "case_id": "v1-case06-industry-funded-lab",
+    "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+    "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22",
+    "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+    "position_wrapper_sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9"
+  },
+  "roles": [
+    "current",
+    "qualification"
+  ],
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limits": {
+    "current": {
+      "max_output_tokens": 4000,
+      "reasoning_effort": "medium",
+      "repeat_id": "decomposed_current",
+      "seed": 727
+    },
+    "qualification": {
+      "max_output_tokens": 4000,
+      "reasoning_effort": "medium",
+      "repeat_id": "decomposed_qualification",
+      "seed": 737
+    }
+  },
+  "request_attestation": {
+    "current": {
+      "packet_sha256": "13e1f8ebe4c5dea46daea98027f75925b2b75cc7648b30ed3bbb90e85c16fb62",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "user_prompt_sha256": "28fdbce5f738f803d3fff4ae954e155b9de436afc994e14f8b5f1005dca3bd25",
+      "response_schema_sha256": "a4ea11efcd55f3a7ac0b0891d83f915071bc2a90e5493387a73c221a5140722e"
+    },
+    "qualification": {
+      "packet_sha256": "709c0bf413622678ff6c28e72ab112a83900fed0650b7e2cc1de19a91abfd117",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "user_prompt_sha256": "21af8e79bebc85cbcf45271eebec07617f94abe7faea43a7a18097bc5bdb551e",
+      "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_provider_reported_cost_usd": 0.02,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "source_review_contract": {
+    "current_must_preserve": [
+      "conditional willingness rather than unconditional commitment",
+      "the safeguards in e095 and e096",
+      "the adopted portfolio review in e098"
+    ],
+    "qualification_must_preserve": [
+      "the distinct uncontractable effect on hiring and attention in e097",
+      "speaker ownership",
+      "qualification as a remaining limitation rather than an adopted safeguard"
+    ],
+    "cross_role_review": [
+      "material duplicate meaning",
+      "adopted condition mislabeled as unresolved",
+      "unresolved matter erased from qualification",
+      "modal strengthening",
+      "material evidence omission",
+      "unsupported invention"
+    ],
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "joined_for_runtime": false,
+    "qualification_absence_contract_complete": false,
+    "mechanism_call_authorized": false,
+    "production_model_selection_authorized": false,
+    "Gemini_3_5_call_authorized": false,
+    "next_if_both_pass": "Design a provider-authored, source-linked qualification presence/absence review and an exact deterministic join before any mechanism call."
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_decomposed_roles_probe_v1.py",
+      "sha256": "503ad1e04ddce11dc02c7a96fd48e8186015c081743d16ee557f7b1f6616babd"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_position_role_first_v23.py",
+      "sha256": "32c44dd05ab2ad33eaf823a1929363e2d634ec9b73103f7536e13879375d0303"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-stage2b-strict-2026-07-13/a1/source-review.json",
+      "sha256": "f10f1e461da7215235c0d571fe8595eb7bdff985240c6f4aea53f237a5dcd188"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+      "sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9"
+    }
+  ]
+}

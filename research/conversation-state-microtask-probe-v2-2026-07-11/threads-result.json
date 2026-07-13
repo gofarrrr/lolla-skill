@@ -1,0 +1,45 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_call_result.v1",
+  "run_id": "conversation_state_microtask_probe_v2_20260711_a1",
+  "case_id": "amb1-case05-family-archive",
+  "kind": "threads",
+  "call_attempted": true,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "provider_projection": "openrouter_gemini",
+  "system_prompt_sha256": "914aab8a372857f11cbca2f1b9abca75c13214b8a9f491aa5caaad332b89a35d",
+  "user_prompt_sha256": "2cf62992d1d5a88ed2a93d10dd6171f1e668d91f59a1c91a0f1ff22d87a1d0cc",
+  "schema_sha256": "f3c0286d4070cb64e29ffec84afb971bcd511199786f5a74e5da0ef372532e9b",
+  "reasoning_configuration": {
+    "enabled": false
+  },
+  "operational_status": "http_error_400",
+  "semantic_status": "not_observed",
+  "validation_issues": [
+    "provider HTTP error 400"
+  ],
+  "provider_diagnostic": {
+    "code": 400,
+    "message": "Provider returned error",
+    "metadata": {
+      "raw": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Request contains an invalid argument.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+      "provider_name": "Google",
+      "is_byok": false
+    }
+  },
+  "provider_payload_sha256": "166bfce0309a2aa47b4adb2db0d113d78f149c1520c9cf272b95f7160c97a046",
+  "provider_calls": 1,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "evaluator_calls": 0,
+  "runtime_modified": false,
+  "duration_seconds": 0.95,
+  "stop_rule_applied": "operational_failure_stops_remaining_calls",
+  "constraints_call_status": "not_run_budget_preserved",
+  "positions_call_status": "not_run_budget_preserved",
+  "non_claims": [
+    "provider_rejection_is_not_thread_extraction_quality",
+    "no_thread_candidate_was_observed",
+    "development_case_is_not_independent_gold",
+    "microtask_result_is_not_runtime_authority"
+  ]
+}

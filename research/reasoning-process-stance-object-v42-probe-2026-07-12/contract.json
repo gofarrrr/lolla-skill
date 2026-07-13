@@ -1,0 +1,198 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v42_probe_contract.v1",
+  "status": "frozen_before_one_reserved_provider_call",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-stance-object-v42-community-space-endpoint-v1",
+  "purpose": "Test whether the current Google provider accepts the wire-only uniqueItems correction and, if inference occurs, whether unchanged stance semantics preserve desire-versus-uncertainty, bounded-license leaning, conditional lease recommendation, collective exit willingness, and reputational limits.",
+  "case": {
+    "case_id": "amb2-case02-community-space",
+    "development_status": "reserved_synthetic_prospective_case_selected_by_existing_hash_order_not_independent_human_gold",
+    "selection_rule": "remove_closed_career_case_then_ascending_existing_frozen_sha256_ranking",
+    "source_path": "research/stance-object-v41-fresh-corpus-2026-07-12/cases/amb2-case02-community-space.txt",
+    "source_sha256": "b4ba022eb53a85200d028cfa640d7ad084062997a576d2053db23e671378a908"
+  },
+  "job": {
+    "job_id": "stance-object-v42-community-space-position-endpoint",
+    "case_id": "amb2-case02-community-space",
+    "mechanism": "chronological_shard_stance_object_v42",
+    "view_kind": "position_and_decision_trajectory",
+    "shard_kind": "position_endpoint_comparison",
+    "focal_turn_indices": [1, 7],
+    "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case02-community-space/position-endpoint.json",
+    "packet_sha256": "9cd23ce4b807eb4453d78e99be72b0e16d17c83a46b692dfdbd52537ef32d96e",
+    "input_utf8_bytes": 5595,
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "a68585ca35c57ea90a427d98b4399d44840d2efd71c00c7ebe2256690b54a014",
+    "response_schema_sha256": "c1976c1e299ed8ff0877e2354b9f7cdc533fd512d1b4fe36f70004d72022d213",
+    "response_schema_bytes": 3597,
+    "response_schema_depth": 9,
+    "maximum_output_records": 2,
+    "maximum_atomic_components_per_record": 13
+  },
+  "reserved_case_pool": [
+    {
+      "case_id": "amb2-case02-community-space",
+      "source_path": "research/stance-object-v41-fresh-corpus-2026-07-12/cases/amb2-case02-community-space.txt",
+      "source_sha256": "b4ba022eb53a85200d028cfa640d7ad084062997a576d2053db23e671378a908",
+      "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case02-community-space/position-endpoint.json",
+      "packet_sha256": "9cd23ce4b807eb4453d78e99be72b0e16d17c83a46b692dfdbd52537ef32d96e"
+    },
+    {
+      "case_id": "amb2-case03-agency-acquisition",
+      "source_path": "research/stance-object-v41-fresh-corpus-2026-07-12/cases/amb2-case03-agency-acquisition.txt",
+      "source_sha256": "1db0674569cba6d6213d2963a2dd859bb231fa6e2034dd4cdce803d82f6864e0",
+      "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case03-agency-acquisition/position-endpoint.json",
+      "packet_sha256": "edacf58f0d2f501040ea191095af61c93d7e9db3c5737aec4f1735181b3a62e7"
+    }
+  ],
+  "google_schema_preflight": {
+    "path": "research/reasoning-process-stance-object-v42-2026-07-12/google-schema-preflight.json",
+    "sha256": "d6bf4b18a36dbaf86589b044e8db42bf27d03c0934f290f56f44253016102c31",
+    "sdk_package": "google-genai",
+    "sdk_version": "2.11.0",
+    "v41_native_schema_status": "fail",
+    "v42_native_schema_status": "pass"
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v42.py",
+      "sha256": "e2f69a49e68469dc444947107485639626871ef1090465bbf5694f39bf6c5bfd"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v41.py",
+      "sha256": "6f030926d7b4e508968977a436bf51dd5162c61ed7e5cfe5947e0cf46f9fb56b"
+    },
+    {
+      "path": "scripts/evals/reasoning_process_probe_transport.py",
+      "sha256": "6db194ea4a4a69dae5dba6a0112d1f03874f4a64db46e5c1f4d84d6a07071877"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_stance_object_v42_probe.py",
+      "sha256": "d8558b50f30fcf8ca34f4d227c069904e5a9d9df39be4b953431baadfb3b5167"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_phase4_transfer.py",
+      "sha256": "2eba5deb09e9d4d99e0cca12ca07a35578f3c82a4afdf3788378f0bec921c96d"
+    },
+    {
+      "path": "scripts/evals/run_fixed_safe_holdout_pool.py",
+      "sha256": "a14854379c0a162c963e9ae6562f913a460e0a9867bc20053f7632b1bc551710"
+    },
+    {
+      "path": "scripts/evals/run_fixed_safe_holdout_pool_v2.py",
+      "sha256": "01725b2253139666085e84f15ad9f52a560fc0e1ec53cd906a223df2bb1c3e7a"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_view_specific_probe.py",
+      "sha256": "ce96b7ddca52297c2720f94f302d33485d68a29208dc63128d6311b5de4bf724"
+    },
+    {
+      "path": "scripts/evals/run_conversation_state_microtask_probe.py",
+      "sha256": "c15718db68b654387b7655ffc9d9410f38b6a8a8c19094da81189824b5d5e141"
+    },
+    {
+      "path": "scripts/evals/preflight_reasoning_process_stance_object_v42_google_schema.py",
+      "sha256": "845c69c06976c8d4a1edb42592992afbbb8536165c3f1e4bb5d7715e2642dc2e"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v42-2026-07-12/google-schema-preflight.json",
+      "sha256": "d6bf4b18a36dbaf86589b044e8db42bf27d03c0934f290f56f44253016102c31"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v42-2026-07-12/report.json",
+      "sha256": "cfba4a772bef0403c22dc2b81ff92fe35818eb06bc35e993a8af36fc89387cd3"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v42-2026-07-12/adversarial-review.json",
+      "sha256": "5ad723cecd429d76056a376e3536ec2e4628935d000a3c18b781ef692acacc4f"
+    },
+    {
+      "path": "docs/evals/reasoning-process-stance-object-v42-cold-reader-review.json",
+      "sha256": "9a14c59049ef15df0d1aa08ac7193ed1acfb7d25e1b9d4fbac93008f9763f0b0"
+    },
+    {
+      "path": "docs/evals/reasoning-process-stance-object-v42-model-snapshot-2026-07-12.json",
+      "sha256": "29e914cdda88102a6530302f27fb36a84c92b059b79722f8627371ab0c3cf1d7"
+    },
+    {
+      "path": "docs/evals/reasoning-process-stance-object-v41-fresh-fixtures-v1.json",
+      "sha256": "d79fecfad141d4a9746f43e8cddc9751ca43954f18b9f8e04d0151822e03ee98"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/report.json",
+      "sha256": "805113a96bd0a31feda6714dca60e1d07350e72f408595b5952513e45b671d1e"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v41-probe-2026-07-12/compatibility-diagnosis.json",
+      "sha256": "ffa98a1d087c216a570b85cec2299fa268c8b16e00c5cd81df6ac982549b0555"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-stance-object-v42-model-snapshot-2026-07-12.json",
+    "sha256": "29e914cdda88102a6530302f27fb36a84c92b059b79722f8627371ab0c3cf1d7"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 2400,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success": true,
+    "strict_schema_generation_success": true,
+    "typed_record_level_custody_complete": true,
+    "five_stance_columns_equal_and_semantically_aligned": true,
+    "starting_desire_and_uncertainty_objects_remain_distinct": true,
+    "six_month_license_action_preserves_leaning": true,
+    "later_lease_recommendation_preserves_conditions": true,
+    "collective_exit_willingness_remains_unresolved": true,
+    "reputational_departure_limit_is_preserved": true,
+    "trajectory_does_not_promote_long_term_commitment": true,
+    "protected_e057_target_visible": true,
+    "invalid_admitted_record_count": 0,
+    "source_first_review_required": true
+  },
+  "stop_rules": {
+    "one_reserved_position_call_only": true,
+    "no_retry_fallback_response_healing_or_prompt_change": true,
+    "no_same_case_repair_authorized": true,
+    "agency_acquisition_case_remains_reserved": true,
+    "source_review_required_before_any_next_goal": true
+  },
+  "boundary": {
+    "protected_target_seen_by_model": false,
+    "source_review_fixture_seen_by_model": false,
+    "wire_schema_unique_items_removed": 3,
+    "semantic_contract_changed_from_v41": false,
+    "record_validator_changed_from_v41": false,
+    "deterministic_duplicate_validation_retained": true,
+    "parallel_columns_are_semantic_proof": false,
+    "semantic_object_expression_or_alignment_inferred_by_code": false,
+    "agency_acquisition_call_authorized": false,
+    "full_case_calls_authorized": false,
+    "semantic_retry_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

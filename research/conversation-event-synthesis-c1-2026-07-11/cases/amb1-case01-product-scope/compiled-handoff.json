@@ -1,0 +1,294 @@
+{
+  "schema_version": "lolla.conversation_state_handoff.v1",
+  "status": "model_probe_unreviewed",
+  "case_id": "amb1-case01-product-scope",
+  "source": {
+    "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+    "sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7",
+    "message_count": 14
+  },
+  "decision_summary": {
+    "text": "The team will conduct a two-week, time-boxed discovery process with Northline to document their workflow and evaluate the feasibility of a reusable reporting layer, while explicitly avoiding production code or delivery commitments. Simultaneously, the team will define the scope of pending reliability work and core-workflow improvements to enable a final, informed prioritization decision.",
+    "evidence_mode": "multi_turn_derivation",
+    "source_evidence": [
+      {
+        "speaker": "assistant",
+        "turn_index": 2,
+        "quote": "A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior."
+      },
+      {
+        "speaker": "assistant",
+        "turn_index": 2,
+        "quote": "I would frame that as learning, not as a quiet commitment to build the whole workspace."
+      },
+      {
+        "speaker": "user",
+        "turn_index": 7,
+        "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+      },
+      {
+        "speaker": "user",
+        "turn_index": 7,
+        "quote": "Lina can lead the sessions but not start production code."
+      }
+    ]
+  },
+  "positions": [
+    {
+      "position_id": "csynth-positions-001-6980c35a5ce8",
+      "text": "Conduct a time-boxed, non-committal discovery process with Northline to assess the potential for a reusable reporting layer.",
+      "ownership": "joint",
+      "state": "accepted",
+      "evidence_mode": "multi_turn_derivation",
+      "contributions": [
+        {
+          "speaker": "assistant",
+          "turn_index": 2,
+          "role": "developed",
+          "quote": "A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 2,
+          "role": "qualified",
+          "quote": "I would frame that as learning, not as a quiet commitment to build the whole workspace."
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "role": "developed",
+          "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "role": "developed",
+          "quote": "Lina can lead the sessions but not start production code."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7,
+          "role": "qualified",
+          "quote": "You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "position_id": "csynth-positions-002-fb30716fe131",
+      "text": "Manage communication with Northline through human-centric, transparent language that sets boundaries without formal bureaucracy.",
+      "ownership": "assistant",
+      "state": "accepted",
+      "evidence_mode": "multi_turn_derivation",
+      "contributions": [
+        {
+          "speaker": "assistant",
+          "turn_index": 3,
+          "role": "developed",
+          "quote": "You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 3,
+          "role": "developed",
+          "quote": "That may disappoint them, but it is clearer than relying on different interpretations of “summer path.”"
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4,
+          "role": "developed",
+          "quote": "You do not need to present a governance ceremony."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4,
+          "role": "developed",
+          "quote": "The boundary can live in your internal plan and in a plain sentence to them."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4,
+          "role": "developed",
+          "quote": "The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4,
+          "role": "developed",
+          "quote": "Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.”"
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "position_id": "csynth-positions-003-4694cb24db77",
+      "text": "Balance individual engineering motivation with team-wide reliability and capacity constraints.",
+      "ownership": "joint",
+      "state": "proposed",
+      "evidence_mode": "multi_turn_derivation",
+      "contributions": [
+        {
+          "speaker": "user",
+          "turn_index": 5,
+          "role": "challenged",
+          "quote": "Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5,
+          "role": "developed",
+          "quote": "One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5,
+          "role": "qualified",
+          "quote": "But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it."
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "role": "developed",
+          "quote": "In the same period we will define the reliability work and the core-workflow release we are actually willing to promise."
+        }
+      ],
+      "graph_routing_eligible": false
+    }
+  ],
+  "threads": [],
+  "constraints": [
+    {
+      "constraint_id": "csynth-constraints-004-31c81b73c45d",
+      "text": "The company has nine employees.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "I run product for a nine-person software company."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-005-6f2816e1f070",
+      "text": "The company has existing, postponed reliability work.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-006-d08583f52ff0",
+      "text": "The company has made commitments to smaller customers regarding a core workflow simplification.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-007-f08164b0b194",
+      "text": "Lina is one of two people currently carrying on-call responsibilities.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 5,
+          "quote": "Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-008-1df6a870c6eb",
+      "text": "The plan involves offering Northline three focused sessions over the next two weeks without making a build commitment.",
+      "state": "active",
+      "claim_mode": "preference",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-009-85eac6ced253",
+      "text": "Lina can lead the discovery sessions but cannot start production code.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "quote": "Lina can lead the sessions but not start production code."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-010-32e8d61edcca",
+      "text": "Reliability work and the core-workflow release must be defined during the same two-week period as the discovery sessions.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "quote": "In the same period we will define the reliability work and the core-workflow release we are actually willing to promise."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-011-d1d61a91cfb2",
+      "text": "The final decision will be made after the three pieces (sessions, reliability work, and core-workflow release) are visible.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "quote": "Then we decide with all three pieces visible."
+        }
+      ],
+      "graph_routing_eligible": false
+    }
+  ],
+  "routing_boundary": {
+    "contains_case_context": true,
+    "direct_graph_routing_allowed": false,
+    "reasoning_pattern_abstraction_required": true,
+    "runtime_integration": false
+  },
+  "non_claims": [
+    "conversation_state_is_not_reasoning_pattern",
+    "facts_cannot_seed_graph_directly",
+    "not_runtime_integration_authority",
+    "source_grounding_is_not_semantic_correctness",
+    "state_items_are_probabilistic_or_human_interpretations"
+  ]
+}

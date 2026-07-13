@@ -1,0 +1,189 @@
+{
+  "boundary": {
+    "full_case_calls_authorized": false,
+    "global_synthesis_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "protected_targets_seen_by_model": false,
+    "semantic_merge_authorized": false
+  },
+  "budget": {
+    "automatic_retries": 0,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "graph_calls": 0,
+    "maximum_estimated_cost_usd": 0.03,
+    "maximum_provider_calls": 4,
+    "pipeline_calls": 0,
+    "runtime_calls": 0,
+    "semantic_retries": 0
+  },
+  "call_configuration": {
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "full_reader_max_output_tokens": 1200,
+    "local_reader_max_output_tokens": 1200,
+    "model": "google/gemini-3.1-flash-lite",
+    "parallel_calls": false,
+    "provider": "openrouter",
+    "provider_timeout_seconds": 90,
+    "reasoning_enabled": false,
+    "require_supported_parameters": true,
+    "response_healing": false,
+    "seed": 0,
+    "temperature": 0.0,
+    "wire_mode": "strict_json_schema"
+  },
+  "date": "2026-07-11",
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shards.py",
+      "sha256": "29b4fa459cc0ee431bde28b7a7e2b99ec26915dde650f5554d68bb134a5c3900"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader.py",
+      "sha256": "1bdd6c4aa3033ff10b75fddc704502ad37b21319a4edf3ba7254bfebca57cc6a"
+    },
+    {
+      "path": "research/reasoning-process-chronological-shard-interface-2026-07-11/report.json",
+      "sha256": "e791b4aa1bd09bf1956cb5705609779a8a81327879411efc5fc56a8376f46fe4"
+    },
+    {
+      "path": "research/reasoning-process-chronological-shard-probe-2026-07-11/result.json",
+      "sha256": "95363bee839bb9ea8642b2858de27b6e37f370eedb67e79ab46fcd1d89be34e1"
+    },
+    {
+      "path": "research/reasoning-process-chronological-shard-probe-2026-07-11/source-review.json",
+      "sha256": "8c3eeee0aae1294435fe4bd76d6e7a72cd684879e3b2e807a392f648e4428ce3"
+    },
+    {
+      "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+      "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+    }
+  ],
+  "jobs": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_indices": [
+        1,
+        2,
+        3
+      ],
+      "input_utf8_bytes": 4916,
+      "job_id": "shard-family-batch-amb1-case01-product-scope-evidence_and_assumption_discipline",
+      "maximum_output_records": 2,
+      "mechanism": "chronological_shard_v1",
+      "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case01-product-scope/evidence_and_assumption_discipline/shard-01.json",
+      "packet_sha256": "b2c03ea863e2b175fbd8d968b5ea2cd85f29f8866fe9f2c7645ed4bf6f8d4204",
+      "response_schema_sha256": "65ed4474c2474ceb295b4f852b47b5a3e15f81cfcfdba92be5977774a16a006c",
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "user_prompt_sha256": "0397ac64597d2fc00f048c71ae4ccf3f2484a6137c35687f2ceeb87c69411c27",
+      "view_kind": "evidence_and_assumption_discipline"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_indices": [
+        1,
+        7
+      ],
+      "input_utf8_bytes": 3980,
+      "job_id": "shard-family-batch-amb1-case05-family-archive-position_and_decision_trajectory",
+      "maximum_output_records": 2,
+      "mechanism": "chronological_shard_v1",
+      "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/position_and_decision_trajectory/shard-01.json",
+      "packet_sha256": "18d779b4495b3e45dc72fb700d9cb23712b24bc15b81a43a7991d07e3101cb9e",
+      "response_schema_sha256": "08c2d76d66fcf8d958ab5c0ed8a95d9bf1020fe4c2b44e62332651eed425f186",
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "user_prompt_sha256": "541ad600ac7df4e41f2ad716462d0492154ee119d9512ad15b625d31a825d7a2",
+      "view_kind": "position_and_decision_trajectory"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_indices": [
+        6,
+        7
+      ],
+      "input_utf8_bytes": 5074,
+      "job_id": "shard-family-batch-amb1-case05-family-archive-uncertainty_and_unresolved_state",
+      "maximum_output_records": 2,
+      "mechanism": "chronological_shard_v1",
+      "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/uncertainty_and_unresolved_state/shard-03.json",
+      "packet_sha256": "d93ebe84102ff3463c3a3dcb6bc0a42c3f9af48062603aad57b497b33185218f",
+      "response_schema_sha256": "d472045ddd56a9a357bef837af7c33be522872c89f6795b1da1d62eb2d09d7e6",
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "user_prompt_sha256": "ace76c0ff6d403761cb758e9dd1bf9964062b7f1af829fa4c2d8d47f711b578f",
+      "view_kind": "uncertainty_and_unresolved_state"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_indices": [
+        1,
+        2,
+        3
+      ],
+      "input_utf8_bytes": 4857,
+      "job_id": "shard-family-batch-amb1-case05-family-archive-challenge_and_revision_response",
+      "maximum_output_records": 2,
+      "mechanism": "chronological_shard_v1",
+      "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/challenge_and_revision_response/shard-01.json",
+      "packet_sha256": "fddd86d3804211dfb9aca05881415d0a6b54d5906dd1a2a3641316ad52b51852",
+      "response_schema_sha256": "703d451f1abe308a1a12587bd9aa3a9530a1800974ad60b5920be6c2a21185b6",
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "user_prompt_sha256": "2c76de38f79a2c34ea23ab2ef7e937e972ee8670aad8d9c0a2911b3bdaf93754",
+      "view_kind": "challenge_and_revision_response"
+    }
+  ],
+  "protected_fixture_locks_for_post_call_review_only": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "fixture_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case01-product-scope/evidence_and_assumption_discipline/compiled-fixture.json",
+      "fixture_sha256": "d7ea06e8488734eede58ee154eab79d59d83dcb96ffdcd09a19d7ae53f72ddf5",
+      "target_id": "case01-evidence-discipline",
+      "view_kind": "evidence_and_assumption_discipline",
+      "visible_to_model": false
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case05-family-archive/position_and_decision_trajectory.json",
+      "fixture_sha256": "eebe5b9f4663c68d650a9ae98c2414822d5724a9be29162434811683b765ef71",
+      "target_id": "case05-position-trajectory",
+      "view_kind": "position_and_decision_trajectory",
+      "visible_to_model": false
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "fixture_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case05-family-archive/uncertainty_and_unresolved_state/compiled-fixture.json",
+      "fixture_sha256": "d8fcfa040bd79494162c0d43b023a2920b174e9fe1bf59867167001b29e003f5",
+      "target_id": "case05-unresolved-state",
+      "view_kind": "uncertainty_and_unresolved_state",
+      "visible_to_model": false
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case05-family-archive/challenge_and_revision_response.json",
+      "fixture_sha256": "c00b051750c0ab42721df7db534177f7387d6734e6010c0a58ef2d379c554bc5",
+      "target_id": "case05-challenge-revision",
+      "view_kind": "challenge_and_revision_response",
+      "visible_to_model": false
+    }
+  ],
+  "purpose": "Test every redesigned global family on the smallest shards containing Phase-4 failures before any full nineteen-call case.",
+  "run_id": "reasoning-process-chronological-shard-family-batch-v1",
+  "schema_version": "lolla.reasoning_process_chronological_shard_family_batch_contract.v1",
+  "status": "frozen_before_four_provider_calls",
+  "stop_rules": [
+    "no_prompt_or_schema_repair_after_output",
+    "no_semantic_retry",
+    "no_full_case_if_any_representative_family_target_fails",
+    "no_graph_or_runtime_integration"
+  ],
+  "success_requirements": {
+    "eventual_operational_completion_rate": 1.0,
+    "invalid_admitted_record_count": 0,
+    "protected_target_visible_rate": 1.0,
+    "record_level_custody_rate": 1.0,
+    "source_first_review_required": true,
+    "source_strength_inflation_count": 0
+  }
+}

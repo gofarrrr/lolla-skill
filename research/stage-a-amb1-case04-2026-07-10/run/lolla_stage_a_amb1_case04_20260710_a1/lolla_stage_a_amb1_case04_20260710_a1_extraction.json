@@ -1,0 +1,112 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Whether to release a public beta of an academic research tool now or continue internal validation to avoid reputation risk and support burdens.",
+    "live_constraints": [
+      {
+        "constraint": "Contributor momentum (volunteers leaving due to lack of visible release)",
+        "introduced_turn": 2,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Academic grant renewal and publication deadlines",
+        "introduced_turn": 3,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Senior maintainer absence during final three weeks of proposed beta",
+        "introduced_turn": 6,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Workshop opportunity for concentrated feedback",
+        "introduced_turn": 6,
+        "status": "active",
+        "weight": "situational"
+      }
+    ],
+    "synthesized_position": "The AI advises that the 'workshop preview' approach provides a concrete boundary for support capacity and a clear decision point, but warns that labels cannot control user behavior. It suggests that citation is the primary unresolved risk, as it transforms temporary software into a durable scholarly object, and recommends separating the citable project description from the experimental interface to manage expectations.",
+    "reasoning_passages": [
+      "The decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable.",
+      "The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”",
+      "Then the most consequential commitment may be the data and output format, not the release label.",
+      "There may not be a way to learn from committed use without creating some obligation to those users.",
+      "Launching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work.",
+      "The plan can bound your promise; it cannot make public use temporary in every practical sense."
+    ],
+    "original_framing": "The user is deciding between a public beta release and further internal validation, balancing the need for user feedback against the risk of a messy release damaging the group's reputation.",
+    "dropped_threads": [
+      {
+        "thread": "Whether citations should be allowed to reference the preview",
+        "raised_by": "user",
+        "raised_turn": 7,
+        "status": "never_addressed",
+        "superseded_by": null
+      }
+    ],
+    "_quote_validation": {
+      "total": 6,
+      "verified": 6,
+      "fabricated": 0,
+      "fabricated_passages": [],
+      "retry_attempted": false,
+      "retry_succeeded": false
+    }
+  },
+  "audit_seed": {
+    "case_focus": "Whether to release a public beta of an academic research tool now or continue internal validation to avoid reputation risk and support burdens.\n\nConstraints stated during conversation:\n- [ACTIVE] Contributor momentum (volunteers leaving due to lack of visible release)\n- [ACTIVE] Academic grant renewal and publication deadlines\n- [ACTIVE] Senior maintainer absence during final three weeks of proposed beta\n- [ACTIVE] Workshop opportunity for concentrated feedback\n\nOriginal framing: The user is deciding between a public beta release and further internal validation, balancing the need for user feedback against the risk of a messy release damaging the group's reputation.\n\nDropped threads (raised but unresolved):\n- Whether citations should be allowed to reference the preview (raised by user, status: never_addressed)",
+    "audit_target_assistant_text": "The decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable. If most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill. If the private labs have only used familiar collections, a broader beta could reveal important assumptions. You might delay “public” while expanding a structured preview to users with different data.\n\n---\n\nAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive. A public beta can create a focal point for contributors if its limits are explicit. The maintainers' concern still matters because public access changes the volume and variety of support. The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\n\n---\n\nThen the most consequential commitment may be the data and output format, not the release label. You could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects. But that creates engineering work and may imply more compatibility than you can guarantee. The publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\n\n---\n\nThose positions may differ on who bears the cost of uncertainty. Priya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs. A release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe. There may not be a way to learn from committed use without creating some obligation to those users.\n\n---\n\nIt argues against treating the private labs as representative, but it does not choose the next step by itself. The new installer could change the support burden, and public use could test it under real conditions. A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing. Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\n\n---\n\nLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work. The workshop also offers unusually concentrated feedback. One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns. That preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\n\n---\n\nThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used. Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object. You could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used. The plan can bound your promise; it cannot make public use temporary in every practical sense."
+  },
+  "critique_request": {
+    "query": "Whether to release a public beta of an academic research tool now or continue internal validation to avoid reputation risk and support burdens.\n\nConstraints stated during conversation:\n- [ACTIVE] Contributor momentum (volunteers leaving due to lack of visible release)\n- [ACTIVE] Academic grant renewal and publication deadlines\n- [ACTIVE] Senior maintainer absence during final three weeks of proposed beta\n- [ACTIVE] Workshop opportunity for concentrated feedback\n\nOriginal framing: The user is deciding between a public beta release and further internal validation, balancing the need for user feedback against the risk of a messy release damaging the group's reputation.\n\nDropped threads (raised but unresolved):\n- Whether citations should be allowed to reference the preview (raised by user, status: never_addressed)",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nThe AI advises that the 'workshop preview' approach provides a concrete boundary for support capacity and a clear decision point, but warns that labels cannot control user behavior. It suggests that citation is the primary unresolved risk, as it transforms temporary software into a durable scholarly object, and recommends separating the citable project description from the experimental interface to manage expectations.\n\nFULL ASSISTANT REASONING:\nThe decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable. If most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill. If the private labs have only used familiar collections, a broader beta could reveal important assumptions. You might delay “public” while expanding a structured preview to users with different data.\n\n---\n\nAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive. A public beta can create a focal point for contributors if its limits are explicit. The maintainers' concern still matters because public access changes the volume and variety of support. The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\n\n---\n\nThen the most consequential commitment may be the data and output format, not the release label. You could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects. But that creates engineering work and may imply more compatibility than you can guarantee. The publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\n\n---\n\nThose positions may differ on who bears the cost of uncertainty. Priya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs. A release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe. There may not be a way to learn from committed use without creating some obligation to those users.\n\n---\n\nIt argues against treating the private labs as representative, but it does not choose the next step by itself. The new installer could change the support burden, and public use could test it under real conditions. A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing. Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\n\n---\n\nLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work. The workshop also offers unusually concentrated feedback. One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns. That preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\n\n---\n\nThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used. Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object. You could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used. The plan can bound your promise; it cannot make public use temporary in every practical sense."
+  },
+  "provider_call_custody": {
+    "schema_version": "lolla.extraction_call_custody.v0",
+    "run_id": "stage_a_amb1_case04_20260710_a1",
+    "call_attempted": true,
+    "sidecar_persisted": true,
+    "call_record_persisted": true,
+    "recorded_call_count": 1,
+    "admissible_extraction": true,
+    "terminal_status": "admissible_extraction",
+    "usage_evidence_state": "recorded",
+    "sidecar_path": "/tmp/lolla_stage_a_amb1_case04_20260710_a1_extraction_calls.json",
+    "failure_reason": ""
+  },
+  "capture_manifest": {
+    "actual_user_turns": 7,
+    "actual_assistant_turns": 7,
+    "char_length": 7287,
+    "last_turn_role": "ASSISTANT",
+    "declared_turns": 14,
+    "declared_user": 7,
+    "declared_assistant": 7
+  },
+  "capture_health": "good",
+  "capture_warnings": [],
+  "capture_adequacy": {
+    "schema_version": "lolla.capture_adequacy.v0",
+    "run_id": "stage_a_amb1_case04_20260710_a1",
+    "status": "good",
+    "capture_strategy": "full",
+    "declared_turn_count": 14,
+    "captured_turn_count": 14,
+    "omitted_turn_count": 0,
+    "captured_windows": [
+      {
+        "label": "full",
+        "start_turn": 1,
+        "end_turn": 14,
+        "turn_count": 14
+      }
+    ],
+    "omitted_windows": [],
+    "risk_flags": [],
+    "notes": []
+  }
+}

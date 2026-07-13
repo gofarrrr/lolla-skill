@@ -1,0 +1,27 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_7",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a8",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v7.json",
+  "base_contract_sha256": "ba031632f50a495065358626448c0c76378b7890b908b2d99e6f0b7e0af041a2",
+  "repair_basis": "A7 reached no semantic inference because Google Vertex rejected the expanded strict schema. Use the already-proven JSON-object/schema-in-prompt transport for the mechanism task only.",
+  "task_limits": {
+    "mechanism": {
+      "max_output_tokens": 10000,
+      "wire_mode": "json_object_schema_in_prompt"
+    }
+  },
+  "calibration": {
+    "a7_transport_review_path": "research/simulated-reliability-v1-calibration-2026-07-12/a7/calibration-transport-review.json",
+    "all_a8_call_identities_are_fresh": true,
+    "maximum_provider_calls": 18,
+    "stop_rule": "Product-scope runs first. Stop before other sentinels if the separated mechanism contract fails compilation or routes counterpressure_acknowledged_not_integrated despite operational coverage in assistant-turn-007."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a7/calibration-transport-review.json",
+      "sha256": "92f3bf35aed7fea8ec7e5f8e52166402bead1b0ca1e3722ef91d822f930d264a"
+    }
+  ]
+}

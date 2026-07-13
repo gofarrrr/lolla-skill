@@ -1,0 +1,190 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_probe_contract.v1",
+  "status": "frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_microtask_probe_v1_20260711_a1",
+  "purpose": "Test whether three shallow semantic calls can populate the typed conversation-state candidates for one non-Case-03 development conversation while deterministic code owns source custody, candidate validation, quarantine, and later composition.",
+  "selection": {
+    "rule": "lowest_source_sha256_among_non_case03_cases_without_atomic_migration",
+    "eligible_case_ids": [
+      "amb1-case02-nonprofit-scale",
+      "amb1-case05-family-archive"
+    ],
+    "selected_case_id": "amb1-case02-nonprofit-scale",
+    "selected_for_likely_success": false,
+    "clean_holdout": false,
+    "case03_repair_target_excluded": true,
+    "atomic_migration_cases_excluded": true
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+    "message_count": 14,
+    "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case02-nonprofit-scale.json",
+    "reviewed_packet_sha256": "19854f600f57d4a54567052eb19d24f1fa8218fa668863d17f7de82f8996233f",
+    "expected_position_ownership": "joint",
+    "expected_thread_disposition": "addressed_unresolved",
+    "expected_atomic_constraint_count": 9
+  },
+  "microtask_order": [
+    "positions",
+    "threads",
+    "constraints"
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_projection": "gemini",
+    "temperature": 0.0,
+    "reasoning": {
+      "enabled": false
+    },
+    "require_supported_parameters": true,
+    "max_output_tokens": 4000,
+    "provider_timeout_seconds": 60,
+    "wall_clock_timeout_seconds": 180,
+    "calls_per_microtask": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "pipeline_calls": 0,
+    "graph_calls": 0
+  },
+  "call_budget": {
+    "maximum_provider_calls": 3,
+    "estimated_total_cost_ceiling_usd": 0.02,
+    "pricing_table_version": "2026-05-25"
+  },
+  "stop_rules": {
+    "operational_failure_stops_remaining_calls": true,
+    "valid_semantic_failure_is_preserved_and_does_not_trigger_retry": true,
+    "hard_stop_before_second_case": true
+  },
+  "scoring_contract": {
+    "composite_score": null,
+    "review_order": "source_then_reviewed_packet_then_observed_family",
+    "positions": {
+      "required": [
+        "decision_summary_supported",
+        "focal_position_present",
+        "ownership_joint",
+        "user_turn_7_contribution_present",
+        "assistant_turn_7_contribution_present",
+        "zero_material_source_custody_violations"
+      ]
+    },
+    "threads": {
+      "required": [
+        "focal_thread_present",
+        "disposition_addressed_unresolved",
+        "full_trajectory_represented",
+        "zero_false_genuinely_dropped",
+        "zero_material_source_custody_violations"
+      ]
+    },
+    "constraints": {
+      "required": [
+        "atomic_claims_only",
+        "zero_source_strength_inflation",
+        "recall_at_least_0_75",
+        "precision_at_least_0_80",
+        "zero_material_source_custody_violations"
+      ]
+    },
+    "composition": {
+      "allowed_only_if_all_family_candidates_are_valid": true,
+      "graph_routing_allowed": false
+    }
+  },
+  "prompt_hashes": {
+    "positions": {
+      "system_prompt_sha256": "274159dee43fae40995459c0338bdc77b404092444f5c9f7cceae7989f0f162b",
+      "user_prompt_sha256": "c2b20b3c21e23e5493b94a17a40eb8cc4d3cb1952c5f000253eb255406edd442",
+      "schema_sha256": "4168365ff4268c63bbff980d5ded72db725f8605ea141df0119bf7571c6241e0",
+      "schema_metrics": {
+        "bytes": 2864,
+        "depth": 6,
+        "property_nodes": 5
+      }
+    },
+    "threads": {
+      "system_prompt_sha256": "9a3af991d29d497af7606dffad5fa62d8bac96e546140a92fba955196a0bb4a4",
+      "user_prompt_sha256": "d84acd89e097eb9f6cdfb1c29ca780c194e0ed2b63908be543aff2092e92b665",
+      "schema_sha256": "bae807b79a2f942417e5d4a28af5e37ed681d31a453f79a8fa83e14132d5f5e3",
+      "schema_metrics": {
+        "bytes": 2294,
+        "depth": 6,
+        "property_nodes": 4
+      }
+    },
+    "constraints": {
+      "system_prompt_sha256": "35cacab5eefea562edf23224d0131556b7cdeff183b79680ebbb8d31b39b1bd7",
+      "user_prompt_sha256": "dbc4273734dce1f75e9c497f834bce6ffdcc919bdca079470774cccc80429676",
+      "schema_sha256": "46033ee67a0964f6550ad86ba2bc9645906358cbd9ebc5ad9a2a92b60ecc4258",
+      "schema_metrics": {
+        "bytes": 1684,
+        "depth": 6,
+        "property_nodes": 3
+      }
+    }
+  },
+  "hash_locks": [
+    {
+      "role": "microtask_runner",
+      "path": "scripts/evals/run_conversation_state_microtask_probe.py",
+      "sha256": "c15718db68b654387b7655ffc9d9410f38b6a8a8c19094da81189824b5d5e141"
+    },
+    {
+      "role": "typed_candidates",
+      "path": "engine/system_b/conversation_state_candidates.py",
+      "sha256": "16ad9c58cff6a818bf9187b10e93285f2704be34cf891b257da671c6a89fe70b"
+    },
+    {
+      "role": "candidate_pipeline",
+      "path": "engine/system_b/conversation_state_candidate_pipeline.py",
+      "sha256": "86ed7326aa248d982fa1ebf6fe6e5686e5598f52d61ade8209ba2c6c8cb269b3"
+    },
+    {
+      "role": "state_handoff",
+      "path": "engine/system_b/conversation_state_handoff.py",
+      "sha256": "db528315ee1a5714bffe9546f58a2879b409a182d121bd09210777730d2d8c8b"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v1.md",
+      "sha256": "3271be0269ea6ba43786edd5ebd4a8fa50cdddf879000339718a7ef9feddd03b"
+    },
+    {
+      "role": "structured_extraction_practices",
+      "path": "docs/conversation-understanding/structured-extraction-practices-july-2026.md",
+      "sha256": "c0fd9dde51e943f5f0aa2652db46f059242f53de5fbb34be0b1976fc5f601238"
+    },
+    {
+      "role": "recovery_contract",
+      "path": "research/conversation-state-recovery-v1-2026-07-11/contract.json",
+      "sha256": "11b7ea393be81d99b9b1ab87f2f8dfac4beb6e8e32fd01f3113b819675192daf"
+    }
+  ],
+  "artifacts": {
+    "package_path": "research/conversation-state-microtask-probe-v1-2026-07-11",
+    "positions_result_path": "research/conversation-state-microtask-probe-v1-2026-07-11/positions-result.json",
+    "threads_result_path": "research/conversation-state-microtask-probe-v1-2026-07-11/threads-result.json",
+    "constraints_result_path": "research/conversation-state-microtask-probe-v1-2026-07-11/constraints-result.json",
+    "source_review_path": "research/conversation-state-microtask-probe-v1-2026-07-11/source-review.json",
+    "decision_path": "research/conversation-state-microtask-probe-v1-2026-07-11/decision.json",
+    "require_family_results_absent_before_run": true
+  },
+  "non_claims": [
+    "not_clean_holdout",
+    "not_independent_gold",
+    "not_graph_value",
+    "not_reasoning_quality_proof",
+    "not_full_pipeline_authority",
+    "not_runtime_integration_authority"
+  ]
+}

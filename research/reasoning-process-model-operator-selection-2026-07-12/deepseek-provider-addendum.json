@@ -1,0 +1,43 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_provider_addendum.v1",
+  "status": "frozen_after_deepinfra_rate_limit_before_alibaba_call",
+  "date": "2026-07-12",
+  "model_id": "deepseek/deepseek-v4-flash",
+  "failed_pair": {
+    "provider_slug": "deepinfra",
+    "status": "http_error_429",
+    "schema_acceptance_observed": false,
+    "retry_authorized": false
+  },
+  "selected_new_pair": {
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "context_length": 1000000,
+    "prompt_usd_per_million": 0.134,
+    "completion_usd_per_million": 0.268,
+    "advertised_parameters": [
+      "reasoning",
+      "include_reasoning",
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "seed",
+      "presence_penalty",
+      "response_format",
+      "tool_choice",
+      "tools",
+      "structured_outputs",
+      "reasoning_effort"
+    ],
+    "selection_reason": "Active non-DeepInfra endpoint advertising strict structured outputs and seed while remaining substantially cheaper than Gemini 3.1 Flash Lite on output."
+  },
+  "boundary": {
+    "new_model_provider_pair": true,
+    "deepinfra_retry": false,
+    "provider_fallbacks": false,
+    "same_synthetic_packet": true,
+    "same_v42_prompt_and_schema": true,
+    "semantic_case_spent": false
+  },
+  "source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4-flash/endpoints"
+}

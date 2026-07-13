@@ -1,0 +1,153 @@
+{
+  "schema_version": "lolla.downstream_utility_pilot_contract.v0",
+  "status": "frozen_before_calls",
+  "batch": "batch_2_protected_edge_false_standdown",
+  "case": {
+    "case_id": "case-06-friendship-money",
+    "case_role": "protected_edge_disposition_holdout",
+    "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+    "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+  },
+  "protocol": {
+    "path": "docs/evals/lolla-downstream-utility-experiment-v0.json",
+    "sha256": "06d98095ae5840ac6b37c45cb974b0b821fed4bc8b219d98ae24e8c10fd3b8b0"
+  },
+  "runner": {
+    "path": "scripts/evals/run_downstream_utility_pilot.py",
+    "sha256": "a155289a22c18d1863050101b8d2ddcda9fbc1b91886bcc2c40b12d3d7304e53"
+  },
+  "source_artifacts": [
+    {
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a-contract.json",
+      "sha256": "4fb6169b40dced89dd76786b52d7c38122c264bf29da14bfb719f54171dd9278"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a/pipeline-gate-result.json",
+      "sha256": "cc5dd7d6847fc6ab73e9cffe4476e6b377ef19801e806d057d464727efd1db26"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a/private-table-snapshot.json",
+      "sha256": "2e293314842605adb46f1dd581f698dbd601ff4e4aab606e7714d970e2488089"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a/v60-snapshot.json",
+      "sha256": "d91de11fdb78186df875c0157b587b091a4f615cc9fb4e1dfff3422784ed1677"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch2-protected-edge-review.json",
+      "sha256": "8453ab79bbb632389e6568b37c3d8b25285359fde1278a227ffd6bf3221147de"
+    }
+  ],
+  "treatment_pressure_packet_source": {
+    "path": "research/core-development-batches-2026-07-10/batch2-edge-packet.json",
+    "sha256": "a0247ac52fb2745b58c7d615498af6add40375ac9d6b77f131932cc952303742"
+  },
+  "system_prompt": "You are independently reassessing a prior assistant's reasoning in a serious relationship and money conversation. Use the complete conversation as authority. Preserve the user's financial boundary, their wish to preserve the friendship, and the friend's crisis without inventing intent, character, legal-resource availability, housing outcomes, or relationship outcomes. Treat additional pressure, if supplied, as a hypothesis that may be used, rejected, deferred, or kept as a private guardrail. Do not mention experiments, controls, audits, packets, mental-model machinery, internal labels, or comparison arms. Return only the requested JSON object.",
+  "neutral_reconsideration_instruction": "Reassess the prior reasoning from scratch. Identify the actual decision state; what remains valid; unsupported factual, causal, psychological, legal, or moral claims; what the user corrected; what values and risks must survive; and the smallest useful next actions. Do not decide the gift amount or friendship outcome. Do not infer manipulation, responsibility, future requests, resource availability, or what one immediate reaction proves about a fifteen-year relationship. If source-grounded challenge pressure is supplied, give it its strongest plausible application and then disposition it honestly rather than assuming it must appear publicly.",
+  "treatment_pressure_packet": [
+    {
+      "pressure_id": "batch2-edge-empathy-confirm-before-diagnosis",
+      "source_turns": [
+        4,
+        7,
+        8,
+        9,
+        10
+      ],
+      "challenge": "Could a confirmable-empathy lens improve the response without changing the user's financial boundary? Give its strongest plausible application: separate observed facts from inferred intent, treat the friend's crisis reaction as something to acknowledge and clarify rather than immediate proof of character, and preserve the fifteen-year relationship as real value. Then test the boundary: would applying this lens erase the user's interests, make them the friend's manager, weaken the clear refusal, or substitute generic warmth for an explicit offer? Use, reject, defer, or keep it as a private guardrail with reasons; do not mark readable pressure not_considered.",
+      "trace_ids": [
+        "v60_enrichment.candidate_pool.lane_candidates[model_id=empathy]",
+        "aff::empathy.confirm-reflection-before-treatment",
+        "abs::empathy::generic-warmth-or-caring-affordance",
+        "bullshit_profile.paltering.friendship_as_character_test"
+      ]
+    }
+  ],
+  "output_contract": {
+    "required_keys": [
+      "decision_state_read",
+      "updated_position",
+      "what_survived",
+      "take_backs_or_set_aside",
+      "material_shifts",
+      "edge_dispositions",
+      "next_actions",
+      "uncertainties"
+    ],
+    "field_types": {
+      "decision_state_read": "string",
+      "updated_position": "string",
+      "what_survived": "array_of_strings",
+      "take_backs_or_set_aside": "array_of_strings",
+      "material_shifts": "array_of_objects",
+      "edge_dispositions": "array_of_objects",
+      "next_actions": "array_of_strings",
+      "uncertainties": "array_of_strings"
+    },
+    "material_shift_required_keys": [
+      "shift",
+      "source_basis",
+      "action_consequence"
+    ],
+    "maximum_material_shifts": 4,
+    "object_array_contracts": {
+      "edge_dispositions": {
+        "required_keys": [
+          "pressure_id",
+          "strongest_plausible_application",
+          "disposition",
+          "why",
+          "visible_effect",
+          "private_guardrail",
+          "risk_if_forced",
+          "risk_if_ignored"
+        ],
+        "maximum_items": 1,
+        "allowed_values": {
+          "disposition": [
+            "use",
+            "reject",
+            "defer",
+            "private_guardrail"
+          ]
+        }
+      }
+    },
+    "field_guidance": {
+      "edge_dispositions": "If source-grounded challenge pressure is present, return exactly one disposition using its pressure_id. If no pressure is present, return an empty array. A readable pressure may not be marked not_considered. visible_effect may be an empty string only when the disposition is private_guardrail, reject, or defer; private_guardrail may be empty only when a visible use is sufficient."
+    }
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "temperature": 0.2,
+    "max_output_tokens": 1900,
+    "reasoning_effort": "none",
+    "samples_per_arm": 1,
+    "total_generation_calls": 2,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "timeout_seconds": 120
+  },
+  "blind_label_seed": "batch2-case06-protected-edge-20260710",
+  "review_status": "pending_provisional_and_exact_human_review",
+  "stop_rules": [
+    "exactly_one_call_per_arm",
+    "no_automatic_retry",
+    "no_prompt_packet_model_cap_or_contract_change_after_either_call",
+    "no_evaluator_model_call",
+    "treatment_must_disposition_the_readable_edge",
+    "not_considered_is_forbidden_for_readable_pressure",
+    "stop_if_either_arm_invents_intent_character_resources_or_relationship_outcome",
+    "stop_if_treatment_erases_the_user_boundary_or_forces_empathy_into_public_advice",
+    "no_runtime_or_semantic_kernel_promotion_from_this_pair"
+  ],
+  "non_claims": [
+    "not_human_review",
+    "not_product_proof",
+    "not_financial_legal_housing_or_relationship_advice",
+    "not_an_outcome_quality_test",
+    "not_runtime_integration_authority",
+    "not_evidence_that_edge_pressure_should_be_used_publicly"
+  ]
+}

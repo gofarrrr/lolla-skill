@@ -1,0 +1,58 @@
+{
+  "boundary": {
+    "direct_graph_routing_allowed": false,
+    "one_semantic_role_only": true,
+    "other_role_labels_requested": false,
+    "parallel_component_columns_used": false,
+    "record_identity_semantics_made_explicit": true,
+    "response_schema_changed_from_v2": false,
+    "role_response_wire_changed_from_v21": true,
+    "semantic_contract_changed_from_v21": false,
+    "semantic_prefilter_performed": false,
+    "speaker_ownership_semantics_made_explicit": true,
+    "trajectory_relation_requested": false,
+    "validator_changed_from_v2": false
+  },
+  "case_id": "amb3-case03-farm-cooperative-retail",
+  "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+  "endpoint_definition": "Qualification means any remaining condition, uncertainty, counterpressure, blind spot, or reopen reason that limits what the current position establishes. It may be stated by the user or introduced by the assistant. Preserve who introduced it; assistant pressure is part of the conversation state and does not imply user endorsement.",
+  "focal_region": {
+    "annotated_sentence_text": "[Turn 1 USER]\ne001\tI manage a produce cooperative owned by forty-two small farms.\ne002\tA national grocery chain has offered a three-year supply agreement that could nearly double our sales and give farmers more predictable demand.\ne003\tThe chain wants uniform varieties, weekly volume commitments, and packaging under a co-branded label.\ne004\tI am excited by the income stability but worried that we will reorganize the cooperative around one buyer's specifications.\ne005\tI cannot tell whether my resistance protects member autonomy or protects a small-scale identity that keeps farmers from earning more.\n[Turn 1 ASSISTANT]\ne006\tThe offer combines demand stability, farm income, crop choice, operating investment, brand meaning, and buyer concentration.\ne007\tUniform specifications can reduce waste and open markets while also shifting planning authority toward the retailer.\ne008\tSeparate the economic benefit from the dependence created by acreage, equipment, and labor decisions made for one contract.\ne009\tYour identity concern may be real without making the operating concern symbolic.\n[Turn 7 USER]\ne049\tI am leaning toward a one-season, two-region, nonexclusive agreement capped at thirty-five percent of sales, with the cost-linked floor, separate reporting of cosmetic downgrades, and voluntary farm participation.\ne050\tI will recommend the packing line only if the grant is awarded and the prepayment has capped recovery, crop-failure protection, and no renewal claim.\ne051\tI will require public language limited to participating farms and regions and set rejection, waste, labor, and concentration thresholds before signing.\ne052\tI have not resolved whether voluntary participation really protects nonparticipants if cooperative staff, equipment, and reputation begin orienting around the chain.\n[Turn 7 ASSISTANT]\ne053\tThe position treats the agreement as a bounded market and operations commitment rather than a cooperative-wide destination.\ne054\tThe cap, price floor, downgrade reporting, financing protections, public-language boundary, and prospective thresholds make several pressures observable.\ne055\tThe chain may still treat the first season as an expansion pipeline, and participating farmers may change planting before renewal terms are known.\ne056\tIf the cooperative exits, crop choices, equipment use, buyer expectations, and new status differences among members will not simply return to their prior state.",
+    "citation_allowed": true,
+    "evidence_aliases": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e006",
+      "e007",
+      "e008",
+      "e009",
+      "e049",
+      "e050",
+      "e051",
+      "e052",
+      "e053",
+      "e054",
+      "e055",
+      "e056"
+    ]
+  },
+  "maximum_components_per_record": 4,
+  "maximum_records": 2,
+  "prior_context": {
+    "annotated_sentence_text": "",
+    "citation_allowed": false,
+    "evidence_aliases": [],
+    "included": false,
+    "role_limited_citation_policy": "none"
+  },
+  "question": "What qualification, counterpressure, unresolved condition, or reopen reason remains capable of changing or limiting the current position?",
+  "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+  "role": "qualification",
+  "schema_version": "lolla.reasoning_process_position_role_packet.v2_2",
+  "shard_id": "amb3-case03-farm-cooperative-retail-position_and_decision_trajectory-shard-01",
+  "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+  "valid_empty_output_allowed": true
+}

@@ -1,0 +1,235 @@
+{
+  "admitted_record_count": 2,
+  "automatic_retries": 0,
+  "cached_prompt_tokens": 0,
+  "call_id": "phase4-amb1-case01-product-scope-exploration-turn-001",
+  "candidate_payload": {
+    "global_limitations": "The analysis is constrained to the immediate trade-offs presented in the focal turn and does not account for long-term strategic impacts or external market pressures.",
+    "records": [
+      {
+        "alternative_evidence_ids": [
+          "e006"
+        ],
+        "alternative_interpretation": "Treat the Northline request as a signal of a broader market need.",
+        "attached_condition_or_limit_evidence_ids": [
+          "e008"
+        ],
+        "attached_condition_or_limit_interpretation": "The request must serve other customers beyond just Northline.",
+        "limitations": "The interpretation relies on the ability to validate if the workspace functionality is transferable to other users.",
+        "relationship_type": "condition",
+        "status": "supported"
+      },
+      {
+        "alternative_evidence_ids": [
+          "e009"
+        ],
+        "alternative_interpretation": "Prioritize the existing reliability and core workflow commitments.",
+        "attached_condition_or_limit_evidence_ids": [
+          "e010"
+        ],
+        "attached_condition_or_limit_interpretation": "If the new request uses the same personnel, it inherently forces a delay of existing commitments.",
+        "limitations": "This assumes a zero-sum resource allocation where the same team members are required for both the new request and the existing roadmap.",
+        "relationship_type": "failure_condition",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "candidate_payload_sha256": "c438457a9593335e889a7fde0f341cd00daee240e5da21c918807c484e906882",
+  "case_id": "amb1-case01-product-scope",
+  "compiled": {
+    "boundary": {
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 2,
+      "record_semantics_validated": false,
+      "status": "local_response_envelope_valid",
+      "window_id": "amb1-case01-product-scope-exploration-turn-001"
+    },
+    "observations": [
+      {
+        "alternative_interpretation": "Treat the Northline request as a signal of a broader market need.",
+        "attached_condition_or_limit_interpretation": "The request must serve other customers beyond just Northline.",
+        "case_id": "amb1-case01-product-scope",
+        "cross_window_semantic_duplicate_status": "not_assessed",
+        "family": "exploration_and_alternatives",
+        "focal_turn_index": 1,
+        "graph_routing_eligible": false,
+        "observation_id": "explocal-amb1-case01-product-scope-001-01-e9a5fa717c",
+        "provenance": {
+          "call_id": "phase4-amb1-case01-product-scope-exploration-turn-001",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:aa939284b7718341eab6510ed6ded3656f78ec78a20c5d8bed0a2b897c7e3340"
+        },
+        "raw_record": {
+          "record": {
+            "alternative_evidence_ids": [
+              "e006"
+            ],
+            "alternative_interpretation": "Treat the Northline request as a signal of a broader market need.",
+            "attached_condition_or_limit_evidence_ids": [
+              "e008"
+            ],
+            "attached_condition_or_limit_interpretation": "The request must serve other customers beyond just Northline.",
+            "limitations": "The interpretation relies on the ability to validate if the workspace functionality is transferable to other users.",
+            "relationship_type": "condition",
+            "status": "supported"
+          },
+          "record_identity": "phase4-phase4-amb1-case01-product-scope-exploration-turn-001-record-01",
+          "record_index": 1,
+          "role_source_span_ids": {
+            "alternative_evidence_ids": [
+              "span-07e458940a9db011"
+            ],
+            "attached_condition_or_limit_evidence_ids": [
+              "span-907a20bcad22a7b8"
+            ]
+          },
+          "window_id": "amb1-case01-product-scope-exploration-turn-001"
+        },
+        "raw_record_sha256": "sha256:e9a5fa717caa74455fc96cf13858570d286f0d03ae0aef7f1a772921ab29dae1",
+        "relationship_type": "condition",
+        "role_source_span_ids": {
+          "alternative_evidence_ids": [
+            "span-07e458940a9db011"
+          ],
+          "attached_condition_or_limit_evidence_ids": [
+            "span-907a20bcad22a7b8"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_exploration_local_observation.v1",
+        "semantic_status": "supported",
+        "source_span_ids": [
+          "span-07e458940a9db011",
+          "span-907a20bcad22a7b8"
+        ],
+        "terminal_reason": "local pair roles and focal stable aliases validated",
+        "terminal_state": "admitted",
+        "window_id": "amb1-case01-product-scope-exploration-turn-001"
+      },
+      {
+        "alternative_interpretation": "Prioritize the existing reliability and core workflow commitments.",
+        "attached_condition_or_limit_interpretation": "If the new request uses the same personnel, it inherently forces a delay of existing commitments.",
+        "case_id": "amb1-case01-product-scope",
+        "cross_window_semantic_duplicate_status": "not_assessed",
+        "family": "exploration_and_alternatives",
+        "focal_turn_index": 1,
+        "graph_routing_eligible": false,
+        "observation_id": "explocal-amb1-case01-product-scope-001-01-650e2847af",
+        "provenance": {
+          "call_id": "phase4-amb1-case01-product-scope-exploration-turn-001",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:aa939284b7718341eab6510ed6ded3656f78ec78a20c5d8bed0a2b897c7e3340"
+        },
+        "raw_record": {
+          "record": {
+            "alternative_evidence_ids": [
+              "e009"
+            ],
+            "alternative_interpretation": "Prioritize the existing reliability and core workflow commitments.",
+            "attached_condition_or_limit_evidence_ids": [
+              "e010"
+            ],
+            "attached_condition_or_limit_interpretation": "If the new request uses the same personnel, it inherently forces a delay of existing commitments.",
+            "limitations": "This assumes a zero-sum resource allocation where the same team members are required for both the new request and the existing roadmap.",
+            "relationship_type": "failure_condition",
+            "status": "supported"
+          },
+          "record_identity": "phase4-phase4-amb1-case01-product-scope-exploration-turn-001-record-02",
+          "record_index": 1,
+          "role_source_span_ids": {
+            "alternative_evidence_ids": [
+              "span-92b427f67956a523"
+            ],
+            "attached_condition_or_limit_evidence_ids": [
+              "span-866244ada23a3b0f"
+            ]
+          },
+          "window_id": "amb1-case01-product-scope-exploration-turn-001"
+        },
+        "raw_record_sha256": "sha256:650e2847af1fb3b4e3cc4131f1229589317370d22e431233cbe373bdf4770f98",
+        "relationship_type": "failure_condition",
+        "role_source_span_ids": {
+          "alternative_evidence_ids": [
+            "span-92b427f67956a523"
+          ],
+          "attached_condition_or_limit_evidence_ids": [
+            "span-866244ada23a3b0f"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_exploration_local_observation.v1",
+        "semantic_status": "supported",
+        "source_span_ids": [
+          "span-92b427f67956a523",
+          "span-866244ada23a3b0f"
+        ],
+        "terminal_reason": "local pair roles and focal stable aliases validated",
+        "terminal_state": "admitted",
+        "window_id": "amb1-case01-product-scope-exploration-turn-001"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "explocal-amb1-case01-product-scope-001-01-e9a5fa717c",
+        "raw_record_sha256": "sha256:1d6db028d52fc972bf4c95b64086b5d447205915849624df3f14929cd6d79be8",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      },
+      {
+        "observation_id": "explocal-amb1-case01-product-scope-001-01-650e2847af",
+        "raw_record_sha256": "sha256:4589a74e5df419af8809f025a88a8c9d3c3e5c0991f4be65e247607790426374",
+        "record_index": 2,
+        "terminal_state": "admitted"
+      }
+    ],
+    "status": "record_level_custody_complete",
+    "window_terminal_disposition": "compiled"
+  },
+  "completion_tokens": 359,
+  "duration_seconds": 2.184,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.00091625,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "focal_turn_index": 1,
+  "graph_calls": 0,
+  "mechanism": "local_exploration_v2",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-001.json",
+  "packet_sha256": "928b3bf1d2c383a518337c3c2f0c6a5f4db8a041f8963b687268911730aeb9b8",
+  "pipeline_calls": 0,
+  "pricing_snapshot_sha256": "e76bb1a71f8576643edf18ae42fcc7533ec1d20d9fcce804a4d990d383bf7155",
+  "prompt_tokens": 1511,
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_payload_sha256": "119c2e93a5a4b77955f10edb769e94ccd9c5955493f6cff73a56956c6e2d0404",
+  "provider_reported_cost_usd": 0.00091625,
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+  "response_sha256": "3f1246f7f347fdfd07a1eccd7b76d99ce18e14234a7ecf3b7c8c91835f660138",
+  "run_id": "reasoning-process-phase4-two-case-transfer-v1",
+  "runtime_calls": 0,
+  "schema_version": "lolla.reasoning_process_phase4_transfer_call.v1",
+  "seed": 0,
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "system_prompt_sha256": "2e4c70b6375d0791b41690070019c4e91152765222e4100fde1572ca0c141366",
+  "temperature": 0.0,
+  "total_tokens": 1870,
+  "typed_status": "admitted",
+  "usage_evidence_state": "complete",
+  "user_prompt_sha256": "aa939284b7718341eab6510ed6ded3656f78ec78a20c5d8bed0a2b897c7e3340",
+  "validation_error": "",
+  "view_kind": "exploration_and_alternatives"
+}

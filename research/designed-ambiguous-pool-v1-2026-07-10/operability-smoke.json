@@ -1,0 +1,35 @@
+{
+  "schema_version": "lolla.openrouter_reasoning_disable_compatibility_smoke.v1",
+  "date": "2026-07-10",
+  "status": "passed",
+  "purpose": "Confirm that OpenRouter accepts the explicit reasoning.enabled=false switch for google/gemini-3.1-flash-lite before a larger development Stage A run.",
+  "classification": "small_operability_diagnostic_not_reasoning_evidence",
+  "prospective_contract": false,
+  "call_count": 1,
+  "automatic_retry_count": 0,
+  "evaluator_call_count": 0,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "request_reasoning_config": {
+    "enabled": false
+  },
+  "observed": {
+    "status": "ok",
+    "finish_reason": "stop",
+    "reasoning_disabled": true,
+    "reasoning_tokens": 0,
+    "reasoning_details_present": false,
+    "total_tokens": 28,
+    "expected_json_shape_received": true
+  },
+  "usage_cost": {
+    "estimated_cost_usd": null,
+    "why_unknown": "The narrow probe recorded token usage but did not use the frozen evaluation pricing calculator. Unknown is preserved rather than represented as zero."
+  },
+  "non_claims": [
+    "not a Lolla quality result",
+    "not a Stage A result",
+    "not a model-quality comparison",
+    "not proof of future provider availability"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_harvester_contract.v2",
+  "status": "frozen_provider_free_before_v2_build",
+  "date": "2026-07-11",
+  "purpose": "Preserve same-pair and one-pair-later alternative-plus-limit relationships with role-specific prior-context citation, without semantic prefiltering, merging, or global synthesis.",
+  "supersedes": {
+    "contract": "docs/evals/reasoning-process-exploration-local-harvester-contract-v1.json",
+    "reason": "The v1 cold-reader adversarial fixture proved that a fully non-citable prior pair loses a common cross-turn relationship."
+  },
+  "architecture": {
+    "focal_unit": "one user-assistant turn pair",
+    "prior_context": "immediately preceding user-assistant turn pair",
+    "alternative_evidence_allowed_regions": ["focal_pair", "prior_context"],
+    "attached_condition_or_limit_evidence_allowed_regions": ["focal_pair"],
+    "prior_context_use_condition": "only when the focal pair materially qualifies or limits that earlier alternative",
+    "semantic_decision_authority": "probabilistic_reader",
+    "citation_region_enforcement_authority": "deterministic_validator",
+    "maximum_records_per_window": 2,
+    "auxiliary_ledger_in_provider_packet": false,
+    "semantic_merge_across_windows": false,
+    "fresh_global_synthesizer": false,
+    "direct_graph_routing": false
+  },
+  "gates": {
+    "development_case_count": 5,
+    "development_window_count": 35,
+    "expected_turn_pair_window_count": 35,
+    "same_pair_protected_fixture_count": 5,
+    "cross_turn_adversarial_fixture_count": 1,
+    "same_pair_role_coverage_rate": 1.0,
+    "cross_turn_role_coverage_rate": 1.0,
+    "focal_source_partition_rate": 1.0,
+    "prior_context_attached_limit_rejection_rate": 1.0,
+    "unreviewed_not_equal_empty_rate": 1.0,
+    "max_window_input_utf8_bytes": 8000,
+    "max_provider_schema_bytes": 12000,
+    "max_provider_schema_depth": 8,
+    "maximum_future_calls_per_fourteen_message_case": 7,
+    "maximum_future_records_per_fourteen_message_case": 14,
+    "provider_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "stress_fixture": {
+    "path": "research/test-cases/case_parenting_teen_conversation.txt",
+    "message_count": 24,
+    "expected_turn_pair_window_count": 12
+  },
+  "duplicate_policy": {
+    "same_evidence_role_pair_in_one_window": "reject",
+    "same_or_similar_alternative_across_adjacent_windows": "preserve_separately_with_window_and_role_lineage",
+    "semantic_equivalence_inferred_by_code": false,
+    "global_merge_required": false
+  },
+  "stop_rules": [
+    "Stop if the cross-turn fixture cannot cite the prior alternative and focal limit in their separate roles.",
+    "Stop if prior context can supply attached-condition evidence.",
+    "Stop if a readable receipt requires semantic deduplication or synthesis.",
+    "Do not make a provider call under this contract."
+  ],
+  "non_goals": [
+    "relationships spanning more than one prior turn pair",
+    "changing the four passing full-conversation readers",
+    "ranking or choosing alternatives",
+    "graph or runtime integration",
+    "final-output or quality scoring"
+  ]
+}

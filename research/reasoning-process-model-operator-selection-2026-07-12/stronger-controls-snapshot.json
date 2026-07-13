@@ -1,0 +1,50 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_stronger_controls.v1",
+  "status": "frozen_after_v43_flash_models_fail_source_review",
+  "date": "2026-07-12",
+  "selection_rule": "Choose one stronger within-family DeepSeek control and the strongest recent third-family candidate on the July sub-$0.50-input/$2-output catalog frontier; pin active endpoints advertising structured outputs and seed.",
+  "selected_pairs": [
+    {
+      "role": "within_family_strength_control",
+      "model_id": "deepseek/deepseek-v4-pro",
+      "canonical_slug": "deepseek/deepseek-v4-pro-20260423",
+      "provider_slug": "alibaba",
+      "provider_display_name": "Alibaba",
+      "context_length": 1000000,
+      "endpoint_prompt_usd_per_million": 1.608,
+      "endpoint_completion_usd_per_million": 3.216,
+      "artificial_analysis_intelligence_index": 44.3,
+      "reason": "Same model family and operator as the closer V4 Flash result, isolating whether additional model capacity repairs source-role coverage."
+    },
+    {
+      "role": "third_family_pareto_control",
+      "model_id": "minimax/minimax-m3",
+      "canonical_slug": "minimax/minimax-m3-20260531",
+      "provider_slug": "parasail",
+      "provider_display_name": "Parasail",
+      "context_length": 1048576,
+      "endpoint_prompt_usd_per_million": 0.3,
+      "endpoint_completion_usd_per_million": 1.2,
+      "artificial_analysis_intelligence_index": 44.4,
+      "reason": "Newest low-cost third-family candidate with a higher catalog intelligence index than DeepSeek V4 Pro and an active seed-plus-structured-output endpoint."
+    }
+  ],
+  "deferred": [
+    {
+      "model_id": "qwen/qwen3.7-plus",
+      "reason": "Useful family-diversity reserve, but lower current intelligence index than MiniMax M3 at similar cost; not needed in this bounded control round."
+    }
+  ],
+  "boundary": {
+    "benchmark_is_selection_hint_not_lolla_evidence": true,
+    "same_v43_development_fixture": true,
+    "same_prompt_schema_and_validator": true,
+    "independent_semantic_holdout": false,
+    "maximum_calls": 2
+  },
+  "sources": {
+    "models": "https://openrouter.ai/api/v1/models",
+    "deepseek_endpoints": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4-pro/endpoints",
+    "minimax_endpoints": "https://openrouter.ai/api/v1/models/minimax/minimax-m3/endpoints"
+  }
+}

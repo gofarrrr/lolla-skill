@@ -1,0 +1,226 @@
+{
+  "boundary": {
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "protected_target_seen_by_model": false,
+    "semantic_retry_authorized": false,
+    "source_review_fixture_seen_by_model": false
+  },
+  "call": {
+    "admitted_record_count": 2,
+    "automatic_retries": 0,
+    "cached_prompt_tokens": 0,
+    "call_id": "chronological-shard-case05-evidence-early",
+    "candidate_payload": {
+      "global_limitations": "The analysis is constrained by the subjective nature of the family members' interpersonal dynamics and the lack of a finalized decision regarding the exhibition content.",
+      "records": [
+        {
+          "boundary_evidence_ids": [
+            "e006",
+            "e009"
+          ],
+          "claim_or_input_evidence_ids": [
+            "e005"
+          ],
+          "interpretation": "The user considers the exhibition a potential threat to the integrity of the family archive, fearing that incomplete data will be smoothed over into a clean narrative.",
+          "limitations": "The user's concern is based on a subjective projection of how the public might receive the material, rather than a confirmed outcome of the exhibition process.",
+          "status": "supported"
+        },
+        {
+          "boundary_evidence_ids": [
+            "e025",
+            "e026"
+          ],
+          "claim_or_input_evidence_ids": [
+            "e023",
+            "e024"
+          ],
+          "interpretation": "The user interprets Tomas's argument about shared history as a potential threat to family privacy, specifically regarding cousin Mara's objection to displaying her father's letter.",
+          "limitations": "The user acknowledges that this interpretation may be a misreading of Tomas's intent, as he has not explicitly stated he would proceed without consent.",
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "candidate_payload_sha256": "1ee2d116d1379eb92ca53e2dbb77d04c103531c7489db097898205d708845161",
+    "case_id": "amb1-case05-family-archive",
+    "compiled": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "global_synthesis_performed": false,
+        "model_records_changed": false,
+        "record_level_validation_weakened": false,
+        "semantic_merge_performed": false
+      },
+      "envelope": {
+        "record_count": 2,
+        "semantic_records_validated": false,
+        "status": "shard_response_envelope_valid"
+      },
+      "observations": [
+        {
+          "case_id": "amb1-case05-family-archive",
+          "family": "evidence_and_assumption_discipline",
+          "graph_routing_eligible": false,
+          "interpretation": "The user considers the exhibition a potential threat to the integrity of the family archive, fearing that incomplete data will be smoothed over into a clean narrative.",
+          "observation_id": "rpshard-amb1-case05-family-archive-evidence_and_assumption_discipline-01-406cd9e449",
+          "provenance": {
+            "call_id": "chronological-shard-case05-evidence-early",
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "producer_id": "google/gemini-3.1-flash-lite",
+            "producer_kind": "model",
+            "prompt_sha256": "sha256:0c7df2c777327e93a8db5a8b902358112854c253acab571461b74623c8cc122a"
+          },
+          "raw_record": {
+            "record": {
+              "boundary_evidence_ids": [
+                "e006",
+                "e009"
+              ],
+              "claim_or_input_evidence_ids": [
+                "e005"
+              ],
+              "interpretation": "The user considers the exhibition a potential threat to the integrity of the family archive, fearing that incomplete data will be smoothed over into a clean narrative.",
+              "limitations": "The user's concern is based on a subjective projection of how the public might receive the material, rather than a confirmed outcome of the exhibition process.",
+              "status": "supported"
+            },
+            "record_identity": "probe-chronological-shard-case05-evidence-early",
+            "record_index": 1
+          },
+          "raw_record_sha256": "sha256:406cd9e4491f9857fc84409c633dcd9abf771888f4db07204895036e0c9cf42e",
+          "role_source_span_ids": {
+            "boundary_evidence_ids": [
+              "span-26fa4059f75ff700",
+              "span-a2cbc172339e18c5"
+            ],
+            "claim_or_input_evidence_ids": [
+              "span-db78d791d64fb814"
+            ]
+          },
+          "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case05-family-archive-evidence_and_assumption_discipline-shard-01",
+          "source_span_ids": [
+            "span-db78d791d64fb814",
+            "span-26fa4059f75ff700",
+            "span-a2cbc172339e18c5"
+          ],
+          "terminal_state": "admitted"
+        },
+        {
+          "case_id": "amb1-case05-family-archive",
+          "family": "evidence_and_assumption_discipline",
+          "graph_routing_eligible": false,
+          "interpretation": "The user interprets Tomas's argument about shared history as a potential threat to family privacy, specifically regarding cousin Mara's objection to displaying her father's letter.",
+          "observation_id": "rpshard-amb1-case05-family-archive-evidence_and_assumption_discipline-02-f79d1f3d26",
+          "provenance": {
+            "call_id": "chronological-shard-case05-evidence-early",
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "producer_id": "google/gemini-3.1-flash-lite",
+            "producer_kind": "model",
+            "prompt_sha256": "sha256:0c7df2c777327e93a8db5a8b902358112854c253acab571461b74623c8cc122a"
+          },
+          "raw_record": {
+            "record": {
+              "boundary_evidence_ids": [
+                "e025",
+                "e026"
+              ],
+              "claim_or_input_evidence_ids": [
+                "e023",
+                "e024"
+              ],
+              "interpretation": "The user interprets Tomas's argument about shared history as a potential threat to family privacy, specifically regarding cousin Mara's objection to displaying her father's letter.",
+              "limitations": "The user acknowledges that this interpretation may be a misreading of Tomas's intent, as he has not explicitly stated he would proceed without consent.",
+              "status": "supported"
+            },
+            "record_identity": "probe-chronological-shard-case05-evidence-early",
+            "record_index": 2
+          },
+          "raw_record_sha256": "sha256:f79d1f3d26298de126ab553d7eecbb1067c5574ced33308d190572be5a2ce2aa",
+          "role_source_span_ids": {
+            "boundary_evidence_ids": [
+              "span-1f1b9975f25f21df",
+              "span-45b6dbdb217ca0f8"
+            ],
+            "claim_or_input_evidence_ids": [
+              "span-ce338711077e8e43",
+              "span-8255f3502f3c02be"
+            ]
+          },
+          "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case05-family-archive-evidence_and_assumption_discipline-shard-01",
+          "source_span_ids": [
+            "span-ce338711077e8e43",
+            "span-8255f3502f3c02be",
+            "span-1f1b9975f25f21df",
+            "span-45b6dbdb217ca0f8"
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "observation_id": "rpshard-amb1-case05-family-archive-evidence_and_assumption_discipline-01-406cd9e449",
+          "raw_record_sha256": "sha256:406cd9e4491f9857fc84409c633dcd9abf771888f4db07204895036e0c9cf42e",
+          "record_index": 1,
+          "terminal_state": "admitted"
+        },
+        {
+          "observation_id": "rpshard-amb1-case05-family-archive-evidence_and_assumption_discipline-02-f79d1f3d26",
+          "raw_record_sha256": "sha256:f79d1f3d26298de126ab553d7eecbb1067c5574ced33308d190572be5a2ce2aa",
+          "record_index": 2,
+          "terminal_state": "admitted"
+        }
+      ],
+      "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+      "shard_terminal_disposition": "compiled",
+      "status": "chronological_shard_record_custody_complete"
+    },
+    "completion_tokens": 347,
+    "duration_seconds": 2.211,
+    "embedding_calls": 0,
+    "estimated_cost_usd": 0.00101425,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "finish_reason": "stop",
+    "focal_turn_index": null,
+    "graph_calls": 0,
+    "mechanism": "chronological_shard_v1",
+    "model_attribution_status": "served_version_alias",
+    "operational_status": "ok",
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/evidence_and_assumption_discipline/shard-01.json",
+    "packet_sha256": "538fb7e9a852e364387d59c8df9fca59733ad0715f91e81a8c0df8e5c7a1aed3",
+    "pipeline_calls": 0,
+    "pricing_snapshot_sha256": "e76bb1a71f8576643edf18ae42fcc7533ec1d20d9fcce804a4d990d383bf7155",
+    "prompt_tokens": 1975,
+    "provider_calls": 1,
+    "provider_diagnostic": {},
+    "provider_payload_sha256": "d840056666498281e28c15369e87b96e0a8d704d0e42a8c8ee0d7c2c870ff882",
+    "provider_reported_cost_usd": 0.00101425,
+    "quarantined_record_count": 0,
+    "raw_provider_content_included": false,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "response_schema_sha256": "65ed4474c2474ceb295b4f852b47b5a3e15f81cfcfdba92be5977774a16a006c",
+    "response_sha256": "e03fd383cbf8a3f450b5beef7ee6d38a7beb5062560d60e8634d38cfd05f317f",
+    "run_id": "reasoning-process-chronological-shard-case05-evidence-v1",
+    "runtime_calls": 0,
+    "schema_version": "lolla.reasoning_process_phase4_transfer_call.v1",
+    "seed": 0,
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "temperature": 0.0,
+    "total_tokens": 2322,
+    "typed_status": "admitted",
+    "usage_evidence_state": "complete",
+    "user_prompt_sha256": "0c7df2c777327e93a8db5a8b902358112854c253acab571461b74623c8cc122a",
+    "validation_error": "",
+    "view_kind": "evidence_and_assumption_discipline"
+  },
+  "provider_request_count": 1,
+  "run_id": "reasoning-process-chronological-shard-case05-evidence-v1",
+  "schema_version": "lolla.reasoning_process_chronological_shard_probe_result.v1",
+  "semantic_review_status": "pending_source_first_review",
+  "status": "one_probe_call_preserved"
+}

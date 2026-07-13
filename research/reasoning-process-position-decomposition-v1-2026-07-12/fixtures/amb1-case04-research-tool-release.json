@@ -1,0 +1,738 @@
+{
+  "case_id": "amb1-case04-research-tool-release",
+  "joined": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "trajectory_record_id",
+        "fixed_role"
+      ],
+      "missing_or_quarantined_roles_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "fan_in": {
+      "applicable_roles": [
+        "current",
+        "qualification",
+        "starting"
+      ],
+      "maximum_call_count": 4,
+      "maximum_joined_stance_records": 6,
+      "planned_call_count": 4,
+      "trajectory_records": 1,
+      "within_budget": true
+    },
+    "records": [
+      {
+        "stance_by_role": {
+          "current": {
+            "disposition": "admitted",
+            "stance_observation": {
+              "case_id": "amb1-case04-research-tool-release",
+              "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+              "graph_routing_eligible": false,
+              "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+              "observation_id": "rpstancev1-current-5c6b9783ba11fc",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+                "producer_kind": "source_reviewer",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:5c6b9783ba11fc3ac9988be0fe33aa4d24cf1ec93ea36f15b0f23bb5425d7c42",
+              "role": "current",
+              "schema_version": "lolla.reasoning_process_position_stance_observation.v1",
+              "semantic_status": "supported",
+              "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+              "stance_components": [
+                {
+                  "role": "current",
+                  "source_evidence_id": "e057",
+                  "stance_expression_kind": "leaning",
+                  "stance_object_interpretation": "Release an openly downloadable workshop preview with a fixed end date, office hours, and no compatibility promise.",
+                  "stance_object_kind": "action_or_proposal"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e057",
+                  "stance_expression_kind": "provisional_intention_or_plan",
+                  "stance_object_interpretation": "Decide on the public beta after reviewing installation failures and after the maintainer returns.",
+                  "stance_object_kind": "action_or_proposal"
+                }
+              ],
+              "terminal_state": "admitted",
+              "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+            }
+          },
+          "qualification": {
+            "disposition": "admitted",
+            "stance_observation": {
+              "case_id": "amb1-case04-research-tool-release",
+              "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+              "graph_routing_eligible": false,
+              "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+              "observation_id": "rpstancev1-qualification-9ddf24eca23c39",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+                "producer_kind": "source_reviewer",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:9ddf24eca23c39684785aefc43b5c6d99e4515adfcc44df64551594bcbcccd2a",
+              "role": "qualification",
+              "schema_version": "lolla.reasoning_process_position_stance_observation.v1",
+              "semantic_status": "supported",
+              "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+              "stance_components": [
+                {
+                  "role": "qualification",
+                  "source_evidence_id": "e064",
+                  "stance_expression_kind": "constraint",
+                  "stance_object_interpretation": "A fixed preview label cannot make downloaded public use temporary in every practical sense.",
+                  "stance_object_kind": "intended_outcome_or_policy"
+                }
+              ],
+              "terminal_state": "admitted",
+              "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+            }
+          },
+          "starting": {
+            "disposition": "admitted",
+            "stance_observation": {
+              "case_id": "amb1-case04-research-tool-release",
+              "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+              "graph_routing_eligible": false,
+              "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+              "observation_id": "rpstancev1-starting-93b5a963bd4f2f",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+                "producer_kind": "source_reviewer",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:93b5a963bd4f2fbde6743f2c9d2c5647ca160840fe37ca30661125b6af48bf24",
+              "role": "starting",
+              "schema_version": "lolla.reasoning_process_position_stance_observation.v1",
+              "semantic_status": "supported",
+              "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+              "stance_components": [
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e005",
+                  "stance_expression_kind": "reported_without_endorsement",
+                  "stance_object_interpretation": "Half the team wants feedback now while maintainers fear reputational damage from a messy release.",
+                  "stance_object_kind": "reported_position_landscape"
+                },
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e006",
+                  "stance_expression_kind": "reported_without_endorsement",
+                  "stance_object_interpretation": "Half the team wants feedback now while maintainers fear reputational damage from a messy release.",
+                  "stance_object_kind": "reported_position_landscape"
+                }
+              ],
+              "terminal_state": "admitted",
+              "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+            }
+          }
+        },
+        "trajectory_observation": {
+          "case_id": "amb1-case04-research-tool-release",
+          "family": "position_and_decision_trajectory",
+          "graph_routing_eligible": false,
+          "interpretation": "Starting: Half the team wants feedback now. The maintainers worry a messy release will define our reputation. | Current: I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns. | Qualification: The plan can bound your promise; it cannot make public use temporary in every practical sense. | Trajectory: The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+          "observation_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record": {
+            "record": {
+              "current_position_evidence_ids": [
+                "e057"
+              ],
+              "current_position_interpretation": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+              "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+              "qualification_evidence_ids": [
+                "e064"
+              ],
+              "qualification_interpretation": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+              "starting_position_interpretation": "Half the team wants feedback now. The maintainers worry a messy release will define our reputation.",
+              "starting_state_evidence_ids": [
+                "e005",
+                "e006"
+              ],
+              "status": "supported",
+              "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+              "trajectory_type": "emerged_from_uncertainty"
+            },
+            "record_identity": "amb1-case04-research-tool-release",
+            "record_index": 1
+          },
+          "raw_record_sha256": "sha256:0f6e74f35c5df46c73dcc2e61b4c601e67fff8820ad7df5b2fa91ce75fad08cd",
+          "role_interpretations": {
+            "current_position_interpretation": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+            "qualification_interpretation": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+            "starting_position_interpretation": "Half the team wants feedback now. The maintainers worry a messy release will define our reputation.",
+            "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use."
+          },
+          "role_source_span_ids": {
+            "current_position_evidence_ids": [
+              "span-4c315bc9d17df568"
+            ],
+            "qualification_evidence_ids": [
+              "span-8447648368f54f18"
+            ],
+            "starting_state_evidence_ids": [
+              "span-d1cf6e583d1d8dde",
+              "span-e8272cc2bc46c92f"
+            ]
+          },
+          "schema_version": "lolla.reasoning_process_position_role_trajectory_observation.v1",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+          "source_span_ids": [
+            "span-d1cf6e583d1d8dde",
+            "span-e8272cc2bc46c92f",
+            "span-4c315bc9d17df568",
+            "span-8447648368f54f18"
+          ],
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        },
+        "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+      }
+    ],
+    "role_disposition_counts": {
+      "admitted": 3,
+      "missing": 0,
+      "not_applicable": 0,
+      "quarantined": 0
+    },
+    "schema_version": "lolla.reasoning_process_position_decomposition.v1",
+    "status": "position_decomposition_complete"
+  },
+  "schema_version": "lolla.reasoning_process_position_decomposition_fixture.v1",
+  "source": {
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case04-research-tool-release/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "c6a7c95756cf7b65a2e474ddabbfbb396d3a6b24307f14695f5ec9794f2e512c",
+    "reviewed_fixture_path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01.json",
+    "reviewed_fixture_sha256": "b8b4e5788b8c4517bcf02f2db8d6db2fce53b063d602a0b2e00d39ece28e34d7"
+  },
+  "stance_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "evidence_restricted_to_role_packet": true,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_category_correctness_inferred_by_code": false,
+        "semantic_merge_performed": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "missing_trajectory_record_ids": [],
+      "observations": [
+        {
+          "case_id": "amb1-case04-research-tool-release",
+          "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rpstancev1-current-5c6b9783ba11fc",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:5c6b9783ba11fc3ac9988be0fe33aa4d24cf1ec93ea36f15b0f23bb5425d7c42",
+          "role": "current",
+          "schema_version": "lolla.reasoning_process_position_stance_observation.v1",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e057",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Release an openly downloadable workshop preview with a fixed end date, office hours, and no compatibility promise.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e057",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Decide on the public beta after reviewing installation failures and after the maintainer returns.",
+              "stance_object_kind": "action_or_proposal"
+            }
+          ],
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "records": [
+        {
+          "observation_id": "rpstancev1-current-5c6b9783ba11fc",
+          "raw_record_sha256": "sha256:5c6b9783ba11fc3ac9988be0fe33aa4d24cf1ec93ea36f15b0f23bb5425d7c42",
+          "record_index": 1,
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_stance_response.v1",
+      "status": "position_stance_role_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "evidence_restricted_to_role_packet": true,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_category_correctness_inferred_by_code": false,
+        "semantic_merge_performed": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "missing_trajectory_record_ids": [],
+      "observations": [
+        {
+          "case_id": "amb1-case04-research-tool-release",
+          "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rpstancev1-qualification-9ddf24eca23c39",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:9ddf24eca23c39684785aefc43b5c6d99e4515adfcc44df64551594bcbcccd2a",
+          "role": "qualification",
+          "schema_version": "lolla.reasoning_process_position_stance_observation.v1",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e064",
+              "stance_expression_kind": "constraint",
+              "stance_object_interpretation": "A fixed preview label cannot make downloaded public use temporary in every practical sense.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            }
+          ],
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "records": [
+        {
+          "observation_id": "rpstancev1-qualification-9ddf24eca23c39",
+          "raw_record_sha256": "sha256:9ddf24eca23c39684785aefc43b5c6d99e4515adfcc44df64551594bcbcccd2a",
+          "record_index": 1,
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_stance_response.v1",
+      "status": "position_stance_role_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "evidence_restricted_to_role_packet": true,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_category_correctness_inferred_by_code": false,
+        "semantic_merge_performed": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "missing_trajectory_record_ids": [],
+      "observations": [
+        {
+          "case_id": "amb1-case04-research-tool-release",
+          "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rpstancev1-starting-93b5a963bd4f2f",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:93b5a963bd4f2fbde6743f2c9d2c5647ca160840fe37ca30661125b6af48bf24",
+          "role": "starting",
+          "schema_version": "lolla.reasoning_process_position_stance_observation.v1",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "reported_without_endorsement",
+              "stance_object_interpretation": "Half the team wants feedback now while maintainers fear reputational damage from a messy release.",
+              "stance_object_kind": "reported_position_landscape"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e006",
+              "stance_expression_kind": "reported_without_endorsement",
+              "stance_object_interpretation": "Half the team wants feedback now while maintainers fear reputational damage from a messy release.",
+              "stance_object_kind": "reported_position_landscape"
+            }
+          ],
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "records": [
+        {
+          "observation_id": "rpstancev1-starting-93b5a963bd4f2f",
+          "raw_record_sha256": "sha256:93b5a963bd4f2fbde6743f2c9d2c5647ca160840fe37ca30661125b6af48bf24",
+          "record_index": 1,
+          "terminal_state": "admitted",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_stance_response.v1",
+      "status": "position_stance_role_custody_complete"
+    }
+  },
+  "stance_packets": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "other_roles_included": false,
+        "role_or_category_correctness_inferred_by_code": false,
+        "semantic_prefilter_performed": false,
+        "source_text_hash_verified": true
+      },
+      "call_required": true,
+      "case_id": "amb1-case04-research-tool-release",
+      "maximum_components_per_record": 5,
+      "maximum_response_records": 1,
+      "records": [
+        {
+          "evidence": [
+            {
+              "alias": "e057",
+              "span_id": "span-4c315bc9d17df568",
+              "speaker": "user",
+              "text": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+              "text_sha256": "6a20bf048fb33109c6364c9535f1955df06557a0a6c61e7ff270048606b81b1e",
+              "turn_index": 7
+            }
+          ],
+          "role_interpretation": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+          "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d",
+          "trajectory_type": "emerged_from_uncertainty"
+        }
+      ],
+      "role": "current",
+      "schema_version": "lolla.reasoning_process_position_stance_packet.v1",
+      "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "other_roles_included": false,
+        "role_or_category_correctness_inferred_by_code": false,
+        "semantic_prefilter_performed": false,
+        "source_text_hash_verified": true
+      },
+      "call_required": true,
+      "case_id": "amb1-case04-research-tool-release",
+      "maximum_components_per_record": 4,
+      "maximum_response_records": 1,
+      "records": [
+        {
+          "evidence": [
+            {
+              "alias": "e064",
+              "span_id": "span-8447648368f54f18",
+              "speaker": "assistant",
+              "text": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+              "text_sha256": "89d802971fd995bda97d3d877c1a47dd7ccb64d8bc09d0e033a6d151f75cd435",
+              "turn_index": 7
+            }
+          ],
+          "role_interpretation": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+          "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d",
+          "trajectory_type": "emerged_from_uncertainty"
+        }
+      ],
+      "role": "qualification",
+      "schema_version": "lolla.reasoning_process_position_stance_packet.v1",
+      "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "other_roles_included": false,
+        "role_or_category_correctness_inferred_by_code": false,
+        "semantic_prefilter_performed": false,
+        "source_text_hash_verified": true
+      },
+      "call_required": true,
+      "case_id": "amb1-case04-research-tool-release",
+      "maximum_components_per_record": 4,
+      "maximum_response_records": 1,
+      "records": [
+        {
+          "evidence": [
+            {
+              "alias": "e005",
+              "span_id": "span-d1cf6e583d1d8dde",
+              "speaker": "user",
+              "text": "Half the team wants feedback now.",
+              "text_sha256": "8bbab568819d37d00381ea82d0ca41ce79f3e8fc5d5b06c7c4e58912e170d22d",
+              "turn_index": 1
+            },
+            {
+              "alias": "e006",
+              "span_id": "span-e8272cc2bc46c92f",
+              "speaker": "user",
+              "text": "The maintainers worry a messy release will define our reputation.",
+              "text_sha256": "914de91ada011ea273f75bc6f60e97f0779f2e63bd843091620b42fadf71d89c",
+              "turn_index": 1
+            }
+          ],
+          "role_interpretation": "Half the team wants feedback now. The maintainers worry a messy release will define our reputation.",
+          "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d",
+          "trajectory_type": "emerged_from_uncertainty"
+        }
+      ],
+      "role": "starting",
+      "schema_version": "lolla.reasoning_process_position_stance_packet.v1",
+      "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01"
+    }
+  },
+  "stance_responses": {
+    "current": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "expression_kinds": [
+            "leaning",
+            "provisional_intention_or_plan"
+          ],
+          "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Release an openly downloadable workshop preview with a fixed end date, office hours, and no compatibility promise.",
+            "Decide on the public beta after reviewing installation failures and after the maintainer returns."
+          ],
+          "object_kinds": [
+            "action_or_proposal",
+            "action_or_proposal"
+          ],
+          "role": "current",
+          "source_evidence_ids": [
+            "e057",
+            "e057"
+          ],
+          "status": "supported",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "status": "supported"
+    },
+    "qualification": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "expression_kinds": [
+            "constraint"
+          ],
+          "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "A fixed preview label cannot make downloaded public use temporary in every practical sense."
+          ],
+          "object_kinds": [
+            "intended_outcome_or_policy"
+          ],
+          "role": "qualification",
+          "source_evidence_ids": [
+            "e064"
+          ],
+          "status": "supported",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "status": "supported"
+    },
+    "starting": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "expression_kinds": [
+            "reported_without_endorsement",
+            "reported_without_endorsement"
+          ],
+          "fidelity_note": "The starting state reports other people's positions without attributing either to the user. The current sentence contains a leaning toward one release action and a provisional later decision procedure. The qualification is a limit on the intended temporary outcome.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Half the team wants feedback now while maintainers fear reputational damage from a messy release.",
+            "Half the team wants feedback now while maintainers fear reputational damage from a messy release."
+          ],
+          "object_kinds": [
+            "reported_position_landscape",
+            "reported_position_landscape"
+          ],
+          "role": "starting",
+          "source_evidence_ids": [
+            "e005",
+            "e006"
+          ],
+          "status": "supported",
+          "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+        }
+      ],
+      "status": "supported"
+    }
+  },
+  "trajectory_compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "join_identity_added_by_code": true,
+      "model_records_changed": false,
+      "semantic_role_correctness_inferred_by_code": false,
+      "stance_object_task_included": false
+    },
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "observations": [
+      {
+        "case_id": "amb1-case04-research-tool-release",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "Starting: Half the team wants feedback now. The maintainers worry a messy release will define our reputation. | Current: I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns. | Qualification: The plan can bound your promise; it cannot make public use temporary in every practical sense. | Trajectory: The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+        "observation_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "decomposition-v1-mechanical-projection-of-reviewed-v41-fixture",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e057"
+            ],
+            "current_position_interpretation": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e064"
+            ],
+            "qualification_interpretation": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+            "starting_position_interpretation": "Half the team wants feedback now. The maintainers worry a messy release will define our reputation.",
+            "starting_state_evidence_ids": [
+              "e005",
+              "e006"
+            ],
+            "status": "supported",
+            "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+            "trajectory_type": "emerged_from_uncertainty"
+          },
+          "record_identity": "amb1-case04-research-tool-release",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:0f6e74f35c5df46c73dcc2e61b4c601e67fff8820ad7df5b2fa91ce75fad08cd",
+        "role_interpretations": {
+          "current_position_interpretation": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+          "qualification_interpretation": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+          "starting_position_interpretation": "Half the team wants feedback now. The maintainers worry a messy release will define our reputation.",
+          "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use."
+        },
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-4c315bc9d17df568"
+          ],
+          "qualification_evidence_ids": [
+            "span-8447648368f54f18"
+          ],
+          "starting_state_evidence_ids": [
+            "span-d1cf6e583d1d8dde",
+            "span-e8272cc2bc46c92f"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_position_role_trajectory_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-d1cf6e583d1d8dde",
+          "span-e8272cc2bc46c92f",
+          "span-4c315bc9d17df568",
+          "span-8447648368f54f18"
+        ],
+        "terminal_state": "admitted",
+        "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d",
+        "raw_record_sha256": "sha256:0f6e74f35c5df46c73dcc2e61b4c601e67fff8820ad7df5b2fa91ce75fad08cd",
+        "record_index": 1,
+        "terminal_state": "admitted",
+        "trajectory_record_id": "rptrajv1-amb1-case04-research-tool-release-01-0f6e74f35c5d"
+      }
+    ],
+    "response_status": "supported",
+    "schema_version": "lolla.reasoning_process_position_role_trajectory_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "position_role_trajectory_custody_complete"
+  },
+  "trajectory_response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e057"
+        ],
+        "current_position_interpretation": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e064"
+        ],
+        "qualification_interpretation": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+        "starting_position_interpretation": "Half the team wants feedback now. The maintainers worry a messy release will define our reputation.",
+        "starting_state_evidence_ids": [
+          "e005",
+          "e006"
+        ],
+        "status": "supported",
+        "trajectory_interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+        "trajectory_type": "emerged_from_uncertainty"
+      }
+    ],
+    "status": "supported"
+  }
+}

@@ -1,0 +1,2133 @@
+{
+  "arm_id": "registry_provider__direct_all_canonical",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "expected_selection_included": false,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "avoid_when": "High-level labels are being used to hide untested assumptions, skip causality, or evade concrete evidence.",
+      "display_name": "Abstraction",
+      "input_type": "detail-heavy pattern-formation problem",
+      "model_id": "abstraction",
+      "output_type": "higher-level working model",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The problem is still trapped in surface detail and needs a cleaner structure that reveals the governing pattern."
+    },
+    {
+      "avoid_when": "The conversation has already produced enough evidence for a decision or reversible experiment, and more listening would mainly postpone commitment.",
+      "display_name": "Active Listening",
+      "input_type": "understanding-and-alignment problem",
+      "model_id": "active-listening",
+      "output_type": "validated perspective and tension read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Commitment, alignment, or conflict repair depends on understanding both the factual and emotional content of what another person is saying."
+    },
+    {
+      "avoid_when": "Adaptation language is being used to excuse blur, constant motion, or lack of a stable objective.",
+      "display_name": "Adaptation",
+      "input_type": "changing environment and course-correction problem",
+      "model_id": "adaptation",
+      "output_type": "adaptive redesign move",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Environmental signals are changing and the current approach must learn, revise, or reinvent rather than defend itself."
+    },
+    {
+      "avoid_when": "Analysts are blaming hidden information even though the real issue may be incentives, execution quality, or poor process design rather than adverse s\u2026",
+      "display_name": "Adverse Selection",
+      "input_type": "hidden-quality transaction",
+      "model_id": "adverse-selection",
+      "output_type": "screening and signaling check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "One side may know more about quality, risk, or intent than the other."
+    },
+    {
+      "avoid_when": "External commitments, interfaces, or regulatory gates are fixed enough that agile language would only hide real sequencing and approval constraints.",
+      "display_name": "Agile Methodologies",
+      "input_type": "adaptive delivery problem",
+      "model_id": "agile-methodologies",
+      "output_type": "iteration and feedback-loop plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Requirements, stakeholder learning, or technical realities are expected to change while delivery is already underway."
+    },
+    {
+      "avoid_when": "Uncertainty classification is becoming theater and is not changing the actual tool choice, commitment size, or monitoring rule.",
+      "display_name": "Aleatory Epistemic Uncertainty Recognition",
+      "input_type": "mixed-uncertainty decision problem",
+      "model_id": "aleatory-epistemic-uncertainty-recognition",
+      "output_type": "uncertainty-type action split",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The next move depends on knowing what kind of uncertainty is present because some parts are measurable risk and other parts are reducible ignorance."
+    },
+    {
+      "avoid_when": "Novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is being mistaken for actual understanding.",
+      "display_name": "Algorithmic Thinking",
+      "input_type": "structured process design problem",
+      "model_id": "algorithmic-thinking",
+      "output_type": "repeatable decision procedure",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks."
+    },
+    {
+      "avoid_when": "The comparison is catchy but distorts the structural boundaries of the target domain.",
+      "display_name": "Analogies And Metaphors",
+      "input_type": "hard-to-grasp explanation problem",
+      "model_id": "analogies-and-metaphors",
+      "output_type": "schema-carrying comparison",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The audience lacks a usable schema for the concept but does have adjacent experience that can carry the explanation."
+    },
+    {
+      "avoid_when": "The first number, frame, or analogy is becoming non-negotiable and later evidence is only being interpreted around it.",
+      "display_name": "Anchoring",
+      "input_type": "initial frame or reference point problem",
+      "model_id": "anchoring",
+      "output_type": "provisional orientation anchor",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A starting point, example, or framing device can help make a complex space more navigable without pretending it is final truth."
+    },
+    {
+      "avoid_when": "Volatility is being romanticized and the system is being exposed to ruinous shocks that are too large to survive or learn from.",
+      "display_name": "Antifragility",
+      "input_type": "bounded-stress adaptation problem",
+      "model_id": "antifragility",
+      "output_type": "volatility-gaining design",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The system can learn, adapt, or improve through bounded stress rather than merely survive it."
+    },
+    {
+      "avoid_when": "A catchy comparison is being treated as proof even though the underlying causal structure has not been checked.",
+      "display_name": "Association",
+      "input_type": "disconnected-signal and mapping problem",
+      "model_id": "association",
+      "output_type": "pattern-linking frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Disconnected signals only become meaningful once they are linked into a larger pattern or schema."
+    },
+    {
+      "avoid_when": "Traceability is becoming performative documentation that consumes attention without improving judgment, accountability, or learning.",
+      "display_name": "Auditability Traceability",
+      "input_type": "explainability and accountability-trail problem",
+      "model_id": "auditability-traceability",
+      "output_type": "inspectable causal audit trail",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Decisions, outputs, or model behavior must be explained clearly enough that others can inspect how the conclusion was reached."
+    },
+    {
+      "avoid_when": "Authenticity is being used as a shield against evidence, preparation, or accountability for consequences.",
+      "display_name": "Authenticity",
+      "input_type": "credibility-and-candor problem",
+      "model_id": "authenticity",
+      "output_type": "trust-building grounded candor frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Trust depends on whether words, incentives, and behavior line up under pressure rather than on whether the presentation sounds polished."
+    },
+    {
+      "avoid_when": "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.",
+      "display_name": "Authority Bias",
+      "input_type": "authority-backed recommendation",
+      "model_id": "authority-bias",
+      "output_type": "deference audit",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The real question is whose judgment deserves initial weight in a specialized or uncertain domain."
+    },
+    {
+      "avoid_when": "The chosen reference class is too broad, too narrow, or structurally mismatched, making the prior look rigorous while actually misleading the decisio\u2026",
+      "display_name": "Base Rates",
+      "input_type": "forecast or diagnosis with a usable reference class",
+      "model_id": "base-rates",
+      "output_type": "outside-view prior",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A forecast, diagnosis, budget, or estimate is vulnerable to a vivid inside-view story that could drown out historical frequency."
+    },
+    {
+      "avoid_when": "The initial baseline has fossilized into doctrine even though the environment or goal has materially shifted.",
+      "display_name": "Baseline Establishment",
+      "input_type": "unclear starting condition",
+      "model_id": "baseline-establishment",
+      "output_type": "explicit baseline frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team lacks a shared starting picture of the problem, success criteria, or the facts that later comparisons should be judged against."
+    },
+    {
+      "avoid_when": "People are declaring a fallback as their BATNA even though it is vague, unexecutable, or worse than continuing to negotiate.",
+      "display_name": "Batna",
+      "input_type": "negotiation fallback comparison",
+      "model_id": "batna",
+      "output_type": "walk-away leverage assessment",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Negotiation leverage depends on knowing the walk-away path before entering a pressured conversation."
+    },
+    {
+      "avoid_when": "The prior is weak, politically motivated, or decorative enough that numerical updates would only create false precision.",
+      "display_name": "Bayesian",
+      "input_type": "uncertain belief revision problem",
+      "model_id": "bayesian",
+      "output_type": "explicit posterior update",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Beliefs should update in proportion to new evidence rather than flip from certainty to certainty after each datapoint."
+    },
+    {
+      "avoid_when": "The model is being used mainly to brand other people as biased rather than to create a process that can expose the local blind spot.",
+      "display_name": "Bias Blind Spot",
+      "input_type": "self-exemption and rationalization problem",
+      "model_id": "bias-blind-spot",
+      "output_type": "outside-view bias check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A review or debate risks turning into a diagnosis of everyone else's distortions while leaving the team's own reasoning unexamined."
+    },
+    {
+      "avoid_when": "Black Swan language is being used as vague fear rhetoric even though concrete resilience or prioritization moves are available.",
+      "display_name": "Black Swan Events",
+      "input_type": "tail-risk and fragility problem",
+      "model_id": "black-swan-events",
+      "output_type": "surprise-readiness and fragility check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A plan faces deep uncertainty where average-case forecasts may badly understate tail exposure or fragility."
+    },
+    {
+      "avoid_when": "The taxonomy is being treated as a rigid staircase that blocks iteration, creativity, or revisiting earlier levels when real learning loops back.",
+      "display_name": "Blooms Taxonomy",
+      "input_type": "stage-confused learning task",
+      "model_id": "blooms-taxonomy",
+      "output_type": "cognitive-stage progression",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The work requires diagnosing whether someone is stuck at recall, understanding, application, analysis, evaluation, or synthesis rather than treating learning as one vague block."
+    },
+    {
+      "avoid_when": "The team is labeling the noisiest queue, most visible complaint, or highest-status pain point as the bottleneck without verifying actual throughput.",
+      "display_name": "Bottlenecks",
+      "input_type": "throughput-constrained system",
+      "model_id": "bottlenecks",
+      "output_type": "constraint-focused intervention",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Local optimization is masking the true throughput limiter."
+    },
+    {
+      "avoid_when": "Scope lines are being drawn mainly to avoid inconvenient evidence, hard conversations, or accountability.",
+      "display_name": "Boundaries",
+      "input_type": "scope and limit-setting problem",
+      "model_id": "boundaries",
+      "output_type": "purpose-aligned boundary definition",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A project, analysis, or negotiation needs explicit scope lines before effort spreads into unowned terrain."
+    },
+    {
+      "avoid_when": "Evaluation is creeping into generation and selectively developing only ideas that confirm the current direction.",
+      "display_name": "Brainstorming",
+      "input_type": "narrow option-space problem",
+      "model_id": "brainstorming",
+      "output_type": "divergent option set",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team is stuck too early on one frame or one answer and needs to widen the option set before choosing a path."
+    },
+    {
+      "avoid_when": "Teams are branching aggressively without any credible merge rule, so more decomposition would only increase fragmentation.",
+      "display_name": "Branch Solve Merge",
+      "input_type": "multi-branch synthesis problem",
+      "model_id": "branch-solve-merge",
+      "output_type": "merged decision structure",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A complex problem needs to be decomposed into manageable branches before the team can solve and recombine it coherently."
+    },
+    {
+      "avoid_when": "Butterfly-effect language is being used to justify vague fear or grandiosity without naming a plausible transmission path.",
+      "display_name": "Butterfly Effect",
+      "input_type": "cascade-risk decision",
+      "model_id": "butterfly-effect",
+      "output_type": "downstream consequence scan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A small local decision could propagate through a tightly connected system and create outsized downstream effects."
+    },
+    {
+      "avoid_when": "The team is treating calculable models as a substitute for judgment in a setting where the core drivers are still too unknown or unstable.",
+      "display_name": "Calculated Risk Taking",
+      "input_type": "high-stakes risk tradeoff",
+      "model_id": "calculated-risk-taking",
+      "output_type": "explicit risk-reward decision",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A high-stakes decision requires explicit downside sizing, scenario comparison, or sensitivity analysis rather than intuition alone."
+    },
+    {
+      "avoid_when": "Yesterday's buckets are being preserved after the underlying causal structure has changed.",
+      "display_name": "Category Decisions",
+      "input_type": "pre-commitment and decision-boundary problem",
+      "model_id": "category-decisions",
+      "output_type": "category rule",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Repeated decisions are vulnerable to in-the-moment inconsistency and need a stable pre-committed boundary."
+    },
+    {
+      "avoid_when": "The team is using anti-blame language to avoid naming an obvious causal driver, accountable party, or concrete design flaw.",
+      "display_name": "Causal Attribution Resistance",
+      "input_type": "blame-first causation problem",
+      "model_id": "causal-attribution-resistance",
+      "output_type": "disciplined causal attribution",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A problem is attracting a fast blame story and the team needs to resist assigning causation before the structure is actually understood."
+    },
+    {
+      "avoid_when": "The chain is becoming verbose theater that does not improve the answer, evidence bar, or next action.",
+      "display_name": "Chain Of Thought",
+      "input_type": "multi-step reasoning problem",
+      "model_id": "chain-of-thought",
+      "output_type": "explicit reasoning sequence",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A complex problem must be decomposed into smaller linked steps before any trustworthy answer is possible."
+    },
+    {
+      "avoid_when": "Verification is becoming theater through extra checks and sign-offs that do not materially improve the truth of the chain.",
+      "display_name": "Chain Of Verification",
+      "input_type": "sequential-proof reliability problem",
+      "model_id": "chain-of-verification",
+      "output_type": "auditable validation chain",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A case depends on several premises in sequence and one weak link could collapse the whole conclusion."
+    },
+    {
+      "avoid_when": "Teams are using chaos rhetoric to imply nothing can be understood or improved.",
+      "display_name": "Chaos Theory",
+      "input_type": "unstable nonlinear environment",
+      "model_id": "chaos-theory",
+      "output_type": "robustness-over-prediction lens",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The environment is unstable enough that simple linear prediction is giving false confidence."
+    },
+    {
+      "avoid_when": "The checklist is being treated as a substitute for checking whether the assumptions, environment, or causal story are still true.",
+      "display_name": "Checklists",
+      "input_type": "repeatable execution with omission risk",
+      "model_id": "checklists",
+      "output_type": "minimum viable operating checklist",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Omission risk is higher than invention risk, especially where failure comes from skipped steps, forgotten prerequisites, or weak handoffs."
+    },
+    {
+      "avoid_when": "Circle of competence is being treated as a permanent identity label instead of a boundary that can expand, decay, or shift with evidence.",
+      "display_name": "Circle Of Competence",
+      "input_type": "scope-of-judgment decision",
+      "model_id": "circle-of-competence",
+      "output_type": "competence-boundary check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The downside of being wrong is large enough that false confidence matters more than missing an adjacent opportunity."
+    },
+    {
+      "avoid_when": "The model is being used to shrink responsibility by classifying difficult stakeholder, system, or incentive problems as outside control before influe\u2026",
+      "display_name": "Circle Of Control",
+      "input_type": "agency-boundary problem",
+      "model_id": "circle-of-control",
+      "output_type": "control-vs-influence map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "External volatility is dominating attention, but the team still controls sequencing, communication, staffing, guardrails, or scope."
+    },
+    {
+      "avoid_when": "Bias language is being used as a rhetorical weapon against opponents while the speaker avoids inspecting their own incentives, evidence, and assumpti\u2026",
+      "display_name": "Cognitive Biases",
+      "input_type": "biased high-stakes judgment",
+      "model_id": "cognitive-biases",
+      "output_type": "explicit debiasing move",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team is making consequential judgments under pressure, ambiguity, or strong prior beliefs that can quietly distort perception."
+    },
+    {
+      "avoid_when": "Genuine honest reconsideration has occurred and the position update is evidence-driven rather than dissonance-motivated \u2014 the model should not pathol\u2026",
+      "display_name": "Cognitive Dissonance",
+      "input_type": "committed position under contrary evidence",
+      "model_id": "cognitive-dissonance",
+      "output_type": "motivated belief revision detection and escalation warning",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A public, ego-identified commitment has been made and subsequent evidence challenges it \u2014 the risk is motivated belief revision rather than honest updating."
+    },
+    {
+      "avoid_when": "Gap mapping has become a performance ritual that labels uncertainty without changing the plan or evidence bar.",
+      "display_name": "Cognitive Gaps Assessment",
+      "input_type": "blind-spot and capability-audit problem",
+      "model_id": "cognitive-gaps-assessment",
+      "output_type": "gap exposure check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Confidence is high but the explanation still feels under-specified and the team may be missing something important."
+    },
+    {
+      "avoid_when": "Simplification would remove the causal structure, nuance, or thresholds needed to make a real decision rather than merely creating a feeling of clari\u2026",
+      "display_name": "Cognitive Load Theory",
+      "input_type": "overloaded decision workflow",
+      "model_id": "cognitive-load-theory",
+      "output_type": "load-reducing structure",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Novices must absorb several unfamiliar concepts at once and would otherwise confuse the task because too many moving parts arrive together."
+    },
+    {
+      "avoid_when": "The situation is being forced into a dramatic synergy story before the interacting mechanisms have been identified clearly.",
+      "display_name": "Combinatorial Effects",
+      "input_type": "multi-force interaction problem",
+      "model_id": "combinatorial-effects",
+      "output_type": "compound-driver diagnosis",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Several forces are interacting so the outcome is larger or stranger than any single driver would predict alone."
+    },
+    {
+      "avoid_when": "Prior public commitment, sunk cost, or ego investment is becoming more important than updating on new evidence.",
+      "display_name": "Commitment Bias",
+      "input_type": "commitment-under-review",
+      "model_id": "commitment-bias",
+      "output_type": "recommit-or-exit check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Execution requires persistence across a long sequence of small decisions that would otherwise unravel under distraction or drift."
+    },
+    {
+      "avoid_when": "Specialization logic is being used to excuse permanent weakness in adjacent skills that still require minimum competence.",
+      "display_name": "Comparative Advantage",
+      "input_type": "allocation decision",
+      "model_id": "comparative-advantage",
+      "output_type": "strength-based role map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The real question is who should do what, not merely how hard everyone should work inside the current role map."
+    },
+    {
+      "avoid_when": "Comparison is collapsing into shallow analogy that treats unlike systems as equivalent because they share one visible institution.",
+      "display_name": "Comparative Political Systems Analysis",
+      "input_type": "cross-system institutional comparison problem",
+      "model_id": "comparative-political-systems-analysis",
+      "output_type": "structural governance comparison",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Institutional design, incentives, and power structure matter more than the stated ideology or surface narrative."
+    },
+    {
+      "avoid_when": "Complexity language is being used as an alibi for not naming concrete leverage points, experiments, or ownership.",
+      "display_name": "Complex Adaptive Systems",
+      "input_type": "multi-agent adaptive system problem",
+      "model_id": "complex-adaptive-systems",
+      "output_type": "adaptive system map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Many agents are adapting at once, so the environment behaves more like a living system than a fixed machine."
+    },
+    {
+      "avoid_when": "The push for simplicity would erase decision-critical nuance, edge cases, or causal structure.",
+      "display_name": "Complexity Bias Resistance",
+      "input_type": "complexity-fog problem",
+      "model_id": "complexity-bias-resistance",
+      "output_type": "essential-core simplification",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is drifting into needless complexity or shallow oversimplification instead of holding to the essential core of the problem."
+    },
+    {
+      "avoid_when": "The team is celebrating a growth curve while ignoring fragility in quality, incentives, or retention that could erase the base.",
+      "display_name": "Compounding",
+      "input_type": "cumulative growth system",
+      "model_id": "compounding",
+      "output_type": "durability-adjusted growth plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Small repeated gains can accumulate because progress is preserved rather than reset each cycle."
+    },
+    {
+      "avoid_when": "The model is being used to add ranges and caveats without naming the action threshold that would still trigger a real decision.",
+      "display_name": "Confidence Calibration",
+      "input_type": "uncertain commitment-sizing problem",
+      "model_id": "confidence-calibration",
+      "output_type": "calibrated confidence range",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A forecast, estimate, or recommendation is about to determine commitment size, but the confidence behind it has not been made explicit."
+    },
+    {
+      "avoid_when": "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge.",
+      "display_name": "Confirmation Bias",
+      "input_type": "claim-under-review",
+      "model_id": "confirmation-bias",
+      "output_type": "disconfirming-evidence challenge",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is converging on a favored answer before the evidence has been fully tested."
+    },
+    {
+      "avoid_when": "The case is dominated by one or two obvious bottlenecks rather than a long conjunctive chain, so probability arithmetic would add false precision.",
+      "display_name": "Conjunction Fallacy",
+      "input_type": "multi-step success claim",
+      "model_id": "conjunction-fallacy",
+      "output_type": "sequence-risk challenge",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Success depends on a chain of individually plausible steps that all must occur for the plan to work."
+    },
+    {
+      "avoid_when": "Old constraints are remaining unquestioned after the economics, technology, or stakeholder environment has changed.",
+      "display_name": "Constraints",
+      "input_type": "scope and boundary control problem",
+      "model_id": "constraints",
+      "output_type": "clarifying constraint frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is losing clarity because too many goals, variables, or stakeholders are competing for attention at once."
+    },
+    {
+      "avoid_when": "Feedback is technically accurate but so poorly timed, context-free, or disrespectful that defensiveness will overwhelm learning.",
+      "display_name": "Constructive Feedback Models",
+      "input_type": "performance correction problem",
+      "model_id": "constructive-feedback-models",
+      "output_type": "actionable feedback loop",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Performance, learning, or trust depends on giving people information they can act on rather than vague reassurance."
+    },
+    {
+      "avoid_when": "Framework-complete slides are replacing real uncertainty reduction or causal learning.",
+      "display_name": "Consulting Firms Methodology",
+      "input_type": "structured problem-solving and synthesis problem",
+      "model_id": "consulting-firms-methodology",
+      "output_type": "hypothesis-driven workplan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A vague or politically messy problem must be turned into a structured sequence of discriminating questions."
+    },
+    {
+      "avoid_when": "The evidence base is observational, confounded, or incomplete, but the recommendation is still being framed as if causality were already settled.",
+      "display_name": "Correlation Vs Causation",
+      "input_type": "causal diagnosis problem",
+      "model_id": "correlation-vs-causation",
+      "output_type": "causal mechanism hypothesis",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A visible metric shift, pattern, or association is being treated as proof of what is driving the outcome."
+    },
+    {
+      "avoid_when": "The team is spinning imagined alternatives that are untethered from plausible causal structure, base rates, or the real decision context.",
+      "display_name": "Counterfactual Reasoning",
+      "input_type": "branch-sensitive decision review",
+      "model_id": "counterfactual-reasoning",
+      "output_type": "alternative-path pressure test",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "One realized outcome is hiding the actual quality of the decision process and the missing branches need to be recovered."
+    },
+    {
+      "avoid_when": "Destruction has become novelty theater without evidence that the replacement is more truthful, useful, or executable.",
+      "display_name": "Creative Destruction",
+      "input_type": "legacy-model replacement problem",
+      "model_id": "creative-destruction",
+      "output_type": "reinvention cut",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Legacy assumptions or offerings still function by inertia even though the surrounding conditions have changed materially."
+    },
+    {
+      "avoid_when": "Early launch energy or one-off seeding is being mistaken for durable threshold security before the reinforcement loop is actually stable.",
+      "display_name": "Critical Mass",
+      "input_type": "threshold-dependent system",
+      "model_id": "critical-mass",
+      "output_type": "viability threshold check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Viability is threshold-dependent, so adoption, liquidity, trust, or participation only works after activity crosses a minimum density."
+    },
+    {
+      "avoid_when": "Critical thinking is becoming detachment theater, where nuance and skepticism are used to avoid taking a position or making a recommendation.",
+      "display_name": "Critical Thinking",
+      "input_type": "high-stakes judgment under bias risk",
+      "model_id": "critical-thinking",
+      "output_type": "evidence-weighted conclusion",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Important judgments depend on separating evidence from story, authority, or emotional plausibility."
+    },
+    {
+      "avoid_when": "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience and local norms.",
+      "display_name": "Cross Cultural Communication Frameworks",
+      "input_type": "cross-context communication problem",
+      "model_id": "cross-cultural-communication-frameworks",
+      "output_type": "audience-fit message architecture",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+    },
+    {
+      "avoid_when": "The model is being used to stereotype individuals instead of generating testable context clues.",
+      "display_name": "Cultural Dimensions Theory",
+      "input_type": "cross-cultural interpretation problem",
+      "model_id": "cultural-dimensions-theory",
+      "output_type": "comparative context lens",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "People from different backgrounds are interpreting the same behavior through incompatible expectations about trust, hierarchy, conflict, or commitment."
+    },
+    {
+      "avoid_when": "Cultural understanding is being used as a polite label for untested assumptions about motives, resistance, or alignment.",
+      "display_name": "Cultural Intelligence",
+      "input_type": "cross-context interpretation problem",
+      "model_id": "cultural-intelligence",
+      "output_type": "context-aware coordination read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The same facts are being interpreted through different human worlds shaped by norms, status, pressure, or local context."
+    },
+    {
+      "avoid_when": "Exploration is widening the search space after the relevant uncertainty has already been reduced enough to act.",
+      "display_name": "Curiosity",
+      "input_type": "underdefined inquiry problem",
+      "model_id": "curiosity",
+      "output_type": "question-driven reframing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The first answer is probably shallow and the real problem is still underdefined."
+    },
+    {
+      "avoid_when": "Communicating with peers who share the same knowledge base \u2014 in that context the curse does not operate and calibrating down wastes time.",
+      "display_name": "Curse Of Knowledge",
+      "input_type": "expert knowledge to be communicated or applied",
+      "model_id": "curse-of-knowledge",
+      "output_type": "communication gap identification and novice-calibrated revision",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "An expert is communicating with, teaching, or designing for an audience with significantly less domain exposure."
+    },
+    {
+      "avoid_when": "Threat-model language is being fetishized while asset specificity, attack-surface reality, and operational ownership stay vague.",
+      "display_name": "Cybersecurity Thinking Models",
+      "input_type": "adversarial system risk",
+      "model_id": "cybersecurity-thinking-models",
+      "output_type": "pressure-tested threat posture",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The problem is adversarial, fast-changing, and capable of cascading across technical, human, and governance layers at once."
+    },
+    {
+      "avoid_when": "Data volume is substituting for problem clarity and the team is modeling before agreeing on the causal question or business decision.",
+      "display_name": "Data Science Reasoning Framework",
+      "input_type": "noisy evidence-to-decision problem",
+      "model_id": "data-science-reasoning-framework",
+      "output_type": "testable analytical frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Large, noisy evidence sets need to be turned into a bounded reasoning process with explicit hypotheses, tests, and decision-relevant outputs."
+    },
+    {
+      "avoid_when": "People have not agreed on the actual failure condition, so debugging would optimize noise, symptoms, or tools instead of broken behavior.",
+      "display_name": "Debugging Strategies",
+      "input_type": "ambiguous-failure diagnosis problem",
+      "model_id": "debugging-strategies",
+      "output_type": "root-cause test plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A failure is real but the cause is ambiguous, distributed, or hidden behind several interacting components."
+    },
+    {
+      "avoid_when": "Payoffs or probabilities are so unstable that a neat tree would create false precision and confidence rather than real guidance.",
+      "display_name": "Decision Trees",
+      "input_type": "branching decision structure",
+      "model_id": "decision-trees",
+      "output_type": "branch-and-trigger map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision has explicit branches, trigger conditions, or kill criteria that can be made visible before resources are committed."
+    },
+    {
+      "avoid_when": "A familiar framework is being forced onto a novel problem just because it is the easiest cut available.",
+      "display_name": "Decomposition",
+      "input_type": "tangled problem structure",
+      "model_id": "decomposition",
+      "output_type": "MECE branch map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The problem is too tangled to reason about as a whole and teams keep mixing symptoms, causes, owners, and options in one blob."
+    },
+    {
+      "avoid_when": "People are romanticizing waiting and reflection even though the next useful move is already clear and the real cost is execution drift.",
+      "display_name": "Delays",
+      "input_type": "lagged-feedback problem",
+      "model_id": "delays",
+      "output_type": "timing-aware intervention frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Actions and consequences are separated in time, so a naive short-term read could mistake no result yet for no effect."
+    },
+    {
+      "avoid_when": "Practice is intense but disconnected from the real failure modes, stakes, or feedback conditions of live performance.",
+      "display_name": "Deliberate Practice",
+      "input_type": "skill-building bottleneck problem",
+      "model_id": "deliberate-practice",
+      "output_type": "feedback-linked practice regimen",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Performance improvement requires specific reps, structured feedback loops, and error correction rather than vague effort."
+    },
+    {
+      "avoid_when": "Difficulty is being added without enough structure, support, or sequencing to keep the challenge productive rather than overwhelming.",
+      "display_name": "Desirable Difficulties",
+      "input_type": "false-mastery learning problem",
+      "model_id": "desirable-difficulties",
+      "output_type": "transfer-strengthening practice design",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Easy fluency is being mistaken for real understanding and the team needs retrieval, effort, or friction to expose whether the knowledge will hold up later."
+    },
+    {
+      "avoid_when": "Pipeline optimization is being treated as an abstract slogan without specific failure paths, rollback realities, or operator constraints.",
+      "display_name": "Devops And Continuous Integration",
+      "input_type": "integration friction problem",
+      "model_id": "devops-and-continuous-integration",
+      "output_type": "continuous delivery feedback loop",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Delivery speed and reliability have to coexist, and the bottleneck is integration friction rather than lack of ideas."
+    },
+    {
+      "avoid_when": "The team is confusing productive dialectic with endless contrarianism and never converting tension into a bounded decision.",
+      "display_name": "Dialectical Reasoning",
+      "input_type": "one-sided argument integrity problem",
+      "model_id": "dialectical-reasoning",
+      "output_type": "synthesized counter-positioned judgment",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A strong claim needs an explicit counterclaim before the team can trust the conclusion."
+    },
+    {
+      "avoid_when": "Participants are switching modes so chaotically that neither ideation nor evaluation is being done well.",
+      "display_name": "Divergent Vs Convergent Thinking",
+      "input_type": "expand-then-narrow problem",
+      "model_id": "divergent-vs-convergent-thinking",
+      "output_type": "sequenced option cycle",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team is either collapsing to the first workable idea or endlessly ideating without a real selection moment."
+    },
+    {
+      "avoid_when": "The label is being used as a lazy dismissal of someone else's view instead of prompting better calibration, evidence, or coaching.",
+      "display_name": "Dunning Kruger Effect",
+      "input_type": "uncalibrated self-assessment",
+      "model_id": "dunning-kruger-effect",
+      "output_type": "calibration-and-review protocol",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Novices or newly promoted operators are gaining responsibility in a domain where confidence can outrun actual competence."
+    },
+    {
+      "avoid_when": "Avoid-fixation language is becoming a reason to reject all prior knowledge instead of distinguishing helpful pattern recognition from stale lock-in.",
+      "display_name": "Einstellung Effect",
+      "input_type": "fixated problem frame",
+      "model_id": "einstellung-effect",
+      "output_type": "de-fixation prompt",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "An experienced team keeps reaching for the same proven frame even though the situation feels structurally different."
+    },
+    {
+      "avoid_when": "Elasticity is becoming shapelessness and stretching roles until nobody owns the critical work.",
+      "display_name": "Elasticity",
+      "input_type": "boundary-stretch and constraint-fit problem",
+      "model_id": "elasticity",
+      "output_type": "elastic deployment rule",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Roles, markets, or constraints are shifting fast enough that fixed boundaries and rigid playbooks become liabilities."
+    },
+    {
+      "avoid_when": "Teams are using let-it-emerge language as an excuse for having no structure, constraints, or feedback loops.",
+      "display_name": "Emergence",
+      "input_type": "interaction-heavy system problem",
+      "model_id": "emergence",
+      "output_type": "condition-design lens",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The whole-system behavior cannot be inferred by scoring the parts independently."
+    },
+    {
+      "avoid_when": "Empathy is being treated as a substitute for standards, evidence, or hard conversations.",
+      "display_name": "Emotional Intelligence",
+      "input_type": "human-friction problem",
+      "model_id": "emotional-intelligence",
+      "output_type": "emotion-aware influence plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The technical answer is not enough because trust, morale, conflict, or perceived fairness will shape whether the decision lands."
+    },
+    {
+      "avoid_when": "Emotional identification is starting to compromise strategic clarity or crowd out the need to protect legitimate interests.",
+      "display_name": "Empathy",
+      "input_type": "stakeholder-perspective fit problem",
+      "model_id": "empathy",
+      "output_type": "user-centered reframing and trust read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Hidden user, stakeholder, or teammate constraints will determine whether a solution is trusted, adopted, or resisted."
+    },
+    {
+      "avoid_when": "The issue is already being evaluated through a credible outside-view or neutral benchmark and additional ownership-bias framing would add little.",
+      "display_name": "Endowment Effect",
+      "input_type": "ownership-distorted valuation problem",
+      "model_id": "endowment-effect",
+      "output_type": "outside-view valuation reset",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Ownership, authorship, or incumbency may be making an asset, idea, or status quo feel more valuable than it would to an outsider."
+    },
+    {
+      "avoid_when": "Evolutionary logic is becoming fatalism and blocking redesign of incentives, guardrails, or communication.",
+      "display_name": "Evolutionary Pressure",
+      "input_type": "selection-pressure and incentive-shaping problem",
+      "model_id": "evolutionary-pressure",
+      "output_type": "fitness-pressure diagnosis",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Behavior is being shaped more by selection pressure, incentives, fear, or repeated demands than by stated intent."
+    },
+    {
+      "avoid_when": "EV math is being used to launder weak assumptions, speculative probabilities, or ethically unacceptable downside into a false aura of rationality.",
+      "display_name": "Expected Value",
+      "input_type": "probability-weighted choice",
+      "model_id": "expected-value",
+      "output_type": "expected payoff comparison",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Choices involve asymmetric payoffs and intuitive judgment is likely to overweight vivid outcomes rather than weighted outcomes."
+    },
+    {
+      "avoid_when": "Experimentation has become theater, generating activity, dashboards, or post-hoc learning language without changing any real decision.",
+      "display_name": "Experimentation",
+      "input_type": "testable uncertainty",
+      "model_id": "experimentation",
+      "output_type": "decision-linked experiment",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Uncertainty can be reduced faster and cheaper through targeted tests than through longer debate, forecasting, or opinion escalation."
+    },
+    {
+      "avoid_when": "Less guidance is being treated as automatically better even though the task, stakes, or novelty still require renewed structure.",
+      "display_name": "Expertise Reversal Effect",
+      "input_type": "expertise-mismatch workflow",
+      "model_id": "expertise-reversal-effect",
+      "output_type": "support-level retuning",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The same message, prompt, or procedure is landing very differently across experience levels and the support level may be mismatched to expertise."
+    },
+    {
+      "avoid_when": "Extreme standards are being imposed without matching context, support, or measurement quality.",
+      "display_name": "Extreme Performance Evaluation",
+      "input_type": "high-variance performance review",
+      "model_id": "extreme-performance-evaluation",
+      "output_type": "calibrated excellence standard",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The cost of mediocre performance is large enough that the system must distinguish robust excellence from merely acceptable output."
+    },
+    {
+      "avoid_when": "Simplicity is being used to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the variance no longer matters.",
+      "display_name": "False Precision Avoidance",
+      "input_type": "overprecision and cognitive-clutter problem",
+      "model_id": "false-precision-avoidance",
+      "output_type": "actionable bounded approximation",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty."
+    },
+    {
+      "avoid_when": "The work is still so vague or underscoped that any initial hypothesis would be decorative rather than testable.",
+      "display_name": "Falsifiability",
+      "input_type": "hypothesis under review",
+      "model_id": "falsifiability",
+      "output_type": "disconfirming test design",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team has a strong thesis and needs a disciplined way to prove it wrong before committing."
+    },
+    {
+      "avoid_when": "The organization is collecting signal but never translating it into changed behavior, priorities, or design.",
+      "display_name": "Feedback Loops",
+      "input_type": "adaptive system with signals",
+      "model_id": "feedback-loops",
+      "output_type": "closed-loop adjustment protocol",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Outcomes should shape the next action and the system can observe consequences quickly enough to learn instead of repeating the same move blindly."
+    },
+    {
+      "avoid_when": "The structure is being used as a script for delivering judgment while skipping curiosity, listening, or the receiver's real constraints.",
+      "display_name": "Feedback Models Sbi",
+      "input_type": "behavior-specific feedback need",
+      "model_id": "feedback-models-sbi",
+      "output_type": "actionable feedback move",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A feedback conversation needs to stay tied to specific observable behavior rather than personality labels or vague frustration."
+    },
+    {
+      "avoid_when": "Simplification would strip away the technical conditions, edge cases, or math that the real decision still depends on.",
+      "display_name": "Feynman Technique",
+      "input_type": "understanding-integrity problem",
+      "model_id": "feynman-technique",
+      "output_type": "plain-language comprehension check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Understanding needs to be pressure tested by explanation rather than assumed from recognition, jargon, or recall."
+    },
+    {
+      "avoid_when": "First principles is being used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+      "display_name": "First Principles Thinking",
+      "input_type": "assumption-heavy problem",
+      "model_id": "first-principles-thinking",
+      "output_type": "elemental truth reframing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Existing categories, market assumptions, or inherited rules are distorting the problem rather than clarifying it."
+    },
+    {
+      "avoid_when": "The first answer or first suspect is anchoring the whole chain and every later why is being steered to support that initial story.",
+      "display_name": "Five Whys Method",
+      "input_type": "root-cause tracing problem",
+      "model_id": "five-whys-method",
+      "output_type": "causal why-chain",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A recurring operational problem has an observable chain of causes and the team needs to get past symptom-fixing quickly."
+    },
+    {
+      "avoid_when": "The team is entering flow on the wrong problem and efficient execution is outrunning strategic sensemaking.",
+      "display_name": "Flow",
+      "input_type": "deep-work and challenge-calibration problem",
+      "model_id": "flow",
+      "output_type": "immersion setup",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A task has a clear goal, rapid feedback, and challenge calibrated high enough to demand full attention without causing panic."
+    },
+    {
+      "avoid_when": "Formal structure is being used to launder weak premises, missing evidence, or fake certainty.",
+      "display_name": "Formal Reasoning",
+      "input_type": "logic-structure integrity problem",
+      "model_id": "formal-reasoning",
+      "output_type": "traceable reasoning chain",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A claim needs explicit premises, logical structure, or decision branches rather than rhetorical fluency."
+    },
+    {
+      "avoid_when": "The actors are not actually playing the same game and the visible payoff model is missing the ideology, politics, or internal incentive that is reall\u2026",
+      "display_name": "Game Theory Payoffs",
+      "input_type": "strategic interaction and payoff problem",
+      "model_id": "game-theory-payoffs",
+      "output_type": "counterparty-response game map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A recommendation cannot be judged in isolation because its value changes materially with how a rival, partner, regulator, or counterparty responds."
+    },
+    {
+      "avoid_when": "Self-generation is being used as an excuse to skip correction, evidence checks, or outside calibration.",
+      "display_name": "Generation Effect",
+      "input_type": "passive-understanding problem",
+      "model_id": "generation-effect",
+      "output_type": "active-articulation scaffold",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Retention, alignment, or real understanding depends on people producing the explanation, hypothesis, or plan themselves instead of only hearing it."
+    },
+    {
+      "avoid_when": "Surface pattern grouping is being mistaken for causal proof without further testing.",
+      "display_name": "Gestalt Principles Of Perception",
+      "input_type": "pattern-heavy perception problem",
+      "model_id": "gestalt-principles-of-perception",
+      "output_type": "coherent organizing shape",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Perception, explanation, or design depends on helping people see the right clusters, contrasts, and whole-before-part patterns quickly."
+    },
+    {
+      "avoid_when": "The chosen goal is organizing action but is not being revisited often enough to reflect changed evidence, constraints, or strategic reality.",
+      "display_name": "Goal Setting",
+      "input_type": "goal-framing problem",
+      "model_id": "goal-setting",
+      "output_type": "execution target definition",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement."
+    },
+    {
+      "avoid_when": "Growth language is being used to deny real structural limits, weak strategy, role mismatch, or missing resources.",
+      "display_name": "Growth Mindset",
+      "input_type": "capability-development barrier",
+      "model_id": "growth-mindset",
+      "output_type": "feedback-welcoming improvement loop",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Capability is genuinely expandable through feedback, repetition, and deliberate improvement rather than blocked by an immutable constraint."
+    },
+    {
+      "avoid_when": "The environment has changed enough that yesterday's automatic behavior is now solving the wrong problem.",
+      "display_name": "Habit Formation",
+      "input_type": "repeatable behavior problem",
+      "model_id": "habit-formation",
+      "output_type": "cue-to-routine design",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Execution quality depends on repeating the right small behaviors rather than on one heroic effort."
+    },
+    {
+      "avoid_when": "The principle is becoming a reflexive excuse for repeat harm, obvious deception, or incentive structures that reward bad-faith behavior.",
+      "display_name": "Hanlons Razor",
+      "input_type": "blame-heavy failure diagnosis",
+      "model_id": "hanlons-razor",
+      "output_type": "non-malice-first diagnostic lens",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A failure, delay, or conflict could plausibly be explained by poor clarity, coordination breakdown, overload, or neglect rather than hostile intent."
+    },
+    {
+      "avoid_when": "The decision was made with clear, contemporaneous evidence of high failure probability that was ignored \u2014 in those cases outcome-based criticism may\u2026",
+      "display_name": "Hindsight Bias",
+      "input_type": "post-event evaluation of a decision made under prior uncertainty",
+      "model_id": "hindsight-bias",
+      "output_type": "decision quality separation from outcome quality",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A post-mortem, retrospective, or performance review is evaluating decisions that were made under genuine uncertainty."
+    },
+    {
+      "avoid_when": "The measured incentive is becoming the target and people can game the metric while degrading the real objective.",
+      "display_name": "Incentives",
+      "input_type": "behavior-and-reward system",
+      "model_id": "incentives",
+      "output_type": "incentive-misalignment diagnosis",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Behavior looks irrational on the surface until the reward structure, status signals, penalties, or career consequences are mapped explicitly."
+    },
+    {
+      "avoid_when": "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.",
+      "display_name": "Information Asymmetry",
+      "input_type": "unequal-observability situation",
+      "model_id": "information-asymmetry",
+      "output_type": "observability and incentive challenge",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Pricing, trust, or strategic choice depends on hidden information, concealed incentives, or unshared operating reality."
+    },
+    {
+      "avoid_when": "The model is being used to optimize compression so aggressively that decision-critical nuance disappears.",
+      "display_name": "Information Theory",
+      "input_type": "signal packaging problem",
+      "model_id": "information-theory",
+      "output_type": "compressed information frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Complexity is real but attention is scarce, so the challenge is to preserve the core signal without overloading the audience."
+    },
+    {
+      "avoid_when": "Visible effort is being rewarded regardless of whether the activity produces value.",
+      "display_name": "Input Vs Output Goals",
+      "input_type": "activity-outcome disconnect",
+      "model_id": "input-vs-output-goals",
+      "output_type": "process-to-result translation",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The desired result is clear, but the team still cannot translate it into repeatable behaviors, habits, and checkpoints."
+    },
+    {
+      "avoid_when": "Humility is being performed as self-minimization or soft language while real updating, accountable claims, and clear judgment are still being avoided.",
+      "display_name": "Intellectual Humility",
+      "input_type": "overconfidence and updating problem",
+      "model_id": "intellectual-humility",
+      "output_type": "updated stance under uncertainty",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The main risk is overconfidence in the current frame, and better judgment depends on admitting what may not be known yet."
+    },
+    {
+      "avoid_when": "Agency language is being used to deny structural constraints, missing resources, or system incentives.",
+      "display_name": "Internal Locus Of Control",
+      "input_type": "agency and ownership problem",
+      "model_id": "internal-locus-of-control",
+      "output_type": "controllables-focused plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Outcomes depend heavily on preparation, response quality, habit formation, or recovery from setbacks."
+    },
+    {
+      "avoid_when": "Political signaling pressure is displacing fact-grounded option analysis.",
+      "display_name": "International Negotiation And Diplomacy Models",
+      "input_type": "multi-audience negotiation problem",
+      "model_id": "international-negotiation-and-diplomacy-models",
+      "output_type": "sequenced coalition-aware posture",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "No party can simply impose its will without triggering response, retaliation, or coalition effects."
+    },
+    {
+      "avoid_when": "Inversion is being used as a substitute for execution \u2014 identifying what to avoid without subsequently taking positive action leads to paralysis, not\u2026",
+      "display_name": "Inversion",
+      "input_type": "forward-only plan or assumption",
+      "model_id": "inversion",
+      "output_type": "failure-path avoidance strategy",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The cost of a mistake is catastrophic, making the avoidance of stupidity a far more profitable strategy than the pursuit of brilliance."
+    },
+    {
+      "avoid_when": "The team is iterating without stop rules, success thresholds, or a decision about what evidence is strong enough to commit.",
+      "display_name": "Iteration",
+      "input_type": "learning-loop design problem",
+      "model_id": "iteration",
+      "output_type": "bounded refinement cycle",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The first version is unlikely to be correct, so the cheapest path to quality is repeated prototype-test-learn cycles."
+    },
+    {
+      "avoid_when": "Teams are calling every preference a job and skipping the discipline of distinguishing true progress from surface wants or internal strategy wishes.",
+      "display_name": "Jobs To Be Done",
+      "input_type": "customer progress and purpose problem",
+      "model_id": "jobs-to-be-done",
+      "output_type": "job-clarity framing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Customers are adopting, switching, or abandoning solutions for reasons that feature comparisons alone do not explain."
+    },
+    {
+      "avoid_when": "Disclosure is becoming performance theater or socially safe sharing rather than the specific feedback and self-revelation needed to reduce the real b\u2026",
+      "display_name": "Johari Window",
+      "input_type": "blind-spot and feedback problem",
+      "model_id": "johari-window",
+      "output_type": "structured self-awareness and calibration frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Blind spots are materially affecting coordination, trust, or self-assessment quality."
+    },
+    {
+      "avoid_when": "Avoiding fixation is being used as an excuse to reject all prior knowledge instead of separating useful pattern recognition from stale lock-in.",
+      "display_name": "Lateral Thinking",
+      "input_type": "stale-option space",
+      "model_id": "lateral-thinking",
+      "output_type": "alternative-frame opening",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Familiar frames are producing stale options because hidden assumptions remain unchallenged."
+    },
+    {
+      "avoid_when": "The team is collecting model names as decoration but not translating them into concrete tests, comparisons, or decision pressure.",
+      "display_name": "Latticework Of Mental Models",
+      "input_type": "multidimensional problem with competing frames",
+      "model_id": "latticework-of-mental-models",
+      "output_type": "cross-model diagnostic frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A problem spans several causal layers and a single disciplinary frame keeps missing incentives, trade-offs, or second-order effects."
+    },
+    {
+      "avoid_when": "The sample is biased, structurally mismatched, or drawn from the wrong population, so large-N confidence would be fake reassurance.",
+      "display_name": "Law Of Large Numbers",
+      "input_type": "sample-size distorted judgment",
+      "model_id": "law-of-large-numbers",
+      "output_type": "population-level calibration",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision is being distorted by anecdotes, vivid stories, or tiny samples when population logic should dominate."
+    },
+    {
+      "avoid_when": "Weak usage blips or vanity metrics are being mislabeled as validated learning.",
+      "display_name": "Lean Startup Methodology",
+      "input_type": "early-stage product uncertainty",
+      "model_id": "lean-startup-methodology",
+      "output_type": "validated-learning experiment path",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A product or market hypothesis is still fragile enough that learning speed matters more than polished completeness."
+    },
+    {
+      "avoid_when": "Early progress is being mistaken for mastery and responsibility is scaling faster than capability has actually consolidated.",
+      "display_name": "Learning Curve",
+      "input_type": "capability-ramp question",
+      "model_id": "learning-curve",
+      "output_type": "compounding-skill path",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Performance is expected to improve through repetition, feedback, and chunked skill-building rather than one-off inspiration."
+    },
+    {
+      "avoid_when": "Preferred initiatives are being labeled as leverage points without evidence that they sit near a real bottleneck, feedback loop, or governing rule.",
+      "display_name": "Leverage Points",
+      "input_type": "system intervention prioritization problem",
+      "model_id": "leverage-points",
+      "output_type": "high-leverage intervention focus",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A system has many moving parts, but only a few intervention points are likely to change behavior materially."
+    },
+    {
+      "avoid_when": "The decision requires deep analytical assessment and rapport is being treated as a substitute for evidence, structure, or technical competence.",
+      "display_name": "Liking Principle",
+      "input_type": "receptivity and trust problem",
+      "model_id": "liking-principle",
+      "output_type": "warmth-with-rigor communication frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Trust, receptivity, or willingness to engage is the bottleneck and the audience first needs to feel understood rather than merely informed."
+    },
+    {
+      "avoid_when": "Age is being treated as proof of superiority while technological discontinuity or new evidence is ignored.",
+      "display_name": "Lindy Effect",
+      "input_type": "durability judgment",
+      "model_id": "lindy-effect",
+      "output_type": "longevity-weighted choice",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Choosing among non-perishable ideas, tools, or practices where survival over time is itself meaningful evidence of resilience."
+    },
+    {
+      "avoid_when": "The situation is genuinely novel, so reusing the incumbent frame would likely become an unhelpful or misleading default.",
+      "display_name": "Lock In",
+      "input_type": "commitment path-dependence problem",
+      "model_id": "lock-in",
+      "output_type": "sticky-path risk frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Consistency, standardization, or deep commitment is creating compounding advantage, so the real question is which path should become sticky."
+    },
+    {
+      "avoid_when": "Fallacy hunting is being used performatively to score debate points instead of clarifying the decision or action path.",
+      "display_name": "Logical Fallacies",
+      "input_type": "argument-validity and evidence-quality problem",
+      "model_id": "logical-fallacies",
+      "output_type": "logic audit",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "An argument sounds persuasive before it is valid and the inference structure needs to be checked explicitly."
+    },
+    {
+      "avoid_when": "The assumed buffer is being treated as static even though burn rate, exposure, or environmental volatility is moving underneath it.",
+      "display_name": "Margin Of Safety",
+      "input_type": "buffer-sensitive commitment",
+      "model_id": "margin-of-safety",
+      "output_type": "downside buffer check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Downside is hard to reverse and small forecast errors in time, capital, or quality could cascade into major loss."
+    },
+    {
+      "avoid_when": "Hidden state, memory effects, or path dependence matter more than the visible current state.",
+      "display_name": "Markov Chains",
+      "input_type": "state-transition process",
+      "model_id": "markov-chains",
+      "output_type": "transition stability check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The problem can be simplified into discrete states where the next step depends mainly on the current state."
+    },
+    {
+      "avoid_when": "High-level abstraction is being used as a substitute for concrete mechanism, threshold, or protocol.",
+      "display_name": "Mental Models Of Reality",
+      "input_type": "competing worldview and prediction problem",
+      "model_id": "mental-models-of-reality",
+      "output_type": "reality-model comparison",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Repeated surprise or prediction failure suggests the current frame is missing the real causal structure."
+    },
+    {
+      "avoid_when": "Vivid rehearsal is being mistaken for evidence and confidence is rising faster than the quality of the underlying assumptions or data.",
+      "display_name": "Mental Simulation",
+      "input_type": "scenario rehearsal and assumption-testing problem",
+      "model_id": "mental-simulation",
+      "output_type": "simulation-backed contingency check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision is expensive, slow, or risky to test directly, but the team can still rehearse plausible scenarios, reactions, and contingencies."
+    },
+    {
+      "avoid_when": "Reflection is becoming self-soothing, journaling theater, or introspective overprocessing instead of improving the next decision.",
+      "display_name": "Meta Cognitive Reflection",
+      "input_type": "thinking-process quality problem",
+      "model_id": "meta-cognitive-reflection",
+      "output_type": "self-audited next move",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The thinker needs to inspect how they are thinking, not just what they are concluding, because the process itself may be the constraint."
+    },
+    {
+      "avoid_when": "Reflective questioning is turning into infinite deferral that postpones commitment, experimentation, or ownership.",
+      "display_name": "Metacognitive Questioning",
+      "input_type": "assumption-inspection and reasoning-drift problem",
+      "model_id": "metacognitive-questioning",
+      "output_type": "self-audit question set",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Better questions would change the path because the main constraint is weak inspection of assumptions, strategy choice, or evidence quality."
+    },
+    {
+      "avoid_when": "The input distributions are mostly guesswork, so simulation would only convert weak assumptions into false rigor.",
+      "display_name": "Monte Carlo Methods",
+      "input_type": "distribution-shaped uncertainty",
+      "model_id": "monte-carlo-methods",
+      "output_type": "outcome range estimate",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The decision depends on the spread of possible outcomes rather than on a single base-case forecast."
+    },
+    {
+      "avoid_when": "Every poor outcome is being attributed to distorted incentives even though uncertainty, chance, or weak capability are the dominant drivers.",
+      "display_name": "Moral Hazard",
+      "input_type": "risk-transfer and accountability alignment problem",
+      "model_id": "moral-hazard",
+      "output_type": "incentive-exposure audit",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "One party can take action while another party absorbs a meaningful share of the downside."
+    },
+    {
+      "avoid_when": "The scoring model is creating false objectivity by assigning precise weights no one actually understands or believes.",
+      "display_name": "Multi Criteria Decision Analysis",
+      "input_type": "weighted trade-off decision problem",
+      "model_id": "multi-criteria-decision-analysis",
+      "output_type": "criteria-based option ranking",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Several criteria matter at once and intuitive trade-offs are likely to be inconsistent or politically distorted."
+    },
+    {
+      "avoid_when": "Leadership wants diversity optics without allowing difference to change the real decision process.",
+      "display_name": "Multicultural Team Dynamics",
+      "input_type": "cross-cultural team blind-spot risk",
+      "model_id": "multicultural-team-dynamics",
+      "output_type": "translated multi-perspective signal",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Decision quality depends on surfacing assumptions, interpretations, and stakeholder signals that a homogeneous team would miss."
+    },
+    {
+      "avoid_when": "Story coherence is outrunning evidence quality and a clean arc is making the audience feel more certainty than the proof warrants.",
+      "display_name": "Narratives",
+      "input_type": "meaning-making and adoption-framing problem",
+      "model_id": "narratives",
+      "output_type": "causal story scaffold",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "An abstract recommendation needs a memorable causal story so people can understand why the change matters and what to do next."
+    },
+    {
+      "avoid_when": "The equilibrium is computationally or behaviorally unreachable because the actors cannot actually discover or sustain it.",
+      "display_name": "Nash Equilibrium",
+      "input_type": "strategic interaction",
+      "model_id": "nash-equilibrium",
+      "output_type": "stable response map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Your best move depends on how other players are likely to respond rather than on your action in isolation."
+    },
+    {
+      "avoid_when": "The language of emergence is being used to avoid setting goals, decision rights, or fitness criteria in a human system.",
+      "display_name": "Natural Selection Analogy",
+      "input_type": "variant-testing and ecosystem selection problem",
+      "model_id": "natural-selection-analogy",
+      "output_type": "selection-loop strategy",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A solution space is better explored by generating variants, testing them, and letting evidence eliminate weak options."
+    },
+    {
+      "avoid_when": "Leaders are labeling ordinary scale benefits as network effects without showing that each additional participant actually increases value for the nex\u2026",
+      "display_name": "Network Effects",
+      "input_type": "threshold and self-reinforcement problem",
+      "model_id": "network-effects",
+      "output_type": "critical-mass and feedback check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The value of adoption may rise materially as more users, contributors, or counterparties join the same system."
+    },
+    {
+      "avoid_when": "Complexity language is being used to avoid naming concrete levers, checkpoints, or experiments.",
+      "display_name": "Non Linear Dynamics",
+      "input_type": "feedback-driven system",
+      "model_id": "non-linear-dynamics",
+      "output_type": "system leverage map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Small interventions could create outsized effects because feedback loops, delays, or threshold crossings dominate the system."
+    },
+    {
+      "avoid_when": "The conversation is being softened so much that real boundaries, trade-offs, or accountability requests never become explicit.",
+      "display_name": "Non Violent Communication",
+      "input_type": "high-tension communication problem",
+      "model_id": "non-violent-communication",
+      "output_type": "direct-and-nonthreatening alignment frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Completion and synchronization matter more than winning an argument, and the team needs a clearer split between content and relationship data."
+    },
+    {
+      "avoid_when": "The situation is novel enough that forcing an existing control map would create false pattern recognition or suppress needed learning.",
+      "display_name": "Obligations Controls Mapping",
+      "input_type": "obligation-to-execution gap",
+      "model_id": "obligations-controls-mapping",
+      "output_type": "control design map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The obligation is already known, but the controls, checkpoints, ownership, or operational boundaries needed to fulfill it are still vague."
+    },
+    {
+      "avoid_when": "The simplest explanation is being chosen for comfort, speed, or elegance even though the evidence points to interacting causes or real complexity.",
+      "display_name": "Occams Razor",
+      "input_type": "overcomplicated explanation problem",
+      "model_id": "occams-razor",
+      "output_type": "pruned working explanation",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision is carrying extra assumptions, variables, or explanatory machinery that may be making the answer feel smarter without making it truer."
+    },
+    {
+      "avoid_when": "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function.",
+      "display_name": "Opportunity Cost",
+      "input_type": "resource allocation choice",
+      "model_id": "opportunity-cost",
+      "output_type": "trade-off pricing check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move."
+    },
+    {
+      "avoid_when": "The group is using anti-optimism language to crush initiative even though the current question mainly needs execution discipline, not more downside n\u2026",
+      "display_name": "Optimism Bias And Planning Fallacy",
+      "input_type": "inside-view overconfidence problem",
+      "model_id": "optimism-bias-and-planning-fallacy",
+      "output_type": "outside-view corrected plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A plan sounds coherent internally but still needs an outside-view check, a pre-mortem, or a reference class before commitment."
+    },
+    {
+      "avoid_when": "The measurable proxy is drifting away from the real outcome, so local optimization would improve the dashboard while damaging the actual objective.",
+      "display_name": "Optimization Theory",
+      "input_type": "constrained objective-selection problem",
+      "model_id": "optimization-theory",
+      "output_type": "explicit trade-off and leverage plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team can name what it is actually maximizing or minimizing instead of treating a vague aspiration as the objective."
+    },
+    {
+      "avoid_when": "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+      "display_name": "Optionality",
+      "input_type": "reversible high-uncertainty choice",
+      "model_id": "optionality",
+      "output_type": "option set expansion",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call."
+    },
+    {
+      "avoid_when": "The 80/20 framing is being used as rhetoric without actual leverage measurement, making it a lazy excuse to ignore inconvenient work.",
+      "display_name": "Pareto Principle",
+      "input_type": "uneven-contribution prioritization problem",
+      "model_id": "pareto-principle",
+      "output_type": "vital-few focus plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A small subset of causes, customers, tasks, or constraints appears to drive a disproportionate share of the result."
+    },
+    {
+      "avoid_when": "Path-lock is being diagnosed so broadly that it becomes an excuse for not redesigning anything that could actually change.",
+      "display_name": "Path Dependence",
+      "input_type": "historical lock-in problem",
+      "model_id": "path-dependence",
+      "output_type": "path-constraint frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Early choices are constraining current options more than people realize, so history matters more than present-day preference alone."
+    },
+    {
+      "avoid_when": "The review loop is becoming social reassurance, vague brainstorming, or status theater instead of independent challenge.",
+      "display_name": "Peer Review Your Perspectives",
+      "input_type": "inside-view consensus risk",
+      "model_id": "peer-review-your-perspectives",
+      "output_type": "stress-tested perspective set",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The current conclusion is vulnerable to inside-view confidence and needs independent challenge before it hardens into a decision."
+    },
+    {
+      "avoid_when": "Accumulated pattern recognition is suppressing anomaly detection and making the team miss the cue that this case is meaningfully different.",
+      "display_name": "Perceptual Learning",
+      "input_type": "noisy signal-recognition problem",
+      "model_id": "perceptual-learning",
+      "output_type": "cue-discrimination upgrade",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Better pattern detection would change real-world performance because subtle cues separate expert judgment from novice confusion."
+    },
+    {
+      "avoid_when": "More effort would only deepen sunk-cost exposure because the framing, market, or capability mix is wrong.",
+      "display_name": "Persistence Grit",
+      "input_type": "long-horizon effort problem",
+      "model_id": "persistence-grit",
+      "output_type": "durable persistence check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The goal requires sustained effort across months or years, and the main risk is quitting before learning compounds."
+    },
+    {
+      "avoid_when": "Persuasive technique is being used to accelerate acceptance of a weak answer.",
+      "display_name": "Persuasion Principles",
+      "input_type": "adoption and influence problem",
+      "model_id": "persuasion-principles",
+      "output_type": "high-receptivity message design",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The insight is already sound but attention, belief, or action is still blocked by indifference, overload, or weak framing."
+    },
+    {
+      "avoid_when": "The diagnosis is being used fatalistically after the fact instead of driving role redesign, support, or promotion-criteria repair.",
+      "display_name": "Peter Principle",
+      "input_type": "promotion-fit mismatch",
+      "model_id": "peter-principle",
+      "output_type": "role-capability diagnosis",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Advancement criteria and actual role requirements are misaligned."
+    },
+    {
+      "avoid_when": "The true constraint is exogenous or non-negotiable, so treating the situation as a power contest would distract from the actual bottleneck.",
+      "display_name": "Power Dynamics",
+      "input_type": "hidden leverage structure problem",
+      "model_id": "power-dynamics",
+      "output_type": "leverage and commitment map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A negotiation or partnership sounds like a price or policy dispute on the surface, but the real issue may be leverage, outside options, or commitment costs."
+    },
+    {
+      "avoid_when": "An uneven distribution is being casually labeled a power law without checking whether the tail behavior really fits.",
+      "display_name": "Power Laws",
+      "input_type": "skewed driver landscape",
+      "model_id": "power-laws",
+      "output_type": "dominant driver focus",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A few drivers are likely to explain a disproportionate share of the outcome, so broad effort would waste attention."
+    },
+    {
+      "avoid_when": "Receptivity engineering is crossing into manipulation theater decoupled from the actual merits of the proposal.",
+      "display_name": "Pre Suasion",
+      "input_type": "attention-shaping problem",
+      "model_id": "pre-suasion",
+      "output_type": "receptivity-first framing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Attention placement will shape how the next message is interpreted almost as much as the message itself."
+    },
+    {
+      "avoid_when": "The exercise is producing an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+      "display_name": "Premortem",
+      "input_type": "pre-commitment failure-exposure problem",
+      "model_id": "premortem",
+      "output_type": "failure-path mitigation plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A project is still pre-commitment and the cost of finding failure modes now is much lower than after launch."
+    },
+    {
+      "avoid_when": "Customers can easily compare tiers or arbitrage between them, making the pricing feel unfair instead of tailored.",
+      "display_name": "Price Discrimination",
+      "input_type": "segmented offer decision",
+      "model_id": "price-discrimination",
+      "output_type": "tiered value capture plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Different segments genuinely value the same outcome differently and can be served through distinct offer shapes or terms."
+    },
+    {
+      "avoid_when": "The response is collapsing into micromanagement of the current case instead of diagnosing the machine-level design that created the drift.",
+      "display_name": "Principal Agent Problem",
+      "input_type": "delegation-alignment and hidden-divergence problem",
+      "model_id": "principal-agent-problem",
+      "output_type": "alignment and accountability redesign",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Work is being delegated across an objective gap where the executing party may benefit from choices that do not serve the owner of the outcome."
+    },
+    {
+      "avoid_when": "Prioritization is becoming endless reshuffling, so the team talks constantly about leverage but rarely commits long enough to realize it.",
+      "display_name": "Prioritization",
+      "input_type": "overloaded task portfolio",
+      "model_id": "prioritization",
+      "output_type": "sequencing and exclusion rule",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The number of plausible tasks, issues, or opportunities already exceeds the true execution capacity of the team."
+    },
+    {
+      "avoid_when": "The behavior is better explained by simple process repair, shared identity, or non-adversarial coordination than by defection logic.",
+      "display_name": "Prisoners Dilemma",
+      "input_type": "incentive-conflict coordination problem",
+      "model_id": "prisoners-dilemma",
+      "output_type": "payoff and cooperation-design frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Individually sensible moves are producing a collectively worse outcome because each actor has a credible incentive to defect."
+    },
+    {
+      "avoid_when": "The work requires a concrete commitment now, but the team is using probability language to postpone choosing after the key economics are already clea\u2026",
+      "display_name": "Probabilistic Thinking",
+      "input_type": "uncertain decision",
+      "model_id": "probabilistic-thinking",
+      "output_type": "probability-weighted judgment",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The decision is not yes-or-no but more-likely-or-less-likely, so binary framing would hide meaningful uncertainty."
+    },
+    {
+      "avoid_when": "The team is using reframing as an excuse to postpone commitment instead of improving the next concrete move.",
+      "display_name": "Problem Framing And Reframing",
+      "input_type": "problem-definition and boundary-selection problem",
+      "model_id": "problem-framing-and-reframing",
+      "output_type": "reframed decision-worthy problem statement",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team is working hard on a problem but keeps producing weak answers, weak priorities, or repeated confusion."
+    },
+    {
+      "avoid_when": "The analysis still needs a normative decision framework and prospect-theory language would only redescribe behavior without improving the choice.",
+      "display_name": "Prospect Theory",
+      "input_type": "framing and loss-aversion problem",
+      "model_id": "prospect-theory",
+      "output_type": "frame-aware behavior check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A choice is being driven more by perceived gains, losses, or reference points than by objective value."
+    },
+    {
+      "avoid_when": "Psychological safety is being redefined as comfort, harmony, or protection from challenge rather than candid truth in service of better decisions.",
+      "display_name": "Psychological Safety",
+      "input_type": "dissent-suppression and challenge-quality problem",
+      "model_id": "psychological-safety",
+      "output_type": "candid accountability-supporting environment",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The team is suppressing dissent, risk signals, or upward challenge because status or fear is distorting what gets said."
+    },
+    {
+      "avoid_when": "The group is already candid about uncertainty and trade-offs, and further anti-rationalization pressure would just create performative self-doubt.",
+      "display_name": "Rationalization",
+      "input_type": "post-hoc story defense problem",
+      "model_id": "rationalization",
+      "output_type": "reasoning-versus-story separation",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The explanation sounds polished, but there are signs the reasoning may be a post-hoc defense rather than the real cause of the decision."
+    },
+    {
+      "avoid_when": "Routing debate itself is becoming overhead and the team cannot name the next discriminating question or experiment.",
+      "display_name": "Reasoning Mode Router",
+      "input_type": "problem-framing decision",
+      "model_id": "reasoning-mode-router",
+      "output_type": "reasoning-path selection",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The problem could be approached through diagnosis, creative exploration, adversarial critique, or execution planning, and choosing the wrong path would materially distort the work."
+    },
+    {
+      "avoid_when": "Gifts, favors, or access are becoming a distraction from the substance, economics, or ethics of the underlying decision.",
+      "display_name": "Reciprocity Principle",
+      "input_type": "trust-building influence problem",
+      "model_id": "reciprocity-principle",
+      "output_type": "value-first relationship frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Trust or relationship depth must be built before a difficult ask, negotiation, or sale can be evaluated seriously."
+    },
+    {
+      "avoid_when": "The pressure to keep running is pushing the team into analysis paralysis, feature creep, or action-first thrash without clear problem definition.",
+      "display_name": "Red Queen Effect",
+      "input_type": "competitive adaptation pressure problem",
+      "model_id": "red-queen-effect",
+      "output_type": "anti-complacency response frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Standing still effectively means losing ground because rivals, substitutes, or environmental pressures are improving at the same time."
+    },
+    {
+      "avoid_when": "Duplication is being added by habit without a clear failure mode that justifies its cost.",
+      "display_name": "Redundancy",
+      "input_type": "single-point-failure risk",
+      "model_id": "redundancy",
+      "output_type": "backup or repetition buffer",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Single-point failure is unacceptable and a backup path would materially change survival or recovery quality."
+    },
+    {
+      "avoid_when": "Reframing is becoming euphemism that renames a hard reality without improving the option set or truth surface.",
+      "display_name": "Reframing Perspective",
+      "input_type": "trapped framing problem",
+      "model_id": "reframing-perspective",
+      "output_type": "frame-shifted decision lens",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The first story is trapping the decision by making one option feel inevitable or impossible."
+    },
+    {
+      "avoid_when": "There is evidence that the underlying system, market, or process quality has genuinely changed, so waiting for reversion would ignore a new mean.",
+      "display_name": "Regression To The Mean",
+      "input_type": "extreme recent result",
+      "model_id": "regression-to-the-mean",
+      "output_type": "variance-vs-signal check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A result looks dramatic, but causality is weak and the team may be explaining variance with a confident story too early."
+    },
+    {
+      "avoid_when": "The decision is mainly operational, vendor-comparison, or analytically routine, where projected emotion would be a poor substitute for structured ana\u2026",
+      "display_name": "Regret Theory",
+      "input_type": "anticipated-regret distortion problem",
+      "model_id": "regret-theory",
+      "output_type": "regret-calibrated commitment check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A meaningful decision is stuck because anticipated regret about action or inaction is distorting the choice."
+    },
+    {
+      "avoid_when": "Horizon scanning has become a trend-slide ritual without thresholds, response triggers, or accountable owners.",
+      "display_name": "Regulatory Horizon Scanning",
+      "input_type": "emerging-rule and policy-shift problem",
+      "model_id": "regulatory-horizon-scanning",
+      "output_type": "preparatory regulatory watch",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "External rules, enforcement priorities, or policy narratives are moving early enough that waiting for certainty would create strategic lag."
+    },
+    {
+      "avoid_when": "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
+      "display_name": "Representativeness Heuristic",
+      "input_type": "similarity-driven judgment",
+      "model_id": "representativeness-heuristic",
+      "output_type": "pattern-match challenge with base-rate correction",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail."
+    },
+    {
+      "avoid_when": "Resilience is being romanticized as enduring pain indefinitely instead of redesigning the system that keeps producing preventable stress.",
+      "display_name": "Resilience",
+      "input_type": "shock absorption and adaptation problem",
+      "model_id": "resilience",
+      "output_type": "disciplined recovery path",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "People, teams, or systems must absorb shocks without losing the ability to keep functioning and adapt intelligently afterward."
+    },
+    {
+      "avoid_when": "The team is using risk assessment as process theater, multiplying matrices and deliberation without improving decisions or mitigations.",
+      "display_name": "Risk Assessment",
+      "input_type": "downside-governance problem",
+      "model_id": "risk-assessment",
+      "output_type": "explicit mitigation and threshold map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A plan needs explicit mitigations, thresholds, and monitoring rather than generic caution language."
+    },
+    {
+      "avoid_when": "Stable reference classes, credible probabilities, and operator-level thresholds already exist, so continued uncertainty framing would only avoid disc\u2026",
+      "display_name": "Risk Vs Uncertainty",
+      "input_type": "decision under unknowns",
+      "model_id": "risk-vs-uncertainty",
+      "output_type": "commitment-sizing guidance",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Confidence is outrunning evidence and the core drivers remain ambiguous, unstable, or only partly observable."
+    },
+    {
+      "avoid_when": "The team is jumping into analysis prematurely without specifying the underlying problem structure or the decision output needed.",
+      "display_name": "Root Cause Analysis",
+      "input_type": "recurring symptom diagnosis problem",
+      "model_id": "root-cause-analysis",
+      "output_type": "root cause map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Recurring failures keep surfacing as different symptoms even though the same underlying mechanism is likely recreating the problem."
+    },
+    {
+      "avoid_when": "The scaffold has become permanent bureaucracy that blocks transfer of judgment, autonomy, or true mastery.",
+      "display_name": "Scaffolding",
+      "input_type": "overwhelming learning sequence",
+      "model_id": "scaffolding",
+      "output_type": "staged support path",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Complexity exceeds current capacity and the learner or team can master the next increment but not yet the whole system."
+    },
+    {
+      "avoid_when": "Instructional sequencing has become so rigid that it blocks independent decomposition or reflective reframing.",
+      "display_name": "Scaffolding Educational",
+      "input_type": "novice-to-execution learning gap",
+      "model_id": "scaffolding-educational",
+      "output_type": "staged learning path",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Learners or teams need staged support to move from novice confusion to independent execution."
+    },
+    {
+      "avoid_when": "Pursuing volume would magnify defects, coordination failures, or mediocre quality faster than the system can correct them.",
+      "display_name": "Scale Economies",
+      "input_type": "scaling system",
+      "model_id": "scale-economies",
+      "output_type": "leverage and throughput check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Fixed costs are high enough that spreading infrastructure or knowledge across more volume could create a real structural advantage."
+    },
+    {
+      "avoid_when": "A familiar template is being used as a substitute for re-seeing the concrete reality in front of the team.",
+      "display_name": "Schema Acquisition",
+      "input_type": "structure-building learning problem",
+      "model_id": "schema-acquisition",
+      "output_type": "usable mental map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "People need durable pattern recognition and usable retrieval under pressure, not just isolated facts or one-off memorization."
+    },
+    {
+      "avoid_when": "A politically protected hypothesis cannot really be falsified, so the process would keep the language of science while losing the substance.",
+      "display_name": "Scientific Method Evidence Testing",
+      "input_type": "hypothesis-testing problem",
+      "model_id": "scientific-method-evidence-testing",
+      "output_type": "evidence test plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Causal claims, competing explanations, or high-cost choices need to be resolved by evidence rather than authority, intuition, or politics."
+    },
+    {
+      "avoid_when": "Second-order language is outrunning evidence, so the chain of consequences is speculative rather than anchored in mechanism, actor reaction, or const\u2026",
+      "display_name": "Second Order Thinking",
+      "input_type": "first-order attractive intervention",
+      "model_id": "second-order-thinking",
+      "output_type": "downstream consequence map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The first-order win may create a second-order loss in incentives, trust, coordination, resilience, or future option value downstream."
+    },
+    {
+      "avoid_when": "Failure is being treated as a moral flaw even though sleep, incentives, or environment design are the real issue.",
+      "display_name": "Self Control",
+      "input_type": "impulse-control problem",
+      "model_id": "self-control",
+      "output_type": "follow-through safeguard",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "People already know the right move, but stress, temptation, distraction, or impulse keeps defeating execution."
+    },
+    {
+      "avoid_when": "Autonomy language is being used to avoid setting standards, quality bars, or accountability.",
+      "display_name": "Self Determination Theory",
+      "input_type": "motivation architecture problem",
+      "model_id": "self-determination-theory",
+      "output_type": "need-support redesign",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The visible performance problem is really a motivation-architecture problem around autonomy, competence, or relatedness."
+    },
+    {
+      "avoid_when": "Self-organization is being used to excuse weak ownership, absent constraints, or missing feedback channels.",
+      "display_name": "Self Organization And Emergent Order",
+      "input_type": "distributed coordination problem",
+      "model_id": "self-organization-and-emergent-order",
+      "output_type": "rule-and-feedback design lens",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Useful coordination can emerge from local rules, incentives, and feedback without heavy central scripting."
+    },
+    {
+      "avoid_when": "The work is mostly impression management, and better signaling would only make a weak underlying offer look cleaner.",
+      "display_name": "Signaling",
+      "input_type": "credibility and signal-quality problem",
+      "model_id": "signaling",
+      "output_type": "truth-aligned signal design",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A strategy, offer, or position needs to communicate credibility under uncertainty, and the current message may not align with the actual underlying quality."
+    },
+    {
+      "avoid_when": "Simplification would remove the caveat, boundary, or uncertainty that makes the decision safe to use in reality.",
+      "display_name": "Simplification",
+      "input_type": "complex recommendation handoff",
+      "model_id": "simplification",
+      "output_type": "essential-rule distillation",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Complexity is blocking action, alignment, or recall more than it is improving the underlying decision."
+    },
+    {
+      "avoid_when": "The roles are becoming performative labels and participants have stopped doing the real cognitive work of switching standards and evidence.",
+      "display_name": "Six Thinking Hats",
+      "input_type": "jammed group-thinking problem",
+      "model_id": "six-thinking-hats",
+      "output_type": "mode-separated review",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team needs to separate competing modes of thought so risk review, creativity, evidence checking, and synthesis do not jam each other."
+    },
+    {
+      "avoid_when": "The main problem is already a direct evidence-quality or mechanism question and adding more social validation would only distract from the core analy\u2026",
+      "display_name": "Social Proof",
+      "input_type": "consensus and credibility shortcut problem",
+      "model_id": "social-proof",
+      "output_type": "social-proof stress test",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision is moving quickly because adoption, consensus, or endorsement is being treated as evidence even though the underlying mechanism is hard to inspect directly."
+    },
+    {
+      "avoid_when": "Protecting specialist identity matters more than noticing the need for adjacent skills or broader synthesis.",
+      "display_name": "Specialization",
+      "input_type": "scope and focus problem",
+      "model_id": "specialization",
+      "output_type": "narrowed expertise lane",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Leverage comes from going deeper rather than wider, and broad scope is diluting attention."
+    },
+    {
+      "avoid_when": "Quantitative language is being used to project certainty without checking assumptions, data quality, or structural fit.",
+      "display_name": "Statistical Discipline",
+      "input_type": "noisy evidence problem",
+      "model_id": "statistical-discipline",
+      "output_type": "evidence-quality judgment",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The case feels intuitive, but the cost of being wrong is high enough that distributions, base rates, or evidence quality must be checked."
+    },
+    {
+      "avoid_when": "Model worship is treating statistical learning as a universal answer even though the target is poorly defined, the data is thin, or causal understand\u2026",
+      "display_name": "Statistical Learning Theory",
+      "input_type": "prediction and generalization problem",
+      "model_id": "statistical-learning-theory",
+      "output_type": "generalizable predictive model stance",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The task is prediction under uncertainty and the organization can learn from enough observations to update performance meaningfully."
+    },
+    {
+      "avoid_when": "Statistical language is being used decoratively and no one has checked whether the data quality, assumptions, or sample structure justify the conclus\u2026",
+      "display_name": "Statistics Concepts",
+      "input_type": "signal-versus-noise problem",
+      "model_id": "statistics-concepts",
+      "output_type": "calibrated statistical read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Uncertainty is quantifiable enough that ranges, distributions, or sampling logic can improve the decision."
+    },
+    {
+      "avoid_when": "Every legacy choice is being treated as bad simply because it is old, rather than asking whether the current default still outperforms the alternativ\u2026",
+      "display_name": "Status Quo Bias",
+      "input_type": "default-preserving decision",
+      "model_id": "status-quo-bias",
+      "output_type": "default-challenge test",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "An incumbent option may be surviving because changing feels costly rather than because it is actually superior."
+    },
+    {
+      "avoid_when": "The pause is becoming a hiding place for avoiding commitment, trade-offs, or concrete next steps.",
+      "display_name": "Step Back",
+      "input_type": "detail-fog and reactive-immersion problem",
+      "model_id": "step-back",
+      "output_type": "clarified next-step and perspective reset",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Immediate immersion is obscuring the structure of the problem and a deliberate pause would likely improve the next move."
+    },
+    {
+      "avoid_when": "A compelling narrative arc is substituting for first-principles reconstruction or evidence checks.",
+      "display_name": "Storytelling Frameworks",
+      "input_type": "abstract message problem",
+      "model_id": "storytelling-frameworks",
+      "output_type": "decision-relevant narrative",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Information is available but still fails to feel consequential, memorable, or decision-relevant to the audience."
+    },
+    {
+      "avoid_when": "Anti-sunk-cost logic is being used as cover for reckless abandonment without evaluating learning value, switching costs, or remaining upside.",
+      "display_name": "Sunk Cost Fallacy",
+      "input_type": "escalation and legacy-investment problem",
+      "model_id": "sunk-cost-fallacy",
+      "output_type": "future-oriented recommitment test",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is persisting mainly because of prior investment, history, or identity rather than because the future economics still justify recommitment."
+    },
+    {
+      "avoid_when": "Power, regulation, narrative, or habit are doing more explanatory work than market clearing logic.",
+      "display_name": "Supply And Demand",
+      "input_type": "market pressure problem",
+      "model_id": "supply-and-demand",
+      "output_type": "price-volume pressure read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Price, scarcity, substitution, or capacity constraints are central drivers of behavior in the system."
+    },
+    {
+      "avoid_when": "The anti-bias correction is becoming so broad that meaningful differences between real winners and real losers are being ignored rather than analyzed.",
+      "display_name": "Survivorship Bias",
+      "input_type": "hidden-denominator evidence problem",
+      "model_id": "survivorship-bias",
+      "output_type": "denominator-aware outside view",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The evidence base is dominated by winners, survivors, or visible success stories, and the hidden denominator may change the conclusion materially."
+    },
+    {
+      "avoid_when": "The situation is genuinely novel enough that clinging to the incumbent frame would mainly reinforce cognitive entrenchment.",
+      "display_name": "Switching Costs",
+      "input_type": "incumbent-friction transition problem",
+      "model_id": "switching-costs",
+      "output_type": "switch-friction and reversibility frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A seemingly better alternative exists, but economic, psychological, or operational friction is keeping people on the incumbent path."
+    },
+    {
+      "avoid_when": "Synthesis is being faked as compression before the underlying analysis is strong enough to support it.",
+      "display_name": "Synthesis And Integration",
+      "input_type": "unsynthesized analysis set",
+      "model_id": "synthesis-and-integration",
+      "output_type": "governing insight",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The facts exist but no governing thought exists yet."
+    },
+    {
+      "avoid_when": "Expert intuition in a well-practiced domain with fast, reliable feedback \u2014 in those conditions System 1 is accurate and deliberative override degrade\u2026",
+      "display_name": "System 1",
+      "input_type": "fast intuitive judgment or pattern-matched conclusion",
+      "model_id": "system-1",
+      "output_type": "bias identification and System 2 scrutiny trigger",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A fast, intuitive judgment has been made in a high-stakes or novel context and needs to be examined for reliability."
+    },
+    {
+      "avoid_when": "In well-practiced expert domains where calibrated intuition is more accurate and faster than deliberative override.",
+      "display_name": "System 2",
+      "input_type": "complex decision requiring deliberate analysis",
+      "model_id": "system-2",
+      "output_type": "calibrated, deliberate judgment with explicit reasoning chain",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A decision involves genuinely novel situations where no reliable pattern recognition exists and deliberate analysis is required."
+    },
+    {
+      "avoid_when": "The problem is linear, bounded, and dominated by a clear proximate cause with an obvious direct fix.",
+      "display_name": "Systems Thinking",
+      "input_type": "recurring system behavior",
+      "model_id": "systems-thinking",
+      "output_type": "feedback-loop and leverage map",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Recurring symptoms, repeated escalations, or oscillating outcomes suggest the local patch is not touching the real source of behavior."
+    },
+    {
+      "avoid_when": "Reframing has turned into endless theory shopping that avoids evidence, testable claims, or operational decisions.",
+      "display_name": "Theory Induced Blindness",
+      "input_type": "framework-distorted interpretation problem",
+      "model_id": "theory-induced-blindness",
+      "output_type": "reframing challenge set",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A favored framework might be hiding reality by shaping attention too aggressively and filtering out inconvenient evidence."
+    },
+    {
+      "avoid_when": "The environment is too unstable for one fixed bottleneck frame because the limiting factor is moving every cycle.",
+      "display_name": "Theory Of Constraints",
+      "input_type": "throughput bottleneck problem",
+      "model_id": "theory-of-constraints",
+      "output_type": "constraint-first sequence",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A conjunctive chain has a binding constraint, so improving non-binding stages will not raise throughput."
+    },
+    {
+      "avoid_when": "High-level framing is creating the illusion that the hard causal, sequencing, or ownership thinking is already finished.",
+      "display_name": "Tier 2 High Value",
+      "input_type": "leverage-versus-busyness problem",
+      "model_id": "tier-2-high-value",
+      "output_type": "pruned high-value focus",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Many tasks look valuable on the surface but only a few meaningfully move the outcome, decision quality, or learning rate."
+    },
+    {
+      "avoid_when": "Time-tested validation is being used to block necessary novelty even though the situation is genuinely new and existing reference classes fit poorly.",
+      "display_name": "Time Tested Validation",
+      "input_type": "credibility and verification problem",
+      "model_id": "time-tested-validation",
+      "output_type": "validated confidence threshold",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A claim, idea, or method looks promising but needs to be checked against proven tests, reference classes, or established validation loops before wider commitment."
+    },
+    {
+      "avoid_when": "Leaders are romanticizing breakthrough moments while underinvesting in the slow prerequisite buildup required for a real threshold crossing.",
+      "display_name": "Tipping Points",
+      "input_type": "threshold-sensitive change problem",
+      "model_id": "tipping-points",
+      "output_type": "leverage-threshold hypothesis",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Progress is not linear and one constrained variable or threshold could unlock disproportionate change."
+    },
+    {
+      "avoid_when": "Trade-off talk has become performance without allocation, so priorities are being acknowledged rhetorically but no resources, options, or rankings ac\u2026",
+      "display_name": "Trade Offs",
+      "input_type": "competing-objectives decision",
+      "model_id": "trade-offs",
+      "output_type": "priority trade-off framing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Pursuing one objective necessarily weakens another, so the real decision is what good thing must be sacrificed, delayed, or downweighted."
+    },
+    {
+      "avoid_when": "Innovation has become an identity performance that rejects useful inherited practice because it feels old.",
+      "display_name": "Tradition Vs Innovation Balance",
+      "input_type": "stability-versus-change tension",
+      "model_id": "tradition-vs-innovation-balance",
+      "output_type": "balanced adaptation rule",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "An organization must preserve reliability, safety, or institutional memory while still adapting to a shifting market or problem structure."
+    },
+    {
+      "avoid_when": "The problem is predictable enough that this much uncertainty work would mostly boil the ocean without changing the next move.",
+      "display_name": "True Uncertainty Navigation",
+      "input_type": "deep ambiguity navigation problem",
+      "model_id": "true-uncertainty-navigation",
+      "output_type": "robust action under uncertainty",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The future cannot be reduced to one forecast, and the team must reason across several plausible paths instead of one confident storyline."
+    },
+    {
+      "avoid_when": "The team is over-psychologizing a problem that is better explained by simple constraints, incentives, or capability gaps.",
+      "display_name": "Understanding Motivations",
+      "input_type": "behavior-driver diagnosis problem",
+      "model_id": "understanding-motivations",
+      "output_type": "motive structure and action fit frame",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Observed behavior is easy to name, but the real decision quality depends on identifying the why beneath it."
+    },
+    {
+      "avoid_when": "A once-useful shortcut has hardened into doctrine even though the task, audience, or system has changed.",
+      "display_name": "Usability Heuristics",
+      "input_type": "friction and shortcut problem",
+      "model_id": "usability-heuristics",
+      "output_type": "low-friction rule set",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "People need fast, reliable navigation through a messy task and cannot recompute the whole workflow from first principles every time."
+    },
+    {
+      "avoid_when": "User-centered language is being used decoratively while the real decision has already been made.",
+      "display_name": "User Centered Design",
+      "input_type": "human-centered design problem",
+      "model_id": "user-centered-design",
+      "output_type": "user-fit design reframing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A product, service, or workflow will fail unless it matches real user goals, frictions, and workarounds rather than internal assumptions."
+    },
+    {
+      "avoid_when": "Research is being used as a ritual to validate a preselected answer instead of a disciplined search for disconfirming user evidence.",
+      "display_name": "User Experience Research Methods",
+      "input_type": "user evidence gap",
+      "model_id": "user-experience-research-methods",
+      "output_type": "behavior-grounded user insight",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Internal assumptions about users are weak, stale, or contradicted by actual behavior in the product or service."
+    },
+    {
+      "avoid_when": "The team keeps generating options without a selection rule, so experimentation expands but learning and pruning never happen.",
+      "display_name": "Variation And Selection",
+      "input_type": "option-space design problem",
+      "model_id": "variation-and-selection",
+      "output_type": "generate-then-prune protocol",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The current answer set is too narrow, path-dependent, or anchored on the first plausible idea."
+    },
+    {
+      "avoid_when": "Teams are adding more frames, analogies, or examples without using them to sharpen the decision, prune hypotheses, or expose the highest-value contra\u2026",
+      "display_name": "Varied Practice Interleaving",
+      "input_type": "under-explained framing problem",
+      "model_id": "varied-practice-interleaving",
+      "output_type": "contrasted-frame review",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "One plausible frame explains part of the problem but leaves stakeholder reactions, edge cases, or system behavior under-explained."
+    },
+    {
+      "avoid_when": "Evidence has been explicitly audited for completeness and the gaps are known and acknowledged \u2014 the closure is warranted.",
+      "display_name": "WYSIATI",
+      "input_type": "partial-evidence conclusion under review",
+      "model_id": "wysiati",
+      "output_type": "missing-evidence audit and confidence calibration",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A confident conclusion has been reached from evidence that may be incomplete, non-random, or selectively presented."
+    },
+    {
+      "avoid_when": "The challenge is so mismatched to readiness that it either produces no growth or creates confusion, dependence, or withdrawal.",
+      "display_name": "Zone Of Development",
+      "input_type": "readiness-calibration problem",
+      "model_id": "zone-of-development",
+      "output_type": "stretch-fit progression",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The next level is reachable but not yet automatic, so the team needs stretch that grows capability without overwhelming it."
+    }
+  ],
+  "candidate_count": 222,
+  "packet_sha256": "3e77f814a8b8f0feede1f152c4ef8ef80c42ac69b9a0aaed2c51c52efdafc7b6",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The user describes the registry, the offer, and their own mixed feelings. e001-e002 set the situation; e003-e004 express the user's own attractions, hesitations, and unresolved stance.",
+      "limitations": "none",
+      "role": "starting",
+      "role_interpretation": "The user's earliest visible working position: attraction to faster research and resources, hesitation about commercial advantage from participant solidarity, and an undecided question about whether the concern is protective or biased.",
+      "role_record_id": "rprolev22-starting-01-58179ca760e5e1",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "faster research and resources the university cannot provide",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "turning participant solidarity into a private discovery advantage",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether the concern protects the community or assumes commercial research is inherently suspect",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e033",
+        "e034",
+        "e035",
+        "e036",
+        "e037",
+        "e038"
+      ],
+      "fidelity_note": "The user's later working position is a bounded validation partnership with specific safeguards, as described in e033-e035 and summarized by the assistant in e037-e038.",
+      "limitations": "none",
+      "role": "current",
+      "role_interpretation": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+      "role_record_id": "rprolev22-current-01-6fe783d43042c4",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "bounded validation partnership",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "twelve-month first-negotiation right for jointly validated targets only, with no delay to noncommercial publication or unrelated academic work",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e035",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "set thresholds for withdrawal-response, access, publication-delay, rejected-request, and benefit-fund before signing",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "approve pilot only if withdrawal ends participant-level access and future queries",
+          "stance_object_kind": "action_or_proposal"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e036",
+        "e039",
+        "e040"
+      ],
+      "fidelity_note": "The unresolved issue is whether 'withdrawal' meaningfully reverses participation after collective patterns have been learned, as expressed by the user in e036 and clarified by the assistant in e039-e040.",
+      "limitations": "none",
+      "role": "qualification",
+      "role_interpretation": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+      "role_record_id": "rprolev22-qualification-01-40fca34d8ea2b5",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether withdrawal can be called meaningful when aggregate patterns and target hypotheses remain after participant-level access ends",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e039",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "the word withdrawal overstates what can be reversed after collective patterns have been learned",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e040",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "if the pilot ends or a participant leaves, research priorities, target hypotheses, company expectations, and the community's understanding of the registry may not return to their prior state",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_selection_input.v1",
+  "selection_mode": "direct_all_canonical",
+  "source_refs": [
+    {
+      "path": "research/role-record-pattern-invariance-corpus-2026-07-12/packets/registry_provider.json",
+      "sha256": "53703ec56b9e360763458f9cd10170b8ada80c45a5aad6276201f3f0ab6bcceb"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "schema_version": "lolla.reasoning_process_phase3_source_review.v1",
+  "status": "baseline_failed_generic_repair_justified",
+  "date": "2026-07-11",
+  "reviewer_independence": "same_project_session_not_blind",
+  "review_method": "Inspect the authoritative source and exact returned evidence before judging interpretation wording. Compare the resulting meaning with the prospectively frozen protected target. Do not evaluate the final recommendation or use a scalar quality score.",
+  "baseline_contract": {
+    "path": "docs/evals/reasoning-process-phase3-probe-contract-v1.json",
+    "sha256": "e7c2ca0326e9b509952a0000f05c15e96f24d00d64ae91a04edc4846b9a29307"
+  },
+  "baseline_result": {
+    "path": "research/reasoning-process-phase3-development-2026-07-11/baseline/result.json",
+    "sha256": "52ade988ca18c72e1392f4bc71f1301fdb8bd4847f7ad11ba60cf6b63e508775"
+  },
+  "case_id": "amb1-case02-nonprofit-scale",
+  "dimensions": [
+    {
+      "view_kind": "position_and_decision_trajectory",
+      "target_id": "case02-position-trajectory",
+      "call_path": "research/reasoning-process-phase3-development-2026-07-11/baseline/calls/position_and_decision_trajectory.json",
+      "call_sha256": "4d1393feb65e067a3116cc4fd9cac4ee489cdb73e5e7efed40fed30c5960a066",
+      "operational_status": "ok",
+      "typed_status": "admitted",
+      "exact_source_reference_count": 4,
+      "exact_source_reference_validity_rate": 1.0,
+      "protected_target_visibility": "supported",
+      "source_strength_inflation_count": 0,
+      "context_invisible_label_count": 0,
+      "invalid_admitted_item_count": 0,
+      "finding": "The two returned items jointly preserve the movement from initial uncertainty to the conditional four-month direction and the remaining partly-ready curriculum problem. The assistant's Turn-7 qualification is not cited, but the protected semantic qualification remains visible through exact user evidence.",
+      "failure_codes": []
+    },
+    {
+      "view_kind": "exploration_and_alternatives",
+      "target_id": "case02-exploration-alternative",
+      "call_path": "research/reasoning-process-phase3-development-2026-07-11/baseline/calls/exploration_and_alternatives.json",
+      "call_sha256": "f1b4b0aebbf3f6f57200a56a9c0effbbb946d21e2c8c21fb3808458279f6ab98",
+      "operational_status": "ok",
+      "typed_status": "admitted",
+      "exact_source_reference_count": 2,
+      "exact_source_reference_validity_rate": 1.0,
+      "protected_target_visibility": "not_observed",
+      "source_strength_inflation_count": 0,
+      "context_invisible_label_count": 0,
+      "invalid_admitted_item_count": 0,
+      "finding": "The reader found a valid later alternative—the reduced-schedule pilot and its social-reversibility limits—but missed the protected earlier alternative of recruiting named volunteer roles before launch and the explicit limit that not all required ownership may appear. Its own global limitation states that it narrowed the read to Turn 6.",
+      "failure_codes": [
+        "RP3_material_process_concept_omitted",
+        "RP9_protected_minority_signal_lost_to_compactness"
+      ]
+    },
+    {
+      "view_kind": "evidence_and_assumption_discipline",
+      "target_id": "case02-evidence-discipline",
+      "call_path": "research/reasoning-process-phase3-development-2026-07-11/baseline/calls/evidence_and_assumption_discipline.json",
+      "call_sha256": "0790cc02ee0bca9d8c82c58a74b078eeacc8bfdfa888260d52401e7da280a50b",
+      "operational_status": "operational_failure_rate_limit_429_in_sse",
+      "typed_status": "quarantined",
+      "exact_source_reference_count": 0,
+      "exact_source_reference_validity_rate": null,
+      "protected_target_visibility": "not_observed",
+      "source_strength_inflation_count": 0,
+      "context_invisible_label_count": 0,
+      "invalid_admitted_item_count": 0,
+      "finding": "OpenRouter reported rate_limit_exceeded inside the response stream with zero usage tokens. The baseline stop rule correctly prevented further calls. This is operational evidence, not a semantic result and not the reason for the prompt repair.",
+      "failure_codes": ["RP10_provider_operational_failure"]
+    },
+    {
+      "view_kind": "uncertainty_and_unresolved_state",
+      "target_id": "case02-unresolved-state",
+      "call_path": null,
+      "call_sha256": null,
+      "operational_status": "not_called_after_stop_rule",
+      "typed_status": "not_observed",
+      "exact_source_reference_count": 0,
+      "exact_source_reference_validity_rate": null,
+      "protected_target_visibility": "not_observed",
+      "source_strength_inflation_count": 0,
+      "context_invisible_label_count": 0,
+      "invalid_admitted_item_count": 0,
+      "finding": "No semantic inference is possible because the operational stop rule prevented the call.",
+      "failure_codes": ["RP10_not_called_after_operational_stop"]
+    },
+    {
+      "view_kind": "challenge_and_revision_response",
+      "target_id": "case02-challenge-revision",
+      "call_path": null,
+      "call_sha256": null,
+      "operational_status": "not_called_after_stop_rule",
+      "typed_status": "not_observed",
+      "exact_source_reference_count": 0,
+      "exact_source_reference_validity_rate": null,
+      "protected_target_visibility": "not_observed",
+      "source_strength_inflation_count": 0,
+      "context_invisible_label_count": 0,
+      "invalid_admitted_item_count": 0,
+      "finding": "No semantic inference is possible because the operational stop rule prevented the call.",
+      "failure_codes": ["RP10_not_called_after_operational_stop"]
+    }
+  ],
+  "aggregate": {
+    "expected_dimension_count": 5,
+    "attempted_dimension_count": 3,
+    "operational_success_count": 2,
+    "typed_admission_count": 2,
+    "semantically_reviewable_dimension_count": 2,
+    "protected_target_visible_count": 1,
+    "protected_target_visibility_rate_over_all_dimensions": 0.2,
+    "protected_target_visibility_rate_over_reviewable_dimensions": 0.5,
+    "exact_source_reference_count": 6,
+    "invalid_exact_source_reference_count": 0,
+    "source_strength_inflation_count": 0,
+    "context_invisible_label_count": 0,
+    "invalid_admitted_item_count": 0,
+    "baseline_gate_passed": false
+  },
+  "repair_decision": {
+    "generic_repair_justified": true,
+    "justification": "The admitted exploration read demonstrates a shared prompt-level salience failure: the instruction to return the minimum material set and a singular alternative allowed a valid late alternative to displace an earlier protected one. The repair will ask every bounded reader to scan the full conversation and preserve up to four materially distinct process items rather than stopping at the latest or most salient item.",
+    "rate_limit_is_repair_justification": false,
+    "allowed_changes": [
+      "shared_system_prompt_full_conversation_scan_instruction",
+      "generic_per_view_coverage_instruction"
+    ],
+    "forbidden_changes": [
+      "case_specific_example",
+      "protected_target_or_addendum_input",
+      "model_change",
+      "schema_weakening",
+      "source_gate_weakening",
+      "budget_increase",
+      "conversation_only_ablation",
+      "retry_of_baseline_call"
+    ],
+    "separate_contract_and_authorization_required": true,
+    "maximum_repair_calls": 5
+  },
+  "boundary": {
+    "final_answer_evaluated": false,
+    "scalar_quality_score_included": false,
+    "semantic_adequacy_inferred_by_code": false,
+    "rate_limit_treated_as_semantic_failure": false,
+    "graph_or_runtime_authorized": false
+  }
+}

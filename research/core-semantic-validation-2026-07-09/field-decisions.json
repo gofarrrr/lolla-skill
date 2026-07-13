@@ -1,0 +1,75 @@
+{
+  "schema_version": "lolla.core_semantic_field_decisions.v0",
+  "case_id": "case-01-enterprise-logo-beta",
+  "decision_basis": {
+    "compact_repeats": 3,
+    "shadow_repeats": 3,
+    "shadow_stable_exact_span_observations": 11,
+    "gold_observation_count": 15,
+    "notes": [
+      "Decisions are provisional until the multi-case corpus is run.",
+      "Keep means retain as a distinct semantic field.",
+      "Merge means preserve the meaning inside another event or metadata structure.",
+      "Defer means collect only after the audit or outside live selection.",
+      "Remove means do not serialize as a per-run semantic field; retain policy in schema or code when noted."
+    ]
+  },
+  "fields": [
+    {"field_group":"decision_shape","field_name":"decision_question","decision":"keep","timing":"pre","job":"selection_and_application","target":"question_events with initial/current function and change relation","reason":"The compact path lost the Turn-5 evidence-gate question; the shadow representation recovered both questions in all repeats."},
+    {"field_group":"decision_shape","field_name":"likely_starting_direction","decision":"merge","timing":"pre","job":"selection_and_application","target":"assistant_stance_trajectory initial event","reason":"A separate prose summary duplicates the first source-grounded assistant commitment and can disagree with it."},
+    {"field_group":"decision_shape","field_name":"revised_direction_or_action_consequence","decision":"defer","timing":"post","job":"accountability","target":"revision_delta","reason":"It does not exist before reconsideration and must not influence pre-audit selection."},
+
+    {"field_group":"options_and_paths","field_name":"live_options","decision":"keep","timing":"pre","job":"application","target":"option_events","reason":"Options are needed to distinguish source-proposed paths from alternatives introduced later."},
+    {"field_group":"options_and_paths","field_name":"abandoned_or_rejected_options","decision":"merge","timing":"both","job":"application_and_accountability","target":"option_events.status","reason":"A separate list risks inventing abandonment; status belongs on each source-linked option event."},
+    {"field_group":"options_and_paths","field_name":"option_status","decision":"merge","timing":"both","job":"application_and_accountability","target":"option_events.status","reason":"Status is an attribute of an option, not an independent semantic object."},
+    {"field_group":"options_and_paths","field_name":"decision_thresholds","decision":"keep","timing":"pre","job":"selection_and_application","target":"condition_events","reason":"The email-confirmation threshold was recovered stably and is central to testing whether weak evidence is treated as commitment."},
+    {"field_group":"options_and_paths","field_name":"stop_rules","decision":"keep","timing":"pre","job":"selection_and_application","target":"condition_events","reason":"Explicit presence or source-bounded missingness is decision-relevant; no stop rule appears in Case 01."},
+    {"field_group":"options_and_paths","field_name":"evidence_gates","decision":"keep","timing":"pre","job":"selection_and_application","target":"question_events and condition_events","reason":"The operative question changed to an evidence gate, so this must be first-class rather than inferred from a broad decision summary."},
+
+    {"field_group":"conversation_process","field_name":"conversation_turn_depth","decision":"merge","timing":"both","job":"custody","target":"capture_manifest","reason":"Turn count is deterministic capture metadata and is not semantic interpretation."},
+    {"field_group":"conversation_process","field_name":"assistant_influence_on_user_framing","decision":"keep","timing":"pre","job":"selection","target":"source-linked influence relation with human-review flag","reason":"The product audits the joint process, but influence must remain a provisional relationship rather than a diagnosis."},
+    {"field_group":"conversation_process","field_name":"user_changed_mind_during_conversation","decision":"merge","timing":"pre","job":"accountability","target":"user question and stance trajectory","reason":"Case 01 shows a changed question without a demonstrated change of mind; a boolean field would overclaim persuasion."},
+    {"field_group":"conversation_process","field_name":"assistant_sycophancy_or_over-accommodation_risk","decision":"merge","timing":"pre","job":"selection","target":"assistant_alignment_without_integration relation","reason":"Preserve the mechanism—agreement or acknowledgement without integration—without a loaded sycophancy verdict."},
+    {"field_group":"conversation_process","field_name":"unresolved_threads","decision":"merge","timing":"pre","job":"selection_and_application","target":"thread_status_events","reason":"Unresolved and dropped are statuses on the same source-linked thread object."},
+    {"field_group":"conversation_process","field_name":"dropped_threads","decision":"merge","timing":"pre","job":"selection_and_application","target":"thread_status_events","reason":"The specialist was stable on one concern but missed other under-carried material; a broader status model is safer than a binary dropped list."},
+    {"field_group":"conversation_process","field_name":"premortem_or_counterfactual_pressure","decision":"defer","timing":"post","job":"accountability","target":"audit_pressure_events","reason":"This records pressure introduced by the audit, not the pre-audit conversation in Case 01."},
+    {"field_group":"conversation_process","field_name":"alternative_frames_considered","decision":"keep","timing":"both","job":"selection_and_accountability","target":"frame_events","reason":"The omitted staged/private path and persistence of the original frame are central audit questions."},
+
+    {"field_group":"provided_context_and_evidence","field_name":"user_provided_context","decision":"merge","timing":"pre","job":"application","target":"source-linked user semantic events","reason":"Speaker and span provenance already identify user-provided context; a second summary creates duplication."},
+    {"field_group":"provided_context_and_evidence","field_name":"pasted_documents_or_external_context","decision":"merge","timing":"pre","job":"custody","target":"source_inventory","reason":"Document presence and privacy belong in deterministic source inventory; content interpretation stays in source-linked events."},
+
+    {"field_group":"stakeholders_and_values","field_name":"user_values_or_priorities","decision":"keep","timing":"pre","job":"application","target":"priority_events","reason":"The opportunity-loss concern was stable and must survive pressure toward caution."},
+    {"field_group":"stakeholders_and_values","field_name":"stakeholder_obligations","decision":"keep","timing":"pre","job":"application","target":"stakeholder_obligation_events with human-review flag","reason":"Existing customers and prospect communication can constrain application, but obligations require cautious human review."},
+    {"field_group":"stakeholders_and_values","field_name":"relationship_or_political_constraints","decision":"keep","timing":"pre","job":"selection_and_application","target":"relationship_pressure_events","reason":"Board excitement tied to a prestigious name is material even though the shadow reader still missed it consistently."},
+
+    {"field_group":"constraints_and_unknowns","field_name":"timing_or_runway_constraints","decision":"merge","timing":"pre","job":"application","target":"constraint_events.type=timing_or_runway","reason":"Constraint subtype belongs on a common source-linked constraint event."},
+    {"field_group":"constraints_and_unknowns","field_name":"operational_capacity_constraints","decision":"merge","timing":"pre","job":"selection_and_application","target":"constraint_events.type=operational_capacity","reason":"The engineering bottleneck was recovered stably; a common event type avoids parallel constraint lists."},
+    {"field_group":"constraints_and_unknowns","field_name":"legal_compliance_or_safety_constraints","decision":"merge","timing":"pre","job":"application","target":"constraint_events.type=legal_compliance_or_safety","reason":"Keep the distinction as a typed, human-review-sensitive constraint rather than a separate collection."},
+    {"field_group":"constraints_and_unknowns","field_name":"real_world_unknowns","decision":"keep","timing":"pre","job":"application","target":"evidence_boundary_events","reason":"Commitment, demand, readiness, capacity impact, and permission must remain explicitly unknown rather than silently completed by the model."},
+    {"field_group":"constraints_and_unknowns","field_name":"unknown_unknowns_or_context_not_available_to_model","decision":"merge","timing":"both","job":"custody","target":"source_limitations and missingness","reason":"Generic unknown-unknown prose is not actionable; concrete missing sources and scope limits are."},
+
+    {"field_group":"audit_pressure_and_change","field_name":"what_lolla_pressed_on","decision":"defer","timing":"post","job":"accountability","target":"audit_pressure_events","reason":"It is produced after selection and should not feed the selection that created it."},
+    {"field_group":"audit_pressure_and_change","field_name":"what_changed","decision":"defer","timing":"post","job":"accountability","target":"revision_delta","reason":"Action-level change is essential receipt material but unavailable pre-audit."},
+
+    {"field_group":"losses_and_overcorrection","field_name":"useful_friction","decision":"defer","timing":"post","job":"accountability","target":"pressure_disposition_review","reason":"Usefulness is a post-audit human-reviewable judgment, not a selection input or quality badge."},
+    {"field_group":"losses_and_overcorrection","field_name":"noisy_friction","decision":"defer","timing":"post","job":"accountability","target":"pressure_disposition_review","reason":"Noise can only be judged after seeing the selected pressure and revision."},
+    {"field_group":"losses_and_overcorrection","field_name":"lost_value","decision":"defer","timing":"post","job":"accountability","target":"lost_value_review","reason":"It compares pre-audit priorities with the revised answer and therefore belongs after reconsideration."},
+    {"field_group":"losses_and_overcorrection","field_name":"overcorrection_risk","decision":"defer","timing":"post","job":"accountability","target":"revision_risk_review","reason":"Overcorrection is a property of the revised path, not the source conversation alone."},
+    {"field_group":"losses_and_overcorrection","field_name":"false_precision_risk","decision":"defer","timing":"post","job":"accountability","target":"revision_risk_review","reason":"The final answer and memo must exist before this risk can be judged."},
+    {"field_group":"losses_and_overcorrection","field_name":"generic_caution_risk","decision":"defer","timing":"post","job":"accountability","target":"revision_risk_review","reason":"Generic caution is evaluated against the actual revision, not used to route the graph."},
+    {"field_group":"losses_and_overcorrection","field_name":"momentum_or_ambition_loss","decision":"merge","timing":"post","job":"accountability","target":"lost_value_review subtype=momentum_or_ambition","reason":"It is a specific lost-value subtype; a separate top-level field duplicates the same review."},
+
+    {"field_group":"evidence_and_custody","field_name":"source_refs","decision":"keep","timing":"both","job":"custody","target":"source_ref on every semantic object","reason":"Source refs are the basis for auditability and exact-span evaluation."},
+    {"field_group":"evidence_and_custody","field_name":"private_context_available","decision":"keep","timing":"both","job":"custody","target":"source_inventory","reason":"Future readers need to know whether richer local context existed without exporting it."},
+    {"field_group":"evidence_and_custody","field_name":"redacted_or_not_checked_in","decision":"keep","timing":"both","job":"custody","target":"source_inventory","reason":"Redaction and distribution boundaries must be explicit rather than inferred from missing files."},
+
+    {"field_group":"handoff_for_brief","field_name":"what_the_final_answer_does_not_prove","decision":"keep","timing":"post","job":"accountability","target":"non_claims","reason":"The receipt must separate observable work from correctness, safety, and outcome claims."},
+    {"field_group":"handoff_for_brief","field_name":"safe_to_show_user","decision":"keep","timing":"post","job":"distribution","target":"artifact_release_status","reason":"Display safety is distinct from reasoning quality and needs an explicit release decision."},
+
+    {"field_group":"handoff_for_agent_inspection","field_name":"safe_for_agent_inspection_only","decision":"merge","timing":"post","job":"distribution","target":"artifact_release_status.audience","reason":"Audience is an attribute of release status, not an independent semantic field."},
+    {"field_group":"handoff_for_agent_inspection","field_name":"requires_human_review","decision":"keep","timing":"both","job":"custody","target":"per-field review_status","reason":"Influence, values, obligations, and action-sensitive claims require an inspectable review boundary."},
+    {"field_group":"handoff_for_agent_inspection","field_name":"requires_llm_interpretation","decision":"remove","timing":"schema","job":"policy","target":"contract field metadata","reason":"This is static ownership policy and should not be repeated as a semantic value in every run."},
+    {"field_group":"handoff_for_agent_inspection","field_name":"deterministic_only_metadata","decision":"remove","timing":"schema","job":"policy","target":"contract field metadata","reason":"Deterministic ownership is schema policy; duplicating it per run adds bulk without evidence."},
+    {"field_group":"handoff_for_agent_inspection","field_name":"local_private_only","decision":"merge","timing":"both","job":"distribution","target":"privacy_class on source and field","reason":"Privacy class belongs on the relevant object and source, not in a detached boolean list."}
+  ]
+}

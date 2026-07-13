@@ -781,16 +781,27 @@ def run_verification_call_with_diagnostics(
         _build_verification_system_prompt(),
         _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
     )
+    call_metadata = getattr(client, "last_call_metadata", None)
     raw_message_content = coerce_str(
-        getattr(getattr(client, "last_call_metadata", None), "raw_message_content", "")
+        getattr(call_metadata, "raw_message_content", "")
     )
+    provider_status = coerce_str(getattr(call_metadata, "status", ""))
+    finish_reason = coerce_str(getattr(call_metadata, "finish_reason", ""))
+    provider_failed = (
+        bool(provider_status) and not provider_status.startswith("ok")
+    ) or finish_reason.strip().lower() == "error"
     verification_detail = verifier_response_diagnostic(
         raw_payload,
         raw_message_content=raw_message_content,
         candidate_count=len(candidates),
+        provider_status=provider_status,
+        finish_reason=finish_reason,
+        prompt_tokens=int(getattr(call_metadata, "prompt_tokens", 0) or 0),
+        completion_tokens=int(getattr(call_metadata, "completion_tokens", 0) or 0),
     )
+    payload_for_parse = {} if provider_failed else raw_payload
     accepted, rejected, quote_repairs, silently_omitted = parse_verification_response(
-        raw_payload,
+        payload_for_parse,
         assistant_text,
         {candidate["model_id"] for candidate in candidates},
     )
@@ -886,11 +897,20 @@ def verifier_response_diagnostic(
     *,
     raw_message_content: str = "",
     candidate_count: int = 0,
+    provider_status: str = "",
+    finish_reason: str = "",
+    prompt_tokens: int = 0,
+    completion_tokens: int = 0,
 ) -> dict[str, object]:
     """Return compact diagnostics for Lane 2 verifier parse/schema health."""
     raw_text = coerce_str(raw_message_content)
     accepted_present = isinstance(raw_payload, dict) and isinstance(raw_payload.get("accepted"), list)
     rejected_present = isinstance(raw_payload, dict) and isinstance(raw_payload.get("rejected"), list)
+    normalized_provider_status = coerce_str(provider_status)
+    normalized_finish_reason = coerce_str(finish_reason)
+    provider_failed = (
+        bool(normalized_provider_status) and not normalized_provider_status.startswith("ok")
+    ) or normalized_finish_reason.strip().lower() == "error"
     detail: dict[str, object] = {
         "schema_version": "lolla.companion_verification_diagnostic.v0.1",
         "status": "ok",
@@ -899,18 +919,27 @@ def verifier_response_diagnostic(
         "rejected_field_present": rejected_present,
         "raw_message_content_present": bool(raw_text.strip()),
         "raw_message_char_count": len(raw_text),
+        "provider_status": normalized_provider_status,
+        "finish_reason": normalized_finish_reason,
+        "prompt_tokens": int(prompt_tokens or 0),
+        "completion_tokens": int(completion_tokens or 0),
+        "provider_failure_observed": provider_failed,
     }
-    if not is_malformed_verifier_response(raw_payload):
+    if not is_malformed_verifier_response(raw_payload) and not provider_failed:
         return detail
 
-    reason = "schema_incomplete"
-    if not isinstance(raw_payload, dict):
+    reason = "provider_finish_error" if provider_failed else "schema_incomplete"
+    if not provider_failed and not isinstance(raw_payload, dict):
         reason = "non_object_payload"
-    elif not raw_payload and raw_text.strip():
+    elif not provider_failed and not raw_payload and raw_text.strip():
         reason = "unparseable_or_truncated_json"
-    elif raw_payload and not (accepted_present or rejected_present):
+    elif not provider_failed and raw_payload and not (accepted_present or rejected_present):
         reason = "missing_accepted_and_rejected_lists"
-    if raw_text.strip() and ("\"accepted\"" in raw_text or "\"rejected\"" in raw_text):
+    if (
+        not provider_failed
+        and raw_text.strip()
+        and ("\"accepted\"" in raw_text or "\"rejected\"" in raw_text)
+    ):
         reason = "unparseable_or_truncated_json"
 
     detail.update(

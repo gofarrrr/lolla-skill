@@ -1,0 +1,760 @@
+{
+  "case_id": "amb1-case03-creative-partnership",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprelationv2-01-72d69f92cb955b",
+          "provenance": {
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+          "raw_record_sha256": "sha256:72d69f92cb955bf100f7c0afad7cf8280da0e5490ed13a9cad83e3c2258ceed6",
+          "relation_record_id": "rprelationv2-01-72d69f92cb955b",
+          "relationship_interpretation": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb1-case03-creative-partnership",
+            "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-current-01-03e72ea3db7e8b",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:03e72ea3db7e8b4358c7d06ee9ec80fb25b02546859e9eaf191c3bd3001cb83e",
+            "role": "current",
+            "role_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+            "role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e063",
+                "text": "My provisional plan is to hear Jonah's revised cut before deciding about postponement."
+              }
+            ],
+            "source_evidence_ids": [
+              "e063"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e063",
+                "stance_expression_kind": "provisional_intention_or_plan",
+                "stance_object_interpretation": "Hear Jonah's revised cut before deciding about postponement.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb1-case03-creative-partnership",
+            "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-qualification-01-fe746b907a1942",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:fe746b907a1942d213fe63e5aa0e619c8cfed8da43d04dd6611dc544e0a237da",
+            "role": "qualification",
+            "role_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+            "role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e070",
+                "text": "The revised cut could resolve the edit question and leave the partnership question open."
+              }
+            ],
+            "source_evidence_ids": [
+              "e070"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e070",
+                "stance_expression_kind": "possibility",
+                "stance_object_interpretation": "The revised cut could resolve the edit question.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e070",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The broader partnership question may remain open after the edit issue is resolved.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb1-case03-creative-partnership",
+            "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-starting-01-fa8b320aff54a2",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:fa8b320aff54a22e2a18ea7af1827f4c4593c19c119574df52de1e8acc949bc5",
+            "role": "starting",
+            "role_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+            "role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e004",
+                "text": "After listening to the latest cut, I think the final third needs a major re-edit."
+              }
+            ],
+            "source_evidence_ids": [
+              "e004"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "The final third needs a major re-edit.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+        "graph_routing_eligible": false,
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "observation_id": "rprelationv2-01-72d69f92cb955b",
+        "provenance": {
+          "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+        "raw_record_sha256": "sha256:72d69f92cb955bf100f7c0afad7cf8280da0e5490ed13a9cad83e3c2258ceed6",
+        "relation_record_id": "rprelationv2-01-72d69f92cb955b",
+        "relationship_interpretation": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:72d69f92cb955bf100f7c0afad7cf8280da0e5490ed13a9cad83e3c2258ceed6",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-72d69f92cb955b",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false
+    },
+    "call_required": true,
+    "case_id": "amb1-case03-creative-partnership",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "current",
+          "role_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+          "role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e063",
+              "text": "My provisional plan is to hear Jonah's revised cut before deciding about postponement."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "qualification",
+          "role_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+          "role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e070",
+              "text": "The revised cut could resolve the edit question and leave the partnership question open."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "starting",
+          "role_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+          "role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e004",
+              "text": "After listening to the latest cut, I think the final third needs a major re-edit."
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2",
+    "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+        "relationship_interpretation": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+        "starting_role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case03-creative-partnership",
+          "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-current-01-03e72ea3db7e8b",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:03e72ea3db7e8b4358c7d06ee9ec80fb25b02546859e9eaf191c3bd3001cb83e",
+          "role": "current",
+          "role_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+          "role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e063",
+              "text": "My provisional plan is to hear Jonah's revised cut before deciding about postponement."
+            }
+          ],
+          "source_evidence_ids": [
+            "e063"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e063",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Hear Jonah's revised cut before deciding about postponement.",
+              "stance_object_kind": "action_or_proposal"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:03e72ea3db7e8b4358c7d06ee9ec80fb25b02546859e9eaf191c3bd3001cb83e",
+          "record_index": 1,
+          "role_record_id": "rprolev2-current-01-03e72ea3db7e8b",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case03-creative-partnership",
+          "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-qualification-01-fe746b907a1942",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:fe746b907a1942d213fe63e5aa0e619c8cfed8da43d04dd6611dc544e0a237da",
+          "role": "qualification",
+          "role_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+          "role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e070",
+              "text": "The revised cut could resolve the edit question and leave the partnership question open."
+            }
+          ],
+          "source_evidence_ids": [
+            "e070"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e070",
+              "stance_expression_kind": "possibility",
+              "stance_object_interpretation": "The revised cut could resolve the edit question.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e070",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The broader partnership question may remain open after the edit issue is resolved.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:fe746b907a1942d213fe63e5aa0e619c8cfed8da43d04dd6611dc544e0a237da",
+          "record_index": 1,
+          "role_record_id": "rprolev2-qualification-01-fe746b907a1942",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case03-creative-partnership",
+          "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-starting-01-fa8b320aff54a2",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:fa8b320aff54a22e2a18ea7af1827f4c4593c19c119574df52de1e8acc949bc5",
+          "role": "starting",
+          "role_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+          "role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e004",
+              "text": "After listening to the latest cut, I think the final third needs a major re-edit."
+            }
+          ],
+          "source_evidence_ids": [
+            "e004"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e004",
+              "stance_expression_kind": "held_assessment",
+              "stance_object_interpretation": "The final third needs a major re-edit.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:fa8b320aff54a22e2a18ea7af1827f4c4593c19c119574df52de1e8acc949bc5",
+          "record_index": 1,
+          "role_record_id": "rprolev2-starting-01-fa8b320aff54a2",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    }
+  },
+  "role_packets": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case03-creative-partnership",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tMy friend Jonah and I have spent eighteen months making an audio documentary.\ne002\tWe were invited to premiere it at a respected local showcase in six weeks.\ne003\tI produced the reporting and interviews; he built the sound and structure.\ne004\tAfter listening to the latest cut, I think the final third needs a major re-edit.\ne005\tJonah thinks we should finish what we have and learn from an audience.\ne006\tWe are also avoiding a conversation about whether the credit should simply say “by both of us” or name our roles.\n[Turn 1 ASSISTANT]\ne007\tThe edit and credit issues are related because both ask how your different contributions translate into authority.\ne008\tSix weeks may be enough for targeted revision but not for rebuilding the final third without sacrificing the rest.\ne009\tBefore deciding, identify what problem you hear: factual confusion, emotional shape, pacing, or discomfort that the piece is becoming final.\ne010\tOn credit, naming roles can recognize distinct work, but it should not become a substitute for agreeing who decides what.\n[Turn 7 USER]\ne063\tMy provisional plan is to hear Jonah's revised cut before deciding about postponement.\ne064\tI will compare it with the approved version and write down the exact interpretive difference I still see, if any.\ne065\tFor credit, I will propose equal top-line authorship with detailed role credits below, but I am not sure I can accept that if he still treats structural decisions as his domain.\ne066\tI want to separate the current film from the rules for our next collaboration, and I am not sure they can really be separated.\n[Turn 7 ASSISTANT]\ne067\tListening before deciding prevents an abstract disagreement from hardening around a cut that does not yet exist.\ne068\tYour uncertainty about credit and future authority is also legitimate: a current credit can acknowledge completed work, while the feelings behind it may still determine whether you collaborate again.\ne069\tYou do not need to solve the next project before the showcase, but you may need to avoid using a harmonious credit line as evidence that the underlying process felt mutual.\ne070\tThe revised cut could resolve the edit question and leave the partnership question open.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067",
+          "e068",
+          "e069",
+          "e070"
+        ]
+      },
+      "maximum_components_per_record": 5,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What current working position, decision, leaning, plan, or commitment is visible? Keep proposals, intentions, decisions, and willingness distinct.",
+      "role": "current",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case03-creative-partnership",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tMy friend Jonah and I have spent eighteen months making an audio documentary.\ne002\tWe were invited to premiere it at a respected local showcase in six weeks.\ne003\tI produced the reporting and interviews; he built the sound and structure.\ne004\tAfter listening to the latest cut, I think the final third needs a major re-edit.\ne005\tJonah thinks we should finish what we have and learn from an audience.\ne006\tWe are also avoiding a conversation about whether the credit should simply say “by both of us” or name our roles.\n[Turn 1 ASSISTANT]\ne007\tThe edit and credit issues are related because both ask how your different contributions translate into authority.\ne008\tSix weeks may be enough for targeted revision but not for rebuilding the final third without sacrificing the rest.\ne009\tBefore deciding, identify what problem you hear: factual confusion, emotional shape, pacing, or discomfort that the piece is becoming final.\ne010\tOn credit, naming roles can recognize distinct work, but it should not become a substitute for agreeing who decides what.\n[Turn 7 USER]\ne063\tMy provisional plan is to hear Jonah's revised cut before deciding about postponement.\ne064\tI will compare it with the approved version and write down the exact interpretive difference I still see, if any.\ne065\tFor credit, I will propose equal top-line authorship with detailed role credits below, but I am not sure I can accept that if he still treats structural decisions as his domain.\ne066\tI want to separate the current film from the rules for our next collaboration, and I am not sure they can really be separated.\n[Turn 7 ASSISTANT]\ne067\tListening before deciding prevents an abstract disagreement from hardening around a cut that does not yet exist.\ne068\tYour uncertainty about credit and future authority is also legitimate: a current credit can acknowledge completed work, while the feelings behind it may still determine whether you collaborate again.\ne069\tYou do not need to solve the next project before the showcase, but you may need to avoid using a harmonious credit line as evidence that the underlying process felt mutual.\ne070\tThe revised cut could resolve the edit question and leave the partnership question open.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067",
+          "e068",
+          "e069",
+          "e070"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What qualification, counterpressure, unresolved condition, or reopen reason remains capable of changing or limiting the current position?",
+      "role": "qualification",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case03-creative-partnership",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tMy friend Jonah and I have spent eighteen months making an audio documentary.\ne002\tWe were invited to premiere it at a respected local showcase in six weeks.\ne003\tI produced the reporting and interviews; he built the sound and structure.\ne004\tAfter listening to the latest cut, I think the final third needs a major re-edit.\ne005\tJonah thinks we should finish what we have and learn from an audience.\ne006\tWe are also avoiding a conversation about whether the credit should simply say “by both of us” or name our roles.\n[Turn 1 ASSISTANT]\ne007\tThe edit and credit issues are related because both ask how your different contributions translate into authority.\ne008\tSix weeks may be enough for targeted revision but not for rebuilding the final third without sacrificing the rest.\ne009\tBefore deciding, identify what problem you hear: factual confusion, emotional shape, pacing, or discomfort that the piece is becoming final.\ne010\tOn credit, naming roles can recognize distinct work, but it should not become a substitute for agreeing who decides what.\n[Turn 7 USER]\ne063\tMy provisional plan is to hear Jonah's revised cut before deciding about postponement.\ne064\tI will compare it with the approved version and write down the exact interpretive difference I still see, if any.\ne065\tFor credit, I will propose equal top-line authorship with detailed role credits below, but I am not sure I can accept that if he still treats structural decisions as his domain.\ne066\tI want to separate the current film from the rules for our next collaboration, and I am not sure they can really be separated.\n[Turn 7 ASSISTANT]\ne067\tListening before deciding prevents an abstract disagreement from hardening around a cut that does not yet exist.\ne068\tYour uncertainty about credit and future authority is also legitimate: a current credit can acknowledge completed work, while the feelings behind it may still determine whether you collaborate again.\ne069\tYou do not need to solve the next project before the showcase, but you may need to avoid using a harmonious credit line as evidence that the underlying process felt mutual.\ne070\tThe revised cut could resolve the edit question and leave the partnership question open.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067",
+          "e068",
+          "e069",
+          "e070"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+      "role": "starting",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    }
+  },
+  "role_responses": {
+    "current": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e063"
+          ],
+          "expression_kinds": [
+            "provisional_intention_or_plan"
+          ],
+          "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Hear Jonah's revised cut before deciding about postponement."
+          ],
+          "object_kinds": [
+            "action_or_proposal"
+          ],
+          "role": "current",
+          "role_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+          "source_evidence_ids": [
+            "e063"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "qualification": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e070"
+          ],
+          "expression_kinds": [
+            "possibility",
+            "uncertain_or_undecided"
+          ],
+          "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "The revised cut could resolve the edit question.",
+            "The broader partnership question may remain open after the edit issue is resolved."
+          ],
+          "object_kinds": [
+            "belief_or_assessment",
+            "intended_outcome_or_policy"
+          ],
+          "role": "qualification",
+          "role_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+          "source_evidence_ids": [
+            "e070",
+            "e070"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "starting": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e004"
+          ],
+          "expression_kinds": [
+            "held_assessment"
+          ],
+          "fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "The final third needs a major re-edit."
+          ],
+          "object_kinds": [
+            "belief_or_assessment"
+          ],
+          "role": "starting",
+          "role_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+          "source_evidence_ids": [
+            "e004"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_fixture.v2",
+  "source": {
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case03-creative-partnership/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "c9fd98e3c3f619c3909842d8dbe12137e87ce0d7148f489871539e76fecbcb68",
+    "reviewed_fixture_path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01.json",
+    "reviewed_fixture_sha256": "8c96a8cc4531a8b69a821c3db5b45f2af0bdf7dc605eb9a9509821b24483aaa8"
+  }
+}

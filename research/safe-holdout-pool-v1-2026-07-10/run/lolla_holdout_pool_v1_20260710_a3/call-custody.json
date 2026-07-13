@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_call_custody.v1",
+  "run_id": "lolla_holdout_pool_v1_20260710_a3",
+  "recorded_call_count": 1,
+  "call": {
+    "call_attempted": true,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "system_prompt_sha256": "206fd88d1fdd0db331feceba56ce9703f2c531e43f6c9cccae98fcdd1769c992",
+    "user_prompt_sha256": "5ce89e49b94eb33a8ebafd4e1d0474a332d1394ba91a1ec593880ddc58947d69",
+    "reasoning_effort_requested": "minimal",
+    "status": "invalid_contract",
+    "response": {},
+    "validation_errors": [
+      "provider returned finish_reason=error",
+      "payload top-level shape invalid",
+      "payload schema invalid",
+      "payload case count invalid"
+    ],
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "model_attribution_status": "served_version_alias",
+    "finish_reason": "error",
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "reasoning_tokens": 0,
+    "usage_evidence_state": "unknown",
+    "response_sha256": "4d1a277f9ea8f5c73ca60798789de1700f9cf9890e368624ef164da92ca066e9",
+    "provider_payload_sha256": "deca6f8976e523b0c42d26a903de52ba448e925224e54bccc2dcdbcc82626453",
+    "provider_diagnostic": {
+      "code": 429,
+      "message": "JSON error injected into SSE stream",
+      "metadata": {
+        "error_type": "rate_limit_exceeded"
+      }
+    },
+    "raw_provider_content_included": false,
+    "duration_seconds": 3.451
+  },
+  "raw_provider_content_included": false,
+  "message_id_normalization": {}
+}

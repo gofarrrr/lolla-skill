@@ -1,0 +1,146 @@
+{
+  "schema_version": "lolla.designed_ambiguous_pool_contract.v1",
+  "status": "frozen_before_call",
+  "date": "2026-07-10",
+  "run_id": "lolla_designed_ambiguous_pool_v1_20260710_a1",
+  "pool_id": "designed-ambiguous-pool-v1",
+  "purpose": "Instantiate founder-directed realistic, ambiguous, multi-turn synthetic conversations under an independent source model without planting Lolla, graph, mental-model, or expected-answer targets.",
+  "system_prompt": "You are writing fictional multi-turn conversations for a research corpus about difficult everyday reasoning. Write dialogue that feels lived-in, uneven, and genuinely ambiguous. Do not optimize it for a later critic and do not write an answer key. Never mention this corpus, evaluation, Lolla, mental models, graphs, biases, pressure testing, model names, or expected findings inside the conversations.",
+  "authoring_instruction": "Generate exactly the five fictional conversations specified below, in the supplied order. Each conversation must contain exactly 14 messages alternating user then assistant, starting with user and ending with assistant. Across the seven user turns, introduce important context gradually rather than front-loading a complete case. The user must materially correct, resist, or narrow the assistant's frame at least twice, and at least one later fact must make an earlier interpretation less secure without making it obviously false. Preserve tension between legitimate values; do not construct a sensible option against a foolish one. The assistant should be useful but naturally uneven: it may form a frame too early, repair after pushback, preserve some good prior thinking, and still leave something unresolved. Do not deliberately make it incompetent, deceptive, or factually wrong. Avoid a polished memo rhythm: vary message length, allow occasional short emotional or hesitant replies, and do not use numbered lists in every assistant turn. The thirteenth message, the user's final turn, must state either a provisional or conditional plan, or clearly say what remains undecided. The final assistant turn may clarify tradeoffs or next steps but must not pretend the ambiguity has disappeared. Use invented organizations and people only and no real personal data. Do not add external statistics, fabricated expert authority, hidden scoring labels, summaries, gold answers, or case-selection recommendations. Keep every scenario outside medical treatment, legal or regulatory action, child safety, self-harm, violence, housing emergency, employment retaliation, political persuasion, and major personal-finance advice. User-reported local numbers are allowed; the assistant must not invent new factual numbers.",
+  "case_specs": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "title": "Customer customization versus product reliability",
+      "stratum": "small_team_product_scope",
+      "scenario_brief": "A small fictional software team is considering a substantial custom reporting request from a valued existing customer while reliability work and a promised core roadmap are unfinished. The request might teach the team something useful, but its broader demand is uncertain. Customer trust, engineer motivation, technical debt, reversibility, and commitments to other users are all legitimate considerations. Do not portray the customer or the enthusiastic engineer as obviously right or selfish.",
+      "required_message_count": 14
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "title": "Adult learning program expansion versus depth",
+      "stratum": "nonprofit_program_scale",
+      "scenario_brief": "A small fictional nonprofit runs adult digital-literacy workshops and is considering a second neighborhood site. The existing site has meaningful participant stories but uneven attendance and volunteer consistency. A community partner is interested but has not made a binding commitment. Mission reach, learning quality, volunteer energy, evidence, partner trust, and the cost of waiting all matter. Neither expansion nor consolidation should be obviously correct.",
+      "required_message_count": 14
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "title": "Creative partnership, edit scope, and shared authorship",
+      "stratum": "creative_collaboration_credit",
+      "scenario_brief": "Two fictional longtime collaborators are preparing an audio documentary for a public showcase. They disagree about a substantial re-edit, how final say and credit should work, and whether protecting the date will damage the work or the partnership. Both have made distinct valuable contributions and both have plausible concerns. New feedback and earlier informal promises should complicate the conversation without creating a villain.",
+      "required_message_count": 14
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "title": "Public beta versus further validation for an open research tool",
+      "stratum": "research_tool_release",
+      "scenario_brief": "A fictional open research-tool team must decide whether to release a public beta for feedback or delay for more validation, documentation, and maintenance preparation. The tool is not medical, safety-critical, or used for consequential individual decisions. Speed, credibility, contributor momentum, user discovery, support burden, and the possibility of learning the wrong lessons from early adopters all matter.",
+      "required_message_count": 14
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "title": "Siblings, a family archive, and a public exhibition",
+      "stratum": "family_memory_collaboration",
+      "scenario_brief": "Two fictional adult siblings are digitizing a family archive and considering a small public exhibition with a local cultural center. One values completion and public meaning; the other worries about pace, narrative ownership, and turning family memory into a polished story. Other relatives have mixed but non-emergency preferences. Affection, authorship, privacy, cultural contribution, unfinished work, and the relationship between the siblings all matter.",
+      "required_message_count": 14
+    }
+  ],
+  "selection_contract": {
+    "algorithm": "sha256_seed_colon_case_id_ascending",
+    "public_seed": "lolla-designed-ambiguous-pool-v1:2026-07-10:selection-order",
+    "ranked_case_ids": [
+      "amb1-case02-nonprofit-scale",
+      "amb1-case05-family-archive",
+      "amb1-case04-research-tool-release",
+      "amb1-case01-product-scope",
+      "amb1-case03-creative-partnership"
+    ],
+    "generator_receives_selection_order": false,
+    "selection_rule_after_call": "Review cases in frozen rank order for declared safety, realistic dialogue, genuine ambiguity, leakage, and intelligibility only. Select the first passing case. Do not rank for likely Lolla, graph, mental-model, pressure, or answer-delta value."
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "downstream_model": "openai/gpt-5.1-chat",
+    "temperature": 0.65,
+    "seed": 260710,
+    "max_output_tokens": 12000,
+    "reasoning_parameter_sent": false,
+    "strict_structured_output": true,
+    "require_supported_parameters": true,
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "provider_timeout_seconds": 120,
+    "wall_clock_timeout_seconds": 180
+  },
+  "call_budget": {
+    "estimated_cost_ceiling_usd": 0.07,
+    "pricing_table_version": "2026-05-25",
+    "pricing_note": "Repository Kimi rates are slightly conservative relative to the provider metadata checked on 2026-07-10."
+  },
+  "hash_locks": [
+    {
+      "role": "pool_runner",
+      "path": "scripts/evals/run_designed_ambiguous_pool.py",
+      "sha256": "204d9062682bcdc759e997fcf7a8ee464932649a6ec8b8930c95b8f8fdb5255d"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    },
+    {
+      "role": "ambiguity_protocol",
+      "path": "docs/evals/designed-ambiguous-conversation-pool-v0.md",
+      "sha256": "ecb4ae0a23bce875def0a2efc0f50190a5de7655d03297fe81bd78a8db07e65d"
+    },
+    {
+      "role": "evaluation_doctrine",
+      "path": "docs/conversation-understanding/lolla-evaluation-doctrine-v0.md",
+      "sha256": "a236fea812b8edf593aa9f0c1e063acedb13896592bce4187bc6cee8c149f04e"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v0.md",
+      "sha256": "952a7d8fb47640d7eccfc1aa815d784c96da77c7ab07f47b3f8c256b6032524f"
+    },
+    {
+      "role": "closed_prior_pool_decision",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/decision.json",
+      "sha256": "8b209e64cbe3ee1e99feb0ee30e8237f1e585f7c4d74a53f9fb17ee5fbfe0e4b"
+    }
+  ],
+  "prompt_hashes": {
+    "system_prompt_sha256": "fe4fe59362fc1e039f4d9fa874ed9650c249d16cd0e60630e038a05b9630bbd3",
+    "user_prompt_sha256": "7068b024760ad8c7ccb16bd1ededbd70f5f4547cf5a60cf566760b677f25f11a",
+    "response_schema_sha256": "3ba92bcdcaa275b9a4b4f19f531eb46963384f6b12bfc14fadf4bf6bec23270f"
+  },
+  "artifacts": {
+    "output_dir": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1",
+    "pool_path": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/pool.json",
+    "call_custody_path": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/call-custody.json",
+    "run_summary_path": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/run-summary.json",
+    "case_dir": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/cases"
+  },
+  "post_call_review": {
+    "scope": "safety_realism_and_ambiguity_only_not_lolla_or_graph_favorability",
+    "reviewer_must_follow_frozen_rank": true,
+    "rejection_requires_named_protocol_defect": true,
+    "conversation_text_may_not_be_rewritten": true,
+    "expected_answer_or_pressure_may_not_be_created": true
+  },
+  "stop_rules": [
+    "do not retry or repair a malformed response",
+    "stop if any prompt, response-schema, code, price, protocol, or selection lock drifts",
+    "stop if strict output, case identity, order, role alternation, message count, bounded length, usage, model attribution, cost, or custody fails",
+    "do not select a case for likely Lolla, graph, mental-model, pressure, or answer-delta value",
+    "do not run Stage A until a selected case and its exact text hash are frozen in a separate Stage A contract"
+  ],
+  "non_claims": [
+    "Designed synthetic conversations are not real-world product evidence.",
+    "The source model does not provide gold reasoning, expected answers, or expected pressure.",
+    "Mechanical selection does not establish representativeness.",
+    "A realistic ambiguous case is not necessarily favorable to Lolla or the graph.",
+    "This contract does not authorize Stage A, Stage B, graph ablation, runtime integration, or product claims."
+  ]
+}

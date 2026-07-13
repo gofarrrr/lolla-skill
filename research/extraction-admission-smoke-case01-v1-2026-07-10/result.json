@@ -1,0 +1,165 @@
+{
+  "schema_version": "lolla.extraction_admission_smoke_result.v1",
+  "status": "passed",
+  "smoke_id": "case01-extraction-admission-v1-20260710-a1",
+  "run_id": "admission_smoke_case01_v1_20260710_a1",
+  "fixture_id": "case-01-enterprise-logo-beta",
+  "contract_sha256": "c4b3aef3990c4a7bb28ca4816562ba35f3d3a86b429ed50ed5437af2f3af1638",
+  "extraction_sha256": "b17c5a31f0d628344bbaac8c27d842154871c42e166c03d7a7c6f98b935b55dd",
+  "sidecar_sha256": "2e15b60658bc40894d9bb277de0bb0ccfff766a7ee77b64de1ada7911f0aabc7",
+  "gates": {
+    "contract_and_transitive_hashes_valid": true,
+    "single_orchestrator_invocation": true,
+    "output_parent_absent_before_run": true,
+    "output_parent_exists_after_run": true,
+    "sidecar_absent_before_run": true,
+    "outer_timeout_not_triggered": true,
+    "wall_clock_ceiling_met": true,
+    "extractor_exit_zero": true,
+    "extraction_artifact_persisted": true,
+    "sidecar_persisted": true,
+    "provider_call_attempt_recorded": true,
+    "provider_call_custody_consistent": true,
+    "admissible_extraction_declared": true,
+    "extraction_status_ok": true,
+    "capture_health_good": true,
+    "capture_adequacy_status_good": true,
+    "capture_run_id_exact": true,
+    "complete_capture": true,
+    "capture_not_truncated": true,
+    "quote_validation_present": true,
+    "quote_failures_zero": true,
+    "quote_counts_consistent": true,
+    "all_persisted_passages_verified": true,
+    "reasoning_passage_floor_met": true,
+    "initial_call_count_exact": true,
+    "repair_call_ceiling_met": true,
+    "total_call_ceiling_met": true,
+    "all_call_statuses_ok": true,
+    "provider_metadata_exact": true,
+    "requested_model_exact": true,
+    "served_model_compatible": true,
+    "model_attribution_acceptable": true,
+    "token_usage_present": true,
+    "cost_estimate_complete": true,
+    "cost_ceiling_met": true,
+    "experiment_retry_zero": true
+  },
+  "failed_gates": [],
+  "observed": {
+    "extractor_exit_code": 0,
+    "orchestrator_invocation_count": 1,
+    "initial_extraction_calls": 1,
+    "builtin_quote_repair_calls": 0,
+    "provider_call_attempt_state": "attempted_recorded",
+    "provider_call_count": 1,
+    "recorded_provider_call_count": 1,
+    "usage_evidence_state": "recorded",
+    "admissible_extraction": true,
+    "wall_time_seconds": 2.618,
+    "outer_timeout_triggered": false,
+    "capture_health": "good",
+    "captured_message_count": 6,
+    "omitted_message_count": 0,
+    "verified_reasoning_passage_count": 3,
+    "remaining_quote_failure_count": 0,
+    "stdout_sha256": "35ec3f56d2c9a63156e3412790421174608bb712dc6bba7ffc42f0d4dfb7c2aa",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "usage_summary": {
+    "run_id": "admission_smoke_case01_v1_20260710_a1",
+    "pricing_table_version": "2026-05-25",
+    "vendors": {
+      "openrouter": {
+        "provider": "openrouter",
+        "primary_model": "google/gemini-3.1-flash-lite-20260507",
+        "models_seen": [
+          "google/gemini-3.1-flash-lite-20260507"
+        ],
+        "requested_models_seen": [
+          "google/gemini-3.1-flash-lite"
+        ],
+        "model_attribution": {
+          "status_counts": {
+            "served_version_alias": 1
+          },
+          "mismatch_count": 0,
+          "mismatches": [],
+          "truncated_mismatch_count": 0
+        },
+        "calls": 1,
+        "prompt_tokens": 1552,
+        "completion_tokens": 535,
+        "cached_tokens": 0,
+        "total_tokens": 2087,
+        "cache_hit_rate": 0.0,
+        "estimated_cost_usd": 0.00119,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 1,
+          "calls_with_unknown_price": 0,
+          "unknown_price_models": []
+        },
+        "stages": {
+          "extraction": {
+            "calls": 1,
+            "prompt_tokens": 1552,
+            "completion_tokens": 535,
+            "cached_tokens": 0,
+            "total_tokens": 2087
+          }
+        }
+      },
+      "openai_embeddings": {
+        "provider": "openai",
+        "endpoints_seen": [],
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "by_model": {}
+      },
+      "anthropic_subagents": {
+        "provider": "anthropic",
+        "calls": 0,
+        "total_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "estimation_method": "conservative_input_only_no_split_available",
+        "by_model": {},
+        "by_lane": {}
+      }
+    },
+    "notes": [
+      "Cost estimates use the hardcoded pricing table at engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when rates change.",
+      "Anthropic sub-agent costs are conservative — only total_tokens is surfaced by Claude Code task notifications, so the full amount is billed as input tokens.",
+      "Embedding costs cover OpenAI text-embedding-3-large and the gpt-4o-mini query-expansion calls made inside the pipeline."
+    ],
+    "estimated_total_cost_usd": 0.00119,
+    "cost_estimate_coverage": {
+      "state": "complete",
+      "calls_with_known_price": 1,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
+    "cost_estimate_state": "complete"
+  },
+  "raw_provider_content_included": false,
+  "fixture_permanently_excluded_from_downstream_holdout": true,
+  "next_holdout_authorized": true,
+  "runtime_integration_authorized": false,
+  "pricing_table_version": "2026-05-25",
+  "non_claims": [
+    "This smoke does not establish extraction accuracy beyond deterministic custody gates.",
+    "This smoke does not establish conversation-understanding quality, graph value, challenge relevance, better reasoning, or better decisions.",
+    "This smoke does not validate a paired holdout or authorize runtime integration.",
+    "This smoke does not use or test embeddings.",
+    "This historically reused fixture contributes no untouched evidence."
+  ]
+}

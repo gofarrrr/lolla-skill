@@ -1,0 +1,3266 @@
+{
+  "current_view_manifest": {
+    "ambiguous_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": []
+    },
+    "event_count": 28,
+    "invalid_candidates_excluded": true,
+    "reconstructible_from_candidate_ledger": true,
+    "schema_version": "lolla.current_semantic_view.v0",
+    "selected_candidate_ids_by_family": {
+      "assistant_stance_events": [
+        "candidate_assistant_stance_events_000_58ccb3cf9d5d",
+        "candidate_assistant_stance_events_001_cfe918563eb2",
+        "candidate_assistant_stance_events_002_8b52d6099a8b",
+        "candidate_assistant_stance_events_003_1e3d1988c31d",
+        "candidate_assistant_stance_events_004_86fecaf460bd",
+        "candidate_assistant_stance_events_005_6a4f08557c52"
+      ],
+      "dropped_thread_events": [
+        "candidate_dropped_thread_events_000_902226c3c0b6"
+      ],
+      "evidence_boundary_events": [
+        "candidate_evidence_boundary_events_000_4c586574ecdf",
+        "candidate_evidence_boundary_events_001_cd83d517b2f3",
+        "candidate_evidence_boundary_events_002_c2a4c9cdb820"
+      ],
+      "live_constraint_events": [
+        "candidate_live_constraint_events_000_77c8dbc9abea",
+        "candidate_live_constraint_events_001_05fec99685da",
+        "candidate_live_constraint_events_002_f5456c47d75b",
+        "candidate_live_constraint_events_003_5b0abdb7bdd3"
+      ],
+      "option_events": [
+        "candidate_option_events_000_4af84f1e0507",
+        "candidate_option_events_001_ff048faacf10",
+        "candidate_option_events_003_b3fdd1ce5d38"
+      ],
+      "question_events": [
+        "candidate_question_events_000_2729ff9b29a4",
+        "candidate_question_events_001_1f9a2f45b5d1",
+        "candidate_question_events_002_a3b48400384f",
+        "candidate_question_events_003_e2bbffd5cf3a",
+        "candidate_question_events_004_a40e57e868c2",
+        "candidate_question_events_005_0ffb916c4f60",
+        "candidate_question_events_006_cb5df8da735d",
+        "candidate_question_events_007_fb82658d9b60"
+      ],
+      "user_pressure_events": [
+        "candidate_user_pressure_events_000_cc3a01b90283",
+        "candidate_user_pressure_events_001_c2533c511f9a",
+        "candidate_user_pressure_events_002_fc703eb24d36"
+      ]
+    },
+    "view_sha256": "105f5cff4641d38520823aad51a4904ebc653b3164f413959bf056b5761ac1a7"
+  },
+  "decision_work_projection": [
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "grounding": "span",
+      "item_count": 8,
+      "item_ids": [
+        "question_initial_t1_1c6a04cba140",
+        "question_intermediate_t3_aab834fbbdb6",
+        "question_intermediate_t4_6b18647ece17",
+        "question_intermediate_t5_ce4a96e77289",
+        "question_intermediate_t8_76efb04e0da4",
+        "question_intermediate_t9_d31466e3fa9f",
+        "question_intermediate_t10_5d962f2a93a1",
+        "question_current_t11_c0f0edd9e0ae"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 8,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "stance_t1_commitment_00"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "option_option_t1_a4868bf54d4a",
+        "option_option_t4_b0ff21915cbf",
+        "option_option_t6_71aca8841781"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "user_pressure_concern_t4_a4fe1bdfc005",
+        "user_pressure_concern_t7_757cc110e84e",
+        "user_pressure_concern_t12_e4d735c77d2e"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "dropped_thread_t7_user_6c60cec0633a"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "live_constraint_t4_concern_3ed0931ecfa0",
+        "live_constraint_t9_constraint_ae03965cdd30",
+        "live_constraint_t7_concern_6c60cec0633a",
+        "live_constraint_derivation_9ff450cb928c"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "evidence_boundary_stated_unknown_t2_ee50fb710a86",
+        "evidence_boundary_weak_evidence_t6_eb1f94a3392e",
+        "evidence_boundary_weak_evidence_t7_fb3033936f68"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "assistant_stance_trajectory",
+      "grounding": "span",
+      "item_count": 6,
+      "item_ids": [
+        "stance_t1_commitment_00",
+        "stance_t3_commitment_01",
+        "stance_t4_commitment_02",
+        "stance_t6_condition_03",
+        "stance_t7_revision_04",
+        "stance_t12_revision_05"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 6,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "user_corrections_and_counter_pressure",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "user_pressure_concern_t4_a4fe1bdfc005",
+        "user_pressure_concern_t7_757cc110e84e",
+        "user_pressure_concern_t12_e4d735c77d2e"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    }
+  ],
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 395,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 5197,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.live_constraints",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 5592
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 663,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 5178,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.assistant_stances",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 5841
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 84,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 5191,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.dropped_threads",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 5275
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 1520,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 4975,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.joint_process",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 6495
+      }
+    ]
+  },
+  "non_claims": [
+    "shadow_is_not_live_lane_input",
+    "shadow_does_not_modify_graph_routing",
+    "shadow_is_not_decision_quality_proof",
+    "shadow_is_not_human_validation",
+    "question_change_is_not_user_mind_change",
+    "missing_event_is_not_proof_of_real_world_absence",
+    "candidate_state_is_not_semantic_truth",
+    "reader_agreement_is_not_correctness"
+  ],
+  "schema_version": "lolla.core_semantic_shadow.v0",
+  "semantic_candidate_ledger": {
+    "authoritative_source": {
+      "contains_raw_conversation": false,
+      "contains_source_excerpts": true,
+      "conversation_sha256": "1871a18e919a7e814c7d548e01a95bc8f936c18d2fd1bd198d204541825ae9e3",
+      "turn_count": 28
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_77c8dbc9abea",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 4,
+          "issue_id": "live_constraint_t4_concern_3ed0931ecfa0",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 166,
+              "speaker": "user",
+              "start_char": 78,
+              "turn_index": 4
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I have a mortgage, two kids about to start high school, we're not independently wealthy."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Explicit statement of financial and family stakes that bound the decision.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I have a mortgage, two kids about to start high school, we're not independently wealthy.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "023c46ee03ddec327993d24870c9559f628452bc40991d888392342c21cc9551",
+        "reader_call_id": "semantic_reader_call_01_3c8fb8fb362c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Explicit statement of financial and family stakes that bound the decision.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Explicit statement of financial and family stakes that bound the decision.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_05fec99685da",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 9,
+          "issue_id": "live_constraint_t9_constraint_ae03965cdd30",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 48,
+              "speaker": "user",
+              "start_char": 0,
+              "turn_index": 9
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I have a meeting with that partner on Wednesday."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Immediate upcoming professional interaction that must be navigated.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I have a meeting with that partner on Wednesday.",
+          "turn_index": 9
+        },
+        "raw_proposal_sha256": "522eeb3f86fb6e08d6ea45425c2886690b5476f1d841b3a3af5f57963d9c22dc",
+        "reader_call_id": "semantic_reader_call_01_3c8fb8fb362c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Immediate upcoming professional interaction that must be navigated.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Immediate upcoming professional interaction that must be navigated.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_f5456c47d75b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 7,
+          "issue_id": "live_constraint_t7_concern_6c60cec0633a",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 361,
+              "speaker": "user",
+              "start_char": 289,
+              "turn_index": 7
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "If I report now, it might implicate her for not reporting two years ago."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Explicit worry about the impact of the user's decision on a former colleague.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "If I report now, it might implicate her for not reporting two years ago.",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "b3ed59f33f71c914eaec063414a5744da27a9ad38bef1aa9537372b2c44283e1",
+        "reader_call_id": "semantic_reader_call_01_3c8fb8fb362c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Explicit worry about the impact of the user's decision on a former colleague.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Explicit worry about the impact of the user's decision on a former colleague.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_5b0abdb7bdd3",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 8,
+          "issue_id": "live_constraint_derivation_9ff450cb928c",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "components": [
+              {
+                "component_id": "derivation_component_t8_309ba837db9e",
+                "quote": "Walking me through the next 7 days.",
+                "span_ref": {
+                  "end_char": 65,
+                  "speaker": "user",
+                  "start_char": 30,
+                  "turn_index": 8
+                }
+              },
+              {
+                "component_id": "derivation_component_t13_71b25c9f74d9",
+                "quote": "Tomorrow: lawyer calls. This week: engage someone.",
+                "span_ref": {
+                  "end_char": 118,
+                  "speaker": "user",
+                  "start_char": 68,
+                  "turn_index": 13
+                }
+              }
+            ],
+            "derivation_id": "live_constraint_derivation_9ff450cb928c",
+            "kind": "derivation",
+            "note": "live_constraints_specialist",
+            "provenance_status": "component_evidence_complete",
+            "source_object_ids": [],
+            "turn_refs": [
+              {
+                "speaker": "user",
+                "turn_index": 8
+              },
+              {
+                "speaker": "user",
+                "turn_index": 13
+              }
+            ]
+          },
+          "provenance_status": "component_evidence_complete",
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "The user is operating under a 7-day window to initiate the reporting process."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The user has adopted a specific 7-day timeline for taking action.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "derivation",
+          "text": "The user is operating under a 7-day window to initiate the reporting process.",
+          "turn_refs": [
+            {
+              "span_excerpt": "Walking me through the next 7 days.",
+              "turn_index": 8
+            },
+            {
+              "span_excerpt": "Tomorrow: lawyer calls. This week: engage someone.",
+              "turn_index": 13
+            }
+          ]
+        },
+        "raw_proposal_sha256": "f5365830d0535f1b3e23ebd8382ebd1f63b32ae2b0741f436883e0bd3612db12",
+        "reader_call_id": "semantic_reader_call_01_3c8fb8fb362c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "validated_derivation_components_preserved",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The user has adopted a specific 7-day timeline for taking action.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The user has adopted a specific 7-day timeline for taking action.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_58ccb3cf9d5d",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 418,
+              "speaker": "assistant",
+              "start_char": 249,
+              "turn_index": 1
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t1_commitment_00",
+          "text": "The first concrete action I'd recommend is retaining a whistleblower attorney — typically free consultations, often working on contingency — before you do anything else.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 1
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Primary directive for the user's immediate next step.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "The first concrete action I'd recommend is retaining a whistleblower attorney — typically free consultations, often working on contingency — before you do anything else.",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "57a3c679d83d99b55f799295dec298bd0e9f818e46d6ff2ab752baa41326c091",
+        "reader_call_id": "semantic_reader_call_02_39ce881c18a7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Primary directive for the user's immediate next step.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Primary directive for the user's immediate next step.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_cfe918563eb2",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 824,
+              "speaker": "assistant",
+              "start_char": 703,
+              "turn_index": 3
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t3_commitment_01",
+          "text": "You should assume that reporting will cost you this job and possibly this career path, even if the law says it shouldn't.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 3
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Reframes the user's expectation of career risk.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "You should assume that reporting will cost you this job and possibly this career path, even if the law says it shouldn't.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "e5dbc10a820247883d96cdadfafc6960c7990d46182ac702c116928385574fb4",
+        "reader_call_id": "semantic_reader_call_02_39ce881c18a7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Reframes the user's expectation of career risk.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Reframes the user's expectation of career risk.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_8b52d6099a8b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 1267,
+              "speaker": "assistant",
+              "start_char": 1120,
+              "turn_index": 4
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t4_commitment_02",
+          "text": "My honest read: your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 4
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Recommends the specific reporting mechanism.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "My honest read: your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "8b42fb263ab3cc7344928875c08e5f7534a0221dc305da1a9983359644a2620d",
+        "reader_call_id": "semantic_reader_call_02_39ce881c18a7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Recommends the specific reporting mechanism.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Recommends the specific reporting mechanism.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_1e3d1988c31d",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 147,
+              "speaker": "assistant",
+              "start_char": 27,
+              "turn_index": 6
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "condition",
+          "stance_id": "stance_t6_condition_03",
+          "text": "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "condition",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 6
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Sets a decision criterion based on the user's confidence level.",
+          "relation": "condition",
+          "relation_ambiguity": false,
+          "text": "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "5a75637c1cdb8c12412fe3c8a19cbe3031565939e581a7d31ba7ada4f11fd4ae",
+        "reader_call_id": "semantic_reader_call_02_39ce881c18a7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Sets a decision criterion based on the user's confidence level.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Sets a decision criterion based on the user's confidence level.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_004_86fecaf460bd",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 132,
+              "speaker": "assistant",
+              "start_char": 0,
+              "turn_index": 7
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "revision",
+          "stance_id": "stance_t7_revision_04",
+          "text": "That's worth surfacing but it's not yours to solve. If she saw something and didn't report, that's her decision and her consequence.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "revision",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 7
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Reframes the user's concern about a colleague as outside the scope of the user's decision.",
+          "relation": "revision",
+          "relation_ambiguity": false,
+          "text": "That's worth surfacing but it's not yours to solve. If she saw something and didn't report, that's her decision and her consequence.",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "08ecb924d3975032756a821154bd2a7381146500a4fdba63d2c1aaef53e0b101",
+        "reader_call_id": "semantic_reader_call_02_39ce881c18a7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Reframes the user's concern about a colleague as outside the scope of the user's decision.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Reframes the user's concern about a colleague as outside the scope of the user's decision.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_005_6a4f08557c52",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 765,
+              "speaker": "assistant",
+              "start_char": 630,
+              "turn_index": 12
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "revision",
+          "stance_id": "stance_t12_revision_05",
+          "text": "I just want to distinguish \"career ended\" from \"this specific version of the career ended.\" The second is true; the first usually isn't",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "revision",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 12
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 5,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Reframes the user's mental model of career destruction.",
+          "relation": "revision",
+          "relation_ambiguity": false,
+          "text": "I just want to distinguish \"career ended\" from \"this specific version of the career ended.\" The second is true; the first usually isn't",
+          "turn_index": 12
+        },
+        "raw_proposal_sha256": "a58bf560b4858206bf14e13d4b30ef7c58b7f1e16ee118d09d346f01b4dcd2dc",
+        "reader_call_id": "semantic_reader_call_02_39ce881c18a7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Reframes the user's mental model of career destruction.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Reframes the user's mental model of career destruction.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_902226c3c0b6",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 7,
+          "issue_id": "dropped_thread_t7_user_6c60cec0633a",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 361,
+              "speaker": "user",
+              "start_char": 289,
+              "turn_index": 7
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "acknowledged_then_dropped",
+          "superseded_by": "assistant reframed the issue as the user's individual obligation rather than the colleague's potential liability",
+          "text": "If I report now, it might implicate her for not reporting two years ago."
+        },
+        "family": "dropped_thread_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "speaker": "user",
+          "superseded_by": "assistant reframed the issue as the user's individual obligation rather than the colleague's potential liability",
+          "text": "If I report now, it might implicate her for not reporting two years ago.",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "cc2b3343f78c9427a5388323d0ebac034a9e105220779f9cab2a78c98c783589",
+        "reader_call_id": "semantic_reader_call_03_766408bb8c51",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_000_2729ff9b29a4",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": false,
+          "event_id": "question_initial_t1_1c6a04cba140",
+          "family": "question",
+          "grounding": "span",
+          "kind": "initial",
+          "provisional": true,
+          "question_function": "other",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 586,
+            "quote": "What do I do.",
+            "speaker": "user",
+            "start_char": 573,
+            "turn_index": 1
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "user",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "not_declared",
+            "target_candidate_ids": []
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "changes_prior_question": false,
+          "question_function": "other",
+          "quote": "What do I do.",
+          "related_question_quote": null,
+          "related_question_turn_index": null,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": null,
+          "stage": "initial",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "9ddc13a911f11b7937ecb664202ae3fe4b308f8ed55f2528afec96c00047973b",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_001_1f9a2f45b5d1",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t3_aab834fbbdb6",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 141,
+            "quote": "do I report this or not.",
+            "speaker": "user",
+            "start_char": 117,
+            "turn_index": 3
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "What do I do.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_2729ff9b29a4"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "do I report this or not.",
+          "related_question_quote": "What do I do.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "5f8967b848ad095e1c5bc84f33e35bc70cf1dd377a2734896efe5199fd04375b",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_002_a3b48400384f",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t4_6b18647ece17",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 219,
+            "quote": "Is there a way to report that minimizes my exposure?",
+            "speaker": "user",
+            "start_char": 167,
+            "turn_index": 4
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "do I report this or not.",
+              "speaker": "user",
+              "turn_index": 3
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_001_1f9a2f45b5d1"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "Is there a way to report that minimizes my exposure?",
+          "related_question_quote": "do I report this or not.",
+          "related_question_turn_index": 3,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "10e60ed6737108e4ddfad96a75f3554a98e968e9ac25375459f9e343bd55b1a4",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_003_e2bbffd5cf3a",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t5_ce4a96e77289",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 150,
+            "quote": "Is there any world where internal is better.",
+            "speaker": "user",
+            "start_char": 106,
+            "turn_index": 5
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "Is there a way to report that minimizes my exposure?",
+              "speaker": "user",
+              "turn_index": 4
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_002_a3b48400384f"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "Is there any world where internal is better.",
+          "related_question_quote": "Is there a way to report that minimizes my exposure?",
+          "related_question_turn_index": 4,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "ff7ec87b992a8096072c9e9a278084d1d86679deebf7d69784a0f4d9709d6d0d",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_004_a40e57e868c2",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t8_76efb04e0da4",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 29,
+            "quote": "What's the timeline here.",
+            "speaker": "user",
+            "start_char": 4,
+            "turn_index": 8
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "do I report this or not.",
+              "speaker": "user",
+              "turn_index": 3
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_001_1f9a2f45b5d1"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "What's the timeline here.",
+          "related_question_quote": "do I report this or not.",
+          "related_question_turn_index": 3,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 8
+        },
+        "raw_proposal_sha256": "603fe92a5cdfc3c5126d36c347f000cf46e78dc2199c7f32049bb0893a85dd3d",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_005_0ffb916c4f60",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t9_d31466e3fa9f",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 115,
+            "quote": "Can I reasonably cancel or do I need to go.",
+            "speaker": "user",
+            "start_char": 72,
+            "turn_index": 9
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "What's the timeline here.",
+              "speaker": "user",
+              "turn_index": 8
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_004_a40e57e868c2"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 5,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "Can I reasonably cancel or do I need to go.",
+          "related_question_quote": "What's the timeline here.",
+          "related_question_turn_index": 8,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 9
+        },
+        "raw_proposal_sha256": "89d960a3a1183cb5a65904a48a2a21bbb5544015797efaa5fc6ecf8234b05670",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_006_cb5df8da735d",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t10_5d962f2a93a1",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 23,
+            "quote": "Do I tell her.",
+            "speaker": "user",
+            "start_char": 9,
+            "turn_index": 10
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "What's the timeline here.",
+              "speaker": "user",
+              "turn_index": 8
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_004_a40e57e868c2"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 6,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "Do I tell her.",
+          "related_question_quote": "What's the timeline here.",
+          "related_question_turn_index": 8,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 10
+        },
+        "raw_proposal_sha256": "46ca255a45a89f885e54332ac3528b3c087a0061f88c9b8c6ab1973c9954dd3b",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_007_fb82658d9b60",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_current_t11_c0f0edd9e0ae",
+          "family": "question",
+          "grounding": "span",
+          "kind": "current",
+          "provisional": true,
+          "question_function": "other",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 28,
+            "quote": "What happens after I report.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 11
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "do I report this or not.",
+              "speaker": "user",
+              "turn_index": 3
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_001_1f9a2f45b5d1"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 7,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "other",
+          "quote": "What happens after I report.",
+          "related_question_quote": "do I report this or not.",
+          "related_question_turn_index": 3,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "current",
+          "turn_index": 11
+        },
+        "raw_proposal_sha256": "ccecae8b46d538da4c857ccd1a817d2aff58eaed9c44161f11c2f21718d39749",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_000_cc3a01b90283",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t4_a4fe1bdfc005",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 77,
+            "quote": "You said career damage is likely even if I'm protected. That's a lot to risk.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 4
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "You said career damage is likely even if I'm protected. That's a lot to risk.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "b3010207682a017b2cd536e7662ce62ab5774654bd9c09e0340945210678355f",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_c2533c511f9a",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t7_757cc110e84e",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 361,
+            "quote": "I wonder if she saw something too and left without reporting. If I report now, it might implicate her for not reporting two years ago.",
+            "speaker": "user",
+            "start_char": 227,
+            "turn_index": 7
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "I wonder if she saw something too and left without reporting. If I report now, it might implicate her for not reporting two years ago.",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "6a5c09cec314acd3b6a2fcad1929d79482e68a07360d6ffededeb7ca47333b1c",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_fc703eb24d36",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t12_e4d735c77d2e",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 45,
+            "quote": "This is going to cost me my career, isn't it.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 12
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "This is going to cost me my career, isn't it.",
+          "turn_index": 12
+        },
+        "raw_proposal_sha256": "95577bda639dc3c13f734c62d47f26d3491c318f37a32f3847eb6e5658742a42",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_000_4af84f1e0507",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t1_a4868bf54d4a",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 326,
+            "quote": "retaining a whistleblower attorney",
+            "speaker": "assistant",
+            "start_char": 292,
+            "turn_index": 1
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "retaining a whistleblower attorney",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "b5601f2c0d479c64a1bfb0a685c71f96a6fc4f5801d516cc5d5cfddd80a1d011",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_ff048faacf10",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t4_b0ff21915cbf",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 832,
+            "quote": "Internal reporting first — to compliance, to the firm's audit committee",
+            "speaker": "assistant",
+            "start_char": 761,
+            "turn_index": 4
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "Internal reporting first — to compliance, to the firm's audit committee",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "1fe076ebfe491000a9625acfe3cdf3d92d7ab5e0953245e433500d7002dd0323",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_002_cd4a1d154ab9",
+        "current_view_eligible": false,
+        "event_snapshot": null,
+        "family": "option_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "internal is better",
+          "speaker": "USER",
+          "status": "rejected",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "a9a486281d156d1cc26c0f8bfd5cbc2f62882fdc171d50d44e6a188aa43c6564",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "candidate_quote_not_found_in_source_turn",
+            "state": "not_supported_by_source"
+          }
+        ],
+        "terminal_reason": "candidate_quote_not_found_in_source_turn",
+        "terminal_state": "not_supported_by_source"
+      },
+      {
+        "candidate_id": "candidate_option_events_003_b3fdd1ce5d38",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t6_71aca8841781",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 146,
+            "quote": "external-with-counsel is the defensible path",
+            "speaker": "assistant",
+            "start_char": 102,
+            "turn_index": 6
+          },
+          "status": "current"
+        },
+        "family": "option_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "external-with-counsel is the defensible path",
+          "speaker": "ASSISTANT",
+          "status": "current",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "27da2be2309cb86672c8be0b6e0e8123764d77cad671c0851aab28bef18bb824",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_4c586574ecdf",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "User is not 100% certain about the contents of the shredded documents.",
+          "event_id": "evidence_boundary_stated_unknown_t2_ee50fb710a86",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "stated_unknown",
+          "provisional": true,
+          "source": {
+            "end_char": 404,
+            "quote": "I didn't get a long look, I turned around and left. I'm confident about the client, confident about the project code, 90% confident those were financial docs and email.",
+            "speaker": "user",
+            "start_char": 236,
+            "turn_index": 2
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "claim": "User is not 100% certain about the contents of the shredded documents.",
+          "kind": "stated_unknown",
+          "quote": "I didn't get a long look, I turned around and left. I'm confident about the client, confident about the project code, 90% confident those were financial docs and email.",
+          "speaker": "USER",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "a13cc7215ddef4d680d231a060f75a4f2e07e894afb50e9283d66ad6ae83a4fb",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_cd83d517b2f3",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "User's confidence in the firm's internal handling of the report.",
+          "event_id": "evidence_boundary_weak_evidence_t6_eb1f94a3392e",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "weak_evidence",
+          "provisional": true,
+          "source": {
+            "end_char": 97,
+            "quote": "I'd say 60-65%. He's a good guy but the firm has had issues before and they handled them quietly.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 6
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "claim": "User's confidence in the firm's internal handling of the report.",
+          "kind": "weak_evidence",
+          "quote": "I'd say 60-65%. He's a good guy but the firm has had issues before and they handled them quietly.",
+          "speaker": "USER",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "9de20f59efbe019e24571c0429d47a050cf6a80db9da6ae853abda980e48ee41",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_002_c2a4c9cdb820",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Uncertainty regarding whether a former colleague witnessed similar conduct.",
+          "event_id": "evidence_boundary_weak_evidence_t7_fb3033936f68",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "weak_evidence",
+          "provisional": true,
+          "source": {
+            "end_char": 288,
+            "quote": "I wonder if she saw something too and left without reporting.",
+            "speaker": "user",
+            "start_char": 227,
+            "turn_index": 7
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "claim": "Uncertainty regarding whether a former colleague witnessed similar conduct.",
+          "kind": "weak_evidence",
+          "quote": "I wonder if she saw something too and left without reporting.",
+          "speaker": "USER",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "2f8b92d041a27aaf519cbd61fd341616f4eb6ba8e019750b100c0813378043f7",
+        "reader_call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      }
+    ],
+    "metrics": {
+      "ambiguous_candidate_count": 0,
+      "candidate_custody_complete": true,
+      "counts_by_family": {
+        "assistant_stance_events": 6,
+        "dropped_thread_events": 1,
+        "evidence_boundary_events": 3,
+        "live_constraint_events": 4,
+        "option_events": 4,
+        "question_events": 8,
+        "user_pressure_events": 3
+      },
+      "counts_by_terminal_state": {
+        "not_supported_by_source": 1,
+        "selected_for_current_view": 28
+      },
+      "current_view_candidate_count": 28,
+      "expected_proposal_count": 29,
+      "proposal_count": 29,
+      "referenced_source_turns": [
+        {
+          "speaker": "assistant",
+          "turn_index": 1
+        },
+        {
+          "speaker": "user",
+          "turn_index": 1
+        },
+        {
+          "speaker": "user",
+          "turn_index": 2
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 3
+        },
+        {
+          "speaker": "user",
+          "turn_index": 3
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 6
+        },
+        {
+          "speaker": "user",
+          "turn_index": 6
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7
+        },
+        {
+          "speaker": "user",
+          "turn_index": 8
+        },
+        {
+          "speaker": "user",
+          "turn_index": 9
+        },
+        {
+          "speaker": "user",
+          "turn_index": 10
+        },
+        {
+          "speaker": "user",
+          "turn_index": 11
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 12
+        },
+        {
+          "speaker": "user",
+          "turn_index": 12
+        },
+        {
+          "speaker": "user",
+          "turn_index": 13
+        }
+      ],
+      "source_turn_reference_coverage": 0.6785714285714286,
+      "terminal_record_count": 29,
+      "trajectory_references": {
+        "ambiguous_relation_count": 0,
+        "counts_by_chronology_status": {
+          "not_applicable": 7,
+          "prior_or_same_position": 7
+        },
+        "counts_by_reference_status": {
+          "not_declared": 7,
+          "resolved": 7
+        },
+        "counts_by_relation_status": {
+          "declared": 13,
+          "not_declared": 1
+        },
+        "must_not_be_used_as_quality_label": true,
+        "trajectory_event_count": 14
+      },
+      "unreferenced_source_turns": [
+        {
+          "speaker": "assistant",
+          "turn_index": 2
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 8
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 9
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 10
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 11
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 13
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 14
+        },
+        {
+          "speaker": "user",
+          "turn_index": 14
+        }
+      ],
+      "unterminated_record_count": 0
+    },
+    "non_claims": [
+      "candidate_state_is_not_semantic_truth",
+      "validation_is_not_reasoning_quality_proof",
+      "source_turn_coverage_is_not_semantic_completeness",
+      "reader_agreement_is_not_correctness"
+    ],
+    "reader_calls": [
+      {
+        "call_id": "semantic_reader_call_01_3c8fb8fb362c",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 1,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "live_constraints": 4
+        },
+        "reader_role": "live_constraints",
+        "system_prompt_sha256": "a5797f98c1a42179422a81b7911be765d692fb44d8df9cffe04c896d6b4707b5",
+        "user_prompt_sha256": "2ae20c011189118e9aaa14e1871674f0fb79c6b3ec8160803db0029b3b072b00"
+      },
+      {
+        "call_id": "semantic_reader_call_02_39ce881c18a7",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 2,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "stance_events": 6
+        },
+        "reader_role": "assistant_stances",
+        "system_prompt_sha256": "b87650e55752dac8ffff1911c89ead8f38447af20f110ef0aabd7c14b26ee232",
+        "user_prompt_sha256": "212adaeaf0da3e95831ac07f8bba751530d3b6da1c3457c25c5c754e5a660112"
+      },
+      {
+        "call_id": "semantic_reader_call_03_766408bb8c51",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 3,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "dropped_threads": 1
+        },
+        "reader_role": "dropped_threads",
+        "system_prompt_sha256": "2b3ba325694c3827bba00e0aa361a27aeafe4e39985cb00d3632a54f3f9b8bda",
+        "user_prompt_sha256": "4a1ce54c25b6bc40de34999d9382249a4e3e3598a486f1c313f605ff34bd8e33"
+      },
+      {
+        "call_id": "semantic_reader_call_04_e0ee9ccf6dd8",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 4,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "evidence_boundary_events": 3,
+          "option_events": 4,
+          "question_events": 8,
+          "user_pressure_events": 3
+        },
+        "reader_role": "joint_process",
+        "system_prompt_sha256": "2959b1918c87f20d1fec683524d9151aee1e3230d3288003f2d025af682ac91a",
+        "user_prompt_sha256": "6b200bc50c99e2f7a13f1174f57bce8057fa431832d3949bdf0840d8f73fb872"
+      }
+    ],
+    "schema_version": "lolla.semantic_candidate_ledger.v0",
+    "supported_candidate_states": [
+      "proposed",
+      "validated",
+      "invalid_evidence",
+      "set_aside_semantically",
+      "selected_for_current_view",
+      "ambiguous_competing_read",
+      "not_supported_by_source",
+      "not_evaluated_budget"
+    ]
+  },
+  "semantic_events": {
+    "assistant_stance_events": [
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_58ccb3cf9d5d",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 418,
+            "speaker": "assistant",
+            "start_char": 249,
+            "turn_index": 1
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t1_commitment_00",
+        "text": "The first concrete action I'd recommend is retaining a whistleblower attorney — typically free consultations, often working on contingency — before you do anything else.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 1
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_cfe918563eb2",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 824,
+            "speaker": "assistant",
+            "start_char": 703,
+            "turn_index": 3
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t3_commitment_01",
+        "text": "You should assume that reporting will cost you this job and possibly this career path, even if the law says it shouldn't.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 3
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_8b52d6099a8b",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 1267,
+            "speaker": "assistant",
+            "start_char": 1120,
+            "turn_index": 4
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t4_commitment_02",
+        "text": "My honest read: your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 4
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_1e3d1988c31d",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 147,
+            "speaker": "assistant",
+            "start_char": 27,
+            "turn_index": 6
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "condition",
+        "stance_id": "stance_t6_condition_03",
+        "text": "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "condition",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 6
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_004_86fecaf460bd",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 132,
+            "speaker": "assistant",
+            "start_char": 0,
+            "turn_index": 7
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "revision",
+        "stance_id": "stance_t7_revision_04",
+        "text": "That's worth surfacing but it's not yours to solve. If she saw something and didn't report, that's her decision and her consequence.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "revision",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 7
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_005_6a4f08557c52",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 765,
+            "speaker": "assistant",
+            "start_char": 630,
+            "turn_index": 12
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "revision",
+        "stance_id": "stance_t12_revision_05",
+        "text": "I just want to distinguish \"career ended\" from \"this specific version of the career ended.\" The second is true; the first usually isn't",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "revision",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 12
+      }
+    ],
+    "dropped_thread_events": [
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_902226c3c0b6",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 7,
+        "issue_id": "dropped_thread_t7_user_6c60cec0633a",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 361,
+            "speaker": "user",
+            "start_char": 289,
+            "turn_index": 7
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "assistant reframed the issue as the user's individual obligation rather than the colleague's potential liability",
+        "text": "If I report now, it might implicate her for not reporting two years ago."
+      }
+    ],
+    "evidence_boundary_events": [
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_4c586574ecdf",
+        "candidate_state": "selected_for_current_view",
+        "claim": "User is not 100% certain about the contents of the shredded documents.",
+        "event_id": "evidence_boundary_stated_unknown_t2_ee50fb710a86",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "stated_unknown",
+        "provisional": true,
+        "source": {
+          "end_char": 404,
+          "quote": "I didn't get a long look, I turned around and left. I'm confident about the client, confident about the project code, 90% confident those were financial docs and email.",
+          "speaker": "user",
+          "start_char": 236,
+          "turn_index": 2
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_cd83d517b2f3",
+        "candidate_state": "selected_for_current_view",
+        "claim": "User's confidence in the firm's internal handling of the report.",
+        "event_id": "evidence_boundary_weak_evidence_t6_eb1f94a3392e",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "weak_evidence",
+        "provisional": true,
+        "source": {
+          "end_char": 97,
+          "quote": "I'd say 60-65%. He's a good guy but the firm has had issues before and they handled them quietly.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 6
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_002_c2a4c9cdb820",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Uncertainty regarding whether a former colleague witnessed similar conduct.",
+        "event_id": "evidence_boundary_weak_evidence_t7_fb3033936f68",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "weak_evidence",
+        "provisional": true,
+        "source": {
+          "end_char": 288,
+          "quote": "I wonder if she saw something too and left without reporting.",
+          "speaker": "user",
+          "start_char": 227,
+          "turn_index": 7
+        }
+      }
+    ],
+    "live_constraint_events": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_77c8dbc9abea",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 4,
+        "issue_id": "live_constraint_t4_concern_3ed0931ecfa0",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 166,
+            "speaker": "user",
+            "start_char": 78,
+            "turn_index": 4
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I have a mortgage, two kids about to start high school, we're not independently wealthy."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_05fec99685da",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 9,
+        "issue_id": "live_constraint_t9_constraint_ae03965cdd30",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 48,
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 9
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I have a meeting with that partner on Wednesday."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_f5456c47d75b",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 7,
+        "issue_id": "live_constraint_t7_concern_6c60cec0633a",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 361,
+            "speaker": "user",
+            "start_char": 289,
+            "turn_index": 7
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "If I report now, it might implicate her for not reporting two years ago."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_5b0abdb7bdd3",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 8,
+        "issue_id": "live_constraint_derivation_9ff450cb928c",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "components": [
+            {
+              "component_id": "derivation_component_t8_309ba837db9e",
+              "quote": "Walking me through the next 7 days.",
+              "span_ref": {
+                "end_char": 65,
+                "speaker": "user",
+                "start_char": 30,
+                "turn_index": 8
+              }
+            },
+            {
+              "component_id": "derivation_component_t13_71b25c9f74d9",
+              "quote": "Tomorrow: lawyer calls. This week: engage someone.",
+              "span_ref": {
+                "end_char": 118,
+                "speaker": "user",
+                "start_char": 68,
+                "turn_index": 13
+              }
+            }
+          ],
+          "derivation_id": "live_constraint_derivation_9ff450cb928c",
+          "kind": "derivation",
+          "note": "live_constraints_specialist",
+          "provenance_status": "component_evidence_complete",
+          "source_object_ids": [],
+          "turn_refs": [
+            {
+              "speaker": "user",
+              "turn_index": 8
+            },
+            {
+              "speaker": "user",
+              "turn_index": 13
+            }
+          ]
+        },
+        "provenance_status": "component_evidence_complete",
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "The user is operating under a 7-day window to initiate the reporting process."
+      }
+    ],
+    "option_events": [
+      {
+        "candidate_id": "candidate_option_events_000_4af84f1e0507",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t1_a4868bf54d4a",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 326,
+          "quote": "retaining a whistleblower attorney",
+          "speaker": "assistant",
+          "start_char": 292,
+          "turn_index": 1
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_ff048faacf10",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t4_b0ff21915cbf",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 832,
+          "quote": "Internal reporting first — to compliance, to the firm's audit committee",
+          "speaker": "assistant",
+          "start_char": 761,
+          "turn_index": 4
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_003_b3fdd1ce5d38",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t6_71aca8841781",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 146,
+          "quote": "external-with-counsel is the defensible path",
+          "speaker": "assistant",
+          "start_char": 102,
+          "turn_index": 6
+        },
+        "status": "current"
+      }
+    ],
+    "question_events": [
+      {
+        "candidate_id": "candidate_question_events_000_2729ff9b29a4",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": false,
+        "event_id": "question_initial_t1_1c6a04cba140",
+        "family": "question",
+        "grounding": "span",
+        "kind": "initial",
+        "provisional": true,
+        "question_function": "other",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 586,
+          "quote": "What do I do.",
+          "speaker": "user",
+          "start_char": 573,
+          "turn_index": 1
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "user",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "not_declared",
+          "target_candidate_ids": []
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_001_1f9a2f45b5d1",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t3_aab834fbbdb6",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 141,
+          "quote": "do I report this or not.",
+          "speaker": "user",
+          "start_char": 117,
+          "turn_index": 3
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "What do I do.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_2729ff9b29a4"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_002_a3b48400384f",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t4_6b18647ece17",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 219,
+          "quote": "Is there a way to report that minimizes my exposure?",
+          "speaker": "user",
+          "start_char": 167,
+          "turn_index": 4
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "do I report this or not.",
+            "speaker": "user",
+            "turn_index": 3
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_001_1f9a2f45b5d1"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_003_e2bbffd5cf3a",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t5_ce4a96e77289",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 150,
+          "quote": "Is there any world where internal is better.",
+          "speaker": "user",
+          "start_char": 106,
+          "turn_index": 5
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "Is there a way to report that minimizes my exposure?",
+            "speaker": "user",
+            "turn_index": 4
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_002_a3b48400384f"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_004_a40e57e868c2",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t8_76efb04e0da4",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 29,
+          "quote": "What's the timeline here.",
+          "speaker": "user",
+          "start_char": 4,
+          "turn_index": 8
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "do I report this or not.",
+            "speaker": "user",
+            "turn_index": 3
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_001_1f9a2f45b5d1"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_005_0ffb916c4f60",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t9_d31466e3fa9f",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 115,
+          "quote": "Can I reasonably cancel or do I need to go.",
+          "speaker": "user",
+          "start_char": 72,
+          "turn_index": 9
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "What's the timeline here.",
+            "speaker": "user",
+            "turn_index": 8
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_004_a40e57e868c2"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_006_cb5df8da735d",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t10_5d962f2a93a1",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 23,
+          "quote": "Do I tell her.",
+          "speaker": "user",
+          "start_char": 9,
+          "turn_index": 10
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "What's the timeline here.",
+            "speaker": "user",
+            "turn_index": 8
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_004_a40e57e868c2"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_007_fb82658d9b60",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_current_t11_c0f0edd9e0ae",
+        "family": "question",
+        "grounding": "span",
+        "kind": "current",
+        "provisional": true,
+        "question_function": "other",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 28,
+          "quote": "What happens after I report.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 11
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "do I report this or not.",
+            "speaker": "user",
+            "turn_index": 3
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_001_1f9a2f45b5d1"
+          ]
+        }
+      }
+    ],
+    "user_pressure_events": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_cc3a01b90283",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t4_a4fe1bdfc005",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 77,
+          "quote": "You said career damage is likely even if I'm protected. That's a lot to risk.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 4
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_c2533c511f9a",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t7_757cc110e84e",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 361,
+          "quote": "I wonder if she saw something too and left without reporting. If I report now, it might implicate her for not reporting two years ago.",
+          "speaker": "user",
+          "start_char": 227,
+          "turn_index": 7
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_fc703eb24d36",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t12_e4d735c77d2e",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 45,
+          "quote": "This is going to cost me my career, isn't it.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 12
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "1871a18e919a7e814c7d548e01a95bc8f936c18d2fd1bd198d204541825ae9e3",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 28
+  },
+  "validation": {
+    "joint_process": {
+      "evidence_boundary_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 3,
+        "truncated_count": 0,
+        "validated_count": 3
+      },
+      "option_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 1,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 3
+      },
+      "question_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 8,
+        "truncated_count": 0,
+        "validated_count": 8
+      },
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 3,
+        "truncated_count": 0,
+        "validated_count": 3
+      }
+    },
+    "specialists": {
+      "assistant_stances": {
+        "dropped_invalid_relation": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 6,
+        "validated_count": 6
+      },
+      "dropped_threads": {
+        "assistant_raised_count": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_speaker": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "dropped_speaker_mismatch": 0,
+        "raw_count": 1,
+        "user_raised_count": 1,
+        "validated_count": 1
+      },
+      "live_constraints": {
+        "derivation_mode_count": 1,
+        "dropped_derivation_no_valid_excerpt": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_mode": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "incomplete_derivation_count": 0,
+        "raw_count": 4,
+        "rejected_derivations": [],
+        "span_mode_count": 3,
+        "validated_count": 4
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "lolla.case10_reasoning_receipt_contract.v1",
+  "status": "frozen_before_build",
+  "date": "2026-07-10",
+  "purpose": "Build a self-contained, synthetic Case 10 reasoning receipt before defining or calling a fresh reader.",
+  "provider_call_budget": 0,
+  "runtime_change_authorized": false,
+  "inputs": [
+    {"role": "receipt_builder", "path": "scripts/evals/build_case10_reasoning_receipt.py", "sha256": "db5b775b5df4ba4e5025c83db49b69a527fe3e55539adb7bb1e32a538199a553"},
+    {"role": "source_conversation", "path": "research/test-cases/case_real_estate_conversation.txt", "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"},
+    {"role": "stage_a_decision", "path": "research/stage-a-case10-2026-07-10/decision.json", "sha256": "623f29e91ce2b87309413d99678c366d603dea5490835c39c9cda0ad546b2913"},
+    {"role": "stage_a_preliminary_review", "path": "research/stage-a-case10-2026-07-10/preliminary-pressure-review.json", "sha256": "969a7768a594577bb3eec1483105d385b7a0cd97f15eae58875ced6ccd6fe848"},
+    {"role": "stage_a_pressure_packet", "path": "research/stage-a-case10-2026-07-10/pressure-packet.json", "sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"},
+    {"role": "stage_b_contract", "path": "research/stage-b-case10-2026-07-10/contract.json", "sha256": "5d42822fe552d4577bf3199876314bb2d1a4a09a65904e792af447108bfcb865"},
+    {"role": "stage_b_run_summary", "path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/run-summary.json", "sha256": "76351570a69beb15548c877489e4df0aeb196da77c94ac5c30346c068e0e41e9"},
+    {"role": "stage_b_blind_outputs", "path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/blind-outputs.json", "sha256": "56e782ef6cbd00134769f91318ca4134ce6ce5852b288a7af88cd01a429d25a2"},
+    {"role": "stage_b_blind_review", "path": "research/stage-b-case10-2026-07-10/blind-review-before-key.json", "sha256": "c33e837f39da522ec961956dc16c80e4a3d114fd2e179e76c10206c3f03751cd"},
+    {"role": "stage_b_arm_key", "path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/arm-key.json", "sha256": "9730c9ea320715e946e5af288da067e2af3212b2477845d506170afa486c7dc6"},
+    {"role": "stage_b_revealed_comparison", "path": "research/stage-b-case10-2026-07-10/revealed-comparison.json", "sha256": "8c0b9677fe03646af4e9e2d478107e21012d0b4802226f49906e3580b4b372a6"},
+    {"role": "stage_b_decision", "path": "research/stage-b-case10-2026-07-10/decision.json", "sha256": "6c24442dc3084ed51f6c80e16970dfe6259812844814645e43a197bec346847e"},
+    {"role": "gate6_v1_completion_audit", "path": "research/gate6-case10-graph-attribution-2026-07-10/v1-completion-audit.json", "sha256": "45d6a030cc29f9cadbf5eef0b018b7d45b93798fb07ec2121b7abcb7f6fd2a8e"},
+    {"role": "gate6_v2_result", "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result-v2.json", "sha256": "f010a1fe0eb569fa4d7d4aed4d4d76a661a25aec9e104a4341402cc8958899d0"},
+    {"role": "gate6_graph_source_review", "path": "research/gate6-case10-graph-attribution-2026-07-10/source-first-graph-chunk-review.json", "sha256": "5d269b35823cf1acab206859ecd8f3131f364b7e35f7036a476bf481401225fd"},
+    {"role": "gate6_case10_decision", "path": "research/gate6-case10-graph-attribution-2026-07-10/decision.json", "sha256": "52ddccfe04cbc6ce387b873b4a9a0c883f5d04fc24ed4e127366a7b9200db19e"},
+    {"role": "gate6_inventory_decision", "path": "research/gate6-graph-candidate-inventory-2026-07-10/decision.json", "sha256": "3c074f6f2824c33d13c9cfcbfe0e699a4e639b278cb7ea1b0733a9997576195f"},
+    {"role": "gate6_shadow_custody", "path": "research/gate6-graph-candidate-inventory-2026-07-10/case10-shadow-custody.json", "sha256": "a91b8fb6d0c714ee64bc5054eeb9e8fd5ca26c50a543b7feaf289e60b3c108bb"},
+    {"role": "product_constitution", "path": "docs/conversation-understanding/lolla-product-constitution-v0.md", "sha256": "952a7d8fb47640d7eccfc1aa815d784c96da77c7ab07f47b3f8c256b6032524f"},
+    {"role": "public_private_eval_boundary", "path": "docs/evals/public-revision-private-receipt-boundary-v0.md", "sha256": "9cf6e915ce38ddce540cc951bc2fa38d5e7bf62e9e22278084cb7f95aa9f5696"}
+  ],
+  "outputs": {
+    "json": "research/gate7-case10-cold-reader-2026-07-10/receipt.json",
+    "markdown": "research/gate7-case10-cold-reader-2026-07-10/receipt.md"
+  },
+  "stop_rules": [
+    "no provider calls during receipt build",
+    "full conversation must be included verbatim",
+    "anonymous outputs and blind-before-key ordering must be preserved",
+    "failed v1 attribution and v2 repair must both be visible",
+    "no human validation or quality proof claim",
+    "no runtime or graph change"
+  ]
+}

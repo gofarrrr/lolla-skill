@@ -1,0 +1,25 @@
+{
+  "schema_version": "lolla.conversation_state_handoff_replay_contract.v1",
+  "status": "frozen_provider_free",
+  "date": "2026-07-10",
+  "purpose": "Test whether the minimal shadow representation can carry the five-case source-reviewed state without permitting factual graph routing.",
+  "module": {"path": "engine/system_b/conversation_state_handoff.py", "sha256": "db528315ee1a5714bffe9546f58a2879b409a182d121bd09210777730d2d8c8b"},
+  "baseline": {"path": "research/designed-extraction-quality-v1-2026-07-10/reviewed-result.json", "sha256": "32dc3b2e163de9252cacbefb910cfc6d481bc4cc80db59548f01619822734828"},
+  "cases": [
+    {"case_id": "amb1-case01-product-scope", "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case01-product-scope.json", "sha256": "840096a3703f1c143e485a14d8f3fed3d2f8777c78965d393f5405ad3dadb178", "constraint_count": 8, "position_ownership": "joint", "thread_disposition": "addressed_unresolved"},
+    {"case_id": "amb1-case02-nonprofit-scale", "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case02-nonprofit-scale.json", "sha256": "19854f600f57d4a54567052eb19d24f1fa8218fa668863d17f7de82f8996233f", "constraint_count": 9, "position_ownership": "joint", "thread_disposition": "addressed_unresolved"},
+    {"case_id": "amb1-case03-creative-partnership", "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case03-creative-partnership.json", "sha256": "5e6ff9046bfe3225316a636d16bab7952591b9b5ebcde2c2f340360b6af54663", "constraint_count": 8, "position_ownership": "joint", "thread_disposition": "resolved"},
+    {"case_id": "amb1-case04-research-tool-release", "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case04-research-tool-release.json", "sha256": "aaffe78ed2cf3f97631ad5734a71621b03a1b4c58b82b9fa733e2530b98bf8f5", "constraint_count": 9, "position_ownership": "joint", "thread_disposition": "addressed_unresolved"},
+    {"case_id": "amb1-case05-family-archive", "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case05-family-archive.json", "sha256": "4e77e877533a58d42c11878c117a85ddfa7637b6855cf7a0805b2852f0a2d6a3", "constraint_count": 9, "position_ownership": "joint", "thread_disposition": "addressed_unresolved"}
+  ],
+  "required_aggregate": {"case_count": 5, "position_count": 5, "joint_position_count": 5, "thread_count": 5, "constraint_count": 43, "direct_graph_seed_count": 0},
+  "evaluation_boundary": {
+    "representation_capacity_only": true,
+    "automatic_extraction_quality_measured": false,
+    "semantic_labels_human_reviewed_same_session": true,
+    "provider_calls": 0,
+    "graph_calls": 0,
+    "runtime_changes": 0
+  },
+  "non_claims": ["not_extractor_improvement", "not_independent_gold", "not_graph_value", "not_runtime_authority", "not_provider_probe_authority"]
+}

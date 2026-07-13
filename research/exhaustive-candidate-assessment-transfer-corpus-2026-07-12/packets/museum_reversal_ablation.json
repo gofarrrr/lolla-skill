@@ -1,0 +1,183 @@
+{
+  "arm_id": "museum_reversal_ablation",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "exactly_one_assessment_per_candidate": true,
+    "expected_selection_included": false,
+    "fact_free_recall_provenance_included": true,
+    "global_abstention_shortcut": false,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "challenge_when": "Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.",
+      "display_name": "Active Listening",
+      "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.",
+      "failure_signal": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+      "model_id": "active-listening",
+      "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.",
+          "excludes": "Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "near_neighbor": "acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.",
+          "requires": "Both acknowledgement and failure to integrate are supported."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+      "display_name": "Confirmation Bias",
+      "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+      "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+      "model_id": "confirmation-bias",
+      "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.",
+          "excludes": "Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "near_neighbor": "acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.",
+          "requires": "Both acknowledgement and failure to integrate are supported."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.",
+      "display_name": "Intellectual Humility",
+      "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.",
+      "failure_signal": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+      "model_id": "intellectual-humility",
+      "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.",
+          "excludes": "Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "near_neighbor": "acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.",
+          "requires": "Both acknowledgement and failure to integrate are supported."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    }
+  ],
+  "candidate_count": 3,
+  "packet_sha256": "dd62516e916950eb07b678a139665d30b34e695999ad0a49831435851e4a205f",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The start distinguishes the external offer from the user's own desired outcomes, worry, and unresolved interpretation of hesitation.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "starting",
+      "role_interpretation": "The user wants wider discovery and stable preservation funding from the AI offer while worrying that licensing turns stewardship into raw-material supply, and remains uncertain whether hesitation protects contributor trust or institutional control over access.",
+      "role_record_id": "rprolev22-starting-01-162e862f768a7d",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e002",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "The company offers four years of preservation funding in exchange for archive model training.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "Achieve wider discovery and stable funding.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "Licensing may turn stewardship into raw-material supply.",
+          "stance_object_kind": "belief_or_assessment"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "Hesitation may protect contributor trust or reflect institutional control over access.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e033",
+        "e034",
+        "e035"
+      ],
+      "fidelity_note": "The current role contains adopted scope, safeguards, approval conditions, renewal boundary, and thresholds but excludes the still-unresolved exit question.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "current",
+      "role_interpretation": "The user leans toward a six-month metadata-and-reviewed-photograph discovery pilot with sensitive materials excluded, observable outputs and independent review, bounded public language, conditional adapter deletion and retained-learning protections, fresh contributor review for renewal, and thresholds set before signing.",
+      "role_record_id": "rprolev22-current-01-fed3bceab006c6",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "leaning",
+          "stance_object_interpretation": "Run the scoped six-month metadata-and-reviewed-photograph pilot with provenance, logs, biography exclusion, red-team review, and experimental-partner language.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Approve only with adapter deletion, protection against reconstructing collection-specific associations, and new contributor review before renewal.",
+          "stance_object_kind": "acceptance_or_willingness"
+        },
+        {
+          "source_evidence_id": "e035",
+          "stance_expression_kind": "commitment",
+          "stance_object_interpretation": "Set complaint, removal, false-association, and sensitive-query thresholds before signing.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e036"
+      ],
+      "fidelity_note": "Synthetic sensitivity control retaining unresolved counterpressure while removing reversal and persistence meaning.",
+      "limitations": "Counterfactual semantic ablation; not a source claim.",
+      "role": "qualification",
+      "role_interpretation": "A material unresolved counterpressure remains outside the adopted current safeguards.",
+      "role_record_id": "rprolev22-qualification-01-21435cd141c2d9-reversal-ablation",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "A material unresolved counterpressure remains outside the adopted safeguards.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_exhaustive_assessment_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/reasoning-process-position-role-first-v23-new-case-2026-07-12/compiled-source-review-target.json",
+      "sha256": "22752e512ecc4abe8ea8467f65311d293468d87d86251bbd6b50437f2d9065a4"
+    }
+  ]
+}

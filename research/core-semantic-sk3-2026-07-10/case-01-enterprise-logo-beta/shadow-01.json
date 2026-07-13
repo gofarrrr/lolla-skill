@@ -1,0 +1,2383 @@
+{
+  "current_view_manifest": {
+    "ambiguous_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": []
+    },
+    "event_count": 21,
+    "invalid_candidates_excluded": true,
+    "reconstructible_from_candidate_ledger": true,
+    "schema_version": "lolla.current_semantic_view.v0",
+    "selected_candidate_ids_by_family": {
+      "assistant_stance_events": [
+        "candidate_assistant_stance_events_000_ef074d927da2",
+        "candidate_assistant_stance_events_001_e72ebc150de5",
+        "candidate_assistant_stance_events_002_6f0f736a9914",
+        "candidate_assistant_stance_events_003_ce25e6d28c6e"
+      ],
+      "dropped_thread_events": [
+        "candidate_dropped_thread_events_000_98776cb459de",
+        "candidate_dropped_thread_events_001_6157b5280154"
+      ],
+      "evidence_boundary_events": [
+        "candidate_evidence_boundary_events_000_db5ce538f904",
+        "candidate_evidence_boundary_events_001_54fd5debedc0"
+      ],
+      "live_constraint_events": [
+        "candidate_live_constraint_events_000_11ff2b9e43e1",
+        "candidate_live_constraint_events_001_4790b8876c77",
+        "candidate_live_constraint_events_002_b27a072ec256",
+        "candidate_live_constraint_events_003_5c90cdd7efdf",
+        "candidate_live_constraint_events_004_449f23391c29"
+      ],
+      "option_events": [
+        "candidate_option_events_000_ede363f8f283",
+        "candidate_option_events_001_94d17089e4ac"
+      ],
+      "question_events": [
+        "candidate_question_events_000_81c8f72f98e8",
+        "candidate_question_events_001_e516888f2311"
+      ],
+      "user_pressure_events": [
+        "candidate_user_pressure_events_000_1b001c9b292b",
+        "candidate_user_pressure_events_001_bac8f2e01617",
+        "candidate_user_pressure_events_002_228bdaf883e6",
+        "candidate_user_pressure_events_003_7c1f6b2748b2"
+      ]
+    },
+    "view_sha256": "f38279672f707921ff84f08c5d7fd3e8df7347b4ec6b917116f53f2c99e1a237"
+  },
+  "decision_work_projection": [
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "question_initial_t1_dae47c14228c",
+        "question_current_t5_d4b66bfea0f8"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 2,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "stance_t2_commitment_00"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "option_option_t2_12b3005c6db8"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "option_decision_threshold_t6_453e864a5afa"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "question_current_t5_d4b66bfea0f8"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "user_pressure_correction_t3_ac640d27d8fa",
+        "user_pressure_correction_t3_082f1262d39d",
+        "user_pressure_concern_t5_fa4e0323862b",
+        "user_pressure_timing_pressure_t5_4dcd3fa19241"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "dropped_thread_t3_user_f9c322abad35",
+        "dropped_thread_t5_user_8a5b81739e7e"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 2,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "live_constraint_t3_constraint_f9c322abad35",
+        "live_constraint_t3_constraint_36ff149a1bd0",
+        "live_constraint_t5_concern_8a5b81739e7e",
+        "live_constraint_t5_concern_a01bb54a92a0",
+        "live_constraint_derivation_dccf3b0656b2"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 5,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "user_pressure_timing_pressure_t5_4dcd3fa19241"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "evidence_boundary_stated_unknown_t3_d72be65935ce",
+        "evidence_boundary_deferred_criterion_t6_98136b2db7d7"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 2,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "assistant_stance_trajectory",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "stance_t2_commitment_00",
+        "stance_t4_qualification_01",
+        "stance_t6_condition_02",
+        "stance_t6_deferral_03"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "user_corrections_and_counter_pressure",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "user_pressure_correction_t3_ac640d27d8fa",
+        "user_pressure_correction_t3_082f1262d39d",
+        "user_pressure_concern_t5_fa4e0323862b",
+        "user_pressure_timing_pressure_t5_4dcd3fa19241"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    }
+  ],
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 528,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 1596,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.live_constraints",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 2124
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 463,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 1574,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.assistant_stances",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 2037
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 294,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 1587,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.dropped_threads",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 1881
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 660,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 1389,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.joint_process",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 2049
+      }
+    ]
+  },
+  "non_claims": [
+    "shadow_is_not_live_lane_input",
+    "shadow_does_not_modify_graph_routing",
+    "shadow_is_not_decision_quality_proof",
+    "shadow_is_not_human_validation",
+    "question_change_is_not_user_mind_change",
+    "missing_event_is_not_proof_of_real_world_absence",
+    "candidate_state_is_not_semantic_truth",
+    "reader_agreement_is_not_correctness"
+  ],
+  "schema_version": "lolla.core_semantic_shadow.v0",
+  "semantic_candidate_ledger": {
+    "authoritative_source": {
+      "contains_raw_conversation": false,
+      "contains_source_excerpts": true,
+      "conversation_sha256": "95a6bf79ab9a0a0c2f54f2a228f707ed07a32644c21e56a79269f0f20fdb0fd9",
+      "turn_count": 6
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_11ff2b9e43e1",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_t3_constraint_f9c322abad35",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 157,
+              "speaker": "user",
+              "start_char": 92,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "our only senior engineer is already supporting existing customers"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Represents a hard resource capacity limit on the engineering team.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "our only senior engineer is already supporting existing customers",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "d8cbe3168fd1a570ab2bdd877c894f4933babbfb775a8fbe2c2fdecc9892fb9a",
+        "reader_call_id": "semantic_reader_call_01_74d6cca46935",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Represents a hard resource capacity limit on the engineering team.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Represents a hard resource capacity limit on the engineering team.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_4790b8876c77",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_t3_constraint_36ff149a1bd0",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 30,
+              "speaker": "user",
+              "start_char": 0,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "They have not signed anything."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "An external fact regarding the lack of a formal agreement.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "They have not signed anything.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "fe48339f44f2e5643f81c2bbe27020d6d0f0a523ce7230f25a91c6b83cabd9b8",
+        "reader_call_id": "semantic_reader_call_01_74d6cca46935",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "An external fact regarding the lack of a formal agreement.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "An external fact regarding the lack of a formal agreement.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_b27a072ec256",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 5,
+          "issue_id": "live_constraint_t5_concern_8a5b81739e7e",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 119,
+              "speaker": "user",
+              "start_char": 51,
+              "turn_index": 5
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I am worried we are treating their interest as a purchase commitment"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Explicit worry about the nature of the prospect's commitment.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I am worried we are treating their interest as a purchase commitment",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "a96768dd27cb731a07cae5fd550651f2289ef25ce02779d0cb5733d29e742c65",
+        "reader_call_id": "semantic_reader_call_01_74d6cca46935",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Explicit worry about the nature of the prospect's commitment.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Explicit worry about the nature of the prospect's commitment.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_5c90cdd7efdf",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 5,
+          "issue_id": "live_constraint_t5_concern_a01bb54a92a0",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 190,
+              "speaker": "user",
+              "start_char": 125,
+              "turn_index": 5
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I am also worried that waiting will make us lose the opportunity."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Explicit worry regarding the timing of the opportunity.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I am also worried that waiting will make us lose the opportunity.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "39ba07a066adddc52df83f3e6c0cbcef34f56f9c195be2002564083053386914",
+        "reader_call_id": "semantic_reader_call_01_74d6cca46935",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Explicit worry regarding the timing of the opportunity.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Explicit worry regarding the timing of the opportunity.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_449f23391c29",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_derivation_dccf3b0656b2",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "components": [
+              {
+                "component_id": "derivation_component_t3_ffa8946db3a8",
+                "quote": "the board is excited mainly because of the company's name",
+                "span_ref": {
+                  "end_char": 220,
+                  "speaker": "user",
+                  "start_char": 163,
+                  "turn_index": 3
+                }
+              },
+              {
+                "component_id": "derivation_component_t1_b4475e0717ab",
+                "quote": "Should we launch publicly and use its logo to attract other customers?",
+                "span_ref": {
+                  "end_char": 189,
+                  "speaker": "user",
+                  "start_char": 119,
+                  "turn_index": 1
+                }
+              }
+            ],
+            "derivation_id": "live_constraint_derivation_dccf3b0656b2",
+            "kind": "derivation",
+            "note": "live_constraints_specialist",
+            "provenance_status": "component_evidence_complete",
+            "source_object_ids": [],
+            "turn_refs": [
+              {
+                "speaker": "user",
+                "turn_index": 3
+              },
+              {
+                "speaker": "user",
+                "turn_index": 1
+              }
+            ]
+          },
+          "provenance_status": "component_evidence_complete",
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "The board is pressuring the company to move forward based on the prospect's name."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Captures the relational constraint of board expectations driving the decision.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "derivation",
+          "text": "The board is pressuring the company to move forward based on the prospect's name.",
+          "turn_refs": [
+            {
+              "span_excerpt": "the board is excited mainly because of the company's name",
+              "turn_index": 3
+            },
+            {
+              "span_excerpt": "Should we launch publicly and use its logo to attract other customers?",
+              "turn_index": 1
+            }
+          ]
+        },
+        "raw_proposal_sha256": "d20eeb1d561aaa4b97abbda24dd92128887c26bd1cb999bf7353891c5fe955fa",
+        "reader_call_id": "semantic_reader_call_01_74d6cca46935",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "validated_derivation_components_preserved",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Captures the relational constraint of board expectations driving the decision.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Captures the relational constraint of board expectations driving the decision.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_ef074d927da2",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 269,
+              "speaker": "assistant",
+              "start_char": 179,
+              "turn_index": 2
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t2_commitment_00",
+          "text": "I would announce a limited public beta and make this prospect the flagship design partner.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 2
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Primary recommendation for the user's initial inquiry.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "I would announce a limited public beta and make this prospect the flagship design partner.",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "3a3c8a5aefd76cb5e2b0a7f1ada86ef83b9ef421a41c039039b2537afdb4fa3a",
+        "reader_call_id": "semantic_reader_call_02_2f74b4637c8c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Primary recommendation for the user's initial inquiry.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Primary recommendation for the user's initial inquiry.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_e72ebc150de5",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 212,
+              "speaker": "assistant",
+              "start_char": 129,
+              "turn_index": 4
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "qualification",
+          "stance_id": "stance_t4_qualification_01",
+          "text": "Keep the beta limited to three companies, avoid promising a service-level agreement",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "unknown",
+            "declared_target": {
+              "quote": "I would announce a limited public beta",
+              "speaker": "assistant",
+              "turn_index": 2
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "qualification",
+            "reference_status": "unresolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 4
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Adds necessary boundaries to the initial recommendation in light of resource constraints.",
+          "related_stance_quote": "I would announce a limited public beta",
+          "related_stance_turn_index": 2,
+          "relation": "qualification",
+          "relation_ambiguity": false,
+          "text": "Keep the beta limited to three companies, avoid promising a service-level agreement",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "c631c5e8886260a2ddae4bcdfe47704f721a1e2f0038d278c285fa53f6755026",
+        "reader_call_id": "semantic_reader_call_02_2f74b4637c8c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Adds necessary boundaries to the initial recommendation in light of resource constraints.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Adds necessary boundaries to the initial recommendation in light of resource constraints.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_6f0f736a9914",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 91,
+              "speaker": "assistant",
+              "start_char": 0,
+              "turn_index": 6
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "condition",
+          "stance_id": "stance_t6_condition_02",
+          "text": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "unknown",
+            "declared_target": {
+              "quote": "Keep the beta limited to three companies",
+              "speaker": "assistant",
+              "turn_index": 4
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "condition",
+            "reference_status": "unresolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 6
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Sets a specific gate (email confirmation) before the commitment to launch.",
+          "related_stance_quote": "Keep the beta limited to three companies",
+          "related_stance_turn_index": 4,
+          "relation": "condition",
+          "relation_ambiguity": false,
+          "text": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "bfaae3cb20194c72eaacceb3e26fb28a3de6bab5d98fcf6b2441940a2f08b08a",
+        "reader_call_id": "semantic_reader_call_02_2f74b4637c8c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Sets a specific gate (email confirmation) before the commitment to launch.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Sets a specific gate (email confirmation) before the commitment to launch.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_ce25e6d28c6e",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 180,
+              "speaker": "assistant",
+              "start_char": 92,
+              "turn_index": 6
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "deferral",
+          "stance_id": "stance_t6_deferral_03",
+          "text": "You can define detailed success criteria after the first week once you see actual usage.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "deferral",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 6
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Explicitly parks the definition of success criteria until after the beta launch.",
+          "relation": "deferral",
+          "relation_ambiguity": false,
+          "text": "You can define detailed success criteria after the first week once you see actual usage.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "9397adb958f44f7da219b33782ecb7d0bf39798bfc104f813dcdbc5a8a492179",
+        "reader_call_id": "semantic_reader_call_02_2f74b4637c8c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Explicitly parks the definition of success criteria until after the beta launch.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Explicitly parks the definition of success criteria until after the beta launch.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_98776cb459de",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "dropped_thread_t3_user_f9c322abad35",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 157,
+              "speaker": "user",
+              "start_char": 92,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "acknowledged_then_dropped",
+          "superseded_by": "focusing on the strategic value and prestige of the enterprise relationship",
+          "text": "our only senior engineer is already supporting existing customers"
+        },
+        "family": "dropped_thread_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The user raises a critical resource constraint regarding the engineering team, which the assistant acknowledges as a 'real constraint' but immediately pivots to the strategic upside without addressing the capacity issue.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "speaker": "user",
+          "superseded_by": "focusing on the strategic value and prestige of the enterprise relationship",
+          "text": "our only senior engineer is already supporting existing customers",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "31b0b5ecc309ecd636999e2e22c1e589fdeb534f76a6c4128892ddb1aa96538d",
+        "reader_call_id": "semantic_reader_call_03_afe20b17604c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The user raises a critical resource constraint regarding the engineering team, which the assistant acknowledges as a 'real constraint' but immediately pivots to the strategic upside without addressing the capacity issue.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The user raises a critical resource constraint regarding the engineering team, which the assistant acknowledges as a 'real constraint' but immediately pivots to the strategic upside without addressing the capacity issue.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_001_6157b5280154",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 5,
+          "issue_id": "dropped_thread_t5_user_8a5b81739e7e",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 119,
+              "speaker": "user",
+              "start_char": 51,
+              "turn_index": 5
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "acknowledged_then_dropped",
+          "superseded_by": "focusing on the tactical steps to announce the beta and manage the downside",
+          "text": "I am worried we are treating their interest as a purchase commitment"
+        },
+        "family": "dropped_thread_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The user expresses a specific fear regarding the misinterpretation of prospect intent, which the assistant ignores in favor of providing a timeline and success criteria.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "speaker": "user",
+          "superseded_by": "focusing on the tactical steps to announce the beta and manage the downside",
+          "text": "I am worried we are treating their interest as a purchase commitment",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "3d26df8e0bbb6c7052766202fc6a25c863d93d8e2a4431f9ac502d803041345d",
+        "reader_call_id": "semantic_reader_call_03_afe20b17604c",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The user expresses a specific fear regarding the misinterpretation of prospect intent, which the assistant ignores in favor of providing a timeline and success criteria.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The user expresses a specific fear regarding the misinterpretation of prospect intent, which the assistant ignores in favor of providing a timeline and success criteria.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_000_81c8f72f98e8",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": false,
+          "event_id": "question_initial_t1_dae47c14228c",
+          "family": "question",
+          "grounding": "span",
+          "kind": "initial",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 189,
+            "quote": "Should we launch publicly and use its logo to attract other customers?",
+            "speaker": "user",
+            "start_char": 119,
+            "turn_index": 1
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "user",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "not_declared",
+            "target_candidate_ids": []
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "changes_prior_question": false,
+          "disposition_reason": "Initial framing of the decision problem.",
+          "question_function": "decision_choice",
+          "quote": "Should we launch publicly and use its logo to attract other customers?",
+          "related_question_quote": null,
+          "related_question_turn_index": null,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": null,
+          "stage": "initial",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "640ffd8f263b247d40beaaa5b62fb95afecc9a2413505dd5f1cae1a057d40541",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Initial framing of the decision problem.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Initial framing of the decision problem.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_001_e516888f2311",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_current_t5_d4b66bfea0f8",
+          "family": "question",
+          "grounding": "span",
+          "kind": "current",
+          "provisional": true,
+          "question_function": "evidence_gate",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 50,
+            "quote": "What evidence should we require before announcing?",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 5
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "Should we launch publicly and use its logo to attract other customers?",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "reframes",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_81c8f72f98e8"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "changes_prior_question": true,
+          "disposition_reason": "User shifts focus from whether to launch to what conditions must be met to launch.",
+          "question_function": "evidence_gate",
+          "quote": "What evidence should we require before announcing?",
+          "related_question_quote": "Should we launch publicly and use its logo to attract other customers?",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "reframes",
+          "stage": "current",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "c9e2fa3a7dccef61e6eead109117f486c70fee5ebcab09223514fa83032d5a6c",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "User shifts focus from whether to launch to what conditions must be met to launch.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "User shifts focus from whether to launch to what conditions must be met to launch.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_000_1b001c9b292b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_correction_t3_ac640d27d8fa",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "correction",
+          "provisional": true,
+          "source": {
+            "end_char": 30,
+            "quote": "They have not signed anything.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 3
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "correction",
+          "quote": "They have not signed anything.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "3e90a107b11c01f52949ba388f85efcfd5b14bbe1cb4efd870057d7aa793dda2",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_bac8f2e01617",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_correction_t3_082f1262d39d",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "correction",
+          "provisional": true,
+          "source": {
+            "end_char": 157,
+            "quote": "our only senior engineer is already supporting existing customers",
+            "speaker": "user",
+            "start_char": 92,
+            "turn_index": 3
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "correction",
+          "quote": "our only senior engineer is already supporting existing customers",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "36da6275878ec542bcbafa48f49ca9dca929308155754788b3a71b078ceed513",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_228bdaf883e6",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t5_fa4e0323862b",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 119,
+            "quote": "I am worried we are treating their interest as a purchase commitment",
+            "speaker": "user",
+            "start_char": 51,
+            "turn_index": 5
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "I am worried we are treating their interest as a purchase commitment",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "d593bf316c5a85ec32f2c8bef27289caa102424ad32e055c1fd71dcc243b513d",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_003_7c1f6b2748b2",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_timing_pressure_t5_4dcd3fa19241",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "timing_pressure",
+          "provisional": true,
+          "source": {
+            "end_char": 190,
+            "quote": "I am also worried that waiting will make us lose the opportunity.",
+            "speaker": "user",
+            "start_char": 125,
+            "turn_index": 5
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "kind": "timing_pressure",
+          "quote": "I am also worried that waiting will make us lose the opportunity.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "de2b0dbcf251476b1df844e5081494d525a157bba4a26639d5396da517561175",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_000_ede363f8f283",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t2_12b3005c6db8",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 217,
+            "quote": "announce a limited public beta",
+            "speaker": "assistant",
+            "start_char": 187,
+            "turn_index": 2
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "announce a limited public beta",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "b5fca670d6af9babae4087bfc9128f8018e7a1a2613bdb9ff59df9d289ee7b68",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_94d17089e4ac",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_decision_threshold_t6_453e864a5afa",
+          "family": "option",
+          "grounding": "span",
+          "kind": "decision_threshold",
+          "provisional": true,
+          "source": {
+            "end_char": 91,
+            "quote": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+            "speaker": "assistant",
+            "start_char": 0,
+            "turn_index": 6
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "decision_threshold",
+          "quote": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "50c3d6f788f58d6e8ecfc50e340ef484ac33722950217a3e1049b8b68a931f3b",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_db5ce538f904",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Prospect has not signed a formal agreement.",
+          "event_id": "evidence_boundary_stated_unknown_t3_d72be65935ce",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "stated_unknown",
+          "provisional": true,
+          "source": {
+            "end_char": 30,
+            "quote": "They have not signed anything.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 3
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "claim": "Prospect has not signed a formal agreement.",
+          "kind": "stated_unknown",
+          "quote": "They have not signed anything.",
+          "speaker": "USER",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "e03fda6bbe878695cfa2e68389d031d7aba4aa06a74b71a63b96a6a7f3e2b8d9",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_54fd5debedc0",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Success criteria for the beta are not yet defined.",
+          "event_id": "evidence_boundary_deferred_criterion_t6_98136b2db7d7",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "deferred_criterion",
+          "provisional": true,
+          "source": {
+            "end_char": 180,
+            "quote": "You can define detailed success criteria after the first week once you see actual usage.",
+            "speaker": "assistant",
+            "start_char": 92,
+            "turn_index": 6
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "claim": "Success criteria for the beta are not yet defined.",
+          "kind": "deferred_criterion",
+          "quote": "You can define detailed success criteria after the first week once you see actual usage.",
+          "speaker": "ASSISTANT",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "5297f874ee1f31f78bebc5a9317557dfee464a1d6bb3a0e1426e75949b5e7f1d",
+        "reader_call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      }
+    ],
+    "metrics": {
+      "ambiguous_candidate_count": 0,
+      "candidate_custody_complete": true,
+      "counts_by_family": {
+        "assistant_stance_events": 4,
+        "dropped_thread_events": 2,
+        "evidence_boundary_events": 2,
+        "live_constraint_events": 5,
+        "option_events": 2,
+        "question_events": 2,
+        "user_pressure_events": 4
+      },
+      "counts_by_terminal_state": {
+        "selected_for_current_view": 21
+      },
+      "current_view_candidate_count": 21,
+      "expected_proposal_count": 21,
+      "proposal_count": 21,
+      "referenced_source_turns": [
+        {
+          "speaker": "user",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 2
+        },
+        {
+          "speaker": "user",
+          "turn_index": 3
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 6
+        }
+      ],
+      "source_turn_reference_coverage": 1.0,
+      "terminal_record_count": 21,
+      "trajectory_references": {
+        "ambiguous_relation_count": 0,
+        "counts_by_chronology_status": {
+          "not_applicable": 3,
+          "prior_or_same_position": 1,
+          "unknown": 2
+        },
+        "counts_by_reference_status": {
+          "not_declared": 3,
+          "resolved": 1,
+          "unresolved": 2
+        },
+        "counts_by_relation_status": {
+          "declared": 5,
+          "not_declared": 1
+        },
+        "must_not_be_used_as_quality_label": true,
+        "trajectory_event_count": 6
+      },
+      "unreferenced_source_turns": [],
+      "unterminated_record_count": 0
+    },
+    "non_claims": [
+      "candidate_state_is_not_semantic_truth",
+      "validation_is_not_reasoning_quality_proof",
+      "source_turn_coverage_is_not_semantic_completeness",
+      "reader_agreement_is_not_correctness"
+    ],
+    "reader_calls": [
+      {
+        "call_id": "semantic_reader_call_01_74d6cca46935",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 1,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "live_constraints": 5
+        },
+        "reader_role": "live_constraints",
+        "system_prompt_sha256": "a5797f98c1a42179422a81b7911be765d692fb44d8df9cffe04c896d6b4707b5",
+        "user_prompt_sha256": "e4db31b5ec8da37b5aa47f91705bc0a559406502df61de8286b724db3f43026c"
+      },
+      {
+        "call_id": "semantic_reader_call_02_2f74b4637c8c",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 2,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "stance_events": 4
+        },
+        "reader_role": "assistant_stances",
+        "system_prompt_sha256": "b87650e55752dac8ffff1911c89ead8f38447af20f110ef0aabd7c14b26ee232",
+        "user_prompt_sha256": "4e2c6b41e8694589c65ab88dfee25d76b9d79acf356b78fa74c2b6c5290d51f2"
+      },
+      {
+        "call_id": "semantic_reader_call_03_afe20b17604c",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 3,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "dropped_threads": 2
+        },
+        "reader_role": "dropped_threads",
+        "system_prompt_sha256": "2b3ba325694c3827bba00e0aa361a27aeafe4e39985cb00d3632a54f3f9b8bda",
+        "user_prompt_sha256": "916bd71b825f240d7dbecbad0687e18611903e341a586f48a345efd2e658214c"
+      },
+      {
+        "call_id": "semantic_reader_call_04_6d3541fc8a16",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 4,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "evidence_boundary_events": 2,
+          "option_events": 2,
+          "question_events": 2,
+          "user_pressure_events": 4
+        },
+        "reader_role": "joint_process",
+        "system_prompt_sha256": "2959b1918c87f20d1fec683524d9151aee1e3230d3288003f2d025af682ac91a",
+        "user_prompt_sha256": "ab8359bef90d90b79635602e9225d4325f4039164d9edecfaf6a8c5327624b4d"
+      }
+    ],
+    "schema_version": "lolla.semantic_candidate_ledger.v0",
+    "supported_candidate_states": [
+      "proposed",
+      "validated",
+      "invalid_evidence",
+      "set_aside_semantically",
+      "selected_for_current_view",
+      "ambiguous_competing_read",
+      "not_supported_by_source",
+      "not_evaluated_budget"
+    ]
+  },
+  "semantic_events": {
+    "assistant_stance_events": [
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_ef074d927da2",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 269,
+            "speaker": "assistant",
+            "start_char": 179,
+            "turn_index": 2
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t2_commitment_00",
+        "text": "I would announce a limited public beta and make this prospect the flagship design partner.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 2
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_e72ebc150de5",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 212,
+            "speaker": "assistant",
+            "start_char": 129,
+            "turn_index": 4
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "qualification",
+        "stance_id": "stance_t4_qualification_01",
+        "text": "Keep the beta limited to three companies, avoid promising a service-level agreement",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "unknown",
+          "declared_target": {
+            "quote": "I would announce a limited public beta",
+            "speaker": "assistant",
+            "turn_index": 2
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "qualification",
+          "reference_status": "unresolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 4
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_6f0f736a9914",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 91,
+            "speaker": "assistant",
+            "start_char": 0,
+            "turn_index": 6
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "condition",
+        "stance_id": "stance_t6_condition_02",
+        "text": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "unknown",
+          "declared_target": {
+            "quote": "Keep the beta limited to three companies",
+            "speaker": "assistant",
+            "turn_index": 4
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "condition",
+          "reference_status": "unresolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 6
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_ce25e6d28c6e",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 180,
+            "speaker": "assistant",
+            "start_char": 92,
+            "turn_index": 6
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "deferral",
+        "stance_id": "stance_t6_deferral_03",
+        "text": "You can define detailed success criteria after the first week once you see actual usage.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "deferral",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 6
+      }
+    ],
+    "dropped_thread_events": [
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_98776cb459de",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "dropped_thread_t3_user_f9c322abad35",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 157,
+            "speaker": "user",
+            "start_char": 92,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "focusing on the strategic value and prestige of the enterprise relationship",
+        "text": "our only senior engineer is already supporting existing customers"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_001_6157b5280154",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 5,
+        "issue_id": "dropped_thread_t5_user_8a5b81739e7e",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 119,
+            "speaker": "user",
+            "start_char": 51,
+            "turn_index": 5
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "focusing on the tactical steps to announce the beta and manage the downside",
+        "text": "I am worried we are treating their interest as a purchase commitment"
+      }
+    ],
+    "evidence_boundary_events": [
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_db5ce538f904",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Prospect has not signed a formal agreement.",
+        "event_id": "evidence_boundary_stated_unknown_t3_d72be65935ce",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "stated_unknown",
+        "provisional": true,
+        "source": {
+          "end_char": 30,
+          "quote": "They have not signed anything.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_54fd5debedc0",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Success criteria for the beta are not yet defined.",
+        "event_id": "evidence_boundary_deferred_criterion_t6_98136b2db7d7",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "deferred_criterion",
+        "provisional": true,
+        "source": {
+          "end_char": 180,
+          "quote": "You can define detailed success criteria after the first week once you see actual usage.",
+          "speaker": "assistant",
+          "start_char": 92,
+          "turn_index": 6
+        }
+      }
+    ],
+    "live_constraint_events": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_11ff2b9e43e1",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_t3_constraint_f9c322abad35",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 157,
+            "speaker": "user",
+            "start_char": 92,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "our only senior engineer is already supporting existing customers"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_4790b8876c77",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_t3_constraint_36ff149a1bd0",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 30,
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "They have not signed anything."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_b27a072ec256",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 5,
+        "issue_id": "live_constraint_t5_concern_8a5b81739e7e",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 119,
+            "speaker": "user",
+            "start_char": 51,
+            "turn_index": 5
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I am worried we are treating their interest as a purchase commitment"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_5c90cdd7efdf",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 5,
+        "issue_id": "live_constraint_t5_concern_a01bb54a92a0",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 190,
+            "speaker": "user",
+            "start_char": 125,
+            "turn_index": 5
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I am also worried that waiting will make us lose the opportunity."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_449f23391c29",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_derivation_dccf3b0656b2",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "components": [
+            {
+              "component_id": "derivation_component_t3_ffa8946db3a8",
+              "quote": "the board is excited mainly because of the company's name",
+              "span_ref": {
+                "end_char": 220,
+                "speaker": "user",
+                "start_char": 163,
+                "turn_index": 3
+              }
+            },
+            {
+              "component_id": "derivation_component_t1_b4475e0717ab",
+              "quote": "Should we launch publicly and use its logo to attract other customers?",
+              "span_ref": {
+                "end_char": 189,
+                "speaker": "user",
+                "start_char": 119,
+                "turn_index": 1
+              }
+            }
+          ],
+          "derivation_id": "live_constraint_derivation_dccf3b0656b2",
+          "kind": "derivation",
+          "note": "live_constraints_specialist",
+          "provenance_status": "component_evidence_complete",
+          "source_object_ids": [],
+          "turn_refs": [
+            {
+              "speaker": "user",
+              "turn_index": 3
+            },
+            {
+              "speaker": "user",
+              "turn_index": 1
+            }
+          ]
+        },
+        "provenance_status": "component_evidence_complete",
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "The board is pressuring the company to move forward based on the prospect's name."
+      }
+    ],
+    "option_events": [
+      {
+        "candidate_id": "candidate_option_events_000_ede363f8f283",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t2_12b3005c6db8",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 217,
+          "quote": "announce a limited public beta",
+          "speaker": "assistant",
+          "start_char": 187,
+          "turn_index": 2
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_94d17089e4ac",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_decision_threshold_t6_453e864a5afa",
+        "family": "option",
+        "grounding": "span",
+        "kind": "decision_threshold",
+        "provisional": true,
+        "source": {
+          "end_char": 91,
+          "quote": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+          "speaker": "assistant",
+          "start_char": 0,
+          "turn_index": 6
+        },
+        "status": "proposed"
+      }
+    ],
+    "question_events": [
+      {
+        "candidate_id": "candidate_question_events_000_81c8f72f98e8",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": false,
+        "event_id": "question_initial_t1_dae47c14228c",
+        "family": "question",
+        "grounding": "span",
+        "kind": "initial",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 189,
+          "quote": "Should we launch publicly and use its logo to attract other customers?",
+          "speaker": "user",
+          "start_char": 119,
+          "turn_index": 1
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "user",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "not_declared",
+          "target_candidate_ids": []
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_001_e516888f2311",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_current_t5_d4b66bfea0f8",
+        "family": "question",
+        "grounding": "span",
+        "kind": "current",
+        "provisional": true,
+        "question_function": "evidence_gate",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 50,
+          "quote": "What evidence should we require before announcing?",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 5
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "Should we launch publicly and use its logo to attract other customers?",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "reframes",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_81c8f72f98e8"
+          ]
+        }
+      }
+    ],
+    "user_pressure_events": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_1b001c9b292b",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_correction_t3_ac640d27d8fa",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 30,
+          "quote": "They have not signed anything.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_bac8f2e01617",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_correction_t3_082f1262d39d",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 157,
+          "quote": "our only senior engineer is already supporting existing customers",
+          "speaker": "user",
+          "start_char": 92,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_228bdaf883e6",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t5_fa4e0323862b",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 119,
+          "quote": "I am worried we are treating their interest as a purchase commitment",
+          "speaker": "user",
+          "start_char": 51,
+          "turn_index": 5
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_003_7c1f6b2748b2",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_timing_pressure_t5_4dcd3fa19241",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "timing_pressure",
+        "provisional": true,
+        "source": {
+          "end_char": 190,
+          "quote": "I am also worried that waiting will make us lose the opportunity.",
+          "speaker": "user",
+          "start_char": 125,
+          "turn_index": 5
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "95a6bf79ab9a0a0c2f54f2a228f707ed07a32644c21e56a79269f0f20fdb0fd9",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 6
+  },
+  "validation": {
+    "joint_process": {
+      "evidence_boundary_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      },
+      "option_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      },
+      "question_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      },
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 4
+      }
+    },
+    "specialists": {
+      "assistant_stances": {
+        "dropped_invalid_relation": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 4,
+        "validated_count": 4
+      },
+      "dropped_threads": {
+        "assistant_raised_count": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_speaker": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "dropped_speaker_mismatch": 0,
+        "raw_count": 2,
+        "user_raised_count": 2,
+        "validated_count": 2
+      },
+      "live_constraints": {
+        "derivation_mode_count": 1,
+        "dropped_derivation_no_valid_excerpt": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_mode": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "incomplete_derivation_count": 0,
+        "raw_count": 5,
+        "rejected_derivations": [],
+        "span_mode_count": 4,
+        "validated_count": 5
+      }
+    }
+  }
+}

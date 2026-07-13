@@ -1,0 +1,45 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_6",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a7",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v6.json",
+  "base_contract_sha256": "7221db921d08c5a117fd9df4cfd948021b5096d407fd2bc8e6ec5b7f276f7e15",
+  "repair_basis": "A6 proved that a single joint status conflated unresolved user-process weakness with vanilla-answer coverage. V1 now preserves separate user-process, answer-coverage, and routing interpretations.",
+  "pipeline": {
+    "mechanism_interpretation_contract": "separated_user_process_answer_coverage_and_routing",
+    "user_process_statuses": ["unresolved", "resolved", "ambiguous", "not_observed"],
+    "vanilla_answer_coverages": ["operationalized", "acknowledged_only", "not_covered", "not_applicable", "ambiguous"],
+    "routing_dispositions": ["route_uncovered_pressure", "preserve_no_route"],
+    "route_condition": "user unresolved and vanilla answer acknowledged only or not covered",
+    "answer_coverage_is_not_user_adoption": true,
+    "mechanism_routing_is_not_model_applicability_proof": true,
+    "post_recall_candidate_deletion": false,
+    "additional_provider_calls": 0
+  },
+  "calibration": {
+    "a6_stop_review_path": "research/simulated-reliability-v1-calibration-2026-07-12/a6/calibration-stop-review.json",
+    "a7_design_path": "docs/evals/simulated-reliability-v1-separated-mechanism-state-design-2026-07-12.md",
+    "all_a7_call_identities_are_fresh": true,
+    "maximum_provider_calls": 18,
+    "stop_rule": "Product-scope runs first. If counterpressure_acknowledged_not_integrated is routed despite operational coverage in assistant-turn-007, stop A7 before other sentinels. No transfer call is authorized by this contract."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "9a91b1d6fac460ea2740a917aa5557aafd8540ed5a0361deb2adff3846a05472"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "7d793c90ba093646f48bfa693375f9252ee0d60ce34e79f29397f965dc179d54"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a6/calibration-stop-review.json",
+      "sha256": "3fd6ad734269969245dda0c39a77a86ef04e993231da2d0f32505936f949e780"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-separated-mechanism-state-design-2026-07-12.md",
+      "sha256": "6f06243ed5e8b466b38711a4be6ed77bd6aee9770f424c8435cd774513735a73"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "lolla.independent_phase5_role_extraction_source_review.v1",
+  "status": "useful_case_pass_quiet_case_semantic_failure",
+  "review_date": "2026-07-12",
+  "useful_case": {
+    "case_id": "phase5-independent-useful-retailer-pilot",
+    "status": "role_extraction_source_review_pass",
+    "starting_target_preserved": true,
+    "current_target_preserved": true,
+    "qualification_target_preserved": true,
+    "protected_status_signal_meaning_preserved": true,
+    "join_complete": true,
+    "residual_noise": [
+      "Current includes qualification aliases e039-e043 in its evidence envelope even though its components use only e038.",
+      "Qualification expression labels use unwilling/unclear where uncertain assessment and counterpressure would be more precise."
+    ],
+    "downstream_mechanism_probe_authorized": true
+  },
+  "quiet_case": {
+    "case_id": "phase5-independent-quiet-research-meeting",
+    "status": "role_extraction_source_review_fail",
+    "starting_target_preserved": true,
+    "current_target_preserved": true,
+    "qualification_target_preserved": false,
+    "join_complete": true,
+    "failure": "The model converted the already-adopted week-two restoration rule into an unresolved qualification despite the user explicitly stating that nothing remained unresolved.",
+    "why_material": "A manufactured qualification would create downstream pressure in a case designed to stand down, defeating the product's quiet-path requirement.",
+    "same_case_retry_authorized": false,
+    "downstream_mechanism_or_graph_work_authorized": false
+  },
+  "problem_class": {
+    "name": "explicit_no_unresolved_qualification_representation",
+    "finding": "V2.4.1 permits qualification omission but the rest of the pipeline assumes a three-role record set and complete relation join. The system lacks a first-class, auditable way to preserve a probabilistic conclusion that no unresolved qualification was observed.",
+    "required_provider_free_repair": [
+      "Distinguish an adopted condition or reversal rule inside current from an unresolved matter capable of reopening current.",
+      "Allow a model-declared no-unresolved-qualification outcome without manufacturing a role record.",
+      "Preserve that negative semantic conclusion and its source custody for audit.",
+      "Allow mechanism interpretation and quiet portfolio construction from starting/current plus the explicit qualification-review outcome.",
+      "Do not deterministically infer semantic absence from keywords or from record omission alone."
+    ]
+  },
+  "provider_calls": 6,
+  "estimated_cost_usd": 0.0011928,
+  "no_retries": true,
+  "graph_or_runtime_authorized": false
+}

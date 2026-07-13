@@ -1,0 +1,124 @@
+{
+  "additionalProperties": false,
+  "description": "Bounded challenge_and_revision_response response using visible evidence aliases.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 700,
+      "type": "string"
+    },
+    "park_unselected_auxiliary_observations": {
+      "const": true,
+      "type": "boolean"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "auxiliary_observation_ids": {
+            "items": {
+              "maxLength": 120,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "challenge_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "interpretation": {
+            "maxLength": 700,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitations": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "response_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "response_type": {
+            "enum": [
+              "acknowledge",
+              "qualify",
+              "revise",
+              "defer",
+              "reject",
+              "no_response",
+              "mixed"
+            ],
+            "type": "string"
+          },
+          "revision_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "interpretation",
+          "status",
+          "auxiliary_observation_ids",
+          "limitations",
+          "challenge_evidence_ids",
+          "response_evidence_ids",
+          "revision_evidence_ids",
+          "response_type"
+        ],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "mixed",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "park_unselected_auxiliary_observations",
+    "global_limitations"
+  ],
+  "type": "object"
+}

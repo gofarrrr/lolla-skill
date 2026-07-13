@@ -29,6 +29,7 @@ from engine.system_b.companion_routing import (
     _build_verification_user_prompt_from_packet,
     is_malformed_verifier_response,
     parse_verification_response,
+    run_verification_call_with_diagnostics,
     verifier_response_diagnostic,
 )
 from engine.system_b.conversation_context import (
@@ -273,6 +274,74 @@ def test_verifier_diagnostic_flags_truncated_json_with_candidate_count():
     assert diagnostic["raw_content_has_rejected_token"] is True
 
 
+def test_verifier_diagnostic_preserves_provider_finish_error_custody():
+    diagnostic = verifier_response_diagnostic(
+        {"accepted": [], "rejected": []},
+        raw_message_content='{"accepted": [], "rejected": []}',
+        candidate_count=4,
+        provider_status="provider_finish_error",
+        finish_reason="error",
+        prompt_tokens=123,
+        completion_tokens=0,
+    )
+
+    assert diagnostic["status"] == "malformed"
+    assert diagnostic["issue_code"] == "companion_verification_parse_failed"
+    assert diagnostic["reason"] == "provider_finish_error"
+    assert diagnostic["provider_failure_observed"] is True
+    assert diagnostic["provider_status"] == "provider_finish_error"
+    assert diagnostic["finish_reason"] == "error"
+    assert diagnostic["prompt_tokens"] == 123
+    assert diagnostic["completion_tokens"] == 0
+
+
+def test_provider_failed_verifier_payload_cannot_promote_a_model():
+    packet = _minimal_packet()
+
+    class _ProviderFailedClient:
+        last_call_metadata = BoundaryCallMetadata(
+            status="provider_finish_error",
+            finish_reason="error",
+            raw_message_content=(
+                '{"accepted": [{"model_id": "decomposition", '
+                '"evidence_quote": "Consider the options carefully.", '
+                '"presence_mode": "executed"}], "rejected": []}'
+            ),
+            prompt_tokens=80,
+            completion_tokens=0,
+        )
+
+        def run_json(self, _system_prompt, _user_prompt):
+            return {
+                "accepted": [
+                    {
+                        "model_id": "decomposition",
+                        "evidence_quote": "Consider the options carefully.",
+                        "presence_mode": "executed",
+                    }
+                ],
+                "rejected": [],
+            }
+
+    result = run_verification_call_with_diagnostics(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=[
+            {
+                "model_id": "decomposition",
+                "model_name": "Decomposition",
+                "activation_trigger": "A problem is split into explicit parts.",
+            }
+        ],
+        client=_ProviderFailedClient(),
+    )
+
+    assert result.detected_models == []
+    assert result.accepted_before_cap == []
+    assert result.verification_status == "malformed"
+    assert result.verification_issue_detail["reason"] == "provider_finish_error"
+
+
 # ---------------------------------------------------------------------------
 # Boundary metadata capture (Track 1 v2 design memo §4 + memo §7 commitment)
 # ---------------------------------------------------------------------------
@@ -341,6 +410,33 @@ def test_build_call_metadata_handles_empty_finish_reason():
     )
     assert md.finish_reason == ""
     assert isinstance(md.finish_reason, str)
+
+
+def test_build_call_metadata_promotes_finish_error_to_truthful_failure_status():
+    payload = {
+        "model": "google/gemini-3.1-flash-lite-preview-20260601",
+        "choices": [
+            {
+                "message": {"content": '{"accepted": ['},
+                "finish_reason": "error",
+            }
+        ],
+        "usage": {"prompt_tokens": 91, "completion_tokens": 0, "total_tokens": 91},
+    }
+    md = _build_call_metadata(
+        provider_name="openrouter",
+        model="google/gemini-3.1-flash-lite-preview",
+        payload=payload,
+        reasoning_config={"enabled": False},
+        status="ok",
+        raw_message_content='{"accepted": [',
+    )
+
+    assert md.status == "provider_finish_error"
+    assert md.finish_reason == "error"
+    assert md.model_attribution_status == "served_version_alias"
+    assert md.prompt_tokens == 91
+    assert md.completion_tokens == 0
 
 
 def test_build_call_metadata_defaults_when_temperature_and_content_omitted():

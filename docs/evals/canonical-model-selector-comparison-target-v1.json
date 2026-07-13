@@ -1,0 +1,32 @@
+{
+  "schema_version": "lolla.canonical_model_selector_comparison_target.v1",
+  "status": "prospectively_frozen_before_six_calls",
+  "case_id": "amb3-case05-registry-pharma-partnership",
+  "arms": [
+    "registry_source_first__direct_all_canonical",
+    "registry_provider__direct_all_canonical",
+    "registry_reversal_ablation__direct_all_canonical",
+    "registry_source_first__graph_recalled_canonical",
+    "registry_provider__graph_recalled_canonical",
+    "registry_reversal_ablation__graph_recalled_canonical"
+  ],
+  "protected_reversal_model_ids": ["commitment-bias", "premortem", "sunk-cost-fallacy"],
+  "counterpressure_model_ids": ["active-listening", "confirmation-bias", "intellectual-humility"],
+  "acceptance": {
+    "all_calls_operational_and_compiled": true,
+    "canonical_ids_only": true,
+    "source_provider_selected_id_invariance_within_each_mode": true,
+    "full_arms_select_at_least_one_protected_reversal_model": true,
+    "ablation_arms_select_no_protected_reversal_model": true,
+    "ablation_preserves_at_least_one_counterpressure_model": true,
+    "direct_arm_may_select_outside_graph_candidates_but_must_preserve_custody": true,
+    "no_scalar_score": true
+  },
+  "comparison_questions": [
+    "Does direct access improve useful recall or mostly add associative selections?",
+    "Does graph recall preserve protected pressure while reducing unsupported selection?",
+    "Which mode is stable under harmless source-versus-provider record noise?",
+    "Which mode reacts selectively when reversal meaning is removed?"
+  ],
+  "non_claims": ["not_open_domain_validation", "not_reasoning_quality_proof", "not_runtime_authorization"]
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_control_comparison.v0",
+  "status": "semantic_gate_passed_but_consumer_not_executable_under_frozen_contract",
+  "case_id": "case-09-phd-dissertation",
+  "review_type": "provisional_trace_comparison_not_human_ground_truth",
+  "strong_control_result_sha256": "05eda1b8e2ee85e7094a588b15141a4bbe0b60244f2940d65ae5e80ba274edd0",
+  "comparisons": [
+    {
+      "pressure_id": "case09-pressure-01-staged-feasibility",
+      "control_coverage": "substantially_recovered",
+      "basis": "The control removes the fixed 18-month checkpoint, makes Option 3 contingent on data access, and asks for the earliest plausible publishable unit. It does not name a pre-commitment method-transfer pilot, but the core evidence-gate correction is present.",
+      "absent_from_control_for_gate": false
+    },
+    {
+      "pressure_id": "case09-pressure-02-two-sided-regret",
+      "control_coverage": "absent",
+      "basis": "The control removes the smart-versus-ambitious conclusion but never revisits the user's regret concern from both omission and action sides, nor binds regret to downside and reversibility.",
+      "absent_from_control_for_gate": true,
+      "plausible_consequence": "Preserve Option 1 without treating it as fear and ask which failure or delay the user can actually absorb."
+    },
+    {
+      "pressure_id": "case09-pressure-03-durable-role-map",
+      "control_coverage": "partial_without_operational_continuity_design",
+      "basis": "The control asks what collaboration would require and how committed the lab would be, but does not specify PI-level sponsorship, responsibility and handoff ownership, minimum adjacent competence, or continuity if the postdoc leaves.",
+      "absent_from_control_for_gate": true,
+      "plausible_consequence": "Make a durable role and continuity agreement an Option 3 evidence gate rather than relying on one relationship."
+    },
+    {
+      "pressure_id": "case09-pressure-04-remove-invented-weight",
+      "control_coverage": "strongly_recovered",
+      "basis": "The control explicitly sets aside unsupported numerical success rates, market claims, reviewer assumptions, collaborator motives, and advisor behavior.",
+      "absent_from_control_for_gate": false
+    }
+  ],
+  "portfolio_consumer_semantic_gate": {
+    "trace_supported_pressures_absent_from_control": 2,
+    "required_minimum": 2,
+    "absent_pressures_with_plausible_consequence": 2,
+    "required_consequence_minimum": 1,
+    "status": "passed"
+  },
+  "portfolio_consumer_execution_gate": {
+    "status": "failed",
+    "consumer_call_configuration_frozen_before_first_control_call": false,
+    "consumer_prompt_frozen_before_first_control_call": false,
+    "consumer_output_contract_frozen_before_first_control_call": false,
+    "reason": "Case09 froze the semantic authorization threshold but not the provider, model, prompt construction, output cap, or output schema for a portfolio-fed arm. Defining them after reading the control would violate the no-prompt-model-cap-or-contract-change stop rule.",
+    "consumer_call_executed": false,
+    "calls_saved_by_stopping": 1
+  },
+  "case_result": "bounded_inconclusive_with_additive_pressure_signal",
+  "runtime_integration_authorized": false,
+  "next_contract_repair": [
+    "Freeze a two-stage protocol: pipeline admission first, then a downstream arm contract frozen before either downstream arm is called.",
+    "Give control and treatment the same model, system prompt, neutral task, output cap, and typed output schema.",
+    "Freeze the deterministic procedure and caps that project pipeline traces into the treatment pressure packet.",
+    "Run control and treatment only after both call specifications and the pressure packet are hash-locked.",
+    "Do not rerun Case09. Apply the repair prospectively to another untouched holdout."
+  ],
+  "non_claims": [
+    "not_evidence_that_lolla_improved_the_answer",
+    "not_human_review",
+    "not_runtime_promotion_authority",
+    "not_evidence_that_more_private_context_is_better",
+    "not_a_reason_to_retrofit_a_case09_treatment_arm"
+  ]
+}

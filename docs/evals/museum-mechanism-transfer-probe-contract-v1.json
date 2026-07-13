@@ -1,0 +1,15 @@
+{
+  "schema_version": "lolla.museum_mechanism_transfer_probe_contract.v1",
+  "status": "frozen_before_exactly_three_no_retry_calls",
+  "run_id": "museum-mechanism-transfer-probe-2026-07-12",
+  "frozen_inputs": [
+    {"path": "research/museum-mechanism-transfer-corpus-2026-07-12/report.json", "sha256": "6ce152f27f14e62ca189dc7e9c7b25b4109fe5747853b676348ac44ea38556b8"},
+    {"path": "docs/evals/minimum-viable-loop-mechanism-baseline-v1.json", "sha256": "3641d5e93ce0fdc76324f6c2cf5f2325fd945c42132442c7f7a2a31e7dca91a3"},
+    {"path": "research/minimum-viable-loop-mechanism-baseline-2026-07-12/report.json", "sha256": "34a7bffbaf5b57b178897c0f4f4ba83bca66fd58e65d334ce092357221bb267c"}
+  ],
+  "job": {"model": "deepseek/deepseek-v4-flash", "provider_slug": "alibaba", "provider_display_name": "Alibaba", "pricing_per_token": {"prompt": 0.00000007, "completion": 0.00000028}},
+  "call_configuration": {"endpoint": "https://openrouter.ai/api/v1/chat/completions", "wire_mode": "strict_json_schema", "temperature": 0.0, "seed": 0, "reasoning_enabled": false, "max_output_tokens": 1300, "provider_timeout_seconds": 90, "require_supported_parameters": true, "allow_provider_fallbacks": false, "automatic_retries": 0, "response_healing": false, "parallel_calls": false},
+  "budget": {"maximum_provider_calls": 3, "maximum_estimated_cost_usd": 0.01, "automatic_retries": 0, "semantic_retries": 0, "fallback_models": 0, "evaluator_calls": 0, "embedding_calls": 0, "graph_calls": 0, "pipeline_calls": 0, "runtime_calls": 0},
+  "acceptance": {"protected_source_provider": true, "protected_removed_ablation": true, "persistent_all_arms": true, "complete_assessment_coverage": true, "additional_controlled_noise_cap_per_arm": 2, "exact_full_set_invariance_required": false, "no_scalar_score": true},
+  "boundary": {"research_only": true, "complete_nine_mechanism_review": true, "bounded_noise_preserved": true, "deterministic_semantic_mapping": false, "graph_mutation": false, "runtime_integration": false, "production_authorization": false}
+}

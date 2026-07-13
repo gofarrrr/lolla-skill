@@ -1,0 +1,15 @@
+{
+  "schema_version": "lolla.simulated_reliability_calibration_transport_review.v1",
+  "status": "semantic_sentinel_not_executed",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a7",
+  "case_id": "amb1-case01-product-scope",
+  "successful_role_calls": 2,
+  "failed_mechanism_calls": 1,
+  "successful_call_cost_usd": 0.0600435,
+  "failure": "Google Vertex returned HTTP 400 INVALID_ARGUMENT for the expanded strict JSON schema before producing model content.",
+  "semantic_evidence_produced": false,
+  "conclusion": "A7 does not test the separated-state hypothesis. The changed strict schema exceeded or violated the provider's accepted structured-output surface, while the same provider previously completed the mechanism task under JSON-object/schema-in-prompt transport.",
+  "authorized_repair": "Keep prompts, semantics, model, provider route, seed, limits, and compiler unchanged; change only the mechanism wire mode to json_object_schema_in_prompt under a fresh contract and call identity.",
+  "automatic_retry_performed": false,
+  "transfer_authorized": false
+}

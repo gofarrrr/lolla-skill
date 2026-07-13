@@ -1,0 +1,50 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v23_probe_contract.v1",
+  "status": "frozen_before_at_most_four_v23_new_case_calls",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-position-role-first-museum-ai-v23",
+  "purpose": "Test whether explicit semantic role boundaries and source-speaker expression guidance prevent unresolved qualification leakage and attitude flattening while preserving the v2.2 nested wire.",
+  "job": {
+    "case_id": "amb3-case04-museum-ai-license",
+    "packet_path": "research/reasoning-process-position-role-first-v23-new-case-2026-07-12/position-endpoint.json",
+    "packet_sha256": "f821ec19a1d146dc4ffd82097fa84223be143c777e326b4f170e3d136715f419",
+    "model": "deepseek/deepseek-v4-flash", "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+    "provider_slug": "alibaba", "provider_display_name": "Alibaba",
+    "pricing_per_token": {"prompt": 0.000000134, "completion": 0.000000268},
+    "role_request_contracts": {
+      "starting": {"system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982", "user_prompt_sha256": "f624c671cfded29a870927ceeb81c0d03963220625baec3fbf4dc1191ea5fa98", "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd"},
+      "current": {"system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982", "user_prompt_sha256": "dc1bae550882afd64e6220e4e1ad06e98301e0e93d2c0590e671d6c27cb69bc1", "response_schema_sha256": "a4ea11efcd55f3a7ac0b0891d83f915071bc2a90e5493387a73c221a5140722e"},
+      "qualification": {"system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982", "user_prompt_sha256": "d1ebce407f581a099e5983b97735b4284b0e1a31cf35940e62b611926ff778f1", "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107"}
+    },
+    "relation_response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3"
+  },
+  "protected_source_review": {
+    "target_path": "research/reasoning-process-position-role-first-v23-new-case-2026-07-12/source-review-target.json", "target_sha256": "47e078a488142c274a51be22b8e9f20a7219dae9368c611a1e4552bda7783552",
+    "compiled_target_path": "research/reasoning-process-position-role-first-v23-new-case-2026-07-12/compiled-source-review-target.json", "compiled_target_sha256": "22752e512ecc4abe8ea8467f65311d293468d87d86251bbd6b50437f2d9065a4",
+    "written_before_provider_execution": true, "included_in_provider_context": false, "used_for_prompt_tuning": false, "independent_human_gold": false
+  },
+  "frozen_inputs": [
+    {"path": "engine/system_b/reasoning_process_position_role_first_v23.py", "sha256": "32c44dd05ab2ad33eaf823a1929363e2d634ec9b73103f7536e13879375d0303"},
+    {"path": "scripts/evals/reasoning_process_position_decomposition_transport.py", "sha256": "44d572988df71e5a5def9b3f5baa21b5e159bcb51fd163218c3f421eed7e7d95"},
+    {"path": "scripts/evals/run_reasoning_process_position_role_first_v2_probe.py", "sha256": "975d6eb9f2dc5fee6f5806a0df8d45e709d06ae61be225be92dae083853b7d36"},
+    {"path": "scripts/evals/run_reasoning_process_position_role_first_v23_probe.py", "sha256": "9b415f86cd3a5cdac3be70a88a24e855238ced8ad2c77a1678604010426b10ca"},
+    {"path": "research/reasoning-process-position-role-first-v23-2026-07-12/report.json", "sha256": "584810b21c7389d4fca60019e5f913b28db469bc971123cfe4f23fa950efda12"},
+    {"path": "research/reasoning-process-position-role-first-v23-new-case-2026-07-12/target-report.json", "sha256": "d3918187aab15bbf9febbbe9d708a9fca593975a537d7302287c275395dc2e4e"},
+    {"path": "docs/conversation-understanding/reasoning-process-role-boundary-expression-current-practice-2026-07-12.md", "sha256": "3612cc6a9d9b674ea637217c496268c4e261eeefc0558f0eab945551b597605d"},
+    {"path": "docs/conversation-understanding/lolla-product-constitution-v3.md", "sha256": "8890a7a2785a8b12edeea8e3c44ef07e138fcbfb9a0e5f42a25f53641806eaf9"}
+  ],
+  "call_configuration": {"provider": "openrouter", "endpoint": "https://openrouter.ai/api/v1/chat/completions", "wire_mode": "strict_json_schema", "temperature": 0.0, "seed": 0, "reasoning_enabled": false, "max_output_tokens": 1200, "provider_timeout_seconds": 90, "require_supported_parameters": true, "allow_provider_fallbacks": false, "automatic_retries": 0, "response_healing": false, "parallel_calls": false},
+  "custody": {"write_started_marker_before_each_call": true, "never_rerun_if_started_marker_exists": true, "run_three_independent_role_calls_even_if_one_role_fails": true, "block_relation_call_unless_all_three_role_wire_and_admission_gates_pass": true, "derive_and_write_relation_packet_before_relation_call": true},
+  "budget": {"maximum_provider_calls": 4, "maximum_estimated_cost_usd": 0.01, "automatic_retries": 0, "semantic_retries": 0, "fallback_models": 0, "evaluator_calls": 0, "embedding_calls": 0, "graph_calls": 0, "pipeline_calls": 0, "runtime_calls": 0},
+  "success_requirements": {
+    "wire_and_exact_route_pass_for_every_call": true, "one_coherent_record_per_role": true,
+    "starting_distinguishes_external_e002_from_user_owned_e003_e004_expressions": true,
+    "current_includes_e033_e034_e035_and_excludes_unresolved_e036": true,
+    "qualification_includes_e036_e039_e040": true, "protected_e040_irreversibility_survives": true,
+    "assistant_pressure_preserves_ownership_without_user_adoption": true,
+    "relationship_preserves_bounded_pilot_and_persistent_exit_limits": true,
+    "exact_nested_component_identity_and_join_complete": true, "source_first_review_required": true
+  },
+  "stop_rules": {"one_call_per_task_only": true, "no_retry_fallback_response_healing_or_prompt_edit": true, "no_relation_call_after_any_role_wire_or_admission_failure": true, "no_model_control_after_semantic_failure": true, "no_graph_runtime_downstream_reconsideration_or_receipt_work": true},
+  "boundary": {"synthetic_development_case": true, "independent_holdout": false, "protected_review_excluded_from_provider": true, "nested_wire_unchanged_from_v22": true, "semantic_contract_changed_only_in_packet_and_prompt": true, "deterministic_semantic_gate_added": false, "production_integration_authorized": false, "graph_or_runtime_authorized": false}
+}

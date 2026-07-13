@@ -1,0 +1,89 @@
+{
+  "schema_version": "lolla.conversation_state_extraction_program_decision.v1",
+  "date": "2026-07-11",
+  "status": "complete_material_redesign_required",
+  "terminal_conclusion": "The current one-call-per-family full-conversation extraction approach does not meet Lolla's required semantic reliability and should not be integrated into the live skill or graph.",
+  "program_usage": {
+    "provider_calls": 9,
+    "maximum_provider_calls": 12,
+    "automatic_retries": 0,
+    "estimated_cost_usd": 0.02172925,
+    "cost_ceiling_usd": 0.08,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "evaluator_calls": 0,
+    "runtime_changes": 0
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "stage": "json_mode_baseline",
+      "case_passed": false,
+      "threads": "focal disposition recovered but late trajectory incomplete",
+      "constraints": "2/9 strict matches; precision 0.50; recall 0.22; two strength breaches",
+      "positions": "joint focal direction fragmented; assistant Turn 7 lost from focal trajectory"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "stage": "generic_repair_transfer_1",
+      "case_passed": false,
+      "threads": "focal thread omitted; two false resolved labels quarantined",
+      "constraints": "2/9 strict matches; precision 0.33; recall 0.22; one strength breach; one custody violation",
+      "positions": "joint ownership improved but current direction split; decision summary custody failed"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "stage": "generic_repair_transfer_2",
+      "case_passed": false,
+      "threads": "focal thread recovered; second thread caused custody failure",
+      "constraints": "2/10 strict matches; precision 0.33; recall 0.20; one strength breach",
+      "positions": "focal joint plan recovered; reported disagreement promoted into extra current position"
+    }
+  ],
+  "reliable_components": [
+    "JSON object transport reaches inference reliably",
+    "source-specific span-ID enums prevent malformed identifier output",
+    "local typed parsing and exact excerpt validation fail closed",
+    "candidate ledger preserves proposals and terminal states",
+    "invalid candidates receive no event snapshot or accepted path",
+    "graph exclusion remains intact"
+  ],
+  "unreliable_components": [
+    "one-shot full-conversation constraint coverage",
+    "source-strength classification",
+    "focal current-position composition versus adjacent positions",
+    "full thread trajectory and disposition",
+    "correct association between a valid span ID and its exact excerpt"
+  ],
+  "redesign_boundary": {
+    "keep": [
+      "typed internal candidates",
+      "stable source catalog",
+      "deterministic evidence resolution",
+      "candidate ledger and quarantine",
+      "JSON transport with local admission"
+    ],
+    "replace": [
+      "one semantic call scanning the full conversation for all constraints",
+      "one semantic call simultaneously identifying threads and classifying full trajectories",
+      "one semantic call simultaneously discovering contributions and composing current positions"
+    ],
+    "recommended_architecture": [
+      "Use probabilistic turn-level or small-window candidate harvesting without deterministic relevance gating.",
+      "Have the model select stable span IDs only; deterministic code retrieves exact excerpts instead of asking the model to copy them.",
+      "Preserve all harvested candidates in the ledger before any semantic fan-in.",
+      "Use a separate fresh-context probabilistic synthesis step for position ownership and thread trajectory over the ordered candidate ledger.",
+      "Classify atomic constraint source strength in a narrow second semantic step rather than during broad harvesting.",
+      "Evaluate the redesigned stages independently before composing a handoff."
+    ]
+  },
+  "not_authorized": [
+    "another prompt-repair round",
+    "live skill integration",
+    "graph integration",
+    "full pipeline testing",
+    "downstream answer claims",
+    "weaker thresholds",
+    "silent correction or response healing"
+  ]
+}

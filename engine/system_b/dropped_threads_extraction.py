@@ -35,6 +35,7 @@ from typing import Protocol, runtime_checkable
 from .boundary_validation import coerce_str, require_list_of_dicts
 from .conversation_context import ConversationContext
 from .ir import SpanProvenance, SpanRef, UserIssueEvent
+from .semantic_candidate_ledger import SemanticCandidateLedgerRecorder
 from .text_matching import find_substring_tolerant
 
 
@@ -172,6 +173,7 @@ def extract_dropped_threads(
     *,
     context: ConversationContext,
     boundary: _BoundaryClient,
+    candidate_recorder: SemanticCandidateLedgerRecorder | None = None,
 ) -> tuple[list[UserIssueEvent], _ValidationStats]:
     """Run the dropped_threads specialist LLM call, validate output,
     return typed UserIssueEvent objects plus validation stats.
@@ -206,7 +208,25 @@ def extract_dropped_threads(
     dropped_not_substring = 0
     dropped_speaker_mismatch = 0
 
-    for item in raw_items:
+    def record(
+        proposal_index: int,
+        raw: dict[str, object],
+        state: str,
+        reason: str,
+        event: UserIssueEvent | None = None,
+    ) -> None:
+        if candidate_recorder is not None:
+            candidate_recorder.record_candidate(
+                reader_role="dropped_threads",
+                family="dropped_thread_events",
+                proposal_index=proposal_index,
+                raw_proposal=raw,
+                mechanical_state=state,
+                mechanical_reason=reason,
+                event=event,
+            )
+
+    for proposal_index, item in enumerate(raw_items):
         kind = coerce_str(item.get("kind")).strip().lower() or "open_loop"
         speaker = coerce_str(item.get("speaker")).strip().lower()
         text = coerce_str(item.get("text")).strip()
@@ -220,9 +240,21 @@ def extract_dropped_threads(
 
         if kind not in VALID_KINDS:
             dropped_invalid_kind += 1
+            record(
+                proposal_index,
+                item,
+                "invalid_evidence",
+                "candidate_kind_is_invalid",
+            )
             continue
         if speaker not in VALID_SPEAKERS:
             dropped_invalid_speaker += 1
+            record(
+                proposal_index,
+                item,
+                "invalid_evidence",
+                "candidate_speaker_is_invalid",
+            )
             continue
 
         turn_text = turn_map.get((turn_index, speaker))
@@ -232,17 +264,37 @@ def extract_dropped_threads(
             any_turn = any(ti == turn_index for (ti, _) in turn_map)
             if any_turn:
                 dropped_speaker_mismatch += 1
+                reason = "candidate_speaker_does_not_match_source_turn"
             else:
                 dropped_invalid_turn += 1
+                reason = "candidate_source_turn_not_found"
+            record(
+                proposal_index,
+                item,
+                "not_supported_by_source",
+                reason,
+            )
             continue
 
         if not text:
             dropped_not_substring += 1
+            record(
+                proposal_index,
+                item,
+                "not_supported_by_source",
+                "candidate_quote_is_missing",
+            )
             continue
 
         matched = find_substring_tolerant(text, turn_text)
         if matched is None:
             dropped_not_substring += 1
+            record(
+                proposal_index,
+                item,
+                "not_supported_by_source",
+                "candidate_quote_not_found_in_source_turn",
+            )
             continue
 
         start_char = turn_text.find(matched)
@@ -250,6 +302,12 @@ def extract_dropped_threads(
             start_char = turn_text.lower().find(matched.lower())
         if start_char == -1:
             dropped_not_substring += 1
+            record(
+                proposal_index,
+                item,
+                "not_supported_by_source",
+                "candidate_quote_offset_not_found",
+            )
             continue
 
         span_ref = SpanRef(
@@ -258,17 +316,23 @@ def extract_dropped_threads(
             start_char=start_char,
             end_char=start_char + len(matched),
         )
-        validated.append(
-            UserIssueEvent(
-                issue_id=_issue_id(turn_index, speaker, matched),
-                text=matched,
-                kind=kind,
-                status="acknowledged_then_dropped",
-                provenance=SpanProvenance(span_ref=span_ref),
-                introduced_at_turn=turn_index,
-                superseded_by=superseded_by,
-                kind_ambiguity=kind_ambiguity,
-            )
+        event = UserIssueEvent(
+            issue_id=_issue_id(turn_index, speaker, matched),
+            text=matched,
+            kind=kind,
+            status="acknowledged_then_dropped",
+            provenance=SpanProvenance(span_ref=span_ref),
+            introduced_at_turn=turn_index,
+            superseded_by=superseded_by,
+            kind_ambiguity=kind_ambiguity,
+        )
+        validated.append(event)
+        record(
+            proposal_index,
+            item,
+            "validated",
+            "exact_source_and_contract_validation_passed",
+            event,
         )
         if speaker == "user":
             user_raised_count += 1

@@ -1,0 +1,80 @@
+{
+  "additionalProperties": false,
+  "description": "Two-record chronological shard response for evidence_and_assumption_discipline.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 700,
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "boundary_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "claim_or_input_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "interpretation": {
+            "maxLength": 700,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitations": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "interpretation",
+          "status",
+          "limitations",
+          "claim_or_input_evidence_ids",
+          "boundary_evidence_ids"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "mixed",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "global_limitations"
+  ],
+  "type": "object"
+}

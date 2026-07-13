@@ -1,0 +1,207 @@
+{
+  "arm_id": "registry_provider__graph_recalled_canonical",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "expected_selection_included": false,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "avoid_when": "The conversation has already produced enough evidence for a decision or reversible experiment, and more listening would mainly postpone commitment.",
+      "display_name": "Active Listening",
+      "input_type": "understanding-and-alignment problem",
+      "model_id": "active-listening",
+      "output_type": "validated perspective and tension read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Commitment, alignment, or conflict repair depends on understanding both the factual and emotional content of what another person is saying."
+    },
+    {
+      "avoid_when": "Prior public commitment, sunk cost, or ego investment is becoming more important than updating on new evidence.",
+      "display_name": "Commitment Bias",
+      "input_type": "commitment-under-review",
+      "model_id": "commitment-bias",
+      "output_type": "recommit-or-exit check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Execution requires persistence across a long sequence of small decisions that would otherwise unravel under distraction or drift."
+    },
+    {
+      "avoid_when": "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge.",
+      "display_name": "Confirmation Bias",
+      "input_type": "claim-under-review",
+      "model_id": "confirmation-bias",
+      "output_type": "disconfirming-evidence challenge",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is converging on a favored answer before the evidence has been fully tested."
+    },
+    {
+      "avoid_when": "Humility is being performed as self-minimization or soft language while real updating, accountable claims, and clear judgment are still being avoided.",
+      "display_name": "Intellectual Humility",
+      "input_type": "overconfidence and updating problem",
+      "model_id": "intellectual-humility",
+      "output_type": "updated stance under uncertainty",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The main risk is overconfidence in the current frame, and better judgment depends on admitting what may not be known yet."
+    },
+    {
+      "avoid_when": "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function.",
+      "display_name": "Opportunity Cost",
+      "input_type": "resource allocation choice",
+      "model_id": "opportunity-cost",
+      "output_type": "trade-off pricing check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move."
+    },
+    {
+      "avoid_when": "The exercise is producing an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+      "display_name": "Premortem",
+      "input_type": "pre-commitment failure-exposure problem",
+      "model_id": "premortem",
+      "output_type": "failure-path mitigation plan",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A project is still pre-commitment and the cost of finding failure modes now is much lower than after launch."
+    },
+    {
+      "avoid_when": "Anti-sunk-cost logic is being used as cover for reckless abandonment without evaluating learning value, switching costs, or remaining upside.",
+      "display_name": "Sunk Cost Fallacy",
+      "input_type": "escalation and legacy-investment problem",
+      "model_id": "sunk-cost-fallacy",
+      "output_type": "future-oriented recommitment test",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is persisting mainly because of prior investment, history, or identity rather than because the future economics still justify recommitment."
+    },
+    {
+      "avoid_when": "Trade-off talk has become performance without allocation, so priorities are being acknowledged rhetorically but no resources, options, or rankings ac\u2026",
+      "display_name": "Trade Offs",
+      "input_type": "competing-objectives decision",
+      "model_id": "trade-offs",
+      "output_type": "priority trade-off framing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Pursuing one objective necessarily weakens another, so the real decision is what good thing must be sacrificed, delayed, or downweighted."
+    }
+  ],
+  "candidate_count": 8,
+  "packet_sha256": "2c8892b05db1207737d4d1e42770f16d3a944224ed41b194741511fb36525428",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The user describes the registry, the offer, and their own mixed feelings. e001-e002 set the situation; e003-e004 express the user's own attractions, hesitations, and unresolved stance.",
+      "limitations": "none",
+      "role": "starting",
+      "role_interpretation": "The user's earliest visible working position: attraction to faster research and resources, hesitation about commercial advantage from participant solidarity, and an undecided question about whether the concern is protective or biased.",
+      "role_record_id": "rprolev22-starting-01-58179ca760e5e1",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "faster research and resources the university cannot provide",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "turning participant solidarity into a private discovery advantage",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether the concern protects the community or assumes commercial research is inherently suspect",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e033",
+        "e034",
+        "e035",
+        "e036",
+        "e037",
+        "e038"
+      ],
+      "fidelity_note": "The user's later working position is a bounded validation partnership with specific safeguards, as described in e033-e035 and summarized by the assistant in e037-e038.",
+      "limitations": "none",
+      "role": "current",
+      "role_interpretation": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+      "role_record_id": "rprolev22-current-01-6fe783d43042c4",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "bounded validation partnership",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "twelve-month first-negotiation right for jointly validated targets only, with no delay to noncommercial publication or unrelated academic work",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e035",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "set thresholds for withdrawal-response, access, publication-delay, rejected-request, and benefit-fund before signing",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "approve pilot only if withdrawal ends participant-level access and future queries",
+          "stance_object_kind": "action_or_proposal"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e036",
+        "e039",
+        "e040"
+      ],
+      "fidelity_note": "The unresolved issue is whether 'withdrawal' meaningfully reverses participation after collective patterns have been learned, as expressed by the user in e036 and clarified by the assistant in e039-e040.",
+      "limitations": "none",
+      "role": "qualification",
+      "role_interpretation": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+      "role_record_id": "rprolev22-qualification-01-40fca34d8ea2b5",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether withdrawal can be called meaningful when aggregate patterns and target hypotheses remain after participant-level access ends",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e039",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "the word withdrawal overstates what can be reversed after collective patterns have been learned",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e040",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "if the pilot ends or a participant leaves, research priorities, target hypotheses, company expectations, and the community's understanding of the registry may not return to their prior state",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_selection_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/role-record-pattern-invariance-corpus-2026-07-12/packets/registry_provider.json",
+      "sha256": "53703ec56b9e360763458f9cd10170b8ada80c45a5aad6276201f3f0ab6bcceb"
+    }
+  ]
+}

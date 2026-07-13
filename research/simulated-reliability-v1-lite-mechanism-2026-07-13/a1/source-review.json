@@ -1,0 +1,72 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_source_review.v1",
+  "status": "monolithic_mechanism_task_failed_interface_and_semantic_consistency_decomposition_required",
+  "case_id": "v1-case06-industry-funded-lab",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "interface_review": {
+    "operational_status": "local_validation_failed",
+    "nine_rows_returned": true,
+    "exact_validation_error": "V1 observed mechanism lacks user-process evidence",
+    "rows_missing_required_role_evidence": [
+      "criteria_defined_after_commitment",
+      "initial_frame_persists_after_question_change",
+      "upside_downside_evidence_asymmetry"
+    ],
+    "additional_internal_conflict": "missing_reversal_condition was marked route_uncovered_pressure while vanilla_answer_coverage was operationalized, which the routing contract forbids.",
+    "compiled_result_available": false,
+    "runtime_effect": "none"
+  },
+  "semantic_review": {
+    "acknowledged_constraint_not_gated": {
+      "candidate_status": "unresolved",
+      "candidate_coverage": "acknowledged_only",
+      "assessment": "plausible_but_not_proven",
+      "reason": "The structural hiring/attention effect remains, but the user did adopt annual portfolio monitoring. Whether the missing element is a gate or threshold requires a focused judgment rather than automatic activation from qualification presence."
+    },
+    "counterpressure_acknowledged_not_integrated": {
+      "candidate_status": "unresolved",
+      "candidate_coverage": "acknowledged_only",
+      "assessment": "likely_false_activation",
+      "reason": "The user integrated the structural concern through scheduled capacity, sample records, equipment exit planning, and annual portfolio review. Remaining uncertainty does not by itself prove that counterpressure was ignored."
+    },
+    "missing_reversal_condition": {
+      "candidate_status": "unresolved",
+      "candidate_coverage": "operationalized",
+      "assessment": "plausible_user_status_but_invalid_route",
+      "reason": "The source has monitoring and pre-entry conditions but no obvious bounded walk-away threshold for unacceptable cumulative drift. The assistant did discuss renewal, exit, and capability protection, so operationalized coverage cannot route as uncovered under the frozen policy."
+    }
+  },
+  "root_cause": {
+    "task_shape": "One response had to assess nine different mechanisms, user-process status, assistant coverage, evidence custody, pattern state, and routing disposition simultaneously.",
+    "not_just_json": "The output was syntactically complete but violated cross-field policy and omitted required evidence for observed statuses.",
+    "not_resolved_by_price": "A more expensive model may reduce mistakes but does not remove avoidable semantic and bookkeeping workload from one call."
+  },
+  "custody_and_cost": {
+    "provider_calls": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "duration_seconds": 8.718,
+    "prompt_tokens": 5098,
+    "completion_tokens": 1709,
+    "reasoning_tokens_reported": 956,
+    "provider_reported_cost_usd": 0.003838,
+    "cost_ceiling_usd": 0.01,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "retry_same_monolithic_task": false,
+    "increase_model_price": false,
+    "route_candidate_output": false,
+    "pressure_call_authorized": false,
+    "production_model_selected": false,
+    "next_design": {
+      "probabilistic_task": "One controlled mechanism per model task. The model declares user_process_status, vanilla_answer_coverage, pattern_state, and exact source IDs for only that mechanism.",
+      "deterministic_policy": "Code validates evidence custody and derives routing_disposition from the explicit statuses using the existing frozen routing rule. It does not read prose or decide whether the mechanism exists.",
+      "first_probe": "Use the difficult trio acknowledged_constraint_not_gated, counterpressure_acknowledged_not_integrated, and missing_reversal_condition before expanding to all nine."
+    }
+  }
+}

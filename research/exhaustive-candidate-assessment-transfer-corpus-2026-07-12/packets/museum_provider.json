@@ -1,0 +1,262 @@
+{
+  "arm_id": "museum_provider",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "exactly_one_assessment_per_candidate": true,
+    "expected_selection_included": false,
+    "fact_free_recall_provenance_included": true,
+    "global_abstention_shortcut": false,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "challenge_when": "Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.",
+      "display_name": "Active Listening",
+      "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.",
+      "failure_signal": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+      "model_id": "active-listening",
+      "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.",
+          "excludes": "Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "near_neighbor": "acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.",
+          "requires": "Both acknowledgement and failure to integrate are supported."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.",
+      "display_name": "Commitment Bias",
+      "do_not_apply_when": "Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.",
+      "failure_signal": "Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+      "model_id": "commitment-bias",
+      "pressure_question": "What evidence would make us reverse course rather than defend the original commitment?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "An adopted or advancing path lacks a bounded condition that would trigger stopping, reversing, or materially reconsidering it.",
+          "excludes": "Do not use merely because uncertainty remains, because a reversible alternative was not considered, or when an operative stop/review condition exists.",
+          "mechanism_id": "missing_reversal_condition",
+          "near_neighbor": "reversible_path_not_considered concerns option design before commitment; this concerns an exit or reconsideration rule for the current path.",
+          "requires": "The captured records show meaningful commitment or path dependence and bounded inspection finds no operative reversal condition."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+      "display_name": "Confirmation Bias",
+      "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+      "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+      "model_id": "confirmation-bias",
+      "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.",
+          "excludes": "Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "near_neighbor": "acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.",
+          "requires": "Both acknowledgement and failure to integrate are supported."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.",
+      "display_name": "Intellectual Humility",
+      "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.",
+      "failure_signal": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+      "model_id": "intellectual-humility",
+      "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.",
+          "excludes": "Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "near_neighbor": "acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.",
+          "requires": "Both acknowledgement and failure to integrate are supported."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.",
+      "display_name": "Premortem",
+      "do_not_apply_when": "Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.",
+      "failure_signal": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+      "model_id": "premortem",
+      "pressure_question": "Is the worst case bad enough?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "An adopted or advancing path lacks a bounded condition that would trigger stopping, reversing, or materially reconsidering it.",
+          "excludes": "Do not use merely because uncertainty remains, because a reversible alternative was not considered, or when an operative stop/review condition exists.",
+          "mechanism_id": "missing_reversal_condition",
+          "near_neighbor": "reversible_path_not_considered concerns option design before commitment; this concerns an exit or reconsideration rule for the current path.",
+          "requires": "The captured records show meaningful commitment or path dependence and bounded inspection finds no operative reversal condition."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    },
+    {
+      "challenge_when": "Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.",
+      "display_name": "Sunk Cost Fallacy",
+      "do_not_apply_when": "Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.",
+      "failure_signal": "Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+      "model_id": "sunk-cost-fallacy",
+      "pressure_question": "Would we start again today from current facts?",
+      "recall_mechanism_cards": [
+        {
+          "definition": "An adopted or advancing path lacks a bounded condition that would trigger stopping, reversing, or materially reconsidering it.",
+          "excludes": "Do not use merely because uncertainty remains, because a reversible alternative was not considered, or when an operative stop/review condition exists.",
+          "mechanism_id": "missing_reversal_condition",
+          "near_neighbor": "reversible_path_not_considered concerns option design before commitment; this concerns an exit or reconsideration rule for the current path.",
+          "requires": "The captured records show meaningful commitment or path dependence and bounded inspection finds no operative reversal condition."
+        }
+      ],
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ],
+      "schema_version": "lolla.canonical_model_assessment_card.v3"
+    }
+  ],
+  "candidate_count": 6,
+  "packet_sha256": "b047d92f17c30d6b8653b454f84f787bb00edb2b638a1f3556cc0eb34ed6c0e1",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "User's own starting stance: attraction to funding and discovery, hesitation about stewardship becoming raw-material supply, and unresolved uncertainty about whether hesitation protects trust or reflects control instinct.",
+      "limitations": "none",
+      "role": "starting",
+      "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+      "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "wider discovery and stable funding",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "licensing the collection turns stewardship into raw-material supply",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether hesitation protects contributor trust or reflects an institutional instinct to control access",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e033",
+        "e034",
+        "e035",
+        "e036"
+      ],
+      "fidelity_note": "The user's current position is a bounded pilot with specific conditions and unresolved concerns.",
+      "limitations": "none",
+      "role": "current",
+      "role_interpretation": "The user is leaning toward a specific pilot and has set conditions for approval, while acknowledging an unresolved issue.",
+      "role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "leaning",
+          "stance_object_interpretation": "six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "approve the pilot only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e035",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "set complaint, removal, false-association, and sensitive-query thresholds before signing",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e036",
+        "e039",
+        "e040"
+      ],
+      "fidelity_note": "User expresses unresolved concern about contributor exit; assistant elaborates that social and technical learning may persist beyond formal deletion.",
+      "limitations": "none",
+      "role": "qualification",
+      "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+      "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e039",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "the unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e040",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "if the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_exhaustive_assessment_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/reasoning-process-position-role-first-v23-probe-2026-07-12/result.json",
+      "sha256": "0bca6982675a552a4dc929730a0e7de8a601955bc60d73128104f088c9ff2d5a"
+    }
+  ]
+}

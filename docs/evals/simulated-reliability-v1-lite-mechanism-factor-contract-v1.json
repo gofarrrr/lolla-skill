@@ -1,0 +1,83 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_factor_contract.v1",
+  "status": "frozen_before_one_factored_transfer_probe",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-mechanism-factor-transfer-t1",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "mechanism_id": "counterpressure_acknowledged_not_integrated",
+  "purpose": "Test whether explicit observed-versus-integrated factors and low reasoning repair the preserved separate-case transfer failure without increasing model price or retrying the failed contract.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json",
+    "parent_mechanism_request_sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87",
+    "failed_transfer_source_review_path": "research/simulated-reliability-v1-lite-mechanism-split-transfer-2026-07-13/t1/source-review.json",
+    "failed_transfer_source_review_sha256": "895017c898b7f33394d5bf252e135f5d136f7e62b8891deddc99fbeda12a69cc",
+    "upstream_role_operator": "google/gemini-3.5-flash"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limit": {
+    "max_output_tokens": 1000,
+    "reasoning_effort": "low",
+    "wire_mode": "strict_json_schema",
+    "rationale": "OpenRouter documents Gemini thinking tokens as billed output tokens and maps low effort to Google's low thinking level. The failed medium-effort call spent 909 of 984 completion tokens on reasoning before truncating a tiny JSON object."
+  },
+  "seeds": {"user_factor": 967, "assistant_coverage": 977},
+  "factor_contract": {
+    "model_authored": ["mechanism_observation", "integration_status", "pattern_state", "source_role_record_ids"],
+    "code_derived": ["user_process_status", "routing_disposition"],
+    "derivation": {
+      "observed_and_integrated": "resolved",
+      "observed_and_not_integrated": "unresolved",
+      "not_observed_and_not_applicable": "not_observed",
+      "any_ambiguous_factor": "ambiguous"
+    },
+    "semantic_boundary": "Code does not inspect conversation prose, keywords, or chronology; it maps explicit model-authored semantic factors to the frozen status vocabulary."
+  },
+  "request_attestation": {
+    "user_factor_packet_sha256": "7f561bfb7523140da29c8509a9095f44f6efda1ff9d371478a885f97b7f993d0",
+    "role_record_count": 2,
+    "user_factor_system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea",
+    "user_factor_user_prompt_sha256": "147ac603094afe49baa3b1b0ffc3c57a88a1053d73ae69a8f24c1f1e6c83a54f",
+    "user_factor_response_schema_sha256": "6f2a1c92c7c06233006d51d74fb2c44bb04c6bbce3dfb72811726afbe80a7f71",
+    "assistant_coverage_response_schema_sha256": "037346754a4c4bcb9ef73abed60702dc16c624636258dd6a41b976ba3f7e70ec"
+  },
+  "budget": {"maximum_provider_calls": 2, "maximum_provider_reported_cost_usd": 0.01, "automatic_retries": 0, "fallback_models": 0, "response_healing": false},
+  "review_contract": {
+    "prospective_mechanism_observation": "observed",
+    "prospective_integration_status": "integrated",
+    "prospective_user_status": "resolved",
+    "prospective_assistant_coverage": "operationalized",
+    "prospective_route": "preserve_no_route",
+    "prospective_answers_not_in_model_prompt": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "retry_of_failed_bytes": false,
+    "full_nine_expansion_authorized": false,
+    "pressure_call_authorized": false,
+    "runtime_effect": "none",
+    "production_model_selection_authorized": false,
+    "gemini_3_5_call_authorized": false
+  },
+  "current_practice_sources": [
+    "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "https://openrouter.ai/docs/guides/features/structured-outputs"
+  ],
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_mechanism_factor_probe_v1.py", "sha256": "90bdd190e8036a456f86bdd0ed720d1f2d3b02f6f4828843fd521e9866b03e8e"},
+    {"path": "engine/system_b/reasoning_mechanism_user_factor_v1.py", "sha256": "ddce0d694e656ad2af4eb127c0a317e0bf352baf48e2a66bfb7940488aaf0dd3"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json", "sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87"},
+    {"path": "research/simulated-reliability-v1-lite-mechanism-split-transfer-2026-07-13/t1/source-review.json", "sha256": "895017c898b7f33394d5bf252e135f5d136f7e62b8891deddc99fbeda12a69cc"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-05-parenting-teen",
+  "source_file_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_parent_response", "dimension": "operative_question", "description": "The initial request asks how the parent should respond.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I don't know what to do."}]},
+    {"observation_id": "question.current_plan_summary", "dimension": "operative_question", "description": "The current request becomes an implementation summary.", "evidence": [{"turn_index": 11, "speaker": "user", "quote": "Can you walk me through what the plan is, like a summary?"}]},
+    {"observation_id": "pressure.ongoing_phone_monitoring", "dimension": "user_corrections_and_pressure", "description": "The user later discloses months of covert phone monitoring.", "evidence": [{"turn_index": 5, "speaker": "user", "quote": "I've been going through her phone for months."}]},
+    {"observation_id": "constraint.daughter_shutdown", "dimension": "constraints_and_options", "description": "The daughter has shut down communication.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "she just shut down completely"}]},
+    {"observation_id": "constraint.coparent_disagreement", "dimension": "constraints_and_options", "description": "The co-parent considers the concern an overreaction.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff."}]},
+    {"observation_id": "stance.relationship_first_reframe", "dimension": "assistant_positions_and_revisions", "description": "The assistant prioritizes reopening the parent-child relationship.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face."}]},
+    {"observation_id": "stance.defer_police", "dimension": "assistant_positions_and_revisions", "description": "The assistant explicitly defers police contact.", "evidence": [{"turn_index": 3, "speaker": "assistant", "quote": "you don't call the police today"}]},
+    {"observation_id": "boundary.no_known_physical_contact", "dimension": "uncertainty_and_evidence_boundaries", "description": "Physical contact is not established.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "Nothing has happened physically that I can tell"}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.verified_legal_threshold", "description": "The conversation does not independently establish the jurisdiction-specific legal threshold."}
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_split_transfer_source_review.v1",
+  "status": "transfer_failed_length_with_preliminary_semantic_conflict",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "mechanism_id": "counterpressure_acknowledged_not_integrated",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "interface_review": {
+    "operational_status": "local_validation_failed",
+    "finish_reason": "length",
+    "max_output_tokens": 1000,
+    "completion_tokens": 984,
+    "reasoning_tokens": 909,
+    "visible_answer_tokens_approximate": 75,
+    "assistant_coverage_call_made": false,
+    "automatic_retry_made": false,
+    "runtime_effect": "none"
+  },
+  "semantic_review": {
+    "partial_candidate_status": "not_observed",
+    "partial_candidate_started_citing_role_record": true,
+    "assessment": "preliminary_conflict_even_if_not_truncated",
+    "reason": "The starting record explicitly contains the counterpressure and the current record contains the safeguards it caused. A not-observed status conflicts with that source, and not-observed is also contractually incompatible with citing role evidence."
+  },
+  "root_cause": {
+    "token_failure": "Medium Gemini reasoning consumed nearly the entire shared completion budget before the tiny JSON answer completed.",
+    "semantic_failure": "The current status enum still asks the model to compress historical observation and later integration into one label, allowing not_observed and resolved to be confused.",
+    "not_a_schema_support_failure": "The same endpoint and strict schema succeeded on prior split tasks."
+  },
+  "custody_and_cost": {
+    "provider_calls": 1,
+    "provider_reported_cost_usd": 0.0019155,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "cost_ceiling_usd": 0.01,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "retry_same_contract": false,
+    "increase_output_ceiling_only": false,
+    "increase_model_price": false,
+    "production_model_selected": false,
+    "next_design": "Ask the model separately whether the mechanism was observed and whether it was later integrated, then derive resolved/unresolved/not_observed in code. Use low reasoning effort for this small structured task and preserve the same separate assistant-coverage call."
+  }
+}

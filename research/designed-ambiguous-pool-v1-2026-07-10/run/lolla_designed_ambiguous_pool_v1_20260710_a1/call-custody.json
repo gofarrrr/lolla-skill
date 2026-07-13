@@ -1,0 +1,40 @@
+{
+  "schema_version": "lolla.designed_ambiguous_pool_call_custody.v1",
+  "run_id": "lolla_designed_ambiguous_pool_v1_20260710_a1",
+  "recorded_call_count": 1,
+  "persistence_mode": "post_interruption_reconstruction_from_frozen_contract_and_process_trace",
+  "call": {
+    "call_attempted": true,
+    "request_sent": true,
+    "http_response_read_started": true,
+    "http_response_read_completed": false,
+    "requested_model": "moonshotai/kimi-k2.6",
+    "served_model": null,
+    "model_attribution_status": "unknown",
+    "system_prompt_sha256": "fe4fe59362fc1e039f4d9fa874ed9650c249d16cd0e60630e038a05b9630bbd3",
+    "user_prompt_sha256": "7068b024760ad8c7ccb16bd1ededbd70f5f4547cf5a60cf566760b677f25f11a",
+    "response_schema_sha256": "3ba92bcdcaa275b9a4b4f19f531eb46963384f6b12bfc14fadf4bf6bec23270f",
+    "reasoning_parameter_sent": false,
+    "status": "externally_interrupted_after_outer_wall_ceiling",
+    "terminal_exception": "KeyboardInterrupt",
+    "interruption_location": "http.client chunked response read over SSL socket",
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "total_tokens": null,
+    "reasoning_tokens": null,
+    "usage_evidence_state": "unknown",
+    "estimated_cost_usd": null,
+    "exact_wall_time_seconds": null,
+    "observed_external_elapsed_lower_bound_seconds": 310,
+    "provider_payload_preserved": false,
+    "response_preserved": false,
+    "validation_errors": [
+      "provider response did not complete before the frozen outer wall ceiling",
+      "runner persisted no attempted-call sidecar before blocking on response.read",
+      "usage, cost, served model, provider payload, and generated cases are unknown"
+    ]
+  },
+  "automatic_retries": 0,
+  "evaluator_calls": 0,
+  "raw_provider_content_included": false
+}

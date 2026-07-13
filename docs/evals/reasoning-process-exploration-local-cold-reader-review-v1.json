@@ -1,0 +1,27 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_cold_reader_review.v1",
+  "status": "current_corpus_pass_cross_turn_boundary_failed",
+  "date": "2026-07-11",
+  "reviewer_independence": "same_project_session_structural_review_not_independent",
+  "current_corpus": {
+    "five_protected_pairs_recoverable": true,
+    "case_receipts_distinguish_unreviewed_from_empty": true,
+    "focal_source_partition_replayable": true,
+    "global_synthesis_required": false,
+    "semantic_deduplication_required": false
+  },
+  "adversarial_cross_turn_fixture": {
+    "path": "tests/fixtures/reasoning_process_exploration_local/cross_turn_relationship.txt",
+    "scenario": "An alternative is introduced in one user-assistant pair and receives its attached condition in the next pair.",
+    "v1_result": "blocked because the alternative alias is read-only prior context in the second window",
+    "product_relevance": "Real ambiguous conversations often qualify an option one turn after introducing it."
+  },
+  "decision": {
+    "v1_provider_free_gate_passed": false,
+    "provider_call_authorized": false,
+    "required_revision": "Allow prior-context aliases only in alternative_evidence_ids when the focal pair supplies the new attached condition or limit; keep attached-condition evidence focal-only.",
+    "deterministic_semantic_inference_added": false,
+    "phase4_transfer_authorized": false
+  },
+  "nonclaim": "Passing the five existing protected fixtures does not establish multi-turn relationship coverage."
+}

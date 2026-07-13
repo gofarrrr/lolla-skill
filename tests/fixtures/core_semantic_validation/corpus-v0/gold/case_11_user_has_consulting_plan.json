@@ -1,0 +1,20 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-11-user-has-consulting-plan",
+  "source_file_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_launch_plan", "dimension": "operative_question", "description": "The initial request asks for help with a planned consulting launch.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "Can you help me think through the launch plan?"}]},
+    {"observation_id": "question.current_fractional_bridge", "dimension": "operative_question", "description": "The current question moves to how a fractional bridge would work.", "evidence": [{"turn_index": 6, "speaker": "user", "quote": "How would that actually work?"}]},
+    {"observation_id": "pressure.no_actual_commitments", "dimension": "user_corrections_and_pressure", "description": "Network interest has not produced engagements.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "None of them have committed to actual engagements."}]},
+    {"observation_id": "constraint.eight_month_runway", "dimension": "constraints_and_options", "description": "The user has eight months of runway.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I have 8 months runway saved."}]},
+    {"observation_id": "stance.network_not_pipeline", "dimension": "assistant_positions_and_revisions", "description": "The assistant reframes friendly network statements as not yet a pipeline.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "You don't have a pipeline; you have a network that might become a pipeline."}]},
+    {"observation_id": "stance.launch_condition", "dimension": "assistant_positions_and_revisions", "description": "The final position permits the planned launch only with three conditions.", "evidence": [{"turn_index": 7, "speaker": "assistant", "quote": "Launching in 6 weeks is viable if you do three things in those 6 weeks"}]},
+    {"observation_id": "threshold.delay_rule", "dimension": "constraints_and_options", "description": "The assistant supplies an explicit delay threshold.", "evidence": [{"turn_index": 7, "speaker": "assistant", "quote": "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months."}]},
+    {"observation_id": "drop.requested_launch_tactics", "dimension": "dropped_or_under_carried_threads", "description": "The original request for launch tactics is initially displaced by fundamentals.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "help me think through the launch plan"}]},
+    {"observation_id": "boundary.friendly_interest_only", "dimension": "uncertainty_and_evidence_boundaries", "description": "The evidence consists of informal, hypothetical interest.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "if you were independent, we'd consider you"}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.signed_engagement", "description": "No signed engagement exists during the conversation."}
+  ]
+}

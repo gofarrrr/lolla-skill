@@ -1,0 +1,889 @@
+{
+  "schema_version": "lolla.joint_process_reasoning_invariance_result.v0",
+  "status": "failed",
+  "contract_sha256": "6da68354c7fe86dbfb9c03b039ae8f58e1ccc783dcd1577ca550596ddb3390b2",
+  "fixture_results": [
+    {
+      "fixture_id": "facts_c",
+      "status": "ok",
+      "packet": {
+        "schema_version": "lolla.joint_process_reasoning_packet.v0",
+        "packet_metadata": {
+          "packet_id": "joint_process_reasoning_packet:facts_c",
+          "target": "unresolved_joint_conversation_trajectory",
+          "graph_runtime_modified": false
+        },
+        "provenance": {
+          "source_interpretation_ref": "tests/fixtures/joint_process_reasoning_invariance/facts_c.txt",
+          "source_interpretation_sha256": "edac30f6c67142a038670482c1fdbb6b527eed3d3ba8377a74f6255de1868d67",
+          "raw_text_included": false
+        },
+        "mechanism_reviews": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "other_review_required",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          }
+        ],
+        "routing_projection": {
+          "schema_version": "lolla.joint_process_reasoning_projection.v0",
+          "active_nodes": [
+            {
+              "mechanism_id": "acknowledged_constraint_not_gated",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "ambiguous_signal_treated_as_commitment",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "counterpressure_acknowledged_not_integrated",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "initial_frame_persists_after_question_change",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "missing_reversal_condition",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "reversible_path_not_considered",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "status_signal_used_as_evidence",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "upside_downside_evidence_asymmetry",
+              "joint_status": "unresolved"
+            }
+          ],
+          "edge_nodes": [],
+          "manual_review_nodes": [],
+          "contains_case_context": false
+        },
+        "fact_boundary": {
+          "raw_text_included": false,
+          "quotes_included": false,
+          "entities_included": false,
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "mechanism_reviews_are_probabilistic_interpretations",
+          "resolved_does_not_mean_never_present",
+          "ambiguous_is_preserved_not_erased",
+          "not_graph_applicability",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "routing": {
+        "schema_version": "lolla.joint_process_reasoning_shadow_routing.v0",
+        "status": "research_only",
+        "projection_signature": "fa2df1b9259db5f4a3895f451ff657aa9afeddbca56742d0fb087fa6603ac107",
+        "active_seed_candidates": [
+          {
+            "model_id": "active-listening",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "anchoring",
+            "pulled_by_mechanisms": [
+              "initial_frame_persists_after_question_change"
+            ]
+          },
+          {
+            "model_id": "calculated-risk-taking",
+            "pulled_by_mechanisms": [
+              "upside_downside_evidence_asymmetry"
+            ]
+          },
+          {
+            "model_id": "commitment-bias",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "confirmation-bias",
+            "pulled_by_mechanisms": [
+              "ambiguous_signal_treated_as_commitment",
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "experimentation",
+            "pulled_by_mechanisms": [
+              "ambiguous_signal_treated_as_commitment"
+            ]
+          },
+          {
+            "model_id": "intellectual-humility",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "inversion",
+            "pulled_by_mechanisms": [
+              "upside_downside_evidence_asymmetry"
+            ]
+          },
+          {
+            "model_id": "opportunity-cost",
+            "pulled_by_mechanisms": [
+              "acknowledged_constraint_not_gated"
+            ]
+          },
+          {
+            "model_id": "optionality",
+            "pulled_by_mechanisms": [
+              "reversible_path_not_considered"
+            ]
+          },
+          {
+            "model_id": "premortem",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "problem-framing-and-reframing",
+            "pulled_by_mechanisms": [
+              "initial_frame_persists_after_question_change"
+            ]
+          },
+          {
+            "model_id": "scientific-method-evidence-testing",
+            "pulled_by_mechanisms": [
+              "ambiguous_signal_treated_as_commitment"
+            ]
+          },
+          {
+            "model_id": "signaling",
+            "pulled_by_mechanisms": [
+              "status_signal_used_as_evidence"
+            ]
+          },
+          {
+            "model_id": "social-proof",
+            "pulled_by_mechanisms": [
+              "status_signal_used_as_evidence"
+            ]
+          },
+          {
+            "model_id": "sunk-cost-fallacy",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "switching-costs",
+            "pulled_by_mechanisms": [
+              "reversible_path_not_considered"
+            ]
+          },
+          {
+            "model_id": "trade-offs",
+            "pulled_by_mechanisms": [
+              "acknowledged_constraint_not_gated"
+            ]
+          }
+        ],
+        "edge_reserve_candidates": [],
+        "active_candidate_count": 18,
+        "edge_candidate_count": 0,
+        "manual_review_required": false,
+        "graph_runtime_modified": false,
+        "semantic_applicability_validated": false,
+        "non_claims": [
+          "active_seed_recall_is_not_applicability",
+          "edge_reserve_is_not_public_pressure",
+          "fixture_behavior_is_not_production_stability",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "validation_error": "",
+      "call_count": 1,
+      "automatic_retry_count": 0,
+      "metadata": {
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "finish_reason": "stop",
+        "prompt_tokens": 621,
+        "completion_tokens": 565,
+        "total_tokens": 1186,
+        "system_prompt_sha256": "480dd17696d4b1bdae9627f4d474cbdf353c1f6d5b819abae8aa88f51a20827b",
+        "user_prompt_sha256": "16bdfe9eda525b553f4f6347a5c3d9a18a49d891423bb247486826609338230e",
+        "raw_response_sha256": "f636fc6b78f47e6d0d072c0d3963b138134dc3749266c01d898ea9d10362543c"
+      }
+    },
+    {
+      "fixture_id": "facts_d",
+      "status": "ok",
+      "packet": {
+        "schema_version": "lolla.joint_process_reasoning_packet.v0",
+        "packet_metadata": {
+          "packet_id": "joint_process_reasoning_packet:facts_d",
+          "target": "unresolved_joint_conversation_trajectory",
+          "graph_runtime_modified": false
+        },
+        "provenance": {
+          "source_interpretation_ref": "tests/fixtures/joint_process_reasoning_invariance/facts_d.txt",
+          "source_interpretation_sha256": "49f787f978dfb90af2baddee8578844ebdbf0d26fd79471dbb1e1083c02aff7d",
+          "raw_text_included": false
+        },
+        "mechanism_reviews": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "joint_status": "resolved_in_conversation",
+            "source_semantic_item_ids": [
+              "turn:1"
+            ],
+            "resolution_semantic_item_ids": [
+              "turn:3"
+            ]
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "other_review_required",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "joint_status": "unresolved",
+            "source_semantic_item_ids": [
+              "turn:1",
+              "turn:2",
+              "turn:3"
+            ],
+            "resolution_semantic_item_ids": []
+          }
+        ],
+        "routing_projection": {
+          "schema_version": "lolla.joint_process_reasoning_projection.v0",
+          "active_nodes": [
+            {
+              "mechanism_id": "acknowledged_constraint_not_gated",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "ambiguous_signal_treated_as_commitment",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "counterpressure_acknowledged_not_integrated",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "initial_frame_persists_after_question_change",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "missing_reversal_condition",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "reversible_path_not_considered",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "status_signal_used_as_evidence",
+              "joint_status": "unresolved"
+            },
+            {
+              "mechanism_id": "upside_downside_evidence_asymmetry",
+              "joint_status": "unresolved"
+            }
+          ],
+          "edge_nodes": [],
+          "manual_review_nodes": [],
+          "contains_case_context": false
+        },
+        "fact_boundary": {
+          "raw_text_included": false,
+          "quotes_included": false,
+          "entities_included": false,
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "mechanism_reviews_are_probabilistic_interpretations",
+          "resolved_does_not_mean_never_present",
+          "ambiguous_is_preserved_not_erased",
+          "not_graph_applicability",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "routing": {
+        "schema_version": "lolla.joint_process_reasoning_shadow_routing.v0",
+        "status": "research_only",
+        "projection_signature": "fa2df1b9259db5f4a3895f451ff657aa9afeddbca56742d0fb087fa6603ac107",
+        "active_seed_candidates": [
+          {
+            "model_id": "active-listening",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "anchoring",
+            "pulled_by_mechanisms": [
+              "initial_frame_persists_after_question_change"
+            ]
+          },
+          {
+            "model_id": "calculated-risk-taking",
+            "pulled_by_mechanisms": [
+              "upside_downside_evidence_asymmetry"
+            ]
+          },
+          {
+            "model_id": "commitment-bias",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "confirmation-bias",
+            "pulled_by_mechanisms": [
+              "ambiguous_signal_treated_as_commitment",
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "experimentation",
+            "pulled_by_mechanisms": [
+              "ambiguous_signal_treated_as_commitment"
+            ]
+          },
+          {
+            "model_id": "intellectual-humility",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "inversion",
+            "pulled_by_mechanisms": [
+              "upside_downside_evidence_asymmetry"
+            ]
+          },
+          {
+            "model_id": "opportunity-cost",
+            "pulled_by_mechanisms": [
+              "acknowledged_constraint_not_gated"
+            ]
+          },
+          {
+            "model_id": "optionality",
+            "pulled_by_mechanisms": [
+              "reversible_path_not_considered"
+            ]
+          },
+          {
+            "model_id": "premortem",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "problem-framing-and-reframing",
+            "pulled_by_mechanisms": [
+              "initial_frame_persists_after_question_change"
+            ]
+          },
+          {
+            "model_id": "scientific-method-evidence-testing",
+            "pulled_by_mechanisms": [
+              "ambiguous_signal_treated_as_commitment"
+            ]
+          },
+          {
+            "model_id": "signaling",
+            "pulled_by_mechanisms": [
+              "status_signal_used_as_evidence"
+            ]
+          },
+          {
+            "model_id": "social-proof",
+            "pulled_by_mechanisms": [
+              "status_signal_used_as_evidence"
+            ]
+          },
+          {
+            "model_id": "sunk-cost-fallacy",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "switching-costs",
+            "pulled_by_mechanisms": [
+              "reversible_path_not_considered"
+            ]
+          },
+          {
+            "model_id": "trade-offs",
+            "pulled_by_mechanisms": [
+              "acknowledged_constraint_not_gated"
+            ]
+          }
+        ],
+        "edge_reserve_candidates": [],
+        "active_candidate_count": 18,
+        "edge_candidate_count": 0,
+        "manual_review_required": false,
+        "graph_runtime_modified": false,
+        "semantic_applicability_validated": false,
+        "non_claims": [
+          "active_seed_recall_is_not_applicability",
+          "edge_reserve_is_not_public_pressure",
+          "fixture_behavior_is_not_production_stability",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "validation_error": "",
+      "call_count": 1,
+      "automatic_retry_count": 0,
+      "metadata": {
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "finish_reason": "stop",
+        "prompt_tokens": 627,
+        "completion_tokens": 544,
+        "total_tokens": 1171,
+        "system_prompt_sha256": "480dd17696d4b1bdae9627f4d474cbdf353c1f6d5b819abae8aa88f51a20827b",
+        "user_prompt_sha256": "dc1d44057d0c18cb6d7e995bcc3bfbee48a81e35d803394d2d18066bee5d0bf5",
+        "raw_response_sha256": "3d785ac2da2c1a311a3d62ae2f484d7b195e7ed50466ee4dab521634285d2c27"
+      }
+    },
+    {
+      "fixture_id": "reasoning_repaired",
+      "status": "ok",
+      "packet": {
+        "schema_version": "lolla.joint_process_reasoning_packet.v0",
+        "packet_metadata": {
+          "packet_id": "joint_process_reasoning_packet:reasoning_repaired",
+          "target": "unresolved_joint_conversation_trajectory",
+          "graph_runtime_modified": false
+        },
+        "provenance": {
+          "source_interpretation_ref": "tests/fixtures/joint_process_reasoning_invariance/reasoning_repaired.txt",
+          "source_interpretation_sha256": "df441eb1d6655d4554a36a25460d44a3a47319cdc2352f14849b1860a80b231f",
+          "raw_text_included": false
+        },
+        "mechanism_reviews": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "joint_status": "resolved_in_conversation",
+            "source_semantic_item_ids": [
+              "turn:1"
+            ],
+            "resolution_semantic_item_ids": [
+              "turn:1"
+            ]
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "joint_status": "resolved_in_conversation",
+            "source_semantic_item_ids": [
+              "turn:2"
+            ],
+            "resolution_semantic_item_ids": [
+              "turn:2",
+              "turn:3"
+            ]
+          },
+          {
+            "mechanism_id": "other_review_required",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "joint_status": "resolved_in_conversation",
+            "source_semantic_item_ids": [
+              "turn:1"
+            ],
+            "resolution_semantic_item_ids": [
+              "turn:2",
+              "turn:3"
+            ]
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "joint_status": "not_observed",
+            "source_semantic_item_ids": [],
+            "resolution_semantic_item_ids": []
+          }
+        ],
+        "routing_projection": {
+          "schema_version": "lolla.joint_process_reasoning_projection.v0",
+          "active_nodes": [],
+          "edge_nodes": [],
+          "manual_review_nodes": [],
+          "contains_case_context": false
+        },
+        "fact_boundary": {
+          "raw_text_included": false,
+          "quotes_included": false,
+          "entities_included": false,
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "mechanism_reviews_are_probabilistic_interpretations",
+          "resolved_does_not_mean_never_present",
+          "ambiguous_is_preserved_not_erased",
+          "not_graph_applicability",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "routing": {
+        "schema_version": "lolla.joint_process_reasoning_shadow_routing.v0",
+        "status": "research_only",
+        "projection_signature": "71bda2cb2d4bb53000ef62b668b24c5a0806e25b353739ec776b15547551dab3",
+        "active_seed_candidates": [],
+        "edge_reserve_candidates": [],
+        "active_candidate_count": 0,
+        "edge_candidate_count": 0,
+        "manual_review_required": false,
+        "graph_runtime_modified": false,
+        "semantic_applicability_validated": false,
+        "non_claims": [
+          "active_seed_recall_is_not_applicability",
+          "edge_reserve_is_not_public_pressure",
+          "fixture_behavior_is_not_production_stability",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "validation_error": "",
+      "call_count": 1,
+      "automatic_retry_count": 0,
+      "metadata": {
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "finish_reason": "stop",
+        "prompt_tokens": 668,
+        "completion_tokens": 527,
+        "total_tokens": 1195,
+        "system_prompt_sha256": "480dd17696d4b1bdae9627f4d474cbdf353c1f6d5b819abae8aa88f51a20827b",
+        "user_prompt_sha256": "4a505cd0cfa4c36b8029a4c4d42ad3dff0ffa6b42096462971d05df9790e7623",
+        "raw_response_sha256": "69886680ee33eb313e8a249af347f8925162cc530c4defee17ef34a5e693e845"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison_id": "fact_invariance",
+      "comparison_type": "same_unresolved_reasoning_different_facts",
+      "left_fixture_id": "facts_c",
+      "right_fixture_id": "facts_d",
+      "left_statuses": {
+        "acknowledged_constraint_not_gated": "unresolved",
+        "ambiguous_signal_treated_as_commitment": "unresolved",
+        "counterpressure_acknowledged_not_integrated": "unresolved",
+        "criteria_defined_after_commitment": "not_observed",
+        "initial_frame_persists_after_question_change": "unresolved",
+        "missing_reversal_condition": "unresolved",
+        "other_review_required": "not_observed",
+        "reversible_path_not_considered": "unresolved",
+        "status_signal_used_as_evidence": "unresolved",
+        "upside_downside_evidence_asymmetry": "unresolved"
+      },
+      "right_statuses": {
+        "acknowledged_constraint_not_gated": "unresolved",
+        "ambiguous_signal_treated_as_commitment": "unresolved",
+        "counterpressure_acknowledged_not_integrated": "unresolved",
+        "criteria_defined_after_commitment": "resolved_in_conversation",
+        "initial_frame_persists_after_question_change": "unresolved",
+        "missing_reversal_condition": "unresolved",
+        "other_review_required": "not_observed",
+        "reversible_path_not_considered": "unresolved",
+        "status_signal_used_as_evidence": "unresolved",
+        "upside_downside_evidence_asymmetry": "unresolved"
+      },
+      "projection_signatures_equal": true,
+      "active_seed_candidates_equal": true,
+      "edge_reserve_candidates_equal": true,
+      "checks": {
+        "both_outputs_valid": true,
+        "projection_expectation_met": true,
+        "active_candidate_expectation_met": true,
+        "edge_candidate_expectation_met": true,
+        "required_left_statuses_met": true,
+        "required_right_statuses_met": true
+      },
+      "status": "passed"
+    },
+    {
+      "comparison_id": "joint_repair_sensitivity",
+      "comparison_type": "same_facts_reasoning_repaired",
+      "left_fixture_id": "facts_c",
+      "right_fixture_id": "reasoning_repaired",
+      "left_statuses": {
+        "acknowledged_constraint_not_gated": "unresolved",
+        "ambiguous_signal_treated_as_commitment": "unresolved",
+        "counterpressure_acknowledged_not_integrated": "unresolved",
+        "criteria_defined_after_commitment": "not_observed",
+        "initial_frame_persists_after_question_change": "unresolved",
+        "missing_reversal_condition": "unresolved",
+        "other_review_required": "not_observed",
+        "reversible_path_not_considered": "unresolved",
+        "status_signal_used_as_evidence": "unresolved",
+        "upside_downside_evidence_asymmetry": "unresolved"
+      },
+      "right_statuses": {
+        "acknowledged_constraint_not_gated": "not_observed",
+        "ambiguous_signal_treated_as_commitment": "resolved_in_conversation",
+        "counterpressure_acknowledged_not_integrated": "not_observed",
+        "criteria_defined_after_commitment": "not_observed",
+        "initial_frame_persists_after_question_change": "not_observed",
+        "missing_reversal_condition": "resolved_in_conversation",
+        "other_review_required": "not_observed",
+        "reversible_path_not_considered": "resolved_in_conversation",
+        "status_signal_used_as_evidence": "not_observed",
+        "upside_downside_evidence_asymmetry": "not_observed"
+      },
+      "projection_signatures_equal": false,
+      "active_seed_candidates_equal": false,
+      "edge_reserve_candidates_equal": true,
+      "checks": {
+        "both_outputs_valid": true,
+        "projection_expectation_met": true,
+        "active_candidate_expectation_met": true,
+        "edge_candidate_expectation_met": true,
+        "required_left_statuses_met": true,
+        "required_right_statuses_met": false
+      },
+      "status": "failed"
+    }
+  ],
+  "gates": {
+    "all_three_calls_valid": true,
+    "all_comparisons_pass": false,
+    "estimated_cost_ceiling_met": true,
+    "no_retry": true,
+    "runtime_unchanged": true
+  },
+  "usage": {
+    "call_count": 3,
+    "prompt_tokens": 1916,
+    "completion_tokens": 1636,
+    "total_tokens": 3552,
+    "estimated_cost_usd": 0.002933,
+    "pricing_table_version": "2026-05-25"
+  },
+  "runtime_integration_authorized": false,
+  "non_claims": [
+    "not_open_domain_semantic_stability",
+    "not_graph_applicability_validation",
+    "not_downstream_answer_value",
+    "not_reasoning_quality_or_correctness_proof",
+    "not_permission_to_remove_actor_specific_audit_evidence",
+    "not_runtime_integration_authority"
+  ]
+}

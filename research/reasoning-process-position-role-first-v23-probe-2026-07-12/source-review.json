@@ -1,0 +1,90 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v23_source_review.v1",
+  "status": "expression_improved_role_boundary_failure_repeated",
+  "case_id": "amb3-case04-museum-ai-license",
+  "run_id": "reasoning-process-position-role-first-museum-ai-v23",
+  "operational_result": {
+    "provider_request_count": 4,
+    "estimated_cost_usd": 0.001047746,
+    "all_wire_schemas_accepted": true,
+    "exact_model_operator_attribution_matched": true,
+    "admitted_role_record_count": 3,
+    "admitted_relation_record_count": 1,
+    "quarantined_record_count": 0,
+    "join_status": "position_role_first_join_complete"
+  },
+  "role_review": {
+    "starting": {
+      "role_interpretation": "pass",
+      "expression_ownership": "pass",
+      "findings": [
+        "The model correctly represented e003 as both user preference and counterpressure and e004 as user uncertainty.",
+        "The v2.2 flattening of user-owned attitudes into reported_without_endorsement did not repeat.",
+        "The record included contextual e001 but did not turn it into a stance component; e002 was omitted as a component, so the external offer/user-attitude contrast is semantically adequate but not target-exact."
+      ]
+    },
+    "current": {
+      "required_evidence_preserved": ["e033", "e034", "e035"],
+      "unresolved_e036_excluded": false,
+      "role_boundary": "fail_repeated",
+      "modal_force": "partial_pass",
+      "findings": [
+        "The bounded pilot, conditional approval, and threshold action remain one coherent thread.",
+        "The model again included the explicitly unresolved e036 in current, despite the v2.3 role-boundary contract telling it not to do so.",
+        "The e035 statement 'I will set' was labeled decision rather than the source-first commitment target; this is not gross force inflation but is not target-exact."
+      ]
+    },
+    "qualification": {
+      "required_evidence_preserved": ["e036", "e039", "e040"],
+      "protected_target_survived": true,
+      "speaker_ownership_in_prose": "pass",
+      "expression_ownership": "fail",
+      "findings": [
+        "User-authored unresolved exit uncertainty survives.",
+        "Assistant-authored persistence and irreversibility meanings survive without being rewritten as user adoption.",
+        "The component labels reported_without_endorsement for e039/e040 treat assistant assertions as unendorsed reports, contrary to the contract's source-speaker-relative interpretation."
+      ]
+    }
+  },
+  "relationship_review": {
+    "exact_id_join": "pass",
+    "semantic_result": "partial_pass",
+    "finding": "The relationship correctly makes meaningful exit conditional on persistent learning, but it compresses the broader protected effects on engineering choices, expectations, trust, and public identity."
+  },
+  "success_requirement_disposition": {
+    "wire_and_exact_route_pass_for_every_call": true,
+    "one_coherent_record_per_role": true,
+    "starting_distinguishes_external_e002_from_user_owned_e003_e004_expressions": false,
+    "current_includes_e033_e034_e035_and_excludes_unresolved_e036": false,
+    "qualification_includes_e036_e039_e040": true,
+    "protected_e040_irreversibility_survives": true,
+    "assistant_pressure_preserves_ownership_without_user_adoption": true,
+    "relationship_preserves_bounded_pilot_and_persistent_exit_limits": false,
+    "exact_nested_component_identity_and_join_complete": true
+  },
+  "decision": {
+    "v23_prompt_only_path_passed": false,
+    "another_prompt_wording_iteration_authorized": false,
+    "provider_retry_or_model_control_authorized": false,
+    "graph_or_runtime_integration_authorized": false,
+    "v22_nested_wire_retained": true,
+    "v23_expression_guidance_retained_as_promising_evidence": true,
+    "independent_role_reader_architecture_requires_reconsideration": true,
+    "next_architectural_question": "Can qualification and current interpretations be coordinated probabilistically, or reconciled in one bounded semantic task, without deterministic keyword gates, hard alias subtraction, semantic scoring, or an uncontrolled increase in calls?"
+  },
+  "unknowns": [
+    "It is unknown whether cross-role context would remove duplication or merely bias the later reader toward the earlier output.",
+    "Some aliases can legitimately contain both an adopted condition and an unresolved matter, so hard evidence-ID exclusivity would be brittle.",
+    "A reconciliation task could improve role allocation but may add latency, cost, and another probabilistic failure surface.",
+    "No downstream challenge-quality or product-utility claim is authorized."
+  ],
+  "boundary": {
+    "protected_target_written_before_execution": true,
+    "protected_target_in_provider_context": false,
+    "automatic_evaluator_calls": 0,
+    "scalar_quality_score_computed": false,
+    "semantic_correctness_inferred_by_deterministic_code": false,
+    "retry_fallback_or_response_healing_used": false,
+    "graph_or_runtime_called": false
+  }
+}

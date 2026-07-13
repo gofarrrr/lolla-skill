@@ -118,7 +118,14 @@ Route compatibility:
   `missing_evidence`, `duplicate`
 - `deferred`: `set_aside`, `missing_evidence`, `evidence_gate`,
   `diagnostic_question`
-- `not_considered`: `already_covered`, `duplicate`, `irrelevant`
+- `not_considered`: `technical_failure` only
+
+`not_considered` is a custody failure state, not a semantic rejection. Use it
+only when the chunk was malformed, inaccessible, or technically unusable, and
+name that blocker in `technical_blocker`. A readable duplicate,
+already-covered item, or irrelevant item received a hearing and must be marked
+`rejected` with the strongest plausible application and risk if forced. Legacy
+v1 ledgers remain readable, but new skeletons use the stricter v2 contract.
 
 ## Public / Private Split
 

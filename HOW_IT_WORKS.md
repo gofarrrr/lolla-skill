@@ -106,7 +106,7 @@ This is the live `/lolla` flow in one page:
 4. Show a short readback and audit promise.
 5. Invoke the Step 3 helper, which calls `scripts/run_pipeline.py --skip-revision` with the extraction and conversation files.
 6. Build `ConversationContext`, construct `ConversationIR`, and run the four audit lanes.
-7. Attach Bullshit Index, usage summary, run health, and default-on V60 private enrichment.
+7. Attach the Bullshit Index (capped at 12 evaluations by adjacent-passage merging), usage summary, run health, and default-on V60 private enrichment.
 8. Render the strongest counterargument in chat.
 9. Write the updated position.
 10. Persist `revised_answer` and validate the pre-Step-6 private-table and V60 consideration ledgers.
@@ -123,6 +123,26 @@ The detailed docs are split so agents and humans do not have to load one giant f
 
 | File | Read it for |
 |---|---|
+| [Lolla Product Constitution](docs/conversation-understanding/lolla-product-constitution-v3.md) | Binding v3 amendment incorporating immutable earlier rules plus dated current-practice checks, context-visible semantic responsibility, bounded fan-in, and mandatory problem-class research when failures persist or become contradictory. |
+| [Hybrid Reasoning Boundary](docs/conversation-understanding/hybrid-reasoning-boundary-v0.md) | The binding split: LLMs and humans interpret messy meaning; deterministic code validates evidence, schemas, hashes, caps, graph replay, and custody without semantic keyword gates. |
+| [Lolla Evaluation Doctrine](docs/conversation-understanding/lolla-evaluation-doctrine-v0.md) | The current capability ladder, strong-control evaluation contract, anti-Goodhart rules, evidence, and integration stop conditions. |
+| [Reasoning Pattern Packet](docs/conversation-understanding/reasoning-pattern-packet-v0.md) | The fact-free shadow graph-input contract that separates semantic interpretation from deterministic recall. |
+| [Reasoning Pressure Handoff](docs/conversation-understanding/reasoning-pressure-handoff-v0.md) | The small downstream consumer contract: full conversation plus bounded pressure and preservation items, mechanically validated but not runtime-integrated. |
+| [Reasoning-Process Bounded Views](docs/conversation-understanding/reasoning-process-bounded-views-v1.md) | Phase 2's provider-free result: source-first coverage audit, append-only fixture addenda, 25 bounded views, target-blind probe packets, real fan-in measurements, and the Phase 3 boundary. |
+| [Reasoning-Process Phase 3 Result](docs/conversation-understanding/reasoning-process-phase3-development-result-v1.md) | The five-reader Gemini/OpenRouter development result: one baseline, one generic repair, 4/5 protected-target visibility, preserved source/overclaim failures, no transfer, and the bounded view-specific redesign direction. |
+| [Reasoning-Process View-Specific Development Result](docs/conversation-understanding/reasoning-process-view-specific-development-result-v2.md) | The failure-derived redesign result: stable sentence aliases solve quote custody, explicit relationships repair four Case-02 views, exploration still loses an earlier alternative's attached minority limit, and the next work narrows only that lane. |
+| [Exploration-Local Development Result](docs/conversation-understanding/reasoning-process-exploration-local-development-result-v1.md) | The narrow exploration repair: focal turn-pair readers recover alternative-plus-limit pairs, role-specific prior carry-forward handles next-turn qualifications, record-level custody preserves valid siblings and exact duplicates, and Case 02 passes before transfer. |
+| [Modal-Strength v3 Result](docs/conversation-understanding/reasoning-process-modal-strength-v3-result-2026-07-12.md) | The bounded negative result: explicit force fields improve audit visibility, but one fresh Case-03 probe still confuses belief with decision and misses the protected qualification; next work is provider-free stance-object design. |
+| [Stance-Object v4 Result](docs/conversation-understanding/reasoning-process-stance-object-v4-result-2026-07-12.md) | The provider-free stance-object representation and preserved operational stop: local semantics and custody pass, but Google rejects the frozen depth-11 schema before inference; next work is an atomic one-alias component schema plus new fresh cases. |
+| [Stance-Object v4.1 Result](docs/conversation-understanding/reasoning-process-stance-object-v41-result-2026-07-12.md) | The shallow-wire and fresh-corpus result: local gates pass, the provider still rejects before inference, and current Google SDK validation isolates inherited `uniqueItems` as the probable compatibility fault; next work is a wire-only removal with deterministic uniqueness retained. |
+| [Stance-Object v4.2 Result](docs/conversation-understanding/reasoning-process-stance-object-v42-result-2026-07-12.md) | The wire-only correction result: current Google SDK validation passes after removing `uniqueItems`, but the provider still rejects before inference; next work must isolate wire compatibility separately from valuable semantic cases. |
+| [Model/Operator Selection Result](docs/conversation-understanding/reasoning-process-model-operator-selection-result-2026-07-12.md) | The July 2026 provider/model experiment: non-Google routes accept the unchanged schema, but Flash, stronger, and third-family models all fail the combined contract's source review; next work is smaller LLM semantic jobs joined by deterministic custody. |
+| [Structured-Output Problem-Class Research](docs/conversation-understanding/reasoning-process-structured-output-problem-class-research-2026-07-12.md) | The dated research escalation: provider portability, wrong-valid outputs, format/capacity tax, schema breadth, adopted and rejected practices, and the remaining unknowns governing decomposition. |
+| [Ground-Up Evidence Audit](docs/conversation-understanding/reasoning-process-ground-up-evidence-audit-2026-07-12.md) | What is proven, strongly supported, and still unknown before the provider-free decomposition path. |
+| [Position Decomposition v1 Result](docs/conversation-understanding/reasoning-process-position-decomposition-result-2026-07-12.md) | The local capacity pass and one-call reserved-case failure: the first split still left a role-trajectory bottleneck, omitted protected qualification evidence, and exposed a false-complete join. |
+| [Position Role-First v2 Result](docs/conversation-understanding/reasoning-process-position-role-first-v2-result-2026-07-12.md) | The prospective repair: independent starting/current/qualification jobs, one compact exact-ID relationship job, eight provider-free fixture passes, bounded fan-in, and the new-case stop line. |
+| [Role-First Model-Control Result](docs/conversation-understanding/reasoning-process-role-first-model-control-result-2026-07-12.md) | The DeepSeek and GLM comparison on one unchanged new case: wire reliability improved, but both routes failed coherent record identity and protected qualification recall, making contract ambiguity the leading cause. |
+| [Position Role-First v2.1 Result](docs/conversation-understanding/reasoning-process-position-role-first-v21-result-2026-07-12.md) | The provider-free prompt/packet amendment defining visible endpoints, coherent records versus components, full-alias review, and assistant-pressure ownership without changing schemas, validators, or call ceilings. |
 | [Pitch and Invitation](docs/lolla-pitch-and-invitation.md) | A plain-language shareable explanation of what Lolla is, why it matters for agents, who it is for, and what kind of feedback we want. |
 | [Agent Result Contract](docs/lolla-agent-result-contract.md) | The shipped `lolla_agent_result.v1` archive artifact: status, `caller_action`, product summaries, artifact pointers, and current limitations. |
 | [Reasoning-Audit Harness PRD](docs/lolla-reasoning-audit-harness-prd.md) | The actionable roadmap for turning Lolla into an agent-callable reasoning-audit harness with risk modes, an agent result contract, evaluation artifacts, and archive-corpus workflows. |
@@ -594,3 +614,200 @@ The detailed docs are split so agents and humans do not have to load one giant f
   runtime/eval split, Product Delta safe commands, what to inspect, what not
   to infer, and the current stop line without adding new evidence or runtime
   behavior.
+- The reasoning-process Phase-4 transfer now has a preserved negative result.
+  Two mechanically selected cases produced 52 admitted source-linked records
+  and no empty semantic dimension, but only 5/10 protected minority targets
+  were exactly visible. The evidence reader lost part or all of its protected
+  claim-boundary target in both cases. This blocks stability repeats, graph and
+  runtime integration, and completed-case prompt tuning. Provider-free
+  chronological sharding then co-located 20/20 protected targets and reduced
+  packets below 6.1 KB. A smallest evidence probe passed, but a four-call family
+  batch recovered only 2/4 protected relationships in one record and exposed
+  two semantic-role mismatches. The full nineteen-call case is blocked. Next
+  work then made position, uncertainty, and challenge meanings role-explicit
+  while leaving evidence unchanged. All provider-free gates passed, and one
+  position probe fixed the missing-current-prose failure, but it promoted a
+  stated preference into “insisted” and “total completion.” That source-strength
+  inflation blocks same-case repair, further family probes, and the full case.
+  Generic modal/commitment-strength v3 then passed all provider-free gates and
+  made force claims explicit, but its one fresh Case-03 probe still confused a
+  strongly stated belief with a decision and missed the protected revised-cut
+  possibility/open-partnership relationship. The representation improved
+  diagnosis, not semantic reliability. Case-03 is closed. Next work is
+  provider-free stance-object design then separated epistemic belief, proposal
+  action, intended outcome, willingness to accept, and reported landscapes.
+  All local gates passed, but Google rejected the frozen Case-04 depth-11 schema
+  before inference with `INVALID_ARGUMENT`, so no semantic result exists.
+  Case-04 is closed. V4.1 then added three new ambiguous cases and reduced the
+  wire to depth 9, but Google again rejected the selected career-transition
+  request before inference. Current `google-genai` validation rejects the
+  inherited `uniqueItems` evidence keywords and accepts the complete schema
+  when only those are removed. Career transition is closed. V4.2 then made
+  exactly that wire correction and passed the current native-SDK preflight,
+  but Google still rejected the single community-space request before
+  inference. `uniqueItems` was therefore a real SDK fault but not the whole
+  provider problem. Community space is closed; agency acquisition remains
+  reserved. A July 2026 model/operator scan then showed that GLM 5.2,
+  DeepSeek V4 Flash and Pro, and MiniMax M3 can all serve the unchanged schema
+  through non-Google operators. None passed the combined contract's source
+  review. DeepSeek V4 Flash/Alibaba was closest and cheapest, while its Pro
+  sibling repeated the defect at higher cost. The next work is provider-free
+  decomposition into a role-trajectory semantic reader and separate per-role
+  stance readers, joined deterministically by exact role/evidence IDs. Local
+  exploration remains the passing reference pattern.
+
+### Current reasoning-process extraction boundary (2026-07-12)
+
+The current development reference is role-first v2.2. Three small LLM jobs
+interpret starting position, current position, and qualification; a fourth
+relates their exact record IDs. Deterministic code validates structure,
+evidence custody, hashes, budgets, and joins. It does not decide whether a
+semantic role or stance category is correct.
+
+Nested stance-component objects fixed the prior parallel-array alignment
+failure on a fresh cooperative case. All four strict-schema calls and the
+exact-ID join passed, and the protected irreversibility qualification survived.
+The same run also showed why successful JSON is not sufficient: an unresolved
+matter leaked into current position and some expression labels flattened the
+user's attitudes. V2.2 is not integrated into graph or runtime. Provider-free
+role-boundary and expression-contract work is next; another call requires a
+new pre-frozen case and passing local gates.
+
+The prompt-only v2.3 test subsequently improved source-speaker expression
+handling but did not solve role overlap. On a fresh museum/AI-license case, the
+same unresolved alias appeared in both current and qualification despite an
+explicit semantic boundary. This is not repaired deterministically and does
+not authorize integration. The next provider-free design question is whether
+the two probabilistic interpretations need bounded coordination or one small
+reconciliation task, without hard alias subtraction or semantic scoring.
+
+That bounded coordination now exists as role-first v2.4.1. Starting remains an
+independent interpretation; current and qualification are allocated together;
+and a third call relates exact admitted IDs. The paired call may use the same
+alias in both roles only for distinct meanings. Deterministic code splits model
+labels and validates custody but does not decide the allocation.
+
+A new housing-retrofit case produced the first fully operational paired
+development pass in three calls: adopted and unresolved meanings inside one
+sentence were separated, protected irreversibility survived, and the exact-ID
+join completed. Residual evidence and category imprecision still blocks graph
+or runtime integration. Corpus-level non-scalar source review is next.
+
+That corpus review now covers four prospectively reviewed cases and seven
+separate dimensions. Paired readers pass the central allocation distinction in
+both paired cases; independent readers fail it in both independent cases.
+Protected qualification survives throughout, while evidence, force, and
+category noise persists. The next experiment is therefore not another model
+call. It is a read-only comparison of source-first versus model-produced graph
+inputs and their downstream selection impact, with no reconsideration or live
+runtime behavior.
+
+The read-only graph-impact shadow now confirms that, after a source-faithful
+fact-free abstraction, source-first and provider role records produce
+identical controlled mechanisms, deterministic seed models, and one-hop
+neighborhoods on both paired cases. Removing the protected reversal mechanism
+removes three seed models and changes the candidate portfolio.
+
+One fact-free embedding batch exercised the existing near-tie activation gate.
+No tiebreaker fired and embedding did not change selection. This does not
+authorize integration because the role-record-to-pattern abstraction was
+source-reviewed rather than automatically produced. That abstraction bridge
+was then tested in a frozen six-arm probe. All six strict-schema calls passed
+operational, schema, fact-boundary, and exact-ID custody checks, but none
+matched the prospective semantic target. Source/provider projections differed
+in both cases, the protected reversal mechanism was not preserved, and the
+ablations changed unrelated mechanisms. The bridge is blocked from graph and
+runtime integration. The next provider-free work is to define the reasoning
+mechanism, scope, and state ontology precisely enough for probabilistic
+interpretation without adding deterministic semantic gates.
+
+That ontology v1 now defines all nine mechanisms by required evidence,
+exclusions, and near-neighbor distinctions and changes the task to exhaustive
+review of the final joint trajectory. Only model-declared unresolved rows may
+route. In its six-arm probe, broad label saturation disappeared, the protected
+reversal mechanism survived source/provider variation in both cases, and both
+ablations removed it. Exact invariance still failed: richer source records
+triggered an unsupported evidence-asymmetry label, and reversal state labels
+varied. Source review also found that the old prospective
+`acknowledged_constraint_not_gated` target likely double-counted the remaining
+counterpressure. Graph/runtime integration stays blocked. The next bounded
+problem is probabilistic near-neighbor adjudication with an explicit reject-
+both option, not model replacement or deterministic semantic gating.
+
+The subsequent controlled-vocabulary audit confirmed exactly 222 unique
+canonical mental-model IDs and no display-name collisions. A names-and-IDs
+menu is compact (15.8 KB), but operational selection guidance expands to
+185.5 KB; canonical phrases solve naming variation, not semantic
+applicability. The nine mechanisms directly seed 19 models, while the existing
+nine reasoning-type families are too overlapping to serve as a useful
+hierarchy: every model belongs to at least two. One stale unknown chunk ID was
+also found and is now explicitly quarantined as a curation defect.
+
+The preferred boundary is controlled mechanism interpretation, deterministic
+canonical graph recall, then probabilistic selection or rejection from the
+bounded recalled model menu. Direct selection from all 222 models remains a
+future control arm. No comparison call was authorized because compact,
+semantically comparable model cards do not yet exist and the substrate
+integrity gate exposed the stale alias.
+
+The stale alias has now been migrated explicitly at curation time, with
+before/after hashes and no runtime alias repair. Compact cards were generated
+for all 222 canonical models, and a frozen direct-all-222 versus graph-shortlist
+comparison completed in six calls. Both modes rejected every candidate. This
+was canonically stable but semantically inert. Source review found that graph
+candidates had lost their fact-free `recalled_by_mechanism` provenance and
+that naive first-item `select_when`/`danger_when` cards sometimes blurred or
+inverted challenge applicability. The next design is challenge-oriented cards
+plus controlled graph-recall provenance, not forced selection or another
+same-case retry.
+
+Challenge-oriented cards and controlled `recalled_by_mechanism_ids` then
+passed all local custody and prompt-budget gates on the housing transfer case.
+The three-call probe still returned empty selections in source, provider, and
+ablation arms. Canonical mechanism names without their operational definitions
+were not enough, and global abstention remained cheaper than assessing each
+candidate. After two blanket-abstention designs, the constitution's problem-
+class trigger stopped further prompt iteration. The next provider-free
+contract must pair full fact-free mechanism cards with each recalled model and
+require one semantic status per candidate; deterministic code may enforce
+coverage and custody but may not change those statuses.
+
+That exhaustive contract then ran on a different museum case with full
+operational mechanism cards. Every candidate was assessed exactly once, yet
+source, provider, and ablation arms all classified every model not applicable.
+This ended the canonical-selector line of work. Requiring graph candidates to
+pass another probabilistic applicability gate was product drift: the graph is
+supposed to preserve deliberately non-obvious pressure, not only lenses that
+already look justified from inside the current reasoning.
+
+Graph output is therefore a bounded pressure portfolio, not a certified
+selection. Canonical candidates and their fact-free recall provenance should
+reach the fresh-context reasoner, which may apply, reject, or park each lens
+against the authoritative conversation. Those dispositions belong in the
+audit trail; they must not silently erase candidates before reconsideration.
+The unresolved upstream problem remains automatic role-record-to-mechanism
+interpretation.
+
+Under the corrected protected-signal and bounded-noise gates, automatic
+mechanism interpretation now transfers across registry, housing, and museum:
+the reversal mechanism survives source/provider variation in all three and
+disappears under ablation, while counterpressure persists. Deterministic
+no-deletion portfolios contain three to eight canonical candidates.
+
+A fresh-context museum pair then passed the Phase-4 interface. The transcript-
+only control made no material change. The pressure arm applied commitment bias
+and premortem, rejected four unsupported lenses, preserved the strong original
+analysis, and added an early-termination condition plus a worst-case severity
+test absent from the control. This is source-supported development evidence,
+not independent product validation. Independent useful-pressure and quiet-
+stand-down cases remain required before runtime consideration.
+
+Two untouched Phase-5 role-extraction holdouts then ran through paired v2.4.1.
+The retailer-status useful case preserved its missing independent-demand gate
+and may continue. The quiet meeting case mechanically joined but semantically
+failed: an already-adopted restoration rule was manufactured as an unresolved
+qualification despite the user's explicit stand-down. This exposes a missing
+representation: the pipeline cannot yet preserve an auditable probabilistic
+conclusion that no unresolved qualification was observed. Quiet-case
+downstream work is blocked until that outcome is first-class rather than
+inferred from omission or keywords.

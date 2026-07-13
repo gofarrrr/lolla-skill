@@ -1,0 +1,49 @@
+{
+  "calls": [
+    {
+      "automatic_retries": 0,
+      "base_user_prompt_sha256": "6232ffd0b38ef69b82497b6d55b454d1d86800962f2a7e87f6b170be695fa9dd",
+      "case_id": "v1-case12-newsroom-platform",
+      "data_collection": "deny",
+      "duration_seconds": 0.361,
+      "effective_user_prompt_sha256": "6232ffd0b38ef69b82497b6d55b454d1d86800962f2a7e87f6b170be695fa9dd",
+      "fallback_models": 0,
+      "http_status": 402,
+      "max_output_tokens": 6000,
+      "operational_status": "http_error_402",
+      "provider_calls": 1,
+      "provider_error": {
+        "error": {
+          "code": 402,
+          "message": "This request requires more credits, or fewer max_tokens. You requested up to 6000 tokens, but can only afford 4442. To increase, visit https://openrouter.ai/settings/credits and add more credits",
+          "metadata": {
+            "provider_name": null
+          }
+        },
+        "user_id": "user_2tAb8JJCxlduB7VWZzq1la4rIKD"
+      },
+      "provider_only": [
+        "google-vertex"
+      ],
+      "provider_order": [
+        "google-vertex/global"
+      ],
+      "provider_payload_sha256": "1211f7c2e25210e06e49369ce9ccc8fe372df18e9bcbcb7a52b266cee8990a19",
+      "reasoning_content_excluded": true,
+      "reasoning_effort": "medium",
+      "repeat_id": "primary",
+      "request_body_sha256": "069b3d5c3c7f10b9b3fd3bff10e02da49b77c81849f0f5b7e8be4159ed6b9cec",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "response_healing": false,
+      "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+      "seed": 101,
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "task_id": "starting",
+      "temperature_supplied": false,
+      "top_p_supplied": false,
+      "wire_mode": "strict_json_schema",
+      "zdr": true
+    }
+  ],
+  "status": "stopped_after_starting_failure"
+}

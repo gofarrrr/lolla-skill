@@ -1,0 +1,534 @@
+{
+  "boundary": {
+    "final_output_evaluation_authorized": false,
+    "global_synthesis_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "protected_targets_seen_by_model": false,
+    "quality_or_trust_score_authorized": false,
+    "semantic_deduplication_authorized": false,
+    "source_review_addenda_seen_by_model": false,
+    "stability_repeat_calls_authorized": false
+  },
+  "budget_amendment": {
+    "amended_first_attempt_transfer_calls_max": 22,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "graph_calls": 0,
+    "maximum_estimated_cost_usd": 0.1,
+    "maximum_separately_frozen_operational_retries": 2,
+    "maximum_total_provider_requests": 24,
+    "original_two_case_transfer_calls_max": 10,
+    "pipeline_calls": 0,
+    "reason": "The failed exploration family was decomposed from one overloaded call into seven bounded chronological calls; the four other semantic jobs are unchanged.",
+    "runtime_calls": 0,
+    "semantic_retries": 0
+  },
+  "call_configuration": {
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "full_reader_max_output_tokens": 2400,
+    "local_reader_max_output_tokens": 1200,
+    "model": "google/gemini-3.1-flash-lite",
+    "parallel_calls": false,
+    "provider": "openrouter",
+    "provider_timeout_seconds": 90,
+    "reasoning_enabled": false,
+    "require_supported_parameters": true,
+    "response_healing": false,
+    "seed": 0,
+    "temperature": 0.0,
+    "wire_mode": "strict_json_schema"
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "expected_first_attempt_jobs": 11,
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case05-family-archive/ledger.json",
+      "phase1_ledger_sha256": "2a0927a543782e0e1db781b76c072b1e99bbd37811d9743543b6913ac8fc2042",
+      "selection_sha256": "1049443408d3d24d31ab76b9a0082cac15e90faa083a7437f76e5bfbbb72e43a",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+      "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "expected_first_attempt_jobs": 11,
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case01-product-scope/ledger.json",
+      "phase1_ledger_sha256": "c7a900bd07dc5c400f3caa6f7c9d614f0380520080c78f7ca9e09fb18323e2af",
+      "selection_sha256": "abff142f6e91b3e9ba727ac2727f72e3b7e5155f9931bbd6cf1134b77e71a656",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+      "source_sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7"
+    }
+  ],
+  "date": "2026-07-11",
+  "frozen_inputs": [
+    {
+      "path": "docs/evals/reasoning-process-phase0-contract-v0.json",
+      "sha256": "e1b6d5864467d2c29de872f252969e68b9b47c5b2c526190ae9503baf3c22318"
+    },
+    {
+      "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+      "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_view_specific_v3.py",
+      "sha256": "fa0ec867fe499ecbec7cdc2434767f42fdc9f32c1b595e3d132a1882f3040f3f"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_local.py",
+      "sha256": "bf7849f36c3dc1561027eddf1ea60418caae24af5eaacf6f85ad4de20c36aec3"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_local_custody.py",
+      "sha256": "10de13a4ae923f37391b4abd89ca04043efa2a764aa130db128a6c9ed4226c86"
+    },
+    {
+      "path": "research/reasoning-process-view-specific-v3-replay-2026-07-11/report.json",
+      "sha256": "75d0fcb8c1014860715df2650a9d9dc447dc92df1cd29cf72121b0d7c28d9887"
+    },
+    {
+      "path": "research/reasoning-process-exploration-local-terminal-2026-07-11/terminal-result.json",
+      "sha256": "db188d45b3ce41a0ba74fb12e270d22f10814d1e49a326ff1b906fb4091cc429"
+    }
+  ],
+  "jobs": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "input_utf8_bytes": 16998,
+      "job_id": "phase4-amb1-case05-family-archive-position_and_decision_trajectory",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case05-family-archive/position_and_decision_trajectory/reader-packet.json",
+      "packet_sha256": "9499d89b09811df5e07ed0cfc389e9a96832d1c7fb32020dd72b0cfac2df93e5",
+      "response_schema_metrics": {
+        "bytes": 1582,
+        "depth": 8
+      },
+      "response_schema_sha256": "7e41f8dce34b33dfcabf9557a00f3b3044af3c8163cdbba550c731e3f5c8036d",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "b3f3736d46f3bdaff73372351336806c862eae1b42687b3bdd52127b867bdf1c",
+      "view_kind": "position_and_decision_trajectory"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "input_utf8_bytes": 17014,
+      "job_id": "phase4-amb1-case05-family-archive-evidence_and_assumption_discipline",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case05-family-archive/evidence_and_assumption_discipline/reader-packet.json",
+      "packet_sha256": "057f0671d3d8d3d15d20704bc55663ffd8bdcd1eba86fdf640be572824777747",
+      "response_schema_metrics": {
+        "bytes": 1259,
+        "depth": 8
+      },
+      "response_schema_sha256": "4f08c357f7c2d0efb5908d9700c0b831df967c29ced3d151e9376465a5bd043c",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "88f3256cfbbe212c095db568f5ce0b58b1406f2e57d04082965d0081dc9ba7e8",
+      "view_kind": "evidence_and_assumption_discipline"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "input_utf8_bytes": 16989,
+      "job_id": "phase4-amb1-case05-family-archive-uncertainty_and_unresolved_state",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case05-family-archive/uncertainty_and_unresolved_state/reader-packet.json",
+      "packet_sha256": "f63257a6a8331752f0ec8566d8bdb413af9a2dcaee9ce94ab81995342d1f38f8",
+      "response_schema_metrics": {
+        "bytes": 1277,
+        "depth": 8
+      },
+      "response_schema_sha256": "f403e56360b8ebc16341374f7f601c7435965f37968ac1918be59bd5f73aa44a",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "57b7ea92139427834b071b77c5c75b4fcc884209bcf4e0bde9fff9c663963b62",
+      "view_kind": "uncertainty_and_unresolved_state"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "input_utf8_bytes": 16997,
+      "job_id": "phase4-amb1-case05-family-archive-challenge_and_revision_response",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case05-family-archive/challenge_and_revision_response/reader-packet.json",
+      "packet_sha256": "6c81b499fa55f8c3e376393d8700993c414ea770f1eef3030145579b32e0d5b2",
+      "response_schema_metrics": {
+        "bytes": 1858,
+        "depth": 8
+      },
+      "response_schema_sha256": "2c595fabe20188c2fc2623e13205576512051d4c4f453c35d5ab00ea11ca54f4",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "3546f670f722a6f245cd7dad62da5d1f29800814925e7721b59a1688d0cce4c7",
+      "view_kind": "challenge_and_revision_response"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 1,
+      "input_utf8_bytes": 2591,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-001",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-001.json",
+      "packet_sha256": "3facc39df518bad9a4ae8b323cef30a42d074ce0ff16e3b320c3d7daaf41688d",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "2e4c70b6375d0791b41690070019c4e91152765222e4100fde1572ca0c141366",
+      "user_prompt_sha256": "e30ca1f494e9ad7b3526fc2c52b3aa0dd04e23574213a467a0b65cb2fb081d4a",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 2,
+      "input_utf8_bytes": 3683,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-002",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-002.json",
+      "packet_sha256": "17a337963924807261174877d1578a8184077db0b0f967a70a53f54a8b34540d",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "8c6af162b37adbb9ee43e22bab01e8cb8163cdaa3d44f2793cfe7e07fed4db50",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 3,
+      "input_utf8_bytes": 3681,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-003",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-003.json",
+      "packet_sha256": "a5f109cfdd56464b6aee16964f8fa803fd4043fa79699c0a27c6ea3a0cce3185",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "d8c97ef80c81bcc399a386fd76e9a09c425e8cb0146d429aaa1522e2410b46c6",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 4,
+      "input_utf8_bytes": 3674,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-004",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-004.json",
+      "packet_sha256": "f7e805b7ddeec7a9cf38d969f642ec9cd550109791492ec072169d4591098fe7",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "4ec0bd5be97808ffdd991b40c5c7d2104e57eef361bedccffd76233e1c643613",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 5,
+      "input_utf8_bytes": 3643,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-005",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-005.json",
+      "packet_sha256": "46a112219f5589447b6b4f6d3efc81ab80ce6d2fe704908b2c2f4edbc612259c",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "764e054e8c22cfdb2120762140ad043ef343c8d8746057c2ec2f865cf01180fa",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 6,
+      "input_utf8_bytes": 3690,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-006",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-006.json",
+      "packet_sha256": "ac6bd5231b6302f88bf345c1913620a4c45db697a60838ebcc871deaa2fb1e56",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "37f651e399558efbae0dc41e4622fd3e31ab7a2cd6a4b9d1f29e490f4e43e0dc",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "focal_turn_index": 7,
+      "input_utf8_bytes": 3944,
+      "job_id": "phase4-amb1-case05-family-archive-exploration-turn-007",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case05-family-archive/windows/turn-007.json",
+      "packet_sha256": "e1d960d48c257959fdb885067172eff2df77d0c8ae94091ced42c8e2ef53db84",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "2a44bf43c9058878c830422b4e44991bb5c245a66f08187c5409f8a21483cd13",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "input_utf8_bytes": 16689,
+      "job_id": "phase4-amb1-case01-product-scope-position_and_decision_trajectory",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case01-product-scope/position_and_decision_trajectory/reader-packet.json",
+      "packet_sha256": "0cce3ad413a1d659bd5b55053a00b3777ff387c445938aa59821582a062e1b38",
+      "response_schema_metrics": {
+        "bytes": 1582,
+        "depth": 8
+      },
+      "response_schema_sha256": "7e41f8dce34b33dfcabf9557a00f3b3044af3c8163cdbba550c731e3f5c8036d",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "35d7125d62a0bd188957bbf10756cf7056cf90585800ac952caf815612d61107",
+      "view_kind": "position_and_decision_trajectory"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "input_utf8_bytes": 16705,
+      "job_id": "phase4-amb1-case01-product-scope-evidence_and_assumption_discipline",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case01-product-scope/evidence_and_assumption_discipline/reader-packet.json",
+      "packet_sha256": "2d659abb6cde0fa6c36b41edc6ba3747be187d007d10ef9fc9ee23861a34eda2",
+      "response_schema_metrics": {
+        "bytes": 1259,
+        "depth": 8
+      },
+      "response_schema_sha256": "4f08c357f7c2d0efb5908d9700c0b831df967c29ced3d151e9376465a5bd043c",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "a0b32944507315edc65fd4bfc24d64c2698e0ba134d11b14927ce1866770c874",
+      "view_kind": "evidence_and_assumption_discipline"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "input_utf8_bytes": 16680,
+      "job_id": "phase4-amb1-case01-product-scope-uncertainty_and_unresolved_state",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case01-product-scope/uncertainty_and_unresolved_state/reader-packet.json",
+      "packet_sha256": "c609fc980d5bd3e7d034e00b4b409e7ba92e1da9be4a6d662a10d03f34d2d853",
+      "response_schema_metrics": {
+        "bytes": 1277,
+        "depth": 8
+      },
+      "response_schema_sha256": "f403e56360b8ebc16341374f7f601c7435965f37968ac1918be59bd5f73aa44a",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "0f56765f3bee751adc9ef437770815e82e90e81fb40190b01613eec906325946",
+      "view_kind": "uncertainty_and_unresolved_state"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "input_utf8_bytes": 16688,
+      "job_id": "phase4-amb1-case01-product-scope-challenge_and_revision_response",
+      "maximum_output_records": 4,
+      "mechanism": "full_conversation_reader_v3",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case01-product-scope/challenge_and_revision_response/reader-packet.json",
+      "packet_sha256": "8c7cc1bc1a023cd9958b62fdde9b8684eb94f8d40d4027dd14dc35adf36a640b",
+      "response_schema_metrics": {
+        "bytes": 1858,
+        "depth": 8
+      },
+      "response_schema_sha256": "2c595fabe20188c2fc2623e13205576512051d4c4f453c35d5ab00ea11ca54f4",
+      "system_prompt_sha256": "d7dd11468a54ac0c8551b4ce1f8e225678b19d8abe3b620a7dd912ff4ce5ea30",
+      "user_prompt_sha256": "0fd526ed18ca76aacb8907e325514cbb33d72385fd0801baa476bc87071bacc8",
+      "view_kind": "challenge_and_revision_response"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 1,
+      "input_utf8_bytes": 2684,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-001",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-001.json",
+      "packet_sha256": "928b3bf1d2c383a518337c3c2f0c6a5f4db8a041f8963b687268911730aeb9b8",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "2e4c70b6375d0791b41690070019c4e91152765222e4100fde1572ca0c141366",
+      "user_prompt_sha256": "aa939284b7718341eab6510ed6ded3656f78ec78a20c5d8bed0a2b897c7e3340",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 2,
+      "input_utf8_bytes": 3756,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-002",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-002.json",
+      "packet_sha256": "32238307b4ad6349e18961957de0e3d998ad03c16fc1ced84abdf1b1d1207af0",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "89393573115a10579c5c5001210e898a388542640dd7f510a1031fe93d7348d3",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 3,
+      "input_utf8_bytes": 3624,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-003",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-003.json",
+      "packet_sha256": "6f1dfc298d5bdbd723958f092104fcc7d13c700367a609c2b57acf97406f51d8",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "896139667782e73e52e0ad9f50eae7dc01a4f94e0aec76dcad999e07e834c145",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 4,
+      "input_utf8_bytes": 3650,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-004",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-004.json",
+      "packet_sha256": "559e418ee6533f17a8745b0a9d83ec83dddb765b661bd7cac2a4b2756ee2510b",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "0d7007a21e402b7065428b37c8f3f5f23422fea2f26191945772f41ff3ad9b32",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 5,
+      "input_utf8_bytes": 3720,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-005",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-005.json",
+      "packet_sha256": "672c872b6f405d9d74edbc0b58b086f8bd6f406f777f98f2c070b53cc3be28f6",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "692d50f92aafaa5f40e2373f6c549ec16bf2e4a6b794a4f85104c91fb317a095",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 6,
+      "input_utf8_bytes": 3788,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-006",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-006.json",
+      "packet_sha256": "57c48c81223a0d9cc65fb62c78585d079ee7842c3546a45dae4292b18e4a5032",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "46d33a82b1c65c28536c267f40a820c29191bbe52b9524d11139c5ca4c5f05b4",
+      "view_kind": "exploration_and_alternatives"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "focal_turn_index": 7,
+      "input_utf8_bytes": 3896,
+      "job_id": "phase4-amb1-case01-product-scope-exploration-turn-007",
+      "maximum_output_records": 2,
+      "mechanism": "local_exploration_v2",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case01-product-scope/windows/turn-007.json",
+      "packet_sha256": "700718f79964eb91ae058c4124e11c77ddc6cd00539b12bd69b5ec929b231bf5",
+      "response_schema_metrics": {
+        "bytes": 1344,
+        "depth": 8
+      },
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "40ef997e4c0bd3a4cb3de9293bc8b6ac0a6559b8a965a6f9b806463ee657a66a",
+      "view_kind": "exploration_and_alternatives"
+    }
+  ],
+  "purpose": "Test whether the five Case-02 development mechanisms transfer without tuning to two mechanically selected reviewed conversations.",
+  "retry_policy": {
+    "automatic_retry": false,
+    "eligible_only_for_operational_failure": true,
+    "first_attempt_failure_preserved": true,
+    "maximum_one_operational_completion_per_case": true,
+    "retry_after_header_must_be_preserved_when_present": true,
+    "semantic_or_schema_retry_forbidden": true,
+    "separate_retry_contract_required": true
+  },
+  "run_id": "reasoning-process-phase4-two-case-transfer-v1",
+  "schema_version": "lolla.reasoning_process_phase4_transfer_contract.v1",
+  "selection": {
+    "development_case_excluded": "amb1-case02-nonprofit-scale",
+    "eligible_case_ids": [
+      "amb1-case01-product-scope",
+      "amb1-case03-creative-partnership",
+      "amb1-case04-research-tool-release",
+      "amb1-case05-family-archive"
+    ],
+    "rule": "ascending_sha256_of_case_id_take_first_two",
+    "selected_case_ids": [
+      "amb1-case05-family-archive",
+      "amb1-case01-product-scope"
+    ],
+    "selection_was_semantic": false
+  },
+  "status": "frozen_before_transfer_provider_calls",
+  "stop_rules": [
+    "no_prompt_or_schema_change_after_first_transfer_output",
+    "no_completed_case_tuning",
+    "no_semantic_retry",
+    "no_fallback_or_response_healing",
+    "stop_if_same_load_bearing_semantic_failure_occurs_in_both_cases",
+    "stop_before_stability_repeats_if_either_case_fails_semantic_floor"
+  ],
+  "success_requirements": {
+    "candidate_terminal_custody_rate": 1.0,
+    "context_invisible_label_count": 0,
+    "critical_dimension_zero_count_per_case": 0,
+    "duplicates_measured_not_semantically_merged": true,
+    "eventual_case_completion_rate": 1.0,
+    "exact_source_reference_validity_rate": 1.0,
+    "first_attempt_operational_success_reported_separately": true,
+    "invalid_admitted_record_count": 0,
+    "protected_target_visible_rate_per_case": 1.0,
+    "source_first_review_required": true,
+    "source_strength_inflation_count": 0
+  }
+}

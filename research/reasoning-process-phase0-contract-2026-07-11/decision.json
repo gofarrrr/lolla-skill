@@ -1,0 +1,60 @@
+{
+  "schema_version": "lolla.reasoning_process_phase0_decision.v0",
+  "date": "2026-07-11",
+  "status": "complete_provider_free_pass",
+  "terminal_decision": "Freeze the reasoning-process ledger, bounded-view, and evidence-vector assessment contracts and authorize Phase 1 provider-free ledger construction only.",
+  "product_boundary": {
+    "final_memo_is_separate": true,
+    "authoritative_conversation_is_source_of_truth": true,
+    "process_ledger_is_broad_and_append_only": true,
+    "bounded_views_are_replaceable_and_non_authoritative": true,
+    "assessment_is_vector_not_scalar_score": true,
+    "direct_factual_graph_routing_allowed": false
+  },
+  "verification": {
+    "focused_adversarial_tests_passed": 19,
+    "relevant_cross_boundary_tests_passed": 47,
+    "bounded_view_schema_bytes": 2302,
+    "bounded_view_schema_depth": 8,
+    "process_assessment_schema_bytes": 1733,
+    "process_assessment_schema_depth": 8,
+    "provider_calls": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "frozen_artifact_sha256": {
+    "docs/conversation-understanding/reasoning-process-contract-v0.md": "38feaeb927ba140036c723ca750514237a413b841a039e4a08736fe406ea1e95",
+    "docs/conversation-understanding/reasoning-process-current-practice-check-2026-07-11.md": "2539cf4d0a7debec09694f529b829fd6826a28e12f92be2ede7ffa74244a0004",
+    "docs/evals/reasoning-process-phase0-contract-v0.json": "e1b6d5864467d2c29de872f252969e68b9b47c5b2c526190ae9503baf3c22318",
+    "docs/evals/reasoning-process-bounded-view-provider-schema-v0.json": "5da86688969ceb5193ee2037800385e2d6fc350d30e45e11fd5b97cf93914f2c",
+    "docs/evals/reasoning-process-assessment-provider-schema-v0.json": "72840db7c741a85118c9806e01111145e11ca5128b49de30074ecec81b9b574a",
+    "engine/system_b/reasoning_process_contracts.py": "5a20ac2a4e690076b6eccb72ea4b01c6278482adc00a6050e10cb0cbd30a0114",
+    "tests/test_reasoning_process_contracts.py": "b7a2cf4a0f3e9e6cdfdd7aff0163e74121f30cff7fe54867941eee8fddd9e1b7",
+    "plans/reasoning-process-ledger-and-bounded-views-2026-07-11.md": "d0434a3df482988d9fc57a59a39e03de401b2c80ab26aee577a10b8c7fa7fa50"
+  },
+  "provider_envelope": {
+    "phase_0_to_2_calls": 0,
+    "later_total_call_hard_ceiling": 30,
+    "later_cost_hard_ceiling_usd": 0.3,
+    "paid_calls_currently_authorized": false,
+    "automatic_retries": 0,
+    "response_healing": false
+  },
+  "next_phase": {
+    "phase": "phase_1_provider_free_canonical_ledger",
+    "authorized": true,
+    "provider_calls_authorized": false,
+    "graph_or_runtime_changes_authorized": false
+  },
+  "non_claims": [
+    "contract_pass_is_not_semantic_quality",
+    "contract_pass_is_not_final_memo_evaluation",
+    "contract_pass_is_not_reasoning_effort_or_trust_proof",
+    "contract_pass_is_not_human_usefulness",
+    "contract_pass_is_not_downstream_reconsideration_value",
+    "contract_pass_is_not_graph_or_runtime_integration_authority"
+  ]
+}

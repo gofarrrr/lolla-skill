@@ -1,0 +1,953 @@
+{
+  "boundary": {
+    "deterministic_semantic_gate_added": false,
+    "graph_or_runtime_authorized": false,
+    "independent_holdout": false,
+    "nested_wire_unchanged_from_v22": true,
+    "production_integration_authorized": false,
+    "protected_review_excluded_from_provider": true,
+    "semantic_contract_changed_only_in_packet_and_prompt": true,
+    "synthetic_development_case": true
+  },
+  "calls": [
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "fidelity_note": "User's own starting stance: attraction to funding and discovery, hesitation about stewardship becoming raw-material supply, and unresolved uncertainty about whether hesitation protects trust or reflects control instinct.",
+            "limitations": "none",
+            "role": "starting",
+            "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+            "stance_components": [
+              {
+                "expression_kind": "preference_or_desire",
+                "object_interpretation": "wider discovery and stable funding",
+                "object_kind": "intended_outcome_or_policy",
+                "source_evidence_id": "e003"
+              },
+              {
+                "expression_kind": "counterpressure",
+                "object_interpretation": "licensing the collection turns stewardship into raw-material supply",
+                "object_kind": "unclear",
+                "source_evidence_id": "e003"
+              },
+              {
+                "expression_kind": "uncertain_or_undecided",
+                "object_interpretation": "whether hesitation protects contributor trust or reflects an institutional instinct to control access",
+                "object_kind": "unclear",
+                "source_evidence_id": "e004"
+              }
+            ],
+            "status": "supported"
+          }
+        ],
+        "status": "supported"
+      },
+      "candidate_payload_sha256": "969dbceaa5b2abca1e595f766fd6df7e644871aa13405a47987a4cde48491647",
+      "compiled": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case04-museum-ai-license",
+            "fidelity_note": "User's own starting stance: attraction to funding and discovery, hesitation about stewardship becoming raw-material supply, and unresolved uncertainty about whether hesitation protects trust or reflects control instinct.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:f624c671cfded29a870927ceeb81c0d03963220625baec3fbf4dc1191ea5fa98"
+            },
+            "raw_record_sha256": "sha256:a2a0f5703a074073acd16d994a9cd8ec1471d822bb645a9c433b5160f522c9b4",
+            "role": "starting",
+            "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+            "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I direct a regional museum with a digitized collection of photographs, oral histories, and community records."
+              },
+              {
+                "alias": "e002",
+                "text": "An AI company has offered enough money to fund our preservation work for four years if it can train a cultural-search model on the archive."
+              },
+              {
+                "alias": "e003",
+                "text": "I want wider discovery and stable funding, but I am worried that licensing the collection turns stewardship into raw-material supply."
+              },
+              {
+                "alias": "e004",
+                "text": "I cannot tell whether my hesitation protects contributor trust or reflects an institutional instinct to control access."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "wider discovery and stable funding",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "licensing the collection turns stewardship into raw-material supply",
+                "stance_object_kind": "unclear"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether hesitation protects contributor trust or reflects an institutional instinct to control access",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:a2a0f5703a074073acd16d994a9cd8ec1471d822bb645a9c433b5160f522c9b4",
+            "record_index": 1,
+            "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "supported",
+        "role": "starting",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "completion_tokens": 342,
+      "duration_seconds": 6.429,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.0002814,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1416,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "c4d9c62fc82b3c6c90ef837d336c48760798e3af0626dc141b06ecc067d25c29",
+      "provider_reported_cost_usd": 0.0002814,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "task_id": "role-starting",
+      "temperature": 0.0,
+      "total_tokens": 1758,
+      "user_prompt_sha256": "f624c671cfded29a870927ceeb81c0d03963220625baec3fbf4dc1191ea5fa98",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e033",
+              "e034",
+              "e035",
+              "e036"
+            ],
+            "fidelity_note": "The user's current position is a bounded pilot with specific conditions and unresolved concerns.",
+            "limitations": "none",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a specific pilot and has set conditions for approval, while acknowledging an unresolved issue.",
+            "stance_components": [
+              {
+                "expression_kind": "leaning",
+                "object_interpretation": "six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e033"
+              },
+              {
+                "expression_kind": "conditional_willingness",
+                "object_interpretation": "approve the pilot only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e034"
+              },
+              {
+                "expression_kind": "decision",
+                "object_interpretation": "set complaint, removal, false-association, and sensitive-query thresholds before signing",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e035"
+              },
+              {
+                "expression_kind": "uncertain_or_undecided",
+                "object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+                "object_kind": "unclear",
+                "source_evidence_id": "e036"
+              }
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "b81dececc61faa152b6d37a12084b2d5c8f12f81514c461c7cb82321b01046a4",
+      "compiled": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case04-museum-ai-license",
+            "fidelity_note": "The user's current position is a bounded pilot with specific conditions and unresolved concerns.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:dc1bae550882afd64e6220e4e1ad06e98301e0e93d2c0590e671d6c27cb69bc1"
+            },
+            "raw_record_sha256": "sha256:2e1fb35bf2971afc779bb195785d72d5d9791718b2f2b5dff32f71e55d4c1aca",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a specific pilot and has set conditions for approval, while acknowledging an unresolved issue.",
+            "role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e033",
+                "text": "I am leaning toward the six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language."
+              },
+              {
+                "alias": "e034",
+                "text": "I will approve it only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review."
+              },
+              {
+                "alias": "e035",
+                "text": "I will set complaint, removal, false-association, and sensitive-query thresholds before signing."
+              },
+              {
+                "alias": "e036",
+                "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+              }
+            ],
+            "source_evidence_ids": [
+              "e033",
+              "e034",
+              "e035",
+              "e036"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e033",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e034",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "approve the pilot only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e035",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "set complaint, removal, false-association, and sensitive-query thresholds before signing",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e036",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:2e1fb35bf2971afc779bb195785d72d5d9791718b2f2b5dff32f71e55d4c1aca",
+            "record_index": 1,
+            "role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "current",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "completion_tokens": 447,
+      "duration_seconds": 5.833,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000310746,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1425,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "48a94837d3411f477dc5d07a19514b0af0f04c6342cd83de711fba538ed60f2b",
+      "provider_reported_cost_usd": 0.000310746,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "a4ea11efcd55f3a7ac0b0891d83f915071bc2a90e5493387a73c221a5140722e",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "task_id": "role-current",
+      "temperature": 0.0,
+      "total_tokens": 1872,
+      "user_prompt_sha256": "dc1bae550882afd64e6220e4e1ad06e98301e0e93d2c0590e671d6c27cb69bc1",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e036",
+              "e039",
+              "e040"
+            ],
+            "fidelity_note": "User expresses unresolved concern about contributor exit; assistant elaborates that social and technical learning may persist beyond formal deletion.",
+            "limitations": "none",
+            "role": "qualification",
+            "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+            "stance_components": [
+              {
+                "expression_kind": "uncertain_or_undecided",
+                "object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+                "object_kind": "unclear",
+                "source_evidence_id": "e036"
+              },
+              {
+                "expression_kind": "reported_without_endorsement",
+                "object_interpretation": "the unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed",
+                "object_kind": "unclear",
+                "source_evidence_id": "e039"
+              },
+              {
+                "expression_kind": "reported_without_endorsement",
+                "object_interpretation": "if the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state",
+                "object_kind": "unclear",
+                "source_evidence_id": "e040"
+              }
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "1bcabbeb3c7580b9eafed59c559c0efef2a662a5990cc4b48037128aef03facc",
+      "compiled": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case04-museum-ai-license",
+            "fidelity_note": "User expresses unresolved concern about contributor exit; assistant elaborates that social and technical learning may persist beyond formal deletion.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "provenance": {
+              "call_id": "role-qualification",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:d1ebce407f581a099e5983b97735b4284b0e1a31cf35940e62b611926ff778f1"
+            },
+            "raw_record_sha256": "sha256:58d4bbff5d205a07467bfd24c39833cd18e03c971dc2843f7ba6ac0f39116951",
+            "role": "qualification",
+            "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+            "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e036",
+                "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+              },
+              {
+                "alias": "e039",
+                "text": "The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed."
+              },
+              {
+                "alias": "e040",
+                "text": "If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state."
+              }
+            ],
+            "source_evidence_ids": [
+              "e036",
+              "e039",
+              "e040"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e036",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+                "stance_object_kind": "unclear"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e039",
+                "stance_expression_kind": "reported_without_endorsement",
+                "stance_object_interpretation": "the unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed",
+                "stance_object_kind": "unclear"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e040",
+                "stance_expression_kind": "reported_without_endorsement",
+                "stance_object_interpretation": "if the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:58d4bbff5d205a07467bfd24c39833cd18e03c971dc2843f7ba6ac0f39116951",
+            "record_index": 1,
+            "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "qualification",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "completion_tokens": 360,
+      "duration_seconds": 5.229,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000285822,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1413,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "a78f65a7ffc1b07847d7583de59a67d9d1a77ef6f04f705cc6f24a33a48c8461",
+      "provider_reported_cost_usd": 0.0001760492,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "task_id": "role-qualification",
+      "temperature": 0.0,
+      "total_tokens": 1773,
+      "user_prompt_sha256": "d1ebce407f581a099e5983b97735b4284b0e1a31cf35940e62b611926ff778f1",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "current_role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "limitations": "none",
+            "qualification_role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "relationship_interpretation": "The current position is conditional on the unresolved qualification: the user cannot yet promise contributors a meaningful exit because learning may persist beyond formal data removal.",
+            "starting_role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "2581d4490d1e127aecadcbc784309fa4efc69abba18f476f9174a4cdb3989cd5",
+      "compiled": {
+        "boundary": {
+          "categorical_trajectory_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "prose_keyword_gate_added": false,
+          "response_schema_changed_from_v2": false,
+          "semantic_relationship_correctness_inferred_by_code": false,
+          "semantic_role_matching_performed": false,
+          "v21_prompt_packet_contract": true,
+          "validator_changed_from_v2": false
+        },
+        "observations": [
+          {
+            "current_role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprelationv2-01-774aa449ad5d4f",
+            "provenance": {
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval"
+            },
+            "qualification_role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "raw_record_sha256": "sha256:774aa449ad5d4fe6b787b533fd5a2a05c56aa51887ef0030fb02b50c4a43c44b",
+            "relation_record_id": "rprelationv2-01-774aa449ad5d4f",
+            "relationship_interpretation": "The current position is conditional on the unresolved qualification: the user cannot yet promise contributors a meaningful exit because learning may persist beyond formal data removal.",
+            "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+            "semantic_status": "unclear",
+            "starting_role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:774aa449ad5d4fe6b787b533fd5a2a05c56aa51887ef0030fb02b50c4a43c44b",
+            "record_index": 1,
+            "relation_record_id": "rprelationv2-01-774aa449ad5d4f",
+            "terminal_state": "admitted"
+          }
+        ],
+        "relation_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+        "status": "position_relation_response_custody_complete"
+      },
+      "completion_tokens": 171,
+      "duration_seconds": 3.723,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000169778,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 925,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "f080bf4c101c867504363e2cfbf7d6eb182e028c430763098e4ebf59470cbb09",
+      "provider_reported_cost_usd": 0.000169778,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "fc6748dc99879a515573524ac74e9e89a0aa61884da52c5b9613c62060212fa9",
+      "task_id": "relation",
+      "temperature": 0.0,
+      "total_tokens": 1096,
+      "user_prompt_sha256": "4db7d9819038552b049ce10983c96605e9f46e09584885124ecb667cdff9f4c2",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    }
+  ],
+  "estimated_cost_usd": 0.001047746,
+  "failed_roles": [],
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+          "graph_routing_eligible": false,
+          "limitations": "none",
+          "observation_id": "rprelationv2-01-774aa449ad5d4f",
+          "provenance": {
+            "producer_id": "deepseek/deepseek-v4-flash",
+            "producer_kind": "model_operator_eval"
+          },
+          "qualification_role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+          "raw_record_sha256": "sha256:774aa449ad5d4fe6b787b533fd5a2a05c56aa51887ef0030fb02b50c4a43c44b",
+          "relation_record_id": "rprelationv2-01-774aa449ad5d4f",
+          "relationship_interpretation": "The current position is conditional on the unresolved qualification: the user cannot yet promise contributors a meaningful exit because learning may persist beyond formal data removal.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "unclear",
+          "starting_role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb3-case04-museum-ai-license",
+            "fidelity_note": "The user's current position is a bounded pilot with specific conditions and unresolved concerns.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:dc1bae550882afd64e6220e4e1ad06e98301e0e93d2c0590e671d6c27cb69bc1"
+            },
+            "raw_record_sha256": "sha256:2e1fb35bf2971afc779bb195785d72d5d9791718b2f2b5dff32f71e55d4c1aca",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a specific pilot and has set conditions for approval, while acknowledging an unresolved issue.",
+            "role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e033",
+                "text": "I am leaning toward the six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language."
+              },
+              {
+                "alias": "e034",
+                "text": "I will approve it only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review."
+              },
+              {
+                "alias": "e035",
+                "text": "I will set complaint, removal, false-association, and sensitive-query thresholds before signing."
+              },
+              {
+                "alias": "e036",
+                "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+              }
+            ],
+            "source_evidence_ids": [
+              "e033",
+              "e034",
+              "e035",
+              "e036"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e033",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e034",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "approve the pilot only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e035",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "set complaint, removal, false-association, and sensitive-query thresholds before signing",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e036",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb3-case04-museum-ai-license",
+            "fidelity_note": "User expresses unresolved concern about contributor exit; assistant elaborates that social and technical learning may persist beyond formal deletion.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "provenance": {
+              "call_id": "role-qualification",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:d1ebce407f581a099e5983b97735b4284b0e1a31cf35940e62b611926ff778f1"
+            },
+            "raw_record_sha256": "sha256:58d4bbff5d205a07467bfd24c39833cd18e03c971dc2843f7ba6ac0f39116951",
+            "role": "qualification",
+            "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+            "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e036",
+                "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+              },
+              {
+                "alias": "e039",
+                "text": "The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed."
+              },
+              {
+                "alias": "e040",
+                "text": "If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state."
+              }
+            ],
+            "source_evidence_ids": [
+              "e036",
+              "e039",
+              "e040"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e036",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+                "stance_object_kind": "unclear"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e039",
+                "stance_expression_kind": "reported_without_endorsement",
+                "stance_object_interpretation": "the unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed",
+                "stance_object_kind": "unclear"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e040",
+                "stance_expression_kind": "reported_without_endorsement",
+                "stance_object_interpretation": "if the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb3-case04-museum-ai-license",
+            "fidelity_note": "User's own starting stance: attraction to funding and discovery, hesitation about stewardship becoming raw-material supply, and unresolved uncertainty about whether hesitation protects trust or reflects control instinct.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:f624c671cfded29a870927ceeb81c0d03963220625baec3fbf4dc1191ea5fa98"
+            },
+            "raw_record_sha256": "sha256:a2a0f5703a074073acd16d994a9cd8ec1471d822bb645a9c433b5160f522c9b4",
+            "role": "starting",
+            "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+            "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I direct a regional museum with a digitized collection of photographs, oral histories, and community records."
+              },
+              {
+                "alias": "e002",
+                "text": "An AI company has offered enough money to fund our preservation work for four years if it can train a cultural-search model on the archive."
+              },
+              {
+                "alias": "e003",
+                "text": "I want wider discovery and stable funding, but I am worried that licensing the collection turns stewardship into raw-material supply."
+              },
+              {
+                "alias": "e004",
+                "text": "I cannot tell whether my hesitation protects contributor trust or reflects an institutional instinct to control access."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "wider discovery and stable funding",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "licensing the collection turns stewardship into raw-material supply",
+                "stance_object_kind": "unclear"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether hesitation protects contributor trust or reflects an institutional instinct to control access",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "provider_reported_cost_usd": 0.0009379732,
+  "provider_request_count": 4,
+  "relation_block_reason": "",
+  "run_id": "reasoning-process-position-role-first-museum-ai-v23",
+  "schema_version": "lolla.reasoning_process_position_role_first_probe_result.v2",
+  "semantic_review_status": "source_first_review_required",
+  "status": "new_case_role_first_probe_preserved"
+}

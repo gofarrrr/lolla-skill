@@ -443,7 +443,9 @@ def _strings(value: Any) -> list[str]:
         return []
     if isinstance(value, str):
         return [value]
-    if isinstance(value, list | tuple):
+    # Runtime tuple form is compatible with Python 3.9, which remains a
+    # possible ambient interpreter for archive/finalization shell entrypoints.
+    if isinstance(value, (list, tuple)):
         return [str(item) for item in value if str(item)]
     return []
 

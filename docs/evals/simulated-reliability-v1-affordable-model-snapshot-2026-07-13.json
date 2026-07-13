@@ -1,0 +1,116 @@
+{
+  "schema_version": "lolla.simulated_reliability_affordable_model_snapshot.v1",
+  "status": "point_in_time_selection_evidence_not_a_permanent_model_ranking",
+  "retrieved_at_utc": "2026-07-13T05:38:04Z",
+  "decision_question": "Which materially cheaper OpenRouter model is worth the smallest source-fidelity probe before any further V1 transfer spending?",
+  "requirements": {
+    "full_conversation_privacy": "An eligible route must be present in OpenRouter's current Zero Data Retention endpoint inventory.",
+    "structured_extraction": "The selected endpoint must accept the response-format and structured-output controls used by the frozen starting-position request.",
+    "provider_custody": "The model and provider are pinned, fallbacks are disabled, required parameters are enforced, data_collection is denied, and per-request ZDR is true.",
+    "cost_discipline": "Price only admits a candidate to a probe. Source fidelity, role fidelity, modal fidelity, operational success, and exact attribution decide whether it advances.",
+    "no_scalar_quality_score": true
+  },
+  "official_sources": [
+    "https://openrouter.ai/api/v1/models",
+    "https://openrouter.ai/api/v1/endpoints/zdr",
+    "https://openrouter.ai/docs/guides/features/zdr",
+    "https://openrouter.ai/docs/guides/routing/provider-selection",
+    "https://openrouter.ai/docs/guides/features/structured-outputs"
+  ],
+  "candidates": [
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+      "catalog_price_usd_per_million_tokens": {
+        "prompt": 0.077,
+        "completion": 0.154
+      },
+      "selected_zdr_endpoint": {
+        "provider_name": "DeepInfra",
+        "provider_slug": "deepinfra",
+        "maximum_price_usd_per_million_tokens": {
+          "prompt": 0.09,
+          "completion": 0.18
+        },
+        "context_length": 1048576,
+        "maximum_completion_tokens": 65536,
+        "required_capabilities_observed": [
+          "response_format",
+          "structured_outputs",
+          "seed",
+          "reasoning_effort"
+        ]
+      },
+      "local_evidence": {
+        "positive": "On the already separated V2.4.2 role probe, DeepSeek V4 Flash preserved the quiet negative qualification instead of erasing it.",
+        "caveat": "It previously failed an overloaded combined semantic contract and has not yet passed this exact V1 starting-position task.",
+        "path": "research/independent-quiet-library-v242-role-probe-2026-07-12/source-review.json"
+      },
+      "selection": "stage_1_probe"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "canonical_slug": "google/gemini-3.1-flash-lite-20260507",
+      "catalog_price_usd_per_million_tokens": {
+        "prompt": 0.25,
+        "completion": 1.5
+      },
+      "selected_zdr_endpoint": {
+        "provider_name": "Google",
+        "provider_slug": "google-vertex",
+        "maximum_price_usd_per_million_tokens": {
+          "prompt": 0.25,
+          "completion": 1.5
+        },
+        "context_length": 1048576,
+        "maximum_completion_tokens": 65536,
+        "required_capabilities_observed": [
+          "response_format",
+          "structured_outputs",
+          "seed",
+          "reasoning_effort"
+        ]
+      },
+      "local_evidence": {
+        "positive": "It is a materially cheaper same-family control for the Gemini 3.5 reference.",
+        "caveat": "It has not demonstrated source fidelity on the exact V1 task."
+      },
+      "selection": "stage_1_probe"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "canonical_slug": "google/gemini-3.5-flash-20260519",
+      "catalog_price_usd_per_million_tokens": {
+        "prompt": 1.5,
+        "completion": 9.0
+      },
+      "selection": "preserved_premium_reference_only",
+      "reason": "Its 96 existing V1 attempts and outputs are retained as evidence, but its observed cost is too high for routine development testing and its reliability evidence does not justify more calls now."
+    },
+    {
+      "model": "qwen/qwen3.5-flash-02-23",
+      "selection": "excluded_before_call",
+      "reason": "The model appeared in the general model catalog but had no entry in the current ZDR endpoint inventory, so it is not eligible for full-conversation testing."
+    },
+    {
+      "model": "z-ai/glm-5.2",
+      "canonical_slug": "z-ai/glm-5.2-20260616",
+      "selection": "excluded_before_call",
+      "reason": "Current ZDR endpoints are substantially more expensive than DeepSeek V4 Flash, while earlier local probes already found source-fidelity failures; another call has poor expected information value."
+    }
+  ],
+  "probe_design": {
+    "case_id": "v1-case06-industry-funded-lab",
+    "task_id": "starting",
+    "why_this_task": "Gemini 3.5 Flash failed to produce a compiled starting-position record on this exact transfer case, so success here is informative and does not reward a candidate for an easy case.",
+    "calls": 2,
+    "maximum_provider_reported_cost_usd": 0.02,
+    "advance_rule": "Only a candidate with an operationally valid compiled result and a source-first semantic review that preserves the user's own early attraction, hesitation, and modal force may receive a separately frozen next-stage call.",
+    "production_selection_allowed": false
+  },
+  "product_implication": {
+    "default_development_runtime": "Seek the cheapest model that clears each bounded semantic contract; do not use a premium model merely because it is more capable in aggregate.",
+    "premium_future_option": "Keep the Gemini 3.5 evidence as a possible quality/cost reference for a user-funded premium tier if later demand and comparative utility justify it.",
+    "not_decided": "This snapshot does not establish a production tier, a winning model, or that more expensive output is more useful."
+  }
+}

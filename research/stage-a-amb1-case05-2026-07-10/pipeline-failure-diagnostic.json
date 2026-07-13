@@ -1,0 +1,21 @@
+{
+  "schema_version": "lolla.stage_a_pipeline_failure_diagnostic.v1",
+  "date": "2026-07-10",
+  "status": "reproduced_without_credentials",
+  "frozen_execution_stderr_sha256": "36bfedb292b8497504a3ddbb0429aec4062415ae732103d9aec4407e02263c8c",
+  "diagnostic_stderr_sha256": "36bfedb292b8497504a3ddbb0429aec4062415ae732103d9aec4407e02263c8c",
+  "exact_hash_match": true,
+  "diagnostic_provider_calls": 0,
+  "diagnostic_credentials_loaded": false,
+  "root_exception": "TypeError: unsupported operand type(s) for |: 'type' and 'type'",
+  "root_location": "engine/system_b/ir.py:286",
+  "active_frozen_attempt_python": {
+    "version": "3.9.6",
+    "executable": "/usr/bin/python3",
+    "executable_sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818"
+  },
+  "required_language_feature": "PEP 604 union type operator at runtime, available in Python 3.10 and newer",
+  "classification": "execution_runtime_preflight_defect_before_pipeline_provider_initialization",
+  "raw_traceback_included": false,
+  "why_raw_traceback_omitted": "The exact frozen stderr hash was reproduced. The structured root exception and location are sufficient and avoid duplicating local absolute paths."
+}

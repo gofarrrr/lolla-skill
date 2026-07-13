@@ -1,0 +1,86 @@
+{
+  "boundary": {
+    "current_and_qualification_allocated_in_one_probabilistic_task": true,
+    "deterministic_alias_subtraction_added": false,
+    "deterministic_semantic_role_gate_added": false,
+    "direct_graph_routing_allowed": false,
+    "envelope_status_derived_mechanically": true,
+    "hard_alias_exclusivity_required": false,
+    "keyword_or_chronology_gate_added": false,
+    "maximum_pipeline_calls": 3,
+    "one_semantic_role_only": true,
+    "other_role_labels_requested": false,
+    "parallel_component_columns_used": false,
+    "record_identity_semantics_made_explicit": true,
+    "record_semantic_status_retained": true,
+    "redundant_envelope_status_removed_from_v24": true,
+    "response_schema_changed_from_v2": false,
+    "role_response_wire_changed_from_v21": true,
+    "semantic_contract_changed_from_v21": false,
+    "semantic_prefilter_performed": false,
+    "semantic_repair_performed": false,
+    "semantic_score_added": false,
+    "speaker_ownership_semantics_made_explicit": true,
+    "starting_role_included": false,
+    "trajectory_relation_requested": false,
+    "validator_changed_from_v2": false
+  },
+  "case_id": "amb3-case06-housing-retrofit-partnership",
+  "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+  "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+  "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+  "focal_region": {
+    "annotated_sentence_text": "[Turn 1 USER]\ne001\tI oversee a municipal housing authority with twelve aging apartment buildings.\ne002\tAn energy-services company has offered to finance heat pumps, insulation, and smart controls in exchange for a fifteen-year share of measured energy savings.\ne003\tI want lower bills and healthier buildings, but I am worried that a long performance contract will transfer practical control of residents' homes to a vendor.\ne004\tI cannot tell whether my resistance protects tenants or protects an old maintenance culture that has already failed them.\n[Turn 1 ASSISTANT]\ne005\tThe offer combines resident comfort, energy cost, building health, capital scarcity, vendor control, data collection, and long-term dependence.\ne006\tSeparate physical improvements from the measurement and control regime used to finance them.\ne007\tAlso distinguish formal tenant choice from the practical consequences of living in a collectively managed building.\n[Turn 7 USER]\ne031\tI am leaning toward the two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting.\ne032\tI will accept building-wide optimization only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual.\ne033\tBefore signing, I will set bill, comfort, complaint, override, outage, deletion, and intervention thresholds.\ne034\tI will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior.\n[Turn 7 ASSISTANT]\ne035\tThe current position is a bounded retrofit and operations trial rather than a fifteen-year transfer of building control.\ne036\tIts scope, controls, data, housing-use, verification, appeal, threshold, ownership, and exit conditions constrain several dependencies.\ne037\tThe unresolved issue is whether individual choice is overstated when building-level optimization remains collective.\ne038\tIf the pilot ends, installed equipment, maintenance routines, resident expectations, and the authority's dependence on vendor-designed operating models may not return to their prior state.",
+    "citation_allowed": true,
+    "evidence_aliases": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e006",
+      "e007",
+      "e031",
+      "e032",
+      "e033",
+      "e034",
+      "e035",
+      "e036",
+      "e037",
+      "e038"
+    ]
+  },
+  "maximum_components_per_record": 5,
+  "maximum_records": 2,
+  "paired_roles": [
+    "current",
+    "qualification"
+  ],
+  "prior_context": {
+    "annotated_sentence_text": "",
+    "citation_allowed": false,
+    "evidence_aliases": [],
+    "included": false,
+    "role_limited_citation_policy": "none"
+  },
+  "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+  "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+  "response_contract": {
+    "explicit_role_label_required": true,
+    "global_synthesis_requested": false,
+    "maximum_records_per_role": 2,
+    "maximum_records_total": 4,
+    "per_role_envelope_status_requested": false,
+    "valid_empty_role_allowed": true
+  },
+  "role": "current_and_qualification",
+  "role_boundary_contract": {
+    "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+    "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+    "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+  },
+  "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_1",
+  "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+  "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+  "valid_empty_output_allowed": true
+}

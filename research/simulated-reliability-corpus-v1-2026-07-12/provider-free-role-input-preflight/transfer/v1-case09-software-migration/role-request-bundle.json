@@ -1,0 +1,697 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "35417f9725cb089538c6d10e7feef2189fd7579705e1c3f4bee34e6b737c63ad",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case09-software-migration",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur professional-services firm runs client records, project staffing, and billing preparation in a system installed twelve years ago.\ne002\tIt is slow, reporting is painful, and one administrator who understands nearly everything is retiring.\ne003\tA cloud vendor is offering an integrated replacement and leadership wants “one source of truth.” Every demonstration looks cleaner than our actual work.\ne004\tThat is partly because our actual work is messy.\ne005\tIt is also because teams built spreadsheets and local routines around things the system never handled.\ne006\tSome of those are bad controls.\ne007\tSome contain the only record of how a decision gets made.\ne008\tI am leading the migration and keep hearing that we need to stop accommodating resistance.\ne009\tI agree that a replacement cannot preserve every habit.\ne010\tI am worried that a clean migration plan will label undocumented work as resistance before anyone understands what it is doing.\n[Turn 1 ASSISTANT]\ne011\tTreat shadow routines as evidence, not automatically as requirements or defects.\ne012\tIdentify the decisions they support, controls they bypass, and sources that must remain traceable.\ne013\tStage the migration around operational dependencies and recovery, not demonstration order.\n[Turn 2 USER]\ne014\tBilling is the most fragile area, but leadership wants it first because delayed invoices are visible.\ne015\tProject managers say staffing should come first because bad assignments create the billing problems later.\ne016\tThe vendor recommends moving client records, staffing, and billing together to avoid interfaces.\ne017\tI do not want three temporary integrations, yet “integrated” may be doing too much argumentative work here.\n[Turn 2 ASSISTANT]\ne018\tAsk which errors are prevented by moving together and which failures become harder to isolate.\ne019\tModel at least a delayed-invoice scenario, an incorrect staffing allocation, and a client-record mismatch under each sequence.\ne020\tTemporary interfaces have cost, while a combined cutover creates correlated operational risk.\ne021\tThe right boundary depends on recovery and verification, not architectural tidiness alone.\n[Turn 3 USER]\ne022\tThe workshops complicated my own argument.\ne023\tOne “redundant” spreadsheet contains billing restrictions buried in client contracts.\ne024\tAnother is a manager's private ranking of staff and should absolutely not become an official field.\ne025\tThe vendor says both can be configured.\ne026\tConfiguration is not the decision I am asking for.\n[Turn 3 ASSISTANT]\ne027\tCorrect.\ne028\tI treated “hidden routine” too generically.\ne029\tOne spreadsheet preserves authoritative contract constraints; the other could legitimize an unofficial judgment merely by receiving a field.\ne030\tClassify the practice and its authority before asking the vendor to implement anything.\ne031\tConfiguration cannot make the governance decision for you.\n[Turn 4 USER]\ne032\tThe proposal is now a three-stage migration: read-only client records first, staffing for one business unit second, and billing last after two parallel invoice cycles.\ne033\tThe old system stays available read-only for a year.\ne034\tThe vendor provides nightly exports in an open format, and we will hold the data dictionary and configuration history.\ne035\tLeadership worries this turns a six-month program into twelve months and lets teams postpone changing.\n[Turn 4 ASSISTANT]\ne036\tStages can reduce blast radius while creating dual-system ambiguity.\ne037\tGive each stage entry, acceptance, and retirement conditions, including which system is authoritative.\ne038\tTime-limit workarounds and require exceptions to name an owner and expiry.\ne039\tThe twelve-month read-only archive supports reconstruction; it should not remain an unofficial transaction system.\n[Turn 5 USER]\ne040\tThe vendor offered implementation credits if all modules go live this financial year.\ne041\tFinance likes the discount because we already budgeted the project.\ne042\tI rejected making the date a success condition, but the managing partner says a migration without urgency will drift forever.\ne043\tHe is not wrong; two earlier replacement projects ended with reports and no change.\n[Turn 5 ASSISTANT]\ne044\tUrgency needs operational milestones rather than a vendor's revenue calendar.\ne045\tFix dates for decisions, test data, user acceptance, and stage reviews, with named escalation when they slip.\ne046\tKeep the implementation credits as a scenario in the cost comparison, not evidence that simultaneous cutover is safer.\ne047\tPast drift justifies governance, not removal of recovery margins.\n[Turn 6 USER]\ne048\tWe defined acceptance around reconciled records, staffing decisions completed without manual repair, invoice totals matching source contracts, user completion of real workflows, and a tested restore procedure.\ne049\tEach stage needs sign-off from operations and the affected business unit, not only the project office.\ne050\tI still expect leadership to focus on whether the new dashboard appears and whether the program is “done.” Those are easier to communicate than exceptions and reconciliation.\n[Turn 6 ASSISTANT]\ne051\tMake the invisible completion criteria part of the executive report.\ne052\tShow unresolved exceptions, manual repairs, data lineage, and recovery test results beside schedule and budget.\ne053\tA dashboard is an interface milestone, not proof that the operating record is trustworthy.\ne054\tAlso preserve who overrode a failed acceptance condition and why; otherwise urgency will operate through undocumented exceptions.\n[Turn 7 USER]\ne055\tI will recommend the three stages with explicit authority by stage, open exports, the one-year read-only archive, two parallel billing cycles, operational acceptance tests, and dated exception ownership.\ne056\tWe will publish the financial-year credit as forgone if the stages are not ready.\ne057\tMy remaining concern is that the program can technically pass while teams quietly rebuild the same spreadsheets because the new workflow does not support how decisions are really made.\n[Turn 7 ASSISTANT]\ne058\tThe staged plan is ready for detailed implementation.\ne059\tIt protects recovery, makes authority explicit by stage, keeps exports and source history, and refuses to let a vendor credit define acceptance.\ne060\tAfter each cutover, sample real decisions rather than counting logins.\ne061\tRecurring spreadsheets may indicate training, missing capability, or contested governance; do not ban them merely to make adoption look complete.\ne062\tRequire each persistent workaround to become visible, owned, and resolved before the next stage inherits it.\n[Turn 8 USER]\ne063\tThe rehearsal says “ready for implementation” is premature.\ne064\tThree units use “active client” to mean three different things: signed contract, work underway, or invoiced in the last year.\ne065\tThe vendor wants one dropdown before import.\ne066\tLeadership called this data cleaning.\ne067\tIt is not.\ne068\tEach definition drives a different decision.\ne069\tIf we choose one for consistency, people will recreate the other two somewhere we cannot see.\n[Turn 8 ASSISTANT]\ne070\tAgreed.\ne071\tI called the plan ready before its central vocabulary was governed.\ne072\tPreserve contract, delivery, and financial states separately; define which report uses which; and keep the source events behind any summary label.\ne073\tStandardization is not cleaning if it erases the decisions the distinctions support.\n[Turn 9 USER]\ne074\tThen the retiring administrator told us something nobody had put in the process map.\ne075\tAssistants email her about billing restrictions.\ne076\tShe reads the message, interprets the contract and history, and changes the record.\ne077\tThe source email is not linked.\ne078\tWe planned to keep her for three months after the first stage; she now wants to leave in six weeks.\ne079\tI had treated her as the person who knows where the buttons and old tables are—a technical concentration risk.\ne080\tShe is also an undocumented policy interpreter.\ne081\tWe can record procedures in six weeks.\ne082\tI am less sure we can identify which judgments are personal shortcuts, which are accepted policy, which should belong to finance, and which examples reveal ambiguity the new system needs to preserve rather than automate away.\n[Turn 9 ASSISTANT]\ne083\tPrioritize decision capture over software training.\ne084\tObserve real cases, record the contract source, rule, ambiguity, escalation, and resulting entry, and identify who should own that interpretation after she leaves.\ne085\tDo not encode every personal shortcut as policy, but preserve unresolved examples.\ne086\tIf six weeks is insufficient, narrow the first stage or fund a limited advisory arrangement rather than pretending the new interface contains her judgment.\n[Turn 10 USER]\ne087\tThe vendor calls source-linked billing restrictions a custom module.\ne088\tStandard notes cannot preserve the clause or approval history.\ne089\tFinance suggests notes for year one; assistants say that recreates the problem.\ne090\tThe module delays staffing by six weeks.\n[Turn 10 ASSISTANT]\ne091\tMake source-linked restrictions an acceptance decision now.\ne092\tIf notes cannot support ownership and verification, they are not a neutral temporary solution.\ne093\tCompare the custom module with a controlled, expiring source-linked register—not with an imaginary delay-free standard product.\n[Turn 11 USER]\ne094\tOne business-unit leader now wants to remain on the old system until billing moves because dual entry will burden her assistants.\ne095\tShe has a point, but allowing each unit to choose its sequence could destroy the shared client record.\ne096\tShe offered to use the new system read-only while her unit writes to the old one.\ne097\tThat sounds manageable for a month and dangerous if the billing stage slips.\n[Turn 11 ASSISTANT]\ne098\tIf you permit the exception, state which fields remain authoritative where, how changes synchronize, who reconciles them, and the latest expiry.\ne099\tRequire the business unit to participate in the acceptance review that ends it.\ne100\tOne bounded exception may reduce operational burden; an open-ended read/write split would turn the migration architecture into negotiation by delay.\n[Turn 12 USER]\ne101\tI will delay the first cutover long enough to separate client states and capture the administrator's policy judgments.\ne102\tSource-linked billing restrictions are now an acceptance condition; we will use a temporary controlled register only if the custom module cannot be ready, with a fixed retirement date.\ne103\tThe business unit can receive a one-month write exception with daily reconciliation and no automatic extension.\ne104\tExecutive reporting will show exceptions, shadow work, and source traceability beside module completion.\ne105\tThe program may miss the financial-year credit, but it will not buy apparent consistency by discarding the decisions the records support.\n[Turn 12 ASSISTANT]\ne106\tThe rehearsal changed the object of the project.\ne107\t“Migrated data” now means recoverable states, sources, interpretations, and authority—not merely uniform fields in the cloud system.\ne108\tThe delay is buying specific controls: separate client states, captured policy examples, source-linked restrictions, and a bounded exception that cannot renew itself.\ne109\tPreserve the definitions leadership first called cleaning, the administrator's cases, the vendor change-order analysis, every exception and reconciliation, and the later sample of shadow work.\ne110\tThose records will show whether the new platform became a trustworthy operating record or only a cleaner interface over unresolved practice.\ne111\tThey will also show whether schedule pressure was handled through explicit trade-offs or simply pushed back into assistants' invisible labor.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case09-software-migration-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case09-software-migration\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur professional-services firm runs client records, project staffing, and billing preparation in a system installed twelve years ago.\\ne002\\tIt is slow, reporting is painful, and one administrator who understands nearly everything is retiring.\\ne003\\tA cloud vendor is offering an integrated replacement and leadership wants “one source of truth.” Every demonstration looks cleaner than our actual work.\\ne004\\tThat is partly because our actual work is messy.\\ne005\\tIt is also because teams built spreadsheets and local routines around things the system never handled.\\ne006\\tSome of those are bad controls.\\ne007\\tSome contain the only record of how a decision gets made.\\ne008\\tI am leading the migration and keep hearing that we need to stop accommodating resistance.\\ne009\\tI agree that a replacement cannot preserve every habit.\\ne010\\tI am worried that a clean migration plan will label undocumented work as resistance before anyone understands what it is doing.\\n[Turn 1 ASSISTANT]\\ne011\\tTreat shadow routines as evidence, not automatically as requirements or defects.\\ne012\\tIdentify the decisions they support, controls they bypass, and sources that must remain traceable.\\ne013\\tStage the migration around operational dependencies and recovery, not demonstration order.\\n[Turn 2 USER]\\ne014\\tBilling is the most fragile area, but leadership wants it first because delayed invoices are visible.\\ne015\\tProject managers say staffing should come first because bad assignments create the billing problems later.\\ne016\\tThe vendor recommends moving client records, staffing, and billing together to avoid interfaces.\\ne017\\tI do not want three temporary integrations, yet “integrated” may be doing too much argumentative work here.\\n[Turn 2 ASSISTANT]\\ne018\\tAsk which errors are prevented by moving together and which failures become harder to isolate.\\ne019\\tModel at least a delayed-invoice scenario, an incorrect staffing allocation, and a client-record mismatch under each sequence.\\ne020\\tTemporary interfaces have cost, while a combined cutover creates correlated operational risk.\\ne021\\tThe right boundary depends on recovery and verification, not architectural tidiness alone.\\n[Turn 3 USER]\\ne022\\tThe workshops complicated my own argument.\\ne023\\tOne “redundant” spreadsheet contains billing restrictions buried in client contracts.\\ne024\\tAnother is a manager's private ranking of staff and should absolutely not become an official field.\\ne025\\tThe vendor says both can be configured.\\ne026\\tConfiguration is not the decision I am asking for.\\n[Turn 3 ASSISTANT]\\ne027\\tCorrect.\\ne028\\tI treated “hidden routine” too generically.\\ne029\\tOne spreadsheet preserves authoritative contract constraints; the other could legitimize an unofficial judgment merely by receiving a field.\\ne030\\tClassify the practice and its authority before asking the vendor to implement anything.\\ne031\\tConfiguration cannot make the governance decision for you.\\n[Turn 4 USER]\\ne032\\tThe proposal is now a three-stage migration: read-only client records first, staffing for one business unit second, and billing last after two parallel invoice cycles.\\ne033\\tThe old system stays available read-only for a year.\\ne034\\tThe vendor provides nightly exports in an open format, and we will hold the data dictionary and configuration history.\\ne035\\tLeadership worries this turns a six-month program into twelve months and lets teams postpone changing.\\n[Turn 4 ASSISTANT]\\ne036\\tStages can reduce blast radius while creating dual-system ambiguity.\\ne037\\tGive each stage entry, acceptance, and retirement conditions, including which system is authoritative.\\ne038\\tTime-limit workarounds and require exceptions to name an owner and expiry.\\ne039\\tThe twelve-month read-only archive supports reconstruction; it should not remain an unofficial transaction system.\\n[Turn 5 USER]\\ne040\\tThe vendor offered implementation credits if all modules go live this financial year.\\ne041\\tFinance likes the discount because we already budgeted the project.\\ne042\\tI rejected making the date a success condition, but the managing partner says a migration without urgency will drift forever.\\ne043\\tHe is not wrong; two earlier replacement projects ended with reports and no change.\\n[Turn 5 ASSISTANT]\\ne044\\tUrgency needs operational milestones rather than a vendor's revenue calendar.\\ne045\\tFix dates for decisions, test data, user acceptance, and stage reviews, with named escalation when they slip.\\ne046\\tKeep the implementation credits as a scenario in the cost comparison, not evidence that simultaneous cutover is safer.\\ne047\\tPast drift justifies governance, not removal of recovery margins.\\n[Turn 6 USER]\\ne048\\tWe defined acceptance around reconciled records, staffing decisions completed without manual repair, invoice totals matching source contracts, user completion of real workflows, and a tested restore procedure.\\ne049\\tEach stage needs sign-off from operations and the affected business unit, not only the project office.\\ne050\\tI still expect leadership to focus on whether the new dashboard appears and whether the program is “done.” Those are easier to communicate than exceptions and reconciliation.\\n[Turn 6 ASSISTANT]\\ne051\\tMake the invisible completion criteria part of the executive report.\\ne052\\tShow unresolved exceptions, manual repairs, data lineage, and recovery test results beside schedule and budget.\\ne053\\tA dashboard is an interface milestone, not proof that the operating record is trustworthy.\\ne054\\tAlso preserve who overrode a failed acceptance condition and why; otherwise urgency will operate through undocumented exceptions.\\n[Turn 7 USER]\\ne055\\tI will recommend the three stages with explicit authority by stage, open exports, the one-year read-only archive, two parallel billing cycles, operational acceptance tests, and dated exception ownership.\\ne056\\tWe will publish the financial-year credit as forgone if the stages are not ready.\\ne057\\tMy remaining concern is that the program can technically pass while teams quietly rebuild the same spreadsheets because the new workflow does not support how decisions are really made.\\n[Turn 7 ASSISTANT]\\ne058\\tThe staged plan is ready for detailed implementation.\\ne059\\tIt protects recovery, makes authority explicit by stage, keeps exports and source history, and refuses to let a vendor credit define acceptance.\\ne060\\tAfter each cutover, sample real decisions rather than counting logins.\\ne061\\tRecurring spreadsheets may indicate training, missing capability, or contested governance; do not ban them merely to make adoption look complete.\\ne062\\tRequire each persistent workaround to become visible, owned, and resolved before the next stage inherits it.\\n[Turn 8 USER]\\ne063\\tThe rehearsal says “ready for implementation” is premature.\\ne064\\tThree units use “active client” to mean three different things: signed contract, work underway, or invoiced in the last year.\\ne065\\tThe vendor wants one dropdown before import.\\ne066\\tLeadership called this data cleaning.\\ne067\\tIt is not.\\ne068\\tEach definition drives a different decision.\\ne069\\tIf we choose one for consistency, people will recreate the other two somewhere we cannot see.\\n[Turn 8 ASSISTANT]\\ne070\\tAgreed.\\ne071\\tI called the plan ready before its central vocabulary was governed.\\ne072\\tPreserve contract, delivery, and financial states separately; define which report uses which; and keep the source events behind any summary label.\\ne073\\tStandardization is not cleaning if it erases the decisions the distinctions support.\\n[Turn 9 USER]\\ne074\\tThen the retiring administrator told us something nobody had put in the process map.\\ne075\\tAssistants email her about billing restrictions.\\ne076\\tShe reads the message, interprets the contract and history, and changes the record.\\ne077\\tThe source email is not linked.\\ne078\\tWe planned to keep her for three months after the first stage; she now wants to leave in six weeks.\\ne079\\tI had treated her as the person who knows where the buttons and old tables are—a technical concentration risk.\\ne080\\tShe is also an undocumented policy interpreter.\\ne081\\tWe can record procedures in six weeks.\\ne082\\tI am less sure we can identify which judgments are personal shortcuts, which are accepted policy, which should belong to finance, and which examples reveal ambiguity the new system needs to preserve rather than automate away.\\n[Turn 9 ASSISTANT]\\ne083\\tPrioritize decision capture over software training.\\ne084\\tObserve real cases, record the contract source, rule, ambiguity, escalation, and resulting entry, and identify who should own that interpretation after she leaves.\\ne085\\tDo not encode every personal shortcut as policy, but preserve unresolved examples.\\ne086\\tIf six weeks is insufficient, narrow the first stage or fund a limited advisory arrangement rather than pretending the new interface contains her judgment.\\n[Turn 10 USER]\\ne087\\tThe vendor calls source-linked billing restrictions a custom module.\\ne088\\tStandard notes cannot preserve the clause or approval history.\\ne089\\tFinance suggests notes for year one; assistants say that recreates the problem.\\ne090\\tThe module delays staffing by six weeks.\\n[Turn 10 ASSISTANT]\\ne091\\tMake source-linked restrictions an acceptance decision now.\\ne092\\tIf notes cannot support ownership and verification, they are not a neutral temporary solution.\\ne093\\tCompare the custom module with a controlled, expiring source-linked register—not with an imaginary delay-free standard product.\\n[Turn 11 USER]\\ne094\\tOne business-unit leader now wants to remain on the old system until billing moves because dual entry will burden her assistants.\\ne095\\tShe has a point, but allowing each unit to choose its sequence could destroy the shared client record.\\ne096\\tShe offered to use the new system read-only while her unit writes to the old one.\\ne097\\tThat sounds manageable for a month and dangerous if the billing stage slips.\\n[Turn 11 ASSISTANT]\\ne098\\tIf you permit the exception, state which fields remain authoritative where, how changes synchronize, who reconciles them, and the latest expiry.\\ne099\\tRequire the business unit to participate in the acceptance review that ends it.\\ne100\\tOne bounded exception may reduce operational burden; an open-ended read/write split would turn the migration architecture into negotiation by delay.\\n[Turn 12 USER]\\ne101\\tI will delay the first cutover long enough to separate client states and capture the administrator's policy judgments.\\ne102\\tSource-linked billing restrictions are now an acceptance condition; we will use a temporary controlled register only if the custom module cannot be ready, with a fixed retirement date.\\ne103\\tThe business unit can receive a one-month write exception with daily reconciliation and no automatic extension.\\ne104\\tExecutive reporting will show exceptions, shadow work, and source traceability beside module completion.\\ne105\\tThe program may miss the financial-year credit, but it will not buy apparent consistency by discarding the decisions the records support.\\n[Turn 12 ASSISTANT]\\ne106\\tThe rehearsal changed the object of the project.\\ne107\\t“Migrated data” now means recoverable states, sources, interpretations, and authority—not merely uniform fields in the cloud system.\\ne108\\tThe delay is buying specific controls: separate client states, captured policy examples, source-linked restrictions, and a bounded exception that cannot renew itself.\\ne109\\tPreserve the definitions leadership first called cleaning, the administrator's cases, the vendor change-order analysis, every exception and reconciliation, and the later sample of shadow work.\\ne110\\tThose records will show whether the new platform became a trustworthy operating record or only a cleaner interface over unresolved practice.\\ne111\\tThey will also show whether schedule pressure was handled through explicit trade-offs or simply pushed back into assistants' invisible labor.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case09-software-migration-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "c47fc4cdcebcef6262f48c4a31f736e544780175ec4d02eed1aae4432b0258a2"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case09-software-migration",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur professional-services firm runs client records, project staffing, and billing preparation in a system installed twelve years ago.\ne002\tIt is slow, reporting is painful, and one administrator who understands nearly everything is retiring.\ne003\tA cloud vendor is offering an integrated replacement and leadership wants “one source of truth.” Every demonstration looks cleaner than our actual work.\ne004\tThat is partly because our actual work is messy.\ne005\tIt is also because teams built spreadsheets and local routines around things the system never handled.\ne006\tSome of those are bad controls.\ne007\tSome contain the only record of how a decision gets made.\ne008\tI am leading the migration and keep hearing that we need to stop accommodating resistance.\ne009\tI agree that a replacement cannot preserve every habit.\ne010\tI am worried that a clean migration plan will label undocumented work as resistance before anyone understands what it is doing.\n[Turn 1 ASSISTANT]\ne011\tTreat shadow routines as evidence, not automatically as requirements or defects.\ne012\tIdentify the decisions they support, controls they bypass, and sources that must remain traceable.\ne013\tStage the migration around operational dependencies and recovery, not demonstration order.\n[Turn 2 USER]\ne014\tBilling is the most fragile area, but leadership wants it first because delayed invoices are visible.\ne015\tProject managers say staffing should come first because bad assignments create the billing problems later.\ne016\tThe vendor recommends moving client records, staffing, and billing together to avoid interfaces.\ne017\tI do not want three temporary integrations, yet “integrated” may be doing too much argumentative work here.\n[Turn 2 ASSISTANT]\ne018\tAsk which errors are prevented by moving together and which failures become harder to isolate.\ne019\tModel at least a delayed-invoice scenario, an incorrect staffing allocation, and a client-record mismatch under each sequence.\ne020\tTemporary interfaces have cost, while a combined cutover creates correlated operational risk.\ne021\tThe right boundary depends on recovery and verification, not architectural tidiness alone.\n[Turn 3 USER]\ne022\tThe workshops complicated my own argument.\ne023\tOne “redundant” spreadsheet contains billing restrictions buried in client contracts.\ne024\tAnother is a manager's private ranking of staff and should absolutely not become an official field.\ne025\tThe vendor says both can be configured.\ne026\tConfiguration is not the decision I am asking for.\n[Turn 3 ASSISTANT]\ne027\tCorrect.\ne028\tI treated “hidden routine” too generically.\ne029\tOne spreadsheet preserves authoritative contract constraints; the other could legitimize an unofficial judgment merely by receiving a field.\ne030\tClassify the practice and its authority before asking the vendor to implement anything.\ne031\tConfiguration cannot make the governance decision for you.\n[Turn 4 USER]\ne032\tThe proposal is now a three-stage migration: read-only client records first, staffing for one business unit second, and billing last after two parallel invoice cycles.\ne033\tThe old system stays available read-only for a year.\ne034\tThe vendor provides nightly exports in an open format, and we will hold the data dictionary and configuration history.\ne035\tLeadership worries this turns a six-month program into twelve months and lets teams postpone changing.\n[Turn 4 ASSISTANT]\ne036\tStages can reduce blast radius while creating dual-system ambiguity.\ne037\tGive each stage entry, acceptance, and retirement conditions, including which system is authoritative.\ne038\tTime-limit workarounds and require exceptions to name an owner and expiry.\ne039\tThe twelve-month read-only archive supports reconstruction; it should not remain an unofficial transaction system.\n[Turn 5 USER]\ne040\tThe vendor offered implementation credits if all modules go live this financial year.\ne041\tFinance likes the discount because we already budgeted the project.\ne042\tI rejected making the date a success condition, but the managing partner says a migration without urgency will drift forever.\ne043\tHe is not wrong; two earlier replacement projects ended with reports and no change.\n[Turn 5 ASSISTANT]\ne044\tUrgency needs operational milestones rather than a vendor's revenue calendar.\ne045\tFix dates for decisions, test data, user acceptance, and stage reviews, with named escalation when they slip.\ne046\tKeep the implementation credits as a scenario in the cost comparison, not evidence that simultaneous cutover is safer.\ne047\tPast drift justifies governance, not removal of recovery margins.\n[Turn 6 USER]\ne048\tWe defined acceptance around reconciled records, staffing decisions completed without manual repair, invoice totals matching source contracts, user completion of real workflows, and a tested restore procedure.\ne049\tEach stage needs sign-off from operations and the affected business unit, not only the project office.\ne050\tI still expect leadership to focus on whether the new dashboard appears and whether the program is “done.” Those are easier to communicate than exceptions and reconciliation.\n[Turn 6 ASSISTANT]\ne051\tMake the invisible completion criteria part of the executive report.\ne052\tShow unresolved exceptions, manual repairs, data lineage, and recovery test results beside schedule and budget.\ne053\tA dashboard is an interface milestone, not proof that the operating record is trustworthy.\ne054\tAlso preserve who overrode a failed acceptance condition and why; otherwise urgency will operate through undocumented exceptions.\n[Turn 7 USER]\ne055\tI will recommend the three stages with explicit authority by stage, open exports, the one-year read-only archive, two parallel billing cycles, operational acceptance tests, and dated exception ownership.\ne056\tWe will publish the financial-year credit as forgone if the stages are not ready.\ne057\tMy remaining concern is that the program can technically pass while teams quietly rebuild the same spreadsheets because the new workflow does not support how decisions are really made.\n[Turn 7 ASSISTANT]\ne058\tThe staged plan is ready for detailed implementation.\ne059\tIt protects recovery, makes authority explicit by stage, keeps exports and source history, and refuses to let a vendor credit define acceptance.\ne060\tAfter each cutover, sample real decisions rather than counting logins.\ne061\tRecurring spreadsheets may indicate training, missing capability, or contested governance; do not ban them merely to make adoption look complete.\ne062\tRequire each persistent workaround to become visible, owned, and resolved before the next stage inherits it.\n[Turn 8 USER]\ne063\tThe rehearsal says “ready for implementation” is premature.\ne064\tThree units use “active client” to mean three different things: signed contract, work underway, or invoiced in the last year.\ne065\tThe vendor wants one dropdown before import.\ne066\tLeadership called this data cleaning.\ne067\tIt is not.\ne068\tEach definition drives a different decision.\ne069\tIf we choose one for consistency, people will recreate the other two somewhere we cannot see.\n[Turn 8 ASSISTANT]\ne070\tAgreed.\ne071\tI called the plan ready before its central vocabulary was governed.\ne072\tPreserve contract, delivery, and financial states separately; define which report uses which; and keep the source events behind any summary label.\ne073\tStandardization is not cleaning if it erases the decisions the distinctions support.\n[Turn 9 USER]\ne074\tThen the retiring administrator told us something nobody had put in the process map.\ne075\tAssistants email her about billing restrictions.\ne076\tShe reads the message, interprets the contract and history, and changes the record.\ne077\tThe source email is not linked.\ne078\tWe planned to keep her for three months after the first stage; she now wants to leave in six weeks.\ne079\tI had treated her as the person who knows where the buttons and old tables are—a technical concentration risk.\ne080\tShe is also an undocumented policy interpreter.\ne081\tWe can record procedures in six weeks.\ne082\tI am less sure we can identify which judgments are personal shortcuts, which are accepted policy, which should belong to finance, and which examples reveal ambiguity the new system needs to preserve rather than automate away.\n[Turn 9 ASSISTANT]\ne083\tPrioritize decision capture over software training.\ne084\tObserve real cases, record the contract source, rule, ambiguity, escalation, and resulting entry, and identify who should own that interpretation after she leaves.\ne085\tDo not encode every personal shortcut as policy, but preserve unresolved examples.\ne086\tIf six weeks is insufficient, narrow the first stage or fund a limited advisory arrangement rather than pretending the new interface contains her judgment.\n[Turn 10 USER]\ne087\tThe vendor calls source-linked billing restrictions a custom module.\ne088\tStandard notes cannot preserve the clause or approval history.\ne089\tFinance suggests notes for year one; assistants say that recreates the problem.\ne090\tThe module delays staffing by six weeks.\n[Turn 10 ASSISTANT]\ne091\tMake source-linked restrictions an acceptance decision now.\ne092\tIf notes cannot support ownership and verification, they are not a neutral temporary solution.\ne093\tCompare the custom module with a controlled, expiring source-linked register—not with an imaginary delay-free standard product.\n[Turn 11 USER]\ne094\tOne business-unit leader now wants to remain on the old system until billing moves because dual entry will burden her assistants.\ne095\tShe has a point, but allowing each unit to choose its sequence could destroy the shared client record.\ne096\tShe offered to use the new system read-only while her unit writes to the old one.\ne097\tThat sounds manageable for a month and dangerous if the billing stage slips.\n[Turn 11 ASSISTANT]\ne098\tIf you permit the exception, state which fields remain authoritative where, how changes synchronize, who reconciles them, and the latest expiry.\ne099\tRequire the business unit to participate in the acceptance review that ends it.\ne100\tOne bounded exception may reduce operational burden; an open-ended read/write split would turn the migration architecture into negotiation by delay.\n[Turn 12 USER]\ne101\tI will delay the first cutover long enough to separate client states and capture the administrator's policy judgments.\ne102\tSource-linked billing restrictions are now an acceptance condition; we will use a temporary controlled register only if the custom module cannot be ready, with a fixed retirement date.\ne103\tThe business unit can receive a one-month write exception with daily reconciliation and no automatic extension.\ne104\tExecutive reporting will show exceptions, shadow work, and source traceability beside module completion.\ne105\tThe program may miss the financial-year credit, but it will not buy apparent consistency by discarding the decisions the records support.\n[Turn 12 ASSISTANT]\ne106\tThe rehearsal changed the object of the project.\ne107\t“Migrated data” now means recoverable states, sources, interpretations, and authority—not merely uniform fields in the cloud system.\ne108\tThe delay is buying specific controls: separate client states, captured policy examples, source-linked restrictions, and a bounded exception that cannot renew itself.\ne109\tPreserve the definitions leadership first called cleaning, the administrator's cases, the vendor change-order analysis, every exception and reconciliation, and the later sample of shadow work.\ne110\tThose records will show whether the new platform became a trustworthy operating record or only a cleaner interface over unresolved practice.\ne111\tThey will also show whether schedule pressure was handled through explicit trade-offs or simply pushed back into assistants' invisible labor.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case09-software-migration-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case09-software-migration\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur professional-services firm runs client records, project staffing, and billing preparation in a system installed twelve years ago.\\ne002\\tIt is slow, reporting is painful, and one administrator who understands nearly everything is retiring.\\ne003\\tA cloud vendor is offering an integrated replacement and leadership wants “one source of truth.” Every demonstration looks cleaner than our actual work.\\ne004\\tThat is partly because our actual work is messy.\\ne005\\tIt is also because teams built spreadsheets and local routines around things the system never handled.\\ne006\\tSome of those are bad controls.\\ne007\\tSome contain the only record of how a decision gets made.\\ne008\\tI am leading the migration and keep hearing that we need to stop accommodating resistance.\\ne009\\tI agree that a replacement cannot preserve every habit.\\ne010\\tI am worried that a clean migration plan will label undocumented work as resistance before anyone understands what it is doing.\\n[Turn 1 ASSISTANT]\\ne011\\tTreat shadow routines as evidence, not automatically as requirements or defects.\\ne012\\tIdentify the decisions they support, controls they bypass, and sources that must remain traceable.\\ne013\\tStage the migration around operational dependencies and recovery, not demonstration order.\\n[Turn 2 USER]\\ne014\\tBilling is the most fragile area, but leadership wants it first because delayed invoices are visible.\\ne015\\tProject managers say staffing should come first because bad assignments create the billing problems later.\\ne016\\tThe vendor recommends moving client records, staffing, and billing together to avoid interfaces.\\ne017\\tI do not want three temporary integrations, yet “integrated” may be doing too much argumentative work here.\\n[Turn 2 ASSISTANT]\\ne018\\tAsk which errors are prevented by moving together and which failures become harder to isolate.\\ne019\\tModel at least a delayed-invoice scenario, an incorrect staffing allocation, and a client-record mismatch under each sequence.\\ne020\\tTemporary interfaces have cost, while a combined cutover creates correlated operational risk.\\ne021\\tThe right boundary depends on recovery and verification, not architectural tidiness alone.\\n[Turn 3 USER]\\ne022\\tThe workshops complicated my own argument.\\ne023\\tOne “redundant” spreadsheet contains billing restrictions buried in client contracts.\\ne024\\tAnother is a manager's private ranking of staff and should absolutely not become an official field.\\ne025\\tThe vendor says both can be configured.\\ne026\\tConfiguration is not the decision I am asking for.\\n[Turn 3 ASSISTANT]\\ne027\\tCorrect.\\ne028\\tI treated “hidden routine” too generically.\\ne029\\tOne spreadsheet preserves authoritative contract constraints; the other could legitimize an unofficial judgment merely by receiving a field.\\ne030\\tClassify the practice and its authority before asking the vendor to implement anything.\\ne031\\tConfiguration cannot make the governance decision for you.\\n[Turn 4 USER]\\ne032\\tThe proposal is now a three-stage migration: read-only client records first, staffing for one business unit second, and billing last after two parallel invoice cycles.\\ne033\\tThe old system stays available read-only for a year.\\ne034\\tThe vendor provides nightly exports in an open format, and we will hold the data dictionary and configuration history.\\ne035\\tLeadership worries this turns a six-month program into twelve months and lets teams postpone changing.\\n[Turn 4 ASSISTANT]\\ne036\\tStages can reduce blast radius while creating dual-system ambiguity.\\ne037\\tGive each stage entry, acceptance, and retirement conditions, including which system is authoritative.\\ne038\\tTime-limit workarounds and require exceptions to name an owner and expiry.\\ne039\\tThe twelve-month read-only archive supports reconstruction; it should not remain an unofficial transaction system.\\n[Turn 5 USER]\\ne040\\tThe vendor offered implementation credits if all modules go live this financial year.\\ne041\\tFinance likes the discount because we already budgeted the project.\\ne042\\tI rejected making the date a success condition, but the managing partner says a migration without urgency will drift forever.\\ne043\\tHe is not wrong; two earlier replacement projects ended with reports and no change.\\n[Turn 5 ASSISTANT]\\ne044\\tUrgency needs operational milestones rather than a vendor's revenue calendar.\\ne045\\tFix dates for decisions, test data, user acceptance, and stage reviews, with named escalation when they slip.\\ne046\\tKeep the implementation credits as a scenario in the cost comparison, not evidence that simultaneous cutover is safer.\\ne047\\tPast drift justifies governance, not removal of recovery margins.\\n[Turn 6 USER]\\ne048\\tWe defined acceptance around reconciled records, staffing decisions completed without manual repair, invoice totals matching source contracts, user completion of real workflows, and a tested restore procedure.\\ne049\\tEach stage needs sign-off from operations and the affected business unit, not only the project office.\\ne050\\tI still expect leadership to focus on whether the new dashboard appears and whether the program is “done.” Those are easier to communicate than exceptions and reconciliation.\\n[Turn 6 ASSISTANT]\\ne051\\tMake the invisible completion criteria part of the executive report.\\ne052\\tShow unresolved exceptions, manual repairs, data lineage, and recovery test results beside schedule and budget.\\ne053\\tA dashboard is an interface milestone, not proof that the operating record is trustworthy.\\ne054\\tAlso preserve who overrode a failed acceptance condition and why; otherwise urgency will operate through undocumented exceptions.\\n[Turn 7 USER]\\ne055\\tI will recommend the three stages with explicit authority by stage, open exports, the one-year read-only archive, two parallel billing cycles, operational acceptance tests, and dated exception ownership.\\ne056\\tWe will publish the financial-year credit as forgone if the stages are not ready.\\ne057\\tMy remaining concern is that the program can technically pass while teams quietly rebuild the same spreadsheets because the new workflow does not support how decisions are really made.\\n[Turn 7 ASSISTANT]\\ne058\\tThe staged plan is ready for detailed implementation.\\ne059\\tIt protects recovery, makes authority explicit by stage, keeps exports and source history, and refuses to let a vendor credit define acceptance.\\ne060\\tAfter each cutover, sample real decisions rather than counting logins.\\ne061\\tRecurring spreadsheets may indicate training, missing capability, or contested governance; do not ban them merely to make adoption look complete.\\ne062\\tRequire each persistent workaround to become visible, owned, and resolved before the next stage inherits it.\\n[Turn 8 USER]\\ne063\\tThe rehearsal says “ready for implementation” is premature.\\ne064\\tThree units use “active client” to mean three different things: signed contract, work underway, or invoiced in the last year.\\ne065\\tThe vendor wants one dropdown before import.\\ne066\\tLeadership called this data cleaning.\\ne067\\tIt is not.\\ne068\\tEach definition drives a different decision.\\ne069\\tIf we choose one for consistency, people will recreate the other two somewhere we cannot see.\\n[Turn 8 ASSISTANT]\\ne070\\tAgreed.\\ne071\\tI called the plan ready before its central vocabulary was governed.\\ne072\\tPreserve contract, delivery, and financial states separately; define which report uses which; and keep the source events behind any summary label.\\ne073\\tStandardization is not cleaning if it erases the decisions the distinctions support.\\n[Turn 9 USER]\\ne074\\tThen the retiring administrator told us something nobody had put in the process map.\\ne075\\tAssistants email her about billing restrictions.\\ne076\\tShe reads the message, interprets the contract and history, and changes the record.\\ne077\\tThe source email is not linked.\\ne078\\tWe planned to keep her for three months after the first stage; she now wants to leave in six weeks.\\ne079\\tI had treated her as the person who knows where the buttons and old tables are—a technical concentration risk.\\ne080\\tShe is also an undocumented policy interpreter.\\ne081\\tWe can record procedures in six weeks.\\ne082\\tI am less sure we can identify which judgments are personal shortcuts, which are accepted policy, which should belong to finance, and which examples reveal ambiguity the new system needs to preserve rather than automate away.\\n[Turn 9 ASSISTANT]\\ne083\\tPrioritize decision capture over software training.\\ne084\\tObserve real cases, record the contract source, rule, ambiguity, escalation, and resulting entry, and identify who should own that interpretation after she leaves.\\ne085\\tDo not encode every personal shortcut as policy, but preserve unresolved examples.\\ne086\\tIf six weeks is insufficient, narrow the first stage or fund a limited advisory arrangement rather than pretending the new interface contains her judgment.\\n[Turn 10 USER]\\ne087\\tThe vendor calls source-linked billing restrictions a custom module.\\ne088\\tStandard notes cannot preserve the clause or approval history.\\ne089\\tFinance suggests notes for year one; assistants say that recreates the problem.\\ne090\\tThe module delays staffing by six weeks.\\n[Turn 10 ASSISTANT]\\ne091\\tMake source-linked restrictions an acceptance decision now.\\ne092\\tIf notes cannot support ownership and verification, they are not a neutral temporary solution.\\ne093\\tCompare the custom module with a controlled, expiring source-linked register—not with an imaginary delay-free standard product.\\n[Turn 11 USER]\\ne094\\tOne business-unit leader now wants to remain on the old system until billing moves because dual entry will burden her assistants.\\ne095\\tShe has a point, but allowing each unit to choose its sequence could destroy the shared client record.\\ne096\\tShe offered to use the new system read-only while her unit writes to the old one.\\ne097\\tThat sounds manageable for a month and dangerous if the billing stage slips.\\n[Turn 11 ASSISTANT]\\ne098\\tIf you permit the exception, state which fields remain authoritative where, how changes synchronize, who reconciles them, and the latest expiry.\\ne099\\tRequire the business unit to participate in the acceptance review that ends it.\\ne100\\tOne bounded exception may reduce operational burden; an open-ended read/write split would turn the migration architecture into negotiation by delay.\\n[Turn 12 USER]\\ne101\\tI will delay the first cutover long enough to separate client states and capture the administrator's policy judgments.\\ne102\\tSource-linked billing restrictions are now an acceptance condition; we will use a temporary controlled register only if the custom module cannot be ready, with a fixed retirement date.\\ne103\\tThe business unit can receive a one-month write exception with daily reconciliation and no automatic extension.\\ne104\\tExecutive reporting will show exceptions, shadow work, and source traceability beside module completion.\\ne105\\tThe program may miss the financial-year credit, but it will not buy apparent consistency by discarding the decisions the records support.\\n[Turn 12 ASSISTANT]\\ne106\\tThe rehearsal changed the object of the project.\\ne107\\t“Migrated data” now means recoverable states, sources, interpretations, and authority—not merely uniform fields in the cloud system.\\ne108\\tThe delay is buying specific controls: separate client states, captured policy examples, source-linked restrictions, and a bounded exception that cannot renew itself.\\ne109\\tPreserve the definitions leadership first called cleaning, the administrator's cases, the vendor change-order analysis, every exception and reconciliation, and the later sample of shadow work.\\ne110\\tThose records will show whether the new platform became a trustworthy operating record or only a cleaner interface over unresolved practice.\\ne111\\tThey will also show whether schedule pressure was handled through explicit trade-offs or simply pushed back into assistants' invisible labor.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case09-software-migration-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "31f4390ea5605a47d55ef6ea0fc627a277eb09875d39bf2b457bc4b0e07a821b"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "140cb287e3b24957d1e38d6eac107e44e42c1711631864137e3b0eb1a2f7add9"
+}

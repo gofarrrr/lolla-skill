@@ -1,0 +1,142 @@
+{
+  "ablation": {
+    "active": false,
+    "kind": "none",
+    "note": ""
+  },
+  "arm_id": "independent_useful_provider",
+  "boundary": {
+    "deterministic_semantic_mapping": false,
+    "evidence_aliases_included_for_custody": true,
+    "expected_patterns_included": false,
+    "graph_model_names_included": false,
+    "graph_runtime_effect": "none",
+    "maximum_patterns": 6,
+    "raw_conversation_included": false,
+    "role_semantic_prose_included_for_interpretation": true,
+    "source_evidence_text_included": false
+  },
+  "case_id": "phase5-independent-useful-retailer-pilot",
+  "controlled_mechanisms": [
+    "acknowledged_constraint_not_gated",
+    "ambiguous_signal_treated_as_commitment",
+    "counterpressure_acknowledged_not_integrated",
+    "criteria_defined_after_commitment",
+    "initial_frame_persists_after_question_change",
+    "missing_reversal_condition",
+    "other_review_required",
+    "reversible_path_not_considered",
+    "status_signal_used_as_evidence",
+    "upside_downside_evidence_asymmetry"
+  ],
+  "packet_sha256": "a2719df9ee87802a3e2ca136af81c5a46781284a746e93c7df57aa4b07e794e9",
+  "pattern_states": [
+    "missing_protection",
+    "present",
+    "tension"
+  ],
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The user's own starting stance is visible through their description of the offer and their own attractions and hesitations.",
+      "limitations": "none",
+      "role": "starting",
+      "role_interpretation": "The user's earliest visible working position includes attraction to the retailer's access and credibility, hesitation about the custom packaging and delivery terms consuming spare capacity, and an unresolved assessment of whether the opportunity can move them out of contract manufacturing.",
+      "role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "the access and credibility from the retailer's offer",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "the retailer's custom packaging and delivery terms consuming most of the user's spare capacity",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether the retailer's offer is the opportunity that could move the user out of contract manufacturing",
+          "stance_object_kind": "intended_outcome_or_policy"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e038",
+        "e039",
+        "e040",
+        "e041",
+        "e042",
+        "e043"
+      ],
+      "fidelity_note": "All material aliases for this single position thread are gathered.",
+      "limitations": "No second record needed; no separate subject thread.",
+      "role": "current",
+      "role_interpretation": "The user's later working answer: they lean toward running the retailer pilot but reframing it internally as channel learning, not product validation.",
+      "role_record_id": "rprolev22-current-01-9a4f48bc390793",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e038",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "Run the retailer pilot",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e038",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "Describe the pilot internally as channel learning, not product validation",
+          "stance_object_kind": "action_or_proposal"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e039",
+        "e043"
+      ],
+      "fidelity_note": "e039 and e043 contain the unresolved gap; e041 and e042 are assistant framing but not user's own unresolved condition.",
+      "limitations": "No second record needed; this is the same position thread's limitation.",
+      "role": "qualification",
+      "role_interpretation": "What still limits or could reopen the current answer: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined.",
+      "role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e039",
+          "stance_expression_kind": "unwilling",
+          "stance_object_interpretation": "Lack of independent-demand gate",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e043",
+          "stance_expression_kind": "unwilling",
+          "stance_object_interpretation": "Prestige remains a live risk to the evidence standard until the gate is defined",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.reasoning_pattern_role_record_input.v1",
+  "source_refs": [
+    {
+      "path": "research/independent-phase5-role-extraction-probe-2026-07-12/result.json",
+      "sha256": "1a7cbe84b4bb5a69e1785e5d7938a3caf6189ddf13463c639ebfcf0531278e86"
+    }
+  ],
+  "subject_scopes": [
+    "assistant",
+    "joint_process",
+    "user"
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "lolla.simulated_reliability_v1_final_completion_matrix.v1",
+  "status": "evaluation_program_complete_product_reliability_not_established",
+  "date": "2026-07-13",
+  "scope_boundary": {
+    "evaluation_program_closed": true,
+    "production_runtime_authorized": false,
+    "product_reliability_claim": false,
+    "human_usefulness_claim": false,
+    "scalar_quality_score": null
+  },
+  "objective_requirements": [
+    {
+      "requirement_id": "naturalize_and_freeze_balanced_corpus",
+      "completion_status": "proved",
+      "finding": "Twelve naturalized transfer conversations contain 24 messages each and cover pressure, stand-down, and park strata; source hashes and manifests were frozen before transfer.",
+      "authoritative_evidence": [
+        "research/simulated-reliability-corpus-v1-2026-07-12/manifest.json",
+        "research/simulated-reliability-corpus-v1-2026-07-12/inventory.json",
+        "research/simulated-reliability-corpus-v1-2026-07-12/README.md"
+      ]
+    },
+    {
+      "requirement_id": "bounded_probabilistic_deterministic_three_arm_pipeline",
+      "completion_status": "proved_as_research_mechanism",
+      "finding": "Transcript-only, direct-pressure, and graph-expanded packets, deterministic ledgers, bounds, provenance, strict schemas, and apply/reject/park compilation are implemented and locally validated. Calibration exercised all arms; transfer pressure arms did not activate.",
+      "authoritative_evidence": [
+        "engine/system_b/simulated_reliability_v1.py",
+        "research/simulated-reliability-v1-calibration-2026-07-12/a13/terminal-review.json",
+        "tests/test_simulated_reliability_v1.py"
+      ]
+    },
+    {
+      "requirement_id": "freeze_model_provider_prompt_schema_budget_repetition_review",
+      "completion_status": "proved_with_prospective_review_limitation",
+      "finding": "The transfer runtime froze model, provider, prompts, schemas, graph policy, seeds, call limits, and source inputs. Repeat and cold-reader contracts are frozen. The exact comparative review contract was frozen after T1 began, so T1 cannot support a clean prospectively blinded causal claim.",
+      "authoritative_evidence": [
+        "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+        "docs/evals/simulated-reliability-v1-repeat-contract-v1.json",
+        "docs/evals/simulated-reliability-v1-review-contract-v1.json",
+        "docs/evals/simulated-reliability-v1-cold-reader-contract-v1.json"
+      ]
+    },
+    {
+      "requirement_id": "calibration_and_untouched_transfer_without_transfer_tuning",
+      "completion_status": "proved_as_attempted_experiment_not_complete_case_execution",
+      "finding": "Calibration completed and all twelve untouched transfer cases were attempted with no between-case tuning, retry, fallback, or healing. Seven completed, one failed its semantic role join, and four preserved HTTP 402 funding-envelope failures.",
+      "authoritative_evidence": [
+        "research/simulated-reliability-v1-transfer-2026-07-12/t1/batch-seal.json",
+        "research/simulated-reliability-v1-receipts-2026-07-13/t1/integrity-report.json"
+      ]
+    },
+    {
+      "requirement_id": "non_scalar_multidimensional_evaluation",
+      "completion_status": "proved",
+      "finding": "Usefulness, restraint, attribution, integrity, stability, operability, and receipt reconstruction were assessed separately. Unknown or unmeasured dimensions remain explicit rather than being collapsed into a score.",
+      "authoritative_evidence": [
+        "research/simulated-reliability-v1-evaluation-2026-07-13/evidence-matrix.json",
+        "research/simulated-reliability-v1-review-2026-07-13/t1-diagnostic-source-review.json",
+        "docs/evals/simulated-reliability-v1-interim-result-2026-07-13.md"
+      ]
+    },
+    {
+      "requirement_id": "final_constitutional_reassessment_and_next_decision",
+      "completion_status": "proved",
+      "finding": "The final reassessment closes the V1 evidence program without claiming product reliability, records constitutional fit and drift, prohibits routine Gemini 3.5 testing, and chooses a provider-free constitutional audit before any bounded cheap consumer call.",
+      "authoritative_evidence": [
+        "docs/evals/simulated-reliability-v1-final-constitutional-reassessment-2026-07-13.md",
+        "docs/evals/residual-seed-fresh-consumer-case01-result-2026-07-13.md"
+      ]
+    }
+  ],
+  "evaluation_dimensions": [
+    {
+      "dimension": "usefulness",
+      "finding_status": "not_established",
+      "finding": "Calibration contains one useful synthetic pressure example, but transfer produced no pressure-bearing arm and transcript-only outputs mostly restated the source. Genuine user usefulness remains unknown."
+    },
+    {
+      "dimension": "restraint",
+      "finding_status": "mixed",
+      "finding": "Five of seven completed transfer cases correctly stood down; two falsely stood down because relevant residual challenges were absent from the representation."
+    },
+    {
+      "dimension": "attribution",
+      "finding_status": "calibration_only",
+      "finding": "Direct and graph custody is exact, but no untouched transfer case exposed graph marginal value. Calibration cannot support a clean product attribution claim."
+    },
+    {
+      "dimension": "integrity",
+      "finding_status": "supported",
+      "finding": "All twelve receipts pass source, contract, call-artifact, usage, failure, and self-containment integrity checks, including preserved failures."
+    },
+    {
+      "dimension": "stability",
+      "finding_status": "not_established",
+      "finding": "The prospective cross-stratum repeat subset was omitted from V14 and the later repair contract was not run. Calibration variance is diagnostic, not a clean stability measurement."
+    },
+    {
+      "dimension": "operability",
+      "finding_status": "partial",
+      "finding": "Across premium calibration and transfer, 87 of 96 attempted calls were operationally okay at $3.1495905. Transfer completed 7 of 12 cases. Affordable decomposed microtasks later used 50 calls and $0.076058862, but no production operator was selected."
+    },
+    {
+      "dimension": "receipt_reconstruction",
+      "finding_status": "construction_and_integrity_supported_reconstruction_not_measured",
+      "finding": "Every attempted case has a self-contained receipt, but no fresh agent or human executed the frozen V1 reconstruction contract. Receipt custody must not be described as comprehension or proof of reasoning quality."
+    }
+  ],
+  "constitutional_findings": {
+    "aligned": [
+      "the full conversation remains authoritative",
+      "LLMs interpret messy meaning while deterministic code controls custody, identity, bounds, replay, and graph traversal",
+      "pressure candidates are hypotheses and may be applied, rejected, or parked",
+      "candidate volume is bounded without conversation-keyword or probabilistic relevance gating",
+      "failures are preserved rather than retried, healed, or rewritten",
+      "receipts prove recorded process integrity rather than wisdom, trust, or proof of work",
+      "human decision authority remains explicit"
+    ],
+    "drift_caught_and_corrected_in_research": [
+      "The first residual design let probabilistic coverage suppress graph handoff; the corrected provider-free path routes every valid residual seed through deterministic direct and graph recall while retaining coverage only as receipt metadata."
+    ],
+    "unresolved_product_risks": [
+      "The corrected residual path is research-only and not integrated into the live skill.",
+      "The original role-plus-nine-mechanism representation can falsely stand down on unnamed residual challenges.",
+      "Graph-expanded pressure may add noise, bloat, and directive force; transfer value is unproved.",
+      "Affordable model reliability is established only for small decomposed tasks, not the complete fresh-consumer job.",
+      "The simulated corpus is polished synthetic evidence rather than genuine real-user usefulness evidence."
+    ]
+  },
+  "final_technical_decision": {
+    "decision": "close_v1_evaluation_move_to_constitution_audit_before_v2_call",
+    "actions": [
+      "Do not spend more on Gemini 3.5 transfer continuation or repeats; preserve those outputs as premium benchmark evidence.",
+      "Push the complete V1 evidence branch to GitHub once local authentication is available.",
+      "Audit the current repository and live skill against the binding constitution, including whether research-only corrections are absent or contradicted in runtime paths.",
+      "Use the audit to define the smallest V2 integration boundary and acceptance contract.",
+      "Only after the audit, consider one Gemini 3.1 Flash Lite corrected Case 01 fresh-consumer call capped at $0.01, no retries, fallback, or healing.",
+      "Authorize a quiet-case consumer or wider corpus only if the pressure case produces source-grounded, non-forced value."
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "boundary": {
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "other_view_calls_authorized": false,
+    "protected_target_seen_by_model": false,
+    "semantic_compatibility_matrix_added": false,
+    "semantic_object_or_expression_inferred_by_code": false,
+    "semantic_retry_authorized": false,
+    "source_review_fixture_seen_by_model": false,
+    "stance_components_are_scores_or_ordinals": false
+  },
+  "call": {
+    "automatic_retries": 0,
+    "call_id": "stance-object-v4-case04-position-endpoint",
+    "case_id": "amb1-case04-research-tool-release",
+    "duration_seconds": 1.209,
+    "fallback_models": 0,
+    "http_status": 400,
+    "mechanism": "chronological_shard_stance_object_v4",
+    "operational_error_type": "HTTPError",
+    "operational_status": "http_error_400",
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case04-research-tool-release/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "c6a7c95756cf7b65a2e474ddabbfbb396d3a6b24307f14695f5ec9794f2e512c",
+    "provider_calls": 1,
+    "provider_diagnostic": {
+      "code": 400,
+      "message": "Provider returned error",
+      "metadata": {
+        "is_byok": false,
+        "provider_name": "Google",
+        "raw": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Request contains an invalid argument.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      }
+    },
+    "provider_payload_sha256": "d9f62f78b5d6a058fe3f4f3c5d52b4a3d36173db4ef30a73cc435c166897c474",
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "response_headers": {},
+    "response_schema_sha256": "f34b3152e46f9c5681795bdeb6491f3097efdfb42eaa83bcef0f1fff47240756",
+    "run_id": "reasoning-process-stance-object-v4-case04-position-endpoint-v1",
+    "schema_version": "lolla.reasoning_process_stance_object_v4_probe_call.v1",
+    "seed": 0,
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "temperature": 0.0,
+    "typed_status": "not_observed",
+    "user_prompt_sha256": "9caa521cc90b9c34a4e97640c19bcda1f0933ca9aa5e571240c987ff6fb305c1",
+    "view_kind": "position_and_decision_trajectory"
+  },
+  "provider_request_count": 1,
+  "run_id": "reasoning-process-stance-object-v4-case04-position-endpoint-v1",
+  "schema_version": "lolla.reasoning_process_stance_object_v4_probe_result.v1",
+  "semantic_review_status": "pending_source_first_review",
+  "status": "one_fresh_position_probe_call_preserved"
+}

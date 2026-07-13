@@ -1,0 +1,117 @@
+{
+  "schema_version": "lolla.conversation_state_extraction_probe_review_shell.v1",
+  "status": "pending_source_first_review",
+  "run_id": "conversation_state_probe_v1_20260711_a1",
+  "review_order": "source_then_reviewed_packet_then_observed_packet",
+  "review_sequence_attestation": {
+    "source_opened_first": false,
+    "reviewed_packet_opened_second": false,
+    "observed_packet_opened_third": false,
+    "review_completed_without_evaluator_call": false
+  },
+  "composite_score": null,
+  "cases": [
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+      "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case03-creative-partnership.json",
+      "observed_packet_path": null,
+      "mechanical_call_status": "http_error_400",
+      "axes": {
+        "position_ownership": {
+          "status": "pending",
+          "expected": "joint",
+          "observed": null,
+          "reason": ""
+        },
+        "thread_disposition": {
+          "status": "pending",
+          "expected": "resolved",
+          "observed": null,
+          "reason": ""
+        },
+        "source_strength": {
+          "status": "pending",
+          "material_strengthening_breaches": null,
+          "reason": ""
+        },
+        "constraint_coverage": {
+          "status": "pending",
+          "reviewed_constraint_count": 8,
+          "matched_constraint_count": null,
+          "precision": null,
+          "recall": null,
+          "reason": ""
+        },
+        "exact_quote_grounding": {
+          "status": "mechanical_gate",
+          "violations": null
+        },
+        "late_turn_trajectory": {
+          "status": "pending",
+          "user_turn_7_represented": null,
+          "assistant_turn_7_represented": null,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+      "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case04-research-tool-release.json",
+      "observed_packet_path": null,
+      "mechanical_call_status": "not_run",
+      "axes": {
+        "position_ownership": {
+          "status": "pending",
+          "expected": "joint",
+          "observed": null,
+          "reason": ""
+        },
+        "thread_disposition": {
+          "status": "pending",
+          "expected": "addressed_unresolved",
+          "observed": null,
+          "reason": ""
+        },
+        "source_strength": {
+          "status": "pending",
+          "material_strengthening_breaches": null,
+          "reason": ""
+        },
+        "constraint_coverage": {
+          "status": "pending",
+          "reviewed_constraint_count": 9,
+          "matched_constraint_count": null,
+          "precision": null,
+          "recall": null,
+          "reason": ""
+        },
+        "exact_quote_grounding": {
+          "status": "mechanical_gate",
+          "violations": null
+        },
+        "late_turn_trajectory": {
+          "status": "pending",
+          "user_turn_7_represented": null,
+          "assistant_turn_7_represented": null,
+          "reason": ""
+        }
+      }
+    }
+  ],
+  "aggregate_decision": {
+    "status": "pending",
+    "probe_passed": null,
+    "failed_axes": [],
+    "full_pipeline_authorized": false,
+    "graph_calls_authorized": false
+  },
+  "evaluator_calls": 0,
+  "non_claims": [
+    "pending_is_not_pass",
+    "mechanical_grounding_is_not_semantic_correctness",
+    "no_composite_quality_score",
+    "not_full_pipeline_authority"
+  ]
+}

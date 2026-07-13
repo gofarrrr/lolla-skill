@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.gate7_case10_decision.v1",
+  "status": "agent_half_complete_human_feedback_required",
+  "date": "2026-07-10",
+  "receipt": {
+    "status": "frozen_complete",
+    "markdown_sha256": "c907c29969024d478244057f7c306c2192473ee348d298a8ec0c8209a3e2a931",
+    "word_count": 5345,
+    "byte_count": 48924,
+    "full_conversation_included": true
+  },
+  "reader_experiment": {
+    "contract_sha256": "f351e6ee46bebe96ff4c331b36c482fe739e9ad25ac53f1475e59cd4be6a5448",
+    "run_status": "passed",
+    "calls": 1,
+    "retries": 0,
+    "evaluator_calls": 0,
+    "total_tokens": 12866,
+    "estimated_cost_usd": 0.02457875,
+    "source_first_review_status": "complete_partial_transfer_pass"
+  },
+  "verification": {
+    "focused_gate7_tests": "8 passed",
+    "non_network_repository_suite": "4011 passed, 1 skipped",
+    "excluded_module": "tests/test_stability_check.py",
+    "exclusion_reason": "The current stability unit module invokes live OpenAI embeddings. Gate 7 verification did not authorize unbudgeted provider calls. An earlier unrestricted attempt failed at missing local dependency before any such call and is not represented as a passing full suite."
+  },
+  "gate_7_read": {
+    "fresh_agent_reconstruction": "partial_pass",
+    "human_reconstruction": "pending",
+    "full_gate_7_complete": false,
+    "why": "The fresh reader recovered the main reasoning and evidence history, including the negative answer-quality result and graph block, but missed source sequence and deadline details, inflated custody into proof once, overstated graph non-use, and misread the human-feedback field. Human usefulness remains untested."
+  },
+  "earned_claims": [
+    "One self-contained Case 10 receipt transferred most of the reasoning history to a fresh agent without prior session context or repository archaeology.",
+    "The transfer preserved the key lower-claim conclusion: accountable consideration was visible, unique answer improvement was not demonstrated, and graph contribution was not identified.",
+    "The experiment exposed specific receipt, prompt, and reader failure modes that can be repaired prospectively."
+  ],
+  "blocked_claims": [
+    "The receipt is self-evident, complete, human-useful, or certification-grade.",
+    "Lolla improves answers or real-world decisions.",
+    "The graph is useful, useless, necessary, or ready for promotion.",
+    "A longer receipt or successful reader call proves deeper reasoning.",
+    "Runtime integration is ready."
+  ],
+  "authorizations": {
+    "gate_7_agent_half_complete": true,
+    "human_feedback_request": true,
+    "gate_7_full_completion": false,
+    "gate_8_runtime_integration": false,
+    "paid_graph_ablation": false,
+    "graph_promotion": false,
+    "retune_completed_case10": false
+  },
+  "next_action": "Ask one compact human question against human-feedback-surface.md. Preserve the answer separately; do not silently rewrite the frozen Case 10 receipt. Apply any accepted repair prospectively to a new receipt contract and a different case.",
+  "non_claims": [
+    "not human validation",
+    "not product proof",
+    "not answer-quality scoring",
+    "not graph-value evidence",
+    "not runtime-integration authority"
+  ]
+}

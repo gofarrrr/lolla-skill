@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_pipeline_gate_result.v0",
+  "status": "failed",
+  "case_id": "case-07-messy-linked-decisions",
+  "contract_sha256": "e368de85154ab5aadc6501794e426a999b2b56010f440618e1038cd72e7f4099",
+  "raw_pipeline_result_sha256": "e3701cb976a6f2239c9531685e50d12c3b61e61a9a2ed297c5115ebd265b5b09",
+  "contract_hash_checks": {
+    "research/test-cases/case_messy_three_problems_conversation.txt": true,
+    "research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/messy_three_problems_extraction.json": true,
+    "scripts/run_pipeline.py": true,
+    "engine/system_b/v60_enrichment.py": true,
+    "data/compiled/model_affordances/affordances_v60.json": true,
+    "research/semantic-overlay-counterfactual-case07-2026-07-10/run/blind-outputs.json": true
+  },
+  "observed": {
+    "run_health": "healthy",
+    "openrouter_calls": 51,
+    "total_calls_with_known_price": 58,
+    "estimated_total_cost_usd": 0.048731,
+    "private_table_character_count": 4794,
+    "private_table_source_item_count": 12,
+    "v60_selected_model_count": 8,
+    "v60_selected_chunk_count": 16,
+    "experiment_retry_count": 0
+  },
+  "gates": {
+    "frozen_hashes_match": true,
+    "result_status_ok": true,
+    "capture_not_truncated": true,
+    "quote_fabrication_zero": true,
+    "private_table_ready": true,
+    "v60_enrichment_active": true,
+    "v60_ledger_schema_v2": true,
+    "openrouter_call_ceiling_met": false,
+    "estimated_cost_ceiling_met": true,
+    "no_experiment_retry": true
+  },
+  "failed_gates": [
+    "openrouter_call_ceiling_met"
+  ],
+  "consumer_call_authorized": false,
+  "consumer_call_authorization_reason": "pipeline_admission_failed",
+  "runtime_integration_authorized": false,
+  "model_calls_by_sealer": 0,
+  "non_claims": [
+    "healthy_artifacts_are_not_reasoning_quality",
+    "low_cost_is_not_operability",
+    "candidate_selection_is_not_semantic_novelty",
+    "not_product_proof"
+  ]
+}

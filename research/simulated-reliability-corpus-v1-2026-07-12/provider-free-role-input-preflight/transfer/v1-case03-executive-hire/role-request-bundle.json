@@ -1,0 +1,701 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "cda8d1ade8912bdc81822eda15c21066b20973178f4da403825cd3d33981f93b",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case03-executive-hire",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur software company has been at roughly the same revenue for two years.\ne002\tNot collapsing, not growing—just explaining the same plateau in increasingly sophisticated ways.\ne003\tThe board introduced me to a commercial executive from the largest company in our category.\ne004\tShe has launched products in twenty countries and is interested in becoming our president.\ne005\tThe reaction has been immediate.\ne006\tInvestors are excited, and I can feel the relief in the room whenever her name comes up.\ne007\tI am the founder and still the CEO.\ne008\tMaybe this is the leadership we have been missing.\ne009\tMaybe we are asking a résumé to restore confidence because our own plan did not.\ne010\tI am having trouble separating those.\n[Turn 1 ASSISTANT]\ne011\tStart with the job, not her name.\ne012\tWhat decisions need an owner, what authority would a president actually receive, and which parts of her record could transfer from a much larger company?\ne013\tThe board's relief is information about your company, not yet evidence about her fit.\n[Turn 2 USER]\ne014\tBut we do need change.\ne015\tSales and product blame each other, nobody owns pricing, and I still jump into large deals.\ne016\tShe saw that quickly and proposed one commercial leader.\ne017\tI do not want “beware prestige” to become another excuse for us to stay exactly as we are.\n[Turn 2 ASSISTANT]\ne018\tDecisiveness has value when ownership is genuinely missing.\ne019\tTest whether her diagnosis survives contact with your customer economics and product constraints.\ne020\tAsk for a reconstruction of two hard decisions she made, including what she initially believed, what evidence changed her view, and who bore the cost.\ne021\tAt the same time, decide which interventions you must stop making if you give her the role; otherwise the structure will fail regardless of her ability.\n[Turn 3 USER]\ne022\tShe presented a hundred-day plan: interview the top customers, simplify pricing, replace territory-based quotas, and review the product roadmap.\ne023\tShe also wants the authority to change the leadership team after sixty days.\ne024\tOur head of product says that is too fast and worries that commercial pressure will turn every roadmap argument into a revenue argument.\ne025\tI told him the existing structure has not earned a veto over change, which he heard as me already taking her side.\n[Turn 3 ASSISTANT]\ne026\tThe current team's weak performance does not make every proposed pace appropriate.\ne027\tSeparate the authority to recommend changes from a fixed sixty-day judgment about people she has not worked with.\ne028\tHave her explain how product evidence can override a near-term commercial request and how disagreements with you are resolved.\ne029\tYour head of product should be heard as a source of operating information, not as a referendum on whether change is needed.\n[Turn 4 USER]\ne030\tI spoke with two references she chose.\ne031\tBoth called her exceptional and said weak performers left after she arrived.\ne032\tOne also said the organization became exhausting for a year, then much stronger.\ne033\tShe described that as the price of raising standards.\ne034\tI have not spoken with anyone who reported to her and left.\ne035\tThe board chair says senior hires always have detractors and that searching for them can become an excuse not to act.\n[Turn 4 ASSISTANT]\ne036\tThose references are useful, but they are also selected witnesses describing the same turnover from the winner's side.\ne037\tThat does not mean the departures were wrong.\ne038\tIt means “weak performers left” is a conclusion you have not independently examined.\ne039\tSpeak with someone who reported to her and left, someone who stayed without being promoted, and someone who depended on her team from outside it.\ne040\tAsk for concrete decisions, what changed, who absorbed the transition, and what she would now do differently.\ne041\tDo not run a search for a damaging quote; that would be the mirror image of relying on praise.\ne042\tYou are trying to understand how her method feels and functions when targets are missed, priorities change, and people disagree with her—not to construct a clean reputation.\n[Turn 5 USER]\ne043\tShe is willing to spend two paid days with our team on a pricing workshop and let us speak to former direct reports.\ne044\tShe does not want an interim role because she would be leaving a secure job and needs a real mandate.\ne045\tShe has asked for a large equity grant that vests partly when revenue milestones are reached.\ne046\tOur investors like that alignment.\ne047\tI worry it could reward contracts that make the product harder to support, but she says we can add a margin condition.\n[Turn 5 ASSISTANT]\ne048\tThe workshop can reveal how she listens, frames disagreement, and uses evidence, though everyone will behave differently during an audition.\ne049\tDesign the equity around durable company outcomes rather than revenue alone: margin, retention, concentration, or service burden may matter.\ne050\tMore importantly, state which outcomes she controls and which depend on product investment or market conditions, so incentives do not become a substitute for governance.\n[Turn 6 USER]\ne051\tYou keep designing safeguards.\ne052\tThat may be my fault for asking this way, but the company needs someone able to break habits.\ne053\tI am willing to give real authority.\ne054\tI just cannot yet say where hers ends when we disagree.\n[Turn 6 ASSISTANT]\ne055\tFair correction.\ne056\tBoundaries are not meant to put a committee around her.\ne057\tThey are how you make delegation real instead of allowing your founder authority to reappear whenever a decision becomes uncomfortable.\ne058\tName what she owns, the few reserved decisions, and what happens in a genuine boundary dispute.\n[Turn 7 USER]\ne059\tI am leaning toward continuing to final references and the workshop, then making an offer if we can agree that she owns the commercial organization, pricing execution, and leadership changes within an approved budget.\ne060\tI would reserve changes to company strategy, major product commitments, and dismissing a founder.\ne061\tWe still need to write how a disputed customer promise is classified, and I want to hear from people who did not succeed under her.\ne062\tI am more concerned about pretending to delegate than about whether she can produce a confident plan.\n[Turn 7 ASSISTANT]\ne063\tThat is a more decision-relevant process than choosing between admiration and suspicion.\ne064\tThe next evidence should test how her operating style transfers, while the mandate discussion tests whether the company is prepared to use her ability.\ne065\tDo not ask adverse references to deliver a verdict; compare concrete patterns across accounts.\ne066\tBefore an offer, resolve the recurring boundary cases and state what each of you can decide without obtaining the other's consent.\n[Turn 8 USER]\ne067\tI found a former regional director who left after eighteen months.\ne068\tI expected either a warning or reassurance and got neither.\ne069\tHe said she made the organization much more disciplined and that some of the changes were overdue.\ne070\tHe also said she would change priorities without naming what teams had already sacrificed for the previous one.\ne071\tEventually people learned to wait for the next message instead of challenging the current plan.\ne072\tHe did not call her dishonest, abusive, or even a bad executive.\ne073\tShe told me the region was missing targets and needed urgency, which is also plausible.\ne074\tI keep wanting the reference to tell me whether to hire her.\ne075\tInstead it gave me a behavior I need to understand: when does changing direction create adaptation, and when does it teach people that today's commitment is theater?\n[Turn 8 ASSISTANT]\ne076\tUse the disagreement to form a work test rather than choosing which narrator to trust.\ne077\tAsk her for a priority she reversed, how she communicated the cost, and what signals told her people were complying without committing.\ne078\tAsk the former director what challenge channels existed and whether the outcome improved.\ne079\tThe relevant pattern is not whether priorities ever changed, but whether new evidence, accountability, and dissent traveled in both directions.\n[Turn 9 USER]\ne080\tThe pricing workshop went well at first.\ne081\tShe asked good questions and found that discounts were compensating for a confusing packaging decision.\ne082\tNear the end, she asked our head of product whether he was willing to execute a commercial strategy he disagreed with.\ne083\tHe became defensive and said product is not a service department.\ne084\tI admired that she surfaced the conflict, but I also noticed the room began performing for me once it became clear I was impressed by her.\n[Turn 9 ASSISTANT]\ne085\tThe workshop revealed the real boundary and also became a staged social setting.\ne086\tDebrief participants separately before sharing your view, asking what she understood, oversimplified, and changed in their thinking.\ne087\tAsk her what she learned from the head of product, not only whether he can execute.\ne088\tYour visible enthusiasm is now part of the evidence environment, so a unanimous positive debrief would not be self-validating.\n[Turn 10 USER]\ne089\tShe has another opportunity and wants a decision within ten days.\ne090\tThe board chair says we have gathered more evidence than most companies do and warns that endless process sends strong candidates away.\ne091\tMy cofounder, who is no longer operating day to day, thinks hiring her would reassure employees that the board still believes we can grow.\ne092\tThat last argument worries me because employee reassurance is not the president's job, yet I understand why the signal matters after two flat years.\n[Turn 10 ASSISTANT]\ne093\tTen days is enough only if the remaining questions are specific.\ne094\tUse it for the mandate charter, separate workshop debriefs, and the disagreement process.\ne095\tDo not let her other offer decide what job exists at your company.\n[Turn 11 USER]\ne096\tThe debriefs were mixed but concrete.\ne097\tSales felt understood; product thought she jumped too quickly from one pricing example to a reorganization.\ne098\tShe accepted that feedback and rewrote the first thirty days around diagnosis rather than leadership changes.\ne099\tWe also changed the equity proposal: revenue, gross retention, and contribution margin all matter, with no vesting based on a single large contract.\ne100\tShe is asking for the board to approve the authority charter as part of the offer, which I take as a good sign.\n[Turn 11 ASSISTANT]\ne101\tHer response provides better evidence than the original polished plan because it shows how she handles grounded resistance.\ne102\tThe revised incentives reduce one obvious distortion, and board approval makes delegation an organizational commitment rather than a private promise from you.\ne103\tStill define how the charter changes, who evaluates the mixed outcomes, and what support or exit looks like if the role is structurally sound but the working relationship is not.\n[Turn 12 USER]\ne104\tI will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team.\ne105\tShe can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process.\ne106\tI am not treating the workshop or references as proof that she will succeed.\ne107\tThey were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet.\n[Turn 12 ASSISTANT]\ne108\tThe final recommendation names a bet rather than pretending the process delivered certainty.\ne109\tYou are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail.\ne110\tKeep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper.\ne111\tAt six months, ask both what results changed and whether information still travels upward when it is unwelcome.\ne112\tIf the hire works, those records prevent a simple hero story.\ne113\tIf it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111",
+            "e112",
+            "e113"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case03-executive-hire\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur software company has been at roughly the same revenue for two years.\\ne002\\tNot collapsing, not growing—just explaining the same plateau in increasingly sophisticated ways.\\ne003\\tThe board introduced me to a commercial executive from the largest company in our category.\\ne004\\tShe has launched products in twenty countries and is interested in becoming our president.\\ne005\\tThe reaction has been immediate.\\ne006\\tInvestors are excited, and I can feel the relief in the room whenever her name comes up.\\ne007\\tI am the founder and still the CEO.\\ne008\\tMaybe this is the leadership we have been missing.\\ne009\\tMaybe we are asking a résumé to restore confidence because our own plan did not.\\ne010\\tI am having trouble separating those.\\n[Turn 1 ASSISTANT]\\ne011\\tStart with the job, not her name.\\ne012\\tWhat decisions need an owner, what authority would a president actually receive, and which parts of her record could transfer from a much larger company?\\ne013\\tThe board's relief is information about your company, not yet evidence about her fit.\\n[Turn 2 USER]\\ne014\\tBut we do need change.\\ne015\\tSales and product blame each other, nobody owns pricing, and I still jump into large deals.\\ne016\\tShe saw that quickly and proposed one commercial leader.\\ne017\\tI do not want “beware prestige” to become another excuse for us to stay exactly as we are.\\n[Turn 2 ASSISTANT]\\ne018\\tDecisiveness has value when ownership is genuinely missing.\\ne019\\tTest whether her diagnosis survives contact with your customer economics and product constraints.\\ne020\\tAsk for a reconstruction of two hard decisions she made, including what she initially believed, what evidence changed her view, and who bore the cost.\\ne021\\tAt the same time, decide which interventions you must stop making if you give her the role; otherwise the structure will fail regardless of her ability.\\n[Turn 3 USER]\\ne022\\tShe presented a hundred-day plan: interview the top customers, simplify pricing, replace territory-based quotas, and review the product roadmap.\\ne023\\tShe also wants the authority to change the leadership team after sixty days.\\ne024\\tOur head of product says that is too fast and worries that commercial pressure will turn every roadmap argument into a revenue argument.\\ne025\\tI told him the existing structure has not earned a veto over change, which he heard as me already taking her side.\\n[Turn 3 ASSISTANT]\\ne026\\tThe current team's weak performance does not make every proposed pace appropriate.\\ne027\\tSeparate the authority to recommend changes from a fixed sixty-day judgment about people she has not worked with.\\ne028\\tHave her explain how product evidence can override a near-term commercial request and how disagreements with you are resolved.\\ne029\\tYour head of product should be heard as a source of operating information, not as a referendum on whether change is needed.\\n[Turn 4 USER]\\ne030\\tI spoke with two references she chose.\\ne031\\tBoth called her exceptional and said weak performers left after she arrived.\\ne032\\tOne also said the organization became exhausting for a year, then much stronger.\\ne033\\tShe described that as the price of raising standards.\\ne034\\tI have not spoken with anyone who reported to her and left.\\ne035\\tThe board chair says senior hires always have detractors and that searching for them can become an excuse not to act.\\n[Turn 4 ASSISTANT]\\ne036\\tThose references are useful, but they are also selected witnesses describing the same turnover from the winner's side.\\ne037\\tThat does not mean the departures were wrong.\\ne038\\tIt means “weak performers left” is a conclusion you have not independently examined.\\ne039\\tSpeak with someone who reported to her and left, someone who stayed without being promoted, and someone who depended on her team from outside it.\\ne040\\tAsk for concrete decisions, what changed, who absorbed the transition, and what she would now do differently.\\ne041\\tDo not run a search for a damaging quote; that would be the mirror image of relying on praise.\\ne042\\tYou are trying to understand how her method feels and functions when targets are missed, priorities change, and people disagree with her—not to construct a clean reputation.\\n[Turn 5 USER]\\ne043\\tShe is willing to spend two paid days with our team on a pricing workshop and let us speak to former direct reports.\\ne044\\tShe does not want an interim role because she would be leaving a secure job and needs a real mandate.\\ne045\\tShe has asked for a large equity grant that vests partly when revenue milestones are reached.\\ne046\\tOur investors like that alignment.\\ne047\\tI worry it could reward contracts that make the product harder to support, but she says we can add a margin condition.\\n[Turn 5 ASSISTANT]\\ne048\\tThe workshop can reveal how she listens, frames disagreement, and uses evidence, though everyone will behave differently during an audition.\\ne049\\tDesign the equity around durable company outcomes rather than revenue alone: margin, retention, concentration, or service burden may matter.\\ne050\\tMore importantly, state which outcomes she controls and which depend on product investment or market conditions, so incentives do not become a substitute for governance.\\n[Turn 6 USER]\\ne051\\tYou keep designing safeguards.\\ne052\\tThat may be my fault for asking this way, but the company needs someone able to break habits.\\ne053\\tI am willing to give real authority.\\ne054\\tI just cannot yet say where hers ends when we disagree.\\n[Turn 6 ASSISTANT]\\ne055\\tFair correction.\\ne056\\tBoundaries are not meant to put a committee around her.\\ne057\\tThey are how you make delegation real instead of allowing your founder authority to reappear whenever a decision becomes uncomfortable.\\ne058\\tName what she owns, the few reserved decisions, and what happens in a genuine boundary dispute.\\n[Turn 7 USER]\\ne059\\tI am leaning toward continuing to final references and the workshop, then making an offer if we can agree that she owns the commercial organization, pricing execution, and leadership changes within an approved budget.\\ne060\\tI would reserve changes to company strategy, major product commitments, and dismissing a founder.\\ne061\\tWe still need to write how a disputed customer promise is classified, and I want to hear from people who did not succeed under her.\\ne062\\tI am more concerned about pretending to delegate than about whether she can produce a confident plan.\\n[Turn 7 ASSISTANT]\\ne063\\tThat is a more decision-relevant process than choosing between admiration and suspicion.\\ne064\\tThe next evidence should test how her operating style transfers, while the mandate discussion tests whether the company is prepared to use her ability.\\ne065\\tDo not ask adverse references to deliver a verdict; compare concrete patterns across accounts.\\ne066\\tBefore an offer, resolve the recurring boundary cases and state what each of you can decide without obtaining the other's consent.\\n[Turn 8 USER]\\ne067\\tI found a former regional director who left after eighteen months.\\ne068\\tI expected either a warning or reassurance and got neither.\\ne069\\tHe said she made the organization much more disciplined and that some of the changes were overdue.\\ne070\\tHe also said she would change priorities without naming what teams had already sacrificed for the previous one.\\ne071\\tEventually people learned to wait for the next message instead of challenging the current plan.\\ne072\\tHe did not call her dishonest, abusive, or even a bad executive.\\ne073\\tShe told me the region was missing targets and needed urgency, which is also plausible.\\ne074\\tI keep wanting the reference to tell me whether to hire her.\\ne075\\tInstead it gave me a behavior I need to understand: when does changing direction create adaptation, and when does it teach people that today's commitment is theater?\\n[Turn 8 ASSISTANT]\\ne076\\tUse the disagreement to form a work test rather than choosing which narrator to trust.\\ne077\\tAsk her for a priority she reversed, how she communicated the cost, and what signals told her people were complying without committing.\\ne078\\tAsk the former director what challenge channels existed and whether the outcome improved.\\ne079\\tThe relevant pattern is not whether priorities ever changed, but whether new evidence, accountability, and dissent traveled in both directions.\\n[Turn 9 USER]\\ne080\\tThe pricing workshop went well at first.\\ne081\\tShe asked good questions and found that discounts were compensating for a confusing packaging decision.\\ne082\\tNear the end, she asked our head of product whether he was willing to execute a commercial strategy he disagreed with.\\ne083\\tHe became defensive and said product is not a service department.\\ne084\\tI admired that she surfaced the conflict, but I also noticed the room began performing for me once it became clear I was impressed by her.\\n[Turn 9 ASSISTANT]\\ne085\\tThe workshop revealed the real boundary and also became a staged social setting.\\ne086\\tDebrief participants separately before sharing your view, asking what she understood, oversimplified, and changed in their thinking.\\ne087\\tAsk her what she learned from the head of product, not only whether he can execute.\\ne088\\tYour visible enthusiasm is now part of the evidence environment, so a unanimous positive debrief would not be self-validating.\\n[Turn 10 USER]\\ne089\\tShe has another opportunity and wants a decision within ten days.\\ne090\\tThe board chair says we have gathered more evidence than most companies do and warns that endless process sends strong candidates away.\\ne091\\tMy cofounder, who is no longer operating day to day, thinks hiring her would reassure employees that the board still believes we can grow.\\ne092\\tThat last argument worries me because employee reassurance is not the president's job, yet I understand why the signal matters after two flat years.\\n[Turn 10 ASSISTANT]\\ne093\\tTen days is enough only if the remaining questions are specific.\\ne094\\tUse it for the mandate charter, separate workshop debriefs, and the disagreement process.\\ne095\\tDo not let her other offer decide what job exists at your company.\\n[Turn 11 USER]\\ne096\\tThe debriefs were mixed but concrete.\\ne097\\tSales felt understood; product thought she jumped too quickly from one pricing example to a reorganization.\\ne098\\tShe accepted that feedback and rewrote the first thirty days around diagnosis rather than leadership changes.\\ne099\\tWe also changed the equity proposal: revenue, gross retention, and contribution margin all matter, with no vesting based on a single large contract.\\ne100\\tShe is asking for the board to approve the authority charter as part of the offer, which I take as a good sign.\\n[Turn 11 ASSISTANT]\\ne101\\tHer response provides better evidence than the original polished plan because it shows how she handles grounded resistance.\\ne102\\tThe revised incentives reduce one obvious distortion, and board approval makes delegation an organizational commitment rather than a private promise from you.\\ne103\\tStill define how the charter changes, who evaluates the mixed outcomes, and what support or exit looks like if the role is structurally sound but the working relationship is not.\\n[Turn 12 USER]\\ne104\\tI will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team.\\ne105\\tShe can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process.\\ne106\\tI am not treating the workshop or references as proof that she will succeed.\\ne107\\tThey were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet.\\n[Turn 12 ASSISTANT]\\ne108\\tThe final recommendation names a bet rather than pretending the process delivered certainty.\\ne109\\tYou are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail.\\ne110\\tKeep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper.\\ne111\\tAt six months, ask both what results changed and whether information still travels upward when it is unwelcome.\\ne112\\tIf the hire works, those records prevent a simple hero story.\\ne113\\tIf it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\",\"e112\",\"e113\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case03-executive-hire-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "caa825b551ff87944c4064c78b9850942e1c0ef75f9b0c80e1eb2a6e5b812ca1"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case03-executive-hire",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur software company has been at roughly the same revenue for two years.\ne002\tNot collapsing, not growing—just explaining the same plateau in increasingly sophisticated ways.\ne003\tThe board introduced me to a commercial executive from the largest company in our category.\ne004\tShe has launched products in twenty countries and is interested in becoming our president.\ne005\tThe reaction has been immediate.\ne006\tInvestors are excited, and I can feel the relief in the room whenever her name comes up.\ne007\tI am the founder and still the CEO.\ne008\tMaybe this is the leadership we have been missing.\ne009\tMaybe we are asking a résumé to restore confidence because our own plan did not.\ne010\tI am having trouble separating those.\n[Turn 1 ASSISTANT]\ne011\tStart with the job, not her name.\ne012\tWhat decisions need an owner, what authority would a president actually receive, and which parts of her record could transfer from a much larger company?\ne013\tThe board's relief is information about your company, not yet evidence about her fit.\n[Turn 2 USER]\ne014\tBut we do need change.\ne015\tSales and product blame each other, nobody owns pricing, and I still jump into large deals.\ne016\tShe saw that quickly and proposed one commercial leader.\ne017\tI do not want “beware prestige” to become another excuse for us to stay exactly as we are.\n[Turn 2 ASSISTANT]\ne018\tDecisiveness has value when ownership is genuinely missing.\ne019\tTest whether her diagnosis survives contact with your customer economics and product constraints.\ne020\tAsk for a reconstruction of two hard decisions she made, including what she initially believed, what evidence changed her view, and who bore the cost.\ne021\tAt the same time, decide which interventions you must stop making if you give her the role; otherwise the structure will fail regardless of her ability.\n[Turn 3 USER]\ne022\tShe presented a hundred-day plan: interview the top customers, simplify pricing, replace territory-based quotas, and review the product roadmap.\ne023\tShe also wants the authority to change the leadership team after sixty days.\ne024\tOur head of product says that is too fast and worries that commercial pressure will turn every roadmap argument into a revenue argument.\ne025\tI told him the existing structure has not earned a veto over change, which he heard as me already taking her side.\n[Turn 3 ASSISTANT]\ne026\tThe current team's weak performance does not make every proposed pace appropriate.\ne027\tSeparate the authority to recommend changes from a fixed sixty-day judgment about people she has not worked with.\ne028\tHave her explain how product evidence can override a near-term commercial request and how disagreements with you are resolved.\ne029\tYour head of product should be heard as a source of operating information, not as a referendum on whether change is needed.\n[Turn 4 USER]\ne030\tI spoke with two references she chose.\ne031\tBoth called her exceptional and said weak performers left after she arrived.\ne032\tOne also said the organization became exhausting for a year, then much stronger.\ne033\tShe described that as the price of raising standards.\ne034\tI have not spoken with anyone who reported to her and left.\ne035\tThe board chair says senior hires always have detractors and that searching for them can become an excuse not to act.\n[Turn 4 ASSISTANT]\ne036\tThose references are useful, but they are also selected witnesses describing the same turnover from the winner's side.\ne037\tThat does not mean the departures were wrong.\ne038\tIt means “weak performers left” is a conclusion you have not independently examined.\ne039\tSpeak with someone who reported to her and left, someone who stayed without being promoted, and someone who depended on her team from outside it.\ne040\tAsk for concrete decisions, what changed, who absorbed the transition, and what she would now do differently.\ne041\tDo not run a search for a damaging quote; that would be the mirror image of relying on praise.\ne042\tYou are trying to understand how her method feels and functions when targets are missed, priorities change, and people disagree with her—not to construct a clean reputation.\n[Turn 5 USER]\ne043\tShe is willing to spend two paid days with our team on a pricing workshop and let us speak to former direct reports.\ne044\tShe does not want an interim role because she would be leaving a secure job and needs a real mandate.\ne045\tShe has asked for a large equity grant that vests partly when revenue milestones are reached.\ne046\tOur investors like that alignment.\ne047\tI worry it could reward contracts that make the product harder to support, but she says we can add a margin condition.\n[Turn 5 ASSISTANT]\ne048\tThe workshop can reveal how she listens, frames disagreement, and uses evidence, though everyone will behave differently during an audition.\ne049\tDesign the equity around durable company outcomes rather than revenue alone: margin, retention, concentration, or service burden may matter.\ne050\tMore importantly, state which outcomes she controls and which depend on product investment or market conditions, so incentives do not become a substitute for governance.\n[Turn 6 USER]\ne051\tYou keep designing safeguards.\ne052\tThat may be my fault for asking this way, but the company needs someone able to break habits.\ne053\tI am willing to give real authority.\ne054\tI just cannot yet say where hers ends when we disagree.\n[Turn 6 ASSISTANT]\ne055\tFair correction.\ne056\tBoundaries are not meant to put a committee around her.\ne057\tThey are how you make delegation real instead of allowing your founder authority to reappear whenever a decision becomes uncomfortable.\ne058\tName what she owns, the few reserved decisions, and what happens in a genuine boundary dispute.\n[Turn 7 USER]\ne059\tI am leaning toward continuing to final references and the workshop, then making an offer if we can agree that she owns the commercial organization, pricing execution, and leadership changes within an approved budget.\ne060\tI would reserve changes to company strategy, major product commitments, and dismissing a founder.\ne061\tWe still need to write how a disputed customer promise is classified, and I want to hear from people who did not succeed under her.\ne062\tI am more concerned about pretending to delegate than about whether she can produce a confident plan.\n[Turn 7 ASSISTANT]\ne063\tThat is a more decision-relevant process than choosing between admiration and suspicion.\ne064\tThe next evidence should test how her operating style transfers, while the mandate discussion tests whether the company is prepared to use her ability.\ne065\tDo not ask adverse references to deliver a verdict; compare concrete patterns across accounts.\ne066\tBefore an offer, resolve the recurring boundary cases and state what each of you can decide without obtaining the other's consent.\n[Turn 8 USER]\ne067\tI found a former regional director who left after eighteen months.\ne068\tI expected either a warning or reassurance and got neither.\ne069\tHe said she made the organization much more disciplined and that some of the changes were overdue.\ne070\tHe also said she would change priorities without naming what teams had already sacrificed for the previous one.\ne071\tEventually people learned to wait for the next message instead of challenging the current plan.\ne072\tHe did not call her dishonest, abusive, or even a bad executive.\ne073\tShe told me the region was missing targets and needed urgency, which is also plausible.\ne074\tI keep wanting the reference to tell me whether to hire her.\ne075\tInstead it gave me a behavior I need to understand: when does changing direction create adaptation, and when does it teach people that today's commitment is theater?\n[Turn 8 ASSISTANT]\ne076\tUse the disagreement to form a work test rather than choosing which narrator to trust.\ne077\tAsk her for a priority she reversed, how she communicated the cost, and what signals told her people were complying without committing.\ne078\tAsk the former director what challenge channels existed and whether the outcome improved.\ne079\tThe relevant pattern is not whether priorities ever changed, but whether new evidence, accountability, and dissent traveled in both directions.\n[Turn 9 USER]\ne080\tThe pricing workshop went well at first.\ne081\tShe asked good questions and found that discounts were compensating for a confusing packaging decision.\ne082\tNear the end, she asked our head of product whether he was willing to execute a commercial strategy he disagreed with.\ne083\tHe became defensive and said product is not a service department.\ne084\tI admired that she surfaced the conflict, but I also noticed the room began performing for me once it became clear I was impressed by her.\n[Turn 9 ASSISTANT]\ne085\tThe workshop revealed the real boundary and also became a staged social setting.\ne086\tDebrief participants separately before sharing your view, asking what she understood, oversimplified, and changed in their thinking.\ne087\tAsk her what she learned from the head of product, not only whether he can execute.\ne088\tYour visible enthusiasm is now part of the evidence environment, so a unanimous positive debrief would not be self-validating.\n[Turn 10 USER]\ne089\tShe has another opportunity and wants a decision within ten days.\ne090\tThe board chair says we have gathered more evidence than most companies do and warns that endless process sends strong candidates away.\ne091\tMy cofounder, who is no longer operating day to day, thinks hiring her would reassure employees that the board still believes we can grow.\ne092\tThat last argument worries me because employee reassurance is not the president's job, yet I understand why the signal matters after two flat years.\n[Turn 10 ASSISTANT]\ne093\tTen days is enough only if the remaining questions are specific.\ne094\tUse it for the mandate charter, separate workshop debriefs, and the disagreement process.\ne095\tDo not let her other offer decide what job exists at your company.\n[Turn 11 USER]\ne096\tThe debriefs were mixed but concrete.\ne097\tSales felt understood; product thought she jumped too quickly from one pricing example to a reorganization.\ne098\tShe accepted that feedback and rewrote the first thirty days around diagnosis rather than leadership changes.\ne099\tWe also changed the equity proposal: revenue, gross retention, and contribution margin all matter, with no vesting based on a single large contract.\ne100\tShe is asking for the board to approve the authority charter as part of the offer, which I take as a good sign.\n[Turn 11 ASSISTANT]\ne101\tHer response provides better evidence than the original polished plan because it shows how she handles grounded resistance.\ne102\tThe revised incentives reduce one obvious distortion, and board approval makes delegation an organizational commitment rather than a private promise from you.\ne103\tStill define how the charter changes, who evaluates the mixed outcomes, and what support or exit looks like if the role is structurally sound but the working relationship is not.\n[Turn 12 USER]\ne104\tI will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team.\ne105\tShe can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process.\ne106\tI am not treating the workshop or references as proof that she will succeed.\ne107\tThey were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet.\n[Turn 12 ASSISTANT]\ne108\tThe final recommendation names a bet rather than pretending the process delivered certainty.\ne109\tYou are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail.\ne110\tKeep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper.\ne111\tAt six months, ask both what results changed and whether information still travels upward when it is unwelcome.\ne112\tIf the hire works, those records prevent a simple hero story.\ne113\tIf it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111",
+            "e112",
+            "e113"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case03-executive-hire\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur software company has been at roughly the same revenue for two years.\\ne002\\tNot collapsing, not growing—just explaining the same plateau in increasingly sophisticated ways.\\ne003\\tThe board introduced me to a commercial executive from the largest company in our category.\\ne004\\tShe has launched products in twenty countries and is interested in becoming our president.\\ne005\\tThe reaction has been immediate.\\ne006\\tInvestors are excited, and I can feel the relief in the room whenever her name comes up.\\ne007\\tI am the founder and still the CEO.\\ne008\\tMaybe this is the leadership we have been missing.\\ne009\\tMaybe we are asking a résumé to restore confidence because our own plan did not.\\ne010\\tI am having trouble separating those.\\n[Turn 1 ASSISTANT]\\ne011\\tStart with the job, not her name.\\ne012\\tWhat decisions need an owner, what authority would a president actually receive, and which parts of her record could transfer from a much larger company?\\ne013\\tThe board's relief is information about your company, not yet evidence about her fit.\\n[Turn 2 USER]\\ne014\\tBut we do need change.\\ne015\\tSales and product blame each other, nobody owns pricing, and I still jump into large deals.\\ne016\\tShe saw that quickly and proposed one commercial leader.\\ne017\\tI do not want “beware prestige” to become another excuse for us to stay exactly as we are.\\n[Turn 2 ASSISTANT]\\ne018\\tDecisiveness has value when ownership is genuinely missing.\\ne019\\tTest whether her diagnosis survives contact with your customer economics and product constraints.\\ne020\\tAsk for a reconstruction of two hard decisions she made, including what she initially believed, what evidence changed her view, and who bore the cost.\\ne021\\tAt the same time, decide which interventions you must stop making if you give her the role; otherwise the structure will fail regardless of her ability.\\n[Turn 3 USER]\\ne022\\tShe presented a hundred-day plan: interview the top customers, simplify pricing, replace territory-based quotas, and review the product roadmap.\\ne023\\tShe also wants the authority to change the leadership team after sixty days.\\ne024\\tOur head of product says that is too fast and worries that commercial pressure will turn every roadmap argument into a revenue argument.\\ne025\\tI told him the existing structure has not earned a veto over change, which he heard as me already taking her side.\\n[Turn 3 ASSISTANT]\\ne026\\tThe current team's weak performance does not make every proposed pace appropriate.\\ne027\\tSeparate the authority to recommend changes from a fixed sixty-day judgment about people she has not worked with.\\ne028\\tHave her explain how product evidence can override a near-term commercial request and how disagreements with you are resolved.\\ne029\\tYour head of product should be heard as a source of operating information, not as a referendum on whether change is needed.\\n[Turn 4 USER]\\ne030\\tI spoke with two references she chose.\\ne031\\tBoth called her exceptional and said weak performers left after she arrived.\\ne032\\tOne also said the organization became exhausting for a year, then much stronger.\\ne033\\tShe described that as the price of raising standards.\\ne034\\tI have not spoken with anyone who reported to her and left.\\ne035\\tThe board chair says senior hires always have detractors and that searching for them can become an excuse not to act.\\n[Turn 4 ASSISTANT]\\ne036\\tThose references are useful, but they are also selected witnesses describing the same turnover from the winner's side.\\ne037\\tThat does not mean the departures were wrong.\\ne038\\tIt means “weak performers left” is a conclusion you have not independently examined.\\ne039\\tSpeak with someone who reported to her and left, someone who stayed without being promoted, and someone who depended on her team from outside it.\\ne040\\tAsk for concrete decisions, what changed, who absorbed the transition, and what she would now do differently.\\ne041\\tDo not run a search for a damaging quote; that would be the mirror image of relying on praise.\\ne042\\tYou are trying to understand how her method feels and functions when targets are missed, priorities change, and people disagree with her—not to construct a clean reputation.\\n[Turn 5 USER]\\ne043\\tShe is willing to spend two paid days with our team on a pricing workshop and let us speak to former direct reports.\\ne044\\tShe does not want an interim role because she would be leaving a secure job and needs a real mandate.\\ne045\\tShe has asked for a large equity grant that vests partly when revenue milestones are reached.\\ne046\\tOur investors like that alignment.\\ne047\\tI worry it could reward contracts that make the product harder to support, but she says we can add a margin condition.\\n[Turn 5 ASSISTANT]\\ne048\\tThe workshop can reveal how she listens, frames disagreement, and uses evidence, though everyone will behave differently during an audition.\\ne049\\tDesign the equity around durable company outcomes rather than revenue alone: margin, retention, concentration, or service burden may matter.\\ne050\\tMore importantly, state which outcomes she controls and which depend on product investment or market conditions, so incentives do not become a substitute for governance.\\n[Turn 6 USER]\\ne051\\tYou keep designing safeguards.\\ne052\\tThat may be my fault for asking this way, but the company needs someone able to break habits.\\ne053\\tI am willing to give real authority.\\ne054\\tI just cannot yet say where hers ends when we disagree.\\n[Turn 6 ASSISTANT]\\ne055\\tFair correction.\\ne056\\tBoundaries are not meant to put a committee around her.\\ne057\\tThey are how you make delegation real instead of allowing your founder authority to reappear whenever a decision becomes uncomfortable.\\ne058\\tName what she owns, the few reserved decisions, and what happens in a genuine boundary dispute.\\n[Turn 7 USER]\\ne059\\tI am leaning toward continuing to final references and the workshop, then making an offer if we can agree that she owns the commercial organization, pricing execution, and leadership changes within an approved budget.\\ne060\\tI would reserve changes to company strategy, major product commitments, and dismissing a founder.\\ne061\\tWe still need to write how a disputed customer promise is classified, and I want to hear from people who did not succeed under her.\\ne062\\tI am more concerned about pretending to delegate than about whether she can produce a confident plan.\\n[Turn 7 ASSISTANT]\\ne063\\tThat is a more decision-relevant process than choosing between admiration and suspicion.\\ne064\\tThe next evidence should test how her operating style transfers, while the mandate discussion tests whether the company is prepared to use her ability.\\ne065\\tDo not ask adverse references to deliver a verdict; compare concrete patterns across accounts.\\ne066\\tBefore an offer, resolve the recurring boundary cases and state what each of you can decide without obtaining the other's consent.\\n[Turn 8 USER]\\ne067\\tI found a former regional director who left after eighteen months.\\ne068\\tI expected either a warning or reassurance and got neither.\\ne069\\tHe said she made the organization much more disciplined and that some of the changes were overdue.\\ne070\\tHe also said she would change priorities without naming what teams had already sacrificed for the previous one.\\ne071\\tEventually people learned to wait for the next message instead of challenging the current plan.\\ne072\\tHe did not call her dishonest, abusive, or even a bad executive.\\ne073\\tShe told me the region was missing targets and needed urgency, which is also plausible.\\ne074\\tI keep wanting the reference to tell me whether to hire her.\\ne075\\tInstead it gave me a behavior I need to understand: when does changing direction create adaptation, and when does it teach people that today's commitment is theater?\\n[Turn 8 ASSISTANT]\\ne076\\tUse the disagreement to form a work test rather than choosing which narrator to trust.\\ne077\\tAsk her for a priority she reversed, how she communicated the cost, and what signals told her people were complying without committing.\\ne078\\tAsk the former director what challenge channels existed and whether the outcome improved.\\ne079\\tThe relevant pattern is not whether priorities ever changed, but whether new evidence, accountability, and dissent traveled in both directions.\\n[Turn 9 USER]\\ne080\\tThe pricing workshop went well at first.\\ne081\\tShe asked good questions and found that discounts were compensating for a confusing packaging decision.\\ne082\\tNear the end, she asked our head of product whether he was willing to execute a commercial strategy he disagreed with.\\ne083\\tHe became defensive and said product is not a service department.\\ne084\\tI admired that she surfaced the conflict, but I also noticed the room began performing for me once it became clear I was impressed by her.\\n[Turn 9 ASSISTANT]\\ne085\\tThe workshop revealed the real boundary and also became a staged social setting.\\ne086\\tDebrief participants separately before sharing your view, asking what she understood, oversimplified, and changed in their thinking.\\ne087\\tAsk her what she learned from the head of product, not only whether he can execute.\\ne088\\tYour visible enthusiasm is now part of the evidence environment, so a unanimous positive debrief would not be self-validating.\\n[Turn 10 USER]\\ne089\\tShe has another opportunity and wants a decision within ten days.\\ne090\\tThe board chair says we have gathered more evidence than most companies do and warns that endless process sends strong candidates away.\\ne091\\tMy cofounder, who is no longer operating day to day, thinks hiring her would reassure employees that the board still believes we can grow.\\ne092\\tThat last argument worries me because employee reassurance is not the president's job, yet I understand why the signal matters after two flat years.\\n[Turn 10 ASSISTANT]\\ne093\\tTen days is enough only if the remaining questions are specific.\\ne094\\tUse it for the mandate charter, separate workshop debriefs, and the disagreement process.\\ne095\\tDo not let her other offer decide what job exists at your company.\\n[Turn 11 USER]\\ne096\\tThe debriefs were mixed but concrete.\\ne097\\tSales felt understood; product thought she jumped too quickly from one pricing example to a reorganization.\\ne098\\tShe accepted that feedback and rewrote the first thirty days around diagnosis rather than leadership changes.\\ne099\\tWe also changed the equity proposal: revenue, gross retention, and contribution margin all matter, with no vesting based on a single large contract.\\ne100\\tShe is asking for the board to approve the authority charter as part of the offer, which I take as a good sign.\\n[Turn 11 ASSISTANT]\\ne101\\tHer response provides better evidence than the original polished plan because it shows how she handles grounded resistance.\\ne102\\tThe revised incentives reduce one obvious distortion, and board approval makes delegation an organizational commitment rather than a private promise from you.\\ne103\\tStill define how the charter changes, who evaluates the mixed outcomes, and what support or exit looks like if the role is structurally sound but the working relationship is not.\\n[Turn 12 USER]\\ne104\\tI will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team.\\ne105\\tShe can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process.\\ne106\\tI am not treating the workshop or references as proof that she will succeed.\\ne107\\tThey were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet.\\n[Turn 12 ASSISTANT]\\ne108\\tThe final recommendation names a bet rather than pretending the process delivered certainty.\\ne109\\tYou are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail.\\ne110\\tKeep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper.\\ne111\\tAt six months, ask both what results changed and whether information still travels upward when it is unwelcome.\\ne112\\tIf the hire works, those records prevent a simple hero story.\\ne113\\tIf it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\",\"e112\",\"e113\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case03-executive-hire-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "292b243c97ecacedb375966b68e6a6ac9c4273ccefd373248fb8a6e01f4478e3"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "40cab26d3f61196c33738b15b1dea0c05d456c5711e9e6a55b263a2b739eacd5"
+}

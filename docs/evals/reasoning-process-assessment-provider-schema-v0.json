@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "description": "Evidence vector about the reasoning process; never a scalar score.",
+  "properties": {
+    "observations": {
+      "type": "array",
+      "description": "Process assessment observations.",
+      "items": {
+        "type": "object",
+        "description": "One evidence-linked observation about the reasoning process, not the final answer.",
+        "properties": {
+          "assessment_observation_id": {
+            "type": "string",
+            "description": "Stable assessment-local ID."
+          },
+          "dimension": {
+            "type": "string",
+            "description": "Process dimension being observed.",
+            "enum": [
+              "exploration_and_alternative_coverage",
+              "evidence_versus_assumption_discipline",
+              "position_and_decision_trajectory",
+              "challenge_and_revision_response",
+              "uncertainty_and_reopen_conditions",
+              "lolla_pressure_disposition",
+              "assessment_limits"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Evidence status.",
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_observed"
+            ]
+          },
+          "statement": {
+            "type": "string",
+            "description": "Bounded statement about the observed process."
+          },
+          "source_view_item_ids": {
+            "type": "array",
+            "description": "Supporting view items; empty only for not_observed.",
+            "items": {
+              "type": "string",
+              "description": "View item ID."
+            },
+            "minItems": 0,
+            "maxItems": 12
+          },
+          "source_observation_ids": {
+            "type": "array",
+            "description": "Supporting ledger observations; empty only for not_observed.",
+            "items": {
+              "type": "string",
+              "description": "Ledger observation ID."
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "scope_limitation": {
+            "type": "string",
+            "description": "Why the statement must not be generalized beyond the captured process."
+          }
+        },
+        "required": [
+          "assessment_observation_id",
+          "dimension",
+          "status",
+          "statement",
+          "source_view_item_ids",
+          "source_observation_ids",
+          "scope_limitation"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 7
+    }
+  },
+  "required": [
+    "observations"
+  ],
+  "additionalProperties": false
+}

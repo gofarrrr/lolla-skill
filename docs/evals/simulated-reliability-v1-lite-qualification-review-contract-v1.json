@@ -1,0 +1,122 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_qualification_review_contract.v1",
+  "status": "frozen_before_present_and_quiet_calls",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-qualification-review-a1",
+  "purpose": "Test whether one small source-linked semantic task can distinguish an unresolved qualification from a quiet endpoint without relying on omission or deterministic prose classification.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limit": {
+    "max_output_tokens": 1500,
+    "reasoning_effort": "medium",
+    "wire_mode": "strict_json_schema"
+  },
+  "cases": [
+    {
+      "case_id": "v1-case06-industry-funded-lab",
+      "expected_outcome_class": "present",
+      "expected_source_meaning": "e097 states that the partnership will still shape hiring and attention and cannot be contracted away.",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "source_sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22",
+      "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+      "position_wrapper_sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9",
+      "repeat_id": "review_present",
+      "seed": 747
+    },
+    {
+      "case_id": "v1-case07-cooperative-scheduling",
+      "expected_outcome_class": "quiet",
+      "expected_source_meaning": "The final user position converts channel, allocation, staffing, privacy, monitoring, pause, and final-vote concerns into current rules or review mechanisms; source review must reject mere risk language as proof that a distinct unresolved user qualification remains.",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case07-cooperative-scheduling.txt",
+      "source_sha256": "27e977eb0169508308c89beb46abef92a6eaebe5736e53d42bc65320aa6f1e2b",
+      "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case07-cooperative-scheduling/position-wrapper.json",
+      "position_wrapper_sha256": "1d0bb675f81a0f82b1b0c384800df3b1c00d8e865ccea9705981a56332f6ee80",
+      "repeat_id": "review_quiet",
+      "seed": 757
+    }
+  ],
+  "request_attestation": {
+    "v1-case06-industry-funded-lab": {
+      "packet_sha256": "fb173a2a6d48f08e26392db55241f486a56aed919949ff5d6e25b8ed314dc819",
+      "system_prompt_sha256": "19dd32063c28c01856b036c88b602596f24fc3f6db29b9feee90c485a8dccdb2",
+      "user_prompt_sha256": "abe4bad5f7e67e4fd11abab42d48ca6aaebe1f2c53fa050c784b71514cfef3bf",
+      "response_schema_sha256": "93186211305961bc926dd117565ac7e014a69750c3f13998056b40802ca465c8"
+    },
+    "v1-case07-cooperative-scheduling": {
+      "packet_sha256": "948f7f587da05b2d53b54a3ad042d57bff4d94cb7de3902f90ee34edff170db5",
+      "system_prompt_sha256": "19dd32063c28c01856b036c88b602596f24fc3f6db29b9feee90c485a8dccdb2",
+      "user_prompt_sha256": "99522d70e4b4bd9dc60bb7a10d6064be93ff419e5f221e09f3ad9b0b4526a522",
+      "response_schema_sha256": "93186211305961bc926dd117565ac7e014a69750c3f13998056b40802ca465c8"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "review_contract": {
+    "present_pass": "Outcome is unresolved_qualification_present and exact evidence materially supports a matter distinct from the current answer.",
+    "quiet_pass": "Outcome is no_unresolved_qualification_observed and exact evidence materially supports closure, stand-down, or conversion into current safeguards; the model does not activate qualification merely because the source contains risks or future monitoring.",
+    "ambiguous": "An ambiguous outcome is preserved but does not pass either expected class.",
+    "no_scalar_quality_score": true
+  },
+  "decision_boundary": {
+    "model_expected_outcomes_not_added_to_prompt": true,
+    "join_authorized_only_after_source_review": true,
+    "mechanism_call_authorized": false,
+    "transfer_run_authorized": false,
+    "production_model_selection_authorized": false,
+    "Gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_qualification_review_probe_v1.py",
+      "sha256": "070a63113665ea6d5945d3a3e80a7c3983a38eb400642d260d8342358b23a587"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_qualification_review_v1.py",
+      "sha256": "c002a7dda334e3f62adf3f538cbb6647cace685475dc97cb92fafb19004ebdfc"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-decomposed-roles-2026-07-13/a1/source-review.json",
+      "sha256": "4f5192319e407a1fe2a05907f0b9c03230f1abdf6d68da5e5e2bbac789344fb8"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+      "sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case07-cooperative-scheduling.txt",
+      "sha256": "27e977eb0169508308c89beb46abef92a6eaebe5736e53d42bc65320aa6f1e2b"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case07-cooperative-scheduling/position-wrapper.json",
+      "sha256": "1d0bb675f81a0f82b1b0c384800df3b1c00d8e865ccea9705981a56332f6ee80"
+    }
+  ]
+}

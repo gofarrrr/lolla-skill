@@ -1,0 +1,59 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_call_result.v1",
+  "run_id": "conversation_state_microtask_probe_v3_20260711_a1",
+  "case_id": "amb1-case05-family-archive",
+  "kind": "positions",
+  "operational_status": "ok",
+  "semantic_status": "candidate_valid",
+  "wire_mode": "json_object",
+  "provider_schema_enforcement": false,
+  "local_typed_validation": true,
+  "candidate_payload": {
+    "status": "supported",
+    "decision_summary": {
+      "text": "The user is leaning toward accepting the exhibition slot, focusing on a narrow theme of the family's first ten years in the neighborhood, and requiring mutual support for all displayed items while preserving disagreements in the archive.",
+      "evidence_mode": "exact_span",
+      "evidence": [{"span_id": "span-d3bdb28949cb0aef", "excerpt": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying."}]
+    },
+    "positions": [
+      {
+        "text": "The exhibition should be limited to material that both partners support displaying.",
+        "ownership": "user",
+        "state": "conditional",
+        "evidence_mode": "exact_span",
+        "contributions": [
+          {"role": "originated", "evidence": {"span_id": "span-d3bdb28949cb0aef", "excerpt": "limiting the exhibition to material that Tomas and I both support displaying."}},
+          {"role": "challenged", "evidence": {"span_id": "span-fe7662e58aab1f3b", "excerpt": "Requiring both of you to support every object protects the partnership and can also let one person quietly block the story."}}
+        ]
+      },
+      {
+        "text": "The exhibition should focus on a narrow theme to avoid representing the entire family history.",
+        "ownership": "joint",
+        "state": "proposed",
+        "evidence_mode": "multi_turn_derivation",
+        "contributions": [
+          {"role": "originated", "evidence": {"span_id": "span-81ec1f525d79e034", "excerpt": "You could define the exhibition more narrowly—as twenty objects about how family memory is assembled—rather than as a representative family history."}},
+          {"role": "accepted", "evidence": {"span_id": "span-d3bdb28949cb0aef", "excerpt": "choosing a narrow theme about the family's first ten years in the neighborhood"}}
+        ]
+      }
+    ]
+  },
+  "candidate_payload_sha256": "bf0dc1777995d91e34625b07506c06cb05820bbbd5c4519828fe2f50932a867c",
+  "candidate_custody": {"proposal_count": 3, "invalid_candidate_count": 0, "current_view_candidate_count": 3, "terminal_state": "selected_for_current_view", "candidate_custody_complete": true},
+  "validation_issues": [],
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "finish_reason": "stop",
+  "prompt_tokens": 5055,
+  "completion_tokens": 469,
+  "total_tokens": 5524,
+  "reasoning_tokens": 0,
+  "estimated_cost_usd": 0.00196725,
+  "response_sha256": "b87b3b4f464f1deb30ff2043da9d07c12d81a2ea7b4714e5c59a4d8380a720a5",
+  "provider_payload_sha256": "aa05382e3e18692013ffa532a4dd8e03848fe1ac82a613f3f2b26fb2d69322b0",
+  "provider_calls": 1,
+  "automatic_retries": 0,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "evaluator_calls": 0,
+  "runtime_modified": false
+}

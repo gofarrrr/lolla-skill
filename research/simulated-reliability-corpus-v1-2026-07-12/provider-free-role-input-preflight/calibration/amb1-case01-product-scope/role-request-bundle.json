@@ -1,0 +1,607 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "f901f9f2bed1ba8ca51b15cbaa4319d8fd8401b1c1ae5692dba506c4964ea2bf",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "amb1-case01-product-scope",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI run product for a nine-person software company.\ne002\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\ne003\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\ne004\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\ne005\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n[Turn 1 ASSISTANT]\ne006\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\ne007\tI would not decide from the size of the account alone.\ne008\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\ne009\tIn parallel, make the reliability and roadmap cost visible.\ne010\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n[Turn 2 USER]\ne011\tI think you are making them sound louder and more demanding than they are.\ne012\tThey have been patient through two rough releases and gave us access to their users when we were still tiny.\ne013\tAlso, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer.\ne014\tShe is excited by it in a way she has not been excited by the reliability backlog.\ne015\tThat matters, even if it is not a market study.\n[Turn 2 ASSISTANT]\ne016\tFair correction.\ne017\tTheir request may be both a relationship obligation and a legitimate product lead.\ne018\tLina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.\ne019\tA short technical and workflow discovery could separate the reusable layer from Northline-specific behavior.\ne020\tI would frame that as learning, not as a quiet commitment to build the whole workspace.\n[Turn 3 USER]\ne021\tThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise.\ne022\tNorthline probably hears more than that.\ne023\tI also do not know how to run discovery without signaling that the feature is coming.\ne024\tIf we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\n[Turn 3 ASSISTANT]\ne025\tThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward.\ne026\tYou could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace.\ne027\tThat may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n[Turn 4 USER]\ne028\tThat sounds clean on paper.\ne029\tIn reality, Northline has tolerated us being less clean than that.\ne030\tThey let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning.\ne031\tIf I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us.\ne032\tI do not want process language to replace the fact that they helped us get here.\n[Turn 4 ASSISTANT]\ne033\tYou do not need to present a governance ceremony.\ne034\tThe substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt.\ne035\tThe boundary can live in your internal plan and in a plain sentence to them.\ne036\tSomething like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n[Turn 5 USER]\ne037\tThere is another complication.\ne038\tLina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard.\ne039\tShe says the reporting work would give her energy.\ne040\tOur infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency.\ne041\tI can see both sides.\ne042\tForcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\n[Turn 5 ASSISTANT]\ne043\tThat makes this partly a sequencing and ownership question, not only feature selection.\ne044\tLina's energy is a real resource, but it should not make the reliability burden disappear for other people.\ne045\tOne possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.\ne046\tBut if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n[Turn 6 USER]\ne047\tNorthline emailed this morning.\ne048\tThey can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then.\ne049\tThat reduces the urgency, but it also means we could lose the person who understands the problem best.\ne050\tOur smaller customers are not asking for reporting.\ne051\tThey are asking for fewer confusing states and faster support.\ne052\tI am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\n[Turn 6 ASSISTANT]\ne053\tThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not.\ne054\tThat supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation.\ne055\tIt also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated.\ne056\tThe open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n[Turn 7 USER]\ne057\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\ne058\tLina can lead the sessions but not start production code.\ne059\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\ne060\tThen we decide with all three pieces visible.\ne061\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\ne062\tBut starting the build now feels less defensible than it did.\n[Turn 7 ASSISTANT]\ne063\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\ne064\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\ne065\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\ne066\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"amb1-case01-product-scope\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI run product for a nine-person software company.\\ne002\\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\\ne003\\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\\ne004\\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\\ne005\\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\\n[Turn 1 ASSISTANT]\\ne006\\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\\ne007\\tI would not decide from the size of the account alone.\\ne008\\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\\ne009\\tIn parallel, make the reliability and roadmap cost visible.\\ne010\\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\\n[Turn 2 USER]\\ne011\\tI think you are making them sound louder and more demanding than they are.\\ne012\\tThey have been patient through two rough releases and gave us access to their users when we were still tiny.\\ne013\\tAlso, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer.\\ne014\\tShe is excited by it in a way she has not been excited by the reliability backlog.\\ne015\\tThat matters, even if it is not a market study.\\n[Turn 2 ASSISTANT]\\ne016\\tFair correction.\\ne017\\tTheir request may be both a relationship obligation and a legitimate product lead.\\ne018\\tLina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.\\ne019\\tA short technical and workflow discovery could separate the reusable layer from Northline-specific behavior.\\ne020\\tI would frame that as learning, not as a quiet commitment to build the whole workspace.\\n[Turn 3 USER]\\ne021\\tThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise.\\ne022\\tNorthline probably hears more than that.\\ne023\\tI also do not know how to run discovery without signaling that the feature is coming.\\ne024\\tIf we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\\n[Turn 3 ASSISTANT]\\ne025\\tThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward.\\ne026\\tYou could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace.\\ne027\\tThat may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\\n[Turn 4 USER]\\ne028\\tThat sounds clean on paper.\\ne029\\tIn reality, Northline has tolerated us being less clean than that.\\ne030\\tThey let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning.\\ne031\\tIf I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us.\\ne032\\tI do not want process language to replace the fact that they helped us get here.\\n[Turn 4 ASSISTANT]\\ne033\\tYou do not need to present a governance ceremony.\\ne034\\tThe substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt.\\ne035\\tThe boundary can live in your internal plan and in a plain sentence to them.\\ne036\\tSomething like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\\n[Turn 5 USER]\\ne037\\tThere is another complication.\\ne038\\tLina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard.\\ne039\\tShe says the reporting work would give her energy.\\ne040\\tOur infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency.\\ne041\\tI can see both sides.\\ne042\\tForcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\\n[Turn 5 ASSISTANT]\\ne043\\tThat makes this partly a sequencing and ownership question, not only feature selection.\\ne044\\tLina's energy is a real resource, but it should not make the reliability burden disappear for other people.\\ne045\\tOne possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.\\ne046\\tBut if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\\n[Turn 6 USER]\\ne047\\tNorthline emailed this morning.\\ne048\\tThey can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then.\\ne049\\tThat reduces the urgency, but it also means we could lose the person who understands the problem best.\\ne050\\tOur smaller customers are not asking for reporting.\\ne051\\tThey are asking for fewer confusing states and faster support.\\ne052\\tI am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\\n[Turn 6 ASSISTANT]\\ne053\\tThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not.\\ne054\\tThat supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation.\\ne055\\tIt also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated.\\ne056\\tThe open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\\n[Turn 7 USER]\\ne057\\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\\ne058\\tLina can lead the sessions but not start production code.\\ne059\\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\\ne060\\tThen we decide with all three pieces visible.\\ne061\\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\\ne062\\tBut starting the build now feels less defensible than it did.\\n[Turn 7 ASSISTANT]\\ne063\\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\\ne064\\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\\ne065\\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\\ne066\\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"amb1-case01-product-scope-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "a34030c23b483e77edd017aaa6d7b3652bc60379bd022733e0b733eae91dfced"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "amb1-case01-product-scope",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI run product for a nine-person software company.\ne002\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\ne003\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\ne004\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\ne005\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n[Turn 1 ASSISTANT]\ne006\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\ne007\tI would not decide from the size of the account alone.\ne008\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\ne009\tIn parallel, make the reliability and roadmap cost visible.\ne010\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n[Turn 2 USER]\ne011\tI think you are making them sound louder and more demanding than they are.\ne012\tThey have been patient through two rough releases and gave us access to their users when we were still tiny.\ne013\tAlso, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer.\ne014\tShe is excited by it in a way she has not been excited by the reliability backlog.\ne015\tThat matters, even if it is not a market study.\n[Turn 2 ASSISTANT]\ne016\tFair correction.\ne017\tTheir request may be both a relationship obligation and a legitimate product lead.\ne018\tLina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.\ne019\tA short technical and workflow discovery could separate the reusable layer from Northline-specific behavior.\ne020\tI would frame that as learning, not as a quiet commitment to build the whole workspace.\n[Turn 3 USER]\ne021\tThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise.\ne022\tNorthline probably hears more than that.\ne023\tI also do not know how to run discovery without signaling that the feature is coming.\ne024\tIf we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\n[Turn 3 ASSISTANT]\ne025\tThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward.\ne026\tYou could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace.\ne027\tThat may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n[Turn 4 USER]\ne028\tThat sounds clean on paper.\ne029\tIn reality, Northline has tolerated us being less clean than that.\ne030\tThey let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning.\ne031\tIf I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us.\ne032\tI do not want process language to replace the fact that they helped us get here.\n[Turn 4 ASSISTANT]\ne033\tYou do not need to present a governance ceremony.\ne034\tThe substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt.\ne035\tThe boundary can live in your internal plan and in a plain sentence to them.\ne036\tSomething like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n[Turn 5 USER]\ne037\tThere is another complication.\ne038\tLina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard.\ne039\tShe says the reporting work would give her energy.\ne040\tOur infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency.\ne041\tI can see both sides.\ne042\tForcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\n[Turn 5 ASSISTANT]\ne043\tThat makes this partly a sequencing and ownership question, not only feature selection.\ne044\tLina's energy is a real resource, but it should not make the reliability burden disappear for other people.\ne045\tOne possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.\ne046\tBut if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n[Turn 6 USER]\ne047\tNorthline emailed this morning.\ne048\tThey can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then.\ne049\tThat reduces the urgency, but it also means we could lose the person who understands the problem best.\ne050\tOur smaller customers are not asking for reporting.\ne051\tThey are asking for fewer confusing states and faster support.\ne052\tI am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\n[Turn 6 ASSISTANT]\ne053\tThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not.\ne054\tThat supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation.\ne055\tIt also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated.\ne056\tThe open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n[Turn 7 USER]\ne057\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\ne058\tLina can lead the sessions but not start production code.\ne059\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\ne060\tThen we decide with all three pieces visible.\ne061\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\ne062\tBut starting the build now feels less defensible than it did.\n[Turn 7 ASSISTANT]\ne063\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\ne064\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\ne065\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\ne066\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"amb1-case01-product-scope\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI run product for a nine-person software company.\\ne002\\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\\ne003\\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\\ne004\\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\\ne005\\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\\n[Turn 1 ASSISTANT]\\ne006\\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\\ne007\\tI would not decide from the size of the account alone.\\ne008\\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\\ne009\\tIn parallel, make the reliability and roadmap cost visible.\\ne010\\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\\n[Turn 2 USER]\\ne011\\tI think you are making them sound louder and more demanding than they are.\\ne012\\tThey have been patient through two rough releases and gave us access to their users when we were still tiny.\\ne013\\tAlso, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer.\\ne014\\tShe is excited by it in a way she has not been excited by the reliability backlog.\\ne015\\tThat matters, even if it is not a market study.\\n[Turn 2 ASSISTANT]\\ne016\\tFair correction.\\ne017\\tTheir request may be both a relationship obligation and a legitimate product lead.\\ne018\\tLina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.\\ne019\\tA short technical and workflow discovery could separate the reusable layer from Northline-specific behavior.\\ne020\\tI would frame that as learning, not as a quiet commitment to build the whole workspace.\\n[Turn 3 USER]\\ne021\\tThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise.\\ne022\\tNorthline probably hears more than that.\\ne023\\tI also do not know how to run discovery without signaling that the feature is coming.\\ne024\\tIf we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\\n[Turn 3 ASSISTANT]\\ne025\\tThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward.\\ne026\\tYou could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace.\\ne027\\tThat may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\\n[Turn 4 USER]\\ne028\\tThat sounds clean on paper.\\ne029\\tIn reality, Northline has tolerated us being less clean than that.\\ne030\\tThey let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning.\\ne031\\tIf I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us.\\ne032\\tI do not want process language to replace the fact that they helped us get here.\\n[Turn 4 ASSISTANT]\\ne033\\tYou do not need to present a governance ceremony.\\ne034\\tThe substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt.\\ne035\\tThe boundary can live in your internal plan and in a plain sentence to them.\\ne036\\tSomething like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\\n[Turn 5 USER]\\ne037\\tThere is another complication.\\ne038\\tLina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard.\\ne039\\tShe says the reporting work would give her energy.\\ne040\\tOur infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency.\\ne041\\tI can see both sides.\\ne042\\tForcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\\n[Turn 5 ASSISTANT]\\ne043\\tThat makes this partly a sequencing and ownership question, not only feature selection.\\ne044\\tLina's energy is a real resource, but it should not make the reliability burden disappear for other people.\\ne045\\tOne possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.\\ne046\\tBut if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\\n[Turn 6 USER]\\ne047\\tNorthline emailed this morning.\\ne048\\tThey can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then.\\ne049\\tThat reduces the urgency, but it also means we could lose the person who understands the problem best.\\ne050\\tOur smaller customers are not asking for reporting.\\ne051\\tThey are asking for fewer confusing states and faster support.\\ne052\\tI am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\\n[Turn 6 ASSISTANT]\\ne053\\tThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not.\\ne054\\tThat supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation.\\ne055\\tIt also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated.\\ne056\\tThe open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\\n[Turn 7 USER]\\ne057\\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\\ne058\\tLina can lead the sessions but not start production code.\\ne059\\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\\ne060\\tThen we decide with all three pieces visible.\\ne061\\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\\ne062\\tBut starting the build now feels less defensible than it did.\\n[Turn 7 ASSISTANT]\\ne063\\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\\ne064\\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\\ne065\\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\\ne066\\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"amb1-case01-product-scope-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "6ca03e63ae6825cb17b50f7540f5c688ff13f1bba4881481e0712e049b980761"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "07c18da57127f0c8d693c0523886384297db5f67f11409733f69881fc381dc61"
+}

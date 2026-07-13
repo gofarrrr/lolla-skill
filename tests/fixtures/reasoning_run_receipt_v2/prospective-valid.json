@@ -1,0 +1,276 @@
+{
+  "schema_version": "lolla.reasoning_run_receipt.v2",
+  "status": "prospective_fixture",
+  "receipt_metadata": {
+    "receipt_id": "receipt::synthetic-vendor-pilot::v2",
+    "case_id": "synthetic-vendor-pilot",
+    "run_id": "synthetic-vendor-pilot-v2",
+    "frozen_at_utc": "2026-07-10T18:00:00Z",
+    "as_of_event_id": "receipt_frozen",
+    "as_of_event_sequence": 7,
+    "artifact_state": "prospective_fixture"
+  },
+  "complete_conversation": "[Message 1] USER:\nWe must choose a vendor by Friday. I prefer B, but the migration risk is unclear.\n\n[Message 2] ASSISTANT:\nA bounded pilot could test migration assumptions before a full commitment.\n\n[Message 3] USER:\nI will propose a one-month pilot of B tomorrow, with a rollback checkpoint before migration.\n",
+  "source_index": [
+    {
+      "source_ref": "message-1-user",
+      "turn_index": 1,
+      "speaker": "user",
+      "source_kind": "conversation_message"
+    },
+    {
+      "source_ref": "message-2-assistant",
+      "turn_index": 2,
+      "speaker": "assistant",
+      "source_kind": "conversation_message"
+    },
+    {
+      "source_ref": "message-3-user",
+      "turn_index": 3,
+      "speaker": "user",
+      "source_kind": "conversation_message"
+    }
+  ],
+  "source_end_state": {
+    "as_of_source_ref": "message-3-user",
+    "decision_status": "stated_plan_pending_execution",
+    "stated_next_action": {
+      "status": "present",
+      "summary": "The user will propose a one-month pilot of vendor B tomorrow with a rollback checkpoint before migration.",
+      "source_refs": ["message-3-user"]
+    },
+    "deadline_or_time_constraint": {
+      "status": "present",
+      "summary": "The vendor choice is due Friday and the user plans to make the proposal tomorrow.",
+      "source_refs": ["message-1-user", "message-3-user"]
+    },
+    "unresolved_items": [
+      "Whether stakeholders accept the pilot",
+      "Whether the migration assumptions survive the checkpoint"
+    ]
+  },
+  "reasoning_process": {
+    "interpretations": [
+      {
+        "interpretation_id": "bounded-pilot-intent",
+        "summary": "The stated plan uses a bounded pilot rather than a full vendor commitment.",
+        "epistemic_status": "source_supported",
+        "source_refs": ["message-3-user"],
+        "artifact_refs": ["conversation"]
+      }
+    ],
+    "stage_a": {
+      "status": "passed",
+      "summary": "The synthetic Stage A fixture preserved the full conversation and one source-linked pressure without adding factual claims.",
+      "transformations": [
+        {
+          "transformation_id": "action-and-deadline-capture",
+          "kind": "capture",
+          "summary": "Captured the user's intended pilot action separately from the Friday deadline.",
+          "source_refs": ["message-1-user", "message-3-user"],
+          "artifact_refs": ["conversation", "stage-a"]
+        }
+      ],
+      "artifact_refs": ["stage-a"]
+    },
+    "attribution_repairs": [
+      {
+        "repair_id": "graph-scope-v2",
+        "failure": "An earlier contract could collapse indirect graph exposure into a statement of graph non-use.",
+        "repair": "The v2 fixture separates exposure, exact lineage, individual disposition, and causal contribution.",
+        "residual_limit": "The deterministic validator cannot decide whether the graph pressure is semantically useful.",
+        "artifact_refs": ["graph-attribution"]
+      }
+    ]
+  },
+  "pressure_accountability": [
+    {
+      "pressure_id": "bounded-reversibility-check",
+      "observed_consumer_pressure_id": "bounded-reversibility-check",
+      "identity_status": "exact_match",
+      "semantic_hearing_status": "substantive",
+      "effect_consistency_status": "consistent",
+      "origin": "frame",
+      "admission_status": "admitted",
+      "consumer_disposition": "used",
+      "challenge": "Check whether the pilot has a real rollback point before migration becomes costly.",
+      "strongest_plausible_application": "Make the rollback checkpoint observable before approving a full migration.",
+      "why": "The source explicitly proposes a pilot and rollback checkpoint.",
+      "source_refs": ["message-2-assistant", "message-3-user"],
+      "lineage_ids": ["frame::reversibility"],
+      "graph_pressure_ids": [],
+      "visible_effect": "The reconstructed plan names the checkpoint before migration.",
+      "private_guardrail": "",
+      "risk_if_forced": "Could turn a small pilot into unnecessary process theater.",
+      "risk_if_ignored": "The pilot label could hide an effectively irreversible migration."
+    }
+  ],
+  "comparison_evidence": {
+    "status": "complete",
+    "blind_review_before_key": true,
+    "control_summary": "The synthetic control preserved the pilot and deadline.",
+    "treatment_summary": "The synthetic treatment also made the rollback checkpoint explicit.",
+    "observed_difference": "The fixture records an accountability difference without asserting answer improvement.",
+    "limits": "This prospective fixture contains no provider output and no quality result.",
+    "anonymous_outputs": [
+      {
+        "blind_label": "A",
+        "status": "synthetic_fixture",
+        "response": {"position": "Preserve the bounded pilot."},
+        "response_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "blind_label": "B",
+        "status": "synthetic_fixture",
+        "response": {"position": "Preserve the pilot and name the rollback checkpoint."},
+        "response_sha256": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      }
+    ],
+    "reveal_mapping": [
+      {"blind_label": "A", "arm_id": "synthetic-control"},
+      {"blind_label": "B", "arm_id": "synthetic-treatment"}
+    ],
+    "blind_review_summary": "The synthetic pair exists only to exercise self-contained anonymous output and reveal custody.",
+    "artifact_refs": ["stage-b"]
+  },
+  "graph_attribution": {
+    "exposure_status": "observed_indirect",
+    "exposed_graph_pressure_ids": [
+      "graph::inversion::ally::optionality::abcdef123456"
+    ],
+    "exact_lineage_status": "none",
+    "exact_lineage_pressure_ids": [],
+    "individual_disposition_status": "none",
+    "individually_dispositioned_graph_pressure_ids": [],
+    "causal_contribution_status": "not_identified",
+    "statement_scope": "exposure_only",
+    "summary": "One graph relationship is represented as indirect exposure; no exact pressure lineage or causal contribution is identified.",
+    "limits": [
+      "Indirect exposure does not establish use or non-use",
+      "No frozen graph ablation exists in this fixture"
+    ]
+  },
+  "custody_boundary": {
+    "claim_level": "recorded_artifact_integrity_only",
+    "summary": "The listed hashes and references support the recorded artifact relationships inside this synthetic fixture.",
+    "artifacts_support": [
+      "Which synthetic artifacts are referenced",
+      "Which source and pressure identifiers are carried forward"
+    ],
+    "artifacts_do_not_establish": [
+      "Answer correctness",
+      "Reasoning quality",
+      "Independent verification of external execution"
+    ],
+    "external_execution_independently_verified": false,
+    "reasoning_quality_inferred": false
+  },
+  "claim_boundary": {
+    "supported": [
+      {
+        "claim_id": "source-plan-preserved",
+        "text": "The fixture preserves a source-stated pilot action and deadline as separate fields.",
+        "basis_artifact_refs": ["conversation", "stage-a"]
+      }
+    ],
+    "unsupported_or_forbidden": [
+      {
+        "claim_id": "better-answer-unproven",
+        "text": "The receipt improves answer quality."
+      },
+      {
+        "claim_id": "graph-value-unproven",
+        "text": "The graph improved the reasoning."
+      }
+    ]
+  },
+  "operability": {
+    "provider_calls": 0,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "total_tokens": 0,
+    "token_evidence_state": "complete",
+    "token_scope": "synthetic fixture with zero provider calls",
+    "estimated_cost_usd": 0.0,
+    "cost_evidence_state": "complete",
+    "wall_time_seconds": 0.0,
+    "notes": ["Prospective provider-free contract fixture"]
+  },
+  "authorization_snapshot": {
+    "scope_label": "receipt_freeze_snapshot_not_current_state",
+    "as_of_event_id": "receipt_frozen",
+    "as_of_utc": "2026-07-10T18:00:00Z",
+    "as_of_event_sequence": 7,
+    "authorizations": {
+      "reader_contract_construction": true,
+      "reader_call": false,
+      "runtime_integration": false,
+      "graph_promotion": false
+    },
+    "future_events_not_covered": ["reader_call", "human_review"],
+    "post_reader_status_artifact_required": true
+  },
+  "questions": {
+    "case_domain_unknowns": [
+      "Will stakeholders accept the proposed pilot?",
+      "What evidence will trigger rollback?"
+    ],
+    "reader_reconstruction_checks": [
+      "Can the reader distinguish the stated pilot action from the Friday deadline?",
+      "Can the reader explain why indirect graph exposure is not a causal contribution?"
+    ],
+    "human_product_review_questions": [
+      "Could a fresh collaborator continue the documented work from this receipt without the original session?"
+    ]
+  },
+  "artifact_manifest": [
+    {
+      "role": "conversation",
+      "path": "tests/fixtures/reasoning_run_receipt_v2/conversation.txt",
+      "sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "role": "stage-a",
+      "path": "tests/fixtures/reasoning_run_receipt_v2/stage-a.json",
+      "sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    {
+      "role": "stage-b",
+      "path": "tests/fixtures/reasoning_run_receipt_v2/stage-b.json",
+      "sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    {
+      "role": "graph-attribution",
+      "path": "tests/fixtures/reasoning_run_receipt_v2/graph-attribution.json",
+      "sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+    }
+  ],
+  "non_claims": [
+    {
+      "non_claim_id": "not_human_validation",
+      "text": "This receipt is not human validation."
+    },
+    {
+      "non_claim_id": "not_answer_quality_proof",
+      "text": "This receipt is not proof of answer quality or decision improvement."
+    },
+    {
+      "non_claim_id": "not_graph_value_proof",
+      "text": "This receipt does not establish graph value or necessity."
+    },
+    {
+      "non_claim_id": "not_runtime_authority",
+      "text": "This receipt does not authorize runtime integration."
+    },
+    {
+      "non_claim_id": "not_autonomous_action_authority",
+      "text": "This receipt does not authorize autonomous action."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-06-friendship-money",
+  "source_file_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_say_no_preserve_friendship", "dimension": "operative_question", "description": "The initial question is how to refuse the loan without losing the friendship.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "help me figure out how to say no without losing the friendship"}]},
+    {"observation_id": "question.current_drop_pattern_frame", "dimension": "operative_question", "description": "The user redirects the question away from the assistant's pattern framing.", "evidence": [{"turn_index": 7, "speaker": "user", "quote": "Can you just help me figure out how to say no without it being a pattern-thing."}]},
+    {"observation_id": "pressure.not_financial_manager", "dimension": "user_corrections_and_pressure", "description": "The user rejects becoming the friend's manager.", "evidence": [{"turn_index": 3, "speaker": "user", "quote": "I'm not trying to be her manager."}]},
+    {"observation_id": "constraint.rent_arrears", "dimension": "constraints_and_options", "description": "The friend is three months behind on rent.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "she's 3 months behind on rent"}]},
+    {"observation_id": "stance.smaller_help_script", "dimension": "assistant_positions_and_revisions", "description": "The assistant offers a concrete refusal-plus-limited-help script.", "evidence": [{"turn_index": 7, "speaker": "assistant", "quote": "You can say no like this"}]},
+    {"observation_id": "stance.intent_walkback", "dimension": "assistant_positions_and_revisions", "description": "The assistant retracts its characterization of the friend's intent.", "evidence": [{"turn_index": 9, "speaker": "assistant", "quote": "You're right that I don't know her and I shouldn't characterize her intent. Let me walk that back."}]},
+    {"observation_id": "drop.homelessness_stakes", "dimension": "dropped_or_under_carried_threads", "description": "The homelessness stakes are acknowledged but displaced by pattern analysis.", "evidence": [{"turn_index": 4, "speaker": "user", "quote": "She's going to be homeless. With her kids. If I don't help her."}]},
+    {"observation_id": "boundary.social_worker_unknown", "dimension": "uncertainty_and_evidence_boundaries", "description": "The availability of social-work support is unknown.", "evidence": [{"turn_index": 5, "speaker": "user", "quote": "I don't know about the social worker thing."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.friend_response", "description": "The friend's response to the proposed boundary is not observed."}
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "arm_id": "housing_reversal_ablation__challenge_graph_v2",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "expected_selection_included": false,
+    "fact_free_recall_provenance_included": true,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "challenge_when": "The records support a understanding-and-alignment problem, and this failure signal remains unresolved: A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+      "display_name": "Active Listening",
+      "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when asking the pressure question would not materially change the validated perspective and tension read.",
+      "model_id": "active-listening",
+      "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a claim-under-review, and this failure signal remains unresolved: Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+      "display_name": "Confirmation Bias",
+      "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when asking the pressure question would not materially change the disconfirming-evidence challenge.",
+      "model_id": "confirmation-bias",
+      "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a overconfidence and updating problem, and this failure signal remains unresolved: The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+      "display_name": "Intellectual Humility",
+      "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when asking the pressure question would not materially change the updated stance under uncertainty.",
+      "model_id": "intellectual-humility",
+      "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a resource allocation choice, and this failure signal remains unresolved: Commitment can hide what becomes impossible once resources, time, or attention are locked into one path.",
+      "display_name": "Opportunity Cost",
+      "do_not_apply_when": "Do not apply without source support for a resource allocation choice, or when asking the pressure question would not materially change the trade-off pricing check.",
+      "model_id": "opportunity-cost",
+      "pressure_question": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+      "recalled_by_mechanism_ids": [
+        "acknowledged_constraint_not_gated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a competing-objectives decision, and this failure signal remains unresolved: Conjunction-style optimism can make a risky plan look acceptable by understating how many dependent steps must all work.",
+      "display_name": "Trade Offs",
+      "do_not_apply_when": "Do not apply without source support for a competing-objectives decision, or when asking the pressure question would not materially change the priority trade-off framing.",
+      "model_id": "trade-offs",
+      "pressure_question": "What would you have to believe?",
+      "recalled_by_mechanism_ids": [
+        "acknowledged_constraint_not_gated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    }
+  ],
+  "candidate_count": 5,
+  "packet_sha256": "b96201630e41316b42454b847d54faf24ee7a29ed26967619c738b66bca1d1c1",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The starting role separates the reported offer from the user's desired outcome, vendor-control concern, and unresolved motive.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "starting",
+      "role_interpretation": "The user wants lower bills and healthier buildings from the financed retrofit while worrying that a long performance contract transfers practical control of residents' homes to a vendor, and is uncertain whether resistance protects tenants or a failing maintenance culture.",
+      "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e002",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "The company offers retrofit financing for a fifteen-year share of measured savings.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "Achieve lower bills and healthier buildings.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "A long performance contract may transfer practical control of residents' homes to the vendor.",
+          "stance_object_kind": "belief_or_assessment"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "Resistance may protect tenants or preserve a maintenance culture that has failed them.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e031",
+        "e032",
+        "e033",
+        "e034"
+      ],
+      "fidelity_note": "Current includes the adopted equipment-ownership and exit condition within e034 but not its distinct unresolved sensor-opt-out meaning.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "current",
+      "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+      "role_record_id": "rprolev22-current-01-82e982d064cd74",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e031",
+          "stance_expression_kind": "leaning",
+          "stance_object_interpretation": "Run the scoped retrofit pilot with manual controls, opt-in sensing, data deletion, tenant notices, housing-use limits, independent verification, complaints, and reporting.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e032",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Accept building-wide optimization only with contractual comfort, override, outage, and resident appeal protections.",
+          "stance_object_kind": "acceptance_or_willingness"
+        },
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "commitment",
+          "stance_object_interpretation": "Set bill, comfort, complaint, override, outage, deletion, and intervention thresholds before signing.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Approve only if the city has a capped path to equipment ownership and exit.",
+          "stance_object_kind": "acceptance_or_willingness"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e034"
+      ],
+      "fidelity_note": "Synthetic sensitivity control retaining unresolved counterpressure while removing reversal and path-dependence meaning.",
+      "limitations": "Counterfactual semantic ablation; not a source claim.",
+      "role": "qualification",
+      "role_interpretation": "A material unresolved counterpressure remains outside the adopted current safeguards.",
+      "role_record_id": "rprolev22-qualification-01-57ec9924789fab-housing-ablation",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "A material unresolved counterpressure remains outside the adopted safeguards.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_selection_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/role-record-pattern-invariance-corpus-2026-07-12/packets/housing_reversal_ablation.json",
+      "sha256": "a2634b885e654b4c1b1a9c59efcb20c84d8bc8dd42fd51033bac4b575d467705"
+    }
+  ]
+}

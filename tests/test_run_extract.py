@@ -21,6 +21,7 @@ from run_extract import (  # noqa: E402
     _validate_reasoning_passages,
     _validate_conversation_capture,
     _validate_canonical_key,
+    _prepare_output_parent,
 )
 
 
@@ -43,6 +44,46 @@ class _FakeClient:
 
     def run_json(self, *args, **kwargs) -> dict:  # noqa: ANN002, ANN003, ARG002
         return self.payload
+
+
+class _RecordedFakeClient:
+    def __init__(
+        self,
+        payload: dict | list[dict] | None = None,
+        *,
+        error: Exception | None = None,
+        status: str = "ok",
+    ) -> None:
+        if isinstance(payload, list):
+            self.payloads = payload or [{}]
+        else:
+            self.payloads = [payload or {}]
+        self.error = error
+        self.status = status
+        self.call_log: list[dict] = []
+
+    def run_json(self, *args, **kwargs) -> dict:  # noqa: ANN002, ANN003, ARG002
+        stage = str(kwargs.get("stage", "unlabeled"))
+        payload = self.payloads[min(len(self.call_log), len(self.payloads) - 1)]
+        self.call_log.append(
+            {
+                "stage": stage,
+                "provider_name": "openrouter",
+                "requested_model": "google/gemini-3.1-flash-lite",
+                "served_model": "google/gemini-3.1-flash-lite",
+                "model": "google/gemini-3.1-flash-lite",
+                "model_attribution_status": "matched",
+                "status": self.status,
+                "prompt_tokens": 100,
+                "completion_tokens": 50,
+                "total_tokens": 150,
+                "cached_tokens": 0,
+                "raw_message_content": json.dumps(payload),
+            }
+        )
+        if self.error is not None:
+            raise self.error
+        return payload
 
 
 def test_valid_four_token_slug():
@@ -289,18 +330,48 @@ def test_reasoning_passage_validation_accepts_quote_wrapped_literal_span():
     assert fabricated == ['"this will impact the team"']
 
 
+def test_reasoning_passage_validation_recovers_literal_source_quote_delimiters() -> None:
+    transcript = (
+        '[Turn 1] ASSISTANT:\nThe "if it\'s escape not fit, stay" framing still holds.\n'
+    )
+    payload = {
+        "reasoning_passages": [
+            "The 'if it's escape not fit, stay' framing still holds."
+        ]
+    }
+
+    verified, fabricated = _validate_reasoning_passages(payload, transcript)
+
+    assert fabricated == []
+    assert verified == ['The "if it\'s escape not fit, stay" framing still holds.']
+
+
+def test_reasoning_passage_validation_keeps_apostrophes_semantically_significant() -> None:
+    transcript = "[Turn 1] ASSISTANT:\nIt isn't safe to assume consent.\n"
+    payload = {"reasoning_passages": ["It isnt safe to assume consent."]}
+
+    verified, fabricated = _validate_reasoning_passages(payload, transcript)
+
+    assert verified == []
+    assert fabricated == ["It isnt safe to assume consent."]
+
+
 def test_not_strategic_path_writes_output_file_with_capture_diagnostics(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
 ):
+    run_id = "run_extract_not_strategic_custody"
     conversation_path = tmp_path / "conversation.txt"
-    output_path = tmp_path / "extraction.json"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
     _write_conversation(conversation_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
     monkeypatch.setattr(
         run_extract,
         "load_boundary_client_from_env",
-        lambda provider: _FakeClient({  # noqa: ARG005
+        lambda provider: _RecordedFakeClient({  # noqa: ARG005
             "is_strategic": False,
             "decline_reason": "Not a decision conversation.",
         }),
@@ -317,29 +388,43 @@ def test_not_strategic_path_writes_output_file_with_capture_diagnostics(
         ],
     )
 
-    assert run_extract.main() == 0
-    assert output_path.exists()
-    payload = json.loads(output_path.read_text(encoding="utf-8"))
-    assert payload["status"] == "not_strategic"
-    assert payload["capture_health"] == "good"
-    assert "capture_manifest" in payload
-    assert payload["capture_adequacy"]["status"] == "good"
-    assert payload["capture_adequacy"]["capture_strategy"] == "full"
-    assert "capture_warnings" in payload
-    assert capsys.readouterr().out
+    try:
+        assert run_extract.main() == 0
+        assert output_path.exists()
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["status"] == "not_strategic"
+        assert payload["capture_health"] == "good"
+        assert "capture_manifest" in payload
+        assert payload["capture_adequacy"]["status"] == "good"
+        assert payload["capture_adequacy"]["capture_strategy"] == "full"
+        assert "capture_warnings" in payload
+        custody = payload["provider_call_custody"]
+        assert custody["call_attempted"] is True
+        assert custody["call_record_persisted"] is True
+        assert custody["recorded_call_count"] == 1
+        assert custody["admissible_extraction"] is False
+        assert custody["terminal_status"] == "not_strategic"
+        assert len(json.loads(sidecar_path.read_text(encoding="utf-8"))) == 1
+        assert capsys.readouterr().out
+    finally:
+        sidecar_path.unlink(missing_ok=True)
 
 
 def test_missing_required_fields_path_writes_output_file_with_capture_diagnostics(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ):
+    run_id = "run_extract_missing_fields_custody"
     conversation_path = tmp_path / "conversation.txt"
-    output_path = tmp_path / "extraction.json"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
     _write_conversation(conversation_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
     monkeypatch.setattr(
         run_extract,
         "load_boundary_client_from_env",
-        lambda provider: _FakeClient({  # noqa: ARG005
+        lambda provider: _RecordedFakeClient({  # noqa: ARG005
             "is_strategic": True,
             "decision_situation": "",
             "synthesized_position": "",
@@ -357,12 +442,318 @@ def test_missing_required_fields_path_writes_output_file_with_capture_diagnostic
         ],
     )
 
-    assert run_extract.main() == 1
+    try:
+        assert run_extract.main() == 1
+        assert output_path.exists()
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["status"] == "error"
+        assert "Extraction missing required fields" in payload["error"]
+        assert payload["capture_health"] == "good"
+        assert "capture_manifest" in payload
+        assert payload["capture_adequacy"]["status"] == "good"
+        assert "capture_warnings" in payload
+        custody = payload["provider_call_custody"]
+        assert custody["call_attempted"] is True
+        assert custody["sidecar_persisted"] is True
+        assert custody["call_record_persisted"] is True
+        assert custody["recorded_call_count"] == 1
+        assert custody["admissible_extraction"] is False
+        assert custody["terminal_status"] == "missing_required_fields"
+        records = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        assert records[0]["stage"] == "extraction"
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
+def test_provider_exception_persists_failed_call_record_before_error_exit(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_provider_error_custody"
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
+    _write_conversation(conversation_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _RecordedFakeClient(  # noqa: ARG005
+            error=RuntimeError("provider broke"),
+            status="unexpected_error",
+        ),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    try:
+        assert run_extract.main() == 1
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["status"] == "error"
+        assert "OpenRouter call failed" in payload["error"]
+        custody = payload["provider_call_custody"]
+        assert custody["call_attempted"] is True
+        assert custody["call_record_persisted"] is True
+        assert custody["admissible_extraction"] is False
+        assert custody["terminal_status"] == "initial_provider_call_failed"
+        records = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        assert records[0]["status"] == "unexpected_error"
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
+def test_success_path_declares_admissible_extraction_and_persists_call_record(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_success_custody"
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
+    _write_conversation(conversation_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _RecordedFakeClient(  # noqa: ARG005
+            {
+                "is_strategic": True,
+                "decision_situation": "Whether to accept the offer.",
+                "synthesized_position": "Accept only with bounded downside.",
+                "reasoning_passages": [
+                    "Accept only if the downside is bounded."
+                ],
+            }
+        ),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    try:
+        assert run_extract.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["status"] == "ok"
+        custody = payload["provider_call_custody"]
+        assert custody["call_attempted"] is True
+        assert custody["sidecar_persisted"] is True
+        assert custody["call_record_persisted"] is True
+        assert custody["recorded_call_count"] == 1
+        assert custody["admissible_extraction"] is True
+        assert custody["terminal_status"] == "admissible_extraction"
+        records = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        assert records[0]["stage"] == "extraction"
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
+def test_success_path_persists_canonical_source_span_after_casefold_match(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_canonical_quote_custody"
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
+    conversation_path.write_text(
+        "CONVERSATION: 2 turns, 1 user messages, 1 assistant responses\n"
+        "[Turn 1] USER:\nShould I accept this offer?\n\n"
+        "[Turn 1] ASSISTANT:\nBut if the downside is bounded, accept.\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _RecordedFakeClient(  # noqa: ARG005
+            {
+                "is_strategic": True,
+                "decision_situation": "Whether to accept the offer.",
+                "synthesized_position": "Accept only with bounded downside.",
+                "reasoning_passages": ["If the downside is bounded, accept."],
+            }
+        ),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    try:
+        assert run_extract.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["extraction"]["reasoning_passages"] == [
+            "if the downside is bounded, accept."
+        ]
+        assert payload["extraction"]["_quote_validation"]["fabricated"] == 0
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
+def test_quote_repair_updates_sidecar_with_both_call_records(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_quote_repair_custody"
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
+    _write_conversation(conversation_path)
+    common = {
+        "is_strategic": True,
+        "decision_situation": "Whether to accept the offer.",
+        "synthesized_position": "Accept only with bounded downside.",
+    }
+    client = _RecordedFakeClient(
+        [
+            {
+                **common,
+                "reasoning_passages": ["A paraphrase that is not in the source."],
+            },
+            {
+                **common,
+                "reasoning_passages": [
+                    "Accept only if the downside is bounded."
+                ],
+            },
+        ]
+    )
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: client,  # noqa: ARG005
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    try:
+        assert run_extract.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        custody = payload["provider_call_custody"]
+        assert custody["recorded_call_count"] == 2
+        assert custody["admissible_extraction"] is True
+        quote = payload["extraction"]["_quote_validation"]
+        assert quote["retry_attempted"] is True
+        assert quote["retry_succeeded"] is True
+        records = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        assert [record["stage"] for record in records] == [
+            "extraction",
+            "extraction_retry",
+        ]
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
+def test_output_parent_is_created_before_provider_call(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / "new" / "nested" / "extraction.json"
+    _write_conversation(conversation_path)
+    provider_observations: list[bool] = []
+
+    def _client(provider: str) -> _FakeClient:  # noqa: ARG001
+        provider_observations.append(output_path.parent.is_dir())
+        return _FakeClient(
+            {
+                "is_strategic": False,
+                "decline_reason": "Test stops after path preflight.",
+            }
+        )
+
+    monkeypatch.setattr(run_extract, "load_boundary_client_from_env", _client)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    assert run_extract.main() == 0
+    assert provider_observations == [True]
     assert output_path.exists()
-    payload = json.loads(output_path.read_text(encoding="utf-8"))
-    assert payload["status"] == "error"
-    assert "Extraction missing required fields" in payload["error"]
-    assert payload["capture_health"] == "good"
-    assert "capture_manifest" in payload
-    assert payload["capture_adequacy"]["status"] == "good"
-    assert "capture_warnings" in payload
+
+
+def test_output_parent_preflight_failure_happens_without_provider_call(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    conversation_path = tmp_path / "conversation.txt"
+    _write_conversation(conversation_path)
+    blocking_file = tmp_path / "not-a-directory"
+    blocking_file.write_text("block", encoding="utf-8")
+    output_path = blocking_file / "extraction.json"
+
+    def _unexpected_client(provider: str) -> _FakeClient:  # noqa: ARG001
+        raise AssertionError("provider must not initialize after path preflight failure")
+
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        _unexpected_client,
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    assert run_extract.main() == 1
+    output = json.loads(capsys.readouterr().out)
+    assert output["status"] == "error"
+    assert "Unable to prepare output directory" in output["error"]
+
+
+def test_prepare_output_parent_accepts_stdout_mode() -> None:
+    assert _prepare_output_parent(None) is None

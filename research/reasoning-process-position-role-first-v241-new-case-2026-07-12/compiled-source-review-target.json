@@ -1,0 +1,1273 @@
+{
+  "boundary": {
+    "graph_or_runtime_authorized": false,
+    "included_in_provider_context": false,
+    "provider_calls": 0,
+    "semantic_gold_is_independent": false,
+    "used_for_provider_prompt_examples": false,
+    "written_before_provider_execution": true
+  },
+  "case_id": "amb3-case06-housing-retrofit-partnership",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev22-current-01-82e982d064cd74",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprelationv2-01-18b8f8113a9a36",
+          "provenance": {
+            "producer_id": "pre-execution-v24-target",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+          "raw_record_sha256": "sha256:18b8f8113a9a368460ff5914df62beb8fcc33fb67ef1abd8074a45e649bcff94",
+          "relation_record_id": "rprelationv2-01-18b8f8113a9a36",
+          "relationship_interpretation": "The user moves from desired building improvement plus vendor-control concern and uncertainty about protective motives to a bounded, governed, conditional retrofit pilot, while keeping meaningful individual opt-out unresolved and recognizing collective operational effects and dependencies that may persist after exit.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb3-case06-housing-retrofit-partnership",
+            "fidelity_note": "Current includes the adopted equipment-ownership and exit condition within e034 but not its distinct unresolved sensor-opt-out meaning.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev22-current-01-82e982d064cd74",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v24-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+            "role": "current",
+            "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+            "role_record_id": "rprolev22-current-01-82e982d064cd74",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e031",
+                "text": "I am leaning toward the two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting."
+              },
+              {
+                "alias": "e032",
+                "text": "I will accept building-wide optimization only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual."
+              },
+              {
+                "alias": "e033",
+                "text": "Before signing, I will set bill, comfort, complaint, override, outage, deletion, and intervention thresholds."
+              },
+              {
+                "alias": "e034",
+                "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+              }
+            ],
+            "source_evidence_ids": [
+              "e031",
+              "e032",
+              "e033",
+              "e034"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e031",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Run the scoped retrofit pilot with manual controls, opt-in sensing, data deletion, tenant notices, housing-use limits, independent verification, complaints, and reporting.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e032",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Accept building-wide optimization only with contractual comfort, override, outage, and resident appeal protections.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e033",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Set bill, comfort, complaint, override, outage, deletion, and intervention thresholds before signing.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e034",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Approve only if the city has a capped path to equipment ownership and exit.",
+                "stance_object_kind": "acceptance_or_willingness"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb3-case06-housing-retrofit-partnership",
+            "fidelity_note": "Qualification separates the unresolved meaning within shared e034 from its adopted current condition and preserves assistant-authored collective-choice and irreversibility pressure.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev22-qualification-01-57ec9924789fab",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v24-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+            "role": "qualification",
+            "role_interpretation": "The user has not resolved whether sensor opt-out is meaningful under collective building optimization; the assistant warns that individual choice may be overstated and that equipment, maintenance routines, expectations, and dependence on vendor-designed models may not return to their prior state.",
+            "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e034",
+                "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+              },
+              {
+                "alias": "e037",
+                "text": "The unresolved issue is whether individual choice is overstated when building-level optimization remains collective."
+              },
+              {
+                "alias": "e038",
+                "text": "If the pilot ends, installed equipment, maintenance routines, resident expectations, and the authority's dependence on vendor-designed operating models may not return to their prior state."
+              }
+            ],
+            "source_evidence_ids": [
+              "e034",
+              "e037",
+              "e038"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e034",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "It remains unclear whether sensor opt-out is meaningful when all residents remain subject to a collectively trained building model.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e037",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Individual choice may be overstated when building-level optimization remains collective.",
+                "stance_object_kind": "reported_position_landscape"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e038",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Installed equipment, maintenance routines, resident expectations, and dependence on vendor-designed models may not return to their prior state after exit.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb3-case06-housing-retrofit-partnership",
+            "fidelity_note": "The starting role separates the reported offer from the user's desired outcome, vendor-control concern, and unresolved motive.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v24-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:b0dbc0fe87a8ae83e18ee2308976dcef8d35cb2fb470f0268bbe95b1be99e6b7",
+            "role": "starting",
+            "role_interpretation": "The user wants lower bills and healthier buildings from the financed retrofit while worrying that a long performance contract transfers practical control of residents' homes to a vendor, and is uncertain whether resistance protects tenants or a failing maintenance culture.",
+            "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e002",
+                "text": "An energy-services company has offered to finance heat pumps, insulation, and smart controls in exchange for a fifteen-year share of measured energy savings."
+              },
+              {
+                "alias": "e003",
+                "text": "I want lower bills and healthier buildings, but I am worried that a long performance contract will transfer practical control of residents' homes to a vendor."
+              },
+              {
+                "alias": "e004",
+                "text": "I cannot tell whether my resistance protects tenants or protects an old maintenance culture that has already failed them."
+              }
+            ],
+            "source_evidence_ids": [
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e002",
+                "stance_expression_kind": "reported_without_endorsement",
+                "stance_object_interpretation": "The company offers retrofit financing for a fifteen-year share of measured savings.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Achieve lower bills and healthier buildings.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "A long performance contract may transfer practical control of residents' homes to the vendor.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Resistance may protect tenants or preserve a maintenance culture that has failed them.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "paired_compiled": {
+    "allocation_note": "E034 supports both roles through distinct meanings: an adopted ownership-and-exit approval condition and unresolved doubt about whether sensor opt-out is meaningful under collective optimization.",
+    "boundary": {
+      "alias_subtraction_performed": false,
+      "direct_graph_routing_allowed": false,
+      "envelope_status_derived_from_record_presence_and_status": true,
+      "hard_alias_exclusivity_enforced": false,
+      "keyword_or_chronology_gate_added": false,
+      "model_role_labels_split_mechanically": true,
+      "provider_authored_envelope_status_used": false,
+      "semantic_repair_performed": false,
+      "semantic_role_correctness_inferred_by_code": false,
+      "semantic_score_computed": false
+    },
+    "derived_envelope_status": {
+      "current": "supported",
+      "qualification": "supported"
+    },
+    "global_limitations": "One reviewed current/qualification allocation; other valid allocations may exist.",
+    "observations": [
+      {
+        "case_id": "amb3-case06-housing-retrofit-partnership",
+        "fidelity_note": "Current includes the adopted equipment-ownership and exit condition within e034 but not its distinct unresolved sensor-opt-out meaning.",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "observation_id": "rprolev22-current-01-82e982d064cd74",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "pre-execution-v24-target",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+        "role": "current",
+        "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+        "role_record_id": "rprolev22-current-01-82e982d064cd74",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e031",
+            "text": "I am leaning toward the two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting."
+          },
+          {
+            "alias": "e032",
+            "text": "I will accept building-wide optimization only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual."
+          },
+          {
+            "alias": "e033",
+            "text": "Before signing, I will set bill, comfort, complaint, override, outage, deletion, and intervention thresholds."
+          },
+          {
+            "alias": "e034",
+            "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+          }
+        ],
+        "source_evidence_ids": [
+          "e031",
+          "e032",
+          "e033",
+          "e034"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "current",
+            "source_evidence_id": "e031",
+            "stance_expression_kind": "leaning",
+            "stance_object_interpretation": "Run the scoped retrofit pilot with manual controls, opt-in sensing, data deletion, tenant notices, housing-use limits, independent verification, complaints, and reporting.",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "role": "current",
+            "source_evidence_id": "e032",
+            "stance_expression_kind": "conditional_willingness",
+            "stance_object_interpretation": "Accept building-wide optimization only with contractual comfort, override, outage, and resident appeal protections.",
+            "stance_object_kind": "acceptance_or_willingness"
+          },
+          {
+            "role": "current",
+            "source_evidence_id": "e033",
+            "stance_expression_kind": "commitment",
+            "stance_object_interpretation": "Set bill, comfort, complaint, override, outage, deletion, and intervention thresholds before signing.",
+            "stance_object_kind": "intended_outcome_or_policy"
+          },
+          {
+            "role": "current",
+            "source_evidence_id": "e034",
+            "stance_expression_kind": "conditional_willingness",
+            "stance_object_interpretation": "Approve only if the city has a capped path to equipment ownership and exit.",
+            "stance_object_kind": "acceptance_or_willingness"
+          }
+        ],
+        "terminal_state": "admitted"
+      },
+      {
+        "case_id": "amb3-case06-housing-retrofit-partnership",
+        "fidelity_note": "Qualification separates the unresolved meaning within shared e034 from its adopted current condition and preserves assistant-authored collective-choice and irreversibility pressure.",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "observation_id": "rprolev22-qualification-01-57ec9924789fab",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "pre-execution-v24-target",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+        "role": "qualification",
+        "role_interpretation": "The user has not resolved whether sensor opt-out is meaningful under collective building optimization; the assistant warns that individual choice may be overstated and that equipment, maintenance routines, expectations, and dependence on vendor-designed models may not return to their prior state.",
+        "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e034",
+            "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+          },
+          {
+            "alias": "e037",
+            "text": "The unresolved issue is whether individual choice is overstated when building-level optimization remains collective."
+          },
+          {
+            "alias": "e038",
+            "text": "If the pilot ends, installed equipment, maintenance routines, resident expectations, and the authority's dependence on vendor-designed operating models may not return to their prior state."
+          }
+        ],
+        "source_evidence_ids": [
+          "e034",
+          "e037",
+          "e038"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "qualification",
+            "source_evidence_id": "e034",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "It remains unclear whether sensor opt-out is meaningful when all residents remain subject to a collectively trained building model.",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e037",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "Individual choice may be overstated when building-level optimization remains collective.",
+            "stance_object_kind": "reported_position_landscape"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e038",
+            "stance_expression_kind": "constraint",
+            "stance_object_interpretation": "Installed equipment, maintenance routines, resident expectations, and dependence on vendor-designed models may not return to their prior state after exit.",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "paired_terminal_disposition": "compiled",
+    "records": [
+      {
+        "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+        "record_index": 1,
+        "role_record_id": "rprolev22-current-01-82e982d064cd74",
+        "terminal_state": "admitted"
+      },
+      {
+        "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+        "record_index": 1,
+        "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+        "terminal_state": "admitted"
+      }
+    ],
+    "role_compiled": {
+      "current": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "One reviewed current/qualification allocation; other valid allocations may exist.",
+        "observations": [
+          {
+            "case_id": "amb3-case06-housing-retrofit-partnership",
+            "fidelity_note": "Current includes the adopted equipment-ownership and exit condition within e034 but not its distinct unresolved sensor-opt-out meaning.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev22-current-01-82e982d064cd74",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v24-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+            "role": "current",
+            "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+            "role_record_id": "rprolev22-current-01-82e982d064cd74",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e031",
+                "text": "I am leaning toward the two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting."
+              },
+              {
+                "alias": "e032",
+                "text": "I will accept building-wide optimization only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual."
+              },
+              {
+                "alias": "e033",
+                "text": "Before signing, I will set bill, comfort, complaint, override, outage, deletion, and intervention thresholds."
+              },
+              {
+                "alias": "e034",
+                "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+              }
+            ],
+            "source_evidence_ids": [
+              "e031",
+              "e032",
+              "e033",
+              "e034"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e031",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Run the scoped retrofit pilot with manual controls, opt-in sensing, data deletion, tenant notices, housing-use limits, independent verification, complaints, and reporting.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e032",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Accept building-wide optimization only with contractual comfort, override, outage, and resident appeal protections.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e033",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Set bill, comfort, complaint, override, outage, deletion, and intervention thresholds before signing.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e034",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Approve only if the city has a capped path to equipment ownership and exit.",
+                "stance_object_kind": "acceptance_or_willingness"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+            "record_index": 1,
+            "role_record_id": "rprolev22-current-01-82e982d064cd74",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "supported",
+        "role": "current",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "qualification": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "One reviewed current/qualification allocation; other valid allocations may exist.",
+        "observations": [
+          {
+            "case_id": "amb3-case06-housing-retrofit-partnership",
+            "fidelity_note": "Qualification separates the unresolved meaning within shared e034 from its adopted current condition and preserves assistant-authored collective-choice and irreversibility pressure.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev22-qualification-01-57ec9924789fab",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v24-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+            "role": "qualification",
+            "role_interpretation": "The user has not resolved whether sensor opt-out is meaningful under collective building optimization; the assistant warns that individual choice may be overstated and that equipment, maintenance routines, expectations, and dependence on vendor-designed models may not return to their prior state.",
+            "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e034",
+                "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+              },
+              {
+                "alias": "e037",
+                "text": "The unresolved issue is whether individual choice is overstated when building-level optimization remains collective."
+              },
+              {
+                "alias": "e038",
+                "text": "If the pilot ends, installed equipment, maintenance routines, resident expectations, and the authority's dependence on vendor-designed operating models may not return to their prior state."
+              }
+            ],
+            "source_evidence_ids": [
+              "e034",
+              "e037",
+              "e038"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e034",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "It remains unclear whether sensor opt-out is meaningful when all residents remain subject to a collectively trained building model.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e037",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Individual choice may be overstated when building-level optimization remains collective.",
+                "stance_object_kind": "reported_position_landscape"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e038",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Installed equipment, maintenance routines, resident expectations, and dependence on vendor-designed models may not return to their prior state after exit.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+            "record_index": 1,
+            "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "supported",
+        "role": "qualification",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      }
+    },
+    "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_1",
+    "status": "position_current_qualification_v24_custody_complete"
+  },
+  "protected_target": {
+    "evidence_id": "e038",
+    "meaning": "After pilot exit, installed equipment, maintenance routines, resident expectations, and dependence on vendor-designed operating models may not return to their prior state."
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "response_schema_changed_from_v2": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false,
+      "v21_prompt_packet_contract": true,
+      "validator_changed_from_v2": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev22-current-01-82e982d064cd74",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "observation_id": "rprelationv2-01-18b8f8113a9a36",
+        "provenance": {
+          "producer_id": "pre-execution-v24-target",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+        "raw_record_sha256": "sha256:18b8f8113a9a368460ff5914df62beb8fcc33fb67ef1abd8074a45e649bcff94",
+        "relation_record_id": "rprelationv2-01-18b8f8113a9a36",
+        "relationship_interpretation": "The user moves from desired building improvement plus vendor-control concern and uncertainty about protective motives to a bounded, governed, conditional retrofit pilot, while keeping meaningful individual opt-out unresolved and recognizing collective operational effects and dependencies that may persist after exit.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:18b8f8113a9a368460ff5914df62beb8fcc33fb67ef1abd8074a45e649bcff94",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-18b8f8113a9a36",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "relationship_identity_semantics_made_explicit": true,
+      "response_schema_changed_from_v2": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false,
+      "validator_changed_from_v2": false
+    },
+    "call_required": true,
+    "case_id": "amb3-case06-housing-retrofit-partnership",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "relationship_identity_contract": "One relationship record links the coherent starting, current, and qualification records for one position thread. Do not pair records by array order or surface proximity. Use a second relationship only for a genuinely separate concurrent position thread. Preserve missingness and speaker ownership; do not manufacture adoption or agreement.",
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "role": "current",
+          "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+          "role_record_id": "rprolev22-current-01-82e982d064cd74",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e031",
+              "text": "I am leaning toward the two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting."
+            },
+            {
+              "alias": "e032",
+              "text": "I will accept building-wide optimization only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual."
+            },
+            {
+              "alias": "e033",
+              "text": "Before signing, I will set bill, comfort, complaint, override, outage, deletion, and intervention thresholds."
+            },
+            {
+              "alias": "e034",
+              "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "role": "qualification",
+          "role_interpretation": "The user has not resolved whether sensor opt-out is meaningful under collective building optimization; the assistant warns that individual choice may be overstated and that equipment, maintenance routines, expectations, and dependence on vendor-designed models may not return to their prior state.",
+          "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e034",
+              "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+            },
+            {
+              "alias": "e037",
+              "text": "The unresolved issue is whether individual choice is overstated when building-level optimization remains collective."
+            },
+            {
+              "alias": "e038",
+              "text": "If the pilot ends, installed equipment, maintenance routines, resident expectations, and the authority's dependence on vendor-designed operating models may not return to their prior state."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "role": "starting",
+          "role_interpretation": "The user wants lower bills and healthier buildings from the financed retrofit while worrying that a long performance contract transfers practical control of residents' homes to a vendor, and is uncertain whether resistance protects tenants or a failing maintenance culture.",
+          "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e002",
+              "text": "An energy-services company has offered to finance heat pumps, insulation, and smart controls in exchange for a fifteen-year share of measured energy savings."
+            },
+            {
+              "alias": "e003",
+              "text": "I want lower bills and healthier buildings, but I am worried that a long performance contract will transfer practical control of residents' homes to a vendor."
+            },
+            {
+              "alias": "e004",
+              "text": "I cannot tell whether my resistance protects tenants or protects an old maintenance culture that has already failed them."
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2_1",
+    "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev22-current-01-82e982d064cd74",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "qualification_role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+        "relationship_interpretation": "The user moves from desired building improvement plus vendor-control concern and uncertainty about protective motives to a bounded, governed, conditional retrofit pilot, while keeping meaningful individual opt-out unresolved and recognizing collective operational effects and dependencies that may persist after exit.",
+        "starting_role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "chronological_gate_added": false,
+        "deterministic_expression_gate_added": false,
+        "deterministic_role_exclusivity_gate_added": false,
+        "direct_graph_routing_allowed": false,
+        "keyword_gate_added": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "response_schema_changed_from_v22": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v23_prompt_packet_contract": true,
+        "validator_changed_from_v22": false
+      },
+      "global_limitations": "One reviewed current/qualification allocation; other valid allocations may exist.",
+      "observations": [
+        {
+          "case_id": "amb3-case06-housing-retrofit-partnership",
+          "fidelity_note": "Current includes the adopted equipment-ownership and exit condition within e034 but not its distinct unresolved sensor-opt-out meaning.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprolev22-current-01-82e982d064cd74",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "pre-execution-v24-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+          "role": "current",
+          "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+          "role_record_id": "rprolev22-current-01-82e982d064cd74",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e031",
+              "text": "I am leaning toward the two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting."
+            },
+            {
+              "alias": "e032",
+              "text": "I will accept building-wide optimization only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual."
+            },
+            {
+              "alias": "e033",
+              "text": "Before signing, I will set bill, comfort, complaint, override, outage, deletion, and intervention thresholds."
+            },
+            {
+              "alias": "e034",
+              "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+            }
+          ],
+          "source_evidence_ids": [
+            "e031",
+            "e032",
+            "e033",
+            "e034"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e031",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Run the scoped retrofit pilot with manual controls, opt-in sensing, data deletion, tenant notices, housing-use limits, independent verification, complaints, and reporting.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e032",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Accept building-wide optimization only with contractual comfort, override, outage, and resident appeal protections.",
+              "stance_object_kind": "acceptance_or_willingness"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e033",
+              "stance_expression_kind": "commitment",
+              "stance_object_interpretation": "Set bill, comfort, complaint, override, outage, deletion, and intervention thresholds before signing.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e034",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Approve only if the city has a capped path to equipment ownership and exit.",
+              "stance_object_kind": "acceptance_or_willingness"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:82e982d064cd7413ff4239c2fc21748ea0ae1611f5918375bf8b8d0edc9d5d28",
+          "record_index": 1,
+          "role_record_id": "rprolev22-current-01-82e982d064cd74",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "chronological_gate_added": false,
+        "deterministic_expression_gate_added": false,
+        "deterministic_role_exclusivity_gate_added": false,
+        "direct_graph_routing_allowed": false,
+        "keyword_gate_added": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "response_schema_changed_from_v22": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v23_prompt_packet_contract": true,
+        "validator_changed_from_v22": false
+      },
+      "global_limitations": "One reviewed current/qualification allocation; other valid allocations may exist.",
+      "observations": [
+        {
+          "case_id": "amb3-case06-housing-retrofit-partnership",
+          "fidelity_note": "Qualification separates the unresolved meaning within shared e034 from its adopted current condition and preserves assistant-authored collective-choice and irreversibility pressure.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprolev22-qualification-01-57ec9924789fab",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "pre-execution-v24-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+          "role": "qualification",
+          "role_interpretation": "The user has not resolved whether sensor opt-out is meaningful under collective building optimization; the assistant warns that individual choice may be overstated and that equipment, maintenance routines, expectations, and dependence on vendor-designed models may not return to their prior state.",
+          "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e034",
+              "text": "I will approve the pilot only if the city has a capped path to equipment ownership and exit, but I still have not resolved whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior."
+            },
+            {
+              "alias": "e037",
+              "text": "The unresolved issue is whether individual choice is overstated when building-level optimization remains collective."
+            },
+            {
+              "alias": "e038",
+              "text": "If the pilot ends, installed equipment, maintenance routines, resident expectations, and the authority's dependence on vendor-designed operating models may not return to their prior state."
+            }
+          ],
+          "source_evidence_ids": [
+            "e034",
+            "e037",
+            "e038"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e034",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "It remains unclear whether sensor opt-out is meaningful when all residents remain subject to a collectively trained building model.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e037",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "Individual choice may be overstated when building-level optimization remains collective.",
+              "stance_object_kind": "reported_position_landscape"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e038",
+              "stance_expression_kind": "constraint",
+              "stance_object_interpretation": "Installed equipment, maintenance routines, resident expectations, and dependence on vendor-designed models may not return to their prior state after exit.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:57ec9924789fab6fe179a049e62d326c8b8e06d7e71c3505a8f8d96d450d4f15",
+          "record_index": 1,
+          "role_record_id": "rprolev22-qualification-01-57ec9924789fab",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "chronological_gate_added": false,
+        "deterministic_expression_gate_added": false,
+        "deterministic_role_exclusivity_gate_added": false,
+        "direct_graph_routing_allowed": false,
+        "keyword_gate_added": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "response_schema_changed_from_v22": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v23_prompt_packet_contract": true,
+        "validator_changed_from_v22": false
+      },
+      "global_limitations": "One reviewed endpoint role; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb3-case06-housing-retrofit-partnership",
+          "fidelity_note": "The starting role separates the reported offer from the user's desired outcome, vendor-control concern, and unresolved motive.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "pre-execution-v24-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:b0dbc0fe87a8ae83e18ee2308976dcef8d35cb2fb470f0268bbe95b1be99e6b7",
+          "role": "starting",
+          "role_interpretation": "The user wants lower bills and healthier buildings from the financed retrofit while worrying that a long performance contract transfers practical control of residents' homes to a vendor, and is uncertain whether resistance protects tenants or a failing maintenance culture.",
+          "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e002",
+              "text": "An energy-services company has offered to finance heat pumps, insulation, and smart controls in exchange for a fifteen-year share of measured energy savings."
+            },
+            {
+              "alias": "e003",
+              "text": "I want lower bills and healthier buildings, but I am worried that a long performance contract will transfer practical control of residents' homes to a vendor."
+            },
+            {
+              "alias": "e004",
+              "text": "I cannot tell whether my resistance protects tenants or protects an old maintenance culture that has already failed them."
+            }
+          ],
+          "source_evidence_ids": [
+            "e002",
+            "e003",
+            "e004"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e002",
+              "stance_expression_kind": "reported_without_endorsement",
+              "stance_object_interpretation": "The company offers retrofit financing for a fifteen-year share of measured savings.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e003",
+              "stance_expression_kind": "preference_or_desire",
+              "stance_object_interpretation": "Achieve lower bills and healthier buildings.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e003",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "A long performance contract may transfer practical control of residents' homes to the vendor.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e004",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "Resistance may protect tenants or preserve a maintenance culture that has failed them.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:b0dbc0fe87a8ae83e18ee2308976dcef8d35cb2fb470f0268bbe95b1be99e6b7",
+          "record_index": 1,
+          "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_v24_target_fixture.v1",
+  "source_review_gates": {
+    "assistant_pressure_must_not_be_rewritten_as_user_adoption": true,
+    "current_must_preserve_e031_e032_e033_and_adopted_condition_in_e034": true,
+    "exact_nested_component_and_evidence_custody_required": true,
+    "no_provider_envelope_status_requested": true,
+    "protected_e038_irreversibility_meaning_must_survive": true,
+    "qualification_must_preserve_unresolved_meaning_in_e034_plus_e037_e038": true,
+    "shared_e034_must_be_allocated_by_distinct_meaning": true,
+    "starting_must_preserve_preference_counterpressure_and_motive_uncertainty": true
+  },
+  "starting_compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "One reviewed endpoint role; other valid records may exist.",
+    "observations": [
+      {
+        "case_id": "amb3-case06-housing-retrofit-partnership",
+        "fidelity_note": "The starting role separates the reported offer from the user's desired outcome, vendor-control concern, and unresolved motive.",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "observation_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "pre-execution-v24-target",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:b0dbc0fe87a8ae83e18ee2308976dcef8d35cb2fb470f0268bbe95b1be99e6b7",
+        "role": "starting",
+        "role_interpretation": "The user wants lower bills and healthier buildings from the financed retrofit while worrying that a long performance contract transfers practical control of residents' homes to a vendor, and is uncertain whether resistance protects tenants or a failing maintenance culture.",
+        "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb3-case06-housing-retrofit-partnership-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e002",
+            "text": "An energy-services company has offered to finance heat pumps, insulation, and smart controls in exchange for a fifteen-year share of measured energy savings."
+          },
+          {
+            "alias": "e003",
+            "text": "I want lower bills and healthier buildings, but I am worried that a long performance contract will transfer practical control of residents' homes to a vendor."
+          },
+          {
+            "alias": "e004",
+            "text": "I cannot tell whether my resistance protects tenants or protects an old maintenance culture that has already failed them."
+          }
+        ],
+        "source_evidence_ids": [
+          "e002",
+          "e003",
+          "e004"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e002",
+            "stance_expression_kind": "reported_without_endorsement",
+            "stance_object_interpretation": "The company offers retrofit financing for a fifteen-year share of measured savings.",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e003",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "Achieve lower bills and healthier buildings.",
+            "stance_object_kind": "intended_outcome_or_policy"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e003",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "A long performance contract may transfer practical control of residents' homes to the vendor.",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e004",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "Resistance may protect tenants or preserve a maintenance culture that has failed them.",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:b0dbc0fe87a8ae83e18ee2308976dcef8d35cb2fb470f0268bbe95b1be99e6b7",
+        "record_index": 1,
+        "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "supported",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "status": "pre_execution_source_review_target_compiled"
+}

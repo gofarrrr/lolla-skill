@@ -1,0 +1,766 @@
+{
+  "boundary": {
+    "graph_or_runtime_authorized": false,
+    "included_in_provider_context": false,
+    "provider_calls": 0,
+    "semantic_gold_is_independent": false,
+    "used_for_provider_prompt_examples": false,
+    "written_before_provider_execution": true
+  },
+  "case_id": "amb3-case02-architecture-firm-succession",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprelationv2-01-d95aeff1e38971",
+          "provenance": {
+            "producer_id": "pre-execution-v21-target",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-01-41725ff8251655",
+          "raw_record_sha256": "sha256:d95aeff1e38971c01eef1cfb9d0da87683ee050f0c5836bfd50913cd39035d3a",
+          "relation_record_id": "rprelationv2-01-d95aeff1e38971",
+          "relationship_interpretation": "The user moves from mixed succession goals, external-sale certainty, internal-transition burden, and motive uncertainty to a bounded sixty-day comparison with explicit evidence, option, exposure, framing, and deadline conditions, while preserving staff-involvement uncertainty and recognizing that the comparison itself may irreversibly change both options and internal expectations.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev2-starting-01-6b597a006199cf",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb3-case02-architecture-firm-succession",
+            "fidelity_note": "The current role separates the evidence-period leaning, external-option action, accepted price risk, conditional seller exposure and chair role, and comparison framing with a decision date.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev2-current-01-0ebbe9235355ec",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v21-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:0ebbe9235355ec9f98049cfdba5f4720407164d803c2e63370f247377ce3b106",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a sixty-day evidence period for the employee option while keeping the external conversation nonexclusive, accepting price risk, withholding seller financing and a chair commitment unless exposure and authority are bounded, and explicitly framing the process as comparison rather than promise with a scheduled decision.",
+            "role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e049",
+                "text": "I am leaning toward giving the employee group sixty days to produce an adviser-backed financing range, governance proposal, leadership commitments, and an estimate of the hiring constraint."
+              },
+              {
+                "alias": "e050",
+                "text": "I will keep the external conversation nonexclusive and accept that the price may change, but I will not provide seller financing or remain chair unless the repayment exposure, authority, and end date are explicit."
+              },
+              {
+                "alias": "e051",
+                "text": "I will tell the senior team this is a comparison period, not a promise of employee ownership, and set the decision meeting now."
+              }
+            ],
+            "source_evidence_ids": [
+              "e049",
+              "e050",
+              "e051"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e049",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Give the employee group sixty days to produce financing, governance, leadership, and hiring evidence.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Keep the external buyer conversation nonexclusive during the comparison.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "willing",
+                "stance_object_interpretation": "Accept that the external price may change during the evidence period.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Provide seller financing or remain chair only if repayment exposure, authority, and end date are explicit.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e051",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Tell the senior team this is a comparison rather than a promise and schedule the decision meeting now.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb3-case02-architecture-firm-succession",
+            "fidelity_note": "The qualification preserves the staff-involvement dilemma, buyer inference, employee expectations, and the irreversible change in expectations and perceived readiness as distinct limits.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev2-qualification-01-41725ff8251655",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v21-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:41725ff825165560620714c82621657c705cd631d58b8223a211a74a817a2256",
+            "role": "qualification",
+            "role_interpretation": "The user has not resolved wider-staff involvement without implying an offer or making people feel used; the process may weaken buyer confidence and create employee expectations; and failed internal financing cannot restore those expectations or the senior group's view of its readiness to the prior state.",
+            "role_record_id": "rprolev2-qualification-01-41725ff8251655",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e052",
+                "text": "I have not resolved how to involve the wider staff without turning a feasibility exercise into an implied offer or making people feel used if we sell externally."
+              },
+              {
+                "alias": "e055",
+                "text": "The process can still alter both options: the buyer may infer reduced commitment, while employees may form expectations even with careful language."
+              },
+              {
+                "alias": "e056",
+                "text": "If the internal proposal fails, those expectations and the senior group's new view of its own readiness will not simply return to their prior state."
+              }
+            ],
+            "source_evidence_ids": [
+              "e052",
+              "e055",
+              "e056"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Wider-staff involvement may imply an offer or leave people feeling used after an external sale.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e055",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "The external buyer may infer reduced commitment during the internal comparison.",
+                "stance_object_kind": "reported_position_landscape"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e055",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Employees may form ownership expectations despite careful comparison language.",
+                "stance_object_kind": "reported_position_landscape"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e056",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Failed internal financing cannot fully reverse employee expectations or the senior group's changed view of its readiness.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb3-case02-architecture-firm-succession",
+            "fidelity_note": "The starting role separates the exit horizon, desired continuity and certainty, transition burden, and unresolved culture-versus-validation motive.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+            "observation_id": "rprolev2-starting-01-6b597a006199cf",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "pre-execution-v21-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:6b597a006199cfe9788c5830a66879fdcc0e7c5a665898de403bfedcde0ed7e4",
+            "role": "starting",
+            "role_interpretation": "The user wants to step back within two years and wants the practice to outlast them, while feeling attracted to the certainty of an external sale, worried that an internal transition will consume the final working years, and uncertain whether employee ownership protects culture or seeks personal validation.",
+            "role_record_id": "rprolev2-starting-01-6b597a006199cf",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I founded a twenty-six-person architecture practice thirty years ago and want to step back within two years."
+              },
+              {
+                "alias": "e004",
+                "text": "I want the practice to outlast me, but I am attracted to the certainty of the external offer and worried that an internal transition could consume my final working years."
+              },
+              {
+                "alias": "e005",
+                "text": "I cannot tell how much of my preference for employee ownership is about protecting the firm's culture and how much is about wanting my colleagues to validate what I built."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e004",
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e001",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Step back from the architecture practice within two years.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Obtain the certainty of the external offer while the practice outlasts the founder.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "An internal transition may consume the founder's final working years.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The employee-ownership preference may protect culture or seek validation from colleagues.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "protected_target": {
+    "evidence_id": "e056",
+    "meaning": "If the internal proposal fails, employee expectations and the senior group's view of its own readiness will not simply return to their prior state."
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "response_schema_changed_from_v2": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false,
+      "v21_prompt_packet_contract": true,
+      "validator_changed_from_v2": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "observation_id": "rprelationv2-01-d95aeff1e38971",
+        "provenance": {
+          "producer_id": "pre-execution-v21-target",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev2-qualification-01-41725ff8251655",
+        "raw_record_sha256": "sha256:d95aeff1e38971c01eef1cfb9d0da87683ee050f0c5836bfd50913cd39035d3a",
+        "relation_record_id": "rprelationv2-01-d95aeff1e38971",
+        "relationship_interpretation": "The user moves from mixed succession goals, external-sale certainty, internal-transition burden, and motive uncertainty to a bounded sixty-day comparison with explicit evidence, option, exposure, framing, and deadline conditions, while preserving staff-involvement uncertainty and recognizing that the comparison itself may irreversibly change both options and internal expectations.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev2-starting-01-6b597a006199cf",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:d95aeff1e38971c01eef1cfb9d0da87683ee050f0c5836bfd50913cd39035d3a",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-d95aeff1e38971",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "relationship_identity_semantics_made_explicit": true,
+      "response_schema_changed_from_v2": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false,
+      "validator_changed_from_v2": false
+    },
+    "call_required": true,
+    "case_id": "amb3-case02-architecture-firm-succession",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "relationship_identity_contract": "One relationship record links the coherent starting, current, and qualification records for one position thread. Do not pair records by array order or surface proximity. Use a second relationship only for a genuinely separate concurrent position thread. Preserve missingness and speaker ownership; do not manufacture adoption or agreement.",
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a sixty-day evidence period for the employee option while keeping the external conversation nonexclusive, accepting price risk, withholding seller financing and a chair commitment unless exposure and authority are bounded, and explicitly framing the process as comparison rather than promise with a scheduled decision.",
+          "role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e049",
+              "text": "I am leaning toward giving the employee group sixty days to produce an adviser-backed financing range, governance proposal, leadership commitments, and an estimate of the hiring constraint."
+            },
+            {
+              "alias": "e050",
+              "text": "I will keep the external conversation nonexclusive and accept that the price may change, but I will not provide seller financing or remain chair unless the repayment exposure, authority, and end date are explicit."
+            },
+            {
+              "alias": "e051",
+              "text": "I will tell the senior team this is a comparison period, not a promise of employee ownership, and set the decision meeting now."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "role": "qualification",
+          "role_interpretation": "The user has not resolved wider-staff involvement without implying an offer or making people feel used; the process may weaken buyer confidence and create employee expectations; and failed internal financing cannot restore those expectations or the senior group's view of its readiness to the prior state.",
+          "role_record_id": "rprolev2-qualification-01-41725ff8251655",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e052",
+              "text": "I have not resolved how to involve the wider staff without turning a feasibility exercise into an implied offer or making people feel used if we sell externally."
+            },
+            {
+              "alias": "e055",
+              "text": "The process can still alter both options: the buyer may infer reduced commitment, while employees may form expectations even with careful language."
+            },
+            {
+              "alias": "e056",
+              "text": "If the internal proposal fails, those expectations and the senior group's new view of its own readiness will not simply return to their prior state."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "role": "starting",
+          "role_interpretation": "The user wants to step back within two years and wants the practice to outlast them, while feeling attracted to the certainty of an external sale, worried that an internal transition will consume the final working years, and uncertain whether employee ownership protects culture or seeks personal validation.",
+          "role_record_id": "rprolev2-starting-01-6b597a006199cf",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e001",
+              "text": "I founded a twenty-six-person architecture practice thirty years ago and want to step back within two years."
+            },
+            {
+              "alias": "e004",
+              "text": "I want the practice to outlast me, but I am attracted to the certainty of the external offer and worried that an internal transition could consume my final working years."
+            },
+            {
+              "alias": "e005",
+              "text": "I cannot tell how much of my preference for employee ownership is about protecting the firm's culture and how much is about wanting my colleagues to validate what I built."
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2_1",
+    "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+        "qualification_role_record_id": "rprolev2-qualification-01-41725ff8251655",
+        "relationship_interpretation": "The user moves from mixed succession goals, external-sale certainty, internal-transition burden, and motive uncertainty to a bounded sixty-day comparison with explicit evidence, option, exposure, framing, and deadline conditions, while preserving staff-involvement uncertainty and recognizing that the comparison itself may irreversibly change both options and internal expectations.",
+        "starting_role_record_id": "rprolev2-starting-01-6b597a006199cf",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "response_schema_changed_from_v2": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v21_prompt_packet_contract": true,
+        "validator_changed_from_v2": false
+      },
+      "global_limitations": "One reviewed endpoint role; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb3-case02-architecture-firm-succession",
+          "fidelity_note": "The current role separates the evidence-period leaning, external-option action, accepted price risk, conditional seller exposure and chair role, and comparison framing with a decision date.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprolev2-current-01-0ebbe9235355ec",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "pre-execution-v21-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:0ebbe9235355ec9f98049cfdba5f4720407164d803c2e63370f247377ce3b106",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a sixty-day evidence period for the employee option while keeping the external conversation nonexclusive, accepting price risk, withholding seller financing and a chair commitment unless exposure and authority are bounded, and explicitly framing the process as comparison rather than promise with a scheduled decision.",
+          "role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e049",
+              "text": "I am leaning toward giving the employee group sixty days to produce an adviser-backed financing range, governance proposal, leadership commitments, and an estimate of the hiring constraint."
+            },
+            {
+              "alias": "e050",
+              "text": "I will keep the external conversation nonexclusive and accept that the price may change, but I will not provide seller financing or remain chair unless the repayment exposure, authority, and end date are explicit."
+            },
+            {
+              "alias": "e051",
+              "text": "I will tell the senior team this is a comparison period, not a promise of employee ownership, and set the decision meeting now."
+            }
+          ],
+          "source_evidence_ids": [
+            "e049",
+            "e050",
+            "e051"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e049",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Give the employee group sixty days to produce financing, governance, leadership, and hiring evidence.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e050",
+              "stance_expression_kind": "commitment",
+              "stance_object_interpretation": "Keep the external buyer conversation nonexclusive during the comparison.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e050",
+              "stance_expression_kind": "willing",
+              "stance_object_interpretation": "Accept that the external price may change during the evidence period.",
+              "stance_object_kind": "acceptance_or_willingness"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e050",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Provide seller financing or remain chair only if repayment exposure, authority, and end date are explicit.",
+              "stance_object_kind": "acceptance_or_willingness"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e051",
+              "stance_expression_kind": "commitment",
+              "stance_object_interpretation": "Tell the senior team this is a comparison rather than a promise and schedule the decision meeting now.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:0ebbe9235355ec9f98049cfdba5f4720407164d803c2e63370f247377ce3b106",
+          "record_index": 1,
+          "role_record_id": "rprolev2-current-01-0ebbe9235355ec",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "response_schema_changed_from_v2": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v21_prompt_packet_contract": true,
+        "validator_changed_from_v2": false
+      },
+      "global_limitations": "One reviewed endpoint role; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb3-case02-architecture-firm-succession",
+          "fidelity_note": "The qualification preserves the staff-involvement dilemma, buyer inference, employee expectations, and the irreversible change in expectations and perceived readiness as distinct limits.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprolev2-qualification-01-41725ff8251655",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "pre-execution-v21-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:41725ff825165560620714c82621657c705cd631d58b8223a211a74a817a2256",
+          "role": "qualification",
+          "role_interpretation": "The user has not resolved wider-staff involvement without implying an offer or making people feel used; the process may weaken buyer confidence and create employee expectations; and failed internal financing cannot restore those expectations or the senior group's view of its readiness to the prior state.",
+          "role_record_id": "rprolev2-qualification-01-41725ff8251655",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e052",
+              "text": "I have not resolved how to involve the wider staff without turning a feasibility exercise into an implied offer or making people feel used if we sell externally."
+            },
+            {
+              "alias": "e055",
+              "text": "The process can still alter both options: the buyer may infer reduced commitment, while employees may form expectations even with careful language."
+            },
+            {
+              "alias": "e056",
+              "text": "If the internal proposal fails, those expectations and the senior group's new view of its own readiness will not simply return to their prior state."
+            }
+          ],
+          "source_evidence_ids": [
+            "e052",
+            "e055",
+            "e056"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e052",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "Wider-staff involvement may imply an offer or leave people feeling used after an external sale.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e055",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "The external buyer may infer reduced commitment during the internal comparison.",
+              "stance_object_kind": "reported_position_landscape"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e055",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "Employees may form ownership expectations despite careful comparison language.",
+              "stance_object_kind": "reported_position_landscape"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e056",
+              "stance_expression_kind": "constraint",
+              "stance_object_interpretation": "Failed internal financing cannot fully reverse employee expectations or the senior group's changed view of its readiness.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:41725ff825165560620714c82621657c705cd631d58b8223a211a74a817a2256",
+          "record_index": 1,
+          "role_record_id": "rprolev2-qualification-01-41725ff8251655",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "response_schema_changed_from_v2": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v21_prompt_packet_contract": true,
+        "validator_changed_from_v2": false
+      },
+      "global_limitations": "One reviewed endpoint role; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb3-case02-architecture-firm-succession",
+          "fidelity_note": "The starting role separates the exit horizon, desired continuity and certainty, transition burden, and unresolved culture-versus-validation motive.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+          "observation_id": "rprolev2-starting-01-6b597a006199cf",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "pre-execution-v21-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:6b597a006199cfe9788c5830a66879fdcc0e7c5a665898de403bfedcde0ed7e4",
+          "role": "starting",
+          "role_interpretation": "The user wants to step back within two years and wants the practice to outlast them, while feeling attracted to the certainty of an external sale, worried that an internal transition will consume the final working years, and uncertain whether employee ownership protects culture or seeks personal validation.",
+          "role_record_id": "rprolev2-starting-01-6b597a006199cf",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e001",
+              "text": "I founded a twenty-six-person architecture practice thirty years ago and want to step back within two years."
+            },
+            {
+              "alias": "e004",
+              "text": "I want the practice to outlast me, but I am attracted to the certainty of the external offer and worried that an internal transition could consume my final working years."
+            },
+            {
+              "alias": "e005",
+              "text": "I cannot tell how much of my preference for employee ownership is about protecting the firm's culture and how much is about wanting my colleagues to validate what I built."
+            }
+          ],
+          "source_evidence_ids": [
+            "e001",
+            "e004",
+            "e005"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e001",
+              "stance_expression_kind": "preference_or_desire",
+              "stance_object_interpretation": "Step back from the architecture practice within two years.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e004",
+              "stance_expression_kind": "preference_or_desire",
+              "stance_object_interpretation": "Obtain the certainty of the external offer while the practice outlasts the founder.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e004",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "An internal transition may consume the founder's final working years.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The employee-ownership preference may protect culture or seek validation from colleagues.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:6b597a006199cfe9788c5830a66879fdcc0e7c5a665898de403bfedcde0ed7e4",
+          "record_index": 1,
+          "role_record_id": "rprolev2-starting-01-6b597a006199cf",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_v21_target_fixture.v1",
+  "source_review_gates": {
+    "assistant_qualification_must_not_be_rewritten_as_user_adoption": true,
+    "current_role_must_preserve_one_coherent_comparison_thread_across_e049_e050_e051": true,
+    "exact_evidence_alias_custody_required": true,
+    "protected_e056_irreversibility_meaning_must_survive": true,
+    "qualification_role_must_include_e052_e055_and_e056": true,
+    "relationship_must_preserve_bounded_comparison_and_option_changing_limits": true,
+    "starting_role_must_preserve_exit_horizon_mixed_path_preferences_and_motive_uncertainty": true
+  },
+  "status": "pre_execution_source_review_target_compiled"
+}

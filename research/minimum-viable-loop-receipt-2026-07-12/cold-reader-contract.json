@@ -1,0 +1,113 @@
+{
+  "schema_version": "lolla.frozen_cold_reader_contract.v1",
+  "status": "frozen_before_call",
+  "run_id": "lolla_minimum_viable_loop_reader_20260712_a1",
+  "purpose": "Test whether one fresh reader can reconstruct both independent Lolla paths, their value, their failures, and the authorization boundary using only the self-contained receipt.",
+  "receipt": {
+    "markdown_path": "research/minimum-viable-loop-receipt-2026-07-12/receipt.md",
+    "markdown_sha256": "808c19cfcd5e398ac7349218cdec1a0ab9c150ff095deb9282067c5a6fc09c85",
+    "json_path": "research/minimum-viable-loop-receipt-2026-07-12/receipt.json",
+    "json_sha256": "87fc33a3229ad9a56868bdd78267492aa39e5a787909395697a139b7b8156410"
+  },
+  "system_prompt": "You are a fresh reader with no prior context. Reconstruct the documented Lolla experiments only from the supplied receipt. Keep source conversation, probabilistic interpretation, deterministic recall, later model judgment, and source review distinct. Preserve failures and uncertainty. Do not use external information, improve the underlying advice, or infer quality from activity. Return only the requested JSON object.",
+  "reader_instruction": "Write a compact standalone reconstruction for a collaborator who has never seen the repository or prior conversation. For the useful retailer case, explain the starting/current/qualification trajectory, the protected mechanism survival and ablation, the eight-candidate no-deletion portfolio, what differed between control and pressure, the non-obvious useful pressure, and the unsupported quantitative precision that prevents the full answer from being a clean reference. For the quiet library case, explain the explicit negative qualification review, the modal-force caveat, the nine-mechanism result, the zero-candidate deterministic stand-down, and why no fresh pressure call was made. Distinguish custody from reasoning quality, state what is and is not earned across cases, and reproduce the current authorization boundary and next gate.",
+  "output_contract": {
+    "required_keys": [
+      "useful_case",
+      "quiet_case",
+      "hybrid_boundary",
+      "custody_vs_quality",
+      "supported_claims",
+      "claims_not_supported",
+      "current_authorizations",
+      "receipt_ambiguities",
+      "questions_for_human"
+    ],
+    "field_types": {
+      "useful_case": "object",
+      "quiet_case": "object",
+      "hybrid_boundary": "string",
+      "custody_vs_quality": "string",
+      "supported_claims": "array_of_strings",
+      "claims_not_supported": "array_of_strings",
+      "current_authorizations": "object",
+      "receipt_ambiguities": "array_of_strings",
+      "questions_for_human": "array_of_strings"
+    },
+    "object_contracts": {
+      "useful_case": {
+        "required_keys": ["source_state", "role_trajectory", "mechanism_and_portfolio", "control_pressure_difference", "preserved_failures"]
+      },
+      "quiet_case": {
+        "required_keys": ["source_state", "role_trajectory", "mechanism_and_standdown", "why_no_fresh_call", "preserved_failures"]
+      },
+      "current_authorizations": {
+        "required_keys": ["allowed", "blocked", "next_gate"]
+      }
+    },
+    "object_array_contracts": {}
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "deepseek/deepseek-v4-flash",
+    "temperature": 0.1,
+    "max_output_tokens": 2600,
+    "reasoning_effort": "none",
+    "generation_calls": 1,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "provider_timeout_seconds": 120,
+    "wall_clock_timeout_seconds": 180
+  },
+  "call_budget": {
+    "estimated_cost_ceiling_usd": 0.01,
+    "pricing_table_version": "2026-05-25"
+  },
+  "hash_locks": [
+    {
+      "role": "reader_runner",
+      "path": "scripts/evals/run_frozen_cold_reader.py",
+      "sha256": "11410e33fb354cb9f7fe0836fbfe973010c81484a53be4888ed4d6e56c62df1a"
+    },
+    {
+      "role": "receipt_contract",
+      "path": "research/minimum-viable-loop-receipt-2026-07-12/report.json",
+      "sha256": "b21951883b3233e63aaaf29fa8aef33825bd07345940b4cb6ae2cbcd59e059c7"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    }
+  ],
+  "prompt_hashes": {
+    "system_prompt_sha256": "0fac664442e1f345922947a06bc1a676ae0e67fbfb5d13accc4a97595a08920f",
+    "user_prompt_sha256": "123ab09eed1a32664b62ef03f1e19ff78dd1d4e58102d4692db9efb794fca94f"
+  },
+  "artifacts": {
+    "output_dir": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run",
+    "reader_output_path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run/reader-output.json",
+    "call_custody_path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run/call-custody.json",
+    "run_summary_path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run/run-summary.json"
+  },
+  "review_after_call": {
+    "not_passed_to_reader": true,
+    "dimensions": [
+      "both source states reconstructed",
+      "probabilistic versus deterministic boundary preserved",
+      "useful pressure separated from full answer quality",
+      "false precision preserved",
+      "quiet modal-force caveat preserved",
+      "zero-candidate stand-down understood",
+      "custody not inflated into quality",
+      "authorization boundary preserved"
+    ],
+    "review_method": "Source-first Codex comparison after the single frozen reader call; no evaluator call and no post-output tuning."
+  },
+  "non_claims": [
+    "The reader output is not human validation.",
+    "Successful reconstruction is not proof that Lolla improves decisions.",
+    "Two synthetic cases are not production validation.",
+    "The call does not authorize runtime or graph integration."
+  ]
+}

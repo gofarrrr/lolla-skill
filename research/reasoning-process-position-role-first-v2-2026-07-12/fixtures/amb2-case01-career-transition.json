@@ -1,0 +1,808 @@
+{
+  "case_id": "amb2-case01-career-transition",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprelationv2-01-58a3e79baf0958",
+          "provenance": {
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-01-252d9132580675",
+          "raw_record_sha256": "sha256:58a3e79baf0958fe3949f8778b989b4b2d0199793b98d623257773c9c332cf56",
+          "relation_record_id": "rprelationv2-01-58a3e79baf0958",
+          "relationship_interpretation": "The user moves from competing assessments of meaning and scope to a bounded test proposal while keeping acceptance of the full-time role conditional and unresolved.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb2-case01-career-transition",
+            "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev2-current-01-5fe13ca7e5bda6",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:5fe13ca7e5bda6db721d515829d3c72152d40c0ab98a1fa9e89b6d508c3eef61",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward proposing a twelve-week project while remaining at eighty percent in the current role and makes full-time resignation conditional on financing and decision-right agreements.",
+            "role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e054",
+                "text": "I am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts."
+              },
+              {
+                "alias": "e055",
+                "text": "I will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided."
+              }
+            ],
+            "source_evidence_ids": [
+              "e054",
+              "e055"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e054",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Propose a twelve-week project while staying at eighty percent in the current role.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e055",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Resign and accept the full-time role only if runway and pricing-decision conditions are met.",
+                "stance_object_kind": "acceptance_or_willingness"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb2-case01-career-transition",
+            "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev2-qualification-01-252d9132580675",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:252d913258067573611c3745f9d007fcba1d8923c304fc13d4497e53817d78d7",
+            "role": "qualification",
+            "role_interpretation": "The trial can test collaboration and schedule fit but cannot fully test post-fundraising pressure or stop either organization from reading it as directional commitment.",
+            "role_record_id": "rprolev2-qualification-01-252d9132580675",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e061",
+                "text": "It cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment."
+              }
+            ],
+            "source_evidence_ids": [
+              "e061"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e061",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "The trial cannot fully test post-fundraising pressure.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e061",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Either organization may treat the trial as directional commitment.",
+                "stance_object_kind": "reported_position_landscape"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb2-case01-career-transition",
+            "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev2-starting-01-cec5e9846e5a28",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:cec5e9846e5a28bd4e4c7d5c39b1ef9d245b059c646d2d805144bbb0e97dd2c7",
+            "role": "starting",
+            "role_interpretation": "The user moves between seeing the startup as consequential work and suspecting that familiar work makes its scope look more attractive.",
+            "role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e005",
+                "text": "I keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”"
+              }
+            ],
+            "source_evidence_ids": [
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The startup may be the moment to do consequential work.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The startup's scope may be romanticized because the current role feels familiar.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "observation_id": "rprelationv2-01-58a3e79baf0958",
+        "provenance": {
+          "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev2-qualification-01-252d9132580675",
+        "raw_record_sha256": "sha256:58a3e79baf0958fe3949f8778b989b4b2d0199793b98d623257773c9c332cf56",
+        "relation_record_id": "rprelationv2-01-58a3e79baf0958",
+        "relationship_interpretation": "The user moves from competing assessments of meaning and scope to a bounded test proposal while keeping acceptance of the full-time role conditional and unresolved.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:58a3e79baf0958fe3949f8778b989b4b2d0199793b98d623257773c9c332cf56",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-58a3e79baf0958",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false
+    },
+    "call_required": true,
+    "case_id": "amb2-case01-career-transition",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward proposing a twelve-week project while remaining at eighty percent in the current role and makes full-time resignation conditional on financing and decision-right agreements.",
+          "role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e054",
+              "text": "I am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts."
+            },
+            {
+              "alias": "e055",
+              "text": "I will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "qualification",
+          "role_interpretation": "The trial can test collaboration and schedule fit but cannot fully test post-fundraising pressure or stop either organization from reading it as directional commitment.",
+          "role_record_id": "rprolev2-qualification-01-252d9132580675",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e061",
+              "text": "It cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "starting",
+          "role_interpretation": "The user moves between seeing the startup as consequential work and suspecting that familiar work makes its scope look more attractive.",
+          "role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”"
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2",
+    "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "qualification_role_record_id": "rprolev2-qualification-01-252d9132580675",
+        "relationship_interpretation": "The user moves from competing assessments of meaning and scope to a bounded test proposal while keeping acceptance of the full-time role conditional and unresolved.",
+        "starting_role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case01-career-transition",
+          "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev2-current-01-5fe13ca7e5bda6",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:5fe13ca7e5bda6db721d515829d3c72152d40c0ab98a1fa9e89b6d508c3eef61",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward proposing a twelve-week project while remaining at eighty percent in the current role and makes full-time resignation conditional on financing and decision-right agreements.",
+          "role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e054",
+              "text": "I am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts."
+            },
+            {
+              "alias": "e055",
+              "text": "I will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided."
+            }
+          ],
+          "source_evidence_ids": [
+            "e054",
+            "e055"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e054",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Propose a twelve-week project while staying at eighty percent in the current role.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e055",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Resign and accept the full-time role only if runway and pricing-decision conditions are met.",
+              "stance_object_kind": "acceptance_or_willingness"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:5fe13ca7e5bda6db721d515829d3c72152d40c0ab98a1fa9e89b6d508c3eef61",
+          "record_index": 1,
+          "role_record_id": "rprolev2-current-01-5fe13ca7e5bda6",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case01-career-transition",
+          "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev2-qualification-01-252d9132580675",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:252d913258067573611c3745f9d007fcba1d8923c304fc13d4497e53817d78d7",
+          "role": "qualification",
+          "role_interpretation": "The trial can test collaboration and schedule fit but cannot fully test post-fundraising pressure or stop either organization from reading it as directional commitment.",
+          "role_record_id": "rprolev2-qualification-01-252d9132580675",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e061",
+              "text": "It cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment."
+            }
+          ],
+          "source_evidence_ids": [
+            "e061"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e061",
+              "stance_expression_kind": "constraint",
+              "stance_object_interpretation": "The trial cannot fully test post-fundraising pressure.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e061",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "Either organization may treat the trial as directional commitment.",
+              "stance_object_kind": "reported_position_landscape"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:252d913258067573611c3745f9d007fcba1d8923c304fc13d4497e53817d78d7",
+          "record_index": 1,
+          "role_record_id": "rprolev2-qualification-01-252d9132580675",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case01-career-transition",
+          "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev2-starting-01-cec5e9846e5a28",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:cec5e9846e5a28bd4e4c7d5c39b1ef9d245b059c646d2d805144bbb0e97dd2c7",
+          "role": "starting",
+          "role_interpretation": "The user moves between seeing the startup as consequential work and suspecting that familiar work makes its scope look more attractive.",
+          "role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”"
+            }
+          ],
+          "source_evidence_ids": [
+            "e005"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The startup may be the moment to do consequential work.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The startup's scope may be romanticized because the current role feels familiar.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:cec5e9846e5a28bd4e4c7d5c39b1ef9d245b059c646d2d805144bbb0e97dd2c7",
+          "record_index": 1,
+          "role_record_id": "rprolev2-starting-01-cec5e9846e5a28",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    }
+  },
+  "role_packets": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb2-case01-career-transition",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\ne002\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\ne003\tMy current company has offered me a larger team and a retention grant if I stay.\ne004\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\ne005\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\n[Turn 1 ASSISTANT]\ne006\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\ne007\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\ne008\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\ne009\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\n[Turn 7 USER]\ne054\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\ne055\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\ne056\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\ne057\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\n[Turn 7 ASSISTANT]\ne058\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\ne059\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.”\ne060\tThe trial can reveal how you and the founder work and whether the schedule is livable.\ne061\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e054",
+          "e055",
+          "e056",
+          "e057",
+          "e058",
+          "e059",
+          "e060",
+          "e061"
+        ]
+      },
+      "maximum_components_per_record": 5,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What current working position, decision, leaning, plan, or commitment is visible? Keep proposals, intentions, decisions, and willingness distinct.",
+      "role": "current",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb2-case01-career-transition",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\ne002\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\ne003\tMy current company has offered me a larger team and a retention grant if I stay.\ne004\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\ne005\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\n[Turn 1 ASSISTANT]\ne006\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\ne007\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\ne008\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\ne009\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\n[Turn 7 USER]\ne054\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\ne055\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\ne056\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\ne057\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\n[Turn 7 ASSISTANT]\ne058\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\ne059\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.”\ne060\tThe trial can reveal how you and the founder work and whether the schedule is livable.\ne061\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e054",
+          "e055",
+          "e056",
+          "e057",
+          "e058",
+          "e059",
+          "e060",
+          "e061"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What qualification, counterpressure, unresolved condition, or reopen reason remains capable of changing or limiting the current position?",
+      "role": "qualification",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb2-case01-career-transition",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\ne002\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\ne003\tMy current company has offered me a larger team and a retention grant if I stay.\ne004\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\ne005\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\n[Turn 1 ASSISTANT]\ne006\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\ne007\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\ne008\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\ne009\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\n[Turn 7 USER]\ne054\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\ne055\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\ne056\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\ne057\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\n[Turn 7 ASSISTANT]\ne058\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\ne059\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.”\ne060\tThe trial can reveal how you and the founder work and whether the schedule is livable.\ne061\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e054",
+          "e055",
+          "e056",
+          "e057",
+          "e058",
+          "e059",
+          "e060",
+          "e061"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+      "role": "starting",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    }
+  },
+  "role_responses": {
+    "current": {
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e054",
+            "e055"
+          ],
+          "expression_kinds": [
+            "leaning",
+            "conditional_willingness"
+          ],
+          "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "object_interpretations": [
+            "Propose a twelve-week project while staying at eighty percent in the current role.",
+            "Resign and accept the full-time role only if runway and pricing-decision conditions are met."
+          ],
+          "object_kinds": [
+            "action_or_proposal",
+            "acceptance_or_willingness"
+          ],
+          "role": "current",
+          "role_interpretation": "The user is leaning toward proposing a twelve-week project while remaining at eighty percent in the current role and makes full-time resignation conditional on financing and decision-right agreements.",
+          "source_evidence_ids": [
+            "e054",
+            "e055"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "qualification": {
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e061"
+          ],
+          "expression_kinds": [
+            "constraint",
+            "counterpressure"
+          ],
+          "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "object_interpretations": [
+            "The trial cannot fully test post-fundraising pressure.",
+            "Either organization may treat the trial as directional commitment."
+          ],
+          "object_kinds": [
+            "belief_or_assessment",
+            "reported_position_landscape"
+          ],
+          "role": "qualification",
+          "role_interpretation": "The trial can test collaboration and schedule fit but cannot fully test post-fundraising pressure or stop either organization from reading it as directional commitment.",
+          "source_evidence_ids": [
+            "e061",
+            "e061"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "starting": {
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e005"
+          ],
+          "expression_kinds": [
+            "uncertain_or_undecided",
+            "uncertain_or_undecided"
+          ],
+          "fidelity_note": "The starting evidence contains competing assessments. The current evidence separates leaning toward a trial action from conditional willingness to resign and join. The qualification separates what the trial cannot test from how others may interpret it.",
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "object_interpretations": [
+            "The startup may be the moment to do consequential work.",
+            "The startup's scope may be romanticized because the current role feels familiar."
+          ],
+          "object_kinds": [
+            "belief_or_assessment",
+            "belief_or_assessment"
+          ],
+          "role": "starting",
+          "role_interpretation": "The user moves between seeing the startup as consequential work and suspecting that familiar work makes its scope look more attractive.",
+          "source_evidence_ids": [
+            "e005",
+            "e005"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_fixture.v2",
+  "source": {
+    "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case01-career-transition/position-endpoint.json",
+    "packet_sha256": "5bc7edf3be9b1afd39f3783a616d0ff7fb82a0b3829569bd1babc5a5d1ae4fe7",
+    "reviewed_fixture_path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb2-case01-career-transition-position_and_decision_trajectory-shard-01.json",
+    "reviewed_fixture_sha256": "9cfa178a7eddfceb1864127df9e5cec9529c67c44f248bb1537a943b94a642da"
+  }
+}

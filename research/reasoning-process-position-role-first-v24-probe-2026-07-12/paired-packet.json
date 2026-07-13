@@ -1,0 +1,81 @@
+{
+  "boundary": {
+    "current_and_qualification_allocated_in_one_probabilistic_task": true,
+    "deterministic_alias_subtraction_added": false,
+    "deterministic_semantic_role_gate_added": false,
+    "direct_graph_routing_allowed": false,
+    "hard_alias_exclusivity_required": false,
+    "keyword_or_chronology_gate_added": false,
+    "maximum_pipeline_calls": 3,
+    "one_semantic_role_only": true,
+    "other_role_labels_requested": false,
+    "parallel_component_columns_used": false,
+    "record_identity_semantics_made_explicit": true,
+    "response_schema_changed_from_v2": false,
+    "role_response_wire_changed_from_v21": true,
+    "semantic_contract_changed_from_v21": false,
+    "semantic_prefilter_performed": false,
+    "semantic_score_added": false,
+    "speaker_ownership_semantics_made_explicit": true,
+    "starting_role_included": false,
+    "trajectory_relation_requested": false,
+    "validator_changed_from_v2": false
+  },
+  "case_id": "amb3-case05-registry-pharma-partnership",
+  "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+  "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+  "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+  "focal_region": {
+    "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead a university rare-disease registry built with years of patient and family participation.\ne002\tA pharmaceutical company has offered to finance sequencing and data curation if its researchers can use the registry to identify drug targets.\ne003\tI want faster research and resources the university cannot provide, but I am uneasy about turning participant solidarity into a private discovery advantage.\ne004\tI cannot tell whether that concern protects the community or assumes that commercial research is inherently suspect.\n[Turn 1 ASSISTANT]\ne005\tThe proposal combines research speed, registry sustainability, participant consent, commercial advantage, publication, data access, and downstream hypotheses.\ne006\tSeparate access to identifiable records from insights learned across the cohort.\ne007\tAlso distinguish legal consent language from what participants reasonably believed they were joining.\n[Turn 7 USER]\ne033\tI am leaning toward the one-year, two-disease-group pilot with new sequencing consent, unchanged academic access, negative-result publication, patient-council approval, a public question register, quarterly reporting, independent audit, and a community research fund.\ne034\tI will accept the twelve-month first-negotiation right only for jointly validated targets and only if it cannot delay noncommercial publication or unrelated academic work.\ne035\tBefore signing, I will set withdrawal-response, access, publication-delay, rejected-request, and benefit-fund thresholds.\ne036\tI will approve the pilot only if withdrawal ends participant-level access and future queries, but I still cannot tell whether we can call that meaningful withdrawal when aggregate patterns and target hypotheses remain.\n[Turn 7 ASSISTANT]\ne037\tThe current position is a bounded validation partnership rather than a general commercial transfer of the registry.\ne038\tIts scope, consent, academic-access, publication, governance, audit, negotiation, withdrawal, and benefit conditions constrain several routes to expansion.\ne039\tThe unresolved issue is whether the word withdrawal overstates what can be reversed after collective patterns have been learned.\ne040\tIf the pilot ends or a participant leaves, research priorities, target hypotheses, company expectations, and the community's understanding of the registry may not return to their prior state.",
+    "citation_allowed": true,
+    "evidence_aliases": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e006",
+      "e007",
+      "e033",
+      "e034",
+      "e035",
+      "e036",
+      "e037",
+      "e038",
+      "e039",
+      "e040"
+    ]
+  },
+  "maximum_components_per_record": 5,
+  "maximum_records": 2,
+  "paired_roles": [
+    "current",
+    "qualification"
+  ],
+  "prior_context": {
+    "annotated_sentence_text": "",
+    "citation_allowed": false,
+    "evidence_aliases": [],
+    "included": false,
+    "role_limited_citation_policy": "none"
+  },
+  "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+  "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+  "response_contract": {
+    "explicit_role_label_required": true,
+    "global_synthesis_requested": false,
+    "maximum_records_per_role": 2,
+    "maximum_records_total": 4,
+    "valid_empty_role_allowed": true
+  },
+  "role": "current_and_qualification",
+  "role_boundary_contract": {
+    "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+    "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+    "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+  },
+  "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4",
+  "shard_id": "amb3-case05-registry-pharma-partnership-position_and_decision_trajectory-shard-01",
+  "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+  "valid_empty_output_allowed": true
+}

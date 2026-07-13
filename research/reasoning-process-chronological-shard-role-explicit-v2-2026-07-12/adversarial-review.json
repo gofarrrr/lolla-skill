@@ -1,0 +1,85 @@
+{
+  "schema_version": "lolla.reasoning_process_chronological_shard_role_explicit_v2_adversarial_review.v1",
+  "status": "provider_free_adversarial_review_pass_with_semantic_limits_preserved",
+  "date": "2026-07-12",
+  "cases": [
+    {
+      "adversarial_id": "position-missing-current-meaning",
+      "source": "observed Case-05 family-batch position record",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "current_position_interpretation is required and non-empty when current_position_evidence_ids are supplied",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "position-starting-text-evidence-divergence",
+      "source": "provider-free mutation of reviewed Case-05 fixture",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "starting interpretation and starting evidence must be absent or present together",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "uncertainty-missing-reopen-meaning",
+      "source": "provider-free mutation of reviewed Case-05 fixture",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "every uncertainty record requires unresolved, preservation/reopen, and relationship interpretations",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "uncertainty-conceptual-split",
+      "source": "two observed Case-05 family-batch uncertainty records projected into explicit fields",
+      "expected": "admit_structurally_and_require_semantic_review",
+      "observed": "admit_structurally_and_require_semantic_review",
+      "mechanism": "each record is internally complete; code does not decide that two source-valid records are one semantic relationship or merge them",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "challenge-role-inversion",
+      "source": "observed Case-05 second challenge record with exact source text exposed per role",
+      "expected": "admit_structurally_and_require_semantic_review",
+      "observed": "admit_structurally_and_require_semantic_review",
+      "mechanism": "role-specific text makes the assignment inspectable; code does not assume textual order proves semantic priorness or challenge direction",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "challenge-response-text-evidence-divergence",
+      "source": "provider-free mutation of reviewed Case-05 fixture",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "response and revision interpretations must move with their evidence and response_type",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "record-level-sibling-custody",
+      "source": "one valid and one invalid position record",
+      "expected": "admit_valid_quarantine_invalid",
+      "observed": "admit_valid_quarantine_invalid",
+      "mechanism": "record-level custody",
+      "semantic_gate_added": false
+    }
+  ],
+  "summary": {
+    "adversarial_case_count": 7,
+    "expected_outcomes_met": 7,
+    "hard_rejections": 4,
+    "structural_admissions_requiring_semantic_review": 2,
+    "record_level_partial_compilation": 1,
+    "deterministic_temporal_semantic_gates": 0,
+    "provider_calls": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "decision": {
+    "adversarial_gate": "pass",
+    "semantic_source_review_remains_mandatory": true,
+    "challenge_surface_order_gate_rejected": true,
+    "uncertainty_semantic_merge_rejected": true,
+    "cold_reader_review_authorized": true,
+    "provider_probe_authorized": false
+  },
+  "nonclaim": "Role-explicit fields improve inspectability and prevent missing role prose; they do not make deterministic code a judge of conversational meaning."
+}

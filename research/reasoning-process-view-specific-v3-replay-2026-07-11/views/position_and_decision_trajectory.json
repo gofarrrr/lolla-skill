@@ -1,0 +1,142 @@
+{
+  "compiled": {
+    "boundary": {
+      "global_synthesis_performed": false,
+      "mechanical_parking_added_by_code": true,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "mechanical_parking_model_authored": false,
+      "record_count": 1,
+      "record_semantics_validated": false,
+      "status": "v3_envelope_valid",
+      "view_kind": "position_and_decision_trajectory"
+    },
+    "observations": [
+      {
+        "family": "position_and_decision_trajectory",
+        "family_projection_status": "view_specific_v2_model_interpretation",
+        "graph_routing_eligible": false,
+        "interpretation": "The user shifted from an uncertain, reactive stance regarding expansion to a conditional acceptance of a four-month pilot at Willow Hub, contingent on specific operational requirements.",
+        "observation_id": "view-specific-fixture-v3-replay-position_and_decision_trajectory-record-01-001",
+        "provenance": {
+          "call_id": "view-specific-amb1-case02-nonprofit-scale-position_and_decision_trajectory",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:9f4fc37aa13b50f6ee2c664fe5eb91e528ba555ad42848cf8da4b7fa034779fd"
+        },
+        "raw_record": {
+          "record_identity": "v3-replay-position_and_decision_trajectory-record-01",
+          "record_index": 1,
+          "v2_record": {
+            "auxiliary_observation_ids": [
+              "cevent-contributions-001-a4de6dd3f045",
+              "csynth-positions-001-baa6bf9386cc"
+            ],
+            "current_position_evidence_ids": [
+              "e059",
+              "e060"
+            ],
+            "interpretation": "The user shifted from an uncertain, reactive stance regarding expansion to a conditional acceptance of a four-month pilot at Willow Hub, contingent on specific operational requirements.",
+            "limitations": "The user remains uncertain about the threshold for curriculum readiness, which could lead to further negotiation or delay.",
+            "qualification_evidence_ids": [
+              "e061",
+              "e062"
+            ],
+            "starting_state_evidence_ids": [
+              "e005"
+            ],
+            "status": "supported",
+            "trajectory_type": "changed"
+          },
+          "v2_role_source_span_ids": {
+            "current_position_evidence_ids": [
+              "span-c792a8093d048d7c",
+              "span-bf8b04316a3abe05"
+            ],
+            "qualification_evidence_ids": [
+              "span-f816e9bf259cb394",
+              "span-003c5390e8a58227"
+            ],
+            "starting_state_evidence_ids": [
+              "span-98d16114b36c9814"
+            ]
+          },
+          "view_kind": "position_and_decision_trajectory"
+        },
+        "raw_record_sha256": "sha256:1be1887102fa1ba501cf45965132bab6ba351a0d78f10b34ce04930a3556a562",
+        "relations": [],
+        "semantic_status": "supported",
+        "source_artifact_id": "view-specific-protected-fixtures",
+        "source_family": "position_and_decision_trajectory",
+        "source_record_id": "v3-replay-position_and_decision_trajectory-record-01",
+        "source_span_ids": [
+          "span-98d16114b36c9814",
+          "span-c792a8093d048d7c",
+          "span-bf8b04316a3abe05",
+          "span-f816e9bf259cb394",
+          "span-003c5390e8a58227"
+        ],
+        "state_history": [
+          {
+            "actor": "probabilistic_reader",
+            "reason": "target-blind relationship-explicit model proposal",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_validator",
+            "reason": "view-specific shape and stable source aliases validated",
+            "state": "admitted"
+          }
+        ],
+        "terminal_reason": "v2 relationship roles and stable aliases passed deterministic validation",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "view-specific-fixture-v3-replay-position_and_decision_trajectory-record-01-001",
+        "raw_record_sha256": "sha256:507bcb870eda9bccc109152e805354ed0e6c16dd97da94953dfdbb63a34d6e66",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "status": "v3_record_level_custody_complete",
+    "window_terminal_disposition": "compiled"
+  },
+  "legacy_parking_value": false,
+  "projected_payload": {
+    "global_limitations": "The trajectory is defined by the user's transition from questioning the viability of expansion to setting specific, time-bound conditions for a pilot program.",
+    "records": [
+      {
+        "auxiliary_observation_ids": [
+          "cevent-contributions-001-a4de6dd3f045",
+          "csynth-positions-001-baa6bf9386cc"
+        ],
+        "current_position_evidence_ids": [
+          "e059",
+          "e060"
+        ],
+        "interpretation": "The user shifted from an uncertain, reactive stance regarding expansion to a conditional acceptance of a four-month pilot at Willow Hub, contingent on specific operational requirements.",
+        "limitations": "The user remains uncertain about the threshold for curriculum readiness, which could lead to further negotiation or delay.",
+        "qualification_evidence_ids": [
+          "e061",
+          "e062"
+        ],
+        "starting_state_evidence_ids": [
+          "e005"
+        ],
+        "status": "supported",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "replay_provider_calls": 0,
+  "source_call_path": "research/reasoning-process-view-specific-v2-probe-2026-07-11/calls/position_and_decision_trajectory.json",
+  "source_call_sha256": "d3792278b39806f7c54d1a6a7d95370ac03aeca25e453b13932e78b452ef7113",
+  "view_kind": "position_and_decision_trajectory"
+}

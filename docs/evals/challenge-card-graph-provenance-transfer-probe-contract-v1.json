@@ -1,0 +1,13 @@
+{
+  "schema_version": "lolla.challenge_card_graph_provenance_transfer_probe_contract.v1",
+  "status": "frozen_before_exactly_three_no_retry_calls",
+  "run_id": "challenge-card-graph-provenance-transfer-probe-2026-07-12",
+  "frozen_inputs": [
+    {"path": "research/challenge-card-graph-provenance-transfer-corpus-2026-07-12/report.json", "sha256": "deb8d88c66bddab455766fb7602de3d77a8e6f7ba2aac5670acc1972dd478890"},
+    {"path": "docs/evals/challenge-card-graph-provenance-transfer-target-v1.json", "sha256": "1d8961f92689d9393cc00f5a66de614b7fc3a95689464b45e8f6a1d96a86be36"}
+  ],
+  "job": {"model": "deepseek/deepseek-v4-flash", "provider_slug": "alibaba", "provider_display_name": "Alibaba", "pricing_per_token": {"prompt": 0.00000007, "completion": 0.00000028}},
+  "call_configuration": {"endpoint": "https://openrouter.ai/api/v1/chat/completions", "wire_mode": "strict_json_schema", "temperature": 0.0, "seed": 0, "reasoning_enabled": false, "max_output_tokens": 800, "provider_timeout_seconds": 90, "require_supported_parameters": true, "allow_provider_fallbacks": false, "automatic_retries": 0, "response_healing": false, "parallel_calls": false},
+  "budget": {"maximum_provider_calls": 3, "maximum_estimated_cost_usd": 0.01, "automatic_retries": 0, "semantic_retries": 0, "fallback_models": 0, "evaluator_calls": 0, "embedding_calls": 0, "graph_calls": 0, "pipeline_calls": 0, "runtime_calls": 0},
+  "boundary": {"research_only": true, "canonical_ids_only": true, "fact_free_recall_provenance": true, "deterministic_semantic_mapping": false, "graph_mutation": false, "runtime_integration": false, "reconsideration": false, "receipts": false, "scalar_scoring": false, "production_authorization": false}
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.stage_a_case_selection.v0",
+  "status": "frozen_before_candidate_source_review_or_provider_calls",
+  "date": "2026-07-10",
+  "purpose": "Select the next core-corpus Stage A case after the mechanically selected Case 05 attempt was permanently stopped.",
+  "predecessor_selection": {
+    "path": "research/stage-a-case05-2026-07-10/selection-contract.json",
+    "sha256": "3a6df0fbc5c348f09abc69c2be586bbff795033f712c6c3a0e01a2b46fd3e1d9",
+    "selected_case_id": "case-05-parenting-teen",
+    "terminal_status": "formal_stage_a_failure_no_rerun"
+  },
+  "untouched_definition": {
+    "never_seen_by_repository": false,
+    "required": [
+      "fixed checked-in core-corpus source",
+      "no prior fresh-extraction-plus-full-pipeline Stage A attempt under the current two-stage program",
+      "no prior full-surface portfolio diagnostic",
+      "no prior downstream control-versus-Lolla pair",
+      "not used as an extraction-admission smoke"
+    ],
+    "disclosure": "All core-corpus cases have historical semantic-evaluation use. Untouched means uncontaminated for the current Stage A-to-Stage B causal path, not unknown text."
+  },
+  "eligible_after_predecessor_stop": [
+    {
+      "case_id": "case-04-whistleblower",
+      "digest": "b0f71608747332fa8a132979d30f124ef0df95058f99d32ae63de4c483298892"
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "digest": "779560615da52aa47a65bd2c1660327259996d186bcd596999be43784200bcce"
+    }
+  ],
+  "selection_rule": {
+    "seed_source_path": "research/extraction-admission-smoke-case01-v1-2026-07-10/decision.json",
+    "seed_source_sha256": "bc44e57611a409c66f31e6139e89ece34291e33fe8f2ba618c17897c3d73f9f8",
+    "algorithm": "Retain the candidate digests frozen in the predecessor selection, remove permanently stopped cases, and choose the lexicographically smallest remaining digest.",
+    "selected_case_id": "case-10-real-estate-bid",
+    "selected_digest": "779560615da52aa47a65bd2c1660327259996d186bcd596999be43784200bcce"
+  },
+  "high_stakes_boundary": {
+    "eligible_for_stage_a_operability_and_private_pressure_review": true,
+    "reason": "The fixture is fixed synthetic research evidence; Stage A produces no user-facing recommendation and makes no financial or action authorization.",
+    "stage_b_automatically_authorized": false,
+    "stage_b_extra_requirements": [
+      "prospective financial and deadline source-fidelity red lines",
+      "no invented market, insurance, legal, affordability, renovation, or financing claims",
+      "no action authorization for a real buyer",
+      "separate source-first review before either downstream arm"
+    ]
+  },
+  "non_claims": [
+    "not a representative sample",
+    "not proof that high-stakes advice is safe",
+    "not a semantic-quality result",
+    "not Stage B authorization",
+    "not runtime-integration authority"
+  ]
+}

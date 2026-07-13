@@ -1,0 +1,75 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v41_compatibility_diagnosis.v1",
+  "status": "probable_inherited_unique_items_incompatibility_no_semantic_result",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-stance-object-v41-career-transition-endpoint-v1",
+  "result_path": "research/reasoning-process-stance-object-v41-probe-2026-07-12/result.json",
+  "provider_observation": {
+    "provider_request_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "semantic_retries": 0,
+    "operational_status": "http_error_400",
+    "http_status": 400,
+    "provider_name": "Google",
+    "provider_status": "INVALID_ARGUMENT",
+    "provider_message": "Request contains an invalid argument.",
+    "candidate_payload_present": false,
+    "compiled_payload_present": false,
+    "model_inference_observed": false,
+    "semantic_review_status": "not_applicable_no_model_output"
+  },
+  "local_current_sdk_audit": {
+    "sdk": "google-genai",
+    "sdk_version": "2.11.0",
+    "installed_location": "temporary evaluation virtual environment only",
+    "provider_calls": 0,
+    "v41_full_schema_validation": "fail",
+    "validation_errors": [
+      "starting_state_evidence_ids.uniqueItems: extra input not permitted",
+      "current_position_evidence_ids.uniqueItems: extra input not permitted",
+      "qualification_evidence_ids.uniqueItems: extra input not permitted"
+    ],
+    "v41_schema_after_removing_only_uniqueItems": "pass",
+    "v3_schema_under_current_sdk": "fail_for_same_inherited_uniqueItems_plus_qualification_modalities_uniqueItems",
+    "interpretation": "The current native Gemini Schema model does not accept uniqueItems even though older routed v3 execution succeeded and the broader JSONSchema model exposes the keyword. Current provider translation behavior cannot be inferred from the old success."
+  },
+  "hypothesis_update": {
+    "schema_depth_as_sufficient_cause": false,
+    "inherited_unique_items_as_probable_cause": true,
+    "provider_error_explicitly_names_unique_items": false,
+    "root_cause_proven_at_provider": false,
+    "confidence": "high_but_not_provider_confirmed"
+  },
+  "gate_results": {
+    "provider_free_semantic_representation_gate": "pass",
+    "adversarial_gate": "pass",
+    "regression_gate": "pass",
+    "documented_subset_shape_gate": "pass",
+    "current_google_native_schema_preflight": "fail_before_unique_items_removal_pass_after_removal",
+    "operational_provider_gate": "fail",
+    "semantic_stance_object_gate": "not_observed"
+  },
+  "decision": {
+    "stance_object_v41_ready_for_integration": false,
+    "career_transition_retry_authorized": false,
+    "community_space_or_agency_call_authorized_under_v41": false,
+    "additional_provider_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "next_work": "provider_free_v42_wire_only_unique_items_removal_with_current_sdk_preflight"
+  },
+  "next_design_constraints": [
+    "Keep the v4.1 parallel-column stance semantics and deterministic reconstruction unchanged.",
+    "Remove uniqueItems from the position provider schema only; keep deterministic duplicate validation authoritative.",
+    "Add a frozen current google-genai native Schema preflight before any provider call.",
+    "Re-run all legacy and fresh fixtures and adversarial column-alignment cases.",
+    "Keep the career-transition case closed and select the next reserved case prospectively under a new contract.",
+    "Do not infer that SDK acceptance guarantees provider acceptance or semantic correctness."
+  ],
+  "nonclaims": [
+    "The provider error did not explicitly identify uniqueItems.",
+    "The SDK diagnosis is strong compatibility evidence, not a provider-side proof.",
+    "No model behavior, semantic accuracy, stability, product value, or trust was measured.",
+    "The old v3 provider success does not prove current compatibility."
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_glm_control_contract.v1",
+  "status": "frozen_before_at_most_four_unchanged_contract_calls",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-position-role-first-journalism-glm-control-v1",
+  "purpose": "Distinguish low-cost model capacity from record/component contract ambiguity by running the stronger GLM 5.2 control on byte-identical role-first packets, prompts, schemas, target, and source-review gates after the DeepSeek fragmentation failure.",
+  "job": {
+    "case_id": "amb3-case01-journalism-platform-pilot",
+    "packet_path": "research/reasoning-process-position-role-first-v2-new-case-2026-07-12/position-endpoint.json",
+    "packet_sha256": "7ac857ec5924bff54e5c227cad543d9158ed6c17951f3a2ea11d783f305381a4",
+    "model": "z-ai/glm-5.2",
+    "canonical_slug": "z-ai/glm-5.2-20260616",
+    "provider_slug": "deepinfra",
+    "provider_display_name": "DeepInfra",
+    "pricing_per_token": {
+      "prompt": 9.3e-7,
+      "completion": 0.000003
+    },
+    "role_request_contracts": {
+      "starting": {
+        "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+        "user_prompt_sha256": "3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9",
+        "response_schema_sha256": "56c500e6f44597dfdbf7c52674023bc30c1bda0157cdfced268fd8ebf0671f9e"
+      },
+      "current": {
+        "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+        "user_prompt_sha256": "b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d",
+        "response_schema_sha256": "613f487d8eb40911d6dfebff28395d714c1a0912ecb151a3ce33aa40ef84b907"
+      },
+      "qualification": {
+        "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+        "user_prompt_sha256": "1c71674962eb8c2ac7fb90813a5ae17d6ef040a6bc9e73c289e37df6f4f64950",
+        "response_schema_sha256": "8d472fcf6b93544c65e75bf21aa5517e76277789a8a5f0c3c3df98942566e969"
+      }
+    },
+    "relation_response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3"
+  },
+  "protected_source_review": {
+    "target_path": "research/reasoning-process-position-role-first-v2-new-case-2026-07-12/source-review-target.json",
+    "target_sha256": "b593961951ef683d60be9f5488b785d51b5a14702c4380037a7c516469f95ff3",
+    "included_in_provider_context": false,
+    "used_for_prompt_tuning": false,
+    "independent_human_gold": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_position_role_first_v2.py",
+      "sha256": "69df9564e7392e570c3c994db605f0959898579b6ceeb42626805795689985c2"
+    },
+    {
+      "path": "scripts/evals/reasoning_process_position_decomposition_transport.py",
+      "sha256": "44d572988df71e5a5def9b3f5baa21b5e159bcb51fd163218c3f421eed7e7d95"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_position_role_first_v2_probe.py",
+      "sha256": "975d6eb9f2dc5fee6f5806a0df8d45e709d06ae61be225be92dae083853b7d36"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_position_role_first_v2_glm_control.py",
+      "sha256": "fef9d47b647000ef72ac4bf2f96d3dd6c99e8d877301515a8a87e0f25ad0eee1"
+    },
+    {
+      "path": "research/reasoning-process-position-role-first-v2-probe-2026-07-12/source-review-deepseek.json",
+      "sha256": "1558f884c70fd4ef82a15b3430437513758aef1b37dc1b71a6879d5586cf07cd"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-role-first-fragmentation-problem-class-2026-07-12.md",
+      "sha256": "05ff57b4daf3c7a21a5e898fce7a9972f21a6c6f0fb0526d45a9aeb384e9fb7b"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-model-operator-current-practice-2026-07-12.md",
+      "sha256": "22fd0c563e91b372dede50d488963eb7bc966153c528ca84091230fbf29cd845"
+    },
+    {
+      "path": "docs/conversation-understanding/lolla-product-constitution-v3.md",
+      "sha256": "8890a7a2785a8b12edeea8e3c44ef07e138fcbfb9a0e5f42a25f53641806eaf9"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "custody": {
+    "execution_logic_byte_identical_to_first_model_except_validators_and_job": true,
+    "write_started_marker_before_each_call": true,
+    "never_rerun_if_started_marker_exists": true,
+    "run_three_independent_role_calls_even_if_one_role_fails": true,
+    "block_relation_call_unless_all_three_role_wire_and_admission_gates_pass": true
+  },
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_estimated_cost_usd": 0.02,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "unchanged_contract_hashes_match_first_model": true,
+    "wire_and_exact_route_pass_for_every_call": true,
+    "coherent_multi_evidence_role_records": true,
+    "starting_role_preserves_e003_e004_e005": true,
+    "current_role_preserves_e049_e050_e051_without_force_inflation": true,
+    "qualification_role_preserves_e052_e055_e056": true,
+    "protected_e056_meaning_survives": true,
+    "relationship_preserves_one_bounded_action_and_full_qualification_set": true,
+    "source_first_review_required": true
+  },
+  "decision_rule": {
+    "glm_pass": "model capacity becomes leading explanation; model/cost selection may continue without claiming production readiness",
+    "glm_repeat_failure": "contract ambiguity becomes leading explanation; stop model shopping and return provider-free",
+    "wire_failure": "operator compatibility result only; no semantic comparison"
+  },
+  "boundary": {
+    "same_exposed_development_case": true,
+    "independent_holdout": false,
+    "prompt_or_schema_changed_from_deepseek_run": false,
+    "protected_review_excluded_from_provider": true,
+    "deterministic_semantic_gate_added": false,
+    "production_integration_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

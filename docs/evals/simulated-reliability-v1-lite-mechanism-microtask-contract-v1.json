@@ -1,0 +1,138 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_microtask_contract.v1",
+  "status": "frozen_before_three_difficult_microtasks",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-mechanism-microtask-a1",
+  "case_id": "v1-case06-industry-funded-lab",
+  "purpose": "Test whether one-mechanism semantic tasks remove evidence omissions and contradictory routing bookkeeping before expanding to the full controlled ontology.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-lite-mechanism-2026-07-13/a1/mechanism-request.json",
+    "parent_mechanism_request_sha256": "be53bd41da9423f8e3aed44ef1e11b78c4c85271454eaac236d886f1f49abd9f"
+  },
+  "mechanism_ids": [
+    "acknowledged_constraint_not_gated",
+    "counterpressure_acknowledged_not_integrated",
+    "missing_reversal_condition"
+  ],
+  "why_this_trio": {
+    "acknowledged_constraint_not_gated": "The unresolved structural effect is visible, but monitoring exists; the task must distinguish a missing gate from mere remaining uncertainty.",
+    "counterpressure_acknowledged_not_integrated": "The monolithic call likely activated this falsely even though the user changed safeguards and governance in response.",
+    "missing_reversal_condition": "A bounded walk-away threshold is not obvious, while the assistant discussed renewal, exit, and capability protection; user status and assistant coverage must remain distinct."
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limit": {
+    "max_output_tokens": 1500,
+    "reasoning_effort": "medium",
+    "wire_mode": "strict_json_schema"
+  },
+  "tasks": {
+    "acknowledged_constraint_not_gated": {
+      "repeat_id": "micro_acknowledged_constraint",
+      "seed": 807
+    },
+    "counterpressure_acknowledged_not_integrated": {
+      "repeat_id": "micro_counterpressure",
+      "seed": 817
+    },
+    "missing_reversal_condition": {
+      "repeat_id": "micro_missing_reversal",
+      "seed": 827
+    }
+  },
+  "request_attestation": {
+    "acknowledged_constraint_not_gated": {
+      "packet_sha256": "6039b696780ecf8aad116d98e2c6cb5e3252be97c3e6468a88ba74d5655ba5df",
+      "role_record_count": 3,
+      "assistant_contribution_count": 12,
+      "system_prompt_sha256": "e2c575e8f8076d428921bb937dc0a58c3a0e0292c7779bbd1a021b653685e96f",
+      "user_prompt_sha256": "b37e0045ab413f45436bfd78168325b611cc8f5ad8cc32ab1d7be63477c8c09a",
+      "response_schema_sha256": "82cee745765d3d827fee3591c46d24d882044459360436e08d4ee780ec59b97d"
+    },
+    "counterpressure_acknowledged_not_integrated": {
+      "packet_sha256": "cd5b8784d9daa07e754b1a4a135769a9758c73214b103a2a9427040dc2bced10",
+      "role_record_count": 3,
+      "assistant_contribution_count": 12,
+      "system_prompt_sha256": "e2c575e8f8076d428921bb937dc0a58c3a0e0292c7779bbd1a021b653685e96f",
+      "user_prompt_sha256": "3b059830abede77732a33b11a01bc06c16494748283ab5fbc4444651beaa8a78",
+      "response_schema_sha256": "9cb94af8d501b51ffc56eb3094de6a494a0ded1d124e358e67d73cefe237aa6f"
+    },
+    "missing_reversal_condition": {
+      "packet_sha256": "cca5824602a24d097660264afe17a0ff602904b12c32b6fb27899c8203c65502",
+      "role_record_count": 3,
+      "assistant_contribution_count": 12,
+      "system_prompt_sha256": "e2c575e8f8076d428921bb937dc0a58c3a0e0292c7779bbd1a021b653685e96f",
+      "user_prompt_sha256": "422afea50eed22ad61bd0b3912a3943953d48dde5cee1886d1c5b451ad533e9c",
+      "response_schema_sha256": "0da170cef6685c9aa6b3eca458f482a23688e19ed088495782dbab80846d9404"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 3,
+    "maximum_provider_reported_cost_usd": 0.02,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "review_contract": {
+    "interface": "Each task compiles with evidence for every observed status and no model-authored routing field.",
+    "user_process": "Status and pattern state must satisfy the one mechanism's requires and excludes, not merely match the presence of a qualification record.",
+    "assistant_coverage": "Coverage must cite exact assistant contributions and must not be mistaken for user adoption.",
+    "routing_policy": "Deterministic routing may activate only explicit unresolved plus acknowledged_only or not_covered. Operationalized coverage must stand down even when user status remains unresolved.",
+    "prospective_source_focus": {
+      "counterpressure_acknowledged_not_integrated": "Likely resolved because the concern changed safeguards, review, equipment planning, and monitoring; a contrary result needs strong source support.",
+      "missing_reversal_condition": "A user-process gap may remain, but assistant coverage appears operationalized enough that uncovered routing would be suspicious.",
+      "acknowledged_constraint_not_gated": "Could remain unresolved if monitoring lacks an operative gate; source review must distinguish monitoring from a threshold."
+    },
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "prospective_source_focus_not_added_to_model_prompt": true,
+    "routing_disposition_model_authored": false,
+    "full_nine_microtask_expansion_authorized": false,
+    "pressure_call_authorized": false,
+    "runtime_effect": "none",
+    "production_model_selection_authorized": false,
+    "Gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_mechanism_microtask_probe_v1.py",
+      "sha256": "d139ed7a66868206babd773ffe7dddb91dfb837210869449a259729ade3218df"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_mechanism_microtask_v1.py",
+      "sha256": "acdaee431064416426b66a38a5d55888f054940dbc5d2cf2001bc36129c65d0f"
+    },
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-mechanism-2026-07-13/a1/mechanism-request.json",
+      "sha256": "be53bd41da9423f8e3aed44ef1e11b78c4c85271454eaac236d886f1f49abd9f"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-mechanism-2026-07-13/a1/source-review.json",
+      "sha256": "bdffc302d1766daa7080db3a953f8543f2e02b59747d8efcd1d14e36530b967b"
+    }
+  ]
+}

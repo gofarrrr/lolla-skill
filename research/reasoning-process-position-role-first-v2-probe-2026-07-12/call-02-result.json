@@ -1,0 +1,205 @@
+{
+  "admitted_record_count": 2,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "Only current records. Each stance component uses exactly one alias already cited by its role record. Split distinct objects even when one alias supports both.",
+    "records": [
+      {
+        "evidence_ids": [
+          "e049"
+        ],
+        "expression_kinds": [
+          "leaning"
+        ],
+        "fidelity_note": "User states 'I am leaning toward' — this is a leaning, not a decision or commitment.",
+        "limitations": "",
+        "object_interpretations": [
+          "four-month nonexclusive pilot limited to service and explanatory stories, with approval of every feed headline, story-level distribution and correction logs, and no homepage widget"
+        ],
+        "object_kinds": [
+          "action_or_proposal"
+        ],
+        "role": "current",
+        "role_interpretation": "leaning toward a specific pilot structure",
+        "source_evidence_ids": [
+          "e049"
+        ],
+        "status": "unclear"
+      },
+      {
+        "evidence_ids": [
+          "e050"
+        ],
+        "expression_kinds": [
+          "decision"
+        ],
+        "fidelity_note": "User states 'I will tell the board' — this is a declared intention/decision about what to communicate.",
+        "limitations": "",
+        "object_interpretations": [
+          "describe the pilot to the board as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce"
+        ],
+        "object_kinds": [
+          "action_or_proposal"
+        ],
+        "role": "current",
+        "role_interpretation": "decision about how to frame the pilot to the board",
+        "source_evidence_ids": [
+          "e050"
+        ],
+        "status": "unclear"
+      }
+    ],
+    "status": "unclear"
+  },
+  "candidate_payload_sha256": "e9fd1b92a0c8af2251beaf0d40b4f8f0bd45afcf1cde27d8d5a1efd21428fc8e",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prose_keyword_gate_added": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false
+    },
+    "global_limitations": "Only current records. Each stance component uses exactly one alias already cited by its role record. Split distinct objects even when one alias supports both.",
+    "observations": [
+      {
+        "case_id": "amb3-case01-journalism-platform-pilot",
+        "fidelity_note": "User states 'I am leaning toward' — this is a leaning, not a decision or commitment.",
+        "graph_routing_eligible": false,
+        "limitations": "",
+        "observation_id": "rprolev2-current-01-6123e41b8b1b86",
+        "provenance": {
+          "call_id": "role-current",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+        },
+        "raw_record_sha256": "sha256:6123e41b8b1b8699ca6808b60f5a3f9683e5a238464061c306aae14fa23558a4",
+        "role": "current",
+        "role_interpretation": "leaning toward a specific pilot structure",
+        "role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e049",
+            "text": "I am leaning toward a four-month nonexclusive pilot limited to service and explanatory stories, with our approval of every feed headline, story-level distribution and correction logs, and no homepage widget."
+          }
+        ],
+        "source_evidence_ids": [
+          "e049"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "current",
+            "source_evidence_id": "e049",
+            "stance_expression_kind": "leaning",
+            "stance_object_interpretation": "four-month nonexclusive pilot limited to service and explanatory stories, with approval of every feed headline, story-level distribution and correction logs, and no homepage widget",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ],
+        "terminal_state": "admitted"
+      },
+      {
+        "case_id": "amb3-case01-journalism-platform-pilot",
+        "fidelity_note": "User states 'I will tell the board' — this is a declared intention/decision about what to communicate.",
+        "graph_routing_eligible": false,
+        "limitations": "",
+        "observation_id": "rprolev2-current-02-938695eb291222",
+        "provenance": {
+          "call_id": "role-current",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+        },
+        "raw_record_sha256": "sha256:938695eb291222f28674d50ecac36e1f687a73a70e3cfc299777f2a3f6ea73aa",
+        "role": "current",
+        "role_interpretation": "decision about how to frame the pilot to the board",
+        "role_record_id": "rprolev2-current-02-938695eb291222",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e050",
+            "text": "I will tell the board we should describe it as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce."
+          }
+        ],
+        "source_evidence_ids": [
+          "e050"
+        ],
+        "source_record_index": 2,
+        "stance_components": [
+          {
+            "role": "current",
+            "source_evidence_id": "e050",
+            "stance_expression_kind": "decision",
+            "stance_object_interpretation": "describe the pilot to the board as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:6123e41b8b1b8699ca6808b60f5a3f9683e5a238464061c306aae14fa23558a4",
+        "record_index": 1,
+        "role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+        "terminal_state": "admitted"
+      },
+      {
+        "raw_record_sha256": "sha256:938695eb291222f28674d50ecac36e1f687a73a70e3cfc299777f2a3f6ea73aa",
+        "record_index": 2,
+        "role_record_id": "rprolev2-current-02-938695eb291222",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "unclear",
+    "role": "current",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_custody_complete"
+  },
+  "completion_tokens": 387,
+  "duration_seconds": 6.14,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.000224048,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 898,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "e9125a6f7affb415cc9d2b6cc9c0bd8d22d4e78b04bc9fc60fdbe7928c9c490e",
+  "provider_reported_cost_usd": 0.000224048,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "613f487d8eb40911d6dfebff28395d714c1a0912ecb151a3ce33aa40ef84b907",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+  "task_id": "role-current",
+  "temperature": 0.0,
+  "total_tokens": 1285,
+  "user_prompt_sha256": "b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

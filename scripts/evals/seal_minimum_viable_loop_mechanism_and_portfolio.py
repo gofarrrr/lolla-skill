@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+"""Seal three-case mechanism evidence and deterministic no-deletion portfolios."""
+from __future__ import annotations
+import argparse,hashlib,json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+ONTOLOGY_RESULT=ROOT/"research/role-record-pattern-ontology-v1-probe-2026-07-12/result.json"
+MUSEUM_RESULT=ROOT/"research/museum-mechanism-transfer-probe-2026-07-12/result.json"
+TARGET=ROOT/"docs/evals/minimum-viable-loop-mechanism-baseline-v1.json"
+ROUTING=ROOT/"docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json"
+def load(p):return json.loads(Path(p).read_text())
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def write(p,v):Path(p).parent.mkdir(parents=True,exist_ok=True);Path(p).write_text(json.dumps(v,indent=2,sort_keys=True)+"\n")
+def statuses(call):return {x["mechanism_id"]:x["joint_status"]for x in(call.get("candidate_payload")or{}).get("assessments",[])}
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument("--output",type=Path,required=True);a=ap.parse_args();target=load(TARGET);routing=load(ROUTING)["mechanism_seed_models"];old={x["task_id"]:x for x in load(ONTOLOGY_RESULT)["calls"]};museum={x["task_id"]:x for x in load(MUSEUM_RESULT)["calls"]};calls={**old,**museum};protected=target["protected_mechanism"];persistent=target["persistent_mechanism"];cases={};portfolios={}
+ for case in target["cases"]:
+  arms=[case["source_arm"],case["provider_arm"],case["ablation_arm"]];obs={arm:statuses(calls[arm])for arm in arms};source,provider,ablation=(obs[x]for x in arms);noise={"source":sorted(k for k,v in source.items()if v=="unresolved"and target["source_reviewed_statuses"]["full"][k]!="unresolved"),"provider":sorted(k for k,v in provider.items()if v=="unresolved"and target["source_reviewed_statuses"]["full"][k]!="unresolved"),"ablation":sorted(k for k,v in ablation.items()if v=="unresolved"and target["source_reviewed_statuses"]["reversal_ablation"][k]!="unresolved")};gates={"protected_source_provider":source[protected]==provider[protected]=="unresolved","protected_removed_ablation":ablation[protected]!="unresolved","persistent_all_arms":source[persistent]==provider[persistent]==ablation[persistent]=="unresolved","complete_assessment_coverage":all(len(x)==9 for x in obs.values()),"bounded_noise":max(map(len,noise.values()))<=2};cases[case["case_id"]]={"status":"pass"if all(gates.values())else"fail","gates":gates,"noise":noise,"statuses":obs}
+  for arm in arms:
+   unresolved=sorted(k for k,v in obs[arm].items()if v=="unresolved");pulls={}
+   for mechanism in unresolved:
+    for model_id in routing[mechanism]:pulls.setdefault(model_id,[]).append(mechanism)
+   portfolios[arm]={"unresolved_mechanism_ids":unresolved,"candidate_count":len(pulls),"candidates":[{"model_id":mid,"recalled_by_mechanism_ids":sorted(ms),"disposition":"unreviewed_pressure_hypothesis"}for mid,ms in sorted(pulls.items())],"candidate_deletion_performed":False,"semantic_applicability_certified":False}
+ portfolio_gates={"all_candidate_counts_within_cap":all(x["candidate_count"]<=10 for x in portfolios.values()),"protected_models_survive_full_arms":all({"commitment-bias","premortem","sunk-cost-fallacy"}<={x["model_id"]for x in portfolios[case[arm]]["candidates"]}for case in target["cases"]for arm in("source_arm","provider_arm")),"protected_models_absent_ablation":all(not({"commitment-bias","premortem","sunk-cost-fallacy"}&{x["model_id"]for x in portfolios[case["ablation_arm"]]["candidates"]})for case in target["cases"]),"persistent_models_all_arms":all({"active-listening","confirmation-bias","intellectual-humility"}<={x["model_id"]for x in portfolio["candidates"]}for portfolio in portfolios.values()),"no_candidate_deletion":all(not x["candidate_deletion_performed"]for x in portfolios.values())};report={"schema_version":"lolla.minimum_viable_loop_mechanism_and_portfolio_seal.v1","status":"phase2_mechanism_and_phase3_portfolio_shadow_pass"if all(x["status"]=="pass"for x in cases.values())and all(portfolio_gates.values())else"seal_fail","frozen_inputs":[{"path":str(p.relative_to(ROOT)),"sha256":sha(p)}for p in(TARGET,ONTOLOGY_RESULT,MUSEUM_RESULT,ROUTING)],"case_results":cases,"portfolios":portfolios,"portfolio_gates":portfolio_gates,"summary":{"case_count":3,"arm_count":9,"provider_calls_reused":9,"new_provider_calls":0,"minimum_candidate_count":min(x["candidate_count"]for x in portfolios.values()),"maximum_candidate_count":max(x["candidate_count"]for x in portfolios.values())},"boundary":{"fact_free_controlled_mechanisms_only":True,"canonical_ids_only":True,"no_candidate_prefilter":True,"no_graph_mutation":True,"runtime_effect":"none"},"non_claims":["portfolio_is_pressure_recall_not_applicability","development_cases_not_independent_product_validation","not_runtime_authorization"]};write(a.output.resolve()/"result.json",report);print(json.dumps({"status":report["status"],"summary":report["summary"],"portfolio_gates":portfolio_gates},indent=2));return 0 if report["status"].endswith("pass")else 1
+if __name__=="__main__":raise SystemExit(main())

@@ -1,0 +1,69 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_credit_continuation_1",
+  "status": "frozen_before_transfer_calls",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-transfer-credit-continuation-c1",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+  "base_contract_sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225",
+  "purpose": "Complete the four T1 cases whose first call stopped before inference with OpenRouter HTTP 402, while preserving the exact V14 semantic runtime and primary seed.",
+  "continuation_basis": {
+    "sealed_t1_batch": "research/simulated-reliability-v1-transfer-2026-07-12/t1/batch-seal.json",
+    "sealed_t1_batch_sha256": "52ea96a1bef2df44e80b69d927bca2d1421eeaed228dfadde0c7ca2354c07b8f",
+    "eligible_failure": "The original starting calls reached OpenRouter but returned HTTP 402 before inference and produced no semantic candidate.",
+    "not_eligible": "Case 06 is excluded because its provider calls completed and the semantic role join failed. Re-running it would be a semantic retry, not a funding continuation.",
+    "interpretation": "C1 is a separately identified continuation, never a rewrite or replacement of the failed T1 artifacts."
+  },
+  "seeds": {
+    "t1_credit_continuation": 101
+  },
+  "transfer": {
+    "authorized_case_ids": [
+      "v1-case09-software-migration",
+      "v1-case10-restricted-funding",
+      "v1-case11-elder-care-relocation",
+      "v1-case12-newsroom-platform"
+    ],
+    "maximum_provider_calls": 24,
+    "maximum_provider_reported_cost_usd": 2.0,
+    "repeat_ids": ["t1_credit_continuation"],
+    "automatic_retries": 0,
+    "response_healing": false,
+    "fallback_models": 0,
+    "tuning_between_cases": false,
+    "source_review_during_execution": false,
+    "batch_must_be_sealed_before_review": true,
+    "failure_policy": "Attempt each authorized case once under the exact inherited runtime. Preserve any terminal failure and continue the batch when safe. Never lower output limits, change prompts, change model/provider, heal, retry, or substitute a case."
+  },
+  "fidelity": {
+    "model": "inherited_exactly_from_v14",
+    "provider_route": "inherited_exactly_from_v14",
+    "prompts_and_schemas": "inherited_exactly_from_v14",
+    "task_limits_and_reasoning_effort": "inherited_exactly_from_v14",
+    "graph_and_candidate_policy": "inherited_exactly_from_v14",
+    "seed": "same_numeric_primary_seed_101",
+    "source_bytes": "inherited_hash_locked_manifest",
+    "semantic_changes": 0
+  },
+  "activation_prerequisites": {
+    "provider_calls_currently_authorized": 0,
+    "explicit_founder_cost_decision_required": true,
+    "sufficient_openrouter_credit_required": true,
+    "authorization_artifact_must_be_created_only_after_prerequisites_pass": true,
+    "output_root_must_be_absent_before_execution": "research/simulated-reliability-v1-transfer-2026-07-12/c1"
+  },
+  "evaluation": {
+    "review_contract": "docs/evals/simulated-reliability-v1-review-contract-v1.json",
+    "review_contract_sha256": "1c12932f5945d789edafb7f268d2535bb1139fa220c6bf052c271ab23aef7956",
+    "review_only_after_all_four_attempts_are_sealed": true,
+    "merge_with_t1_for_descriptive_coverage_only": true,
+    "do_not_relabel_t1_failures": true,
+    "scalar_quality_score": null
+  },
+  "non_claims": [
+    "this_is_not_an_automatic_retry",
+    "this_does_not_make_t1_fully_prospective_again",
+    "credit_availability_is_not_model_reliability",
+    "continuation_success_does_not_erase_t1_operability_failure",
+    "no_provider_call_is_authorized_by_this_contract_alone"
+  ]
+}

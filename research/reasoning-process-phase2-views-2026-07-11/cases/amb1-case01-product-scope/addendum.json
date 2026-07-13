@@ -1,0 +1,315 @@
+{
+  "base_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case01-product-scope/ledger.json",
+  "base_ledger_sha256": "sha256:c7a900bd07dc5c400f3caa6f7c9d614f0380520080c78f7ca9e09fb18323e2af",
+  "boundary": {
+    "direct_graph_routing_allowed": false,
+    "phase1_ledger_modified": false,
+    "provider_calls": 0,
+    "semantic_relevance_inferred_by_code": false,
+    "source_review_is_independent_gold": false
+  },
+  "case_id": "amb1-case01-product-scope",
+  "coverage_contract_sha256": "sha256:cf69f1b00da7928440236a9372a946df690ff891ad3ef0b380883e9c56e9b9e7",
+  "coverage_review_sha256": "sha256:74b8fd140f1a2344050826f0e7d8a21b5635786141f7c72fccba2c44ad5ed5e4",
+  "observations": [
+    {
+      "family": "position_and_decision_trajectory",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+      "observation_id": "phase2-source-review-case01-position-trajectory",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "review_reason": "Phase-1 observations preserve the bounded-discovery position and trust concern but not the full transition plus prototype and trust qualifications in one reviewable observation.",
+        "source_evidence": [
+          {
+            "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+            "role": "current_position",
+            "speaker": "user",
+            "turn_index": 7
+          },
+          {
+            "quote": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+            "role": "qualification",
+            "speaker": "assistant",
+            "turn_index": 7
+          }
+        ],
+        "target_id": "case01-position-trajectory",
+        "view_kind": "position_and_decision_trajectory"
+      },
+      "raw_record_sha256": "sha256:4ebe7631450c0e244176eb4e02c56f637c4d0077ee0e92d880efb18a174ba82c",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case01-position-trajectory",
+      "source_span_ids": [
+        "span-c9902a73ee6c654e",
+        "span-836caaea5abc0d4b"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "exploration_and_alternatives",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "A time-boxed investigation with separate reliability ownership is considered, along with the failure condition that both paths cannot actually be staffed.",
+      "observation_id": "phase2-source-review-case01-exploration-alternative",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "A time-boxed investigation with separate reliability ownership is considered, along with the failure condition that both paths cannot actually be staffed.",
+        "review_reason": "No Phase-1 observation overlaps the time-boxed investigation, separate reliability ownership, and staffing failure condition.",
+        "source_evidence": [
+          {
+            "quote": "One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.",
+            "role": "alternative",
+            "speaker": "assistant",
+            "turn_index": 5
+          },
+          {
+            "quote": "But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.",
+            "role": "limit",
+            "speaker": "assistant",
+            "turn_index": 5
+          }
+        ],
+        "target_id": "case01-exploration-alternative",
+        "view_kind": "exploration_and_alternatives"
+      },
+      "raw_record_sha256": "sha256:fe4c191ac009c335a886e4cb7dc712f0a10ac6d6420bf96b1fee6b076d9eaf21",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case01-exploration-alternative",
+      "source_span_ids": [
+        "span-4434a9ae17a3851c",
+        "span-a297476344490f22"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "evidence_and_assumption_discipline",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "Lina's reuse estimate and motivation are treated as useful reported evidence without being promoted into market validation or contained support cost.",
+      "observation_id": "phase2-source-review-case01-evidence-discipline",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "Lina's reuse estimate and motivation are treated as useful reported evidence without being promoted into market validation or contained support cost.",
+        "review_reason": "No Phase-1 observation overlaps the boundary between Lina's reported estimate and actual market or support validation.",
+        "source_evidence": [
+          {
+            "quote": "That matters, even if it is not a market study.",
+            "role": "bounded_claim",
+            "speaker": "user",
+            "turn_index": 2
+          },
+          {
+            "quote": "Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.",
+            "role": "qualification",
+            "speaker": "assistant",
+            "turn_index": 2
+          }
+        ],
+        "target_id": "case01-evidence-discipline",
+        "view_kind": "evidence_and_assumption_discipline"
+      },
+      "raw_record_sha256": "sha256:c245670a2d4cd9e5786338ddd0a4ab1170ce2a9d1cf38f828c7106fa70d3bfd7",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case01-evidence-discipline",
+      "source_span_ids": [
+        "span-a18bd006465dd276",
+        "span-e281ba6436f7c77a"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "uncertainty_and_unresolved_state",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The no-production-code boundary and the possibility that Northline hears a polite refusal remain unresolved inside the provisional plan.",
+      "observation_id": "phase2-source-review-case01-unresolved-state",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The no-production-code boundary and the possibility that Northline hears a polite refusal remain unresolved inside the provisional plan.",
+        "review_reason": "Phase-1 preserves the trust risk but omits the paired unresolved concern that banning production code may remove Lina's best learning method.",
+        "source_evidence": [
+          {
+            "quote": "I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.",
+            "role": "unresolved",
+            "speaker": "user",
+            "turn_index": 7
+          },
+          {
+            "quote": "Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+            "role": "preserved_uncertainty",
+            "speaker": "assistant",
+            "turn_index": 7
+          }
+        ],
+        "target_id": "case01-unresolved-state",
+        "view_kind": "uncertainty_and_unresolved_state"
+      },
+      "raw_record_sha256": "sha256:287b42f1fdfae5fe1883f8c15e696bed6ef1a090373eaef478883613da65300d",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case01-unresolved-state",
+      "source_span_ids": [
+        "span-4d6f4ced396a71e9",
+        "span-d4329532a8467a70"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "challenge_and_revision_response",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+      "observation_id": "phase2-source-review-case01-challenge-revision",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+        "review_reason": "Phase-1 contains no observation of the user's correction and the assistant's revision from louder advocates to relationship obligation plus product leadership.",
+        "source_evidence": [
+          {
+            "quote": "I think you are making them sound louder and more demanding than they are.",
+            "role": "challenge",
+            "speaker": "user",
+            "turn_index": 2
+          },
+          {
+            "quote": "Fair correction.",
+            "role": "response",
+            "speaker": "assistant",
+            "turn_index": 2
+          },
+          {
+            "quote": "Their request may be both a relationship obligation and a legitimate product lead.",
+            "role": "revision",
+            "speaker": "assistant",
+            "turn_index": 2
+          }
+        ],
+        "target_id": "case01-challenge-revision",
+        "view_kind": "challenge_and_revision_response"
+      },
+      "raw_record_sha256": "sha256:b60024bec2bcf0dad88ec96c841a761f7ff9b9f1693f78db2bb61656f777f775",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case01-challenge-revision",
+      "source_span_ids": [
+        "span-0cb46b8381f4641a",
+        "span-1d554f7651ea7532",
+        "span-6646a854f9e7893f"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    }
+  ],
+  "schema_version": "lolla.reasoning_process_source_review_addendum.v1",
+  "status": "prospective_provider_free_source_review"
+}

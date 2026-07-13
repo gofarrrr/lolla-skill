@@ -1,0 +1,73 @@
+{
+  "schema_version": "lolla.role_record_pattern_invariance_target.v1",
+  "status": "prospectively_frozen_before_provider_calls",
+  "date": "2026-07-12",
+  "comparison_contract": {
+    "invariance": "Within each case, source_first and provider must have the same normalized routing projection.",
+    "sensitivity": "Within each case, reversal_ablation must omit missing_reversal_condition while preserving the two non-ablated mechanisms.",
+    "protected_mechanism": "missing_reversal_condition",
+    "scalar_score": false
+  },
+  "expected_by_arm_kind": {
+    "source_first": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["current", "qualification"]
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["current", "qualification"]
+      },
+      {
+        "mechanism_id": "missing_reversal_condition",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["qualification"]
+      }
+    ],
+    "provider": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["current", "qualification"]
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["current", "qualification"]
+      },
+      {
+        "mechanism_id": "missing_reversal_condition",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["qualification"]
+      }
+    ],
+    "reversal_ablation": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["current", "qualification"]
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "subject_scope": "joint_process",
+        "state": "tension",
+        "source_roles": ["current", "qualification"]
+      }
+    ]
+  },
+  "non_claims": [
+    "not_reasoning_quality_proof",
+    "not_advice_correctness_proof",
+    "not_production_authorization",
+    "not_a_deterministic_semantic_gate"
+  ]
+}

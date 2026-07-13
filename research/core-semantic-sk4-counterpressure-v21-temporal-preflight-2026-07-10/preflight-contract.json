@@ -1,0 +1,106 @@
+{
+  "schema_version": "lolla.user_counterpressure_temporal_preflight_contract.v0",
+  "contract_status": "prepared_no_calls_executed",
+  "case_id": "case-08-oncologist-career-family",
+  "repeat_count": 3,
+  "successful_call_budget": 3,
+  "bounded_retry_limit_per_repeat": 3,
+  "source": {
+    "conversation_path": "research/test-cases/case_oncologist_conversation.txt",
+    "conversation_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162",
+    "context_extraction_path": "research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/oncologist_extraction.json"
+  },
+  "prompt_contract": {
+    "change_type": "temporal_addendum_only",
+    "frozen_v2_prompt_sha256": "6f8c7cdb2f74163cded69c952de2b29213a1aa4c9a50a938197b803654cf5bd6",
+    "v21_temporal_prompt_sha256": "b15537930eb5b7845d2d89fa7b3b761a76a9e11a6da29467361f34ebb6d5c39a",
+    "v21_temporal_prompt_character_count": 4082,
+    "artifact_schema_version": "lolla.user_counterpressure_temporal_shadow.v0",
+    "reader_role": "user_pressure",
+    "reader_calls_per_repeat": 1,
+    "output_key": "user_pressure_events",
+    "allowed_kinds": [
+      "material_qualification",
+      "premise_correction",
+      "reasoning_objection"
+    ],
+    "new_output_fields": [],
+    "semantic_change": "Preserve the first introduction of each material counter-pressure thread and a later event only when it materially strengthens that thread."
+  },
+  "deterministic_contract": {
+    "changed_from_v2": false,
+    "checks": [
+      "required output key",
+      "allowed kind",
+      "user source turn",
+      "exact contiguous source quote",
+      "eight-item cap",
+      "candidate custody",
+      "exact duplicate identity"
+    ],
+    "must_not_infer_thread_identity": true,
+    "must_not_infer_first_introduction": true,
+    "must_not_infer_later_strengthening": true
+  },
+  "temporal_scoring_contract": {
+    "path": "research/core-semantic-sk4-counterpressure-v2-preflight-2026-07-10/counterpressure-temporal-coverage-contract.json",
+    "sha256": "2510781d264e90e0dd71156af06069f675de0de73a836b4388535f65dbdde0e6",
+    "frozen_before_future_calls": true,
+    "semantic_runtime_judge_allowed": false,
+    "embedding_match_allowed": false
+  },
+  "control": {
+    "baseline": "five-reader SK3 repair",
+    "rerun_other_readers": false,
+    "modify_baseline_artifacts": false,
+    "baseline_artifact_sha256": {
+      "shadow-01.json": "ba8f187a83148498b72f3b6d9cece82452ba19194d1a3c8f109d92ddc40f23d9",
+      "shadow-02.json": "4a84352ffb227e940d0f7f4e4acd121941df9adf8c895db6650e2dad35efa9e3",
+      "shadow-03.json": "0aa58473cb79a7c7b701d532aaa5f588c347f9cab61f9fbb5a55df345b1149bd"
+    },
+    "families_held_constant": [
+      "live_constraints",
+      "assistant_stances",
+      "dropped_threads",
+      "question_trajectory",
+      "options",
+      "evidence_boundaries"
+    ]
+  },
+  "gate": {
+    "reasoning_substrate": {
+      "required_concept_weighted_recall": 1.0,
+      "required_stable_concept_observation_count": 1
+    },
+    "audit_trail": {
+      "required_first_introduction_weighted_recall": 1.0,
+      "required_stable_first_introduction_observation_count": 1,
+      "required_later_strengthening_weighted_recall": 1.0,
+      "required_stable_later_strengthening_observation_count": 1
+    },
+    "mechanical": {
+      "required_exact_source_validity": 1.0,
+      "required_reader_calls_per_artifact": 1,
+      "forbidden_returned_kinds": [
+        "concern",
+        "correction",
+        "evidence_request",
+        "timing_pressure",
+        "value"
+      ]
+    },
+    "pass_authorizes": "discussion of a three-case temporal pressure-only ablation",
+    "pass_does_not_authorize": [
+      "SK4 promotion",
+      "full corpus",
+      "SK5",
+      "graph integration",
+      "live integration"
+    ]
+  },
+  "non_claims": [
+    "local_fixture_success_is_not_model_quality_evidence",
+    "concept_coverage_is_not_audit_chronology",
+    "temporal_reader_output_is_not_reasoning_quality_proof"
+  ]
+}

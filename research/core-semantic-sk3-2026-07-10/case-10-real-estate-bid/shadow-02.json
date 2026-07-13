@@ -1,0 +1,2322 @@
+{
+  "current_view_manifest": {
+    "ambiguous_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": []
+    },
+    "event_count": 20,
+    "invalid_candidates_excluded": true,
+    "reconstructible_from_candidate_ledger": true,
+    "schema_version": "lolla.current_semantic_view.v0",
+    "selected_candidate_ids_by_family": {
+      "assistant_stance_events": [
+        "candidate_assistant_stance_events_000_84bd1b5ec3cf",
+        "candidate_assistant_stance_events_001_7a629b4ef015",
+        "candidate_assistant_stance_events_002_9271f0c4b3d5",
+        "candidate_assistant_stance_events_003_4373941f620b"
+      ],
+      "dropped_thread_events": [
+        "candidate_dropped_thread_events_000_e128bc63ebf4"
+      ],
+      "evidence_boundary_events": [
+        "candidate_evidence_boundary_events_000_fe855920e1e7",
+        "candidate_evidence_boundary_events_001_1c2d6b6fe53f"
+      ],
+      "live_constraint_events": [
+        "candidate_live_constraint_events_000_d63159717214",
+        "candidate_live_constraint_events_001_9638f40fccac",
+        "candidate_live_constraint_events_002_fc5648fac9b9",
+        "candidate_live_constraint_events_003_f3d2678db64c",
+        "candidate_live_constraint_events_004_3286296e5756"
+      ],
+      "option_events": [
+        "candidate_option_events_000_24a1d3dcc4cd",
+        "candidate_option_events_001_a327468d3807",
+        "candidate_option_events_002_6ed2a700ae59"
+      ],
+      "question_events": [
+        "candidate_question_events_000_1bc3444a6a6e",
+        "candidate_question_events_001_aaaf40cfcb8f",
+        "candidate_question_events_002_b63a1ae80006"
+      ],
+      "user_pressure_events": [
+        "candidate_user_pressure_events_000_c3efbc9fde34",
+        "candidate_user_pressure_events_001_5d2e5a6df12b"
+      ]
+    },
+    "view_sha256": "dd89ac720e4d5dd3d38f6ebdda864f617be426a88896ff37f09686f598030190"
+  },
+  "decision_work_projection": [
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "question_initial_t1_870d0fc42d95",
+        "question_intermediate_t4_4006a44bc734",
+        "question_intermediate_t5_6a2390332db4"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "stance_t3_revision_00"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "option_option_t1_e70cef6c840f",
+        "option_option_t5_6b485f44d296",
+        "option_option_t6_f53b09113d04"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "user_pressure_correction_t3_6e72289eca40",
+        "user_pressure_correction_t3_77ca1976e0c5"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 2,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "dropped_thread_t4_user_e94d5cf9a5f4"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "live_constraint_t1_constraint_f6ef160a1093",
+        "live_constraint_t3_constraint_d13cf16143e1",
+        "live_constraint_t1_constraint_bdf1e546e352",
+        "live_constraint_t6_constraint_6e282b427113",
+        "live_constraint_t3_concern_b5cbc84c3e58"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 5,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "evidence_boundary_unsupported_assistant_claim_t3_bd1c672d878d",
+        "evidence_boundary_stated_unknown_t4_7bd5b5520a29"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 2,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "assistant_stance_trajectory",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "stance_t3_revision_00",
+        "stance_t4_condition_01",
+        "stance_t5_commitment_02",
+        "stance_t6_commitment_03"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "user_corrections_and_counter_pressure",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "user_pressure_correction_t3_6e72289eca40",
+        "user_pressure_correction_t3_77ca1976e0c5"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 2,
+      "status": "present_provisional"
+    }
+  ],
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 554,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3142,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.live_constraints",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3696
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 451,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3123,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.assistant_stances",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3574
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 119,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3135,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.dropped_threads",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3254
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 1184,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 2883,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.joint_process",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 4067
+      }
+    ]
+  },
+  "non_claims": [
+    "shadow_is_not_live_lane_input",
+    "shadow_does_not_modify_graph_routing",
+    "shadow_is_not_decision_quality_proof",
+    "shadow_is_not_human_validation",
+    "question_change_is_not_user_mind_change",
+    "missing_event_is_not_proof_of_real_world_absence",
+    "candidate_state_is_not_semantic_truth",
+    "reader_agreement_is_not_correctness"
+  ],
+  "schema_version": "lolla.core_semantic_shadow.v0",
+  "semantic_candidate_ledger": {
+    "authoritative_source": {
+      "contains_raw_conversation": false,
+      "contains_source_excerpts": true,
+      "conversation_sha256": "805215eaf55e424c80b8294738fc6aa99f11a66ed04fd043d4f2c814814bfb71",
+      "turn_count": 12
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_d63159717214",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 1,
+          "issue_id": "live_constraint_t1_constraint_f6ef160a1093",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 189,
+              "speaker": "user",
+              "start_char": 144,
+              "turn_index": 1
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "We have until tomorrow noon to raise or walk."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Hard deadline for the bidding war decision.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "We have until tomorrow noon to raise or walk.",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "b03057527200134c78f3822a2f8506de633fdadcc4ff7f9ef12f176c4243c876",
+        "reader_call_id": "semantic_reader_call_01_28b16f21a4d7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Hard deadline for the bidding war decision.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Hard deadline for the bidding war decision.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_9638f40fccac",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_t3_constraint_d13cf16143e1",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 353,
+              "speaker": "user",
+              "start_char": 191,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "Electrical has to be year 1 because the inspector said there's knob-and-tube in parts of the house and our insurance won't cover us long-term without updating it."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "External insurance requirement forcing immediate capital expenditure.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "Electrical has to be year 1 because the inspector said there's knob-and-tube in parts of the house and our insurance won't cover us long-term without updating it.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "2b61458dd679a90816b8bff1b9252a013c8f2895af29ca9909981cb536b1d865",
+        "reader_call_id": "semantic_reader_call_01_28b16f21a4d7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "External insurance requirement forcing immediate capital expenditure.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "External insurance requirement forcing immediate capital expenditure.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_fc5648fac9b9",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 1,
+          "issue_id": "live_constraint_t1_constraint_bdf1e546e352",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 372,
+              "speaker": "user",
+              "start_char": 314,
+              "turn_index": 1
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "We have $80K saved for renovation beyond the down payment."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Hard limit on available liquid capital for renovations.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "We have $80K saved for renovation beyond the down payment.",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "46c09eab4d40991b283c540ab0429936fa9e4ed93cc46266ab57e7dd059b687a",
+        "reader_call_id": "semantic_reader_call_01_28b16f21a4d7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Hard limit on available liquid capital for renovations.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Hard limit on available liquid capital for renovations.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_f3d2678db64c",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 6,
+          "issue_id": "live_constraint_t6_constraint_6e282b427113",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 165,
+              "speaker": "user",
+              "start_char": 69,
+              "turn_index": 6
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I'm going to tell my husband the ceiling is $925K, we raise to that, if we don't get it we walk."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Relational constraint/agreement on the maximum offer price.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I'm going to tell my husband the ceiling is $925K, we raise to that, if we don't get it we walk.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "ae84a5bae5fa46acce0052db54ba72f3676022921b85de138db5fde065fe6638",
+        "reader_call_id": "semantic_reader_call_01_28b16f21a4d7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Relational constraint/agreement on the maximum offer price.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Relational constraint/agreement on the maximum offer price.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_3286296e5756",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_t3_concern_b5cbc84c3e58",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 189,
+              "speaker": "user",
+              "start_char": 84,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "there's a slow leak under the sink we'd have to monitor. Not emergency but not ignore-for-3-years either."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Specific property issue creating a financial and maintenance stake.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "there's a slow leak under the sink we'd have to monitor. Not emergency but not ignore-for-3-years either.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "f170ab31ddd86f03a5cccd07a19e188fa3f4de4ad1eda45b8659ac48416b3a96",
+        "reader_call_id": "semantic_reader_call_01_28b16f21a4d7",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Specific property issue creating a financial and maintenance stake.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Specific property issue creating a financial and maintenance stake.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_84bd1b5ec3cf",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 835,
+              "speaker": "assistant",
+              "start_char": 711,
+              "turn_index": 3
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "revision",
+          "stance_id": "stance_t3_revision_00",
+          "text": "You likely can't afford the house in its actual need-state with no buffer. That's different from \"can you afford to buy it.\"",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "revision",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 3
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Reframes the user's financial decision from a purchase-price question to a maintenance-buffer question.",
+          "relation": "revision",
+          "relation_ambiguity": false,
+          "text": "you likely can't afford the house in its actual need-state with no buffer. That's different from \"can you afford to buy it.\"",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "55a58274f6410fe019aa491b64f176cd48a52cc28f04918764b9bcbed455c51f",
+        "reader_call_id": "semantic_reader_call_02_7b9407a48360",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Reframes the user's financial decision from a purchase-price question to a maintenance-buffer question.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Reframes the user's financial decision from a purchase-price question to a maintenance-buffer question.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_7a629b4ef015",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 787,
+              "speaker": "assistant",
+              "start_char": 647,
+              "turn_index": 4
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "condition",
+          "stance_id": "stance_t4_condition_01",
+          "text": "The test question is: at $950K, with $0 buffer, and the mandatory year-one spend, do you know what you'd do if the boiler fails in December?",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "condition",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 4
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Sets a specific financial stress test as a criterion for the $950K offer.",
+          "relation": "condition",
+          "relation_ambiguity": false,
+          "text": "The test question is: at $950K, with $0 buffer, and the mandatory year-one spend, do you know what you'd do if the boiler fails in December?",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "e7c7991892c1e4ad1dabba44d55821fa427f401c06bc6edaacb2b738816ef3b4",
+        "reader_call_id": "semantic_reader_call_02_7b9407a48360",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Sets a specific financial stress test as a criterion for the $950K offer.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Sets a specific financial stress test as a criterion for the $950K offer.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_9271f0c4b3d5",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 398,
+              "speaker": "assistant",
+              "start_char": 317,
+              "turn_index": 5
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t5_commitment_02",
+          "text": "If you're going to counter, counter at your real number, not a compromise number.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 5
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Direct recommendation to avoid middle-path bidding strategies.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "If you're going to counter, counter at your real number, not a compromise number.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "7792aa9fded2e3da510be84b7a0c06ee885852c33e6c08caf833f85e32ee75b0",
+        "reader_call_id": "semantic_reader_call_02_7b9407a48360",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Direct recommendation to avoid middle-path bidding strategies.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Direct recommendation to avoid middle-path bidding strategies.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_4373941f620b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 788,
+              "speaker": "assistant",
+              "start_char": 701,
+              "turn_index": 6
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t6_commitment_03",
+          "text": "spend the first month after closing NOT doing any renovations. Live in the house as-is.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 6
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Provides a clear directive for post-purchase behavior to mitigate renovation risk.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "spend the first month after closing NOT doing any renovations. Live in the house as-is.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "5b1ef507fc44a8de8fd51cfef1926bfb90bf7dd787c2f8d64d093e13e024a71f",
+        "reader_call_id": "semantic_reader_call_02_7b9407a48360",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Provides a clear directive for post-purchase behavior to mitigate renovation risk.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Provides a clear directive for post-purchase behavior to mitigate renovation risk.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_e128bc63ebf4",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 4,
+          "issue_id": "dropped_thread_t4_user_e94d5cf9a5f4",
+          "kind": "open_loop",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 230,
+              "speaker": "user",
+              "start_char": 141,
+              "turn_index": 4
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "acknowledged_then_dropped",
+          "superseded_by": "The assistant pivoted to the practical risks of the $950K price point and the stress of living without a buffer.",
+          "text": "I find that emotionally compelling but I don't know if I'm being sensible or just scared."
+        },
+        "family": "dropped_thread_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "open_loop",
+          "kind_ambiguity": false,
+          "speaker": "user",
+          "superseded_by": "The assistant pivoted to the practical risks of the $950K price point and the stress of living without a buffer.",
+          "text": "I find that emotionally compelling but I don't know if I'm being sensible or just scared.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "dea7714fd87e6e632557bbfab140b61244cbd01c82fcd260a019a984ed828a5e",
+        "reader_call_id": "semantic_reader_call_03_180c4fbf1f2d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_000_1bc3444a6a6e",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": false,
+          "event_id": "question_initial_t1_870d0fc42d95",
+          "family": "question",
+          "grounding": "span",
+          "kind": "initial",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 436,
+            "quote": "Husband wants to go up to $950K. I think that's too much. Help.",
+            "speaker": "user",
+            "start_char": 373,
+            "turn_index": 1
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "user",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "not_declared",
+            "target_candidate_ids": []
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "changes_prior_question": false,
+          "question_function": "decision_choice",
+          "quote": "Husband wants to go up to $950K. I think that's too much. Help.",
+          "related_question_quote": null,
+          "related_question_turn_index": null,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": null,
+          "stage": "initial",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "462933e03b695f8fa8afbcab56666df714c1ca6be24fb5eb9c3717cab014e0e4",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_001_aaaf40cfcb8f",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t4_4006a44bc734",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 140,
+            "quote": "My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair?",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 4
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "Husband wants to go up to $950K. I think that's too much. Help.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "reframes",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_1bc3444a6a6e"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair?",
+          "related_question_quote": "Husband wants to go up to $950K. I think that's too much. Help.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "reframes",
+          "stage": "intermediate",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "3d20eb174f1ff7407dfd35e8aca776c385995ef891b5dad98bc9ab6bdfc9d542",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_002_b63a1ae80006",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t5_6a2390332db4",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 166,
+            "quote": "If I push back at $920K instead of $950K — that's only $15K over what I'm comfortable with, and maybe the $30K of breathing room matters. Would that be a middle path?",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 5
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair?",
+              "speaker": "user",
+              "turn_index": 4
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_001_aaaf40cfcb8f"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "If I push back at $920K instead of $950K — that's only $15K over what I'm comfortable with, and maybe the $30K of breathing room matters. Would that be a middle path?",
+          "related_question_quote": "My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair?",
+          "related_question_turn_index": 4,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "76463ab983df3c88521f138bc0008f98de1a9c3dc30850b3744deb061bbc3c1e",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_003_1a5800c4294e",
+        "current_view_eligible": false,
+        "event_snapshot": null,
+        "family": "question_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "What's your actual ceiling — the number where you wouldn't regret losing it?",
+          "related_question_quote": "If I push back at $920K instead of $950K — that's only $15K over what I'm comfortable with, and maybe the $30K of breathing room matters. Would that be a middle path?",
+          "related_question_turn_index": 5,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "current",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "a9bf30032dec6551203720bc389e133ed1bbc70a8bc4290a9ec3e36d4e8bc740",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "candidate_quote_not_found_in_source_turn",
+            "state": "not_supported_by_source"
+          }
+        ],
+        "terminal_reason": "candidate_quote_not_found_in_source_turn",
+        "terminal_state": "not_supported_by_source"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_000_c3efbc9fde34",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_correction_t3_6e72289eca40",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "correction",
+          "provisional": true,
+          "source": {
+            "end_char": 353,
+            "quote": "Electrical has to be year 1 because the inspector said there's knob-and-tube in parts of the house and our insurance won't cover us long-term without updating it.",
+            "speaker": "user",
+            "start_char": 191,
+            "turn_index": 3
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "correction",
+          "quote": "Electrical has to be year 1 because the inspector said there's knob-and-tube in parts of the house and our insurance won't cover us long-term without updating it.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "c5de78f29c7bb07efefc0cd8fa184d9a65fa0e8122c2c2a95774434fd039e795",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_5d2e5a6df12b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_correction_t3_77ca1976e0c5",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "correction",
+          "provisional": true,
+          "source": {
+            "end_char": 447,
+            "quote": "Roof we have a little more flexibility on — there's no active leak, inspector said 2-3 years.",
+            "speaker": "user",
+            "start_char": 354,
+            "turn_index": 3
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "correction",
+          "quote": "Roof we have a little more flexibility on — there's no active leak, inspector said 2-3 years.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "978f3de66447b46a000dcba375c8d55933eeefbd63883772fe463229f5e6002f",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_000_24a1d3dcc4cd",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t1_e70cef6c840f",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 405,
+            "quote": "Husband wants to go up to $950K.",
+            "speaker": "user",
+            "start_char": 373,
+            "turn_index": 1
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "Husband wants to go up to $950K.",
+          "speaker": "USER",
+          "status": "proposed",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "631daae47fc88198e6fe2c874d47f5f9217ee6ec5668f5ee29fc4a8cd2b900d2",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_a327468d3807",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t5_6b485f44d296",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 40,
+            "quote": "If I push back at $920K instead of $950K",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 5
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "If I push back at $920K instead of $950K",
+          "speaker": "USER",
+          "status": "proposed",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "428f7ccdd0d3a29d466150270a6634ba2ee8a03c944b67f8f8838fda3f44c6b4",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_002_6ed2a700ae59",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t6_f53b09113d04",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 35,
+            "quote": "Probably $925K if I'm being honest.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 6
+          },
+          "status": "current"
+        },
+        "family": "option_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "Probably $925K if I'm being honest.",
+          "speaker": "USER",
+          "status": "current",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "4111d701a3ffc8cbe0b8b82031dd88750b8d1cae0866d2df0674cb414c6bd9cb",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_fe855920e1e7",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "The assistant assumes the kitchen will require $8-15K in stopgaps.",
+          "event_id": "evidence_boundary_unsupported_assistant_claim_t3_bd1c672d878d",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "unsupported_assistant_claim",
+          "provisional": true,
+          "source": {
+            "end_char": 101,
+            "quote": "Kitchen-with-problems means you're probably looking at $8-15K in stopgaps during the 3-year delay",
+            "speaker": "assistant",
+            "start_char": 4,
+            "turn_index": 3
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "claim": "The assistant assumes the kitchen will require $8-15K in stopgaps.",
+          "kind": "unsupported_assistant_claim",
+          "quote": "Kitchen-with-problems means you're probably looking at $8-15K in stopgaps during the 3-year delay",
+          "speaker": "ASSISTANT",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "199dddc465d4dc71894ed06cfbdb3469ac9070d542274cf330c6093a84a4ff08",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_1c2d6b6fe53f",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "The user does not know if their desire to walk away is sensible or fear-based.",
+          "event_id": "evidence_boundary_stated_unknown_t4_7bd5b5520a29",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "stated_unknown",
+          "provisional": true,
+          "source": {
+            "end_char": 230,
+            "quote": "I find that emotionally compelling but I don't know if I'm being sensible or just scared.",
+            "speaker": "user",
+            "start_char": 141,
+            "turn_index": 4
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "claim": "The user does not know if their desire to walk away is sensible or fear-based.",
+          "kind": "stated_unknown",
+          "quote": "I find that emotionally compelling but I don't know if I'm being sensible or just scared.",
+          "speaker": "USER",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "67fd9cb65b73c37331f1d18e94e0814d1b0ff0f1d857c08ec12edae571080795",
+        "reader_call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      }
+    ],
+    "metrics": {
+      "ambiguous_candidate_count": 0,
+      "candidate_custody_complete": true,
+      "counts_by_family": {
+        "assistant_stance_events": 4,
+        "dropped_thread_events": 1,
+        "evidence_boundary_events": 2,
+        "live_constraint_events": 5,
+        "option_events": 3,
+        "question_events": 4,
+        "user_pressure_events": 2
+      },
+      "counts_by_terminal_state": {
+        "not_supported_by_source": 1,
+        "selected_for_current_view": 20
+      },
+      "current_view_candidate_count": 20,
+      "expected_proposal_count": 21,
+      "proposal_count": 21,
+      "referenced_source_turns": [
+        {
+          "speaker": "user",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 3
+        },
+        {
+          "speaker": "user",
+          "turn_index": 3
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 4
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5
+        },
+        {
+          "speaker": "user",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 6
+        },
+        {
+          "speaker": "user",
+          "turn_index": 6
+        }
+      ],
+      "source_turn_reference_coverage": 0.75,
+      "terminal_record_count": 21,
+      "trajectory_references": {
+        "ambiguous_relation_count": 0,
+        "counts_by_chronology_status": {
+          "not_applicable": 5,
+          "prior_or_same_position": 2
+        },
+        "counts_by_reference_status": {
+          "not_declared": 5,
+          "resolved": 2
+        },
+        "counts_by_relation_status": {
+          "declared": 6,
+          "not_declared": 1
+        },
+        "must_not_be_used_as_quality_label": true,
+        "trajectory_event_count": 7
+      },
+      "unreferenced_source_turns": [
+        {
+          "speaker": "assistant",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 2
+        },
+        {
+          "speaker": "user",
+          "turn_index": 2
+        }
+      ],
+      "unterminated_record_count": 0
+    },
+    "non_claims": [
+      "candidate_state_is_not_semantic_truth",
+      "validation_is_not_reasoning_quality_proof",
+      "source_turn_coverage_is_not_semantic_completeness",
+      "reader_agreement_is_not_correctness"
+    ],
+    "reader_calls": [
+      {
+        "call_id": "semantic_reader_call_01_28b16f21a4d7",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 1,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "live_constraints": 5
+        },
+        "reader_role": "live_constraints",
+        "system_prompt_sha256": "a5797f98c1a42179422a81b7911be765d692fb44d8df9cffe04c896d6b4707b5",
+        "user_prompt_sha256": "a4c0c5d3d08f5a80838f87c6c8366645cca4d49a1d105ded78797584bd80da7f"
+      },
+      {
+        "call_id": "semantic_reader_call_02_7b9407a48360",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 2,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "stance_events": 4
+        },
+        "reader_role": "assistant_stances",
+        "system_prompt_sha256": "b87650e55752dac8ffff1911c89ead8f38447af20f110ef0aabd7c14b26ee232",
+        "user_prompt_sha256": "71a2c64a5dd823297957f276825c260e3e76a525a27cd8962c779cf70eb87d08"
+      },
+      {
+        "call_id": "semantic_reader_call_03_180c4fbf1f2d",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 3,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "dropped_threads": 1
+        },
+        "reader_role": "dropped_threads",
+        "system_prompt_sha256": "2b3ba325694c3827bba00e0aa361a27aeafe4e39985cb00d3632a54f3f9b8bda",
+        "user_prompt_sha256": "1dc2fb121fe8a30fcc7612e4fddb6770dfe3e567e59030f50feed8101a8bd4a8"
+      },
+      {
+        "call_id": "semantic_reader_call_04_bcca397e9b4e",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 4,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "evidence_boundary_events": 2,
+          "option_events": 3,
+          "question_events": 4,
+          "user_pressure_events": 2
+        },
+        "reader_role": "joint_process",
+        "system_prompt_sha256": "2959b1918c87f20d1fec683524d9151aee1e3230d3288003f2d025af682ac91a",
+        "user_prompt_sha256": "28f7a71a2c539f3b1541e91f5e93b882a9e8ee63a9ff07ed1721c76c0f1ce81d"
+      }
+    ],
+    "schema_version": "lolla.semantic_candidate_ledger.v0",
+    "supported_candidate_states": [
+      "proposed",
+      "validated",
+      "invalid_evidence",
+      "set_aside_semantically",
+      "selected_for_current_view",
+      "ambiguous_competing_read",
+      "not_supported_by_source",
+      "not_evaluated_budget"
+    ]
+  },
+  "semantic_events": {
+    "assistant_stance_events": [
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_84bd1b5ec3cf",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 835,
+            "speaker": "assistant",
+            "start_char": 711,
+            "turn_index": 3
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "revision",
+        "stance_id": "stance_t3_revision_00",
+        "text": "You likely can't afford the house in its actual need-state with no buffer. That's different from \"can you afford to buy it.\"",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "revision",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 3
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_7a629b4ef015",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 787,
+            "speaker": "assistant",
+            "start_char": 647,
+            "turn_index": 4
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "condition",
+        "stance_id": "stance_t4_condition_01",
+        "text": "The test question is: at $950K, with $0 buffer, and the mandatory year-one spend, do you know what you'd do if the boiler fails in December?",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "condition",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 4
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_9271f0c4b3d5",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 398,
+            "speaker": "assistant",
+            "start_char": 317,
+            "turn_index": 5
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t5_commitment_02",
+        "text": "If you're going to counter, counter at your real number, not a compromise number.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 5
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_4373941f620b",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 788,
+            "speaker": "assistant",
+            "start_char": 701,
+            "turn_index": 6
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t6_commitment_03",
+        "text": "spend the first month after closing NOT doing any renovations. Live in the house as-is.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 6
+      }
+    ],
+    "dropped_thread_events": [
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_e128bc63ebf4",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 4,
+        "issue_id": "dropped_thread_t4_user_e94d5cf9a5f4",
+        "kind": "open_loop",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 230,
+            "speaker": "user",
+            "start_char": 141,
+            "turn_index": 4
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "The assistant pivoted to the practical risks of the $950K price point and the stress of living without a buffer.",
+        "text": "I find that emotionally compelling but I don't know if I'm being sensible or just scared."
+      }
+    ],
+    "evidence_boundary_events": [
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_fe855920e1e7",
+        "candidate_state": "selected_for_current_view",
+        "claim": "The assistant assumes the kitchen will require $8-15K in stopgaps.",
+        "event_id": "evidence_boundary_unsupported_assistant_claim_t3_bd1c672d878d",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "unsupported_assistant_claim",
+        "provisional": true,
+        "source": {
+          "end_char": 101,
+          "quote": "Kitchen-with-problems means you're probably looking at $8-15K in stopgaps during the 3-year delay",
+          "speaker": "assistant",
+          "start_char": 4,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_1c2d6b6fe53f",
+        "candidate_state": "selected_for_current_view",
+        "claim": "The user does not know if their desire to walk away is sensible or fear-based.",
+        "event_id": "evidence_boundary_stated_unknown_t4_7bd5b5520a29",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "stated_unknown",
+        "provisional": true,
+        "source": {
+          "end_char": 230,
+          "quote": "I find that emotionally compelling but I don't know if I'm being sensible or just scared.",
+          "speaker": "user",
+          "start_char": 141,
+          "turn_index": 4
+        }
+      }
+    ],
+    "live_constraint_events": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_d63159717214",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_f6ef160a1093",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 189,
+            "speaker": "user",
+            "start_char": 144,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "We have until tomorrow noon to raise or walk."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_9638f40fccac",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_t3_constraint_d13cf16143e1",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 353,
+            "speaker": "user",
+            "start_char": 191,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "Electrical has to be year 1 because the inspector said there's knob-and-tube in parts of the house and our insurance won't cover us long-term without updating it."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_fc5648fac9b9",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_bdf1e546e352",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 372,
+            "speaker": "user",
+            "start_char": 314,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "We have $80K saved for renovation beyond the down payment."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_f3d2678db64c",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 6,
+        "issue_id": "live_constraint_t6_constraint_6e282b427113",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 165,
+            "speaker": "user",
+            "start_char": 69,
+            "turn_index": 6
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I'm going to tell my husband the ceiling is $925K, we raise to that, if we don't get it we walk."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_3286296e5756",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_t3_concern_b5cbc84c3e58",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 189,
+            "speaker": "user",
+            "start_char": 84,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "there's a slow leak under the sink we'd have to monitor. Not emergency but not ignore-for-3-years either."
+      }
+    ],
+    "option_events": [
+      {
+        "candidate_id": "candidate_option_events_000_24a1d3dcc4cd",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t1_e70cef6c840f",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 405,
+          "quote": "Husband wants to go up to $950K.",
+          "speaker": "user",
+          "start_char": 373,
+          "turn_index": 1
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_a327468d3807",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t5_6b485f44d296",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 40,
+          "quote": "If I push back at $920K instead of $950K",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 5
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_002_6ed2a700ae59",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t6_f53b09113d04",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 35,
+          "quote": "Probably $925K if I'm being honest.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 6
+        },
+        "status": "current"
+      }
+    ],
+    "question_events": [
+      {
+        "candidate_id": "candidate_question_events_000_1bc3444a6a6e",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": false,
+        "event_id": "question_initial_t1_870d0fc42d95",
+        "family": "question",
+        "grounding": "span",
+        "kind": "initial",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 436,
+          "quote": "Husband wants to go up to $950K. I think that's too much. Help.",
+          "speaker": "user",
+          "start_char": 373,
+          "turn_index": 1
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "user",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "not_declared",
+          "target_candidate_ids": []
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_001_aaaf40cfcb8f",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t4_4006a44bc734",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 140,
+          "quote": "My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair?",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 4
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "Husband wants to go up to $950K. I think that's too much. Help.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "reframes",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_1bc3444a6a6e"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_002_b63a1ae80006",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t5_6a2390332db4",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 166,
+          "quote": "If I push back at $920K instead of $950K — that's only $15K over what I'm comfortable with, and maybe the $30K of breathing room matters. Would that be a middle path?",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 5
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair?",
+            "speaker": "user",
+            "turn_index": 4
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_001_aaaf40cfcb8f"
+          ]
+        }
+      }
+    ],
+    "user_pressure_events": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_c3efbc9fde34",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_correction_t3_6e72289eca40",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 353,
+          "quote": "Electrical has to be year 1 because the inspector said there's knob-and-tube in parts of the house and our insurance won't cover us long-term without updating it.",
+          "speaker": "user",
+          "start_char": 191,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_5d2e5a6df12b",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_correction_t3_77ca1976e0c5",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 447,
+          "quote": "Roof we have a little more flexibility on — there's no active leak, inspector said 2-3 years.",
+          "speaker": "user",
+          "start_char": 354,
+          "turn_index": 3
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "805215eaf55e424c80b8294738fc6aa99f11a66ed04fd043d4f2c814814bfb71",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 12
+  },
+  "validation": {
+    "joint_process": {
+      "evidence_boundary_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      },
+      "option_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 3,
+        "truncated_count": 0,
+        "validated_count": 3
+      },
+      "question_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 1,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 3
+      },
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      }
+    },
+    "specialists": {
+      "assistant_stances": {
+        "dropped_invalid_relation": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 4,
+        "validated_count": 4
+      },
+      "dropped_threads": {
+        "assistant_raised_count": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_speaker": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "dropped_speaker_mismatch": 0,
+        "raw_count": 1,
+        "user_raised_count": 1,
+        "validated_count": 1
+      },
+      "live_constraints": {
+        "derivation_mode_count": 0,
+        "dropped_derivation_no_valid_excerpt": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_mode": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "incomplete_derivation_count": 0,
+        "raw_count": 5,
+        "rejected_derivations": [],
+        "span_mode_count": 5,
+        "validated_count": 5
+      }
+    }
+  }
+}

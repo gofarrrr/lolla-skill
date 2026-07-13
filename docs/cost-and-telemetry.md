@@ -41,7 +41,7 @@ The live receipt prints a one-line cost estimate. If `cost_estimate_state` is no
 The `/usage` page surfaces the following blocks (server-side rendered, no SPA rebuild required):
 
 - **By vendor** — OpenRouter / OpenAI / Anthropic totals, calls, tokens, cache-hit rate, cost.
-- **OpenRouter — by stage** — per-stage call count, prompt / cached / completion tokens, and **cache-hit % per stage**. This per-stage cache rate is the highest-value diagnostic on the page: stages with identical system prompts across calls (e.g. `bullshit_index` across 50+ passages) cache at 80 %+ on a typical run; stages with per-call-varying system prompts (most pipeline lanes) cache at 2-3 % and are the candidates for the prompt-restructure follow-up.
+- **OpenRouter — by stage** — per-stage call count, prompt / cached / completion tokens, and **cache-hit % per stage**. This per-stage cache rate is the highest-value diagnostic on the page: stages with identical system prompts across calls (for example, `bullshit_index`) can reuse more prefix material; stages with per-call-varying system prompts (most pipeline lanes) are the candidates for the prompt-restructure follow-up.
 - **OpenAI — by model** — embedding model vs. expansion model split.
 - **Anthropic Step-7 sub-agents — by lane, optional only** — which Step-7 lane (1 = Delta, 2 = Companion, 3 = Frame, 4 = Coverage) was spawned when deeper-review mode was explicitly enabled, its model, status, total tokens, duration, and estimated cost. Default-off runs show no Anthropic sub-agent calls. Lanes that were `skipped_empty` or `skipped_error` do not appear because they were never spawned (per the SKILL Step 8b filter — see `merge_subagent_calls` and the input-record validation).
 - **Prompt versions** — 12-char hash of the system prompt used at each pipeline stage. Useful for reproducibility ("which prompt revision produced this finding?") and for diffing two runs of the same case.
@@ -69,16 +69,42 @@ Stages currently recorded:
 | `companion_verification` | companion lane, evidence validation | 0–1 |
 | `structural_coverage_classification` | coverage lane, problem typing | 1 |
 | `structural_coverage_detection` | coverage lane, dimension scan | 1 |
-| `bullshit_index` | `engine/system_b/bullshit_index.py`, one per passage of the audited answer | 1 per ~1500 chars (~30–60 typical) |
+| `bullshit_index` | `engine/system_b/bullshit_index.py`, one per evaluation passage of the audited answer | 0–12; adjacent source passages are merged when the uncapped split exceeds 12 |
 | `revision` | optional post-pipeline revision (skipped under `--skip-revision`) | 0–1 |
 
-Most expensive lane: **bullshit_index** (1 call per passage, in parallel — easily 50+ calls on a long answer).
+The Bullshit Index used to grow one call per split passage and could exceed 30
+or 50 calls on a long multi-turn answer. It now has a hard 12-call ceiling.
+When the uncapped split is larger, adjacent passages are merged
+deterministically. No passage is selected away, but localization becomes
+coarser. Its payload reports `source_passage_count`,
+`evaluation_passage_count`, `max_evaluation_passages`, and
+`passage_compaction_applied` so the trade-off is visible.
 
 Per-call records carry: `stage`, `tendency_id`, `provider_name`, `model`, `status`, `finish_reason`, `raw_message_content`, `temperature`, `prompt_tokens`, `completion_tokens`, `total_tokens`, `cached_tokens`, `cache_write_tokens`, `reasoning_tokens`. Status is `ok` for successful calls, an HTTP error code, `timeout`, `missing_api_key`, or `response_json_error` for failures. `raw_message_content` is the full LLM response string per call — persisted so any LLM decision is investigable from `result.json` alone without re-running the pipeline. Adds ~10–50 KB to a typical `result.json`, scaling roughly linearly with call count and per-call output size.
+
+Extraction call custody is transactional. `run_extract.py` atomically writes
+the run-scoped extraction sidecar immediately after the initial provider call,
+before strategic/schema validation can return, and replaces it with both
+records if the one quote-repair call runs. The extraction artifact separately
+records `provider_call_custody`: call attempted, sidecar persisted, call record
+persisted, recorded count, terminal status, and admissible extraction. An
+unexpected boundary exception is recorded as `unexpected_error` before it is
+re-raised.
+
+If a call was attempted but no record survived, usage is unknown—not zero. The
+admission sealer emits null calls/tokens/cost and
+`cost_estimate_state: unknown_missing_call_record`. Numeric zero is valid only
+when a no-call terminal was explicitly recorded. See
+`docs/evals/extraction-call-custody-contract-v0.md`.
 
 ### OpenAI (embeddings + query expansion)
 
 Every embedding or chat call inside `engine/system_b/embedding_retriever.py`. Recorded via a `ContextVar`-scoped capture (`capture_usage()` opened at the top of the pipeline run, closed before `usage_summary` is built). Per-run isolation is structural — calls outside the scope are silently ignored, not leaked into another run's totals.
+
+These requests use the direct OpenAI endpoints and `OPENAI_API_KEY`; the
+OpenRouter key is not a fallback credential for embeddings or expansion. In
+automatic mode, an empty OpenAI key disables this layer and the run degrades to
+the non-embedding retrieval path.
 
 Three call types:
 
@@ -105,8 +131,8 @@ Default-off runs do not write sub-agent usage records. Optional Step 8b (`SKILL.
 ```
 ┌────────────────┐     stage="extraction"          ┌────────────────────────────┐
 │ run_extract.py │────────────────────────────────▶│ /tmp/lolla_<run_id>_       │
-│                │   writes client.call_log to     │   extraction_calls.json    │
-└────────────────┘   sidecar at end                └────────────────────────────┘
+│                │   atomically writes call_log    │   extraction_calls.json    │
+└────────────────┘   after each provider boundary  └────────────────────────────┘
                                                                 │
                                                                 ▼
 ┌─────────────────────┐                              load_extraction_sidecar()

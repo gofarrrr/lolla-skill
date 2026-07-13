@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-07-messy-linked-decisions",
+  "source_file_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_where_to_start", "dimension": "operative_question", "description": "The initial request is how to begin untangling three linked problems.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I don't even know where to start."}]},
+    {"observation_id": "question.current_plan_completeness", "dimension": "operative_question", "description": "The current request asks whether the sequenced plan is missing anything.", "evidence": [{"turn_index": 11, "speaker": "user", "quote": "Am I missing anything."}]},
+    {"observation_id": "pressure.claimed_but_not_actual_decision", "dimension": "user_corrections_and_pressure", "description": "The user corrects their own claim of having decided on Seattle.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "I keep telling myself I've decided on Seattle but I haven't actually decided."}]},
+    {"observation_id": "constraint.lease_deadline", "dimension": "constraints_and_options", "description": "The lease ends in sixty days.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "my lease is up in 60 days and my landlord isn't renewing"}]},
+    {"observation_id": "stance.seattle_root_decision", "dimension": "assistant_positions_and_revisions", "description": "The assistant initially frames Seattle as the root decision.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "the lease thing is secondary to the bigger question, which is: are you taking the Seattle job"}]},
+    {"observation_id": "stance.lease_decoupling", "dimension": "assistant_positions_and_revisions", "description": "The assistant later decouples the apartment deadline from the life decisions.", "evidence": [{"turn_index": 7, "speaker": "assistant", "quote": "The lease can be decoupled."}]},
+    {"observation_id": "drop.life_in_dc", "dimension": "dropped_or_under_carried_threads", "description": "Attachment to the user's existing life in DC is not substantively explored.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "I love DC and my whole life is here"}]},
+    {"observation_id": "boundary.boyfriend_commitment_untested", "dimension": "uncertainty_and_evidence_boundaries", "description": "The boyfriend's willingness to move has not been tested concretely.", "evidence": [{"turn_index": 4, "speaker": "user", "quote": "I've been avoiding specifics because I was afraid he'd back out."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.seattle_decision", "description": "The Seattle offer is not accepted or declined in the conversation."}
+  ]
+}

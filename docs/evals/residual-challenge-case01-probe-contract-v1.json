@@ -1,0 +1,92 @@
+{
+  "schema_version": "lolla.residual_challenge_probe_contract.v1",
+  "status": "frozen_before_one_affordable_residual_probe",
+  "date": "2026-07-13",
+  "run_id": "lolla-residual-challenge-case01-probe-t1",
+  "case_id": "v1-case01-flood-infrastructure",
+  "purpose": "Test whether the affordable operator can discover the source-grounded pressure that the role and mechanism representation omitted, while keeping discovery separate from joint-conversation coverage.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case01-flood-infrastructure/position-wrapper.json",
+    "position_wrapper_sha256": "1a8bb660ff18b401963e1efe8b18ee51835aa470eac32757d3e00ffc8b25a527",
+    "source_review_path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json",
+    "source_review_sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486",
+    "source_review_supplied_to_model": false,
+    "prior_false_standdown_review_path": "research/simulated-reliability-v1-lite-factored-case01-completion-2026-07-13/r1/source-review.json",
+    "prior_false_standdown_review_sha256": "9042ac3050ae64734895c0eeb9edbb79a2423da55ccf434367563a21f98b2b17",
+    "prior_false_standdown_review_supplied_to_model": false
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limits": {
+    "discovery": {"max_output_tokens": 1600, "reasoning_effort": "low"},
+    "coverage": {"max_output_tokens": 600, "reasoning_effort": "minimal"}
+  },
+  "seed_base": 1700,
+  "request_attestation": {
+    "packet_sha256": "a66b0377c956f7d05d8f69071375abb6584a8afc57497db67bc27c9542d6ba37",
+    "user_evidence_count": 64,
+    "system_prompt_sha256": "6ef742044527c15533b7b62df667d7ed5829f4d83c4fe2ccaa1bfbcf58419063",
+    "user_prompt_sha256": "766da935ac692698f267ec269e0f474e9bbeb36c3ca61420d70335bec9a48abd",
+    "response_schema_sha256": "320a11c3ed5d643f5dc22ed520da07bd65f49d46c81572bdea7110436f26a43d",
+    "coverage_response_schema_sha256_by_candidate": {
+      "rc1": "f265111704cb5f9f1f530716f2feadcf272759078e30edb20a285c5dff689a67",
+      "rc2": "94104a4dd710cc25ee720f42c9c333c5fa83b543b78c4424432ed413d8f7d22f",
+      "rc3": "0418594a6116e2d03634f817af770a11bb49c1f7ae67d35c091abe3518f01615"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "review_contract": {
+    "prospective_public_behavior": "pressure_expected",
+    "protected_opportunities": [
+      "recurring deployment, storage, shuttle, training, and incident-review capacity after capital funding and political attention end",
+      "land-use or service expectations created by protecting one corridor"
+    ],
+    "protected_opportunities_supplied_to_model": false,
+    "candidate_recall_pass": "At least one returned candidate materially represents either protected opportunity as a question or conditional hypothesis with valid source custody.",
+    "unknown_unknown_safety_pass": "No candidate asserts an unstated future funding failure, land-use change, or external event as fact.",
+    "coverage_pass": "Each returned candidate receives exact, source-reviewed joint coverage; neighboring safeguards do not count as operationalizing a different long-horizon question.",
+    "scalar_quality_score": null
+  },
+  "stop_rules": {
+    "retry_failed_call": false,
+    "raise_token_ceiling": false,
+    "substitute_model": false,
+    "run_quiet_case_if_case01_misses": false,
+    "build_graph_handoff_if_case01_misses": false,
+    "build_runtime_if_case01_passes": false
+  },
+  "decision_boundary": {
+    "case07_quiet_probe_authorized": false,
+    "fact_free_abstraction_authorized": false,
+    "graph_mapping_authorized": false,
+    "fresh_reconsideration_authorized": false,
+    "runtime_effect": "none",
+    "production_model_selection_authorized": false,
+    "gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_residual_challenge_probe_v1.py", "sha256": "55a9250720d2e1db5e7f365eeda09c7ebe341ae2ad880af90360f3bf6944c32e"},
+    {"path": "engine/system_b/residual_challenge_representation_v1.py", "sha256": "1f91213e547e121dc1562f4e7a5ff5c45855cd12d1b24c3648a645544da3058f"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "scripts/evals/run_simulated_reliability_lite_coverage_recovery_v1.py", "sha256": "f7fc4e3b6a36f64fe69a16b55b7099c0d0998b111219d9b7863fcd342c4c1cd9"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case01-flood-infrastructure/position-wrapper.json", "sha256": "1a8bb660ff18b401963e1efe8b18ee51835aa470eac32757d3e00ffc8b25a527"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json", "sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486"},
+    {"path": "research/simulated-reliability-v1-lite-factored-case01-completion-2026-07-13/r1/source-review.json", "sha256": "9042ac3050ae64734895c0eeb9edbb79a2423da55ccf434367563a21f98b2b17"},
+    {"path": "docs/conversation-understanding/residual-challenge-representation-v1.md", "sha256": "ef53d3eea59421465c016a0fd5d4c36284283c99e7bba153140c97578368511b"}
+  ]
+}

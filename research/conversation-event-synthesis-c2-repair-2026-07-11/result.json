@@ -1,0 +1,75 @@
+{
+  "schema_version": "lolla.conversation_event_synthesis_phase_result.v1",
+  "status": "fail",
+  "phase": "C_fresh_context_synthesis",
+  "case_count": 3,
+  "provider_call_count": 9,
+  "automatic_retry_count": 0,
+  "operational_success_rate": 1.0,
+  "typed_admission_rate": 0.7778,
+  "estimated_cost_usd": 0.03938675,
+  "prompt_tokens": 121181,
+  "completion_tokens": 6061,
+  "invalid_synthesis_count": 0,
+  "compiled_case_count": 3,
+  "handoff_violation_count": 1,
+  "direct_graph_seed_count": 0,
+  "cases": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "expected_call_count": 3,
+      "provider_call_count": 3,
+      "operational_success_count": 3,
+      "typed_admission_count": 2,
+      "invalid_synthesis_count": 0,
+      "compiled": true,
+      "handoff_violation_count": 0,
+      "direct_graph_seed_count": 0,
+      "position_count": 2,
+      "thread_count": 0,
+      "constraint_count": 9
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "expected_call_count": 3,
+      "provider_call_count": 3,
+      "operational_success_count": 3,
+      "typed_admission_count": 2,
+      "invalid_synthesis_count": 0,
+      "compiled": true,
+      "handoff_violation_count": 1,
+      "direct_graph_seed_count": null,
+      "position_count": 3,
+      "thread_count": 0,
+      "constraint_count": 7
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "expected_call_count": 3,
+      "provider_call_count": 3,
+      "operational_success_count": 3,
+      "typed_admission_count": 3,
+      "invalid_synthesis_count": 0,
+      "compiled": true,
+      "handoff_violation_count": 0,
+      "direct_graph_seed_count": 0,
+      "position_count": 2,
+      "thread_count": 3,
+      "constraint_count": 10
+    }
+  ],
+  "semantic_review_requirements": {
+    "current_position_and_ownership_preserved": true,
+    "late_material_contributions_preserved": true,
+    "focal_thread_trajectory_and_disposition_preserved": true,
+    "constraint_source_strength_inflation_count": 0,
+    "atomic_constraint_precision_min": 0.8,
+    "atomic_constraint_recall_min": 0.75
+  },
+  "runtime_modified": false,
+  "non_claims": [
+    "mechanical_compilation_is_not_semantic_correctness",
+    "development_cases_are_not_independent_product_proof",
+    "phase_c_does_not_authorize_graph_or_runtime_integration"
+  ]
+}

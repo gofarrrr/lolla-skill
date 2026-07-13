@@ -1,0 +1,60 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_qualification_review_source_review.v1",
+  "status": "present_and_quiet_reviews_pass_source_first_review",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "case_reviews": [
+    {
+      "case_id": "v1-case06-industry-funded-lab",
+      "expected_class": "present",
+      "model_outcome": "unresolved_qualification_present",
+      "class_match": true,
+      "source_fidelity": "pass",
+      "evidence_precision": "pass",
+      "speaker_ownership": "pass",
+      "assessment": "e052 and e097 directly support a structural qualification that remains distinct from the accepted safeguards: the partnership can shape young researchers, hiring, and attention even when the contract works.",
+      "caveat": "The interpretation uses 'inevitably', which is rhetorically stronger than necessary. The user's 'will still shape' is itself strong, so the difference does not reverse or erase the qualification."
+    },
+    {
+      "case_id": "v1-case07-cooperative-scheduling",
+      "expected_class": "quiet",
+      "model_outcome": "no_unresolved_qualification_observed",
+      "class_match": true,
+      "source_fidelity": "pass",
+      "evidence_precision": "pass_with_assistant_context",
+      "speaker_ownership": "pass",
+      "assessment": "e095-e098 show that channel timing, loyalty scoring, staffing, privacy, monitoring, pause, and final governance have become current trial rules. Pending trial results do not constitute an unresolved decision about whether to launch the trial; the later member decision is part of the adopted design.",
+      "caveat": "e103 is assistant-authored and should be read as confirmation of governance ownership, not as a user statement. The model also cites four direct user aliases, so the quiet conclusion does not depend on that assistant line."
+    }
+  ],
+  "restraint_result": {
+    "risk_language_treated_as_automatic_qualification": false,
+    "adopted_monitoring_treated_as_automatic_uncertainty": false,
+    "omission_used_as_evidence_of_absence": false,
+    "source_linked_negative_outcome_produced": true
+  },
+  "custody_and_cost": {
+    "provider_calls": 2,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "present_duration_seconds": 2.003,
+    "quiet_duration_seconds": 2.237,
+    "present_cost_usd": 0.001248,
+    "quiet_cost_usd": 0.001293,
+    "total_provider_reported_cost_usd": 0.002541,
+    "cost_ceiling_usd": 0.01,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "qualification_review_microtask_passed_this_present_quiet_pair": true,
+    "provider_free_join_ready_for_case06": true,
+    "quiet_qualification_extractor_not_yet_tested_with_lite": true,
+    "mechanism_call_authorized": false,
+    "production_model_selected": false,
+    "premium_model_call_authorized": false,
+    "next": "Run the already frozen two-single-role design on the quiet cooperative case. A valid quiet portfolio requires a current record, an empty qualification response, and agreement with the independent no-unresolved review."
+  }
+}

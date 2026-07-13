@@ -1,0 +1,34 @@
+{
+  "schema_version": "lolla.conversation_state_handoff_replay_result.v1",
+  "status": "passed",
+  "comparison_kind": "representation_capacity_against_reviewed_failures_not_new_extractor_output",
+  "contract_sha256": "321b81aaa7d9cc32bd5deaac47906bc64a44f3beee525f3ea3cc4f15346f261c",
+  "baseline": {"proposal_provenance_case_precision": 0.0, "thread_status_precision": 0.0, "strict_constraint_coverage": 0.418605},
+  "observed": {
+    "case_count": 5,
+    "position_count": 5,
+    "joint_position_count": 5,
+    "thread_count": 5,
+    "constraint_count": 43,
+    "exact_source_evidence_count": 88,
+    "direct_graph_seed_count": 0,
+    "position_ownership_counts": {"joint": 5},
+    "thread_disposition_counts": {"addressed_unresolved": 4, "resolved": 1},
+    "claim_mode_counts": {"concern": 3, "mixed": 2, "possibility": 3, "preference": 2, "reported_statement": 14, "stated_condition": 19}
+  },
+  "case_results": [
+    {"case_id": "amb1-case01-product-scope", "status": "passed", "position_count": 1, "thread_count": 1, "constraint_count": 8, "exact_source_evidence_count": 17, "position_ownership": "joint", "thread_disposition": "addressed_unresolved", "direct_graph_seed_count": 0, "routing_projection_contains_case_context": false},
+    {"case_id": "amb1-case02-nonprofit-scale", "status": "passed", "position_count": 1, "thread_count": 1, "constraint_count": 9, "exact_source_evidence_count": 17, "position_ownership": "joint", "thread_disposition": "addressed_unresolved", "direct_graph_seed_count": 0, "routing_projection_contains_case_context": false},
+    {"case_id": "amb1-case03-creative-partnership", "status": "passed", "position_count": 1, "thread_count": 1, "constraint_count": 8, "exact_source_evidence_count": 19, "position_ownership": "joint", "thread_disposition": "resolved", "direct_graph_seed_count": 0, "routing_projection_contains_case_context": false},
+    {"case_id": "amb1-case04-research-tool-release", "status": "passed", "position_count": 1, "thread_count": 1, "constraint_count": 9, "exact_source_evidence_count": 17, "position_ownership": "joint", "thread_disposition": "addressed_unresolved", "direct_graph_seed_count": 0, "routing_projection_contains_case_context": false},
+    {"case_id": "amb1-case05-family-archive", "status": "passed", "position_count": 1, "thread_count": 1, "constraint_count": 9, "exact_source_evidence_count": 18, "position_ownership": "joint", "thread_disposition": "addressed_unresolved", "direct_graph_seed_count": 0, "routing_projection_contains_case_context": false}
+  ],
+  "gates": {"case_count": true, "position_count": true, "joint_position_count": true, "thread_count": true, "constraint_count": true, "direct_graph_seed_count": true, "all_case_packets_passed": true, "all_evidence_exactly_source_grounded": true, "case_context_excluded_from_routing_projection": true, "baseline_failure_counts_preserved": true},
+  "failed_gates": [],
+  "interpretation": {"representation_can_express_reviewed_state": true, "production_extractor_can_populate_state": "not_tested", "semantic_label_correctness": "human_reviewed_same_session_not_independent", "consumer_context_effect": "not_tested", "graph_effect": "none_direct_routing_forbidden"},
+  "provider_calls": 0,
+  "graph_calls": 0,
+  "runtime_modified": false,
+  "next_decision": "design_one_bounded_extraction_only_probe_after_prompt_and_schema_freeze",
+  "non_claims": ["not_extractor_improvement", "not_independent_gold", "not_graph_value", "not_runtime_authority", "not_provider_probe_execution_authority"]
+}

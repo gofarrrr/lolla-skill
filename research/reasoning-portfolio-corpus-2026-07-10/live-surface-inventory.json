@@ -1,0 +1,126 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_live_surface_inventory.v0",
+  "status": "metadata_inventory_only",
+  "run_count": 2,
+  "eligible_run_count": 2,
+  "runs": [
+    {
+      "case_id": "approve-proposed-lolla-project",
+      "run_id": "20260709T203911Z_4fc747",
+      "eligibility": "eligible",
+      "missing_artifacts": [],
+      "artifact_hashes": {
+        "graph_survival_report.json": "sha256:51713adc4040893e50d0552a20ae9f618df1d88a028e91e47ab4042123cf7531",
+        "pre_step6_private_table.json": "sha256:6acd3d2088ca484652ce6d2bc30159cb90128f59d9cc2e5cafba753c2ad30868",
+        "pre_step6_private_table_ledger.json": "sha256:b4223ffbea09ee16fe96abd86472e929e247cb517999a30ea79bfe336905ba79",
+        "v60_ledger.json": "sha256:491c2ed3d84ae9ef103bca4d7047b4a4dc30db4a24838a37fec23178e6397c0d",
+        "revised.txt": "sha256:b8ff0849e858d4361a241ba5de68f2817fa83afb20591877559e4d0515c075d1"
+      },
+      "raw_text_included": false,
+      "absolute_paths_included": false,
+      "graph": {
+        "schema_version": "lolla.graph_survival_report.v0.1",
+        "status": "ready",
+        "candidate_count": 44,
+        "selected_for_v60_count": 8,
+        "survival_state_counts": {
+          "answer_delta": 10,
+          "private_guardrail": 1,
+          "suppressed_by_packet_cap": 33
+        }
+      },
+      "private_table": {
+        "schema_version": "pre_step6_private_table.v1",
+        "status": "ready",
+        "character_count": 4877,
+        "section_count": 11,
+        "source_item_count": 11,
+        "cache_state": "cache_miss"
+      },
+      "private_table_ledger": {
+        "schema_version": "pre_step6_private_table_ledger.v1",
+        "status": "completed",
+        "item_count": 11,
+        "disposition_counts": {
+          "confirming_support": 3,
+          "private_guardrail": 1,
+          "used": 7
+        }
+      },
+      "v60_ledger": {
+        "schema_version": "v60_skill_consideration_ledger.v1",
+        "status": "completed",
+        "transaction_count": 16,
+        "disposition_counts": {
+          "not_considered": 8,
+          "used": 8
+        }
+      },
+      "revised_answer_character_count": 5609
+    },
+    {
+      "case_id": "five-person-saas-company",
+      "run_id": "20260709T201634Z_7a7930",
+      "eligibility": "eligible",
+      "missing_artifacts": [],
+      "artifact_hashes": {
+        "graph_survival_report.json": "sha256:6b88bd73e613bd55b5958833e4dba2bb810956e2193bab76f6baca82d849f48a",
+        "pre_step6_private_table.json": "sha256:f5ec298b13fcd883528361e21de9d262725bca28c214eac3e7d89fd92b7a8c95",
+        "pre_step6_private_table_ledger.json": "sha256:87b66bcb9155365a162945f158543a89008a068d31c681fe295f93ff942fc31e",
+        "v60_ledger.json": "sha256:2ed9821b17fe7198e0f4730132467c8f5e7c955097b5a143e25db56e20ac2929",
+        "revised.txt": "sha256:f9e5a1eea8b82db1154e3391f3c70ecc07d8860044aa043374da9c3f1b8d1158"
+      },
+      "raw_text_included": false,
+      "absolute_paths_included": false,
+      "graph": {
+        "schema_version": "lolla.graph_survival_report.v0.1",
+        "status": "ready",
+        "candidate_count": 73,
+        "selected_for_v60_count": 8,
+        "survival_state_counts": {
+          "answer_delta": 11,
+          "suppressed_by_packet_cap": 62
+        }
+      },
+      "private_table": {
+        "schema_version": "pre_step6_private_table.v1",
+        "status": "ready",
+        "character_count": 9000,
+        "section_count": 25,
+        "source_item_count": 25,
+        "cache_state": "cache_miss"
+      },
+      "private_table_ledger": {
+        "schema_version": "pre_step6_private_table_ledger.v1",
+        "status": "completed",
+        "item_count": 25,
+        "disposition_counts": {
+          "confirming_support": 6,
+          "private_guardrail": 2,
+          "rejected": 1,
+          "used": 16
+        }
+      },
+      "v60_ledger": {
+        "schema_version": "v60_skill_consideration_ledger.v1",
+        "status": "completed",
+        "transaction_count": 16,
+        "disposition_counts": {
+          "rejected": 1,
+          "used": 15
+        }
+      },
+      "revised_answer_character_count": 4539
+    }
+  ],
+  "semantic_relevance_reviewed": false,
+  "answer_quality_reviewed": false,
+  "model_calls": 0,
+  "runtime_integration_authorized": false,
+  "non_claims": [
+    "artifact_presence_is_not_semantic_novelty",
+    "candidate_count_is_not_reasoning_quality",
+    "ledger_completion_is_not_answer_quality",
+    "not_a_live_corpus_completeness_claim"
+  ]
+}

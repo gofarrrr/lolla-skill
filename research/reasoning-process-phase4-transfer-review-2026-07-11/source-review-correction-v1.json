@@ -1,0 +1,32 @@
+{
+  "schema_version": "lolla.reasoning_process_phase4_transfer_source_review_correction.v1",
+  "status": "append_only_human_review_correction",
+  "date": "2026-07-11",
+  "original_source_review_path": "research/reasoning-process-phase4-transfer-review-2026-07-11/source-review.json",
+  "original_source_review_sha256": "604aa6edc5da856290fea205026f576ead0f0463e88922f77e06ab8b6eabc88b",
+  "reason": "The original review confused Case-05 aliases e060 and e061 while describing the position target. The frozen original is retained because a later probe contract locked its hash.",
+  "correction": {
+    "target_id": "case05-position-trajectory",
+    "original_semantic_status": "partial",
+    "corrected_semantic_status": "supported",
+    "exact_protected_span_visible": false,
+    "finding": "The transfer position reader cited e057/e058 for the new direction and the user's more direct e059/e060 evidence for the unresolved rule and deadline pressure. It omitted the protected assistant restatement e061, so exact protected-span visibility remains false while the semantic target is supported by adjacent authoritative evidence."
+  },
+  "corrected_aggregate": {
+    "protected_exact_visibility": "5_of_10",
+    "protected_semantic_status_counts": {
+      "supported": 6,
+      "partial": 2,
+      "not_observed": 2
+    },
+    "phase4_transfer_gate": "fail_unchanged",
+    "same_load_bearing_evidence_failure_on_both_cases": true
+  },
+  "boundary": {
+    "model_output_changed": false,
+    "original_review_changed": false,
+    "transfer_gate_changed": false,
+    "provider_calls": 0,
+    "graph_or_runtime_authorized": false
+  }
+}

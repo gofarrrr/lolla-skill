@@ -1,0 +1,125 @@
+{
+  "schema_version": "lolla.reasoning_process_view_specific_interface_contract.v1",
+  "status": "frozen_provider_free_redesign_contract",
+  "date": "2026-07-11",
+  "purpose": "Test whether five narrow semantic response shapes plus a lossless annotated sentence table can represent all frozen process targets without repeating Phase-3 quote, role, or compactness failures.",
+  "phase2_contract_path": "docs/evals/reasoning-process-phase2-coverage-contract-v1.json",
+  "case_ids": [
+    "amb1-case01-product-scope",
+    "amb1-case02-nonprofit-scale",
+    "amb1-case03-creative-partnership",
+    "amb1-case04-research-tool-release",
+    "amb1-case05-family-archive"
+  ],
+  "frozen_inputs": [
+    {
+      "path": "docs/evals/reasoning-process-phase0-contract-v0.json",
+      "sha256": "e1b6d5864467d2c29de872f252969e68b9b47c5b2c526190ae9503baf3c22318"
+    },
+    {
+      "path": "docs/evals/reasoning-process-phase2-coverage-contract-v1.json",
+      "sha256": "a30c3ba108587a4d98ee84d2b5ab1a0d1799dcf53e1e8a2a3050c8b4f77c704a"
+    },
+    {
+      "path": "docs/evals/reasoning-process-phase2-coverage-review-v1.json",
+      "sha256": "3f352e55116879ec43810ed4800275f48fc4183dfd8293ba1bd55fad3a87f4ad"
+    },
+    {
+      "path": "research/reasoning-process-phase3-development-2026-07-11/decision.json",
+      "sha256": "295369f1b5e9be633e42efec8ae1badb1483cab082865651266f001c52cb7be4"
+    },
+    {
+      "path": "research/test-cases/case_parenting_teen_conversation.txt",
+      "sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+    },
+    {
+      "path": "research/reasoning-process-phase2-views-2026-07-11/fan-in-stress-fixture.json",
+      "sha256": "902d95946a86ab58ebb47d257d60fd7d56cc18b531aba3689fc771b9dfc8869d"
+    }
+  ],
+  "failure_derived_hypothesis": {
+    "phase3_failures_addressed": [
+      "free-form quote reproduction caused invalid non-contiguous evidence",
+      "one universal record shape did not require alternative-plus-limit or challenge-plus-response roles",
+      "compact reading omitted an earlier minority signal despite full conversation availability",
+      "a fluent interpretation overclaimed what its cited position evidence supported"
+    ],
+    "intervention": [
+      "show the complete conversation as chronological sentence rows with visible short aliases",
+      "let the model make semantic judgments but restrict source citation to aliases",
+      "require evidence roles specific to each of five bounded questions",
+      "cap each semantic job at four materially distinct records",
+      "include the complete auxiliary ledger or omit it whole by byte budget"
+    ],
+    "mechanism_not_claim": "The interface reduces avoidable source-custody and role-omission failure modes; it does not make the model's semantic interpretation correct."
+  },
+  "view_contracts": {
+    "position_and_decision_trajectory": [
+      "position_evidence_ids",
+      "qualification_evidence_ids"
+    ],
+    "exploration_and_alternatives": [
+      "alternative_evidence_ids",
+      "limitation_evidence_ids"
+    ],
+    "evidence_and_assumption_discipline": [
+      "claim_or_input_evidence_ids",
+      "boundary_evidence_ids"
+    ],
+    "uncertainty_and_unresolved_state": [
+      "unresolved_evidence_ids",
+      "preservation_or_reopen_evidence_ids"
+    ],
+    "challenge_and_revision_response": [
+      "challenge_evidence_ids",
+      "response_evidence_ids",
+      "revision_evidence_ids"
+    ]
+  },
+  "gates": {
+    "authoritative_message_custody_rate": 1.0,
+    "protected_fixture_compile_rate": 1.0,
+    "stable_alias_resolution_rate": 1.0,
+    "phase1_ledger_immutability_rate": 1.0,
+    "stress_source_content_complete_rate": 1.0,
+    "max_view_input_utf8_bytes": 24000,
+    "max_provider_schema_depth": 8,
+    "max_provider_schema_bytes": 12000,
+    "max_output_records": 4,
+    "direct_graph_seed_count": 0,
+    "provider_call_count": 0,
+    "embedding_call_count": 0
+  },
+  "expected": {
+    "case_count": 5,
+    "view_kind_count": 5,
+    "protected_target_count": 25,
+    "stress_message_count": 24,
+    "stress_view_count": 5
+  },
+  "stress_fixture": {
+    "case_id": "phase3-interface-long-conversation-stress",
+    "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+    "auxiliary_path": "research/reasoning-process-phase2-views-2026-07-11/fan-in-stress-fixture.json",
+    "auxiliary_policy": "include_whole_or_omit_whole_by_mechanical_byte_budget"
+  },
+  "evaluation_boundary": {
+    "protected_targets_enter_reader_packets": false,
+    "source_review_addenda_enter_reader_packets": false,
+    "source_review_fixtures_are_independent_gold": false,
+    "semantic_relevance_inferred_by_deterministic_code": false,
+    "semantic_model_behavior_validated": false,
+    "final_output_evaluated": false,
+    "quality_or_trust_score_produced": false,
+    "direct_graph_routing_allowed": false,
+    "phase4_transfer_authorized": false
+  },
+  "stop_rules": [
+    "Do not make a provider call under this contract.",
+    "Stop if any protected target cannot be expressed with its required view-specific evidence roles.",
+    "Stop if any stable alias fails to resolve one-to-one to a source sentence span.",
+    "Stop if the complete annotated stress conversation exceeds 24000 bytes after the auxiliary ledger is omitted whole.",
+    "Do not add deterministic semantic prefilters, repairs, or relevance gates to force a pass.",
+    "Do not modify Phase-1 ledgers or existing Phase-2 and Phase-3 evidence."
+  ]
+}

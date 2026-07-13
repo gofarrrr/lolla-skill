@@ -1,0 +1,75 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_full_factored_mechanisms_contract.v1",
+  "status": "frozen_before_one_full_factored_case",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-full-factored-case07-t1",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "purpose": "Test all nine factored mechanism contracts on a prospectively stand-down-expected source before spending on a pressure case.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json",
+    "parent_mechanism_request_sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87",
+    "source_review_path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json",
+    "source_review_sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486",
+    "source_review_supplied_to_model": false,
+    "upstream_role_operator": "google/gemini-3.5-flash"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limit": {"max_output_tokens": 1000, "reasoning_effort": "low", "wire_mode": "strict_json_schema"},
+  "seed_base": 1100,
+  "orchestration_contract": {
+    "user_factor_calls": 9,
+    "assistant_coverage_calls": "zero to nine, only after all nine user-factor tasks compile, and only for explicit model-authored statuses other than not_observed",
+    "not_applicable_coverage": "materialized by policy only for explicit not_observed user status",
+    "routing": "derived from explicit user status and assistant coverage after the full join",
+    "conversation_prose_read_by_deterministic_code": false,
+    "keyword_or_chronology_gate_added": false
+  },
+  "request_attestation": {
+    "acknowledged_constraint_not_gated": {"packet_sha256": "e1b635d197adb8ca3a207b2068275b7168f14b4cda7524b3a7648b594c596c5d", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "8777cf97ce05caa70bb04dd278aa56af95d06025781456b1246fbe93b8172eef", "response_schema_sha256": "f132a7b17ffee7c3b2b238c6e4507375be9d1ed4cafafaebea195b7f2a4b66ab", "coverage_response_schema_sha256": "1fcdded6a0552166cef7c7b76bd8876859f3f69f1f846c26c2816c57048eebe9"},
+    "ambiguous_signal_treated_as_commitment": {"packet_sha256": "12dd6eefd0e7af0ebe732e31b3186dcde29229fc538caca0687a193220a5cd00", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "fc521cfd1c3e44df69f3c86538ebd904d2f07111def9d951d500cac641a49243", "response_schema_sha256": "889eee31ac9b97d2bf13ff600430207e296283ac27ef9a34f64ab95cb2a2b75d", "coverage_response_schema_sha256": "229eb553294a934465334a3aa1de9361d63000aac064cec4788a1dba1bbfe59d"},
+    "counterpressure_acknowledged_not_integrated": {"packet_sha256": "7f561bfb7523140da29c8509a9095f44f6efda1ff9d371478a885f97b7f993d0", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "147ac603094afe49baa3b1b0ffc3c57a88a1053d73ae69a8f24c1f1e6c83a54f", "response_schema_sha256": "6f2a1c92c7c06233006d51d74fb2c44bb04c6bbce3dfb72811726afbe80a7f71", "coverage_response_schema_sha256": "037346754a4c4bcb9ef73abed60702dc16c624636258dd6a41b976ba3f7e70ec"},
+    "criteria_defined_after_commitment": {"packet_sha256": "40e7ecb1f93d7b5c338787f36a480c0e29a35eb8fa8089e908a8d34927bafc4c", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "ec3796568ec0f7d685966c1cf49f4a955363811b367d0be35ad70f14d0424cb5", "response_schema_sha256": "0967d4100a45874216618d2f7c2842db6909f00ed7ddaebcbe060b2530fff0ac", "coverage_response_schema_sha256": "fca0d80c0c849b2b424b42819b97e1d47fc6ba91bb2e36d09bbf5e75a7fd5286"},
+    "initial_frame_persists_after_question_change": {"packet_sha256": "dcae11310bbedd225bbeca818ed5373157679d42b2259762b8244232ee4a784e", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "d95e8877a67c787963f497721bbad78f1acbd2a1ea1236d95502d530a5324375", "response_schema_sha256": "c53a34d28f90b7cbf701bb337cb6a822d043b4531682786963c8771d22daafbd", "coverage_response_schema_sha256": "4fb39694606ae79f380fb7310dba1d6b673630d7ec86b094d480fc41e6b183e8"},
+    "missing_reversal_condition": {"packet_sha256": "4f540bb046670b364b21c2eec07a5c05f74b9003d7ce58828b14db2854233df3", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "bd20dcd9451009511a8f81d71af2f7f43ef9dbcbc99502b3276f21622487d494", "response_schema_sha256": "100742e484d96df9870d853426e8058ec4348544daedd66223e634af786c635b", "coverage_response_schema_sha256": "7721d1a0883c5c3d8c75969fcab4c965acdad0c28013b6ebec5ebbccd4b47e0e"},
+    "reversible_path_not_considered": {"packet_sha256": "18f482a6516a20039f3b105f060a044d836155b6b3e7a22bc7aaa67838563911", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "6193d2225e0d4a9e31f7ca79920d8c71be3dc8c8d24fbd28f48497897ee41be6", "response_schema_sha256": "0c43762580bf5db9143ed269322759085557bb2d0d04a252af9f89d43510b525", "coverage_response_schema_sha256": "3be7812605370c45a918e3e2cea6bb72ce25dca297d0750672f1bad03e8ea664"},
+    "status_signal_used_as_evidence": {"packet_sha256": "fa61e977545e2333643dc7814b61f6737b6ec5e1280c623ec9306f1aa05a25ac", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "f378b2f7f3e633f23ffbc9f1808a1e77888de495113619dedfbecd9a476b70fb", "response_schema_sha256": "10265bc571bcc28c561df1a213eb571f3d645d2202ab7661feeeb5d13a1a7b3f", "coverage_response_schema_sha256": "dc7a19eb0a9e6fe8de6bed1609b15d81eabf9b0afecf78ad7c9f2b0a91528a3b"},
+    "upside_downside_evidence_asymmetry": {"packet_sha256": "e4b1e65ad6d28312dbe0333a985eaffe2a24ac5e8bf487f3c6f90ea45e1e3725", "role_record_count": 2, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "a4175c12d887af92187ddfada85840ebb62f5b0a3482b70ea796e9075bda84c0", "response_schema_sha256": "893344174c7a1226b001d5bda2e488505641eb9aa03084f606ed9dde06c7212f", "coverage_response_schema_sha256": "6a1d0b762d3c57704efce18c728ce9e1fa5d2369918ca62c474d2a1a6062548d"}
+  },
+  "budget": {"maximum_provider_calls": 18, "maximum_provider_reported_cost_usd": 0.03, "automatic_retries": 0, "fallback_models": 0, "response_healing": false},
+  "failure_policy": {
+    "run_all_nine_user_tasks_even_if_one_fails": true,
+    "reason": "The tasks are independently frozen and the complete user-factor batch is useful failure evidence.",
+    "coverage_calls_require_all_nine_user_tasks_to_compile": true,
+    "retry_failed_task": false,
+    "substitute_model": false,
+    "raise_token_ceiling": false
+  },
+  "review_contract": {
+    "prospective_public_behavior": "stand_down_expected",
+    "behavior_source_supplied_to_model": false,
+    "required": ["per-mechanism source fidelity", "observed-versus-integrated accuracy", "assistant coverage accuracy", "false route review", "evidence custody", "call and cost custody"],
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {"case01_pressure_call_authorized": false, "park_case_authorized": false, "pressure_generation_authorized": false, "runtime_effect": "none", "production_model_selection_authorized": false, "gemini_3_5_call_authorized": false},
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_full_factored_mechanisms_v1.py", "sha256": "023f1727732fb3d353b0f9bdc912730a44ac88b4c437850f04b64bb181601bb2"},
+    {"path": "engine/system_b/reasoning_mechanism_factored_portfolio_v1.py", "sha256": "e64765a07b7a66ba19ada07ec7e651d42e2b0ec214e2c79222ad159050c577ed"},
+    {"path": "engine/system_b/reasoning_mechanism_user_factor_v1.py", "sha256": "ddce0d694e656ad2af4eb127c0a317e0bf352baf48e2a66bfb7940488aaf0dd3"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "engine/system_b/simulated_reliability_v1.py", "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json", "sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json", "sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486"},
+    {"path": "docs/evals/simulated-reliability-v1-affordable-model-selection-result-2026-07-13.md", "sha256": "bdabbf5684cac8ad5add6be9019622a11f467dbfefda44dcd4d5b4406e61ed16"}
+  ]
+}

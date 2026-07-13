@@ -1,0 +1,131 @@
+{
+  "boundary": {
+    "attached_limit_is_focal": true,
+    "prior_context_used_only_for_alternative": true,
+    "provider_calls": 0,
+    "semantic_inference_performed_by_code": false
+  },
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "semantic_merge_performed": false
+    },
+    "observations": [
+      {
+        "alternative_interpretation": "Launch a small pilot next month.",
+        "attached_condition_or_limit_interpretation": "A named operator must commit before announcement.",
+        "case_id": "exploration-local-cross-turn",
+        "cross_window_semantic_duplicate_status": "not_assessed",
+        "family": "exploration_and_alternatives",
+        "focal_turn_index": 2,
+        "graph_routing_eligible": false,
+        "observation_id": "explocal-exploration-local-cross-turn-002-01-42dc8ac6f5",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "exploration-local-v2-adversarial-review",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "alternative_evidence_ids": [
+              "e002"
+            ],
+            "alternative_interpretation": "Launch a small pilot next month.",
+            "attached_condition_or_limit_evidence_ids": [
+              "e003"
+            ],
+            "attached_condition_or_limit_interpretation": "A named operator must commit before announcement.",
+            "limitations": "Provider-free cross-turn relationship fixture.",
+            "relationship_type": "condition",
+            "status": "supported"
+          },
+          "record_identity": "cross-turn-alternative-limit",
+          "record_index": 1,
+          "role_source_span_ids": {
+            "alternative_evidence_ids": [
+              "span-e0a031480f6b45e3"
+            ],
+            "attached_condition_or_limit_evidence_ids": [
+              "span-bf7c335b4023abc5"
+            ]
+          },
+          "window_id": "exploration-local-cross-turn-exploration-turn-002"
+        },
+        "raw_record_sha256": "sha256:42dc8ac6f5659d6717b9e6d2b08c332c2cc707b5301e34ecb7e2f9390ded3436",
+        "relationship_type": "condition",
+        "role_source_span_ids": {
+          "alternative_evidence_ids": [
+            "span-e0a031480f6b45e3"
+          ],
+          "attached_condition_or_limit_evidence_ids": [
+            "span-bf7c335b4023abc5"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_exploration_local_observation.v1",
+        "semantic_status": "supported",
+        "source_span_ids": [
+          "span-e0a031480f6b45e3",
+          "span-bf7c335b4023abc5"
+        ],
+        "terminal_reason": "local pair roles and focal stable aliases validated",
+        "terminal_state": "admitted",
+        "window_id": "exploration-local-cross-turn-exploration-turn-002"
+      }
+    ],
+    "response_status": "supported",
+    "status": "local_response_compiled",
+    "window_id": "exploration-local-cross-turn-exploration-turn-002",
+    "window_terminal_disposition": "compiled"
+  },
+  "response": {
+    "global_limitations": "Synthetic boundary fixture; not product evidence.",
+    "records": [
+      {
+        "alternative_evidence_ids": [
+          "e002"
+        ],
+        "alternative_interpretation": "Launch a small pilot next month.",
+        "attached_condition_or_limit_evidence_ids": [
+          "e003"
+        ],
+        "attached_condition_or_limit_interpretation": "A named operator must commit before announcement.",
+        "limitations": "Provider-free cross-turn relationship fixture.",
+        "relationship_type": "condition",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "status": "cross_turn_relationship_pass",
+  "validation": {
+    "records": [
+      {
+        "alternative_interpretation": "Launch a small pilot next month.",
+        "attached_condition_or_limit_interpretation": "A named operator must commit before announcement.",
+        "limitations": "Provider-free cross-turn relationship fixture.",
+        "relationship_type": "condition",
+        "role_source_span_ids": {
+          "alternative_evidence_ids": [
+            "span-e0a031480f6b45e3"
+          ],
+          "attached_condition_or_limit_evidence_ids": [
+            "span-bf7c335b4023abc5"
+          ]
+        },
+        "source_span_ids": [
+          "span-e0a031480f6b45e3",
+          "span-bf7c335b4023abc5"
+        ],
+        "status": "supported"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_exploration_local_response.v1",
+    "semantic_adequacy_validated": false,
+    "source_alias_custody_validated": true,
+    "status": "supported",
+    "window_id": "exploration-local-cross-turn-exploration-turn-002"
+  }
+}

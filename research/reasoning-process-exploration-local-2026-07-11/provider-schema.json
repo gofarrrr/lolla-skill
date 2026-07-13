@@ -1,0 +1,98 @@
+{
+  "additionalProperties": false,
+  "description": "Alternatives introduced or materially developed in one focal turn pair.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 500,
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "alternative_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "alternative_interpretation": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "attached_condition_or_limit_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "attached_condition_or_limit_interpretation": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitations": {
+            "maxLength": 400,
+            "type": "string"
+          },
+          "relationship_type": {
+            "enum": [
+              "condition",
+              "limit",
+              "tradeoff",
+              "failure_condition",
+              "unclear"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "alternative_interpretation",
+          "alternative_evidence_ids",
+          "attached_condition_or_limit_interpretation",
+          "attached_condition_or_limit_evidence_ids",
+          "relationship_type",
+          "status",
+          "limitations"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "global_limitations"
+  ],
+  "type": "object"
+}

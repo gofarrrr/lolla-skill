@@ -1,0 +1,499 @@
+{
+  "current_view_manifest": {
+    "ambiguous_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": []
+    },
+    "event_count": 4,
+    "invalid_candidates_excluded": true,
+    "reconstructible_from_candidate_ledger": true,
+    "schema_version": "lolla.current_semantic_view.v0",
+    "selected_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": [
+        "candidate_user_pressure_events_000_97a841c4d160",
+        "candidate_user_pressure_events_001_8fe646f07b58",
+        "candidate_user_pressure_events_002_b8b388a74ec8",
+        "candidate_user_pressure_events_003_f408cc7a5647"
+      ]
+    },
+    "view_sha256": "c07010b1fe72f1656114e5fb861b7ea97de054742c79ecad25d0bc6bcfc48fa1"
+  },
+  "evaluation_execution": {
+    "bounded_retry_limit": 3,
+    "failed_attempts_before_success": 0,
+    "per_call_wall_timeout_seconds": 180.0
+  },
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 272,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 4663,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.user_pressure",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 4935
+      }
+    ]
+  },
+  "non_claims": [
+    "counterpressure_shadow_is_not_full_conversation_understanding",
+    "counterpressure_shadow_is_not_live_lane_input",
+    "counterpressure_shadow_does_not_modify_graph_routing",
+    "counterpressure_shadow_is_not_reasoning_quality_proof",
+    "candidate_state_is_not_semantic_truth",
+    "missing_event_is_not_proof_of_real_world_absence",
+    "thread_identity_is_a_semantic_reader_judgment",
+    "later_strengthening_does_not_replace_first_introduction"
+  ],
+  "schema_version": "lolla.user_counterpressure_temporal_shadow.v0",
+  "semantic_candidate_ledger": {
+    "authoritative_source": {
+      "contains_raw_conversation": false,
+      "contains_source_excerpts": true,
+      "conversation_sha256": "949a97af0db5cbc0d40d2d7c1ab090e98d879d5f41210a29f265c496fc85448b",
+      "turn_count": 18
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_97a841c4d160",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_material_qualification_t3_529508a82616",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "material_qualification",
+          "provisional": true,
+          "source": {
+            "end_char": 1247,
+            "quote": "If I'm gone 3 nights a week for Merck, the monthly trips become really hard.",
+            "speaker": "user",
+            "start_char": 1171,
+            "turn_index": 3
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "material_qualification",
+          "quote": "If I'm gone 3 nights a week for Merck, the monthly trips become really hard.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "4d9be850a0d9023a4a620a31279f71af3af0a260ba4427c1be0edc737ce17868",
+        "reader_call_id": "semantic_reader_call_01_5bedbeacda31",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_8fe646f07b58",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_material_qualification_t4_53238ccecc59",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "material_qualification",
+          "provisional": true,
+          "source": {
+            "end_char": 676,
+            "quote": "If I leave in 6 weeks he gets handed off mid-protocol. That feels pretty bad. Not illegal obviously but professionally questionable.",
+            "speaker": "user",
+            "start_char": 544,
+            "turn_index": 4
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "material_qualification",
+          "quote": "If I leave in 6 weeks he gets handed off mid-protocol. That feels pretty bad. Not illegal obviously but professionally questionable.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "76c070d7a3b7e50ff240a26776b3b45ef813e57e088453cef18dbbf18cf592f3",
+        "reader_call_id": "semantic_reader_call_01_5bedbeacda31",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_b8b388a74ec8",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_material_qualification_t4_ef0b02982689",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "material_qualification",
+          "provisional": true,
+          "source": {
+            "end_char": 915,
+            "quote": "But he said it in the way that means \"I will not stop you from taking it.\" Which is different from \"yes this is a good idea for us.\"",
+            "speaker": "user",
+            "start_char": 783,
+            "turn_index": 4
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "material_qualification",
+          "quote": "But he said it in the way that means \"I will not stop you from taking it.\" Which is different from \"yes this is a good idea for us.\"",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "146aeec22f97cdc6ccb0e5f1b90760b2eb0b29ad08603742ca2f1b2fb35a6c22",
+        "reader_call_id": "semantic_reader_call_01_5bedbeacda31",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_003_f408cc7a5647",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_material_qualification_t8_eb197a96c235",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "material_qualification",
+          "provisional": true,
+          "source": {
+            "end_char": 245,
+            "quote": "there's also the non-compete thing. Merck's contract includes a 2-year non-compete on immunotherapy development, which means if I leave them and want to go back to industry I can't for 2 years.",
+            "speaker": "user",
+            "start_char": 52,
+            "turn_index": 8
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "kind": "material_qualification",
+          "quote": "there's also the non-compete thing. Merck's contract includes a 2-year non-compete on immunotherapy development, which means if I leave them and want to go back to industry I can't for 2 years.",
+          "turn_index": 8
+        },
+        "raw_proposal_sha256": "5cd9732d4ba5659b602e88d7e3d85b546badf9c72fb64f9e68afb193e2d967b0",
+        "reader_call_id": "semantic_reader_call_01_5bedbeacda31",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "semantic_reader_emitted_validated_candidate_without_disposition",
+        "terminal_state": "selected_for_current_view"
+      }
+    ],
+    "metrics": {
+      "ambiguous_candidate_count": 0,
+      "candidate_custody_complete": true,
+      "counts_by_family": {
+        "user_pressure_events": 4
+      },
+      "counts_by_terminal_state": {
+        "selected_for_current_view": 4
+      },
+      "current_view_candidate_count": 4,
+      "expected_proposal_count": 4,
+      "proposal_count": 4,
+      "referenced_source_turns": [
+        {
+          "speaker": "user",
+          "turn_index": 3
+        },
+        {
+          "speaker": "user",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 8
+        }
+      ],
+      "semantic_disposition_observability": {
+        "counts_by_declared_disposition": {},
+        "emitted_candidates_are_not_a_complete_hypothesis_set": true,
+        "explicit_disposition_count": 0,
+        "explicit_disposition_is_optional": true,
+        "explicit_disposition_rate": 0.0,
+        "must_not_be_used_as_quality_label": true,
+        "proposal_count": 4,
+        "unobserved_disposition_count": 4
+      },
+      "source_turn_reference_coverage": 0.16666666666666666,
+      "terminal_record_count": 4,
+      "unreferenced_source_turns": [
+        {
+          "speaker": "assistant",
+          "turn_index": 1
+        },
+        {
+          "speaker": "user",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 2
+        },
+        {
+          "speaker": "user",
+          "turn_index": 2
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 3
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5
+        },
+        {
+          "speaker": "user",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 6
+        },
+        {
+          "speaker": "user",
+          "turn_index": 6
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 8
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 9
+        },
+        {
+          "speaker": "user",
+          "turn_index": 9
+        }
+      ],
+      "unterminated_record_count": 0
+    },
+    "non_claims": [
+      "candidate_state_is_not_semantic_truth",
+      "ledger_does_not_observe_unreturned_hypotheses",
+      "missing_explicit_disposition_is_not_semantic_rejection",
+      "validation_is_not_reasoning_quality_proof",
+      "source_turn_coverage_is_not_semantic_completeness",
+      "reader_agreement_is_not_correctness"
+    ],
+    "reader_calls": [
+      {
+        "call_id": "semantic_reader_call_01_5bedbeacda31",
+        "client_type": "scripts.evals.run_core_semantic_corpus._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 1,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "user_pressure_events": 4
+        },
+        "reader_role": "user_pressure",
+        "system_prompt_sha256": "b15537930eb5b7845d2d89fa7b3b761a76a9e11a6da29467361f34ebb6d5c39a",
+        "user_prompt_sha256": "93e1364860f1686539440f5ce0b7f8b9e008bff5b92e63c41360c8cb020fc80f"
+      }
+    ],
+    "schema_version": "lolla.semantic_candidate_ledger.v0",
+    "supported_candidate_states": [
+      "proposed",
+      "validated",
+      "invalid_evidence",
+      "set_aside_semantically",
+      "selected_for_current_view",
+      "ambiguous_competing_read",
+      "not_supported_by_source",
+      "not_evaluated_budget",
+      "duplicate_identity"
+    ]
+  },
+  "semantic_events": {
+    "assistant_stance_events": [],
+    "dropped_thread_events": [],
+    "evidence_boundary_events": [],
+    "live_constraint_events": [],
+    "option_events": [],
+    "question_events": [],
+    "user_pressure_events": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_97a841c4d160",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_material_qualification_t3_529508a82616",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "material_qualification",
+        "provisional": true,
+        "source": {
+          "end_char": 1247,
+          "quote": "If I'm gone 3 nights a week for Merck, the monthly trips become really hard.",
+          "speaker": "user",
+          "start_char": 1171,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_8fe646f07b58",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_material_qualification_t4_53238ccecc59",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "material_qualification",
+        "provisional": true,
+        "source": {
+          "end_char": 676,
+          "quote": "If I leave in 6 weeks he gets handed off mid-protocol. That feels pretty bad. Not illegal obviously but professionally questionable.",
+          "speaker": "user",
+          "start_char": 544,
+          "turn_index": 4
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_b8b388a74ec8",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_material_qualification_t4_ef0b02982689",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "material_qualification",
+        "provisional": true,
+        "source": {
+          "end_char": 915,
+          "quote": "But he said it in the way that means \"I will not stop you from taking it.\" Which is different from \"yes this is a good idea for us.\"",
+          "speaker": "user",
+          "start_char": 783,
+          "turn_index": 4
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_003_f408cc7a5647",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_material_qualification_t8_eb197a96c235",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "material_qualification",
+        "provisional": true,
+        "source": {
+          "end_char": 245,
+          "quote": "there's also the non-compete thing. Merck's contract includes a 2-year non-compete on immunotherapy development, which means if I leave them and want to go back to industry I can't for 2 years.",
+          "speaker": "user",
+          "start_char": 52,
+          "turn_index": 8
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "949a97af0db5cbc0d40d2d7c1ab090e98d879d5f41210a29f265c496fc85448b",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 18
+  },
+  "validation": {
+    "user_counterpressure": {
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 4
+      }
+    }
+  }
+}

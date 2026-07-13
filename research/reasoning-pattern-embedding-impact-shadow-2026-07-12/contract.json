@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.reasoning_pattern_embedding_impact_shadow_contract.v1",
+  "status": "frozen_before_one_batch_embedding_request",
+  "date": "2026-07-12",
+  "purpose": "Compare full and missing-reversal fact-free reasoning-pattern graph selection while reusing the full projection embedding for identical source-first and provider arms.",
+  "deterministic_result_path": "research/reasoning-process-graph-impact-shadow-2026-07-12/result.json",
+  "relationship_graph_path": "data/relationship_graph.json",
+  "embeddings_db_path": "data/embeddings.db",
+  "input_text_sha256": [
+    "cf4cd69a80c67d6aff688a98991a2144300d8ec01e06eb05160181cb1125f80f",
+    "cb51554cccc59a7fff2c785c75e9c3a4f4ae78a5339ad25ea1d341d9b2b8c62e"
+  ],
+  "call_configuration": {
+    "provider": "openai",
+    "endpoint": "https://api.openai.com/v1/embeddings",
+    "model": "text-embedding-3-large",
+    "encoding_format": "float",
+    "dimensions": 3072,
+    "maximum_http_requests": 1,
+    "batch_input_count": 2,
+    "automatic_retries": 0,
+    "timeout_seconds": 30
+  },
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_reasoning_pattern_embedding_impact_shadow.py", "sha256": "ded56d217f96bce8e85bd05c476cbe52dae980813c038cfb58cf364fc0017245"},
+    {"path": "scripts/evals/run_reasoning_process_graph_impact_shadow.py", "sha256": "03e1fb930784d312dd161833f1318c3bd24fac9fba793df515c00c90fcf470e9"},
+    {"path": "engine/system_b/reasoning_pattern_activation_shadow.py", "sha256": "4be548242a367679c65b9ca395683c720e990341e8995f693184e9e884cc7431"},
+    {"path": "engine/system_b/activation_matcher.py", "sha256": "b2c8f2bba5517f79fedb685f9efd9b25c1d6978ea0328263cda258e4c3e2949e"},
+    {"path": "research/reasoning-process-graph-impact-shadow-2026-07-12/result.json", "sha256": "561ff3bbe91b887b2c2da56fbe386da3560f49ed00e42d250ec9f79e8e216b74"},
+    {"path": "data/embeddings.db", "sha256": "cc9b81315060b32cd62fa69db7d025fdb83559c6e53496d9b5504153a84e5b8d"},
+    {"path": "data/relationship_graph.json", "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"},
+    {"path": "docs/conversation-understanding/reasoning-pattern-embedding-shadow-current-practice-2026-07-12.md", "sha256": "208e693592ab4933b4526f3adca76fde30db9c66065adf66020a023ef75f72d0"},
+    {"path": "docs/conversation-understanding/lolla-product-constitution-v3.md", "sha256": "8890a7a2785a8b12edeea8e3c44ef07e138fcbfb9a0e5f42a25f53641806eaf9"}
+  ],
+  "success_requirements": {
+    "one_http_request_only": true,
+    "two_unique_fact_free_inputs_only": true,
+    "source_provider_full_embedding_reused": true,
+    "vector_dimension_matches_stored_edges": true,
+    "typed_fingerprint_boundary_passes": true,
+    "raw_role_prose_not_embedded": true,
+    "selection_trace_preserved": true,
+    "no_semantic_winner_inferred": true
+  },
+  "stop_rules": {
+    "write_started_marker_before_request": true,
+    "never_rerun_after_started_marker": true,
+    "no_retry_or_fallback": true,
+    "no_chat_model_call": true,
+    "no_reconsideration_runtime_or_receipt_work": true
+  },
+  "boundary": {
+    "research_only": true,
+    "adapter_runtime_integration_authorized": false,
+    "semantic_relevance_proven": false,
+    "production_integration_authorized": false
+  }
+}

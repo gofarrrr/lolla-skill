@@ -1,0 +1,1092 @@
+{
+  "boundary": {
+    "categorical_trajectory_label_used": false,
+    "deterministic_semantic_gate_added": false,
+    "graph_or_runtime_authorized": false,
+    "independent_holdout": false,
+    "production_integration_authorized": false,
+    "protected_review_excluded_from_provider": true,
+    "relation_packet_derived_only_from_admitted_model_role_records": true,
+    "role_tasks_independent": true,
+    "synthetic_development_case": true
+  },
+  "calls": [
+    {
+      "admitted_record_count": 2,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e001"
+            ],
+            "expression_kinds": [
+              "conditional_willingness"
+            ],
+            "fidelity_note": "The user states they run a local nonprofit newsroom with eleven full-time staff, establishing the starting organizational context.",
+            "limitations": "none",
+            "object_interpretations": [
+              "The user's role as executive of a small nonprofit newsroom"
+            ],
+            "object_kinds": [
+              "intended_outcome_or_policy"
+            ],
+            "role": "starting",
+            "role_interpretation": "The user's starting position is that of a leader of a small nonprofit newsroom, which is the baseline from which the platform offer is evaluated.",
+            "source_evidence_ids": [
+              "e001"
+            ],
+            "status": "unclear"
+          },
+          {
+            "evidence_ids": [
+              "e004"
+            ],
+            "expression_kinds": [
+              "conditional_willingness"
+            ],
+            "fidelity_note": "The user expresses excitement about the platform's potential but also worry about shaping coverage for feed performance, showing an undecided stance.",
+            "limitations": "none",
+            "object_interpretations": [
+              "The user's internal conflict between excitement and worry about editorial independence"
+            ],
+            "object_kinds": [
+              "intended_outcome_or_policy"
+            ],
+            "role": "starting",
+            "role_interpretation": "The user's starting hesitation is a visible undecided stance: excitement about reach and revenue versus worry about editorial independence.",
+            "source_evidence_ids": [
+              "e004"
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "6a7d26c926af7daec13b457e6cbec496304f8c5c2329cd3dfc5db6928fd17416",
+      "compiled": {
+        "boundary": {
+          "direct_graph_routing_allowed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prose_keyword_gate_added": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The user states they run a local nonprofit newsroom with eleven full-time staff, establishing the starting organizational context.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev2-starting-01-714591a439270e",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9"
+            },
+            "raw_record_sha256": "sha256:714591a439270e97f7c39b840e4bf3160749d0d0a8783b9e6c848b2f1ed05a04",
+            "role": "starting",
+            "role_interpretation": "The user's starting position is that of a leader of a small nonprofit newsroom, which is the baseline from which the platform offer is evaluated.",
+            "role_record_id": "rprolev2-starting-01-714591a439270e",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I run a local nonprofit newsroom with eleven full-time staff."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e001",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "The user's role as executive of a small nonprofit newsroom",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The user expresses excitement about the platform's potential but also worry about shaping coverage for feed performance, showing an undecided stance.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev2-starting-02-d38345ff346a7b",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9"
+            },
+            "raw_record_sha256": "sha256:d38345ff346a7bfa9adb2d3a3444f575dd1c12c55143046a6394416e811995cb",
+            "role": "starting",
+            "role_interpretation": "The user's starting hesitation is a visible undecided stance: excitement about reach and revenue versus worry about editorial independence.",
+            "role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e004",
+                "text": "I am excited by that possibility but worried that we will start shaping coverage around what performs inside their feed."
+              }
+            ],
+            "source_evidence_ids": [
+              "e004"
+            ],
+            "source_record_index": 2,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "The user's internal conflict between excitement and worry about editorial independence",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:714591a439270e97f7c39b840e4bf3160749d0d0a8783b9e6c848b2f1ed05a04",
+            "record_index": 1,
+            "role_record_id": "rprolev2-starting-01-714591a439270e",
+            "terminal_state": "admitted"
+          },
+          {
+            "raw_record_sha256": "sha256:d38345ff346a7bfa9adb2d3a3444f575dd1c12c55143046a6394416e811995cb",
+            "record_index": 2,
+            "role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "starting",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_custody_complete"
+      },
+      "completion_tokens": 401,
+      "duration_seconds": 8.69,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.00022914,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 908,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "1a82d87c8fb53551d01ad3cea48493705b63ba0f7038579191f72dbcf47faad4",
+      "provider_reported_cost_usd": 0.00022914,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "56c500e6f44597dfdbf7c52674023bc30c1bda0157cdfced268fd8ebf0671f9e",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+      "task_id": "role-starting",
+      "temperature": 0.0,
+      "total_tokens": 1309,
+      "user_prompt_sha256": "3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 2,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "Only current records. Each stance component uses exactly one alias already cited by its role record. Split distinct objects even when one alias supports both.",
+        "records": [
+          {
+            "evidence_ids": [
+              "e049"
+            ],
+            "expression_kinds": [
+              "leaning"
+            ],
+            "fidelity_note": "User states 'I am leaning toward' — this is a leaning, not a decision or commitment.",
+            "limitations": "",
+            "object_interpretations": [
+              "four-month nonexclusive pilot limited to service and explanatory stories, with approval of every feed headline, story-level distribution and correction logs, and no homepage widget"
+            ],
+            "object_kinds": [
+              "action_or_proposal"
+            ],
+            "role": "current",
+            "role_interpretation": "leaning toward a specific pilot structure",
+            "source_evidence_ids": [
+              "e049"
+            ],
+            "status": "unclear"
+          },
+          {
+            "evidence_ids": [
+              "e050"
+            ],
+            "expression_kinds": [
+              "decision"
+            ],
+            "fidelity_note": "User states 'I will tell the board' — this is a declared intention/decision about what to communicate.",
+            "limitations": "",
+            "object_interpretations": [
+              "describe the pilot to the board as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce"
+            ],
+            "object_kinds": [
+              "action_or_proposal"
+            ],
+            "role": "current",
+            "role_interpretation": "decision about how to frame the pilot to the board",
+            "source_evidence_ids": [
+              "e050"
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "e9fd1b92a0c8af2251beaf0d40b4f8f0bd45afcf1cde27d8d5a1efd21428fc8e",
+      "compiled": {
+        "boundary": {
+          "direct_graph_routing_allowed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prose_keyword_gate_added": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false
+        },
+        "global_limitations": "Only current records. Each stance component uses exactly one alias already cited by its role record. Split distinct objects even when one alias supports both.",
+        "observations": [
+          {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "User states 'I am leaning toward' — this is a leaning, not a decision or commitment.",
+            "graph_routing_eligible": false,
+            "limitations": "",
+            "observation_id": "rprolev2-current-01-6123e41b8b1b86",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+            },
+            "raw_record_sha256": "sha256:6123e41b8b1b8699ca6808b60f5a3f9683e5a238464061c306aae14fa23558a4",
+            "role": "current",
+            "role_interpretation": "leaning toward a specific pilot structure",
+            "role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e049",
+                "text": "I am leaning toward a four-month nonexclusive pilot limited to service and explanatory stories, with our approval of every feed headline, story-level distribution and correction logs, and no homepage widget."
+              }
+            ],
+            "source_evidence_ids": [
+              "e049"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e049",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "four-month nonexclusive pilot limited to service and explanatory stories, with approval of every feed headline, story-level distribution and correction logs, and no homepage widget",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "User states 'I will tell the board' — this is a declared intention/decision about what to communicate.",
+            "graph_routing_eligible": false,
+            "limitations": "",
+            "observation_id": "rprolev2-current-02-938695eb291222",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+            },
+            "raw_record_sha256": "sha256:938695eb291222f28674d50ecac36e1f687a73a70e3cfc299777f2a3f6ea73aa",
+            "role": "current",
+            "role_interpretation": "decision about how to frame the pilot to the board",
+            "role_record_id": "rprolev2-current-02-938695eb291222",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e050",
+                "text": "I will tell the board we should describe it as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce."
+              }
+            ],
+            "source_evidence_ids": [
+              "e050"
+            ],
+            "source_record_index": 2,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "describe the pilot to the board as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:6123e41b8b1b8699ca6808b60f5a3f9683e5a238464061c306aae14fa23558a4",
+            "record_index": 1,
+            "role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+            "terminal_state": "admitted"
+          },
+          {
+            "raw_record_sha256": "sha256:938695eb291222f28674d50ecac36e1f687a73a70e3cfc299777f2a3f6ea73aa",
+            "record_index": 2,
+            "role_record_id": "rprolev2-current-02-938695eb291222",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "current",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_custody_complete"
+      },
+      "completion_tokens": 387,
+      "duration_seconds": 6.14,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000224048,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 898,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "e9125a6f7affb415cc9d2b6cc9c0bd8d22d4e78b04bc9fc60fdbe7928c9c490e",
+      "provider_reported_cost_usd": 0.000224048,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "613f487d8eb40911d6dfebff28395d714c1a0912ecb151a3ce33aa40ef84b907",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+      "task_id": "role-current",
+      "temperature": 0.0,
+      "total_tokens": 1285,
+      "user_prompt_sha256": "b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 2,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e052"
+            ],
+            "expression_kinds": [
+              "unclear"
+            ],
+            "fidelity_note": "The user explicitly states they have not resolved how much staff adaptation during the pilot would count as useful learning versus quiet self-censorship.",
+            "limitations": "unresolved condition",
+            "object_interpretations": [
+              "staff adaptation during pilot"
+            ],
+            "object_kinds": [
+              "unclear"
+            ],
+            "role": "qualification",
+            "role_interpretation": "unresolved condition that could change or limit the current position",
+            "source_evidence_ids": [
+              "e052"
+            ],
+            "status": "unclear"
+          },
+          {
+            "evidence_ids": [
+              "e055"
+            ],
+            "expression_kinds": [
+              "unclear"
+            ],
+            "fidelity_note": "The assistant notes that staff may change story choices in anticipation of platform performance even without an explicit request, which is a counterpressure not yet resolved.",
+            "limitations": "counterpressure",
+            "object_interpretations": [
+              "staff changing story choices in anticipation of platform performance"
+            ],
+            "object_kinds": [
+              "unclear"
+            ],
+            "role": "qualification",
+            "role_interpretation": "counterpressure that could change or limit the current position",
+            "source_evidence_ids": [
+              "e055"
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "9a5fcaa55df6c5614976ba98425a87f87ad32453a5a14ca5a0d99257d21a92e5",
+      "compiled": {
+        "boundary": {
+          "direct_graph_routing_allowed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prose_keyword_gate_added": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The user explicitly states they have not resolved how much staff adaptation during the pilot would count as useful learning versus quiet self-censorship.",
+            "graph_routing_eligible": false,
+            "limitations": "unresolved condition",
+            "observation_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "provenance": {
+              "call_id": "role-qualification",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:1c71674962eb8c2ac7fb90813a5ae17d6ef040a6bc9e73c289e37df6f4f64950"
+            },
+            "raw_record_sha256": "sha256:2ecfea90d2237c35aa2b2f97d9988fa3fbec994b9b41f0e6918eff28020a0af8",
+            "role": "qualification",
+            "role_interpretation": "unresolved condition that could change or limit the current position",
+            "role_record_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e052",
+                "text": "I have not resolved how much staff adaptation during the pilot would count as useful learning versus quiet self-censorship."
+              }
+            ],
+            "source_evidence_ids": [
+              "e052"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "unclear",
+                "stance_object_interpretation": "staff adaptation during pilot",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The assistant notes that staff may change story choices in anticipation of platform performance even without an explicit request, which is a counterpressure not yet resolved.",
+            "graph_routing_eligible": false,
+            "limitations": "counterpressure",
+            "observation_id": "rprolev2-qualification-02-9409405ff87180",
+            "provenance": {
+              "call_id": "role-qualification",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:1c71674962eb8c2ac7fb90813a5ae17d6ef040a6bc9e73c289e37df6f4f64950"
+            },
+            "raw_record_sha256": "sha256:9409405ff871809f28b5202cb8696c0750b9131c998e12cc86abd961cf80b5d6",
+            "role": "qualification",
+            "role_interpretation": "counterpressure that could change or limit the current position",
+            "role_record_id": "rprolev2-qualification-02-9409405ff87180",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e055",
+                "text": "The pilot cannot show how the platform would handle investigations, and staff may change story choices in anticipation of platform performance even without an explicit request."
+              }
+            ],
+            "source_evidence_ids": [
+              "e055"
+            ],
+            "source_record_index": 2,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e055",
+                "stance_expression_kind": "unclear",
+                "stance_object_interpretation": "staff changing story choices in anticipation of platform performance",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:2ecfea90d2237c35aa2b2f97d9988fa3fbec994b9b41f0e6918eff28020a0af8",
+            "record_index": 1,
+            "role_record_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "terminal_state": "admitted"
+          },
+          {
+            "raw_record_sha256": "sha256:9409405ff871809f28b5202cb8696c0750b9131c998e12cc86abd961cf80b5d6",
+            "record_index": 2,
+            "role_record_id": "rprolev2-qualification-02-9409405ff87180",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "qualification",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_custody_complete"
+      },
+      "completion_tokens": 337,
+      "duration_seconds": 6.188,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000209442,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 889,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "cb4cceabc4219195560cc2fac0ecc2672ebc86c00026ae0b4fc86d5c8ad74f04",
+      "provider_reported_cost_usd": 0.000209442,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "8d472fcf6b93544c65e75bf21aa5517e76277789a8a5f0c3c3df98942566e969",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+      "task_id": "role-qualification",
+      "temperature": 0.0,
+      "total_tokens": 1226,
+      "user_prompt_sha256": "1c71674962eb8c2ac7fb90813a5ae17d6ef040a6bc9e73c289e37df6f4f64950",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 2,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "",
+        "records": [
+          {
+            "current_role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+            "limitations": "",
+            "qualification_role_record_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "relationship_interpretation": "The current leaning toward a specific pilot structure is directly limited by the unresolved condition about staff adaptation, which could change or limit the current position.",
+            "starting_role_record_id": "rprolev2-starting-01-714591a439270e",
+            "status": "unclear"
+          },
+          {
+            "current_role_record_id": "rprolev2-current-02-938695eb291222",
+            "limitations": "",
+            "qualification_role_record_id": "rprolev2-qualification-02-9409405ff87180",
+            "relationship_interpretation": "The current decision about how to frame the pilot to the board is directly limited by the counterpressure that the pilot cannot show how the platform would handle investigations and may cause anticipatory story changes.",
+            "starting_role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "b448b3c10edbc498d28a56611431e0db7e0b35cf73da83d81692f5146fdf5663",
+      "compiled": {
+        "boundary": {
+          "categorical_trajectory_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "prose_keyword_gate_added": false,
+          "semantic_relationship_correctness_inferred_by_code": false,
+          "semantic_role_matching_performed": false
+        },
+        "observations": [
+          {
+            "current_role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+            "graph_routing_eligible": false,
+            "limitations": "",
+            "observation_id": "rprelationv2-01-88f8a7a2bce1e5",
+            "provenance": {
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval"
+            },
+            "qualification_role_record_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "raw_record_sha256": "sha256:88f8a7a2bce1e57722d86a3bf5260288c887fc845a62c697c0d76394502a96f3",
+            "relation_record_id": "rprelationv2-01-88f8a7a2bce1e5",
+            "relationship_interpretation": "The current leaning toward a specific pilot structure is directly limited by the unresolved condition about staff adaptation, which could change or limit the current position.",
+            "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+            "semantic_status": "unclear",
+            "starting_role_record_id": "rprolev2-starting-01-714591a439270e",
+            "terminal_state": "admitted"
+          },
+          {
+            "current_role_record_id": "rprolev2-current-02-938695eb291222",
+            "graph_routing_eligible": false,
+            "limitations": "",
+            "observation_id": "rprelationv2-02-25e14796ef0124",
+            "provenance": {
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval"
+            },
+            "qualification_role_record_id": "rprolev2-qualification-02-9409405ff87180",
+            "raw_record_sha256": "sha256:25e14796ef01241fbb0a675fa4fde59320303f57f406465e0bc9439254efbd3b",
+            "relation_record_id": "rprelationv2-02-25e14796ef0124",
+            "relationship_interpretation": "The current decision about how to frame the pilot to the board is directly limited by the counterpressure that the pilot cannot show how the platform would handle investigations and may cause anticipatory story changes.",
+            "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+            "semantic_status": "unclear",
+            "starting_role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:88f8a7a2bce1e57722d86a3bf5260288c887fc845a62c697c0d76394502a96f3",
+            "record_index": 1,
+            "relation_record_id": "rprelationv2-01-88f8a7a2bce1e5",
+            "terminal_state": "admitted"
+          },
+          {
+            "raw_record_sha256": "sha256:25e14796ef01241fbb0a675fa4fde59320303f57f406465e0bc9439254efbd3b",
+            "record_index": 2,
+            "relation_record_id": "rprelationv2-02-25e14796ef0124",
+            "terminal_state": "admitted"
+          }
+        ],
+        "relation_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+        "status": "position_relation_response_custody_complete"
+      },
+      "completion_tokens": 299,
+      "duration_seconds": 5.817,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.00019363,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 847,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "b20949652a6cd91c808159743f577e5cdfd30932523ed2ab253e376e9772a705",
+      "provider_reported_cost_usd": 0.00019363,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "ae861d92b89bf595d218a3a3fdaa4831cb5832d9a2bb165d5cbb7d6f324a1df4",
+      "task_id": "relation",
+      "temperature": 0.0,
+      "total_tokens": 1146,
+      "user_prompt_sha256": "abf097d5f7444c5885ec0282e78cd9da719cb489e64d7b07b2cd3a4efc2d82be",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    }
+  ],
+  "estimated_cost_usd": 0.00085626,
+  "failed_roles": [],
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 2,
+      "actual_role_records": 6,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+          "graph_routing_eligible": false,
+          "limitations": "",
+          "observation_id": "rprelationv2-01-88f8a7a2bce1e5",
+          "provenance": {
+            "producer_id": "deepseek/deepseek-v4-flash",
+            "producer_kind": "model_operator_eval"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-01-2ecfea90d2237c",
+          "raw_record_sha256": "sha256:88f8a7a2bce1e57722d86a3bf5260288c887fc845a62c697c0d76394502a96f3",
+          "relation_record_id": "rprelationv2-01-88f8a7a2bce1e5",
+          "relationship_interpretation": "The current leaning toward a specific pilot structure is directly limited by the unresolved condition about staff adaptation, which could change or limit the current position.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "unclear",
+          "starting_role_record_id": "rprolev2-starting-01-714591a439270e",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "User states 'I am leaning toward' — this is a leaning, not a decision or commitment.",
+            "graph_routing_eligible": false,
+            "limitations": "",
+            "observation_id": "rprolev2-current-01-6123e41b8b1b86",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+            },
+            "raw_record_sha256": "sha256:6123e41b8b1b8699ca6808b60f5a3f9683e5a238464061c306aae14fa23558a4",
+            "role": "current",
+            "role_interpretation": "leaning toward a specific pilot structure",
+            "role_record_id": "rprolev2-current-01-6123e41b8b1b86",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e049",
+                "text": "I am leaning toward a four-month nonexclusive pilot limited to service and explanatory stories, with our approval of every feed headline, story-level distribution and correction logs, and no homepage widget."
+              }
+            ],
+            "source_evidence_ids": [
+              "e049"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e049",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "four-month nonexclusive pilot limited to service and explanatory stories, with approval of every feed headline, story-level distribution and correction logs, and no homepage widget",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The user explicitly states they have not resolved how much staff adaptation during the pilot would count as useful learning versus quiet self-censorship.",
+            "graph_routing_eligible": false,
+            "limitations": "unresolved condition",
+            "observation_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "provenance": {
+              "call_id": "role-qualification",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:1c71674962eb8c2ac7fb90813a5ae17d6ef040a6bc9e73c289e37df6f4f64950"
+            },
+            "raw_record_sha256": "sha256:2ecfea90d2237c35aa2b2f97d9988fa3fbec994b9b41f0e6918eff28020a0af8",
+            "role": "qualification",
+            "role_interpretation": "unresolved condition that could change or limit the current position",
+            "role_record_id": "rprolev2-qualification-01-2ecfea90d2237c",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e052",
+                "text": "I have not resolved how much staff adaptation during the pilot would count as useful learning versus quiet self-censorship."
+              }
+            ],
+            "source_evidence_ids": [
+              "e052"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "unclear",
+                "stance_object_interpretation": "staff adaptation during pilot",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The user states they run a local nonprofit newsroom with eleven full-time staff, establishing the starting organizational context.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev2-starting-01-714591a439270e",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9"
+            },
+            "raw_record_sha256": "sha256:714591a439270e97f7c39b840e4bf3160749d0d0a8783b9e6c848b2f1ed05a04",
+            "role": "starting",
+            "role_interpretation": "The user's starting position is that of a leader of a small nonprofit newsroom, which is the baseline from which the platform offer is evaluated.",
+            "role_record_id": "rprolev2-starting-01-714591a439270e",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I run a local nonprofit newsroom with eleven full-time staff."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e001",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "The user's role as executive of a small nonprofit newsroom",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      },
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-02-938695eb291222",
+          "graph_routing_eligible": false,
+          "limitations": "",
+          "observation_id": "rprelationv2-02-25e14796ef0124",
+          "provenance": {
+            "producer_id": "deepseek/deepseek-v4-flash",
+            "producer_kind": "model_operator_eval"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-02-9409405ff87180",
+          "raw_record_sha256": "sha256:25e14796ef01241fbb0a675fa4fde59320303f57f406465e0bc9439254efbd3b",
+          "relation_record_id": "rprelationv2-02-25e14796ef0124",
+          "relationship_interpretation": "The current decision about how to frame the pilot to the board is directly limited by the counterpressure that the pilot cannot show how the platform would handle investigations and may cause anticipatory story changes.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "unclear",
+          "starting_role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "User states 'I will tell the board' — this is a declared intention/decision about what to communicate.",
+            "graph_routing_eligible": false,
+            "limitations": "",
+            "observation_id": "rprolev2-current-02-938695eb291222",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+            },
+            "raw_record_sha256": "sha256:938695eb291222f28674d50ecac36e1f687a73a70e3cfc299777f2a3f6ea73aa",
+            "role": "current",
+            "role_interpretation": "decision about how to frame the pilot to the board",
+            "role_record_id": "rprolev2-current-02-938695eb291222",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e050",
+                "text": "I will tell the board we should describe it as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce."
+              }
+            ],
+            "source_evidence_ids": [
+              "e050"
+            ],
+            "source_record_index": 2,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "describe the pilot to the board as a distribution test, not an institutional endorsement, and that investigations remain outside the evidence it can produce",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The assistant notes that staff may change story choices in anticipation of platform performance even without an explicit request, which is a counterpressure not yet resolved.",
+            "graph_routing_eligible": false,
+            "limitations": "counterpressure",
+            "observation_id": "rprolev2-qualification-02-9409405ff87180",
+            "provenance": {
+              "call_id": "role-qualification",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:1c71674962eb8c2ac7fb90813a5ae17d6ef040a6bc9e73c289e37df6f4f64950"
+            },
+            "raw_record_sha256": "sha256:9409405ff871809f28b5202cb8696c0750b9131c998e12cc86abd961cf80b5d6",
+            "role": "qualification",
+            "role_interpretation": "counterpressure that could change or limit the current position",
+            "role_record_id": "rprolev2-qualification-02-9409405ff87180",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e055",
+                "text": "The pilot cannot show how the platform would handle investigations, and staff may change story choices in anticipation of platform performance even without an explicit request."
+              }
+            ],
+            "source_evidence_ids": [
+              "e055"
+            ],
+            "source_record_index": 2,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e055",
+                "stance_expression_kind": "unclear",
+                "stance_object_interpretation": "staff changing story choices in anticipation of platform performance",
+                "stance_object_kind": "unclear"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb3-case01-journalism-platform-pilot",
+            "fidelity_note": "The user expresses excitement about the platform's potential but also worry about shaping coverage for feed performance, showing an undecided stance.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev2-starting-02-d38345ff346a7b",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9"
+            },
+            "raw_record_sha256": "sha256:d38345ff346a7bfa9adb2d3a3444f575dd1c12c55143046a6394416e811995cb",
+            "role": "starting",
+            "role_interpretation": "The user's starting hesitation is a visible undecided stance: excitement about reach and revenue versus worry about editorial independence.",
+            "role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e004",
+                "text": "I am excited by that possibility but worried that we will start shaping coverage around what performs inside their feed."
+              }
+            ],
+            "source_evidence_ids": [
+              "e004"
+            ],
+            "source_record_index": 2,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "The user's internal conflict between excitement and worry about editorial independence",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "provider_reported_cost_usd": 0.00085626,
+  "provider_request_count": 4,
+  "relation_block_reason": "",
+  "run_id": "reasoning-process-position-role-first-journalism-probe-v2",
+  "schema_version": "lolla.reasoning_process_position_role_first_probe_result.v2",
+  "semantic_review_status": "source_first_review_required",
+  "status": "new_case_role_first_probe_preserved"
+}

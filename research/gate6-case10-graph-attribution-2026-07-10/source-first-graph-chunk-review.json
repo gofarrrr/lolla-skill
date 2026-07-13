@@ -1,0 +1,81 @@
+{
+  "schema_version": "lolla.graph_chunk_source_first_review.v1",
+  "status": "complete",
+  "date": "2026-07-10",
+  "case_id": "case-10-real-estate-bid",
+  "reviewer": {
+    "type": "codex",
+    "human_validated": false,
+    "model_calls": 0,
+    "source_first": true
+  },
+  "inputs": [
+    {"role": "source_conversation", "path": "research/test-cases/case_real_estate_conversation.txt", "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"},
+    {"role": "attribution_contract_v2", "path": "research/gate6-case10-graph-attribution-2026-07-10/contract-v2.json", "sha256": "4f021d28838af92a5d7e12332a2e97e4765c52beefd0fe83805ef7dbd3b10208"},
+    {"role": "attribution_result_v2", "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result-v2.json", "sha256": "f010a1fe0eb569fa4d7d4aed4d4d76a661a25aec9e104a4341402cc8958899d0"},
+    {"role": "blind_stage_b_review", "path": "research/stage-b-case10-2026-07-10/blind-review-before-key.json", "sha256": "c33e837f39da522ec961956dc16c80e4a3d114fd2e179e76c10206c3f03751cd"}
+  ],
+  "review_contract": {
+    "candidate_must_be_source_supported": true,
+    "candidate_must_be_absent_or_materially_incomplete_in_strong_control": true,
+    "candidate_must_have_a_plausible_action_evidence_confidence_frame_or_private_guardrail_consequence": true,
+    "candidate_must_not_require_invented_market_financial_insurance_legal_repair_or_outcome_facts": true,
+    "candidate_must_survive_a_forcing_and_lost_value_check": true,
+    "graph_label_or_relationship_alone_cannot_pass": true
+  },
+  "chunks": [
+    {
+      "anchor_model_id": "regret-theory",
+      "relation_type": "antagonist",
+      "relation_target_id": "confirmation-bias",
+      "chunk": "Confirmation-bias is countered by regret-theory when the framework forces the decision maker to consider the regretted path of inaction instead of only the comfortable default story.",
+      "strongest_plausible_application": "Check whether the user's reluctance to raise the bid is merely protecting a comfortable existing position while underweighting the cost of inaction.",
+      "source_fit": "weak",
+      "novelty_against_control": "weak",
+      "disposition": "reject",
+      "why": "The source does not establish a comfortable status-quo default. The user already offered above asking, explicitly considered regret in both directions, and selected a higher ceiling. Treating refusal to raise further as confirmation bias would pathologize a bounded decision and favor action by construction.",
+      "risk_if_forced": "Could turn the husband's go-higher preference into the privileged frame and mislabel a legitimate financial boundary as bias.",
+      "useful_residue": "Keep regret symmetric; do not assume action is epistemically superior to restraint."
+    },
+    {
+      "anchor_model_id": "regret-theory",
+      "relation_type": "ally",
+      "relation_target_id": "optionality",
+      "chunk": "Optionality strengthens regret-theory by checking whether action can be made more reversible before anticipated regret hardens the choice.",
+      "strongest_plausible_application": "Ask whether any verified bid, contingency, renovation-sequencing, or alternative-property path preserves meaningful reversibility before the deadline.",
+      "source_fit": "conditional_but_missing_required_facts",
+      "novelty_against_control": "possible_private_guardrail_only",
+      "disposition": "defer",
+      "why": "The source does not establish offer-contingency rules, legal reversibility, alternative inventory, or a safe reversible financing path. The prior frame reanalysis already produced unsafe alternative-property and delay-all-renovation variants that source-first review rejected.",
+      "risk_if_forced": "Could invent alternatives, assume a bid is reversible, ignore the tomorrow-noon deadline, or weaken the reported year-one electrical constraint.",
+      "useful_residue": "If verified reversible options exist, compare them; absence of that evidence prevents visible advice now."
+    },
+    {
+      "anchor_model_id": "calculated-risk-taking",
+      "relation_type": "tension",
+      "relation_target_id": "black-swan-events",
+      "chunk": "Calculated-risk-taking conflicts with black-swan-events when systematic risk estimation creates false precision around outcomes whose probability distributions have fat tails.",
+      "strongest_plausible_application": "Challenge the original assistant's invented repair ranges, near-certainty of a second discovery, and confident zero-buffer conclusion.",
+      "source_fit": "strong",
+      "novelty_against_control": "already_covered",
+      "disposition": "reject_as_duplicate",
+      "why": "The strong reconsideration control independently removed the invented repair precision and near-certainty claim. The admitted evidence-sized-buffer pressure also covers the same mechanism more safely without importing a fat-tail claim that the source cannot verify.",
+      "risk_if_forced": "Could replace one unsupported probability story with a more dramatic tail-risk label and reward graph vocabulary rather than a new decision consequence.",
+      "useful_residue": "Preserve uncertainty and demand evidence-sized claims; no separate graph treatment is earned."
+    }
+  ],
+  "decision": {
+    "graph_chunks_reviewed": 3,
+    "graph_chunks_admitted_for_case10_paid_ablation": 0,
+    "paid_case10_graph_ablation_authorized": false,
+    "reason": "One graph chunk has the wrong activation condition, one lacks the facts needed for safe application, and one is already recovered by the strong control and admitted non-graph pressure.",
+    "next_evidence_need": "Find a different frozen case where an exact relationship-graph chunk is source-supported, absent from strong transcript-only reconsideration, individually dispositionable, and capable of a bounded consequence before designing a paid arm."
+  },
+  "non_claims": [
+    "not human review",
+    "not proof that these relationships are generally invalid",
+    "not proof that the graph is generally useless",
+    "not answer-quality scoring",
+    "not runtime-integration authority"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_probe_decision.v1",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_microtask_probe_v1_20260711_a1",
+  "status": "closed_informative_failure",
+  "decision": "do_not_run_constraints_or_retry_under_v1",
+  "observed": {
+    "authorized_provider_calls": 3,
+    "attempted_provider_calls": 2,
+    "successful_provider_inference_calls": 1,
+    "operational_provider_failures": 1,
+    "automatic_retries": 0,
+    "constraints_call_not_run": true,
+    "positions_candidates_proposed": 3,
+    "positions_candidates_quarantined": 3,
+    "accepted_current_view_candidates": 0,
+    "estimated_observed_cost_usd": 0.00153075,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "evaluator_calls": 0,
+    "runtime_changes": 0
+  },
+  "findings": [
+    {
+      "finding_id": "span-prefix-custody-failure",
+      "kind": "semantic_output_contract_failure",
+      "evidence": "The model returned the correct 16-character digest portion but removed the literal span- prefix from every evidence identifier.",
+      "effect": "All three position-family candidates were deterministically quarantined with null event snapshots."
+    },
+    {
+      "finding_id": "joint-trajectory-fragmentation",
+      "kind": "semantic_interpretation_failure",
+      "evidence": "The reviewed joint plan was split into one user-owned focal plan and one separately assistant-owned ready-enough proposal.",
+      "effect": "Joint ownership and assistant Turn 7 qualification in the focal trajectory failed again despite the smaller task."
+    },
+    {
+      "finding_id": "thread-schema-provider-rejection",
+      "kind": "operational_interoperability_failure",
+      "evidence": "OpenRouter routed the exact frozen thread schema to Google AI Studio, which returned HTTP 400 INVALID_ARGUMENT before inference.",
+      "effect": "No thread candidate was observed and the frozen stop rule prevented the constraints call."
+    }
+  ],
+  "provider_free_diagnosis": {
+    "accepted_positions_schema_bytes": 2864,
+    "accepted_positions_schema_depth": 6,
+    "rejected_threads_schema_bytes": 2294,
+    "rejected_threads_schema_depth": 6,
+    "size_or_depth_is_primary_cause": false,
+    "unique_rejected_schema_feature": "superseded_by uses type array [string, null]",
+    "accepted_schema_comparison": "The accepted positions schema uses anyOf for an optional nested decision-summary object.",
+    "strongest_hypothesis": "The OpenRouter-to-Google-AI-Studio structured-output path is not accepting the nullable string type-array projection even though current direct Gemini documentation describes it as supported.",
+    "causal_proof": false
+  },
+  "next_boundary": "A new provider call requires a new prospective contract and authorization. Any repair should be OpenRouter-Gemini-specific, preserve the direct-Gemini projection, constrain model-facing span IDs to the source catalog with a schema enum rather than silently repairing malformed IDs, strengthen focal-trajectory composition generically, and transfer-test on Case 05 rather than retrying Case 02.",
+  "non_claims": [
+    "not_clean_holdout",
+    "not_independent_gold",
+    "not_thread_extraction_quality_measurement",
+    "not_constraint_extraction_quality_measurement",
+    "not_graph_value",
+    "not_runtime_authority"
+  ]
+}

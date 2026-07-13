@@ -1,0 +1,175 @@
+{
+  "schema_version": "lolla.conversation_state_candidate_recovery_contract.v1",
+  "status": "frozen_provider_free",
+  "date": "2026-07-11",
+  "purpose": "Replay source-reviewed conversation state through typed micro-candidates, exact source custody, a deterministic candidate ledger, and the existing handoff without provider calls or graph routing.",
+  "artifact_locks": [
+    {
+      "path": "engine/system_b/conversation_state_candidates.py",
+      "sha256": "16ad9c58cff6a818bf9187b10e93285f2704be34cf891b257da671c6a89fe70b"
+    },
+    {
+      "path": "engine/system_b/conversation_state_candidate_pipeline.py",
+      "sha256": "86ed7326aa248d982fa1ebf6fe6e5686e5598f52d61ade8209ba2c6c8cb269b3"
+    },
+    {
+      "path": "engine/system_b/conversation_state_handoff.py",
+      "sha256": "db528315ee1a5714bffe9546f58a2879b409a182d121bd09210777730d2d8c8b"
+    },
+    {
+      "path": "scripts/evals/replay_conversation_state_candidate_recovery.py",
+      "sha256": "eaac62d4fa9d296ace6b1768d5aaa7ae05b027df151e313702832f24a83fb695"
+    },
+    {
+      "path": "docs/conversation-understanding/structured-extraction-practices-july-2026.md",
+      "sha256": "c0fd9dde51e943f5f0aa2652db46f059242f53de5fbb34be0b1976fc5f601238"
+    },
+    {
+      "path": "docs/conversation-understanding/lolla-product-constitution-v1.md",
+      "sha256": "3271be0269ea6ba43786edd5ebd4a8fa50cdddf879000339718a7ef9feddd03b"
+    }
+  ],
+  "atomic_migration": {
+    "path": "research/conversation-state-recovery-v1-2026-07-11/atomic-migration.json",
+    "sha256": "d606145699edcebe5771f4364a3b50452c30472565e9fab9f09d7846d29b4c8e"
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "packet": {
+        "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case01-product-scope.json",
+        "sha256": "840096a3703f1c143e485a14d8f3fed3d2f8777c78965d393f5405ad3dadb178"
+      },
+      "source": {
+        "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+        "sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7"
+      },
+      "message_count": 14,
+      "atomic_constraint_count": 9,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved"
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "packet": {
+        "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case02-nonprofit-scale.json",
+        "sha256": "19854f600f57d4a54567052eb19d24f1fa8218fa668863d17f7de82f8996233f"
+      },
+      "source": {
+        "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+        "sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6"
+      },
+      "message_count": 14,
+      "atomic_constraint_count": 9,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved"
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "packet": {
+        "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case03-creative-partnership.json",
+        "sha256": "5e6ff9046bfe3225316a636d16bab7952591b9b5ebcde2c2f340360b6af54663"
+      },
+      "source": {
+        "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+        "sha256": "9788de101dee7661bcc9f76240874f088f9e97579a90deff1ee8c91462004f0f"
+      },
+      "message_count": 14,
+      "atomic_constraint_count": 8,
+      "position_ownership": "joint",
+      "thread_disposition": "resolved"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "packet": {
+        "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case04-research-tool-release.json",
+        "sha256": "aaffe78ed2cf3f97631ad5734a71621b03a1b4c58b82b9fa733e2530b98bf8f5"
+      },
+      "source": {
+        "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+        "sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb"
+      },
+      "message_count": 14,
+      "atomic_constraint_count": 10,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "packet": {
+        "path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case05-family-archive.json",
+        "sha256": "4e77e877533a58d42c11878c117a85ddfa7637b6855cf7a0805b2852f0a2d6a3"
+      },
+      "source": {
+        "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+        "sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d"
+      },
+      "message_count": 14,
+      "atomic_constraint_count": 9,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved"
+    }
+  ],
+  "adversarial_source_case_id": "amb1-case03-creative-partnership",
+  "adversarial_fixtures": [
+    {
+      "fixture_id": "joint-missing-assistant",
+      "path": "tests/fixtures/conversation_state_recovery/joint_missing_assistant.json",
+      "sha256": "fd00f8d1a4389d77e24dfb3d1c76d819a17e5924870934fc331a6217c9c55126"
+    },
+    {
+      "fixture_id": "mixed-constraint",
+      "path": "tests/fixtures/conversation_state_recovery/mixed_constraint.json",
+      "sha256": "27d6dd9fc220492f64800d0dcb2bac960dd46754b49a4e25f74598dfb139414e"
+    },
+    {
+      "fixture_id": "noncontiguous-quote",
+      "path": "tests/fixtures/conversation_state_recovery/noncontiguous_quote.json",
+      "sha256": "fe2e4ec005036848debdd6a36ffcd26070f1f34e9328bb72ed957a1617aee645"
+    },
+    {
+      "fixture_id": "not-found",
+      "path": "tests/fixtures/conversation_state_recovery/not_found.json",
+      "sha256": "01b9bb95244deadbdfdf059828aa4b1712e17486e74df2ddd464aea5cca5ebcd"
+    }
+  ],
+  "required_aggregate": {
+    "case_count": 5,
+    "message_count": 70,
+    "position_count": 5,
+    "thread_count": 5,
+    "constraint_count": 45,
+    "candidate_count": 60,
+    "invalid_candidate_count": 0,
+    "direct_graph_seed_count": 0,
+    "late_trajectory_case_count": 5,
+    "adversarial_fixture_count": 4,
+    "adversarial_parser_rejection_count": 1,
+    "adversarial_ledger_quarantine_count": 2,
+    "adversarial_absence_preserved_count": 1,
+    "position_ownership_counts": {
+      "joint": 5
+    },
+    "thread_disposition_counts": {
+      "addressed_unresolved": 4,
+      "resolved": 1
+    },
+    "prompt_contract_count": 30
+  },
+  "evaluation_boundary": {
+    "source_reviewed_decomposition_and_reassembly_only": true,
+    "automatic_extraction_quality_measured": false,
+    "provider_schema_acceptance_measured": false,
+    "provider_calls": 0,
+    "graph_calls": 0,
+    "runtime_changes": 0
+  },
+  "non_claims": [
+    "not_automatic_extraction_improvement",
+    "not_independent_gold",
+    "not_provider_acceptance_proof",
+    "not_graph_value",
+    "not_downstream_answer_value",
+    "not_runtime_authority"
+  ]
+}

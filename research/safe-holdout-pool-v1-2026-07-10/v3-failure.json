@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_v3_failure.v1",
+  "status": "failed_rate_limit_terminal_pool_generation_stopped",
+  "date": "2026-07-10",
+  "run_id": "lolla_holdout_pool_v1_20260710_a3",
+  "frozen_evidence": {
+    "generation_contract_sha256": "5f05e56db19ada4e861da07ad01cf4745f9aba65ed715e01dbff782dd91d32d8",
+    "runner_sha256": "0c099b078e8081f1da44c772f027f1d4f53c6a5eb8dd72de2f1b38af6557e46b",
+    "pool_sha256": "141d745276c017a13eb66230177102cbf12546b4b5322d373278a5447309c33d",
+    "call_custody_sha256": "0c180636191f17051d0274035bd59a5929a61f403db8f5abc3830c1c47979fa2",
+    "run_summary_sha256": "99e8169a12add6fd76039b4acad9d9918e89463134860a0cc67838a280801488"
+  },
+  "observed": {
+    "call_attempted": true,
+    "recorded_call_count": 1,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "finish_reason": "error",
+    "provider_error_code": 429,
+    "provider_error_type": "rate_limit_exceeded",
+    "provider_error_message": "JSON error injected into SSE stream",
+    "provider_payload_sha256": "deca6f8976e523b0c42d26a903de52ba448e925224e54bccc2dcdbcc82626453",
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "total_tokens": null,
+    "usage_evidence_state": "unknown",
+    "estimated_cost_usd": null,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "case_count": 0,
+    "selected_case_id": null
+  },
+  "repair_status": {
+    "supported_reasoning_effort_frozen": true,
+    "provider_error_diagnostic_preserved": true,
+    "provider_payload_hash_preserved": true,
+    "canonical_message_ids_owned_by_deterministic_code": true,
+    "semantic_prompt_changed_from_v1": false,
+    "case_specs_changed_from_v1": false,
+    "selection_changed_from_v1": false
+  },
+  "terminal_decision": {
+    "additional_pool_generation_calls_authorized": false,
+    "use_v2_failed_output_as_holdout": false,
+    "selected_case_id": null,
+    "stage_a_authorized": false,
+    "stage_b_authorized": false,
+    "graph_ablation_authorized": false,
+    "runtime_integration_authorized": false,
+    "next_requirement": "Obtain a genuinely new safe conversation source under a new source strategy and explicit authorization."
+  },
+  "non_claims": [
+    "Unknown v3 usage and cost are not numeric zero.",
+    "The rate limit says nothing about Lolla reasoning quality or graph value.",
+    "The v2 generated text is not silently admitted under the repaired v3 scorer.",
+    "No holdout or Stage A candidate has been selected."
+  ]
+}

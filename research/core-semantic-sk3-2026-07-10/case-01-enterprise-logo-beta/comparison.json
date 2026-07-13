@@ -1,0 +1,289 @@
+{
+  "case_id": "case-01-enterprise-logo-beta",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.0,
+      "never_observation_ids": [
+        "boundary.success_criteria_deferred",
+        "constraint.engineering_capacity",
+        "drop.board_pressure_under_carried",
+        "drop.commitment_concern_under_carried",
+        "drop.evidence_question_not_answered",
+        "pressure.board_brand_excitement",
+        "pressure.no_signed_commitment",
+        "pressure.purchase_commitment_concern",
+        "pressure.weak_email_evidence",
+        "question.change_to_evidence_gate",
+        "question.initial_public_launch",
+        "stance.initial_public_beta_commitment",
+        "stance.qualification_without_direction_change",
+        "threshold.email_confirmation",
+        "value.opportunity_loss_concern"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 15
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 15
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 15
+        }
+      ],
+      "stable_observation_ids": []
+    },
+    "provenance_status": {
+      "counts_by_run": [
+        {
+          "exact_span": 3,
+          "legacy_turn_ref_only": 4
+        },
+        {
+          "exact_span": 3,
+          "legacy_turn_ref_only": 5
+        },
+        {
+          "exact_span": 3,
+          "legacy_turn_ref_only": 5
+        }
+      ],
+      "invalid_component_count": 0,
+      "legacy_incomplete_count": 0
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraints": {
+          "counts": [
+            3,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.047619047619047616,
+          "span_jaccard": 0.047619047619047616
+        },
+        "reasoning_passages": {
+          "counts": [
+            3,
+            3,
+            3
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        }
+      },
+      "mean_labeled_jaccard": 0.4603174603174603,
+      "mean_span_jaccard": 0.4603174603174603
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.7333333333333333,
+      "never_observation_ids": [
+        "drop.board_pressure_under_carried",
+        "drop.evidence_question_not_answered",
+        "pressure.board_brand_excitement",
+        "pressure.weak_email_evidence"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "boundary.success_criteria_deferred",
+            "constraint.engineering_capacity",
+            "drop.commitment_concern_under_carried",
+            "pressure.no_signed_commitment",
+            "pressure.purchase_commitment_concern",
+            "question.change_to_evidence_gate",
+            "question.initial_public_launch",
+            "stance.initial_public_beta_commitment",
+            "stance.qualification_without_direction_change",
+            "threshold.email_confirmation",
+            "value.opportunity_loss_concern"
+          ],
+          "recall": 0.7333333333333333,
+          "recovered_count": 11,
+          "total_count": 15
+        },
+        {
+          "observation_ids": [
+            "boundary.success_criteria_deferred",
+            "constraint.engineering_capacity",
+            "drop.commitment_concern_under_carried",
+            "pressure.no_signed_commitment",
+            "pressure.purchase_commitment_concern",
+            "question.change_to_evidence_gate",
+            "question.initial_public_launch",
+            "stance.initial_public_beta_commitment",
+            "stance.qualification_without_direction_change",
+            "threshold.email_confirmation",
+            "value.opportunity_loss_concern"
+          ],
+          "recall": 0.7333333333333333,
+          "recovered_count": 11,
+          "total_count": 15
+        },
+        {
+          "observation_ids": [
+            "boundary.success_criteria_deferred",
+            "constraint.engineering_capacity",
+            "drop.commitment_concern_under_carried",
+            "pressure.no_signed_commitment",
+            "pressure.purchase_commitment_concern",
+            "question.change_to_evidence_gate",
+            "question.initial_public_launch",
+            "stance.initial_public_beta_commitment",
+            "stance.qualification_without_direction_change",
+            "threshold.email_confirmation",
+            "value.opportunity_loss_concern"
+          ],
+          "recall": 0.7333333333333333,
+          "recovered_count": 11,
+          "total_count": 15
+        }
+      ],
+      "stable_observation_ids": [
+        "boundary.success_criteria_deferred",
+        "constraint.engineering_capacity",
+        "drop.commitment_concern_under_carried",
+        "pressure.no_signed_commitment",
+        "pressure.purchase_commitment_concern",
+        "question.change_to_evidence_gate",
+        "question.initial_public_launch",
+        "stance.initial_public_beta_commitment",
+        "stance.qualification_without_direction_change",
+        "threshold.email_confirmation",
+        "value.opportunity_loss_concern"
+      ]
+    },
+    "provenance_status": {
+      "counts_by_run": [
+        {
+          "component_evidence_complete": 2,
+          "exact_span": 20
+        },
+        {
+          "exact_span": 21
+        },
+        {
+          "exact_span": 21
+        }
+      ],
+      "invalid_component_count": 0,
+      "legacy_incomplete_count": 0
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "dropped_thread_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 0.5555555555555555,
+          "span_jaccard": 0.5555555555555555
+        },
+        "live_constraint_events": {
+          "counts": [
+            6,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.7142857142857143,
+          "span_jaccard": 0.7142857142857143
+        },
+        "option_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "question_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.7333333333333334,
+          "span_jaccard": 1.0
+        }
+      },
+      "mean_labeled_jaccard": 0.8575963718820862,
+      "mean_span_jaccard": 0.8956916099773242
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5",
+    "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+    "shadow_run_count": 3
+  }
+}

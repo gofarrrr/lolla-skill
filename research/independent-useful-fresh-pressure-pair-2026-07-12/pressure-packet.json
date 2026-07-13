@@ -1,0 +1,184 @@
+{
+  "authoritative_conversation": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+  "boundary": {
+    "all_candidates_preserved": true,
+    "canonical_ids_only": true,
+    "case_facts_reattached_after_graph_recall": true,
+    "fresh_context_required": true,
+    "graph_runtime_effect": "none",
+    "production_authorization": false
+  },
+  "case_id": "phase5-independent-useful-retailer-pilot",
+  "instructions": {
+    "allowed_dispositions": [
+      "apply",
+      "reject",
+      "park"
+    ],
+    "candidate_deletion_before_reconsideration": false,
+    "every_candidate_must_be_inspected": true,
+    "graph_recall_is_applicability_proof": false,
+    "preserve_strong_original_reasoning": true,
+    "rejection_is_valid": true,
+    "unsupported_case_facts_allowed": false
+  },
+  "packet_sha256": "687e31801df8cceee1a88b17dfab7e40d12dae475909dcd4aa0d9afc063fd15f",
+  "pressure_portfolio": [
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.",
+        "display_name": "Active Listening",
+        "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.",
+        "failure_signal": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+        "model_id": "active-listening",
+        "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "active-listening",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.",
+        "display_name": "Commitment Bias",
+        "do_not_apply_when": "Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.",
+        "failure_signal": "Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+        "model_id": "commitment-bias",
+        "pressure_question": "What evidence would make us reverse course rather than defend the original commitment?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "commitment-bias",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+        "display_name": "Confirmation Bias",
+        "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+        "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+        "model_id": "confirmation-bias",
+        "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "confirmation-bias",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.",
+        "display_name": "Intellectual Humility",
+        "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.",
+        "failure_signal": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+        "model_id": "intellectual-humility",
+        "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "intellectual-humility",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.",
+        "display_name": "Premortem",
+        "do_not_apply_when": "Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.",
+        "failure_signal": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+        "model_id": "premortem",
+        "pressure_question": "Is the worst case bad enough?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "premortem",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a credibility and signal-quality problem and a truth-aligned signal design could materially change the unresolved reasoning.",
+        "display_name": "Signaling",
+        "do_not_apply_when": "Do not apply without source support for a credibility and signal-quality problem, or when the pressure question could not materially change the truth-aligned signal design.",
+        "failure_signal": "Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.",
+        "model_id": "signaling",
+        "pressure_question": "What costly behavior would prove this signal is real rather than symbolic?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "signaling",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "status_signal_used_as_evidence"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a consensus and credibility shortcut problem and a social-proof stress test could materially change the unresolved reasoning.",
+        "display_name": "Social Proof",
+        "do_not_apply_when": "Do not apply without source support for a consensus and credibility shortcut problem, or when the pressure question could not materially change the social-proof stress test.",
+        "failure_signal": "Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+        "model_id": "social-proof",
+        "pressure_question": "Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "social-proof",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "status_signal_used_as_evidence"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.",
+        "display_name": "Sunk Cost Fallacy",
+        "do_not_apply_when": "Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.",
+        "failure_signal": "Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+        "model_id": "sunk-cost-fallacy",
+        "pressure_question": "Would we start again today from current facts?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "sunk-cost-fallacy",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ]
+    }
+  ],
+  "schema_version": "lolla.fresh_reasoning_pressure_input.v1",
+  "source_refs": [
+    {
+      "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+      "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+    },
+    {
+      "path": "research/independent-useful-mechanism-probe-2026-07-12/result.json",
+      "sha256": "ca17565e9ec2d6cb1e73c3eddbf11cb641eb3da4806a154287b337f14e2035eb"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+      "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"
+    },
+    {
+      "path": "data/knowledge_graph.json",
+      "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+    }
+  ],
+  "source_turn_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
+}

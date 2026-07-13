@@ -1,0 +1,179 @@
+{
+  "admitted_record_count": 1,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "none",
+    "records": [
+      {
+        "evidence_ids": [
+          "e036",
+          "e039",
+          "e040"
+        ],
+        "fidelity_note": "User expresses unresolved concern about contributor exit; assistant elaborates that social and technical learning may persist beyond formal deletion.",
+        "limitations": "none",
+        "role": "qualification",
+        "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+        "stance_components": [
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+            "object_kind": "unclear",
+            "source_evidence_id": "e036"
+          },
+          {
+            "expression_kind": "reported_without_endorsement",
+            "object_interpretation": "the unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed",
+            "object_kind": "unclear",
+            "source_evidence_id": "e039"
+          },
+          {
+            "expression_kind": "reported_without_endorsement",
+            "object_interpretation": "if the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state",
+            "object_kind": "unclear",
+            "source_evidence_id": "e040"
+          }
+        ],
+        "status": "unclear"
+      }
+    ],
+    "status": "unclear"
+  },
+  "candidate_payload_sha256": "1bcabbeb3c7580b9eafed59c559c0efef2a662a5990cc4b48037128aef03facc",
+  "compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "none",
+    "observations": [
+      {
+        "case_id": "amb3-case04-museum-ai-license",
+        "fidelity_note": "User expresses unresolved concern about contributor exit; assistant elaborates that social and technical learning may persist beyond formal deletion.",
+        "graph_routing_eligible": false,
+        "limitations": "none",
+        "observation_id": "rprolev22-qualification-01-58d4bbff5d205a",
+        "provenance": {
+          "call_id": "role-qualification",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:d1ebce407f581a099e5983b97735b4284b0e1a31cf35940e62b611926ff778f1"
+        },
+        "raw_record_sha256": "sha256:58d4bbff5d205a07467bfd24c39833cd18e03c971dc2843f7ba6ac0f39116951",
+        "role": "qualification",
+        "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+        "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e036",
+            "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+          },
+          {
+            "alias": "e039",
+            "text": "The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed."
+          },
+          {
+            "alias": "e040",
+            "text": "If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state."
+          }
+        ],
+        "source_evidence_ids": [
+          "e036",
+          "e039",
+          "e040"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "qualification",
+            "source_evidence_id": "e036",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot",
+            "stance_object_kind": "unclear"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e039",
+            "stance_expression_kind": "reported_without_endorsement",
+            "stance_object_interpretation": "the unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed",
+            "stance_object_kind": "unclear"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e040",
+            "stance_expression_kind": "reported_without_endorsement",
+            "stance_object_interpretation": "if the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state",
+            "stance_object_kind": "unclear"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:58d4bbff5d205a07467bfd24c39833cd18e03c971dc2843f7ba6ac0f39116951",
+        "record_index": 1,
+        "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "unclear",
+    "role": "qualification",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "completion_tokens": 360,
+  "duration_seconds": 5.229,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.000285822,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 1413,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "a78f65a7ffc1b07847d7583de59a67d9d1a77ef6f04f705cc6f24a33a48c8461",
+  "provider_reported_cost_usd": 0.0001760492,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+  "task_id": "role-qualification",
+  "temperature": 0.0,
+  "total_tokens": 1773,
+  "user_prompt_sha256": "d1ebce407f581a099e5983b97735b4284b0e1a31cf35940e62b611926ff778f1",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": "lolla.graph_ablation_candidate_inventory_result.v1",
+  "status": "complete_provider_free",
+  "scope": {
+    "name": "current_july_frozen_evidence_chain",
+    "included_case_ids": [
+      "case-03-startup-pivot",
+      "case-05-parenting-teen",
+      "case-06-friendship-money",
+      "case-07-messy-linked-decisions",
+      "case-09-phd-dissertation",
+      "case-10-real-estate-bid"
+    ],
+    "historical_scratch_runs_excluded": true,
+    "historical_exclusion_reason": "April and May scratch/replay artifacts use different architecture, prompts, custody, and review contracts and cannot authorize a modern causal ablation."
+  },
+  "provider_calls": 0,
+  "runtime_mutated": false,
+  "case_count": 6,
+  "eligible_case_count": 0,
+  "eligible_case_ids": [],
+  "cases": [
+    {
+      "case_id": "case-03-startup-pivot",
+      "case_role": "passed_stage_a_and_paired_downstream_but_raw_complete_companion_surface_not_preserved",
+      "stage_a_status": "passed",
+      "complete_companion_graph_surface_preserved": false,
+      "companion_graph_chunk_count": null,
+      "strong_control_present": true,
+      "frozen_treatment_packet_present": true,
+      "explicit_graph_lineage_ids": [],
+      "exact_graph_lineage_count": 0,
+      "source_first_graph_chunks_admitted": null,
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "eligible": false,
+      "ineligibility_reasons": [
+        "complete_companion_graph_surface_not_preserved",
+        "no_exact_graph_lineage_in_frozen_treatment",
+        "source_first_graph_chunk_review_missing",
+        "individual_graph_chunk_disposition_contract_missing"
+      ]
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "case_role": "complete_pipeline_graph_surface_but_formal_stage_a_failure_and_sensitive_minor_safety_case",
+      "stage_a_status": "failed",
+      "complete_companion_graph_surface_preserved": true,
+      "companion_graph_chunk_count": 2,
+      "strong_control_present": false,
+      "frozen_treatment_packet_present": false,
+      "explicit_graph_lineage_ids": [],
+      "exact_graph_lineage_count": 0,
+      "source_first_graph_chunks_admitted": null,
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": true,
+      "eligible": false,
+      "ineligibility_reasons": [
+        "stage_a_not_formally_passed",
+        "strong_control_not_preserved",
+        "frozen_treatment_packet_not_preserved",
+        "no_exact_graph_lineage_in_frozen_treatment",
+        "source_first_graph_chunk_review_missing",
+        "individual_graph_chunk_disposition_contract_missing",
+        "case_excluded_by_frozen_risk_scope"
+      ]
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "case_role": "passed_stage_a_and_paired_quiet_case_but_raw_complete_companion_surface_not_preserved",
+      "stage_a_status": "passed",
+      "complete_companion_graph_surface_preserved": false,
+      "companion_graph_chunk_count": null,
+      "strong_control_present": true,
+      "frozen_treatment_packet_present": true,
+      "explicit_graph_lineage_ids": [],
+      "exact_graph_lineage_count": 0,
+      "source_first_graph_chunks_admitted": null,
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "eligible": false,
+      "ineligibility_reasons": [
+        "complete_companion_graph_surface_not_preserved",
+        "no_exact_graph_lineage_in_frozen_treatment",
+        "source_first_graph_chunk_review_missing",
+        "individual_graph_chunk_disposition_contract_missing"
+      ]
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "case_role": "failed_operability_gate_with_transcript_control_but_no_complete_companion_surface_or_frozen_graph_treatment",
+      "stage_a_status": "failed",
+      "complete_companion_graph_surface_preserved": false,
+      "companion_graph_chunk_count": null,
+      "strong_control_present": true,
+      "frozen_treatment_packet_present": false,
+      "explicit_graph_lineage_ids": [],
+      "exact_graph_lineage_count": 0,
+      "source_first_graph_chunks_admitted": null,
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "eligible": false,
+      "ineligibility_reasons": [
+        "stage_a_not_formally_passed",
+        "complete_companion_graph_surface_not_preserved",
+        "frozen_treatment_packet_not_preserved",
+        "no_exact_graph_lineage_in_frozen_treatment",
+        "source_first_graph_chunk_review_missing",
+        "individual_graph_chunk_disposition_contract_missing"
+      ]
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "case_role": "passed_stage_a_with_strong_control_but_no_complete_companion_surface_or_frozen_treatment",
+      "stage_a_status": "passed",
+      "complete_companion_graph_surface_preserved": false,
+      "companion_graph_chunk_count": null,
+      "strong_control_present": true,
+      "frozen_treatment_packet_present": false,
+      "explicit_graph_lineage_ids": [],
+      "exact_graph_lineage_count": 0,
+      "source_first_graph_chunks_admitted": null,
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "eligible": false,
+      "ineligibility_reasons": [
+        "complete_companion_graph_surface_not_preserved",
+        "frozen_treatment_packet_not_preserved",
+        "no_exact_graph_lineage_in_frozen_treatment",
+        "source_first_graph_chunk_review_missing",
+        "individual_graph_chunk_disposition_contract_missing"
+      ]
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "case_role": "complete_passed_pair_and_complete_graph_attribution_with_zero_admitted_graph_candidate",
+      "stage_a_status": "passed",
+      "complete_companion_graph_surface_preserved": true,
+      "companion_graph_chunk_count": 3,
+      "strong_control_present": true,
+      "frozen_treatment_packet_present": true,
+      "explicit_graph_lineage_ids": [],
+      "exact_graph_lineage_count": 0,
+      "source_first_graph_chunks_admitted": 0,
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "eligible": false,
+      "ineligibility_reasons": [
+        "no_exact_graph_lineage_in_frozen_treatment",
+        "source_first_graph_chunk_review_admitted_zero",
+        "individual_graph_chunk_disposition_contract_missing"
+      ]
+    }
+  ],
+  "decision": {
+    "paid_graph_ablation_candidate_found": false,
+    "paid_graph_ablation_authorized": false,
+    "next_step": "keep paid Gate 6 blocked; design exact graph-chunk shadow custody before a new holdout"
+  },
+  "non_claims": [
+    "not proof that the graph is useful or useless",
+    "not human review",
+    "not answer-quality scoring",
+    "not authorization to rerun completed cases",
+    "not paid-ablation authorization",
+    "not runtime-integration authority"
+  ]
+}

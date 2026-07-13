@@ -1,0 +1,561 @@
+{
+  "boundary": {
+    "deterministic_semantic_gate_added": false,
+    "graph_or_runtime_authorized": false,
+    "independent_holdout": false,
+    "production_integration_authorized": false,
+    "protected_review_excluded_from_provider": true,
+    "response_schemas_and_validators_unchanged_from_v2": true,
+    "semantic_contract_changed_only_in_packet_and_prompt": true,
+    "synthetic_development_case": true
+  },
+  "calls": [
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004",
+              "e005"
+            ],
+            "expression_kinds": [
+              "decision",
+              "preference_or_desire",
+              "preference_or_desire",
+              "preference_or_desire"
+            ],
+            "fidelity_note": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+            "limitations": "none",
+            "object_interpretations": [
+              "step back within two years",
+              "external sale to regional engineering group",
+              "employee ownership",
+              "attraction to certainty of external offer; hesitation about internal transition consuming final working years; undecided about motive for employee ownership preference"
+            ],
+            "object_kinds": [
+              "action_or_proposal",
+              "action_or_proposal",
+              "action_or_proposal",
+              "belief_or_assessment"
+            ],
+            "role": "starting",
+            "role_interpretation": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "7ece3a4fad6614706deec990cd38434df088112baac6f498d94a41edd6abe768",
+      "compiled": {
+        "boundary": {
+          "direct_graph_routing_allowed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prose_keyword_gate_added": false,
+          "response_schema_changed_from_v2": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v21_prompt_packet_contract": true,
+          "validator_changed_from_v2": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case02-architecture-firm-succession",
+            "fidelity_note": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev2-starting-01-e5c6b0b44fd558",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:591325a6658103a78239d9ed0a65f4f99ceab554b728bca1d72ffc4c0b72f372"
+            },
+            "raw_record_sha256": "sha256:e5c6b0b44fd558ddd863c09d57b514a6f1aeb0b008d7286e511c07a1fe48b6b9",
+            "role": "starting",
+            "role_interpretation": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+            "role_record_id": "rprolev2-starting-01-e5c6b0b44fd558",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I founded a twenty-six-person architecture practice thirty years ago and want to step back within two years."
+              },
+              {
+                "alias": "e002",
+                "text": "A regional engineering group has offered to buy the firm, keep the name for five years, and give me a clean financial exit."
+              },
+              {
+                "alias": "e003",
+                "text": "Several senior architects have also asked whether I would consider selling the firm to employees instead."
+              },
+              {
+                "alias": "e004",
+                "text": "I want the practice to outlast me, but I am attracted to the certainty of the external offer and worried that an internal transition could consume my final working years."
+              },
+              {
+                "alias": "e005",
+                "text": "I cannot tell how much of my preference for employee ownership is about protecting the firm's culture and how much is about wanting my colleagues to validate what I built."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004",
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e001",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "step back within two years",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e002",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "external sale to regional engineering group",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "employee ownership",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "attraction to certainty of external offer; hesitation about internal transition consuming final working years; undecided about motive for employee ownership preference",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:e5c6b0b44fd558ddd863c09d57b514a6f1aeb0b008d7286e511c07a1fe48b6b9",
+            "record_index": 1,
+            "role_record_id": "rprolev2-starting-01-e5c6b0b44fd558",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "starting",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_custody_complete"
+      },
+      "completion_tokens": 398,
+      "duration_seconds": 7.218,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000264516,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1178,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "4559f8411270a8f3051504c291b338175403a7f1015be3969fafb4f1b9452c62",
+      "provider_reported_cost_usd": 0.000264516,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "56c500e6f44597dfdbf7c52674023bc30c1bda0157cdfced268fd8ebf0671f9e",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+      "task_id": "role-starting",
+      "temperature": 0.0,
+      "total_tokens": 1576,
+      "user_prompt_sha256": "591325a6658103a78239d9ed0a65f4f99ceab554b728bca1d72ffc4c0b72f372",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e049",
+              "e050",
+              "e051",
+              "e052"
+            ],
+            "expression_kinds": [
+              "leaning",
+              "decision",
+              "decision",
+              "unwilling"
+            ],
+            "fidelity_note": "The user expresses a leaning toward a specific plan, then states decisions about conditions and communication, and finally expresses unresolved concern about staff involvement.",
+            "limitations": "none",
+            "object_interpretations": [
+              "Leaning toward giving employee group 60 days to produce financing range, governance proposal, leadership commitments, and hiring constraint estimate.",
+              "Decision to keep external conversation nonexclusive and accept possible price change.",
+              "Decision not to provide seller financing or remain chair unless repayment exposure, authority, and end date are explicit.",
+              "Unwilling to resolve how to involve wider staff without turning feasibility into implied offer or making people feel used."
+            ],
+            "object_kinds": [
+              "intended_outcome_or_policy",
+              "intended_outcome_or_policy",
+              "intended_outcome_or_policy",
+              "intended_outcome_or_policy"
+            ],
+            "role": "current",
+            "role_interpretation": "The user is the firm founder deciding on a succession path.",
+            "source_evidence_ids": [
+              "e049",
+              "e050",
+              "e051",
+              "e052"
+            ],
+            "status": "mixed"
+          }
+        ],
+        "status": "mixed"
+      },
+      "candidate_payload_sha256": "5ac84e486ec4315cdadd2a96f7e262899cc974bb4ad8fc362ba1c359dd24af06",
+      "compiled": {
+        "boundary": {
+          "direct_graph_routing_allowed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prose_keyword_gate_added": false,
+          "response_schema_changed_from_v2": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v21_prompt_packet_contract": true,
+          "validator_changed_from_v2": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case02-architecture-firm-succession",
+            "fidelity_note": "The user expresses a leaning toward a specific plan, then states decisions about conditions and communication, and finally expresses unresolved concern about staff involvement.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev2-current-01-b28924caaa0425",
+            "provenance": {
+              "call_id": "role-current",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:0fbe1662e8c02529a264363ae56c002fd997a88f04f1352465e10eab180f4bce"
+            },
+            "raw_record_sha256": "sha256:b28924caaa0425002178162eb63402fc52b978a9756d8cef29d7f5eaaa8c368c",
+            "role": "current",
+            "role_interpretation": "The user is the firm founder deciding on a succession path.",
+            "role_record_id": "rprolev2-current-01-b28924caaa0425",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "mixed",
+            "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e049",
+                "text": "I am leaning toward giving the employee group sixty days to produce an adviser-backed financing range, governance proposal, leadership commitments, and an estimate of the hiring constraint."
+              },
+              {
+                "alias": "e050",
+                "text": "I will keep the external conversation nonexclusive and accept that the price may change, but I will not provide seller financing or remain chair unless the repayment exposure, authority, and end date are explicit."
+              },
+              {
+                "alias": "e051",
+                "text": "I will tell the senior team this is a comparison period, not a promise of employee ownership, and set the decision meeting now."
+              },
+              {
+                "alias": "e052",
+                "text": "I have not resolved how to involve the wider staff without turning a feasibility exercise into an implied offer or making people feel used if we sell externally."
+              }
+            ],
+            "source_evidence_ids": [
+              "e049",
+              "e050",
+              "e051",
+              "e052"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e049",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Leaning toward giving employee group 60 days to produce financing range, governance proposal, leadership commitments, and hiring constraint estimate.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Decision to keep external conversation nonexclusive and accept possible price change.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e051",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Decision not to provide seller financing or remain chair unless repayment exposure, authority, and end date are explicit.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "unwilling",
+                "stance_object_interpretation": "Unwilling to resolve how to involve wider staff without turning feasibility into implied offer or making people feel used.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:b28924caaa0425002178162eb63402fc52b978a9756d8cef29d7f5eaaa8c368c",
+            "record_index": 1,
+            "role_record_id": "rprolev2-current-01-b28924caaa0425",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "mixed",
+        "role": "current",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_custody_complete"
+      },
+      "completion_tokens": 345,
+      "duration_seconds": 6.213,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000247632,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1158,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "28b407bf32af158bbc307de5db9f9398fff198da5f8d2dd08e7429727370f29a",
+      "provider_reported_cost_usd": 0.000247632,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "613f487d8eb40911d6dfebff28395d714c1a0912ecb151a3ce33aa40ef84b907",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+      "task_id": "role-current",
+      "temperature": 0.0,
+      "total_tokens": 1503,
+      "user_prompt_sha256": "0fbe1662e8c02529a264363ae56c002fd997a88f04f1352465e10eab180f4bce",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 0,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e004",
+              "e005",
+              "e052",
+              "e055",
+              "e056"
+            ],
+            "expression_kinds": [
+              "unclear",
+              "unclear",
+              "unclear",
+              "counterpressure"
+            ],
+            "fidelity_note": "The user's unresolved self-doubt about motive (e004, e005) and the unresolved staff-involvement dilemma (e052) are qualifications that could reopen the decision. The assistant's counterpressure (e055, e056) about altered expectations and irreversible process effects also limits the current position.",
+            "limitations": "The user has not resolved how to involve wider staff without creating implied promises or resentment (e052). The user also cannot tell how much of the preference for employee ownership is about culture versus validation (e004, e005). The assistant notes that the process will alter both options and that expectations will not simply return to prior state (e055, e056).",
+            "object_interpretations": [
+              "User's unresolved motive self-doubt",
+              "User's unresolved staff-involvement dilemma",
+              "Assistant's counterpressure about altered expectations and irreversible process effects"
+            ],
+            "object_kinds": [
+              "unclear",
+              "unclear",
+              "unclear"
+            ],
+            "role": "qualification",
+            "role_interpretation": "These are qualifications because they are unresolved conditions or counterpressures that limit what the current position establishes.",
+            "source_evidence_ids": [
+              "e004",
+              "e005",
+              "e052",
+              "e055"
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "49f766e3beda99f57e116e697e833da185b706017e5b9db5a1c658fc84c6286c",
+      "compiled": {
+        "boundary": {
+          "direct_graph_routing_allowed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prose_keyword_gate_added": false,
+          "response_schema_changed_from_v2": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v21_prompt_packet_contract": true,
+          "validator_changed_from_v2": false
+        },
+        "global_limitations": "none",
+        "observations": [],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:8081e0212ebe961055774e075332959cbcc32d8670929aa75d1dee39b4757c5f",
+            "reason": "ViewSpecificInterfaceError: role stance columns must have equal bounded lengths",
+            "record_index": 1,
+            "terminal_state": "quarantined"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "qualification",
+        "role_terminal_disposition": "quarantined",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_custody_complete"
+      },
+      "completion_tokens": 381,
+      "duration_seconds": 6.854,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000258486,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1167,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "9e2ad04e16dac5f172b1489eb8e47230f36ea9ef5d2a6e2c9d0bd7b5a88f82bd",
+      "provider_reported_cost_usd": 0.000258486,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 1,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "8d472fcf6b93544c65e75bf21aa5517e76277789a8a5f0c3c3df98942566e969",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+      "task_id": "role-qualification",
+      "temperature": 0.0,
+      "total_tokens": 1548,
+      "user_prompt_sha256": "32e7d99f2e9fa86f714d73cfa233d6f69f17efa8781aee51609074d6ec3a419b",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    }
+  ],
+  "estimated_cost_usd": 0.000770634,
+  "failed_roles": [
+    "qualification"
+  ],
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 1,
+      "relation_missing_despite_current_role": true
+    },
+    "fan_in": {
+      "actual_relationship_records": 0,
+      "actual_role_records": 2,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_incomplete",
+    "unreferenced_role_record_ids": {
+      "current": [
+        "rprolev2-current-01-b28924caaa0425"
+      ],
+      "qualification": [],
+      "starting": [
+        "rprolev2-starting-01-e5c6b0b44fd558"
+      ]
+    }
+  },
+  "provider_reported_cost_usd": 0.000770634,
+  "provider_request_count": 3,
+  "relation_block_reason": "one_or_more_role_wire_or_admission_gates_failed",
+  "run_id": "reasoning-process-position-role-first-architecture-succession-v21",
+  "schema_version": "lolla.reasoning_process_position_role_first_probe_result.v2",
+  "semantic_review_status": "source_first_review_required_for_available_role_outputs",
+  "status": "new_case_role_first_probe_preserved"
+}

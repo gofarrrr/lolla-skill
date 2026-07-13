@@ -1,0 +1,62 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_split_contract.v1",
+  "status": "frozen_before_failed_mechanism_split_probe",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-mechanism-split-repeat-r1",
+  "case_id": "v1-case06-industry-funded-lab",
+  "mechanism_id": "counterpressure_acknowledged_not_integrated",
+  "purpose": "Measure whether the successful split classification remains semantically stable on one bounded repeat with different seeds.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-lite-mechanism-2026-07-13/a1/mechanism-request.json",
+    "parent_mechanism_request_sha256": "be53bd41da9423f8e3aed44ef1e11b78c4c85271454eaac236d886f1f49abd9f",
+    "prior_source_review_path": "research/simulated-reliability-v1-lite-mechanism-split-2026-07-13/a1/source-review.json",
+    "prior_source_review_sha256": "f5506c01a563ca24285428dd9e522e79bb73440628ec7ff92044b92adf2c5102"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limit": {"max_output_tokens": 1000, "reasoning_effort": "medium", "wire_mode": "strict_json_schema"},
+  "seeds": {"user_status": 907, "assistant_coverage": 917},
+  "decomposition_contract": {
+    "user_status_task": "Mechanism contract plus bounded role records only; upstream qualification-review conclusion is omitted.",
+    "assistant_coverage_task": "Compiled user-process assessment plus its cited role records and assistant contributions; it does not reclassify user status.",
+    "join": "Code validates custody and derives routing from explicit semantic outputs without interpreting conversation prose.",
+    "remaining_external_risk_is_not_unresolved_process": true,
+    "user_adoption_is_not_assistant_coverage": true,
+    "keyword_or_chronology_gate_added": false
+  },
+  "request_attestation": {
+    "user_status_packet_sha256": "dd6be8bbdc070fe2bbce7be51cf5c7b7e052a3e1fb2ad843877e53608efc56fe",
+    "user_status_role_record_count": 3,
+    "user_status_system_prompt_sha256": "bad2eaef0c50fe751b0344ec50fa8efab3fcc6ca9c23843cb8fcf400248cd3a8",
+    "user_status_user_prompt_sha256": "afe0615e6805eee78851df83d84c95c95b4b036ddce85ca6e0033e265c1b46c9",
+    "user_status_response_schema_sha256": "6f8e77805577df4f77547e59b05bf807fd63fd4147bb1a2f91d2c90928ec859f",
+    "assistant_coverage_response_schema_sha256": "037346754a4c4bcb9ef73abed60702dc16c624636258dd6a41b976ba3f7e70ec"
+  },
+  "budget": {"maximum_provider_calls": 2, "maximum_provider_reported_cost_usd": 0.01, "automatic_retries": 0, "fallback_models": 0, "response_healing": false},
+  "review_contract": {
+    "prospective_user_status": "resolved",
+    "prospective_assistant_coverage": "operationalized",
+    "prospective_route": "preserve_no_route",
+    "exact_evidence_ids_may_vary": true,
+    "prospective_answers_not_in_model_prompt": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {"full_nine_expansion_authorized": false, "pressure_call_authorized": false, "runtime_effect": "none", "production_model_selection_authorized": false, "gemini_3_5_call_authorized": false},
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_mechanism_split_probe_v1.py", "sha256": "2af45113eedd82ae5fcde5ba348ddb55e8225b34f4992c3ec410cb9657396f14"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "engine/system_b/simulated_reliability_v1.py", "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-lite-mechanism-2026-07-13/a1/mechanism-request.json", "sha256": "be53bd41da9423f8e3aed44ef1e11b78c4c85271454eaac236d886f1f49abd9f"},
+    {"path": "research/simulated-reliability-v1-lite-mechanism-split-2026-07-13/a1/source-review.json", "sha256": "f5506c01a563ca24285428dd9e522e79bb73440628ec7ff92044b92adf2c5102"}
+  ]
+}

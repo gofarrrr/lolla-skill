@@ -1,0 +1,130 @@
+{
+  "schema_version": "lolla.core_integration_decision.v0",
+  "status": "complete",
+  "decision_date": "2026-07-10",
+  "decision": "retain_live_core_and_keep_new_semantic_portfolio_and_pattern_routing_research_only",
+  "source_reviews": [
+    {
+      "path": "research/core-development-batches-2026-07-10/batch1-review.json",
+      "sha256": "8615eba61380aca46c0b632e16e182a129764f8773d268ee5d097ac371971140"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch2-review.json",
+      "sha256": "f765a510167d118055162e756fda7abdbd96e3365c9e88cff5dea2d12e32507c"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch3-review.json",
+      "sha256": "f04b5faa2d6603bb29154fcb43a69f6d3ef37753377168317919a97e74e88799"
+    }
+  ],
+  "evidence_vector": {
+    "C0_capture_and_custody": {
+      "read": "strong_for_evaluated_runs",
+      "evidence": "Batch 1 preserved 14/14 messages and Batch 2 preserved 20/20; exact quote validation and failure artifacts remained observable.",
+      "promotion_effect": "retain"
+    },
+    "C1_C3_conversation_interpretation": {
+      "read": "partial",
+      "evidence": "SK3 remains the best offline base, but placement, chronology, and unresolved-state gaps remain.",
+      "promotion_effect": "offline_only"
+    },
+    "C4_reasoning_abstraction": {
+      "read": "mechanically_clean_semantically_unstable",
+      "evidence": "Batch 3 passed exact shape, source-turn, and fact-leak gates but failed same-reasoning/different-facts invariance and prospectively required labels.",
+      "promotion_effect": "research_only"
+    },
+    "C5_deterministic_pressure": {
+      "read": "operable_not_causally_validated",
+      "evidence": "Declared mappings replayed correctly, but stable graph contribution over simpler baselines is not established.",
+      "promotion_effect": "do_not_expand_or_promote"
+    },
+    "C6_reconsideration_utility": {
+      "read": "directional_value_without_clean_product_gate",
+      "evidence": "Batch 1 treatment added an outcome matrix, dual-run economics, and stakeholder sequencing, but both arms retained an unsupported governance claim. Batch 2 achieved correct public stand-down and a private guardrail, but failed exact pressure identity and disposition-effect consistency.",
+      "promotion_effect": "continue_bounded_evaluation_after_accountability_hardening"
+    },
+    "C7_receipt_and_transfer": {
+      "read": "structurally_rich_accountability_incomplete",
+      "evidence": "Artifacts and hashes are strong; Batch 2 showed that a plausible receipt can still misidentify a pressure and misstate whether its effect was private or visible.",
+      "promotion_effect": "harden_exact_lineage_before_new_claims"
+    },
+    "C8_operability": {
+      "read": "bounded_cost_with_material_call_and_attention_complexity",
+      "evidence": "Batch 1 Stage A used 29 OpenRouter and 7 direct OpenAI calls; Batch 2 used the same call shape; Batch 3 used 3 calls and cost about $0.0012. The Bullshit Index ceiling is effective, but core complexity remains high.",
+      "promotion_effect": "no_architecture_growth"
+    }
+  },
+  "authorized_now": [
+    "retain_the_complete_transcript_as_authority",
+    "retain_the_existing_live_skill_and_same_session_reconsideration_as_an_experimental_core",
+    "retain_source_validation_hashing_call_budgets_and_failure_artifacts",
+    "retain_bounded_private_pressure_and_public_standdown_behavior",
+    "enforce_exact_pressure_ids_as_structural_contract_values",
+    "require_semantic_review_of_disposition_effect_consistency",
+    "use_direct_openai_credentials_for_embeddings_and_query_expansion_when_available",
+    "continue_strong_control_evaluation_on_new_prospectively_frozen_cases_after_accountability_hardening"
+  ],
+  "not_authorized": [
+    "live_SK3_semantic_overlay",
+    "live_reasoning_pattern_projection",
+    "live_pattern_only_graph_routing",
+    "portfolio_architecture_expansion",
+    "graph_sophistication_or_more_deterministic_semantic_gates",
+    "knowledge_base_teacher_SDK_or_organizational_memory_work",
+    "claims_that_Lolla_reliably_improves_reasoning_or_selects_the_right_models",
+    "a_reasoning_quality_or_proof_of_work_badge"
+  ],
+  "next_development_program": [
+    {
+      "order": 1,
+      "workstream": "accountability_contract_hardening",
+      "goal": "Make selected pressure identity and custody exact from packet through disposition and receipt.",
+      "method": "Deterministic validation may enforce IDs, enums, references, and missing fields; an LLM or human must judge whether the claimed visible/private effect matches the prose.",
+      "paid_calls": "none_required_for_implementation"
+    },
+    {
+      "order": 2,
+      "workstream": "consumer_specific_reasoning_target",
+      "goal": "Define the routing target as unresolved weakness in the joint conversation trajectory, while keeping actor-specific observations in the audit layer rather than automatically routing them.",
+      "method": "Garden the existing reviewed corpus and ontology first; do not repair Batch 3 or encode semantic scope rules in Python.",
+      "paid_calls": "none_until_target_and_new_holdout_are_frozen"
+    },
+    {
+      "order": 3,
+      "workstream": "new_holdout_pair",
+      "goal": "Test one non-obvious case after exact lineage hardening, with both downstream arms frozen before either call.",
+      "method": "Strong fresh control versus identical context plus compact source-backed pressure; exact dispositions and source red lines; one call per arm before expansion.",
+      "paid_calls": "two_initial_generation_calls"
+    },
+    {
+      "order": 4,
+      "workstream": "pattern_boundary_retest_on_new_pairs",
+      "goal": "Retest the clarified joint-process abstraction on new invariance pairs, not the frozen Batch 3 fixtures.",
+      "method": "LLM semantic interpretation plus deterministic sealing; no keywords, case rules, or automatic retries.",
+      "paid_calls": "bounded_only_after_offline_contract_review"
+    },
+    {
+      "order": 5,
+      "workstream": "promotion_or_simplification_recheck",
+      "goal": "Promote only a minimal path if exact custody, clean source fidelity, useful consideration value, and boundary stability coexist.",
+      "method": "Otherwise retain Lolla primarily as a conversation-preserving audit and structured challenge layer and reduce the graph's answer-generation claim.",
+      "paid_calls": "none_for_decision"
+    }
+  ],
+  "promotion_bar": [
+    "exact_pressure_identity_and_lineage_pass",
+    "no_unsupported_source_red_line",
+    "serious_disposition_without_forced_absorption_or_public_bloat",
+    "at_least_one_unique_decision_relevant_or_accountability_delta_over_a_strong_fresh_control",
+    "new_fact_invariance_and_reasoning_sensitivity_pairs_pass_under_the_clarified_target",
+    "cost_latency_and_failure_surface_remain_bounded",
+    "exact_run_review_accepts_the_evidence"
+  ],
+  "non_claims": [
+    "not_a_product_reliability_result",
+    "not_a_graph_value_proof",
+    "not_a_reasoning_quality_certificate",
+    "not_permission_to_delete_the_full_conversation",
+    "not_permission_to_replace_probabilistic_semantics_with_deterministic_rules"
+  ]
+}

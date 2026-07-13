@@ -1,0 +1,197 @@
+{
+  "schema_version": "lolla.reasoning_process_view_specific_probe_contract.v1",
+  "status": "frozen_before_provider_calls",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-view-specific-development-case02-v1",
+  "purpose": "Paired development test of whether the failure-derived sentence-alias and view-specific-role interface fixes the source-custody and semantic-role failures observed on Phase-3 Case 02.",
+  "comparison_design": {
+    "case_selection": "reuse the same Case 02 development conversation as the failed universal-interface probe to isolate representation change",
+    "independent_holdout": false,
+    "protected_targets_are_exhaustive_gold": false,
+    "model_receives_protected_targets": false,
+    "model_receives_source_review_addenda": false
+  },
+  "redesign_contract": {
+    "path": "docs/evals/reasoning-process-view-specific-interface-contract-v1.json",
+    "sha256": "35f0dd77363e3d9b664f72bded5d23c09439912a2cef690f5535574c44dad9d8"
+  },
+  "redesign_report": {
+    "path": "research/reasoning-process-view-specific-interface-2026-07-11/report.json",
+    "sha256": "2d4e387cbf5eb53d9fd4fde2d50fb62a326100d9e5f78b644b6c0b789c7ecb59"
+  },
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+    "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "development_status": "same_session_synthetic_paired_redesign_not_holdout",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json",
+    "phase1_ledger_sha256": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23"
+  },
+  "view_order": [
+    "position_and_decision_trajectory",
+    "exploration_and_alternatives",
+    "evidence_and_assumption_discipline",
+    "uncertainty_and_unresolved_state",
+    "challenge_and_revision_response"
+  ],
+  "jobs": [
+    {
+      "job_id": "view-specific-amb1-case02-nonprofit-scale-position_and_decision_trajectory",
+      "view_kind": "position_and_decision_trajectory",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case02-nonprofit-scale/position_and_decision_trajectory/reader-packet.json",
+      "packet_sha256": "290cecdd958ff54fea0591cd40a3a7ab4ad6e35040f87fa65a9c4fc58824e1ea",
+      "input_utf8_bytes": 16392,
+      "source_sentence_count": 67,
+      "auxiliary_ledger_included": true,
+      "system_prompt_sha256": "c938db9eec399fdf4193a0b586f0f1927a0ca5cdf967eec80527f3986b2d5013",
+      "user_prompt_sha256": "aeaa892a15ca7fec0552074ff7526b2cd9deab231d7e1871517a1ce40af1fa46",
+      "response_schema_sha256": "aaabaa599101fbf7101d2fa0fbc99e242e04c7917d04be995307578b563688c9",
+      "response_schema_metrics": {"bytes": 1326, "depth": 8}
+    },
+    {
+      "job_id": "view-specific-amb1-case02-nonprofit-scale-exploration_and_alternatives",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case02-nonprofit-scale/exploration_and_alternatives/reader-packet.json",
+      "packet_sha256": "7fa451dbd988c95a801771dc0c4a4e35942f868c7c8c9b0b8e6dfb405e9f1822",
+      "input_utf8_bytes": 16380,
+      "source_sentence_count": 67,
+      "auxiliary_ledger_included": true,
+      "system_prompt_sha256": "c938db9eec399fdf4193a0b586f0f1927a0ca5cdf967eec80527f3986b2d5013",
+      "user_prompt_sha256": "262408e2259f8690d4073d046037b486e2412dfd0c55094991ca62bd6f2d05b3",
+      "response_schema_sha256": "7fce6ea497910019081525f49fc9f18294ebae6e014b6b0c2e9cfd3f1de341ee",
+      "response_schema_metrics": {"bytes": 1322, "depth": 8}
+    },
+    {
+      "job_id": "view-specific-amb1-case02-nonprofit-scale-evidence_and_assumption_discipline",
+      "view_kind": "evidence_and_assumption_discipline",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case02-nonprofit-scale/evidence_and_assumption_discipline/reader-packet.json",
+      "packet_sha256": "87a490d34587077cc9e6dc59f78733dbb7d4c0b2191ea9a93d7ba3b0c768c19f",
+      "input_utf8_bytes": 16408,
+      "source_sentence_count": 67,
+      "auxiliary_ledger_included": true,
+      "system_prompt_sha256": "c938db9eec399fdf4193a0b586f0f1927a0ca5cdf967eec80527f3986b2d5013",
+      "user_prompt_sha256": "210257c07e8535bf33ee03a40a164fc05f82bc523a42beca8717870f620d515b",
+      "response_schema_sha256": "3269c83faf3dc9b91582e5172710c32b46d3efa493e6243554026762216310f3",
+      "response_schema_metrics": {"bytes": 1330, "depth": 8}
+    },
+    {
+      "job_id": "view-specific-amb1-case02-nonprofit-scale-uncertainty_and_unresolved_state",
+      "view_kind": "uncertainty_and_unresolved_state",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case02-nonprofit-scale/uncertainty_and_unresolved_state/reader-packet.json",
+      "packet_sha256": "d83405b96f02c5b848757414cdd2a398969b94294d826fb501c3531cd1ff79fa",
+      "input_utf8_bytes": 16383,
+      "source_sentence_count": 67,
+      "auxiliary_ledger_included": true,
+      "system_prompt_sha256": "c938db9eec399fdf4193a0b586f0f1927a0ca5cdf967eec80527f3986b2d5013",
+      "user_prompt_sha256": "700333ac952ddb4d890d02a5dbb538f37912952ae4ef3672186b3757fc8d6ec5",
+      "response_schema_sha256": "855e312eec3a752c7721325105d2770b212d84264221fe156a652c518d38085f",
+      "response_schema_metrics": {"bytes": 1348, "depth": 8}
+    },
+    {
+      "job_id": "view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+      "view_kind": "challenge_and_revision_response",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case02-nonprofit-scale/challenge_and_revision_response/reader-packet.json",
+      "packet_sha256": "d8ceb11b812a953139f421c64d3f1cda8b033ff7353bb245dc4cae53dd43c9bb",
+      "input_utf8_bytes": 16391,
+      "source_sentence_count": 67,
+      "auxiliary_ledger_included": true,
+      "system_prompt_sha256": "c938db9eec399fdf4193a0b586f0f1927a0ca5cdf967eec80527f3986b2d5013",
+      "user_prompt_sha256": "75fb88fe874958b914fa51d0664cb8943bc4d333a24af1a55534062dda6a9a5f",
+      "response_schema_sha256": "f6386f790b3ed8337bb7108917de5759281c1970e0ae049f713dac1b2f1178e0",
+      "response_schema_metrics": {"bytes": 1612, "depth": 8}
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 2400,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "budget": {
+    "maximum_provider_calls": 5,
+    "maximum_calls_per_view": 1,
+    "maximum_estimated_cost_usd": 0.05,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success_rate": 1.0,
+    "typed_admission_rate": 1.0,
+    "stable_alias_validity_rate": 1.0,
+    "protected_target_visibility_rate": 1.0,
+    "invalid_admitted_item_count": 0,
+    "source_strength_inflation_count": 0,
+    "context_invisible_label_count": 0,
+    "critical_dimension_zero_count": 0,
+    "max_output_records_per_view": 4,
+    "source_review_required_for_semantic_pass": true
+  },
+  "source_review_contract": {
+    "method": "source_first_before_polish",
+    "reviewer_independence": "same_project_session_not_blind",
+    "protected_targets_are_exhaustive_gold": false,
+    "review_each_role_citation_before_interpretation": true,
+    "semantic_adequacy_inferred_by_code": false,
+    "final_answer_quality_reviewed": false,
+    "scalar_score_allowed": false
+  },
+  "stop_rules": {
+    "attempt_each_independent_view_once_despite_other_view_operational_failure": true,
+    "missing_api_key_stops_execution": true,
+    "cost_ceiling_stops_remaining_calls": true,
+    "no_retry_fallback_response_healing_or_prompt_change": true,
+    "no_graph_pipeline_runtime_embedding_or_evaluator_calls": true,
+    "no_repair_authorized_by_this_contract": true
+  },
+  "artifact_locks": [
+    {
+      "role": "view_specific_interface",
+      "path": "engine/system_b/reasoning_process_view_specific.py",
+      "sha256": "73c9658cc50450f72238bcf5377e7d21b6e77c00e227786445e83254a4f4baad"
+    },
+    {
+      "role": "view_specific_builder",
+      "path": "scripts/evals/build_reasoning_process_view_specific_interface.py",
+      "sha256": "73e3469e83078d29b7a9e4eb2423a64c27ed324a99c1a8c7a1e0c9e60929dcfe"
+    },
+    {
+      "role": "view_specific_probe_runner",
+      "path": "scripts/evals/run_reasoning_process_view_specific_probe.py",
+      "sha256": "ce96b7ddca52297c2720f94f302d33485d68a29208dc63128d6311b5de4bf724"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v2.md",
+      "sha256": "07138f9f4c5ff7a271b642c19e4236c8216afe4fa5ed5375e9152a5e9a557d11"
+    },
+    {
+      "role": "evaluation_doctrine",
+      "path": "docs/conversation-understanding/lolla-evaluation-doctrine-v0.md",
+      "sha256": "a236fea812b8edf593aa9f0c1e063acedb13896592bce4187bc6cee8c149f04e"
+    }
+  ]
+}

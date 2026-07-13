@@ -1,0 +1,217 @@
+{
+  "automatic_retries": 0,
+  "cached_prompt_tokens": 0,
+  "call_id": "exploration-local-amb1-case02-turn001",
+  "candidate_payload": {
+    "global_limitations": "The analysis is restricted to the focal turn pair and does not account for external organizational data or long-term strategic outcomes.",
+    "records": [
+      {
+        "alternative_evidence_ids": [
+          "e009"
+        ],
+        "alternative_interpretation": "Expanding to a second location to address current site instability.",
+        "attached_condition_or_limit_evidence_ids": [
+          "e009"
+        ],
+        "attached_condition_or_limit_interpretation": "The current instability must be caused specifically by scheduling or outreach issues for expansion to be beneficial.",
+        "limitations": "The alternative is only viable if the root cause of the current inconsistency is external (scheduling/outreach) rather than internal (program clarity/volunteer exhaustion).",
+        "relationship_type": "condition",
+        "status": "supported"
+      },
+      {
+        "alternative_evidence_ids": [
+          "e010"
+        ],
+        "alternative_interpretation": "Expanding to a second location while the current site remains inconsistent.",
+        "attached_condition_or_limit_evidence_ids": [
+          "e010"
+        ],
+        "attached_condition_or_limit_interpretation": "If the current instability stems from an unclear program or exhausted volunteers, expansion will magnify these existing problems.",
+        "limitations": "This alternative risks operational collapse if the underlying issues are systemic rather than logistical.",
+        "relationship_type": "failure_condition",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "candidate_payload_sha256": "38dea48ae8d7a766bed8105e5460cd22c9a40d3eb32627c5e78d57b81b0dbc12",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "semantic_merge_performed": false
+    },
+    "observations": [
+      {
+        "alternative_interpretation": "Expanding to a second location to address current site instability.",
+        "attached_condition_or_limit_interpretation": "The current instability must be caused specifically by scheduling or outreach issues for expansion to be beneficial.",
+        "case_id": "amb1-case02-nonprofit-scale",
+        "cross_window_semantic_duplicate_status": "not_assessed",
+        "family": "exploration_and_alternatives",
+        "focal_turn_index": 1,
+        "graph_routing_eligible": false,
+        "observation_id": "explocal-amb1-case02-nonprofit-scale-001-01-2a7ed8b23b",
+        "provenance": {
+          "call_id": "exploration-local-amb1-case02-turn001",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:792ba17901dc7246011c3d3337de20a022aa34df1782ebb5beb0d9d4b01a4f17"
+        },
+        "raw_record": {
+          "record": {
+            "alternative_evidence_ids": [
+              "e009"
+            ],
+            "alternative_interpretation": "Expanding to a second location to address current site instability.",
+            "attached_condition_or_limit_evidence_ids": [
+              "e009"
+            ],
+            "attached_condition_or_limit_interpretation": "The current instability must be caused specifically by scheduling or outreach issues for expansion to be beneficial.",
+            "limitations": "The alternative is only viable if the root cause of the current inconsistency is external (scheduling/outreach) rather than internal (program clarity/volunteer exhaustion).",
+            "relationship_type": "condition",
+            "status": "supported"
+          },
+          "record_identity": "model-exploration-local-amb1-case02-turn001",
+          "record_index": 1,
+          "role_source_span_ids": {
+            "alternative_evidence_ids": [
+              "span-cbfefe0ec63d8736"
+            ],
+            "attached_condition_or_limit_evidence_ids": [
+              "span-cbfefe0ec63d8736"
+            ]
+          },
+          "window_id": "amb1-case02-nonprofit-scale-exploration-turn-001"
+        },
+        "raw_record_sha256": "sha256:2a7ed8b23b231cec4d5d06a92c1a534035a673b102997162c4c63d53e70f8f72",
+        "relationship_type": "condition",
+        "role_source_span_ids": {
+          "alternative_evidence_ids": [
+            "span-cbfefe0ec63d8736"
+          ],
+          "attached_condition_or_limit_evidence_ids": [
+            "span-cbfefe0ec63d8736"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_exploration_local_observation.v1",
+        "semantic_status": "supported",
+        "source_span_ids": [
+          "span-cbfefe0ec63d8736"
+        ],
+        "terminal_reason": "local pair roles and focal stable aliases validated",
+        "terminal_state": "admitted",
+        "window_id": "amb1-case02-nonprofit-scale-exploration-turn-001"
+      },
+      {
+        "alternative_interpretation": "Expanding to a second location while the current site remains inconsistent.",
+        "attached_condition_or_limit_interpretation": "If the current instability stems from an unclear program or exhausted volunteers, expansion will magnify these existing problems.",
+        "case_id": "amb1-case02-nonprofit-scale",
+        "cross_window_semantic_duplicate_status": "not_assessed",
+        "family": "exploration_and_alternatives",
+        "focal_turn_index": 1,
+        "graph_routing_eligible": false,
+        "observation_id": "explocal-amb1-case02-nonprofit-scale-001-02-e2f61a35c0",
+        "provenance": {
+          "call_id": "exploration-local-amb1-case02-turn001",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:792ba17901dc7246011c3d3337de20a022aa34df1782ebb5beb0d9d4b01a4f17"
+        },
+        "raw_record": {
+          "record": {
+            "alternative_evidence_ids": [
+              "e010"
+            ],
+            "alternative_interpretation": "Expanding to a second location while the current site remains inconsistent.",
+            "attached_condition_or_limit_evidence_ids": [
+              "e010"
+            ],
+            "attached_condition_or_limit_interpretation": "If the current instability stems from an unclear program or exhausted volunteers, expansion will magnify these existing problems.",
+            "limitations": "This alternative risks operational collapse if the underlying issues are systemic rather than logistical.",
+            "relationship_type": "failure_condition",
+            "status": "supported"
+          },
+          "record_identity": "model-exploration-local-amb1-case02-turn001",
+          "record_index": 2,
+          "role_source_span_ids": {
+            "alternative_evidence_ids": [
+              "span-ad7f5f43cc95859a"
+            ],
+            "attached_condition_or_limit_evidence_ids": [
+              "span-ad7f5f43cc95859a"
+            ]
+          },
+          "window_id": "amb1-case02-nonprofit-scale-exploration-turn-001"
+        },
+        "raw_record_sha256": "sha256:e2f61a35c0919ce4cd5e323f98582e1ea7c920f2ae1446eb385d783c14808f2a",
+        "relationship_type": "failure_condition",
+        "role_source_span_ids": {
+          "alternative_evidence_ids": [
+            "span-ad7f5f43cc95859a"
+          ],
+          "attached_condition_or_limit_evidence_ids": [
+            "span-ad7f5f43cc95859a"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_exploration_local_observation.v1",
+        "semantic_status": "supported",
+        "source_span_ids": [
+          "span-ad7f5f43cc95859a"
+        ],
+        "terminal_reason": "local pair roles and focal stable aliases validated",
+        "terminal_state": "admitted",
+        "window_id": "amb1-case02-nonprofit-scale-exploration-turn-001"
+      }
+    ],
+    "response_status": "supported",
+    "status": "local_response_compiled",
+    "window_id": "amb1-case02-nonprofit-scale-exploration-turn-001",
+    "window_terminal_disposition": "compiled"
+  },
+  "completion_tokens": 365,
+  "duration_seconds": 2.419,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.0009209999999999999,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "input_utf8_bytes": 2602,
+  "model_attribution_status": "served_version_alias",
+  "nonclaims": [
+    "typed_and_alias_valid_is_not_semantic_adequacy",
+    "development_case_is_not_independent_gold",
+    "bounded_view_is_not_reasoning_or_final_answer_quality",
+    "result_does_not_authorize_graph_or_runtime_integration"
+  ],
+  "operational_status": "ok",
+  "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-001.json",
+  "packet_sha256": "b9cb5b590c67aa887d14557ae414fd3a40412c34c8c169ea771c3021348e2c23",
+  "pipeline_calls": 0,
+  "pricing_snapshot_sha256": "e76bb1a71f8576643edf18ae42fcc7533ec1d20d9fcce804a4d990d383bf7155",
+  "prompt_tokens": 1494,
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_payload_sha256": "f5b520699c2493e244c524bd2e78219b46e18fb4a2a0dc5c45aa0775231c9bf1",
+  "provider_reported_cost_usd": 0.000921,
+  "raw_provider_content_included": false,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d",
+  "response_sha256": "fd1d6eadeeab1a059fc37eb122781154d81a500efaf9c748b20a0df8fe682f4e",
+  "run_id": "reasoning-process-exploration-local-case02-remaining-v1",
+  "runtime_calls": 0,
+  "schema_version": "lolla.reasoning_process_view_specific_probe_call.v1",
+  "seed": 0,
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "system_prompt_sha256": "2e4c70b6375d0791b41690070019c4e91152765222e4100fde1572ca0c141366",
+  "temperature": 0.0,
+  "total_tokens": 1859,
+  "typed_status": "admitted",
+  "usage_evidence_state": "complete",
+  "user_prompt_sha256": "792ba17901dc7246011c3d3337de20a022aa34df1782ebb5beb0d9d4b01a4f17",
+  "validation_error": "",
+  "view_kind": "exploration_and_alternatives"
+}

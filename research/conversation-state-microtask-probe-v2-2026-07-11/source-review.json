@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_source_review.v2",
+  "status": "closed_before_semantic_review",
+  "run_id": "conversation_state_microtask_probe_v2_20260711_a1",
+  "case_id": "amb1-case05-family-archive",
+  "family_results": {
+    "threads": {
+      "status": "not_observed_operational_failure",
+      "operational_status": "http_error_400",
+      "semantic_status": "not_observed",
+      "reason": "Google rejected the frozen OpenRouter-specific schema before inference."
+    },
+    "constraints": {
+      "status": "not_run_stop_rule"
+    },
+    "positions": {
+      "status": "not_run_stop_rule"
+    }
+  },
+  "composition": {
+    "attempted": false,
+    "accepted_observed_path_allowed": false,
+    "graph_routing_allowed": false
+  },
+  "calls": {
+    "authorized_maximum": 3,
+    "attempted": 1,
+    "successful_provider_inference": 0,
+    "operational_failures": 1,
+    "not_run": 2,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0
+  },
+  "aggregate": {
+    "probe_passed": false,
+    "result_kind": "operational_interoperability_failure",
+    "semantic_transfer_measured": false,
+    "full_pipeline_authorized": false,
+    "graph_calls_authorized": false,
+    "runtime_integration_authorized": false
+  },
+  "non_claims": [
+    "not_thread_extraction_quality",
+    "not_constraint_extraction_quality",
+    "not_position_extraction_quality",
+    "not_graph_value",
+    "not_runtime_authority"
+  ]
+}

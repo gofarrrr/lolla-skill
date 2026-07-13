@@ -1,0 +1,253 @@
+{
+  "compiled": {
+    "boundary": {
+      "component_evidence_restricted_to_parent_role": true,
+      "deterministic_duplicate_validation_retained": true,
+      "direct_graph_routing_allowed": false,
+      "expressions_compared_or_scored_by_code": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prompt_changed_from_v41": false,
+      "prose_keyword_gate_added": false,
+      "provider_wire_unique_items_removed": true,
+      "record_level_validation_weakened": false,
+      "record_validator_changed_from_v41": false,
+      "semantic_contract_changed_from_v41": false,
+      "semantic_merge_performed": false,
+      "stance_expression_correctness_inferred_by_code": false,
+      "stance_object_correctness_inferred_by_code": false
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case01-product-scope",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "Starting: I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.” | Current: My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. | Qualification: The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. | Trajectory: The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "observation_id": "rpshardv42-amb1-case01-product-scope-position_and_decision_trajectory-01-3b8b529e0a",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v42-wire-only-replay-of-v41-reviewed-fixture",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e060"
+            ],
+            "current_position_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e067"
+            ],
+            "qualification_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+            "stance_expression_kinds": [
+              "uncertain_or_undecided",
+              "uncertain_or_undecided",
+              "provisional_intention_or_plan",
+              "provisional_intention_or_plan",
+              "possibility",
+              "counterpressure"
+            ],
+            "stance_object_fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+            "stance_object_interpretations": [
+              "Focused customer sessions may be how good products learn.",
+              "The loudest customer may be setting the roadmap.",
+              "Offer Northline three focused sessions and document the workflow.",
+              "Make no build commitment during the bounded discovery period.",
+              "Restricting prototypes may make discovery artificial.",
+              "Careful language may still feel like distance to Northline."
+            ],
+            "stance_object_kinds": [
+              "belief_or_assessment",
+              "belief_or_assessment",
+              "action_or_proposal",
+              "intended_outcome_or_policy",
+              "intended_outcome_or_policy",
+              "belief_or_assessment"
+            ],
+            "stance_source_evidence_ids": [
+              "e005",
+              "e005",
+              "e060",
+              "e060",
+              "e067",
+              "e067"
+            ],
+            "stance_temporal_roles": [
+              "starting",
+              "starting",
+              "current",
+              "current",
+              "qualification",
+              "qualification"
+            ],
+            "starting_position_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+            "starting_state_evidence_ids": [
+              "e005"
+            ],
+            "status": "supported",
+            "trajectory_interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+            "trajectory_type": "changed"
+          },
+          "record_identity": "case01-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:3b8b529e0a511a47e3a4fc5b9248b3be735d6951c45c9c0de2909d3ec5a30d60",
+        "role_interpretations": {
+          "current_position_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+          "qualification_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+          "starting_position_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+          "trajectory_interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks."
+        },
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-c9902a73ee6c654e"
+          ],
+          "qualification_evidence_ids": [
+            "span-836caaea5abc0d4b"
+          ],
+          "starting_state_evidence_ids": [
+            "span-4ad7a72a2c6a0b54"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v4_2",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-4ad7a72a2c6a0b54",
+          "span-c9902a73ee6c654e",
+          "span-836caaea5abc0d4b"
+        ],
+        "stance_objects": {
+          "stance_components": [
+            {
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "Focused customer sessions may be how good products learn.",
+              "stance_object_kind": "belief_or_assessment",
+              "temporal_role": "starting"
+            },
+            {
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The loudest customer may be setting the roadmap.",
+              "stance_object_kind": "belief_or_assessment",
+              "temporal_role": "starting"
+            },
+            {
+              "source_evidence_id": "e060",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Offer Northline three focused sessions and document the workflow.",
+              "stance_object_kind": "action_or_proposal",
+              "temporal_role": "current"
+            },
+            {
+              "source_evidence_id": "e060",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Make no build commitment during the bounded discovery period.",
+              "stance_object_kind": "intended_outcome_or_policy",
+              "temporal_role": "current"
+            },
+            {
+              "source_evidence_id": "e067",
+              "stance_expression_kind": "possibility",
+              "stance_object_interpretation": "Restricting prototypes may make discovery artificial.",
+              "stance_object_kind": "intended_outcome_or_policy",
+              "temporal_role": "qualification"
+            },
+            {
+              "source_evidence_id": "e067",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "Careful language may still feel like distance to Northline.",
+              "stance_object_kind": "belief_or_assessment",
+              "temporal_role": "qualification"
+            }
+          ],
+          "stance_object_fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks."
+        },
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshardv42-amb1-case01-product-scope-position_and_decision_trajectory-01-3b8b529e0a",
+        "raw_record_sha256": "sha256:3b8b529e0a511a47e3a4fc5b9248b3be735d6951c45c9c0de2909d3ec5a30d60",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v4_2",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_v42_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e060"
+        ],
+        "current_position_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e067"
+        ],
+        "qualification_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+        "stance_expression_kinds": [
+          "uncertain_or_undecided",
+          "uncertain_or_undecided",
+          "provisional_intention_or_plan",
+          "provisional_intention_or_plan",
+          "possibility",
+          "counterpressure"
+        ],
+        "stance_object_fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+        "stance_object_interpretations": [
+          "Focused customer sessions may be how good products learn.",
+          "The loudest customer may be setting the roadmap.",
+          "Offer Northline three focused sessions and document the workflow.",
+          "Make no build commitment during the bounded discovery period.",
+          "Restricting prototypes may make discovery artificial.",
+          "Careful language may still feel like distance to Northline."
+        ],
+        "stance_object_kinds": [
+          "belief_or_assessment",
+          "belief_or_assessment",
+          "action_or_proposal",
+          "intended_outcome_or_policy",
+          "intended_outcome_or_policy",
+          "belief_or_assessment"
+        ],
+        "stance_source_evidence_ids": [
+          "e005",
+          "e005",
+          "e060",
+          "e060",
+          "e067",
+          "e067"
+        ],
+        "stance_temporal_roles": [
+          "starting",
+          "starting",
+          "current",
+          "current",
+          "qualification",
+          "qualification"
+        ],
+        "starting_position_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+        "starting_state_evidence_ids": [
+          "e005"
+        ],
+        "status": "supported",
+        "trajectory_interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "source_fixture_path": "research/reasoning-process-stance-object-v41-2026-07-12/legacy-protected-fixtures/amb1-case01-product-scope/position_and_decision_trajectory.json"
+}

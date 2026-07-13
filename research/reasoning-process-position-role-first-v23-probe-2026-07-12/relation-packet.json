@@ -1,0 +1,98 @@
+{
+  "boundary": {
+    "categorical_trajectory_label_requested": false,
+    "deterministic_role_matching_performed": false,
+    "direct_graph_routing_allowed": false,
+    "relationship_identity_semantics_made_explicit": true,
+    "response_schema_changed_from_v2": false,
+    "role_records_changed": false,
+    "semantic_prefilter_performed": false,
+    "validator_changed_from_v2": false
+  },
+  "call_required": true,
+  "case_id": "amb3-case04-museum-ai-license",
+  "maximum_input_role_records": 6,
+  "maximum_relationship_records": 2,
+  "relationship_identity_contract": "One relationship record links the coherent starting, current, and qualification records for one position thread. Do not pair records by array order or surface proximity. Use a second relationship only for a genuinely separate concurrent position thread. Preserve missingness and speaker ownership; do not manufacture adoption or agreement.",
+  "role_records": {
+    "current": [
+      {
+        "limitations": "none",
+        "role": "current",
+        "role_interpretation": "The user is leaning toward a specific pilot and has set conditions for approval, while acknowledging an unresolved issue.",
+        "role_record_id": "rprolev22-current-01-2e1fb35bf2971a",
+        "semantic_status": "unclear",
+        "source_evidence": [
+          {
+            "alias": "e033",
+            "text": "I am leaning toward the six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language."
+          },
+          {
+            "alias": "e034",
+            "text": "I will approve it only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review."
+          },
+          {
+            "alias": "e035",
+            "text": "I will set complaint, removal, false-association, and sensitive-query thresholds before signing."
+          },
+          {
+            "alias": "e036",
+            "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+          }
+        ]
+      }
+    ],
+    "qualification": [
+      {
+        "limitations": "none",
+        "role": "qualification",
+        "role_interpretation": "Unresolved condition capable of limiting or reopening the current position",
+        "role_record_id": "rprolev22-qualification-01-58d4bbff5d205a",
+        "semantic_status": "unclear",
+        "source_evidence": [
+          {
+            "alias": "e036",
+            "text": "I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot."
+          },
+          {
+            "alias": "e039",
+            "text": "The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed."
+          },
+          {
+            "alias": "e040",
+            "text": "If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state."
+          }
+        ]
+      }
+    ],
+    "starting": [
+      {
+        "limitations": "none",
+        "role": "starting",
+        "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+        "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+        "semantic_status": "supported",
+        "source_evidence": [
+          {
+            "alias": "e001",
+            "text": "I direct a regional museum with a digitized collection of photographs, oral histories, and community records."
+          },
+          {
+            "alias": "e002",
+            "text": "An AI company has offered enough money to fund our preservation work for four years if it can train a cultural-search model on the archive."
+          },
+          {
+            "alias": "e003",
+            "text": "I want wider discovery and stable funding, but I am worried that licensing the collection turns stewardship into raw-material supply."
+          },
+          {
+            "alias": "e004",
+            "text": "I cannot tell whether my hesitation protects contributor trust or reflects an institutional instinct to control access."
+          }
+        ]
+      }
+    ]
+  },
+  "schema_version": "lolla.reasoning_process_position_relation_packet.v2_1",
+  "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01"
+}

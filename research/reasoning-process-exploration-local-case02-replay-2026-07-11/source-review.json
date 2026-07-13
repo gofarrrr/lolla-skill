@@ -1,0 +1,87 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_case_source_review.v1",
+  "status": "semantic_mechanism_pass_operational_completion_required",
+  "date": "2026-07-11",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "review_method": "Review each admitted alternative and attached-limit role against its focal or permitted prior aliases before judging the overall receipt.",
+  "window_reviews": [
+    {
+      "focal_turn_index": 1,
+      "result": "pass_2_of_2",
+      "review": "The two conditional branches distinguish when expansion might help from when it would magnify systemic instability. They fragment one broad expansion option into two source-valid condition records but do not inflate source strength."
+    },
+    {
+      "focal_turn_index": 2,
+      "result": "pass_2_of_2",
+      "review": "The consistency redefinition and expansion-under-variability path each retain their stated operating conditions."
+    },
+    {
+      "focal_turn_index": 3,
+      "result": "pass_2_of_2",
+      "review": "Both the broad volunteer-capacity concern and the protected named-role test are source-supported; e026 and e027 preserve the previously lost minority limit."
+    },
+    {
+      "focal_turn_index": 4,
+      "result": "partial_1_admitted_1_quarantined",
+      "review": "The focal accept-specified-uncertainty path is valid. The second record repeats the exact e026/e027 role pair from prior context and cites its attached limit outside the focal region; record-level replay correctly quarantines it as an exact cross-window duplicate without discarding the valid first record."
+    },
+    {
+      "focal_turn_index": 5,
+      "result": "failed_operationally",
+      "review": "OpenRouter returned rate_limit_exceeded/429 inside an error completion. No semantic payload or usage evidence exists and no retry occurred under the frozen contract."
+    },
+    {
+      "focal_turn_index": 6,
+      "result": "pass_2_of_2",
+      "review": "The reduced-schedule pilot and the transparent-duration/exit design both retain their social-reversibility limits. The second is a refinement of the first but remains source-supported and chronologically inspectable."
+    },
+    {
+      "focal_turn_index": 7,
+      "result": "pass_2_of_2",
+      "review": "The conditional launch direction and functional ready-enough threshold are separately grounded with their unresolved delay and judgment limits."
+    }
+  ],
+  "evidence_vector": {
+    "expected_windows": 7,
+    "operational_success": "6/7",
+    "operational_failure": "1/7",
+    "raw_model_records": 12,
+    "record_level_admission": "11/12",
+    "record_level_quarantine": "1/12",
+    "admitted_stable_alias_references": "26/26",
+    "protected_target_visibility": "1/1",
+    "invalid_admitted_record_count": 0,
+    "source_strength_inflation_count": 0,
+    "exact_cross_window_role_duplicate_count": 1,
+    "possible_source_valid_fragmentation_groups": 2,
+    "estimated_cost_usd": 0.0059695,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "architectural_findings": [
+    "Local focal reading recovers the minority relationship that full-conversation readers repeatedly lost.",
+    "Record-level admission is required; response-level all-or-nothing quarantine discards valid sibling records.",
+    "Role-specific prior carry-forward plus focal-only limits makes exact duplicate custody mechanically visible.",
+    "Eleven admitted records are materially below the former 88-95 event fan-out, but fragmentation remains a review cost.",
+    "No global semantic synthesizer or deterministic semantic deduplication is needed for chronological inspection."
+  ],
+  "decision": {
+    "semantic_mechanism_gate_passed": true,
+    "complete_case_gate_passed": false,
+    "reason_complete_gate_failed": "one operationally missing window",
+    "record_level_custody_must_become_prospective": true,
+    "one_turn5_operational_completion_may_be_frozen_after_cooloff": true,
+    "other_window_repeat_authorized": false,
+    "phase4_transfer_authorized": false,
+    "graph_or_runtime_authorized": false
+  },
+  "nonclaims": [
+    "Source-supported fragmentation is not automatically useful or harmful.",
+    "One development case does not establish transfer or runtime operability.",
+    "Activity and cost are not reasoning-quality or proof-of-work evidence."
+  ]
+}

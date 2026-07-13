@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.joint_process_reasoning_invariance_review.v0",
+  "status": "failed_frozen_gold_mismatch",
+  "contract_sha256": "6da68354c7fe86dbfb9c03b039ae8f58e1ccc783dcd1577ca550596ddb3390b2",
+  "result_sha256": "5a9e8d9c79e024facf1e5bdd23626e458a6429472daf3b266276b9102e874e41",
+  "mechanical_findings": {
+    "all_three_calls_valid": true,
+    "complete_controlled_vocabulary_coverage": true,
+    "fact_leak_lint_passed": true,
+    "no_retry": true,
+    "runtime_unchanged": true,
+    "call_count": 3,
+    "total_tokens": 3552,
+    "estimated_cost_usd": 0.002933
+  },
+  "comparison_findings": [
+    {
+      "comparison_id": "fact_invariance",
+      "status": "passed",
+      "finding": "The fact-swapped pair produced identical sealed active/edge projections and identical deterministic candidate sets. All four predeclared base weaknesses were unresolved in both fixtures.",
+      "audit_only_difference": "criteria_defined_after_commitment was not_observed in facts_c and resolved_in_conversation in facts_d, but neither status entered routing."
+    },
+    {
+      "comparison_id": "joint_repair_sensitivity",
+      "status": "failed_frozen_expected_status",
+      "finding": "The repaired conversation changed the projection and removed every active seed, but acknowledged_constraint_not_gated was not_observed rather than the predeclared resolved_in_conversation.",
+      "directional_checks_passed": [
+        "projection_changed",
+        "active_seed_candidates_changed",
+        "repaired_active_seed_candidates_empty",
+        "ambiguous_signal_treated_as_commitment_resolved",
+        "missing_reversal_condition_resolved",
+        "reversible_path_not_considered_resolved"
+      ],
+      "prospective_check_failed": "acknowledged_constraint_not_gated_expected_resolved_but_observed_not_observed"
+    }
+  ],
+  "source_review": {
+    "classification": "F8_gold_or_scorer_mismatch",
+    "reason": "In the repaired fixture the user names operating constraints and the assistant immediately makes them decision gates. It is defensible that acknowledged_constraint_not_gated never occurs, rather than occurs and is later repaired. Both statuses correctly produce no active graph seed.",
+    "retroactive_change_allowed": false,
+    "rerun_allowed": false
+  },
+  "decision_effect": {
+    "runtime_pattern_integration_authorized": false,
+    "joint_process_target_directionally_supported": true,
+    "future_scorer_rule": "For repair fixtures, score routing-surface resolution separately from historical-status exactness; declare an allowed non-active status set prospectively where the source supports both not_observed and resolved_in_conversation.",
+    "paired_downstream_holdout_authorized": true,
+    "reason": "Exact pressure-custody offline gates passed independently; the paired holdout does not depend on promoting joint-process routing."
+  }
+}

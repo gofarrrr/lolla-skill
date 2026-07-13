@@ -1,0 +1,132 @@
+{
+  "schema_version": "lolla.simulated_reliability_naturalization_contract.v1",
+  "status": "frozen_before_at_most_twelve_no_retry_source_calls",
+  "date": "2026-07-12",
+  "purpose": "Produce naturalistic style proposals from frozen semantic skeletons before the V1 transfer-source freeze.",
+  "system_prompt_sha256": "2838485a0b7f40c16d993f1974ed98b4c22405bbc3f4a0220f804f3aca7fd38d",
+  "response_schema_sha256": "d4dc0f00ca42eb0b55a9828285c5c401fd00188615f6795a4554fe7752011b8c",
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0.65,
+    "reasoning_enabled": false,
+    "max_output_tokens": 7000,
+    "provider_timeout_seconds": 120,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "response_healing": false,
+    "automatic_retries": 0
+  },
+  "budget": {
+    "maximum_provider_calls": 12,
+    "maximum_provider_reported_cost_usd": 0.1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "lolla_pipeline_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0
+  },
+  "admission": {
+    "automatic_admission": false,
+    "provider_free_shape_review_required": true,
+    "whole_conversation_semantic_review_required": true,
+    "whole_conversation_naturalism_review_required": true,
+    "failed_or_drifted_proposals_must_be_preserved": true,
+    "manual_semantic_repair_after_admission": false
+  },
+  "cases": [
+    {
+      "case_id": "v1-case01-flood-infrastructure",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case01-flood-infrastructure.txt",
+      "source_sha256": "55935177ecfe20f10604a1eefe5f21865910b6652621446e03d6e54961d17d14",
+      "user_prompt_sha256": "79f520ea66573c16ff3f9885092e7614c2fd6611590f9b1d044bbe1ecb54ec6c",
+      "seed": 101
+    },
+    {
+      "case_id": "v1-case02-discharge-transport",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case02-discharge-transport.txt",
+      "source_sha256": "9a59137facc7e85f5222f826a2d1be8c5f145430f94a8599bdf2c06a65117188",
+      "user_prompt_sha256": "dc9054c1a58b5d16985f895466ce6a0d3617efbc2f713f5c389f5f978b3ad6cf",
+      "seed": 102
+    },
+    {
+      "case_id": "v1-case03-executive-hire",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case03-executive-hire.txt",
+      "source_sha256": "a80fd7504f7df42f477ccd8942571e2dd7a3e857e346357689ed0e0b1e41bfaa",
+      "user_prompt_sha256": "25ac40976940ebecc6db224d02fe52e582aa3cd31338fd0d40b98b2551365e9b",
+      "seed": 103
+    },
+    {
+      "case_id": "v1-case04-component-sourcing",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case04-component-sourcing.txt",
+      "source_sha256": "2a6b74ae60981ba332283176f0d61957ff54621b0108e85439de077727713169",
+      "user_prompt_sha256": "aa713282783c7b361e9d953a60df11138388f8bb446b5cc2f2bd37e487293d58",
+      "seed": 104
+    },
+    {
+      "case_id": "v1-case05-ai-tutoring",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case05-ai-tutoring.txt",
+      "source_sha256": "54913f9b558a00fef2a2fdd993f8042514de33286f9a1df226bf69916c1ad944",
+      "user_prompt_sha256": "54158d3743ca32ea4d6287dcb5642cded23251e5dc727212a9a7185545ef63a0",
+      "seed": 105
+    },
+    {
+      "case_id": "v1-case06-industry-funded-lab",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case06-industry-funded-lab.txt",
+      "source_sha256": "04508dce82fb1e76b9aff8da0904299f529404ce1b5d62d34d1ce7f2208c5d89",
+      "user_prompt_sha256": "880c11b5ae7d8783661eda93911f57a8584f8b1de91683d058894599e991ba64",
+      "seed": 106
+    },
+    {
+      "case_id": "v1-case07-cooperative-scheduling",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case07-cooperative-scheduling.txt",
+      "source_sha256": "4b31bddf74cd832863028a1bdad0c5077959c7d3559adf22988a815390aea59e",
+      "user_prompt_sha256": "3f8b4fde8a61a83fe21843aad2ff9cd65e4c85bb40620dc43a16efabb4252217",
+      "seed": 107
+    },
+    {
+      "case_id": "v1-case08-museum-entry",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case08-museum-entry.txt",
+      "source_sha256": "d1b1638eb95d44efee3fea9d6c46de35d5ca31c41a56932fb9bf6637413fce7a",
+      "user_prompt_sha256": "33aa989599a7048ddb1519615f77e2a0766aa52dbc9b909349774478d47f4a32",
+      "seed": 108
+    },
+    {
+      "case_id": "v1-case09-software-migration",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case09-software-migration.txt",
+      "source_sha256": "35d274ae6f3aebd56b087457384f012d8389d1b7e8db5f9bbf9eecdf65738cf7",
+      "user_prompt_sha256": "3af06428c6f64ac7e7c94db1abd2faeaf154fc505b3cfa01e85677953c8168e9",
+      "seed": 109
+    },
+    {
+      "case_id": "v1-case10-restricted-funding",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case10-restricted-funding.txt",
+      "source_sha256": "e100d612e1b8b42f8d08f1a9699349865dbe86cd40106d0f8ea17575e8de2fc9",
+      "user_prompt_sha256": "b8844e99b37954bce0f4084b3c2e60ec1fa3617764527f1f50568a1ebb61233d",
+      "seed": 110
+    },
+    {
+      "case_id": "v1-case11-elder-care-relocation",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case11-elder-care-relocation.txt",
+      "source_sha256": "50accd9bb0524d77afa8cfd43d055bd9113e4fcac8981834c386f503c1c1dc71",
+      "user_prompt_sha256": "b12acfbd45f05d3f7c62f2473e2172e0d5876da5140bfd36352909580f7975c1",
+      "seed": 111
+    },
+    {
+      "case_id": "v1-case12-newsroom-platform",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case12-newsroom-platform.txt",
+      "source_sha256": "cf2ec5c78250042026ae9f038ca2d6a53f77d4f4b24c0d7d8977360584297c25",
+      "user_prompt_sha256": "6d5f189477a4f3330edcf267a0af6732aa42e5e31009cb0224c0c1c1d441cf5e",
+      "seed": 112
+    }
+  ],
+  "non_claims": [
+    "not a Lolla pipeline evaluation",
+    "not evidence of real-user usefulness",
+    "not automatic semantic preservation",
+    "not automatic naturalism quality",
+    "not transfer-set scoring"
+  ]
+}

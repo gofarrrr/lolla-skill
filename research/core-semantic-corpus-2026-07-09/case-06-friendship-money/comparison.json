@@ -1,0 +1,220 @@
+{
+  "case_id": "case-06-friendship-money",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.0,
+      "never_observation_ids": [
+        "boundary.social_worker_unknown",
+        "constraint.rent_arrears",
+        "drop.homelessness_stakes",
+        "pressure.not_financial_manager",
+        "question.current_drop_pattern_frame",
+        "question.initial_say_no_preserve_friendship",
+        "stance.intent_walkback",
+        "stance.smaller_help_script"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": []
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraints": {
+          "counts": [
+            4,
+            3,
+            3
+          ],
+          "labeled_jaccard": 0.06666666666666667,
+          "span_jaccard": 0.06666666666666667
+        },
+        "reasoning_passages": {
+          "counts": [
+            5,
+            6,
+            6
+          ],
+          "labeled_jaccard": 0.5476190476190476,
+          "span_jaccard": 0.5476190476190476
+        }
+      },
+      "mean_labeled_jaccard": 0.31587301587301586,
+      "mean_span_jaccard": 0.31587301587301586
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.5,
+      "never_observation_ids": [
+        "drop.homelessness_stakes",
+        "pressure.not_financial_manager",
+        "stance.intent_walkback",
+        "stance.smaller_help_script"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "boundary.social_worker_unknown",
+            "constraint.rent_arrears",
+            "question.current_drop_pattern_frame",
+            "question.initial_say_no_preserve_friendship"
+          ],
+          "recall": 0.5,
+          "recovered_count": 4,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "boundary.social_worker_unknown",
+            "constraint.rent_arrears",
+            "question.current_drop_pattern_frame",
+            "question.initial_say_no_preserve_friendship"
+          ],
+          "recall": 0.5,
+          "recovered_count": 4,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "boundary.social_worker_unknown",
+            "constraint.rent_arrears",
+            "question.current_drop_pattern_frame",
+            "question.initial_say_no_preserve_friendship"
+          ],
+          "recall": 0.5,
+          "recovered_count": 4,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": [
+        "boundary.social_worker_unknown",
+        "constraint.rent_arrears",
+        "question.current_drop_pattern_frame",
+        "question.initial_say_no_preserve_friendship"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            5,
+            6,
+            5
+          ],
+          "labeled_jaccard": 0.2824074074074074,
+          "span_jaccard": 0.2824074074074074
+        },
+        "dropped_thread_events": {
+          "counts": [
+            1,
+            2,
+            1
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            3,
+            3,
+            3
+          ],
+          "labeled_jaccard": 0.3,
+          "span_jaccard": 0.3
+        },
+        "live_constraint_events": {
+          "counts": [
+            5,
+            5,
+            6
+          ],
+          "labeled_jaccard": 0.2824074074074074,
+          "span_jaccard": 0.2824074074074074
+        },
+        "option_events": {
+          "counts": [
+            5,
+            5,
+            4
+          ],
+          "labeled_jaccard": 0.39166666666666666,
+          "span_jaccard": 0.39166666666666666
+        },
+        "question_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            7,
+            7,
+            7
+          ],
+          "labeled_jaccard": 0.5685185185185185,
+          "span_jaccard": 0.5685185185185185
+        }
+      },
+      "mean_labeled_jaccard": 0.4511904761904762,
+      "mean_span_jaccard": 0.4511904761904762
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5",
+    "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+    "shadow_run_count": 3
+  }
+}

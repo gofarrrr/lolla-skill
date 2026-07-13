@@ -1,0 +1,227 @@
+{
+  "case_id": "case-05-parenting-teen",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.125,
+      "never_observation_ids": [
+        "boundary.no_known_physical_contact",
+        "constraint.coparent_disagreement",
+        "constraint.daughter_shutdown",
+        "pressure.ongoing_phone_monitoring",
+        "question.current_plan_summary",
+        "question.initial_parent_response",
+        "stance.defer_police"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "stance.relationship_first_reframe"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "stance.relationship_first_reframe"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "stance.relationship_first_reframe"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": [
+        "stance.relationship_first_reframe"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            0,
+            2,
+            1
+          ],
+          "labeled_jaccard": 0.0,
+          "span_jaccard": 0.0
+        },
+        "live_constraints": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.0,
+          "span_jaccard": 0.0
+        },
+        "reasoning_passages": {
+          "counts": [
+            5,
+            6,
+            7
+          ],
+          "labeled_jaccard": 0.5218253968253969,
+          "span_jaccard": 0.5218253968253969
+        }
+      },
+      "mean_labeled_jaccard": 0.17394179894179895,
+      "mean_span_jaccard": 0.17394179894179895
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.625,
+      "never_observation_ids": [
+        "boundary.no_known_physical_contact",
+        "constraint.daughter_shutdown"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "constraint.coparent_disagreement",
+            "pressure.ongoing_phone_monitoring",
+            "question.current_plan_summary",
+            "question.initial_parent_response",
+            "stance.defer_police",
+            "stance.relationship_first_reframe"
+          ],
+          "recall": 0.75,
+          "recovered_count": 6,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "constraint.coparent_disagreement",
+            "pressure.ongoing_phone_monitoring",
+            "question.current_plan_summary",
+            "question.initial_parent_response",
+            "stance.defer_police",
+            "stance.relationship_first_reframe"
+          ],
+          "recall": 0.75,
+          "recovered_count": 6,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "constraint.coparent_disagreement",
+            "stance.defer_police",
+            "stance.relationship_first_reframe"
+          ],
+          "recall": 0.375,
+          "recovered_count": 3,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": [
+        "constraint.coparent_disagreement",
+        "stance.defer_police",
+        "stance.relationship_first_reframe"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            8,
+            6,
+            6
+          ],
+          "labeled_jaccard": 0.5566137566137567,
+          "span_jaccard": 0.5566137566137567
+        },
+        "dropped_thread_events": {
+          "counts": [
+            1,
+            2,
+            1
+          ],
+          "labeled_jaccard": 0.6666666666666666,
+          "span_jaccard": 0.6666666666666666
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            3,
+            0,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraint_events": {
+          "counts": [
+            4,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.4047619047619047,
+          "span_jaccard": 0.4047619047619047
+        },
+        "option_events": {
+          "counts": [
+            4,
+            0,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "question_events": {
+          "counts": [
+            2,
+            2,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "user_pressure_events": {
+          "counts": [
+            4,
+            4,
+            0
+          ],
+          "labeled_jaccard": 0.1111111111111111,
+          "span_jaccard": 0.1111111111111111
+        }
+      },
+      "mean_labeled_jaccard": 0.391307634164777,
+      "mean_span_jaccard": 0.391307634164777
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4",
+    "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+    "shadow_run_count": 3
+  }
+}

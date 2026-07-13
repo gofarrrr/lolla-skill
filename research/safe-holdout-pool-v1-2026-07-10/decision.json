@@ -1,0 +1,81 @@
+{
+  "schema_version": "lolla.safe_holdout_pool_v1_decision.v1",
+  "status": "complete_no_pool_admitted_new_source_input_required",
+  "date": "2026-07-10",
+  "selection": {
+    "rank_frozen_before_generation": true,
+    "rank_withheld_from_generator": true,
+    "semantic_or_graph_favorability_review_performed": false,
+    "selected_case_id": null
+  },
+  "runs": [
+    {
+      "run_id": "lolla_holdout_pool_v1_20260710_a1",
+      "status": "failed_unsupported_reasoning_effort",
+      "calls": 1,
+      "automatic_retries": 0,
+      "evaluator_calls": 0,
+      "tokens": null,
+      "estimated_cost_usd": null
+    },
+    {
+      "run_id": "lolla_holdout_pool_v1_20260710_a2",
+      "status": "failed_scorer_contract_mismatch",
+      "calls": 1,
+      "automatic_retries": 0,
+      "evaluator_calls": 0,
+      "tokens": 7393,
+      "estimated_cost_usd": 0.009792
+    },
+    {
+      "run_id": "lolla_holdout_pool_v1_20260710_a3",
+      "status": "failed_rate_limit",
+      "calls": 1,
+      "automatic_retries": 0,
+      "evaluator_calls": 0,
+      "tokens": null,
+      "estimated_cost_usd": null
+    }
+  ],
+  "verification": {
+    "focused_pool_tests": "12 passed",
+    "focused_pool_and_governance_tests": "18 passed",
+    "non_network_repository_suite": "4051 passed, 1 skipped, 93 subtests passed",
+    "excluded_module": "tests/test_stability_check.py",
+    "exclusion_reason": "Its current test path invokes live OpenAI embeddings; no additional provider calls were authorized.",
+    "python_runtime": "3.12 workspace runtime",
+    "provider_calls_during_verification": 0
+  },
+  "earned_findings": [
+    "The new-pool domains and ranking were frozen without selecting for Lolla or graph activation.",
+    "The unsupported reasoning-effort failure is preserved rather than retried in place.",
+    "The v2 exact-ID failure was correctly classified as a scorer mismatch rather than conversation-quality failure.",
+    "Canonical message IDs now belong to deterministic code, not the probabilistic generator.",
+    "The v3 runner preserves provider diagnostics and provider-envelope hashes.",
+    "No failed output was promoted into a holdout."
+  ],
+  "blocked_claims": [
+    "A safe new holdout pool exists.",
+    "The five v2 conversations passed their frozen generation contract.",
+    "Any generated case is representative or favorable for evaluating Lolla.",
+    "Stage A, graph attribution, or downstream comparison may begin.",
+    "Lolla improves answers or decisions."
+  ],
+  "authorizations": {
+    "additional_pool_generation_calls": false,
+    "use_v2_output_as_holdout": false,
+    "new_source_intake_contract": true,
+    "stage_a": false,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_integration": false
+  },
+  "next_action": "Obtain a genuinely new safe source set, then freeze hashes and mechanical ranking before safety review or any Stage A contract.",
+  "human_input_needed": "Provide or authorize a genuinely new conversation source strategy; do not choose a case for likely Lolla success.",
+  "non_claims": [
+    "not product validation",
+    "not graph-value evidence",
+    "not a real-world corpus",
+    "not Stage A authorization"
+  ]
+}

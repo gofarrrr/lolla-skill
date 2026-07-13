@@ -1,0 +1,118 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case03-creative-partnership",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "The user moves from demanding a major re-edit toward listening to the revised cut before deciding and proposes equal top-line credit with unresolved authority concerns.",
+        "observation_id": "rpshard-amb1-case03-creative-partnership-position_and_decision_trajectory-01-dd6964a492",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "chronological-shard-same-session-nonblind",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e063"
+            ],
+            "interpretation": "The user moves from demanding a major re-edit toward listening to the revised cut before deciding and proposes equal top-line credit with unresolved authority concerns.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e070"
+            ],
+            "starting_state_evidence_ids": [
+              "e004"
+            ],
+            "status": "supported",
+            "trajectory_type": "changed"
+          },
+          "record_identity": "case03-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:dd6964a492d4d5e366e2bbc3914f327d1237c7de8704346ed9b5dd7247ad8a2c",
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-92633920278c3c0d"
+          ],
+          "qualification_evidence_ids": [
+            "span-847cda59cbc9ad83"
+          ],
+          "starting_state_evidence_ids": [
+            "span-3238a20bb6b28b8b"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-3238a20bb6b28b8b",
+          "span-92633920278c3c0d",
+          "span-847cda59cbc9ad83"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case03-creative-partnership-position_and_decision_trajectory-01-dd6964a492",
+        "raw_record_sha256": "sha256:dd6964a492d4d5e366e2bbc3914f327d1237c7de8704346ed9b5dd7247ad8a2c",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e063"
+        ],
+        "interpretation": "The user moves from demanding a major re-edit toward listening to the revised cut before deciding and proposes equal top-line credit with unresolved authority concerns.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e070"
+        ],
+        "starting_state_evidence_ids": [
+          "e004"
+        ],
+        "status": "supported",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case03-creative-partnership/position_and_decision_trajectory.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case03-creative-partnership/position_and_decision_trajectory/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-3238a20bb6b28b8b",
+      "span-92633920278c3c0d",
+      "span-847cda59cbc9ad83"
+    ],
+    "target_id": "case03-position-trajectory",
+    "view_kind": "position_and_decision_trajectory"
+  }
+}

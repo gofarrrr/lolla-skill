@@ -1,0 +1,150 @@
+{
+  "schema_version": "lolla.downstream_utility_blind_outputs.v0",
+  "case_id": "case-03-startup-pivot",
+  "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e",
+  "review_status": "pending_provisional_and_human_review",
+  "outputs": [
+    {
+      "blind_label": "A",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "Founder is in an active evaluation phase with incomplete signal; no binding commitments from customers, employees, or shareholders yet, and the pivot decision is not made.",
+        "updated_position": "Maintain a neutral stance: founder is preparing to gather decision-grade evidence, hold key conversations, and set a decision date, but no direction (pivot or stay) is implied.",
+        "what_survived": [
+          "Conversational interest from three customers is not sufficient to justify a pivot without commercial validation.",
+          "Testing willingness to pay with concrete terms is a valid next step.",
+          "Current customers require a transition plan if a pivot is chosen.",
+          "Employee role impact deserves early, honest communication.",
+          "A former co-founder with equity should be informed but does not control the decision.",
+          "Setting a decision date and pre-defining pass criteria reduces drift."
+        ],
+        "take_backs_or_set_aside": [
+          "Assumptions that conversational enthusiasm strongly predicts purchase likelihood.",
+          "Any implication that specific severance amounts are standard or required.",
+          "Predictions about how customers or the employee will emotionally respond.",
+          "Assumptions that a deposit or LOI is universally necessary or sufficient for a pivot decision.",
+          "Suggestions that one specific option for handling the employee is inherently best."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Clarifying that customer pre-buy tests provide directional evidence but are not the only valid form of validation.",
+            "source_basis": "User provided only conversational feedback so far; no commitments.",
+            "action_consequence": "Founder can design a validation method that fits context, not necessarily deposits or LOIs."
+          },
+          {
+            "shift": "Separating courtesy from obligation in informing the former co-founder.",
+            "source_basis": "Equity ownership alone does not create decision authority without contractual terms.",
+            "action_consequence": "Ensure communication without implying governance power."
+          },
+          {
+            "shift": "Reframing employee communication as managing uncertainty, not forecasting outcomes.",
+            "source_basis": "The actual impact on the role is contingent on a decision not yet made.",
+            "action_consequence": "Founder can communicate transparently without presuming the pivot outcome."
+          }
+        ],
+        "next_actions": [
+          "Define in writing what constitutes adequate validation before running tests.",
+          "Design concrete willingness-to-pay conversations with the three customers, including price and timing.",
+          "Schedule conversations with the CS employee and former co-founder to communicate uncertainty and upcoming evaluation steps.",
+          "Place a decision date on the calendar to prevent drift.",
+          "Sketch both paths (continue vs pivot) to understand operational implications without committing."
+        ],
+        "uncertainties": [
+          "Whether any of the three customers will commit to concrete commercial terms.",
+          "How the CS employee will respond to uncertainty or potential role changes.",
+          "How current customers would react to a transition plan if a pivot occurs.",
+          "Whether engineering capacity and runway are sufficient to support either option.",
+          "Whether additional market conversations would reveal stronger or weaker signal than the initial three."
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "prompt_tokens": 2185,
+        "completion_tokens": 565,
+        "total_tokens": 2750,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "76e0f4884b3273c8d8396698b53f127ff93b92b74ffb7d3ec56e1b4fe0575539",
+        "response_sha256": "193b9d260c09a854f67d8b9b843d3643dfc618b1fa6d2b5ba2d68804e1e5db15"
+      }
+    },
+    {
+      "blind_label": "B",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "Founder is in an early‑stage, high‑uncertainty strategic fork with partial but insufficient evidence for a pivot, strong emotional load, and several stakeholder implications. No decision has been made; the founder is preparing evidence‑gathering and conversations but lacks a full map of what each test result would or wouldn’t establish.",
+        "updated_position": "The pre‑buy test is still useful, but it only validates willingness to contract under one specific framing. It cannot, on its own, justify a full pivot without additional evidence about pain, buyer authority, budget, workflow replacement, and the operational cost of parallel support. The transition plans, stakeholder conversations, and decision timeline remain appropriate, but they should be explicitly tied to what evidence emerges and what scenarios remain viable after the test.",
+        "what_survived": [
+          "Pre‑buy test as a useful early validation step",
+          "Separating conversational signal from commercial signal",
+          "Need for honest, early conversation with the CS employee",
+          "Not granting the former co‑founder decision authority but keeping her informed as courtesy",
+          "Setting a decision date to avoid open‑ended drift",
+          "Avoiding a maintenance burden that stalls a pivot"
+        ],
+        "take_backs_or_set_aside": [
+          "Treating two‑of‑three pre‑buys at one price point as pivot‑decision weight without mapping what a yes/no/mixed result actually means",
+          "Implicit assumption that the current product cannot still be grown with a focused plan or targeted experiments",
+          "Assuming customer migration or sunset paths without assessing engineering, support, and runway impact",
+          "Assuming the CS employee’s role is categorically empty during a pivot rather than examining concrete alternative work",
+          "Implying governance expectations for the former co‑founder without reviewing any operating agreements or prior arrangements"
+        ],
+        "material_shifts": [
+          {
+            "shift": "Clarify what the pre‑buy test actually proves and what it cannot",
+            "source_basis": "User turns 1,2,6; challenge prompt",
+            "action_consequence": "Define, before running the test, which evidence counts as strong validation, which outcomes are ambiguous, and which follow‑up conversations are required to interpret the results."
+          },
+          {
+            "shift": "Evaluate the operational load of running old and new products in parallel",
+            "source_basis": "User turns 1,3,4,6; challenge prompt",
+            "action_consequence": "Estimate engineering, support, and financial cost of maintaining the current product during a pivot versus a deliberate non‑pivot plan so the decision compares two executable paths, not abstractions."
+          },
+          {
+            "shift": "Separate emotional fairness from operational necessity in employee and co‑founder communication",
+            "source_basis": "User turns 4,5; challenge prompt",
+            "action_consequence": "Time communications around actual decision gates so they are neither prematurely alarming nor surprisingly late, while remaining respectful and transparent."
+          }
+        ],
+        "next_actions": [
+          "Define clearly what the pre‑buy test measures and what additional questions must be asked to understand pain, authority, budget, timing, and replacement.",
+          "Write down multiple possible test outcomes (all yes, mixed, all no) and what they would and would not rule out.",
+          "Sketch two concrete scenarios: one pivot path with resource estimates, and one focused non‑pivot path with concrete experiments and costs.",
+          "Check employment, equity, and governance documentation to confirm obligations and rights before stakeholder conversations.",
+          "Prepare a communication plan with timing tied to decision gates, not general anxiety or optimism.",
+          "Set a decision date and explicitly list what must be known by that date to make the choice confidently."
+        ],
+        "uncertainties": [
+          "Actual depth of customer pain and whether the same buyers control budget and workflow decisions",
+          "Whether the three interested customers are representative or idiosyncratic",
+          "Engineering cost and timeline of building the new product relative to remaining runway",
+          "Cost of supporting current customers during any transition",
+          "What non‑pivot growth experiments are still available and untried",
+          "How employee and former co‑founder would react to the timing and content of disclosure"
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "prompt_tokens": 2439,
+        "completion_tokens": 787,
+        "total_tokens": 3226,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "b20b12d42f9eec919ce829c89aa576ca0fc3308cbab15c2fd4d405365eed1a92",
+        "response_sha256": "54b1429c59cd42c92c49e27320a62e06c0f40bea88288a8da0d9badac9e3e9fe"
+      }
+    }
+  ],
+  "non_claims": [
+    "not_human_review",
+    "not_product_proof",
+    "not_business_employment_legal_or_governance_advice",
+    "not_an_outcome_quality_test",
+    "not_runtime_integration_authority",
+    "not_evidence_that_more_context_is_better"
+  ]
+}

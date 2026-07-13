@@ -1,0 +1,2059 @@
+{
+  "boundary": {
+    "deterministic_semantic_gate": false,
+    "graph_or_runtime_authorized": false,
+    "independent_synthetic_holdouts": true,
+    "production_authorized": false,
+    "semantic_repair": false,
+    "source_targets_excluded_from_provider": true
+  },
+  "cases": [
+    {
+      "calls": [
+        {
+          "admitted_record_count": 1,
+          "automatic_retries": 0,
+          "candidate_payload": {
+            "global_limitations": "none",
+            "records": [
+              {
+                "evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003",
+                  "e004"
+                ],
+                "fidelity_note": "The user's own starting stance is visible through their description of the offer and their own attractions and hesitations.",
+                "limitations": "none",
+                "role": "starting",
+                "role_interpretation": "The user's earliest visible working position includes attraction to the retailer's access and credibility, hesitation about the custom packaging and delivery terms consuming spare capacity, and an unresolved assessment of whether the opportunity can move them out of contract manufacturing.",
+                "stance_components": [
+                  {
+                    "expression_kind": "preference_or_desire",
+                    "object_interpretation": "the access and credibility from the retailer's offer",
+                    "object_kind": "intended_outcome_or_policy",
+                    "source_evidence_id": "e004"
+                  },
+                  {
+                    "expression_kind": "counterpressure",
+                    "object_interpretation": "the retailer's custom packaging and delivery terms consuming most of the user's spare capacity",
+                    "object_kind": "intended_outcome_or_policy",
+                    "source_evidence_id": "e004"
+                  },
+                  {
+                    "expression_kind": "uncertain_or_undecided",
+                    "object_interpretation": "whether the retailer's offer is the opportunity that could move the user out of contract manufacturing",
+                    "object_kind": "intended_outcome_or_policy",
+                    "source_evidence_id": "e003"
+                  }
+                ],
+                "status": "supported"
+              }
+            ],
+            "status": "supported"
+          },
+          "candidate_payload_sha256": "f326cd4c8d8d41b7dfe33dafb012f84fded91eb287971e7d482c9d78b2b65f8d",
+          "compiled": {
+            "boundary": {
+              "chronological_gate_added": false,
+              "deterministic_expression_gate_added": false,
+              "deterministic_role_exclusivity_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "keyword_gate_added": false,
+              "object_expression_compatibility_gate_added": false,
+              "one_alias_per_component_enforced": true,
+              "parallel_component_columns_used": false,
+              "prose_keyword_gate_added": false,
+              "provider_raw_record_hash_preserved": true,
+              "response_schema_changed_from_v22": false,
+              "semantic_merge_performed": false,
+              "semantic_role_or_category_correctness_inferred_by_code": false,
+              "v23_prompt_packet_contract": true,
+              "validator_changed_from_v22": false
+            },
+            "global_limitations": "none",
+            "observations": [
+              {
+                "case_id": "phase5-independent-useful-retailer-pilot",
+                "fidelity_note": "The user's own starting stance is visible through their description of the offer and their own attractions and hesitations.",
+                "graph_routing_eligible": false,
+                "limitations": "none",
+                "observation_id": "rprolev22-starting-01-28f458a1e12eba",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:28f458a1e12ebaa6383e504b6771a813e8ef5f2d6e110742559de3012c06ba34",
+                "role": "starting",
+                "role_interpretation": "The user's earliest visible working position includes attraction to the retailer's access and credibility, hesitation about the custom packaging and delivery terms consuming spare capacity, and an unresolved assessment of whether the opportunity can move them out of contract manufacturing.",
+                "role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "supported",
+                "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e001",
+                    "text": "I run a worker-owned home-goods manufacturer."
+                  },
+                  {
+                    "alias": "e002",
+                    "text": "A nationally known design retailer has offered to launch our new storage line in twelve stores."
+                  },
+                  {
+                    "alias": "e003",
+                    "text": "The board sees this as the opportunity that could move us out of contract manufacturing."
+                  },
+                  {
+                    "alias": "e004",
+                    "text": "I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003",
+                  "e004"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e004",
+                    "stance_expression_kind": "preference_or_desire",
+                    "stance_object_interpretation": "the access and credibility from the retailer's offer",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e004",
+                    "stance_expression_kind": "counterpressure",
+                    "stance_object_interpretation": "the retailer's custom packaging and delivery terms consuming most of the user's spare capacity",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e003",
+                    "stance_expression_kind": "uncertain_or_undecided",
+                    "stance_object_interpretation": "whether the retailer's offer is the opportunity that could move the user out of contract manufacturing",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            ],
+            "records": [
+              {
+                "raw_record_sha256": "sha256:28f458a1e12ebaa6383e504b6771a813e8ef5f2d6e110742559de3012c06ba34",
+                "record_index": 1,
+                "role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+                "terminal_state": "admitted"
+              }
+            ],
+            "response_status": "supported",
+            "role": "starting",
+            "role_terminal_disposition": "compiled",
+            "schema_version": "lolla.reasoning_process_position_role_response.v2",
+            "status": "position_role_response_v22_custody_complete"
+          },
+          "completion_tokens": 379,
+          "duration_seconds": 5.154,
+          "embedding_calls": 0,
+          "estimated_cost_usd": 0.00019565,
+          "evaluator_calls": 0,
+          "fallback_models": 0,
+          "finish_reason": "stop",
+          "graph_calls": 0,
+          "json_schema_candidate_present": true,
+          "model": "deepseek/deepseek-v4-flash",
+          "model_attribution_status": "served_version_alias",
+          "operational_status": "ok",
+          "pipeline_calls": 0,
+          "prompt_tokens": 1279,
+          "provider_attribution_status": "matched",
+          "provider_calls": 1,
+          "provider_diagnostic": {},
+          "provider_display_name": "Alibaba",
+          "provider_payload_sha256": "cddb379b58024309bc05a156eddfbc0f1f46d61521375f6ed51716d61825194b",
+          "provider_reported_cost_usd": 0.000272958,
+          "provider_slug": "alibaba",
+          "quarantined_record_count": 0,
+          "raw_provider_content_included": false,
+          "response_healing": false,
+          "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+          "runtime_calls": 0,
+          "seed": 0,
+          "served_model": "deepseek/deepseek-v4-flash-20260423",
+          "served_provider": "Alibaba",
+          "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+          "task_id": "phase5-independent-useful-retailer-pilot:starting",
+          "temperature": 0.0,
+          "total_tokens": 1658,
+          "user_prompt_sha256": "4fd5a18bab900d1752fa185471395bd1cc5916ae4385b3548f6fb720c30700f4",
+          "validation_error": "",
+          "wire_schema_accepted": true
+        },
+        {
+          "admitted_record_count": 2,
+          "automatic_retries": 0,
+          "candidate_payload": {
+            "allocation_note": "Interpreted current and qualification comparatively. e038 contains both an adopted action (run the pilot) and an unresolved gap (no independent-demand gate); these are genuinely distinct meanings, so each is placed in its role with explanation.",
+            "global_limitations": "No genuinely separate concurrent position thread found; one record suffices.",
+            "records": [
+              {
+                "evidence_ids": [
+                  "e038",
+                  "e039",
+                  "e040",
+                  "e041",
+                  "e042",
+                  "e043"
+                ],
+                "fidelity_note": "All material aliases for this single position thread are gathered.",
+                "limitations": "No second record needed; no separate subject thread.",
+                "role": "current",
+                "role_interpretation": "The user's later working answer: they lean toward running the retailer pilot but reframing it internally as channel learning, not product validation.",
+                "stance_components": [
+                  {
+                    "expression_kind": "decision",
+                    "object_interpretation": "Run the retailer pilot",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e038"
+                  },
+                  {
+                    "expression_kind": "decision",
+                    "object_interpretation": "Describe the pilot internally as channel learning, not product validation",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e038"
+                  }
+                ],
+                "status": "unclear"
+              },
+              {
+                "evidence_ids": [
+                  "e039",
+                  "e043"
+                ],
+                "fidelity_note": "e039 and e043 contain the unresolved gap; e041 and e042 are assistant framing but not user's own unresolved condition.",
+                "limitations": "No second record needed; this is the same position thread's limitation.",
+                "role": "qualification",
+                "role_interpretation": "What still limits or could reopen the current answer: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined.",
+                "stance_components": [
+                  {
+                    "expression_kind": "unwilling",
+                    "object_interpretation": "Lack of independent-demand gate",
+                    "object_kind": "unclear",
+                    "source_evidence_id": "e039"
+                  },
+                  {
+                    "expression_kind": "unwilling",
+                    "object_interpretation": "Prestige remains a live risk to the evidence standard until the gate is defined",
+                    "object_kind": "unclear",
+                    "source_evidence_id": "e043"
+                  }
+                ],
+                "status": "unclear"
+              }
+            ]
+          },
+          "candidate_payload_sha256": "0d9394b4b53b596dd51a8e0b8bf949751d19a9b8f7643b5bff2f265c1ef9fdb2",
+          "compiled": {
+            "allocation_note": "Interpreted current and qualification comparatively. e038 contains both an adopted action (run the pilot) and an unresolved gap (no independent-demand gate); these are genuinely distinct meanings, so each is placed in its role with explanation.",
+            "boundary": {
+              "alias_subtraction_performed": false,
+              "direct_graph_routing_allowed": false,
+              "envelope_status_derived_from_record_presence_and_status": true,
+              "hard_alias_exclusivity_enforced": false,
+              "keyword_or_chronology_gate_added": false,
+              "model_role_labels_split_mechanically": true,
+              "provider_authored_envelope_status_used": false,
+              "semantic_repair_performed": false,
+              "semantic_role_correctness_inferred_by_code": false,
+              "semantic_score_computed": false
+            },
+            "derived_envelope_status": {
+              "current": "unclear",
+              "qualification": "unclear"
+            },
+            "global_limitations": "No genuinely separate concurrent position thread found; one record suffices.",
+            "observations": [
+              {
+                "case_id": "phase5-independent-useful-retailer-pilot",
+                "fidelity_note": "All material aliases for this single position thread are gathered.",
+                "graph_routing_eligible": false,
+                "limitations": "No second record needed; no separate subject thread.",
+                "observation_id": "rprolev22-current-01-9a4f48bc390793",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:9a4f48bc3907934beb847140535274af13666ae7b0f7d674d7c6f137184d1ffb",
+                "role": "current",
+                "role_interpretation": "The user's later working answer: they lean toward running the retailer pilot but reframing it internally as channel learning, not product validation.",
+                "role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e038",
+                    "text": "Then my current position is to run the retailer pilot but describe it internally as channel learning, not product validation."
+                  },
+                  {
+                    "alias": "e039",
+                    "text": "I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting."
+                  },
+                  {
+                    "alias": "e040",
+                    "text": "That distinction protects the decision from claiming more than the pilot can show."
+                  },
+                  {
+                    "alias": "e041",
+                    "text": "The economic and operational gates govern whether this channel works."
+                  },
+                  {
+                    "alias": "e042",
+                    "text": "A separate validation step would be needed before concluding that the product works beyond the retailer's context."
+                  },
+                  {
+                    "alias": "e043",
+                    "text": "Until that step is defined, prestige remains a live risk to the evidence standard."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e038",
+                  "e039",
+                  "e040",
+                  "e041",
+                  "e042",
+                  "e043"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e038",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Run the retailer pilot",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e038",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Describe the pilot internally as channel learning, not product validation",
+                    "stance_object_kind": "action_or_proposal"
+                  }
+                ],
+                "terminal_state": "admitted"
+              },
+              {
+                "case_id": "phase5-independent-useful-retailer-pilot",
+                "fidelity_note": "e039 and e043 contain the unresolved gap; e041 and e042 are assistant framing but not user's own unresolved condition.",
+                "graph_routing_eligible": false,
+                "limitations": "No second record needed; this is the same position thread's limitation.",
+                "observation_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:a35ef534c2eb81d8705bb1ce95ff656db96c9f42febdb5c0947e15bb558da808",
+                "role": "qualification",
+                "role_interpretation": "What still limits or could reopen the current answer: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined.",
+                "role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e039",
+                    "text": "I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting."
+                  },
+                  {
+                    "alias": "e043",
+                    "text": "Until that step is defined, prestige remains a live risk to the evidence standard."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e039",
+                  "e043"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "qualification",
+                    "source_evidence_id": "e039",
+                    "stance_expression_kind": "unwilling",
+                    "stance_object_interpretation": "Lack of independent-demand gate",
+                    "stance_object_kind": "unclear"
+                  },
+                  {
+                    "role": "qualification",
+                    "source_evidence_id": "e043",
+                    "stance_expression_kind": "unwilling",
+                    "stance_object_interpretation": "Prestige remains a live risk to the evidence standard until the gate is defined",
+                    "stance_object_kind": "unclear"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            ],
+            "paired_terminal_disposition": "compiled",
+            "records": [
+              {
+                "raw_record_sha256": "sha256:9a4f48bc3907934beb847140535274af13666ae7b0f7d674d7c6f137184d1ffb",
+                "record_index": 1,
+                "role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                "terminal_state": "admitted"
+              },
+              {
+                "raw_record_sha256": "sha256:a35ef534c2eb81d8705bb1ce95ff656db96c9f42febdb5c0947e15bb558da808",
+                "record_index": 1,
+                "role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "terminal_state": "admitted"
+              }
+            ],
+            "role_compiled": {
+              "current": {
+                "boundary": {
+                  "chronological_gate_added": false,
+                  "deterministic_expression_gate_added": false,
+                  "deterministic_role_exclusivity_gate_added": false,
+                  "direct_graph_routing_allowed": false,
+                  "keyword_gate_added": false,
+                  "object_expression_compatibility_gate_added": false,
+                  "one_alias_per_component_enforced": true,
+                  "parallel_component_columns_used": false,
+                  "prose_keyword_gate_added": false,
+                  "provider_raw_record_hash_preserved": true,
+                  "response_schema_changed_from_v22": false,
+                  "semantic_merge_performed": false,
+                  "semantic_role_or_category_correctness_inferred_by_code": false,
+                  "v23_prompt_packet_contract": true,
+                  "validator_changed_from_v22": false
+                },
+                "global_limitations": "No genuinely separate concurrent position thread found; one record suffices.",
+                "observations": [
+                  {
+                    "case_id": "phase5-independent-useful-retailer-pilot",
+                    "fidelity_note": "All material aliases for this single position thread are gathered.",
+                    "graph_routing_eligible": false,
+                    "limitations": "No second record needed; no separate subject thread.",
+                    "observation_id": "rprolev22-current-01-9a4f48bc390793",
+                    "provenance": {
+                      "call_id": "",
+                      "model": "",
+                      "producer_id": "deepseek/deepseek-v4-flash",
+                      "producer_kind": "model_operator_eval",
+                      "prompt_sha256": ""
+                    },
+                    "raw_record_sha256": "sha256:9a4f48bc3907934beb847140535274af13666ae7b0f7d674d7c6f137184d1ffb",
+                    "role": "current",
+                    "role_interpretation": "The user's later working answer: they lean toward running the retailer pilot but reframing it internally as channel learning, not product validation.",
+                    "role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                    "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                    "semantic_status": "unclear",
+                    "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                    "source_evidence": [
+                      {
+                        "alias": "e038",
+                        "text": "Then my current position is to run the retailer pilot but describe it internally as channel learning, not product validation."
+                      },
+                      {
+                        "alias": "e039",
+                        "text": "I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting."
+                      },
+                      {
+                        "alias": "e040",
+                        "text": "That distinction protects the decision from claiming more than the pilot can show."
+                      },
+                      {
+                        "alias": "e041",
+                        "text": "The economic and operational gates govern whether this channel works."
+                      },
+                      {
+                        "alias": "e042",
+                        "text": "A separate validation step would be needed before concluding that the product works beyond the retailer's context."
+                      },
+                      {
+                        "alias": "e043",
+                        "text": "Until that step is defined, prestige remains a live risk to the evidence standard."
+                      }
+                    ],
+                    "source_evidence_ids": [
+                      "e038",
+                      "e039",
+                      "e040",
+                      "e041",
+                      "e042",
+                      "e043"
+                    ],
+                    "source_record_index": 1,
+                    "stance_components": [
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e038",
+                        "stance_expression_kind": "decision",
+                        "stance_object_interpretation": "Run the retailer pilot",
+                        "stance_object_kind": "action_or_proposal"
+                      },
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e038",
+                        "stance_expression_kind": "decision",
+                        "stance_object_interpretation": "Describe the pilot internally as channel learning, not product validation",
+                        "stance_object_kind": "action_or_proposal"
+                      }
+                    ],
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "records": [
+                  {
+                    "raw_record_sha256": "sha256:9a4f48bc3907934beb847140535274af13666ae7b0f7d674d7c6f137184d1ffb",
+                    "record_index": 1,
+                    "role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "response_status": "unclear",
+                "role": "current",
+                "role_terminal_disposition": "compiled",
+                "schema_version": "lolla.reasoning_process_position_role_response.v2",
+                "status": "position_role_response_v22_custody_complete"
+              },
+              "qualification": {
+                "boundary": {
+                  "chronological_gate_added": false,
+                  "deterministic_expression_gate_added": false,
+                  "deterministic_role_exclusivity_gate_added": false,
+                  "direct_graph_routing_allowed": false,
+                  "keyword_gate_added": false,
+                  "object_expression_compatibility_gate_added": false,
+                  "one_alias_per_component_enforced": true,
+                  "parallel_component_columns_used": false,
+                  "prose_keyword_gate_added": false,
+                  "provider_raw_record_hash_preserved": true,
+                  "response_schema_changed_from_v22": false,
+                  "semantic_merge_performed": false,
+                  "semantic_role_or_category_correctness_inferred_by_code": false,
+                  "v23_prompt_packet_contract": true,
+                  "validator_changed_from_v22": false
+                },
+                "global_limitations": "No genuinely separate concurrent position thread found; one record suffices.",
+                "observations": [
+                  {
+                    "case_id": "phase5-independent-useful-retailer-pilot",
+                    "fidelity_note": "e039 and e043 contain the unresolved gap; e041 and e042 are assistant framing but not user's own unresolved condition.",
+                    "graph_routing_eligible": false,
+                    "limitations": "No second record needed; this is the same position thread's limitation.",
+                    "observation_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                    "provenance": {
+                      "call_id": "",
+                      "model": "",
+                      "producer_id": "deepseek/deepseek-v4-flash",
+                      "producer_kind": "model_operator_eval",
+                      "prompt_sha256": ""
+                    },
+                    "raw_record_sha256": "sha256:a35ef534c2eb81d8705bb1ce95ff656db96c9f42febdb5c0947e15bb558da808",
+                    "role": "qualification",
+                    "role_interpretation": "What still limits or could reopen the current answer: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined.",
+                    "role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                    "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                    "semantic_status": "unclear",
+                    "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                    "source_evidence": [
+                      {
+                        "alias": "e039",
+                        "text": "I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting."
+                      },
+                      {
+                        "alias": "e043",
+                        "text": "Until that step is defined, prestige remains a live risk to the evidence standard."
+                      }
+                    ],
+                    "source_evidence_ids": [
+                      "e039",
+                      "e043"
+                    ],
+                    "source_record_index": 1,
+                    "stance_components": [
+                      {
+                        "role": "qualification",
+                        "source_evidence_id": "e039",
+                        "stance_expression_kind": "unwilling",
+                        "stance_object_interpretation": "Lack of independent-demand gate",
+                        "stance_object_kind": "unclear"
+                      },
+                      {
+                        "role": "qualification",
+                        "source_evidence_id": "e043",
+                        "stance_expression_kind": "unwilling",
+                        "stance_object_interpretation": "Prestige remains a live risk to the evidence standard until the gate is defined",
+                        "stance_object_kind": "unclear"
+                      }
+                    ],
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "records": [
+                  {
+                    "raw_record_sha256": "sha256:a35ef534c2eb81d8705bb1ce95ff656db96c9f42febdb5c0947e15bb558da808",
+                    "record_index": 1,
+                    "role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "response_status": "unclear",
+                "role": "qualification",
+                "role_terminal_disposition": "compiled",
+                "schema_version": "lolla.reasoning_process_position_role_response.v2",
+                "status": "position_role_response_v22_custody_complete"
+              }
+            },
+            "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_1",
+            "status": "position_current_qualification_v24_custody_complete"
+          },
+          "completion_tokens": 580,
+          "duration_seconds": 9.106,
+          "embedding_calls": 0,
+          "estimated_cost_usd": 0.00026194,
+          "evaluator_calls": 0,
+          "fallback_models": 0,
+          "finish_reason": "stop",
+          "graph_calls": 0,
+          "json_schema_candidate_present": true,
+          "model": "deepseek/deepseek-v4-flash",
+          "model_attribution_status": "served_version_alias",
+          "operational_status": "ok",
+          "pipeline_calls": 0,
+          "prompt_tokens": 1422,
+          "provider_attribution_status": "matched",
+          "provider_calls": 1,
+          "provider_diagnostic": {},
+          "provider_display_name": "Alibaba",
+          "provider_payload_sha256": "fe1e3c7f299931f40e4d678a32b3502a466bacfea40d4f3ebe4e00929e52ebee",
+          "provider_reported_cost_usd": 0.000345988,
+          "provider_slug": "alibaba",
+          "quarantined_record_count": 0,
+          "raw_provider_content_included": false,
+          "response_healing": false,
+          "response_schema_sha256": "02610b49fea4d01e798b87e3948768efdeb02ff69213b198d18a4c9690ad5cb1",
+          "runtime_calls": 0,
+          "seed": 0,
+          "served_model": "deepseek/deepseek-v4-flash-20260423",
+          "served_provider": "Alibaba",
+          "system_prompt_sha256": "f2027471e628f214922969d1441f358c12950f3e92594ce9a6bc5b37d08f7653",
+          "task_id": "phase5-independent-useful-retailer-pilot:current_qualification",
+          "temperature": 0.0,
+          "total_tokens": 2002,
+          "user_prompt_sha256": "9a427dd0e0600ff0c529f58c64357abef569fcb84a2b2d5cc0b19fbc51a8844e",
+          "validation_error": "",
+          "wire_schema_accepted": true
+        },
+        {
+          "admitted_record_count": 1,
+          "automatic_retries": 0,
+          "candidate_payload": {
+            "global_limitations": "No second record needed; no separate subject thread.",
+            "records": [
+              {
+                "current_role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                "limitations": "No second record needed; this is the same position thread's limitation.",
+                "qualification_role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "relationship_interpretation": "The current position (run the retailer pilot but describe it internally as channel learning, not product validation) is directly limited by the qualification: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined. Both records share the same speaker (user) and the same position thread; the qualification explains what still constrains or could reopen the current answer.",
+                "starting_role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+                "status": "unclear"
+              }
+            ],
+            "status": "unclear"
+          },
+          "candidate_payload_sha256": "23eff294291f5e5225408041eb052e94bce3acaa96dc79f28e05dfd40ede64bf",
+          "compiled": {
+            "boundary": {
+              "categorical_trajectory_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "prose_keyword_gate_added": false,
+              "response_schema_changed_from_v2": false,
+              "semantic_relationship_correctness_inferred_by_code": false,
+              "semantic_role_matching_performed": false,
+              "v21_prompt_packet_contract": true,
+              "validator_changed_from_v2": false
+            },
+            "observations": [
+              {
+                "current_role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                "graph_routing_eligible": false,
+                "limitations": "No second record needed; this is the same position thread's limitation.",
+                "observation_id": "rprelationv2-01-963a19e40073a8",
+                "provenance": {
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval"
+                },
+                "qualification_role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "raw_record_sha256": "sha256:963a19e40073a893c89aa59d68941de9395af2c8ba1a09407c746590755df88a",
+                "relation_record_id": "rprelationv2-01-963a19e40073a8",
+                "relationship_interpretation": "The current position (run the retailer pilot but describe it internally as channel learning, not product validation) is directly limited by the qualification: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined. Both records share the same speaker (user) and the same position thread; the qualification explains what still constrains or could reopen the current answer.",
+                "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+                "semantic_status": "unclear",
+                "starting_role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+                "terminal_state": "admitted"
+              }
+            ],
+            "records": [
+              {
+                "raw_record_sha256": "sha256:963a19e40073a893c89aa59d68941de9395af2c8ba1a09407c746590755df88a",
+                "record_index": 1,
+                "relation_record_id": "rprelationv2-01-963a19e40073a8",
+                "terminal_state": "admitted"
+              }
+            ],
+            "relation_terminal_disposition": "compiled",
+            "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+            "status": "position_relation_response_custody_complete"
+          },
+          "completion_tokens": 241,
+          "duration_seconds": 4.107,
+          "embedding_calls": 0,
+          "estimated_cost_usd": 0.0001337,
+          "evaluator_calls": 0,
+          "fallback_models": 0,
+          "finish_reason": "stop",
+          "graph_calls": 0,
+          "json_schema_candidate_present": true,
+          "model": "deepseek/deepseek-v4-flash",
+          "model_attribution_status": "served_version_alias",
+          "operational_status": "ok",
+          "pipeline_calls": 0,
+          "prompt_tokens": 946,
+          "provider_attribution_status": "matched",
+          "provider_calls": 1,
+          "provider_diagnostic": {},
+          "provider_display_name": "Alibaba",
+          "provider_payload_sha256": "ae144e7948cbe00a78245e724ca50bf5d9260f274b161b154c281e3aaf529924",
+          "provider_reported_cost_usd": 0.000191352,
+          "provider_slug": "alibaba",
+          "quarantined_record_count": 0,
+          "raw_provider_content_included": false,
+          "response_healing": false,
+          "response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3",
+          "runtime_calls": 0,
+          "seed": 0,
+          "served_model": "deepseek/deepseek-v4-flash-20260423",
+          "served_provider": "Alibaba",
+          "system_prompt_sha256": "fc6748dc99879a515573524ac74e9e89a0aa61884da52c5b9613c62060212fa9",
+          "task_id": "phase5-independent-useful-retailer-pilot:relation",
+          "temperature": 0.0,
+          "total_tokens": 1187,
+          "user_prompt_sha256": "8c7546771acc8db983a862b77e9607b310636d89ff4d75b532074fefefb04475",
+          "validation_error": "",
+          "wire_schema_accepted": true
+        }
+      ],
+      "case_id": "phase5-independent-useful-retailer-pilot",
+      "joined": {
+        "boundary": {
+          "categorical_trajectory_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "global_synthesis_performed": false,
+          "join_keys": [
+            "fixed_role",
+            "role_record_id"
+          ],
+          "missing_or_quarantined_records_filled": false,
+          "object_expression_compatibility_gate_added": false,
+          "prose_keyword_gate_added": false,
+          "semantic_join_inferred_by_code": false
+        },
+        "custody": {
+          "quarantined_relation_record_count": 0,
+          "quarantined_role_record_count": 0,
+          "relation_missing_despite_current_role": false
+        },
+        "fan_in": {
+          "actual_relationship_records": 1,
+          "actual_role_records": 3,
+          "maximum_provider_calls": 4,
+          "maximum_relationship_records": 2,
+          "maximum_role_records": 6
+        },
+        "records": [
+          {
+            "relation_observation": {
+              "current_role_record_id": "rprolev22-current-01-9a4f48bc390793",
+              "graph_routing_eligible": false,
+              "limitations": "No second record needed; this is the same position thread's limitation.",
+              "observation_id": "rprelationv2-01-963a19e40073a8",
+              "provenance": {
+                "producer_id": "deepseek/deepseek-v4-flash",
+                "producer_kind": "model_operator_eval"
+              },
+              "qualification_role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+              "raw_record_sha256": "sha256:963a19e40073a893c89aa59d68941de9395af2c8ba1a09407c746590755df88a",
+              "relation_record_id": "rprelationv2-01-963a19e40073a8",
+              "relationship_interpretation": "The current position (run the retailer pilot but describe it internally as channel learning, not product validation) is directly limited by the qualification: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined. Both records share the same speaker (user) and the same position thread; the qualification explains what still constrains or could reopen the current answer.",
+              "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+              "semantic_status": "unclear",
+              "starting_role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+              "terminal_state": "admitted"
+            },
+            "role_observations": {
+              "current": {
+                "case_id": "phase5-independent-useful-retailer-pilot",
+                "fidelity_note": "All material aliases for this single position thread are gathered.",
+                "graph_routing_eligible": false,
+                "limitations": "No second record needed; no separate subject thread.",
+                "observation_id": "rprolev22-current-01-9a4f48bc390793",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:9a4f48bc3907934beb847140535274af13666ae7b0f7d674d7c6f137184d1ffb",
+                "role": "current",
+                "role_interpretation": "The user's later working answer: they lean toward running the retailer pilot but reframing it internally as channel learning, not product validation.",
+                "role_record_id": "rprolev22-current-01-9a4f48bc390793",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e038",
+                    "text": "Then my current position is to run the retailer pilot but describe it internally as channel learning, not product validation."
+                  },
+                  {
+                    "alias": "e039",
+                    "text": "I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting."
+                  },
+                  {
+                    "alias": "e040",
+                    "text": "That distinction protects the decision from claiming more than the pilot can show."
+                  },
+                  {
+                    "alias": "e041",
+                    "text": "The economic and operational gates govern whether this channel works."
+                  },
+                  {
+                    "alias": "e042",
+                    "text": "A separate validation step would be needed before concluding that the product works beyond the retailer's context."
+                  },
+                  {
+                    "alias": "e043",
+                    "text": "Until that step is defined, prestige remains a live risk to the evidence standard."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e038",
+                  "e039",
+                  "e040",
+                  "e041",
+                  "e042",
+                  "e043"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e038",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Run the retailer pilot",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e038",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Describe the pilot internally as channel learning, not product validation",
+                    "stance_object_kind": "action_or_proposal"
+                  }
+                ],
+                "terminal_state": "admitted"
+              },
+              "qualification": {
+                "case_id": "phase5-independent-useful-retailer-pilot",
+                "fidelity_note": "e039 and e043 contain the unresolved gap; e041 and e042 are assistant framing but not user's own unresolved condition.",
+                "graph_routing_eligible": false,
+                "limitations": "No second record needed; this is the same position thread's limitation.",
+                "observation_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:a35ef534c2eb81d8705bb1ce95ff656db96c9f42febdb5c0947e15bb558da808",
+                "role": "qualification",
+                "role_interpretation": "What still limits or could reopen the current answer: the user still lacks an independent-demand gate, and prestige remains a live risk to the evidence standard until that gate is defined.",
+                "role_record_id": "rprolev22-qualification-01-a35ef534c2eb81",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e039",
+                    "text": "I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting."
+                  },
+                  {
+                    "alias": "e043",
+                    "text": "Until that step is defined, prestige remains a live risk to the evidence standard."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e039",
+                  "e043"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "qualification",
+                    "source_evidence_id": "e039",
+                    "stance_expression_kind": "unwilling",
+                    "stance_object_interpretation": "Lack of independent-demand gate",
+                    "stance_object_kind": "unclear"
+                  },
+                  {
+                    "role": "qualification",
+                    "source_evidence_id": "e043",
+                    "stance_expression_kind": "unwilling",
+                    "stance_object_interpretation": "Prestige remains a live risk to the evidence standard until the gate is defined",
+                    "stance_object_kind": "unclear"
+                  }
+                ],
+                "terminal_state": "admitted"
+              },
+              "starting": {
+                "case_id": "phase5-independent-useful-retailer-pilot",
+                "fidelity_note": "The user's own starting stance is visible through their description of the offer and their own attractions and hesitations.",
+                "graph_routing_eligible": false,
+                "limitations": "none",
+                "observation_id": "rprolev22-starting-01-28f458a1e12eba",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:28f458a1e12ebaa6383e504b6771a813e8ef5f2d6e110742559de3012c06ba34",
+                "role": "starting",
+                "role_interpretation": "The user's earliest visible working position includes attraction to the retailer's access and credibility, hesitation about the custom packaging and delivery terms consuming spare capacity, and an unresolved assessment of whether the opportunity can move them out of contract manufacturing.",
+                "role_record_id": "rprolev22-starting-01-28f458a1e12eba",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "supported",
+                "shard_id": "phase5-independent-useful-retailer-pilot-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e001",
+                    "text": "I run a worker-owned home-goods manufacturer."
+                  },
+                  {
+                    "alias": "e002",
+                    "text": "A nationally known design retailer has offered to launch our new storage line in twelve stores."
+                  },
+                  {
+                    "alias": "e003",
+                    "text": "The board sees this as the opportunity that could move us out of contract manufacturing."
+                  },
+                  {
+                    "alias": "e004",
+                    "text": "I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003",
+                  "e004"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e004",
+                    "stance_expression_kind": "preference_or_desire",
+                    "stance_object_interpretation": "the access and credibility from the retailer's offer",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e004",
+                    "stance_expression_kind": "counterpressure",
+                    "stance_object_interpretation": "the retailer's custom packaging and delivery terms consuming most of the user's spare capacity",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e003",
+                    "stance_expression_kind": "uncertain_or_undecided",
+                    "stance_object_interpretation": "whether the retailer's offer is the opportunity that could move the user out of contract manufacturing",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            }
+          }
+        ],
+        "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+        "status": "position_role_first_join_complete",
+        "unreferenced_role_record_ids": {
+          "current": [],
+          "qualification": [],
+          "starting": []
+        }
+      },
+      "relation_block_reason": "",
+      "semantic_review_status": "source_first_review_required"
+    },
+    {
+      "calls": [
+        {
+          "admitted_record_count": 1,
+          "automatic_retries": 0,
+          "candidate_payload": {
+            "global_limitations": "none",
+            "records": [
+              {
+                "evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003"
+                ],
+                "fidelity_note": "User's own starting stance: attraction to testing a change, awareness of internal disagreement, and a preference for reversible experimentation without permanent decree.",
+                "limitations": "none",
+                "role": "starting",
+                "role_interpretation": "User's own starting position, attractions, and unresolved stance at the first endpoint.",
+                "stance_components": [
+                  {
+                    "expression_kind": "preference_or_desire",
+                    "object_interpretation": "testing the change from two weekly status meetings to one written update and one optional problem-solving session",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e001"
+                  },
+                  {
+                    "expression_kind": "reported_without_endorsement",
+                    "object_interpretation": "some people think meetings create accountability; others say they consume uninterrupted time needed for analysis",
+                    "object_kind": "belief_or_assessment",
+                    "source_evidence_id": "e002"
+                  },
+                  {
+                    "expression_kind": "preference_or_desire",
+                    "object_interpretation": "testing the change without turning it into another permanent process decree",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e003"
+                  }
+                ],
+                "status": "unclear"
+              }
+            ],
+            "status": "unclear"
+          },
+          "candidate_payload_sha256": "f33c4a6be1aba44e209a150c4455ada8c91ef6216950f2a427b77e5c3a9888a8",
+          "compiled": {
+            "boundary": {
+              "chronological_gate_added": false,
+              "deterministic_expression_gate_added": false,
+              "deterministic_role_exclusivity_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "keyword_gate_added": false,
+              "object_expression_compatibility_gate_added": false,
+              "one_alias_per_component_enforced": true,
+              "parallel_component_columns_used": false,
+              "prose_keyword_gate_added": false,
+              "provider_raw_record_hash_preserved": true,
+              "response_schema_changed_from_v22": false,
+              "semantic_merge_performed": false,
+              "semantic_role_or_category_correctness_inferred_by_code": false,
+              "v23_prompt_packet_contract": true,
+              "validator_changed_from_v22": false
+            },
+            "global_limitations": "none",
+            "observations": [
+              {
+                "case_id": "phase5-independent-quiet-research-meeting",
+                "fidelity_note": "User's own starting stance: attraction to testing a change, awareness of internal disagreement, and a preference for reversible experimentation without permanent decree.",
+                "graph_routing_eligible": false,
+                "limitations": "none",
+                "observation_id": "rprolev22-starting-01-548cb26306b8a7",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:548cb26306b8a744b05e764b570f227c6fba1dc3f891d5dedfc3068a9218de35",
+                "role": "starting",
+                "role_interpretation": "User's own starting position, attractions, and unresolved stance at the first endpoint.",
+                "role_record_id": "rprolev22-starting-01-548cb26306b8a7",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e001",
+                    "text": "Our eight-person policy research team is considering replacing two weekly status meetings with one written update and one optional problem-solving session."
+                  },
+                  {
+                    "alias": "e002",
+                    "text": "Some people think meetings create accountability; others say they consume the uninterrupted time needed for analysis."
+                  },
+                  {
+                    "alias": "e003",
+                    "text": "I want to test the change without turning it into another permanent process decree."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e001",
+                    "stance_expression_kind": "preference_or_desire",
+                    "stance_object_interpretation": "testing the change from two weekly status meetings to one written update and one optional problem-solving session",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e002",
+                    "stance_expression_kind": "reported_without_endorsement",
+                    "stance_object_interpretation": "some people think meetings create accountability; others say they consume uninterrupted time needed for analysis",
+                    "stance_object_kind": "belief_or_assessment"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e003",
+                    "stance_expression_kind": "preference_or_desire",
+                    "stance_object_interpretation": "testing the change without turning it into another permanent process decree",
+                    "stance_object_kind": "action_or_proposal"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            ],
+            "records": [
+              {
+                "raw_record_sha256": "sha256:548cb26306b8a744b05e764b570f227c6fba1dc3f891d5dedfc3068a9218de35",
+                "record_index": 1,
+                "role_record_id": "rprolev22-starting-01-548cb26306b8a7",
+                "terminal_state": "admitted"
+              }
+            ],
+            "response_status": "unclear",
+            "role": "starting",
+            "role_terminal_disposition": "compiled",
+            "schema_version": "lolla.reasoning_process_position_role_response.v2",
+            "status": "position_role_response_v22_custody_complete"
+          },
+          "completion_tokens": 345,
+          "duration_seconds": 5.786,
+          "embedding_calls": 0,
+          "estimated_cost_usd": 0.00018298,
+          "evaluator_calls": 0,
+          "fallback_models": 0,
+          "finish_reason": "stop",
+          "graph_calls": 0,
+          "json_schema_candidate_present": true,
+          "model": "deepseek/deepseek-v4-flash",
+          "model_attribution_status": "served_version_alias",
+          "operational_status": "ok",
+          "pipeline_calls": 0,
+          "prompt_tokens": 1234,
+          "provider_attribution_status": "matched",
+          "provider_calls": 1,
+          "provider_diagnostic": {},
+          "provider_display_name": "Alibaba",
+          "provider_payload_sha256": "ceedc204facc5c4196f7bff3b88e2937355d4e57fd8e1d959298c426a8e3d3cf",
+          "provider_reported_cost_usd": 0.000257816,
+          "provider_slug": "alibaba",
+          "quarantined_record_count": 0,
+          "raw_provider_content_included": false,
+          "response_healing": false,
+          "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+          "runtime_calls": 0,
+          "seed": 0,
+          "served_model": "deepseek/deepseek-v4-flash-20260423",
+          "served_provider": "Alibaba",
+          "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+          "task_id": "phase5-independent-quiet-research-meeting:starting",
+          "temperature": 0.0,
+          "total_tokens": 1579,
+          "user_prompt_sha256": "505abdd827528e226f33a55876c4a0b87a145838e9d4c9f95639894f2655691e",
+          "validation_error": "",
+          "wire_schema_accepted": true
+        },
+        {
+          "admitted_record_count": 2,
+          "automatic_retries": 0,
+          "candidate_payload": {
+            "allocation_note": "Interpreted current and qualification comparatively. Alias e035 contains both an adopted plan (current) and a conditional restoration trigger (qualification).",
+            "global_limitations": "No unresolved counterpressure, blind spot, or reopen reason beyond the explicit conditional gate.",
+            "records": [
+              {
+                "evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003",
+                  "e034",
+                  "e035",
+                  "e036"
+                ],
+                "fidelity_note": "User's later working position: reversible four-week trial with published measures, conditional restoration, and no permanence claim before vote.",
+                "limitations": "None beyond the explicit conditional gate.",
+                "role": "current",
+                "role_interpretation": "The user's later working answer: they lean toward, propose, plan, decide, commit to, or conditionally accept the reversible trial design, including concerns converted into adopted safeguards.",
+                "stance_components": [
+                  {
+                    "expression_kind": "proposal",
+                    "object_interpretation": "Reversible four-week work-design experiment replacing two weekly status meetings with one written update and one optional problem-solving session",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e001"
+                  },
+                  {
+                    "expression_kind": "commitment",
+                    "object_interpretation": "Publishing weekly measures to the team",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e035"
+                  },
+                  {
+                    "expression_kind": "commitment",
+                    "object_interpretation": "Triggering restoration if two gates fail at week two",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e035"
+                  },
+                  {
+                    "expression_kind": "commitment",
+                    "object_interpretation": "Making no permanence claim before anonymous vote and evidence review",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e035"
+                  },
+                  {
+                    "expression_kind": "commitment",
+                    "object_interpretation": "Agreement with the assistant's reversible experiment framing",
+                    "object_kind": "action_or_proposal",
+                    "source_evidence_id": "e034"
+                  }
+                ],
+                "status": "unclear"
+              },
+              {
+                "evidence_ids": [
+                  "e035"
+                ],
+                "fidelity_note": "The conditional restoration trigger is a distinct unresolved condition that limits the current plan.",
+                "limitations": "None beyond the explicit conditional gate.",
+                "role": "qualification",
+                "role_interpretation": "What still limits or could reopen the user's later working answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+                "stance_components": [
+                  {
+                    "expression_kind": "conditional_willingness",
+                    "object_interpretation": "Restoration triggered if two gates fail at week two",
+                    "object_kind": "unclear",
+                    "source_evidence_id": "e035"
+                  }
+                ],
+                "status": "unclear"
+              }
+            ]
+          },
+          "candidate_payload_sha256": "12e4a1f7ced36c55e6ca05a48947b592a567cff33e4551ba43a5f847be9dce47",
+          "compiled": {
+            "allocation_note": "Interpreted current and qualification comparatively. Alias e035 contains both an adopted plan (current) and a conditional restoration trigger (qualification).",
+            "boundary": {
+              "alias_subtraction_performed": false,
+              "direct_graph_routing_allowed": false,
+              "envelope_status_derived_from_record_presence_and_status": true,
+              "hard_alias_exclusivity_enforced": false,
+              "keyword_or_chronology_gate_added": false,
+              "model_role_labels_split_mechanically": true,
+              "provider_authored_envelope_status_used": false,
+              "semantic_repair_performed": false,
+              "semantic_role_correctness_inferred_by_code": false,
+              "semantic_score_computed": false
+            },
+            "derived_envelope_status": {
+              "current": "unclear",
+              "qualification": "unclear"
+            },
+            "global_limitations": "No unresolved counterpressure, blind spot, or reopen reason beyond the explicit conditional gate.",
+            "observations": [
+              {
+                "case_id": "phase5-independent-quiet-research-meeting",
+                "fidelity_note": "User's later working position: reversible four-week trial with published measures, conditional restoration, and no permanence claim before vote.",
+                "graph_routing_eligible": false,
+                "limitations": "None beyond the explicit conditional gate.",
+                "observation_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:e87c1f1b5c69ddcc0208c679251d6ec0b9eb9b633e55de95e139757f35294f75",
+                "role": "current",
+                "role_interpretation": "The user's later working answer: they lean toward, propose, plan, decide, commit to, or conditionally accept the reversible trial design, including concerns converted into adopted safeguards.",
+                "role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e001",
+                    "text": "Our eight-person policy research team is considering replacing two weekly status meetings with one written update and one optional problem-solving session."
+                  },
+                  {
+                    "alias": "e002",
+                    "text": "Some people think meetings create accountability; others say they consume the uninterrupted time needed for analysis."
+                  },
+                  {
+                    "alias": "e003",
+                    "text": "I want to test the change without turning it into another permanent process decree."
+                  },
+                  {
+                    "alias": "e034",
+                    "text": "Agreed."
+                  },
+                  {
+                    "alias": "e035",
+                    "text": "We will run the four weeks, publish the weekly measures to the team, trigger restoration if two gates fail at week two, and make no permanence claim before the anonymous vote and evidence review."
+                  },
+                  {
+                    "alias": "e036",
+                    "text": "Nothing else is unresolved for me now."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003",
+                  "e034",
+                  "e035",
+                  "e036"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e001",
+                    "stance_expression_kind": "proposal",
+                    "stance_object_interpretation": "Reversible four-week work-design experiment replacing two weekly status meetings with one written update and one optional problem-solving session",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Publishing weekly measures to the team",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Triggering restoration if two gates fail at week two",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Making no permanence claim before anonymous vote and evidence review",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e034",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Agreement with the assistant's reversible experiment framing",
+                    "stance_object_kind": "action_or_proposal"
+                  }
+                ],
+                "terminal_state": "admitted"
+              },
+              {
+                "case_id": "phase5-independent-quiet-research-meeting",
+                "fidelity_note": "The conditional restoration trigger is a distinct unresolved condition that limits the current plan.",
+                "graph_routing_eligible": false,
+                "limitations": "None beyond the explicit conditional gate.",
+                "observation_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:ec0c6652bee15a745c6a39bcfb6ef1b85471cae3876a7f02940e3d81e62b4d02",
+                "role": "qualification",
+                "role_interpretation": "What still limits or could reopen the user's later working answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+                "role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e035",
+                    "text": "We will run the four weeks, publish the weekly measures to the team, trigger restoration if two gates fail at week two, and make no permanence claim before the anonymous vote and evidence review."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e035"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "qualification",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "conditional_willingness",
+                    "stance_object_interpretation": "Restoration triggered if two gates fail at week two",
+                    "stance_object_kind": "unclear"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            ],
+            "paired_terminal_disposition": "compiled",
+            "records": [
+              {
+                "raw_record_sha256": "sha256:e87c1f1b5c69ddcc0208c679251d6ec0b9eb9b633e55de95e139757f35294f75",
+                "record_index": 1,
+                "role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "terminal_state": "admitted"
+              },
+              {
+                "raw_record_sha256": "sha256:ec0c6652bee15a745c6a39bcfb6ef1b85471cae3876a7f02940e3d81e62b4d02",
+                "record_index": 1,
+                "role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "terminal_state": "admitted"
+              }
+            ],
+            "role_compiled": {
+              "current": {
+                "boundary": {
+                  "chronological_gate_added": false,
+                  "deterministic_expression_gate_added": false,
+                  "deterministic_role_exclusivity_gate_added": false,
+                  "direct_graph_routing_allowed": false,
+                  "keyword_gate_added": false,
+                  "object_expression_compatibility_gate_added": false,
+                  "one_alias_per_component_enforced": true,
+                  "parallel_component_columns_used": false,
+                  "prose_keyword_gate_added": false,
+                  "provider_raw_record_hash_preserved": true,
+                  "response_schema_changed_from_v22": false,
+                  "semantic_merge_performed": false,
+                  "semantic_role_or_category_correctness_inferred_by_code": false,
+                  "v23_prompt_packet_contract": true,
+                  "validator_changed_from_v22": false
+                },
+                "global_limitations": "No unresolved counterpressure, blind spot, or reopen reason beyond the explicit conditional gate.",
+                "observations": [
+                  {
+                    "case_id": "phase5-independent-quiet-research-meeting",
+                    "fidelity_note": "User's later working position: reversible four-week trial with published measures, conditional restoration, and no permanence claim before vote.",
+                    "graph_routing_eligible": false,
+                    "limitations": "None beyond the explicit conditional gate.",
+                    "observation_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                    "provenance": {
+                      "call_id": "",
+                      "model": "",
+                      "producer_id": "deepseek/deepseek-v4-flash",
+                      "producer_kind": "model_operator_eval",
+                      "prompt_sha256": ""
+                    },
+                    "raw_record_sha256": "sha256:e87c1f1b5c69ddcc0208c679251d6ec0b9eb9b633e55de95e139757f35294f75",
+                    "role": "current",
+                    "role_interpretation": "The user's later working answer: they lean toward, propose, plan, decide, commit to, or conditionally accept the reversible trial design, including concerns converted into adopted safeguards.",
+                    "role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                    "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                    "semantic_status": "unclear",
+                    "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                    "source_evidence": [
+                      {
+                        "alias": "e001",
+                        "text": "Our eight-person policy research team is considering replacing two weekly status meetings with one written update and one optional problem-solving session."
+                      },
+                      {
+                        "alias": "e002",
+                        "text": "Some people think meetings create accountability; others say they consume the uninterrupted time needed for analysis."
+                      },
+                      {
+                        "alias": "e003",
+                        "text": "I want to test the change without turning it into another permanent process decree."
+                      },
+                      {
+                        "alias": "e034",
+                        "text": "Agreed."
+                      },
+                      {
+                        "alias": "e035",
+                        "text": "We will run the four weeks, publish the weekly measures to the team, trigger restoration if two gates fail at week two, and make no permanence claim before the anonymous vote and evidence review."
+                      },
+                      {
+                        "alias": "e036",
+                        "text": "Nothing else is unresolved for me now."
+                      }
+                    ],
+                    "source_evidence_ids": [
+                      "e001",
+                      "e002",
+                      "e003",
+                      "e034",
+                      "e035",
+                      "e036"
+                    ],
+                    "source_record_index": 1,
+                    "stance_components": [
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e001",
+                        "stance_expression_kind": "proposal",
+                        "stance_object_interpretation": "Reversible four-week work-design experiment replacing two weekly status meetings with one written update and one optional problem-solving session",
+                        "stance_object_kind": "action_or_proposal"
+                      },
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e035",
+                        "stance_expression_kind": "commitment",
+                        "stance_object_interpretation": "Publishing weekly measures to the team",
+                        "stance_object_kind": "action_or_proposal"
+                      },
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e035",
+                        "stance_expression_kind": "commitment",
+                        "stance_object_interpretation": "Triggering restoration if two gates fail at week two",
+                        "stance_object_kind": "action_or_proposal"
+                      },
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e035",
+                        "stance_expression_kind": "commitment",
+                        "stance_object_interpretation": "Making no permanence claim before anonymous vote and evidence review",
+                        "stance_object_kind": "action_or_proposal"
+                      },
+                      {
+                        "role": "current",
+                        "source_evidence_id": "e034",
+                        "stance_expression_kind": "commitment",
+                        "stance_object_interpretation": "Agreement with the assistant's reversible experiment framing",
+                        "stance_object_kind": "action_or_proposal"
+                      }
+                    ],
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "records": [
+                  {
+                    "raw_record_sha256": "sha256:e87c1f1b5c69ddcc0208c679251d6ec0b9eb9b633e55de95e139757f35294f75",
+                    "record_index": 1,
+                    "role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "response_status": "unclear",
+                "role": "current",
+                "role_terminal_disposition": "compiled",
+                "schema_version": "lolla.reasoning_process_position_role_response.v2",
+                "status": "position_role_response_v22_custody_complete"
+              },
+              "qualification": {
+                "boundary": {
+                  "chronological_gate_added": false,
+                  "deterministic_expression_gate_added": false,
+                  "deterministic_role_exclusivity_gate_added": false,
+                  "direct_graph_routing_allowed": false,
+                  "keyword_gate_added": false,
+                  "object_expression_compatibility_gate_added": false,
+                  "one_alias_per_component_enforced": true,
+                  "parallel_component_columns_used": false,
+                  "prose_keyword_gate_added": false,
+                  "provider_raw_record_hash_preserved": true,
+                  "response_schema_changed_from_v22": false,
+                  "semantic_merge_performed": false,
+                  "semantic_role_or_category_correctness_inferred_by_code": false,
+                  "v23_prompt_packet_contract": true,
+                  "validator_changed_from_v22": false
+                },
+                "global_limitations": "No unresolved counterpressure, blind spot, or reopen reason beyond the explicit conditional gate.",
+                "observations": [
+                  {
+                    "case_id": "phase5-independent-quiet-research-meeting",
+                    "fidelity_note": "The conditional restoration trigger is a distinct unresolved condition that limits the current plan.",
+                    "graph_routing_eligible": false,
+                    "limitations": "None beyond the explicit conditional gate.",
+                    "observation_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                    "provenance": {
+                      "call_id": "",
+                      "model": "",
+                      "producer_id": "deepseek/deepseek-v4-flash",
+                      "producer_kind": "model_operator_eval",
+                      "prompt_sha256": ""
+                    },
+                    "raw_record_sha256": "sha256:ec0c6652bee15a745c6a39bcfb6ef1b85471cae3876a7f02940e3d81e62b4d02",
+                    "role": "qualification",
+                    "role_interpretation": "What still limits or could reopen the user's later working answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+                    "role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                    "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                    "semantic_status": "unclear",
+                    "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                    "source_evidence": [
+                      {
+                        "alias": "e035",
+                        "text": "We will run the four weeks, publish the weekly measures to the team, trigger restoration if two gates fail at week two, and make no permanence claim before the anonymous vote and evidence review."
+                      }
+                    ],
+                    "source_evidence_ids": [
+                      "e035"
+                    ],
+                    "source_record_index": 1,
+                    "stance_components": [
+                      {
+                        "role": "qualification",
+                        "source_evidence_id": "e035",
+                        "stance_expression_kind": "conditional_willingness",
+                        "stance_object_interpretation": "Restoration triggered if two gates fail at week two",
+                        "stance_object_kind": "unclear"
+                      }
+                    ],
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "records": [
+                  {
+                    "raw_record_sha256": "sha256:ec0c6652bee15a745c6a39bcfb6ef1b85471cae3876a7f02940e3d81e62b4d02",
+                    "record_index": 1,
+                    "role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                    "terminal_state": "admitted"
+                  }
+                ],
+                "response_status": "unclear",
+                "role": "qualification",
+                "role_terminal_disposition": "compiled",
+                "schema_version": "lolla.reasoning_process_position_role_response.v2",
+                "status": "position_role_response_v22_custody_complete"
+              }
+            },
+            "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_1",
+            "status": "position_current_qualification_v24_custody_complete"
+          },
+          "completion_tokens": 695,
+          "duration_seconds": 9.505,
+          "embedding_calls": 0,
+          "estimated_cost_usd": 0.00029099,
+          "evaluator_calls": 0,
+          "fallback_models": 0,
+          "finish_reason": "stop",
+          "graph_calls": 0,
+          "json_schema_candidate_present": true,
+          "model": "deepseek/deepseek-v4-flash",
+          "model_attribution_status": "served_version_alias",
+          "operational_status": "ok",
+          "pipeline_calls": 0,
+          "prompt_tokens": 1377,
+          "provider_attribution_status": "matched",
+          "provider_calls": 1,
+          "provider_diagnostic": {},
+          "provider_display_name": "Alibaba",
+          "provider_payload_sha256": "bd10b108c96cbbb219053e3c8b12e355953e5b9ffea6d6c3dfdc0740c5fd422f",
+          "provider_reported_cost_usd": 0.000370778,
+          "provider_slug": "alibaba",
+          "quarantined_record_count": 0,
+          "raw_provider_content_included": false,
+          "response_healing": false,
+          "response_schema_sha256": "02610b49fea4d01e798b87e3948768efdeb02ff69213b198d18a4c9690ad5cb1",
+          "runtime_calls": 0,
+          "seed": 0,
+          "served_model": "deepseek/deepseek-v4-flash-20260423",
+          "served_provider": "Alibaba",
+          "system_prompt_sha256": "f2027471e628f214922969d1441f358c12950f3e92594ce9a6bc5b37d08f7653",
+          "task_id": "phase5-independent-quiet-research-meeting:current_qualification",
+          "temperature": 0.0,
+          "total_tokens": 2072,
+          "user_prompt_sha256": "9dc59b0c50674c142805245d36d12fb07a9f5a7b6a7b8ca9bbdc7011aecfb473",
+          "validation_error": "",
+          "wire_schema_accepted": true
+        },
+        {
+          "admitted_record_count": 1,
+          "automatic_retries": 0,
+          "candidate_payload": {
+            "global_limitations": "None beyond the explicit conditional gate.",
+            "records": [
+              {
+                "current_role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "limitations": "None beyond the explicit conditional gate.",
+                "qualification_role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "relationship_interpretation": "The user's later working answer (current) is a conditional commitment to a four-week trial with explicit restoration and no-permanence safeguards. The qualification record shows the same conditional gate\u2014the trial's own terms (week-two gate check, anonymous vote, evidence review) are what still limit or could reopen that answer. The user owns both; the qualification does not introduce external disagreement but rather the internal boundary of the commitment itself.",
+                "starting_role_record_id": "rprolev22-starting-01-548cb26306b8a7",
+                "status": "unclear"
+              }
+            ],
+            "status": "unclear"
+          },
+          "candidate_payload_sha256": "691a62bb52c31bbd0d0532db6edce03c74a6826110366feecc676e7b1f2e10aa",
+          "compiled": {
+            "boundary": {
+              "categorical_trajectory_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "prose_keyword_gate_added": false,
+              "response_schema_changed_from_v2": false,
+              "semantic_relationship_correctness_inferred_by_code": false,
+              "semantic_role_matching_performed": false,
+              "v21_prompt_packet_contract": true,
+              "validator_changed_from_v2": false
+            },
+            "observations": [
+              {
+                "current_role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "graph_routing_eligible": false,
+                "limitations": "None beyond the explicit conditional gate.",
+                "observation_id": "rprelationv2-01-8c3ad7995ad83e",
+                "provenance": {
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval"
+                },
+                "qualification_role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "raw_record_sha256": "sha256:8c3ad7995ad83e3afce51c95c0173ccb98e16e30b0b79471f9dcc20f0c83d4a0",
+                "relation_record_id": "rprelationv2-01-8c3ad7995ad83e",
+                "relationship_interpretation": "The user's later working answer (current) is a conditional commitment to a four-week trial with explicit restoration and no-permanence safeguards. The qualification record shows the same conditional gate\u2014the trial's own terms (week-two gate check, anonymous vote, evidence review) are what still limit or could reopen that answer. The user owns both; the qualification does not introduce external disagreement but rather the internal boundary of the commitment itself.",
+                "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+                "semantic_status": "unclear",
+                "starting_role_record_id": "rprolev22-starting-01-548cb26306b8a7",
+                "terminal_state": "admitted"
+              }
+            ],
+            "records": [
+              {
+                "raw_record_sha256": "sha256:8c3ad7995ad83e3afce51c95c0173ccb98e16e30b0b79471f9dcc20f0c83d4a0",
+                "record_index": 1,
+                "relation_record_id": "rprelationv2-01-8c3ad7995ad83e",
+                "terminal_state": "admitted"
+              }
+            ],
+            "relation_terminal_disposition": "compiled",
+            "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+            "status": "position_relation_response_custody_complete"
+          },
+          "completion_tokens": 235,
+          "duration_seconds": 4.755,
+          "embedding_calls": 0,
+          "estimated_cost_usd": 0.00012754,
+          "evaluator_calls": 0,
+          "fallback_models": 0,
+          "finish_reason": "stop",
+          "graph_calls": 0,
+          "json_schema_candidate_present": true,
+          "model": "deepseek/deepseek-v4-flash",
+          "model_attribution_status": "served_version_alias",
+          "operational_status": "ok",
+          "pipeline_calls": 0,
+          "prompt_tokens": 882,
+          "provider_attribution_status": "matched",
+          "provider_calls": 1,
+          "provider_diagnostic": {},
+          "provider_display_name": "Alibaba",
+          "provider_payload_sha256": "810a350665b3f408c68bac09813fc2b8821d9e19e020f58733aafd8a57f69a04",
+          "provider_reported_cost_usd": 0.000181168,
+          "provider_slug": "alibaba",
+          "quarantined_record_count": 0,
+          "raw_provider_content_included": false,
+          "response_healing": false,
+          "response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3",
+          "runtime_calls": 0,
+          "seed": 0,
+          "served_model": "deepseek/deepseek-v4-flash-20260423",
+          "served_provider": "Alibaba",
+          "system_prompt_sha256": "fc6748dc99879a515573524ac74e9e89a0aa61884da52c5b9613c62060212fa9",
+          "task_id": "phase5-independent-quiet-research-meeting:relation",
+          "temperature": 0.0,
+          "total_tokens": 1117,
+          "user_prompt_sha256": "3f92da6e0bfe1af742ca5005174dab9ee29472b7877f26fb7760285a22b5b62a",
+          "validation_error": "",
+          "wire_schema_accepted": true
+        }
+      ],
+      "case_id": "phase5-independent-quiet-research-meeting",
+      "joined": {
+        "boundary": {
+          "categorical_trajectory_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "global_synthesis_performed": false,
+          "join_keys": [
+            "fixed_role",
+            "role_record_id"
+          ],
+          "missing_or_quarantined_records_filled": false,
+          "object_expression_compatibility_gate_added": false,
+          "prose_keyword_gate_added": false,
+          "semantic_join_inferred_by_code": false
+        },
+        "custody": {
+          "quarantined_relation_record_count": 0,
+          "quarantined_role_record_count": 0,
+          "relation_missing_despite_current_role": false
+        },
+        "fan_in": {
+          "actual_relationship_records": 1,
+          "actual_role_records": 3,
+          "maximum_provider_calls": 4,
+          "maximum_relationship_records": 2,
+          "maximum_role_records": 6
+        },
+        "records": [
+          {
+            "relation_observation": {
+              "current_role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+              "graph_routing_eligible": false,
+              "limitations": "None beyond the explicit conditional gate.",
+              "observation_id": "rprelationv2-01-8c3ad7995ad83e",
+              "provenance": {
+                "producer_id": "deepseek/deepseek-v4-flash",
+                "producer_kind": "model_operator_eval"
+              },
+              "qualification_role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+              "raw_record_sha256": "sha256:8c3ad7995ad83e3afce51c95c0173ccb98e16e30b0b79471f9dcc20f0c83d4a0",
+              "relation_record_id": "rprelationv2-01-8c3ad7995ad83e",
+              "relationship_interpretation": "The user's later working answer (current) is a conditional commitment to a four-week trial with explicit restoration and no-permanence safeguards. The qualification record shows the same conditional gate\u2014the trial's own terms (week-two gate check, anonymous vote, evidence review) are what still limit or could reopen that answer. The user owns both; the qualification does not introduce external disagreement but rather the internal boundary of the commitment itself.",
+              "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+              "semantic_status": "unclear",
+              "starting_role_record_id": "rprolev22-starting-01-548cb26306b8a7",
+              "terminal_state": "admitted"
+            },
+            "role_observations": {
+              "current": {
+                "case_id": "phase5-independent-quiet-research-meeting",
+                "fidelity_note": "User's later working position: reversible four-week trial with published measures, conditional restoration, and no permanence claim before vote.",
+                "graph_routing_eligible": false,
+                "limitations": "None beyond the explicit conditional gate.",
+                "observation_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:e87c1f1b5c69ddcc0208c679251d6ec0b9eb9b633e55de95e139757f35294f75",
+                "role": "current",
+                "role_interpretation": "The user's later working answer: they lean toward, propose, plan, decide, commit to, or conditionally accept the reversible trial design, including concerns converted into adopted safeguards.",
+                "role_record_id": "rprolev22-current-01-e87c1f1b5c69dd",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e001",
+                    "text": "Our eight-person policy research team is considering replacing two weekly status meetings with one written update and one optional problem-solving session."
+                  },
+                  {
+                    "alias": "e002",
+                    "text": "Some people think meetings create accountability; others say they consume the uninterrupted time needed for analysis."
+                  },
+                  {
+                    "alias": "e003",
+                    "text": "I want to test the change without turning it into another permanent process decree."
+                  },
+                  {
+                    "alias": "e034",
+                    "text": "Agreed."
+                  },
+                  {
+                    "alias": "e035",
+                    "text": "We will run the four weeks, publish the weekly measures to the team, trigger restoration if two gates fail at week two, and make no permanence claim before the anonymous vote and evidence review."
+                  },
+                  {
+                    "alias": "e036",
+                    "text": "Nothing else is unresolved for me now."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003",
+                  "e034",
+                  "e035",
+                  "e036"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e001",
+                    "stance_expression_kind": "proposal",
+                    "stance_object_interpretation": "Reversible four-week work-design experiment replacing two weekly status meetings with one written update and one optional problem-solving session",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Publishing weekly measures to the team",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Triggering restoration if two gates fail at week two",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Making no permanence claim before anonymous vote and evidence review",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e034",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Agreement with the assistant's reversible experiment framing",
+                    "stance_object_kind": "action_or_proposal"
+                  }
+                ],
+                "terminal_state": "admitted"
+              },
+              "qualification": {
+                "case_id": "phase5-independent-quiet-research-meeting",
+                "fidelity_note": "The conditional restoration trigger is a distinct unresolved condition that limits the current plan.",
+                "graph_routing_eligible": false,
+                "limitations": "None beyond the explicit conditional gate.",
+                "observation_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:ec0c6652bee15a745c6a39bcfb6ef1b85471cae3876a7f02940e3d81e62b4d02",
+                "role": "qualification",
+                "role_interpretation": "What still limits or could reopen the user's later working answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+                "role_record_id": "rprolev22-qualification-01-ec0c6652bee15a",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e035",
+                    "text": "We will run the four weeks, publish the weekly measures to the team, trigger restoration if two gates fail at week two, and make no permanence claim before the anonymous vote and evidence review."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e035"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "qualification",
+                    "source_evidence_id": "e035",
+                    "stance_expression_kind": "conditional_willingness",
+                    "stance_object_interpretation": "Restoration triggered if two gates fail at week two",
+                    "stance_object_kind": "unclear"
+                  }
+                ],
+                "terminal_state": "admitted"
+              },
+              "starting": {
+                "case_id": "phase5-independent-quiet-research-meeting",
+                "fidelity_note": "User's own starting stance: attraction to testing a change, awareness of internal disagreement, and a preference for reversible experimentation without permanent decree.",
+                "graph_routing_eligible": false,
+                "limitations": "none",
+                "observation_id": "rprolev22-starting-01-548cb26306b8a7",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "deepseek/deepseek-v4-flash",
+                  "producer_kind": "model_operator_eval",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:548cb26306b8a744b05e764b570f227c6fba1dc3f891d5dedfc3068a9218de35",
+                "role": "starting",
+                "role_interpretation": "User's own starting position, attractions, and unresolved stance at the first endpoint.",
+                "role_record_id": "rprolev22-starting-01-548cb26306b8a7",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "unclear",
+                "shard_id": "phase5-independent-quiet-research-meeting-position_and_decision_trajectory-shard-01",
+                "source_evidence": [
+                  {
+                    "alias": "e001",
+                    "text": "Our eight-person policy research team is considering replacing two weekly status meetings with one written update and one optional problem-solving session."
+                  },
+                  {
+                    "alias": "e002",
+                    "text": "Some people think meetings create accountability; others say they consume the uninterrupted time needed for analysis."
+                  },
+                  {
+                    "alias": "e003",
+                    "text": "I want to test the change without turning it into another permanent process decree."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e001",
+                    "stance_expression_kind": "preference_or_desire",
+                    "stance_object_interpretation": "testing the change from two weekly status meetings to one written update and one optional problem-solving session",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e002",
+                    "stance_expression_kind": "reported_without_endorsement",
+                    "stance_object_interpretation": "some people think meetings create accountability; others say they consume uninterrupted time needed for analysis",
+                    "stance_object_kind": "belief_or_assessment"
+                  },
+                  {
+                    "role": "starting",
+                    "source_evidence_id": "e003",
+                    "stance_expression_kind": "preference_or_desire",
+                    "stance_object_interpretation": "testing the change without turning it into another permanent process decree",
+                    "stance_object_kind": "action_or_proposal"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            }
+          }
+        ],
+        "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+        "status": "position_role_first_join_complete",
+        "unreferenced_role_record_ids": {
+          "current": [],
+          "qualification": [],
+          "starting": []
+        }
+      },
+      "relation_block_reason": "",
+      "semantic_review_status": "source_first_review_required"
+    }
+  ],
+  "estimated_cost_usd": 0.0011928,
+  "provider_request_count": 6,
+  "schema_version": "lolla.independent_phase5_role_extraction_probe_result.v1",
+  "status": "frozen_probe_preserved"
+}

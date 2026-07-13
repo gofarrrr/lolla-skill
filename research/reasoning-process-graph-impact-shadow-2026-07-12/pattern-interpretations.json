@@ -1,0 +1,86 @@
+{
+  "schema_version": "lolla.reasoning_process_graph_impact_pattern_interpretations.v1",
+  "status": "codex_assisted_provisional_source_review",
+  "cases": [
+    {
+      "case_id": "amb3-case05-registry-pharma-partnership",
+      "conversation_path": "research/reasoning-process-position-role-first-v24-new-case-2026-07-12/case.txt",
+      "arms": [
+        {
+          "arm_id": "registry_source_first",
+          "source_ref": "research/reasoning-process-position-role-first-v24-new-case-2026-07-12/source-review-target.json",
+          "patterns": [
+            {"mechanism_id": "acknowledged_constraint_not_gated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "counterpressure_acknowledged_not_integrated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "missing_reversal_condition", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]}
+          ],
+          "review_note": "The pilot has bounded access and withdrawal conditions, while meaningful withdrawal and irreversible learned consequences remain unresolved rather than fully gated."
+        },
+        {
+          "arm_id": "registry_provider",
+          "source_ref": "research/reasoning-process-position-role-first-v24-probe-2026-07-12/call-02-result.json",
+          "patterns": [
+            {"mechanism_id": "acknowledged_constraint_not_gated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "counterpressure_acknowledged_not_integrated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "missing_reversal_condition", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]}
+          ],
+          "review_note": "The preserved paired provider records carry the same fact-free reasoning mechanisms despite force, category, extra-evidence, and status-wire defects."
+        },
+        {
+          "arm_id": "registry_missing_reversal_ablation",
+          "source_ref": "research/reasoning-process-position-role-first-v24-new-case-2026-07-12/source-review-target.json",
+          "patterns": [
+            {"mechanism_id": "acknowledged_constraint_not_gated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "counterpressure_acknowledged_not_integrated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]}
+          ],
+          "review_note": "Synthetic sensitivity control only: deliberately removes the protected reversal mechanism and is not a claim about the source."
+        }
+      ]
+    },
+    {
+      "case_id": "amb3-case06-housing-retrofit-partnership",
+      "conversation_path": "research/reasoning-process-position-role-first-v241-new-case-2026-07-12/case.txt",
+      "arms": [
+        {
+          "arm_id": "housing_source_first",
+          "source_ref": "research/reasoning-process-position-role-first-v241-new-case-2026-07-12/source-review-target.json",
+          "patterns": [
+            {"mechanism_id": "acknowledged_constraint_not_gated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "counterpressure_acknowledged_not_integrated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "missing_reversal_condition", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]}
+          ],
+          "review_note": "The pilot gates formal exit and sensing, while collective control and persistent equipment, routine, expectation, and vendor-model consequences remain unresolved."
+        },
+        {
+          "arm_id": "housing_provider",
+          "source_ref": "research/reasoning-process-position-role-first-v241-probe-2026-07-12/result.json",
+          "patterns": [
+            {"mechanism_id": "acknowledged_constraint_not_gated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "counterpressure_acknowledged_not_integrated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "missing_reversal_condition", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]}
+          ],
+          "review_note": "The provider records retain the same fact-free mechanism set despite modal, category, evidence-list, allocation-note, and prose-length defects."
+        },
+        {
+          "arm_id": "housing_missing_reversal_ablation",
+          "source_ref": "research/reasoning-process-position-role-first-v241-new-case-2026-07-12/source-review-target.json",
+          "patterns": [
+            {"mechanism_id": "acknowledged_constraint_not_gated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]},
+            {"mechanism_id": "counterpressure_acknowledged_not_integrated", "subject_scope": "joint_process", "state": "tension", "source_turns": [7]}
+          ],
+          "review_note": "Synthetic sensitivity control only: deliberately removes the protected reversal mechanism and is not a claim about the source."
+        }
+      ]
+    }
+  ],
+  "boundary": {
+    "interpretations_are_provisional": true,
+    "independent_human_gold": false,
+    "facts_enter_routing_projection": false,
+    "automatic_semantic_mapping": false,
+    "provider_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  }
+}

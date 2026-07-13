@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v21_probe_source_review.v1",
+  "status": "source_review_complete_structural_fail_semantic_progress",
+  "date": "2026-07-12",
+  "case_id": "amb3-case02-architecture-firm-succession",
+  "model_operator": "deepseek/deepseek-v4-flash via Alibaba",
+  "operational_review": {
+    "provider_request_count": 3,
+    "wire_and_exact_route_pass_count": 3,
+    "admitted_record_count": 2,
+    "quarantined_record_count": 1,
+    "relation_call_blocked": true,
+    "join_status": "position_role_first_join_incomplete",
+    "automatic_retries": 0,
+    "fallbacks": 0,
+    "estimated_cost_usd": 0.000770634,
+    "provider_reported_cost_usd": 0.000770634
+  },
+  "source_first_axes": {
+    "coherent_record_identity": {
+      "status": "pass_improved",
+      "finding": "Starting and current each returned one multi-evidence record instead of the v2 one-alias fragments. Qualification also attempted one coherent record."
+    },
+    "starting_role": {
+      "status": "partial",
+      "finding": "e001-e005 and the mixed succession motives survive in one record. Force and ownership remain imperfect: the desire to step back was promoted to decision, and external and employee options were described as user preferences more strongly than the source supports."
+    },
+    "current_role": {
+      "status": "partial",
+      "finding": "e049-e052 survive in one record. The role interpretation is too generic, e052 qualification is pulled into current, and the seller-financing object is attached to e051 instead of its actual e050 source."
+    },
+    "qualification_role": {
+      "status": "semantic_recall_pass_structural_fail",
+      "finding": "The model found e052, e055, and protected e056, explicitly described assistant counterpressure without user adoption, and preserved irreversibility. The record was quarantined because four expression and source entries were paired with only three object entries."
+    },
+    "protected_e056": {
+      "status": "pass_in_prose_and_evidence_before_quarantine",
+      "finding": "The protected meaning that expectations and perceived readiness will not return to their prior state is present in evidence_ids, fidelity note, limitations, and role prose."
+    },
+    "parallel_column_integrity": {
+      "status": "fail",
+      "finding": "The five conceptual component attributes were emitted as unequal arrays, making component identity ambiguous and forcing quarantine."
+    },
+    "relationship": {
+      "status": "not_observed_correctly_blocked",
+      "finding": "The relation call was blocked after qualification quarantine."
+    }
+  },
+  "decision": {
+    "v21_record_identity_clarification_helped": true,
+    "protected_qualification_loss_repeated": false,
+    "direct_structured_extraction_stop_rule_fired": false,
+    "more_v21_calls_authorized": false,
+    "provider_free_nested_component_schema_authorized": true,
+    "reason": "The remaining blocking failure is structural component alignment inside an already coherent role record; one array of component objects can encode that identity directly without semantic deterministic repair."
+  },
+  "non_claims": [
+    "V2.1 does not pass the case overall.",
+    "Protected evidence appearing before quarantine is not an admitted qualification result.",
+    "A nested component schema is not yet proven provider-compatible or semantically better.",
+    "No production, graph, runtime, or downstream value claim follows."
+  ]
+}

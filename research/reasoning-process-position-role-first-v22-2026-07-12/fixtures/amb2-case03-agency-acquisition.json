@@ -1,0 +1,752 @@
+{
+  "case_id": "amb2-case03-agency-acquisition",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev22-current-01-7d026d0c57637f",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprelationv2-01-0c389555ad792a",
+          "provenance": {
+            "producer_id": "v22-provider-free-reviewed-target-projection",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+          "raw_record_sha256": "sha256:0c389555ad792a09c03bcb0ac3ec7fbbb32c53db9b0e08db93ed9045cb455bd9",
+          "relation_record_id": "rprelationv2-01-0c389555ad792a",
+          "relationship_interpretation": "The user moves from mixed attraction and self-doubt to bounded willingness to document terms while keeping employment commitment, project authority, and employee timing unresolved.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb2-case03-agency-acquisition",
+            "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-current-01-7d026d0c57637f",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v22-provider-free-reviewed-target-projection",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:7d026d0c57637f03bd69a588734d2130a68bd2fa0c141a127beabffbfab40d10",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a protected nonbinding term sheet, withholds commitment to the two-year role pending reporting clarity, and is prepared to end talks if the refusal right is hollow.",
+            "role_record_id": "rprolev22-current-01-7d026d0c57637f",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e050",
+                "text": "I am leaning toward signing a nonbinding term sheet that resolves the staffing floor, project-refusal boundary, earn-out mechanics, and employee consultation before any exclusivity period begins."
+              },
+              {
+                "alias": "e051",
+                "text": "I will tell the buyer I intend to evaluate the two-year leadership role in good faith, but I am not willing to commit to staying until I meet the executive and understand who decides project framing."
+              },
+              {
+                "alias": "e052",
+                "text": "I am also prepared to end the talks if the global-client exception makes the refusal right meaningless."
+              }
+            ],
+            "source_evidence_ids": [
+              "e050",
+              "e051",
+              "e052"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Sign a nonbinding term sheet resolving named protections before exclusivity.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e051",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Commit to the two-year role only after meeting the executive and clarifying project-framing authority.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "End the talks if the global-client exception makes the refusal right meaningless.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb2-case03-agency-acquisition",
+            "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-qualification-01-cb94243fb74873",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v22-provider-free-reviewed-target-projection",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:cb94243fb748733bf5d9b34fc64624a9479336da51395471f39d5e2d6a00de3c",
+            "role": "qualification",
+            "role_interpretation": "A term sheet cannot prevent deal momentum from narrowing perceived alternatives or remove the cost of involving employees before certainty.",
+            "role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e053",
+                "text": "I have not resolved how much employee uncertainty is justified before we know whether those protections survive detailed drafting."
+              },
+              {
+                "alias": "e057",
+                "text": "It cannot prevent momentum from narrowing your perceived alternatives or remove the cost of involving employees before a deal is certain."
+              }
+            ],
+            "source_evidence_ids": [
+              "e053",
+              "e057"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e053",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The justified amount of employee uncertainty before protections survive drafting remains unresolved.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e057",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Deal momentum may narrow perceived alternatives.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e057",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Involving employees before deal certainty carries an unavoidable cost.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb2-case03-agency-acquisition",
+            "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-starting-01-5beac1c759ed58",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v22-provider-free-reviewed-target-projection",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:5beac1c759ed58026f66de0144f463f5ccf1f7e460ed489136e1aab4fb6bca84",
+            "role": "starting",
+            "role_interpretation": "The user is attracted to financial security but uncertain whether hesitation protects the work or an independent-founder identity.",
+            "role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e004",
+                "text": "I am attracted to the security but worried that our methods will become a sales story while project decisions move elsewhere."
+              },
+              {
+                "alias": "e005",
+                "text": "I cannot tell whether my hesitation protects the work or protects my identity as an independent founder."
+              }
+            ],
+            "source_evidence_ids": [
+              "e004",
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Gain meaningful financial security from the acquisition.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The hesitation may protect the work or the user's independent-founder identity.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case03-agency-acquisition/position-endpoint.json",
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "response_schema_changed_from_v2": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false,
+      "v21_prompt_packet_contract": true,
+      "validator_changed_from_v2": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev22-current-01-7d026d0c57637f",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "observation_id": "rprelationv2-01-0c389555ad792a",
+        "provenance": {
+          "producer_id": "v22-provider-free-reviewed-target-projection",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+        "raw_record_sha256": "sha256:0c389555ad792a09c03bcb0ac3ec7fbbb32c53db9b0e08db93ed9045cb455bd9",
+        "relation_record_id": "rprelationv2-01-0c389555ad792a",
+        "relationship_interpretation": "The user moves from mixed attraction and self-doubt to bounded willingness to document terms while keeping employment commitment, project authority, and employee timing unresolved.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:0c389555ad792a09c03bcb0ac3ec7fbbb32c53db9b0e08db93ed9045cb455bd9",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-0c389555ad792a",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "relationship_identity_semantics_made_explicit": true,
+      "response_schema_changed_from_v2": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false,
+      "validator_changed_from_v2": false
+    },
+    "call_required": true,
+    "case_id": "amb2-case03-agency-acquisition",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "relationship_identity_contract": "One relationship record links the coherent starting, current, and qualification records for one position thread. Do not pair records by array order or surface proximity. Use a second relationship only for a genuinely separate concurrent position thread. Preserve missingness and speaker ownership; do not manufacture adoption or agreement.",
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a protected nonbinding term sheet, withholds commitment to the two-year role pending reporting clarity, and is prepared to end talks if the refusal right is hollow.",
+          "role_record_id": "rprolev22-current-01-7d026d0c57637f",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e050",
+              "text": "I am leaning toward signing a nonbinding term sheet that resolves the staffing floor, project-refusal boundary, earn-out mechanics, and employee consultation before any exclusivity period begins."
+            },
+            {
+              "alias": "e051",
+              "text": "I will tell the buyer I intend to evaluate the two-year leadership role in good faith, but I am not willing to commit to staying until I meet the executive and understand who decides project framing."
+            },
+            {
+              "alias": "e052",
+              "text": "I am also prepared to end the talks if the global-client exception makes the refusal right meaningless."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "qualification",
+          "role_interpretation": "A term sheet cannot prevent deal momentum from narrowing perceived alternatives or remove the cost of involving employees before certainty.",
+          "role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e053",
+              "text": "I have not resolved how much employee uncertainty is justified before we know whether those protections survive detailed drafting."
+            },
+            {
+              "alias": "e057",
+              "text": "It cannot prevent momentum from narrowing your perceived alternatives or remove the cost of involving employees before a deal is certain."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "starting",
+          "role_interpretation": "The user is attracted to financial security but uncertain whether hesitation protects the work or an independent-founder identity.",
+          "role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e004",
+              "text": "I am attracted to the security but worried that our methods will become a sales story while project decisions move elsewhere."
+            },
+            {
+              "alias": "e005",
+              "text": "I cannot tell whether my hesitation protects the work or protects my identity as an independent founder."
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2_1",
+    "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev22-current-01-7d026d0c57637f",
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "qualification_role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+        "relationship_interpretation": "The user moves from mixed attraction and self-doubt to bounded willingness to document terms while keeping employment commitment, project authority, and employee timing unresolved.",
+        "starting_role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case03-agency-acquisition",
+          "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev22-current-01-7d026d0c57637f",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "v22-provider-free-reviewed-target-projection",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:7d026d0c57637f03bd69a588734d2130a68bd2fa0c141a127beabffbfab40d10",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a protected nonbinding term sheet, withholds commitment to the two-year role pending reporting clarity, and is prepared to end talks if the refusal right is hollow.",
+          "role_record_id": "rprolev22-current-01-7d026d0c57637f",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e050",
+              "text": "I am leaning toward signing a nonbinding term sheet that resolves the staffing floor, project-refusal boundary, earn-out mechanics, and employee consultation before any exclusivity period begins."
+            },
+            {
+              "alias": "e051",
+              "text": "I will tell the buyer I intend to evaluate the two-year leadership role in good faith, but I am not willing to commit to staying until I meet the executive and understand who decides project framing."
+            },
+            {
+              "alias": "e052",
+              "text": "I am also prepared to end the talks if the global-client exception makes the refusal right meaningless."
+            }
+          ],
+          "source_evidence_ids": [
+            "e050",
+            "e051",
+            "e052"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e050",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Sign a nonbinding term sheet resolving named protections before exclusivity.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e051",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Commit to the two-year role only after meeting the executive and clarifying project-framing authority.",
+              "stance_object_kind": "acceptance_or_willingness"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e052",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "End the talks if the global-client exception makes the refusal right meaningless.",
+              "stance_object_kind": "action_or_proposal"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:7d026d0c57637f03bd69a588734d2130a68bd2fa0c141a127beabffbfab40d10",
+          "record_index": 1,
+          "role_record_id": "rprolev22-current-01-7d026d0c57637f",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case03-agency-acquisition",
+          "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev22-qualification-01-cb94243fb74873",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "v22-provider-free-reviewed-target-projection",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:cb94243fb748733bf5d9b34fc64624a9479336da51395471f39d5e2d6a00de3c",
+          "role": "qualification",
+          "role_interpretation": "A term sheet cannot prevent deal momentum from narrowing perceived alternatives or remove the cost of involving employees before certainty.",
+          "role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e053",
+              "text": "I have not resolved how much employee uncertainty is justified before we know whether those protections survive detailed drafting."
+            },
+            {
+              "alias": "e057",
+              "text": "It cannot prevent momentum from narrowing your perceived alternatives or remove the cost of involving employees before a deal is certain."
+            }
+          ],
+          "source_evidence_ids": [
+            "e053",
+            "e057"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e053",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The justified amount of employee uncertainty before protections survive drafting remains unresolved.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e057",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "Deal momentum may narrow perceived alternatives.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e057",
+              "stance_expression_kind": "constraint",
+              "stance_object_interpretation": "Involving employees before deal certainty carries an unavoidable cost.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:cb94243fb748733bf5d9b34fc64624a9479336da51395471f39d5e2d6a00de3c",
+          "record_index": 1,
+          "role_record_id": "rprolev22-qualification-01-cb94243fb74873",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case03-agency-acquisition",
+          "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev22-starting-01-5beac1c759ed58",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "v22-provider-free-reviewed-target-projection",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:5beac1c759ed58026f66de0144f463f5ccf1f7e460ed489136e1aab4fb6bca84",
+          "role": "starting",
+          "role_interpretation": "The user is attracted to financial security but uncertain whether hesitation protects the work or an independent-founder identity.",
+          "role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e004",
+              "text": "I am attracted to the security but worried that our methods will become a sales story while project decisions move elsewhere."
+            },
+            {
+              "alias": "e005",
+              "text": "I cannot tell whether my hesitation protects the work or protects my identity as an independent founder."
+            }
+          ],
+          "source_evidence_ids": [
+            "e004",
+            "e005"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e004",
+              "stance_expression_kind": "preference_or_desire",
+              "stance_object_interpretation": "Gain meaningful financial security from the acquisition.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The hesitation may protect the work or the user's independent-founder identity.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:5beac1c759ed58026f66de0144f463f5ccf1f7e460ed489136e1aab4fb6bca84",
+          "record_index": 1,
+          "role_record_id": "rprolev22-starting-01-5beac1c759ed58",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    }
+  },
+  "role_responses": {
+    "current": {
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e050",
+            "e051",
+            "e052"
+          ],
+          "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a protected nonbinding term sheet, withholds commitment to the two-year role pending reporting clarity, and is prepared to end talks if the refusal right is hollow.",
+          "stance_components": [
+            {
+              "expression_kind": "leaning",
+              "object_interpretation": "Sign a nonbinding term sheet resolving named protections before exclusivity.",
+              "object_kind": "action_or_proposal",
+              "source_evidence_id": "e050"
+            },
+            {
+              "expression_kind": "conditional_willingness",
+              "object_interpretation": "Commit to the two-year role only after meeting the executive and clarifying project-framing authority.",
+              "object_kind": "acceptance_or_willingness",
+              "source_evidence_id": "e051"
+            },
+            {
+              "expression_kind": "conditional_willingness",
+              "object_interpretation": "End the talks if the global-client exception makes the refusal right meaningless.",
+              "object_kind": "action_or_proposal",
+              "source_evidence_id": "e052"
+            }
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "qualification": {
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e053",
+            "e057"
+          ],
+          "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "qualification",
+          "role_interpretation": "A term sheet cannot prevent deal momentum from narrowing perceived alternatives or remove the cost of involving employees before certainty.",
+          "stance_components": [
+            {
+              "expression_kind": "uncertain_or_undecided",
+              "object_interpretation": "The justified amount of employee uncertainty before protections survive drafting remains unresolved.",
+              "object_kind": "belief_or_assessment",
+              "source_evidence_id": "e053"
+            },
+            {
+              "expression_kind": "counterpressure",
+              "object_interpretation": "Deal momentum may narrow perceived alternatives.",
+              "object_kind": "belief_or_assessment",
+              "source_evidence_id": "e057"
+            },
+            {
+              "expression_kind": "constraint",
+              "object_interpretation": "Involving employees before deal certainty carries an unavoidable cost.",
+              "object_kind": "intended_outcome_or_policy",
+              "source_evidence_id": "e057"
+            }
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "starting": {
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e004",
+            "e005"
+          ],
+          "fidelity_note": "The starting evidence separates desired security from uncertainty about motives. The current evidence separates term-sheet action, employment willingness, and willingness to terminate talks. The qualification preserves employee-timing uncertainty and momentum costs.",
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "starting",
+          "role_interpretation": "The user is attracted to financial security but uncertain whether hesitation protects the work or an independent-founder identity.",
+          "stance_components": [
+            {
+              "expression_kind": "preference_or_desire",
+              "object_interpretation": "Gain meaningful financial security from the acquisition.",
+              "object_kind": "intended_outcome_or_policy",
+              "source_evidence_id": "e004"
+            },
+            {
+              "expression_kind": "uncertain_or_undecided",
+              "object_interpretation": "The hesitation may protect the work or the user's independent-founder identity.",
+              "object_kind": "belief_or_assessment",
+              "source_evidence_id": "e005"
+            }
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_v22_fixture.v1"
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-08-oncologist-career-family",
+  "source_file_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_greedy_or_smart", "dimension": "operative_question", "description": "The initial decision is framed as whether taking the role is greedy or smart.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I don't know if I'm being greedy or smart."}]},
+    {"observation_id": "question.current_direct_call", "dimension": "operative_question", "description": "The user eventually asks for the assistant's actual call.", "evidence": [{"turn_index": 6, "speaker": "user", "quote": "What would you actually do. Not what should I consider, what's the call."}]},
+    {"observation_id": "pressure.husband_conversation_not_real", "dimension": "user_corrections_and_pressure", "description": "General support is qualified by the absence of a concrete household conversation.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years"}]},
+    {"observation_id": "constraint.decision_deadline", "dimension": "constraints_and_options", "description": "The offer has a ten-day deadline.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I have 10 days to decide."}]},
+    {"observation_id": "constraint.mother_finite_window", "dimension": "constraints_and_options", "description": "The mother may have only a few good years of meaningful visits.", "evidence": [{"turn_index": 3, "speaker": "user", "quote": "She has maybe 3-5 good years left where visits still mean something."}]},
+    {"observation_id": "stance.take_role_with_conditions", "dimension": "assistant_positions_and_revisions", "description": "The assistant ultimately recommends taking the role with negotiated conditions.", "evidence": [{"turn_index": 6, "speaker": "assistant", "quote": "Take the role. Negotiate the 90-day start date, the flexible-day schedule with Chicago weeks explicitly protected, and adjunct status at BAMC"}]},
+    {"observation_id": "drop.stuck_feeling", "dimension": "dropped_or_under_carried_threads", "description": "The user's broader feeling of being stuck is not fully resolved by the offer analysis.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "I've been feeling a little stuck."}]},
+    {"observation_id": "boundary.schedule_flexibility_verbal", "dimension": "uncertainty_and_evidence_boundaries", "description": "Schedule flexibility is only a possibility inferred from a verbal comment.", "evidence": [{"turn_index": 4, "speaker": "user", "quote": "That might mean I can flex to Chicago weeks."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.husband_answer", "description": "The husband's concrete answer to the proposed schedule is not observed."}
+  ]
+}

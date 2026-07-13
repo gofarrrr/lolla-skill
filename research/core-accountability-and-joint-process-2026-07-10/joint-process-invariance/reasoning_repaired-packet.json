@@ -1,0 +1,117 @@
+{
+  "schema_version": "lolla.joint_process_reasoning_packet.v0",
+  "packet_metadata": {
+    "packet_id": "joint_process_reasoning_packet:reasoning_repaired",
+    "target": "unresolved_joint_conversation_trajectory",
+    "graph_runtime_modified": false
+  },
+  "provenance": {
+    "source_interpretation_ref": "tests/fixtures/joint_process_reasoning_invariance/reasoning_repaired.txt",
+    "source_interpretation_sha256": "df441eb1d6655d4554a36a25460d44a3a47319cdc2352f14849b1860a80b231f",
+    "raw_text_included": false
+  },
+  "mechanism_reviews": [
+    {
+      "mechanism_id": "acknowledged_constraint_not_gated",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    },
+    {
+      "mechanism_id": "ambiguous_signal_treated_as_commitment",
+      "joint_status": "resolved_in_conversation",
+      "source_semantic_item_ids": [
+        "turn:1"
+      ],
+      "resolution_semantic_item_ids": [
+        "turn:1"
+      ]
+    },
+    {
+      "mechanism_id": "counterpressure_acknowledged_not_integrated",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    },
+    {
+      "mechanism_id": "criteria_defined_after_commitment",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    },
+    {
+      "mechanism_id": "initial_frame_persists_after_question_change",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    },
+    {
+      "mechanism_id": "missing_reversal_condition",
+      "joint_status": "resolved_in_conversation",
+      "source_semantic_item_ids": [
+        "turn:2"
+      ],
+      "resolution_semantic_item_ids": [
+        "turn:2",
+        "turn:3"
+      ]
+    },
+    {
+      "mechanism_id": "other_review_required",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    },
+    {
+      "mechanism_id": "reversible_path_not_considered",
+      "joint_status": "resolved_in_conversation",
+      "source_semantic_item_ids": [
+        "turn:1"
+      ],
+      "resolution_semantic_item_ids": [
+        "turn:2",
+        "turn:3"
+      ]
+    },
+    {
+      "mechanism_id": "status_signal_used_as_evidence",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    },
+    {
+      "mechanism_id": "upside_downside_evidence_asymmetry",
+      "joint_status": "not_observed",
+      "source_semantic_item_ids": [],
+      "resolution_semantic_item_ids": []
+    }
+  ],
+  "routing_projection": {
+    "schema_version": "lolla.joint_process_reasoning_projection.v0",
+    "active_nodes": [],
+    "edge_nodes": [],
+    "manual_review_nodes": [],
+    "contains_case_context": false
+  },
+  "fact_boundary": {
+    "raw_text_included": false,
+    "quotes_included": false,
+    "entities_included": false,
+    "case_quantities_included": false,
+    "dates_included": false,
+    "desired_outcome_included": false,
+    "topic_labels_included": false
+  },
+  "lint": {
+    "status": "passed",
+    "violations": []
+  },
+  "non_claims": [
+    "mechanism_reviews_are_probabilistic_interpretations",
+    "resolved_does_not_mean_never_present",
+    "ambiguous_is_preserved_not_erased",
+    "not_graph_applicability",
+    "not_reasoning_quality_proof",
+    "not_runtime_integration_authority"
+  ]
+}

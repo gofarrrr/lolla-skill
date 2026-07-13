@@ -1,0 +1,203 @@
+{
+  "job_id": "three_lens_consolidation--window-002",
+  "architecture": "three_lens_consolidation",
+  "window_id": "window-002",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "system_prompt_sha256": "4ded69ce85e05932520ae18a8650839da69caa4f14a6f39846ec6d7b891d7084",
+  "user_prompt_sha256": "8723720cb0c2c43ced31fadde8ad75f8265b481d338eca052dbab1d89916f7cd",
+  "schema_sha256": "3c4bd1c69a48ee2d39bd3df452d97278cbf579b4322be398200711ce6d6762bb",
+  "operational_status": "ok",
+  "typed_status": "quarantined",
+  "candidate_payload": {
+    "status": "supported",
+    "directional_moves": [
+      {
+        "text": "Prioritize balancing cataloging accuracy with narrative engagement.",
+        "evidence": [
+          {
+            "span_id": "span-20ae1bdcc4d56125"
+          },
+          {
+            "span_e8875a739f6a42f7": "span-e8875a739f6a42f7"
+          }
+        ]
+      },
+      {
+        "text": "Evaluate exhibition strategies for handling conflicting family memories.",
+        "evidence": [
+          {
+            "span_id": "span-214f44631d56bf39"
+          },
+          {
+            "span_id": "span-d3a57696ffe091e5"
+          }
+        ]
+      }
+    ],
+    "thread_signals": [
+      {
+        "text": "Methodological conflict between cataloging and storytelling.",
+        "local_move": "engaged",
+        "evidence": [
+          {
+            "span_id": "span-a17d62622004772a"
+          },
+          {
+            "span_id": "span-d0fc0d48fdbe520b"
+          }
+        ]
+      },
+      {
+        "text": "Curatorial strategy for conflicting family memories.",
+        "local_move": "raised",
+        "evidence": [
+          {
+            "span_id": "span-e79db6f3b89a927d"
+          },
+          {
+            "span_id": "span-214f44631d56bf39"
+          }
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "text": "The speaker prioritizes cataloging, dates, and names.",
+        "claim_mode": "preference",
+        "evidence": {
+          "span_id": "span-20ae1bdcc4d56125"
+        }
+      },
+      {
+        "text": "Tomas's stories are often remembered differently by relatives.",
+        "claim_mode": "reported_statement",
+        "evidence": {
+          "span_id": "span-e79db6f3b89a927d"
+        }
+      },
+      {
+        "text": "The conflict involves a trade-off between traceability and living attention.",
+        "claim_mode": "inference",
+        "evidence": {
+          "span_id": "span-e8875a739f6a42f7"
+        }
+      },
+      {
+        "text": "It is necessary to distinguish between enriching and misrepresenting disagreements.",
+        "claim_mode": "possibility",
+        "evidence": {
+          "span_id": "span-d3a57696ffe091e5"
+        }
+      }
+    ],
+    "input_dispositions": [
+      {
+        "input_event_id": "cevent-contributions-005-4003ac9a55e1",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "claim_1"
+        ]
+      },
+      {
+        "input_event_id": "cevent-contributions-006-3b190320a0ad",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "claim_2"
+        ]
+      },
+      {
+        "input_event_id": "cevent-contributions-007-0b93c4f97668",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "move_2"
+        ]
+      },
+      {
+        "input_event_id": "cevent-contributions-008-df5752de86f1",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "move_2"
+        ]
+      },
+      {
+        "input_event_id": "cevent-thread_events-032-778c9e502b1c",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "signal_1"
+        ]
+      },
+      {
+        "input_event_id": "cevent-thread_events-033-5b7994a91082",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "signal_2"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-054-f430f0204c7c",
+        "disposition": "set_aside_redundant",
+        "normalized_item_keys": []
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-055-80d149025f30",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "claim_1"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-056-6af964c4a120",
+        "disposition": "set_aside_redundant",
+        "normalized_item_keys": []
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-057-dd4d81b193a8",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "claim_2"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-058-da49319938d7",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "claim_3"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-059-2b85440435aa",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "move_2"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-060-4133f47c064a",
+        "disposition": "merged",
+        "normalized_item_keys": [
+          "claim_4"
+        ]
+      }
+    ]
+  },
+  "validation_issues": [
+    {
+      "code": "required_field_missing",
+      "path": "/directional_moves/0/evidence/1/span_id"
+    },
+    {
+      "code": "additional_field_forbidden",
+      "path": "/directional_moves/0/evidence/1/span_e8875a739f6a42f7"
+    }
+  ],
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "model_attribution": "served_version_alias",
+  "prompt_tokens": 3755,
+  "completion_tokens": 1220,
+  "total_tokens": 4975,
+  "estimated_cost_usd": 0.00276875,
+  "response_sha256": "701111f95e49da3095584f014241bf47396ebc2a1f8cdc0a92e80909be8e546c",
+  "provider_calls": 1,
+  "automatic_retries": 0,
+  "duration_seconds": 4.033
+}

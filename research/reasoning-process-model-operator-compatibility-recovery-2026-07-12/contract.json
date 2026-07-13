@@ -1,0 +1,150 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_compatibility_contract.v2",
+  "status": "frozen_after_custody_incident_before_recovery_calls",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-model-operator-compatibility-recovery-v2",
+  "purpose": "Recover an observable compatibility result after the first batch terminated without per-call custody; use the unchanged synthetic packet, v4.2 prompt and schema, models, operator, and request parameters, with durable per-call markers and results.",
+  "prior_incident": {
+    "path": "research/reasoning-process-model-operator-compatibility-2026-07-12/custody-incident.json",
+    "sha256": "e62d6f96afe70128471760ac5ac404fa1ce8d4b16112bf51efbf4c2d4517a390",
+    "possible_provider_calls_minimum": 0,
+    "possible_provider_calls_maximum": 2,
+    "exact_provider_calls_known": false,
+    "original_contract_rerun": false
+  },
+  "packet": {
+    "case_id": "synthetic-wire-compatibility-color-choice",
+    "path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-packet.json",
+    "sha256": "75dd94d4c2a7c5d827b6abd9d044e91ffc6042a1e2870e61d808b0e38a386d40",
+    "semantic_holdout": false,
+    "safe_synthetic": true
+  },
+  "request_contract": {
+    "mechanism": "chronological_shard_stance_object_v42",
+    "view_kind": "position_and_decision_trajectory",
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "ed931f9943f4ad41a3625c597191c2036d4e739bdc50c904dccede9cd92ba6ef",
+    "response_schema_sha256": "c1976c1e299ed8ff0877e2354b9f7cdc533fd512d1b4fe36f70004d72022d213",
+    "response_schema_bytes": 3597,
+    "response_schema_depth": 9,
+    "semantic_contract_changed_from_v42": false,
+    "changed_from_first_batch": false
+  },
+  "jobs": [
+    {
+      "job_id": "deepseek-v4-flash-deepinfra-v42-compatibility-recovery",
+      "selection_role": "cost_performance_candidate",
+      "model": "deepseek/deepseek-v4-flash",
+      "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+      "provider_slug": "deepinfra",
+      "provider_display_name": "DeepInfra",
+      "pricing_per_token": {
+        "prompt": 0.00000009,
+        "completion": 0.00000018
+      }
+    },
+    {
+      "job_id": "glm-5-2-deepinfra-v42-compatibility-recovery",
+      "selection_role": "stronger_reasoning_candidate",
+      "model": "z-ai/glm-5.2",
+      "canonical_slug": "z-ai/glm-5.2-20260616",
+      "provider_slug": "deepinfra",
+      "provider_display_name": "DeepInfra",
+      "pricing_per_token": {
+        "prompt": 0.00000093,
+        "completion": 0.000003
+      }
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "path": "research/reasoning-process-model-operator-compatibility-2026-07-12/custody-incident.json",
+      "sha256": "e62d6f96afe70128471760ac5ac404fa1ce8d4b16112bf51efbf4c2d4517a390"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-packet.json",
+      "sha256": "75dd94d4c2a7c5d827b6abd9d044e91ffc6042a1e2870e61d808b0e38a386d40"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-selection-2026-07-12/current-practice-snapshot.json",
+      "sha256": "0d4a8a9bfd3e16eaf4c7e02bbbb800ddff0880e5d0c509eb7876d7063e2c1d04"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_model_operator_compatibility.py",
+      "sha256": "a1e2a08a6188713c57ec70e602a56378f9640e623d9e8d82e67d120d90bd6daa"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_model_operator_compatibility_v2.py",
+      "sha256": "2e6263f1adaed1d5630758fec73b38afefd4273247d63a5a1a909d562c177110"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v42.py",
+      "sha256": "e2f69a49e68469dc444947107485639626871ef1090465bbf5694f39bf6c5bfd"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_phase4_transfer.py",
+      "sha256": "2eba5deb09e9d4d99e0cca12ca07a35578f3c82a4afdf3788378f0bec921c96d"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1600,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "custody": {
+    "write_started_marker_before_each_call": true,
+    "started_marker_means_call_may_have_happened": true,
+    "never_rerun_if_started_marker_exists": true,
+    "write_result_before_next_call": true,
+    "write_aggregate_only_after_both_per_call_results": true
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_estimated_cost_usd": 0.02,
+    "maximum_total_possible_calls_including_unknown_incident": 4,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "provider_route_exactly_attributed": true,
+    "http_success": true,
+    "unchanged_v42_schema_accepted": true,
+    "strict_schema_candidate_present": true,
+    "deterministic_record_custody_complete": true,
+    "semantic_accuracy_required": false
+  },
+  "stop_rules": {
+    "execute_each_recovery_pair_at_most_once": true,
+    "no_retry_if_started_marker_exists_even_without_result": true,
+    "no_fallback_response_healing_or_prompt_change": true,
+    "no_reserved_semantic_case_call": true,
+    "no_semantic_model_comparison_until_compatibility_result_reviewed": true
+  },
+  "boundary": {
+    "synthetic_compatibility_only": true,
+    "semantic_case_seen_by_models": false,
+    "protected_target_seen_by_models": false,
+    "v42_schema_changed": false,
+    "v42_prompt_changed": false,
+    "semantic_accuracy_measured": false,
+    "model_intelligence_inferred_from_wire_acceptance": false,
+    "agency_acquisition_call_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

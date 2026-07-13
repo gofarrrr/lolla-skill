@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.reasoning_process_chronological_shard_role_explicit_v2_cold_reader_review.v1",
+  "status": "provider_free_cold_reader_pass_one_position_probe_may_be_frozen",
+  "date": "2026-07-12",
+  "review_scope": "role_semantics_prompt_schema_context_custody_and_non_gating_boundary",
+  "findings": [
+    {
+      "dimension": "position_relationship",
+      "status": "pass",
+      "finding": "Starting position, current position, qualification, and trajectory now require separate model-authored meanings and evidence roles. The observed missing-current-prose failure cannot conform to the v2 schema."
+    },
+    {
+      "dimension": "uncertainty_relationship",
+      "status": "pass_with_semantic_review_limit",
+      "finding": "Every record must state the unresolved matter, preservation/reopen condition, and their relationship. Code correctly refuses to infer that two individually complete records should be semantically merged."
+    },
+    {
+      "dimension": "challenge_relationship",
+      "status": "pass_with_semantic_review_limit",
+      "finding": "Prior frame, challenge, response, revision, and relationship are separately inspectable. A surface-order gate is rejected because reported and retrospective challenges can be semantically valid; source-first review remains mandatory."
+    },
+    {
+      "dimension": "evidence_reference",
+      "status": "pass_unchanged",
+      "finding": "Evidence schema, validation behavior, system prompt, and user prompt are byte-equivalent to the passing v1 reference."
+    },
+    {
+      "dimension": "provider_free_corpus",
+      "status": "pass",
+      "finding": "All 60 prompts build, all 20 reviewed protected fixtures compile, and zero protected records quarantine. Maximum schema size is 2,145 bytes at depth 8; maximum user prompt is 6,537 bytes."
+    },
+    {
+      "dimension": "product_boundary",
+      "status": "pass",
+      "finding": "No deterministic semantic or temporal gate, semantic merge, global synthesis, evaluator, embedding, graph, or runtime behavior is added."
+    }
+  ],
+  "decision": {
+    "provider_free_role_contract_gate": "pass",
+    "adversarial_gate": "pass",
+    "smallest_probe_case_id": "amb1-case05-family-archive",
+    "smallest_probe_view_kind": "position_and_decision_trajectory",
+    "smallest_probe_shard_kind": "position_endpoint_comparison",
+    "smallest_probe_focal_turn_indices": [1, 7],
+    "reason": "This is the smallest frozen packet reproducing the observed position failure: v1 cited starting, current, and qualification evidence but its generic prose described only the starting state.",
+    "maximum_provider_calls": 1,
+    "uncertainty_or_challenge_probe_authorized": false,
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false
+  },
+  "required_source_review_after_probe": [
+    "starting_position_interpretation_matches_starting_evidence",
+    "current_position_interpretation_matches_current_evidence",
+    "qualification_interpretation_matches_qualification_evidence",
+    "trajectory_interpretation_explains_the_change_without_inflation",
+    "protected_semantic_target_is_present_even_if_adjacent_stronger_evidence_is_used"
+  ],
+  "nonclaims": [
+    "Provider-free pass is not model-behavior evidence.",
+    "One position probe cannot establish uncertainty, challenge, transfer, stability, product value, or trust.",
+    "Role-explicit shape does not prove semantic role correctness."
+  ]
+}

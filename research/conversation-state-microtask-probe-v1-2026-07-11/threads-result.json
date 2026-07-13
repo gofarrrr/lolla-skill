@@ -1,0 +1,44 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_call_result.v1",
+  "run_id": "conversation_state_microtask_probe_v1_20260711_a1",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "kind": "threads",
+  "call_attempted": true,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "provider_projection": "gemini",
+  "system_prompt_sha256": "9a3af991d29d497af7606dffad5fa62d8bac96e546140a92fba955196a0bb4a4",
+  "user_prompt_sha256": "d84acd89e097eb9f6cdfb1c29ca780c194e0ed2b63908be543aff2092e92b665",
+  "schema_sha256": "bae807b79a2f942417e5d4a28af5e37ed681d31a453f79a8fa83e14132d5f5e3",
+  "reasoning_configuration": {
+    "enabled": false
+  },
+  "operational_status": "http_error_400",
+  "semantic_status": "not_observed",
+  "validation_issues": [
+    "provider HTTP error 400"
+  ],
+  "provider_diagnostic": {
+    "code": 400,
+    "message": "Provider returned error",
+    "metadata": {
+      "raw": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Request contains an invalid argument.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+      "provider_name": "Google AI Studio",
+      "is_byok": false
+    }
+  },
+  "provider_payload_sha256": "38f2ffbcc390db8788520c242f9b909c90cc4d0715530fc7b82a69be65bc02fe",
+  "provider_calls": 1,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "evaluator_calls": 0,
+  "runtime_modified": false,
+  "duration_seconds": 1.499,
+  "stop_rule_applied": "operational_failure_stops_remaining_calls",
+  "constraints_call_status": "not_run_budget_preserved",
+  "non_claims": [
+    "provider_rejection_is_not_thread_extraction_quality",
+    "no_thread_candidate_was_observed",
+    "development_case_is_not_independent_gold",
+    "microtask_result_is_not_runtime_authority"
+  ]
+}

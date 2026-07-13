@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_terminal_source_review.v1",
+  "status": "development_case_source_review_pass",
+  "date": "2026-07-11",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "turn5_operational_completion_review": {
+    "record_count": 2,
+    "semantic_pass_count": 2,
+    "review": [
+      "Delaying expansion to improve curriculum and training is correctly paired with the current grant restriction.",
+      "Proceeding with expansion for evidence and relationships is correctly paired with restricted-work and stability tradeoffs."
+    ],
+    "invalid_record_count": 0,
+    "source_strength_inflation_count": 0
+  },
+  "complete_case_evidence_vector": {
+    "eventual_window_completion": "7/7",
+    "first_attempt_operational_success": "6/7",
+    "cooled_operational_retry": "1/1",
+    "raw_model_records": 14,
+    "admitted_records": 13,
+    "quarantined_records": 1,
+    "admitted_stable_alias_references": "32/32",
+    "protected_target_visibility": "1/1",
+    "invalid_admitted_record_count": 0,
+    "source_strength_inflation_count": 0,
+    "exact_cross_window_role_duplicate_count": 1,
+    "provider_requests_including_retry": 8,
+    "estimated_cost_usd": 0.00698625,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "interpretation": {
+    "what_improved": "The local reader preserved the alternative-plus-limit relationship that every full-conversation exploration design missed.",
+    "what_deterministic_code_contributed": "Stable focal/context citation boundaries, exact source identity, record-level admission, duplicate identity, terminal custody, and replay.",
+    "what_remains_probabilistic": "Whether a focal statement is an alternative, whether a condition is materially attached, and whether two source-valid records are conceptually redundant or useful refinements.",
+    "cost": "Seven semantic calls per fourteen-message case plus explicitly governed operational retries is materially more latency than one global reader, although the prompts and outputs are much smaller."
+  },
+  "decision": {
+    "development_case_gate_passed": true,
+    "record_level_custody_adopted_for_future_contracts": true,
+    "prospective_transfer_design_authorized": true,
+    "transfer_provider_calls_authorized": false,
+    "phase4_complete": false,
+    "graph_or_runtime_authorized": false
+  },
+  "transfer_requirements": [
+    "Select transfer cases prospectively and do not tune completed cases.",
+    "Use the four relationship-explicit full-conversation readers plus local exploration windows.",
+    "Preserve every record and operational failure independently.",
+    "Allow at most one explicitly evidenced operational retry; no semantic retry.",
+    "Measure case-level call count, latency, cost, record fan-out, exact duplicates, and source-reviewed semantic floors without a scalar score."
+  ],
+  "nonclaims": [
+    "One development case is not transfer evidence.",
+    "The local lane is not yet accepted for runtime latency or cost.",
+    "No final-answer quality, trust, effort, or proof-of-work conclusion follows."
+  ]
+}

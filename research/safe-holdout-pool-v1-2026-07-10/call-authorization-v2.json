@@ -1,0 +1,42 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_call_authorization.v2",
+  "status": "authorized_once_after_operational_repair",
+  "date": "2026-07-10",
+  "contract": {
+    "path": "research/safe-holdout-pool-v1-2026-07-10/generation-contract-v2.json",
+    "sha256": "5bcc317ccc1fe83e806447a825a28b96eec4e87292e77c59b13ceaa2501b0290"
+  },
+  "v1_boundary": {
+    "status": "failed_preserved_not_retried",
+    "failure_decision_sha256": "a9d6f24bfd7b471b628092fa0bb4fc6ba07743f3798ef381d6d8495c4462b83b",
+    "semantic_prompt_changed": false,
+    "case_specs_changed": false,
+    "selection_contract_changed": false
+  },
+  "pre_call_checks": {
+    "v2_contract_validation": "passed",
+    "v2_dry_run": "passed",
+    "focused_tests": "7 passed",
+    "output_directory_absent": true,
+    "supported_reasoning_effort": "minimal",
+    "prompt_hashes_equal_v1": true,
+    "selection_order_frozen_and_withheld": true,
+    "hash_locks_current": true
+  },
+  "authorized_action": {
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "estimated_cost_ceiling_usd": 0.06,
+    "pipeline_calls": 0,
+    "stage_a_calls": 0,
+    "stage_b_calls": 0
+  },
+  "post_call_boundary": "Perform safety-and-contract review in frozen rank order. Do not rank or select for likely Lolla, graph, mental-model, or answer-delta value.",
+  "non_claims": [
+    "not a semantic prompt variant",
+    "not Stage A authorization",
+    "not graph-test authorization",
+    "not product validation"
+  ]
+}

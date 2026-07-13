@@ -1,0 +1,96 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_transfer_repeat_1",
+  "status": "frozen_before_transfer_calls",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-repeat-r1",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+  "base_contract_sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225",
+  "purpose": "Measure bounded second-run stability on one mechanically selected case from each prospective source stratum without changing the V1 model, prompts, schemas, graph policy, or validators.",
+  "integrity_limit": "The V1 plan required a predeclared cross-stratum sentinel subset, but V14 froze only the primary repeat identity and did not name that subset. This repair is frozen after T1 primary results were visible but before any repeat call. It can measure observed repeat variance; it cannot support a claim that repeat selection was prospectively independent of T1 results.",
+  "selection": {
+    "source": "research/simulated-reliability-corpus-v1-2026-07-12/manifest.json",
+    "source_sha256": "93fabb750960e9c3c2b683f8ae576ca61ca2c50204039718cde0aff7c9ffbb27",
+    "strata_source": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json",
+    "strata_source_sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486",
+    "rule": "Within each expected_public_behavior stratum, select the case with the lexicographically smallest frozen source SHA-256.",
+    "selected": [
+      {
+        "expected_public_behavior": "pressure_expected",
+        "case_id": "v1-case01-flood-infrastructure",
+        "source_sha256": "04e787853c65c43dbca1c0d974a902fbb2bf70fabc90c533fd3e676ed910fecf"
+      },
+      {
+        "expected_public_behavior": "stand_down_expected",
+        "case_id": "v1-case07-cooperative-scheduling",
+        "source_sha256": "27e977eb0169508308c89beb46abef92a6eaebe5736e53d42bc65320aa6f1e2b"
+      },
+      {
+        "expected_public_behavior": "park_expected",
+        "case_id": "v1-case12-newsroom-platform",
+        "source_sha256": "3f19c0d9ebf3c0f7c5ac665d8b66b045af298a1e9627c3db61a1c79b76f70a03"
+      }
+    ]
+  },
+  "transfer": {
+    "authorized_case_ids": [
+      "v1-case01-flood-infrastructure",
+      "v1-case07-cooperative-scheduling",
+      "v1-case12-newsroom-platform"
+    ],
+    "maximum_provider_calls": 18,
+    "maximum_provider_reported_cost_usd": 2.0,
+    "repeat_ids": ["repeat_2"],
+    "automatic_retries": 0,
+    "response_healing": false,
+    "fallback_models": 0,
+    "tuning_between_cases": false,
+    "source_review_during_execution": false,
+    "batch_must_be_sealed_before_review": true,
+    "failure_policy": "Preserve the first terminal result for each repeat case. Do not repair, retry, lower token ceilings, substitute a model, or replace a selected case."
+  },
+  "activation_prerequisites": {
+    "provider_calls_currently_authorized": 0,
+    "explicit_founder_cost_decision_required": true,
+    "all_three_selected_primary_cases_must_have_terminal_artifacts": true,
+    "all_three_selected_primary_cases_must_have_completed_semantic_paths": true,
+    "currently_unmet": [
+      "founder cost decision",
+      "v1-case12-newsroom-platform primary semantic path"
+    ],
+    "authorization_artifact_must_be_created_only_after_prerequisites_pass": true
+  },
+  "stability_comparison": {
+    "compare_primary_to_repeat_2": [
+      "terminal stage and operational status",
+      "starting, current, and qualification record count and source custody",
+      "material role and qualification coverage",
+      "per-mechanism user-process status",
+      "per-mechanism vanilla-answer coverage",
+      "routing disposition and final public behavior",
+      "direct and graph candidate identities and provenance",
+      "candidate apply, reject, and park dispositions",
+      "public answer material additions, losses, unsupported specificity, and bloat",
+      "calls, tokens, cost, latency, served model, and provider"
+    ],
+    "exact_text_match_not_required": true,
+    "recommendation_match_not_sufficient": true,
+    "scalar_stability_score": null,
+    "winner_label": null
+  },
+  "evaluation": {
+    "use_existing_review_contract": "docs/evals/simulated-reliability-v1-review-contract-v1.json",
+    "review_contract_sha256": "1c12932f5945d789edafb7f268d2535bb1139fa220c6bf052c271ab23aef7956",
+    "review_after_complete_repeat_batch_only": true,
+    "arm_identity_hidden": true,
+    "source_review_disposition_hidden": true,
+    "no_scalar_quality_or_stability_score": true
+  },
+  "non_claims": [
+    "one_repeat_per_stratum_does_not_estimate_a_population_variance",
+    "same_seed_family_does_not_make_output_deterministic",
+    "stable_stand_down_can_be_consistently_wrong",
+    "stable_wording_does_not_prove_semantic_fidelity",
+    "repeat_selection_was_not_frozen_before_primary_results",
+    "no_provider_call_is_authorized_by_this_contract_alone"
+  ]
+}

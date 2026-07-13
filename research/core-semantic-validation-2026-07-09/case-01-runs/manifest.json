@@ -1,0 +1,26 @@
+{
+  "schema_version": "lolla.core_semantic_case_run_manifest.v0",
+  "case_id": "case-01-enterprise-logo-beta",
+  "source_run_id": "20260709T201634Z_7a7930",
+  "source_conversation_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5",
+  "provider_status": "all_shadow_calls_ok",
+  "graph_runtime_modified": false,
+  "artifacts": [
+    {"path":"compact-01.json","sha256":"f4f450a81235f96787e8d62bf288574029bd8f3d1859f0c9a3a6124ed3eed46a","path_kind":"live_compact_extraction"},
+    {"path":"compact-02.json","sha256":"5e6ce5bd74d7407b17d4e2f47ee5f0aa693018b44ff1237b614dadd41b67adc7","path_kind":"live_compact_extraction"},
+    {"path":"compact-03.json","sha256":"189f25b979640513d6ab5e721e585e31f364ef9414cab46cf6f83a7b65a15876","path_kind":"live_compact_extraction"},
+    {"path":"shadow-01.json","sha256":"48b453845b7ca6a16092e2d646d9acb6042c03d14dde755c0863072bf9b265f4","path_kind":"decision_work_aligned_shadow"},
+    {"path":"shadow-02.json","sha256":"ca857028cbf513bc2097668870673a4a81dbaa6dc676619c512b3832ae3db94f","path_kind":"decision_work_aligned_shadow"},
+    {"path":"shadow-03.json","sha256":"28bb9a7b42b15cb403a690188d1a550a58a06ca749b22b0607c07cfec1deca17","path_kind":"decision_work_aligned_shadow"}
+  ],
+  "comparison": {
+    "path": "../two-path-comparison.json",
+    "sha256": "0cbb9426b130d30fe33d166229983fda4be03cd86ef619adef550b057b307263"
+  },
+  "non_claims": [
+    "three_repeats_are_not_production_reliability_proof",
+    "model_outputs_are_not_human_validation",
+    "source_grounding_is_not_semantic_correctness_proof",
+    "no_graph_input_was_changed"
+  ]
+}

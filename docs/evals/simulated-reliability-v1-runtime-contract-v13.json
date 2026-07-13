@@ -1,0 +1,35 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_12",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a13-pressure-replay",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v12.json",
+  "base_contract_sha256": "7e4e936c8f7f257e1d325414bcf0dffa4368e353914a4ba1693bffa821d5195d",
+  "repair_basis": "A12 defensibly stood down before pressure, so replay the exact frozen A11 active portfolios under the A12 epistemic-restraint prompt without repeating upstream calls.",
+  "calibration": {
+    "a12_review_path": "research/simulated-reliability-v1-calibration-2026-07-12/a12/calibration-review.json",
+    "maximum_provider_calls": 2,
+    "pressure_replay": {
+      "case_id": "amb1-case03-creative-partnership",
+      "bundle_path": "research/simulated-reliability-v1-calibration-2026-07-12/a11/amb1-case03-creative-partnership-primary/three-arm-bundle.json",
+      "bundle_sha256": "ce93d62718faddcf8b286ad27ad415a3938397642731e31751022f596276ae42",
+      "arms": ["direct_pressure", "graph_expanded_pressure"],
+      "upstream_calls_repeated": 0
+    },
+    "stop_rule": "Stop before transfer if either replay fails exact parsing/local validation or still converts lenses into unsupported risk, behavioral, or recommendation confidence."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_pressure_replay_v1.py",
+      "sha256": "aa1946aaededdc4921dab5f629077d1c7c882899d8f3d17b860c676ea022129d"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a12/calibration-review.json",
+      "sha256": "7c3049d8377bcaaf0ea2bd084501cced2fc7b95a24f70ce3f475ae4d8d8875c1"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a11/amb1-case03-creative-partnership-primary/three-arm-bundle.json",
+      "sha256": "ce93d62718faddcf8b286ad27ad415a3938397642731e31751022f596276ae42"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_holdout_contract.v0",
+  "status": "frozen_before_calls",
+  "batch": "accountability_hardened_replacement_paired_holdout",
+  "case": {
+    "case_id": "case-08-oncologist-career-family",
+    "source_path": "research/test-cases/case_oncologist_conversation.txt",
+    "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162",
+    "turn_pairs": 9,
+    "case_role": "downstream_holdout_for_compound_family_load_role_authority_transition_duties_and_contract_contingent_reversibility"
+  },
+  "holdout_boundary": {
+    "downstream_paired_program_previously_used": false,
+    "historical_semantic_corpus_use_disclosed": true,
+    "historical_extraction_reused": false,
+    "old_downstream_output_reused": false,
+    "selected_after_case02_infrastructure_failure_without_observing_case02_semantic_output": true
+  },
+  "rejected_historical_extraction": {
+    "path": "research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/oncologist_extraction.json",
+    "sha256": "bd0e3a2640a7e59c129eb48d47fa47b4967b7628f931d870206f9111a0672371",
+    "reason": "Historical extraction predates current capture, quote-custody, call-ceiling, and paired downstream contracts."
+  },
+  "fresh_extraction": {
+    "script_path": "scripts/run_extract.py",
+    "script_sha256": "5f971562148eba34d0150cd6c14166441a0c980ac62f5127f428201d1f40faec",
+    "output_path_preflight_required": true,
+    "initial_calls": 1,
+    "allowed_quote_repair_calls": 1,
+    "experiment_retries": 0,
+    "required_status": "ok",
+    "required_capture_health": "good",
+    "required_fabricated_quote_count": 0,
+    "required_captured_turn_count": 18,
+    "truncation_allowed": false
+  },
+  "pipeline": {
+    "script_path": "scripts/run_pipeline.py",
+    "script_sha256": "7710f55800d32bb5d54315c353244edd30dcefed123357ee14f6a847aa46de9f",
+    "sealer_path": "scripts/evals/seal_reasoning_portfolio_pipeline_result.py",
+    "sealer_sha256": "2515d3a290fec48ef8ea86b7d2eacb1f58e60ab02014080a6bf570716e646abf",
+    "bullshit_index_path": "engine/system_b/bullshit_index.py",
+    "bullshit_index_sha256": "dc08aff6899eb5859e89c61cd4bc035967a4fdd3e4d1afcb3ca44a8e9ae4860e",
+    "v60_contract_path": "engine/system_b/v60_enrichment.py",
+    "v60_contract_sha256": "e16026bdddb9f5bc281af39b7a3158805ecdc8f4b3ef501347f072405477b249",
+    "affordances_path": "data/compiled/model_affordances/affordances_v60.json",
+    "affordances_sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8",
+    "provider": "openrouter",
+    "runtime_model_from_existing_environment": true,
+    "embeddings": "auto_direct_openai_only",
+    "skip_revision": true,
+    "pre_step6_portfolio": "step6_private",
+    "v60_enrichment": "auto",
+    "companion_candidate_cap": 60,
+    "cached_portfolio_required": false
+  },
+  "protocol": {
+    "path": "docs/evals/reasoning-portfolio-two-stage-holdout-protocol-v0.md",
+    "sha256": "52755c2c0668c4059d36acd2f5bbada43a1e62b8fbc0f484223e11482ba2243d"
+  },
+  "pipeline_call_budget": {
+    "extraction_openrouter_call_ceiling": 2,
+    "core_pressure_openrouter_call_ceiling": 22,
+    "bullshit_index_openrouter_call_ceiling": 12,
+    "total_openrouter_call_ceiling": 36,
+    "openai_embedding_and_expansion_call_ceiling": 8,
+    "automatic_experiment_retries": 0,
+    "estimated_total_cost_ceiling_usd": 0.15
+  },
+  "source_red_lines": {
+    "must_preserve": [
+      "The user is a 46-year-old academic oncologist considering a Merck Medical Director role at roughly three times the academic salary.",
+      "The role is described as three days per week in New Jersey; the husband is a Boston law-firm partner and cannot readily move.",
+      "The user reports feeling stuck and values possible influence over portfolio decisions, but has not diligenced the actual compounds, priorities, team, or decision authority.",
+      "The user's mother has early-onset dementia in Chicago; the user states an estimated three-to-five good-year window and currently visits monthly.",
+      "The user identifies transition concerns for four fellows, especially Priya, and for a patient named Robert whose treatment protocol is being designed.",
+      "The husband said the user should take the role if wanted, but the user distinguishes that from affirmative family agreement.",
+      "The written offer reportedly contains a two-year immunotherapy-development non-compete while academic return is reportedly not restricted; scope and enforceability are not established.",
+      "The conversation ends with diligence and transition actions, not an accepted offer."
+    ],
+    "must_not_invent": [
+      "the mother's future rate of decline or recoverable visit schedule",
+      "the husband's consent, future family load, resentment, or household outcome",
+      "patient-care, professional, institutional, ethical, or legal obligations",
+      "that a 90-day start, flexible schedule, adjunct status, grants transfer, or Chicago protection will be accepted or sufficient",
+      "non-compete scope, validity, enforceability, or effect beyond the user's report",
+      "industry-to-academic return probabilities, normal career trajectories, career-window timing, or common two-year exit patterns",
+      "Priya's, Robert's, David's, Merck's, or BAMC's future reactions or outcomes",
+      "the user's actual portfolio authority, reorganization risk, role quality, or correct career decision"
+    ]
+  },
+  "preliminary_hypothesis": {
+    "candidate_mechanisms": [
+      "compound_load_and_bottleneck_interaction_across_NJ_Chicago_and_household",
+      "stated_role_leverage_versus_actual_decision_authority_and_incentives",
+      "transition_duty_separated_from_irreplaceability_or_identity_guilt",
+      "exit_option_value_contingent_on_contract_and_institutional_relationships",
+      "transformative_money_compared_with_nonrecoverable_time_without_false_precision"
+    ],
+    "strong_control_expected_to_recover": [
+      "unsupported legal and career statistics",
+      "the need for the husband conversation",
+      "contract and portfolio diligence",
+      "schedule and transition verification"
+    ],
+    "treatment_must_not_do": [
+      "force accepting or rejecting Merck",
+      "interpret the non-compete or professional duties",
+      "predict dementia or household outcomes",
+      "turn every stakeholder into a veto",
+      "manufacture a reversible alternative that is not institutionally available"
+    ]
+  },
+  "pipeline_admission_gates": [
+    "all_frozen_hashes_match",
+    "output_path_ready_before_provider_initialization",
+    "fresh_extraction_status_ok",
+    "capture_health_good_and_18_of_18_messages_preserved",
+    "zero_fabricated_reasoning_passages_after_at_most_one_quote_repair",
+    "pipeline_result_status_ok",
+    "capture_not_truncated",
+    "pre_step6_private_table_status_ready",
+    "v60_enrichment_status_active",
+    "v60_ledger_skeleton_schema_is_v60_skill_consideration_ledger_v2",
+    "all_stage_and_cost_ceilings_met",
+    "no_experiment_retry_occurred"
+  ],
+  "preliminary_pressure_gate_before_stage_b": {
+    "minimum_trace_supported_candidate_pressures_not_obviously_present_in_original_reasoning": 2,
+    "minimum_with_plausible_action_sequence_evidence_gate_or_guardrail_consequence": 1,
+    "candidate_or_model_count_alone_can_pass": false,
+    "longer_private_table_alone_can_pass": false
+  },
+  "stop_rules": [
+    "no_source_prompt_model_cap_or_stage_a_contract_change_after_first_stage_a_call",
+    "no_automatic_experiment_retry",
+    "one_built_in_quote_repair_is_the_only_allowed_extraction_retry",
+    "stop_before_pipeline_if_extraction_admission_fails",
+    "stop_before_stage_b_if_pipeline_or_preliminary_pressure_admission_fails",
+    "stage_b_must_use_exact_pressure_id_custody_and_be_hash_locked_before_either_downstream_arm",
+    "stop_if_any_stage_or_cost_ceiling_is_exceeded",
+    "no_runtime_promotion_from_one_holdout",
+    "no_retroactive_change_to_case08_semantic_scores"
+  ],
+  "non_claims": [
+    "not_human_review",
+    "not_product_proof",
+    "not_medical_legal_employment_financial_or_relationship_advice_for_a_real_user",
+    "not_an_outcome_quality_test",
+    "not_runtime_promotion_authority",
+    "not_evidence_that_more_private_context_is_better"
+  ]
+}

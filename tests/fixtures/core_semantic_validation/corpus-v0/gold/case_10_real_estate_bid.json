@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-10-real-estate-bid",
+  "source_file_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_raise_or_walk", "dimension": "operative_question", "description": "The initial decision is whether to raise the bid or walk.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "We have until tomorrow noon to raise or walk."}]},
+    {"observation_id": "question.current_middle_path", "dimension": "operative_question", "description": "The current question asks whether a lower counter is a middle path.", "evidence": [{"turn_index": 5, "speaker": "user", "quote": "Would that be a middle path?"}]},
+    {"observation_id": "pressure.insurance_requirement", "dimension": "user_corrections_and_pressure", "description": "The electrical work becomes mandatory because of insurance.", "evidence": [{"turn_index": 3, "speaker": "user", "quote": "our insurance won't cover us long-term without updating it"}]},
+    {"observation_id": "constraint.renovation_gap", "dimension": "constraints_and_options", "description": "Known repairs exceed the renovation savings.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "it needs about $120K in work"}, {"turn_index": 1, "speaker": "user", "quote": "We have $80K saved for renovation beyond the down payment."}]},
+    {"observation_id": "stance.need_state_affordability", "dimension": "assistant_positions_and_revisions", "description": "The assistant distinguishes buying affordability from owning-in-need-state affordability.", "evidence": [{"turn_index": 3, "speaker": "assistant", "quote": "you can afford the purchase price. You likely can't afford the house in its actual need-state with no buffer."}]},
+    {"observation_id": "drop.regret_argument", "dimension": "dropped_or_under_carried_threads", "description": "The husband's scarcity-and-regret argument remains emotionally live.", "evidence": [{"turn_index": 4, "speaker": "user", "quote": "we'll regret walking away over $45K"}]},
+    {"observation_id": "boundary.sensible_or_scared", "dimension": "uncertainty_and_evidence_boundaries", "description": "The user cannot distinguish financial caution from fear.", "evidence": [{"turn_index": 4, "speaker": "user", "quote": "I don't know if I'm being sensible or just scared."}]},
+    {"observation_id": "option.final_ceiling", "dimension": "constraints_and_options", "description": "The user establishes a final bid ceiling.", "evidence": [{"turn_index": 6, "speaker": "user", "quote": "Probably $925K if I'm being honest."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.auction_outcome", "description": "The auction outcome is not observed."}
+  ]
+}

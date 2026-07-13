@@ -29,6 +29,10 @@ _MAX_TEXT = 420
 LEDGER_DISPOSITIONS = frozenset(
     {"used", "rejected", "deferred", "private_guardrail", "confirming_support"}
 )
+_LEDGER_TOP_LEVEL_FIELDS = frozenset({"schema_version", "status", "items", "notes"})
+_LEDGER_DECISION_FIELDS = frozenset(
+    {"disposition", "why", "visible_effect", "private_guardrail"}
+)
 _GATES = {
     "step6_private_context_allowed": True,
     "live_card_generation_allowed": False,
@@ -86,6 +90,7 @@ def build_pre_step6_private_table(
         "table_char_count": len(rendered),
         "table_section_count": len(sources),
         "source_items": sources,
+        "v60_transport_coverage": _v60_transport_coverage(result),
         "consideration_ledger_skeleton": _ledger_skeleton(sources),
         "sidecars": {
             "markdown": "",
@@ -114,6 +119,18 @@ def validate_pre_step6_private_table(payload: dict[str, Any]) -> None:
         raise ValueError("private table gates are invalid")
     if "rendered_private_table" in payload:
         raise ValueError("private table markdown belongs in the sidecar, not result.json")
+    v60_coverage = _as_mapping(payload.get("v60_transport_coverage"))
+    selected_count = int(v60_coverage.get("selected_card_count", 0) or 0)
+    presented_count = int(v60_coverage.get("presented_card_count", 0) or 0)
+    omitted_ids = [
+        _text(item)
+        for item in _as_list(v60_coverage.get("omitted_card_ids"))
+        if _text(item)
+    ]
+    if presented_count > selected_count:
+        raise ValueError("V60 presented-card count cannot exceed selected-card count")
+    if selected_count - presented_count != len(omitted_ids):
+        raise ValueError("V60 transport omission count is inconsistent")
     cache = _as_mapping(payload.get("cache"))
     if cache.get("live_card_generation_allowed") is not False:
         raise ValueError("private table must not generate live card decks")
@@ -166,6 +183,12 @@ def validate_pre_step6_private_table_ledger(
         errors.append("status must be completed")
     if not isinstance(ledger.get("items"), list):
         errors.append("items must be a list")
+    if set(ledger) != _LEDGER_TOP_LEVEL_FIELDS:
+        errors.append("ledger top-level fields must exactly match the skeleton contract")
+    if not isinstance(ledger.get("notes"), list) or any(
+        not isinstance(note, str) for note in _as_list(ledger.get("notes"))
+    ):
+        errors.append("notes must be an array of strings")
 
     source_items = [
         _as_mapping(item)
@@ -183,6 +206,11 @@ def validate_pre_step6_private_table_ledger(
         if _text(item.get("source_id"))
     ]
     expected_set = set(expected_ids)
+    skeleton_by_id = {
+        _text(item.get("source_id")): item
+        for item in skeleton_items
+        if _text(item.get("source_id"))
+    }
 
     items = [_as_mapping(item) for item in _as_list(ledger.get("items"))]
     seen: list[str] = []
@@ -199,10 +227,30 @@ def validate_pre_step6_private_table_ledger(
             if source_id not in expected_set:
                 errors.append(f"{prefix}.source_id is unknown")
                 unknown.append(source_id)
+        skeleton_item = skeleton_by_id.get(source_id)
+        if skeleton_item:
+            if set(item) != set(skeleton_item):
+                errors.append(f"{prefix} fields must exactly match ledger skeleton")
+            for field in set(skeleton_item) - _LEDGER_DECISION_FIELDS:
+                if item.get(field) != skeleton_item.get(field):
+                    errors.append(f"{prefix}.{field} must match ledger skeleton")
         if disposition not in LEDGER_DISPOSITIONS:
             errors.append(f"{prefix}.disposition is invalid")
         elif disposition:
             disposition_counts[disposition] = disposition_counts.get(disposition, 0) + 1
+        for field in _LEDGER_DECISION_FIELDS - {"disposition"}:
+            if not isinstance(item.get(field), str):
+                errors.append(f"{prefix}.{field} must be a string")
+        if not _text(item.get("why")):
+            errors.append(f"{prefix}.why is required")
+        visible_effect = _text(item.get("visible_effect"))
+        private_guardrail = _text(item.get("private_guardrail"))
+        if disposition == "used" and not (visible_effect or private_guardrail):
+            errors.append(
+                f"{prefix}.used requires visible_effect or private_guardrail"
+            )
+        if disposition == "private_guardrail" and not private_guardrail:
+            errors.append(f"{prefix}.private_guardrail disposition requires private_guardrail")
 
     seen_set = set(seen)
     missing = sorted(expected_set - seen_set)
@@ -220,6 +268,13 @@ def validate_pre_step6_private_table_ledger(
         "missing_source_ids": missing,
         "duplicate_source_ids": duplicates,
         "unknown_source_ids": sorted(set(unknown)),
+        "visible_effect_claim_count": sum(
+            1 for item in items if _text(item.get("visible_effect"))
+        ),
+        "private_guardrail_claim_count": sum(
+            1 for item in items if _text(item.get("private_guardrail"))
+        ),
+        "semantic_effect_consistency_review": "not_performed_by_structural_validator",
         "errors": errors,
     }
 
@@ -356,6 +411,14 @@ def _render_private_table(
     v60 = _v60_items(result)
     if v60:
         _append_section(parts, sources, "V60 private enrichment", v60)
+        coverage = _v60_transport_coverage(result)
+        omitted = int(coverage.get("omitted_card_count", 0) or 0)
+        if omitted:
+            omitted_ids = ", ".join(coverage.get("omitted_card_ids", []))
+            parts.append(
+                f"- Transport note: {omitted} additional selected V60 card(s) "
+                f"were not placed in this bounded table: {omitted_ids}."
+            )
 
     parts.extend(["", "## Cached Portfolio Cards"])
     if cached_deck:
@@ -633,13 +696,29 @@ def _v60_items(result: dict[str, Any]) -> list[dict[str, str]]:
         card_lines = [f"- {idx}. {model}: {reason or 'Selected for private consideration.'}"]
         for affordance in _as_list(item.get("selected_affordance_cards"))[:1]:
             amap = _as_mapping(affordance)
-            text = _clip(_text(amap.get("text") or amap.get("summary") or amap.get("chunk_text")), 240)
+            text = _clip(
+                _text(
+                    amap.get("text")
+                    or amap.get("summary")
+                    or amap.get("chunk_text")
+                    or amap.get("mechanism")
+                ),
+                240,
+            )
             cid = _text(amap.get("chunk_id") or amap.get("id"))
             if text:
                 card_lines.append(f"  - Affordance {cid}: {text}")
         for absence in _as_list(item.get("selected_absence_records"))[:1]:
             amap = _as_mapping(absence)
-            text = _clip(_text(amap.get("text") or amap.get("summary") or amap.get("chunk_text")), 240)
+            text = _clip(
+                _text(
+                    amap.get("text")
+                    or amap.get("summary")
+                    or amap.get("chunk_text")
+                    or amap.get("reason")
+                ),
+                240,
+            )
             cid = _text(amap.get("chunk_id") or amap.get("id"))
             if text:
                 card_lines.append(f"  - Absence {cid}: {text}")
@@ -654,6 +733,31 @@ def _v60_items(result: dict[str, Any]) -> list[dict[str, str]]:
             )
         )
     return items
+
+
+def _v60_transport_coverage(result: dict[str, Any]) -> dict[str, Any]:
+    v60 = _as_mapping(result.get("v60_enrichment"))
+    selected = (
+        _as_list(v60.get("selected_cards"))
+        if _text(v60.get("status")) == "active"
+        else []
+    )
+    selected_ids = [
+        _text(_as_mapping(card).get("card_id") or _as_mapping(card).get("model_id"))
+        or f"card-{index}"
+        for index, card in enumerate(selected, start=1)
+    ]
+    presented_ids = selected_ids[:_MAX_ITEMS_PER_SECTION]
+    omitted_ids = selected_ids[_MAX_ITEMS_PER_SECTION:]
+    return {
+        "selected_card_count": len(selected_ids),
+        "presented_card_count": len(presented_ids),
+        "omitted_card_count": len(omitted_ids),
+        "presented_card_ids": presented_ids,
+        "omitted_card_ids": omitted_ids,
+        "per_section_limit": _MAX_ITEMS_PER_SECTION,
+        "selected_chunk_content_rendered": True,
+    }
 
 
 def _source_atom(

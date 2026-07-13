@@ -1,0 +1,91 @@
+{
+  "context_alias_map": [
+    {
+      "alias": "e001",
+      "span_id": "span-eca3dc2ee6f92192",
+      "speaker": "user",
+      "text_sha256": "58132cd5d35dcdad1075f754a1b423adacedbee6ade25fe6b075325960848073",
+      "turn_index": 1
+    },
+    {
+      "alias": "e002",
+      "span_id": "span-e0a031480f6b45e3",
+      "speaker": "assistant",
+      "text_sha256": "ce844c2d158b8649769774f50b2e8db2971e24804b3079a50d15033f2d5b55cd",
+      "turn_index": 1
+    }
+  ],
+  "focal_alias_map": [
+    {
+      "alias": "e003",
+      "span_id": "span-bf7c335b4023abc5",
+      "speaker": "user",
+      "text_sha256": "dbd8522a106f7ab46ed3d2c6aac303ea1c59e7dd4a631d73093609d5fbc4a17a",
+      "turn_index": 2
+    },
+    {
+      "alias": "e004",
+      "span_id": "span-8fa72084d8bd395f",
+      "speaker": "assistant",
+      "text_sha256": "3fd369715b05669dc85f0a149ac0f9755fa3a5f1551c54add46856879106cb18",
+      "turn_index": 2
+    }
+  ],
+  "metrics": {
+    "context_sentence_count": 2,
+    "focal_message_count": 2,
+    "focal_sentence_count": 2,
+    "future_max_records": 2,
+    "input_utf8_bytes": 1844
+  },
+  "packet": {
+    "boundary": {
+      "auxiliary_ledger_included": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_requested": false,
+      "protected_target_included": false,
+      "semantic_prefilter_performed": false,
+      "source_review_fixture_included": false
+    },
+    "case_id": "exploration-local-cross-turn",
+    "focal_pair": {
+      "annotated_sentence_text": "[Turn 2 USER]\ne003\tThat option only works if a named operator commits before we announce it.\n[Turn 2 ASSISTANT]\ne004\tThen treat missing named ownership as a failure condition, not as work to solve after launch.",
+      "citation_allowed": true,
+      "evidence_aliases": [
+        "e003",
+        "e004"
+      ]
+    },
+    "focal_turn_index": 2,
+    "prior_context": {
+      "alternative_citation_allowed": true,
+      "annotated_sentence_text": "[Turn 1 USER]\ne001\tWe need a way to test demand without committing the whole team.\n[Turn 1 ASSISTANT]\ne002\tOne option is to launch a small pilot next month.",
+      "attached_limit_citation_allowed": false,
+      "citation_allowed": false,
+      "evidence_aliases": [
+        "e001",
+        "e002"
+      ],
+      "included": true
+    },
+    "question": "Which materially distinct alternatives were explored, and what limitation accompanied each one?",
+    "response_contract": {
+      "alternative_and_attached_limit_roles_required": true,
+      "attached_limit_must_be_focal": true,
+      "auxiliary_observation_ids_allowed": false,
+      "free_form_source_quotes_allowed": false,
+      "maximum_records": 2,
+      "prior_context_alternative_citation_allowed": true,
+      "valid_empty_output_allowed": true
+    },
+    "schema_version": "lolla.reasoning_process_exploration_local_packet.v1",
+    "source": {
+      "conversation_message_count": 4,
+      "source_path": "tests/fixtures/reasoning_process_exploration_local/cross_turn_relationship.txt",
+      "source_sha256": "sha256:e113aec8aa7c123c575792d53734b62b3cdddd165dc1da1bb4a4b3b10bc1025c"
+    },
+    "status": "target_blind_provider_free_local_exploration_packet",
+    "view_kind": "exploration_and_alternatives",
+    "window_id": "exploration-local-cross-turn-exploration-turn-002"
+  }
+}

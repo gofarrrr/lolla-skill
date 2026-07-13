@@ -1,0 +1,38 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_v4_ablation_review.v1",
+  "status": "ablation_complete_no_support_for_ledger_anchoring_hypothesis",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-exploration-v4-conversation-only-case02-v1",
+  "operational_status": "pass",
+  "typed_status": "quarantined",
+  "typed_failure": "With no auxiliary ledger visible, all four records placed sentence aliases into auxiliary_observation_ids; those IDs were correctly rejected as unknown.",
+  "semantic_review": {
+    "named_role_recruitment_alternative_visible": false,
+    "not_all_ownership_limit_visible": false,
+    "other_returned_alternatives_source_supported": true,
+    "comparison": "The ledger-backed chronological v3 reader recovered the named-role alternative but not its minority limit. The conversation-only reader recovered neither. Omitting the ledger did not improve the protected failure."
+  },
+  "decision": {
+    "auxiliary_ledger_is_root_cause": false,
+    "auxiliary_ledger_may_help_earlier_recall": true,
+    "single_full_conversation_exploration_reader_reliable": false,
+    "additional_prompt_repair_authorized": false,
+    "additional_provider_call_authorized": false,
+    "phase4_transfer_authorized": false,
+    "next_architecture_question": "Design an exploration-only local chronological harvesting path that preserves alternative-plus-attached-limit pairs without a fresh global synthesizer, while leaving the four passing full-conversation views unchanged."
+  },
+  "accounting": {
+    "provider_calls": 1,
+    "estimated_cost_usd": 0.001959,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "nonclaims": [
+    "One ablation does not prove auxiliary ledgers are always beneficial or harmless.",
+    "The result rejects this full-conversation exploration reader, not probabilistic semantic interpretation or the hybrid architecture."
+  ]
+}

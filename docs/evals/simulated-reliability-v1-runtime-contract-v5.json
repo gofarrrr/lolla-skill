@@ -1,0 +1,45 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_4",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a5",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v4.json",
+  "base_contract_sha256": "5461f331cc6356932d3504042703df714e6cf38dd943b5e1ee9a134d5f76964f",
+  "repair_basis": "A4 showed that assistant contributions were visible but could not be cited by the role-only mechanism response contract. The joint-status interface is reclassified to expose exact user-role and assistant-contribution evidence channels.",
+  "schema_contract": {
+    "mechanism_sha256": "9aa2a83ce8e73464e12fc05929c62a7dede0583615b12bb7dc96561aebbf55b6",
+    "mechanism_schema_bytes": 1749,
+    "mechanism_schema_depth": 8,
+    "mechanism_evidence_fields": [
+      "source_role_record_ids",
+      "source_assistant_contribution_ids"
+    ],
+    "mechanism_response_compiler": "engine.system_b.simulated_reliability_v1.compile_mechanism_response_v1"
+  },
+  "pipeline": {
+    "mechanism_joint_status_source_attribution": "probabilistic status with deterministic exact-ID validation across user-role and assistant-contribution evidence",
+    "assistant_citation_deterministically_means_resolved": false,
+    "routing_projection_fields_changed": false,
+    "additional_provider_calls": 0
+  },
+  "calibration": {
+    "a4_failure_preserved_at": "research/simulated-reliability-v1-calibration-2026-07-12/a4/amb1-case01-product-scope-primary",
+    "a4_outputs_reused": false,
+    "all_a5_call_identities_are_fresh": true,
+    "stop_rule": "If the product-scope sentinel again routes counterpressure already operationalized in assistant-turn-007, stop this mechanism architecture; do not add another prompt variant or paid model swap."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "5160178c76c1ac49a03f65a4f3f83ba24d4cd0dc94b9db2a7ee44001b66fc803"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "0e553ac57d4c861cf67c8a8a45620b01f21ebabc4d048719e065b701d8aa9c78"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a4/amb1-case01-product-scope-primary/source-review.json",
+      "sha256": "a534b1a91c9da72b42aa9fd3219d2875ea2dfa0205552bbd1d5566652c9e6dcc"
+    }
+  ]
+}

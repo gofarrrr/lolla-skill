@@ -1,0 +1,448 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_v60_snapshot.v0",
+  "status": "review_safe_snapshot",
+  "source_pipeline_sha256": "89b0d72819c75e1f179931a991cdc7cdee6bb23934f38665fddc137bc57ee64e",
+  "v60_schema_version": "v60_runtime_enrichment.v1",
+  "v60_status": "active",
+  "selected_cards": [
+    {
+      "card_id": "v60-card-001-power-dynamics",
+      "model_id": "power-dynamics",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant identifies the ex-husband's potential interference as a structural constraint on the decision-making process rather than a variable to be debated or negotiated.",
+      "affordance_chunk_ids": [
+        "aff::power-dynamics.commitment-gradient-inversion"
+      ],
+      "absence_chunk_ids": [
+        "abs::power-dynamics::winning-negotiation-without-opportunity-cost-check"
+      ]
+    },
+    {
+      "card_id": "v60-card-002-inversion",
+      "model_id": "inversion",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant inverts the user's objective by showing that the desire to 'do enough' (the user's current focus) is actually the primary obstacle to the desired outcome (the daughter's trust).",
+      "affordance_chunk_ids": [
+        "aff::inversion.zero-base-continuation-test"
+      ],
+      "absence_chunk_ids": [
+        "abs::inversion::externalized-failure-without-internal-cause"
+      ]
+    },
+    {
+      "card_id": "v60-card-003-empathy",
+      "model_id": "empathy",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::empathy.ground-reframing-in-stakeholder-evidence"
+      ],
+      "absence_chunk_ids": [
+        "abs::empathy::generic-warmth-or-caring-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-004-intellectual-humility",
+      "model_id": "intellectual-humility",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::intellectual-humility.corrigible-confidence-review"
+      ],
+      "absence_chunk_ids": [
+        "abs::intellectual-humility::authority-deference-through-humility-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-005-regret-theory",
+      "model_id": "regret-theory",
+      "selection_source": "embedding_absence_reserved",
+      "selection_reason": "Reserve one embedding-recalled model with absence blockers.",
+      "affordance_chunk_ids": [
+        "aff::regret-theory.long-run-regret-with-risk-check"
+      ],
+      "absence_chunk_ids": [
+        "abs::regret-theory::regret-as-decision-rule"
+      ]
+    },
+    {
+      "card_id": "v60-card-006-commitment-bias",
+      "model_id": "commitment-bias",
+      "selection_source": "hybrid_rrf",
+      "selection_reason": "Add hybrid lane-plus-embedding model.",
+      "affordance_chunk_ids": [
+        "aff::commitment-bias.recommitment-stop-rule-review"
+      ],
+      "absence_chunk_ids": [
+        "abs::commitment-bias::sunk-cost-defense-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-007-liking-principle",
+      "model_id": "liking-principle",
+      "selection_source": "embedding_fill",
+      "selection_reason": "Fill remaining capacity from embedding rank.",
+      "affordance_chunk_ids": [
+        "aff::liking-principle.build-receptivity-with-substance-check"
+      ],
+      "absence_chunk_ids": [
+        "abs::liking-principle::affinity-without-trust-evidence"
+      ]
+    },
+    {
+      "card_id": "v60-card-008-non-violent-communication",
+      "model_id": "non-violent-communication",
+      "selection_source": "embedding_fill",
+      "selection_reason": "Fill remaining capacity from embedding rank.",
+      "affordance_chunk_ids": [
+        "aff::non-violent-communication.needs-observations-request-clarifier"
+      ],
+      "absence_chunk_ids": [
+        "abs::non-violent-communication::clarity-as-weapon-without-relational-fit"
+      ]
+    }
+  ],
+  "consideration_ledger_skeleton": {
+    "schema_version": "v60_skill_consideration_ledger.v2",
+    "transactions": [
+      {
+        "card_id": "v60-card-001-power-dynamics",
+        "model_id": "power-dynamics",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant identifies the ex-husband's potential interference as a structural constraint on the decision-making process rather than a variable to be debated or negotiated.",
+        "source_file": "Power_Dynamics_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::power-dynamics.commitment-gradient-inversion",
+        "chunk_kind": "affordance",
+        "affordance_id": "power-dynamics.commitment-gradient-inversion",
+        "chunk_status": "supported",
+        "chunk_source_file": "Power_Dynamics_rag.md"
+      },
+      {
+        "card_id": "v60-card-001-power-dynamics",
+        "model_id": "power-dynamics",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant identifies the ex-husband's potential interference as a structural constraint on the decision-making process rather than a variable to be debated or negotiated.",
+        "source_file": "Power_Dynamics_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::power-dynamics::winning-negotiation-without-opportunity-cost-check",
+        "chunk_kind": "absence",
+        "attempted_field": "winning-negotiation-without-opportunity-cost-check",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Power_Dynamics_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-002-inversion",
+        "model_id": "inversion",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant inverts the user's objective by showing that the desire to 'do enough' (the user's current focus) is actually the primary obstacle to the desired outcome (the daughter's trust).",
+        "source_file": "Inversion_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::inversion.zero-base-continuation-test",
+        "chunk_kind": "affordance",
+        "affordance_id": "inversion.zero-base-continuation-test",
+        "chunk_status": "supported",
+        "chunk_source_file": "Inversion_rag.md"
+      },
+      {
+        "card_id": "v60-card-002-inversion",
+        "model_id": "inversion",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant inverts the user's objective by showing that the desire to 'do enough' (the user's current focus) is actually the primary obstacle to the desired outcome (the daughter's trust).",
+        "source_file": "Inversion_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::inversion::externalized-failure-without-internal-cause",
+        "chunk_kind": "absence",
+        "attempted_field": "externalized-failure-without-internal-cause",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Inversion_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-003-empathy",
+        "model_id": "empathy",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Empathy_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::empathy.ground-reframing-in-stakeholder-evidence",
+        "chunk_kind": "affordance",
+        "affordance_id": "empathy.ground-reframing-in-stakeholder-evidence",
+        "chunk_status": "supported",
+        "chunk_source_file": "Empathy_rag.md"
+      },
+      {
+        "card_id": "v60-card-003-empathy",
+        "model_id": "empathy",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Empathy_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::empathy::generic-warmth-or-caring-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "generic-warmth-or-caring-affordance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Empathy_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-004-intellectual-humility",
+        "model_id": "intellectual-humility",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Intellectual_Humility_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::intellectual-humility.corrigible-confidence-review",
+        "chunk_kind": "affordance",
+        "affordance_id": "intellectual-humility.corrigible-confidence-review",
+        "chunk_status": "supported",
+        "chunk_source_file": "Intellectual_Humility_rag.md"
+      },
+      {
+        "card_id": "v60-card-004-intellectual-humility",
+        "model_id": "intellectual-humility",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Intellectual_Humility_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::intellectual-humility::authority-deference-through-humility-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "authority-deference-through-humility-affordance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Intellectual_Humility_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-005-regret-theory",
+        "model_id": "regret-theory",
+        "selection_source": "embedding_absence_reserved",
+        "selection_reason": "Reserve one embedding-recalled model with absence blockers.",
+        "source_file": "Regret_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::regret-theory.long-run-regret-with-risk-check",
+        "chunk_kind": "affordance",
+        "affordance_id": "regret-theory.long-run-regret-with-risk-check",
+        "chunk_status": "supported",
+        "chunk_source_file": "Regret_Theory_rag.md"
+      },
+      {
+        "card_id": "v60-card-005-regret-theory",
+        "model_id": "regret-theory",
+        "selection_source": "embedding_absence_reserved",
+        "selection_reason": "Reserve one embedding-recalled model with absence blockers.",
+        "source_file": "Regret_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::regret-theory::regret-as-decision-rule",
+        "chunk_kind": "absence",
+        "attempted_field": "regret-as-decision-rule",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Regret_Theory_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-006-commitment-bias",
+        "model_id": "commitment-bias",
+        "selection_source": "hybrid_rrf",
+        "selection_reason": "Add hybrid lane-plus-embedding model.",
+        "source_file": "Commitment_Bias_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::commitment-bias.recommitment-stop-rule-review",
+        "chunk_kind": "affordance",
+        "affordance_id": "commitment-bias.recommitment-stop-rule-review",
+        "chunk_status": "supported",
+        "chunk_source_file": "Commitment_Bias_rag.md"
+      },
+      {
+        "card_id": "v60-card-006-commitment-bias",
+        "model_id": "commitment-bias",
+        "selection_source": "hybrid_rrf",
+        "selection_reason": "Add hybrid lane-plus-embedding model.",
+        "source_file": "Commitment_Bias_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::commitment-bias::sunk-cost-defense-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "sunk-cost-defense-affordance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Commitment_Bias_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-007-liking-principle",
+        "model_id": "liking-principle",
+        "selection_source": "embedding_fill",
+        "selection_reason": "Fill remaining capacity from embedding rank.",
+        "source_file": "Liking_Principle_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::liking-principle.build-receptivity-with-substance-check",
+        "chunk_kind": "affordance",
+        "affordance_id": "liking-principle.build-receptivity-with-substance-check",
+        "chunk_status": "supported",
+        "chunk_source_file": "Liking_Principle_rag.md"
+      },
+      {
+        "card_id": "v60-card-007-liking-principle",
+        "model_id": "liking-principle",
+        "selection_source": "embedding_fill",
+        "selection_reason": "Fill remaining capacity from embedding rank.",
+        "source_file": "Liking_Principle_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::liking-principle::affinity-without-trust-evidence",
+        "chunk_kind": "absence",
+        "attempted_field": "affinity-without-trust-evidence",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Liking_Principle_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-008-non-violent-communication",
+        "model_id": "non-violent-communication",
+        "selection_source": "embedding_fill",
+        "selection_reason": "Fill remaining capacity from embedding rank.",
+        "source_file": "Non_Violent_Communication_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::non-violent-communication.needs-observations-request-clarifier",
+        "chunk_kind": "affordance",
+        "affordance_id": "non-violent-communication.needs-observations-request-clarifier",
+        "chunk_status": "supported",
+        "chunk_source_file": "Non_Violent_Communication_rag.md"
+      },
+      {
+        "card_id": "v60-card-008-non-violent-communication",
+        "model_id": "non-violent-communication",
+        "selection_source": "embedding_fill",
+        "selection_reason": "Fill remaining capacity from embedding rank.",
+        "source_file": "Non_Violent_Communication_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::non-violent-communication::clarity-as-weapon-without-relational-fit",
+        "chunk_kind": "absence",
+        "attempted_field": "clarity-as-weapon-without-relational-fit",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Non_Violent_Communication_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      }
+    ]
+  },
+  "raw_chunk_text_included": false,
+  "absolute_paths_included": false
+}

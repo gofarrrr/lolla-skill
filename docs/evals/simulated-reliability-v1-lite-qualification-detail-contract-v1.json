@@ -1,0 +1,113 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_qualification_detail_contract.v1",
+  "status": "frozen_before_one_review_bounded_detail_call",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-qualification-detail-a1",
+  "purpose": "Test whether Gemini Lite can turn one provider-reviewed unresolved qualification into a source-custodied role record without rereading the full conversation or inventing additional risks.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "source": {
+    "case_id": "v1-case06-industry-funded-lab",
+    "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+    "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22",
+    "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+    "position_wrapper_sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9"
+  },
+  "review": {
+    "call_artifact_path": "research/simulated-reliability-v1-lite-qualification-review-2026-07-13/a1/v1-case06-industry-funded-lab/call-01-qualification_review-result.json",
+    "call_artifact_sha256": "f1a4b16209d6949612f6e6b730b45d21fd81ed1875656673492a4e08d1ccae0d",
+    "required_outcome": "unresolved_qualification_present",
+    "selected_evidence_ids": [
+      "e052",
+      "e097"
+    ]
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limit": {
+    "max_output_tokens": 2500,
+    "reasoning_effort": "medium",
+    "wire_mode": "strict_json_schema"
+  },
+  "repeat_id": "qualification_detail",
+  "seed": 787,
+  "request_attestation": {
+    "packet_sha256": "f18e951d2c12203a8c6f790be8954c52e0b988c2957783aafb21c13f78abea6b",
+    "system_prompt_sha256": "af9b531681cc9266bf941b6cd1ba1589e999789d74aece6270e45c0ef93faf9d",
+    "user_prompt_sha256": "ed97443a6a4e49686ccdbe2014c4d8edc2ee1b2b0420db0aa8618786ffa5312f",
+    "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107"
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.005,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "review_contract": {
+    "one_record_only": true,
+    "allowed_evidence_ids": [
+      "e052",
+      "e097"
+    ],
+    "required_meaning": "The partnership can still shape what young researchers, hiring, and laboratory attention treat as important even when contractual safeguards work.",
+    "modal_boundary": "Preserve the user's strong assessment that this effect remains; do not upgrade it into proof that the partnership must be rejected or that no governance response is possible.",
+    "no_additional_risk_search": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "full_conversation_repeated": false,
+    "quiet_detail_call_authorized": false,
+    "runtime_join_authorized_only_after_source_review": true,
+    "mechanism_call_authorized": false,
+    "production_model_selection_authorized": false,
+    "Gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_qualification_detail_probe_v1.py",
+      "sha256": "5c8df2734480d1c381b170e0c75b5a0521a651cf9c16122ae8c1f6f9fb82b47c"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_qualification_detail_v1.py",
+      "sha256": "071c55d8e416c9f27808b9d44b6c4e81476b5d77ee08ad2b49c9030cceda7ae9"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_qualification_review_v1.py",
+      "sha256": "c002a7dda334e3f62adf3f538cbb6647cace685475dc97cb92fafb19004ebdfc"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-decomposed-roles-quiet-2026-07-13/a1/source-review.json",
+      "sha256": "8473abd220f404e39251f29837b3aaa25b38f31a24244367b976ce61a574a5b1"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-qualification-review-2026-07-13/a1/v1-case06-industry-funded-lab/call-01-qualification_review-result.json",
+      "sha256": "f1a4b16209d6949612f6e6b730b45d21fd81ed1875656673492a4e08d1ccae0d"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+      "sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9"
+    }
+  ]
+}

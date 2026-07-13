@@ -1,0 +1,185 @@
+{
+  "admitted_record_count": 1,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "none",
+    "records": [
+      {
+        "evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004"
+        ],
+        "fidelity_note": "User's own starting stance: attraction to funding and discovery, hesitation about stewardship becoming raw-material supply, and unresolved uncertainty about whether hesitation protects trust or reflects control instinct.",
+        "limitations": "none",
+        "role": "starting",
+        "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+        "stance_components": [
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "wider discovery and stable funding",
+            "object_kind": "intended_outcome_or_policy",
+            "source_evidence_id": "e003"
+          },
+          {
+            "expression_kind": "counterpressure",
+            "object_interpretation": "licensing the collection turns stewardship into raw-material supply",
+            "object_kind": "unclear",
+            "source_evidence_id": "e003"
+          },
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "whether hesitation protects contributor trust or reflects an institutional instinct to control access",
+            "object_kind": "unclear",
+            "source_evidence_id": "e004"
+          }
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "candidate_payload_sha256": "969dbceaa5b2abca1e595f766fd6df7e644871aa13405a47987a4cde48491647",
+  "compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "none",
+    "observations": [
+      {
+        "case_id": "amb3-case04-museum-ai-license",
+        "fidelity_note": "User's own starting stance: attraction to funding and discovery, hesitation about stewardship becoming raw-material supply, and unresolved uncertainty about whether hesitation protects trust or reflects control instinct.",
+        "graph_routing_eligible": false,
+        "limitations": "none",
+        "observation_id": "rprolev22-starting-01-a2a0f5703a0740",
+        "provenance": {
+          "call_id": "role-starting",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:f624c671cfded29a870927ceeb81c0d03963220625baec3fbf4dc1191ea5fa98"
+        },
+        "raw_record_sha256": "sha256:a2a0f5703a074073acd16d994a9cd8ec1471d822bb645a9c433b5160f522c9b4",
+        "role": "starting",
+        "role_interpretation": "User's earliest visible working position before the current bounded pilot position.",
+        "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb3-case04-museum-ai-license-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e001",
+            "text": "I direct a regional museum with a digitized collection of photographs, oral histories, and community records."
+          },
+          {
+            "alias": "e002",
+            "text": "An AI company has offered enough money to fund our preservation work for four years if it can train a cultural-search model on the archive."
+          },
+          {
+            "alias": "e003",
+            "text": "I want wider discovery and stable funding, but I am worried that licensing the collection turns stewardship into raw-material supply."
+          },
+          {
+            "alias": "e004",
+            "text": "I cannot tell whether my hesitation protects contributor trust or reflects an institutional instinct to control access."
+          }
+        ],
+        "source_evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e003",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "wider discovery and stable funding",
+            "stance_object_kind": "intended_outcome_or_policy"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e003",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "licensing the collection turns stewardship into raw-material supply",
+            "stance_object_kind": "unclear"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e004",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "whether hesitation protects contributor trust or reflects an institutional instinct to control access",
+            "stance_object_kind": "unclear"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:a2a0f5703a074073acd16d994a9cd8ec1471d822bb645a9c433b5160f522c9b4",
+        "record_index": 1,
+        "role_record_id": "rprolev22-starting-01-a2a0f5703a0740",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "supported",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "completion_tokens": 342,
+  "duration_seconds": 6.429,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.0002814,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 1416,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "c4d9c62fc82b3c6c90ef837d336c48760798e3af0626dc141b06ecc067d25c29",
+  "provider_reported_cost_usd": 0.0002814,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+  "task_id": "role-starting",
+  "temperature": 0.0,
+  "total_tokens": 1758,
+  "user_prompt_sha256": "f624c671cfded29a870927ceeb81c0d03963220625baec3fbf4dc1191ea5fa98",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

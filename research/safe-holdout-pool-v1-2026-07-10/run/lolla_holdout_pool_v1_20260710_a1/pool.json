@@ -1,0 +1,35 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool.v1",
+  "pool_id": "safe-holdout-pool-v1",
+  "status": "generation_failed",
+  "provenance": {
+    "kind": "synthetic_single_call",
+    "real_person_data": false,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "generation_contract_sha256": "7c9ab7e2fcb0ce94d327e8f7c46b6ecc39207753a524e1a533fa3b428b83ab86"
+  },
+  "selection_contract": {
+    "algorithm": "sha256_seed_colon_case_id_ascending",
+    "public_seed": "lolla-safe-holdout-pool-v1:2026-07-10:selection-order",
+    "ranked_case_ids": [
+      "pool1-case03-nonprofit-program-scale",
+      "pool1-case05-community-arts-portfolio",
+      "pool1-case02-creative-collaboration",
+      "pool1-case04-research-tool-release",
+      "pool1-case01-product-scope"
+    ],
+    "generator_receives_selection_order": false,
+    "selection_rule_after_call": "Review the ranked cases in order for safety and contract fitness only. Select the first passing case. Do not inspect or rank for likely mental-model, graph, pressure, or answer-delta value."
+  },
+  "selected_case_id": null,
+  "selection_review_status": "pending_safety_and_contract_review",
+  "cases": [],
+  "non_claims": [
+    "Synthetic conversations are not evidence of real-world product usefulness.",
+    "The generation model does not provide gold reasoning or expected answers.",
+    "Mechanical selection does not prove case representativeness.",
+    "A safety-passing case is not a favorable Lolla or graph case.",
+    "This contract does not authorize Stage A, Stage B, graph ablation, runtime integration, or product claims."
+  ]
+}

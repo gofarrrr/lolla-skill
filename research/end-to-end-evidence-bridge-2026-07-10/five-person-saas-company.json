@@ -1,0 +1,235 @@
+{
+  "schema_version": "lolla.end_to_end_evidence_bridge.v0",
+  "status": "review_safe_structural_bridge",
+  "review_mode": "local_private_read_only_safe_summary",
+  "raw_private_content_included": false,
+  "local_absolute_paths_included": false,
+  "archive_mutated": false,
+  "builder_model_calls": 0,
+  "source_run": {
+    "case_id": "five-person-saas-company",
+    "run_id": "20260709T201634Z_7a7930",
+    "status": "ok",
+    "run_health_overall": "healthy",
+    "product_output_health": "clean",
+    "live_output_health": "not_checked",
+    "caller_action": "use_revised_answer",
+    "risk_mode": "standard",
+    "artifact_inventory": [
+      {
+        "artifact": "conversation.txt",
+        "present": true,
+        "bytes": 1612,
+        "sha256": "sha256:17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      },
+      {
+        "artifact": "extraction.json",
+        "present": true,
+        "bytes": 7351,
+        "sha256": "sha256:e7d8610996aff6fe2d347e849e4087a376e7d9a7e69049768adfbebeb4aac57f"
+      },
+      {
+        "artifact": "result.json",
+        "present": true,
+        "bytes": 688452,
+        "sha256": "sha256:5c6030b9290c7c038e85a924b4ae18a49fc346fa70532467bc23239747fb650b"
+      },
+      {
+        "artifact": "revised.txt",
+        "present": true,
+        "bytes": 4559,
+        "sha256": "sha256:f9e5a1eea8b82db1154e3391f3c70ecc07d8860044aa043374da9c3f1b8d1158"
+      },
+      {
+        "artifact": "memo.md",
+        "present": true,
+        "bytes": 4361,
+        "sha256": "sha256:e6d873b387ae2b5c6bf07fe524926015df433b1f33347d79c95d57cf42ac5e5a"
+      },
+      {
+        "artifact": "agent_result.json",
+        "present": true,
+        "bytes": 6226,
+        "sha256": "sha256:47cbf90d6853b60d8b379e4d905c544085c7a5d63bd5f679b69b4abeaf17993c"
+      },
+      {
+        "artifact": "evaluation.json",
+        "present": true,
+        "bytes": 6644,
+        "sha256": "sha256:5b66e4365b9dd36fefa0246825b16338f6c4ce6c33ec8941b15c3386c0adc43a"
+      },
+      {
+        "artifact": "reasoning_trace.json",
+        "present": true,
+        "bytes": 198381,
+        "sha256": "sha256:899a54100844246a2871ef708b6dc40edd6cd4020c9724f87a87d0f70ee540c5"
+      },
+      {
+        "artifact": "graph_survival_report.json",
+        "present": true,
+        "bytes": 160574,
+        "sha256": "sha256:6b88bd73e613bd55b5958833e4dba2bb810956e2193bab76f6baca82d849f48a"
+      },
+      {
+        "artifact": "extraction_adequacy_report.json",
+        "present": true,
+        "bytes": 4882,
+        "sha256": "sha256:9addc07aca3d4614e6a015485ae353722d93da958c38e8b1176c7d14b2afcbe4"
+      }
+    ]
+  },
+  "capabilities": {
+    "c0_capture_and_custody": {
+      "capture_status": "good",
+      "declared_turn_count": 6,
+      "captured_turn_count": 6,
+      "omitted_turn_count": 0,
+      "evaluation_summary": {
+        "pass": 27,
+        "warn": 1,
+        "fail": 0,
+        "blocking": 0
+      },
+      "quote_fabrication_count": 0,
+      "fields_with_no_source_grounding": [
+        "synthesized_position"
+      ],
+      "fields_only_turn_ref_grounded": [
+        "dropped_threads",
+        "live_constraints"
+      ]
+    },
+    "c1_c3_semantic_and_temporal": {
+      "case_id": "case-01-enterprise-logo-beta",
+      "contract_status": "prospective_scaffold_not_ready_for_promotion",
+      "reviewed_observation_count": 5,
+      "reasoning_concept_anywhere": {
+        "weighted_recall": 0.7333333333333333,
+        "stable_observation_count": 3,
+        "ever_observation_count": 5,
+        "never_observation_count": 0,
+        "observation_count": 5,
+        "run_count": 3
+      },
+      "reasoning_concept_acceptable_role": {
+        "weighted_recall": 0.6666666666666666,
+        "stable_observation_count": 3,
+        "ever_observation_count": 4,
+        "never_observation_count": 1,
+        "observation_count": 5,
+        "run_count": 3
+      },
+      "audit_first_introduction": {
+        "weighted_recall": 0.6666666666666666,
+        "stable_observation_count": 3,
+        "ever_observation_count": 4,
+        "never_observation_count": 1,
+        "observation_count": 5,
+        "run_count": 3
+      },
+      "audit_temporal_complete": {
+        "weighted_recall": 0.6666666666666666,
+        "stable_observation_count": 3,
+        "ever_observation_count": 4,
+        "never_observation_count": 1,
+        "observation_count": 5,
+        "run_count": 3
+      }
+    },
+    "c4_c5_pressure_and_graph": {
+      "raw_lane_signal_count": 109,
+      "lane_candidate_count": 60,
+      "selected_card_count": 8,
+      "selected_chunk_count": 16,
+      "selected_model_ids": [
+        "authority-bias",
+        "first-principles-thinking",
+        "dialectical-reasoning",
+        "step-back",
+        "problem-framing-and-reframing",
+        "decision-trees",
+        "lean-startup-methodology",
+        "falsifiability"
+      ],
+      "suppressed_signal_count": 130,
+      "budget_suppressed_signal_count": 129,
+      "unadjudicated_candidate_count": 0,
+      "private_table_item_count": 25,
+      "private_table_disposition_counts": {
+        "confirming_support": 6,
+        "private_guardrail": 2,
+        "rejected": 1,
+        "used": 16
+      },
+      "v60_transaction_count": 16,
+      "v60_disposition_counts": {
+        "rejected": 1,
+        "used": 15
+      }
+    },
+    "c6_reconsideration_utility": {
+      "evidence_relation": "analogous_case_not_exact_run",
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "review_status": "pass",
+      "useful_friction": "present",
+      "noisy_friction": "absent",
+      "missing_friction": "absent",
+      "revised_answer_improved": "yes",
+      "safe_for_agent_use": "with_human_review",
+      "action_changing_delta": "Both prospects get the same written paid pilot shape and priority is assigned by payment, procurement clarity, scope tolerance, and proof value.",
+      "artifact_sufficiency": "sufficient_with_caveat"
+    },
+    "c7_receipt_and_transfer": {
+      "trace_status": "thin",
+      "future_review_ready": false,
+      "error_analysis_ready": true,
+      "coverage": {
+        "source_conversation": "present",
+        "decision_structure": "present",
+        "pipeline_result": "present",
+        "revised_answer": "present",
+        "decision_memo": "present",
+        "reasoning_lenses": "present",
+        "model_call_telemetry": "present"
+      },
+      "missing_context": [
+        "live_output_health is not_checked"
+      ],
+      "user_usefulness_review_status": "not_collected",
+      "outcome_review_status": "not_started"
+    },
+    "c8_operability": {
+      "estimated_total_cost_usd": 0.03065,
+      "vendor_calls": {
+        "openrouter": 31,
+        "openai_embeddings": 7,
+        "anthropic_subagents": 0
+      },
+      "total_vendor_call_count": 38,
+      "cost_estimate_state": "complete"
+    }
+  },
+  "decision": {
+    "supports": [
+      "existing_run_can_be_traced_across_capture_semantics_pressure_revision_and_receipt",
+      "current_packet_has_material_concept_coverage_but_incomplete_stability_and_placement",
+      "existing_human_review_supports_product_delta_on_an_analogous_case"
+    ],
+    "does_not_support": [
+      "semantic_kernel_integration_improves_reconsideration",
+      "lolla_beats_a_strong_fresh_reconsideration_control",
+      "receipt_completeness_proves_reasoning_quality",
+      "selected_or_used_pressure_items_were_all_causally_necessary"
+    ],
+    "next_gate": "strong_control_downstream_ablation_after_no_cost_trace_review"
+  },
+  "non_claims": [
+    "not_a_quality_score",
+    "not_a_human_review_of_the_source_run_unless_relation_is_exact_run",
+    "not_causal_attribution",
+    "not_product_proof",
+    "not_agent_approval",
+    "not_runtime_integration_authority"
+  ]
+}

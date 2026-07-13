@@ -1,0 +1,42 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_call_authorization.v3",
+  "status": "authorized_once_final_pool_generation_attempt",
+  "date": "2026-07-10",
+  "contract": {
+    "path": "research/safe-holdout-pool-v1-2026-07-10/generation-contract-v3.json",
+    "sha256": "5f05e56db19ada4e861da07ad01cf4745f9aba65ed715e01dbff782dd91d32d8"
+  },
+  "prior_failures": {
+    "v1": "unsupported_reasoning_effort_preserved_not_retried",
+    "v2": "scorer_contract_mismatch_preserved_not_repaired",
+    "semantic_prompt_variants": 0,
+    "selection_changes": 0
+  },
+  "pre_call_checks": {
+    "v3_contract_validation": "passed",
+    "v3_dry_run": "passed",
+    "focused_tests": "10 passed",
+    "output_directory_absent": true,
+    "prompt_hashes_equal_v1_and_v2": true,
+    "supported_reasoning_effort": "minimal",
+    "canonical_id_owner": "deterministic_runner",
+    "selection_order_frozen_and_withheld": true,
+    "hash_locks_current": true
+  },
+  "authorized_action": {
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "estimated_cost_ceiling_usd": 0.06,
+    "pipeline_calls": 0,
+    "stage_a_calls": 0,
+    "stage_b_calls": 0
+  },
+  "terminal_rule": "If v3 fails, stop all model-backed pool generation and require a different source strategy. If it passes, perform only frozen-order safety-and-contract selection before any Stage A contract.",
+  "non_claims": [
+    "not a semantic prompt variant",
+    "not Stage A authorization",
+    "not graph-test authorization",
+    "not product validation"
+  ]
+}

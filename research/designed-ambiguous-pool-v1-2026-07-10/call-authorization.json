@@ -1,0 +1,43 @@
+{
+  "schema_version": "lolla.designed_ambiguous_pool_call_authorization.v1",
+  "status": "authorized_once",
+  "date": "2026-07-10",
+  "contract": {
+    "path": "research/designed-ambiguous-pool-v1-2026-07-10/generation-contract.json",
+    "sha256": "cb345901bb59dd03f18b9d060297daa93460d1ca6aa3028a2d71ca2e16044e27"
+  },
+  "source_strategy": {
+    "founder_authorized_designed_conversations": true,
+    "new_pool_not_retry_of_closed_gemini_pool": true,
+    "source_model_family": "moonshotai_kimi",
+    "downstream_model_family": "openai_gpt",
+    "semantic_prompt_variants": 1,
+    "selection_rank_frozen_before_text": true,
+    "selection_rank_withheld_from_generator": true
+  },
+  "pre_call_checks": {
+    "contract_validation": "passed",
+    "dry_run": "passed",
+    "focused_tests": "17 passed",
+    "output_directory_absent": true,
+    "strict_response_schema_frozen": true,
+    "reasoning_parameter_omitted": true,
+    "canonical_id_owner": "deterministic_runner",
+    "hash_locks_current": true
+  },
+  "authorized_action": {
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "estimated_cost_ceiling_usd": 0.07,
+    "stage_a_calls": 0,
+    "stage_b_calls": 0
+  },
+  "post_call_boundary": "Review cases in frozen rank order for safety, realism, ambiguity, leakage, and intelligibility only. Do not select for likely Lolla, graph, pressure, or answer-delta value.",
+  "non_claims": [
+    "not Stage A authorization",
+    "not graph-test authorization",
+    "not real-world product evidence",
+    "not a gold-answer generation call"
+  ]
+}

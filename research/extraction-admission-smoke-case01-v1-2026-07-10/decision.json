@@ -1,0 +1,57 @@
+{
+  "schema_version": "lolla.extraction_admission_smoke_decision.v1",
+  "status": "passed",
+  "smoke_id": "case01-extraction-admission-v1-20260710-a1",
+  "run_id": "admission_smoke_case01_v1_20260710_a1",
+  "fixture_id": "case-01-enterprise-logo-beta",
+  "fixture_permanently_excluded_from_holdout": true,
+  "contract_sha256": "c4b3aef3990c4a7bb28ca4816562ba35f3d3a86b429ed50ed5437af2f3af1638",
+  "result_sha256": "e3a3042300d042b2365b80de9f6fdace7f6b0b9ef8f33e99fb7ca78e17c6e95a",
+  "extraction_sha256": "b17c5a31f0d628344bbaac8c27d842154871c42e166c03d7a7c6f98b935b55dd",
+  "local_call_sidecar_sha256": "2e15b60658bc40894d9bb277de0bb0ccfff766a7ee77b64de1ada7911f0aabc7",
+  "sanitized_call_evidence_sha256": "195210081bf99b0d767e31c354bd3eb1788c365d2057a9ba6f42b8a6bff23bf5",
+  "admission": {
+    "failed_gates": [],
+    "captured_turns": 6,
+    "omitted_turns": 0,
+    "verified_reasoning_passages": 3,
+    "failed_reasoning_passages": 0,
+    "initial_extraction_calls": 1,
+    "quote_repair_calls": 0,
+    "experiment_retries": 0,
+    "provider_call_records": 1,
+    "usage_evidence_state": "recorded",
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "model_attribution_status": "served_version_alias",
+    "total_tokens": 2087,
+    "estimated_cost_usd": 0.00119,
+    "wall_time_seconds": 2.618,
+    "outer_timeout_triggered": false
+  },
+  "authorizations": {
+    "untouched_stage_a_contract_planning": true,
+    "untouched_stage_a_execution_only_under_new_frozen_contract": true,
+    "paired_downstream_calls": false,
+    "runtime_integration": false,
+    "graph_promotion": false,
+    "same_smoke_rerun": false
+  },
+  "verification": {
+    "focused_tests": "87_passed",
+    "full_non_network_tests": "3980_passed_1_skipped",
+    "python": "3.12.13",
+    "provider_calls_in_goal": 1,
+    "embedding_calls_in_goal": 0,
+    "evaluator_calls_in_goal": 0
+  },
+  "next_gate": "select_one_untouched_case_and_freeze_stage_a_extraction_plus_pipeline_contract_before_calls",
+  "non_claims": [
+    "not_extraction_semantic_quality_proof",
+    "not_long_conversation_reliability_proof",
+    "not_graph_value_proof",
+    "not_reconsideration_utility_proof",
+    "not_paired_holdout_result",
+    "not_runtime_integration_authority"
+  ]
+}

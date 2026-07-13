@@ -1,0 +1,78 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_harvester_contract.v1",
+  "status": "frozen_provider_free_before_implementation",
+  "date": "2026-07-11",
+  "purpose": "Test whether one mechanically focal user-assistant turn pair can preserve an explored alternative and its specifically attached condition or limit without a full-conversation exploration reader or global semantic synthesizer.",
+  "failure_basis": {
+    "terminal_decision_path": "research/reasoning-process-view-specific-development-2026-07-11/decision.json",
+    "repeated_failure": "The Case-02 full-conversation reader recovered the named-role alternative only after a chronological repair and still repeatedly omitted its immediately following not-all-ownership qualification.",
+    "ablation_result": "Omitting the auxiliary ledger recovered neither part, so ledger anchoring was not supported as the root cause."
+  },
+  "architecture": {
+    "semantic_family": "exploration_and_alternatives",
+    "focal_unit": "all user and assistant messages sharing one chronological turn index",
+    "read_only_context": "the immediately preceding turn pair when one exists",
+    "citable_evidence": "focal unit aliases only",
+    "maximum_records_per_window": 2,
+    "window_overlap_for_citation": false,
+    "semantic_merge_across_windows": false,
+    "fresh_global_synthesizer": false,
+    "auxiliary_ledger_in_provider_packet": false,
+    "deterministic_semantic_prefilter": false,
+    "direct_graph_routing": false
+  },
+  "provider_record_roles": [
+    "alternative_evidence_ids",
+    "attached_condition_or_limit_evidence_ids",
+    "alternative_interpretation",
+    "attached_condition_or_limit_interpretation",
+    "relationship_type",
+    "limitations"
+  ],
+  "gates": {
+    "case_count": 5,
+    "expected_turn_pair_window_count": 35,
+    "protected_fixture_count": 5,
+    "authoritative_sentence_focal_custody_rate": 1.0,
+    "protected_alternative_plus_limit_role_coverage_rate": 1.0,
+    "context_alias_rejection_rate": 1.0,
+    "terminal_window_disposition_rate": 1.0,
+    "max_provider_schema_bytes": 12000,
+    "max_provider_schema_depth": 8,
+    "max_window_input_utf8_bytes": 8000,
+    "max_records_per_window": 2,
+    "maximum_future_calls_per_fourteen_message_case": 7,
+    "maximum_future_records_per_fourteen_message_case": 14,
+    "provider_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "duplicate_policy": {
+    "same_source_alias_set_within_one_window": "reject_exact_duplicate_record",
+    "similar_meaning_across_windows": "preserve_separately_with_chronological_identity",
+    "semantic_equivalence_inferred_by_code": false,
+    "later_merge_allowed": "only through a separately authorized probabilistic consumer with complete lineage"
+  },
+  "stress_fixture": {
+    "path": "research/test-cases/case_parenting_teen_conversation.txt",
+    "message_count": 24,
+    "expected_turn_pair_window_count": 12
+  },
+  "stop_rules": [
+    "Stop if any protected alternative and its attached limit cannot be cited from one focal turn pair.",
+    "Stop if focal evidence does not partition authoritative sentence aliases exactly once.",
+    "Stop if prior context can be cited as focal evidence.",
+    "Stop if the design requires semantic deduplication or global synthesis to create a readable append-only artifact.",
+    "Do not make a provider call under this contract."
+  ],
+  "non_goals": [
+    "changing the four full-conversation readers that passed development review",
+    "ranking alternatives",
+    "deciding which alternative is best",
+    "evaluating the final answer",
+    "graph integration",
+    "live skill or runtime integration",
+    "quality, trust, effort, or proof-of-work scoring"
+  ]
+}

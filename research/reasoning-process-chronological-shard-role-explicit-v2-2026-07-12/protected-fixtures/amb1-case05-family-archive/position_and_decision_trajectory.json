@@ -1,0 +1,133 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "display_interpretation_mechanically_formatted": true,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false,
+      "semantic_role_correctness_inferred_by_code": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case05-family-archive",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "Starting: I want the archive organized first. | Current: I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying. | Qualification: The direction is narrower and more participatory, but the decision rule is still the heart of it. | Trajectory: The user moves toward accepting a narrow exhibition with joint display support and participatory captions while preserving the unresolved object-selection rule.",
+        "observation_id": "rpshardv2-amb1-case05-family-archive-position_and_decision_trajectory-01-57a6f954ee",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "role-explicit-v2-mechanical-projection-of-reviewed-roles",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e057"
+            ],
+            "current_position_interpretation": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e061"
+            ],
+            "qualification_interpretation": "The direction is narrower and more participatory, but the decision rule is still the heart of it.",
+            "starting_position_interpretation": "I want the archive organized first.",
+            "starting_state_evidence_ids": [
+              "e004"
+            ],
+            "status": "supported",
+            "trajectory_interpretation": "The user moves toward accepting a narrow exhibition with joint display support and participatory captions while preserving the unresolved object-selection rule.",
+            "trajectory_type": "changed"
+          },
+          "record_identity": "case05-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:57a6f954ee8c52f656a71a4aa34bfe18b5e70807e58201e0e3d0a4352b1edfc5",
+        "role_interpretations": {
+          "current_position_interpretation": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying.",
+          "qualification_interpretation": "The direction is narrower and more participatory, but the decision rule is still the heart of it.",
+          "starting_position_interpretation": "I want the archive organized first.",
+          "trajectory_interpretation": "The user moves toward accepting a narrow exhibition with joint display support and participatory captions while preserving the unresolved object-selection rule."
+        },
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-d3bdb28949cb0aef"
+          ],
+          "qualification_evidence_ids": [
+            "span-b56ae1645e2f6dd1"
+          ],
+          "starting_state_evidence_ids": [
+            "span-5afbb5ccc7887e07"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case05-family-archive-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-5afbb5ccc7887e07",
+          "span-d3bdb28949cb0aef",
+          "span-b56ae1645e2f6dd1"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshardv2-amb1-case05-family-archive-position_and_decision_trajectory-01-57a6f954ee",
+        "raw_record_sha256": "sha256:57a6f954ee8c52f656a71a4aa34bfe18b5e70807e58201e0e3d0a4352b1edfc5",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v2",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_v2_record_custody_complete"
+  },
+  "projection_policy": "exact source text copied for already reviewed semantic evidence roles; reviewed relationship interpretation preserved; no new semantic inference",
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e057"
+        ],
+        "current_position_interpretation": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e061"
+        ],
+        "qualification_interpretation": "The direction is narrower and more participatory, but the decision rule is still the heart of it.",
+        "starting_position_interpretation": "I want the archive organized first.",
+        "starting_state_evidence_ids": [
+          "e004"
+        ],
+        "status": "supported",
+        "trajectory_interpretation": "The user moves toward accepting a narrow exhibition with joint display support and participatory captions while preserving the unresolved object-selection rule.",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case05-family-archive/position_and_decision_trajectory.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/position_and_decision_trajectory/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-5afbb5ccc7887e07",
+      "span-d3bdb28949cb0aef",
+      "span-b56ae1645e2f6dd1"
+    ],
+    "target_id": "case05-position-trajectory",
+    "view_kind": "position_and_decision_trajectory"
+  }
+}

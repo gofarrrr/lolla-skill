@@ -1,0 +1,78 @@
+{
+  "schema_version": "lolla.reasoning_process_graph_impact_shadow_review.v1",
+  "status": "read_only_shadow_complete_abstraction_bridge_unproven",
+  "cases": [
+    "amb3-case05-registry-pharma-partnership",
+    "amb3-case06-housing-retrofit-partnership"
+  ],
+  "deterministic_findings": {
+    "source_provider_fact_free_projection_equal_in_both_cases": true,
+    "source_provider_seed_candidates_equal_in_both_cases": true,
+    "source_provider_one_hop_neighborhood_equal_in_both_cases": true,
+    "full_seed_models": [
+      "active-listening",
+      "commitment-bias",
+      "confirmation-bias",
+      "intellectual-humility",
+      "opportunity-cost",
+      "premortem",
+      "sunk-cost-fallacy",
+      "trade-offs"
+    ],
+    "missing_reversal_ablation_removed_seed_models": [
+      "commitment-bias",
+      "premortem",
+      "sunk-cost-fallacy"
+    ],
+    "sensitivity_control_passed": true,
+    "finding": "Residual evidence, modal, category, allocation-note, and prose-length defects do not change the selected controlled mechanism set or deterministic graph pressure once a source-faithful fact-free abstraction has been supplied."
+  },
+  "embedding_findings": {
+    "http_requests": 1,
+    "batch_input_count": 2,
+    "prompt_tokens": 65,
+    "model": "text-embedding-3-large",
+    "vector_dimension": 3072,
+    "raw_role_prose_embedded": false,
+    "facts_embedded": false,
+    "source_provider_full_embedding_reused": true,
+    "full_tiebreaker_fired_count": 0,
+    "ablation_tiebreaker_fired_count": 0,
+    "embedding_changed_full_selection": false,
+    "finding": "The activation matcher attempted eligible gates but no embedding signal crossed all existing conditions; full selection remained deterministic. Selection differences after ablation came from removed deterministic seeds, not embedding reorder."
+  },
+  "graph_pressure_preservation": {
+    "protected_reversal_mechanism_reaches_graph": true,
+    "protected_reversal_seed_models": [
+      "commitment-bias",
+      "premortem",
+      "sunk-cost-fallacy"
+    ],
+    "protected_reversal_changes_selected_neighborhood": true,
+    "provider_extraction_noise_changes_selected_neighborhood_after_reviewed_abstraction": false
+  },
+  "critical_limit": {
+    "fact_free_pattern_interpretations_are_codex_assisted": true,
+    "automatic_role_record_to_pattern_abstraction_proven": false,
+    "why_it_matters": "The shadow proves downstream invariance conditional on a source-faithful controlled abstraction. It does not prove that an automatic probabilistic interpreter will produce the same abstraction from source-first and noisy provider records.",
+    "embedding_result_does_not_close_this_gap": true
+  },
+  "decision": {
+    "another_extraction_transfer_call_authorized": false,
+    "production_graph_integration_authorized": false,
+    "runtime_reasoning_pattern_adapter_authorized": false,
+    "selected_next_experiment": "provider_free_role_record_to_pattern_abstraction_contract_then_bounded_source_provider_invariance_probe",
+    "next_question": "Can one small probabilistic interpreter map source-first and provider role records to the same controlled fact-free mechanisms while preserving a real mechanism ablation, without seeing raw case facts in the routing projection?"
+  },
+  "boundary": {
+    "provider_chat_calls": 0,
+    "embedding_http_requests": 1,
+    "evaluator_calls": 0,
+    "reconsideration_calls": 0,
+    "runtime_mutations": 0,
+    "receipts_written": 0,
+    "scalar_quality_score_computed": false,
+    "automatic_semantic_winner_selected": false,
+    "production_integration_authorized": false
+  }
+}

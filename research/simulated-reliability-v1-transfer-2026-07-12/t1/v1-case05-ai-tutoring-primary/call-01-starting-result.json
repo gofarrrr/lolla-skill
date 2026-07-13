@@ -1,0 +1,197 @@
+{
+  "automatic_retries": 0,
+  "base_user_prompt_sha256": "ae7a885e29a28fb9a93bdb1359fffa24847a1fc0f696f051b06002ec4cb423ed",
+  "candidate": {
+    "global_limitations": "This evaluation is based exclusively on the provided text. Stances are interpreted directly from the user's statements in Turn 1 without incorporating later adaptations or final pilot decisions.",
+    "records": [
+      {
+        "evidence_ids": [
+          "e007",
+          "e008"
+        ],
+        "fidelity_note": "The starting position is extracted from Turn 1. The user acknowledges the split opinions of faculty and students as reasonable before articulating a dual-sided personal stance: a desire to test the potential expansion of access alongside an active worry that the tool's imperfections might lower overall academic support standards.",
+        "limitations": "The assessment is restricted to the user's initial reaction at Turn 1 prior to additional factual details being highlighted or specific pilot conditions being negotiated with the vendor.",
+        "role": "starting",
+        "role_interpretation": "The associate dean starts with a cautious opening stance, validating both the hopeful and skeptical views of faculty and students, while seeking to test whether the AI tutor can truly improve access without eroding educational standards or validating inadequate existing support.",
+        "stance_components": [
+          {
+            "expression_kind": "held_assessment",
+            "object_interpretation": "Both the faculty's optimism about immediate help and the students' concerns about errors and privacy are reasonable assessments",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e007"
+          },
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "Testing whether the AI tool adds student access without eroding the level of help and quality that the university owes them",
+            "object_kind": "intended_outcome_or_policy",
+            "source_evidence_id": "e008"
+          },
+          {
+            "expression_kind": "counterpressure",
+            "object_interpretation": "The risk that the flaws of an imperfect new tutoring tool make existing limited support look acceptable by comparison",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e008"
+          }
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "case_id": "v1-case05-ai-tutoring",
+  "compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "This evaluation is based exclusively on the provided text. Stances are interpreted directly from the user's statements in Turn 1 without incorporating later adaptations or final pilot decisions.",
+    "observations": [
+      {
+        "case_id": "v1-case05-ai-tutoring",
+        "fidelity_note": "The starting position is extracted from Turn 1. The user acknowledges the split opinions of faculty and students as reasonable before articulating a dual-sided personal stance: a desire to test the potential expansion of access alongside an active worry that the tool's imperfections might lower overall academic support standards.",
+        "graph_routing_eligible": false,
+        "limitations": "The assessment is restricted to the user's initial reaction at Turn 1 prior to additional factual details being highlighted or specific pilot conditions being negotiated with the vendor.",
+        "observation_id": "rprolev22-starting-01-66fd28d4226bad",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:66fd28d4226badc053990bbae0a1a5a4f0525d176aac6a7ffc0942d639cbc4e6",
+        "role": "starting",
+        "role_interpretation": "The associate dean starts with a cautious opening stance, validating both the hopeful and skeptical views of faculty and students, while seeking to test whether the AI tutor can truly improve access without eroding educational standards or validating inadequate existing support.",
+        "role_record_id": "rprolev22-starting-01-66fd28d4226bad",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "v1-case05-ai-tutoring-position_and_decision_trajectory-full-source",
+        "source_evidence": [
+          {
+            "alias": "e007",
+            "text": "Both reactions are reasonable."
+          },
+          {
+            "alias": "e008",
+            "text": "I want to test whether the tool adds access without quietly lowering what we owe students, but I also do not want the imperfections of a new tool to make our already limited support look acceptable by comparison."
+          }
+        ],
+        "source_evidence_ids": [
+          "e007",
+          "e008"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e007",
+            "stance_expression_kind": "held_assessment",
+            "stance_object_interpretation": "Both the faculty's optimism about immediate help and the students' concerns about errors and privacy are reasonable assessments",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e008",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "Testing whether the AI tool adds student access without eroding the level of help and quality that the university owes them",
+            "stance_object_kind": "intended_outcome_or_policy"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e008",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "The risk that the flaws of an imperfect new tutoring tool make existing limited support look acceptable by comparison",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:66fd28d4226badc053990bbae0a1a5a4f0525d176aac6a7ffc0942d639cbc4e6",
+        "record_index": 1,
+        "role_record_id": "rprolev22-starting-01-66fd28d4226bad",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "supported",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "data_collection": "deny",
+  "duration_seconds": 11.379,
+  "effective_user_prompt_sha256": "ae7a885e29a28fb9a93bdb1359fffa24847a1fc0f696f051b06002ec4cb423ed",
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1783872584-KJxeyQOFxQBZ3hzAaFnt",
+  "max_output_tokens": 6000,
+  "operational_status": "ok",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex/global"
+  ],
+  "provider_payload_sha256": "3032ff1db5b2a5d3a9c6762a4eb6782879e084bc0d3d16a99535fba6893ca55c",
+  "provider_reported_cost_usd": 0.0285555,
+  "raw_content": "{\n  \"status\": \"supported\",\n  \"records\": [\n    {\n      \"role\": \"starting\",\n      \"status\": \"supported\",\n      \"evidence_ids\": [\n        \"e007\",\n        \"e008\"\n      ],\n      \"role_interpretation\": \"The associate dean starts with a cautious opening stance, validating both the hopeful and skeptical views of faculty and students, while seeking to test whether the AI tutor can truly improve access without eroding educational standards or validating inadequate existing support.\",\n      \"stance_components\": [\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"Both the faculty's optimism about immediate help and the students' concerns about errors and privacy are reasonable assessments\",\n          \"expression_kind\": \"held_assessment\",\n          \"source_evidence_id\": \"e007\"\n        },\n        {\n          \"object_kind\": \"intended_outcome_or_policy\",\n          \"object_interpretation\": \"Testing whether the AI tool adds student access without eroding the level of help and quality that the university owes them\",\n          \"expression_kind\": \"preference_or_desire\",\n          \"source_evidence_id\": \"e008\"\n        },\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"The risk that the flaws of an imperfect new tutoring tool make existing limited support look acceptable by comparison\",\n          \"expression_kind\": \"counterpressure\",\n          \"source_evidence_id\": \"e008\"\n        }\n      ],\n      \"fidelity_note\": \"The starting position is extracted from Turn 1. The user acknowledges the split opinions of faculty and students as reasonable before articulating a dual-sided personal stance: a desire to test the potential expansion of access alongside an active worry that the tool's imperfections might lower overall academic support standards.\",\n      \"limitations\": \"The assessment is restricted to the user's initial reaction at Turn 1 prior to additional factual details being highlighted or specific pilot conditions being negotiated with the vendor.\"\n    }\n  ],\n  \"global_limitations\": \"This evaluation is based exclusively on the provided text. Stances are interpreted directly from the user's statements in Turn 1 without incorporating later adaptations or final pilot decisions.\"\n}",
+  "raw_content_sha256": "668e05d2db324a707828525d604ec1a977eb0c2877c5ca4855e952262bebfb7f",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": true,
+  "reasoning_effort": "medium",
+  "repeat_id": "primary",
+  "request_body_sha256": "38a6e2b0e9211ecdf36018617c66533a6fb8f6c42d418685d8926613f88dda98",
+  "requested_model": "google/gemini-3.5-flash-20260519",
+  "response_healing": false,
+  "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+  "seed": 101,
+  "served_model": "google/gemini-3.5-flash-20260519",
+  "served_provider": "Google",
+  "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+  "task_id": "starting",
+  "temperature_supplied": false,
+  "top_p_supplied": false,
+  "usage": {
+    "completion_tokens": 2335,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 1823
+    },
+    "cost": 0.0285555,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.021015,
+      "upstream_inference_cost": 0.0285555,
+      "upstream_inference_prompt_cost": 0.0075405
+    },
+    "is_byok": false,
+    "prompt_tokens": 5027,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 7362
+  },
+  "validation_error": "",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

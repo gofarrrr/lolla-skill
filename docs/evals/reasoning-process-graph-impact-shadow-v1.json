@@ -1,0 +1,47 @@
+{
+  "schema_version": "lolla.reasoning_process_graph_impact_shadow_contract.v1",
+  "status": "provider_free_deterministic_shadow_authorized",
+  "date": "2026-07-12",
+  "interpretations_path": "research/reasoning-process-graph-impact-shadow-2026-07-12/pattern-interpretations.json",
+  "routing_contract_path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+  "affordances_path": "data/compiled/model_affordances/affordances_v60.json",
+  "relationship_graph_path": "data/relationship_graph.json",
+  "comparison_contract": {
+    "source_provider_projection_expected_equal": true,
+    "source_provider_seed_candidates_expected_equal": true,
+    "source_provider_deterministic_neighborhood_expected_equal": true,
+    "ablation_projection_expected_different": true,
+    "ablation_seed_candidates_expected_different": true,
+    "ablation_deterministic_neighborhood_may_remain_partially_overlapping": true
+  },
+  "deterministic_graph_scope": {
+    "seed_selection": "controlled_mechanism_mapping_union",
+    "relationship_expansion": "one_hop_per_seed_without_reasoning_context",
+    "maximum_supporting_per_seed": 2,
+    "maximum_risk_per_seed": 1,
+    "embedding_tiebreaker": false,
+    "runtime_effect": "none"
+  },
+  "embedding_scope": {
+    "authorized": false,
+    "reason": "ReasoningPatternPacket is not an accepted ActivationMatcher reasoning-shape type. Raw strings and role-record prose are rejected by the facts/reasoning boundary.",
+    "next_requirement": "Prospectively design and test a typed fact-free reasoning-pattern adapter before any embedding-dependent comparison."
+  },
+  "forbidden": [
+    "provider_call",
+    "embedding_call",
+    "raw_role_prose_embedding",
+    "reconsideration",
+    "runtime_mutation",
+    "receipt_write",
+    "scalar_quality_score",
+    "automatic_semantic_winner",
+    "production_authorization"
+  ],
+  "boundary": {
+    "interpretations_are_codex_assisted_provisional": true,
+    "semantic_relevance_validated_by_graph": false,
+    "production_integration_authorized": false,
+    "live_graph_routing_authorized": false
+  }
+}

@@ -1,0 +1,635 @@
+{
+  "schema_version": "lolla.reasoning_pattern_invariance_shadow_result.v0",
+  "status": "failed",
+  "contract_sha256": "2c36d0e847b3ff82b5e4d96404fd8c5d4df64cefd263d4223b181a3f3cc17c7e",
+  "fixture_results": [
+    {
+      "fixture_id": "facts_a",
+      "status": "ok",
+      "packet": {
+        "schema_version": "lolla.reasoning_pattern_packet.v0",
+        "packet_metadata": {
+          "packet_id": "reasoning_pattern_packet:facts_a",
+          "interpretation_schema_version": "lolla.reasoning_pattern_shadow_interpreter.v0",
+          "graph_runtime_modified": false
+        },
+        "provenance": {
+          "source_interpretation_ref": "tests/fixtures/reasoning_pattern_invariance/facts_a.txt",
+          "source_interpretation_sha256": "78f575475cf436bfd34ddf302d6e05debdb84f608d9281412fda94fd52a554c2",
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_semantic_item_ids": [
+                "turn:2"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_semantic_item_ids": [
+                "turn:1",
+                "turn:3"
+              ]
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_semantic_item_ids": [
+                "turn:1",
+                "turn:3"
+              ]
+            }
+          ],
+          "raw_text_included": false
+        },
+        "pattern_hypotheses": [
+          {
+            "pattern_id": "rp_001",
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "subject_scope": "assistant",
+            "state": "present",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          },
+          {
+            "pattern_id": "rp_002",
+            "mechanism_id": "criteria_defined_after_commitment",
+            "subject_scope": "joint_process",
+            "state": "present",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          },
+          {
+            "pattern_id": "rp_003",
+            "mechanism_id": "missing_reversal_condition",
+            "subject_scope": "joint_process",
+            "state": "missing_protection",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          }
+        ],
+        "routing_projection": {
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0",
+          "pattern_nodes": [
+            {
+              "pattern_id": "rp_001",
+              "mechanism_id": "counterpressure_acknowledged_not_integrated",
+              "subject_scope": "assistant",
+              "state": "present"
+            },
+            {
+              "pattern_id": "rp_002",
+              "mechanism_id": "criteria_defined_after_commitment",
+              "subject_scope": "joint_process",
+              "state": "present"
+            },
+            {
+              "pattern_id": "rp_003",
+              "mechanism_id": "missing_reversal_condition",
+              "subject_scope": "joint_process",
+              "state": "missing_protection"
+            }
+          ],
+          "pattern_edges": [],
+          "contains_case_context": false
+        },
+        "fact_boundary": {
+          "raw_text_included": false,
+          "quotes_included": false,
+          "entities_included": false,
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "pattern_hypotheses_are_provisional",
+          "not_human_validation",
+          "not_reasoning_quality_proof",
+          "not_advice_correctness_proof",
+          "not_end_to_end_determinism",
+          "missing_in_capture_is_not_missing_in_reality"
+        ]
+      },
+      "routing": {
+        "schema_version": "lolla.reasoning_pattern_shadow_routing_result.v0",
+        "status": "research_only",
+        "projection_signature": "2cb2f6b3c96419d105840cb40a2f0b04f86d9f690096841c9991f1233617ebf4",
+        "candidate_count": 7,
+        "seed_candidates": [
+          {
+            "model_id": "active-listening",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "commitment-bias",
+            "pulled_by_mechanisms": [
+              "criteria_defined_after_commitment",
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "confirmation-bias",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "falsifiability",
+            "pulled_by_mechanisms": [
+              "criteria_defined_after_commitment"
+            ]
+          },
+          {
+            "model_id": "intellectual-humility",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "premortem",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "sunk-cost-fallacy",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          }
+        ],
+        "graph_runtime_modified": false,
+        "semantic_relevance_validated": false,
+        "non_claims": [
+          "seed_recall_is_not_applicability",
+          "fixture_invariance_is_not_production_stability",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "validation_error": "",
+      "call_count": 1,
+      "automatic_retry_count": 0,
+      "metadata": {
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "finish_reason": "stop",
+        "prompt_tokens": 568,
+        "completion_tokens": 146,
+        "total_tokens": 714,
+        "system_prompt_sha256": "2622e486da5e51a2f1b5fca57d70976352f5e554ebd7532d1013e3fc9ba55e46",
+        "user_prompt_sha256": "1a129990820ff1c12fdcea460a6996f1cb5cac601b7a04ae4591f228971649f3",
+        "raw_response_sha256": "a73578c5c3ddf66164d692c0a13870883a7512873d47924248792f6614f9af8c"
+      }
+    },
+    {
+      "fixture_id": "facts_b",
+      "status": "ok",
+      "packet": {
+        "schema_version": "lolla.reasoning_pattern_packet.v0",
+        "packet_metadata": {
+          "packet_id": "reasoning_pattern_packet:facts_b",
+          "interpretation_schema_version": "lolla.reasoning_pattern_shadow_interpreter.v0",
+          "graph_runtime_modified": false
+        },
+        "provenance": {
+          "source_interpretation_ref": "tests/fixtures/reasoning_pattern_invariance/facts_b.txt",
+          "source_interpretation_sha256": "c98c9af968d328b1c2b21b17bc5b2c3935bd5cbdb7650c10c1d7dc2e2034f494",
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_semantic_item_ids": [
+                "turn:2"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_semantic_item_ids": [
+                "turn:3"
+              ]
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_semantic_item_ids": [
+                "turn:1",
+                "turn:3"
+              ]
+            }
+          ],
+          "raw_text_included": false
+        },
+        "pattern_hypotheses": [
+          {
+            "pattern_id": "rp_001",
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "subject_scope": "assistant",
+            "state": "present",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          },
+          {
+            "pattern_id": "rp_002",
+            "mechanism_id": "missing_reversal_condition",
+            "subject_scope": "assistant",
+            "state": "missing_protection",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          },
+          {
+            "pattern_id": "rp_003",
+            "mechanism_id": "status_signal_used_as_evidence",
+            "subject_scope": "assistant",
+            "state": "present",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          }
+        ],
+        "routing_projection": {
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0",
+          "pattern_nodes": [
+            {
+              "pattern_id": "rp_001",
+              "mechanism_id": "counterpressure_acknowledged_not_integrated",
+              "subject_scope": "assistant",
+              "state": "present"
+            },
+            {
+              "pattern_id": "rp_002",
+              "mechanism_id": "missing_reversal_condition",
+              "subject_scope": "assistant",
+              "state": "missing_protection"
+            },
+            {
+              "pattern_id": "rp_003",
+              "mechanism_id": "status_signal_used_as_evidence",
+              "subject_scope": "assistant",
+              "state": "present"
+            }
+          ],
+          "pattern_edges": [],
+          "contains_case_context": false
+        },
+        "fact_boundary": {
+          "raw_text_included": false,
+          "quotes_included": false,
+          "entities_included": false,
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "pattern_hypotheses_are_provisional",
+          "not_human_validation",
+          "not_reasoning_quality_proof",
+          "not_advice_correctness_proof",
+          "not_end_to_end_determinism",
+          "missing_in_capture_is_not_missing_in_reality"
+        ]
+      },
+      "routing": {
+        "schema_version": "lolla.reasoning_pattern_shadow_routing_result.v0",
+        "status": "research_only",
+        "projection_signature": "513581741b209b6bf53cc09627f7e2aff89720a1271e3a5960ae64a34930194f",
+        "candidate_count": 8,
+        "seed_candidates": [
+          {
+            "model_id": "active-listening",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "commitment-bias",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "confirmation-bias",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "intellectual-humility",
+            "pulled_by_mechanisms": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "model_id": "premortem",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "signaling",
+            "pulled_by_mechanisms": [
+              "status_signal_used_as_evidence"
+            ]
+          },
+          {
+            "model_id": "social-proof",
+            "pulled_by_mechanisms": [
+              "status_signal_used_as_evidence"
+            ]
+          },
+          {
+            "model_id": "sunk-cost-fallacy",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          }
+        ],
+        "graph_runtime_modified": false,
+        "semantic_relevance_validated": false,
+        "non_claims": [
+          "seed_recall_is_not_applicability",
+          "fixture_invariance_is_not_production_stability",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "validation_error": "",
+      "call_count": 1,
+      "automatic_retry_count": 0,
+      "metadata": {
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "finish_reason": "stop",
+        "prompt_tokens": 572,
+        "completion_tokens": 170,
+        "total_tokens": 742,
+        "system_prompt_sha256": "2622e486da5e51a2f1b5fca57d70976352f5e554ebd7532d1013e3fc9ba55e46",
+        "user_prompt_sha256": "ba7aec3431a1eccf16e413090ab74a2f54672975e9cfdd30f26ce0e3632d048c",
+        "raw_response_sha256": "ca5aeccae181482ace030f8b377ff1a9ef2cd3048156f3cbf663ce023d574100"
+      }
+    },
+    {
+      "fixture_id": "mechanism_changed",
+      "status": "ok",
+      "packet": {
+        "schema_version": "lolla.reasoning_pattern_packet.v0",
+        "packet_metadata": {
+          "packet_id": "reasoning_pattern_packet:mechanism_changed",
+          "interpretation_schema_version": "lolla.reasoning_pattern_shadow_interpreter.v0",
+          "graph_runtime_modified": false
+        },
+        "provenance": {
+          "source_interpretation_ref": "tests/fixtures/reasoning_pattern_invariance/mechanism_changed.txt",
+          "source_interpretation_sha256": "8a42cc1735276fa2de84d380411c46c13e484af433a5b20b61428c70efe21541",
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_semantic_item_ids": [
+                "turn:1"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_semantic_item_ids": [
+                "turn:1"
+              ]
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_semantic_item_ids": [
+                "turn:1"
+              ]
+            }
+          ],
+          "raw_text_included": false
+        },
+        "pattern_hypotheses": [
+          {
+            "pattern_id": "rp_001",
+            "mechanism_id": "missing_reversal_condition",
+            "subject_scope": "user",
+            "state": "missing_protection",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          },
+          {
+            "pattern_id": "rp_002",
+            "mechanism_id": "reversible_path_not_considered",
+            "subject_scope": "user",
+            "state": "missing_protection",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          },
+          {
+            "pattern_id": "rp_003",
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "subject_scope": "user",
+            "state": "present",
+            "support_status": "provisional_source_linked",
+            "routing_eligible": true
+          }
+        ],
+        "routing_projection": {
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0",
+          "pattern_nodes": [
+            {
+              "pattern_id": "rp_001",
+              "mechanism_id": "missing_reversal_condition",
+              "subject_scope": "user",
+              "state": "missing_protection"
+            },
+            {
+              "pattern_id": "rp_002",
+              "mechanism_id": "reversible_path_not_considered",
+              "subject_scope": "user",
+              "state": "missing_protection"
+            },
+            {
+              "pattern_id": "rp_003",
+              "mechanism_id": "upside_downside_evidence_asymmetry",
+              "subject_scope": "user",
+              "state": "present"
+            }
+          ],
+          "pattern_edges": [],
+          "contains_case_context": false
+        },
+        "fact_boundary": {
+          "raw_text_included": false,
+          "quotes_included": false,
+          "entities_included": false,
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "pattern_hypotheses_are_provisional",
+          "not_human_validation",
+          "not_reasoning_quality_proof",
+          "not_advice_correctness_proof",
+          "not_end_to_end_determinism",
+          "missing_in_capture_is_not_missing_in_reality"
+        ]
+      },
+      "routing": {
+        "schema_version": "lolla.reasoning_pattern_shadow_routing_result.v0",
+        "status": "research_only",
+        "projection_signature": "47a24db579a44155ec8b6ae2b4211c353007d55a6e704f2168badecf976efb37",
+        "candidate_count": 7,
+        "seed_candidates": [
+          {
+            "model_id": "calculated-risk-taking",
+            "pulled_by_mechanisms": [
+              "upside_downside_evidence_asymmetry"
+            ]
+          },
+          {
+            "model_id": "commitment-bias",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "inversion",
+            "pulled_by_mechanisms": [
+              "upside_downside_evidence_asymmetry"
+            ]
+          },
+          {
+            "model_id": "optionality",
+            "pulled_by_mechanisms": [
+              "reversible_path_not_considered"
+            ]
+          },
+          {
+            "model_id": "premortem",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "sunk-cost-fallacy",
+            "pulled_by_mechanisms": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "model_id": "switching-costs",
+            "pulled_by_mechanisms": [
+              "reversible_path_not_considered"
+            ]
+          }
+        ],
+        "graph_runtime_modified": false,
+        "semantic_relevance_validated": false,
+        "non_claims": [
+          "seed_recall_is_not_applicability",
+          "fixture_invariance_is_not_production_stability",
+          "not_runtime_integration_authority"
+        ]
+      },
+      "validation_error": "",
+      "call_count": 1,
+      "automatic_retry_count": 0,
+      "metadata": {
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "finish_reason": "stop",
+        "prompt_tokens": 598,
+        "completion_tokens": 168,
+        "total_tokens": 766,
+        "system_prompt_sha256": "2622e486da5e51a2f1b5fca57d70976352f5e554ebd7532d1013e3fc9ba55e46",
+        "user_prompt_sha256": "ca1785a0eb92f4cbbb309fb67f8a51961eb59da24ca3b7025bf18d99dbfd26ad",
+        "raw_response_sha256": "4f2e40a634295ffb3f4f694dfd300fd0f86da6bb2b7dfddb04450f75b4440441"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison_id": "fact_invariance",
+      "comparison_type": "same_reasoning_different_facts",
+      "left_fixture_id": "facts_a",
+      "right_fixture_id": "facts_b",
+      "left_mechanisms": [
+        "counterpressure_acknowledged_not_integrated",
+        "criteria_defined_after_commitment",
+        "missing_reversal_condition"
+      ],
+      "right_mechanisms": [
+        "counterpressure_acknowledged_not_integrated",
+        "missing_reversal_condition",
+        "status_signal_used_as_evidence"
+      ],
+      "projection_signatures_equal": false,
+      "seed_candidates_equal": false,
+      "checks": {
+        "both_outputs_valid": true,
+        "projection_expectation_met": false,
+        "candidate_expectation_met": false,
+        "required_left_mechanisms_present": false,
+        "required_mechanisms_absent_right": true
+      },
+      "status": "failed"
+    },
+    {
+      "comparison_id": "mechanism_sensitivity",
+      "comparison_type": "same_facts_different_reasoning",
+      "left_fixture_id": "facts_a",
+      "right_fixture_id": "mechanism_changed",
+      "left_mechanisms": [
+        "counterpressure_acknowledged_not_integrated",
+        "criteria_defined_after_commitment",
+        "missing_reversal_condition"
+      ],
+      "right_mechanisms": [
+        "missing_reversal_condition",
+        "reversible_path_not_considered",
+        "upside_downside_evidence_asymmetry"
+      ],
+      "projection_signatures_equal": false,
+      "seed_candidates_equal": false,
+      "checks": {
+        "both_outputs_valid": true,
+        "projection_expectation_met": true,
+        "candidate_expectation_met": true,
+        "required_left_mechanisms_present": false,
+        "required_mechanisms_absent_right": true
+      },
+      "status": "failed"
+    }
+  ],
+  "gates": {
+    "all_three_calls_valid": true,
+    "all_comparisons_pass": false,
+    "estimated_cost_ceiling_met": true,
+    "no_retry": true,
+    "runtime_unchanged": true
+  },
+  "usage": {
+    "call_count": 3,
+    "prompt_tokens": 1738,
+    "completion_tokens": 484,
+    "total_tokens": 2222,
+    "estimated_cost_usd": 0.0011605,
+    "pricing_table_version": "2026-05-25"
+  },
+  "runtime_integration_authorized": false,
+  "non_claims": [
+    "not_production_stability",
+    "not_semantic_accuracy_across_open_domain_conversations",
+    "not_mental_model_applicability_validation",
+    "not_reasoning_quality_or_advice_correctness_proof",
+    "not_permission_to_remove_facts_from_the_audit_record",
+    "not_runtime_integration_authority"
+  ]
+}

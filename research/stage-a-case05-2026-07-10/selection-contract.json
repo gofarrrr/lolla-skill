@@ -1,0 +1,108 @@
+{
+  "schema_version": "lolla.stage_a_case_selection.v0",
+  "status": "frozen_before_candidate_source_review_or_provider_calls",
+  "date": "2026-07-10",
+  "purpose": "Select exactly one core-corpus case for the first full extraction-plus-existing-pipeline Stage A run after extraction-call custody admission passed.",
+  "untouched_definition": {
+    "never_seen_by_repository": false,
+    "required": [
+      "fixed checked-in core-corpus source",
+      "no prior fresh-extraction-plus-full-pipeline Stage A attempt under the current two-stage program",
+      "no prior full-surface portfolio diagnostic",
+      "no prior downstream control-versus-Lolla pair",
+      "not used as the extraction-admission smoke"
+    ],
+    "disclosure": "All core-corpus cases have historical semantic-evaluation use. Untouched means uncontaminated for the current Stage A-to-Stage B causal path, not unknown text."
+  },
+  "inventory": [
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "disposition": "excluded",
+      "reason": "heavily reused development case and successful extraction-admission smoke"
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "disposition": "excluded",
+      "reason": "frozen Stage A attempt stopped on infrastructure custody; rerun forbidden"
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "disposition": "excluded",
+      "reason": "completed Stage A and paired downstream run"
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "disposition": "eligible",
+      "reason": "no current Stage A, full-surface, smoke, or paired downstream run"
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "disposition": "eligible",
+      "reason": "no current Stage A, full-surface, smoke, or paired downstream run"
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "disposition": "excluded",
+      "reason": "completed Stage A and paired downstream run"
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "disposition": "excluded",
+      "reason": "completed full-surface portfolio diagnostic and downstream counterfactual"
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "disposition": "excluded",
+      "reason": "frozen Stage A attempt stopped on quote admission; rerun forbidden"
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "disposition": "excluded",
+      "reason": "completed Stage A and strong-control work under an incompletely frozen pair"
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "disposition": "eligible",
+      "reason": "no current Stage A, full-surface, smoke, or paired downstream run"
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "disposition": "excluded",
+      "reason": "already used in a downstream control-versus-Lolla quiet pilot"
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "disposition": "excluded",
+      "reason": "failed extraction-admission smoke; rerun forbidden"
+    }
+  ],
+  "high_stakes_boundary": {
+    "eligible_for_stage_a_operability_and_private_pressure_review": true,
+    "reason": "The fixtures are fixed synthetic research cases; Stage A produces no user-facing recommendation and makes no action authorization.",
+    "stage_b_automatically_authorized": false,
+    "stage_b_extra_requirements": [
+      "prospective domain-risk source-fidelity red lines",
+      "no diagnosis or unsupported safety, legal, financial, or outcome claims",
+      "no action authorization for a real user",
+      "separate source-first review before either downstream arm"
+    ]
+  },
+  "selection_rule": {
+    "seed_source_path": "research/extraction-admission-smoke-case01-v1-2026-07-10/decision.json",
+    "seed_source_sha256": "bc44e57611a409c66f31e6139e89ece34291e33fe8f2ba618c17897c3d73f9f8",
+    "algorithm": "For each eligible case_id, compute SHA256(seed_source_sha256 + NUL + case_id) as lowercase UTF-8; choose the lexicographically smallest digest.",
+    "candidate_digests": {
+      "case-04-whistleblower": "b0f71608747332fa8a132979d30f124ef0df95058f99d32ae63de4c483298892",
+      "case-05-parenting-teen": "455dec79afc5dcdfb11011f0ef4fe9fe3911d2b47807b536ef544b10dd4a35a7",
+      "case-10-real-estate-bid": "779560615da52aa47a65bd2c1660327259996d186bcd596999be43784200bcce"
+    },
+    "selected_case_id": "case-05-parenting-teen"
+  },
+  "selection_non_claims": [
+    "not a claim that Case 05 is representative",
+    "not a claim that high-stakes advice is safe",
+    "not a semantic-quality result",
+    "not Stage B authorization",
+    "not runtime-integration authority"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_selection_terminal_review.v1",
+  "status": "provider_compatibility_resolved_no_model_passes_combined_semantic_contract",
+  "date": "2026-07-12",
+  "provider_findings": {
+    "google_gemini_3_1_flash_lite": "v4.2 schema rejected before inference with HTTP 400 INVALID_ARGUMENT",
+    "deepinfra_glm_5_2": "v4.2 and v4.3 schemas accepted",
+    "alibaba_deepseek_v4_flash": "v4.2 and v4.3 schemas accepted",
+    "alibaba_deepseek_v4_pro": "v4.3 schema accepted",
+    "parasail_minimax_m3": "v4.3 schema accepted",
+    "deepinfra_deepseek_v4_flash": "schema acceptance not observed because upstream returned HTTP 429"
+  },
+  "model_pair_results": [
+    {
+      "pair": "deepseek/deepseek-v4-flash via Alibaba",
+      "wire": "pass",
+      "best_deterministic_disposition": "admitted",
+      "source_review": "fail",
+      "main_defect": "Declares the visible starting position absent while describing it in trajectory prose.",
+      "provider_reported_v43_cost_usd": 0.000301902,
+      "relative_disposition": "closest_and_cheapest_development_candidate_not_production_winner"
+    },
+    {
+      "pair": "z-ai/glm-5.2 via DeepInfra",
+      "wire": "pass",
+      "best_deterministic_disposition": "reviewed_empty",
+      "source_review": "fail",
+      "main_defect": "Invents a schema mismatch and returns not_found despite an explicit trajectory.",
+      "provider_reported_v43_cost_usd": 0.00133329,
+      "relative_disposition": "do_not_advance_current_contract"
+    },
+    {
+      "pair": "deepseek/deepseek-v4-pro via Alibaba",
+      "wire": "pass",
+      "best_deterministic_disposition": "quarantined",
+      "source_review": "fail",
+      "main_defect": "Cites and interprets starting evidence but omits a starting stance component and uses qualified_current_only.",
+      "provider_reported_cost_usd": 0.002908872,
+      "relative_disposition": "higher_cost_did_not_repair_contract_adherence"
+    },
+    {
+      "pair": "minimax/minimax-m3 via Parasail",
+      "wire": "pass",
+      "best_deterministic_disposition": "reviewed_empty",
+      "source_review": "fail",
+      "main_defect": "Misclassifies an undecided preference as no visible starting state and returns not_found.",
+      "provider_reported_cost_usd": 0.00047358,
+      "relative_disposition": "do_not_advance_current_contract"
+    }
+  ],
+  "hypothesis_updates": {
+    "google_provider_path_was_the_only_problem": false,
+    "provider_path_was_a_real_problem": true,
+    "v42_schema_is_universally_unserviceable": false,
+    "flash_model_weakness_is_the_only_semantic_problem": false,
+    "stronger_general_model_solves_the_combined_contract": false,
+    "general_intelligence_benchmark_predicts_lolla_source_fidelity": false,
+    "combined_role_trajectory_plus_stance_object_job_is_overloaded": true,
+    "brittle_deterministic_semantic_gating_is_needed": false
+  },
+  "known_cost_custody": {
+    "provider_reported_cost_usd_for_preserved_successful_calls": 0.005799432,
+    "first_interrupted_batch_possible_additional_calls_minimum": 0,
+    "first_interrupted_batch_possible_additional_calls_maximum": 2,
+    "first_interrupted_batch_cost_attributable": false,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing_calls": 0,
+    "semantic_case_calls": 0
+  },
+  "decision": {
+    "model_operator_search_complete_for_current_combined_contract": true,
+    "production_model_selected": false,
+    "development_reference_pair": "deepseek/deepseek-v4-flash via Alibaba",
+    "reason": "It is the cheapest tested pair and the only one to engage the full task closely enough for deterministic admission after the prompt clarification, but it still fails source review.",
+    "agency_acquisition_case_called": false,
+    "agency_acquisition_case_remains_reserved": true,
+    "additional_model_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "next_work": "provider_free_decomposition_of_role_trajectory_extraction_from_stance_object_decomposition"
+  },
+  "next_design_constraints": [
+    "Keep LLMs responsible for semantic role and stance interpretation.",
+    "Keep deterministic code limited to exact evidence custody, schema validation, role IDs, joins, budgets, and terminal disposition.",
+    "Do not add keyword gates or compatibility matrices to decide semantic correctness.",
+    "First microtask: extract starting, current, qualification, and trajectory with exact evidence.",
+    "Second microtask: decompose stance objects separately for one declared role/evidence set at a time.",
+    "Join only on exact role and evidence identifiers; preserve disagreement and missingness.",
+    "Use DeepSeek V4 Flash via Alibaba as the first low-cost development operator only after provider-free contracts pass.",
+    "Do not spend the reserved agency case until the decomposed synthetic development and a distinct transfer fixture pass source review."
+  ],
+  "nonclaims": [
+    "No tested model/provider pair passed the combined semantic contract.",
+    "DeepSeek V4 Flash is not a production winner.",
+    "The result does not rank general model intelligence.",
+    "The result does not measure full-conversation reasoning quality, product value, trust, graph utility, or final-answer quality."
+  ]
+}

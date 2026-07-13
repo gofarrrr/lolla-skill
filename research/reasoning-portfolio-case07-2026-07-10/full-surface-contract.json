@@ -1,0 +1,107 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_full_surface_contract.v0",
+  "status": "frozen_before_pipeline_calls",
+  "case": {
+    "case_id": "case-07-messy-linked-decisions",
+    "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+    "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa",
+    "turn_pairs": 11,
+    "case_role": "non_obvious_linked_decisions_and_false_standdown_probe"
+  },
+  "frozen_extraction": {
+    "path": "research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/messy_three_problems_extraction.json",
+    "sha256": "ef4c811377956350b3053582f23d2b5e8d52c0b554542c3de68ea4d76440e447",
+    "reuse_reason": "Avoid a new extraction call; the artifact has good capture health, 11/11 turn-pair custody, and zero fabricated quotes. The full conversation remains authoritative."
+  },
+  "pipeline": {
+    "script_path": "scripts/run_pipeline.py",
+    "script_sha256": "7710f55800d32bb5d54315c353244edd30dcefed123357ee14f6a847aa46de9f",
+    "v60_contract_path": "engine/system_b/v60_enrichment.py",
+    "v60_contract_sha256": "e16026bdddb9f5bc281af39b7a3158805ecdc8f4b3ef501347f072405477b249",
+    "affordances_path": "data/compiled/model_affordances/affordances_v60.json",
+    "affordances_sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8",
+    "provider": "openrouter",
+    "runtime_model_from_existing_environment": true,
+    "embeddings": "auto",
+    "skip_revision": true,
+    "pre_step6_portfolio": "step6_private",
+    "v60_enrichment": "auto",
+    "companion_candidate_cap": 60,
+    "cached_portfolio_required": false
+  },
+  "call_budget": {
+    "new_extraction_calls": 0,
+    "new_revision_calls_inside_pipeline": 0,
+    "recorded_pipeline_and_postprocessing_chat_call_ceiling": 40,
+    "automatic_experiment_retries": 0,
+    "portfolio_consumer_call_authorized_before_novelty_review": false,
+    "estimated_cost_ceiling_usd": 0.2
+  },
+  "existing_control_reuse": {
+    "artifact_path": "research/semantic-overlay-counterfactual-case07-2026-07-10/run/blind-outputs.json",
+    "artifact_sha256": "a2eaa8213de56ae28d38b8567c734f61a63d1a833e11fd6067100c57fe2dc05f",
+    "blind_label": "A",
+    "arm_id": "strong_fresh_reconsideration_control",
+    "prompt_sha256": "b0263ae30e798aa1c7e3a9e28e0ed25474c3d667d32fecf20b76270aa31dfe0e",
+    "response_sha256": "7bfa9c4c8822f311d1e80bee16534fdd79a0866a823021df2a17737e314e2896",
+    "reuse_boundary": "The existing output is a demanding answer baseline. It is not a baseline for private consideration custody or graph-edge exposure."
+  },
+  "predeclared_case_facts_and_failures": {
+    "must_preserve": [
+      "Seattle remains undecided despite the user telling herself otherwise",
+      "the lease deadline can be decoupled from the larger life decisions",
+      "the boyfriend commitment is untested because specifics were avoided",
+      "mother-care facts are incomplete and require medical and family evidence",
+      "the user's attachment to DC is real and underexplored",
+      "the user's overwhelm is part of the process and should not be treated as mere noise"
+    ],
+    "must_not_invent": [
+      "a diagnosis or trajectory for the mother",
+      "the boyfriend's motives or final willingness to move",
+      "the employer's willingness to extend the deadline",
+      "the user's true preference for Seattle or DC",
+      "probabilities for relationship, medical, or career outcomes"
+    ],
+    "known_prior_failure": "A 27-event source-valid semantic overlay overrepresented the assistant's root-decision frame and performed worse than the transcript-only strong control."
+  },
+  "pipeline_admission_gates": [
+    "source_and_extraction_hashes_match",
+    "pipeline_and_v60_contract_hashes_match",
+    "result_status_is_ok",
+    "capture_is_not_truncated",
+    "quote_fabrication_count_is_zero",
+    "pre_step6_private_table_status_is_ready",
+    "v60_enrichment_status_is_active",
+    "v60_ledger_skeleton_schema_is_v60_skill_consideration_ledger_v2",
+    "recorded_chat_calls_do_not_exceed_40",
+    "no_automatic_experiment_retry_occurred"
+  ],
+  "post_pipeline_novelty_review": {
+    "compare_against": [
+      "the complete raw conversation",
+      "the existing strong fresh reconsideration control",
+      "the generated private table",
+      "the generated V60 skeleton",
+      "the prior semantic-overlay failure"
+    ],
+    "portfolio_consumer_call_gate": "At least two trace-supported edge pressures are not already present in the strong control or active private table, and at least one could change an action, evidence gate, sequence, stop rule, user question, or important private guardrail.",
+    "candidate_count_alone_can_pass": false,
+    "suppressed_count_alone_can_pass": false
+  },
+  "stop_rules": [
+    "no_prompt_model_source_or_cap_change_after_pipeline_start",
+    "no_pipeline_retry_after_provider_or_contract_failure",
+    "stop_before_consumer_call_if_novelty_gate_fails",
+    "stop_if_call_or_cost_ceiling_is_exceeded",
+    "no_runtime_promotion_from_one_case",
+    "no_retroactive_change_to_case07_semantic_scores"
+  ],
+  "non_claims": [
+    "not_human_review",
+    "not_product_proof",
+    "not_a_test_of_outcome_quality",
+    "not_semantic_kernel_integration_authority",
+    "not_graph_runtime_promotion_authority",
+    "not_evidence_that_more_private_context_is_better"
+  ]
+}

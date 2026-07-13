@@ -1,0 +1,448 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_v60_snapshot.v0",
+  "status": "review_safe_snapshot",
+  "source_pipeline_sha256": "7155d197f4ee3dc7d2966a06def9321f69aa44aef016b42946f1a48da4f940c1",
+  "v60_schema_version": "v60_runtime_enrichment.v1",
+  "v60_status": "active",
+  "selected_cards": [
+    {
+      "card_id": "v60-card-001-commitment-bias",
+      "model_id": "commitment-bias",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant forces the founder to set success criteria in advance to prevent the motivated reasoning and self-deception that typically occur when evaluating ambiguous results.",
+      "affordance_chunk_ids": [
+        "aff::commitment-bias.recommitment-stop-rule-review"
+      ],
+      "absence_chunk_ids": [
+        "abs::commitment-bias::sunk-cost-defense-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-002-batna",
+      "model_id": "batna",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant defines the walk-away condition (if all three pass) to ensure the founder has a clear, objective fallback path if the pivot hypothesis fails.",
+      "affordance_chunk_ids": [
+        "aff::batna.credible-walk-away-alternative-test"
+      ],
+      "absence_chunk_ids": [
+        "abs::batna::base-case-fallback-as-batna"
+      ]
+    },
+    {
+      "card_id": "v60-card-003-experimentation",
+      "model_id": "experimentation",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant designs a specific, time-bound experiment to generate validated learning rather than relying on the founder's existing, unverified assumptions.",
+      "affordance_chunk_ids": [
+        "aff::experimentation.variable-separated-causal-probe"
+      ],
+      "absence_chunk_ids": [
+        "abs::experimentation::standalone-falsification-and-antithesis-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-004-emotional-intelligence",
+      "model_id": "emotional-intelligence",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant prioritizes transparency and fairness in the personnel decision, recognizing that the employee's trust and morale are critical to the integrity of the transition process.",
+      "affordance_chunk_ids": [
+        "aff::emotional-intelligence.emotion-evidence-landing-check"
+      ],
+      "absence_chunk_ids": [
+        "abs::emotional-intelligence::unvalidated-emotional-reading"
+      ]
+    },
+    {
+      "card_id": "v60-card-005-status-quo-bias",
+      "model_id": "status-quo-bias",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::status-quo-bias.default-choice-architecture"
+      ],
+      "absence_chunk_ids": [
+        "abs::status-quo-bias::novelty-seeking-change-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-006-switching-costs",
+      "model_id": "switching-costs",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::switching-costs.reversibility-decay-exit-plan"
+      ],
+      "absence_chunk_ids": [
+        "abs::switching-costs::license-price-as-switching-cost"
+      ]
+    },
+    {
+      "card_id": "v60-card-007-opportunity-cost",
+      "model_id": "opportunity-cost",
+      "selection_source": "embedding_absence_reserved",
+      "selection_reason": "Reserve one embedding-recalled model with absence blockers.",
+      "affordance_chunk_ids": [
+        "aff::opportunity-cost.displaced-alternative-commitment-gate"
+      ],
+      "absence_chunk_ids": [
+        "abs::opportunity-cost::unbounded-foregone-option-inventory"
+      ]
+    },
+    {
+      "card_id": "v60-card-008-lock-in",
+      "model_id": "lock-in",
+      "selection_source": "hybrid_rrf",
+      "selection_reason": "Add hybrid lane-plus-embedding model.",
+      "affordance_chunk_ids": [
+        "aff::lock-in.reversal-cost-dependency-audit"
+      ],
+      "absence_chunk_ids": [
+        "abs::lock-in::switch-later-same-cost-affordance"
+      ]
+    }
+  ],
+  "consideration_ledger_skeleton": {
+    "schema_version": "v60_skill_consideration_ledger.v2",
+    "transactions": [
+      {
+        "card_id": "v60-card-001-commitment-bias",
+        "model_id": "commitment-bias",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant forces the founder to set success criteria in advance to prevent the motivated reasoning and self-deception that typically occur when evaluating ambiguous results.",
+        "source_file": "Commitment_Bias_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::commitment-bias.recommitment-stop-rule-review",
+        "chunk_kind": "affordance",
+        "affordance_id": "commitment-bias.recommitment-stop-rule-review",
+        "chunk_status": "supported",
+        "chunk_source_file": "Commitment_Bias_rag.md"
+      },
+      {
+        "card_id": "v60-card-001-commitment-bias",
+        "model_id": "commitment-bias",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant forces the founder to set success criteria in advance to prevent the motivated reasoning and self-deception that typically occur when evaluating ambiguous results.",
+        "source_file": "Commitment_Bias_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::commitment-bias::sunk-cost-defense-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "sunk-cost-defense-affordance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Commitment_Bias_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-002-batna",
+        "model_id": "batna",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant defines the walk-away condition (if all three pass) to ensure the founder has a clear, objective fallback path if the pivot hypothesis fails.",
+        "source_file": "Batna_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::batna.credible-walk-away-alternative-test",
+        "chunk_kind": "affordance",
+        "affordance_id": "batna.credible-walk-away-alternative-test",
+        "chunk_status": "supported",
+        "chunk_source_file": "Batna_rag.md"
+      },
+      {
+        "card_id": "v60-card-002-batna",
+        "model_id": "batna",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant defines the walk-away condition (if all three pass) to ensure the founder has a clear, objective fallback path if the pivot hypothesis fails.",
+        "source_file": "Batna_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::batna::base-case-fallback-as-batna",
+        "chunk_kind": "absence",
+        "attempted_field": "base-case-fallback-as-batna",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Batna_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-003-experimentation",
+        "model_id": "experimentation",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant designs a specific, time-bound experiment to generate validated learning rather than relying on the founder's existing, unverified assumptions.",
+        "source_file": "Experimentation_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::experimentation.variable-separated-causal-probe",
+        "chunk_kind": "affordance",
+        "affordance_id": "experimentation.variable-separated-causal-probe",
+        "chunk_status": "supported",
+        "chunk_source_file": "Experimentation_rag.md"
+      },
+      {
+        "card_id": "v60-card-003-experimentation",
+        "model_id": "experimentation",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant designs a specific, time-bound experiment to generate validated learning rather than relying on the founder's existing, unverified assumptions.",
+        "source_file": "Experimentation_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::experimentation::standalone-falsification-and-antithesis-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "standalone-falsification-and-antithesis-affordance",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Experimentation_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-004-emotional-intelligence",
+        "model_id": "emotional-intelligence",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant prioritizes transparency and fairness in the personnel decision, recognizing that the employee's trust and morale are critical to the integrity of the transition process.",
+        "source_file": "Emotional_Intelligence_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::emotional-intelligence.emotion-evidence-landing-check",
+        "chunk_kind": "affordance",
+        "affordance_id": "emotional-intelligence.emotion-evidence-landing-check",
+        "chunk_status": "supported",
+        "chunk_source_file": "Emotional_Intelligence_rag.md"
+      },
+      {
+        "card_id": "v60-card-004-emotional-intelligence",
+        "model_id": "emotional-intelligence",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant prioritizes transparency and fairness in the personnel decision, recognizing that the employee's trust and morale are critical to the integrity of the transition process.",
+        "source_file": "Emotional_Intelligence_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::emotional-intelligence::unvalidated-emotional-reading",
+        "chunk_kind": "absence",
+        "attempted_field": "unvalidated-emotional-reading",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Emotional_Intelligence_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-005-status-quo-bias",
+        "model_id": "status-quo-bias",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Status_Quo_Bias_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::status-quo-bias.default-choice-architecture",
+        "chunk_kind": "affordance",
+        "affordance_id": "status-quo-bias.default-choice-architecture",
+        "chunk_status": "supported",
+        "chunk_source_file": "Status_Quo_Bias_rag.md"
+      },
+      {
+        "card_id": "v60-card-005-status-quo-bias",
+        "model_id": "status-quo-bias",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Status_Quo_Bias_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::status-quo-bias::novelty-seeking-change-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "novelty-seeking-change-affordance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Status_Quo_Bias_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-006-switching-costs",
+        "model_id": "switching-costs",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Switching_Costs_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::switching-costs.reversibility-decay-exit-plan",
+        "chunk_kind": "affordance",
+        "affordance_id": "switching-costs.reversibility-decay-exit-plan",
+        "chunk_status": "supported",
+        "chunk_source_file": "Switching_Costs_rag.md"
+      },
+      {
+        "card_id": "v60-card-006-switching-costs",
+        "model_id": "switching-costs",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Switching_Costs_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::switching-costs::license-price-as-switching-cost",
+        "chunk_kind": "absence",
+        "attempted_field": "license-price-as-switching-cost",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Switching_Costs_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-007-opportunity-cost",
+        "model_id": "opportunity-cost",
+        "selection_source": "embedding_absence_reserved",
+        "selection_reason": "Reserve one embedding-recalled model with absence blockers.",
+        "source_file": "Opportunity_Cost_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::opportunity-cost.displaced-alternative-commitment-gate",
+        "chunk_kind": "affordance",
+        "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+        "chunk_status": "supported",
+        "chunk_source_file": "Opportunity_Cost_rag.md"
+      },
+      {
+        "card_id": "v60-card-007-opportunity-cost",
+        "model_id": "opportunity-cost",
+        "selection_source": "embedding_absence_reserved",
+        "selection_reason": "Reserve one embedding-recalled model with absence blockers.",
+        "source_file": "Opportunity_Cost_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::opportunity-cost::unbounded-foregone-option-inventory",
+        "chunk_kind": "absence",
+        "attempted_field": "unbounded-foregone-option-inventory",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Opportunity_Cost_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-008-lock-in",
+        "model_id": "lock-in",
+        "selection_source": "hybrid_rrf",
+        "selection_reason": "Add hybrid lane-plus-embedding model.",
+        "source_file": "Lock_In_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::lock-in.reversal-cost-dependency-audit",
+        "chunk_kind": "affordance",
+        "affordance_id": "lock-in.reversal-cost-dependency-audit",
+        "chunk_status": "supported",
+        "chunk_source_file": "Lock_In_rag.md"
+      },
+      {
+        "card_id": "v60-card-008-lock-in",
+        "model_id": "lock-in",
+        "selection_source": "hybrid_rrf",
+        "selection_reason": "Add hybrid lane-plus-embedding model.",
+        "source_file": "Lock_In_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::lock-in::switch-later-same-cost-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "switch-later-same-cost-affordance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Lock_In_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      }
+    ]
+  },
+  "raw_chunk_text_included": false,
+  "absolute_paths_included": false
+}

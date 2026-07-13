@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.conversation_state_transfer_observed_results.v1",
+  "run_id": "conversation_state_transfer_case04_v4_20260711_a1",
+  "case_id": "amb1-case04-research-tool-release",
+  "calls": [
+    {
+      "kind": "threads",
+      "operational_status": "ok",
+      "semantic_status": "candidate_quarantined",
+      "candidate_payload_sha256": "9d24dadf3ae0034c2e4b7d2ffa14ed3e385f3e432f7b5db86f4a214f1783a074",
+      "candidate_payload": {"status": "supported", "threads": [{"text": "Whether to release a public beta of the software tool.", "disposition": "addressed_unresolved", "evidence_mode": "multi_turn_derivation", "introduced": {"span_id": "span-ca190c22185bf862", "excerpt": "Two labs have used private builds and want us to release a public beta."}, "latest": {"span_id": "span-824f75c230f8bd8c", "excerpt": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns."}, "responses": [{"engagement": "substantive", "evidence": {"span_id": "span-4101cfe39ae10653", "excerpt": "The decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable."}}, {"engagement": "substantive", "evidence": {"span_id": "span-dc942a68e233fc77", "excerpt": "The maintainers' concern still matters because public access changes the volume and variety of support."}}, {"engagement": "substantive", "evidence": {"span_id": "span-35b558d7e88da0d5", "excerpt": "Priya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs."}}, {"engagement": "substantive", "evidence": {"span_id": "span-46e0e51a4c54e656", "excerpt": "One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns."}}], "superseded_by": null}, {"text": "Whether researchers should be allowed to cite the tool in papers.", "disposition": "addressed_unresolved", "evidence_mode": "multi_turn_derivation", "introduced": {"span_id": "span-53e5a26fde55c011", "excerpt": "Also, the two labs want to cite the tool in papers this year."}, "latest": {"span_id": "span-555d1e1e693303ae", "excerpt": "Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object."}, "responses": [{"engagement": "substantive", "evidence": {"span_id": "span-3c150eb25868ae1a", "excerpt": "The publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now."}}, {"engagement": "substantive", "evidence": {"span_id": "span-2bd15f8ad6c64996", "excerpt": "You could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used."}}], "superseded_by": null}]},
+      "validation_issues": ["source_excerpt_not_exact", "source_excerpt_not_exact"],
+      "invalid_candidate_count": 1,
+      "estimated_cost_usd": 0.00241925
+    },
+    {
+      "kind": "constraints",
+      "operational_status": "ok",
+      "semantic_status": "candidate_valid",
+      "candidate_payload_sha256": "dbdd560e9dcb7932f99a15b6626ee4a14dedc86e50c066e4a6fc25cdf345626a",
+      "candidate_payload": {"status": "supported", "constraints": [{"text": "The senior maintainer will be on leave during the last three weeks of the eight-week public beta period.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-2b04881694f57d60", "excerpt": "the senior maintainer will be on leave during the last three weeks."}]}, {"text": "The two labs want to cite the tool in papers this year.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-53e5a26fde55c011", "excerpt": "the two labs want to cite the tool in papers this year."}]}, {"text": "The maintainers worry a messy release will define our reputation.", "state": "active", "claim_mode": "concern", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-e8272cc2bc46c92f", "excerpt": "The maintainers worry a messy release will define our reputation."}]}, {"text": "Researchers often ignore “beta” once they have invested in a workflow.", "state": "active", "claim_mode": "concern", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-db40346c434d247b", "excerpt": "Researchers often ignore “beta” once they have invested in a workflow."}]}, {"text": "The workshop is a real learning opportunity, not only publicity.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-60d03050a7372892", "excerpt": "The workshop is a real learning opportunity, not only publicity."}]}, {"text": "If we change the data model later, they may feel we broke something even if we warned them.", "state": "active", "claim_mode": "possibility", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-22397da88963fa14", "excerpt": "If we change the data model later, they may feel we broke something even if we warned them."}]}]},
+      "validation_issues": [],
+      "invalid_candidate_count": 0,
+      "observed_count": 6,
+      "reviewed_atomic_count": 10,
+      "maximum_possible_recall": 0.6,
+      "estimated_cost_usd": 0.00204175
+    },
+    {
+      "kind": "positions",
+      "operational_status": "ok",
+      "semantic_status": "candidate_valid",
+      "candidate_payload_sha256": "a177d8c6700f7b4f78967c6f75aec84fadbf3cb38ec389db4166aae9385dfac8",
+      "candidate_payload": {"status": "supported", "decision_summary": {"text": "The team is moving toward releasing an openly downloadable 'workshop preview' with a fixed end date, office hours, and no compatibility promise, deferring a full public beta until after the senior maintainer returns and installation failures are reviewed.", "evidence_mode": "multi_turn_derivation", "evidence": [{"span_id": "span-4c315bc9d17df568", "excerpt": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns."}, {"span_id": "span-2631f315a47e61f7", "excerpt": "The proposal makes the support window and decision point concrete"}]}, "positions": [{"text": "Release a time-bound 'workshop preview' to manage support capacity and gather feedback without making long-term compatibility promises.", "ownership": "joint", "state": "proposed", "evidence_mode": "multi_turn_derivation", "contributions": [{"role": "originated", "evidence": {"span_id": "span-2bfa9fe8e56374d0", "excerpt": "One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns."}}, {"role": "developed", "evidence": {"span_id": "span-4c315bc9d17df568", "excerpt": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise"}}, {"role": "qualified", "evidence": {"span_id": "span-8447648368f54f18", "excerpt": "The plan can bound your promise; it cannot make public use temporary in every practical sense."}}]}, {"text": "Defer formalizing a stable data model until broader, diverse usage patterns are observed.", "ownership": "user", "state": "unresolved", "evidence_mode": "multi_turn_derivation", "contributions": [{"role": "originated", "evidence": {"span_id": "span-4265154d3dbabc66", "excerpt": "Priya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions."}}, {"role": "challenged", "evidence": {"span_id": "span-bfb468b1817b1e48", "excerpt": "Our senior maintainer says that is using users to discover architecture at their expense."}}]}]},
+      "validation_issues": [],
+      "invalid_candidate_count": 0,
+      "estimated_cost_usd": 0.00242275
+    }
+  ],
+  "aggregate": {"provider_calls": 3, "automatic_retries": 0, "estimated_cost_usd": 0.00688375, "case_passed": false, "composition_allowed": false}
+}

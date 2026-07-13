@@ -1,0 +1,118 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case01-product-scope",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "observation_id": "rpshard-amb1-case01-product-scope-position_and_decision_trajectory-01-5c12ca0fd2",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "chronological-shard-same-session-nonblind",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e060"
+            ],
+            "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e067"
+            ],
+            "starting_state_evidence_ids": [
+              "e005"
+            ],
+            "status": "supported",
+            "trajectory_type": "changed"
+          },
+          "record_identity": "case01-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:5c12ca0fd237ffe8081561281e6bf470c274671341beb5a262089a36a6f276f0",
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-c9902a73ee6c654e"
+          ],
+          "qualification_evidence_ids": [
+            "span-836caaea5abc0d4b"
+          ],
+          "starting_state_evidence_ids": [
+            "span-4ad7a72a2c6a0b54"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-4ad7a72a2c6a0b54",
+          "span-c9902a73ee6c654e",
+          "span-836caaea5abc0d4b"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case01-product-scope-position_and_decision_trajectory-01-5c12ca0fd2",
+        "raw_record_sha256": "sha256:5c12ca0fd237ffe8081561281e6bf470c274671341beb5a262089a36a6f276f0",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e060"
+        ],
+        "interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e067"
+        ],
+        "starting_state_evidence_ids": [
+          "e005"
+        ],
+        "status": "supported",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case01-product-scope/position_and_decision_trajectory.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case01-product-scope/position_and_decision_trajectory/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-4ad7a72a2c6a0b54",
+      "span-c9902a73ee6c654e",
+      "span-836caaea5abc0d4b"
+    ],
+    "target_id": "case01-position-trajectory",
+    "view_kind": "position_and_decision_trajectory"
+  }
+}

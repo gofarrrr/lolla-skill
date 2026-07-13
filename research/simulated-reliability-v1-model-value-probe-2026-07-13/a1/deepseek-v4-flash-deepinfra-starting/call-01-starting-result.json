@@ -1,0 +1,109 @@
+{
+  "automatic_retries": 0,
+  "base_user_prompt_sha256": "d71a1da23ddf8e64d77234b3691bcfbc47f8a4a5d03d1f218f8281c5809fe09c",
+  "candidate": {
+    "records": [
+      {
+        "evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009"
+        ],
+        "stance_components": [
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "the three-year funding offer from the manufacturer",
+            "object_kind": "proposal",
+            "source_alias": "user"
+          },
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "the proposed work on recovering material from damaged cells",
+            "object_kind": "proposal",
+            "source_alias": "user"
+          },
+          {
+            "expression_kind": "counterpressure",
+            "object_interpretation": "the draft terms giving sponsor review time and first rights to negotiate licenses",
+            "object_kind": "situation",
+            "source_alias": "user"
+          },
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "the user's own approach of understanding forms of influence without a purity test",
+            "object_kind": "assessment",
+            "source_alias": "user"
+          }
+        ]
+      }
+    ]
+  },
+  "case_id": "v1-case06-industry-funded-lab",
+  "compiled": null,
+  "data_collection": "deny",
+  "duration_seconds": 233.839,
+  "effective_user_prompt_sha256": "d71a1da23ddf8e64d77234b3691bcfbc47f8a4a5d03d1f218f8281c5809fe09c",
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1783921455-rQ3BO5fnNedCU2i7RpKc",
+  "max_output_tokens": 6000,
+  "operational_status": "local_validation_failed",
+  "provider_calls": 1,
+  "provider_only": [
+    "deepinfra"
+  ],
+  "provider_order": [
+    "deepinfra"
+  ],
+  "provider_payload_sha256": "8a2be7e5fcc2cddf9a013a98a279c5c7915d4e604ba224a9b3f8cc2e0f30bd15",
+  "provider_reported_cost_usd": 0.001213362,
+  "raw_content": "{\n  \"records\": [\n    {\n      \"evidence_ids\": [\"e001\", \"e002\", \"e003\", \"e004\", \"e005\", \"e006\", \"e007\", \"e008\", \"e009\"],\n      \"stance_components\": [\n        {\n          \"object_kind\": \"proposal\",\n          \"object_interpretation\": \"the three-year funding offer from the manufacturer\",\n          \"expression_kind\": \"preference_or_desire\",\n          \"source_alias\": \"user\"\n        },\n        {\n          \"object_kind\": \"proposal\",\n          \"object_interpretation\": \"the proposed work on recovering material from damaged cells\",\n          \"expression_kind\": \"preference_or_desire\",\n          \"source_alias\": \"user\"\n        },\n        {\n          \"object_kind\": \"situation\",\n          \"object_interpretation\": \"the draft terms giving sponsor review time and first rights to negotiate licenses\",\n          \"expression_kind\": \"counterpressure\",\n          \"source_alias\": \"user\"\n        },\n        {\n          \"object_kind\": \"assessment\",\n          \"object_interpretation\": \"the user's own approach of understanding forms of influence without a purity test\",\n          \"expression_kind\": \"uncertain_or_undecided\",\n          \"source_alias\": \"user\"\n        }\n      ]\n    }\n  ]\n}",
+  "raw_content_sha256": "a991319708280435bc3b5fd236651da70b8273fee8f945013dc05dcd1026aa16",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": false,
+  "reasoning_effort": "medium",
+  "repeat_id": "model_value_probe",
+  "request_body_sha256": "aa0ffe579af693b421f36a5d9b763ef4adc91c5e72dee680cc7d1c1b3d0b79cb",
+  "requested_model": "deepseek/deepseek-v4-flash",
+  "response_healing": false,
+  "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+  "seed": 707,
+  "served_model": "deepseek/deepseek-v4-flash",
+  "served_provider": "DeepInfra",
+  "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+  "task_id": "starting",
+  "temperature_supplied": false,
+  "top_p_supplied": false,
+  "usage": {
+    "completion_tokens": 4936,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 5363
+    },
+    "cost": 0.001213362,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00088848,
+      "upstream_inference_cost": 0.001213362,
+      "upstream_inference_prompt_cost": 0.000324882
+    },
+    "is_byok": false,
+    "prompt_tokens": 3661,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 64,
+      "video_tokens": 0
+    },
+    "total_tokens": 8597
+  },
+  "validation_error": "ViewSpecificInterfaceError: v2.2 role response envelope fields do not match",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

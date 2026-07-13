@@ -207,7 +207,31 @@ class OpenAICompatibleBoundaryClient:
         with the supplied stage label, so no caller needs to remember a
         separate recording hook.
         """
-        result, metadata = self._do_call(system_prompt, user_prompt)
+        try:
+            result, metadata = self._do_call(system_prompt, user_prompt)
+        except Exception:
+            # A provider-bound operation is still an attempted call when an
+            # unexpected transport/parser exception escapes _do_call. Preserve
+            # that fact before re-raising so the extraction layer can persist
+            # a truthful terminal sidecar instead of reporting zero calls.
+            metadata = BoundaryCallMetadata(
+                provider_name=self.provider_name,
+                requested_model=self.model,
+                model=self.model,
+                model_attribution_status="not_observed",
+                status="unexpected_error",
+                temperature=self.temperature,
+                reasoning_disabled=_reasoning_disabled(self._reasoning_config()),
+            )
+            with self._call_log_lock:
+                self.call_log.append(
+                    _record_from_metadata(
+                        metadata,
+                        stage=stage,
+                        tendency_id=tendency_id,
+                    )
+                )
+            raise
         with self._call_log_lock:
             self.call_log.append(
                 _record_from_metadata(metadata, stage=stage, tendency_id=tendency_id)
@@ -332,9 +356,13 @@ class OpenAICompatibleBoundaryClient:
             _is_truthy_env("LOLLA_OPENROUTER_DISABLE_REASONING")
             and str(self.provider_name).strip().lower() == "openrouter"
         ):
-            return {"effort": "none"}
+            return {"enabled": False}
         if _openrouter_disables_reasoning_by_default(self.provider_name, self.model):
-            return {"effort": "none"}
+            # ``enabled: false`` is the provider-level off switch.  It remains
+            # valid for models whose current effort vocabulary omits ``none``
+            # (for example Gemini 3.1 Flash Lite), while ``effort: none`` can
+            # be rejected before inference by those same models.
+            return {"enabled": False}
         return {}
 
     @classmethod
@@ -565,11 +593,17 @@ def _is_truthy_env(name: str) -> bool:
 def _reasoning_disabled(reasoning_config: Mapping[str, object] | None) -> bool:
     if not reasoning_config:
         return False
+    if reasoning_config.get("enabled") is False:
+        return True
     return str(reasoning_config.get("effort", "")).strip().lower() == "none"
 
 
 def _model_attribution_status(*, requested_model: str, served_model: str, status: str) -> str:
-    if not str(status or "").startswith("ok"):
+    normalized_status = str(status or "")
+    served_was_observed_during_provider_failure = (
+        normalized_status == "provider_finish_error" and bool(str(served_model or "").strip())
+    )
+    if not normalized_status.startswith("ok") and not served_was_observed_during_provider_failure:
         return "not_observed"
     requested = str(requested_model or "").strip()
     served = str(served_model or "").strip()
@@ -619,6 +653,9 @@ def _build_call_metadata(
     reasoning_details_present = _reasoning_details_include_content(message_map)
     finish_reason_raw = first_choice_map.get("finish_reason", "")
     finish_reason = str(finish_reason_raw) if finish_reason_raw is not None else ""
+    effective_status = str(status or "")
+    if effective_status.startswith("ok") and finish_reason.strip().lower() == "error":
+        effective_status = "provider_finish_error"
     requested_model = str(model or "").strip()
     served_model = str(payload.get("model", "") or "").strip()
     model_for_billing = served_model or requested_model
@@ -630,9 +667,9 @@ def _build_call_metadata(
         model_attribution_status=_model_attribution_status(
             requested_model=requested_model,
             served_model=served_model,
-            status=status,
+            status=effective_status,
         ),
-        status=status,
+        status=effective_status,
         finish_reason=finish_reason,
         raw_message_content=raw_message_content,
         temperature=temperature,

@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-02-multi-offer-career",
+  "source_file_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_three_offers", "dimension": "operative_question", "description": "The initial decision is a three-option career choice under a deadline.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "Just got three offers and I have to pick one within 7 days."}]},
+    {"observation_id": "question.current_due_diligence", "dimension": "operative_question", "description": "The current question moves to diligence before signing.", "evidence": [{"turn_index": 12, "speaker": "user", "quote": "Any other due diligence I should do before signing?"}]},
+    {"observation_id": "pressure.family_joint_decision", "dimension": "user_corrections_and_pressure", "description": "The user corrects the individual-decision frame.", "evidence": [{"turn_index": 5, "speaker": "user", "quote": "This isn't my decision alone."}]},
+    {"observation_id": "constraint.spouse_primary_earner", "dimension": "constraints_and_options", "description": "The spouse is the current primary earner.", "evidence": [{"turn_index": 5, "speaker": "user", "quote": "She's the primary earner right now"}]},
+    {"observation_id": "stance.financial_reframe", "dimension": "assistant_positions_and_revisions", "description": "The assistant reframes the choice as not primarily financial.", "evidence": [{"turn_index": 4, "speaker": "assistant", "quote": "It's not actually a financial decision, or not primarily."}]},
+    {"observation_id": "stance.final_conditional_choice", "dimension": "assistant_positions_and_revisions", "description": "The final recommendation is conditional on spouse alignment.", "evidence": [{"turn_index": 15, "speaker": "assistant", "quote": "If the wife conversation goes well, take B."}]},
+    {"observation_id": "drop.expected_value_argument", "dimension": "dropped_or_under_carried_threads", "description": "The startup base-rate argument is displaced by a career-shape reframe.", "evidence": [{"turn_index": 4, "speaker": "user", "quote": "80% of startups don't exit at that level."}]},
+    {"observation_id": "boundary.spouse_yes_may_not_be_real", "dimension": "uncertainty_and_evidence_boundaries", "description": "The user identifies uncertainty about whether spouse assent would be genuine.", "evidence": [{"turn_index": 11, "speaker": "user", "quote": "What if she says yes but I can tell she doesn't mean it?"}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.signed_choice", "description": "No offer has been accepted within the conversation."}
+  ]
+}

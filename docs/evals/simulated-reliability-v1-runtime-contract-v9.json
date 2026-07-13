@@ -1,0 +1,35 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_8",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a9",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v8.json",
+  "base_contract_sha256": "52ba545614a318a6b4b26a706052478f57a226a248c87be1f1aefde9e0b7c1e2",
+  "repair_basis": "A8's model output passed the separated semantic target, but the frozen compiler incorrectly coupled non-routing with not_applicable user-process state. Routing disposition now exclusively controls node creation.",
+  "pipeline": {
+    "unresolved_user_process_state_preserved_when_answer_is_covered": true,
+    "routing_node_control_field": "routing_disposition",
+    "deterministic_inference_of_routing_disposition": false,
+    "post_recall_candidate_deletion": false
+  },
+  "calibration": {
+    "a8_compiler_review_path": "research/simulated-reliability-v1-calibration-2026-07-12/a8/calibration-compiler-review.json",
+    "all_a9_call_identities_are_fresh": true,
+    "maximum_provider_calls": 18,
+    "stop_rule": "Product-scope must complete with no routed counterpressure_acknowledged_not_integrated node. Source-review the complete case before running the remaining sentinels."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "092d7c3d0be8b94643cdee43715028ecc4e012d240e5834c6fd03777d3f6efe3"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-separated-mechanism-state-design-2026-07-12.md",
+      "sha256": "081b76c2d915bba258056ba38fa45c1eeb73940d57b3ffdd67848185802f68a0"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a8/calibration-compiler-review.json",
+      "sha256": "2eb5ed47f21854bec25468cadc2ab4409ed69fcd4b45d6ccdc91de008ef36ad8"
+    }
+  ]
+}

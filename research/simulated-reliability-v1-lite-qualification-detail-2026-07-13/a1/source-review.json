@@ -1,0 +1,66 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_qualification_detail_source_review.v1",
+  "status": "review_bounded_detail_pass_with_category_and_mitigation_caveats",
+  "case_id": "v1-case06-industry-funded-lab",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "interface_review": {
+    "operational": "pass",
+    "one_admitted_observation": true,
+    "review_outcome_preserved": true,
+    "selected_evidence_only": true,
+    "selected_evidence_ids": [
+      "e052",
+      "e097"
+    ],
+    "full_conversation_repeated": false,
+    "unsupported_additional_risk_added": false
+  },
+  "semantic_review": {
+    "role_fidelity": "pass",
+    "source_grounding": "pass",
+    "speaker_ownership": "pass",
+    "material_meaning": "The record preserves that a three-year funding relationship can shape what young researchers, hiring, and laboratory attention treat as important even when contractual safeguards work.",
+    "modal_force": "pass_with_caveat",
+    "modal_caveat": "The source says the influence cannot be contracted away. The output's 'unavoidable' and 'inherent rather than mitigable' can be misread as saying it cannot be governed, observed, or partially mitigated. The source supports not fully contractible, not wholly ungovernable.",
+    "category_precision": "fail_nonfatal_for_meaning",
+    "category_caveat": "The e097 statement is typed as action_or_proposal even though it is a belief or assessment about an institutional effect. The expression kind constraint is plausible; the object kind is not.",
+    "material_fact_invented": false,
+    "material_evidence_omitted": false
+  },
+  "comparison_with_unbounded_qualification_call": {
+    "unbounded_evidence_ids": [
+      "e052",
+      "e087",
+      "e088",
+      "e097"
+    ],
+    "review_bounded_evidence_ids": [
+      "e052",
+      "e097"
+    ],
+    "benefit": "The detail task does not roam into equipment examples or other possible risks after the review has already identified the central unresolved meaning.",
+    "remaining_defect": "Smaller scope improves evidence precision but does not by itself guarantee object-category precision."
+  },
+  "custody_and_cost": {
+    "provider_calls": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "duration_seconds": 5.579,
+    "provider_reported_cost_usd": 0.00206025,
+    "cost_ceiling_usd": 0.005,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "eligible_for_provider_free_case06_role_join": true,
+    "eligible_for_production_integration": false,
+    "qualification_category_precision_proven": false,
+    "quiet_case_detail_call_required": false,
+    "mechanism_call_authorized": false,
+    "premium_model_call_authorized": false,
+    "next": "Seal case06 with starting, current, review-bounded qualification, and explicit review. Seal case07 current plus explicit quiet review and an empty qualification custody object. Use those joins to decide the smallest remaining operator test."
+  }
+}

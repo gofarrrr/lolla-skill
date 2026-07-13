@@ -1,0 +1,106 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-01-enterprise-logo-beta",
+  "source_archive_run_id": "20260709T201634Z_7a7930",
+  "source_file_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {
+      "observation_id": "question.initial_public_launch",
+      "dimension": "operative_question",
+      "description": "The conversation begins with a public-launch and logo-use decision.",
+      "evidence": [{"turn_index": 1, "speaker": "user", "quote": "Should we launch publicly and use its logo to attract other customers?"}]
+    },
+    {
+      "observation_id": "question.change_to_evidence_gate",
+      "dimension": "operative_question",
+      "description": "The current question changes from whether to launch to what evidence should gate announcement.",
+      "evidence": [{"turn_index": 5, "speaker": "user", "quote": "What evidence should we require before announcing?"}]
+    },
+    {
+      "observation_id": "pressure.no_signed_commitment",
+      "dimension": "user_corrections_and_pressure",
+      "description": "The user corrects the commitment assumption.",
+      "evidence": [{"turn_index": 3, "speaker": "user", "quote": "They have not signed anything."}]
+    },
+    {
+      "observation_id": "pressure.weak_email_evidence",
+      "dimension": "user_corrections_and_pressure",
+      "description": "Only two friendly emails support the prospect-interest claim.",
+      "evidence": [{"turn_index": 3, "speaker": "user", "quote": "We only have two friendly emails from their innovation lead"}]
+    },
+    {
+      "observation_id": "constraint.engineering_capacity",
+      "dimension": "constraints_and_options",
+      "description": "The only senior engineer is already supporting existing customers.",
+      "evidence": [{"turn_index": 3, "speaker": "user", "quote": "our only senior engineer is already supporting existing customers"}]
+    },
+    {
+      "observation_id": "pressure.board_brand_excitement",
+      "dimension": "user_corrections_and_pressure",
+      "description": "Board excitement is tied to the prospect's name.",
+      "evidence": [{"turn_index": 3, "speaker": "user", "quote": "the board is excited mainly because of the company's name"}]
+    },
+    {
+      "observation_id": "pressure.purchase_commitment_concern",
+      "dimension": "user_corrections_and_pressure",
+      "description": "The user challenges treating interest as purchase commitment.",
+      "evidence": [{"turn_index": 5, "speaker": "user", "quote": "I am worried we are treating their interest as a purchase commitment"}]
+    },
+    {
+      "observation_id": "value.opportunity_loss_concern",
+      "dimension": "user_corrections_and_pressure",
+      "description": "The user also wants to preserve the opportunity cost of waiting.",
+      "evidence": [{"turn_index": 5, "speaker": "user", "quote": "I am also worried that waiting will make us lose the opportunity"}]
+    },
+    {
+      "observation_id": "stance.initial_public_beta_commitment",
+      "dimension": "assistant_positions_and_revisions",
+      "description": "The assistant initially commits to a public beta and flagship partner framing.",
+      "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "I would announce a limited public beta and make this prospect the flagship design partner."}]
+    },
+    {
+      "observation_id": "stance.qualification_without_direction_change",
+      "dimension": "assistant_positions_and_revisions",
+      "description": "The assistant narrows implementation but does not reverse the public-launch direction.",
+      "evidence": [{"turn_index": 4, "speaker": "assistant", "quote": "Keep the beta limited to three companies, avoid promising a service-level agreement, and use the announcement to test demand."}]
+    },
+    {
+      "observation_id": "threshold.email_confirmation",
+      "dimension": "constraints_and_options",
+      "description": "Email confirmation becomes the only explicit pre-announcement threshold.",
+      "evidence": [{"turn_index": 6, "speaker": "assistant", "quote": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month."}]
+    },
+    {
+      "observation_id": "boundary.success_criteria_deferred",
+      "dimension": "uncertainty_and_evidence_boundaries",
+      "description": "Detailed success criteria are deferred until after launch.",
+      "evidence": [{"turn_index": 6, "speaker": "assistant", "quote": "You can define detailed success criteria after the first week once you see actual usage."}]
+    },
+    {
+      "observation_id": "drop.board_pressure_under_carried",
+      "dimension": "dropped_or_under_carried_threads",
+      "description": "The board's prestige-driven excitement is not integrated as an evidence problem.",
+      "evidence": [{"turn_index": 3, "speaker": "user", "quote": "the board is excited mainly because of the company's name"}]
+    },
+    {
+      "observation_id": "drop.commitment_concern_under_carried",
+      "dimension": "dropped_or_under_carried_threads",
+      "description": "The purchase-commitment concern receives only an email-confirmation response and remains under-carried.",
+      "evidence": [{"turn_index": 5, "speaker": "user", "quote": "I am worried we are treating their interest as a purchase commitment"}]
+    },
+    {
+      "observation_id": "drop.evidence_question_not_answered",
+      "dimension": "dropped_or_under_carried_threads",
+      "description": "The direct request for an evidence standard is not answered with a substantive evidence set.",
+      "evidence": [{"turn_index": 5, "speaker": "user", "quote": "What evidence should we require before announcing?"}]
+    }
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.logo_permission", "description": "Permission to use the prospect's logo is not established."},
+    {"observation_id": "absence.stop_rule", "description": "No explicit stop or reversal rule appears before the audit."},
+    {"observation_id": "absence.capacity_gate", "description": "Engineering capacity is acknowledged but not converted into an action gate."},
+    {"observation_id": "absence.reversible_private_path", "description": "No private or staged validation path is considered before the audit."},
+    {"observation_id": "absence.user_mind_change", "description": "The user changes the question and adds counter-pressure but does not clearly change their mind."}
+  ]
+}

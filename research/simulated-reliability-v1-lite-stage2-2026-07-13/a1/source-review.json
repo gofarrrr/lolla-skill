@@ -1,0 +1,68 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_stage2_source_review.v1",
+  "status": "stage_2_failed_no_admitted_records_one_transport_only_probe_justified",
+  "case_id": "v1-case06-industry-funded-lab",
+  "task_id": "current_qualification",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "semantic_review": {
+    "current": {
+      "assessment": "Substantively relevant but not admissible.",
+      "preserved": [
+        "The final action remains conditional on the explicit safeguards in e095.",
+        "The annual portfolio review remains part of the current governance response through e098."
+      ],
+      "caveat": "The prose says the user is 'committed to proceeding' and labels e095 as decision. The source supports strong conditional willingness, not unconditional commitment; the condition is present, so this is a modal caveat rather than an erased condition."
+    },
+    "qualification": {
+      "assessment": "Substantively relevant but not admissible.",
+      "preserved": [
+        "The result keeps the uncontractable effect on hiring and attention distinct from adopted safeguards.",
+        "The qualification_review explicitly states unresolved_qualification_present and cites e097."
+      ],
+      "caveats": [
+        "The review also cites e098, which is an adopted monitoring response rather than the unresolved matter itself.",
+        "The qualification record reaches back to e088 and e054; these are source-supported context, but e097 is the clean endpoint evidence."
+      ]
+    },
+    "unsupported_fact": "No material invented fact observed.",
+    "speaker_ownership": "The user-owned position is preserved. Assistant evidence is used as context in the qualification review, not silently attributed as a user quote."
+  },
+  "interface_review": {
+    "operational_status_reported": "ok",
+    "paired_terminal_disposition": "quarantined",
+    "admitted_current_records": 0,
+    "admitted_qualification_records": 0,
+    "exact_failure": "Both model-authored records omitted the required limitations field, producing 'v2.2 role record fields do not match contract' for each record.",
+    "qualification_review_compiled": true,
+    "stage_2_contract_passed": false
+  },
+  "custody_and_cost": {
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite",
+    "requested_provider": "google-vertex",
+    "served_provider": "Google",
+    "provider_calls": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "duration_seconds": 5.669,
+    "prompt_tokens": 5038,
+    "completion_tokens": 1327,
+    "reasoning_tokens_reported": 538,
+    "provider_reported_cost_usd": 0.00325,
+    "cost_ceiling_usd": 0.02,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "advance_to_mechanism": false,
+    "production_model_selected": false,
+    "premium_call_allowed": false,
+    "transport_only_probe_justified": true,
+    "transport_probe_change": "Change only current_qualification wire_mode from json_object_schema_in_prompt to strict_json_schema. Keep the exact source, packet, prompts, response schema, model, provider, seed, reasoning effort, and output limit.",
+    "why": "The raw semantics are relevant and the only observed blocking defect is a required-field omission. The current endpoint advertises structured-output support, so strict wire enforcement has high information value at low bounded cost.",
+    "calls_authorized_by_this_review": 0
+  }
+}

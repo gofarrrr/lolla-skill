@@ -1,0 +1,101 @@
+{
+  "additionalProperties": false,
+  "description": "Two-record chronological shard response for position_and_decision_trajectory.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 700,
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "current_position_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "interpretation": {
+            "maxLength": 700,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitations": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "qualification_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "starting_state_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          },
+          "trajectory_type": {
+            "enum": [
+              "changed",
+              "emerged_from_uncertainty",
+              "qualified_current_only",
+              "unclear"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "interpretation",
+          "status",
+          "limitations",
+          "starting_state_evidence_ids",
+          "current_position_evidence_ids",
+          "qualification_evidence_ids",
+          "trajectory_type"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "mixed",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "global_limitations"
+  ],
+  "type": "object"
+}

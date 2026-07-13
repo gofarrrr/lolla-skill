@@ -1,0 +1,67 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_v2_failure.v1",
+  "status": "failed_scorer_contract_mismatch",
+  "date": "2026-07-10",
+  "run_id": "lolla_holdout_pool_v1_20260710_a2",
+  "frozen_evidence": {
+    "generation_contract_sha256": "5bcc317ccc1fe83e806447a825a28b96eec4e87292e77c59b13ceaa2501b0290",
+    "runner_sha256": "01725b2253139666085e84f15ad9f52a560fc0e1ec53cd906a223df2bb1c3e7a",
+    "pool_sha256": "ef9b7757294b70f2d5d93bb44ad626b703f20ec00aef7953569f440421c18c5d",
+    "call_custody_sha256": "6195df284b3ada96fcf62c0576cf5e52d8e0c7826bac9236e0d77f019ebf3925",
+    "run_summary_sha256": "fe0d8d0429f5dc60add7d1488fa11a2f56fb91d415642651b19769ae521ff91b"
+  },
+  "observed": {
+    "call_attempted": true,
+    "recorded_call_count": 1,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "finish_reason": "stop",
+    "prompt_tokens": 1038,
+    "completion_tokens": 6355,
+    "total_tokens": 7393,
+    "estimated_cost_usd": 0.009792,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "case_count": 5,
+    "messages_per_case": 12,
+    "selected_case_id": null,
+    "conversation_text_reviewed_for_lolla_or_graph_value": false
+  },
+  "failed_gate": {
+    "name": "typed_pool_valid",
+    "validation_errors": 60,
+    "only_error_type": "message_id_exact_format",
+    "model_returned_pattern": "one_based_integer_1_through_12_per_case",
+    "validator_required_pattern": "case_id_plus_m_plus_zero_padded_index"
+  },
+  "diagnosis": {
+    "classification": "F8_scorer_contract_mismatch",
+    "finding": "The prompt required a message_id field but never specified the validator's full case-prefixed pattern. The model returned unique one-based IDs for every message. Exact ID formatting is deterministic custody work and should not be delegated to or semantically scored against the model.",
+    "semantic_generation_failure": false,
+    "conversation_contract_failure_observed": false,
+    "confidence": "high"
+  },
+  "authorizations": {
+    "declare_v2_passed": false,
+    "repair_or_rewrite_v2_output": false,
+    "prospective_v3_deterministic_id_contract": true,
+    "change_conversation_prompts_domains_or_selection": false,
+    "stage_a": false,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_integration": false
+  },
+  "prospective_repair": {
+    "model_message_ids_authoritative": false,
+    "accepted_model_id_input": "unique non-empty string or integer",
+    "canonical_output_rule": "case_id_plus_one_based_message_index",
+    "conversation_text_may_change": false,
+    "selection_order_may_change": false
+  },
+  "non_claims": [
+    "The five generated conversations are not admitted holdouts under v2.",
+    "No case was selected or reviewed for likely Lolla or graph value.",
+    "The v2 output remains frozen and failed.",
+    "A v3 success would establish a fixed synthetic pool, not product usefulness."
+  ]
+}

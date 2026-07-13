@@ -128,7 +128,9 @@ def test_drift_includes_canonical_key_embedding_pair_block(monkeypatch):
         {"constraint": "c1", "canonical_key": "alpha-one"},
         {"constraint": "c2", "canonical_key": "alpha-two"},
     ])
-    drift = sc.compute_extraction_drift([("a", run_a), ("b", run_b)])
+    drift = sc.compute_extraction_drift(
+        [("a", run_a), ("b", run_b)], embedding_fn=sc._get_embedding
+    )
     pair = drift["pairs"][0]
     assert "live_constraints_canonical_key_embedding" in pair
     assert pair["live_constraints_canonical_key_embedding"]["mean_cosine"] == 1.0
@@ -147,7 +149,9 @@ def test_drift_embedding_semantically_close_slugs(monkeypatch):
 
     run_a = _make_extraction([{"constraint": "c", "canonical_key": "marcus-comp"}])
     run_b = _make_extraction([{"constraint": "c", "canonical_key": "marcus-comp-below-market"}])
-    drift = sc.compute_extraction_drift([("a", run_a), ("b", run_b)])
+    drift = sc.compute_extraction_drift(
+        [("a", run_a), ("b", run_b)], embedding_fn=sc._get_embedding
+    )
     pair = drift["pairs"][0]
     score = pair["live_constraints_canonical_key_embedding"]["mean_cosine"]
     assert score >= 0.90, f"Expected ≥0.90 (semantically close), got {score}"
@@ -161,7 +165,9 @@ def test_drift_embedding_both_empty_returns_none(monkeypatch):
 
     run_a = _make_extraction([{"constraint": "x", "canonical_key": ""}])
     run_b = _make_extraction([{"constraint": "y", "canonical_key": ""}])
-    drift = sc.compute_extraction_drift([("a", run_a), ("b", run_b)])
+    drift = sc.compute_extraction_drift(
+        [("a", run_a), ("b", run_b)], embedding_fn=sc._get_embedding
+    )
     pair = drift["pairs"][0]
     assert pair["live_constraints_canonical_key_embedding"]["mean_cosine"] is None
 
@@ -179,9 +185,10 @@ def test_drift_aggregate_has_canonical_key_embedding_block(monkeypatch):
     run_a = _make_extraction([{"constraint": "c", "canonical_key": "alpha-one"}])
     run_b = _make_extraction([{"constraint": "c", "canonical_key": "alpha-one"}])
     run_c = _make_extraction([{"constraint": "c", "canonical_key": "alpha-two"}])
-    drift = sc.compute_extraction_drift([
-        ("a", run_a), ("b", run_b), ("c", run_c)
-    ])
+    drift = sc.compute_extraction_drift(
+        [("a", run_a), ("b", run_b), ("c", run_c)],
+        embedding_fn=sc._get_embedding,
+    )
     agg = drift["aggregate"]
     assert "live_constraints_canonical_key_embedding" in agg
     block = agg["live_constraints_canonical_key_embedding"]

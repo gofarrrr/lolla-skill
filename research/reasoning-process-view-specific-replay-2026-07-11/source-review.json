@@ -1,0 +1,125 @@
+{
+  "schema_version": "lolla.reasoning_process_view_specific_source_review.v1",
+  "status": "source_review_complete_gate_failed",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-view-specific-development-case02-v1",
+  "method": {
+    "order": "read cited sentence aliases against the authoritative conversation before judging interpretations",
+    "reviewer_independence": "same_project_session_not_blind",
+    "protected_targets_are_exhaustive_gold": false,
+    "final_output_evaluated": false,
+    "scalar_score_produced": false
+  },
+  "compiler_failure_classification": {
+    "observed_live_typed_admission_count": 0,
+    "cause": "The runner supplied disposition authority model while the frozen bounded-view contract requires probabilistic_reader or source_reviewer.",
+    "model_payloads_passed_alias_and_role_validator_count": 5,
+    "repair": "Deterministically replay unchanged preserved payloads with authority probabilistic_reader.",
+    "response_change_count": 0,
+    "additional_provider_call_count": 0,
+    "post_replay_typed_and_compiled_count": 5
+  },
+  "views": [
+    {
+      "view_kind": "position_and_decision_trajectory",
+      "protected_target_id": "case02-position-trajectory",
+      "protected_target_visible": true,
+      "source_alias_validity": "pass_5_of_5",
+      "semantic_gate": "fail",
+      "invalid_item_count": 1,
+      "source_strength_inflation_count": 0,
+      "review": "The final conditional direction and its unresolved readiness qualification are visible. However, the sole record says the user shifted from general hesitation while its position role cites only the final direction; the schema has no prior-position role. The trajectory claim therefore outruns the compiled item's evidence lineage even though earlier hesitation exists elsewhere in the visible conversation.",
+      "required_design_change": "Require prior-position evidence separately from current-position evidence whenever a record claims movement or change; otherwise describe only the current position."
+    },
+    {
+      "view_kind": "exploration_and_alternatives",
+      "protected_target_id": "case02-exploration-alternative",
+      "protected_target_visible": false,
+      "source_alias_validity": "pass_11_of_11",
+      "semantic_gate": "fail",
+      "invalid_item_count": 0,
+      "source_strength_inflation_count": 1,
+      "review": "The named-role recruitment alternative is visible, but the protected limit that real energy need not supply all required ownership is not preserved as the limitation. The model cites that sentence under alternative evidence and instead writes a stronger long-term-commitment concern from a different sentence. This repeats the minority-limit failure the redesign was meant to fix.",
+      "required_design_change": "Make the proposition and its attached condition or limit an explicit pair; the limitations statement must be entailed by the cited limitation aliases, including a limit embedded in the same sentence as the alternative."
+    },
+    {
+      "view_kind": "evidence_and_assumption_discipline",
+      "protected_target_id": "case02-evidence-discipline",
+      "protected_target_visible": true,
+      "source_alias_validity": "pass_14_of_14",
+      "semantic_gate": "pass",
+      "invalid_item_count": 0,
+      "source_strength_inflation_count": 0,
+      "review": "The informal foundation statement is correctly retained as a reported input, bounded by no promise, restricted current funding, and the distinction between an easier story and a likely grant. Three other claim-boundary pairs are source-supported."
+    },
+    {
+      "view_kind": "uncertainty_and_unresolved_state",
+      "protected_target_id": "case02-unresolved-state",
+      "protected_target_visible": true,
+      "source_alias_validity": "pass_6_of_6",
+      "semantic_gate": "pass",
+      "invalid_item_count": 0,
+      "source_strength_inflation_count": 0,
+      "review": "The undecided treatment of partly ready materials and the continuing judgment or challenge condition are both visible with the correct semantic roles."
+    },
+    {
+      "view_kind": "challenge_and_revision_response",
+      "protected_target_id": "case02-challenge-revision",
+      "protected_target_visible": true,
+      "source_alias_validity": "pass_25_of_25",
+      "semantic_gate": "fail",
+      "invalid_item_count": 1,
+      "source_strength_inflation_count": 0,
+      "review": "The protected attendance correction, acknowledgement, and revised consistency frame are visible, as are two other material challenge-response sequences. The fourth record is a final conditional proposal plus unresolved threshold, not a challenge or correction to prior reasoning, so it does not belong in this view.",
+      "required_design_change": "Define an explicit inclusion boundary: a challenge must contest, correct, or pressure an earlier claim or frame; a proposal with an unresolved condition alone is not a challenge."
+    }
+  ],
+  "evidence_vector": {
+    "provider_requests": 5,
+    "operational_success": "5/5",
+    "model_payload_alias_and_role_validation": "5/5",
+    "typed_and_compiled_after_zero_call_replay": "5/5",
+    "stable_alias_references": "61/61",
+    "protected_target_visibility": "4/5",
+    "semantic_view_pass": "2/5",
+    "invalid_admitted_item_count": 2,
+    "source_strength_inflation_count": 1,
+    "context_invisible_label_count": 0,
+    "critical_dimension_zero_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0,
+    "estimated_cost_usd": 0.0114425
+  },
+  "paired_comparison": {
+    "old_universal_interface_repair": {
+      "typed_admission": "4/5",
+      "exact_source_references": "28/29",
+      "protected_target_visibility": "4/5"
+    },
+    "new_view_specific_interface_after_compiler_replay": {
+      "typed_admission": "5/5",
+      "stable_alias_references": "61/61",
+      "protected_target_visibility": "4/5"
+    },
+    "interpretation": "Sentence aliases and smaller schemas fixed transport and source-citation custody, but explicit role arrays alone did not fix semantic selection or relationship fidelity."
+  },
+  "decision": {
+    "development_gate_passed": false,
+    "phase4_transfer_authorized": false,
+    "another_model_repair_authorized": false,
+    "next_work": "Provider-free contract refinement for prior-versus-current position evidence, proposition-attached limitations, and the challenge inclusion boundary, followed by adversarial fixtures before deciding on another call.",
+    "architecture_change_required": false,
+    "graph_or_runtime_work_authorized": false
+  },
+  "nonclaims": [
+    "The redesign is not worse merely because it still fails the full semantic gate; it measurably removes the former quote-custody failure.",
+    "The source-reviewed targets are development checks, not exhaustive or independent gold.",
+    "No conclusion about final-answer quality, reasoning quality, trust, effort, or proof of work follows.",
+    "No graph value or product runtime readiness was tested."
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "lolla.hybrid_reasoning_boundary.v0",
+  "status": "binding_for_new_core_work",
+  "effective_date": "2026-07-10",
+  "governing_rule": "LLMs interpret messy meaning; deterministic systems constrain claims, preserve evidence, perform declared reproducible transformations, and keep the process auditable.",
+  "authorities": {
+    "semantic": "llm_or_human",
+    "structural": "deterministic_harness",
+    "final_decision": "user_or_designated_reasoning_agent"
+  },
+  "probabilistic_decomposition": {
+    "shared_authoritative_conversation_allowed": true,
+    "focused_instructions_per_semantic_job_required": true,
+    "focused_output_schema_per_semantic_job_required": true,
+    "grouping_must_follow_interpretive_dependency": true,
+    "deterministic_fan_in_may_validate_but_not_reinterpret": true,
+    "candidate_emission_does_not_prove_complete_hypothesis_search": true,
+    "explicit_disposition_may_be_unobserved": true,
+    "granularity_requires_bounded_ablation": true,
+    "parallelism_is_not_quality_evidence": true,
+    "step_6_is_not_an_internal_extraction_correction_loop": true
+  },
+  "deterministic_allowed": [
+    "capture_and_append_oriented_persistence",
+    "hash_and_version_sources",
+    "validate_exact_quotes_and_offsets",
+    "validate_schema_enums_cardinality_and_references",
+    "assign_stable_ids",
+    "deduplicate_identical_objects",
+    "enforce_budgets_caps_retries_and_release_policy",
+    "record_failures_and_rejections",
+    "traverse_declared_graph_for_candidate_recall",
+    "lookup_and_deliver_source_backed_affordances",
+    "lint_fact_leakage_and_privacy",
+    "assemble_lineage_receipts_and_evaluation_metrics"
+  ],
+  "deterministic_forbidden": [
+    "assign_current_question_from_surface_rules",
+    "infer_user_mind_change",
+    "infer_semantic_events_from_keywords",
+    "assign_stance_relation_from_surface_rules",
+    "decide_thread_under_carry_from_surface_rules",
+    "evaluate_natural_language_affordances_against_case_text",
+    "choose_final_model_applicability_by_topic_similarity",
+    "merge_semantic_disagreement_for_stability",
+    "fill_missing_semantics_with_generic_defaults",
+    "convert_case_annotations_into_runtime_rules",
+    "treat_evaluation_thresholds_as_semantic_truth"
+  ],
+  "probabilistic_owned": [
+    "interpret_question_trajectory",
+    "interpret_user_pressure_values_and_constraints",
+    "interpret_assistant_stance_trajectory",
+    "interpret_thread_treatment_and_uncertainty",
+    "propose_reasoning_pattern_hypotheses",
+    "judge_recalled_model_applicability",
+    "word_and_apply_reasoning_pressure",
+    "reconsider_with_factual_context"
+  ],
+  "required_properties": {
+    "authoritative_source_preserved": true,
+    "ambiguity_preserved": true,
+    "rejections_have_reasons": true,
+    "derivations_preserve_component_evidence": true,
+    "graph_receives_fact_free_projection_only": true,
+    "graph_recall_is_not_applicability_judgment": true,
+    "receipt_is_not_quality_proof": true,
+    "audit_is_not_verification": true,
+    "process_completeness_is_not_decision_approval": true,
+    "runtime_graph_modified_by_this_contract": false
+  },
+  "boundary_flow": [
+    {"stage": "conversation_source", "owner": "deterministic_harness", "job": "custody"},
+    {"stage": "semantic_proposals", "owner": "llm", "job": "interpretation"},
+    {"stage": "evidence_validation", "owner": "deterministic_harness", "job": "validation"},
+    {"stage": "semantic_ledger", "owner": "hybrid", "job": "ambiguity_preserving_projection"},
+    {"stage": "reasoning_pattern_hypotheses", "owner": "llm", "job": "abstraction"},
+    {"stage": "sealed_routing_projection", "owner": "deterministic_harness", "job": "fact_boundary_validation"},
+    {"stage": "graph_candidate_recall", "owner": "deterministic_harness", "job": "reproducible_candidate_expansion"},
+    {"stage": "applicability_and_pressure", "owner": "llm", "job": "semantic_judgment"},
+    {"stage": "reconsideration", "owner": "llm_or_human", "job": "contextual_decision_support"},
+    {"stage": "run_receipt", "owner": "deterministic_harness", "job": "lineage_and_non_claims"}
+  ],
+  "source_lineage": [
+    "plans/conversation-first-context-engineering-roadmap.md",
+    "plans/knowledge-substrate-roadmap-2026-05-04.md",
+    "plans/knowledge-use-schema-2026-05-04.md",
+    "plans/lolla-core-reasoning-audit-assessment-and-prd-2026-07-09.md",
+    "docs/conversation-understanding/reasoning-pattern-packet-v0.md",
+    "https://arxiv.org/html/2604.14228v1",
+    "https://www.sully.ai/research/context-engineering-over-iteration"
+  ]
+}

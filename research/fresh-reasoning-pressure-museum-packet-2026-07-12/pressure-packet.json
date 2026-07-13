@@ -1,0 +1,148 @@
+{
+  "authoritative_conversation": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Museum archive AI licensing, reversibility, and contributor trust\n\nCase ID: amb3-case04-museum-ai-license\nStratum: cultural_archive_ai_license\nFounder-directed synthetic prospective development fixture; not independent human data.\n\n[Turn 1] USER:\nI direct a regional museum with a digitized collection of photographs, oral histories, and community records. An AI company has offered enough money to fund our preservation work for four years if it can train a cultural-search model on the archive. I want wider discovery and stable funding, but I am worried that licensing the collection turns stewardship into raw-material supply. I cannot tell whether my hesitation protects contributor trust or reflects an institutional instinct to control access.\n\n[Turn 1] ASSISTANT:\nThe offer combines preservation funding, public discovery, contributor permission, cultural context, model training, downstream reuse, and institutional control. Separate access to source records from the persistence of patterns learned from them. Also distinguish the museum's legal authority from the expectations of people whose lives are represented.\n\n[Turn 2] USER:\nThe company says the model would help researchers find connections across local history. It offers attribution links and says it will honor removals from the live search index. It will not promise to retrain the underlying model after every removal.\n\n[Turn 2] ASSISTANT:\nThen removal from search and removal from learned representations are different commitments. What permissions did contributors grant, and what uses would surprise them even if technically lawful?\n\n[Turn 3] USER:\nMost recent deposits have broad educational permissions, but older oral histories use inconsistent forms. Some families would welcome discovery; others may object to synthetic summaries or association with topics they never discussed. A blanket yes or no seems dishonest.\n\n[Turn 3] ASSISTANT:\nA bounded pilot could separate low-risk photographs and catalog metadata from oral histories and sensitive community records. It could also separate research discovery from generated narrative, commercial reuse, and model improvement outside the pilot.\n\n[Turn 4] USER:\nThe company will accept a six-month pilot using catalog metadata and a reviewed subset of photographs. It wants the right to retain model improvements after the pilot, but says those improvements will not reproduce collection items. It also wants to announce the museum as a founding cultural partner.\n\n[Turn 4] ASSISTANT:\nRetained improvements and public partnership language can make a short pilot consequential beyond its formal duration. What evidence, exit rights, and public boundaries would make the trial genuinely bounded?\n\n[Turn 5] USER:\nI would need item-level provenance in every result, logs of failed or sensitive searches, no generated biographies, and an independent red-team review. I also want the public announcement to say experimental research partner, not founding partner.\n\n[Turn 5] ASSISTANT:\nThose conditions make output behavior and public claims more observable. They do not yet resolve what retained model improvement means, whether removed items continue to influence retrieval, or what happens to expectations created among contributors and researchers.\n\n[Turn 6] USER:\nThe company proposes a separate adapter trained only on our pilot data. It can delete the adapter at exit, but some evaluation findings and engineering changes would remain in its general system. It will fund a contributor advisory panel, though the panel cannot veto individual technical decisions.\n\n[Turn 6] ASSISTANT:\nThat creates at least three layers: removable pilot data, a removable adapter, and non-removable learning by the company. The advisory panel may improve interpretation without transferring final authority. The pilot's reversibility therefore depends on more than deleting files.\n\n[Turn 7] USER:\nI am leaning toward the six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language. I will approve it only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review. I will set complaint, removal, false-association, and sensitive-query thresholds before signing. I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot.\n\n[Turn 7] ASSISTANT:\nThe current position is a bounded discovery experiment rather than a general archive-training license. Its scope, output, review, deletion, renewal, language, and threshold conditions constrain several forms of expansion. The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed. If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state.\n",
+  "boundary": {
+    "all_candidates_preserved": true,
+    "canonical_ids_only": true,
+    "case_facts_reattached_after_graph_recall": true,
+    "fresh_context_required": true,
+    "graph_runtime_effect": "none",
+    "production_authorization": false
+  },
+  "case_id": "amb3-case04-museum-ai-license",
+  "instructions": {
+    "allowed_dispositions": [
+      "apply",
+      "reject",
+      "park"
+    ],
+    "candidate_deletion_before_reconsideration": false,
+    "every_candidate_must_be_inspected": true,
+    "graph_recall_is_applicability_proof": false,
+    "preserve_strong_original_reasoning": true,
+    "rejection_is_valid": true,
+    "unsupported_case_facts_allowed": false
+  },
+  "packet_sha256": "a2d0ba96fce89f7b49912a4ebdbd083dc3ee22e439b3299ceeefb0a70cc44a23",
+  "pressure_portfolio": [
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.",
+        "display_name": "Active Listening",
+        "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.",
+        "failure_signal": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+        "model_id": "active-listening",
+        "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "active-listening",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.",
+        "display_name": "Commitment Bias",
+        "do_not_apply_when": "Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.",
+        "failure_signal": "Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+        "model_id": "commitment-bias",
+        "pressure_question": "What evidence would make us reverse course rather than defend the original commitment?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "commitment-bias",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+        "display_name": "Confirmation Bias",
+        "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+        "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+        "model_id": "confirmation-bias",
+        "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "confirmation-bias",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.",
+        "display_name": "Intellectual Humility",
+        "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.",
+        "failure_signal": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+        "model_id": "intellectual-humility",
+        "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "intellectual-humility",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.",
+        "display_name": "Premortem",
+        "do_not_apply_when": "Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.",
+        "failure_signal": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+        "model_id": "premortem",
+        "pressure_question": "Is the worst case bad enough?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "premortem",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ]
+    },
+    {
+      "challenge_card": {
+        "challenge_when": "Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.",
+        "display_name": "Sunk Cost Fallacy",
+        "do_not_apply_when": "Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.",
+        "failure_signal": "Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+        "model_id": "sunk-cost-fallacy",
+        "pressure_question": "Would we start again today from current facts?",
+        "schema_version": "lolla.canonical_model_assessment_card.v3"
+      },
+      "model_id": "sunk-cost-fallacy",
+      "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ]
+    }
+  ],
+  "schema_version": "lolla.fresh_reasoning_pressure_input.v1",
+  "source_refs": [
+    {
+      "path": "research/reasoning-process-position-role-first-v23-new-case-2026-07-12/case.txt",
+      "sha256": "d60f120ff99bf4ae0dfd9e636c16d2b30d814d20485649f99681cfcb700717b3"
+    },
+    {
+      "path": "research/minimum-viable-loop-mechanism-and-portfolio-seal-2026-07-12/result.json",
+      "sha256": "cea4196ba4ea39f3c51516fc65a561f84f72e903988b7f5f4009bf1ef6e40edb"
+    },
+    {
+      "path": "data/knowledge_graph.json",
+      "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+    }
+  ],
+  "source_turn_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
+}

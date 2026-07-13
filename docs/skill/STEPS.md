@@ -234,7 +234,7 @@ LOLLA_REVISED_EOF
 python3 "$SKILL_DIR/scripts/skill/persist_revised_answer.py" --run-id "${LOLLA_RUN_ID}" --revised-file "/tmp/lolla_${LOLLA_RUN_ID}_revised.txt"
 ```
 
-**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the atom-level table items and cached cards that were placed in front of you. Copy the provided `source_id` values exactly — do not invent, rename, or aggregate IDs. Fill each item with one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
+**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the atom-level table items and cached cards that were placed in front of you. Copy the provided `source_id` values exactly. Copy every skeleton item in full: preserve all source metadata without removing, renaming, aggregating, or adding fields. Fill only `disposition`, `why`, `visible_effect`, and `private_guardrail`. Use one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
 
 ```bash
 : "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
@@ -276,7 +276,7 @@ Write exactly one completed transaction for every skeleton transaction:
 . "$LOLLA_ENV_STATE"
 cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
 {
-  "schema_version": "v60_skill_consideration_ledger.v1",
+  "schema_version": "v60_skill_consideration_ledger.v2",
   "status": "completed",
   "transactions": [
     {
@@ -290,7 +290,8 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
       "risk_if_forced": "What would go wrong if this chunk were forced despite weak fit, or empty if used cleanly.",
       "why": "Short private rationale for how this affected reasoning.",
       "visible_effect": "Short public-facing effect, or empty if private-only.",
-      "private_guardrail": "Short private guardrail if used privately, otherwise empty."
+      "private_guardrail": "Short private guardrail if used privately, otherwise empty.",
+      "technical_blocker": "Empty unless the chunk is technically unusable."
     }
   ],
   "notes": [
@@ -302,7 +303,7 @@ LOLLA_V60_LEDGER_EOF
 bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --v60-only
 ```
 
-The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, and `duplicate`.
+The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`, and `technical_failure`.
 
 If the finalization helper exits non-zero, stop before pressure checks, memo rendering, Observatory, or archive. Read the validation errors, repair `/tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json` against the skeleton, rerun the same helper command, and continue only after `v60_consideration_ledger` is `valid` (or `not_required` when V60 is inactive).
 
@@ -311,9 +312,9 @@ Route compatibility:
 - `used`: `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`
 - `rejected`: `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`
 - `deferred`: `set_aside`, `missing_evidence`, `evidence_gate`, `diagnostic_question`
-- `not_considered`: `already_covered`, `duplicate`, `irrelevant`
+- `not_considered`: `technical_failure` only
 
-For every transaction, fill `strongest_plausible_application`. For `used` transactions, fill either `visible_effect` or `private_guardrail`; a chunk can be used privately without changing public prose, but the guardrail must be named. For `rejected`, `deferred`, and `not_considered` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Empty `risk_if_forced` is acceptable only when the chunk was actually used cleanly.
+For every readable transaction, fill `strongest_plausible_application`. For `used` transactions, fill either `visible_effect` or `private_guardrail`; a chunk can be used privately without changing public prose, but the guardrail must be named. For `rejected` and `deferred` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Use `not_considered` only when the chunk was malformed, inaccessible, or technically unusable; set `route: technical_failure` and fill `technical_blocker` instead of pretending to know its strongest application. A readable duplicate, already-covered item, or irrelevant item was considered and must be `rejected` with a concrete reason.
 
 For `chunk_kind == "absence"` and `disposition == "used"`, also fill at least one of:
 

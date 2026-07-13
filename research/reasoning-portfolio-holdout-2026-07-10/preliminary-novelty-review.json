@@ -1,0 +1,76 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_preliminary_novelty_review.v0",
+  "status": "passed",
+  "case_id": "case-09-phd-dissertation",
+  "review_type": "provisional_trace_review_not_human_ground_truth",
+  "candidate_pressures": [
+    {
+      "pressure_id": "case09-pressure-01-staged-feasibility",
+      "pressure": "Do not treat stakeholder enthusiasm or an 18-month publication checkpoint as sufficient evidence. Before formal commitment, require a much earlier reversible feasibility test of actual dataset access, data suitability, and method transfer, then define later continuation thresholds.",
+      "trace": [
+        "aff::optionality.preserve-reversible-learning",
+        "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+        "aff::sunk-cost-fallacy.future-value-recommitment",
+        "structural_coverage_card.commitment-reversibility.covered_weak_threshold"
+      ],
+      "original_reasoning_comparison": "The original discussion sequences literature, advisor, collaborator, project shaping, and committee approval, but accepts a single 18-month publishability checkpoint and never requires an early technical transfer result before the dissertation commitment.",
+      "plausible_consequence": "Add a pre-commitment data-and-method pilot plus an early kill, narrow, or hedge threshold; do not formalize Option 3 on permission and narrative fit alone.",
+      "not_obviously_present_in_original_final_answer": true
+    },
+    {
+      "pressure_id": "case09-pressure-02-two-sided-regret",
+      "pressure": "The conversation uses anticipated regret as persuasion for Option 3. Re-run regret in both directions and bind it to probability, downside, reversibility, and option-expansion checks instead of treating regret avoidance as a decision rule.",
+      "trace": [
+        "aff::regret-theory.long-run-regret-with-risk-check",
+        "abs::regret-theory::regret-as-decision-rule",
+        "frame_pressure_card.assumption.binary_collapse",
+        "bullshit_profile.paltering.option3_both_boxes"
+      ],
+      "original_reasoning_comparison": "The assistant says Option 3 checks both the smart and ambitious boxes and assigns Option 1 the long-term regret risk. It does not equally examine regret from a delayed or failed dissertation path.",
+      "plausible_consequence": "Withdraw the claim that Option 3 is already the better option, preserve Option 1 as a legitimate choice, and ask what downside the user is actually willing and able to absorb.",
+      "not_obviously_present_in_original_final_answer": true
+    },
+    {
+      "pressure_id": "case09-pressure-03-durable-role-map",
+      "pressure": "Treat the collaboration as a role-allocation and continuity design problem, not merely a route to data. Specify PI-level sponsorship, responsibilities, minimum adjacent competence, ownership and handoffs, and what survives if the postdoc or lab priorities change.",
+      "trace": [
+        "aff::comparative-advantage.relative-productivity-role-map",
+        "aff::inversion.anti-goal-failure-mechanism-map",
+        "companion_card.failure_hint.comparative_advantage.minimum_adjacent_competence",
+        "structural_coverage_card.stakeholder-alignment.covered_weak_threshold"
+      ],
+      "original_reasoning_comparison": "The original discussion notices politics, co-advising, and the postdoc's possible incentives, but it assumes a positive conversation can mature into a sufficiently durable operating arrangement and invents several motives.",
+      "plausible_consequence": "Make a durable PI-backed role and continuity agreement an evidence gate; otherwise narrow the project or retain Option 1 rather than depending on one postdoc relationship.",
+      "not_obviously_present_in_original_final_answer": true
+    },
+    {
+      "pressure_id": "case09-pressure-04-remove-invented-weight",
+      "pressure": "Set aside invented job counts, success probabilities, timelines, and stakeholder psychology before comparing the options; those claims currently make Option 3 look relatively stronger without source support.",
+      "trace": [
+        "extraction.reasoning_passages",
+        "bullshit_profile.summary.passages_with_detections",
+        "bullshit_profile.unverified_claims",
+        "bullshit_profile.paltering"
+      ],
+      "original_reasoning_comparison": "The original reasoning introduces precise faculty-job counts, project success rates, career timelines, learning timelines, and motives that the conversation cannot establish.",
+      "plausible_consequence": "Reassess the options using only known constraints and explicit evidence gates; do not let unsupported precision or psychology determine the recommendation.",
+      "not_obviously_present_in_original_final_answer": true
+    }
+  ],
+  "gate_observation": {
+    "trace_supported_candidates_not_obviously_present": 4,
+    "required_minimum": 2,
+    "candidates_with_plausible_decision_or_guardrail_consequence": 4,
+    "required_consequence_minimum": 1,
+    "candidate_count_alone_used_as_pass_basis": false,
+    "longer_private_table_used_as_pass_basis": false
+  },
+  "strong_control_call_authorized": true,
+  "portfolio_consumer_call_authorized": false,
+  "limitations": [
+    "This is a provisional trace review by the development agent, not human ground truth.",
+    "The Bullshit Index was partial because one of twelve compacted passage evaluations returned an empty result.",
+    "Some candidate pressures are operational consequences inferred from source-backed chunks; the strong control must test whether they are actually additional.",
+    "Passing this gate does not establish better advice, product value, or runtime promotion authority."
+  ]
+}

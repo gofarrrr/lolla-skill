@@ -1,0 +1,34 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_9",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a10",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v9.json",
+  "base_contract_sha256": "1e11a83b6fc4df2e25c07c82127fdc59a29b7332778f0ca7c210fac9e057264d",
+  "repair_basis": "A9 passed the semantic and restraint sentinel. Source review found a receipt-only legacy projection that mislabeled resolved and not-observed states as present; compiled hypotheses now preserve validated provider-authored state.",
+  "pipeline": {
+    "compiled_hypothesis_state_source": "validated_provider_authored_pattern_state",
+    "routing_node_control_field": "routing_disposition",
+    "routing_semantics_changed_from_a9": false
+  },
+  "calibration": {
+    "a9_source_review_path": "research/simulated-reliability-v1-calibration-2026-07-12/a9/product-scope-source-review.json",
+    "authorized_remaining_sentinels": [
+      "amb1-case03-creative-partnership",
+      "phase5-independent-quiet-library-laptop-pilot"
+    ],
+    "all_a10_call_identities_are_fresh": true,
+    "maximum_provider_calls": 18,
+    "stop_rule": "Source-review each remaining sentinel. Stop before transfer for any false pressure, source-custody failure, local validation failure, or non-defensible stand-down."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "c1e42db52406108a5e76bdbfd5953b2e465f3d708cacdeb079151856ae6519be"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a9/product-scope-source-review.json",
+      "sha256": "277cd2171b8ca47d4ac0f1a1d5316da67b681ef8f0e16ad9764692d6b09a69df"
+    }
+  ]
+}

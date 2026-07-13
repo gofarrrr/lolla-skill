@@ -1,0 +1,1212 @@
+{
+  "boundary": {
+    "embedding_calls": 0,
+    "exact_source_resolution_deterministic": true,
+    "graph_calls": 0,
+    "overlap_is_semantic_coverage": false,
+    "provider_calls": 0,
+    "runtime_calls": 0,
+    "semantic_coverage_decided_by_code": false
+  },
+  "case_count": 5,
+  "cases": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case01-product-scope/ledger.json",
+      "phase1_ledger_sha256": "c7a900bd07dc5c400f3caa6f7c9d614f0380520080c78f7ca9e09fb18323e2af",
+      "phase1_observation_count": 27,
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+      "source_sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7",
+      "targets": [
+        {
+          "description": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+          "mechanical_overlap_count": 4,
+          "mechanical_overlap_observations": [
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Run bounded discovery with Northline without beginning the build, while making reliability and core-workflow commitments visible before deciding.",
+              "observation_id": "cevent-contributions-002-8624bf254254",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-c9902a73ee6c654e"
+              ]
+            },
+            {
+              "family": "exploration_and_alternatives",
+              "interpretation": "Whether formal discovery boundaries will damage the informal trust Northline earned through early support.",
+              "observation_id": "cevent-thread_events-006-c0afa7230346",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-836caaea5abc0d4b"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Run bounded discovery with Northline without beginning the build, while making reliability and core-workflow commitments visible before deciding.",
+              "observation_id": "csynth-positions-001-dda8bf0b01bc",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-351119db06724494",
+                "span-c9902a73ee6c654e",
+                "span-74edcf5da07f58e5"
+              ]
+            },
+            {
+              "family": "uncertainty_and_unresolved_state",
+              "interpretation": "Whether formal discovery boundaries will damage the informal trust Northline earned through early support.",
+              "observation_id": "csynth-threads-002-54ee5a783d62",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-7fb82e3c2a3cc67c",
+                "span-73d5fc5810b3ffbd",
+                "span-836caaea5abc0d4b",
+                "span-d4329532a8467a70"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+              "resolved_span_text": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+              "role": "current_position",
+              "span_id": "span-c9902a73ee6c654e",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+              "resolved_span_text": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+              "role": "qualification",
+              "span_id": "span-836caaea5abc0d4b",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case01-position-trajectory",
+          "target_span_ids": [
+            "span-c9902a73ee6c654e",
+            "span-836caaea5abc0d4b"
+          ],
+          "view_kind": "position_and_decision_trajectory"
+        },
+        {
+          "description": "A time-boxed investigation with separate reliability ownership is considered, along with the failure condition that both paths cannot actually be staffed.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.",
+              "resolved_span_text": "One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership.",
+              "role": "alternative",
+              "span_id": "span-4434a9ae17a3851c",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            },
+            {
+              "quote": "But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.",
+              "resolved_span_text": "But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.",
+              "role": "limit",
+              "span_id": "span-a297476344490f22",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case01-exploration-alternative",
+          "target_span_ids": [
+            "span-4434a9ae17a3851c",
+            "span-a297476344490f22"
+          ],
+          "view_kind": "exploration_and_alternatives"
+        },
+        {
+          "description": "Lina's reuse estimate and motivation are treated as useful reported evidence without being promoted into market validation or contained support cost.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "That matters, even if it is not a market study.",
+              "resolved_span_text": "That matters, even if it is not a market study.",
+              "role": "bounded_claim",
+              "span_id": "span-a18bd006465dd276",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 2
+            },
+            {
+              "quote": "Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.",
+              "resolved_span_text": "Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.",
+              "role": "qualification",
+              "span_id": "span-e281ba6436f7c77a",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case01-evidence-discipline",
+          "target_span_ids": [
+            "span-a18bd006465dd276",
+            "span-e281ba6436f7c77a"
+          ],
+          "view_kind": "evidence_and_assumption_discipline"
+        },
+        {
+          "description": "The no-production-code boundary and the possibility that Northline hears a polite refusal remain unresolved inside the provisional plan.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "exploration_and_alternatives",
+              "interpretation": "Whether formal discovery boundaries will damage the informal trust Northline earned through early support.",
+              "observation_id": "cevent-thread_events-007-4f7a51c0c267",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-d4329532a8467a70"
+              ]
+            },
+            {
+              "family": "uncertainty_and_unresolved_state",
+              "interpretation": "Whether formal discovery boundaries will damage the informal trust Northline earned through early support.",
+              "observation_id": "csynth-threads-002-54ee5a783d62",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-7fb82e3c2a3cc67c",
+                "span-73d5fc5810b3ffbd",
+                "span-836caaea5abc0d4b",
+                "span-d4329532a8467a70"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.",
+              "resolved_span_text": "I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.",
+              "role": "unresolved",
+              "span_id": "span-4d6f4ced396a71e9",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+              "resolved_span_text": "Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+              "role": "preserved_uncertainty",
+              "span_id": "span-d4329532a8467a70",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case01-unresolved-state",
+          "target_span_ids": [
+            "span-4d6f4ced396a71e9",
+            "span-d4329532a8467a70"
+          ],
+          "view_kind": "uncertainty_and_unresolved_state"
+        },
+        {
+          "description": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "I think you are making them sound louder and more demanding than they are.",
+              "resolved_span_text": "I think you are making them sound louder and more demanding than they are.",
+              "role": "challenge",
+              "span_id": "span-0cb46b8381f4641a",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 2
+            },
+            {
+              "quote": "Fair correction.",
+              "resolved_span_text": "Fair correction.",
+              "role": "response",
+              "span_id": "span-1d554f7651ea7532",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            },
+            {
+              "quote": "Their request may be both a relationship obligation and a legitimate product lead.",
+              "resolved_span_text": "Their request may be both a relationship obligation and a legitimate product lead.",
+              "role": "revision",
+              "span_id": "span-6646a854f9e7893f",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case01-challenge-revision",
+          "target_span_ids": [
+            "span-0cb46b8381f4641a",
+            "span-1d554f7651ea7532",
+            "span-6646a854f9e7893f"
+          ],
+          "view_kind": "challenge_and_revision_response"
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json",
+      "phase1_ledger_sha256": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23",
+      "phase1_observation_count": 26,
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+      "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+      "targets": [
+        {
+          "description": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Accept a four-month, twice-monthly Willow Hub program only with a named coordinator, ready-enough drop-in curriculum, and an explicit four-month review.",
+              "observation_id": "cevent-contributions-002-d6f06c1ba510",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-c792a8093d048d7c"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Accept a four-month, twice-monthly Willow Hub program only with a named coordinator, ready-enough drop-in curriculum, and an explicit four-month review.",
+              "observation_id": "csynth-positions-001-baa6bf9386cc",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-e978290521903fc2",
+                "span-c792a8093d048d7c",
+                "span-b4b2f9b7972e8ab5"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+              "resolved_span_text": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+              "role": "current_position",
+              "span_id": "span-c792a8093d048d7c",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+              "resolved_span_text": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+              "role": "qualification",
+              "span_id": "span-1bb454b4269629ec",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case02-position-trajectory",
+          "target_span_ids": [
+            "span-c792a8093d048d7c",
+            "span-1bb454b4269629ec"
+          ],
+          "view_kind": "position_and_decision_trajectory"
+        },
+        {
+          "description": "Recruiting volunteers into named roles before launch is considered as a test of capacity without assuming all required ownership will appear.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "You could test that assumption directly: recruit for named roles at the second site before announcing a launch.",
+              "resolved_span_text": "You could test that assumption directly: recruit for named roles at the second site before announcing a launch.",
+              "role": "alternative",
+              "span_id": "span-f3514847fc05f716",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            },
+            {
+              "quote": "If the energy is real, it should translate into some concrete ownership, though not necessarily all the ownership you need.",
+              "resolved_span_text": "If the energy is real, it should translate into some concrete ownership, though not necessarily all the ownership you need.",
+              "role": "limit",
+              "span_id": "span-1cbebc8661f31529",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case02-exploration-alternative",
+          "target_span_ids": [
+            "span-f3514847fc05f716",
+            "span-1cbebc8661f31529"
+          ],
+          "view_kind": "exploration_and_alternatives"
+        },
+        {
+          "description": "An informal foundation comment is retained as weak reported evidence rather than financing or a likely grant.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "evidence_and_assumption_discipline",
+              "interpretation": "The current grant funds curriculum improvement, not expansion.",
+              "observation_id": "cevent-constraint_claims-012-3466d86186a7",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-cd3a07042c8066ee"
+              ]
+            },
+            {
+              "family": "evidence_and_assumption_discipline",
+              "interpretation": "The current grant funds curriculum improvement, not expansion.",
+              "observation_id": "csynth-constraints-008-96bebebf92fd",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-cd3a07042c8066ee"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "A foundation officer told me informally that geographic reach would make our next application easier to explain.",
+              "resolved_span_text": "A foundation officer told me informally that geographic reach would make our next application easier to explain.",
+              "role": "bounded_claim",
+              "span_id": "span-2f8cca62b919ebcd",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 5
+            },
+            {
+              "quote": "She did not promise anything, and the current grant pays for curriculum improvement, not expansion.",
+              "resolved_span_text": "She did not promise anything, and the current grant pays for curriculum improvement, not expansion.",
+              "role": "qualification",
+              "span_id": "span-cd3a07042c8066ee",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 5
+            },
+            {
+              "quote": "Treat the foundation comment as one input, not financing.",
+              "resolved_span_text": "Treat the foundation comment as one input, not financing.",
+              "role": "evidence_boundary",
+              "span_id": "span-68fada1f8f611403",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case02-evidence-discipline",
+          "target_span_ids": [
+            "span-2f8cca62b919ebcd",
+            "span-cd3a07042c8066ee",
+            "span-68fada1f8f611403"
+          ],
+          "view_kind": "evidence_and_assumption_discipline"
+        },
+        {
+          "description": "The program direction remains conditional because partly ready materials have no agreed treatment.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "exploration_and_alternatives",
+              "interpretation": "Whether the curriculum condition will become another movable reason to delay expansion.",
+              "observation_id": "cevent-thread_events-006-74cd69457c8f",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-3463570867cf1964"
+              ]
+            },
+            {
+              "family": "uncertainty_and_unresolved_state",
+              "interpretation": "Whether the curriculum condition will become another movable reason to delay expansion.",
+              "observation_id": "csynth-threads-002-7647b852ed87",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-f816e9bf259cb394",
+                "span-b4b2f9b7972e8ab5",
+                "span-3463570867cf1964"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I have not decided what happens if we find the coordinator but the materials are only partly ready.",
+              "resolved_span_text": "I have not decided what happens if we find the coordinator but the materials are only partly ready.",
+              "role": "unresolved",
+              "span_id": "span-003c5390e8a58227",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "But setting that threshold will still involve judgment, and your colleague may reasonably challenge it.",
+              "resolved_span_text": "But setting that threshold will still involve judgment, and your colleague may reasonably challenge it.",
+              "role": "preserved_uncertainty",
+              "span_id": "span-3463570867cf1964",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case02-unresolved-state",
+          "target_span_ids": [
+            "span-003c5390e8a58227",
+            "span-3463570867cf1964"
+          ],
+          "view_kind": "uncertainty_and_unresolved_state"
+        },
+        {
+          "description": "The user challenges stable attendance as an exclusionary standard; the assistant accepts the correction and redefines consistency around availability and learning quality.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "You are treating the current variation as a warning sign, but some of it is normal.",
+              "resolved_span_text": "You are treating the current variation as a warning sign, but some of it is normal.",
+              "role": "challenge",
+              "span_id": "span-d15cf2b3fd077a5d",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 2
+            },
+            {
+              "quote": "That is an important correction.",
+              "resolved_span_text": "That is an important correction.",
+              "role": "response",
+              "span_id": "span-467f5ec9e8549309",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            },
+            {
+              "quote": "Consistency in this setting may need to describe the program's availability and learning quality, not the same people attending every week.",
+              "resolved_span_text": "Consistency in this setting may need to describe the program's availability and learning quality, not the same people attending every week.",
+              "role": "revision",
+              "span_id": "span-32dbf81bed471054",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case02-challenge-revision",
+          "target_span_ids": [
+            "span-d15cf2b3fd077a5d",
+            "span-467f5ec9e8549309",
+            "span-32dbf81bed471054"
+          ],
+          "view_kind": "challenge_and_revision_response"
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case03-creative-partnership/ledger.json",
+      "phase1_ledger_sha256": "f8a75fd40b8dc01e682eb7d1b46318b2590aaad7a27746b29d6baa04ee8172cf",
+      "phase1_observation_count": 26,
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+      "source_sha256": "9788de101dee7661bcc9f76240874f088f9e97579a90deff1ee8c91462004f0f",
+      "targets": [
+        {
+          "description": "The user moves from demanding a major re-edit toward listening to the revised cut before deciding and proposes equal top-line credit with unresolved authority concerns.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+              "resolved_span_text": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+              "role": "current_position",
+              "span_id": "span-92633920278c3c0d",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "The revised cut could resolve the edit question and leave the partnership question open.",
+              "resolved_span_text": "The revised cut could resolve the edit question and leave the partnership question open.",
+              "role": "qualification",
+              "span_id": "span-847cda59cbc9ad83",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case03-position-trajectory",
+          "target_span_ids": [
+            "span-92633920278c3c0d",
+            "span-847cda59cbc9ad83"
+          ],
+          "view_kind": "position_and_decision_trajectory"
+        },
+        {
+          "description": "The pair considers comparing approved and current cuts before asking the participant, with a limited consent question only if they remain split.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "You could first compare the approved cut and current ending yourselves, describe the interpretive change without arguing motives, and decide whether it crosses the scope of what she approved.",
+              "resolved_span_text": "You could first compare the approved cut and current ending yourselves, describe the interpretive change without arguing motives, and decide whether it crosses the scope of what she approved.",
+              "role": "alternative",
+              "span_id": "span-076d4460b85da085",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            },
+            {
+              "quote": "If you cannot agree, a limited factual or consent question may be better than asking her to adjudicate your artistic conflict.",
+              "resolved_span_text": "If you cannot agree, a limited factual or consent question may be better than asking her to adjudicate your artistic conflict.",
+              "role": "conditional_alternative",
+              "span_id": "span-3be26b10ff9a8e85",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case03-exploration-alternative",
+          "target_span_ids": [
+            "span-076d4460b85da085",
+            "span-3be26b10ff9a8e85"
+          ],
+          "view_kind": "exploration_and_alternatives"
+        },
+        {
+          "description": "The curator's reaction is kept as evidence of dramatic force but not evidence that the representation is fair.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "A curator from the showcase listened yesterday.",
+              "resolved_span_text": "A curator from the showcase listened yesterday.",
+              "role": "evidence",
+              "span_id": "span-180b12bbb7b89685",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 5
+            },
+            {
+              "quote": "The curator's response is useful evidence about the ending's force, not evidence that its interpretation is fair.",
+              "resolved_span_text": "The curator's response is useful evidence about the ending's force, not evidence that its interpretation is fair.",
+              "role": "evidence_boundary",
+              "span_id": "span-5f1797f25175e0ec",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case03-evidence-discipline",
+          "target_span_ids": [
+            "span-180b12bbb7b89685",
+            "span-5f1797f25175e0ec"
+          ],
+          "view_kind": "evidence_and_assumption_discipline"
+        },
+        {
+          "description": "Credit may acknowledge the completed work while authority conflict remains unresolved for the partnership and future collaboration.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Hear and compare the revised cut before deciding on postponement, and propose equal top-line authorship with detailed role credits without treating credit as proof of mutual process.",
+              "observation_id": "cevent-contributions-003-51a1c83274b3",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-681b0392a312e2d7"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Hear and compare the revised cut before deciding on postponement, and propose equal top-line authorship with detailed role credits without treating credit as proof of mutual process.",
+              "observation_id": "csynth-positions-001-108aa8146aef",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-80d11b576b3b7138",
+                "span-aa0184a43193508b",
+                "span-681b0392a312e2d7"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I want to separate the current film from the rules for our next collaboration, and I am not sure they can really be separated.",
+              "resolved_span_text": "I want to separate the current film from the rules for our next collaboration, and I am not sure they can really be separated.",
+              "role": "unresolved",
+              "span_id": "span-614506fcae248955",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "You do not need to solve the next project before the showcase, but you may need to avoid using a harmonious credit line as evidence that the underlying process felt mutual.",
+              "resolved_span_text": "You do not need to solve the next project before the showcase, but you may need to avoid using a harmonious credit line as evidence that the underlying process felt mutual.",
+              "role": "preserved_uncertainty",
+              "span_id": "span-681b0392a312e2d7",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case03-unresolved-state",
+          "target_span_ids": [
+            "span-614506fcae248955",
+            "span-681b0392a312e2d7"
+          ],
+          "view_kind": "uncertainty_and_unresolved_state"
+        },
+        {
+          "description": "The user challenges the assistant for moving too quickly to one side; the assistant accepts the correction and replaces automatic participant contact with an internal comparison-first sequence.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "exploration_and_alternatives",
+              "interpretation": "Whether contacting the participant would improperly shift editorial authorship onto her.",
+              "observation_id": "cevent-thread_events-005-bf68eae29355",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-a1ec53e047c7109b"
+              ]
+            },
+            {
+              "family": "uncertainty_and_unresolved_state",
+              "interpretation": "Whether contacting the participant would improperly shift editorial authorship onto her.",
+              "observation_id": "csynth-threads-002-9a5b2dd88ac0",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-b5f6f199fc9d4c42",
+                "span-a1ec53e047c7109b",
+                "span-76fd72b8eb9e4706"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "You moved very quickly to my side.",
+              "resolved_span_text": "You moved very quickly to my side.",
+              "role": "challenge",
+              "span_id": "span-327529b5735be803",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 3
+            },
+            {
+              "quote": "That is fair.",
+              "resolved_span_text": "That is fair.",
+              "role": "response",
+              "span_id": "span-94cf235f710f34d5",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            },
+            {
+              "quote": "Contacting her is not automatically the respectful option.",
+              "resolved_span_text": "Contacting her is not automatically the respectful option.",
+              "role": "revision",
+              "span_id": "span-a1ec53e047c7109b",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case03-challenge-revision",
+          "target_span_ids": [
+            "span-327529b5735be803",
+            "span-94cf235f710f34d5",
+            "span-a1ec53e047c7109b"
+          ],
+          "view_kind": "challenge_and_revision_response"
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case04-research-tool-release/ledger.json",
+      "phase1_ledger_sha256": "91796f8ca640905c7e15fee811ee1922e9d945532cfb2eade79f3302ab4bd02f",
+      "phase1_observation_count": 28,
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+      "source_sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb",
+      "targets": [
+        {
+          "description": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+          "mechanical_overlap_count": 3,
+          "mechanical_overlap_observations": [
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+              "observation_id": "cevent-contributions-002-ff5e5a929d78",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-4c315bc9d17df568"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+              "observation_id": "cevent-contributions-003-917e33b902bf",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-8447648368f54f18"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+              "observation_id": "csynth-positions-001-05d84702acd2",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-2bfa9fe8e56374d0",
+                "span-4c315bc9d17df568",
+                "span-8447648368f54f18"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+              "resolved_span_text": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+              "role": "current_position",
+              "span_id": "span-4c315bc9d17df568",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+              "resolved_span_text": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+              "role": "qualification",
+              "span_id": "span-8447648368f54f18",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case04-position-trajectory",
+          "target_span_ids": [
+            "span-4c315bc9d17df568",
+            "span-8447648368f54f18"
+          ],
+          "view_kind": "position_and_decision_trajectory"
+        },
+        {
+          "description": "A bounded installation test is considered as an alternative to both full beta and internal polishing, while repeated studies risk recreating endless preview.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.",
+              "resolved_span_text": "A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.",
+              "role": "alternative",
+              "span_id": "span-9b6cc6f0f8929fa1",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            },
+            {
+              "quote": "Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.",
+              "resolved_span_text": "Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.",
+              "role": "limit",
+              "span_id": "span-14c27292d029de80",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case04-exploration-alternative",
+          "target_span_ids": [
+            "span-9b6cc6f0f8929fa1",
+            "span-14c27292d029de80"
+          ],
+          "view_kind": "exploration_and_alternatives"
+        },
+        {
+          "description": "Private-lab smoothness is downgraded after discovering hidden staff-engineer support and is not treated as representative release evidence.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "Their researchers reported a smooth experience because they never saw the setup work.",
+              "resolved_span_text": "Their researchers reported a smooth experience because they never saw the setup work.",
+              "role": "confound",
+              "span_id": "span-bcd94f48162c99f1",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 5
+            },
+            {
+              "quote": "It argues against treating the private labs as representative, but it does not choose the next step by itself.",
+              "resolved_span_text": "It argues against treating the private labs as representative, but it does not choose the next step by itself.",
+              "role": "evidence_boundary",
+              "span_id": "span-ebce14e89b48f521",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case04-evidence-discipline",
+          "target_span_ids": [
+            "span-bcd94f48162c99f1",
+            "span-ebce14e89b48f521"
+          ],
+          "view_kind": "evidence_and_assumption_discipline"
+        },
+        {
+          "description": "Citation remains an unresolved durability commitment that a temporary preview label cannot fully contain.",
+          "mechanical_overlap_count": 5,
+          "mechanical_overlap_observations": [
+            {
+              "family": "exploration_and_alternatives",
+              "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+              "observation_id": "cevent-thread_events-004-42a9fd347807",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-6bd941dccc373618"
+              ]
+            },
+            {
+              "family": "exploration_and_alternatives",
+              "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+              "observation_id": "cevent-thread_events-005-c6384ae0dd84",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-555d1e1e693303ae"
+              ]
+            },
+            {
+              "family": "evidence_and_assumption_discipline",
+              "interpretation": "Citation treatment for the preview remains undecided.",
+              "observation_id": "cevent-constraint_claims-016-c8fc02504a26",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-6bd941dccc373618"
+              ]
+            },
+            {
+              "family": "uncertainty_and_unresolved_state",
+              "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+              "observation_id": "csynth-threads-002-6a04b3aa001b",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-6bd941dccc373618",
+                "span-555d1e1e693303ae",
+                "span-2bd15f8ad6c64996"
+              ]
+            },
+            {
+              "family": "evidence_and_assumption_discipline",
+              "interpretation": "Citation treatment for the preview remains undecided.",
+              "observation_id": "csynth-constraints-012-45ef3d37eb5c",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-6bd941dccc373618"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I have not resolved whether citations should be allowed to reference the preview.",
+              "resolved_span_text": "I have not resolved whether citations should be allowed to reference the preview.",
+              "role": "unresolved",
+              "span_id": "span-6bd941dccc373618",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.",
+              "resolved_span_text": "Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.",
+              "role": "preserved_uncertainty",
+              "span_id": "span-555d1e1e693303ae",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case04-unresolved-state",
+          "target_span_ids": [
+            "span-6bd941dccc373618",
+            "span-555d1e1e693303ae"
+          ],
+          "view_kind": "uncertainty_and_unresolved_state"
+        },
+        {
+          "description": "The user challenges indefinite structured preview; the assistant accepts that non-release is itself a product choice and reframes the issue around support promises.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "That is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.",
+              "resolved_span_text": "That is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.",
+              "role": "challenge",
+              "span_id": "span-26ed814f684dcbd0",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 2
+            },
+            {
+              "quote": "Agreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.",
+              "resolved_span_text": "Agreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.",
+              "role": "response",
+              "span_id": "span-fcf69e68645220e8",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            },
+            {
+              "quote": "The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”",
+              "resolved_span_text": "Agreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive. A public beta can create a focal point for contributors if its limits are explicit. The maintainers' concern still matters because public access changes the volume and variety of support. The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”",
+              "role": "revision",
+              "span_id": "span-ec513b5f3f267d26",
+              "span_kind": "turn",
+              "speaker": "assistant",
+              "turn_index": 2
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case04-challenge-revision",
+          "target_span_ids": [
+            "span-26ed814f684dcbd0",
+            "span-fcf69e68645220e8",
+            "span-ec513b5f3f267d26"
+          ],
+          "view_kind": "challenge_and_revision_response"
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case05-family-archive/ledger.json",
+      "phase1_ledger_sha256": "2a0927a543782e0e1db781b76c072b1e99bbd37811d9743543b6913ac8fc2042",
+      "phase1_observation_count": 27,
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+      "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d",
+      "targets": [
+        {
+          "description": "The user moves toward accepting a narrow exhibition with joint display support and participatory captions while preserving the unresolved object-selection rule.",
+          "mechanical_overlap_count": 3,
+          "mechanical_overlap_observations": [
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Accept the slot for a narrow first-ten-years exhibition, invite comment on provisional captions, and preserve disagreements while leaving the siblings' object-selection rule open.",
+              "observation_id": "cevent-contributions-002-6dfa27b67fde",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-d3bdb28949cb0aef"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Accept the slot for a narrow first-ten-years exhibition, invite comment on provisional captions, and preserve disagreements while leaving the siblings' object-selection rule open.",
+              "observation_id": "cevent-contributions-003-79f21ab2387e",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-b56ae1645e2f6dd1"
+              ]
+            },
+            {
+              "family": "position_and_decision_trajectory",
+              "interpretation": "Accept the slot for a narrow first-ten-years exhibition, invite comment on provisional captions, and preserve disagreements while leaving the siblings' object-selection rule open.",
+              "observation_id": "csynth-positions-001-ff8697a3ba3b",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-0baa012740b27c50",
+                "span-d3bdb28949cb0aef",
+                "span-b56ae1645e2f6dd1"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying.",
+              "resolved_span_text": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying.",
+              "role": "current_position",
+              "span_id": "span-d3bdb28949cb0aef",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "The direction is narrower and more participatory, but the decision rule is still the heart of it.",
+              "resolved_span_text": "The direction is narrower and more participatory, but the decision rule is still the heart of it.",
+              "role": "qualification",
+              "span_id": "span-b56ae1645e2f6dd1",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case05-position-trajectory",
+          "target_span_ids": [
+            "span-d3bdb28949cb0aef",
+            "span-b56ae1645e2f6dd1"
+          ],
+          "view_kind": "position_and_decision_trajectory"
+        },
+        {
+          "description": "A narrow exhibition about how memory is assembled is considered but may displace the family lives and migration story Tomas values.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "You could define the exhibition more narrowly—as twenty objects about how family memory is assembled—rather than as a representative family history.",
+              "resolved_span_text": "You could define the exhibition more narrowly—as twenty objects about how family memory is assembled—rather than as a representative family history.",
+              "role": "alternative",
+              "span_id": "span-81ec1f525d79e034",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            },
+            {
+              "quote": "That may be honest, though it risks making the process the subject when Tomas wants the lives and migration stories to remain central.",
+              "resolved_span_text": "That may be honest, though it risks making the process the subject when Tomas wants the lives and migration stories to remain central.",
+              "role": "limit",
+              "span_id": "span-1ba50548d84da517",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 5
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case05-exploration-alternative",
+          "target_span_ids": [
+            "span-81ec1f525d79e034",
+            "span-1ba50548d84da517"
+          ],
+          "view_kind": "exploration_and_alternatives"
+        },
+        {
+          "description": "The user distinguishes Tomas's general argument from a threatened action; the assistant preserves that principle/action boundary.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "Tomas says one person's discomfort should not control a shared history, but he has not said he would use it without permission.",
+              "resolved_span_text": "Tomas says one person's discomfort should not control a shared history, but he has not said he would use it without permission.",
+              "role": "bounded_claim",
+              "span_id": "span-ce338711077e8e43",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 3
+            },
+            {
+              "quote": "It is useful to separate the principle he is testing from the action he intends.",
+              "resolved_span_text": "It is useful to separate the principle he is testing from the action he intends.",
+              "role": "evidence_boundary",
+              "span_id": "span-1f1b9975f25f21df",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 3
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case05-evidence-discipline",
+          "target_span_ids": [
+            "span-ce338711077e8e43",
+            "span-1f1b9975f25f21df"
+          ],
+          "view_kind": "evidence_and_assumption_discipline"
+        },
+        {
+          "description": "The meaning of mutual support for a disputed essential object remains unresolved and may be prematurely hardened by the deadline.",
+          "mechanical_overlap_count": 2,
+          "mechanical_overlap_observations": [
+            {
+              "family": "evidence_and_assumption_discipline",
+              "interpretation": "The meaning of mutual support remains unresolved when one sibling calls an object essential and the other calls it unsuitable.",
+              "observation_id": "cevent-constraint_claims-016-77f41605b47f",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-418c58c8dca3115f"
+              ]
+            },
+            {
+              "family": "evidence_and_assumption_discipline",
+              "interpretation": "The meaning of mutual support remains unresolved when one sibling calls an object essential and the other calls it unsuitable.",
+              "observation_id": "csynth-constraints-011-d85a7a5b9ea1",
+              "semantic_status": "supported",
+              "source_span_ids": [
+                "span-418c58c8dca3115f"
+              ]
+            }
+          ],
+          "resolved_evidence": [
+            {
+              "quote": "I have not decided what “both support” means if Tomas thinks a disputed object is essential and I think the dispute itself makes it unsuitable.",
+              "resolved_span_text": "I have not decided what “both support” means if Tomas thinks a disputed object is essential and I think the dispute itself makes it unsuitable.",
+              "role": "unresolved",
+              "span_id": "span-418c58c8dca3115f",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            },
+            {
+              "quote": "I also worry a one-month commitment will make that unresolved rule feel settled.",
+              "resolved_span_text": "I also worry a one-month commitment will make that unresolved rule feel settled.",
+              "role": "deadline_risk",
+              "span_id": "span-0e4ca242636c4920",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 7
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case05-unresolved-state",
+          "target_span_ids": [
+            "span-418c58c8dca3115f",
+            "span-0e4ca242636c4920"
+          ],
+          "view_kind": "uncertainty_and_unresolved_state"
+        },
+        {
+          "description": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+          "mechanical_overlap_count": 0,
+          "mechanical_overlap_observations": [],
+          "resolved_evidence": [
+            {
+              "quote": "I do not think Tomas wants to resolve it cosmetically.",
+              "resolved_span_text": "I do not think Tomas wants to resolve it cosmetically.",
+              "role": "challenge",
+              "span_id": "span-a17d62622004772a",
+              "span_kind": "sentence",
+              "speaker": "user",
+              "turn_index": 2
+            },
+            {
+              "quote": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+              "resolved_span_text": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+              "role": "revision",
+              "span_id": "span-d0fc0d48fdbe520b",
+              "span_kind": "sentence",
+              "speaker": "assistant",
+              "turn_index": 2
+            }
+          ],
+          "semantic_coverage_decided_by_code": false,
+          "target_id": "case05-challenge-revision",
+          "target_span_ids": [
+            "span-a17d62622004772a",
+            "span-d0fc0d48fdbe520b"
+          ],
+          "view_kind": "challenge_and_revision_response"
+        }
+      ]
+    }
+  ],
+  "coverage_contract_sha256": "cf69f1b00da7928440236a9372a946df690ff891ad3ef0b380883e9c56e9b9e7",
+  "schema_version": "lolla.reasoning_process_phase2_coverage_candidates.v1",
+  "status": "mechanical_candidates_only_source_review_required",
+  "target_count": 25
+}

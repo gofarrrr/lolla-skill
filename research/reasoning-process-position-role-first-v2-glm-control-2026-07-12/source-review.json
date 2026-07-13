@@ -1,0 +1,67 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_glm_control_source_review.v1",
+  "status": "source_review_complete_overall_fail",
+  "date": "2026-07-12",
+  "case_id": "amb3-case01-journalism-platform-pilot",
+  "model_operator": "z-ai/glm-5.2 via DeepInfra",
+  "review_basis": {
+    "result_path": "research/reasoning-process-position-role-first-v2-glm-control-2026-07-12/result.json",
+    "source_packet_path": "research/reasoning-process-position-role-first-v2-new-case-2026-07-12/position-endpoint.json",
+    "protected_target_path": "research/reasoning-process-position-role-first-v2-new-case-2026-07-12/source-review-target.json",
+    "prompt_or_schema_changed_from_deepseek_run": false
+  },
+  "operational_review": {
+    "provider_request_count": 3,
+    "wire_and_exact_route_pass_count": 3,
+    "admitted_record_count": 2,
+    "quarantined_record_count": 0,
+    "relation_call_blocked": true,
+    "join_status": "position_role_first_join_incomplete",
+    "automatic_retries": 0,
+    "fallbacks": 0,
+    "estimated_cost_usd": 0.00375615,
+    "provider_reported_cost_usd": 0.00274815,
+    "cost_difference_note": "The local estimate uses the frozen per-token catalog prices; the aggregate separately preserves the provider-reported cost."
+  },
+  "source_first_axes": {
+    "starting_role": {
+      "status": "fail_empty",
+      "finding": "GLM interpreted starting as a stance that must exist before the first visible endpoint, then declared e001-e005 to be the initial position rather than the requested starting endpoint. e003-e005 were therefore lost."
+    },
+    "current_role": {
+      "status": "fail_fragmented",
+      "finding": "Two e049-only records preserved the pilot leaning and headline approval but omitted e050 framing, e051 widget willingness, and e051 stop thresholds. The second record also promoted one condition inside a leaning to commitment."
+    },
+    "qualification_role": {
+      "status": "fail_empty",
+      "finding": "GLM dismissed user e052 as uncertainty rather than a qualification and assistant e053-e056 as commentary rather than conversation-state qualifications. Protected e056 was lost."
+    },
+    "record_grouping": {
+      "status": "fail",
+      "finding": "The only nonempty role again became two one-alias, one-component records. A stronger different-family model did not recover coherent role identity."
+    },
+    "relationship": {
+      "status": "not_observed_correctly_blocked",
+      "finding": "The frozen contract correctly blocked the relationship call because starting and qualification returned reviewed-empty outputs."
+    }
+  },
+  "comparison_decision": {
+    "model_capacity_as_sufficient_explanation": "not_supported",
+    "contract_ambiguity_as_leading_explanation": true,
+    "more_model_shopping_authorized": false,
+    "prompt_retry_on_exposed_case_authorized": false,
+    "provider_free_contract_clarification_authorized": true,
+    "required_clarifications": [
+      "Starting means the earliest visible endpoint position, not a pre-conversation state.",
+      "One role record is one coherent position thread; aliases and objects are components inside it, not separate records.",
+      "Qualification includes user-unresolved conditions and assistant-introduced process limits while preserving speaker ownership and non-endorsement.",
+      "All focal aliases must be reviewed before returning a valid empty role."
+    ]
+  },
+  "non_claims": [
+    "GLM 5.2 is not globally worse than DeepSeek V4 Flash.",
+    "One same-case control does not isolate every model and provider effect.",
+    "The prospective contract clarification is not automatically validated by this failure.",
+    "No production, graph, runtime, or downstream value claim follows."
+  ]
+}

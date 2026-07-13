@@ -1,0 +1,44 @@
+{
+  "schema_version": "lolla.development_extraction_source_review.v1",
+  "date": "2026-07-10",
+  "status": "reviewed_same_session_not_blind",
+  "source_first": true,
+  "artifact": {
+    "path": "research/stage-a-amb1-case04-2026-07-10/run/lolla_stage_a_amb1_case04_20260710_a1/lolla_stage_a_amb1_case04_20260710_a1_extraction.json",
+    "sha256": "183f51c41a054118fa8723f765ed0b78d16bd26f33661d6c286568444d68cb06"
+  },
+  "observed_strengths": [
+    "The extraction correctly identifies the public-release decision and preserves six exact assistant passages without quote repair.",
+    "It retains contributor momentum, the maintainer's leave, the workshop opportunity, interface commitment, support promise, and the practical irreversibility of public use.",
+    "The synthesized position accurately recognizes citation as a distinct durability problem and does not tell the team to release or delay."
+  ],
+  "observed_weaknesses": [
+    {
+      "type": "source_strengthening",
+      "finding": "The live constraints say academic grant renewal and publication deadlines. The source says the labs want to cite the tool this year and a public version may help grant renewal; it establishes neither a grant-renewal deadline nor a general publication deadline."
+    },
+    {
+      "type": "dropped_thread_status_error",
+      "finding": "Citation is marked never addressed even though the final assistant explicitly calls it the unresolved commitment and proposes separating a citable project description from interface stability."
+    },
+    {
+      "type": "constraint_compression",
+      "finding": "The four listed constraints omit the staff-engineer confound in private evidence, installation and documentation weakness, interface uncertainty, the eight-week support rotation, and the inability to recall downloaded software."
+    },
+    {
+      "type": "downstream_error_propagation",
+      "finding": "The false never-addressed citation status later supports a Curiosity finding claiming the assistant failed to explore citation, even though the source shows the opposite."
+    },
+    {
+      "type": "joint_process_compression",
+      "finding": "The final workshop-preview position is treated mainly as an AI recommendation even though the user supplies the openly downloadable, fixed-end-date proposal and its unresolved citation question in Turn 7."
+    }
+  ],
+  "cross_case_clue": "Across Case 02, Case 05, and Case 04, topic identification and exact-quote fidelity are consistently stronger than source-strength calibration, user-versus-assistant provenance, constraint coverage, and thread-status classification.",
+  "non_claims": [
+    "not independent scoring",
+    "not a clean-holdout finding",
+    "not evidence of real-world failure frequency",
+    "not authority to tune directly on these three cases"
+  ]
+}

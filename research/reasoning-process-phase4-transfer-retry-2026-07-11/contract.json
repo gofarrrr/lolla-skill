@@ -1,0 +1,37 @@
+{
+  "schema_version": "lolla.reasoning_process_phase4_operational_retry_contract.v1",
+  "status": "frozen_after_first_attempt_failure_before_retry",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-phase4-case01-evidence-operational-completion-v1",
+  "phase4_contract_path": "research/reasoning-process-phase4-transfer-design-2026-07-11/contract.json",
+  "phase4_contract_sha256": "57d1ca7b1fc7c70e2af85dce40f3913228ee15db7acedd9f5a1a1256a5a507cb",
+  "original_call_path": "research/reasoning-process-phase4-transfer-run-2026-07-11/calls/amb1-case01-product-scope/phase4-amb1-case01-product-scope-evidence_and_assumption_discipline.json",
+  "original_call_sha256": "6810984789af418b51e89c97900c4ef3eaef9c9822f28114fd88ea1fbfdb4afe",
+  "original_failure": {
+    "operational_status": "operational_failure",
+    "finish_reason": "error",
+    "provider_code": 429,
+    "provider_error_type": "rate_limit_exceeded",
+    "message": "JSON error injected into SSE stream",
+    "retry_after_header_present": false
+  },
+  "job_id": "phase4-amb1-case01-product-scope-evidence_and_assumption_discipline",
+  "minimum_observed_cooldown_seconds": 60,
+  "maximum_provider_calls": 1,
+  "same_packet_prompt_schema_model_and_route_required": true,
+  "automatic_retries": 0,
+  "semantic_retries": 0,
+  "fallback_models": 0,
+  "evaluator_calls": 0,
+  "embedding_calls": 0,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "runtime_calls": 0,
+  "boundary": {
+    "original_failure_remains_authoritative_first_attempt_evidence": true,
+    "completed_jobs_may_not_be_repeated": true,
+    "prompt_or_schema_repair_authorized": false,
+    "stability_repeat_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

@@ -13,6 +13,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from engine.system_b.boundary_provider import (
@@ -93,4 +95,40 @@ def test_openrouter_can_disable_reasoning_by_env(monkeypatch):
         model="moonshotai/kimi-k2.6",
     )
 
-    assert client._reasoning_config() == {"effort": "none"}
+    assert client._reasoning_config() == {"enabled": False}
+
+
+def test_gemini_uses_provider_off_switch_instead_of_unsupported_none_effort():
+    client = OpenAICompatibleBoundaryClient(
+        provider_name="openrouter",
+        api_key="test-key",
+        base_url="https://openrouter.ai/api/v1",
+        model="google/gemini-3.1-flash-lite",
+    )
+
+    assert client._reasoning_config() == {"enabled": False}
+
+
+def test_unexpected_boundary_exception_is_recorded_before_it_is_reraised(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client = OpenAICompatibleBoundaryClient(
+        provider_name="openrouter",
+        api_key="test-key",
+        base_url="https://openrouter.ai/api/v1",
+        model="google/gemini-3.1-flash-lite",
+    )
+
+    def _raise(*_args: object, **_kwargs: object) -> None:
+        raise RuntimeError("unexpected transport failure")
+
+    monkeypatch.setattr(client, "_do_call", _raise)
+    with pytest.raises(RuntimeError, match="unexpected transport failure"):
+        client.run_json("system", "user", stage="extraction")
+
+    assert len(client.call_log) == 1
+    record = client.call_log[0]
+    assert record.stage == "extraction"
+    assert record.status == "unexpected_error"
+    assert record.requested_model == "google/gemini-3.1-flash-lite"
+    assert record.provider_name == "openrouter"

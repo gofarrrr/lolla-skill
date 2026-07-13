@@ -1,0 +1,215 @@
+{
+  "case_count": 3,
+  "compact_path": {
+    "case_recall_ceiling": 0.0,
+    "case_recall_floor": 0.0,
+    "dimensions": {
+      "assistant_positions_and_revisions": {
+        "gold_observation_count": 5,
+        "never_observation_count": 5,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "constraints_and_options": {
+        "gold_observation_count": 5,
+        "never_observation_count": 5,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "dropped_or_under_carried_threads": {
+        "gold_observation_count": 3,
+        "never_observation_count": 3,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "operative_question": {
+        "gold_observation_count": 6,
+        "never_observation_count": 6,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "uncertainty_and_evidence_boundaries": {
+        "gold_observation_count": 3,
+        "never_observation_count": 3,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "user_corrections_and_pressure": {
+        "gold_observation_count": 3,
+        "never_observation_count": 3,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      }
+    },
+    "gold_observation_count": 25,
+    "macro_labeled_repeatability": 0.34254983699428143,
+    "macro_mean_recall": 0.0,
+    "macro_span_repeatability": 0.34254983699428143,
+    "never_observation_count": 25,
+    "stable_observation_count": 0,
+    "weighted_mean_recall": 0.0
+  },
+  "comparison_limits": [
+    "gold annotations are provisional source-first research judgments",
+    "exact-span recall does not credit ungrounded paraphrases",
+    "three repeats are an initial stability signal, not production reliability proof",
+    "token totals are a cost proxy; provider billing amounts are not persisted",
+    "the short governance case has only one user and one assistant turn"
+  ],
+  "corpus_id": "core-semantic-corpus-v0-diagnostic-subset",
+  "head_to_head": {
+    "case_count": 3,
+    "labeled_repeatability_wins": 2,
+    "recall_wins": 3,
+    "span_repeatability_wins": 2
+  },
+  "operational": {
+    "compact": {
+      "artifact_count": 9,
+      "call_count": 15,
+      "completion_tokens": 10661,
+      "prompt_tokens": 72870,
+      "total_tokens": 83531,
+      "usage_tracked_artifact_count": 9
+    },
+    "preserved_failed_attempt_count": 0,
+    "shadow": {
+      "artifact_count": 9,
+      "call_count": 36,
+      "completion_tokens": 22355,
+      "prompt_tokens": 163893,
+      "total_tokens": 186248,
+      "usage_tracked_artifact_count": 9
+    }
+  },
+  "per_case": [
+    {
+      "case_id": "case-02-multi-offer-career",
+      "compact": {
+        "labeled_repeatability": 0.4249158249158249,
+        "mean_recall": 0.0,
+        "never_observation_count": 8,
+        "span_repeatability": 0.4249158249158249,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": -0.10522572665429808,
+        "mean_recall": 0.375,
+        "span_repeatability": -0.08944719301862164
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.31969009826152683,
+        "mean_recall": 0.375,
+        "never_observation_count": 2,
+        "span_repeatability": 0.3354686318972033,
+        "stable_observation_count": 1
+      },
+      "stratum": "career_multi_option"
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "compact": {
+        "labeled_repeatability": 0.1794532627865961,
+        "mean_recall": 0.0,
+        "never_observation_count": 8,
+        "span_repeatability": 0.1794532627865961,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.1772566939233606,
+        "mean_recall": 0.5416666666666666,
+        "span_repeatability": 0.28031791841315645
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.3567099567099567,
+        "mean_recall": 0.5416666666666666,
+        "never_observation_count": 3,
+        "span_repeatability": 0.4597711811997526,
+        "stable_observation_count": 4
+      },
+      "stratum": "career_family_irreversibility"
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "compact": {
+        "labeled_repeatability": 0.42328042328042326,
+        "mean_recall": 0.0,
+        "never_observation_count": 9,
+        "span_repeatability": 0.42328042328042326,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.1308578987150416,
+        "mean_recall": 0.3333333333333333,
+        "span_repeatability": 0.1308578987150416
+      },
+      "gold_observation_count": 9,
+      "shadow": {
+        "labeled_repeatability": 0.5541383219954649,
+        "mean_recall": 0.3333333333333333,
+        "never_observation_count": 6,
+        "span_repeatability": 0.5541383219954649,
+        "stable_observation_count": 3
+      },
+      "stratum": "user_precommitted_plan"
+    }
+  ],
+  "repeat_contract": {
+    "compact_runs_per_case": 3,
+    "exact_source_spans_required_for_recall": true,
+    "graph_runtime_may_be_modified": false,
+    "shadow_runs_per_case": 3
+  },
+  "schema_version": "lolla.core_semantic_corpus_comparison.v0",
+  "shadow_path": {
+    "case_recall_ceiling": 0.5416666666666666,
+    "case_recall_floor": 0.3333333333333333,
+    "dimensions": {
+      "assistant_positions_and_revisions": {
+        "gold_observation_count": 5,
+        "never_observation_count": 1,
+        "stable_observation_count": 3,
+        "weighted_recall": 0.6666666666666666
+      },
+      "constraints_and_options": {
+        "gold_observation_count": 5,
+        "never_observation_count": 1,
+        "stable_observation_count": 3,
+        "weighted_recall": 0.6666666666666666
+      },
+      "dropped_or_under_carried_threads": {
+        "gold_observation_count": 3,
+        "never_observation_count": 3,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "operative_question": {
+        "gold_observation_count": 6,
+        "never_observation_count": 2,
+        "stable_observation_count": 2,
+        "weighted_recall": 0.5
+      },
+      "uncertainty_and_evidence_boundaries": {
+        "gold_observation_count": 3,
+        "never_observation_count": 2,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.1111111111111111
+      },
+      "user_corrections_and_pressure": {
+        "gold_observation_count": 3,
+        "never_observation_count": 2,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.1111111111111111
+      }
+    },
+    "gold_observation_count": 25,
+    "macro_labeled_repeatability": 0.41017945898898284,
+    "macro_mean_recall": 0.4166666666666667,
+    "macro_span_repeatability": 0.4497927116974736,
+    "never_observation_count": 11,
+    "stable_observation_count": 8,
+    "weighted_mean_recall": 0.41333333333333333
+  }
+}

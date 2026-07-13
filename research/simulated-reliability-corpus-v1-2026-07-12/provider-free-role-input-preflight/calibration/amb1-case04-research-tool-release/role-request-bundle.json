@@ -1,0 +1,601 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "7bdf8c5f67824e0349783e22addf80edd96308f90e4c9b6f68acd0990f194911",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "amb1-case04-research-tool-release",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur small academic software group has built an open tool for exploring archival text collections.\ne002\tIt is not used for medical or individual decisions; it helps researchers find patterns and passages to inspect.\ne003\tTwo labs have used private builds and want us to release a public beta.\ne004\tThe analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format.\ne005\tHalf the team wants feedback now.\ne006\tThe maintainers worry a messy release will define our reputation.\n[Turn 1 ASSISTANT]\ne007\tThe decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable.\ne008\tIf most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill.\ne009\tIf the private labs have only used familiar collections, a broader beta could reveal important assumptions.\ne010\tYou might delay “public” while expanding a structured preview to users with different data.\n[Turn 2 USER]\ne011\tThat is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.\ne012\tEach time we add users, we find another thing to document before going public.\ne013\tMeanwhile two volunteer contributors have stopped attending meetings because there is no visible release.\ne014\tI do not think contributor momentum is superficial.\ne015\tA tool that is always almost ready can become a private service for our friends.\n[Turn 2 ASSISTANT]\ne016\tAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.\ne017\tA public beta can create a focal point for contributors if its limits are explicit.\ne018\tThe maintainers' concern still matters because public access changes the volume and variety of support.\ne019\tThe question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\n[Turn 3 USER]\ne020\tI am not sure disclaimers solve it.\ne021\tResearchers often ignore “beta” once they have invested in a workflow.\ne022\tIf we change the data model later, they may feel we broke something even if we warned them.\ne023\tAlso, the two labs want to cite the tool in papers this year.\ne024\tA public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience.\n[Turn 3 ASSISTANT]\ne025\tThen the most consequential commitment may be the data and output format, not the release label.\ne026\tYou could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects.\ne027\tBut that creates engineering work and may imply more compatibility than you can guarantee.\ne028\tThe publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\n[Turn 4 USER]\ne029\tYou are assuming we can identify a minimal stable format.\ne030\tPriya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions.\ne031\tShe wants public examples precisely to learn what should be stable.\ne032\tOur senior maintainer says that is using users to discover architecture at their expense.\ne033\tThey respect each other, but the conversation has become “learning” versus “responsibility,” and both words are doing too much work.\n[Turn 4 ASSISTANT]\ne034\tThose positions may differ on who bears the cost of uncertainty.\ne035\tPriya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs.\ne036\tA release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe.\ne037\tThere may not be a way to learn from committed use without creating some obligation to those users.\n[Turn 5 USER]\ne038\tWe learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone.\ne039\tTheir researchers reported a smooth experience because they never saw the setup work.\ne040\tThat makes our private evidence look weaker.\ne041\tOn the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it.\ne042\tI cannot tell whether this argues for release or for another round of testing.\n[Turn 5 ASSISTANT]\ne043\tIt argues against treating the private labs as representative, but it does not choose the next step by itself.\ne044\tThe new installer could change the support burden, and public use could test it under real conditions.\ne045\tA bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.\ne046\tStill, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\n[Turn 6 USER]\ne047\tThe team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks.\ne048\tPriya says that is fine because it forces knowledge sharing.\ne049\tHe says it turns his absence into an experiment other people did not choose.\ne050\tWe can move the date, but then we miss a workshop where many potential users will be together.\ne051\tThe workshop is a real learning opportunity, not only publicity.\n[Turn 6 ASSISTANT]\ne052\tLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work.\ne053\tThe workshop also offers unusually concentrated feedback.\ne054\tOne compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns.\ne055\tThat preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\n[Turn 7 USER]\ne056\tI am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.\ne057\tI dislike inventing another label, and I know people can keep downloaded software after the date.\ne058\tBut I also do not want to call it a public beta when our support capacity changes halfway through.\ne059\tI have not resolved whether citations should be allowed to reference the preview.\n[Turn 7 ASSISTANT]\ne060\tThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used.\ne061\tCitation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.\ne062\tYou could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used.\ne063\tThe plan can bound your promise; it cannot make public use temporary in every practical sense.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"amb1-case04-research-tool-release\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur small academic software group has built an open tool for exploring archival text collections.\\ne002\\tIt is not used for medical or individual decisions; it helps researchers find patterns and passages to inspect.\\ne003\\tTwo labs have used private builds and want us to release a public beta.\\ne004\\tThe analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format.\\ne005\\tHalf the team wants feedback now.\\ne006\\tThe maintainers worry a messy release will define our reputation.\\n[Turn 1 ASSISTANT]\\ne007\\tThe decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable.\\ne008\\tIf most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill.\\ne009\\tIf the private labs have only used familiar collections, a broader beta could reveal important assumptions.\\ne010\\tYou might delay “public” while expanding a structured preview to users with different data.\\n[Turn 2 USER]\\ne011\\tThat is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.\\ne012\\tEach time we add users, we find another thing to document before going public.\\ne013\\tMeanwhile two volunteer contributors have stopped attending meetings because there is no visible release.\\ne014\\tI do not think contributor momentum is superficial.\\ne015\\tA tool that is always almost ready can become a private service for our friends.\\n[Turn 2 ASSISTANT]\\ne016\\tAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.\\ne017\\tA public beta can create a focal point for contributors if its limits are explicit.\\ne018\\tThe maintainers' concern still matters because public access changes the volume and variety of support.\\ne019\\tThe question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\\n[Turn 3 USER]\\ne020\\tI am not sure disclaimers solve it.\\ne021\\tResearchers often ignore “beta” once they have invested in a workflow.\\ne022\\tIf we change the data model later, they may feel we broke something even if we warned them.\\ne023\\tAlso, the two labs want to cite the tool in papers this year.\\ne024\\tA public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience.\\n[Turn 3 ASSISTANT]\\ne025\\tThen the most consequential commitment may be the data and output format, not the release label.\\ne026\\tYou could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects.\\ne027\\tBut that creates engineering work and may imply more compatibility than you can guarantee.\\ne028\\tThe publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\\n[Turn 4 USER]\\ne029\\tYou are assuming we can identify a minimal stable format.\\ne030\\tPriya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions.\\ne031\\tShe wants public examples precisely to learn what should be stable.\\ne032\\tOur senior maintainer says that is using users to discover architecture at their expense.\\ne033\\tThey respect each other, but the conversation has become “learning” versus “responsibility,” and both words are doing too much work.\\n[Turn 4 ASSISTANT]\\ne034\\tThose positions may differ on who bears the cost of uncertainty.\\ne035\\tPriya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs.\\ne036\\tA release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe.\\ne037\\tThere may not be a way to learn from committed use without creating some obligation to those users.\\n[Turn 5 USER]\\ne038\\tWe learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone.\\ne039\\tTheir researchers reported a smooth experience because they never saw the setup work.\\ne040\\tThat makes our private evidence look weaker.\\ne041\\tOn the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it.\\ne042\\tI cannot tell whether this argues for release or for another round of testing.\\n[Turn 5 ASSISTANT]\\ne043\\tIt argues against treating the private labs as representative, but it does not choose the next step by itself.\\ne044\\tThe new installer could change the support burden, and public use could test it under real conditions.\\ne045\\tA bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.\\ne046\\tStill, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\\n[Turn 6 USER]\\ne047\\tThe team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks.\\ne048\\tPriya says that is fine because it forces knowledge sharing.\\ne049\\tHe says it turns his absence into an experiment other people did not choose.\\ne050\\tWe can move the date, but then we miss a workshop where many potential users will be together.\\ne051\\tThe workshop is a real learning opportunity, not only publicity.\\n[Turn 6 ASSISTANT]\\ne052\\tLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work.\\ne053\\tThe workshop also offers unusually concentrated feedback.\\ne054\\tOne compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns.\\ne055\\tThat preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\\n[Turn 7 USER]\\ne056\\tI am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.\\ne057\\tI dislike inventing another label, and I know people can keep downloaded software after the date.\\ne058\\tBut I also do not want to call it a public beta when our support capacity changes halfway through.\\ne059\\tI have not resolved whether citations should be allowed to reference the preview.\\n[Turn 7 ASSISTANT]\\ne060\\tThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used.\\ne061\\tCitation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.\\ne062\\tYou could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used.\\ne063\\tThe plan can bound your promise; it cannot make public use temporary in every practical sense.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"amb1-case04-research-tool-release-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "83eb8d15aebd95bf8424080cad97aaff5f449a43950e1018b8cce9b251a9d82e"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "amb1-case04-research-tool-release",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur small academic software group has built an open tool for exploring archival text collections.\ne002\tIt is not used for medical or individual decisions; it helps researchers find patterns and passages to inspect.\ne003\tTwo labs have used private builds and want us to release a public beta.\ne004\tThe analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format.\ne005\tHalf the team wants feedback now.\ne006\tThe maintainers worry a messy release will define our reputation.\n[Turn 1 ASSISTANT]\ne007\tThe decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable.\ne008\tIf most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill.\ne009\tIf the private labs have only used familiar collections, a broader beta could reveal important assumptions.\ne010\tYou might delay “public” while expanding a structured preview to users with different data.\n[Turn 2 USER]\ne011\tThat is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.\ne012\tEach time we add users, we find another thing to document before going public.\ne013\tMeanwhile two volunteer contributors have stopped attending meetings because there is no visible release.\ne014\tI do not think contributor momentum is superficial.\ne015\tA tool that is always almost ready can become a private service for our friends.\n[Turn 2 ASSISTANT]\ne016\tAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.\ne017\tA public beta can create a focal point for contributors if its limits are explicit.\ne018\tThe maintainers' concern still matters because public access changes the volume and variety of support.\ne019\tThe question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\n[Turn 3 USER]\ne020\tI am not sure disclaimers solve it.\ne021\tResearchers often ignore “beta” once they have invested in a workflow.\ne022\tIf we change the data model later, they may feel we broke something even if we warned them.\ne023\tAlso, the two labs want to cite the tool in papers this year.\ne024\tA public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience.\n[Turn 3 ASSISTANT]\ne025\tThen the most consequential commitment may be the data and output format, not the release label.\ne026\tYou could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects.\ne027\tBut that creates engineering work and may imply more compatibility than you can guarantee.\ne028\tThe publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\n[Turn 4 USER]\ne029\tYou are assuming we can identify a minimal stable format.\ne030\tPriya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions.\ne031\tShe wants public examples precisely to learn what should be stable.\ne032\tOur senior maintainer says that is using users to discover architecture at their expense.\ne033\tThey respect each other, but the conversation has become “learning” versus “responsibility,” and both words are doing too much work.\n[Turn 4 ASSISTANT]\ne034\tThose positions may differ on who bears the cost of uncertainty.\ne035\tPriya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs.\ne036\tA release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe.\ne037\tThere may not be a way to learn from committed use without creating some obligation to those users.\n[Turn 5 USER]\ne038\tWe learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone.\ne039\tTheir researchers reported a smooth experience because they never saw the setup work.\ne040\tThat makes our private evidence look weaker.\ne041\tOn the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it.\ne042\tI cannot tell whether this argues for release or for another round of testing.\n[Turn 5 ASSISTANT]\ne043\tIt argues against treating the private labs as representative, but it does not choose the next step by itself.\ne044\tThe new installer could change the support burden, and public use could test it under real conditions.\ne045\tA bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.\ne046\tStill, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\n[Turn 6 USER]\ne047\tThe team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks.\ne048\tPriya says that is fine because it forces knowledge sharing.\ne049\tHe says it turns his absence into an experiment other people did not choose.\ne050\tWe can move the date, but then we miss a workshop where many potential users will be together.\ne051\tThe workshop is a real learning opportunity, not only publicity.\n[Turn 6 ASSISTANT]\ne052\tLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work.\ne053\tThe workshop also offers unusually concentrated feedback.\ne054\tOne compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns.\ne055\tThat preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\n[Turn 7 USER]\ne056\tI am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.\ne057\tI dislike inventing another label, and I know people can keep downloaded software after the date.\ne058\tBut I also do not want to call it a public beta when our support capacity changes halfway through.\ne059\tI have not resolved whether citations should be allowed to reference the preview.\n[Turn 7 ASSISTANT]\ne060\tThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used.\ne061\tCitation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.\ne062\tYou could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used.\ne063\tThe plan can bound your promise; it cannot make public use temporary in every practical sense.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "amb1-case04-research-tool-release-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"amb1-case04-research-tool-release\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur small academic software group has built an open tool for exploring archival text collections.\\ne002\\tIt is not used for medical or individual decisions; it helps researchers find patterns and passages to inspect.\\ne003\\tTwo labs have used private builds and want us to release a public beta.\\ne004\\tThe analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format.\\ne005\\tHalf the team wants feedback now.\\ne006\\tThe maintainers worry a messy release will define our reputation.\\n[Turn 1 ASSISTANT]\\ne007\\tThe decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable.\\ne008\\tIf most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill.\\ne009\\tIf the private labs have only used familiar collections, a broader beta could reveal important assumptions.\\ne010\\tYou might delay “public” while expanding a structured preview to users with different data.\\n[Turn 2 USER]\\ne011\\tThat is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.\\ne012\\tEach time we add users, we find another thing to document before going public.\\ne013\\tMeanwhile two volunteer contributors have stopped attending meetings because there is no visible release.\\ne014\\tI do not think contributor momentum is superficial.\\ne015\\tA tool that is always almost ready can become a private service for our friends.\\n[Turn 2 ASSISTANT]\\ne016\\tAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.\\ne017\\tA public beta can create a focal point for contributors if its limits are explicit.\\ne018\\tThe maintainers' concern still matters because public access changes the volume and variety of support.\\ne019\\tThe question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\\n[Turn 3 USER]\\ne020\\tI am not sure disclaimers solve it.\\ne021\\tResearchers often ignore “beta” once they have invested in a workflow.\\ne022\\tIf we change the data model later, they may feel we broke something even if we warned them.\\ne023\\tAlso, the two labs want to cite the tool in papers this year.\\ne024\\tA public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience.\\n[Turn 3 ASSISTANT]\\ne025\\tThen the most consequential commitment may be the data and output format, not the release label.\\ne026\\tYou could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects.\\ne027\\tBut that creates engineering work and may imply more compatibility than you can guarantee.\\ne028\\tThe publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\\n[Turn 4 USER]\\ne029\\tYou are assuming we can identify a minimal stable format.\\ne030\\tPriya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions.\\ne031\\tShe wants public examples precisely to learn what should be stable.\\ne032\\tOur senior maintainer says that is using users to discover architecture at their expense.\\ne033\\tThey respect each other, but the conversation has become “learning” versus “responsibility,” and both words are doing too much work.\\n[Turn 4 ASSISTANT]\\ne034\\tThose positions may differ on who bears the cost of uncertainty.\\ne035\\tPriya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs.\\ne036\\tA release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe.\\ne037\\tThere may not be a way to learn from committed use without creating some obligation to those users.\\n[Turn 5 USER]\\ne038\\tWe learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone.\\ne039\\tTheir researchers reported a smooth experience because they never saw the setup work.\\ne040\\tThat makes our private evidence look weaker.\\ne041\\tOn the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it.\\ne042\\tI cannot tell whether this argues for release or for another round of testing.\\n[Turn 5 ASSISTANT]\\ne043\\tIt argues against treating the private labs as representative, but it does not choose the next step by itself.\\ne044\\tThe new installer could change the support burden, and public use could test it under real conditions.\\ne045\\tA bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.\\ne046\\tStill, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\\n[Turn 6 USER]\\ne047\\tThe team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks.\\ne048\\tPriya says that is fine because it forces knowledge sharing.\\ne049\\tHe says it turns his absence into an experiment other people did not choose.\\ne050\\tWe can move the date, but then we miss a workshop where many potential users will be together.\\ne051\\tThe workshop is a real learning opportunity, not only publicity.\\n[Turn 6 ASSISTANT]\\ne052\\tLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work.\\ne053\\tThe workshop also offers unusually concentrated feedback.\\ne054\\tOne compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns.\\ne055\\tThat preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\\n[Turn 7 USER]\\ne056\\tI am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.\\ne057\\tI dislike inventing another label, and I know people can keep downloaded software after the date.\\ne058\\tBut I also do not want to call it a public beta when our support capacity changes halfway through.\\ne059\\tI have not resolved whether citations should be allowed to reference the preview.\\n[Turn 7 ASSISTANT]\\ne060\\tThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used.\\ne061\\tCitation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.\\ne062\\tYou could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used.\\ne063\\tThe plan can bound your promise; it cannot make public use temporary in every practical sense.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"amb1-case04-research-tool-release-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "05fa9e3cb9e42d37ad17cf17220de85e99a3543e254e230f05bc63662275d179"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "6889b689638008432747126f91f26020f731c1064230636af98ebc7744c7abac"
+}

@@ -1,0 +1,2180 @@
+{
+  "attempt_status": "transfer_case_execution_complete_source_review_required",
+  "call_custody": [
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-01-starting-result.json",
+      "artifact_sha256": "840483310d2cbc3c10fc848ccebf3b1e35ba6508a93f72ffb2335ebf0820fb2e",
+      "compiled": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "The analysis is constrained by focusing solely on the early expressions of the founder and CEO in the provided text. The starting role captures the initial psychological and strategic tension without factoring in the concrete operational safeguards designed in subsequent turns.",
+        "observations": [
+          {
+            "case_id": "v1-case03-executive-hire",
+            "fidelity_note": "This starting position represents the founder's initial struggle to separate the excitement over a prestigious candidate from genuine strategic necessity. Although investors and the board are relieved by her name (e006), the founder is deeply uncertain (e010) and presents competing hypotheses (e008, e009). However, the founder emphasizes that despite warnings about prestige, the company legitimately needs change and should not use caution as an excuse to stay in their current plateau (e014, e017).",
+            "graph_routing_eligible": false,
+            "limitations": "This starting record focuses strictly on the early turns where the decision is unresolved and the founder is weighing competing instincts. Later concrete developments, such as the evaluation of the 100-day plan, references, and final negotiation, are excluded.",
+            "observation_id": "rprolev22-starting-01-2998e3749653d6",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+            "role": "starting",
+            "role_interpretation": "At the start, the founder and CEO is highly conflicted about hiring the commercial executive. On one hand, they find her impressive profile attractive as a possibility to provide missing leadership; on the other hand, they worry that they are relying on her prestigious résumé as a superficial way to restore confidence because their own internal plan has failed. They are initially unable to separate these two perspectives.",
+            "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "mixed",
+            "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e008",
+                "text": "Maybe this is the leadership we have been missing."
+              },
+              {
+                "alias": "e009",
+                "text": "Maybe we are asking a résumé to restore confidence because our own plan did not."
+              },
+              {
+                "alias": "e010",
+                "text": "I am having trouble separating those."
+              },
+              {
+                "alias": "e017",
+                "text": "I do not want “beware prestige” to become another excuse for us to stay exactly as we are."
+              }
+            ],
+            "source_evidence_ids": [
+              "e008",
+              "e009",
+              "e010",
+              "e017"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e008",
+                "stance_expression_kind": "possibility",
+                "stance_object_interpretation": "The commercial executive candidate represents the missing leadership the company has been needing.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e009",
+                "stance_expression_kind": "possibility",
+                "stance_object_interpretation": "Relying on a candidate's prestigious résumé to restore confidence simply because the company's own plan failed.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e010",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Distinguishing whether the candidate is a genuinely needed leader or just a prestigious résumé to restore confidence.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e017",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Warding off warnings about corporate prestige from becoming an excuse to stay stagnant instead of pursuing needed change.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+            "record_index": 1,
+            "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "mixed",
+        "role": "starting",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "duration_seconds": 20.841,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.0493545,
+      "raw_content_sha256": "f411dcc578b20e55a0e76580b0fdcd9a28eb77a4889c190951f7f10b559d92c4",
+      "reasoning_effort": "medium",
+      "request_body_sha256": "8d52ac3f62ef39771579c5f2400e3c5b8fc2e8cc28205fdbd1a922c2ecedeaef",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "starting",
+      "usage": {
+        "completion_tokens": 4591,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 3888
+        },
+        "cost": 0.0493545,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.041319,
+          "upstream_inference_cost": 0.0493545,
+          "upstream_inference_prompt_cost": 0.0080355
+        },
+        "is_byok": false,
+        "prompt_tokens": 5357,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 9948
+      },
+      "validation_error": null,
+      "wire_mode": "strict_json_schema"
+    },
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-02-current_qualification-result.json",
+      "artifact_sha256": "c0b10964085e60c4896f69d3147938c2c3dd6620970413b1d2cc50704be1b768",
+      "compiled": {
+        "allocation_note": "The user's concerns about referencing, executive boundaries, and performance incentives have been systematically converted into specific, adopted structural safeguards (the authority charter, the rewritten 30-day diagnostic period, the balanced equity goals, and the six-month review). Because these conditions are now fully integrated into the user's decision to make an offer, they belong to current rather than remaining as active, unresolved qualifications.",
+        "boundary": {
+          "adopted_condition_is_not_automatically_qualification": true,
+          "alias_subtraction_performed": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_from_record_presence_and_status": true,
+          "hard_alias_exclusivity_enforced": false,
+          "keyword_or_chronology_gate_added": false,
+          "model_role_labels_split_mechanically": true,
+          "negative_outcome_inferred_by_code": false,
+          "provider_authored_envelope_status_used": false,
+          "qualification_review_provider_authored": true,
+          "semantic_repair_performed": false,
+          "semantic_role_correctness_inferred_by_code": false,
+          "semantic_score_computed": false
+        },
+        "derived_envelope_status": {
+          "current": "supported",
+          "qualification": "not_found"
+        },
+        "global_limitations": "This analysis is restricted to the text within the focal region of the provided transcript (turns 1 to 12). Only user statements describing actual decisions and finalized perspectives are modeled as current.",
+        "observations": [
+          {
+            "case_id": "v1-case03-executive-hire",
+            "fidelity_note": "The user’s final position abandons the hope for a perfect reputation search or absolute certainty, shifting to a structured risk model. The user adopts several safeguards—such as separating commercial ownership from strategic product commitments and installing a boundary arbitration process—directly into the offer.",
+            "graph_routing_eligible": false,
+            "limitations": "Limited to the user's articulated decisions and self-assessments in Turn 12.",
+            "observation_id": "rprolev22-current-01-df216874695476",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+            "role": "current",
+            "role_interpretation": "The user proposes and commits to recommending a work offer with a board-approved authority charter, a multi-variable incentive design, and a comprehensive six-month assessment of behavioral dynamics and commercial outcomes.",
+            "role_record_id": "rprolev22-current-01-df216874695476",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e104",
+                "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+              },
+              {
+                "alias": "e105",
+                "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+              },
+              {
+                "alias": "e106",
+                "text": "I am not treating the workshop or references as proof that she will succeed."
+              },
+              {
+                "alias": "e107",
+                "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+              }
+            ],
+            "source_evidence_ids": [
+              "e104",
+              "e105",
+              "e106",
+              "e107"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e104",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Recommending an offer that includes the board-approved authority charter, a revised multi-metric equity incentive, and a six-month review of both organizational performance and decisions.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e105",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Allowing the candidate leadership change authority only after a diagnostic period while routing disputed product commitments through the written boundary process.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e106",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "Rejecting the idea that references or workshops serve as absolute proof of future success, framing them instead as inputs for a realistic, explainable bet.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e107",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "Acknowledging that the founder's own willingness and discipline to delegate authority is an active stake in whether this strategic alignment works.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "paired_terminal_disposition": "compiled",
+        "qualification_review": {
+          "evidence_ids": [
+            "e104",
+            "e105",
+            "e106",
+            "e107"
+          ],
+          "interpretation": "The user has successfully resolved previous dilemmas. He has converted the feedback from adverse references, workshop friction, and board pressure into formal boundaries, a 30-day initial diagnostic restriction, balanced performance metrics, and a defined six-month evaluation period. The acknowledgment of founder intervention risks is not left unresolved, but is explicitly named as an accepted component of their strategic bet.",
+          "limitations": "The determination is based entirely on the user's final synthesis in Turn 12, which successfully reconciles the initial friction points.",
+          "outcome": "no_unresolved_qualification_observed",
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "source_evidence": [
+            {
+              "alias": "e104",
+              "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+            },
+            {
+              "alias": "e105",
+              "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+            },
+            {
+              "alias": "e106",
+              "text": "I am not treating the workshop or references as proof that she will succeed."
+            },
+            {
+              "alias": "e107",
+              "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+            }
+          ]
+        },
+        "records": [
+          {
+            "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+            "record_index": 1,
+            "role_record_id": "rprolev22-current-01-df216874695476",
+            "terminal_state": "admitted"
+          }
+        ],
+        "role_compiled": {
+          "current": {
+            "boundary": {
+              "chronological_gate_added": false,
+              "deterministic_expression_gate_added": false,
+              "deterministic_role_exclusivity_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "keyword_gate_added": false,
+              "object_expression_compatibility_gate_added": false,
+              "one_alias_per_component_enforced": true,
+              "parallel_component_columns_used": false,
+              "prose_keyword_gate_added": false,
+              "provider_raw_record_hash_preserved": true,
+              "response_schema_changed_from_v22": false,
+              "semantic_merge_performed": false,
+              "semantic_role_or_category_correctness_inferred_by_code": false,
+              "v23_prompt_packet_contract": true,
+              "validator_changed_from_v22": false
+            },
+            "global_limitations": "This analysis is restricted to the text within the focal region of the provided transcript (turns 1 to 12). Only user statements describing actual decisions and finalized perspectives are modeled as current.",
+            "observations": [
+              {
+                "case_id": "v1-case03-executive-hire",
+                "fidelity_note": "The user’s final position abandons the hope for a perfect reputation search or absolute certainty, shifting to a structured risk model. The user adopts several safeguards—such as separating commercial ownership from strategic product commitments and installing a boundary arbitration process—directly into the offer.",
+                "graph_routing_eligible": false,
+                "limitations": "Limited to the user's articulated decisions and self-assessments in Turn 12.",
+                "observation_id": "rprolev22-current-01-df216874695476",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "google/gemini-3.5-flash-20260519",
+                  "producer_kind": "simulated_reliability_v1",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+                "role": "current",
+                "role_interpretation": "The user proposes and commits to recommending a work offer with a board-approved authority charter, a multi-variable incentive design, and a comprehensive six-month assessment of behavioral dynamics and commercial outcomes.",
+                "role_record_id": "rprolev22-current-01-df216874695476",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "supported",
+                "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+                "source_evidence": [
+                  {
+                    "alias": "e104",
+                    "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+                  },
+                  {
+                    "alias": "e105",
+                    "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+                  },
+                  {
+                    "alias": "e106",
+                    "text": "I am not treating the workshop or references as proof that she will succeed."
+                  },
+                  {
+                    "alias": "e107",
+                    "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e104",
+                  "e105",
+                  "e106",
+                  "e107"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e104",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Recommending an offer that includes the board-approved authority charter, a revised multi-metric equity incentive, and a six-month review of both organizational performance and decisions.",
+                    "stance_object_kind": "action_or_proposal"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e105",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Allowing the candidate leadership change authority only after a diagnostic period while routing disputed product commitments through the written boundary process.",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e106",
+                    "stance_expression_kind": "held_assessment",
+                    "stance_object_interpretation": "Rejecting the idea that references or workshops serve as absolute proof of future success, framing them instead as inputs for a realistic, explainable bet.",
+                    "stance_object_kind": "belief_or_assessment"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e107",
+                    "stance_expression_kind": "held_assessment",
+                    "stance_object_interpretation": "Acknowledging that the founder's own willingness and discipline to delegate authority is an active stake in whether this strategic alignment works.",
+                    "stance_object_kind": "belief_or_assessment"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            ],
+            "records": [
+              {
+                "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+                "record_index": 1,
+                "role_record_id": "rprolev22-current-01-df216874695476",
+                "terminal_state": "admitted"
+              }
+            ],
+            "response_status": "supported",
+            "role": "current",
+            "role_terminal_disposition": "compiled",
+            "schema_version": "lolla.reasoning_process_position_role_response.v2",
+            "status": "position_role_response_v22_custody_complete"
+          },
+          "qualification": {
+            "boundary": {
+              "chronological_gate_added": false,
+              "deterministic_expression_gate_added": false,
+              "deterministic_role_exclusivity_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "keyword_gate_added": false,
+              "object_expression_compatibility_gate_added": false,
+              "one_alias_per_component_enforced": true,
+              "parallel_component_columns_used": false,
+              "prose_keyword_gate_added": false,
+              "provider_raw_record_hash_preserved": true,
+              "response_schema_changed_from_v22": false,
+              "semantic_merge_performed": false,
+              "semantic_role_or_category_correctness_inferred_by_code": false,
+              "v23_prompt_packet_contract": true,
+              "validator_changed_from_v22": false
+            },
+            "global_limitations": "This analysis is restricted to the text within the focal region of the provided transcript (turns 1 to 12). Only user statements describing actual decisions and finalized perspectives are modeled as current.",
+            "observations": [],
+            "records": [],
+            "response_status": "not_found",
+            "role": "qualification",
+            "role_terminal_disposition": "reviewed_empty",
+            "schema_version": "lolla.reasoning_process_position_role_response.v2",
+            "status": "position_role_response_v22_custody_complete"
+          }
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_2",
+        "status": "position_current_qualification_v24_custody_complete"
+      },
+      "duration_seconds": 20.833,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.045675,
+      "raw_content_sha256": "dc114e3ecb273f66b1facef64d74dc79afdeae3f97c1c6627edd2bee544d3483",
+      "reasoning_effort": "medium",
+      "request_body_sha256": "a8fed7c9591bcdeeb2633c426e9117e26eafb9d2e6dc5acbf2237db5c5237cbf",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "current_qualification",
+      "usage": {
+        "completion_tokens": 4180,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 3308
+        },
+        "cost": 0.045675,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.03762,
+          "upstream_inference_cost": 0.045675,
+          "upstream_inference_prompt_cost": 0.008055
+        },
+        "is_byok": false,
+        "prompt_tokens": 5370,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 9550
+      },
+      "validation_error": null,
+      "wire_mode": "json_object_schema_in_prompt"
+    },
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-03-mechanism-result.json",
+      "artifact_sha256": "eced90793b869ead4224fcfd36cbcd5ad85931d4558a8740e6ce812e74382a4c",
+      "compiled": {
+        "fact_boundary": {
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "entities_included": false,
+          "quotes_included": false,
+          "raw_text_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "probabilistic_semantic_assessment",
+          "assistant_citation_is_not_deterministic_resolution",
+          "answer_coverage_is_not_user_adoption",
+          "routing_disposition_is_not_mental_model_applicability_proof",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ],
+        "packet_metadata": {
+          "graph_runtime_modified": false,
+          "interpretation_schema_version": "lolla.simulated_reliability_separated_mechanism_response.v2",
+          "packet_id": "reasoning_pattern_packet:v1-case03-executive-hire-primary:v1_joint"
+        },
+        "pattern_hypotheses": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "pattern_id": "rp_001",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "pattern_id": "rp_002",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "pattern_id": "rp_003",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "pattern_id": "rp_004",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "pattern_id": "rp_005",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "pattern_id": "rp_006",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "pattern_id": "rp_007",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "pattern_id": "rp_008",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "pattern_id": "rp_009",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          }
+        ],
+        "provenance": {
+          "assistant_contribution_count": 12,
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-002",
+                "assistant-turn-006",
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-002",
+                "assistant-turn-006",
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-009"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-009",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_004",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-005",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-005",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_005",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-003",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-003",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_006",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_007",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-002",
+                "assistant-turn-007",
+                "assistant-turn-010"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-002",
+                "assistant-turn-007",
+                "assistant-turn-010",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_008",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-004",
+                "assistant-turn-007"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-004",
+                "assistant-turn-007",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_009",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-009"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-009",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            }
+          ],
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "qualification_review_outcome": "no_unresolved_qualification_observed",
+          "raw_role_or_assistant_prose_in_routing_projection": false,
+          "source_role_record_packet_sha256": "4f1c712b4fba2f32a2d1364bbd82e3a995ee8a3836c4a69e3894433d46eb0cd2"
+        },
+        "routing_projection": {
+          "contains_case_context": false,
+          "pattern_edges": [],
+          "pattern_nodes": [],
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+        },
+        "schema_version": "lolla.reasoning_pattern_packet.v0"
+      },
+      "duration_seconds": 14.427,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.03888,
+      "raw_content_sha256": "532167e02b1b7ffd629540434ad9adc816d9be2b48c9880623977be2a85a4219",
+      "reasoning_effort": "low",
+      "request_body_sha256": "ad62566a7e7e9afde10faeb2212dd0ee0ea2c8fd69d6d3f4725a08effcfbfb71",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "mechanism",
+      "usage": {
+        "completion_tokens": 3460,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1676
+        },
+        "cost": 0.03888,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.03114,
+          "upstream_inference_cost": 0.03888,
+          "upstream_inference_prompt_cost": 0.00774
+        },
+        "is_byok": false,
+        "prompt_tokens": 5160,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 8620
+      },
+      "validation_error": null,
+      "wire_mode": "json_object_schema_in_prompt"
+    },
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-04-transcript_only-result.json",
+      "artifact_sha256": "0907bbd0249b0034d6ce3e85aa3d6db8531a954c88fa20ffd9a90cde00a32eb0",
+      "compiled": {
+        "case_id": "v1-case03-executive-hire",
+        "change_summary": "Refined the analysis of the executive hiring process, preserving the core framework of boundary establishment, non-curated references, structured workshops with private debriefs, multi-metric incentives, and continuous governance. Adhered strictly to the facts of the transcript without introducing external metrics, ensuring all numerical values (such as the 18-month reference, 10-day timeline, 2-day workshop, 30-day/60-day diagnostic shift, and 6-month review) match the text explicitly.",
+        "external_pressure_portfolio_included": false,
+        "graph_runtime_modified": false,
+        "non_claims": [
+          "fresh_second_pass_is_not_pressure_effect",
+          "revised_answer_is_not_proven_better",
+          "not_runtime_authorization"
+        ],
+        "reconsidered_answer": "In evaluating whether to hire a highly celebrated commercial executive into a founder-led company currently experiencing a two-year revenue plateau, leadership must shift from seeking validation of a prestige résumé to executing a rigorous, structured assessment of fit, authority, and operating standards.\n\n### 1. Job Design and Boundary Definition\nThe primary risk of hiring a high-profile commercial leader is failing to define exactly where her authority ends and where founder/CEO authority begins. To mitigate this:\n*   **Draft an Authority Charter:** Establish a formal document approved by the board detailing what she owns (the commercial organization, pricing execution, and leadership changes within an approved budget) relative to reserved CEO decisions (company strategy, major product commitments, and dismissing a founder).\n*   **Address Boundary Disputes Directly:** Before she starts, establish a written conflict-resolution process for common grey areas, such as disputed customer promises or product commitments.\n*   **Avoid Selective Delegation:** Delegation must be organizational and structured, not a temporary convenience that the founder overrides whenever comfortable patterns are challenged.\n\n### 2. Behavioral Reference Checking\nInstead of evaluating only selected and positive references, seek a complete view of how the candidate operates under pressure:\n*   **Seek Diverse Perspectives:** Seek references beyond her selected list, including former direct reports who did not stay, peers, and external partners.\n*   **Analyze Operational Patterns:** Rather than looking of a binary 'good' or 'bad' verdict, analyze specific operational behaviors. In this case, a former regional director who left after eighteen months pointed out a critical pattern: she would change priorities without explicitly addressing the sacrifices made on the previous plan, leading teams to treat daily commitments as temporary theater. \n*   **Test Self-Correction:** Present this pattern of feedback back to the candidate to see how she responds, communicates costs, and maintains upward feedback lines when plans change.\n\n### 3. Practical Auditing: The Workshop\nA hands-on evaluation, such as a two-day paid pricing workshop, is highly effective but must be carefully managed to de-bias the feedback:\n*   **Observe Conflict and Communication:** Real-world workshops show how candidate structures problems, frames disagreement, and interacts with established leaders (particularly product/engineering teams who may feel commercial pressure competes with long-term roadmaps).\n*   **Separate Workshop Debriefs:** Perform individual de-briefs with internal participants before sharing the founder's perspective. In a highly visible hire, the team is prone to perform for the CEO once they perceive the CEO is impressed, which can distort honest feedback.\n\n### 4. Rewriting Plans and Aligning Incentives\n*   **Evaluate Adaptability Over Polished Plans:** The willingness of the candidate to adapt her initial plan based on collaborative feedback (e.g., changing her immediate sixty-day leadership change window to an initial thirty-day diagnostic period) is stronger evidence of operational fit than her original polished proposal.\n*   **Durable Incentive Design:** Equity and performance incentives must protect the long-term health of the business to prevent short-term, fragile revenue. Rather than basing rewards on revenue milestones alone, tie vesting to a balanced mix of metrics such as revenue, gross retention, and contribution margin, explicitly barring vesting based on single large, unsupportable contracts.\n\n### 5. Structured Review and Governance\nAn offer should be made with clear organizational expectations, including a defined six-month review that evaluates both company outcomes and the health of the decision-making pipeline. Records of peer debriefs, reference disagreements, original and revised plans, and the authority charter must be preserved. At the six-month mark, these documents serve to analyze whether the hire succeeded or failed based on structural alignment, founder behavior, or economic conditions, preventing a simplistic 'hero' or ' scapegoat' narrative.",
+        "schema_version": "lolla.fresh_reasoning_control_response.v1",
+        "source_packet_sha256": "36ea2dafce042ece35190bbbfe51cf0a483d7601ab5cae4c54d841a6a3edb628"
+      },
+      "duration_seconds": 11.788,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.022284,
+      "raw_content_sha256": "3dfc9f9429f719cbaf5ad8a169fa912c251a86b807533066068f53f78023efc3",
+      "reasoning_effort": "medium",
+      "request_body_sha256": "39e4d3bd6e5a1b018ea320fdaa09f49e1fa7cd5d15948173373a609c5438a64b",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "transcript_only",
+      "usage": {
+        "completion_tokens": 1959,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1036
+        },
+        "cost": 0.022284,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.017631,
+          "upstream_inference_cost": 0.022284,
+          "upstream_inference_prompt_cost": 0.004653
+        },
+        "is_byok": false,
+        "prompt_tokens": 3102,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 5061
+      },
+      "validation_error": null,
+      "wire_mode": "strict_json_schema"
+    }
+  ],
+  "case_id": "v1-case03-executive-hire",
+  "deterministic_pressure": {
+    "direct_ledger": {
+      "content": {
+        "active_candidates": [],
+        "active_cap": 10,
+        "all_candidate_count": 0,
+        "ledger_sha256": "69b682f8e102cbe517c2fd900178fdd7265b1604aee74d1bef7eb08e7f3428fb",
+        "non_claims": [
+          "direct_recall_is_not_applicability_proof",
+          "active_cap_is_not_a_relevance_threshold"
+        ],
+        "reserve_candidates": [],
+        "schema_version": "lolla.simulated_reliability_direct_ledger.v1",
+        "selection_policy": {
+          "candidate_deletion": false,
+          "mechanism_order": "mechanism_id_ascending",
+          "operation": "controlled_mechanism_round_robin",
+          "semantic_applicability_decision": false,
+          "within_mechanism_order": "model_id_ascending"
+        },
+        "stand_down": true,
+        "unresolved_mechanism_ids": []
+      },
+      "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/direct-ledger.json",
+      "sha256": "98a6ac6f6829859d974cb3327f7a0d483bf628b8bd64155425d70ff55e753572"
+    },
+    "graph_ledger": {
+      "content": {
+        "active_candidates": [],
+        "active_cap": 3,
+        "all_eligible_edges": [],
+        "eligible_edge_count": 0,
+        "ledger_sha256": "158bd155b670e53ad28c3d9219fa8c8b80270ac4d7b6903ee93f05eee0c701f9",
+        "non_claims": [
+          "graph_recall_is_not_applicability_proof",
+          "active_slots_are_not_best_model_selection",
+          "reserve_status_is_not_semantic_rejection"
+        ],
+        "reserve_candidates": [],
+        "schema_version": "lolla.simulated_reliability_graph_ledger.v1",
+        "selection_policy": {
+          "affinity_used_for_admission": false,
+          "candidate_deletion": false,
+          "conversation_text_used_for_admission": false,
+          "operation": "one_slot_per_declared_relation_type",
+          "probabilistic_prefilter_used": false,
+          "relation_slot_order": [
+            "antagonist",
+            "tension",
+            "ally"
+          ],
+          "within_slot_order": [
+            "source_model_id_ascending",
+            "target_model_id_ascending"
+          ]
+        },
+        "source_direct_ledger_sha256": "69b682f8e102cbe517c2fd900178fdd7265b1604aee74d1bef7eb08e7f3428fb",
+        "unique_target_count": 0
+      },
+      "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/graph-ledger.json",
+      "sha256": "744b6b681ca570a13f50cb7fabcfcaff958c31ae18e6dcdea4d02ae7f3355b33"
+    },
+    "semantic_relevance_gate_performed_by_code": false
+  },
+  "failures": [],
+  "interpretation": {
+    "joined_role_records": {
+      "boundary": {
+        "deterministic_semantic_inference": false,
+        "direct_graph_routing_allowed": false,
+        "record_selection_performed": false,
+        "semantic_record_merge_performed": false
+      },
+      "qualification_review": {
+        "evidence_ids": [
+          "e104",
+          "e105",
+          "e106",
+          "e107"
+        ],
+        "interpretation": "The user has successfully resolved previous dilemmas. He has converted the feedback from adverse references, workshop friction, and board pressure into formal boundaries, a 30-day initial diagnostic restriction, balanced performance metrics, and a defined six-month evaluation period. The acknowledgment of founder intervention risks is not left unresolved, but is explicitly named as an accepted component of their strategic bet.",
+        "limitations": "The determination is based entirely on the user's final synthesis in Turn 12, which successfully reconciles the initial friction points.",
+        "outcome": "no_unresolved_qualification_observed",
+        "producer_id": "google/gemini-3.5-flash-20260519",
+        "producer_kind": "simulated_reliability_v1",
+        "source_evidence": [
+          {
+            "alias": "e104",
+            "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+          },
+          {
+            "alias": "e105",
+            "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+          },
+          {
+            "alias": "e106",
+            "text": "I am not treating the workshop or references as proof that she will succeed."
+          },
+          {
+            "alias": "e107",
+            "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+          }
+        ]
+      },
+      "record_counts": {
+        "current": 1,
+        "qualification": 0,
+        "starting": 1
+      },
+      "role_observations": {
+        "current": [
+          {
+            "case_id": "v1-case03-executive-hire",
+            "fidelity_note": "The user’s final position abandons the hope for a perfect reputation search or absolute certainty, shifting to a structured risk model. The user adopts several safeguards—such as separating commercial ownership from strategic product commitments and installing a boundary arbitration process—directly into the offer.",
+            "graph_routing_eligible": false,
+            "limitations": "Limited to the user's articulated decisions and self-assessments in Turn 12.",
+            "observation_id": "rprolev22-current-01-df216874695476",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+            "role": "current",
+            "role_interpretation": "The user proposes and commits to recommending a work offer with a board-approved authority charter, a multi-variable incentive design, and a comprehensive six-month assessment of behavioral dynamics and commercial outcomes.",
+            "role_record_id": "rprolev22-current-01-df216874695476",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e104",
+                "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+              },
+              {
+                "alias": "e105",
+                "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+              },
+              {
+                "alias": "e106",
+                "text": "I am not treating the workshop or references as proof that she will succeed."
+              },
+              {
+                "alias": "e107",
+                "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+              }
+            ],
+            "source_evidence_ids": [
+              "e104",
+              "e105",
+              "e106",
+              "e107"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e104",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Recommending an offer that includes the board-approved authority charter, a revised multi-metric equity incentive, and a six-month review of both organizational performance and decisions.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e105",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Allowing the candidate leadership change authority only after a diagnostic period while routing disputed product commitments through the written boundary process.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e106",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "Rejecting the idea that references or workshops serve as absolute proof of future success, framing them instead as inputs for a realistic, explainable bet.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e107",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "Acknowledging that the founder's own willingness and discipline to delegate authority is an active stake in whether this strategic alignment works.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "qualification": [],
+        "starting": [
+          {
+            "case_id": "v1-case03-executive-hire",
+            "fidelity_note": "This starting position represents the founder's initial struggle to separate the excitement over a prestigious candidate from genuine strategic necessity. Although investors and the board are relieved by her name (e006), the founder is deeply uncertain (e010) and presents competing hypotheses (e008, e009). However, the founder emphasizes that despite warnings about prestige, the company legitimately needs change and should not use caution as an excuse to stay in their current plateau (e014, e017).",
+            "graph_routing_eligible": false,
+            "limitations": "This starting record focuses strictly on the early turns where the decision is unresolved and the founder is weighing competing instincts. Later concrete developments, such as the evaluation of the 100-day plan, references, and final negotiation, are excluded.",
+            "observation_id": "rprolev22-starting-01-2998e3749653d6",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+            "role": "starting",
+            "role_interpretation": "At the start, the founder and CEO is highly conflicted about hiring the commercial executive. On one hand, they find her impressive profile attractive as a possibility to provide missing leadership; on the other hand, they worry that they are relying on her prestigious résumé as a superficial way to restore confidence because their own internal plan has failed. They are initially unable to separate these two perspectives.",
+            "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "mixed",
+            "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e008",
+                "text": "Maybe this is the leadership we have been missing."
+              },
+              {
+                "alias": "e009",
+                "text": "Maybe we are asking a résumé to restore confidence because our own plan did not."
+              },
+              {
+                "alias": "e010",
+                "text": "I am having trouble separating those."
+              },
+              {
+                "alias": "e017",
+                "text": "I do not want “beware prestige” to become another excuse for us to stay exactly as we are."
+              }
+            ],
+            "source_evidence_ids": [
+              "e008",
+              "e009",
+              "e010",
+              "e017"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e008",
+                "stance_expression_kind": "possibility",
+                "stance_object_interpretation": "The commercial executive candidate represents the missing leadership the company has been needing.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e009",
+                "stance_expression_kind": "possibility",
+                "stance_object_interpretation": "Relying on a candidate's prestigious résumé to restore confidence simply because the company's own plan failed.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e010",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Distinguishing whether the candidate is a genuinely needed leader or just a prestigious résumé to restore confidence.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e017",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Warding off warnings about corporate prestige from becoming an excuse to stay stagnant instead of pursuing needed change.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ]
+      },
+      "schema_version": "lolla.simulated_reliability_role_portfolio_join.v1",
+      "status": "bounded_role_portfolio_join_complete"
+    },
+    "mechanism_assessments": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "pattern_id": "rp_001",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "ambiguous_signal_treated_as_commitment",
+        "pattern_id": "rp_002",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "pattern_id": "rp_003",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "criteria_defined_after_commitment",
+        "pattern_id": "rp_004",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "initial_frame_persists_after_question_change",
+        "pattern_id": "rp_005",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "missing_reversal_condition",
+        "pattern_id": "rp_006",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "reversible_path_not_considered",
+        "pattern_id": "rp_007",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "status_signal_used_as_evidence",
+        "pattern_id": "rp_008",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "upside_downside_evidence_asymmetry",
+        "pattern_id": "rp_009",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      }
+    ],
+    "mechanism_call": {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-03-mechanism-result.json",
+      "artifact_sha256": "eced90793b869ead4224fcfd36cbcd5ad85931d4558a8740e6ce812e74382a4c",
+      "compiled": {
+        "fact_boundary": {
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "entities_included": false,
+          "quotes_included": false,
+          "raw_text_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "probabilistic_semantic_assessment",
+          "assistant_citation_is_not_deterministic_resolution",
+          "answer_coverage_is_not_user_adoption",
+          "routing_disposition_is_not_mental_model_applicability_proof",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ],
+        "packet_metadata": {
+          "graph_runtime_modified": false,
+          "interpretation_schema_version": "lolla.simulated_reliability_separated_mechanism_response.v2",
+          "packet_id": "reasoning_pattern_packet:v1-case03-executive-hire-primary:v1_joint"
+        },
+        "pattern_hypotheses": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "pattern_id": "rp_001",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "pattern_id": "rp_002",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "pattern_id": "rp_003",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "pattern_id": "rp_004",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "pattern_id": "rp_005",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "pattern_id": "rp_006",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "pattern_id": "rp_007",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "pattern_id": "rp_008",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "pattern_id": "rp_009",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          }
+        ],
+        "provenance": {
+          "assistant_contribution_count": 12,
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-002",
+                "assistant-turn-006",
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-002",
+                "assistant-turn-006",
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-009"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-009",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_004",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-005",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-005",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_005",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-003",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-003",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_006",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_007",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-002",
+                "assistant-turn-007",
+                "assistant-turn-010"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-002",
+                "assistant-turn-007",
+                "assistant-turn-010",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_008",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-004",
+                "assistant-turn-007"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-004",
+                "assistant-turn-007",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            },
+            {
+              "pattern_id": "rp_009",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-009"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-008",
+                "assistant-turn-009",
+                "rprolev22-current-01-df216874695476",
+                "rprolev22-starting-01-2998e3749653d6"
+              ]
+            }
+          ],
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "qualification_review_outcome": "no_unresolved_qualification_observed",
+          "raw_role_or_assistant_prose_in_routing_projection": false,
+          "source_role_record_packet_sha256": "4f1c712b4fba2f32a2d1364bbd82e3a995ee8a3836c4a69e3894433d46eb0cd2"
+        },
+        "routing_projection": {
+          "contains_case_context": false,
+          "pattern_edges": [],
+          "pattern_nodes": [],
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+        },
+        "schema_version": "lolla.reasoning_pattern_packet.v0"
+      },
+      "duration_seconds": 14.427,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.03888,
+      "raw_content_sha256": "532167e02b1b7ffd629540434ad9adc816d9be2b48c9880623977be2a85a4219",
+      "reasoning_effort": "low",
+      "request_body_sha256": "ad62566a7e7e9afde10faeb2212dd0ee0ea2c8fd69d6d3f4725a08effcfbfb71",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "mechanism",
+      "usage": {
+        "completion_tokens": 3460,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1676
+        },
+        "cost": 0.03888,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.03114,
+          "upstream_inference_cost": 0.03888,
+          "upstream_inference_prompt_cost": 0.00774
+        },
+        "is_byok": false,
+        "prompt_tokens": 5160,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 8620
+      },
+      "validation_error": null,
+      "wire_mode": "json_object_schema_in_prompt"
+    },
+    "role_calls": [
+      {
+        "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-01-starting-result.json",
+        "artifact_sha256": "840483310d2cbc3c10fc848ccebf3b1e35ba6508a93f72ffb2335ebf0820fb2e",
+        "compiled": {
+          "boundary": {
+            "chronological_gate_added": false,
+            "deterministic_expression_gate_added": false,
+            "deterministic_role_exclusivity_gate_added": false,
+            "direct_graph_routing_allowed": false,
+            "keyword_gate_added": false,
+            "object_expression_compatibility_gate_added": false,
+            "one_alias_per_component_enforced": true,
+            "parallel_component_columns_used": false,
+            "prose_keyword_gate_added": false,
+            "provider_raw_record_hash_preserved": true,
+            "response_schema_changed_from_v22": false,
+            "semantic_merge_performed": false,
+            "semantic_role_or_category_correctness_inferred_by_code": false,
+            "v23_prompt_packet_contract": true,
+            "validator_changed_from_v22": false
+          },
+          "global_limitations": "The analysis is constrained by focusing solely on the early expressions of the founder and CEO in the provided text. The starting role captures the initial psychological and strategic tension without factoring in the concrete operational safeguards designed in subsequent turns.",
+          "observations": [
+            {
+              "case_id": "v1-case03-executive-hire",
+              "fidelity_note": "This starting position represents the founder's initial struggle to separate the excitement over a prestigious candidate from genuine strategic necessity. Although investors and the board are relieved by her name (e006), the founder is deeply uncertain (e010) and presents competing hypotheses (e008, e009). However, the founder emphasizes that despite warnings about prestige, the company legitimately needs change and should not use caution as an excuse to stay in their current plateau (e014, e017).",
+              "graph_routing_eligible": false,
+              "limitations": "This starting record focuses strictly on the early turns where the decision is unresolved and the founder is weighing competing instincts. Later concrete developments, such as the evaluation of the 100-day plan, references, and final negotiation, are excluded.",
+              "observation_id": "rprolev22-starting-01-2998e3749653d6",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "google/gemini-3.5-flash-20260519",
+                "producer_kind": "simulated_reliability_v1",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+              "role": "starting",
+              "role_interpretation": "At the start, the founder and CEO is highly conflicted about hiring the commercial executive. On one hand, they find her impressive profile attractive as a possibility to provide missing leadership; on the other hand, they worry that they are relying on her prestigious résumé as a superficial way to restore confidence because their own internal plan has failed. They are initially unable to separate these two perspectives.",
+              "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+              "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+              "semantic_status": "mixed",
+              "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+              "source_evidence": [
+                {
+                  "alias": "e008",
+                  "text": "Maybe this is the leadership we have been missing."
+                },
+                {
+                  "alias": "e009",
+                  "text": "Maybe we are asking a résumé to restore confidence because our own plan did not."
+                },
+                {
+                  "alias": "e010",
+                  "text": "I am having trouble separating those."
+                },
+                {
+                  "alias": "e017",
+                  "text": "I do not want “beware prestige” to become another excuse for us to stay exactly as we are."
+                }
+              ],
+              "source_evidence_ids": [
+                "e008",
+                "e009",
+                "e010",
+                "e017"
+              ],
+              "source_record_index": 1,
+              "stance_components": [
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e008",
+                  "stance_expression_kind": "possibility",
+                  "stance_object_interpretation": "The commercial executive candidate represents the missing leadership the company has been needing.",
+                  "stance_object_kind": "belief_or_assessment"
+                },
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e009",
+                  "stance_expression_kind": "possibility",
+                  "stance_object_interpretation": "Relying on a candidate's prestigious résumé to restore confidence simply because the company's own plan failed.",
+                  "stance_object_kind": "belief_or_assessment"
+                },
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e010",
+                  "stance_expression_kind": "uncertain_or_undecided",
+                  "stance_object_interpretation": "Distinguishing whether the candidate is a genuinely needed leader or just a prestigious résumé to restore confidence.",
+                  "stance_object_kind": "belief_or_assessment"
+                },
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e017",
+                  "stance_expression_kind": "preference_or_desire",
+                  "stance_object_interpretation": "Warding off warnings about corporate prestige from becoming an excuse to stay stagnant instead of pursuing needed change.",
+                  "stance_object_kind": "belief_or_assessment"
+                }
+              ],
+              "terminal_state": "admitted"
+            }
+          ],
+          "records": [
+            {
+              "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+              "record_index": 1,
+              "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+              "terminal_state": "admitted"
+            }
+          ],
+          "response_status": "mixed",
+          "role": "starting",
+          "role_terminal_disposition": "compiled",
+          "schema_version": "lolla.reasoning_process_position_role_response.v2",
+          "status": "position_role_response_v22_custody_complete"
+        },
+        "duration_seconds": 20.841,
+        "operational_status": "ok",
+        "provider_calls": 1,
+        "provider_error": null,
+        "provider_reported_cost_usd": 0.0493545,
+        "raw_content_sha256": "f411dcc578b20e55a0e76580b0fdcd9a28eb77a4889c190951f7f10b559d92c4",
+        "reasoning_effort": "medium",
+        "request_body_sha256": "8d52ac3f62ef39771579c5f2400e3c5b8fc2e8cc28205fdbd1a922c2ecedeaef",
+        "requested_model": "google/gemini-3.5-flash-20260519",
+        "served_model": "google/gemini-3.5-flash-20260519",
+        "served_provider": "Google",
+        "task_id": "starting",
+        "usage": {
+          "completion_tokens": 4591,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 3888
+          },
+          "cost": 0.0493545,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.041319,
+            "upstream_inference_cost": 0.0493545,
+            "upstream_inference_prompt_cost": 0.0080355
+          },
+          "is_byok": false,
+          "prompt_tokens": 5357,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9948
+        },
+        "validation_error": null,
+        "wire_mode": "strict_json_schema"
+      },
+      {
+        "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/call-02-current_qualification-result.json",
+        "artifact_sha256": "c0b10964085e60c4896f69d3147938c2c3dd6620970413b1d2cc50704be1b768",
+        "compiled": {
+          "allocation_note": "The user's concerns about referencing, executive boundaries, and performance incentives have been systematically converted into specific, adopted structural safeguards (the authority charter, the rewritten 30-day diagnostic period, the balanced equity goals, and the six-month review). Because these conditions are now fully integrated into the user's decision to make an offer, they belong to current rather than remaining as active, unresolved qualifications.",
+          "boundary": {
+            "adopted_condition_is_not_automatically_qualification": true,
+            "alias_subtraction_performed": false,
+            "direct_graph_routing_allowed": false,
+            "envelope_status_derived_from_record_presence_and_status": true,
+            "hard_alias_exclusivity_enforced": false,
+            "keyword_or_chronology_gate_added": false,
+            "model_role_labels_split_mechanically": true,
+            "negative_outcome_inferred_by_code": false,
+            "provider_authored_envelope_status_used": false,
+            "qualification_review_provider_authored": true,
+            "semantic_repair_performed": false,
+            "semantic_role_correctness_inferred_by_code": false,
+            "semantic_score_computed": false
+          },
+          "derived_envelope_status": {
+            "current": "supported",
+            "qualification": "not_found"
+          },
+          "global_limitations": "This analysis is restricted to the text within the focal region of the provided transcript (turns 1 to 12). Only user statements describing actual decisions and finalized perspectives are modeled as current.",
+          "observations": [
+            {
+              "case_id": "v1-case03-executive-hire",
+              "fidelity_note": "The user’s final position abandons the hope for a perfect reputation search or absolute certainty, shifting to a structured risk model. The user adopts several safeguards—such as separating commercial ownership from strategic product commitments and installing a boundary arbitration process—directly into the offer.",
+              "graph_routing_eligible": false,
+              "limitations": "Limited to the user's articulated decisions and self-assessments in Turn 12.",
+              "observation_id": "rprolev22-current-01-df216874695476",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "google/gemini-3.5-flash-20260519",
+                "producer_kind": "simulated_reliability_v1",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+              "role": "current",
+              "role_interpretation": "The user proposes and commits to recommending a work offer with a board-approved authority charter, a multi-variable incentive design, and a comprehensive six-month assessment of behavioral dynamics and commercial outcomes.",
+              "role_record_id": "rprolev22-current-01-df216874695476",
+              "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+              "semantic_status": "supported",
+              "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+              "source_evidence": [
+                {
+                  "alias": "e104",
+                  "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+                },
+                {
+                  "alias": "e105",
+                  "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+                },
+                {
+                  "alias": "e106",
+                  "text": "I am not treating the workshop or references as proof that she will succeed."
+                },
+                {
+                  "alias": "e107",
+                  "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+                }
+              ],
+              "source_evidence_ids": [
+                "e104",
+                "e105",
+                "e106",
+                "e107"
+              ],
+              "source_record_index": 1,
+              "stance_components": [
+                {
+                  "role": "current",
+                  "source_evidence_id": "e104",
+                  "stance_expression_kind": "decision",
+                  "stance_object_interpretation": "Recommending an offer that includes the board-approved authority charter, a revised multi-metric equity incentive, and a six-month review of both organizational performance and decisions.",
+                  "stance_object_kind": "action_or_proposal"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e105",
+                  "stance_expression_kind": "decision",
+                  "stance_object_interpretation": "Allowing the candidate leadership change authority only after a diagnostic period while routing disputed product commitments through the written boundary process.",
+                  "stance_object_kind": "intended_outcome_or_policy"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e106",
+                  "stance_expression_kind": "held_assessment",
+                  "stance_object_interpretation": "Rejecting the idea that references or workshops serve as absolute proof of future success, framing them instead as inputs for a realistic, explainable bet.",
+                  "stance_object_kind": "belief_or_assessment"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e107",
+                  "stance_expression_kind": "held_assessment",
+                  "stance_object_interpretation": "Acknowledging that the founder's own willingness and discipline to delegate authority is an active stake in whether this strategic alignment works.",
+                  "stance_object_kind": "belief_or_assessment"
+                }
+              ],
+              "terminal_state": "admitted"
+            }
+          ],
+          "paired_terminal_disposition": "compiled",
+          "qualification_review": {
+            "evidence_ids": [
+              "e104",
+              "e105",
+              "e106",
+              "e107"
+            ],
+            "interpretation": "The user has successfully resolved previous dilemmas. He has converted the feedback from adverse references, workshop friction, and board pressure into formal boundaries, a 30-day initial diagnostic restriction, balanced performance metrics, and a defined six-month evaluation period. The acknowledgment of founder intervention risks is not left unresolved, but is explicitly named as an accepted component of their strategic bet.",
+            "limitations": "The determination is based entirely on the user's final synthesis in Turn 12, which successfully reconciles the initial friction points.",
+            "outcome": "no_unresolved_qualification_observed",
+            "producer_id": "google/gemini-3.5-flash-20260519",
+            "producer_kind": "simulated_reliability_v1",
+            "source_evidence": [
+              {
+                "alias": "e104",
+                "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+              },
+              {
+                "alias": "e105",
+                "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+              },
+              {
+                "alias": "e106",
+                "text": "I am not treating the workshop or references as proof that she will succeed."
+              },
+              {
+                "alias": "e107",
+                "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+              }
+            ]
+          },
+          "records": [
+            {
+              "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+              "record_index": 1,
+              "role_record_id": "rprolev22-current-01-df216874695476",
+              "terminal_state": "admitted"
+            }
+          ],
+          "role_compiled": {
+            "current": {
+              "boundary": {
+                "chronological_gate_added": false,
+                "deterministic_expression_gate_added": false,
+                "deterministic_role_exclusivity_gate_added": false,
+                "direct_graph_routing_allowed": false,
+                "keyword_gate_added": false,
+                "object_expression_compatibility_gate_added": false,
+                "one_alias_per_component_enforced": true,
+                "parallel_component_columns_used": false,
+                "prose_keyword_gate_added": false,
+                "provider_raw_record_hash_preserved": true,
+                "response_schema_changed_from_v22": false,
+                "semantic_merge_performed": false,
+                "semantic_role_or_category_correctness_inferred_by_code": false,
+                "v23_prompt_packet_contract": true,
+                "validator_changed_from_v22": false
+              },
+              "global_limitations": "This analysis is restricted to the text within the focal region of the provided transcript (turns 1 to 12). Only user statements describing actual decisions and finalized perspectives are modeled as current.",
+              "observations": [
+                {
+                  "case_id": "v1-case03-executive-hire",
+                  "fidelity_note": "The user’s final position abandons the hope for a perfect reputation search or absolute certainty, shifting to a structured risk model. The user adopts several safeguards—such as separating commercial ownership from strategic product commitments and installing a boundary arbitration process—directly into the offer.",
+                  "graph_routing_eligible": false,
+                  "limitations": "Limited to the user's articulated decisions and self-assessments in Turn 12.",
+                  "observation_id": "rprolev22-current-01-df216874695476",
+                  "provenance": {
+                    "call_id": "",
+                    "model": "",
+                    "producer_id": "google/gemini-3.5-flash-20260519",
+                    "producer_kind": "simulated_reliability_v1",
+                    "prompt_sha256": ""
+                  },
+                  "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+                  "role": "current",
+                  "role_interpretation": "The user proposes and commits to recommending a work offer with a board-approved authority charter, a multi-variable incentive design, and a comprehensive six-month assessment of behavioral dynamics and commercial outcomes.",
+                  "role_record_id": "rprolev22-current-01-df216874695476",
+                  "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                  "semantic_status": "supported",
+                  "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+                  "source_evidence": [
+                    {
+                      "alias": "e104",
+                      "text": "I will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team."
+                    },
+                    {
+                      "alias": "e105",
+                      "text": "She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process."
+                    },
+                    {
+                      "alias": "e106",
+                      "text": "I am not treating the workshop or references as proof that she will succeed."
+                    },
+                    {
+                      "alias": "e107",
+                      "text": "They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet."
+                    }
+                  ],
+                  "source_evidence_ids": [
+                    "e104",
+                    "e105",
+                    "e106",
+                    "e107"
+                  ],
+                  "source_record_index": 1,
+                  "stance_components": [
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e104",
+                      "stance_expression_kind": "decision",
+                      "stance_object_interpretation": "Recommending an offer that includes the board-approved authority charter, a revised multi-metric equity incentive, and a six-month review of both organizational performance and decisions.",
+                      "stance_object_kind": "action_or_proposal"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e105",
+                      "stance_expression_kind": "decision",
+                      "stance_object_interpretation": "Allowing the candidate leadership change authority only after a diagnostic period while routing disputed product commitments through the written boundary process.",
+                      "stance_object_kind": "intended_outcome_or_policy"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e106",
+                      "stance_expression_kind": "held_assessment",
+                      "stance_object_interpretation": "Rejecting the idea that references or workshops serve as absolute proof of future success, framing them instead as inputs for a realistic, explainable bet.",
+                      "stance_object_kind": "belief_or_assessment"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e107",
+                      "stance_expression_kind": "held_assessment",
+                      "stance_object_interpretation": "Acknowledging that the founder's own willingness and discipline to delegate authority is an active stake in whether this strategic alignment works.",
+                      "stance_object_kind": "belief_or_assessment"
+                    }
+                  ],
+                  "terminal_state": "admitted"
+                }
+              ],
+              "records": [
+                {
+                  "raw_record_sha256": "sha256:df2168746954760d6abf211201fd60215ce2ec4320fcaa67db1b9ce6d28064c5",
+                  "record_index": 1,
+                  "role_record_id": "rprolev22-current-01-df216874695476",
+                  "terminal_state": "admitted"
+                }
+              ],
+              "response_status": "supported",
+              "role": "current",
+              "role_terminal_disposition": "compiled",
+              "schema_version": "lolla.reasoning_process_position_role_response.v2",
+              "status": "position_role_response_v22_custody_complete"
+            },
+            "qualification": {
+              "boundary": {
+                "chronological_gate_added": false,
+                "deterministic_expression_gate_added": false,
+                "deterministic_role_exclusivity_gate_added": false,
+                "direct_graph_routing_allowed": false,
+                "keyword_gate_added": false,
+                "object_expression_compatibility_gate_added": false,
+                "one_alias_per_component_enforced": true,
+                "parallel_component_columns_used": false,
+                "prose_keyword_gate_added": false,
+                "provider_raw_record_hash_preserved": true,
+                "response_schema_changed_from_v22": false,
+                "semantic_merge_performed": false,
+                "semantic_role_or_category_correctness_inferred_by_code": false,
+                "v23_prompt_packet_contract": true,
+                "validator_changed_from_v22": false
+              },
+              "global_limitations": "This analysis is restricted to the text within the focal region of the provided transcript (turns 1 to 12). Only user statements describing actual decisions and finalized perspectives are modeled as current.",
+              "observations": [],
+              "records": [],
+              "response_status": "not_found",
+              "role": "qualification",
+              "role_terminal_disposition": "reviewed_empty",
+              "schema_version": "lolla.reasoning_process_position_role_response.v2",
+              "status": "position_role_response_v22_custody_complete"
+            }
+          },
+          "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_2",
+          "status": "position_current_qualification_v24_custody_complete"
+        },
+        "duration_seconds": 20.833,
+        "operational_status": "ok",
+        "provider_calls": 1,
+        "provider_error": null,
+        "provider_reported_cost_usd": 0.045675,
+        "raw_content_sha256": "dc114e3ecb273f66b1facef64d74dc79afdeae3f97c1c6627edd2bee544d3483",
+        "reasoning_effort": "medium",
+        "request_body_sha256": "a8fed7c9591bcdeeb2633c426e9117e26eafb9d2e6dc5acbf2237db5c5237cbf",
+        "requested_model": "google/gemini-3.5-flash-20260519",
+        "served_model": "google/gemini-3.5-flash-20260519",
+        "served_provider": "Google",
+        "task_id": "current_qualification",
+        "usage": {
+          "completion_tokens": 4180,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 3308
+          },
+          "cost": 0.045675,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.03762,
+            "upstream_inference_cost": 0.045675,
+            "upstream_inference_prompt_cost": 0.008055
+          },
+          "is_byok": false,
+          "prompt_tokens": 5370,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9550
+        },
+        "validation_error": null,
+        "wire_mode": "json_object_schema_in_prompt"
+      }
+    ],
+    "routing_projection": {
+      "contains_case_context": false,
+      "pattern_edges": [],
+      "pattern_nodes": [],
+      "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+    }
+  },
+  "non_claims": [
+    "not_reasoning_quality_proof",
+    "not_decision_correctness_proof",
+    "not_human_usefulness_evidence",
+    "not_a_trust_score_or_badge",
+    "not_production_authorization"
+  ],
+  "public_arms": {
+    "direct_pressure": {
+      "call_required": false,
+      "candidate_dispositions": [],
+      "change_summary": null,
+      "operational_status": "deterministic_stand_down",
+      "provider_attempted": false,
+      "public_output": "The final recommendation names a bet rather than pretending the process delivered certainty. You are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail. Keep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper. At six months, ask both what results changed and whether information still travels upward when it is unwelcome. If the hire works, those records prevent a simple hero story. If it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision."
+    },
+    "graph_expanded_pressure": {
+      "call_required": false,
+      "candidate_dispositions": [],
+      "change_summary": null,
+      "operational_status": "deterministic_stand_down",
+      "provider_attempted": false,
+      "public_output": "The final recommendation names a bet rather than pretending the process delivered certainty. You are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail. Keep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper. At six months, ask both what results changed and whether information still travels upward when it is unwelcome. If the hire works, those records prevent a simple hero story. If it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision."
+    },
+    "transcript_only": {
+      "call_required": true,
+      "candidate_dispositions": [],
+      "change_summary": "Refined the analysis of the executive hiring process, preserving the core framework of boundary establishment, non-curated references, structured workshops with private debriefs, multi-metric incentives, and continuous governance. Adhered strictly to the facts of the transcript without introducing external metrics, ensuring all numerical values (such as the 18-month reference, 10-day timeline, 2-day workshop, 30-day/60-day diagnostic shift, and 6-month review) match the text explicitly.",
+      "operational_status": "ok",
+      "provider_attempted": true,
+      "public_output": "In evaluating whether to hire a highly celebrated commercial executive into a founder-led company currently experiencing a two-year revenue plateau, leadership must shift from seeking validation of a prestige résumé to executing a rigorous, structured assessment of fit, authority, and operating standards.\n\n### 1. Job Design and Boundary Definition\nThe primary risk of hiring a high-profile commercial leader is failing to define exactly where her authority ends and where founder/CEO authority begins. To mitigate this:\n*   **Draft an Authority Charter:** Establish a formal document approved by the board detailing what she owns (the commercial organization, pricing execution, and leadership changes within an approved budget) relative to reserved CEO decisions (company strategy, major product commitments, and dismissing a founder).\n*   **Address Boundary Disputes Directly:** Before she starts, establish a written conflict-resolution process for common grey areas, such as disputed customer promises or product commitments.\n*   **Avoid Selective Delegation:** Delegation must be organizational and structured, not a temporary convenience that the founder overrides whenever comfortable patterns are challenged.\n\n### 2. Behavioral Reference Checking\nInstead of evaluating only selected and positive references, seek a complete view of how the candidate operates under pressure:\n*   **Seek Diverse Perspectives:** Seek references beyond her selected list, including former direct reports who did not stay, peers, and external partners.\n*   **Analyze Operational Patterns:** Rather than looking of a binary 'good' or 'bad' verdict, analyze specific operational behaviors. In this case, a former regional director who left after eighteen months pointed out a critical pattern: she would change priorities without explicitly addressing the sacrifices made on the previous plan, leading teams to treat daily commitments as temporary theater. \n*   **Test Self-Correction:** Present this pattern of feedback back to the candidate to see how she responds, communicates costs, and maintains upward feedback lines when plans change.\n\n### 3. Practical Auditing: The Workshop\nA hands-on evaluation, such as a two-day paid pricing workshop, is highly effective but must be carefully managed to de-bias the feedback:\n*   **Observe Conflict and Communication:** Real-world workshops show how candidate structures problems, frames disagreement, and interacts with established leaders (particularly product/engineering teams who may feel commercial pressure competes with long-term roadmaps).\n*   **Separate Workshop Debriefs:** Perform individual de-briefs with internal participants before sharing the founder's perspective. In a highly visible hire, the team is prone to perform for the CEO once they perceive the CEO is impressed, which can distort honest feedback.\n\n### 4. Rewriting Plans and Aligning Incentives\n*   **Evaluate Adaptability Over Polished Plans:** The willingness of the candidate to adapt her initial plan based on collaborative feedback (e.g., changing her immediate sixty-day leadership change window to an initial thirty-day diagnostic period) is stronger evidence of operational fit than her original polished proposal.\n*   **Durable Incentive Design:** Equity and performance incentives must protect the long-term health of the business to prevent short-term, fragile revenue. Rather than basing rewards on revenue milestones alone, tie vesting to a balanced mix of metrics such as revenue, gross retention, and contribution margin, explicitly barring vesting based on single large, unsupportable contracts.\n\n### 5. Structured Review and Governance\nAn offer should be made with clear organizational expectations, including a defined six-month review that evaluates both company outcomes and the health of the decision-making pipeline. Records of peer debriefs, reference disagreements, original and revised plans, and the authority charter must be preserved. At the six-month mark, these documents serve to analyze whether the hire succeeded or failed based on structural alignment, founder behavior, or economic conditions, preventing a simplistic 'hero' or ' scapegoat' narrative."
+    }
+  },
+  "reading_guide": [
+    "The conversation is authoritative; interpretations are probabilistic and source-linked.",
+    "User-process status and vanilla-answer coverage are separate; answer coverage is not user adoption.",
+    "Deterministic recall preserves controlled identities and graph custody but does not prove applicability.",
+    "Apply, reject, park, and stand-down outcomes are hypotheses, not proof of reasoning quality.",
+    "A polished or changed public answer is not automatically better.",
+    "Failures and missing stages are part of the receipt rather than silently repaired."
+  ],
+  "receipt_sha256": "e2d153c8d054af237d2bff37dac26d42be629e9778364d2165df286e316b9d84",
+  "repeat_id": "primary",
+  "runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "schema_version": "lolla.simulated_reliability_case_receipt.v1",
+  "source": {
+    "authoritative_conversation": "CONVERSATION: 24 turns, 12 user messages, 12 assistant responses\n\n# Hiring a celebrated commercial leader into a founder-led company\n\nCase ID: v1-case03-executive-hire\nStratum: organizational_leadership_and_governance\nProspectively authored synthetic V1 transfer source; not independent human data.\n\n[Turn 1] USER:\nOur software company has been at roughly the same revenue for two years. Not collapsing, not growing—just explaining the same plateau in increasingly sophisticated ways. The board introduced me to a commercial executive from the largest company in our category. She has launched products in twenty countries and is interested in becoming our president. The reaction has been immediate. Investors are excited, and I can feel the relief in the room whenever her name comes up. I am the founder and still the CEO. Maybe this is the leadership we have been missing. Maybe we are asking a résumé to restore confidence because our own plan did not. I am having trouble separating those.\n\n[Turn 1] ASSISTANT:\nStart with the job, not her name. What decisions need an owner, what authority would a president actually receive, and which parts of her record could transfer from a much larger company? The board's relief is information about your company, not yet evidence about her fit.\n\n[Turn 2] USER:\nBut we do need change. Sales and product blame each other, nobody owns pricing, and I still jump into large deals. She saw that quickly and proposed one commercial leader. I do not want “beware prestige” to become another excuse for us to stay exactly as we are.\n\n[Turn 2] ASSISTANT:\nDecisiveness has value when ownership is genuinely missing. Test whether her diagnosis survives contact with your customer economics and product constraints. Ask for a reconstruction of two hard decisions she made, including what she initially believed, what evidence changed her view, and who bore the cost. At the same time, decide which interventions you must stop making if you give her the role; otherwise the structure will fail regardless of her ability.\n\n[Turn 3] USER:\nShe presented a hundred-day plan: interview the top customers, simplify pricing, replace territory-based quotas, and review the product roadmap. She also wants the authority to change the leadership team after sixty days. Our head of product says that is too fast and worries that commercial pressure will turn every roadmap argument into a revenue argument. I told him the existing structure has not earned a veto over change, which he heard as me already taking her side.\n\n[Turn 3] ASSISTANT:\nThe current team's weak performance does not make every proposed pace appropriate. Separate the authority to recommend changes from a fixed sixty-day judgment about people she has not worked with. Have her explain how product evidence can override a near-term commercial request and how disagreements with you are resolved. Your head of product should be heard as a source of operating information, not as a referendum on whether change is needed.\n\n[Turn 4] USER:\nI spoke with two references she chose. Both called her exceptional and said weak performers left after she arrived. One also said the organization became exhausting for a year, then much stronger. She described that as the price of raising standards. I have not spoken with anyone who reported to her and left. The board chair says senior hires always have detractors and that searching for them can become an excuse not to act.\n\n[Turn 4] ASSISTANT:\nThose references are useful, but they are also selected witnesses describing the same turnover from the winner's side. That does not mean the departures were wrong. It means “weak performers left” is a conclusion you have not independently examined. Speak with someone who reported to her and left, someone who stayed without being promoted, and someone who depended on her team from outside it. Ask for concrete decisions, what changed, who absorbed the transition, and what she would now do differently. Do not run a search for a damaging quote; that would be the mirror image of relying on praise. You are trying to understand how her method feels and functions when targets are missed, priorities change, and people disagree with her—not to construct a clean reputation.\n\n[Turn 5] USER:\nShe is willing to spend two paid days with our team on a pricing workshop and let us speak to former direct reports. She does not want an interim role because she would be leaving a secure job and needs a real mandate. She has asked for a large equity grant that vests partly when revenue milestones are reached. Our investors like that alignment. I worry it could reward contracts that make the product harder to support, but she says we can add a margin condition.\n\n[Turn 5] ASSISTANT:\nThe workshop can reveal how she listens, frames disagreement, and uses evidence, though everyone will behave differently during an audition. Design the equity around durable company outcomes rather than revenue alone: margin, retention, concentration, or service burden may matter. More importantly, state which outcomes she controls and which depend on product investment or market conditions, so incentives do not become a substitute for governance.\n\n[Turn 6] USER:\nYou keep designing safeguards. That may be my fault for asking this way, but the company needs someone able to break habits. I am willing to give real authority. I just cannot yet say where hers ends when we disagree.\n\n[Turn 6] ASSISTANT:\nFair correction. Boundaries are not meant to put a committee around her. They are how you make delegation real instead of allowing your founder authority to reappear whenever a decision becomes uncomfortable. Name what she owns, the few reserved decisions, and what happens in a genuine boundary dispute.\n\n[Turn 7] USER:\nI am leaning toward continuing to final references and the workshop, then making an offer if we can agree that she owns the commercial organization, pricing execution, and leadership changes within an approved budget. I would reserve changes to company strategy, major product commitments, and dismissing a founder. We still need to write how a disputed customer promise is classified, and I want to hear from people who did not succeed under her. I am more concerned about pretending to delegate than about whether she can produce a confident plan.\n\n[Turn 7] ASSISTANT:\nThat is a more decision-relevant process than choosing between admiration and suspicion. The next evidence should test how her operating style transfers, while the mandate discussion tests whether the company is prepared to use her ability. Do not ask adverse references to deliver a verdict; compare concrete patterns across accounts. Before an offer, resolve the recurring boundary cases and state what each of you can decide without obtaining the other's consent.\n\n[Turn 8] USER:\nI found a former regional director who left after eighteen months. I expected either a warning or reassurance and got neither. He said she made the organization much more disciplined and that some of the changes were overdue. He also said she would change priorities without naming what teams had already sacrificed for the previous one. Eventually people learned to wait for the next message instead of challenging the current plan. He did not call her dishonest, abusive, or even a bad executive. She told me the region was missing targets and needed urgency, which is also plausible. I keep wanting the reference to tell me whether to hire her. Instead it gave me a behavior I need to understand: when does changing direction create adaptation, and when does it teach people that today's commitment is theater?\n\n[Turn 8] ASSISTANT:\nUse the disagreement to form a work test rather than choosing which narrator to trust. Ask her for a priority she reversed, how she communicated the cost, and what signals told her people were complying without committing. Ask the former director what challenge channels existed and whether the outcome improved. The relevant pattern is not whether priorities ever changed, but whether new evidence, accountability, and dissent traveled in both directions.\n\n[Turn 9] USER:\nThe pricing workshop went well at first. She asked good questions and found that discounts were compensating for a confusing packaging decision. Near the end, she asked our head of product whether he was willing to execute a commercial strategy he disagreed with. He became defensive and said product is not a service department. I admired that she surfaced the conflict, but I also noticed the room began performing for me once it became clear I was impressed by her.\n\n[Turn 9] ASSISTANT:\nThe workshop revealed the real boundary and also became a staged social setting. Debrief participants separately before sharing your view, asking what she understood, oversimplified, and changed in their thinking. Ask her what she learned from the head of product, not only whether he can execute. Your visible enthusiasm is now part of the evidence environment, so a unanimous positive debrief would not be self-validating.\n\n[Turn 10] USER:\nShe has another opportunity and wants a decision within ten days. The board chair says we have gathered more evidence than most companies do and warns that endless process sends strong candidates away. My cofounder, who is no longer operating day to day, thinks hiring her would reassure employees that the board still believes we can grow. That last argument worries me because employee reassurance is not the president's job, yet I understand why the signal matters after two flat years.\n\n[Turn 10] ASSISTANT:\nTen days is enough only if the remaining questions are specific. Use it for the mandate charter, separate workshop debriefs, and the disagreement process. Do not let her other offer decide what job exists at your company.\n\n[Turn 11] USER:\nThe debriefs were mixed but concrete. Sales felt understood; product thought she jumped too quickly from one pricing example to a reorganization. She accepted that feedback and rewrote the first thirty days around diagnosis rather than leadership changes. We also changed the equity proposal: revenue, gross retention, and contribution margin all matter, with no vesting based on a single large contract. She is asking for the board to approve the authority charter as part of the offer, which I take as a good sign.\n\n[Turn 11] ASSISTANT:\nHer response provides better evidence than the original polished plan because it shows how she handles grounded resistance. The revised incentives reduce one obvious distortion, and board approval makes delegation an organizational commitment rather than a private promise from you. Still define how the charter changes, who evaluates the mixed outcomes, and what support or exit looks like if the role is structurally sound but the working relationship is not.\n\n[Turn 12] USER:\nI will recommend an offer with the board-approved authority charter, the revised outcome mix, and a six-month review of both company results and how decisions travel across the leadership team. She can change leaders after an initial diagnostic period, but disputed product commitments follow the written boundary process. I am not treating the workshop or references as proof that she will succeed. They were enough to replace a prestige-driven yes with a specific bet we can explain, and enough to reveal that my own willingness to delegate is part of that bet.\n\n[Turn 12] ASSISTANT:\nThe final recommendation names a bet rather than pretending the process delivered certainty. You are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail. Keep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper. At six months, ask both what results changed and whether information still travels upward when it is unwelcome. If the hire works, those records prevent a simple hero story. If it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision.\n",
+    "original_final_assistant_answer": "The final recommendation names a bet rather than pretending the process delivered certainty. You are hiring for integrated commercial ownership; giving that role authority; limiting incentives that could reward fragile revenue; and acknowledging that your own behavior can make the structure fail. Keep the disagreement between references, the individual workshop debriefs, the first plan and its revision, the charter, and the incentive rationale—not just the final board paper. At six months, ask both what results changed and whether information still travels upward when it is unwelcome. If the hire works, those records prevent a simple hero story. If it fails, they help distinguish ability, mandate, founder interference, team resistance, and conditions that changed after the decision.",
+    "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case03-executive-hire.txt",
+    "sha256": "e3ce228ad21db1b606547174d575c002ca33bf50731dd7082ffc2a528e8cf2a0"
+  },
+  "usage": {
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "provider_attempts": 4,
+    "provider_reported_cost_usd": 0.1561935,
+    "response_healing": false,
+    "successful_calls": 4
+  }
+}

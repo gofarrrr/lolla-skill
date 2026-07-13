@@ -1,0 +1,77 @@
+{
+  "schema_version": "lolla.downstream_utility_provisional_review.v0",
+  "status": "codex_assisted_provisional_blind_then_revealed",
+  "human_validated": false,
+  "ground_truth": false,
+  "reviewer_type": "codex",
+  "model_calls_for_review": 0,
+  "review_order": [
+    "blind_outputs_reviewed_without_arm_key",
+    "blind_read_recorded_as_no_material_winner",
+    "arm_key_revealed",
+    "arm_specific_interpretation_recorded"
+  ],
+  "case_id": "five-person-saas-company",
+  "blind_assessment": {
+    "red_lines": {
+      "A": "pass",
+      "B": "pass"
+    },
+    "source_fidelity": {
+      "A": "adequate",
+      "B": "adequate"
+    },
+    "same_likely_next_action": true,
+    "material_winner": "none",
+    "summary": "Both answers changed the same four decision structures: explicit prospect or publicity commitment, engineering-capacity validation, private-before-public sequencing, and success or stop criteria before launch. Neither answer contained a unique action-changing delta.",
+    "minor_differences": [
+      "A was slightly more explicit about permission to use the name or logo.",
+      "B was slightly more explicit about separating commitments, preserving reversibility, and defining stop conditions.",
+      "B used about 12 percent more completion tokens than A."
+    ]
+  },
+  "revealed_mapping": {
+    "A": "strong_reconsideration_control",
+    "B": "lolla_pressure_treatment"
+  },
+  "arm_assessment": {
+    "control": {
+      "material_actionable_delta": "present",
+      "useful_friction": "present",
+      "noisy_friction": "absent",
+      "lost_value": "not_observed_in_this_short_output",
+      "completion_tokens": 443
+    },
+    "treatment": {
+      "material_actionable_delta": "present",
+      "unique_delta_beyond_control": "absent",
+      "useful_friction": "present",
+      "noisy_friction": "absent",
+      "lost_value": "not_observed_in_this_short_output",
+      "completion_tokens": 495
+    }
+  },
+  "pilot_decision": {
+    "label": "no_material_treatment_advantage_candidate",
+    "positive_case_success_rule_passed": false,
+    "reason": "The treatment did not add a decision-relevant delta beyond the strong reconsideration control. Its extra pressure mainly made an already available correction slightly more explicit.",
+    "same_case_repeat_authorized": false,
+    "runtime_change_authorized": false,
+    "semantic_kernel_integration_authorized": false,
+    "product_falsifier_triggered": "strong_baseline_can_recover_the_same_obvious_correction"
+  },
+  "interpretation": [
+    "This case contains conspicuously weak original advice, so a strong fresh reconsideration can repair it without Lolla-specific pressure.",
+    "The result does not show that Lolla is useless; it shows that this case does not demonstrate unique leverage over a strong baseline.",
+    "Future positive cases should be chosen for a non-obvious reasoning delta, not because the original answer is plainly flawed.",
+    "A quiet case remains valuable because Lolla must also prove it can stand down without public bloat."
+  ],
+  "next_gate": "package_one_quiet_standdown_case_without_reusing_or_retuning_this_case",
+  "non_claims": [
+    "not_human_review",
+    "not_ground_truth",
+    "not_product_proof",
+    "not_a_claim_that_lolla_never_adds_value",
+    "not_runtime_integration_authority"
+  ]
+}

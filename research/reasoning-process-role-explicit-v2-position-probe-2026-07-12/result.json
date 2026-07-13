@@ -1,0 +1,191 @@
+{
+  "boundary": {
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "protected_target_seen_by_model": false,
+    "semantic_correctness_inferred_by_code": false,
+    "semantic_retry_authorized": false,
+    "source_review_fixture_seen_by_model": false,
+    "uncertainty_or_challenge_calls_authorized": false
+  },
+  "call": {
+    "admitted_record_count": 1,
+    "automatic_retries": 0,
+    "cached_prompt_tokens": 0,
+    "call_id": "role-explicit-v2-case05-position-endpoint",
+    "candidate_payload": {
+      "global_limitations": "The analysis is limited to the user's stated perspective and does not account for Tomas's internal state or the cultural center's requirements beyond what the user has reported.",
+      "records": [
+        {
+          "current_position_evidence_ids": [
+            "e057",
+            "e058"
+          ],
+          "current_position_interpretation": "The user is now leaning toward accepting the exhibition slot by narrowing the scope to a specific timeframe and implementing a collaborative, participatory review process.",
+          "limitations": "The user's internal conflict regarding the exhibition is framed by the tension between archival integrity and public engagement.",
+          "qualification_evidence_ids": [
+            "e059",
+            "e060"
+          ],
+          "qualification_interpretation": "The user remains uncertain about the decision-making rule for disputed items and fears that the exhibition deadline will prematurely solidify an unresolved partnership dynamic.",
+          "starting_position_interpretation": "The user initially insisted on organizing the entire archive before any public exhibition to avoid creating a clean, misleading narrative.",
+          "starting_state_evidence_ids": [
+            "e004",
+            "e005"
+          ],
+          "status": "supported",
+          "trajectory_interpretation": "The user shifted from a position of total archival completion to a strategy of bounded, participatory selection, though the underlying conflict over veto power and dispute resolution remains active.",
+          "trajectory_type": "changed"
+        }
+      ],
+      "status": "supported"
+    },
+    "candidate_payload_sha256": "7e737a7be7f11739863cdf9ea06087cae823e7792f1dcc9e78a549753c10d184",
+    "case_id": "amb1-case05-family-archive",
+    "compiled": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "display_interpretation_mechanically_formatted": true,
+        "global_synthesis_performed": false,
+        "model_records_changed": false,
+        "record_level_validation_weakened": false,
+        "semantic_merge_performed": false,
+        "semantic_role_correctness_inferred_by_code": false
+      },
+      "envelope": {
+        "record_count": 1,
+        "semantic_records_validated": false,
+        "status": "shard_response_envelope_valid"
+      },
+      "observations": [
+        {
+          "case_id": "amb1-case05-family-archive",
+          "family": "position_and_decision_trajectory",
+          "graph_routing_eligible": false,
+          "interpretation": "Starting: The user initially insisted on organizing the entire archive before any public exhibition to avoid creating a clean, misleading narrative. | Current: The user is now leaning toward accepting the exhibition slot by narrowing the scope to a specific timeframe and implementing a collaborative, participatory review process. | Qualification: The user remains uncertain about the decision-making rule for disputed items and fears that the exhibition deadline will prematurely solidify an unresolved partnership dynamic. | Trajectory: The user shifted from a position of total archival completion to a strategy of bounded, participatory selection, though the underlying conflict over veto power and dispute resolution remains active.",
+          "observation_id": "rpshardv2-amb1-case05-family-archive-position_and_decision_trajectory-01-6897ba4956",
+          "provenance": {
+            "call_id": "role-explicit-v2-case05-position-endpoint",
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "producer_id": "google/gemini-3.1-flash-lite",
+            "producer_kind": "model",
+            "prompt_sha256": "sha256:8b0dbc4da2a2859a90e418e8cb02e9eb298989e8b03774ad650e69f53f994093"
+          },
+          "raw_record": {
+            "record": {
+              "current_position_evidence_ids": [
+                "e057",
+                "e058"
+              ],
+              "current_position_interpretation": "The user is now leaning toward accepting the exhibition slot by narrowing the scope to a specific timeframe and implementing a collaborative, participatory review process.",
+              "limitations": "The user's internal conflict regarding the exhibition is framed by the tension between archival integrity and public engagement.",
+              "qualification_evidence_ids": [
+                "e059",
+                "e060"
+              ],
+              "qualification_interpretation": "The user remains uncertain about the decision-making rule for disputed items and fears that the exhibition deadline will prematurely solidify an unresolved partnership dynamic.",
+              "starting_position_interpretation": "The user initially insisted on organizing the entire archive before any public exhibition to avoid creating a clean, misleading narrative.",
+              "starting_state_evidence_ids": [
+                "e004",
+                "e005"
+              ],
+              "status": "supported",
+              "trajectory_interpretation": "The user shifted from a position of total archival completion to a strategy of bounded, participatory selection, though the underlying conflict over veto power and dispute resolution remains active.",
+              "trajectory_type": "changed"
+            },
+            "record_identity": "probe-role-explicit-v2-case05-position-endpoint",
+            "record_index": 1
+          },
+          "raw_record_sha256": "sha256:6897ba4956340d4637988aa2e23bcf62234ed815ed16a1062a79c93ebba05a70",
+          "role_interpretations": {
+            "current_position_interpretation": "The user is now leaning toward accepting the exhibition slot by narrowing the scope to a specific timeframe and implementing a collaborative, participatory review process.",
+            "qualification_interpretation": "The user remains uncertain about the decision-making rule for disputed items and fears that the exhibition deadline will prematurely solidify an unresolved partnership dynamic.",
+            "starting_position_interpretation": "The user initially insisted on organizing the entire archive before any public exhibition to avoid creating a clean, misleading narrative.",
+            "trajectory_interpretation": "The user shifted from a position of total archival completion to a strategy of bounded, participatory selection, though the underlying conflict over veto power and dispute resolution remains active."
+          },
+          "role_source_span_ids": {
+            "current_position_evidence_ids": [
+              "span-d3bdb28949cb0aef",
+              "span-08d3bf78d102fbac"
+            ],
+            "qualification_evidence_ids": [
+              "span-418c58c8dca3115f",
+              "span-0e4ca242636c4920"
+            ],
+            "starting_state_evidence_ids": [
+              "span-5afbb5ccc7887e07",
+              "span-db78d791d64fb814"
+            ]
+          },
+          "schema_version": "lolla.reasoning_process_chronological_shard_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case05-family-archive-position_and_decision_trajectory-shard-01",
+          "source_span_ids": [
+            "span-5afbb5ccc7887e07",
+            "span-db78d791d64fb814",
+            "span-d3bdb28949cb0aef",
+            "span-08d3bf78d102fbac",
+            "span-418c58c8dca3115f",
+            "span-0e4ca242636c4920"
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "observation_id": "rpshardv2-amb1-case05-family-archive-position_and_decision_trajectory-01-6897ba4956",
+          "raw_record_sha256": "sha256:6897ba4956340d4637988aa2e23bcf62234ed815ed16a1062a79c93ebba05a70",
+          "record_index": 1,
+          "terminal_state": "admitted"
+        }
+      ],
+      "schema_version": "lolla.reasoning_process_chronological_shard_response.v2",
+      "shard_terminal_disposition": "compiled",
+      "status": "chronological_shard_v2_record_custody_complete"
+    },
+    "completion_tokens": 351,
+    "duration_seconds": 2.713,
+    "embedding_calls": 0,
+    "estimated_cost_usd": 0.0010365,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "finish_reason": "stop",
+    "focal_turn_index": null,
+    "graph_calls": 0,
+    "mechanism": "chronological_shard_role_explicit_v2",
+    "model_attribution_status": "served_version_alias",
+    "operational_status": "ok",
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "18d779b4495b3e45dc72fb700d9cb23712b24bc15b81a43a7991d07e3101cb9e",
+    "pipeline_calls": 0,
+    "pricing_snapshot_sha256": "0a40064f590ce325cec0606e9b9581f777e28e182724e7507210375a83c53928",
+    "prompt_tokens": 2040,
+    "provider_calls": 1,
+    "provider_diagnostic": {},
+    "provider_payload_sha256": "cee3d84ebfd996e46bb6073acb5a4b283feaa3ae6a2474a615779aba2ed951e5",
+    "provider_reported_cost_usd": 0.0010365,
+    "quarantined_record_count": 0,
+    "raw_provider_content_included": false,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "response_schema_sha256": "4ffcba73dacc85f3df0958c0166e41558a07c07dc09e60ff9c238fcbf52f4576",
+    "response_sha256": "0395643ec022bafa3d25a813e82d29f037dc7e827c76bd8c25d37cc6d04e207a",
+    "run_id": "reasoning-process-role-explicit-v2-case05-position-endpoint-v1",
+    "runtime_calls": 0,
+    "schema_version": "lolla.reasoning_process_phase4_transfer_call.v1",
+    "seed": 0,
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "temperature": 0.0,
+    "total_tokens": 2391,
+    "typed_status": "admitted",
+    "usage_evidence_state": "complete",
+    "user_prompt_sha256": "8b0dbc4da2a2859a90e418e8cb02e9eb298989e8b03774ad650e69f53f994093",
+    "validation_error": "",
+    "view_kind": "position_and_decision_trajectory"
+  },
+  "provider_request_count": 1,
+  "run_id": "reasoning-process-role-explicit-v2-case05-position-endpoint-v1",
+  "schema_version": "lolla.reasoning_process_role_explicit_v2_position_probe_result.v1",
+  "semantic_review_status": "pending_source_first_review",
+  "status": "one_position_probe_call_preserved"
+}

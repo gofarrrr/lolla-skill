@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.reasoning_pressure_handoff.v0",
+  "title": "Lolla Reasoning Pressure Handoff v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "source",
+    "lineage",
+    "boundary",
+    "pressure_items",
+    "preservation_items",
+    "known_limits",
+    "consideration_contract",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.reasoning_pressure_handoff.v0"
+    },
+    "status": {
+      "enum": [
+        "illustrative_not_runtime_output",
+        "research_candidate"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conversation_sha256",
+        "authoritative_full_conversation_reattached",
+        "original_answer_reattached"
+      ],
+      "properties": {
+        "conversation_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "authoritative_full_conversation_reattached": {
+          "const": true
+        },
+        "original_answer_reattached": {
+          "const": true
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reasoning_pattern_packet_sha256",
+        "graph_version",
+        "graph_trace_artifact_sha256",
+        "routing_projection_sha256"
+      ],
+      "properties": {
+        "reasoning_pattern_packet_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "graph_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "graph_trace_artifact_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "routing_projection_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "full_semantic_inventory_included",
+        "full_graph_candidate_catalog_included",
+        "raw_provider_content_included",
+        "private_reasoning_included",
+        "expected_answer_included",
+        "quality_score_included"
+      ],
+      "properties": {
+        "full_semantic_inventory_included": {
+          "const": false
+        },
+        "full_graph_candidate_catalog_included": {
+          "const": false
+        },
+        "raw_provider_content_included": {
+          "const": false
+        },
+        "private_reasoning_included": {
+          "const": false
+        },
+        "expected_answer_included": {
+          "const": false
+        },
+        "quality_score_included": {
+          "const": false
+        }
+      }
+    },
+    "pressure_items": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/pressure_item"
+      }
+    },
+    "preservation_items": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/preservation_item"
+      }
+    },
+    "known_limits": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "consideration_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_dispositions",
+        "public_surface_must_hide_machinery",
+        "every_item_requires_private_disposition"
+      ],
+      "properties": {
+        "allowed_dispositions": {
+          "const": [
+            "used",
+            "rejected",
+            "deferred",
+            "private_guardrail"
+          ]
+        },
+        "public_surface_must_hide_machinery": {
+          "const": true
+        },
+        "every_item_requires_private_disposition": {
+          "const": true
+        }
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "source_event_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "pressure_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pressure_id",
+        "mechanism_id",
+        "source_event_ids",
+        "challenge",
+        "applicability_condition",
+        "decision_effect",
+        "consequence_if_true",
+        "set_aside_condition",
+        "graph_trace_refs"
+      ],
+      "properties": {
+        "pressure_id": {
+          "$ref": "#/$defs/id"
+        },
+        "mechanism_id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_event_ids": {
+          "$ref": "#/$defs/source_event_ids"
+        },
+        "challenge": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicability_condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_effect": {
+          "enum": [
+            "question",
+            "alternative",
+            "evidence_gate",
+            "condition",
+            "sequence",
+            "reversal_rule",
+            "risk_treatment"
+          ]
+        },
+        "consequence_if_true": {
+          "type": "string",
+          "minLength": 1
+        },
+        "set_aside_condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "graph_trace_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "preservation_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preservation_id",
+        "source_event_ids",
+        "preserve",
+        "reason"
+      ],
+      "properties": {
+        "preservation_id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_event_ids": {
+          "$ref": "#/$defs/source_event_ids"
+        },
+        "preserve": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

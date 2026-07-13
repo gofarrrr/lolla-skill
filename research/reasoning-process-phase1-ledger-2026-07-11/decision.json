@@ -1,0 +1,85 @@
+{
+  "schema_version": "lolla.reasoning_process_phase1_decision.v1",
+  "date": "2026-07-11",
+  "status": "complete_provider_free_pass",
+  "terminal_decision": "Accept the five v1 canonical ledgers as lossless provider-free imports of the frozen Phase-A-v2 reviewed artifacts and authorize Phase 2 provider-free bounded-view design only.",
+  "observed": {
+    "case_count": 5,
+    "message_count": 70,
+    "source_artifact_count": 10,
+    "observation_count": 134,
+    "scope_outcome_count": 120,
+    "observed_absence_count": 58,
+    "failure_count": 0,
+    "raw_record_utf8_bytes": 179915,
+    "source_span_reference_count": 158,
+    "unique_source_span_reference_count": 74,
+    "relation_count": 79,
+    "direct_graph_seed_count": 0,
+    "provider_calls": 0,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "counts_by_family": {
+    "evidence_and_assumption_discipline": 93,
+    "exploration_and_alternatives": 16,
+    "position_and_decision_trajectory": 20,
+    "uncertainty_and_unresolved_state": 5,
+    "challenge_and_revision_response": 0
+  },
+  "known_gap": {
+    "family": "challenge_and_revision_response",
+    "classification": "missing_from_frozen_import_artifacts",
+    "meaning": "The gap describes the selected candidate artifacts, not an absence of challenge or revision in the original conversations.",
+    "phase2_rule": "Do not manufacture a complete view; any provider-free source-review addition requires a prospective contract."
+  },
+  "verification": {
+    "focused_phase1_tests_passed": 12,
+    "relevant_cross_boundary_tests_passed": 73,
+    "input_hash_locks_passed": 15,
+    "generated_case_artifact_hashes_verified": 10,
+    "aggregate_contract_passed": true,
+    "deterministic_replay_passed": true,
+    "python_version": "3.12"
+  },
+  "frozen_artifact_sha256": {
+    "docs/evals/reasoning-process-phase1-ledger-contract-v1.json": "27805cc1410ebf9de43bec6fce54c2546f0d59d56ebf17380dcb475d2922ea8d",
+    "docs/conversation-understanding/reasoning-process-ledger-v1.md": "55dc274f3a7c54f6e4c6a1d305407e46031ce960d67172008b90025eb825d11c",
+    "engine/system_b/reasoning_process_ledger.py": "2b6ea647b069c17939fc5b72914922e4fb22c1daeb276c0a3a8af0cd2915d023",
+    "scripts/evals/build_reasoning_process_phase1_ledger.py": "f7794f6fb609f34f5c7b42fe7162bf5f6aa2cb74718be21e77b63660cb57201a",
+    "tests/test_reasoning_process_ledger.py": "a1fc4fb4e483e80dbb5aa019cb75db444c01ad010215673e02a6699b1a2d9eb2",
+    "plans/reasoning-process-ledger-and-bounded-views-2026-07-11.md": "45e79294a20b6de806ddaddbefb25155fea0f89f5595009fa56175afcc622266",
+    "research/reasoning-process-phase1-ledger-2026-07-11/aggregate.json": "9a5e254226389400350e7acd07c0e7d677d20a19d1909959f4c8d6fd632a9c85"
+  },
+  "case_artifact_sha256": {
+    "amb1-case01-product-scope:ledger": "c7a900bd07dc5c400f3caa6f7c9d614f0380520080c78f7ca9e09fb18323e2af",
+    "amb1-case01-product-scope:report": "882611d496d2bd3fef97f9d7c0497133827085e028240c76b24223a04424b5f7",
+    "amb1-case02-nonprofit-scale:ledger": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23",
+    "amb1-case02-nonprofit-scale:report": "8048b32126c02f61cd5f1063c65dccead6232ad94fc57b0eda74480aea63661d",
+    "amb1-case03-creative-partnership:ledger": "f8a75fd40b8dc01e682eb7d1b46318b2590aaad7a27746b29d6baa04ee8172cf",
+    "amb1-case03-creative-partnership:report": "9b8d349241f0b6e67c7ec474aced3a155ef69e7f6e299f522ed37edc98f97338",
+    "amb1-case04-research-tool-release:ledger": "91796f8ca640905c7e15fee811ee1922e9d945532cfb2eade79f3302ab4bd02f",
+    "amb1-case04-research-tool-release:report": "c91ebea1662950a4e4dae48cfa0becd660b1c93fa4ef47303bc6fb24fc413540",
+    "amb1-case05-family-archive:ledger": "2a0927a543782e0e1db781b76c072b1e99bbd37811d9743543b6913ac8fc2042",
+    "amb1-case05-family-archive:report": "feadb41b9dbe081b6e1cc54cdc9ae851b0f0216c10935241fd2213587b750928"
+  },
+  "next_phase": {
+    "phase": "phase_2_provider_free_bounded_views",
+    "authorized": true,
+    "provider_calls_authorized": false,
+    "graph_or_runtime_changes_authorized": false,
+    "final_output_evaluation_authorized": false
+  },
+  "non_claims": [
+    "phase1_pass_is_not_automatic_extraction_quality",
+    "phase1_pass_is_not_semantic_placement_proof",
+    "phase1_pass_is_not_reasoning_process_completeness",
+    "phase1_pass_is_not_bounded_view_or_assessment_quality",
+    "phase1_pass_is_not_final_output_quality",
+    "phase1_pass_is_not_graph_or_runtime_integration_authority"
+  ]
+}

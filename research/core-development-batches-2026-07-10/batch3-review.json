@@ -1,0 +1,62 @@
+{
+  "schema_version": "lolla.reasoning_pattern_invariance_shadow_review.v0",
+  "status": "failed",
+  "contract_sha256": "2c36d0e847b3ff82b5e4d96404fd8c5d4df64cefd263d4223b181a3f3cc17c7e",
+  "result_sha256": "83cfc66b9194cbbe6b4ac1cb4724518ed80d4a537db131ff2812c00308443b55",
+  "mechanical_findings": {
+    "all_three_calls_valid": true,
+    "exact_output_contracts_passed": true,
+    "fact_leak_lint_passed": true,
+    "no_retry": true,
+    "runtime_unchanged": true,
+    "call_count": 3,
+    "total_tokens": 2222,
+    "estimated_cost_usd": 0.0011605
+  },
+  "comparison_findings": [
+    {
+      "comparison_id": "fact_invariance",
+      "status": "failed",
+      "finding": "The same reasoning mechanics under changed facts produced different normalized patterns and seed candidates.",
+      "facts_a_unique": [
+        "criteria_defined_after_commitment"
+      ],
+      "facts_b_unique": [
+        "status_signal_used_as_evidence"
+      ],
+      "shared": [
+        "counterpressure_acknowledged_not_integrated",
+        "missing_reversal_condition"
+      ]
+    },
+    {
+      "comparison_id": "mechanism_sensitivity",
+      "status": "partially_directional_but_failed",
+      "finding": "Changing the assistant's reasoning changed the projection and candidates, but the base fixture did not contain the two prospectively required labels, and the improved conversation was still assigned several missing or asymmetric mechanisms at the user scope.",
+      "directional_checks_passed": [
+        "projection_changed",
+        "seed_candidates_changed",
+        "required_base_labels_absent_after_change"
+      ],
+      "prospective_check_failed": "required_base_labels_present"
+    }
+  ],
+  "interpretation": [
+    "The deterministic sealer and router performed their proper custody role: they accepted only controlled labels, removed case context, validated source turns, and reproduced declared seed mappings.",
+    "The probabilistic interpreter did not yet provide a stable abstraction layer. Surface-equivalent rewrites changed label choice, while unchanged user framing remained eligible for diagnosis even after the assistant supplied the missing protections.",
+    "The failure is an ontology and semantic-target ambiguity, not evidence for adding deterministic semantic gates.",
+    "The result does not justify runtime graph integration or another paid prompt repair on these fixtures."
+  ],
+  "unknowns_exposed": [
+    "Whether the routing projection should describe the user's reasoning, the assistant's reasoning, the joint trajectory, or separate projections for each.",
+    "Whether exact label equality is too brittle when multiple controlled labels are defensible descriptions of the same structural weakness.",
+    "Whether deterministic seed union is useful downstream even when the pattern label is only approximately stable.",
+    "Whether open-domain conversations preserve this directional sensitivity beyond synthetic fixtures."
+  ],
+  "decision_effect": {
+    "runtime_integration_authorized": false,
+    "prompt_rerun_authorized": false,
+    "retain_as": "research_only_boundary_prototype_and_failure_artifact",
+    "batch4_implication": "Prefer simplification and explicit research boundaries over architecture growth."
+  }
+}

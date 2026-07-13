@@ -1,0 +1,79 @@
+CONVERSATION: 24 turns, 12 user messages, 12 assistant responses
+
+# Staging a migration away from a deeply embedded enterprise system
+
+Case ID: v1-case09-software-migration
+Stratum: enterprise_operations_and_technology_change
+Prospectively authored synthetic V1 transfer source; not independent human data.
+
+[Turn 1] USER:
+Our professional-services firm runs client records, project staffing, and billing preparation in a system installed twelve years ago. It is slow, reporting is painful, and one administrator who understands nearly everything is retiring. A cloud vendor is offering an integrated replacement and leadership wants “one source of truth.” Every demonstration looks cleaner than our actual work. That is partly because our actual work is messy. It is also because teams built spreadsheets and local routines around things the system never handled. Some of those are bad controls. Some contain the only record of how a decision gets made. I am leading the migration and keep hearing that we need to stop accommodating resistance. I agree that a replacement cannot preserve every habit. I am worried that a clean migration plan will label undocumented work as resistance before anyone understands what it is doing.
+
+[Turn 1] ASSISTANT:
+Treat shadow routines as evidence, not automatically as requirements or defects. Identify the decisions they support, controls they bypass, and sources that must remain traceable. Stage the migration around operational dependencies and recovery, not demonstration order.
+
+[Turn 2] USER:
+Billing is the most fragile area, but leadership wants it first because delayed invoices are visible. Project managers say staffing should come first because bad assignments create the billing problems later. The vendor recommends moving client records, staffing, and billing together to avoid interfaces. I do not want three temporary integrations, yet “integrated” may be doing too much argumentative work here.
+
+[Turn 2] ASSISTANT:
+Ask which errors are prevented by moving together and which failures become harder to isolate. Model at least a delayed-invoice scenario, an incorrect staffing allocation, and a client-record mismatch under each sequence. Temporary interfaces have cost, while a combined cutover creates correlated operational risk. The right boundary depends on recovery and verification, not architectural tidiness alone.
+
+[Turn 3] USER:
+The workshops complicated my own argument. One “redundant” spreadsheet contains billing restrictions buried in client contracts. Another is a manager's private ranking of staff and should absolutely not become an official field. The vendor says both can be configured. Configuration is not the decision I am asking for.
+
+[Turn 3] ASSISTANT:
+Correct. I treated “hidden routine” too generically. One spreadsheet preserves authoritative contract constraints; the other could legitimize an unofficial judgment merely by receiving a field. Classify the practice and its authority before asking the vendor to implement anything. Configuration cannot make the governance decision for you.
+
+[Turn 4] USER:
+The proposal is now a three-stage migration: read-only client records first, staffing for one business unit second, and billing last after two parallel invoice cycles. The old system stays available read-only for a year. The vendor provides nightly exports in an open format, and we will hold the data dictionary and configuration history. Leadership worries this turns a six-month program into twelve months and lets teams postpone changing.
+
+[Turn 4] ASSISTANT:
+Stages can reduce blast radius while creating dual-system ambiguity. Give each stage entry, acceptance, and retirement conditions, including which system is authoritative. Time-limit workarounds and require exceptions to name an owner and expiry. The twelve-month read-only archive supports reconstruction; it should not remain an unofficial transaction system.
+
+[Turn 5] USER:
+The vendor offered implementation credits if all modules go live this financial year. Finance likes the discount because we already budgeted the project. I rejected making the date a success condition, but the managing partner says a migration without urgency will drift forever. He is not wrong; two earlier replacement projects ended with reports and no change.
+
+[Turn 5] ASSISTANT:
+Urgency needs operational milestones rather than a vendor's revenue calendar. Fix dates for decisions, test data, user acceptance, and stage reviews, with named escalation when they slip. Keep the implementation credits as a scenario in the cost comparison, not evidence that simultaneous cutover is safer. Past drift justifies governance, not removal of recovery margins.
+
+[Turn 6] USER:
+We defined acceptance around reconciled records, staffing decisions completed without manual repair, invoice totals matching source contracts, user completion of real workflows, and a tested restore procedure. Each stage needs sign-off from operations and the affected business unit, not only the project office. I still expect leadership to focus on whether the new dashboard appears and whether the program is “done.” Those are easier to communicate than exceptions and reconciliation.
+
+[Turn 6] ASSISTANT:
+Make the invisible completion criteria part of the executive report. Show unresolved exceptions, manual repairs, data lineage, and recovery test results beside schedule and budget. A dashboard is an interface milestone, not proof that the operating record is trustworthy. Also preserve who overrode a failed acceptance condition and why; otherwise urgency will operate through undocumented exceptions.
+
+[Turn 7] USER:
+I will recommend the three stages with explicit authority by stage, open exports, the one-year read-only archive, two parallel billing cycles, operational acceptance tests, and dated exception ownership. We will publish the financial-year credit as forgone if the stages are not ready. My remaining concern is that the program can technically pass while teams quietly rebuild the same spreadsheets because the new workflow does not support how decisions are really made.
+
+[Turn 7] ASSISTANT:
+The staged plan is ready for detailed implementation. It protects recovery, makes authority explicit by stage, keeps exports and source history, and refuses to let a vendor credit define acceptance. After each cutover, sample real decisions rather than counting logins. Recurring spreadsheets may indicate training, missing capability, or contested governance; do not ban them merely to make adoption look complete. Require each persistent workaround to become visible, owned, and resolved before the next stage inherits it.
+
+[Turn 8] USER:
+The rehearsal says “ready for implementation” is premature. Three units use “active client” to mean three different things: signed contract, work underway, or invoiced in the last year. The vendor wants one dropdown before import. Leadership called this data cleaning. It is not. Each definition drives a different decision. If we choose one for consistency, people will recreate the other two somewhere we cannot see.
+
+[Turn 8] ASSISTANT:
+Agreed. I called the plan ready before its central vocabulary was governed. Preserve contract, delivery, and financial states separately; define which report uses which; and keep the source events behind any summary label. Standardization is not cleaning if it erases the decisions the distinctions support.
+
+[Turn 9] USER:
+Then the retiring administrator told us something nobody had put in the process map. Assistants email her about billing restrictions. She reads the message, interprets the contract and history, and changes the record. The source email is not linked. We planned to keep her for three months after the first stage; she now wants to leave in six weeks. I had treated her as the person who knows where the buttons and old tables are—a technical concentration risk. She is also an undocumented policy interpreter. We can record procedures in six weeks. I am less sure we can identify which judgments are personal shortcuts, which are accepted policy, which should belong to finance, and which examples reveal ambiguity the new system needs to preserve rather than automate away.
+
+[Turn 9] ASSISTANT:
+Prioritize decision capture over software training. Observe real cases, record the contract source, rule, ambiguity, escalation, and resulting entry, and identify who should own that interpretation after she leaves. Do not encode every personal shortcut as policy, but preserve unresolved examples. If six weeks is insufficient, narrow the first stage or fund a limited advisory arrangement rather than pretending the new interface contains her judgment.
+
+[Turn 10] USER:
+The vendor calls source-linked billing restrictions a custom module. Standard notes cannot preserve the clause or approval history. Finance suggests notes for year one; assistants say that recreates the problem. The module delays staffing by six weeks.
+
+[Turn 10] ASSISTANT:
+Make source-linked restrictions an acceptance decision now. If notes cannot support ownership and verification, they are not a neutral temporary solution. Compare the custom module with a controlled, expiring source-linked register—not with an imaginary delay-free standard product.
+
+[Turn 11] USER:
+One business-unit leader now wants to remain on the old system until billing moves because dual entry will burden her assistants. She has a point, but allowing each unit to choose its sequence could destroy the shared client record. She offered to use the new system read-only while her unit writes to the old one. That sounds manageable for a month and dangerous if the billing stage slips.
+
+[Turn 11] ASSISTANT:
+If you permit the exception, state which fields remain authoritative where, how changes synchronize, who reconciles them, and the latest expiry. Require the business unit to participate in the acceptance review that ends it. One bounded exception may reduce operational burden; an open-ended read/write split would turn the migration architecture into negotiation by delay.
+
+[Turn 12] USER:
+I will delay the first cutover long enough to separate client states and capture the administrator's policy judgments. Source-linked billing restrictions are now an acceptance condition; we will use a temporary controlled register only if the custom module cannot be ready, with a fixed retirement date. The business unit can receive a one-month write exception with daily reconciliation and no automatic extension. Executive reporting will show exceptions, shadow work, and source traceability beside module completion. The program may miss the financial-year credit, but it will not buy apparent consistency by discarding the decisions the records support.
+
+[Turn 12] ASSISTANT:
+The rehearsal changed the object of the project. “Migrated data” now means recoverable states, sources, interpretations, and authority—not merely uniform fields in the cloud system. The delay is buying specific controls: separate client states, captured policy examples, source-linked restrictions, and a bounded exception that cannot renew itself. Preserve the definitions leadership first called cleaning, the administrator's cases, the vendor change-order analysis, every exception and reconciliation, and the later sample of shadow work. Those records will show whether the new platform became a trustworthy operating record or only a cleaner interface over unresolved practice. They will also show whether schedule pressure was handled through explicit trade-offs or simply pushed back into assistants' invisible labor.

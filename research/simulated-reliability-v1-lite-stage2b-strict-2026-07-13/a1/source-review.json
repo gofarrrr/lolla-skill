@@ -1,0 +1,43 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_stage2b_strict_source_review.v1",
+  "status": "transport_branch_closed_pre_inference_http_400",
+  "case_id": "v1-case06-industry-funded-lab",
+  "task_id": "current_qualification",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider_route": "google-vertex",
+  "wire_mode": "strict_json_schema",
+  "result": {
+    "operational_status": "http_error_400",
+    "provider_message": "Request contains an invalid argument.",
+    "provider_calls": 1,
+    "provider_reported_cost_usd": null,
+    "duration_seconds": 1.205,
+    "inference_observed": false,
+    "model_output_available": false,
+    "source_review_applicable": false
+  },
+  "interpretation": {
+    "what_is_known": "The same endpoint accepted the strict starting-role schema, but rejected the larger paired current-plus-qualification schema before returning model output.",
+    "what_is_not_known": "The provider error does not identify the exact unsupported schema feature, so this call alone cannot distinguish size, nesting, or a specific schema keyword.",
+    "catalog_caveat": "Endpoint-level structured-output support is necessary but not sufficient evidence that every valid JSON Schema shape is accepted.",
+    "not_a_model_semantic_failure": true,
+    "not_a_reason_to_retry": true
+  },
+  "decision": {
+    "same_paired_strict_schema_retry": false,
+    "paired_prompt_only_contract_passed": false,
+    "advance_to_mechanism": false,
+    "production_model_selected": false,
+    "Gemini_3_5_call_allowed": false,
+    "next_provider_free_design": "Reuse the already proven single-role v2.3 schema to give current and qualification separate strict tasks. Deterministic code may validate and join only explicit role labels and evidence identifiers; it must not infer role meaning or repair prose.",
+    "why": "This tests the task-decomposition hypothesis directly and changes semantic workload size instead of adding brittle deterministic gates."
+  },
+  "cost_accounting": {
+    "known_provider_reported_cost_usd": 0.0,
+    "unknown_cost_due_to_missing_usage": true,
+    "conservative_call_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  }
+}

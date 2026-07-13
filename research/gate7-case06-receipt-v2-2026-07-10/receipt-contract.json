@@ -1,0 +1,120 @@
+{
+  "schema_version": "lolla.case06_reasoning_run_receipt_v2_contract.v1",
+  "status": "frozen_before_complete_source_review_and_assembly",
+  "date": "2026-07-10",
+  "frozen_at_utc": "2026-07-10T16:41:20Z",
+  "purpose": "Assemble one Reasoning Run Receipt v2 from already-closed Case 06 evidence to test transfer of correct public stand-down together with exact pressure-identity and disposition-effect failures.",
+  "assembly_mode": "codex_source_first_manual_assembly_provider_free",
+  "provider_call_budget": 0,
+  "runtime_change_authorized": false,
+  "pipeline_rerun_authorized": false,
+  "reader_call_authorized": false,
+  "inputs": [
+    {
+      "role": "source_conversation",
+      "path": "research/test-cases/case_friendship_money_conversation.txt",
+      "sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+    },
+    {
+      "role": "stage_a_contract",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a-contract.json",
+      "sha256": "4fb6169b40dced89dd76786b52d7c38122c264bf29da14bfb719f54171dd9278"
+    },
+    {
+      "role": "stage_a_gate",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a/pipeline-gate-result.json",
+      "sha256": "cc5dd7d6847fc6ab73e9cffe4476e6b377ef19801e806d057d464727efd1db26"
+    },
+    {
+      "role": "private_table_snapshot",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a/private-table-snapshot.json",
+      "sha256": "2e293314842605adb46f1dd581f698dbd601ff4e4aab606e7714d970e2488089"
+    },
+    {
+      "role": "v60_snapshot",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-a/v60-snapshot.json",
+      "sha256": "d91de11fdb78186df875c0157b587b091a4f615cc9fb4e1dfff3422784ed1677"
+    },
+    {
+      "role": "protected_edge_packet",
+      "path": "research/core-development-batches-2026-07-10/batch2-edge-packet.json",
+      "sha256": "a0247ac52fb2745b58c7d615498af6add40375ac9d6b77f131932cc952303742"
+    },
+    {
+      "role": "protected_edge_admission_review",
+      "path": "research/core-development-batches-2026-07-10/batch2-protected-edge-review.json",
+      "sha256": "8453ab79bbb632389e6568b37c3d8b25285359fde1278a227ffd6bf3221147de"
+    },
+    {
+      "role": "stage_b_contract",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-b-contract.json",
+      "sha256": "3e23f87825c4ca0168ac76cdff279b39d7c0d9bc8d65a30bb1612e1546519c6b"
+    },
+    {
+      "role": "stage_b_run_summary",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-b/run-summary.json",
+      "sha256": "80729aad74a356919fa354f65d5f14f1f574e7585793b508739282afc779bcf9"
+    },
+    {
+      "role": "stage_b_blind_outputs",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-b/blind-outputs.json",
+      "sha256": "0c297c234a925210b7df3b7ca121999d9dcb251f51f1381d6cb81bc0c99d8c7d"
+    },
+    {
+      "role": "stage_b_arm_key",
+      "path": "research/core-development-batches-2026-07-10/batch2-stage-b/arm-key.json",
+      "sha256": "2ad4b2a970e9c62f62654391cf10fecd11b77856a7ddf2804ef0fb9945f54141"
+    },
+    {
+      "role": "stage_b_review",
+      "path": "research/core-development-batches-2026-07-10/batch2-review.json",
+      "sha256": "f765a510167d118055162e756fda7abdbd96e3365c9e88cff5dea2d12e32507c"
+    },
+    {
+      "role": "graph_candidate_inventory",
+      "path": "research/gate6-graph-candidate-inventory-2026-07-10/inventory-result.json",
+      "sha256": "50542165eb94930e1a4c07edcf1c7c7a7f7842fce85b72e7063d30306fc1f473"
+    },
+    {
+      "role": "receipt_v2_schema",
+      "path": "docs/evals/reasoning-run-receipt-v2.json",
+      "sha256": "595ea0406bd2c6338d9b0f07285fbe900ad620ebc1d84cb6e8065d8e01b23158"
+    },
+    {
+      "role": "receipt_v2_validator",
+      "path": "scripts/evals/validate_reasoning_run_receipt_v2.py",
+      "sha256": "003f004770a1e74355fe745a9810b7e87747da1dc0661723744c13badafaed32"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v0.md",
+      "sha256": "952a7d8fb47640d7eccfc1aa815d784c96da77c7ab07f47b3f8c256b6032524f"
+    }
+  ],
+  "required_receipt_content": [
+    "complete conversation verbatim",
+    "source-indexed final user action and any deadline state",
+    "Stage A operational custody and protected-edge admission",
+    "exact frozen pressure identity and the returned mismatching identity",
+    "anonymous paired outputs and blind-before-key review ordering",
+    "correct public stand-down and no unique public answer claim",
+    "exact pressure-identity failure",
+    "private-versus-visible disposition-effect inconsistency",
+    "graph exposure and attribution limitations without graph non-use overclaim",
+    "operability, authorization snapshot, question-audience split, and non-claims"
+  ],
+  "stop_rules": [
+    "do not rerun extraction pipeline or either downstream arm",
+    "do not rewrite or repair completed Case 06 outputs",
+    "do not turn correct public stand-down into a clean process win",
+    "do not hide the exact identity or effect-consistency failure",
+    "do not infer graph absence from missing complete graph-surface custody",
+    "do not use proof language for custody",
+    "do not authorize a reader call until the v2 receipt validates",
+    "do not claim human validation answer improvement graph value or runtime readiness"
+  ],
+  "outputs": {
+    "json": "research/gate7-case06-receipt-v2-2026-07-10/receipt.json",
+    "markdown": "research/gate7-case06-receipt-v2-2026-07-10/receipt.md"
+  }
+}

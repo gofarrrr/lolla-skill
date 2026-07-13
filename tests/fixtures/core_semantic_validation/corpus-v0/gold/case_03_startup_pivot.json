@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-03-startup-pivot",
+  "source_file_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_pivot_or_push", "dimension": "operative_question", "description": "The initial question is whether to pivot or push the existing product.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product."}]},
+    {"observation_id": "question.current_plan_completeness", "dimension": "operative_question", "description": "The current question asks whether the action list is complete.", "evidence": [{"turn_index": 6, "speaker": "user", "quote": "Am I missing anything?"}]},
+    {"observation_id": "pressure.no_price_or_timeline", "dimension": "user_corrections_and_pressure", "description": "The user qualifies the supposed market signal.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "None of them have given me a specific price or timeline."}]},
+    {"observation_id": "constraint.runway", "dimension": "constraints_and_options", "description": "The company has a bounded runway.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "We have maybe 14 months of runway left at current burn."}]},
+    {"observation_id": "option.kill_current_product", "dimension": "constraints_and_options", "description": "Stopping the current product becomes an explicit option question.", "evidence": [{"turn_index": 3, "speaker": "user", "quote": "What about the current product? Do I just kill it?"}]},
+    {"observation_id": "stance.prebuy_threshold", "dimension": "assistant_positions_and_revisions", "description": "The assistant sets a two-of-three pre-buy threshold.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "If two of three say yes, you have enough signal to pivot."}]},
+    {"observation_id": "stance.conversation_bottleneck_reframe", "dimension": "assistant_positions_and_revisions", "description": "The final frame identifies avoided conversations as the bottleneck.", "evidence": [{"turn_index": 7, "speaker": "assistant", "quote": "Those conversations are the bottleneck, not the strategic question."}]},
+    {"observation_id": "boundary.conversational_signal_only", "dimension": "uncertainty_and_evidence_boundaries", "description": "Customer interest is explicitly only conversational.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "Conversational, by your definition."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.completed_prebuy", "description": "The pre-buy test has not yet been run."}
+  ]
+}

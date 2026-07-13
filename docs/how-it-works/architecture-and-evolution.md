@@ -288,6 +288,12 @@ The chat flow maps material issues to user-visible one-liners only when they aff
 
 A companion diagnostic tool — `scripts/stability_check.py` — computes per-stage Jaccard / text-similarity across N runs. Three modes:
 
+Canonical-key semantic cosine is a separate opt-in measurement
+(`--canonical-key-embedding-metric on`). It uses OpenAI
+`text-embedding-3-small`; the default is off so deterministic drift checks stay
+provider-free and report the embedding metric as `not_requested` rather than
+silently spending a call.
+
 - **Mode A (aggregate)** — reads existing `result.json` files and computes pairwise Jaccard for Pass 1 tendencies, Lane 2 anchor model_ids, Lane 3 reframing grounding models, Lane 4 gap dimension_ids; plus Step 6 public-naming / output-hygiene rates and per-run token costs.
 - **Mode B (pipeline-variance)** — reruns the pipeline N times from a fixed extraction so only pipeline sampling contributes to variance. Isolates Pass 1/Lane 2/Lane 3/Lane 4 intrinsic noise.
 - **Mode C (extraction-drift)** — re-runs `run_extract.py` N times on the same conversation; measures per-field drift (similarity on free-text fields, Jaccard on list fields, fabricated-count per run).

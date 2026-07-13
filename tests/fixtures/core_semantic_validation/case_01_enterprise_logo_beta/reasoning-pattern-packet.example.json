@@ -1,0 +1,71 @@
+{
+  "schema_version": "lolla.reasoning_pattern_packet.v0",
+  "packet_metadata": {
+    "packet_id": "reasoning_pattern_packet:case01_example",
+    "interpretation_schema_version": "lolla.core_semantic_shadow.v0",
+    "graph_runtime_modified": false
+  },
+  "provenance": {
+    "source_interpretation_ref": "research/core-semantic-sk3-2026-07-10/case-01-enterprise-logo-beta/shadow-01.json",
+    "source_interpretation_sha256": "7fa6a9c3ea24bc499d97aaa59be1179f0a6f65d33469342fb6eea6440d3a2fd5",
+    "raw_text_included": false,
+    "pattern_sources": [
+      {"pattern_id": "rp_001", "source_semantic_item_ids": ["live_constraint_derivation_dccf3b0656b2", "question_initial_t1_dae47c14228c"]},
+      {"pattern_id": "rp_002", "source_semantic_item_ids": ["user_pressure_correction_t3_ac640d27d8fa", "stance_t6_condition_02"]},
+      {"pattern_id": "rp_003", "source_semantic_item_ids": ["live_constraint_t3_constraint_f9c322abad35", "stance_t2_commitment_00"]},
+      {"pattern_id": "rp_004", "source_semantic_item_ids": ["question_current_t5_d4b66bfea0f8", "stance_t6_deferral_03"]},
+      {"pattern_id": "rp_005", "source_semantic_item_ids": ["question_initial_t1_dae47c14228c", "question_current_t5_d4b66bfea0f8", "stance_t2_commitment_00"]},
+      {"pattern_id": "rp_006", "source_semantic_item_ids": ["user_pressure_concern_t5_fa4e0323862b", "user_pressure_timing_pressure_t5_4dcd3fa19241", "stance_t6_condition_02"]},
+      {"pattern_id": "rp_007", "source_semantic_item_ids": ["option_option_t2_12b3005c6db8", "question_current_t5_d4b66bfea0f8"]},
+      {"pattern_id": "rp_008", "source_semantic_item_ids": ["evidence_boundary_deferred_criterion_t6_98136b2db7d7", "stance_t6_deferral_03"]}
+    ]
+  },
+  "pattern_hypotheses": [
+    {"pattern_id":"rp_001","mechanism_id":"status_signal_used_as_evidence","subject_scope":"joint_process","state":"present","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_002","mechanism_id":"ambiguous_signal_treated_as_commitment","subject_scope":"assistant","state":"present","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_003","mechanism_id":"acknowledged_constraint_not_gated","subject_scope":"assistant","state":"present","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_004","mechanism_id":"criteria_defined_after_commitment","subject_scope":"assistant","state":"present","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_005","mechanism_id":"initial_frame_persists_after_question_change","subject_scope":"joint_process","state":"present","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_006","mechanism_id":"counterpressure_acknowledged_not_integrated","subject_scope":"assistant","state":"present","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_007","mechanism_id":"reversible_path_not_considered","subject_scope":"joint_process","state":"missing_protection","support_status":"provisional_source_linked","routing_eligible":true},
+    {"pattern_id":"rp_008","mechanism_id":"missing_reversal_condition","subject_scope":"joint_process","state":"missing_protection","support_status":"provisional_source_linked","routing_eligible":true}
+  ],
+  "routing_projection": {
+    "schema_version": "lolla.graph_reasoning_pattern_projection.v0",
+    "contains_case_context": false,
+    "pattern_nodes": [
+      {"pattern_id":"rp_001","mechanism_id":"status_signal_used_as_evidence","subject_scope":"joint_process","state":"present"},
+      {"pattern_id":"rp_002","mechanism_id":"ambiguous_signal_treated_as_commitment","subject_scope":"assistant","state":"present"},
+      {"pattern_id":"rp_003","mechanism_id":"acknowledged_constraint_not_gated","subject_scope":"assistant","state":"present"},
+      {"pattern_id":"rp_004","mechanism_id":"criteria_defined_after_commitment","subject_scope":"assistant","state":"present"},
+      {"pattern_id":"rp_005","mechanism_id":"initial_frame_persists_after_question_change","subject_scope":"joint_process","state":"present"},
+      {"pattern_id":"rp_006","mechanism_id":"counterpressure_acknowledged_not_integrated","subject_scope":"assistant","state":"present"},
+      {"pattern_id":"rp_007","mechanism_id":"reversible_path_not_considered","subject_scope":"joint_process","state":"missing_protection"},
+      {"pattern_id":"rp_008","mechanism_id":"missing_reversal_condition","subject_scope":"joint_process","state":"missing_protection"}
+    ],
+    "pattern_edges": [
+      {"from_pattern_id":"rp_001","to_pattern_id":"rp_002","relation":"reinforces"},
+      {"from_pattern_id":"rp_005","to_pattern_id":"rp_006","relation":"persists_after"},
+      {"from_pattern_id":"rp_007","to_pattern_id":"rp_002","relation":"missing_protection_for"},
+      {"from_pattern_id":"rp_008","to_pattern_id":"rp_004","relation":"missing_protection_for"}
+    ]
+  },
+  "fact_boundary": {
+    "raw_text_included": false,
+    "quotes_included": false,
+    "entities_included": false,
+    "case_quantities_included": false,
+    "dates_included": false,
+    "desired_outcome_included": false,
+    "topic_labels_included": false
+  },
+  "lint": {"status": "passed", "violations": []},
+  "non_claims": [
+    "pattern_hypotheses_are_provisional",
+    "not_human_validation",
+    "not_reasoning_quality_proof",
+    "not_advice_correctness_proof",
+    "not_end_to_end_determinism",
+    "missing_in_capture_is_not_missing_in_reality"
+  ]
+}

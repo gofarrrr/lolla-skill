@@ -117,6 +117,15 @@ def test_private_table_renders_current_run_without_live_card_generation(tmp_path
     assert payload["gates"]["step6_private_context_allowed"] is True
     assert payload["gates"]["code_visible_answer_selection_allowed"] is False
     assert payload["cost_envelope"]["net_new_llm_calls"] == 0
+    assert payload["v60_transport_coverage"] == {
+        "selected_card_count": 1,
+        "presented_card_count": 1,
+        "omitted_card_count": 0,
+        "presented_card_ids": ["opportunity-cost"],
+        "omitted_card_ids": [],
+        "per_section_limit": 5,
+        "selected_chunk_content_rendered": True,
+    }
     assert "rendered_private_table" not in payload
     assert "Pre-Step-6 Private Thinking Table" in rendered
     assert "Equity is being used to avoid a hard dependency test." in rendered
@@ -139,6 +148,47 @@ def test_private_table_renders_current_run_without_live_card_generation(tmp_path
     ]
     assert skeleton_ids == source_ids
     assert payload["source_items"][0]["section_id"] == "lane1_structural_challenge"
+
+
+def test_private_table_renders_v60_mechanism_and_discloses_bounded_omissions(
+    tmp_path: Path,
+) -> None:
+    result = _result_payload()
+    result["v60_enrichment"]["selected_cards"] = [
+        {
+            "card_id": f"card-{index}",
+            "model_id": f"model-{index}",
+            "selection_reason": f"Reason {index}",
+            "selected_affordance_cards": [
+                {
+                    "chunk_id": f"aff::{index}",
+                    "mechanism": f"Mechanism content {index}",
+                }
+            ],
+            "selected_absence_records": [
+                {
+                    "chunk_id": f"abs::{index}",
+                    "reason": f"Do not overclaim {index}",
+                }
+            ],
+        }
+        for index in range(1, 7)
+    ]
+
+    payload, rendered = build_pre_step6_private_table(
+        result_payload=result,
+        cache_dir=tmp_path / "missing-cache",
+    )
+
+    validate_pre_step6_private_table(payload)
+    assert "Mechanism content 1" in rendered
+    assert "Do not overclaim 1" in rendered
+    assert "Mechanism content 6" not in rendered
+    assert "1 additional selected V60 card(s)" in rendered
+    assert "card-6" in rendered
+    assert payload["v60_transport_coverage"]["selected_card_count"] == 6
+    assert payload["v60_transport_coverage"]["presented_card_count"] == 5
+    assert payload["v60_transport_coverage"]["omitted_card_ids"] == ["card-6"]
 
 
 def test_private_table_appends_cached_cards_and_writes_sidecars(tmp_path: Path) -> None:
@@ -271,6 +321,9 @@ def test_private_table_ledger_validator_accepts_exact_skeleton_ids(tmp_path: Pat
     assert validation["source_item_count"] == len(payload["source_items"])
     assert validation["missing_source_ids"] == []
     assert validation["unknown_source_ids"] == []
+    assert validation["semantic_effect_consistency_review"] == (
+        "not_performed_by_structural_validator"
+    )
 
 
 def test_private_table_ledger_validator_rejects_old_aggregate_ids(tmp_path: Path) -> None:
@@ -323,6 +376,38 @@ def test_private_table_ledger_validator_rejects_duplicates_and_bad_disposition(t
     assert validation["status"] == "invalid"
     assert validation["duplicate_source_ids"] == [ledger["items"][0]["source_id"]]
     assert any("disposition is invalid" in error for error in validation["errors"])
+
+
+def test_private_table_ledger_validator_enforces_copied_shape_and_effect_claims(
+    tmp_path: Path,
+) -> None:
+    payload, _ = build_pre_step6_private_table(
+        result_payload=_result_payload(),
+        cache_dir=tmp_path / "missing-cache",
+    )
+    ledger = _completed_private_table_ledger(payload)
+    ledger["items"][0]["title"] = "renamed source"
+    ledger["items"][0].pop("visible_effect")
+    ledger["items"][1]["disposition"] = "used"
+    ledger["items"][1]["visible_effect"] = ""
+    ledger["items"][1]["private_guardrail"] = ""
+    ledger["items"][2]["disposition"] = "private_guardrail"
+    ledger["items"][2]["private_guardrail"] = ""
+
+    validation = validate_pre_step6_private_table_ledger(
+        ledger,
+        private_table=payload,
+    )
+
+    assert validation["status"] == "invalid"
+    errors = validation["errors"]
+    assert "items[0] fields must exactly match ledger skeleton" in errors
+    assert "items[0].title must match ledger skeleton" in errors
+    assert "items[0].visible_effect must be a string" in errors
+    assert "items[1].used requires visible_effect or private_guardrail" in errors
+    assert (
+        "items[2].private_guardrail disposition requires private_guardrail" in errors
+    )
 
 
 def test_finalize_private_table_ledger_records_validation_in_run_health(tmp_path: Path) -> None:
