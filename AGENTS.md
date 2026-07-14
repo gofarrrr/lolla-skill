@@ -20,56 +20,36 @@ Read these in order before proposing architecture or the next experiment:
 1. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-2. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+2. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+   and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
+   current product boundary. The incremental R4 reader is stopped; complete
+   conversation custody, live mental-model pressure, the optional Decision Work
+   sidecar, and Observatory remain distinct preserved layers. The next product
+   question is a provider-free artifact-to-Decision-Trail coverage audit.
+3. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
+4. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+5. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
-   — latest local evidence: the final complete twelve-call run, raw-before-target
+   — canonical final R4 evidence: the complete twelve-call run, raw-before-target
    checkpoint, record-level source-first review, consumed authorization, and
-   frozen `separated_tasks_ineffective_companions_persist` decision. No further
-   R4 provider run is authorized; the next decision is a provider-free
-   product/architecture closeout.
-5. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+   frozen `separated_tasks_ineffective_companions_persist` decision.
+6. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
    — immutable A1 first-failure evidence and frozen
    `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-6. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`
    — canonical provider-free design: hash-bound human review, protected target,
    twelve exact paired/separated requests, target-blind runner, categorical
    decision matrix, and cost custody.
-7. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
-   and `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`
-   — latest completed work, the five-record causal map, evidence against a
-   general paired-completion explanation, competing falsifiers, and the one
-   bounded diagnostic experiment earned without implementing or designing it.
-8. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
-   and `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`
-   — exact eight-call execution custody, record-level
-   source-first review, frozen decision, and next provider-free causal gate.
-9. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
-   and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
-   — frozen design evidence, the rejected v1 evidence, leakage-corrected v2
-   sources and priors, hash-bound human review, protected target, matched
-   requests, and the now-consumed non-authorizing contract.
-10. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
-   and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
-   published additive residual-discovery contract and frozen boundaries.
-11. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
-   — the record-level Case 01/04 map, competing causal explanations,
-   falsifiers, and the single repair class that earned the latest work.
-12. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
-   — consumed holdout evidence, exact provider cost, and the semantic failure
-   that the causal diagnosis explains.
-13. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
-   `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
-   `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
-   — the consumed frozen contract, completed R4 causal plan, and official-
-   practice check behind it.
-14. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+8. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
+   `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
+   — the implemented sidecar boundary and the richer, still-provisional
+   interpretation target.
+9. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -200,19 +180,22 @@ PYTHONPATH=. python3 scripts/evals/seal_r4_matched_holdout_v2_execution_a1.py --
 PYTHONPATH=. python3 scripts/evals/finalize_r4_matched_holdout_v2_execution_a1.py --validate-only
 PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a1.py --validate-only
 PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a1.py --validate-only
+PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a2.py --validate-only
+PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a2.py --validate-only
 PYTHONPATH=. python3 scripts/evals/build_r4_matched_residual_holdout_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_matched_residual_holdout_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_separated_surface_execution_a1.py tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. pytest -q tests/test_r4_separated_surface_execution_a2.py tests/test_r4_separated_surface_execution_a1.py tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
 PYTHONPATH=. pytest -q
 ```
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 separated-surface execution A1 closeout, the focused R4 slice
-passes 127 tests. The complete suite passes 4,964 tests and all 93 subtests,
+At the 2026-07-14 separated-surface execution A2 publication, the focused
+canonical verification passes 42 tests. The complete suite passes 4,966 tests
+and all 93 subtests,
 with one existing `datetime.utcnow()` deprecation warning. A changed count is
 not automatically a regression; unexplained failures or historical hash drift
 are.
@@ -223,96 +206,45 @@ are.
 - R2 constitutional graph survival: complete provider-free.
 - R3 fresh-consumer work: honestly closed/deferred without meeting its semantic
   exit condition; do not reopen it casually.
-- R4 inventory, fan-in, first complementary-reader attempt, token correction,
-  corrected diagnostic, provider-free semantic-distinction repair, exact
-  holdout execution, provider-free causal diagnosis, and provider-free
-  residual-task identity repair, rejected v1 matched holdout, leakage-corrected
-  v2 matched holdout, its one-use exact execution, and the provider-free
-  five-record false-positive causal diagnosis: complete and documented.
-  The residual contract makes residual discovery the complete provider-visible
-  job,
-  deterministically maps its two enum values to the existing canonical roles,
-  and preserves source/prior order, paired shape, relationship behavior,
-  model, provider route, runtime, and graph. Case 04 locally expects two quiet
-  surfaces; Case 01 preserves only the recurring operating-capability
-  funding/ownership residual. The v1 matched design at `b464642` is permanently
-  rejected because its evidence leaked classifications. The additive v2
-  package freezes four new 28-message sources and priors, a human leakage pass
-  bound to exact hashes, a protected source-first target, and eight exact
-  v2/residual requests. All eight calls completed once. Both arms recovered
-  the genuine post-June service gap and Board-designation dependency; the
-  residual arm still failed both quiet controls. Its frozen decision is
-  `residual_task_repair_insufficient`. The follow-on diagnosis rejects paired
-  completion as a general cause because Cases 01 and 02 failed without a
-  genuine companion finding. It preserves a narrower, falsifiable companion
-  mechanism for Cases 03 and 04 and ends with
-  `r4_separated_surface_experiment_earned`; that means a provider-free design
-  goal may be considered separately, not that a split is a repair. That design
-  was published canonically: four new source/prior pairs, hash-bound human review,
-  a protected target committed before twelve matched requests, exact task-shape
-  deltas, and a target-blind runner. Its one-use A1 execution then stopped at
-  ordinal 7 after six completed calls. No retry or later call occurred. The
-  positive matched comparisons are incomplete, so the frozen decision is
-  `semantic_result_not_evaluable`.
-- Canonical integration target: `main`. The provider-free v2 package was
-  published through GitHub PR #365 in canonical merge
-  `b7d1d62c05bdf05f91401c25ceb0a2cc73ffe307`. The completed A1 execution was
-  published through PR #366 in canonical merge
-  `9c5e9301640592d3ab5d0a95489a6960da60e1f4`; both raw checkpoint
-  `e2f83561686172538c8ac8876a53da2a804dc503` and reviewed closeout
-  `284c0cb28de868185364fc4bf61996310e006210` remain ancestors. Earlier PR #364
-  contains the residual-task contract;
-  PR #362 remains the consumed semantic-distinction execution handoff and
-  PR #363 the completed causal diagnosis.
-- PR #347 was recognized as merged through the consolidation. PRs #348-#359
-  are closed as superseded after verifying every exact head commit is reachable
-  from `main`; their historical branches and discussions remain intact.
-- Provider calls currently authorized: zero. The separated-surface A1
-  authorization is consumed; six calls completed and ordinal 7 was attempted
-  before the required stop. Completed-call provider-reported cost is
-  `$0.0105715`; the failed call had no usable cost and is not assumed free. The
-  one-use A3 authorization was
-  consumed by exactly four calls at an exact provider-reported `$0.01107025`.
-  The one-use matched-holdout A1 authorization was consumed by exactly eight
-  calls at an exact provider-reported `$0.01408165`; no second execution is
-  permitted.
-- The residual-task goal made zero provider calls at `$0.00`, prepared no new
-  holdout, and did not request authorization. Its exact decision is
-  `residual_contract_ready_for_new_holdout_design`.
-- Raw A1 execution and mechanical custody were committed before protected
-  review in `e2f83561686172538c8ac8876a53da2a804dc503`. The complete local
-  evidence is under
-  `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/`. The
-  temporary authorization is not committed. The source-first review covers all
-  16 records without a scalar score.
+- R4's incremental conversation-reader program is complete and stopped. The
+  final A2 run preserved both genuine findings but separation did not suppress
+  either opposite-surface companion; separated dependency calls also repeated
+  governed-machinery false positives. The canonical scientific decision is
+  `separated_tasks_ineffective_companions_persist`.
+- The provider-free product decision is
+  `stop_current_r4_reader_preserve_core_pressure_and_decision_trail`. Preserve
+  R4 as immutable research evidence; do not import its residual or separated
+  readers into the live skill, graph path, Decision Work semantic supply, or
+  Observatory.
+- Complete available user/assistant prose remains authoritative in
+  `conversation.txt`. Processing views and semantic reads are derivative and
+  must disclose omissions. The current live extraction is useful but is not a
+  complete long-conversation representation.
+- The live four-lane pressure engine, mental-model graph recall,
+  constitutional graph-survival portfolio, and apply/reject/park custody remain
+  the experimental core. They operate mechanically but have not established
+  unique real-user usefulness.
+- Decision Work remains an optional, post-run, operator-directed sidecar. Its
+  packaging and read-only Observatory surfaces exist; trustworthy automatic
+  semantic generation for arbitrary runs does not. Do not use R4 as that
+  generator.
+- Canonical `main` is `34d0e1a8f6e80d72622deb59b10a81262344fc85`, the
+  merge of PR #370. A2's exact reviewed head is
+  `a525e375f7c8b5076de5fd5fafac5f9e4d8da001`; raw evidence precedes protected
+  review at `407109cd64be31c92efa31a76362091b2c5943a9`.
+- Provider calls currently authorized: zero. A1 and A2 authorizations are
+  consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
+  completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
+  tweak, model comparison, or integration is authorized.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The next eligible unit is a separate publication decision for the completed
-separated-surface A1 execution evidence. The consumed authorization cannot be
-reused, and no rerun or replacement call is authorized. Do not treat partial
-control evidence as an answer to companion pressure, retry A1 or A3, execute
-rejected v1, create an authorization, or make an unapproved provider call. Do
-not reveal protected targets to a runner
-or modify frozen sources, priors, requests, operators, or outputs. R5,
-runtime/graph integration, relationship work, wider-corpus execution, model
-comparison, production-model selection, and product-usefulness claims remain
-gated and unauthorized.
-
-## Resume the local separated-surface execution closeout
-
-The design is canonical. The first execution is terminal, locally preserved,
-and intentionally unpublished in its isolated worktree:
-
-```bash
-cd /private/tmp/lolla-r4-separated-surface-design
-git status -sb
-PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a1.py --validate-only
-PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a1.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_separated_surface_execution_a1.py tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py
-```
-
-Do not infer publication or provider authorization from this local branch or
-historical authorizations. Publication requires its own founder decision; any
-new execution would require a new causal decision and a separate one-use
-authorization. The failed run may not be retried under the consumed A1 grant.
+The immediate operational decision is publication of the provider-free
+architecture closeout without altering its decision. After canonical
+publication, the next eligible product goal is a provider-free completed-run
+artifact-to-Decision-Trail coverage audit. That audit may map existing
+artifacts, sidecar fields, missingness, privacy, and human-review needs; it may
+not generate a new semantic read, inspect private archives without explicit
+scope, write a real sidecar, call a provider, change runtime, or claim product
+usefulness. R5 and any materially different reader remain separate founder
+decisions.

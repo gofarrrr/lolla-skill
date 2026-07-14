@@ -131,7 +131,8 @@ The detailed docs are split so agents and humans do not have to load one giant f
 
 | File | Read it for |
 |---|---|
-| [Lolla Product Constitution](docs/conversation-understanding/lolla-product-constitution-v3.md) | Binding v3 amendment incorporating immutable earlier rules plus dated current-practice checks, context-visible semantic responsibility, bounded fan-in, and mandatory problem-class research when failures persist or become contradictory. |
+| [Lolla Product Constitution](docs/conversation-understanding/lolla-product-constitution-v5.md) | Binding future-development rules: graph recall is inspectable pressure rather than relevance proof, probabilistic filtering may not silently delete the bounded portfolio, and the human retains decision authority. |
+| [R4 Product and Architecture Closeout](docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md) | Current handoff after final A2: stop the residual/separated reader, preserve full-conversation custody and the live pressure path, keep Decision Work optional and derivative, and audit artifact-to-Decision-Trail coverage before designing another reader. |
 | [R1/R2 Constitutional Hardening Result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md) | Current provider-free implementation result: full-source custody, neutral reliance, provider budgets/privacy/cost identity, bounded pre-verifier graph survival, apply/reject/park custody, measured fan-in, nonclaims, and the exact R3 boundary. |
 | [Hybrid Reasoning Boundary](docs/conversation-understanding/hybrid-reasoning-boundary-v0.md) | The binding split: LLMs and humans interpret messy meaning; deterministic code validates evidence, schemas, hashes, caps, graph replay, and custody without semantic keyword gates. |
 | [Lolla Evaluation Doctrine](docs/conversation-understanding/lolla-evaluation-doctrine-v0.md) | The current capability ladder, strong-control evaluation contract, anti-Goodhart rules, evidence, and integration stop conditions. |
@@ -399,6 +400,16 @@ The detailed docs are split so agents and humans do not have to load one giant f
 
 ## Current Notes
 
+- Current product boundary as of 2026-07-14: final A2 completed all twelve
+  separated-surface calls and selected
+  `separated_tasks_ineffective_companions_persist`. The provider-free
+  architecture closeout stops the current R4 reader without changing the live
+  four-lane pressure engine. Complete available prose conversation remains the
+  source of truth; Decision Work remains an optional post-run sidecar whose
+  arbitrary-run semantic supply is not implemented. No further R4 provider
+  call, reader integration, model comparison, or product-usefulness claim is
+  authorized. The next eligible goal after closeout publication is a
+  provider-free artifact-to-Decision-Trail coverage audit.
 - Checked against `SKILL.md` and runtime entry points on 2026-06-25.
 - Current Decision Trail state as of PR104: the runtime produces completed run
   artifacts; the offline Decision Trail lane can export sparse reports and
@@ -665,7 +676,14 @@ The detailed docs are split so agents and humans do not have to load one giant f
   stance readers, joined deterministically by exact role/evidence IDs. Local
   exploration remains the passing reference pattern.
 
-### Current reasoning-process extraction boundary (2026-07-12)
+### Historical reasoning-process extraction research (superseded handoff)
+
+The sequence below records experiments that led into R4; it is not the current
+continuation instruction. The current boundary is the
+[R4 product and architecture closeout](docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md):
+stop the current residual/separated reader, preserve it as immutable research
+evidence, and keep complete conversation custody, live mental-model pressure,
+the optional Decision Work sidecar, and Observatory as separate layers.
 
 The current development reference is role-first v2.2. Three small LLM jobs
 interpret starting position, current position, and qualification; a fourth

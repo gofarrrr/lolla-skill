@@ -822,28 +822,49 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The separately authorized final A2 paired-versus-separated execution completed
-all twelve calls exactly once for `$0.02148425`. Both genuine findings were
-preserved, but separation did not suppress either positive-case companion:
-Case 03's separated dependency call repeated the false future companion, and
-Case 04's separated decision-gap call repeated the false present companion.
-The quiet controls again showed that separated decision-gap calls can remain
-quiet while separated dependency calls misclassify governed machinery.
+The final A2 evidence is canonical through PR #370 at merge
+`34d0e1a8f6e80d72622deb59b10a81262344fc85`. Its frozen decision remains
+`separated_tasks_ineffective_companions_persist`: both genuine findings
+survived, but neither positive-case companion disappeared under separated
+generation, and the separated dependency calls continued to misclassify
+governed machinery.
 
-The frozen decision is `separated_tasks_ineffective_companions_persist`. No
-A3, replacement call, prompt tweak, task variant, new holdout, model
-comparison, integration, or R5 work is authorized. The only next goal that may
-be considered is a provider-free product/architecture closeout choosing among
-preserving a narrower component as research evidence, materially redesigning
-the reader, deferring the feature, or stopping the current R4 architecture.
+The provider-free R4 product and architecture closeout is now complete. Its
+decision is:
 
-The next decision is publication of the completed local raw evidence and
-source-first closeout. Do not rerun, replace ordinal 7, infer a new execution
-authorization, or begin another experimental design under this result.
+```text
+stop_current_r4_reader_preserve_core_pressure_and_decision_trail
+```
 
-Even a later result supporting companion pressure cannot establish overall
-reader safety. Governed-machinery restraint, scheduled decisions,
-assistant-proposal authority, evidence adjudication, transfer to real
-conversations, and product usefulness remain independent gates. Runtime/graph
-integration, governed-pending output, model comparison, scalar scoring, R5,
-and product-usefulness claims remain unauthorized.
+Consequences:
+
+- stop the current residual and separated-surface reader architecture;
+- preserve its prompts, cases, requests, outputs, and reviews as immutable
+  research evidence;
+- preserve complete available prose-conversation custody as the authoritative
+  source;
+- preserve the live four-lane pressure engine, curated mental-model graph,
+  constitutional graph-survival portfolio, and apply/reject/park custody as the
+  experimental core;
+- preserve Decision Work as an optional, derivative, operator-directed sidecar
+  and Observatory as its read-only inspection surface;
+- do not use the R4 reader as automatic Decision Work semantic supply;
+- do not infer product usefulness from mechanical operation.
+
+The immediate operational decision is whether to publish the closeout without
+changing its product decision. After publication, the next eligible goal is a
+provider-free completed-run artifact-to-Decision-Trail coverage audit. It
+should map every desired Decision Trail field to current artifacts and classify
+it as deterministic, provisional semantic interpretation, human-review
+required, unavailable, private/locator-only, or unsafe. It must not generate a
+new semantic read, inspect private archives without explicit scope, mutate a
+real archive, call a provider, change runtime, or claim product usefulness.
+
+No A3, replacement call, prompt tweak, task variant, new holdout, model
+comparison, integration, or R5 work is authorized. A materially different
+reader, real-user sidecar review, and R5 pressure-versus-neutral-control work
+remain separate later founder decisions.
+
+See
+`docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md`.

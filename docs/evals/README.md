@@ -1497,3 +1497,28 @@ Continuation entrypoints:
 - `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`;
 - `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a2/evidence-manifest.json`;
 - `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a2/execution-closeout.json`.
+
+## R4 product and architecture closeout — 2026-07-14
+
+The provider-free closeout selects
+`stop_current_r4_reader_preserve_core_pressure_and_decision_trail`. The
+incremental residual and separated-surface readers stop and remain immutable
+research evidence. They must not feed the live skill, graph path, Decision Work
+semantic supply, or Observatory interpretation.
+
+The closeout does not stop Lolla's core product direction. It preserves the
+complete available prose conversation as authoritative evidence, the live
+four-lane and constitutional mental-model graph path as the experimental
+pressure engine, Decision Work as an optional derivative sidecar, and
+Observatory as a read-only inspection surface. It explicitly distinguishes
+mechanical operation from real-user usefulness.
+
+After closeout publication, the next eligible goal is a provider-free
+completed-run artifact-to-Decision-Trail coverage audit. No provider call,
+semantic reader design, archive mutation, integration, model comparison, or R5
+work is authorized.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`;
+- `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md`.
