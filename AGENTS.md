@@ -25,15 +25,18 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
-   — latest completed work, exact evidence, costs, semantic result, and next
-   provider-free boundary.
-5. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+4. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+   — latest completed work, the record-level Case 01/04 map, competing causal
+   explanations, falsifiers, and the single earned repair class.
+5. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+   — consumed holdout evidence, exact provider cost, and the semantic failure
+   that the causal diagnosis explains.
+6. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-6. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+7. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -178,10 +181,13 @@ failures or historical hash drift are.
 - R3 fresh-consumer work: honestly closed/deferred without meeting its semantic
   exit condition; do not reopen it casually.
 - R4 inventory, fan-in, first complementary-reader attempt, token correction,
-  corrected diagnostic, provider-free semantic-distinction repair, and exact
-  holdout execution: complete and documented. The holdout passed mechanics but
-  did not support the semantic hypothesis because restraint and evidence
-  precision failed.
+  corrected diagnostic, provider-free semantic-distinction repair, exact
+  holdout execution, and provider-free causal diagnosis: complete and
+  documented. The holdout passed mechanics but failed Case 04 restraint. The
+  diagnosis finds semantic ontology/task mismatch to be the best-supported
+  primary explanation, with fallible-prior anchoring as an amplifier; paired
+  completion remains plausible but unisolated, and endpoint/context loss is
+  not supported as primary.
 - Canonical integration target: `main`. This execution began from
   post-consolidation handoff `035ae637` (GitHub PR #361), and GitHub PR #362
   carries the completed R4 execution and this restart-safe handoff.
@@ -193,11 +199,12 @@ failures or historical hash drift are.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The exact next goal is provider-free causal diagnosis of why the v2 prompt's
-zero, later-resolution, safeguard, fallback, and scheduled-review distinctions
-did not survive the Case 04 endpoint. Case 01 and Case 04 are now exposed
-development evidence. Decide whether one causal task-shape repair or an R4 stop
-is earned before preparing any new experiment.
+The exact next goal is one separately scoped provider-free semantic-task
+repair. Keep Case 04 false-positive restraint primary and use Case 01 only as a
+regression constraint. Do not combine that repair with a context-authority
+change, task split, relationship-reader change, or model/context change. Stop
+before provider validation or a new holdout; those are separate later
+decisions.
 
 Do not retry A3 or make another provider call. Any future provider validation
 requires a genuinely new holdout, a new frozen contract, and separate founder
