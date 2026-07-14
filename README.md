@@ -29,10 +29,13 @@ final reasoner must apply, reject, or park every active item, but never has to
 force it into the public answer. The existing verifier remains interpretation
 telemetry and cannot delete this portfolio.
 
-> **Development status (2026-07-13):** The end-to-end skill and custody harness
+> **Development status (2026-07-14):** The end-to-end skill and custody harness
 > work, but V1 did not establish product reliability, real-user usefulness,
-> stability, or receipt reconstruction. Lolla does not certify that a revised
-> answer is better or safe to act on. See the
+> stability, or receipt reconstruction. R4 now has a provider-free
+> residual-discovery contract with exact Case 01/04 context custody, but no
+> model has been tested against it and it is not integrated into the runtime.
+> Lolla does not certify that a revised answer is better or safe to act on. See
+> the
 > [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
 > [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md),
 > [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md),
@@ -41,7 +44,11 @@ telemetry and cannot delete this portfolio.
 > [R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md),
 > [R3 collapsed-outcome case preparation](docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md),
 > [R3 collapsed-outcome execution result](docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md),
-> and [R3 reasoning-exclusion correction result](docs/conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md).
+> [R3 reasoning-exclusion correction result](docs/conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md),
+> [R4 semantic-distinction execution](docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md),
+> [R4 causal diagnosis](docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md),
+> [R4 residual-task identity repair](docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md),
+> and the [current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md).
 
 ## Why This Exists
 

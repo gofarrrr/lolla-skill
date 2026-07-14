@@ -25,18 +25,22 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
-   — latest completed work, the record-level Case 01/04 map, competing causal
-   explanations, falsifiers, and the single earned repair class.
-5. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+4. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+   and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` —
+   latest completed work, the additive residual-discovery contract, exact
+   context manifests, frozen boundaries, and next decision.
+5. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+   — the record-level Case 01/04 map, competing causal explanations,
+   falsifiers, and the single repair class that earned the latest work.
+6. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-6. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+7. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-7. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+8. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -160,16 +164,17 @@ Run the smallest relevant checks while iterating, then the full suite before a
 handoff or PR update. For the current R4 package:
 
 ```bash
+PYTHONPATH=. python3 scripts/evals/build_r4_residual_task_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. pytest -q tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
 PYTHONPATH=. pytest -q
 ```
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 R4 semantic-distinction closeout, the full suite passes 4,876 tests
+At the 2026-07-14 residual-task closeout, the full suite passes 4,887 tests
 with all 93 subtests passing and one existing `datetime.utcnow()` deprecation
 warning. A changed count is not automatically a regression; unexplained
 failures or historical hash drift are.
@@ -182,29 +187,36 @@ failures or historical hash drift are.
   exit condition; do not reopen it casually.
 - R4 inventory, fan-in, first complementary-reader attempt, token correction,
   corrected diagnostic, provider-free semantic-distinction repair, exact
-  holdout execution, and provider-free causal diagnosis: complete and
-  documented. The holdout passed mechanics but failed Case 04 restraint. The
-  diagnosis finds semantic ontology/task mismatch to be the best-supported
-  primary explanation, with fallible-prior anchoring as an amplifier; paired
-  completion remains plausible but unisolated, and endpoint/context loss is
-  not supported as primary.
-- Canonical integration target: `main`. This execution began from
-  post-consolidation handoff `035ae637` (GitHub PR #361), and GitHub PR #362
-  carries the completed R4 execution and this restart-safe handoff.
+  holdout execution, provider-free causal diagnosis, and provider-free
+  residual-task identity repair: complete and documented. The residual
+  contract makes residual discovery the complete provider-visible job,
+  deterministically maps its two enum values to the existing canonical roles,
+  and preserves source/prior order, paired shape, relationship behavior,
+  model, provider route, runtime, and graph. Case 04 locally expects two quiet
+  surfaces; Case 01 preserves only the recurring operating-capability
+  funding/ownership residual.
+- Canonical integration target: `main`. This goal began from clean merge
+  `0165cbbb`, which includes GitHub PR #363 for the completed causal diagnosis.
+  GitHub PR #362 remains the consumed R4 execution handoff.
 - PR #347 was recognized as merged through the consolidation. PRs #348-#359
   are closed as superseded after verifying every exact head commit is reachable
   from `main`; their historical branches and discussions remain intact.
 - Provider calls currently authorized: zero. The one-use A3 authorization was
   consumed by exactly four calls at an exact provider-reported `$0.01107025`.
+- The residual-task goal made zero provider calls at `$0.00`, prepared no new
+  holdout, and did not request authorization. Its exact decision is
+  `residual_contract_ready_for_new_holdout_design`.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The exact next goal is one separately scoped provider-free semantic-task
-repair. Keep Case 04 false-positive restraint primary and use Case 01 only as a
-regression constraint. Do not combine that repair with a context-authority
-change, task split, relationship-reader change, or model/context change. Stop
-before provider validation or a new holdout; those are separate later
-decisions.
+The semantic-task repair is complete. A separately started future goal may
+design a genuinely new hidden holdout around this exact single-variable
+contract. Do not infer that goal, prepare it opportunistically, or request
+provider authorization from this handoff. Preserve Case 04 restraint as the
+primary defect and Case 01 recurring funding/ownership as the regression
+constraint; do not combine future validation with a context-authority change,
+task split, relationship-reader change, governed-pending output surface, or
+model/context change.
 
 Do not retry A3 or make another provider call. Any future provider validation
 requires a genuinely new holdout, a new frozen contract, and separate founder

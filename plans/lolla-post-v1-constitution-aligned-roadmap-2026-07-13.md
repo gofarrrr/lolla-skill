@@ -382,8 +382,8 @@ See
 Status: provider-free inventory/replay and missingness-aware fan-in complete;
 corrected complementary-reader diagnostic closed; token allocation repaired;
 semantic-distinction holdout closed mechanically complete but semantically
-unsupported; provider-free causal diagnosis complete; one semantic-task repair
-is the next boundary
+unsupported; provider-free causal diagnosis and residual-task identity repair
+complete; no holdout or provider validation authorized
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -632,6 +632,41 @@ repair. Do not bundle it with context authority, task shape, relationship
 reading, or model/context changes. See
 `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`.
 
+Provider-free residual-task identity repair result:
+
+- a new additive prompt makes residual discovery—not broad inventory—the
+  complete provider-visible role, operation, surface vocabulary, example set,
+  schema description, and output rule;
+- provider-facing `residual_decision_gap` and
+  `residual_reconsideration_dependency` values map deterministically to the
+  existing canonical `unresolved_matter` and `reopen_condition` roles without
+  reading free text;
+- paired response structure, fields, record bounds, aliases, zero, ambiguity,
+  complete source/prior context and order, relationship behavior, model,
+  provider route, runtime, and graph remain unchanged;
+- the complete A3 Case 01/04 contexts appear in provider-ready request previews
+  with per-component hashes, bytes, conservative token estimates, schema size,
+  task-at-end custody, changed fields, unchanged dimensions, and declared
+  omissions;
+- all nine historical semantic-distinction fixtures are reused through a
+  separate additive catalog; Case 04 locally expects zero on both residual
+  surfaces, while Case 01 preserves only the recurring operations
+  funding/ownership residual;
+- the prompt is 191 UTF-8 bytes and 96 deterministically estimated tokens
+  shorter than v2; the schema is 122 bytes larger only because of longer
+  residual labels and the dual-basis evidence description;
+- historical v1/v2, target, authorization, execution, evidence, and
+  relationship hashes reproduce; frozen replay remains 12 cases, 543 links,
+  and 400 unique artifacts;
+- zero provider calls were made, no holdout was prepared, and provider-free
+  contract validity is explicitly not model semantic validation.
+
+The completion decision is
+`residual_contract_ready_for_new_holdout_design`. A new holdout-design goal
+must be started separately and must preserve this single-variable contract.
+See
+`docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -677,21 +712,21 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The exact R4 semantic-distinction holdout and its provider-free causal
-diagnosis are complete. The one-use authorization is consumed. The semantic
-exit condition remains unmet because the v2 reader failed Case 04 restraint
-and evidence precision despite clean mechanics.
+The provider-free residual-task identity repair is complete. Its contract is
+coherent without changing context authority, paired task shape, relationship
+behavior, state representation, model, provider route, runtime, or graph. The
+completion decision is
+`residual_contract_ready_for_new_holdout_design`.
 
-The immediate next goal is one provider-free semantic-task repair that makes
-the residual product object—not broad unresolved/reopen inventory—the sole
-causal variable. Keep Case 04 primary and Case 01 as a regression constraint.
-Do not change context authority, pair versus split the task, change the
-relationship reader, or change model/context in the same goal. Stop or split
-if the repair cannot be isolated.
+Do not infer or begin the next experiment from this status alone. If the
+founder explicitly starts a new goal, the next eligible unit is provider-free
+design of a genuinely new hidden holdout that keeps this exact residual
+contract fixed, keeps Case 04-style restraint primary, and uses Case 01-style
+recurring ownership/funding only as a regression constraint. Holdout design,
+provider authorization, and execution remain separate decisions.
 
-Make no provider call. Do not retry the consumed attempt, prepare a new
-holdout, integrate the runtime, reopen R3, change the graph, compare models,
-infer semantic roles in Python, merge overlapping records, optimize a
-composite score, or claim that the reader is useful. Any later provider
-validation requires a genuinely new holdout, a newly frozen contract, and
-separate founder authorization. R5 remains gated.
+Make no provider call, retry the consumed A3 attempt, integrate the runtime,
+reopen R3, change the graph, add governed-pending as an output surface, split
+the task, change prior authority, compare models, infer operationalization in
+Python, merge interpretations, optimize a composite score, or claim product
+usefulness. R5 remains gated.
