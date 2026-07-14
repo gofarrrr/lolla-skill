@@ -1,6 +1,6 @@
 # R4 matched holdout v2 human semantic leakage review
 
-Status: awaiting founder/PM human review before target authorship
+Status: passed by founder/PM human review; hash-bound target gate satisfied
 
 Date prepared: 2026-07-14
 
@@ -56,7 +56,7 @@ Preliminary CTO review:
   determine both surfaces.
 - No assistant turn names the expected Lolla result.
 
-Human finding: `pending`
+Human finding: `passed`
 
 ## Case 02 — serialized essay audio pilot
 
@@ -80,7 +80,7 @@ Preliminary CTO review:
   missing category.
 - No assistant turn names the expected Lolla result.
 
-Human finding: `pending`
+Human finding: `passed`
 
 ## Case 03 — research workspace service
 
@@ -105,7 +105,7 @@ Preliminary CTO review:
   controls without naming the recurring service issue.
 - No assistant turn names the expected Lolla category.
 
-Human finding: `pending`
+Human finding: `passed`
 
 ## Case 04 — shared language course
 
@@ -130,17 +130,36 @@ Preliminary CTO review:
   does not name the external dependency.
 - No assistant turn names the expected Lolla category.
 
-Human finding: `pending`
+Human finding: `passed`
 
-## Founder/PM declaration
+## Founder/PM declaration and custody
 
-To pass this gate, the human reviewer should confirm:
+The founder supplied this exact human declaration on 2026-07-14:
 
-> I reviewed the v2 source/prior leakage packet. For all four cases, the
-> assistant does not state the expected Lolla classification, the prior does
-> not instruct the reader how to discount itself, the last four messages alone
-> do not disclose the complete target, and the source does not tell the reader
-> what to emit or suppress. Target authorship may begin.
+> human leakage review passes
 
-No target, request preview, execution contract, authorization shape, or v2
-runner may be authored while this declaration remains pending.
+It applies to all four complete source/prior pairs and means that the assistant
+does not state the expected Lolla classification, the prior does not instruct
+the reader how to discount itself, the last four messages alone do not disclose
+the complete target, and the source does not tell the reader what to emit or
+suppress. Human semantic sufficiency is decided affirmatively for these exact
+bytes, so target authorship may begin.
+
+| Case | Source SHA-256 | Prior SHA-256 | Last four sufficient for both surfaces |
+|---|---|---|---|
+| `r4h2-case01-community-audio-archive` | `4af8f39ce9cc8e4b7edbb80111c2cfabac09037e176895ae380392308a4ac3c1` | `e77baaf2378d8cfc3cc29371b4dc5e472b585a09f29b29d8725ff49d99ae7095` | no |
+| `r4h2-case02-serialized-essay-pilot` | `922228b8371d9536464adc402390f6e50d894927e0b9a7f9c60518d9a68bdb80` | `b5706dc359957e92fb25ee9535d3981835f7496fc4f138eae12885f18f3a3543` | no |
+| `r4h2-case03-research-workspace-service` | `9c3c979fbe79e6a573f9dc316e1e03c7a1ffc29dc0b5abd7c139825ef2a652ad` | `53aff0c8c41fd7c1504718f4190a736addad67d0f150ddbaa6482cfb71c95e52` | no |
+| `r4h2-case04-shared-language-course` | `ce8f1652612467e83589b9073b6a8c83273044fb4c5ab611852e1d916cdb0783` | `9e0ec28e5094b7c68560db1af1e231c6859972317a0dd2204cfa3914ad202ac5` | no |
+
+The deterministic prohibited-language scan is supporting custody evidence, not
+a substitute for this human semantic judgment. Any byte change to a reviewed
+source or prior invalidates the declaration and requires another human review.
+
+## Evaluation limitation
+
+Cases 01 and 02 end with summaries of several adopted documents and controls.
+Those summaries provide some recency assistance. They do not disclose the
+expected classification and are not independently sufficient to evaluate both
+surfaces. The holdout therefore must not be described as a pure test of
+recovering every relevant fact exclusively from distant context.

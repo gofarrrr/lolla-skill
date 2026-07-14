@@ -5,12 +5,20 @@ import json
 from pathlib import Path
 import subprocess
 
+import pytest
+
 from scripts.evals.build_r4_matched_holdout_v2_contract import (
     CASE_IDS,
     FORBIDDEN_ANSWER_LANGUAGE,
+    HUMAN_LEAKAGE_DECLARATION,
+    R4MatchedHoldoutV2Error,
+    build_human_review_freeze_files,
+    build_human_review_record,
     build_pre_target_audit,
     lint_v2_source_prior,
     load_v2_source_prior,
+    validate_human_review_freeze,
+    validate_human_review_record,
 )
 
 
@@ -214,6 +222,77 @@ def test_pre_target_audit_records_custody_and_keeps_semantic_gate_human() -> Non
         assert row["prior_self_discounting"] is None
         assert row["source_instructs_emit_or_suppress"] is None
 
+    assert not (
+        ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
+    ).exists()
+    assert not (
+        ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
+    ).exists()
+
+
+def test_exact_human_declaration_unlocks_only_the_reviewed_source_prior_hashes() -> None:
+    cases = load_v2_source_prior()
+    review = build_human_review_record(
+        cases,
+        declaration=HUMAN_LEAKAGE_DECLARATION,
+    )
+
+    assert HUMAN_LEAKAGE_DECLARATION == "human leakage review passes"
+    assert review["status"] == "human_semantic_leakage_review_passed"
+    assert review["human_declaration"] == HUMAN_LEAKAGE_DECLARATION
+    assert review["human_review_required_before_target"] == "satisfied"
+    assert review["target_authorship_may_begin"] is True
+    assert review["human_semantic_sufficiency_decided"] is True
+    assert review["deterministic_semantic_sufficiency_decided"] is False
+    assert review["byte_change_invalidates_review"] is True
+    assert review["provider_calls"] == 0
+    assert review["provider_cost_usd"] == 0.0
+    assert validate_human_review_record(review, cases=cases) == review
+
+    assert [row["case_id"] for row in review["cases"]] == list(CASE_IDS)
+    for row in review["cases"]:
+        assert row["human_semantic_leakage_review"] == "passed"
+        assert row["last_four_sufficient_for_both_surfaces"] is False
+        assert row["assistant_states_expected_category"] is False
+        assert row["prior_self_discounting"] is False
+        assert row["source_instructs_emit_or_suppress"] is False
+        assert row["source_sha256"] == cases[row["case_id"]]["source_sha256"]
+        assert row["prior_sha256"] == cases[row["case_id"]]["prior_sha256"]
+
+    changed = {case_id: dict(case) for case_id, case in cases.items()}
+    changed[CASE_IDS[0]]["source_sha256"] = "0" * 64
+    with pytest.raises(R4MatchedHoldoutV2Error, match="reviewed source/prior hash"):
+        validate_human_review_record(review, cases=changed)
+
+    with pytest.raises(R4MatchedHoldoutV2Error, match="exact human declaration"):
+        build_human_review_record(cases, declaration="review passes")
+
+
+def test_human_review_and_source_prior_freeze_are_exact_before_target() -> None:
+    expected = build_human_review_freeze_files()
+    review = validate_human_review_freeze()
+
+    assert set(expected) == {
+        "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/leakage-audit.json",
+        "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/freeze-manifest.json",
+    }
+    for relative, raw in expected.items():
+        assert (ROOT / relative).read_bytes() == raw
+
+    assert review["status"] == "human_semantic_leakage_review_passed"
+    freeze = json.loads(
+        expected[
+            "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/freeze-manifest.json"
+        ]
+    )
+    assert freeze["status"] == "source_prior_and_human_review_frozen_before_target"
+    assert freeze["source_prior_checkpoint_commit"] == (
+        "1d02d2abc1f416178fbd00a9f0b93aad353c24b2"
+    )
+    assert freeze["target_existed_when_frozen"] is False
+    assert freeze["request_preview_existed_when_frozen"] is False
+    assert freeze["provider_output_existed_when_frozen"] is False
+    assert len(freeze["cases"]) == 4
     assert not (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
     ).exists()

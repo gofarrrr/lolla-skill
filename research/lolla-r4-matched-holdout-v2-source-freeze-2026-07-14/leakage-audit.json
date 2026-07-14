@@ -1,0 +1,139 @@
+{
+  "byte_change_invalidates_review": true,
+  "cases": [
+    {
+      "assistant_states_expected_category": false,
+      "case_id": "r4h2-case01-community-audio-archive",
+      "human_semantic_leakage_review": "passed",
+      "last_four_canonical_sha256": "f202985602a74ca210bd1f565385ea136d0d3757c5a6c6402c1051f39e30709e",
+      "last_four_message_indices": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "last_four_sufficient_for_both_surfaces": false,
+      "prior_self_discounting": false,
+      "prior_sha256": "e77baaf2378d8cfc3cc29371b4dc5e472b585a09f29b29d8725ff49d99ae7095",
+      "source_instructs_emit_or_suppress": false,
+      "source_sha256": "4af8f39ce9cc8e4b7edbb80111c2cfabac09037e176895ae380392308a4ac3c1"
+    },
+    {
+      "assistant_states_expected_category": false,
+      "case_id": "r4h2-case02-serialized-essay-pilot",
+      "human_semantic_leakage_review": "passed",
+      "last_four_canonical_sha256": "5f5f15ddcd20ee8d26ca753193919c12a96b98242285f893e6fcb5c176c89962",
+      "last_four_message_indices": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "last_four_sufficient_for_both_surfaces": false,
+      "prior_self_discounting": false,
+      "prior_sha256": "b5706dc359957e92fb25ee9535d3981835f7496fc4f138eae12885f18f3a3543",
+      "source_instructs_emit_or_suppress": false,
+      "source_sha256": "922228b8371d9536464adc402390f6e50d894927e0b9a7f9c60518d9a68bdb80"
+    },
+    {
+      "assistant_states_expected_category": false,
+      "case_id": "r4h2-case03-research-workspace-service",
+      "human_semantic_leakage_review": "passed",
+      "last_four_canonical_sha256": "749dd91f2867e8b200865bf5a9c4e8e81b5b6b2361fe9d8af4e078f9fe28da71",
+      "last_four_message_indices": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "last_four_sufficient_for_both_surfaces": false,
+      "prior_self_discounting": false,
+      "prior_sha256": "53aff0c8c41fd7c1504718f4190a736addad67d0f150ddbaa6482cfb71c95e52",
+      "source_instructs_emit_or_suppress": false,
+      "source_sha256": "9c3c979fbe79e6a573f9dc316e1e03c7a1ffc29dc0b5abd7c139825ef2a652ad"
+    },
+    {
+      "assistant_states_expected_category": false,
+      "case_id": "r4h2-case04-shared-language-course",
+      "human_semantic_leakage_review": "passed",
+      "last_four_canonical_sha256": "0e7e927ef41772bb5701559b653eab2ccf622d46594e5b8d282ad2b54267c974",
+      "last_four_message_indices": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "last_four_sufficient_for_both_surfaces": false,
+      "prior_self_discounting": false,
+      "prior_sha256": "9e0ec28e5094b7c68560db1af1e231c6859972317a0dd2204cfa3914ad202ac5",
+      "source_instructs_emit_or_suppress": false,
+      "source_sha256": "ce8f1652612467e83589b9073b6a8c83273044fb4c5ab611852e1d916cdb0783"
+    }
+  ],
+  "date": "2026-07-14",
+  "deterministic_semantic_sufficiency_decided": false,
+  "deterministic_vocabulary_lint": {
+    "exact_match_count": 0,
+    "matches": [],
+    "provider_calls": 0,
+    "provider_cost_usd": 0.0,
+    "schema_version": "lolla.r4_matched_holdout_vocabulary_lint.v2",
+    "semantic_sufficiency_decided": false,
+    "status": "deterministic_vocabulary_lint_passed",
+    "terms": [
+      "residual",
+      "residual decision gap",
+      "residual reconsideration dependency",
+      "outside adopted machinery",
+      "inside adopted machinery",
+      "should stay quiet",
+      "should not be emitted",
+      "broad inventory",
+      "source-first review",
+      "belongs on the surface",
+      "newly discovered gap",
+      "unresolved_matter",
+      "reopen_condition",
+      "emit",
+      "emitted",
+      "suppress",
+      "suppressed",
+      "keep quiet",
+      "expected result",
+      "structured answer",
+      "reopen the decision"
+    ]
+  },
+  "evaluation_limitations": [
+    {
+      "case_ids": [
+        "r4h2-case01-community-audio-archive",
+        "r4h2-case02-serialized-essay-pilot"
+      ],
+      "kind": "recent_summary_assistance",
+      "statement": "The final messages summarize several adopted documents and controls, providing some recency assistance, but do not disclose the expected classification and are not independently sufficient to evaluate both surfaces."
+    },
+    {
+      "case_ids": [
+        "r4h2-case01-community-audio-archive",
+        "r4h2-case02-serialized-essay-pilot",
+        "r4h2-case03-research-workspace-service",
+        "r4h2-case04-shared-language-course"
+      ],
+      "kind": "human_semantic_judgment",
+      "statement": "The human decision establishes leakage sufficiency only for the reviewed bytes; deterministic lint is supporting evidence, not a substitute for semantic review."
+    }
+  ],
+  "human_declaration": "human leakage review passes",
+  "human_review_required_before_target": "satisfied",
+  "human_semantic_sufficiency_decided": true,
+  "provider_authorization": false,
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "review_scope": "all_four_complete_v2_source_prior_pairs",
+  "reviewer_authority": "founder_pm_human",
+  "schema_version": "lolla.r4_matched_holdout_human_leakage_review.v2",
+  "source_prior_checkpoint_commit": "1d02d2abc1f416178fbd00a9f0b93aad353c24b2",
+  "status": "human_semantic_leakage_review_passed",
+  "target_authorship_may_begin": true
+}
