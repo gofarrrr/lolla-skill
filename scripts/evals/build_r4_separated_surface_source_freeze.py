@@ -19,6 +19,7 @@ FREEZE_ROOT = (
 SOURCE_ROOT = FREEZE_ROOT / "sources"
 PRIOR_ROOT = FREEZE_ROOT / "priors"
 MANIFEST_PATH = FREEZE_ROOT / "freeze-manifest.json"
+HUMAN_CUSTODY_PATH = FREEZE_ROOT / "human-leakage-review-custody.json"
 HUMAN_REVIEW_PACKET = (
     ROOT
     / "docs/evals/lolla-r4-separated-surface-experiment-v1-human-leakage-review.md"
@@ -248,7 +249,7 @@ def lint_cases(cases: Mapping[str, Mapping[str, Any]]) -> list[dict[str, str]]:
 
 def validate_forbidden_artifact_absence() -> None:
     expected_sources, expected_priors = _expected_paths()
-    allowed = expected_sources | expected_priors | {MANIFEST_PATH}
+    allowed = expected_sources | expected_priors | {MANIFEST_PATH, HUMAN_CUSTODY_PATH}
     actual = {path for path in FREEZE_ROOT.rglob("*") if path.is_file()}
     if not actual <= allowed:
         unexpected = sorted(_relative(path) for path in actual - allowed)
@@ -371,10 +372,10 @@ def validate() -> dict[str, Any]:
     if not HUMAN_REVIEW_PACKET.is_file():
         raise R4SeparatedSurfaceSourceFreezeError("human review packet missing")
     packet = HUMAN_REVIEW_PACKET.read_text(encoding="utf-8")
-    if "Status: pending human semantic-leakage review" not in packet:
-        raise R4SeparatedSurfaceSourceFreezeError("human review is not pending")
-    if "Human finding: `passed`" in packet:
-        raise R4SeparatedSurfaceSourceFreezeError("human review was marked passed")
+    if "Status: human semantic-leakage review passed" not in packet:
+        raise R4SeparatedSurfaceSourceFreezeError("human review pass is not recorded")
+    if "Human finding: `pending`" in packet:
+        raise R4SeparatedSurfaceSourceFreezeError("human review remains pending")
     for row in expected["cases"]:
         for artifact_kind in ("source", "prior"):
             artifact = row[artifact_kind]

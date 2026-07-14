@@ -1,6 +1,6 @@
 # R4 separated-surface source freeze v1: human semantic-leakage review
 
-Status: pending human semantic-leakage review
+Status: human semantic-leakage review passed; declaration hash-bound before target authorship
 
 Date prepared: 2026-07-14
 
@@ -20,7 +20,15 @@ intended role if the complete source does not honestly support it.
 
 The deterministic scan found zero exact prohibited-language matches across all
 eight artifacts. It did not decide semantic leakage, case sufficiency, or the
-eventual surface dispositions. Every human finding remains pending.
+eventual surface dispositions. The founder subsequently supplied this exact
+human declaration:
+
+`human leakage review passes for R4 separated-surface source freeze v1`
+
+The complete per-case answer to all ten questions is recorded in
+`research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/human-leakage-review-custody.json` and bound to the exact eight artifact hashes
+and freeze-manifest hash. Every case passed. The last four messages are not
+independently sufficient for either surface in any case.
 
 Any source or prior byte change invalidates this packet's hashes and requires
 another human review before target authorship.
@@ -42,7 +50,7 @@ another human review before target authorship.
 
 Intended structural role: governed-threshold difficult-zero control.
 
-Human finding: `pending`
+Human finding: `passed`
 
 - Complete source: [r4s1-case01-cave-rescue-readiness.json](../../research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case01-cave-rescue-readiness.json)
 - Source path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case01-cave-rescue-readiness.json`
@@ -51,7 +59,7 @@ Human finding: `pending`
 - Prior path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case01-cave-rescue-readiness.json`
 - Prior SHA-256: `a79427a8168210f4ca2a8e3fdb7bec506110d835453d28de55ae44214331ceae`
 - Deterministic prohibited-language matches: 0
-- Human final-four sufficiency finding: `pending`
+- Human final-four sufficiency finding: `false for both surfaces`
 
 Final four messages:
 
@@ -70,7 +78,7 @@ they are independently sufficient for both surfaces.
 
 Intended structural role: scheduled-decision difficult-zero control.
 
-Human finding: `pending`
+Human finding: `passed`
 
 - Complete source: [r4s1-case02-neighborhood-observatory-winter-access.json](../../research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case02-neighborhood-observatory-winter-access.json)
 - Source path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case02-neighborhood-observatory-winter-access.json`
@@ -79,7 +87,7 @@ Human finding: `pending`
 - Prior path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case02-neighborhood-observatory-winter-access.json`
 - Prior SHA-256: `82d3ecae8384d8966b17740170cb22135364b8e800e2e8a4429b3af07c1da996`
 - Deterministic prohibited-language matches: 0
-- Human final-four sufficiency finding: `pending`
+- Human final-four sufficiency finding: `false for both surfaces`
 
 Final four messages:
 
@@ -97,7 +105,7 @@ measures, operations, and contingency remains necessary.
 
 Intended structural role: genuine present finding with a quiet future surface.
 
-Human finding: `pending`
+Human finding: `passed`
 
 - Complete source: [r4s1-case03-relaxed-performance-tour.json](../../research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case03-relaxed-performance-tour.json)
 - Source path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case03-relaxed-performance-tour.json`
@@ -106,7 +114,7 @@ Human finding: `pending`
 - Prior path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case03-relaxed-performance-tour.json`
 - Prior SHA-256: `379caddd510f116e205f1fbccbf13326d93a2d3bf228386ed35a5426326a8f7a`
 - Deterministic prohibited-language matches: 0
-- Human final-four sufficiency finding: `pending`
+- Human final-four sufficiency finding: `false for both surfaces`
 
 Final four messages:
 
@@ -124,7 +132,7 @@ authority, frequency, and current machinery.
 
 Intended structural role: quiet present surface with a genuine future dependency.
 
-Human finding: `pending`
+Human finding: `passed`
 
 - Complete source: [r4s1-case04-native-seed-cryopreservation.json](../../research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case04-native-seed-cryopreservation.json)
 - Source path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case04-native-seed-cryopreservation.json`
@@ -133,7 +141,7 @@ Human finding: `pending`
 - Prior path: `research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case04-native-seed-cryopreservation.json`
 - Prior SHA-256: `cec9ebf93572a420d280cea9b7fdf75a3e49fa5bf073358de2ee18fc865f4b57`
 - Deterministic prohibited-language matches: 0
-- Human final-four sufficiency finding: `pending`
+- Human final-four sufficiency finding: `false for both surfaces`
 
 Final four messages:
 
@@ -150,15 +158,15 @@ consequence evidence.
 
 ## Decision record
 
-For each case, record answers to all ten questions, with particular attention
-to any exact alias that leaks the intended classification. Do not treat the
-zero-match scan as a pass.
+The human answered all ten questions for all four cases. The human finding is
+affirmative for the exact reviewed bytes: the artifacts do not teach the
+ontology or expected output, assistant turns do not state the expected result,
+priors do not self-discount, final-four windows are insufficient for both
+surfaces, decisive treatment rests on distributed user-owned evidence, the
+cases are structurally distinct, no second intervention was introduced, the
+controls are difficult-zero cases, and the positives can expose companion
+behavior without inviting it.
 
-If all four exact source/prior pairs pass, respond with exactly:
-
-`human leakage review passes for R4 separated-surface source freeze v1`
-
-This is a requested future response, not a declaration recorded by this
-packet. If any pair fails, identify the case, artifact, and exact passage
-instead. Until that separate response exists, human review is pending and
-protected-target authorship remains prohibited.
+This pass permits protected-target authorship only. It does not authorize a
+provider-facing package, provider call, publication, or integration. Any
+source or prior byte change invalidates the declaration.
