@@ -56,6 +56,7 @@ telemetry and cannot delete this portfolio.
 > [R4 matched-holdout v2 leakage correction](docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md),
 > [R4 matched-holdout v2 execution A1](docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md),
 > [R4 separated-surface experiment design](docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md),
+> [R4 separated-surface execution A1](docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md),
 > and the [current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md).
 
 ## Why This Exists
@@ -1371,6 +1372,17 @@ and a categorical evaluation matrix. Its conservative maximum-output estimate
 is `$0.0485325`, with a proposed `$0.30` anomaly ceiling. It authorizes zero
 calls and does not imply that separation is a repair, that the reader is safe,
 or that integration or product-usefulness claims are earned.
+
+The separately authorized
+**[R4 separated-surface execution A1](docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md)**
+stopped correctly on its first terminal provider failure at ordinal 7. Six
+calls completed for an exact provider-reported `$0.0105715`; the failed call's
+cost is unavailable and is not assumed zero. No later ordinal or retry was
+attempted. The controls show that separated decision-gap calls were quiet while
+separated dependency calls still emitted governed-machinery false positives,
+but the positive matched comparisons were incomplete. The frozen decision is
+`semantic_result_not_evaluable`; the one-use authorization is consumed and no
+rerun or integration is authorized.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

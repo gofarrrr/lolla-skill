@@ -822,17 +822,23 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The narrow paired-versus-separated diagnostic is now completely designed
-provider-free on a local branch. Its hash-bound human review and protected
-source-first target precede the twelve exact requests. Four paired calls and
-eight separated calls isolate task shape while retaining difficult
-governed-threshold and scheduled-decision controls. No execution authorization
-exists, and no provider call was made.
+The canonically published paired-versus-separated diagnostic was authorized
+once and stopped correctly on the first terminal failure at ordinal 7. Six
+calls completed, the seventh returned a terminal provider error, and ordinals
+8–12 were not attempted. No retry or replacement call occurred. The completed
+calls cost `$0.0105715`; the failed call had no usable provider-reported usage
+or cost and must not be treated as free.
 
-The next decision is publication of the completed provider-free design. If it
-is reviewed and made canonical, execution would still require a separate exact
-one-use founder authorization. Do not execute from an unpublished local branch,
-infer authorization from the design, or integrate the reader.
+Because neither positive case has a complete matched comparison, the frozen
+decision is `semantic_result_not_evaluable`. Partial control evidence is not a
+causal result: separated decision-gap calls were quiet, while separated
+dependency calls still emitted governed-threshold and scheduled-decision false
+positives. The one-use authorization is consumed and current authorization is
+zero calls and `$0.00`.
+
+The next decision is publication of the completed local raw evidence and
+source-first closeout. Do not rerun, replace ordinal 7, infer a new execution
+authorization, or begin another experimental design under this result.
 
 Even a later result supporting companion pressure cannot establish overall
 reader safety. Governed-machinery restraint, scheduled decisions,
