@@ -257,8 +257,6 @@ def validate_forbidden_artifact_absence() -> None:
             f"unexpected freeze artifact: {unexpected}"
         )
     forbidden = (
-        ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-target.json",
-        ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-target-review.json",
         ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json",
         ROOT / "scripts/evals/run_r4_separated_surface_experiment.py",
     )

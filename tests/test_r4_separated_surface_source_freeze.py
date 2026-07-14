@@ -75,13 +75,11 @@ def test_source_freeze_manifest_reproduces_after_human_review_completion() -> No
         assert row["prior"]["sha256"] in packet
 
 
-def test_pre_target_boundary_contains_no_forbidden_artifacts() -> None:
+def test_post_review_boundary_contains_no_provider_package() -> None:
     from scripts.evals import build_r4_separated_surface_source_freeze as builder
 
     builder.validate_forbidden_artifact_absence()
 
-    assert not (ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-target.json").exists()
-    assert not (ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-target-review.json").exists()
     assert not (ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json").exists()
     assert not (ROOT / "scripts/evals/run_r4_separated_surface_experiment.py").exists()
 
