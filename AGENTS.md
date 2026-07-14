@@ -25,30 +25,35 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
+4. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
+   and `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`
+   — latest completed work, the five-record causal map, evidence against a
+   general paired-completion explanation, competing falsifiers, and the one
+   bounded diagnostic experiment earned without implementing or designing it.
+5. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`
-   — latest completed work, exact eight-call execution custody, record-level
+   — exact eight-call execution custody, record-level
    source-first review, frozen decision, and next provider-free causal gate.
-5. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
+6. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
    — frozen design evidence, the rejected v1 evidence, leakage-corrected v2
    sources and priors, hash-bound human review, protected target, matched
    requests, and the now-consumed non-authorizing contract.
-6. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
    and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
    published additive residual-discovery contract and frozen boundaries.
-7. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
    — the record-level Case 01/04 map, competing causal explanations,
    falsifiers, and the single repair class that earned the latest work.
-8. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-9. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+10. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-10. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+11. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -182,7 +187,7 @@ PYTHONPATH=. python3 scripts/evals/run_r4_matched_residual_holdout_experiment.py
 PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. pytest -q tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
 PYTHONPATH=. pytest -q
 ```
 
@@ -203,9 +208,10 @@ a regression; unexplained failures or historical hash drift are.
   corrected diagnostic, provider-free semantic-distinction repair, exact
   holdout execution, provider-free causal diagnosis, and provider-free
   residual-task identity repair, rejected v1 matched holdout, leakage-corrected
-  v2 matched holdout, and its one-use exact execution: complete and documented.
-  The residual
-  contract makes residual discovery the complete provider-visible job,
+  v2 matched holdout, its one-use exact execution, and the provider-free
+  five-record false-positive causal diagnosis: complete and documented.
+  The residual contract makes residual discovery the complete provider-visible
+  job,
   deterministically maps its two enum values to the existing canonical roles,
   and preserves source/prior order, paired shape, relationship behavior,
   model, provider route, runtime, and graph. Case 04 locally expects two quiet
@@ -217,11 +223,21 @@ a regression; unexplained failures or historical hash drift are.
   v2/residual requests. All eight calls completed once. Both arms recovered
   the genuine post-June service gap and Board-designation dependency; the
   residual arm still failed both quiet controls. Its frozen decision is
-  `residual_task_repair_insufficient`.
+  `residual_task_repair_insufficient`. The follow-on diagnosis rejects paired
+  completion as a general cause because Cases 01 and 02 failed without a
+  genuine companion finding. It preserves a narrower, falsifiable companion
+  mechanism for Cases 03 and 04 and ends with
+  `r4_separated_surface_experiment_earned`; that means a provider-free design
+  goal may be considered separately, not that a split is a repair or that an
+  experiment is authorized.
 - Canonical integration target: `main`. The provider-free v2 package was
   published through GitHub PR #365 in canonical merge
-  `b7d1d62c05bdf05f91401c25ceb0a2cc73ffe307`. The execution branch began from
-  that exact commit. Earlier PR #364 contains the residual-task contract;
+  `b7d1d62c05bdf05f91401c25ceb0a2cc73ffe307`. The completed A1 execution was
+  published through PR #366 in canonical merge
+  `9c5e9301640592d3ab5d0a95489a6960da60e1f4`; both raw checkpoint
+  `e2f83561686172538c8ac8876a53da2a804dc503` and reviewed closeout
+  `284c0cb28de868185364fc4bf61996310e006210` remain ancestors. Earlier PR #364
+  contains the residual-task contract;
   PR #362 remains the consumed semantic-distinction execution handoff and
   PR #363 the completed causal diagnosis.
 - PR #347 was recognized as merged through the consolidation. PRs #348-#359
@@ -244,28 +260,32 @@ a regression; unexplained failures or historical hash drift are.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The next eligible unit is provider-free causal work only: decide whether the
-remaining false positives are primarily paired two-surface completion pressure
-or whether the R4 reader architecture should stop. Do not retry A1 or A3,
+The next eligible unit, if separately authorized, is provider-free design of a
+single separated-versus-paired surface experiment. It may test only whether
+separation suppresses the Case 03/04 opposite-surface companion records while
+preserving genuine findings and must retain Case 01/02 quiet controls to expose
+independent governed-machinery errors. Do not treat separation as an earned
+repair, start design automatically, retry A1 or A3,
 execute rejected v1, create another authorization, or make an unapproved
 provider call. Do not reveal protected targets to a runner or modify frozen
 sources, priors, requests, operators, or outputs. R5, runtime/graph integration,
 relationship work, wider-corpus execution, model comparison, production-model
 selection, and product-usefulness claims remain gated and unauthorized.
 
-## Resume this local execution branch
+## Resume the local diagnosis branch
 
-The finished execution work is intentionally local and unpublished. On this
-machine:
+The execution evidence is canonical. The completed provider-free causal
+diagnosis is intentionally local and unpublished on this machine:
 
 ```bash
 cd /Users/marcin/Desktop/lolla-skill-main
-git switch agent/r4-matched-holdout-v2-execution-a1
+git switch agent/r4-residual-false-positive-causal-diagnosis
 git status -sb
-PYTHONPATH=. python3 scripts/evals/seal_r4_matched_holdout_v2_execution_a1.py --validate-only
-PYTHONPATH=. python3 scripts/evals/finalize_r4_matched_holdout_v2_execution_a1.py --validate-only
+python3 -m json.tool research/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14/causal-diagnosis.json >/dev/null
+PYTHONPATH=. pytest -q tests/test_r4_provider_free_corpus_replay.py
 ```
 
 Do not infer publication or provider authorization from this local branch,
-the runner, historical authorizations, or the completed evidence. Publishing
-this branch requires a separate founder instruction.
+the diagnosis, historical authorizations, or the completed evidence. Publishing
+this branch, designing the ablation, and executing it each require their own
+founder decision.

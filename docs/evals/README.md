@@ -1375,3 +1375,34 @@ Continuation entrypoints:
 - `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/source-first-review.json`;
 - `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/evidence-manifest.json`;
 - `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/execution-closeout.json`.
+
+## R4 residual false-positive causal diagnosis — 2026-07-14
+
+The provider-free follow-on diagnosis maps all five residual-arm false-positive
+records to their exact call ordinal, provider surface, canonical surface,
+provider aliases, strongest target aliases, source speakers, modal force,
+adopted machinery, prior influence, matched Arm A behavior, and source-first
+verdict. It separately rechecks the two genuine residual-arm targets and
+preserves the incomplete decisive-evidence issue on Case 04.
+
+The record pattern rejects paired completion as a general cause. Cases 01 and
+02 emitted governed thresholds and a scheduled decision even though neither
+surface had a genuine finding to complete; Arm A also returned exact zero on
+both Case 02 surfaces under the same paired response shape. Pairing remains a
+bounded causal rival for the Case 03/04 companion records because both genuine
+residual-arm findings were accompanied by an unsupported opposite-surface
+record, and Arm A showed the same duplicate pattern in Case 03.
+
+The decision is `r4_separated_surface_experiment_earned`. This is permission
+only to consider a separately authorized provider-free design goal for a
+single paired-versus-separated task-shape ablation. It does not claim that
+separation repairs governed-machinery classification, source-authority errors,
+evidence adjudication, model reliability, or product usefulness. The diagnosis
+made zero provider calls and created no prompt, schema, request, fixture,
+runner, holdout, authorization, or integration.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`;
+- `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`;
+- `research/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14/causal-diagnosis.json`.

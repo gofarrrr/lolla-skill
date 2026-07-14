@@ -384,8 +384,9 @@ corrected complementary-reader diagnostic closed; token allocation repaired;
 semantic-distinction holdout closed mechanically complete but semantically
 unsupported; provider-free causal diagnosis and residual-task identity repair
 complete; v1 matched design rejected for evidence leakage; provider-free
-leakage-corrected v2 matched holdout complete; no holdout execution or provider
-call authorized
+leakage-corrected v2 matched holdout and its one-use execution complete;
+execution result published; five-record provider-free false-positive causal
+diagnosis complete; no provider call or follow-on experiment authorized
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -748,6 +749,34 @@ The corrected provider-free decision is
 eligibility for a separate founder decision. See
 `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`.
 
+Matched-holdout v2 execution and false-positive diagnosis result:
+
+- the canonically published A1 execution completed all eight frozen calls once
+  for an exact provider-reported `$0.01408165`; its authorization is consumed
+  and its frozen decision is `residual_task_repair_insufficient`;
+- the residual arm retained the genuine Case 03 present gap and Case 04 future
+  dependency but produced five false-positive records and failed both quiet
+  controls;
+- Cases 01 and 02 disconfirm paired completion as a general cause: both were
+  quiet targets, yet the residual arm emitted governed thresholds and a
+  scheduled decision without any genuine companion finding to complete;
+- pairing remains a bounded causal rival for Case 03 and Case 04, where a
+  legitimate record was accompanied by an unsupported record on the opposite
+  surface; the same duplicate pattern also appeared in Case 03 Arm A;
+- source-authority failure is directly present in the Case 04
+  assistant-proposal record, while governed-machinery boundary failure is the
+  repeated quiet-control pattern; no single prompt-wording repair is supported
+  by the evidence;
+- the completed provider-free diagnosis made zero calls and created no prompt,
+  schema, request, fixture, runner, holdout, authorization, or implementation.
+
+The diagnosis decision is `r4_separated_surface_experiment_earned`. This earns
+only a separately authorized provider-free design of a paired-versus-separated
+task-shape ablation. It does not establish that separation is a repair, and the
+future design must retain quiet controls so governed-machinery errors cannot be
+mistaken for a pairing effect. See
+`docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -793,23 +822,25 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The leakage-corrected matched residual holdout v2 has now executed exactly once.
-All eight calls completed for `$0.01408165`. The residual arm preserved both
-genuine targets and removed some broad inventory, but it failed both quiet
-controls by repeating governed capacity and scheduled-decision errors and by
-adding duplicate or assistant-proposal records. The frozen decision is
-`residual_task_repair_insufficient`; the one-use authorization is consumed.
+The leakage-corrected matched residual holdout v2 executed exactly once and its
+negative result is canonical. The provider-free follow-on diagnosis is also
+complete. Paired generation is not the general cause of the five false-positive
+records, but a narrow separated-surface diagnostic is earned for the Case 03/04
+companion pattern.
 
-Do not retry or integrate the reader. The next eligible unit is a separate
-provider-free causal decision: determine whether the remaining false positives
-are primarily paired two-surface completion pressure, or whether the R4 reader
-architecture should stop. If that question cannot be isolated without changing
-source/prior authority, model/context, relationship behavior, runtime, graph,
-or adding a new provider surface, stop rather than bundle changes.
+Do not retry or integrate the reader. If the founder authorizes another goal,
+the next eligible unit is provider-free design of exactly one
+paired-versus-separated task-shape ablation. The design must preserve all other
+causal dimensions and include quiet controls that expose the Case 01/02
+governed-machinery errors. It must not assume that separation repairs the
+semantic boundary, source-authority failure, or evidence adjudication. If the
+effect cannot be isolated without changing ontology, source/prior authority,
+model/context, relationship behavior, runtime, graph, or provider state, stop
+rather than bundle changes.
 
-Until a new founder goal exists, make no provider call, create no execution
-authorization, execute rejected v1, retry the consumed A1 or A3 attempts, or
-change frozen sources, priors, targets, requests, operators, seeds, reasoning,
-or evaluation evidence. Runtime/graph integration, governed-pending output,
-model comparison, scalar scoring, R5, and product-usefulness claims remain
-unauthorized.
+Until a new founder goal exists, do not design the ablation, make a provider
+call, create an execution authorization, execute rejected v1, retry the consumed
+A1 or A3 attempts, or change frozen sources, priors, targets, requests,
+operators, seeds, reasoning, or evaluation evidence. Runtime/graph integration,
+governed-pending output, model comparison, scalar scoring, R5, and
+product-usefulness claims remain unauthorized.
