@@ -31,12 +31,13 @@ telemetry and cannot delete this portfolio.
 
 > **Development status (2026-07-14):** The end-to-end skill and custody harness
 > work, but V1 did not establish product reliability, real-user usefulness,
-> stability, or receipt reconstruction. R4 now has a provider-free
-> residual-discovery contract and a frozen leakage-corrected matched
-> four-case/eight-request holdout v2. The earlier v1 holdout is rejected because
-> its evidence leaked expected classifications. No model has been tested against
-> the residual contract, and it is not integrated into the runtime. The v2
-> package makes and authorizes zero provider calls.
+> stability, or receipt reconstruction. R4's leakage-corrected matched holdout
+> has now executed exactly once: all eight Gemini 3.1 Flash-Lite calls completed
+> for `$0.01408165`. The residual arm preserved both genuine targets and removed
+> some broad inventory, but it failed both quiet controls, so the frozen result
+> is `residual_task_repair_insufficient`. The earlier v1 holdout remains rejected
+> for semantic leakage. The residual reader is not integrated into the runtime,
+> its one-use authorization is consumed, and no further call is authorized.
 > Lolla does not certify that a revised answer is better or safe to act on. See
 > the
 > [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
@@ -53,6 +54,7 @@ telemetry and cannot delete this portfolio.
 > [R4 residual-task identity repair](docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md),
 > [R4 matched residual holdout design](docs/conversation-understanding/lolla-r4-matched-residual-holdout-design-result-2026-07-14.md),
 > [R4 matched-holdout v2 leakage correction](docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md),
+> [R4 matched-holdout v2 execution A1](docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md),
 > and the [current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md).
 
 ## Why This Exists
@@ -1343,6 +1345,19 @@ constructs no transport on dry run. The conservative estimate is `$0.040521`,
 with proposed anti-runaway ceilings of `$0.03` per matched case and `$0.12`
 total. No authorization artifact exists, no provider call was made, and model
 semantics and real-user usefulness remain unknown.
+
+The separately authorized
+**[matched-holdout v2 execution A1](docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md)**
+then completed all eight frozen Gemini 3.1 Flash-Lite calls once for an exact
+provider-reported `$0.01408165`. Raw bytes and mechanical custody were committed
+before the protected target was opened. Both arms recovered the genuine
+post-June service gap and Board-designation dependency. Arm B removed some
+broad inventory but still emitted governed capacity thresholds, the pilot's
+scheduled board decision, a duplicate future framing of the current service
+gap, and an assistant-proposed legal question. It failed both restraint
+controls, so the frozen decision is `residual_task_repair_insufficient`. The
+authorization is consumed; no retry, further call, integration, R5 work, or
+product-usefulness claim is authorized.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
