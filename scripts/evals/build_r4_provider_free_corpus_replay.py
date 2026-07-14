@@ -55,6 +55,8 @@ DOWNSTREAM_OUTPUT_ROOTS = (
     ROOT / "research/lolla-r4-residual-task-contract-2026-07-14",
     ROOT / "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14",
     ROOT / "research/lolla-r4-matched-residual-holdout-contract-2026-07-14",
+    ROOT / "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14",
+    ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14",
 )
 DOWNSTREAM_INPUT_PATHS = (
     ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
@@ -67,6 +69,10 @@ DOWNSTREAM_INPUT_PATHS = (
     ROOT / "docs/evals/lolla-r4-semantic-distinction-holdout-authorization-a3.json",
     ROOT / "docs/evals/lolla-r4-matched-residual-holdout-contract-v1.json",
     ROOT / "docs/evals/lolla-r4-matched-residual-holdout-target-v1.json",
+    ROOT / "docs/evals/lolla-r4-matched-residual-holdout-v1-rejection.json",
+    ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json",
+    ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target-review.json",
+    ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json",
 )
 
 EXPECTED_INPUT_HASHES = {

@@ -3,11 +3,12 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import copy
 import json
 import re
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterator, Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -42,6 +43,11 @@ CONTRACT_PATH = ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
 REQUEST_OUTPUT_ROOT = (
     ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14"
 )
+PRACTICE_PATH = ROOT / (
+    "docs/conversation-understanding/"
+    "lolla-r4-matched-holdout-v2-current-practice-2026-07-14.md"
+)
+RUNNER_PATH = ROOT / "scripts/evals/run_r4_matched_holdout_v2_experiment.py"
 CASE_IDS = (
     "r4h2-case01-community-audio-archive",
     "r4h2-case02-serialized-essay-pilot",
@@ -992,3 +998,580 @@ def validate_request_preview_files() -> dict[str, Any]:
         "provider_calls": 0,
         "provider_cost_usd": 0.0,
     }
+
+
+def _json_difference_paths(left: Any, right: Any, path: str = "") -> list[str]:
+    if type(left) is not type(right):
+        return [path]
+    if isinstance(left, dict):
+        result: list[str] = []
+        for key in sorted(set(left) | set(right)):
+            child = f"{path}/{key}"
+            if key not in left or key not in right:
+                result.append(child)
+            else:
+                result.extend(_json_difference_paths(left[key], right[key], child))
+        return result
+    if isinstance(left, list):
+        if len(left) != len(right):
+            return [path]
+        result = []
+        for index, (left_value, right_value) in enumerate(zip(left, right)):
+            result.extend(
+                _json_difference_paths(left_value, right_value, f"{path}/{index}")
+            )
+        return result
+    return [] if left == right else [path]
+
+
+def validate_matched_request_pair(
+    *,
+    packet: Mapping[str, Any],
+    arm_a: Mapping[str, Any],
+    arm_b: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Rebuild both arms and reject every difference outside the intervention."""
+
+    case_id = str(packet["case_id"])
+    v2_schema = uncertainty_response_schema_v1()
+    residual_schema = residual_response_schema_v1()
+    expected_a = _request_preview(
+        case_id=case_id,
+        arm="A_frozen_v2_semantic_distinction",
+        prompts=build_uncertainty_prompts_v2(packet),
+        schema=v2_schema,
+        schema_name="lolla_r4_uncertainty_v1",
+    )
+    expected_b = _request_preview(
+        case_id=case_id,
+        arm="B_frozen_residual_task",
+        prompts=build_residual_prompts_v1(packet),
+        schema=residual_schema,
+        schema_name="lolla_r4_residual_task_v1",
+    )
+    if dict(arm_a) != expected_a:
+        raise R4MatchedHoldoutV2Error(
+            "arm A request does not equal the exact frozen v2 construction"
+        )
+    if dict(arm_b) != expected_b:
+        raise R4MatchedHoldoutV2Error(
+            "arm B request does not equal the exact frozen residual construction"
+        )
+    allowed_schema_differences = [
+        "/description",
+        "/properties/reviews/description",
+        "/properties/reviews/items/description",
+        "/properties/reviews/items/properties/outcome/description",
+        "/properties/reviews/items/properties/records/description",
+        "/properties/reviews/items/properties/records/items/description",
+        "/properties/reviews/items/properties/records/items/properties/evidence_ids/description",
+        "/properties/reviews/items/properties/records/items/properties/interpretation/description",
+        "/properties/reviews/items/properties/records/items/properties/limitations/description",
+        "/properties/reviews/items/properties/records/items/properties/support/description",
+        "/properties/reviews/items/properties/surface/description",
+        "/properties/reviews/items/properties/surface/enum/0",
+        "/properties/reviews/items/properties/surface/enum/1",
+    ]
+    schema_differences = _json_difference_paths(v2_schema, residual_schema)
+    undeclared = sorted(set(schema_differences) - set(allowed_schema_differences))
+    equal_fields = [
+        f"/{field}"
+        for field in (
+            "max_tokens",
+            "model",
+            "provider",
+            "reasoning",
+            "seed",
+            "stream",
+        )
+        if arm_a["body"][field] == arm_b["body"][field]
+    ]
+    if len(equal_fields) != 6 or undeclared:
+        raise R4MatchedHoldoutV2Error("undeclared matched request delta")
+    source_text = canonical_json_bytes(packet["source"]).decode("utf-8")
+    prior_text = canonical_json_bytes(
+        packet["prior_interpretation_context"]
+    ).decode("utf-8")
+    users = [
+        arm_a["body"]["messages"][1]["content"],
+        arm_b["body"]["messages"][1]["content"],
+    ]
+    matched_context = all(
+        user.count(source_text) == 1
+        and user.count(prior_text) == 1
+        and user.index(source_text) < user.index(prior_text) < user.index("<task>")
+        for user in users
+    )
+    if not matched_context:
+        raise R4MatchedHoldoutV2Error("undeclared matched request delta")
+    return {
+        "schema_version": "lolla.r4_matched_request_delta.v2",
+        "case_id": case_id,
+        "matched_source_and_prior": True,
+        "equal_body_fields": equal_fields,
+        "allowed_provider_visible_change_categories": [
+            "role",
+            "task operation",
+            "surface vocabulary",
+            "schema name and enum descriptions",
+            "examples",
+            "evidence wording",
+            "output rules",
+        ],
+        "changed_body_paths": [
+            "/messages/0/content",
+            "/messages/1/content/task_operation_and_vocabulary_only",
+            "/response_format/json_schema/name",
+            "/response_format/json_schema/schema/declared_semantic_labels_and_descriptions_only",
+        ],
+        "schema_difference_paths": schema_differences,
+        "undeclared_differences": [],
+        "paired_task_shape_unchanged": True,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+
+
+def build_matched_delta_files() -> dict[str, bytes]:
+    """Build declared matched deltas only after exact previews are frozen."""
+
+    validate_request_preview_files()
+    files: dict[str, bytes] = {}
+    for case_id in CASE_IDS:
+        case_root = REQUEST_OUTPUT_ROOT / "cases" / case_id
+        delta = validate_matched_request_pair(
+            packet=_load(case_root / "uncertainty-packet.json"),
+            arm_a=_load(case_root / "arm-a-request-preview.json"),
+            arm_b=_load(case_root / "arm-b-request-preview.json"),
+        )
+        files[_relative(case_root / "matched-request-delta.json")] = _render(delta)
+    return files
+
+
+def write_matched_delta_files() -> dict[str, Any]:
+    files = build_matched_delta_files()
+    for relative, raw in files.items():
+        (ROOT / relative).write_bytes(raw)
+    return validate_matched_delta_files()
+
+
+def validate_matched_delta_files() -> dict[str, Any]:
+    expected = build_matched_delta_files()
+    for relative, raw in expected.items():
+        if not (ROOT / relative).is_file() or (ROOT / relative).read_bytes() != raw:
+            raise R4MatchedHoldoutV2Error(
+                f"matched request delta drifted: {relative}"
+            )
+    return {
+        "status": "exact_matched_request_deltas_valid",
+        "case_count": len(CASE_IDS),
+        "undeclared_difference_count": 0,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+
+
+def _request_case_records() -> dict[str, dict[str, Any]]:
+    inputs = load_v2_source_prior()
+    records: dict[str, dict[str, Any]] = {}
+    for case_id in CASE_IDS:
+        case_root = REQUEST_OUTPUT_ROOT / "cases" / case_id
+        arm_records: dict[str, dict[str, Any]] = {}
+        for key, label in (
+            ("A", "A_frozen_v2_semantic_distinction"),
+            ("B", "B_frozen_residual_task"),
+        ):
+            preview_path = case_root / f"arm-{key.lower()}-request-preview.json"
+            context_path = case_root / f"arm-{key.lower()}-context-manifest.json"
+            preview = _load(preview_path)
+            context = _load(context_path)
+            estimated_input = context["request_estimate"]["estimated_input_tokens"]
+            estimated_cost = round(
+                estimated_input * 0.25 / 1_000_000
+                + 1600 * 1.5 / 1_000_000,
+                9,
+            )
+            if preview.get("arm") != label:
+                raise R4MatchedHoldoutV2Error(f"request arm drifted: {case_id}/{key}")
+            arm_records[key] = {
+                "arm": label,
+                "request_preview_path": _relative(preview_path),
+                "request_body_sha256": preview["body_sha256"],
+                "context_manifest_path": _relative(context_path),
+                "estimated_input_tokens": estimated_input,
+                "maximum_output_tokens": 1600,
+                "conservative_estimated_cost_usd": estimated_cost,
+            }
+        packet_path = case_root / "uncertainty-packet.json"
+        records[case_id] = {
+            "case_id": case_id,
+            "source_path": inputs[case_id]["source_path"],
+            "source_sha256": inputs[case_id]["source_sha256"],
+            "prior_path": inputs[case_id]["prior_path"],
+            "prior_sha256": inputs[case_id]["prior_sha256"],
+            "packet_path": _relative(packet_path),
+            "packet_sha256": _sha(packet_path),
+            "source_registry_path": _relative(case_root / "source-registry.json"),
+            "matched_request_delta_path": _relative(
+                case_root / "matched-request-delta.json"
+            ),
+            "arms": arm_records,
+            "matched_case_cost_usd": round(
+                sum(
+                    arm["conservative_estimated_cost_usd"]
+                    for arm in arm_records.values()
+                ),
+                9,
+            ),
+        }
+    return records
+
+
+def build_contract_files() -> dict[str, bytes]:
+    """Build the non-authorizing execution package after all request deltas."""
+
+    validate_matched_delta_files()
+    validate_source_first_target_freeze()
+    if not PRACTICE_PATH.is_file() or not RUNNER_PATH.is_file():
+        raise R4MatchedHoldoutV2Error("practice note or future runner is absent")
+    runner_source = RUNNER_PATH.read_text(encoding="utf-8").lower()
+    if any(
+        phrase in runner_source
+        for phrase in ("target", "leakage-audit", HUMAN_LEAKAGE_DECLARATION)
+    ):
+        raise R4MatchedHoldoutV2Error("future runner can discover protected review")
+
+    case_records = _request_case_records()
+    order = (
+        (CASE_IDS[0], "A"),
+        (CASE_IDS[0], "B"),
+        (CASE_IDS[1], "B"),
+        (CASE_IDS[1], "A"),
+        (CASE_IDS[2], "B"),
+        (CASE_IDS[2], "A"),
+        (CASE_IDS[3], "A"),
+        (CASE_IDS[3], "B"),
+    )
+    call_plan: list[dict[str, Any]] = []
+    for ordinal, (case_id, arm_key) in enumerate(order, 1):
+        arm = case_records[case_id]["arms"][arm_key]
+        call_plan.append(
+            {
+                "ordinal": ordinal,
+                "case_id": case_id,
+                "arm": arm["arm"],
+                "request_preview_path": arm["request_preview_path"],
+                "request_body_sha256": arm["request_body_sha256"],
+                "conservative_estimated_cost_usd": arm[
+                    "conservative_estimated_cost_usd"
+                ],
+            }
+        )
+    total_estimate = round(
+        sum(row["conservative_estimated_cost_usd"] for row in call_plan), 9
+    )
+    if total_estimate != 0.040521:
+        raise R4MatchedHoldoutV2Error("v2 conservative cost estimate drifted")
+
+    v2_schema = uncertainty_response_schema_v1()
+    residual_schema = residual_response_schema_v1()
+    frozen_history = {
+        "v1_module_sha256": _sha(
+            ROOT / "engine/system_b/r4_complementary_readers.py"
+        ),
+        "v2_module_sha256": _sha(
+            ROOT / "engine/system_b/r4_semantic_distinction.py"
+        ),
+        "residual_module_sha256": _sha(
+            ROOT / "engine/system_b/r4_residual_task.py"
+        ),
+        "v2_schema_sha256": value_sha256(v2_schema),
+        "residual_schema_sha256": value_sha256(residual_schema),
+        "rejected_v1_checkpoint": "b46464278e86f4c5d6c53e154bc272d93f09b116",
+        "provider_free_corpus_replay": {
+            "cases": 12,
+            "case_artifact_links": 543,
+            "unique_frozen_json_artifacts": 400,
+        },
+    }
+    expected_history = {
+        "v1_module_sha256": "9253290093e62f62a9adbf8902ccf010ac4d4417c345222e4756e771496bf777",
+        "v2_module_sha256": "e774b19cd2bac461e6d586dffbde48515ab23d6f73e1eb158ed87bdcdccdf3c8",
+        "residual_module_sha256": "726d4bc649e8e488b5783906785fc3b481ba3ce295dac5155fcff8cd0a83616a",
+        "v2_schema_sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+        "residual_schema_sha256": "70e62d8faa27fcff6517ebaf54433ecd8f534690d86cfc6d219a1e8420b42087",
+        "rejected_v1_checkpoint": "b46464278e86f4c5d6c53e154bc272d93f09b116",
+        "provider_free_corpus_replay": {
+            "cases": 12,
+            "case_artifact_links": 543,
+            "unique_frozen_json_artifacts": 400,
+        },
+    }
+    if frozen_history != expected_history:
+        raise R4MatchedHoldoutV2Error("historical v1/v2/residual boundary drifted")
+
+    visible_paths = sorted(
+        path
+        for path in REQUEST_OUTPUT_ROOT.glob("cases/**/*.json")
+        if path.name
+        in {
+            "source-registry.json",
+            "uncertainty-packet.json",
+            "arm-a-request-preview.json",
+            "arm-b-request-preview.json",
+            "arm-a-context-manifest.json",
+            "arm-b-context-manifest.json",
+            "matched-request-delta.json",
+        }
+    )
+    execution_manifest = {
+        "schema_version": "lolla.r4_matched_residual_execution_manifest.v2",
+        "status": "frozen_runner_visible_inputs_no_authorization",
+        "files": [
+            {
+                "path": _relative(path),
+                "sha256": _sha(path),
+                "utf8_bytes": len(path.read_bytes()),
+            }
+            for path in visible_paths
+        ],
+        "protected_review_reference_present": False,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+    execution_path = REQUEST_OUTPUT_ROOT / "execution-manifest.json"
+    execution_raw = _render(execution_manifest)
+
+    contract = {
+        "schema_version": "lolla.r4_matched_residual_holdout_contract.v2",
+        "status": "provider_free_matched_holdout_v2_frozen_no_authorization",
+        "date": "2026-07-14",
+        "run_id": "lolla-r4-matched-residual-holdout-v2",
+        "falsifiable_question": "On the same new hidden long-form evidence, does the residual-task contract improve false-positive restraint over frozen v2 while preserving sensitivity to materially distinct residuals?",
+        "cases": [case_records[case_id] for case_id in CASE_IDS],
+        "call_plan": call_plan,
+        "counterbalancing": {
+            "fixed_before_execution": True,
+            "arm_a_first_cases": [CASE_IDS[0], CASE_IDS[3]],
+            "arm_b_first_cases": [CASE_IDS[1], CASE_IDS[2]],
+            "same_seed_within_each_case": True,
+        },
+        "operator": {
+            "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+            "model": "google/gemini-3.1-flash-lite",
+            "allowed_served_model_ids": [
+                "google/gemini-3.1-flash-lite",
+                "google/gemini-3.1-flash-lite-20260507",
+            ],
+            "provider_slug": "google-vertex",
+            "allowed_served_provider_names": ["Google"],
+            "provider_order": ["google-vertex"],
+            "provider_only": ["google-vertex"],
+            "allow_fallbacks": False,
+            "require_parameters": True,
+            "data_collection": "deny",
+            "zdr": True,
+            "maximum_price_usd_per_million_tokens": {
+                "prompt": 0.25,
+                "completion": 1.5,
+            },
+            "seed_policy": "one fixed seed per case, byte-identical between arms",
+            "maximum_output_tokens": 1600,
+            "reasoning": {"effort": "minimal", "exclude": True},
+            "stream": False,
+            "strict_json_schema": True,
+        },
+        "budget": {
+            "maximum_provider_calls": 8,
+            "hard_provider_reported_cost_per_case_usd": 0.03,
+            "hard_provider_reported_cost_total_usd": 0.12,
+            "conservative_estimated_total_cost_usd": total_estimate,
+            "automatic_retries": 0,
+            "semantic_retries": 0,
+            "fallback_models": 0,
+            "response_healing": False,
+            "relationship_calls": 0,
+            "evaluator_calls": 0,
+            "embedding_calls": 0,
+            "graph_calls": 0,
+            "pipeline_calls": 0,
+            "runtime_calls": 0,
+        },
+        "execution_envelope": {
+            "first_terminal_provider_result_preserved_exactly": True,
+            "stop_on_transport_failure": True,
+            "stop_on_provider_identity_failure": True,
+            "stop_on_budget_failure": True,
+            "stop_on_schema_or_local_admission_failure": True,
+            "stop_on_reasoning_custody_failure": True,
+            "stop_on_authorization_failure": True,
+            "generation_identity_required": True,
+            "exact_usage_and_provider_reported_cost_required": True,
+            "request_and_raw_response_hashes_required": True,
+            "no_retry_fallback_healing_or_substitution": True,
+            "no_relationship_evaluator_embedding_graph_pipeline_or_runtime_calls": True,
+            "execution_manifest_path": _relative(execution_path),
+            "execution_manifest_sha256": hashlib.sha256(execution_raw).hexdigest(),
+            "protected_review_access_possible": False,
+        },
+        "evaluation_contract": {
+            "vector": [
+                "mechanical_execution_and_exact_provider_attribution",
+                "false_positive_restraint",
+                "genuine_residual_sensitivity",
+                "zero_versus_ambiguity_behavior",
+                "evidence_precision",
+                "semantic_surface_placement",
+                "speaker_and_modal_fidelity",
+                "prior_anchoring_resistance",
+                "long_context_and_late_evidence_use",
+                "operational_cost_and_custody",
+            ],
+            "scalar_quality_score": None,
+            "mixed_findings_must_not_be_collapsed": True,
+        },
+        "decision_matrix": {
+            "residual_task_identity_supported": "Residual passes all restraint and sensitivity gates while v2 repeats predicted broad-inventory errors.",
+            "holdout_non_discriminating": "Both arms pass.",
+            "residual_task_overcorrected": "Residual quiets controls but misses either genuine residual.",
+            "residual_task_repair_insufficient": "Residual repeats safeguard, fallback, or review false positives.",
+            "residual_task_regressed": "Residual performs materially worse than v2.",
+            "semantic_result_not_evaluable": "Mechanical or custody failure prevents matched comparison.",
+        },
+        "current_official_practice": {
+            "path": _relative(PRACTICE_PATH),
+            "sha256": _sha(PRACTICE_PATH),
+            "date_checked": "2026-07-14",
+            "primary_sources_only": True,
+        },
+        "future_runner": {
+            "path": _relative(RUNNER_PATH),
+            "sha256": _sha(RUNNER_PATH),
+            "network_transport_created_only_after_authorization": True,
+            "dry_run_provider_calls": 0,
+        },
+        "future_authorization_shape": {
+            "schema_version": "lolla.r4_matched_residual_holdout_authorization.v2",
+            "artifact_created": False,
+            "must_match_contract_sha256": True,
+            "must_match_all_eight_request_hashes": True,
+            "must_match_counterbalanced_order": True,
+            "maximum_provider_calls": 8,
+            "hard_provider_reported_cost_per_case_usd": 0.03,
+            "hard_provider_reported_cost_total_usd": 0.12,
+            "all_other_call_classes_zero": True,
+        },
+        "frozen_history": frozen_history,
+        "decision_boundary": {
+            "provider_calls_authorized": False,
+            "authorization_file_present": False,
+            "package_grants_authorization": False,
+            "package_requests_authorization": False,
+            "holdout_execution_authorized": False,
+            "relationship_validation_authorized": False,
+            "runtime_or_graph_integration_authorized": False,
+            "model_comparison_authorized": False,
+            "r5_authorized": False,
+            "product_usefulness_claim_authorized": False,
+        },
+        "provider_calls_made": 0,
+        "provider_cost_usd": 0.0,
+        "non_claims": [
+            "This design does not authorize or request a provider call.",
+            "Provider-free contract and fixture validity are not model semantic validation.",
+            "The four cases are simulated reliability evidence, not real-user evidence.",
+            "A future matched result does not establish product usefulness or authorize integration.",
+        ],
+    }
+    contract_raw = _render(contract)
+    package_paths = sorted(
+        [*visible_paths, PRACTICE_PATH, RUNNER_PATH]
+    )
+    package_manifest = {
+        "schema_version": "lolla.r4_matched_residual_artifact_manifest.v2",
+        "status": "provider_free_exact_holdout_v2_artifacts_frozen",
+        "date": "2026-07-14",
+        "files": [
+            {
+                "path": _relative(path),
+                "sha256": _sha(path),
+                "utf8_bytes": len(path.read_bytes()),
+            }
+            for path in package_paths
+        ]
+        + [
+            {
+                "path": _relative(execution_path),
+                "sha256": hashlib.sha256(execution_raw).hexdigest(),
+                "utf8_bytes": len(execution_raw),
+            },
+            {
+                "path": _relative(CONTRACT_PATH),
+                "sha256": hashlib.sha256(contract_raw).hexdigest(),
+                "utf8_bytes": len(contract_raw),
+            },
+        ],
+        "protected_review_reference_present": False,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+    return {
+        _relative(CONTRACT_PATH): contract_raw,
+        _relative(execution_path): execution_raw,
+        _relative(REQUEST_OUTPUT_ROOT / "manifest.json"): _render(package_manifest),
+    }
+
+
+def write_contract_package() -> dict[str, Any]:
+    files = build_contract_files()
+    for relative, raw in files.items():
+        path = ROOT / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(raw)
+    return validate_contract_package()
+
+
+def validate_contract_package() -> dict[str, Any]:
+    expected = build_contract_files()
+    for relative, raw in expected.items():
+        path = ROOT / relative
+        if not path.is_file() or path.read_bytes() != raw:
+            raise R4MatchedHoldoutV2Error(f"contract artifact drifted: {relative}")
+    contract = _load(CONTRACT_PATH)
+    if (
+        contract.get("provider_calls_made") != 0
+        or contract.get("provider_cost_usd") != 0.0
+        or contract.get("decision_boundary", {}).get("provider_calls_authorized")
+        is not False
+    ):
+        raise R4MatchedHoldoutV2Error("contract decision boundary drifted")
+    return contract
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--validate-only", action="store_true")
+    args = parser.parse_args(argv)
+    contract = validate_contract_package() if args.validate_only else write_contract_package()
+    print(
+        json.dumps(
+            {
+                "status": contract["status"],
+                "provider_calls_made": contract["provider_calls_made"],
+                "provider_cost_usd": contract["provider_cost_usd"],
+                "provider_calls_authorized": contract["decision_boundary"][
+                    "provider_calls_authorized"
+                ],
+                "conservative_estimated_total_cost_usd": contract["budget"][
+                    "conservative_estimated_total_cost_usd"
+                ],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

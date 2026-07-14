@@ -7,12 +7,17 @@ import subprocess
 
 import pytest
 
+from engine.system_b.r4_complementary_readers import canonical_json_bytes
+from scripts.evals import run_r4_matched_holdout_v2_experiment as runner
 from scripts.evals.build_r4_matched_holdout_v2_contract import (
     CASE_IDS,
     FORBIDDEN_ANSWER_LANGUAGE,
     HUMAN_LEAKAGE_DECLARATION,
     R4MatchedHoldoutV2Error,
     REQUEST_OUTPUT_ROOT,
+    CONTRACT_PATH,
+    build_contract_files,
+    build_matched_delta_files,
     build_request_preview_files,
     build_human_review_freeze_files,
     build_human_review_record,
@@ -23,6 +28,9 @@ from scripts.evals.build_r4_matched_holdout_v2_contract import (
     validate_human_review_freeze,
     validate_human_review_record,
     validate_request_preview_files,
+    validate_matched_request_pair,
+    validate_matched_delta_files,
+    validate_contract_package,
     validate_source_first_target_freeze,
 )
 
@@ -212,7 +220,7 @@ def test_human_gate_audit_records_pass_without_automating_semantic_judgment() ->
     assert audit["human_semantic_sufficiency_decided"] is True
     assert audit["human_declaration"] == HUMAN_LEAKAGE_DECLARATION
     assert audit["target_authored"] is True
-    assert audit["request_preview_authored"] is False
+    assert audit["request_preview_authored"] is True
     assert audit["provider_calls"] == 0
     assert audit["provider_cost_usd"] == 0.0
 
@@ -232,7 +240,7 @@ def test_human_gate_audit_records_pass_without_automating_semantic_judgment() ->
     assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
     ).exists()
-    assert not (
+    assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
     ).exists()
 
@@ -303,7 +311,7 @@ def test_human_review_and_source_prior_freeze_are_exact_before_target() -> None:
     assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
     ).exists()
-    assert not (
+    assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
     ).exists()
 
@@ -373,7 +381,7 @@ def test_protected_source_first_target_is_hash_bound_and_predates_requests() -> 
     assert (
         ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14"
     ).exists()
-    assert not (
+    assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
     ).exists()
 
@@ -459,3 +467,379 @@ def test_exact_matched_provider_blind_request_previews_preserve_full_context() -
         assert arm_a["body"]["model"] == "google/gemini-3.1-flash-lite"
         assert arm_a["body"]["provider"]["only"] == ["google-vertex"]
         assert arm_a["body"]["provider"]["allow_fallbacks"] is False
+
+
+def test_exact_declared_request_deltas_reject_every_undeclared_change() -> None:
+    expected = build_matched_delta_files()
+    result = validate_matched_delta_files()
+
+    assert len(expected) == 4
+    assert result == {
+        "status": "exact_matched_request_deltas_valid",
+        "case_count": 4,
+        "undeclared_difference_count": 0,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+    for case_id in CASE_IDS:
+        case_root = REQUEST_OUTPUT_ROOT / "cases" / case_id
+        relative = str(
+            (case_root / "matched-request-delta.json").relative_to(ROOT)
+        )
+        assert (ROOT / relative).read_bytes() == expected[relative]
+        delta = json.loads(expected[relative])
+        assert delta["matched_source_and_prior"] is True
+        assert delta["paired_task_shape_unchanged"] is True
+        assert delta["undeclared_differences"] == []
+        assert len(delta["schema_difference_paths"]) == 13
+
+        packet = json.loads((case_root / "uncertainty-packet.json").read_text())
+        arm_a = json.loads((case_root / "arm-a-request-preview.json").read_text())
+        arm_b = json.loads((case_root / "arm-b-request-preview.json").read_text())
+        changed = json.loads(json.dumps(arm_b))
+        changed["body"]["seed"] += 1
+        with pytest.raises(R4MatchedHoldoutV2Error, match="exact frozen residual"):
+            validate_matched_request_pair(
+                packet=packet,
+                arm_a=arm_a,
+                arm_b=changed,
+            )
+
+
+def test_non_authorizing_contract_freezes_counterbalanced_eight_call_envelope() -> None:
+    expected = build_contract_files()
+    contract = validate_contract_package()
+
+    assert set(expected) == {
+        "docs/evals/lolla-r4-matched-holdout-v2-contract.json",
+        "research/lolla-r4-matched-holdout-v2-contract-2026-07-14/execution-manifest.json",
+        "research/lolla-r4-matched-holdout-v2-contract-2026-07-14/manifest.json",
+    }
+    for relative, raw in expected.items():
+        assert (ROOT / relative).read_bytes() == raw
+    assert contract["status"] == (
+        "provider_free_matched_holdout_v2_frozen_no_authorization"
+    )
+    assert contract["provider_calls_made"] == 0
+    assert contract["provider_cost_usd"] == 0.0
+    assert contract["decision_boundary"]["provider_calls_authorized"] is False
+    assert contract["decision_boundary"]["authorization_file_present"] is False
+    assert contract["decision_boundary"]["package_requests_authorization"] is False
+    assert contract["budget"]["maximum_provider_calls"] == 8
+    assert contract["budget"]["conservative_estimated_total_cost_usd"] == 0.040521
+    assert contract["budget"]["hard_provider_reported_cost_per_case_usd"] == 0.03
+    assert contract["budget"]["hard_provider_reported_cost_total_usd"] == 0.12
+    assert [(row["case_id"], row["arm"][0]) for row in contract["call_plan"]] == [
+        (CASE_IDS[0], "A"),
+        (CASE_IDS[0], "B"),
+        (CASE_IDS[1], "B"),
+        (CASE_IDS[1], "A"),
+        (CASE_IDS[2], "B"),
+        (CASE_IDS[2], "A"),
+        (CASE_IDS[3], "A"),
+        (CASE_IDS[3], "B"),
+    ]
+    assert contract["operator"]["model"] == "google/gemini-3.1-flash-lite"
+    assert contract["operator"]["provider_only"] == ["google-vertex"]
+    assert contract["operator"]["allow_fallbacks"] is False
+    assert contract["operator"]["maximum_output_tokens"] == 1600
+    assert contract["operator"]["reasoning"] == {
+        "effort": "minimal",
+        "exclude": True,
+    }
+    assert contract["evaluation_contract"]["scalar_quality_score"] is None
+    assert len(contract["evaluation_contract"]["vector"]) == 10
+    assert contract["frozen_history"]["provider_free_corpus_replay"] == {
+        "cases": 12,
+        "case_artifact_links": 543,
+        "unique_frozen_json_artifacts": 400,
+    }
+    serialized = json.dumps(contract, sort_keys=True).lower()
+    assert "lolla-r4-matched-holdout-v2-target" not in serialized
+    assert "target-review" not in serialized
+    assert HUMAN_LEAKAGE_DECLARATION not in serialized
+    assert not list(ROOT.glob("**/*matched-holdout-v2*authorization*.json"))
+
+
+def test_future_runner_is_target_blind_and_requires_exact_separate_authorization(
+    tmp_path: Path,
+) -> None:
+    contract = runner.validate_contract()
+    source = Path(runner.__file__).read_text(encoding="utf-8").lower()
+    execution_manifest = json.loads(
+        (
+            ROOT
+            / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14/execution-manifest.json"
+        ).read_text(encoding="utf-8")
+    )
+
+    assert "target" not in source
+    assert "leakage" not in source
+    assert HUMAN_LEAKAGE_DECLARATION not in source
+    assert "target" not in json.dumps(execution_manifest).lower()
+    assert execution_manifest["protected_review_reference_present"] is False
+    expected = runner.expected_authorization(contract=contract)
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(expected, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    runner.validate_authorization(authorization, contract=contract)
+
+    expanded = dict(expected)
+    expanded["maximum_provider_calls"] = 9
+    authorization.write_text(
+        json.dumps(expanded, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    with pytest.raises(runner.R4MatchedHoldoutV2RunError, match="authorization"):
+        runner.validate_authorization(authorization, contract=contract)
+
+
+def test_dry_run_cannot_construct_transport(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    contract = runner.validate_contract()
+    frozen_runner = contract["future_runner"]
+    runner_path = ROOT / frozen_runner["path"]
+
+    assert runner_path.resolve() == Path(runner.__file__).resolve()
+    assert _sha(runner_path) == frozen_runner["sha256"]
+    monkeypatch.setattr(
+        runner,
+        "_openrouter_transport",
+        lambda **_kwargs: (_ for _ in ()).throw(
+            AssertionError("dry run attempted to construct network transport")
+        ),
+    )
+    assert runner.main(["--dry-run"]) == 0
+    assert json.loads(capsys.readouterr().out) == {
+        "authorization_present": False,
+        "conservative_estimated_total_cost_usd": 0.040521,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+        "status": "frozen_matched_residual_v2_contract_valid",
+    }
+
+
+class _FakeSuccessfulTransport:
+    def __init__(self) -> None:
+        self.request_hashes: list[str] = []
+
+    def __call__(self, body: dict) -> bytes:
+        self.request_hashes.append(hashlib.sha256(canonical_json_bytes(body)).hexdigest())
+        surfaces = body["response_format"]["json_schema"]["schema"]["properties"][
+            "reviews"
+        ]["items"]["properties"]["surface"]["enum"]
+        candidate = {
+            "reviews": [
+                {
+                    "surface": surface,
+                    "outcome": "no_supported_record_observed",
+                    "records": [],
+                }
+                for surface in surfaces
+            ],
+            "global_limitations": "fake transport structural result only",
+        }
+        ordinal = len(self.request_hashes)
+        payload = {
+            "id": f"fake-generation-{ordinal:02d}",
+            "model": "google/gemini-3.1-flash-lite",
+            "provider": "Google",
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {"content": json.dumps(candidate, sort_keys=True)},
+                }
+            ],
+            "usage": {
+                "prompt_tokens": 1000,
+                "completion_tokens": 100,
+                "total_tokens": 1100,
+                "completion_tokens_details": {"reasoning_tokens": 0},
+                "cost": 0.001,
+            },
+        }
+        return json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+
+
+def _authorization_file(tmp_path: Path, contract: dict) -> Path:
+    path = tmp_path / "authorization.json"
+    path.write_text(
+        json.dumps(
+            runner.expected_authorization(contract=contract), indent=2, sort_keys=True
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return path
+
+
+def test_fake_transport_completes_exact_counterbalanced_eight_call_envelope(
+    tmp_path: Path,
+) -> None:
+    contract = runner.validate_contract()
+    transport = _FakeSuccessfulTransport()
+    result = runner.execute(
+        contract=contract,
+        authorization_path=_authorization_file(tmp_path, contract),
+        output=tmp_path / "run",
+        transport=transport,
+    )
+
+    assert result["status"] == "matched_execution_complete"
+    assert result["provider_calls"] == 8
+    assert result["provider_reported_cost_usd"] == 0.008
+    assert result["call_ordinals"] == list(range(1, 9))
+    assert transport.request_hashes == [
+        row["request_body_sha256"] for row in contract["call_plan"]
+    ]
+    assert all(row["operator_attribution_ok"] for row in result["calls"])
+    assert all(row["reasoning_custody"]["exclusion_satisfied"] for row in result["calls"])
+    assert all(row["local_admission_status"] == "passed" for row in result["calls"])
+    assert len(list((tmp_path / "run").glob("call-*-raw-response.bin"))) == 8
+    assert {
+        "relationship_calls": result["relationship_calls"],
+        "evaluator_calls": result["evaluator_calls"],
+        "embedding_calls": result["embedding_calls"],
+        "graph_calls": result["graph_calls"],
+        "pipeline_calls": result["pipeline_calls"],
+        "runtime_calls": result["runtime_calls"],
+    } == {
+        "relationship_calls": 0,
+        "evaluator_calls": 0,
+        "embedding_calls": 0,
+        "graph_calls": 0,
+        "pipeline_calls": 0,
+        "runtime_calls": 0,
+    }
+
+
+class _FailOnThirdTransport(_FakeSuccessfulTransport):
+    def __call__(self, body: dict) -> bytes:
+        if len(self.request_hashes) == 2:
+            self.request_hashes.append(
+                hashlib.sha256(canonical_json_bytes(body)).hexdigest()
+            )
+            raise OSError("synthetic first transport failure")
+        return super().__call__(body)
+
+
+def test_first_transport_failure_stops_without_retry_fallback_or_healing(
+    tmp_path: Path,
+) -> None:
+    contract = runner.validate_contract()
+    transport = _FailOnThirdTransport()
+    output = tmp_path / "failed-run"
+    result = runner.execute(
+        contract=contract,
+        authorization_path=_authorization_file(tmp_path, contract),
+        output=output,
+        transport=transport,
+    )
+
+    assert result["status"] == "stopped_on_first_failure"
+    assert result["provider_calls"] == 3
+    assert result["call_ordinals"] == [1, 2, 3]
+    assert result["calls"][-1]["operational_status"] == "transport_failure"
+    assert not (output / "call-04-started.json").exists()
+    assert result["automatic_retries"] == 0
+    assert result["semantic_retries"] == 0
+    assert result["fallback_models"] == 0
+    assert result["response_healing"] is False
+
+
+def test_first_http_failure_preserves_exact_terminal_bytes(tmp_path: Path) -> None:
+    contract = runner.validate_contract()
+    raw = b'{"error":{"message":"synthetic provider failure"}}'
+
+    def transport(_body: dict) -> bytes:
+        raise runner.R4ProviderTransportError(
+            "synthetic HTTP 429", raw_response=raw, http_status=429
+        )
+
+    output = tmp_path / "http-failure"
+    result = runner.execute(
+        contract=contract,
+        authorization_path=_authorization_file(tmp_path, contract),
+        output=output,
+        transport=transport,
+    )
+
+    assert result["status"] == "stopped_on_first_failure"
+    assert result["provider_calls"] == 1
+    assert result["calls"][0]["operational_status"] == "transport_failure"
+    assert result["calls"][0]["http_status"] == 429
+    assert (output / "call-01-raw-response.bin").read_bytes() == raw
+    assert not (output / "call-02-started.json").exists()
+
+
+class _MutatingFirstPayloadTransport(_FakeSuccessfulTransport):
+    def __init__(self, mutation: str) -> None:
+        super().__init__()
+        self.mutation = mutation
+
+    def __call__(self, body: dict) -> bytes:
+        payload = json.loads(super().__call__(body))
+        if self.mutation == "model_identity":
+            payload["model"] = "undeclared/model"
+        elif self.mutation == "provider_identity":
+            payload["provider"] = "Undeclared Provider"
+        elif self.mutation == "reasoning_content":
+            payload["choices"][0]["message"]["reasoning"] = "private reasoning text"
+        elif self.mutation == "schema":
+            content = json.loads(payload["choices"][0]["message"]["content"])
+            content["reviews"][1]["surface"] = content["reviews"][0]["surface"]
+            payload["choices"][0]["message"]["content"] = json.dumps(content)
+        elif self.mutation == "missing_cost":
+            payload["usage"].pop("cost")
+        elif self.mutation == "excessive_cost":
+            payload["usage"]["cost"] = 0.04
+        else:
+            raise AssertionError(self.mutation)
+        return json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_status"),
+    [
+        ("model_identity", "operator_attribution_failure"),
+        ("provider_identity", "operator_attribution_failure"),
+        ("reasoning_content", "reasoning_custody_failure"),
+        ("schema", "schema_or_local_admission_failure"),
+        ("missing_cost", "budget_custody_failure"),
+        ("excessive_cost", "provider_reported_budget_failure"),
+    ],
+)
+def test_identity_reasoning_schema_and_budget_failures_stop_after_first_result(
+    tmp_path: Path, mutation: str, expected_status: str
+) -> None:
+    contract = runner.validate_contract()
+    output = tmp_path / mutation
+    result = runner.execute(
+        contract=contract,
+        authorization_path=_authorization_file(tmp_path, contract),
+        output=output,
+        transport=_MutatingFirstPayloadTransport(mutation),
+    )
+
+    assert result["status"] == "stopped_on_first_failure"
+    assert result["provider_calls"] == 1
+    assert result["calls"][0]["operational_status"] == expected_status
+    assert (output / "call-01-raw-response.bin").is_file()
+    assert not (output / "call-02-started.json").exists()
+
+
+def test_execution_artifact_tampering_fails_before_transport(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    contract = json.loads(Path(runner.DEFAULT_CONTRACT).read_text(encoding="utf-8"))
+    preview_path = ROOT / contract["call_plan"][0]["request_preview_path"]
+    original_read_bytes = Path.read_bytes
+
+    def tampered_read_bytes(path: Path) -> bytes:
+        raw = original_read_bytes(path)
+        return raw + b" " if path.resolve() == preview_path.resolve() else raw
+
+    monkeypatch.setattr(Path, "read_bytes", tampered_read_bytes)
+    with pytest.raises(runner.R4MatchedHoldoutV2RunError, match="artifact drifted"):
+        runner.validate_contract()
