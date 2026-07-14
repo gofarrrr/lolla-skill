@@ -25,45 +25,51 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
-   and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
-   — latest local evidence: first-failure execution custody, raw-before-target
+4. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+   and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
+   — latest local evidence: the final complete twelve-call run, raw-before-target
    checkpoint, record-level source-first review, consumed authorization, and
-   frozen `semantic_result_not_evaluable` decision.
-5. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
+   frozen `separated_tasks_ineffective_companions_persist` decision. No further
+   R4 provider run is authorized; the next decision is a provider-free
+   product/architecture closeout.
+5. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+   and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
+   — immutable A1 first-failure evidence and frozen
+   `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
+6. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`
    — canonical provider-free design: hash-bound human review, protected target,
    twelve exact paired/separated requests, target-blind runner, categorical
    decision matrix, and cost custody.
-6. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
    and `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`
    — latest completed work, the five-record causal map, evidence against a
    general paired-completion explanation, competing falsifiers, and the one
    bounded diagnostic experiment earned without implementing or designing it.
-7. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`
    — exact eight-call execution custody, record-level
    source-first review, frozen decision, and next provider-free causal gate.
-8. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
    — frozen design evidence, the rejected v1 evidence, leakage-corrected v2
    sources and priors, hash-bound human review, protected target, matched
    requests, and the now-consumed non-authorizing contract.
-9. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
    and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
    published additive residual-discovery contract and frozen boundaries.
-10. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+11. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
    — the record-level Case 01/04 map, competing causal explanations,
    falsifiers, and the single repair class that earned the latest work.
-11. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+12. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-12. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+13. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-13. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+14. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,

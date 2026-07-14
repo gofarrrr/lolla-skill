@@ -1468,3 +1468,32 @@ Continuation entrypoints:
 - `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`;
 - `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a1/evidence-manifest.json`;
 - `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a1/execution-closeout.json`.
+
+## R4 separated-surface execution A2 — 2026-07-14
+
+The final authorized A2 run completed all twelve frozen calls exactly once.
+All calls used the pinned Gemini 3.1 Flash-Lite Google route, passed mechanical
+admission, returned no reasoning content, and cost an exact provider-reported
+`$0.02148425`. No retry, fallback, healing, substitution, evaluator,
+relationship, embedding, graph, pipeline, or runtime call occurred. Raw
+evidence was committed before protected target access.
+
+A2 admitted eighteen records: four supported recoveries and fourteen false
+positives. It preserved the genuine Case 03 present gap and Case 04 future
+dependency. However, each paired positive call produced an unsupported
+opposite-surface companion and each corresponding separated call repeated that
+companion. The controls also repeated correct separated decision-gap zeros and
+unsafe separated dependency records. The frozen categorical result is
+`separated_tasks_ineffective_companions_persist`.
+
+A1 and A2 remain separate evidence; they are not combined into a score or
+stitched matched run. A2 is the final provider execution in the current
+incremental R4 reader program. No further run, integration, or product-readiness
+claim is authorized.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`;
+- `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`;
+- `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a2/evidence-manifest.json`;
+- `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a2/execution-closeout.json`.
