@@ -1,0 +1,84 @@
+{
+  "arm": "separated_reconsideration_dependency",
+  "case_id": "r4s1-case04-native-seed-cryopreservation",
+  "complete_source_inclusion": true,
+  "context_components": [
+    {
+      "estimated_tokens": 1473,
+      "name": "system_instruction",
+      "sha256": "cc768aade0dd8938afcf41fba09cf07ce2e8ac3ff7eaf567705debb773448917",
+      "utf8_bytes": 2946
+    },
+    {
+      "estimated_tokens": 6170,
+      "name": "authoritative_source",
+      "sha256": "bc9cfbdc5acfb230818e29b6de6c62faa854979c0cee5fc4533fc81a911471a3",
+      "utf8_bytes": 12340
+    },
+    {
+      "estimated_tokens": 979,
+      "name": "fallible_prior_interpretation_context",
+      "sha256": "c7a363a8d8971e92e0cd63666df592ebb90ef663fa4a19dbb1556f4ce22ac3fa",
+      "utf8_bytes": 1957
+    },
+    {
+      "estimated_tokens": 138,
+      "name": "task",
+      "sha256": "62d9cec4e75175ee6255219975ee54b60a6659a5cfb3c01ae9e2435dbfa58380",
+      "utf8_bytes": 276
+    },
+    {
+      "estimated_tokens": 903,
+      "name": "schema",
+      "sha256": "45c7e4a126d4f9cd9deb9c5cc7f3addcbeca71af67232a4d8a7cf7b2bae7b003",
+      "utf8_bytes": 1805
+    }
+  ],
+  "declared_omissions": [
+    "protected evaluation evidence",
+    "provider output",
+    "execution authorization",
+    "relationship, evaluator, embedding, graph, pipeline, and runtime calls"
+  ],
+  "no_summary_chunking_filter_or_semantic_gate": true,
+  "prior": {
+    "artifact_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case04-native-seed-cryopreservation.json",
+    "artifact_sha256": "cec9ebf93572a420d280cea9b7fdf75a3e49fa5bf073358de2ee18fc865f4b57",
+    "authority": "fallible_prior_interpretation_not_source_truth",
+    "canonical_context_sha256": "c7a363a8d8971e92e0cd63666df592ebb90ef663fa4a19dbb1556f4ce22ac3fa",
+    "canonical_context_utf8_bytes": 1957,
+    "included_exactly_once": true,
+    "summarized_or_reordered": false
+  },
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "request_estimate": {
+    "canonical_body_sha256": "a39feed4885b0a93377c4bcbb60f204b1ed2e73073aa337aef14202bf753152f",
+    "canonical_body_utf8_bytes": 20688,
+    "estimated_input_tokens": 9736,
+    "estimator": "ceil(utf8_bytes/2); conservative deterministic estimate, not provider tokenization",
+    "maximum_output_tokens": 800,
+    "message_utf8_bytes": 17666,
+    "schema_utf8_bytes": 1805,
+    "total_context_utf8_bytes": 19471
+  },
+  "schema_is_provider_context": true,
+  "schema_version": "lolla.r4_separated_surface_context_manifest.v1",
+  "section_order": [
+    "system_instruction",
+    "authoritative_source",
+    "fallible_prior_interpretation_context",
+    "task",
+    "schema"
+  ],
+  "source": {
+    "artifact_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case04-native-seed-cryopreservation.json",
+    "artifact_sha256": "0177a6b2519cc8c3664f2cb9f4055b9a95e4a2d5a21e59669dc9f568a0e523e0",
+    "canonical_context_sha256": "bc9cfbdc5acfb230818e29b6de6c62faa854979c0cee5fc4533fc81a911471a3",
+    "canonical_context_utf8_bytes": 12340,
+    "included_exactly_once": true,
+    "summarized_or_chunked": false
+  },
+  "source_then_prior_then_task": true,
+  "task_at_end": true
+}

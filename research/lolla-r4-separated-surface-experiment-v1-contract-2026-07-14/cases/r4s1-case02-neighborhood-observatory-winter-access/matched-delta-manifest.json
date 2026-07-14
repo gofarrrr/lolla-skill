@@ -1,0 +1,62 @@
+{
+  "all_exact_delta_paths": [
+    "/max_tokens",
+    "/messages/1/content",
+    "/response_format/json_schema/name",
+    "/response_format/json_schema/schema/description",
+    "/response_format/json_schema/schema/properties/reviews/description",
+    "/response_format/json_schema/schema/properties/reviews/items/properties/surface/enum",
+    "/response_format/json_schema/schema/properties/reviews/maxItems",
+    "/response_format/json_schema/schema/properties/reviews/minItems"
+  ],
+  "allowed_path_prefixes": [
+    "/max_tokens",
+    "/messages/1/content",
+    "/response_format/json_schema/name",
+    "/response_format/json_schema/schema/description",
+    "/response_format/json_schema/schema/properties/reviews/description",
+    "/response_format/json_schema/schema/properties/reviews/minItems",
+    "/response_format/json_schema/schema/properties/reviews/maxItems",
+    "/response_format/json_schema/schema/properties/reviews/items/properties/surface/enum"
+  ],
+  "case_id": "r4s1-case02-neighborhood-observatory-winter-access",
+  "comparisons": [
+    {
+      "exact_delta_paths": [
+        "/max_tokens",
+        "/messages/1/content",
+        "/response_format/json_schema/name",
+        "/response_format/json_schema/schema/description",
+        "/response_format/json_schema/schema/properties/reviews/description",
+        "/response_format/json_schema/schema/properties/reviews/items/properties/surface/enum",
+        "/response_format/json_schema/schema/properties/reviews/maxItems",
+        "/response_format/json_schema/schema/properties/reviews/minItems"
+      ],
+      "paired_arm": "paired_residual",
+      "separated_arm": "separated_decision_gap",
+      "undeclared_delta_paths": []
+    },
+    {
+      "exact_delta_paths": [
+        "/max_tokens",
+        "/messages/1/content",
+        "/response_format/json_schema/name",
+        "/response_format/json_schema/schema/description",
+        "/response_format/json_schema/schema/properties/reviews/description",
+        "/response_format/json_schema/schema/properties/reviews/items/properties/surface/enum",
+        "/response_format/json_schema/schema/properties/reviews/maxItems",
+        "/response_format/json_schema/schema/properties/reviews/minItems"
+      ],
+      "paired_arm": "paired_residual",
+      "separated_arm": "separated_reconsideration_dependency",
+      "undeclared_delta_paths": []
+    }
+  ],
+  "inherent_input_duplication_declared": true,
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "schema_version": "lolla.r4_separated_surface_matched_delta.v1",
+  "semantic_wording_change": false,
+  "source_or_prior_change": false,
+  "undeclared_provider_visible_deltas": []
+}

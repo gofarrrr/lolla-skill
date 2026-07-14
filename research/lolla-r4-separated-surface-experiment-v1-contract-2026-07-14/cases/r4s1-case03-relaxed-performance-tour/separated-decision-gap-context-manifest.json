@@ -1,0 +1,84 @@
+{
+  "arm": "separated_decision_gap",
+  "case_id": "r4s1-case03-relaxed-performance-tour",
+  "complete_source_inclusion": true,
+  "context_components": [
+    {
+      "estimated_tokens": 1473,
+      "name": "system_instruction",
+      "sha256": "cc768aade0dd8938afcf41fba09cf07ce2e8ac3ff7eaf567705debb773448917",
+      "utf8_bytes": 2946
+    },
+    {
+      "estimated_tokens": 6107,
+      "name": "authoritative_source",
+      "sha256": "6777f96ebd1c81426742edf0ea6d102af730c7a49b98146da1b21e7c52d86e3a",
+      "utf8_bytes": 12214
+    },
+    {
+      "estimated_tokens": 1001,
+      "name": "fallible_prior_interpretation_context",
+      "sha256": "6b9bebb711e9f7d1c14434e7f028f03c8209718984b21bd6ea904c73398e5a3e",
+      "utf8_bytes": 2002
+    },
+    {
+      "estimated_tokens": 131,
+      "name": "task",
+      "sha256": "364271d042fac1c35657b223ca5baf0f2d4ef00d858802fa6f334fb3af0f2053",
+      "utf8_bytes": 262
+    },
+    {
+      "estimated_tokens": 882,
+      "name": "schema",
+      "sha256": "9e6faa524a00e5cbc51828decd904a54a4993439ef7f5cb8d8a6ea4dd1c4f3fd",
+      "utf8_bytes": 1763
+    }
+  ],
+  "declared_omissions": [
+    "protected evaluation evidence",
+    "provider output",
+    "execution authorization",
+    "relationship, evaluator, embedding, graph, pipeline, and runtime calls"
+  ],
+  "no_summary_chunking_filter_or_semantic_gate": true,
+  "prior": {
+    "artifact_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case03-relaxed-performance-tour.json",
+    "artifact_sha256": "379caddd510f116e205f1fbccbf13326d93a2d3bf228386ed35a5426326a8f7a",
+    "authority": "fallible_prior_interpretation_not_source_truth",
+    "canonical_context_sha256": "6b9bebb711e9f7d1c14434e7f028f03c8209718984b21bd6ea904c73398e5a3e",
+    "canonical_context_utf8_bytes": 2002,
+    "included_exactly_once": true,
+    "summarized_or_reordered": false
+  },
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "request_estimate": {
+    "canonical_body_sha256": "8cf968e8ef07a9d677536dfb3df7957e04f32ccb5abe42a66ef815b3f9b90a11",
+    "canonical_body_utf8_bytes": 20537,
+    "estimated_input_tokens": 9667,
+    "estimator": "ceil(utf8_bytes/2); conservative deterministic estimate, not provider tokenization",
+    "maximum_output_tokens": 800,
+    "message_utf8_bytes": 17571,
+    "schema_utf8_bytes": 1763,
+    "total_context_utf8_bytes": 19334
+  },
+  "schema_is_provider_context": true,
+  "schema_version": "lolla.r4_separated_surface_context_manifest.v1",
+  "section_order": [
+    "system_instruction",
+    "authoritative_source",
+    "fallible_prior_interpretation_context",
+    "task",
+    "schema"
+  ],
+  "source": {
+    "artifact_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case03-relaxed-performance-tour.json",
+    "artifact_sha256": "f3485f9e59f9470bb4927a7c13d9c799c17145e8939d1c0b8b093535281f9549",
+    "canonical_context_sha256": "6777f96ebd1c81426742edf0ea6d102af730c7a49b98146da1b21e7c52d86e3a",
+    "canonical_context_utf8_bytes": 12214,
+    "included_exactly_once": true,
+    "summarized_or_chunked": false
+  },
+  "source_then_prior_then_task": true,
+  "task_at_end": true
+}

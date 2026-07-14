@@ -1406,3 +1406,37 @@ Continuation entrypoints:
 - `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`;
 - `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`;
 - `research/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14/causal-diagnosis.json`.
+
+## R4 separated-surface experiment design — 2026-07-14
+
+The one earned paired-versus-separated diagnostic is fully designed
+provider-free. Four new 28-message source/prior pairs passed the founder's
+hash-bound human semantic-leakage review. The protected source-first target was
+committed before prompts, schemas, requests, manifests, the contract, or the
+future runner existed.
+
+The frozen intervention changes only task shape: four paired calls request both
+residual surfaces with a 1,600-token cap, while eight separated calls request
+one surface each with two 800-token caps per case. All semantic wording,
+complete source/prior context, order, ontology, evidence rules, zero and
+ambiguity behavior, model, route, seed, reasoning, privacy, and canonical
+mapping remain equal. Exact JSON-path delta manifests reject additional
+provider-visible changes.
+
+The target-blind runner requires a separate exact one-use authorization,
+preserves first terminal bytes, and stops on the first failure. The conservative
+maximum-output estimate is `$0.0485325`; the proposed `$0.30` total ceiling is
+an anomaly and duplicate-call stop. Current authorization remains zero calls
+and `$0.00`.
+
+This design tests only the narrow opposite-surface companion hypothesis. Even
+a successful split leaves governed-threshold restraint, scheduled-decision
+restraint, assistant-proposal authority, evidence adjudication, and real-user
+usefulness unresolved.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`;
+- `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`;
+- `docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json`;
+- `research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/package-manifest.json`.

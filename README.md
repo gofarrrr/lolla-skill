@@ -55,6 +55,7 @@ telemetry and cannot delete this portfolio.
 > [R4 matched residual holdout design](docs/conversation-understanding/lolla-r4-matched-residual-holdout-design-result-2026-07-14.md),
 > [R4 matched-holdout v2 leakage correction](docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md),
 > [R4 matched-holdout v2 execution A1](docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md),
+> [R4 separated-surface experiment design](docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md),
 > and the [current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md).
 
 ## Why This Exists
@@ -1358,6 +1359,18 @@ gap, and an assistant-proposed legal question. It failed both restraint
 controls, so the frozen decision is `residual_task_repair_insufficient`. The
 authorization is consumed; no retry, further call, integration, R5 work, or
 product-usefulness claim is authorized.
+
+The provider-free
+**[R4 separated-surface experiment design](docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md)**
+now freezes one narrow task-shape ablation. Four new source/prior pairs passed a
+hash-bound human leakage review; a protected source-first target was committed
+before all provider-visible artifacts. The matched package contains four paired
+two-surface calls and eight separated single-surface calls, with equal 1,600
+maximum output tokens per case, exact delta manifests, a target-blind runner,
+and a categorical evaluation matrix. Its conservative maximum-output estimate
+is `$0.0485325`, with a proposed `$0.30` anomaly ceiling. It authorizes zero
+calls and does not imply that separation is a repair, that the reader is safe,
+or that integration or product-usefulness claims are earned.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

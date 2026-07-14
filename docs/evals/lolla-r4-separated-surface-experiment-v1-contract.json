@@ -1,0 +1,378 @@
+{
+  "authorization_shape": {
+    "artifact_exists": false,
+    "must_match_contract_and_all_twelve_request_hashes": true,
+    "one_use": true,
+    "schema_version": "lolla.r4_separated_surface_experiment_authorization.v1"
+  },
+  "budget": {
+    "automatic_retries": 0,
+    "ceiling_purpose": "anomaly, duplicate-call, and loop stop; not scientific optimization",
+    "conservative_estimated_cost_by_case_usd": {
+      "r4s1-case01-cave-rescue-readiness": 0.01221,
+      "r4s1-case02-neighborhood-observatory-winter-access": 0.01215525,
+      "r4s1-case03-relaxed-performance-tour": 0.01206825,
+      "r4s1-case04-native-seed-cryopreservation": 0.012099
+    },
+    "conservative_estimated_total_cost_usd": 0.0485325,
+    "duplicated_separated_input_cost_is_inherent_intervention_cost": true,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "graph_calls": 0,
+    "maximum_provider_calls": 12,
+    "model_substitutions": 0,
+    "paired_calls": 4,
+    "paired_maximum_output_tokens_per_case": 1600,
+    "pipeline_calls": 0,
+    "proposed_hard_provider_reported_cost_per_case_usd": 0.075,
+    "proposed_hard_provider_reported_cost_total_usd": 0.3,
+    "relationship_calls": 0,
+    "response_healing": false,
+    "runtime_calls": 0,
+    "semantic_retries": 0,
+    "separated_calls": 8,
+    "separated_maximum_output_tokens_per_call": 800,
+    "separated_maximum_output_tokens_per_case": 1600
+  },
+  "call_plan": [
+    {
+      "arm": "paired_residual",
+      "case_id": "r4s1-case01-cave-rescue-readiness",
+      "estimated_input_tokens": 9900,
+      "maximum_output_tokens": 1600,
+      "ordinal": 1,
+      "request_body_sha256": "82ef9cbfc4352d87b6c4b4b7169a341d771c33060a1c4347a0df54b5a4d8419a",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/paired-request-preview.json",
+      "requested_surface": "both"
+    },
+    {
+      "arm": "separated_decision_gap",
+      "case_id": "r4s1-case01-cave-rescue-readiness",
+      "estimated_input_tokens": 9856,
+      "maximum_output_tokens": 800,
+      "ordinal": 2,
+      "request_body_sha256": "d6e09d7d6dcb67782571b31a828f4ada784b3befed86c660b8451e67905959ab",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/separated-decision-gap-request-preview.json",
+      "requested_surface": "residual_decision_gap"
+    },
+    {
+      "arm": "separated_reconsideration_dependency",
+      "case_id": "r4s1-case01-cave-rescue-readiness",
+      "estimated_input_tokens": 9884,
+      "maximum_output_tokens": 800,
+      "ordinal": 3,
+      "request_body_sha256": "e0eed2349ac5a22ce92c96642433b03a0e5ca722efe76d1ef32ab88b4c103bd7",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/separated-reconsideration-dependency-request-preview.json",
+      "requested_surface": "residual_reconsideration_dependency"
+    },
+    {
+      "arm": "separated_decision_gap",
+      "case_id": "r4s1-case02-neighborhood-observatory-winter-access",
+      "estimated_input_tokens": 9783,
+      "maximum_output_tokens": 800,
+      "ordinal": 4,
+      "request_body_sha256": "4374fbe8f1fe8794404a3d6867dcf85d578f2126bee6e88d90efa2c2d56f3368",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/separated-decision-gap-request-preview.json",
+      "requested_surface": "residual_decision_gap"
+    },
+    {
+      "arm": "separated_reconsideration_dependency",
+      "case_id": "r4s1-case02-neighborhood-observatory-winter-access",
+      "estimated_input_tokens": 9811,
+      "maximum_output_tokens": 800,
+      "ordinal": 5,
+      "request_body_sha256": "0ec3b96becb2f4f800d67fb6fd344dc0d52d8170ea34235f5a6b05a15acbb860",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/separated-reconsideration-dependency-request-preview.json",
+      "requested_surface": "residual_reconsideration_dependency"
+    },
+    {
+      "arm": "paired_residual",
+      "case_id": "r4s1-case02-neighborhood-observatory-winter-access",
+      "estimated_input_tokens": 9827,
+      "maximum_output_tokens": 1600,
+      "ordinal": 6,
+      "request_body_sha256": "b6bd9ff0ae8d893e0995f517e02f8b0ed1b9376b0033b6d4980b7af6c3000bc8",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/paired-request-preview.json",
+      "requested_surface": "both"
+    },
+    {
+      "arm": "separated_reconsideration_dependency",
+      "case_id": "r4s1-case03-relaxed-performance-tour",
+      "estimated_input_tokens": 9695,
+      "maximum_output_tokens": 800,
+      "ordinal": 7,
+      "request_body_sha256": "c04af65cc3a9803d9595c8d39923eddfabc5174823c6963fec12263202c949f2",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/separated-reconsideration-dependency-request-preview.json",
+      "requested_surface": "residual_reconsideration_dependency"
+    },
+    {
+      "arm": "paired_residual",
+      "case_id": "r4s1-case03-relaxed-performance-tour",
+      "estimated_input_tokens": 9711,
+      "maximum_output_tokens": 1600,
+      "ordinal": 8,
+      "request_body_sha256": "783e04d5ccd6e383733e0282b7de9f9444b6c2e6c8c4b50bfbe00e3376ee18d3",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/paired-request-preview.json",
+      "requested_surface": "both"
+    },
+    {
+      "arm": "separated_decision_gap",
+      "case_id": "r4s1-case03-relaxed-performance-tour",
+      "estimated_input_tokens": 9667,
+      "maximum_output_tokens": 800,
+      "ordinal": 9,
+      "request_body_sha256": "8cf968e8ef07a9d677536dfb3df7957e04f32ccb5abe42a66ef815b3f9b90a11",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/separated-decision-gap-request-preview.json",
+      "requested_surface": "residual_decision_gap"
+    },
+    {
+      "arm": "paired_residual",
+      "case_id": "r4s1-case04-native-seed-cryopreservation",
+      "estimated_input_tokens": 9752,
+      "maximum_output_tokens": 1600,
+      "ordinal": 10,
+      "request_body_sha256": "1c837d18fadc2868d3e6c1ae88c2c587e3ca901892610883b23f4d451aeddbc4",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/paired-request-preview.json",
+      "requested_surface": "both"
+    },
+    {
+      "arm": "separated_reconsideration_dependency",
+      "case_id": "r4s1-case04-native-seed-cryopreservation",
+      "estimated_input_tokens": 9736,
+      "maximum_output_tokens": 800,
+      "ordinal": 11,
+      "request_body_sha256": "a39feed4885b0a93377c4bcbb60f204b1ed2e73073aa337aef14202bf753152f",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/separated-reconsideration-dependency-request-preview.json",
+      "requested_surface": "residual_reconsideration_dependency"
+    },
+    {
+      "arm": "separated_decision_gap",
+      "case_id": "r4s1-case04-native-seed-cryopreservation",
+      "estimated_input_tokens": 9708,
+      "maximum_output_tokens": 800,
+      "ordinal": 12,
+      "request_body_sha256": "ac1d0cf85b75be2468c0a14da946bdc3c4def482a13e011b2c2cb9e8806148f3",
+      "request_preview_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/separated-decision-gap-request-preview.json",
+      "requested_surface": "residual_decision_gap"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "r4s1-case01-cave-rescue-readiness",
+      "context_manifest_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/paired-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/separated-decision-gap-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/separated-reconsideration-dependency-context-manifest.json"
+      ],
+      "matched_delta_manifest_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/matched-delta-manifest.json",
+      "packet_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/uncertainty-packet.json",
+      "prior_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case01-cave-rescue-readiness.json",
+      "prior_sha256": "a79427a8168210f4ca2a8e3fdb7bec506110d835453d28de55ae44214331ceae",
+      "request_preview_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/paired-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/separated-decision-gap-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/separated-reconsideration-dependency-request-preview.json"
+      ],
+      "seed": 74101,
+      "source_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case01-cave-rescue-readiness.json",
+      "source_registry_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case01-cave-rescue-readiness/source-registry.json",
+      "source_sha256": "8d4cc3673788a445f4e5525d8d188d73ed4b42bd02c0e8987c39e75deffd59d0"
+    },
+    {
+      "case_id": "r4s1-case02-neighborhood-observatory-winter-access",
+      "context_manifest_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/paired-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/separated-decision-gap-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/separated-reconsideration-dependency-context-manifest.json"
+      ],
+      "matched_delta_manifest_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/matched-delta-manifest.json",
+      "packet_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/uncertainty-packet.json",
+      "prior_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case02-neighborhood-observatory-winter-access.json",
+      "prior_sha256": "82d3ecae8384d8966b17740170cb22135364b8e800e2e8a4429b3af07c1da996",
+      "request_preview_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/paired-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/separated-decision-gap-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/separated-reconsideration-dependency-request-preview.json"
+      ],
+      "seed": 74102,
+      "source_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case02-neighborhood-observatory-winter-access.json",
+      "source_registry_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case02-neighborhood-observatory-winter-access/source-registry.json",
+      "source_sha256": "19d7b4dacdae491effcbb8f41d150aa3ac72c97f2f090088f584909e7095cbb0"
+    },
+    {
+      "case_id": "r4s1-case03-relaxed-performance-tour",
+      "context_manifest_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/paired-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/separated-decision-gap-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/separated-reconsideration-dependency-context-manifest.json"
+      ],
+      "matched_delta_manifest_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/matched-delta-manifest.json",
+      "packet_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/uncertainty-packet.json",
+      "prior_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case03-relaxed-performance-tour.json",
+      "prior_sha256": "379caddd510f116e205f1fbccbf13326d93a2d3bf228386ed35a5426326a8f7a",
+      "request_preview_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/paired-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/separated-decision-gap-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/separated-reconsideration-dependency-request-preview.json"
+      ],
+      "seed": 74103,
+      "source_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case03-relaxed-performance-tour.json",
+      "source_registry_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case03-relaxed-performance-tour/source-registry.json",
+      "source_sha256": "f3485f9e59f9470bb4927a7c13d9c799c17145e8939d1c0b8b093535281f9549"
+    },
+    {
+      "case_id": "r4s1-case04-native-seed-cryopreservation",
+      "context_manifest_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/paired-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/separated-decision-gap-context-manifest.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/separated-reconsideration-dependency-context-manifest.json"
+      ],
+      "matched_delta_manifest_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/matched-delta-manifest.json",
+      "packet_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/uncertainty-packet.json",
+      "prior_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case04-native-seed-cryopreservation.json",
+      "prior_sha256": "cec9ebf93572a420d280cea9b7fdf75a3e49fa5bf073358de2ee18fc865f4b57",
+      "request_preview_paths": [
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/paired-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/separated-decision-gap-request-preview.json",
+        "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/separated-reconsideration-dependency-request-preview.json"
+      ],
+      "seed": 74104,
+      "source_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case04-native-seed-cryopreservation.json",
+      "source_registry_path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/cases/r4s1-case04-native-seed-cryopreservation/source-registry.json",
+      "source_sha256": "0177a6b2519cc8c3664f2cb9f4055b9a95e4a2d5a21e59669dc9f568a0e523e0"
+    }
+  ],
+  "current_provider_authorization": {
+    "authorization_artifact_exists": false,
+    "maximum_calls": 0,
+    "maximum_cost_usd": 0.0
+  },
+  "date": "2026-07-14",
+  "design_does_not_authorize_spending_execution_or_integration": true,
+  "deterministic_surface_to_canonical_role_mapping": {
+    "residual_decision_gap": "unresolved_matter",
+    "residual_reconsideration_dependency": "reopen_condition"
+  },
+  "evaluation": {
+    "decision_matrix": {
+      "mixed_or_insufficient_evidence": "Findings do not satisfy one clean causal pattern without a mechanical failure.",
+      "paired_arm_non_discriminating": "The paired arm does not reproduce companion behavior, so the matched comparison cannot isolate a separation advantage.",
+      "semantic_result_not_evaluable": "Mechanical or custody failure prevents the full matched comparison.",
+      "separated_tasks_ineffective_companions_persist": "The same opposite-surface companions persist under separated calls.",
+      "separated_tasks_overcorrected": "Separated calls lose either genuine Case 03 present finding or Case 04 future dependency.",
+      "task_shape_companion_pressure_supported": "Paired positives exhibit unsupported opposite-surface companions; separated calls remove them and preserve both genuine findings."
+    },
+    "independent_blockers_even_if_supported": [
+      "governed-threshold restraint",
+      "scheduled-decision restraint",
+      "assistant-proposal authority",
+      "evidence selection and adjudication",
+      "real-user usefulness"
+    ],
+    "scalar_score": null,
+    "vector": [
+      "mechanical execution and attribution",
+      "quiet-control restraint",
+      "genuine present sensitivity",
+      "genuine future sensitivity",
+      "opposite-surface companion behavior",
+      "zero-versus-ambiguity",
+      "evidence precision",
+      "surface placement",
+      "speaker and modal fidelity",
+      "late evidence",
+      "cost and custody"
+    ]
+  },
+  "execution_manifest": {
+    "path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/execution-manifest.json",
+    "sha256": "9a5c8b04b2c0f4f1f3afd6cfc92eb24f6996fc41ba0fdbf5b1c1fb7e26fa1f8d"
+  },
+  "future_runner": {
+    "dry_run_constructs_transport": false,
+    "path": "scripts/evals/run_r4_separated_surface_experiment.py",
+    "sha256": "b8f1d0d15323e833804f20e7af5a7b4ec10992121efb659e71a23c2eaff536ec",
+    "transport_created_only_after_exact_authorization": true
+  },
+  "historical_replay": {
+    "case_artifact_links": 543,
+    "case_count": 12,
+    "unique_json_artifacts": 400
+  },
+  "operator": {
+    "allow_fallbacks": false,
+    "allowed_served_model_ids": [
+      "google/gemini-3.1-flash-lite",
+      "google/gemini-3.1-flash-lite-20260507"
+    ],
+    "allowed_served_provider_names": [
+      "Google"
+    ],
+    "data_collection": "deny",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "maximum_price_usd_per_million_tokens": {
+      "completion": 1.5,
+      "prompt": 0.25
+    },
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_only": [
+      "google-vertex"
+    ],
+    "provider_order": [
+      "google-vertex"
+    ],
+    "provider_slug": "google-vertex",
+    "reasoning": {
+      "effort": "minimal",
+      "exclude": true
+    },
+    "require_parameters": true,
+    "stream": false,
+    "strict_json_schema": true,
+    "zdr": true
+  },
+  "package_manifest": {
+    "path": "research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/package-manifest.json",
+    "sha256": "8a00b4847e3183be579fd2f3bc18c8e37b9ee590dac3d36134efbfaf232235de"
+  },
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "run_id": "lolla-r4-separated-surface-experiment-v1",
+  "schema_version": "lolla.r4_separated_surface_experiment_contract.v1",
+  "scientific_question": "Does asking for the two existing residual surfaces in separate provider calls reduce unsupported opposite-surface companion records relative to asking for both surfaces together, while preserving genuine findings?",
+  "status": "provider_free_design_frozen_no_authorization",
+  "task_shape_intervention": {
+    "allowed_differences": [
+      "requested surface count",
+      "returned review count",
+      "provider call count",
+      "singular grammar",
+      "1600 versus 800+800 output allocation",
+      "schema container and name changes required for one review"
+    ],
+    "held_equal": [
+      "complete source bytes",
+      "complete prior bytes",
+      "source aliases",
+      "source-prior-task order",
+      "task at end",
+      "residual ontology and subtraction rules",
+      "evidence authority and exact aliases",
+      "zero and ambiguity semantics",
+      "support and outcome enums",
+      "record fields and per-surface bounds",
+      "canonical surface mapping",
+      "model",
+      "provider route",
+      "case seed",
+      "reasoning",
+      "strict JSON",
+      "streaming",
+      "privacy",
+      "no retry or fallback"
+    ],
+    "paired": "one call requests both residual surfaces and returns two reviews",
+    "separated": "two calls request one residual surface and return one review each"
+  }
+}

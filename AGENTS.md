@@ -25,35 +25,40 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
+4. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
+   and `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`
+   — latest local provider-free work: hash-bound human review, protected target,
+   twelve exact paired/separated requests, target-blind runner, categorical
+   decision matrix, cost custody, and separate publication/execution gates.
+5. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
    and `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`
    — latest completed work, the five-record causal map, evidence against a
    general paired-completion explanation, competing falsifiers, and the one
    bounded diagnostic experiment earned without implementing or designing it.
-5. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
+6. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`
    — exact eight-call execution custody, record-level
    source-first review, frozen decision, and next provider-free causal gate.
-6. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
    — frozen design evidence, the rejected v1 evidence, leakage-corrected v2
    sources and priors, hash-bound human review, protected target, matched
    requests, and the now-consumed non-authorizing contract.
-7. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
    and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
    published additive residual-discovery contract and frozen boundaries.
-8. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
    — the record-level Case 01/04 map, competing causal explanations,
    falsifiers, and the single repair class that earned the latest work.
-9. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-10. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+11. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-11. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+12. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -193,8 +198,9 @@ PYTHONPATH=. pytest -q
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 execution closeout, the focused R4 slice passes 111 tests.
-The complete suite passes 4,939 tests and all 93 subtests, with one existing
+At the 2026-07-14 separated-surface design closeout, the focused R4 slice
+passes 123 tests. The complete suite passes 4,961 tests and all 93 subtests,
+with one existing
 `datetime.utcnow()` deprecation warning. A changed count is not automatically
 a regression; unexplained failures or historical hash drift are.
 
@@ -228,8 +234,11 @@ a regression; unexplained failures or historical hash drift are.
   genuine companion finding. It preserves a narrower, falsifiable companion
   mechanism for Cases 03 and 04 and ends with
   `r4_separated_surface_experiment_earned`; that means a provider-free design
-  goal may be considered separately, not that a split is a repair or that an
-  experiment is authorized.
+  goal may be considered separately, not that a split is a repair. That design
+  is now complete locally: four new source/prior pairs, hash-bound human review,
+  a protected target committed before twelve matched requests, exact task-shape
+  deltas, and a target-blind runner. It made zero calls and creates no execution
+  authorization.
 - Canonical integration target: `main`. The provider-free v2 package was
   published through GitHub PR #365 in canonical merge
   `b7d1d62c05bdf05f91401c25ceb0a2cc73ffe307`. The completed A1 execution was
@@ -260,32 +269,30 @@ a regression; unexplained failures or historical hash drift are.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The next eligible unit, if separately authorized, is provider-free design of a
-single separated-versus-paired surface experiment. It may test only whether
-separation suppresses the Case 03/04 opposite-surface companion records while
-preserving genuine findings and must retain Case 01/02 quiet controls to expose
-independent governed-machinery errors. Do not treat separation as an earned
-repair, start design automatically, retry A1 or A3,
-execute rejected v1, create another authorization, or make an unapproved
-provider call. Do not reveal protected targets to a runner or modify frozen
-sources, priors, requests, operators, or outputs. R5, runtime/graph integration,
-relationship work, wider-corpus execution, model comparison, production-model
-selection, and product-usefulness claims remain gated and unauthorized.
+The next eligible unit is a separate publication decision for the completed
+provider-free separated-surface design. Execution is not eligible until the
+design is canonical and the founder issues a separate exact one-use
+authorization. Do not treat separation as an earned repair, execute from the
+local branch, retry A1 or A3, execute rejected v1, create an authorization, or
+make an unapproved provider call. Do not reveal protected targets to a runner
+or modify frozen sources, priors, requests, operators, or outputs. R5,
+runtime/graph integration, relationship work, wider-corpus execution, model
+comparison, production-model selection, and product-usefulness claims remain
+gated and unauthorized.
 
-## Resume the local diagnosis branch
+## Resume the local separated-surface design
 
-The execution evidence is canonical. The completed provider-free causal
-diagnosis is intentionally local and unpublished on this machine:
+The diagnosis is canonical. The completed provider-free experiment design is
+intentionally local and unpublished in its isolated worktree:
 
 ```bash
-cd /Users/marcin/Desktop/lolla-skill-main
-git switch agent/r4-residual-false-positive-causal-diagnosis
+cd /private/tmp/lolla-r4-separated-surface-design
 git status -sb
-python3 -m json.tool research/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14/causal-diagnosis.json >/dev/null
-PYTHONPATH=. pytest -q tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. python3 scripts/evals/build_r4_separated_surface_experiment.py
+PYTHONPATH=. python3 scripts/evals/run_r4_separated_surface_experiment.py --dry-run
+PYTHONPATH=. pytest -q tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py
 ```
 
 Do not infer publication or provider authorization from this local branch,
-the diagnosis, historical authorizations, or the completed evidence. Publishing
-this branch, designing the ablation, and executing it each require their own
-founder decision.
+historical authorizations, or the completed provider-free package. Publication
+and one-use execution each require their own founder decision.

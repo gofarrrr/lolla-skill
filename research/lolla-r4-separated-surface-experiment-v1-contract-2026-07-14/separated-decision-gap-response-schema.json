@@ -1,0 +1,93 @@
+{
+  "additionalProperties": false,
+  "description": "Single residual-discovery review for residual_decision_gap.",
+  "properties": {
+    "global_limitations": {
+      "description": "Limits applying to the whole read; empty if none.",
+      "type": "string"
+    },
+    "reviews": {
+      "description": "Exactly one review for residual_decision_gap.",
+      "items": {
+        "additionalProperties": false,
+        "description": "One explicit residual-surface review.",
+        "properties": {
+          "outcome": {
+            "description": "Present, quiet, or ambiguous result of this residual review.",
+            "enum": [
+              "records_present",
+              "no_supported_record_observed",
+              "ambiguous_review"
+            ],
+            "type": "string"
+          },
+          "records": {
+            "description": "Zero to two candidates for this residual surface.",
+            "items": {
+              "additionalProperties": false,
+              "description": "One source-linked residual candidate.",
+              "properties": {
+                "evidence_ids": {
+                  "description": "Exact source aliases that collectively establish the material dependency or question and why adopted machinery does not fully handle it.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 8,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "interpretation": {
+                  "description": "Concise meaning of this residual without advice.",
+                  "type": "string"
+                },
+                "limitations": {
+                  "description": "Residual uncertainty or scope limit; use an empty string if none.",
+                  "type": "string"
+                },
+                "support": {
+                  "description": "Whether the source supports the residual or leaves it ambiguous.",
+                  "enum": [
+                    "supported",
+                    "ambiguous"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "support",
+                "interpretation",
+                "evidence_ids",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "surface": {
+            "description": "The residual surface reviewed.",
+            "enum": [
+              "residual_decision_gap"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "surface",
+          "outcome",
+          "records"
+        ],
+        "type": "object"
+      },
+      "maxItems": 1,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "reviews",
+    "global_limitations"
+  ],
+  "type": "object"
+}

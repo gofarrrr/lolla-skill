@@ -1,0 +1,185 @@
+{
+  "arm": "separated_reconsideration_dependency",
+  "authorization_present": false,
+  "body": {
+    "max_tokens": 800,
+    "messages": [
+      {
+        "content": "<role>\nYou are a narrow residual discovery reader. Your complete job is to find only material remainders that survive accounting for the current position's adopted decision machinery. Do not inventory everything pending. Do not give advice, select a graph, activate pressure, or score quality.\n</role>\n\n<authority>\nThe complete source is authoritative. Prior interpretations are fallible context, not source truth. Preserve speaker ownership and modal force. Source-supported inference is allowed; outside facts are forbidden. Omitted implementation detail is not affirmative evidence of absence.\n</authority>\n\n<residual_operation>\n1. Account for what the current position already assigns, governs, safeguards, conditions, schedules, or deliberately defers for the present decision horizon.\n2. Subtract that decision machinery and the pending work it already governs.\n3. Emit only the materially distinct remainder affirmatively supported by the source.\n\nRESIDUAL DECISION GAP: a materially distinct question, dependency, ownership gap, or tension that remains outside the adopted machinery after subtraction.\n\nRESIDUAL RECONSIDERATION DEPENDENCY: materially distinct later evidence, an event, or a dependency failure outside the adopted machinery that would require reconsidering an otherwise current position.\n\nPending does not equal residual. Deferred does not equal unowned. A scheduled decision may leave its final outcome unselected while operationalizing the decision work. An existing threshold, benchmark, pause rule, fallback, exit, or scheduled review is not itself newly recovered pressure.\n</residual_operation>\n\n<evidence>\nFor every supported residual, cite exact source aliases that collectively establish both the material dependency or question and why the current position's adopted machinery does not fully handle it. Preserve the evidence for source-first review; do not rank evidence strength.\n</evidence>\n\n<examples>\n- One-time installation funding plus unassigned recurring staffing and operating ownership can leave a residual decision gap.\n- A supplier redesign governed by parallel proposals, milestones, fallback, criteria, and a fixed decision remains pending but is not residual merely because the final design is unselected.\n- Independent evidence that defeats a premise of an otherwise current decision can be a residual reconsideration dependency when no adopted mechanism already governs that failure.\n- A missing detail supports ambiguity only when a material residual is plausible and the source cannot establish whether it remains outside the adopted machinery.\n</examples>\n\n<output_rules>\nReturn no_supported_record_observed with an empty array when no distinct residual remains. Return ambiguous_review only for one or more ambiguous records and no supported record. Return records_present only for at least one supported residual. Cite exact source aliases and return schema-valid JSON only.\n</output_rules>",
+        "role": "system"
+      },
+      {
+        "content": "<authoritative_source>\n{\"aliases\":[{\"alias\":\"e001\",\"speaker\":\"user\",\"text\":\"I chair a neighborhood observatory that opens a small rooftop dome to the public. Autumn sessions are full, and we deliberately have not chosen how winter access should work. Timed reservations, a member lottery, and limited walk-up nights all have supporters. People keep asking which option we are adopting, but the board wanted evidence from the autumn season before deciding. I need to know whether we have a disciplined decision process or are postponing a conflict.\",\"text_sha256\":\"e8e366a4da25d6acd1d1ba97ed06e9b9a2fee596a3e091774071e09a802a8b59\",\"turn_index\":1},{\"alias\":\"e002\",\"speaker\":\"assistant\",\"text\":\"Start with authority, evidence, and timing. Who decides, what observations are being collected, when does the window close, and what happens if the evidence is inconclusive? Then separate that choice from ordinary work such as volunteer scheduling and weather cancellations.\",\"text_sha256\":\"9b101a920b38451d699eed923dd35861869462d6156cb2dd5734d5785fd041ba\",\"turn_index\":1},{\"alias\":\"e003\",\"speaker\":\"user\",\"text\":\"The seven-member observatory board decides public-access policy. Priya, the program director, runs the current capped reservation system through October. The accessibility circle advises on queueing and lift use, the volunteer captain owns staffing, and the building cooperative owns roof access and fire limits. I initially thought the city parks office had approval power because it funds outreach, but the grant agreement says it receives reports only.\",\"text_sha256\":\"c5c8f1e059595fa94e581c64e74f1072b45fdb43785b5d970b459a39d43735d8\",\"turn_index\":2},{\"alias\":\"e004\",\"speaker\":\"assistant\",\"text\":\"That correction matters: funding oversight is not the same as program authority. What exactly did the board adopt about the evidence period and the later choice?\",\"text_sha256\":\"e7ddc3566739d95ef0067ccc720c6d351bc40d05d51f87cb1103879197ec7048\",\"turn_index\":2},{\"alias\":\"e005\",\"speaker\":\"user\",\"text\":\"In June the board listed three winter formats. Option A is four forty-five-minute reservation blocks on Friday and Saturday. Option B allocates half the places by member lottery and half to school groups. Option C keeps two reservation nights and adds one weather-dependent walk-up evening. They asked for attendance, no-show, lift-queue, first-time visitor, volunteer-hour, cloud-cancellation, and neighborhood-noise data before choosing.\",\"text_sha256\":\"ab179075b2154a6678d17191d30c059465d3c15887264e39d03cca5db3455e22\",\"turn_index\":3},{\"alias\":\"e006\",\"speaker\":\"assistant\",\"text\":\"A list of alternatives is useful only if the board also fixed the close date and decision point. Check whether the current format continues automatically if a report is late or ambiguous.\",\"text_sha256\":\"5ca22ae8ccdda8236c0feebf0328e7732769c6a7cd573eac3d2eb2945d71bd3e\",\"turn_index\":3},{\"alias\":\"e007\",\"speaker\":\"user\",\"text\":\"The adopted calendar closes data collection at 22:00 on 31 October. Priya must circulate a locked report by 7 November, and the board votes on 14 November. If fewer than eight usable sessions occur or the accessibility observations are incomplete, the winter defaults to the present two-night reservation format with forty visitors per night until a March review. The chair has no power to choose an option alone.\",\"text_sha256\":\"e56582b2709832329651aaf2c77db83cb9c552eb19cb73bda3a7f027dfa6a99e\",\"turn_index\":4},{\"alias\":\"e008\",\"speaker\":\"assistant\",\"text\":\"That supplies a fixed decision point and a fallback. How are the observations gathered, and can anyone quietly change the measures after seeing early results?\",\"text_sha256\":\"9646ad0a51638cb41914e4caac7b9163934eb7b34a23c1e0b045ab8f4fe84d71\",\"turn_index\":4},{\"alias\":\"e009\",\"speaker\":\"user\",\"text\":\"The measures are in a signed appendix. Ticket scans count attendance and no-shows; volunteer check-in records staff hours; a lift steward records waits over six minutes; first-time visitors answer one optional question; the roof monitor logs noise complaints; and the session lead classifies a cloud cancellation before doors open. Priya can correct duplicate scans with an audit note but cannot change the measures or recommend an option in the locked report.\",\"text_sha256\":\"e178b9516ce1e8e5d05b8dc95c0ee39e1bfc0096cc2cf22272548254d4601387\",\"turn_index\":5},{\"alias\":\"e010\",\"speaker\":\"assistant\",\"text\":\"What operational work continues while that evidence is collected? Pending volunteer shifts or accessibility adjustments should have their own owners rather than being smuggled into the November policy choice.\",\"text_sha256\":\"67171a60b0bec50e680b946740fbdc49cd7cc6f540ee285dbd15b3db6835ebc8\",\"turn_index\":5},{\"alias\":\"e011\",\"speaker\":\"user\",\"text\":\"The volunteer captain fills each roster ten days ahead and calls trained substitutes if a shift has fewer than four people. The accessibility circle is testing a portable bench and a pager for visitors waiting below; its coordinator can adopt either within the existing 900-euro access budget. The building cooperative already approved the bench location. Priya handles school requests under the current forty-person cap.\",\"text_sha256\":\"e00b1bd3b2006665e4cf17a117ed9557b4e35673373d6b1c209e42efbe2e77e0\",\"turn_index\":6},{\"alias\":\"e012\",\"speaker\":\"assistant\",\"text\":\"Are weather, equipment, and roof-safety interruptions already handled? Those events could otherwise be confused with reasons the board must invent a new winter policy.\",\"text_sha256\":\"fecc77d4c84a6a2e36ff332799ca836d8ff096179540c79fd35ae06a0056bc04\",\"turn_index\":6},{\"alias\":\"e013\",\"speaker\":\"user\",\"text\":\"Yes. The session lead cancels when the weather station records gusts above forty kilometers per hour or lightning within fifteen kilometers. A cancelled night is offered on the next reserved Thursday if the volunteer captain can staff it; otherwise it is logged without replacement. If the lift is unavailable, the accessibility coordinator moves the telescope feed to the ground-floor hall and contacts booked visitors. Those procedures predate the winter discussion.\",\"text_sha256\":\"908344ecfd92545ebb9ad8c6b449feb5f6d76693c6b7fbc75adad59908cfc2d8\",\"turn_index\":7},{\"alias\":\"e014\",\"speaker\":\"assistant\",\"text\":\"What is making the later choice genuinely uncertain? The record should show why reasonable board members may prefer different formats without implying that the process lacks an endpoint.\",\"text_sha256\":\"a97f85a1cf64acbdc6396099c9e76680b7bc61760734d340009bdb2ba4147f01\",\"turn_index\":7},{\"alias\":\"e015\",\"speaker\":\"user\",\"text\":\"Early data pull in opposite directions. Reservation nights have a 22 percent no-show rate, but walk-up trials created a thirty-minute pavement queue. School groups bring more first-time visitors, yet they use nearly twice the volunteer hours. Two cloudy Fridays also distorted the sample. The board agreed not to interpret these numbers until the full window closes, which frustrates members who want a public announcement now.\",\"text_sha256\":\"0ab28d35144b300e6955bab26d1c11a8be65c7c0caba83abe14656b970506139\",\"turn_index\":8},{\"alias\":\"e016\",\"speaker\":\"assistant\",\"text\":\"The early numbers do not settle the trade-off. Who prepares the alternatives for the meeting, and may the board choose something outside the three listed formats?\",\"text_sha256\":\"8dd5492013af7cc81a36108a8fb00114b5b6a82456827e39ed358ab6934a9ed1\",\"turn_index\":8},{\"alias\":\"e017\",\"speaker\":\"user\",\"text\":\"Priya prepares one cost and staffing sheet for each listed format. The treasurer checks arithmetic, and the accessibility circle attaches comments without ranking the formats. The board can combine features only if the combination stays within the forty-eight-thousand-euro winter budget, fire limit, and available volunteer hours shown in the report. A proposal outside those bounds goes to a later budget meeting; it does not delay the November vote among feasible choices.\",\"text_sha256\":\"6458b72fa99209d10942758f94f32f76e21026df7aeae36e3ce59a347e237f44\",\"turn_index\":9},{\"alias\":\"e018\",\"speaker\":\"assistant\",\"text\":\"Has the fallback itself been funded and staffed, or is it only a sentence in the calendar?\",\"text_sha256\":\"8671570d43c77365233fe01b51e36d9df25bd1768c62f8e0774581dea92913e9\",\"turn_index\":9},{\"alias\":\"e019\",\"speaker\":\"user\",\"text\":\"The current two-night format is funded through March. The volunteer captain has a winter roster template, the booking platform renewal is signed, and the building cooperative reserved the same roof hours. If the evidence threshold is not met, Priya continues that format without another vote and the board uses the March review already on its annual calendar.\",\"text_sha256\":\"6b7c9beea388f523295b32df2f25b7731edbefbda55bc4ace97c0f4fb941a1ae\",\"turn_index\":10},{\"alias\":\"e020\",\"speaker\":\"assistant\",\"text\":\"Check for any side issue that lacks a named owner, especially the noise complaints and the visitor-data privacy question. Either could otherwise become an accidental reason to reopen the whole program.\",\"text_sha256\":\"7a19e46247257159fe1183391f2cc60b0ded002f4202e3de54b10deb263d0895\",\"turn_index\":10},{\"alias\":\"e021\",\"speaker\":\"user\",\"text\":\"The roof monitor sends any complaint within one business day to the building cooperative, which decides operating-hour restrictions under the lease. Three complaints in a month automatically remove the walk-up evening from consideration, but the other formats remain available. Visitor answers are optional and deleted after the board's March review; the data steward owns that deletion. Both provisions are in the signed appendix.\",\"text_sha256\":\"1d77dedb3a74c1cfac0e615e0196450129a1e7d23da02b4c2e18f65cb255891c\",\"turn_index\":11},{\"alias\":\"e022\",\"speaker\":\"assistant\",\"text\":\"That assigns the side issues and defines their effect on the available choices. What has changed since the early mixed data, and has anyone tried to move the decision date?\",\"text_sha256\":\"79179fc93a98bbcf30535f97b7e763016fb581690f59660c0f2b9d1aff0dc2e9\",\"turn_index\":11},{\"alias\":\"e023\",\"speaker\":\"user\",\"text\":\"We now have nine usable sessions, so the minimum-session condition is met. Lift waits improved after the pager trial, while no-shows remain around twenty percent. One board member proposed voting next week, but the other six kept 14 November because the school half-term sessions are still missing. The accessibility circle will deliver its final note on 3 November.\",\"text_sha256\":\"4e9e40a71ebcea45770bb7631132726870098b54a928f1185f34b77527b8d109\",\"turn_index\":12},{\"alias\":\"e024\",\"speaker\":\"assistant\",\"text\":\"Verify the packet schedule and whether observations arriving after the lock can change the calculations or meeting date.\",\"text_sha256\":\"d01791a04a7e83330e110b1b843d58f4c52ca9afbf2cb723501ddb9a7cb9baac\",\"turn_index\":12},{\"alias\":\"e025\",\"speaker\":\"user\",\"text\":\"Priya booked the report lock for 1 November with the data steward and treasurer present. Anything discovered after the lock goes into an appendix labeled late and cannot change the calculations unless the board votes to adjourn. The chair circulated the 14 November agenda with all three formats and the existing-format fallback.\",\"text_sha256\":\"5034ae197fc6d4f84998c45c69f4461353ec816663312b80fd7dc94f6c32ce6d\",\"turn_index\":13},{\"alias\":\"e026\",\"speaker\":\"assistant\",\"text\":\"Are there any corrections to the authority or evidence you described earlier before you brief members?\",\"text_sha256\":\"14b3b7a52b92cc846536186476e3a9e3241b878aebcdfcfac2fce12caace284c\",\"turn_index\":13},{\"alias\":\"e027\",\"speaker\":\"user\",\"text\":\"One correction: the first attendance export counted twelve volunteers as visitors. Priya documented and removed those duplicates under the audit rule. The chair also asked advocates for each format not to circulate a preferred conclusion in the observatory newsletter before the report closes. The autumn sessions, pager test, roster filling, and school visits continue meanwhile.\",\"text_sha256\":\"f4daf7f903761183a4e6965d2a34915876076090c08179e45b937d6897f40f5a\",\"turn_index\":14},{\"alias\":\"e028\",\"speaker\":\"assistant\",\"text\":\"I can help you write a member update that explains the dates, measures, and who owns each operational thread without pretending that the November choice has already been made.\",\"text_sha256\":\"5830914b4b8007813a8ad965dc39802ecc9dcad8b4e7d221ed0aa0fadd56b6f2\",\"turn_index\":14}],\"message_count\":28,\"path\":\"research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case02-neighborhood-observatory-winter-access.json\",\"sha256\":\"19d7b4dacdae491effcbb8f41d150aa3ac72c97f2f090088f584909e7095cbb0\"}\n</authoritative_source>\n\n<fallible_prior_interpretation_context>\n{\"artifact_path\":\"research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case02-neighborhood-observatory-winter-access.json\",\"artifact_sha256\":\"82d3ecae8384d8966b17740170cb22135364b8e800e2e8a4429b3af07c1da996\",\"authority\":\"fallible_prior_interpretation_not_source_truth\",\"qualification_review\":{\"evidence_ids\":[\"e005\",\"e015\",\"e023\"],\"interpretation\":\"The winter format is deliberately unselected while attendance, accessibility, staffing, weather, and neighborhood observations continue to accumulate.\",\"limitations\":\"The early evidence pulls in different directions and does not predict the board's eventual choice.\",\"outcome\":\"qualification_present\"},\"records\":[{\"interpretation\":\"The chair begins under pressure to announce a winter access format before the observatory has completed its autumn evidence period.\",\"limitations\":\"This describes the opening pressure rather than the board's later process or choice.\",\"record_id\":\"r4s1-prior-case02-starting-01\",\"source_aliases\":[\"e001\",\"e003\",\"e005\"],\"surface\":\"starting_position\"},{\"interpretation\":\"The observatory continues its funded reservation program while a fixed evidence window, signed measures, named board vote, three formats, operating owners, and existing-format fallback govern the winter choice.\",\"limitations\":\"The process preserves a later board judgment and does not select a format in advance.\",\"record_id\":\"r4s1-prior-case02-current-01\",\"source_aliases\":[\"e007\",\"e009\",\"e017\",\"e019\"],\"surface\":\"current_position\"},{\"interpretation\":\"School-session data, the accessibility note, duplicate-scan correction, and report lock remain in progress before the November meeting.\",\"limitations\":\"This bounded summary does not contain the complete operating history or establish how the board will weigh the evidence.\",\"record_id\":\"r4s1-prior-case02-qualification-01\",\"source_aliases\":[\"e021\",\"e023\",\"e025\",\"e027\"],\"surface\":\"qualification\"}]}\n</fallible_prior_interpretation_context>\n\n<task>\nPerform residual accounting and subtraction over the complete source. Return exactly one review for residual_reconsideration_dependency, with at most two records. Preserve exact aliases, speaker ownership, and modal force. Do not give advice, select a graph, or score quality.\n</task>",
+        "role": "user"
+      }
+    ],
+    "model": "google/gemini-3.1-flash-lite",
+    "provider": {
+      "allow_fallbacks": false,
+      "data_collection": "deny",
+      "max_price": {
+        "completion": 1.5,
+        "prompt": 0.25
+      },
+      "only": [
+        "google-vertex"
+      ],
+      "order": [
+        "google-vertex"
+      ],
+      "require_parameters": true,
+      "zdr": true
+    },
+    "reasoning": {
+      "effort": "minimal",
+      "exclude": true
+    },
+    "response_format": {
+      "json_schema": {
+        "name": "lolla_r4_residual_reconsideration_dependency_single_v1",
+        "schema": {
+          "additionalProperties": false,
+          "description": "Single residual-discovery review for residual_reconsideration_dependency.",
+          "properties": {
+            "global_limitations": {
+              "description": "Limits applying to the whole read; empty if none.",
+              "type": "string"
+            },
+            "reviews": {
+              "description": "Exactly one review for residual_reconsideration_dependency.",
+              "items": {
+                "additionalProperties": false,
+                "description": "One explicit residual-surface review.",
+                "properties": {
+                  "outcome": {
+                    "description": "Present, quiet, or ambiguous result of this residual review.",
+                    "enum": [
+                      "records_present",
+                      "no_supported_record_observed",
+                      "ambiguous_review"
+                    ],
+                    "type": "string"
+                  },
+                  "records": {
+                    "description": "Zero to two candidates for this residual surface.",
+                    "items": {
+                      "additionalProperties": false,
+                      "description": "One source-linked residual candidate.",
+                      "properties": {
+                        "evidence_ids": {
+                          "description": "Exact source aliases that collectively establish the material dependency or question and why adopted machinery does not fully handle it.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "maxItems": 8,
+                          "minItems": 1,
+                          "type": "array"
+                        },
+                        "interpretation": {
+                          "description": "Concise meaning of this residual without advice.",
+                          "type": "string"
+                        },
+                        "limitations": {
+                          "description": "Residual uncertainty or scope limit; use an empty string if none.",
+                          "type": "string"
+                        },
+                        "support": {
+                          "description": "Whether the source supports the residual or leaves it ambiguous.",
+                          "enum": [
+                            "supported",
+                            "ambiguous"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "support",
+                        "interpretation",
+                        "evidence_ids",
+                        "limitations"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 2,
+                    "minItems": 0,
+                    "type": "array"
+                  },
+                  "surface": {
+                    "description": "The residual surface reviewed.",
+                    "enum": [
+                      "residual_reconsideration_dependency"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "surface",
+                  "outcome",
+                  "records"
+                ],
+                "type": "object"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "reviews",
+            "global_limitations"
+          ],
+          "type": "object"
+        },
+        "strict": true
+      },
+      "type": "json_schema"
+    },
+    "seed": 74102,
+    "stream": false
+  },
+  "body_sha256": "0ec3b96becb2f4f800d67fb6fd344dc0d52d8170ea34235f5a6b05a15acbb860",
+  "case_id": "r4s1-case02-neighborhood-observatory-winter-access",
+  "complete_prior_included_once": true,
+  "complete_source_included_once": true,
+  "prior_sha256": "82d3ecae8384d8966b17740170cb22135364b8e800e2e8a4429b3af07c1da996",
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "requested_provider_surfaces": [
+    "residual_reconsideration_dependency"
+  ],
+  "schema_version": "lolla.r4_separated_surface_request_preview.v1",
+  "source_aliases": [
+    "e001",
+    "e002",
+    "e003",
+    "e004",
+    "e005",
+    "e006",
+    "e007",
+    "e008",
+    "e009",
+    "e010",
+    "e011",
+    "e012",
+    "e013",
+    "e014",
+    "e015",
+    "e016",
+    "e017",
+    "e018",
+    "e019",
+    "e020",
+    "e021",
+    "e022",
+    "e023",
+    "e024",
+    "e025",
+    "e026",
+    "e027",
+    "e028"
+  ],
+  "source_sha256": "19d7b4dacdae491effcbb8f41d150aa3ac72c97f2f090088f584909e7095cbb0",
+  "source_then_prior_then_task": true,
+  "status": "provider_free_preview_not_authorized_for_transport",
+  "task_at_end": true
+}

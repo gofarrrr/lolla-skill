@@ -822,25 +822,21 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The leakage-corrected matched residual holdout v2 executed exactly once and its
-negative result is canonical. The provider-free follow-on diagnosis is also
-complete. Paired generation is not the general cause of the five false-positive
-records, but a narrow separated-surface diagnostic is earned for the Case 03/04
-companion pattern.
+The narrow paired-versus-separated diagnostic is now completely designed
+provider-free on a local branch. Its hash-bound human review and protected
+source-first target precede the twelve exact requests. Four paired calls and
+eight separated calls isolate task shape while retaining difficult
+governed-threshold and scheduled-decision controls. No execution authorization
+exists, and no provider call was made.
 
-Do not retry or integrate the reader. If the founder authorizes another goal,
-the next eligible unit is provider-free design of exactly one
-paired-versus-separated task-shape ablation. The design must preserve all other
-causal dimensions and include quiet controls that expose the Case 01/02
-governed-machinery errors. It must not assume that separation repairs the
-semantic boundary, source-authority failure, or evidence adjudication. If the
-effect cannot be isolated without changing ontology, source/prior authority,
-model/context, relationship behavior, runtime, graph, or provider state, stop
-rather than bundle changes.
+The next decision is publication of the completed provider-free design. If it
+is reviewed and made canonical, execution would still require a separate exact
+one-use founder authorization. Do not execute from an unpublished local branch,
+infer authorization from the design, or integrate the reader.
 
-Until a new founder goal exists, do not design the ablation, make a provider
-call, create an execution authorization, execute rejected v1, retry the consumed
-A1 or A3 attempts, or change frozen sources, priors, targets, requests,
-operators, seeds, reasoning, or evaluation evidence. Runtime/graph integration,
-governed-pending output, model comparison, scalar scoring, R5, and
-product-usefulness claims remain unauthorized.
+Even a later result supporting companion pressure cannot establish overall
+reader safety. Governed-machinery restraint, scheduled decisions,
+assistant-proposal authority, evidence adjudication, transfer to real
+conversations, and product usefulness remain independent gates. Runtime/graph
+integration, governed-pending output, model comparison, scalar scoring, R5,
+and product-usefulness claims remain unauthorized.
