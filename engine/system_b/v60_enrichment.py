@@ -16,7 +16,11 @@ _LOGGER = logging.getLogger("system_b.v60_enrichment")
 
 
 SCHEMA_VERSION = "v60_runtime_enrichment.v1"
-LEDGER_SCHEMA_VERSION = "v60_skill_consideration_ledger.v1"
+LEGACY_LEDGER_SCHEMA_VERSION = "v60_skill_consideration_ledger.v1"
+LEDGER_SCHEMA_VERSION = "v60_skill_consideration_ledger.v2"
+LEDGER_SCHEMA_VERSIONS = frozenset(
+    {LEGACY_LEDGER_SCHEMA_VERSION, LEDGER_SCHEMA_VERSION}
+)
 RUNTIME_POLICY = "private_skill_enrichment"
 DEFAULT_MAX_CARDS = 8
 DEFAULT_LANE_SLOTS = 4
@@ -62,6 +66,7 @@ ROUTES = frozenset(
         "irrelevant",
         "missing_evidence",
         "duplicate",
+        "technical_failure",
     }
 )
 ROUTES_BY_DISPOSITION = {
@@ -80,6 +85,10 @@ ROUTES_BY_DISPOSITION = {
     "deferred": frozenset(
         {"set_aside", "missing_evidence", "evidence_gate", "diagnostic_question"}
     ),
+    "not_considered": frozenset({"technical_failure"}),
+}
+LEGACY_ROUTES_BY_DISPOSITION = {
+    **ROUTES_BY_DISPOSITION,
     "not_considered": frozenset({"already_covered", "duplicate", "irrelevant"}),
 }
 _V60_LEDGER_HEALTH_ISSUES = frozenset({MISSING_LEDGER_ISSUE, INVALID_LEDGER_ISSUE})
@@ -415,9 +424,10 @@ def build_v60_enrichment(
                     "card_id": "parent card id",
                     "model_id": "parent model id",
                     "disposition": "used | rejected | deferred | not_considered",
-                    "route": "updated_position | pressure_check | private_guardrail | evidence_gate | diagnostic_question | set_aside | already_covered | irrelevant | missing_evidence | duplicate",
+                    "route": "updated_position | pressure_check | private_guardrail | evidence_gate | diagnostic_question | set_aside | already_covered | irrelevant | missing_evidence | duplicate | technical_failure",
                     "strongest_plausible_application": "best honest way the chunk could apply",
-                    "risk_if_forced": "required for rejected/deferred/not_considered chunks",
+                    "risk_if_forced": "required for rejected/deferred chunks",
+                    "technical_blocker": "required only when a malformed or inaccessible chunk could not be considered",
                     "why": "short private rationale",
                     "visible_effect": "empty unless this changed user-facing prose",
                 }
@@ -623,6 +633,7 @@ def build_v60_consideration_ledger_skeleton(enrichment: Mapping[str, Any]) -> di
             "visible_effect": "",
             "private_guardrail": "",
             "risk_if_forced": "",
+            "technical_blocker": "",
         }
         for affordance in (_mapping(item) for item in _list(card.get("selected_affordance_cards"))):
             transactions.append(
@@ -671,8 +682,14 @@ def validate_v60_consideration_ledger(
     enrichment: Mapping[str, Any],
 ) -> dict[str, Any]:
     errors: list[str] = []
-    if _text(ledger.get("schema_version")) != LEDGER_SCHEMA_VERSION:
+    ledger_schema = _text(ledger.get("schema_version"))
+    if ledger_schema not in LEDGER_SCHEMA_VERSIONS:
         errors.append("schema_version is invalid")
+    route_contract = (
+        LEGACY_ROUTES_BY_DISPOSITION
+        if ledger_schema == LEGACY_LEDGER_SCHEMA_VERSION
+        else ROUTES_BY_DISPOSITION
+    )
     explicit_skeleton = bool(
         _list(_mapping(enrichment.get("consideration_ledger_skeleton")).get("transactions"))
     )
@@ -711,13 +728,21 @@ def validate_v60_consideration_ledger(
         if route not in ROUTES:
             errors.append(f"{prefix}.route is invalid")
         if (
-            disposition in ROUTES_BY_DISPOSITION
+            disposition in route_contract
             and route in ROUTES
-            and route not in ROUTES_BY_DISPOSITION[disposition]
+            and route not in route_contract[disposition]
         ):
             errors.append(f"{prefix}.route is incompatible with disposition")
-        if not _text(transaction.get("strongest_plausible_application")):
+        if disposition != "not_considered" and not _text(
+            transaction.get("strongest_plausible_application")
+        ):
             errors.append(f"{prefix}.strongest_plausible_application is required")
+        if (
+            ledger_schema == LEDGER_SCHEMA_VERSION
+            and disposition == "not_considered"
+            and not _text(transaction.get("technical_blocker"))
+        ):
+            errors.append(f"{prefix}.technical_blocker is required for not_considered")
         if disposition == "used":
             if not (
                 _text(transaction.get("visible_effect"))
@@ -731,7 +756,10 @@ def validate_v60_consideration_ledger(
                 errors.append(
                     f"{prefix}.blocked_or_guarded_claim or uncertainty_boundary is required for used absence chunks"
                 )
-        if disposition in {"rejected", "deferred", "not_considered"}:
+        if disposition in {"rejected", "deferred"} or (
+            ledger_schema == LEGACY_LEDGER_SCHEMA_VERSION
+            and disposition == "not_considered"
+        ):
             if not _text(transaction.get("risk_if_forced")):
                 errors.append(f"{prefix}.risk_if_forced is required for non-used chunks")
         if not _text(transaction.get("why")):

@@ -1,0 +1,71 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_cold_reader_review.v2",
+  "status": "provider_free_gate_pass_one_development_window_may_be_probed",
+  "date": "2026-07-11",
+  "reviewer_independence": "same_project_session_structural_review_not_independent",
+  "evidence": {
+    "development_windows": 35,
+    "same_pair_protected_fixtures": "5/5",
+    "cross_turn_adversarial_fixtures": "1/1",
+    "focal_alias_partition": "335/335",
+    "stress_messages": 24,
+    "stress_windows": 12,
+    "stress_focal_alias_partition": "292/292",
+    "maximum_development_packet_bytes": 3944,
+    "maximum_stress_packet_bytes": 6159,
+    "maximum_records_per_window": 2,
+    "future_maximum_calls_per_fourteen_message_case": 7,
+    "future_maximum_records_per_fourteen_message_case": 14,
+    "provider_calls": 0
+  },
+  "cold_reader_questions": [
+    {
+      "question": "Can a reader distinguish focal evidence from prior context?",
+      "result": "pass",
+      "reason": "Packets label both regions and expose role-specific citation permissions."
+    },
+    {
+      "question": "Can a reader recover the alternative and its attached limit separately?",
+      "result": "pass",
+      "reason": "Records and compiled observations retain separate role alias and stable span arrays."
+    },
+    {
+      "question": "Can a prior alternative be qualified in the next turn pair?",
+      "result": "pass",
+      "reason": "The cross-turn fixture cites the prior alternative only in the alternative role and the focal condition only in the attached-limit role."
+    },
+    {
+      "question": "Can unreviewed windows be mistaken for model-reviewed empty windows?",
+      "result": "pass",
+      "reason": "Provider-free receipts explicitly label unreviewed windows and reserve reviewed_empty for a valid model response."
+    },
+    {
+      "question": "Does readability require semantic deduplication or global synthesis?",
+      "result": "pass",
+      "reason": "Receipts remain chronological and preserve possible cross-window duplicates with not_assessed status."
+    }
+  ],
+  "remaining_limits": [
+    "Relationships spanning more than one prior pair are not covered by this version.",
+    "Seven future calls per fourteen-message conversation is an operability cost that has not been accepted for runtime.",
+    "Provider-free fixtures establish representability, not Gemini recall or semantic precision.",
+    "The review is same-session and not independent."
+  ],
+  "current_practice_reuse": {
+    "source": "docs/conversation-understanding/reasoning-process-phase3-current-practice-check-2026-07-11.md",
+    "adopted": [
+      "Gemini 3.1 Flash Lite through OpenRouter",
+      "strict shallow JSON Schema plus local validation",
+      "temperature zero, seed zero, reasoning disabled",
+      "no retry, fallback, response healing, evaluator, embedding, graph, or runtime call"
+    ],
+    "failure_derived_update": "Mechanical parking and absent auxiliary-ID fields are removed from the provider schema rather than encoded as model-authored constants."
+  },
+  "decision": {
+    "provider_free_gate_passed": true,
+    "one_target_blind_case02_turn3_development_call_may_be_authorized": true,
+    "full_seven_window_case_run_authorized": false,
+    "phase4_transfer_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "lolla.designed_ambiguous_development_stage_a_authorization.v1",
+  "date": "2026-07-10",
+  "status": "authorized_once_after_dry_run",
+  "contract_path": "research/stage-a-amb1-case02-2026-07-10/contract.json",
+  "contract_sha256": "092a687c8e5ec5ef6712d4f38c45827206f1dfa9e8bac33c7408b5efc3e0aa40",
+  "run_id": "stage_a_amb1_case02_20260710_a1",
+  "authorization_basis": [
+    "The founder asked Codex to continue development autonomously and use tests judiciously.",
+    "The parent corpus decision explicitly authorized preparing this development Stage A contract.",
+    "The source, selection, prompts, runtime, data, call ceilings, cost ceiling, timeouts, and stop rules are frozen.",
+    "A 28-token operability probe confirmed that the repaired reasoning-disable request succeeds on the exact requested model.",
+    "The run produces no user-facing recommendation and skips revision."
+  ],
+  "allowed": {
+    "orchestrator_invocations": 1,
+    "automatic_experiment_retries": 0,
+    "builtin_extraction_quote_repairs": 1,
+    "maximum_openrouter_calls": 36,
+    "maximum_direct_openai_embedding_and_expansion_calls": 8,
+    "maximum_estimated_cost_usd": 0.15
+  },
+  "not_authorized": [
+    "rerun after any terminal result",
+    "control or treatment answer generation",
+    "graph ablation",
+    "same-case semantic tuning",
+    "clean-holdout claims",
+    "runtime integration"
+  ]
+}

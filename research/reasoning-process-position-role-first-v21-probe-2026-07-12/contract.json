@@ -1,0 +1,146 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v21_probe_contract.v1",
+  "status": "frozen_before_at_most_four_v21_new_case_calls",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-position-role-first-architecture-succession-v21",
+  "purpose": "Test whether the prompt/packet-only v2.1 endpoint, coherent-record, component, coverage, and speaker-ownership clarifications recover one source-faithful position trajectory on a new ambiguous multi-turn succession case.",
+  "job": {
+    "case_id": "amb3-case02-architecture-firm-succession",
+    "packet_path": "research/reasoning-process-position-role-first-v21-new-case-2026-07-12/position-endpoint.json",
+    "packet_sha256": "34ad21af1d5030bdf29245756a81f8b9b7f76015b0ea482613f3d5dd0ab5d59b",
+    "model": "deepseek/deepseek-v4-flash",
+    "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "pricing_per_token": {
+      "prompt": 1.34e-7,
+      "completion": 2.68e-7
+    },
+    "role_request_contracts": {
+      "starting": {
+        "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+        "user_prompt_sha256": "591325a6658103a78239d9ed0a65f4f99ceab554b728bca1d72ffc4c0b72f372",
+        "response_schema_sha256": "56c500e6f44597dfdbf7c52674023bc30c1bda0157cdfced268fd8ebf0671f9e"
+      },
+      "current": {
+        "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+        "user_prompt_sha256": "0fbe1662e8c02529a264363ae56c002fd997a88f04f1352465e10eab180f4bce",
+        "response_schema_sha256": "613f487d8eb40911d6dfebff28395d714c1a0912ecb151a3ce33aa40ef84b907"
+      },
+      "qualification": {
+        "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+        "user_prompt_sha256": "32e7d99f2e9fa86f714d73cfa233d6f69f17efa8781aee51609074d6ec3a419b",
+        "response_schema_sha256": "8d472fcf6b93544c65e75bf21aa5517e76277789a8a5f0c3c3df98942566e969"
+      }
+    },
+    "relation_response_schema_sha256": "e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3"
+  },
+  "protected_source_review": {
+    "target_path": "research/reasoning-process-position-role-first-v21-new-case-2026-07-12/source-review-target.json",
+    "target_sha256": "18ae4f751072024dd8a9ae24cdd79712b254e82125f1f7cd7ad1ea154c48cde3",
+    "compiled_target_path": "research/reasoning-process-position-role-first-v21-new-case-2026-07-12/compiled-source-review-target.json",
+    "compiled_target_sha256": "f2e11b3ed847cfb47a18b8ffa3e63a7eb475e9a9b35e4598679e28f7338222b3",
+    "written_before_provider_execution": true,
+    "included_in_provider_context": false,
+    "used_for_prompt_tuning": false,
+    "independent_human_gold": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_position_role_first_v21.py",
+      "sha256": "871c5fdb3af6c6a47ff60c0665ebb68a50aead5ae43bda4e47601bfb65537d34"
+    },
+    {
+      "path": "scripts/evals/reasoning_process_position_decomposition_transport.py",
+      "sha256": "44d572988df71e5a5def9b3f5baa21b5e159bcb51fd163218c3f421eed7e7d95"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_position_role_first_v2_probe.py",
+      "sha256": "975d6eb9f2dc5fee6f5806a0df8d45e709d06ae61be225be92dae083853b7d36"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_position_role_first_v21_probe.py",
+      "sha256": "5524669474340dc5838fb78bd2d4fccff8d011bd2fd2a0aced01b9f08b8ac185"
+    },
+    {
+      "path": "research/reasoning-process-position-role-first-v21-2026-07-12/report.json",
+      "sha256": "5d7c7a3b09579ee46cf879929222dc0c9ddc7248955706994ce57323b8e345b4"
+    },
+    {
+      "path": "research/reasoning-process-position-role-first-v21-new-case-2026-07-12/target-report.json",
+      "sha256": "f9b314976b4a388cb5fbb1aec98ce851d583ed3f27ca26cbee2a6e3a8714e2c0"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-role-first-model-control-result-2026-07-12.md",
+      "sha256": "94e2206b23ad1bee817bce1a417ba4d5bda85a301faa0208ddb1d6a0681a6db9"
+    },
+    {
+      "path": "docs/conversation-understanding/lolla-product-constitution-v3.md",
+      "sha256": "8890a7a2785a8b12edeea8e3c44ef07e138fcbfb9a0e5f42a25f53641806eaf9"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "custody": {
+    "write_started_marker_before_each_call": true,
+    "never_rerun_if_started_marker_exists": true,
+    "run_three_independent_role_calls_even_if_one_role_fails": true,
+    "block_relation_call_unless_all_three_role_wire_and_admission_gates_pass": true,
+    "derive_and_write_relation_packet_before_relation_call": true
+  },
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "wire_and_exact_route_pass_for_every_call": true,
+    "one_coherent_record_per_role": true,
+    "starting_preserves_e001_e004_e005_and_mixed_motive_uncertainty": true,
+    "current_preserves_one_thread_across_e049_e050_e051_without_force_inflation": true,
+    "qualification_preserves_e052_e055_e056": true,
+    "protected_e056_irreversibility_meaning_survives": true,
+    "assistant_qualification_preserves_speaker_ownership_without_user_adoption": true,
+    "relationship_preserves_bounded_comparison_and_option_changing_limits": true,
+    "exact_id_join_complete": true,
+    "source_first_review_required": true
+  },
+  "stop_rules": {
+    "one_call_per_task_only": true,
+    "no_retry_fallback_response_healing_or_prompt_edit": true,
+    "no_relation_call_after_any_role_wire_or_admission_failure": true,
+    "if_protected_qualification_loss_repeats_stop_direct_structured_extraction": true,
+    "no_model_control_after_semantic_failure": true,
+    "no_graph_runtime_downstream_reconsideration_or_receipt_work": true
+  },
+  "boundary": {
+    "synthetic_development_case": true,
+    "independent_holdout": false,
+    "protected_review_excluded_from_provider": true,
+    "response_schemas_and_validators_unchanged_from_v2": true,
+    "semantic_contract_changed_only_in_packet_and_prompt": true,
+    "deterministic_semantic_gate_added": false,
+    "production_integration_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

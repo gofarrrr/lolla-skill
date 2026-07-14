@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_probe_decision.v2",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_microtask_probe_v2_20260711_a1",
+  "status": "closed_operational_failure",
+  "decision": "do_not_retry_strict_provider_schema_path",
+  "observed": {
+    "pre_provider_runner_failures": 1,
+    "provider_calls": 1,
+    "successful_provider_inference_calls": 0,
+    "automatic_retries": 0,
+    "constraints_call_not_run": true,
+    "positions_call_not_run": true,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "evaluator_calls": 0,
+    "runtime_changes": 0
+  },
+  "finding": {
+    "prior_hypothesis": "The nullable string type-array projection caused the Case 02 thread-schema rejection.",
+    "test": "Replace the type array with anyOf and constrain span IDs through a source-specific enum on a transfer case.",
+    "result": "Google again returned HTTP 400 INVALID_ARGUMENT before inference.",
+    "conclusion": "Changing the nullable representation was not sufficient. The exact cause remains unknown; strict structured-output interoperability on this OpenRouter-to-Google path is not reliable enough for the next semantic experiment."
+  },
+  "next_recommended_boundary": {
+    "wire_mode": "json_object",
+    "typed_schema_in_prompt": true,
+    "local_typed_validation": true,
+    "source_id_enum_in_prompt_schema": true,
+    "silent_repair": false,
+    "automatic_retries": 0,
+    "reason": "JSON mode previously reached inference on the same served model. Local deterministic validation already fails closed and provides the semantic custody Lolla needs."
+  },
+  "next_call_authorization": "not_granted",
+  "non_claims": [
+    "not_semantic_transfer_result",
+    "not_proof_of_exact_provider_rejection_cause",
+    "not_graph_value",
+    "not_runtime_authority"
+  ]
+}

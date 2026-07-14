@@ -1,0 +1,17 @@
+{
+  "schema_version": "lolla.post_run_preflight_repair.v1",
+  "date": "2026-07-10",
+  "status": "applied_after_terminal_run",
+  "file": "scripts/evals/run_reasoning_portfolio_stage_a.py",
+  "frozen_run_version_sha256": "51cbe8260afbcd79e2845b365c268e6584c3c8bafd82823037afe31185ff2acd",
+  "repaired_version_sha256": "c775170d5569a88e159211b135e5e800a965d4982aed16c775698b8bd598b93b",
+  "repair": "Before computing prompt hashes, dry-run validation now invokes the existing deterministic capture validator, requires capture_health=good, and requires the observed marker count to equal fresh_extraction.required_captured_message_count.",
+  "why": "The terminal Case 02 attempt spent one extraction call even though its missing CONVERSATION header could have been rejected before provider I/O.",
+  "semantic_pipeline_change": false,
+  "provider_prompt_change": false,
+  "applied_to_terminal_run": false,
+  "prospective_only": true,
+  "tests": [
+    "tests/test_run_reasoning_portfolio_stage_a.py::test_contract_rejects_headerless_source_before_any_provider_call"
+  ]
+}

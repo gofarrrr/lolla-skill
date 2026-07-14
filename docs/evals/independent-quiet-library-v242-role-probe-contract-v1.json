@@ -1,0 +1,82 @@
+{
+  "schema_version": "lolla.independent_quiet_v242_role_probe_contract.v1",
+  "status": "frozen_before_exactly_two_no_retry_calls",
+  "run_id": "independent-quiet-library-v242-role-probe-2026-07-12",
+  "case_id": "phase5-independent-quiet-library-laptop-pilot",
+  "job": {
+    "packet_path": "research/independent-phase5-quiet-library-v242-role-case-2026-07-12/position-endpoint.json",
+    "packet_sha256": "1c63562038fd7399211375a833f6118ec4a986e3f58438e5ba3a733cd6fb91d5",
+    "request_contracts": {
+      "starting": {
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt_sha256": "fe0ec5820cfe5502fb8852b10106b71d9c874d538e875a7b1904303c2ca89884",
+        "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd"
+      },
+      "current_qualification": {
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt_sha256": "c6c6e658128dc68e8998019f189485539dcf6f90f07b882638a6bc974fa76a29",
+        "response_schema_sha256": "4a8287bc0f55e118c2e684b6a38d32ca14fa6d6e355be7c8b07740e17c533b01"
+      }
+    }
+  },
+  "model_route": {
+    "model": "deepseek/deepseek-v4-flash",
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "pricing_per_token": {
+      "prompt": 0.00000007,
+      "completion": 0.00000028
+    }
+  },
+  "frozen_inputs": [
+    {
+      "path": "research/independent-phase5-quiet-library-v242-role-case-2026-07-12/position-endpoint.json",
+      "sha256": "1c63562038fd7399211375a833f6118ec4a986e3f58438e5ba3a733cd6fb91d5"
+    },
+    {
+      "path": "research/independent-phase5-quiet-library-v242-role-case-2026-07-12/target-report.json",
+      "sha256": "7178a9971b89e4cf78090e7270a38c9b003cdc1e0a5d4b12707ef0e3003115c6"
+    },
+    {
+      "path": "research/independent-phase5-quiet-library-v242-role-case-2026-07-12/source-review-target.json",
+      "sha256": "58b991df91b5decf70a0015e19634d98c180381113fe65cfb9e5510000d1066c"
+    }
+  ],
+  "call_configuration": {
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1800,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "boundary": {
+    "independent_synthetic_holdout": true,
+    "source_target_excluded_from_provider": true,
+    "explicit_negative_qualification_outcome_required": true,
+    "qualification_record_required": false,
+    "relation_call_required": false,
+    "deterministic_semantic_gate": false,
+    "semantic_repair": false,
+    "graph_or_runtime_authorized": false,
+    "production_authorized": false
+  }
+}

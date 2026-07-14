@@ -1,0 +1,150 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v4_probe_contract.v1",
+  "status": "frozen_before_one_fresh_provider_call",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-stance-object-v4-case04-position-endpoint-v1",
+  "purpose": "Test prospectively whether explicit stance objects let Gemini distinguish a reported team landscape from the user's own leaning, separate the workshop-preview action from the later public-beta decision procedure, and preserve the practical limit on making downloaded public use temporary.",
+  "case": {
+    "case_id": "amb1-case04-research-tool-release",
+    "development_status": "same_session_synthetic_fresh_for_stance_object_position_reader_not_independent_holdout",
+    "selection_rule": "closed_cases_removed_then_ascending_sha256_of_case_id_take_first",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+    "source_sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb"
+  },
+  "job": {
+    "job_id": "stance-object-v4-case04-position-endpoint",
+    "case_id": "amb1-case04-research-tool-release",
+    "mechanism": "chronological_shard_stance_object_v4",
+    "view_kind": "position_and_decision_trajectory",
+    "shard_kind": "position_endpoint_comparison",
+    "focal_turn_indices": [1, 7],
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case04-research-tool-release/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "c6a7c95756cf7b65a2e474ddabbfbb396d3a6b24307f14695f5ec9794f2e512c",
+    "input_utf8_bytes": 5233,
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "9caa521cc90b9c34a4e97640c19bcda1f0933ca9aa5e571240c987ff6fb305c1",
+    "response_schema_sha256": "f34b3152e46f9c5681795bdeb6491f3097efdfb42eaa83bcef0f1fff47240756",
+    "maximum_output_records": 2,
+    "maximum_stance_components_per_record": 10
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v4.py",
+      "sha256": "2faf96720bba23d6dc90586d329403755a6ed3e4ef432349b8ba39fd0349eb0b"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_stance_object_v4_probe.py",
+      "sha256": "c3bf2059bd8ba7e986ded2f33b072b79a89b36e414f374cc5596fa15935083dc"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_phase4_transfer.py",
+      "sha256": "2eba5deb09e9d4d99e0cca12ca07a35578f3c82a4afdf3788378f0bec921c96d"
+    },
+    {
+      "path": "scripts/evals/run_fixed_safe_holdout_pool.py",
+      "sha256": "a14854379c0a162c963e9ae6562f913a460e0a9867bc20053f7632b1bc551710"
+    },
+    {
+      "path": "scripts/evals/run_fixed_safe_holdout_pool_v2.py",
+      "sha256": "01725b2253139666085e84f15ad9f52a560fc0e1ec53cd906a223df2bb1c3e7a"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_view_specific_probe.py",
+      "sha256": "ce96b7ddca52297c2720f94f302d33485d68a29208dc63128d6311b5de4bf724"
+    },
+    {
+      "path": "scripts/evals/run_conversation_state_microtask_probe.py",
+      "sha256": "c15718db68b654387b7655ffc9d9410f38b6a8a8c19094da81189824b5d5e141"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v4-2026-07-12/report.json",
+      "sha256": "8a080fa8a922793d4ebab72d24bef145e3b50186eb5201cd2525d6d6f1e57a82"
+    },
+    {
+      "path": "research/reasoning-process-stance-object-v4-2026-07-12/adversarial-review.json",
+      "sha256": "a2ff689703914ed5981f86c8b15360de79e67b0f98ecefd9cd4dd1e559b22320"
+    },
+    {
+      "path": "docs/evals/reasoning-process-stance-object-v4-cold-reader-review.json",
+      "sha256": "b756e410f4e76eac97b56748acfc0173e702bf349e9582401e117f8ec1062949"
+    },
+    {
+      "path": "docs/evals/reasoning-process-position-stance-object-fixtures-v1.json",
+      "sha256": "761baef21779306540e2bcd1b364412325688a9e58705a5c36ea4a6c086f5985"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-stance-object-contract-v1.md",
+      "sha256": "8bd08e2d112bd0966b61322e661c3f162b569d5520f441d198930ed7e3ea3b0d"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-stance-object-current-practice-2026-07-12.md",
+      "sha256": "052c013751cd82b6e65a568a094fe0af1fa480985135cf405e1e1c3cf61d1254"
+    },
+    {
+      "path": "docs/evals/reasoning-process-stance-object-v4-model-snapshot-2026-07-12.json",
+      "sha256": "2131900501140cad54c99d2882cbafc0ced35c2f306d0d2843b71855a332963e"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-stance-object-v4-model-snapshot-2026-07-12.json",
+    "sha256": "2131900501140cad54c99d2882cbafc0ced35c2f306d0d2843b71855a332963e"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1800,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success": true,
+    "typed_record_level_custody_complete": true,
+    "starting_landscape_reported_without_user_endorsement": true,
+    "current_preview_action_preserves_leaning": true,
+    "later_public_beta_decision_procedure_is_separate": true,
+    "qualification_preserves_limit_on_temporary_public_use": true,
+    "object_and_expression_labels_source_supported": true,
+    "trajectory_source_supported_without_force_inflation": true,
+    "protected_semantic_target_visible": true,
+    "invalid_admitted_record_count": 0,
+    "source_first_review_required": true
+  },
+  "stop_rules": {
+    "one_fresh_position_call_only": true,
+    "no_retry_fallback_response_healing_or_prompt_change": true,
+    "no_same_case_repair_authorized": true,
+    "source_review_required_before_any_next_goal": true
+  },
+  "boundary": {
+    "protected_target_seen_by_model": false,
+    "source_review_fixture_seen_by_model": false,
+    "stance_components_are_scores_or_ordinals": false,
+    "semantic_object_or_expression_inferred_by_code": false,
+    "semantic_compatibility_matrix_added": false,
+    "other_view_calls_authorized": false,
+    "full_case_calls_authorized": false,
+    "semantic_retry_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

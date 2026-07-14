@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-12-lolla-project-governance",
+  "source_archive_run_id": "20260709T203911Z_4fc747",
+  "source_file_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.big_picture_plan", "dimension": "operative_question", "description": "The user asks for the big picture before more implementation.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I want to understand big picture. I want to understand what we've figured out and what the plan is"}]},
+    {"observation_id": "pressure.avoid_ad_hoc_work", "dimension": "user_corrections_and_pressure", "description": "The user explicitly rejects ad-hoc development.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "what I don't want us to do is to work ad hoc and not having big plan"}]},
+    {"observation_id": "constraint.future_shareability", "dimension": "constraints_and_options", "description": "The repository should later be understandable to selected outside readers.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "I would like to share it with some people soon"}]},
+    {"observation_id": "stance.two_track_roadmap", "dimension": "assistant_positions_and_revisions", "description": "The assistant proposes coordinated reasoning and repository tracks.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "The roadmap has two coordinated tracks. Track A proves the core reasoning loop. Track B makes the repository understandable, reproducible, and safe to share."}]},
+    {"observation_id": "stance.bounded_utility_claim", "dimension": "assistant_positions_and_revisions", "description": "The assistant limits what current evidence can support.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "It cannot yet claim stable conversation understanding, unique graph value, better decisions, correctness, or proof of reasoning quality."}]},
+    {"observation_id": "boundary.semantic_gate_before_graph", "dimension": "uncertainty_and_evidence_boundaries", "description": "Graph work is gated behind semantic fidelity and repeatability.", "evidence": [{"turn_index": 2, "speaker": "assistant", "quote": "Semantic work must show source fidelity and repeatability. Pattern work must show fact invariance and mechanism sensitivity."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.user_acceptance", "description": "The two-turn source ends before the user accepts or rejects the roadmap."},
+    {"observation_id": "absence.trajectory", "description": "A single assistant response cannot establish a multi-turn revision trajectory."}
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "compiled": {
+    "boundary": {
+      "component_evidence_restricted_to_parent_role": true,
+      "deterministic_duplicate_validation_retained": true,
+      "direct_graph_routing_allowed": false,
+      "expressions_compared_or_scored_by_code": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prompt_changed_from_v41": false,
+      "prose_keyword_gate_added": false,
+      "provider_wire_unique_items_removed": true,
+      "record_level_validation_weakened": false,
+      "record_validator_changed_from_v41": false,
+      "semantic_contract_changed_from_v41": false,
+      "semantic_merge_performed": false,
+      "stance_expression_correctness_inferred_by_code": false,
+      "stance_object_correctness_inferred_by_code": false
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case02-nonprofit-scale",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "Starting: I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable. | Current: I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch. | Qualification: That is a conditional direction, not a disguised final answer, and the unresolved point matters. | Trajectory: The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "observation_id": "rpshardv42-amb1-case02-nonprofit-scale-position_and_decision_trajectory-01-eb85db9010",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v42-wire-only-replay-of-v41-reviewed-fixture",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e059"
+            ],
+            "current_position_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e063"
+            ],
+            "qualification_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+            "stance_expression_kinds": [
+              "uncertain_or_undecided",
+              "leaning",
+              "conditional_willingness"
+            ],
+            "stance_object_fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+            "stance_object_interpretations": [
+              "Expansion may improve the organization or expose instability at the first site.",
+              "Accept a four-month twice-monthly program at Willow Hub under named readiness conditions.",
+              "Accepting the program remains conditional rather than final."
+            ],
+            "stance_object_kinds": [
+              "belief_or_assessment",
+              "intended_outcome_or_policy",
+              "acceptance_or_willingness"
+            ],
+            "stance_source_evidence_ids": [
+              "e005",
+              "e059",
+              "e063"
+            ],
+            "stance_temporal_roles": [
+              "starting",
+              "current",
+              "qualification"
+            ],
+            "starting_position_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+            "starting_state_evidence_ids": [
+              "e005"
+            ],
+            "status": "supported",
+            "trajectory_interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+            "trajectory_type": "emerged_from_uncertainty"
+          },
+          "record_identity": "case02-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:eb85db9010eb9f59881143bcdc03d324a8f7fd83a92050c489dba14d0592cf3f",
+        "role_interpretations": {
+          "current_position_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+          "qualification_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+          "starting_position_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+          "trajectory_interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved."
+        },
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-c792a8093d048d7c"
+          ],
+          "qualification_evidence_ids": [
+            "span-1bb454b4269629ec"
+          ],
+          "starting_state_evidence_ids": [
+            "span-98d16114b36c9814"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v4_2",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-98d16114b36c9814",
+          "span-c792a8093d048d7c",
+          "span-1bb454b4269629ec"
+        ],
+        "stance_objects": {
+          "stance_components": [
+            {
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "Expansion may improve the organization or expose instability at the first site.",
+              "stance_object_kind": "belief_or_assessment",
+              "temporal_role": "starting"
+            },
+            {
+              "source_evidence_id": "e059",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Accept a four-month twice-monthly program at Willow Hub under named readiness conditions.",
+              "stance_object_kind": "intended_outcome_or_policy",
+              "temporal_role": "current"
+            },
+            {
+              "source_evidence_id": "e063",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Accepting the program remains conditional rather than final.",
+              "stance_object_kind": "acceptance_or_willingness",
+              "temporal_role": "qualification"
+            }
+          ],
+          "stance_object_fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision."
+        },
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshardv42-amb1-case02-nonprofit-scale-position_and_decision_trajectory-01-eb85db9010",
+        "raw_record_sha256": "sha256:eb85db9010eb9f59881143bcdc03d324a8f7fd83a92050c489dba14d0592cf3f",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v4_2",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_v42_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e059"
+        ],
+        "current_position_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e063"
+        ],
+        "qualification_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+        "stance_expression_kinds": [
+          "uncertain_or_undecided",
+          "leaning",
+          "conditional_willingness"
+        ],
+        "stance_object_fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+        "stance_object_interpretations": [
+          "Expansion may improve the organization or expose instability at the first site.",
+          "Accept a four-month twice-monthly program at Willow Hub under named readiness conditions.",
+          "Accepting the program remains conditional rather than final."
+        ],
+        "stance_object_kinds": [
+          "belief_or_assessment",
+          "intended_outcome_or_policy",
+          "acceptance_or_willingness"
+        ],
+        "stance_source_evidence_ids": [
+          "e005",
+          "e059",
+          "e063"
+        ],
+        "stance_temporal_roles": [
+          "starting",
+          "current",
+          "qualification"
+        ],
+        "starting_position_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+        "starting_state_evidence_ids": [
+          "e005"
+        ],
+        "status": "supported",
+        "trajectory_interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "trajectory_type": "emerged_from_uncertainty"
+      }
+    ],
+    "status": "supported"
+  },
+  "source_fixture_path": "research/reasoning-process-stance-object-v41-2026-07-12/legacy-protected-fixtures/amb1-case02-nonprofit-scale/position_and_decision_trajectory.json"
+}

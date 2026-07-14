@@ -20,7 +20,7 @@ from .pre_step6_shadow_portfolio import (
     _load_cached_deck,
 )
 
-SCHEMA_VERSION = "pre_step6_private_table.v1"
+SCHEMA_VERSION = "pre_step6_private_table.v2"
 LEDGER_SCHEMA_VERSION = "pre_step6_private_table_ledger.v1"
 
 DEFAULT_MAX_CHARS = 9000
@@ -28,6 +28,10 @@ _MAX_ITEMS_PER_SECTION = 5
 _MAX_TEXT = 420
 LEDGER_DISPOSITIONS = frozenset(
     {"used", "rejected", "deferred", "private_guardrail", "confirming_support"}
+)
+_LEDGER_TOP_LEVEL_FIELDS = frozenset({"schema_version", "status", "items", "notes"})
+_LEDGER_DECISION_FIELDS = frozenset(
+    {"disposition", "why", "visible_effect", "private_guardrail"}
 )
 _GATES = {
     "step6_private_context_allowed": True,
@@ -74,6 +78,14 @@ def build_pre_step6_private_table(
         sources=sources,
     )
     rendered = _cap_rendered_table(rendered, max_chars=max(1200, int(max_chars or DEFAULT_MAX_CHARS)))
+    for index, source in enumerate(sources):
+        rendered_line = _text(source.get("rendered_line"))
+        source["consumer_visibility"] = (
+            "inline_markdown" if rendered_line and rendered_line in rendered else "exact_json_source_item"
+        )
+        source["consumer_locator"] = (
+            f"pre_step6_private_table.json#/source_items/{index}/rendered_line"
+        )
     payload = {
         "schema_version": SCHEMA_VERSION,
         "status": "ready",
@@ -86,6 +98,13 @@ def build_pre_step6_private_table(
         "table_char_count": len(rendered),
         "table_section_count": len(sources),
         "source_items": sources,
+        "consumer_material": {
+            "markdown_artifact": "pre_step6_private_table.md",
+            "overflow_artifact": "pre_step6_private_table.json",
+            "overflow_rule": "read exact source_items when consumer_visibility is exact_json_source_item",
+            "every_ledger_item_visible_or_resolvable": True,
+        },
+        "v60_transport_coverage": _v60_transport_coverage(result),
         "consideration_ledger_skeleton": _ledger_skeleton(sources),
         "sidecars": {
             "markdown": "",
@@ -114,6 +133,21 @@ def validate_pre_step6_private_table(payload: dict[str, Any]) -> None:
         raise ValueError("private table gates are invalid")
     if "rendered_private_table" in payload:
         raise ValueError("private table markdown belongs in the sidecar, not result.json")
+    consumer_material = _as_mapping(payload.get("consumer_material"))
+    if consumer_material.get("every_ledger_item_visible_or_resolvable") is not True:
+        raise ValueError("private table must preserve visible-or-resolvable consumer material")
+    v60_coverage = _as_mapping(payload.get("v60_transport_coverage"))
+    selected_count = int(v60_coverage.get("selected_card_count", 0) or 0)
+    presented_count = int(v60_coverage.get("presented_card_count", 0) or 0)
+    omitted_ids = [
+        _text(item)
+        for item in _as_list(v60_coverage.get("omitted_card_ids"))
+        if _text(item)
+    ]
+    if presented_count > selected_count:
+        raise ValueError("V60 presented-card count cannot exceed selected-card count")
+    if selected_count - presented_count != len(omitted_ids):
+        raise ValueError("V60 transport omission count is inconsistent")
     cache = _as_mapping(payload.get("cache"))
     if cache.get("live_card_generation_allowed") is not False:
         raise ValueError("private table must not generate live card decks")
@@ -128,6 +162,16 @@ def validate_pre_step6_private_table(payload: dict[str, Any]) -> None:
         raise ValueError("private table source_items must have source_id values")
     if len(source_ids) != len(set(source_ids)):
         raise ValueError("private table source_id values must be unique")
+    for index, raw_source in enumerate(_as_list(payload.get("source_items"))):
+        source = _as_mapping(raw_source)
+        visibility = _text(source.get("consumer_visibility"))
+        if visibility not in {"inline_markdown", "exact_json_source_item"}:
+            raise ValueError("private table source item visibility is invalid")
+        if not _text(source.get("rendered_line")):
+            raise ValueError("private table source item must preserve its complete rendered material")
+        expected_locator = f"pre_step6_private_table.json#/source_items/{index}/rendered_line"
+        if source.get("consumer_locator") != expected_locator:
+            raise ValueError("private table source item locator is invalid")
     ledger_ids = [
         _text(_as_mapping(item).get("source_id"))
         for item in _as_list(ledger.get("items"))
@@ -166,6 +210,12 @@ def validate_pre_step6_private_table_ledger(
         errors.append("status must be completed")
     if not isinstance(ledger.get("items"), list):
         errors.append("items must be a list")
+    if set(ledger) != _LEDGER_TOP_LEVEL_FIELDS:
+        errors.append("ledger top-level fields must exactly match the skeleton contract")
+    if not isinstance(ledger.get("notes"), list) or any(
+        not isinstance(note, str) for note in _as_list(ledger.get("notes"))
+    ):
+        errors.append("notes must be an array of strings")
 
     source_items = [
         _as_mapping(item)
@@ -183,6 +233,11 @@ def validate_pre_step6_private_table_ledger(
         if _text(item.get("source_id"))
     ]
     expected_set = set(expected_ids)
+    skeleton_by_id = {
+        _text(item.get("source_id")): item
+        for item in skeleton_items
+        if _text(item.get("source_id"))
+    }
 
     items = [_as_mapping(item) for item in _as_list(ledger.get("items"))]
     seen: list[str] = []
@@ -199,10 +254,30 @@ def validate_pre_step6_private_table_ledger(
             if source_id not in expected_set:
                 errors.append(f"{prefix}.source_id is unknown")
                 unknown.append(source_id)
+        skeleton_item = skeleton_by_id.get(source_id)
+        if skeleton_item:
+            if set(item) != set(skeleton_item):
+                errors.append(f"{prefix} fields must exactly match ledger skeleton")
+            for field in set(skeleton_item) - _LEDGER_DECISION_FIELDS:
+                if item.get(field) != skeleton_item.get(field):
+                    errors.append(f"{prefix}.{field} must match ledger skeleton")
         if disposition not in LEDGER_DISPOSITIONS:
             errors.append(f"{prefix}.disposition is invalid")
         elif disposition:
             disposition_counts[disposition] = disposition_counts.get(disposition, 0) + 1
+        for field in _LEDGER_DECISION_FIELDS - {"disposition"}:
+            if not isinstance(item.get(field), str):
+                errors.append(f"{prefix}.{field} must be a string")
+        if not _text(item.get("why")):
+            errors.append(f"{prefix}.why is required")
+        visible_effect = _text(item.get("visible_effect"))
+        private_guardrail = _text(item.get("private_guardrail"))
+        if disposition == "used" and not (visible_effect or private_guardrail):
+            errors.append(
+                f"{prefix}.used requires visible_effect or private_guardrail"
+            )
+        if disposition == "private_guardrail" and not private_guardrail:
+            errors.append(f"{prefix}.private_guardrail disposition requires private_guardrail")
 
     seen_set = set(seen)
     missing = sorted(expected_set - seen_set)
@@ -220,6 +295,13 @@ def validate_pre_step6_private_table_ledger(
         "missing_source_ids": missing,
         "duplicate_source_ids": duplicates,
         "unknown_source_ids": sorted(set(unknown)),
+        "visible_effect_claim_count": sum(
+            1 for item in items if _text(item.get("visible_effect"))
+        ),
+        "private_guardrail_claim_count": sum(
+            1 for item in items if _text(item.get("private_guardrail"))
+        ),
+        "semantic_effect_consistency_review": "not_performed_by_structural_validator",
         "errors": errors,
     }
 
@@ -344,6 +426,31 @@ def _render_private_table(
     lane1 = _lane1_items(result)
     if lane1:
         _append_section(parts, sources, "Lane 1 structural challenge", lane1)
+    graph_survival = _as_mapping(result.get("constitutional_graph_survival"))
+    if graph_survival.get("status") == "active":
+        active_pressure = [
+            _as_mapping(item)
+            for item in _as_list(graph_survival.get("active_pressure_items"))
+        ]
+        parts.extend(
+            [
+                "",
+                "## Constitutional Graph Pressure",
+                "Every item below is intentionally noisy pressure, not relevance proof. Inspect each full item at its exact result.json consumer_locator, then apply, reject, or park it in the separate constitutional graph ledger. Public use is not required.",
+            ]
+        )
+        for item in active_pressure:
+            parts.extend(
+                [
+                    "",
+                    f"### {_text(item.get('display_name')) or _text(item.get('model_id'))}",
+                    f"- Pressure id: {_text(item.get('pressure_id'))}",
+                    f"- Strongest plausible application: {_clip(_text(item.get('strongest_plausible_application')), 360)}",
+                    f"- Concrete test: {_clip(_text(item.get('concrete_test')), 280)}",
+                    f"- Force boundary: {_clip(_text(item.get('force_boundary')), 280)}",
+                    f"- Exact material: {_text(item.get('consumer_locator'))}",
+                ]
+            )
     lane2 = _lane2_items(result)
     if lane2:
         _append_section(parts, sources, "Lane 2 anchor pressure", lane2)
@@ -356,6 +463,14 @@ def _render_private_table(
     v60 = _v60_items(result)
     if v60:
         _append_section(parts, sources, "V60 private enrichment", v60)
+        coverage = _v60_transport_coverage(result)
+        omitted = int(coverage.get("omitted_card_count", 0) or 0)
+        if omitted:
+            omitted_ids = ", ".join(coverage.get("omitted_card_ids", []))
+            parts.append(
+                f"- Transport note: {omitted} additional selected V60 card(s) "
+                f"were not placed in this bounded table: {omitted_ids}."
+            )
 
     parts.extend(["", "## Cached Portfolio Cards"])
     if cached_deck:
@@ -368,22 +483,24 @@ def _render_private_table(
             handling = _clip(_text(card_map.get("handling_rule")), _MAX_TEXT)
             anchor = _clip(_text(card_map.get("anchor_text")), 700)
             receipts = [_clip(_text(item), 260) for item in _as_list(card_map.get("receipts"))[:3] if _text(item)]
+            card_lines = ["", f"### {label}", f"- Card id: {card_id}"]
+            if role:
+                card_lines.append(f"- Cognitive role: {role}")
+            if anchor:
+                card_lines.append(f"- Anchor text: {anchor}")
+            if receipts:
+                card_lines.extend(["- Receipts:", *[f"  - {receipt}" for receipt in receipts]])
+            if handling:
+                card_lines.append(f"- Handling rule: {handling}")
             sources.append(
                 {
                     "source_id": f"cached_card::{card_id}",
                     "source_kind": "cached_portfolio_card",
                     "title": label,
+                    "rendered_line": "\n".join(card_lines).strip(),
                 }
             )
-            parts.extend(["", f"### {label}", f"- Card id: {card_id}"])
-            if role:
-                parts.append(f"- Cognitive role: {role}")
-            if anchor:
-                parts.append(f"- Anchor text: {anchor}")
-            if receipts:
-                parts.extend(["- Receipts:", *[f"  - {receipt}" for receipt in receipts]])
-            if handling:
-                parts.append(f"- Handling rule: {handling}")
+            parts.extend(card_lines)
     else:
         parts.append(
             f"Cache state: {cache_state}. No cached portfolio cards are added for this run; do not infer missing pressure from the cache miss."
@@ -409,7 +526,7 @@ def _append_section(
     items: list[dict[str, str]],
 ) -> None:
     for item in items:
-        sources.append({k: v for k, v in item.items() if k != "rendered_line"})
+        sources.append(dict(item))
     parts.extend(["", f"## {title}", *[item["rendered_line"] for item in items]])
 
 
@@ -419,7 +536,7 @@ def _ledger_skeleton(sources: list[dict[str, str]]) -> dict[str, Any]:
         "status": "pending",
         "items": [
             {
-                **source,
+                **{key: value for key, value in source.items() if key != "rendered_line"},
                 "disposition": "",
                 "why": "",
                 "visible_effect": "",
@@ -633,13 +750,29 @@ def _v60_items(result: dict[str, Any]) -> list[dict[str, str]]:
         card_lines = [f"- {idx}. {model}: {reason or 'Selected for private consideration.'}"]
         for affordance in _as_list(item.get("selected_affordance_cards"))[:1]:
             amap = _as_mapping(affordance)
-            text = _clip(_text(amap.get("text") or amap.get("summary") or amap.get("chunk_text")), 240)
+            text = _clip(
+                _text(
+                    amap.get("text")
+                    or amap.get("summary")
+                    or amap.get("chunk_text")
+                    or amap.get("mechanism")
+                ),
+                240,
+            )
             cid = _text(amap.get("chunk_id") or amap.get("id"))
             if text:
                 card_lines.append(f"  - Affordance {cid}: {text}")
         for absence in _as_list(item.get("selected_absence_records"))[:1]:
             amap = _as_mapping(absence)
-            text = _clip(_text(amap.get("text") or amap.get("summary") or amap.get("chunk_text")), 240)
+            text = _clip(
+                _text(
+                    amap.get("text")
+                    or amap.get("summary")
+                    or amap.get("chunk_text")
+                    or amap.get("reason")
+                ),
+                240,
+            )
             cid = _text(amap.get("chunk_id") or amap.get("id"))
             if text:
                 card_lines.append(f"  - Absence {cid}: {text}")
@@ -654,6 +787,31 @@ def _v60_items(result: dict[str, Any]) -> list[dict[str, str]]:
             )
         )
     return items
+
+
+def _v60_transport_coverage(result: dict[str, Any]) -> dict[str, Any]:
+    v60 = _as_mapping(result.get("v60_enrichment"))
+    selected = (
+        _as_list(v60.get("selected_cards"))
+        if _text(v60.get("status")) == "active"
+        else []
+    )
+    selected_ids = [
+        _text(_as_mapping(card).get("card_id") or _as_mapping(card).get("model_id"))
+        or f"card-{index}"
+        for index, card in enumerate(selected, start=1)
+    ]
+    presented_ids = selected_ids[:_MAX_ITEMS_PER_SECTION]
+    omitted_ids = selected_ids[_MAX_ITEMS_PER_SECTION:]
+    return {
+        "selected_card_count": len(selected_ids),
+        "presented_card_count": len(presented_ids),
+        "omitted_card_count": len(omitted_ids),
+        "presented_card_ids": presented_ids,
+        "omitted_card_ids": omitted_ids,
+        "per_section_limit": _MAX_ITEMS_PER_SECTION,
+        "selected_chunk_content_rendered": True,
+    }
 
 
 def _source_atom(

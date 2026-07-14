@@ -1,0 +1,59 @@
+{
+  "schema_version": "lolla.residual_seed_fresh_consumer_case01_contract.v1",
+  "status": "provider_free_handoff_pass_future_call_not_authorized",
+  "date": "2026-07-13",
+  "case_id": "v1-case01-flood-infrastructure",
+  "purpose": "Preserve every residual seed through deterministic direct and graph recall, then give one fresh consumer a bounded apply/reject/park task without allowing coverage metadata to suppress pressure.",
+  "provider_free_result": {
+    "bundle_path": "research/residual-seed-fresh-consumer-case01-2026-07-13/t1/bundle.json",
+    "bundle_file_sha256": "dd014aff39283eeb4f0ab3df47ce04c4d5b572402906048fcded1b0feffcee4c",
+    "summary_path": "research/residual-seed-fresh-consumer-case01-2026-07-13/t1/summary.json",
+    "summary_file_sha256": "7810e893fe843a10d4131420a06089e9260232f730d9c949c8615ac0b5f5aaf5",
+    "provider_calls": 0,
+    "active_candidates": 9,
+    "direct_reserve_candidates": 3,
+    "graph_reserve_candidates": 23,
+    "user_prompt_utf8_bytes": 30646
+  },
+  "consumer_contract": {
+    "full_authoritative_conversation": true,
+    "exactly_one_disposition_per_active_candidate": true,
+    "allowed_dispositions": [
+      "apply",
+      "reject",
+      "park"
+    ],
+    "strongest_plausible_application_required": true,
+    "risk_if_forced_required": true,
+    "reopen_condition_required": true,
+    "public_stand_down_allowed": true,
+    "reserve_provenance_persisted_but_not_sent_as_active_work": true,
+    "coverage_metadata_used_as_gate": false,
+    "mental_models_are_case_evidence": false,
+    "runtime_effect": "none"
+  },
+  "future_call_policy": {
+    "authorized": false,
+    "separate_authorization_required": true,
+    "maximum_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "testing_model": "google/gemini-3.1-flash-lite",
+    "provider": "google-vertex",
+    "reasoning_effort": "minimal",
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "premium_model_prohibited_for_testing": "google/gemini-3.5-flash"
+  },
+  "premium_policy": {
+    "gemini_3_5_outputs_preserved_as_benchmark": true,
+    "routine_development_use": false,
+    "possible_future_use": "user-funded premium tier only after a frozen equal-workload comparison demonstrates decision-relevant value"
+  },
+  "acceptance_boundary_for_future_call": {
+    "mechanical": "The response accounts for all nine active candidates with exact source-turn custody and valid apply/reject/park explanations.",
+    "product": "Source review asks whether earned pressure exposes a useful long-horizon issue without inventing facts, forcing graph candidates, or bloating the public answer.",
+    "scalar_quality_score": null,
+    "production_selection_authorized": false
+  }
+}

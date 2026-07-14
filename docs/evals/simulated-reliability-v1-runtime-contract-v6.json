@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_5",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a6",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v5.json",
+  "base_contract_sha256": "443840b43e0c4e96a50c926ad60afe571d18fe08402d88ea630258bd8dd0e466",
+  "repair_basis": "A5 creative-partnership extraction returned two distinct valid starting threads, but the inherited join required exactly one. V1 now preserves a bounded role portfolio without deterministic semantic merging or selection.",
+  "pipeline": {
+    "role_portfolio_bounds": {
+      "starting": {"minimum": 1, "maximum": 2},
+      "current": {"minimum": 1, "maximum": 2},
+      "qualification": {"minimum": 0, "maximum": 2}
+    },
+    "role_portfolio_order": ["starting", "current", "qualification"],
+    "deterministic_role_record_merge": false,
+    "deterministic_role_record_selection": false,
+    "mechanism_task_receives_every_admitted_role_record": true,
+    "additional_provider_calls": 0
+  },
+  "calibration": {
+    "a5_batch_review_path": "research/simulated-reliability-v1-calibration-2026-07-12/a5/calibration-review.json",
+    "a5_outputs_reused": false,
+    "all_a6_call_identities_are_fresh": true,
+    "stop_rule": "Any role portfolio outside the declared bounds or any source-material thread lost before mechanism interpretation stops A6; no deterministic merge repair is authorized."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "40dffe2e0f50499d15e2120678cdb8ac197b10e45acbc417cd538723466d0e48"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "7d793c90ba093646f48bfa693375f9252ee0d60ce34e79f29397f965dc179d54"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a5/calibration-review.json",
+      "sha256": "f1b27864d2101122a10f8682042dc8d1e984fa1a9cfef601492feac2d07cff7c"
+    }
+  ]
+}

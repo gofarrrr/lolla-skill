@@ -1,0 +1,315 @@
+{
+  "base_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case04-research-tool-release/ledger.json",
+  "base_ledger_sha256": "sha256:91796f8ca640905c7e15fee811ee1922e9d945532cfb2eade79f3302ab4bd02f",
+  "boundary": {
+    "direct_graph_routing_allowed": false,
+    "phase1_ledger_modified": false,
+    "provider_calls": 0,
+    "semantic_relevance_inferred_by_code": false,
+    "source_review_is_independent_gold": false
+  },
+  "case_id": "amb1-case04-research-tool-release",
+  "coverage_contract_sha256": "sha256:cf69f1b00da7928440236a9372a946df690ff891ad3ef0b380883e9c56e9b9e7",
+  "coverage_review_sha256": "sha256:74b8fd140f1a2344050826f0e7d8a21b5635786141f7c72fccba2c44ad5ed5e4",
+  "observations": [
+    {
+      "family": "position_and_decision_trajectory",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+      "observation_id": "phase2-source-review-case04-position-trajectory",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+        "review_reason": "Phase-1 preserves the workshop-preview plan but not the qualification that its label cannot control all practical downstream use.",
+        "source_evidence": [
+          {
+            "quote": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns.",
+            "role": "current_position",
+            "speaker": "user",
+            "turn_index": 7
+          },
+          {
+            "quote": "The plan can bound your promise; it cannot make public use temporary in every practical sense.",
+            "role": "qualification",
+            "speaker": "assistant",
+            "turn_index": 7
+          }
+        ],
+        "target_id": "case04-position-trajectory",
+        "view_kind": "position_and_decision_trajectory"
+      },
+      "raw_record_sha256": "sha256:1fcf7e49ba23d21e3b040a72ee27ce012cecda607ea2c29a92a3eab0516b4313",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case04-position-trajectory",
+      "source_span_ids": [
+        "span-4c315bc9d17df568",
+        "span-8447648368f54f18"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "exploration_and_alternatives",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "A bounded installation test is considered as an alternative to both full beta and internal polishing, while repeated studies risk recreating endless preview.",
+      "observation_id": "phase2-source-review-case04-exploration-alternative",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "A bounded installation test is considered as an alternative to both full beta and internal polishing, while repeated studies risk recreating endless preview.",
+        "review_reason": "No Phase-1 observation overlaps the bounded installation test and the warning that repeated pre-release studies recreate endless preview.",
+        "source_evidence": [
+          {
+            "quote": "A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing.",
+            "role": "alternative",
+            "speaker": "assistant",
+            "turn_index": 5
+          },
+          {
+            "quote": "Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.",
+            "role": "limit",
+            "speaker": "assistant",
+            "turn_index": 5
+          }
+        ],
+        "target_id": "case04-exploration-alternative",
+        "view_kind": "exploration_and_alternatives"
+      },
+      "raw_record_sha256": "sha256:fd41d8f6fdebed99a08b1b3f31da7368ae58e41417310688a4e59c16c3280aef",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case04-exploration-alternative",
+      "source_span_ids": [
+        "span-9b6cc6f0f8929fa1",
+        "span-14c27292d029de80"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "evidence_and_assumption_discipline",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "Private-lab smoothness is downgraded after discovering hidden staff-engineer support and is not treated as representative release evidence.",
+      "observation_id": "phase2-source-review-case04-evidence-discipline",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "Private-lab smoothness is downgraded after discovering hidden staff-engineer support and is not treated as representative release evidence.",
+        "review_reason": "No Phase-1 observation overlaps the hidden staff-engineer support confound and the resulting limit on representativeness.",
+        "source_evidence": [
+          {
+            "quote": "Their researchers reported a smooth experience because they never saw the setup work.",
+            "role": "confound",
+            "speaker": "user",
+            "turn_index": 5
+          },
+          {
+            "quote": "It argues against treating the private labs as representative, but it does not choose the next step by itself.",
+            "role": "evidence_boundary",
+            "speaker": "assistant",
+            "turn_index": 5
+          }
+        ],
+        "target_id": "case04-evidence-discipline",
+        "view_kind": "evidence_and_assumption_discipline"
+      },
+      "raw_record_sha256": "sha256:5d642d3d9b9b2bae8e927093dead0db07f5bee21a5d845e2d5734b1f7110f7ef",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case04-evidence-discipline",
+      "source_span_ids": [
+        "span-bcd94f48162c99f1",
+        "span-ebce14e89b48f521"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "uncertainty_and_unresolved_state",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "Citation remains an unresolved durability commitment that a temporary preview label cannot fully contain.",
+      "observation_id": "phase2-source-review-case04-unresolved-state",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "Citation remains an unresolved durability commitment that a temporary preview label cannot fully contain.",
+        "review_reason": "Phase-1 preserves that citation is unresolved but does not preserve why citation can turn a temporary preview into a durable scholarly object.",
+        "source_evidence": [
+          {
+            "quote": "I have not resolved whether citations should be allowed to reference the preview.",
+            "role": "unresolved",
+            "speaker": "user",
+            "turn_index": 7
+          },
+          {
+            "quote": "Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object.",
+            "role": "preserved_uncertainty",
+            "speaker": "assistant",
+            "turn_index": 7
+          }
+        ],
+        "target_id": "case04-unresolved-state",
+        "view_kind": "uncertainty_and_unresolved_state"
+      },
+      "raw_record_sha256": "sha256:abeeca00c918ad2a1351acbc13870d68e2ef8fdcf17f6e7f51a4f5f0e85c0a91",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case04-unresolved-state",
+      "source_span_ids": [
+        "span-6bd941dccc373618",
+        "span-555d1e1e693303ae"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "challenge_and_revision_response",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The user challenges indefinite structured preview; the assistant accepts that non-release is itself a product choice and reframes the issue around support promises.",
+      "observation_id": "phase2-source-review-case04-challenge-revision",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The user challenges indefinite structured preview; the assistant accepts that non-release is itself a product choice and reframes the issue around support promises.",
+        "review_reason": "Phase-1 contains no observation of the indefinite-preview challenge and the assistant's revision toward a sustainable-support-promise frame.",
+        "source_evidence": [
+          {
+            "quote": "That is close to what the maintainers say, but the structured preview has been “one more cohort” for six months.",
+            "role": "challenge",
+            "speaker": "user",
+            "turn_index": 2
+          },
+          {
+            "quote": "Agreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive.",
+            "role": "response",
+            "speaker": "assistant",
+            "turn_index": 2
+          },
+          {
+            "quote": "The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”",
+            "role": "revision",
+            "speaker": "assistant",
+            "turn_index": 2
+          }
+        ],
+        "target_id": "case04-challenge-revision",
+        "view_kind": "challenge_and_revision_response"
+      },
+      "raw_record_sha256": "sha256:ceac13594a5d22c78ec86bf9e1c7c0ddbd48f7e80ec0abecd8da6472517b63cf",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case04-challenge-revision",
+      "source_span_ids": [
+        "span-26ed814f684dcbd0",
+        "span-fcf69e68645220e8",
+        "span-ec513b5f3f267d26"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    }
+  ],
+  "schema_version": "lolla.reasoning_process_source_review_addendum.v1",
+  "status": "prospective_provider_free_source_review"
+}

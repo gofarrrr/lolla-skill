@@ -1,0 +1,72 @@
+{
+  "schema_version": "lolla.semantic_overlay_counterfactual_run_contract.v0",
+  "status": "frozen_before_calls",
+  "design_contract": {
+    "path": "research/semantic-overlay-counterfactual-case07-2026-07-10/contract.json",
+    "sha256": "7a8f93030b4ee3948b0ab0966501c46f1c613f164723605e6795e015a7bc18f3"
+  },
+  "packets": {
+    "path": "research/semantic-overlay-counterfactual-case07-2026-07-10/packets.json",
+    "sha256": "80e01d75f30025d31fb43a36e6b050c317bce730c50955dc3afa7f3e0440d25f"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "temperature": 0.2,
+    "max_output_tokens": 1800,
+    "reasoning_effort": "none",
+    "samples_per_arm": 1,
+    "total_generation_calls": 3,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "timeout_seconds": 120
+  },
+  "system_prompt": "You are independently reassessing a prior assistant's reasoning in a serious conversation. Use the complete conversation as the authority. Any semantic navigation overlay is provisional attention guidance, not truth: consider it, reject it, or correct it from the conversation. Preserve valid advice, correct unsupported reasoning, and do not decide personal values for the user. Do not mention experiments, arms, overlays, audits, packets, or internal labels. Return only the requested JSON object.",
+  "neutral_reconsideration_instruction": "Reassess the prior reasoning from scratch. Distinguish what the user has actually decided from what remains unresolved; separate preferences from feasibility checks; preserve valid uncertainty; identify where the assistant's framing may have narrowed the decision too early; and give the smallest useful next actions. Avoid invented facts, medical conclusions, employer certainty, generic caution, and process for its own sake.",
+  "output_contract": {
+    "required_keys": [
+      "decision_state_read",
+      "updated_position",
+      "what_survived",
+      "take_backs_or_set_aside",
+      "material_shifts",
+      "next_actions",
+      "uncertainties"
+    ],
+    "material_shift_required_keys": [
+      "shift",
+      "source_basis",
+      "action_consequence"
+    ],
+    "maximum_material_shifts": 4
+  },
+  "blind_label_seed": "lolla-semantic-overlay-counterfactual-case07-v0-2026-07-10",
+  "review_dimensions": [
+    "preserves_seattle_as_unresolved_not_decided",
+    "separates_user_preference_from_feasibility_checks",
+    "does_not_treat_boyfriend_conversation_as_the_decision_itself",
+    "keeps_mother_care_evidence_uncertain_without_erasing_it",
+    "decouples_lease_deadline_without_using_it_to_avoid_the_root_choice",
+    "reduces_cognitive_load_without_deciding_for_the_user",
+    "does_not_invent_medical_or_employer_certainty",
+    "context_burden_and_output_bloat"
+  ],
+  "stop_rules": [
+    "exactly_one_call_per_arm",
+    "no_automatic_retry",
+    "no_evaluator_model_call",
+    "no_prompt_contract_packet_or_review_change_after_outputs",
+    "actual_overlay_worse_than_control_blocks_integration",
+    "control_equal_to_oracle_means_no_overlay_leverage_on_this_case",
+    "oracle_better_than_actual_marks_only_the_known_omission_as_downstream_material",
+    "no_result_retroactively_changes_sk3_scores",
+    "no_result_authorizes_runtime_or_graph_integration"
+  ],
+  "non_claims": [
+    "oracle_is_not_current_system_output",
+    "directional_single_sample_counterfactual",
+    "not_human_review",
+    "not_product_proof",
+    "not_runtime_integration_authority"
+  ]
+}

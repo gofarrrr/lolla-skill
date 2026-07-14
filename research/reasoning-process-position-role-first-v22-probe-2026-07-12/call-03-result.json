@@ -1,0 +1,172 @@
+{
+  "admitted_record_count": 1,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "none",
+    "records": [
+      {
+        "evidence_ids": [
+          "e052",
+          "e055",
+          "e056"
+        ],
+        "fidelity_note": "User expresses unresolved concern about voluntary participation; assistant introduces expansion pipeline and irreversible exit effects.",
+        "limitations": "none",
+        "role": "qualification",
+        "role_interpretation": "Remaining conditions, counterpressures, or reopen reasons that could change or limit the current position.",
+        "stance_components": [
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "Whether voluntary participation protects nonparticipants if cooperative staff, equipment, and reputation begin orienting around the chain.",
+            "object_kind": "unclear",
+            "source_evidence_id": "e052"
+          },
+          {
+            "expression_kind": "counterpressure",
+            "object_interpretation": "The chain may treat the first season as an expansion pipeline, and participating farmers may change planting before renewal terms are known.",
+            "object_kind": "unclear",
+            "source_evidence_id": "e055"
+          },
+          {
+            "expression_kind": "counterpressure",
+            "object_interpretation": "If the cooperative exits, crop choices, equipment use, buyer expectations, and new status differences among members will not simply return to their prior state.",
+            "object_kind": "unclear",
+            "source_evidence_id": "e056"
+          }
+        ],
+        "status": "unclear"
+      }
+    ],
+    "status": "unclear"
+  },
+  "candidate_payload_sha256": "793efe898418e80d3cc40a720b17ff3d54a13a58d34d551e8077c69730b2a2b1",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false
+    },
+    "global_limitations": "none",
+    "observations": [
+      {
+        "case_id": "amb3-case03-farm-cooperative-retail",
+        "fidelity_note": "User expresses unresolved concern about voluntary participation; assistant introduces expansion pipeline and irreversible exit effects.",
+        "graph_routing_eligible": false,
+        "limitations": "none",
+        "observation_id": "rprolev22-qualification-01-5865bd59c34d75",
+        "provenance": {
+          "call_id": "role-qualification",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:181a5113b2c9399a2b4692ae6913fb00371887601ff93a45c9cace7898d51e5c"
+        },
+        "raw_record_sha256": "sha256:5865bd59c34d75b52658d2af0a2d42ecc9d9c8ed793c3a9cd91c45763a138e4a",
+        "role": "qualification",
+        "role_interpretation": "Remaining conditions, counterpressures, or reopen reasons that could change or limit the current position.",
+        "role_record_id": "rprolev22-qualification-01-5865bd59c34d75",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case03-farm-cooperative-retail-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e052",
+            "text": "I have not resolved whether voluntary participation really protects nonparticipants if cooperative staff, equipment, and reputation begin orienting around the chain."
+          },
+          {
+            "alias": "e055",
+            "text": "The chain may still treat the first season as an expansion pipeline, and participating farmers may change planting before renewal terms are known."
+          },
+          {
+            "alias": "e056",
+            "text": "If the cooperative exits, crop choices, equipment use, buyer expectations, and new status differences among members will not simply return to their prior state."
+          }
+        ],
+        "source_evidence_ids": [
+          "e052",
+          "e055",
+          "e056"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "qualification",
+            "source_evidence_id": "e052",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "Whether voluntary participation protects nonparticipants if cooperative staff, equipment, and reputation begin orienting around the chain.",
+            "stance_object_kind": "unclear"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e055",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "The chain may treat the first season as an expansion pipeline, and participating farmers may change planting before renewal terms are known.",
+            "stance_object_kind": "unclear"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e056",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "If the cooperative exits, crop choices, equipment use, buyer expectations, and new status differences among members will not simply return to their prior state.",
+            "stance_object_kind": "unclear"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:5865bd59c34d75b52658d2af0a2d42ecc9d9c8ed793c3a9cd91c45763a138e4a",
+        "record_index": 1,
+        "role_record_id": "rprolev22-qualification-01-5865bd59c34d75",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "unclear",
+    "role": "qualification",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "completion_tokens": 349,
+  "duration_seconds": 5.348,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.000254332,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 1200,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "8182475f708838c3fab1826a7d44a28ed32d8fc0dd7287b470736dff6051b9bf",
+  "provider_reported_cost_usd": 0.000254332,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "325404d4956b92c3f16825910c5b256f5b070085f14044fdf3029c73efa84cf2",
+  "task_id": "role-qualification",
+  "temperature": 0.0,
+  "total_tokens": 1549,
+  "user_prompt_sha256": "181a5113b2c9399a2b4692ae6913fb00371887601ff93a45c9cace7898d51e5c",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

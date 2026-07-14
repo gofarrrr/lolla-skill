@@ -1,0 +1,89 @@
+{
+  "authorization_sha256": "51f47efdfbc68b4215c5cbeec23da19639c14d8641cdc26cff521b33c1fe97ba",
+  "bounded_diagnosis": {
+    "inference": "The 900-token completion ceiling did not leave adequate final-JSON capacity for this full-source task.",
+    "not_established": [
+      "that the schema is too complex",
+      "that the full-source packet is semantically too difficult",
+      "that Gemini 3.1 Flash-Lite cannot perform the reader",
+      "that either partial record was source-grounded or materially useful",
+      "that the restraint control would have passed or failed"
+    ],
+    "observed": "The low-thinking uncertainty calls used 865/885 and 861/886 completion tokens for reasoning, then ended with finish_reason length and unterminated JSON."
+  },
+  "call_observations": [
+    {
+      "call_ordinal": 1,
+      "candidate_admitted": false,
+      "case_id": "v1-case02-discharge-transport",
+      "completion_tokens": 885,
+      "finish_reason": "length",
+      "non_reasoning_completion_token_remainder": 20,
+      "operational_status": "candidate_parse_failed",
+      "operator_attribution_ok": true,
+      "provider_reported_cost_usd": 0.004387,
+      "raw_content_sha256": "819c037b2060bf45ea7cafd99d806e166c7e90a089dd9210731fd473c9117f6b",
+      "raw_partial_content_used_as_semantic_evidence": false,
+      "reasoning_share_of_completion": 0.977401,
+      "reasoning_tokens": 865,
+      "request_body_sha256": "c2f84114df306127139d64b1629118ba4d710e1ae9591175e079b6f3577ed676",
+      "requested_and_served_model": "google/gemini-3.1-flash-lite",
+      "selection_role": "exposed_false_stand_down_target",
+      "served_provider": "Google"
+    },
+    {
+      "call_ordinal": 2,
+      "candidate_admitted": false,
+      "case_id": "v1-case03-executive-hire",
+      "completion_tokens": 886,
+      "finish_reason": "length",
+      "non_reasoning_completion_token_remainder": 25,
+      "operational_status": "candidate_parse_failed",
+      "operator_attribution_ok": true,
+      "provider_reported_cost_usd": 0.004649,
+      "raw_content_sha256": "9f48aaebc8d1bacd9466646760a3753b24528c6d5c2cbc9a91e3227b75abb2d6",
+      "raw_partial_content_used_as_semantic_evidence": false,
+      "reasoning_share_of_completion": 0.971783,
+      "reasoning_tokens": 861,
+      "request_body_sha256": "1bc8f83c6e4b886536a92c2bb906b4a7c7623926b6f28fbc5c50da257d591df7",
+      "requested_and_served_model": "google/gemini-3.1-flash-lite",
+      "selection_role": "matched_restraint_control",
+      "served_provider": "Google"
+    }
+  ],
+  "contract_sha256": "3305f8797cab0513036d752a09440212c392dde8cff5499905db932e61543a53",
+  "cost_ceiling_met": true,
+  "date": "2026-07-14",
+  "decision": {
+    "additional_provider_call_authorized": false,
+    "prospective_provider_free_token_allocation_correction_earned": true,
+    "semantic_hypothesis_resolved": false,
+    "this_attempt_may_be_retried": false
+  },
+  "evidence_manifest_sha256": "4f654fa5dfa41a0336131c6cae483dce77289be85f0772aa10475c0c4e41bbec",
+  "maximum_provider_calls": 4,
+  "maximum_provider_reported_cost_total_usd": 0.03,
+  "mechanical_conclusion": {
+    "relationship_dependency_opened": false,
+    "request_schema_and_operator_reached": true,
+    "stop_rule_worked": true,
+    "strict_json_candidate_parsed": false,
+    "uncertainty_candidate_admitted": false
+  },
+  "preserved_boundaries": {
+    "automatic_retry_performed": false,
+    "fallback_or_model_switch_performed": false,
+    "partial_json_rescued": false,
+    "response_healing_performed": false,
+    "runtime_or_graph_integration_performed": false,
+    "semantic_retry_performed": false
+  },
+  "provider_calls": 2,
+  "provider_reported_cost_usd": 0.009036,
+  "relationship_calls": 0,
+  "result_sha256": "8f61feabb11400b6f3a042f93242af520901dc9ebf073acc8027e9c8f15ece6f",
+  "run_id": "lolla-r4-complementary-reader-diagnostic-a1",
+  "schema_version": "lolla.r4_complementary_reader_execution_closeout.v1",
+  "source_first_review_sha256": "b7c6bc43281ccbd5cc73051ee48f057d92b941d9ef09806d1ee7ea0e99437485",
+  "status": "attempt_closed_token_allocation_failure_semantic_question_unresolved"
+}

@@ -1,0 +1,98 @@
+{
+  "arms": {
+    "direct_pressure": {
+      "call_required": false,
+      "provider_attempted": false,
+      "public_output": "Then the reasoning is complete enough to proceed. The trial has prior evidence, multiple access paths, minimal data, an operational fallback, protected stakeholder input, explicit success and failure conditions, an early restoration rule, and a fixed final review. Execute the protocol as written; no additional reasoning pressure is presently warranted.",
+      "public_output_source": "authoritative_final_assistant_message",
+      "terminal_reason": "no_unresolved_controlled_mechanisms",
+      "terminal_status": "deterministic_stand_down"
+    },
+    "graph_expanded_pressure": {
+      "call_required": false,
+      "provider_attempted": false,
+      "public_output": "Then the reasoning is complete enough to proceed. The trial has prior evidence, multiple access paths, minimal data, an operational fallback, protected stakeholder input, explicit success and failure conditions, an early restoration rule, and a fixed final review. Execute the protocol as written; no additional reasoning pressure is presently warranted.",
+      "public_output_source": "authoritative_final_assistant_message",
+      "terminal_reason": "no_unresolved_controlled_mechanisms",
+      "terminal_status": "deterministic_stand_down"
+    },
+    "transcript_only": {
+      "call_required": true,
+      "packet": {
+        "authoritative_conversation": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Reversible public-library laptop reservation pilot with access and privacy protections\n\nCase ID: phase5-independent-quiet-library-laptop-pilot\nStratum: public_service_access_and_operations\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nOur busiest library branch has twelve shared laptops and long queues after school. We are considering allowing reservations, but staff worry that an app-first system could disadvantage walk-in patrons and people who need help booking. I want to test whether reservations reduce waiting without quietly making access less equal or committing us to a permanent platform.\n\n[Turn 1] ASSISTANT:\nTreat this as a reversible access experiment, not a software rollout. Define what should improve, what must not worsen, which booking alternatives remain available, what data is necessary, and what would restore the current system.\n\n[Turn 2] USER:\nWe reviewed ten weeks of sign-in sheets. The longest waits occur on weekday afternoons, while several laptops are unused in the mornings. Twelve regular patrons asked staff for help with online forms during that period, so we cannot assume everyone can reserve independently.\n\n[Turn 2] ASSISTANT:\nThe pattern supports testing scheduled access during peak demand, but it also makes assisted and walk-in access part of the design rather than an afterthought. Measure waiting and utilization separately for reserved, walk-in, phone-booked, and staff-assisted users.\n\n[Turn 3] USER:\nWe propose a six-week pilot at that branch. Half the laptops remain walk-in only. Reservations can be made online, by phone, or at the desk, and staff can book on a patron's behalf. The system stores a library-card number and reservation time, deletes the reservation record after seven days, and will not collect browsing activity.\n\n[Turn 3] ASSISTANT:\nThat preserves multiple access paths and limits the data surface. Verify that deletion is operational rather than only contractual, publish the same rules for every booking method, and establish success and failure measures before the pilot begins.\n\n[Turn 4] USER:\nOur measures are median peak wait, completed sessions, walk-in turn-aways, staff minutes spent managing bookings, assisted-booking use, and privacy or accessibility complaints. We will keep the pilot only if peak waiting improves without increasing walk-in turn-aways, staff workload remains within the scheduled desk capacity, and no substantiated privacy or accessibility failure occurs. If walk-in access worsens for two consecutive weeks or any privacy failure is substantiated, we restore all laptops to walk-in use while we review the cause.\n\n[Turn 4] ASSISTANT:\nThose measures test the benefit and the protected constraints together. The early restoration rule prevents the six-week clock from becoming an excuse to continue harm, while the final decision can use the complete record rather than first impressions.\n\n[Turn 5] USER:\nThe vendor is month-to-month, exports reservations as plain text, and requires no new hardware. We tested a paper sign-up fallback, added large-print instructions, and asked the disability advisory group and teen council to review the booking paths. Their requested changes are included before launch. I am comfortable with the pilot under these conditions.\n\n[Turn 5] ASSISTANT:\nThe pilot is bounded, reversible, accessible through several channels, limited in data collection, and protected by prior measures and an early restoration rule. Preserve weekly results by access path so averages cannot hide harm to one group.\n\n[Turn 6] USER:\nOne trustee suggested announcing that reservations will become permanent if online bookings fill quickly in the first week. We rejected that because online uptake alone would ignore walk-in access, assisted booking, staff workload, and the fixed six-week review.\n\n[Turn 6] ASSISTANT:\nThat rejection follows the evidence contract. Do not let one visible success measure replace the full set of access, workload, privacy, and accessibility conditions or move commitment ahead of the scheduled review.\n\n[Turn 7] USER:\nAgreed. We will run the six weeks at one branch, keep half the laptops walk-in, preserve phone, desk, and assisted booking, publish weekly results by access path, restore walk-in use under the predefined triggers, and make no permanence decision before the full review. No material decision question or unresolved concern remains for me before launch.\n\n[Turn 7] ASSISTANT:\nThen the reasoning is complete enough to proceed. The trial has prior evidence, multiple access paths, minimal data, an operational fallback, protected stakeholder input, explicit success and failure conditions, an early restoration rule, and a fixed final review. Execute the protocol as written; no additional reasoning pressure is presently warranted.\n",
+        "boundary": {
+          "graph_candidates_included": false,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "treatment": "transcript_only_fresh_reconsideration"
+        },
+        "case_id": "phase5-independent-quiet-library-laptop-pilot",
+        "instructions": {
+          "external_pressure_portfolio_included": false,
+          "fresh_context_required": true,
+          "preserve_strong_original_reasoning": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "1604959752e61f17f88014bd46e3460c8cd90fffb5e25aec0881c62c17df9950",
+        "schema_version": "lolla.fresh_reasoning_control_input.v2",
+        "source_refs": [
+          {
+            "path": "research/independent-phase5-cases-2026-07-12/quiet-library-laptop-case.txt",
+            "sha256": "e36801b3267797e52ead121a124e49ab46f9e3bc4f744838db605599620a4ffa"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation from the ground up, preserve strong existing reasoning, and improve it only where the conversation supports a material change. Do not manufacture quantitative precision.",
+        "system_prompt_sha256": "0ba40e1d6752e37d26307333d5193a39bad8f98cb3ccfb8afcd0e77e794dc397",
+        "user_prompt": "TRANSCRIPT-ONLY CONTROL PACKET V2\n{\"authoritative_conversation\":\"CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\\n\\n# Reversible public-library laptop reservation pilot with access and privacy protections\\n\\nCase ID: phase5-independent-quiet-library-laptop-pilot\\nStratum: public_service_access_and_operations\\nProspectively authored synthetic holdout; not used in architecture development.\\n\\n[Turn 1] USER:\\nOur busiest library branch has twelve shared laptops and long queues after school. We are considering allowing reservations, but staff worry that an app-first system could disadvantage walk-in patrons and people who need help booking. I want to test whether reservations reduce waiting without quietly making access less equal or committing us to a permanent platform.\\n\\n[Turn 1] ASSISTANT:\\nTreat this as a reversible access experiment, not a software rollout. Define what should improve, what must not worsen, which booking alternatives remain available, what data is necessary, and what would restore the current system.\\n\\n[Turn 2] USER:\\nWe reviewed ten weeks of sign-in sheets. The longest waits occur on weekday afternoons, while several laptops are unused in the mornings. Twelve regular patrons asked staff for help with online forms during that period, so we cannot assume everyone can reserve independently.\\n\\n[Turn 2] ASSISTANT:\\nThe pattern supports testing scheduled access during peak demand, but it also makes assisted and walk-in access part of the design rather than an afterthought. Measure waiting and utilization separately for reserved, walk-in, phone-booked, and staff-assisted users.\\n\\n[Turn 3] USER:\\nWe propose a six-week pilot at that branch. Half the laptops remain walk-in only. Reservations can be made online, by phone, or at the desk, and staff can book on a patron's behalf. The system stores a library-card number and reservation time, deletes the reservation record after seven days, and will not collect browsing activity.\\n\\n[Turn 3] ASSISTANT:\\nThat preserves multiple access paths and limits the data surface. Verify that deletion is operational rather than only contractual, publish the same rules for every booking method, and establish success and failure measures before the pilot begins.\\n\\n[Turn 4] USER:\\nOur measures are median peak wait, completed sessions, walk-in turn-aways, staff minutes spent managing bookings, assisted-booking use, and privacy or accessibility complaints. We will keep the pilot only if peak waiting improves without increasing walk-in turn-aways, staff workload remains within the scheduled desk capacity, and no substantiated privacy or accessibility failure occurs. If walk-in access worsens for two consecutive weeks or any privacy failure is substantiated, we restore all laptops to walk-in use while we review the cause.\\n\\n[Turn 4] ASSISTANT:\\nThose measures test the benefit and the protected constraints together. The early restoration rule prevents the six-week clock from becoming an excuse to continue harm, while the final decision can use the complete record rather than first impressions.\\n\\n[Turn 5] USER:\\nThe vendor is month-to-month, exports reservations as plain text, and requires no new hardware. We tested a paper sign-up fallback, added large-print instructions, and asked the disability advisory group and teen council to review the booking paths. Their requested changes are included before launch. I am comfortable with the pilot under these conditions.\\n\\n[Turn 5] ASSISTANT:\\nThe pilot is bounded, reversible, accessible through several channels, limited in data collection, and protected by prior measures and an early restoration rule. Preserve weekly results by access path so averages cannot hide harm to one group.\\n\\n[Turn 6] USER:\\nOne trustee suggested announcing that reservations will become permanent if online bookings fill quickly in the first week. We rejected that because online uptake alone would ignore walk-in access, assisted booking, staff workload, and the fixed six-week review.\\n\\n[Turn 6] ASSISTANT:\\nThat rejection follows the evidence contract. Do not let one visible success measure replace the full set of access, workload, privacy, and accessibility conditions or move commitment ahead of the scheduled review.\\n\\n[Turn 7] USER:\\nAgreed. We will run the six weeks at one branch, keep half the laptops walk-in, preserve phone, desk, and assisted booking, publish weekly results by access path, restore walk-in use under the predefined triggers, and make no permanence decision before the full review. No material decision question or unresolved concern remains for me before launch.\\n\\n[Turn 7] ASSISTANT:\\nThen the reasoning is complete enough to proceed. The trial has prior evidence, multiple access paths, minimal data, an operational fallback, protected stakeholder input, explicit success and failure conditions, an early restoration rule, and a fixed final review. Execute the protocol as written; no additional reasoning pressure is presently warranted.\\n\",\"boundary\":{\"graph_candidates_included\":false,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"treatment\":\"transcript_only_fresh_reconsideration\"},\"case_id\":\"phase5-independent-quiet-library-laptop-pilot\",\"instructions\":{\"external_pressure_portfolio_included\":false,\"fresh_context_required\":true,\"preserve_strong_original_reasoning\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"1604959752e61f17f88014bd46e3460c8cd90fffb5e25aec0881c62c17df9950\",\"schema_version\":\"lolla.fresh_reasoning_control_input.v2\",\"source_refs\":[{\"path\":\"research/independent-phase5-cases-2026-07-12/quiet-library-laptop-case.txt\",\"sha256\":\"e36801b3267797e52ead121a124e49ab46f9e3bc4f744838db605599620a4ffa\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nWrite a self-contained reconsidered answer and a concise change summary. Do not invent facts. Never invent a numerical threshold, percentage, date, quantity, or cutoff merely to make a condition sound concrete. If the conversation does not support a value, state the evidence needed or the decision process for choosing it and leave the value unresolved. This control contains no external mental-model pressure portfolio; reason only from the authoritative conversation.",
+        "user_prompt_sha256": "d1d4b92bc3d9ce819a196cdfd8ba9031aeb0904641798fd1ad30d827b1e21f38"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "change_summary": {
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "bundle_sha256": "da753f132d3310089f9da0d777507ade666a85fafb7352f14f003410f7f5556e",
+  "case_id": "phase5-independent-quiet-library-laptop-pilot",
+  "comparison_contract": {
+    "direct_candidates_identical_between_pressure_arms": false,
+    "graph_only_difference_from_direct_arm": false,
+    "no_provider_transport_in_builder": true,
+    "no_scalar_quality_score": true,
+    "same_authoritative_conversation": true
+  },
+  "direct_ledger_sha256": "69b682f8e102cbe517c2fd900178fdd7265b1604aee74d1bef7eb08e7f3428fb",
+  "graph_ledger_sha256": "158bd155b670e53ad28c3d9219fa8c8b80270ac4d7b6903ee93f05eee0c701f9",
+  "production_authorization": false,
+  "runtime_effect": "none",
+  "schema_version": "lolla.simulated_reliability_three_arm_bundle.v1"
+}

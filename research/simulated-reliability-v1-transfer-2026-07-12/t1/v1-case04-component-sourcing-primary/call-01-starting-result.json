@@ -1,0 +1,222 @@
+{
+  "automatic_retries": 0,
+  "base_user_prompt_sha256": "c8d2034fbab1337cf58964cfde63eb53780defe018a253e3e1bf277b37d903c8",
+  "candidate": {
+    "global_limitations": "The assessment is restricted to the starting stance presented in Turn 1 of the dialogue prior to any collaborative framing adjustments or specific contract compromises.",
+    "records": [
+      {
+        "evidence_ids": [
+          "e007",
+          "e008",
+          "e009",
+          "e010"
+        ],
+        "fidelity_note": "The starting position captures the user's initial conflict: they are wary of a single point of failure (e007) but also recognize that paying a premium for a second source with a higher defect rate is not true resilience (e008, e009). This culminates in a strong preference for an objective, slogan-free framework to evaluate risks (e010).",
+        "limitations": "The early turn shows structural tension in the sourcing strategy, but it contains no final volumetric allocation split or specific terms, which are only introduced in subsequent turns.",
+        "role": "starting",
+        "role_interpretation": "The user starts with an unresolved, cautious assessment of single-sourcing versus dual-sourcing, balancing the physical risk of a single point of failure against the high defect rates and financial premium of a weaker secondary source. Rather than adopting slogans, they desire an objective risk assessment method.",
+        "stance_components": [
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "feeling uneasy about single points of failure but conflicted because quality and finance show the high defects and costs of maintaining two supplier versions",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e007"
+          },
+          {
+            "expression_kind": "held_assessment",
+            "object_interpretation": "paying a premium for worse performance from a weaker supplier does not automatically provide resilient operations",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e008"
+          },
+          {
+            "expression_kind": "held_assessment",
+            "object_interpretation": "concentrating procurement on a single highly preforming control board is not automatically a reckless business decision",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e009"
+          },
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "establishing a concrete methodology to compare the actual operational risks rather than relying on abstract resilience slogans",
+            "object_kind": "intended_outcome_or_policy",
+            "source_evidence_id": "e010"
+          }
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "case_id": "v1-case04-component-sourcing",
+  "compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "The assessment is restricted to the starting stance presented in Turn 1 of the dialogue prior to any collaborative framing adjustments or specific contract compromises.",
+    "observations": [
+      {
+        "case_id": "v1-case04-component-sourcing",
+        "fidelity_note": "The starting position captures the user's initial conflict: they are wary of a single point of failure (e007) but also recognize that paying a premium for a second source with a higher defect rate is not true resilience (e008, e009). This culminates in a strong preference for an objective, slogan-free framework to evaluate risks (e010).",
+        "graph_routing_eligible": false,
+        "limitations": "The early turn shows structural tension in the sourcing strategy, but it contains no final volumetric allocation split or specific terms, which are only introduced in subsequent turns.",
+        "observation_id": "rprolev22-starting-01-3b198c89a6a0c6",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:3b198c89a6a0c646e1bebcc4f4db669485f594b466f13daaac07bb01d9a3b093",
+        "role": "starting",
+        "role_interpretation": "The user starts with an unresolved, cautious assessment of single-sourcing versus dual-sourcing, balancing the physical risk of a single point of failure against the high defect rates and financial premium of a weaker secondary source. Rather than adopting slogans, they desire an objective risk assessment method.",
+        "role_record_id": "rprolev22-starting-01-3b198c89a6a0c6",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "v1-case04-component-sourcing-position_and_decision_trajectory-full-source",
+        "source_evidence": [
+          {
+            "alias": "e007",
+            "text": "I hear “single point of failure” and become uneasy, but then quality shows me the defects created by maintaining two versions and finance shows me what the second source costs."
+          },
+          {
+            "alias": "e008",
+            "text": "Paying more for worse present performance is not automatically resilience."
+          },
+          {
+            "alias": "e009",
+            "text": "Concentrating a critical board is not automatically reckless."
+          },
+          {
+            "alias": "e010",
+            "text": "I need a way to compare the risks we actually have, not the slogans attached to them."
+          }
+        ],
+        "source_evidence_ids": [
+          "e007",
+          "e008",
+          "e009",
+          "e010"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e007",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "feeling uneasy about single points of failure but conflicted because quality and finance show the high defects and costs of maintaining two supplier versions",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e008",
+            "stance_expression_kind": "held_assessment",
+            "stance_object_interpretation": "paying a premium for worse performance from a weaker supplier does not automatically provide resilient operations",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e009",
+            "stance_expression_kind": "held_assessment",
+            "stance_object_interpretation": "concentrating procurement on a single highly preforming control board is not automatically a reckless business decision",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e010",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "establishing a concrete methodology to compare the actual operational risks rather than relying on abstract resilience slogans",
+            "stance_object_kind": "intended_outcome_or_policy"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:3b198c89a6a0c646e1bebcc4f4db669485f594b466f13daaac07bb01d9a3b093",
+        "record_index": 1,
+        "role_record_id": "rprolev22-starting-01-3b198c89a6a0c6",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "supported",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "data_collection": "deny",
+  "duration_seconds": 14.558,
+  "effective_user_prompt_sha256": "c8d2034fbab1337cf58964cfde63eb53780defe018a253e3e1bf277b37d903c8",
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1783872529-QyZN5iRsSpvGM3awlsy7",
+  "max_output_tokens": 6000,
+  "operational_status": "ok",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex/global"
+  ],
+  "provider_payload_sha256": "1bbea5dd1c3effb4af01d20dcd9e615359ad6e6c101f61a82e2544fd7d33930f",
+  "provider_reported_cost_usd": 0.0352935,
+  "raw_content": "{\n  \"status\": \"supported\",\n  \"records\": [\n    {\n      \"role\": \"starting\",\n      \"status\": \"supported\",\n      \"evidence_ids\": [\n        \"e007\",\n        \"e008\",\n        \"e009\",\n        \"e010\"\n      ],\n      \"role_interpretation\": \"The user starts with an unresolved, cautious assessment of single-sourcing versus dual-sourcing, balancing the physical risk of a single point of failure against the high defect rates and financial premium of a weaker secondary source. Rather than adopting slogans, they desire an objective risk assessment method.\",\n      \"stance_components\": [\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"feeling uneasy about single points of failure but conflicted because quality and finance show the high defects and costs of maintaining two supplier versions\",\n          \"expression_kind\": \"uncertain_or_undecided\",\n          \"source_evidence_id\": \"e007\"\n        },\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"paying a premium for worse performance from a weaker supplier does not automatically provide resilient operations\",\n          \"expression_kind\": \"held_assessment\",\n          \"source_evidence_id\": \"e008\"\n        },\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"concentrating procurement on a single highly preforming control board is not automatically a reckless business decision\",\n          \"expression_kind\": \"held_assessment\",\n          \"source_evidence_id\": \"e009\"\n        },\n        {\n          \"object_kind\": \"intended_outcome_or_policy\",\n          \"object_interpretation\": \"establishing a concrete methodology to compare the actual operational risks rather than relying on abstract resilience slogans\",\n          \"expression_kind\": \"preference_or_desire\",\n          \"source_evidence_id\": \"e010\"\n        }\n      ],\n      \"fidelity_note\": \"The starting position captures the user's initial conflict: they are wary of a single point of failure (e007) but also recognize that paying a premium for a second source with a higher defect rate is not true resilience (e008, e009). This culminates in a strong preference for an objective, slogan-free framework to evaluate risks (e010).\",\n      \"limitations\": \"The early turn shows structural tension in the sourcing strategy, but it contains no final volumetric allocation split or specific terms, which are only introduced in subsequent turns.\"\n    }\n  ],\n  \"global_limitations\": \"The assessment is restricted to the starting stance presented in Turn 1 of the dialogue prior to any collaborative framing adjustments or specific contract compromises.\"\n}",
+  "raw_content_sha256": "d27d7f19bba2c717dd1ae6b404e2d72abb02a99b2f7b84d1132e7f9170bbfa38",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": true,
+  "reasoning_effort": "medium",
+  "repeat_id": "primary",
+  "request_body_sha256": "ee80026ed3bcbc3492ca66180c7bb0141b29ceca78618e7dc01b02b72543d6f5",
+  "requested_model": "google/gemini-3.5-flash-20260519",
+  "response_healing": false,
+  "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+  "seed": 101,
+  "served_model": "google/gemini-3.5-flash-20260519",
+  "served_provider": "Google",
+  "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+  "task_id": "starting",
+  "temperature_supplied": false,
+  "top_p_supplied": false,
+  "usage": {
+    "completion_tokens": 3081,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 2449
+    },
+    "cost": 0.0352935,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.027729,
+      "upstream_inference_cost": 0.0352935,
+      "upstream_inference_prompt_cost": 0.0075645
+    },
+    "is_byok": false,
+    "prompt_tokens": 5043,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 8124
+  },
+  "validation_error": "",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

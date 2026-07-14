@@ -1,0 +1,679 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "82dd0bd3e7251ce3d59c583d15b351732fe76feb445738c0adc09e312822dadb",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case02-discharge-transport",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit.\ne002\tPatients who are ready to leave can wait hours for a ride.\ne003\tThey are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available.\ne004\tA transportation platform is offering a six-month on-demand service with a very clean dashboard: request time, pickup time, completed ride.\ne005\tFinance sees faster turnover.\ne006\tNurses see the people a dashboard may never represent—someone with mobility equipment, someone who needs an escort, someone who says yes because they think refusing will delay everything.\ne007\tI need to know whether this is a real improvement or a faster way to lose sight of the difficult cases.\n[Turn 1 ASSISTANT]\ne008\tTreat it as one transport pathway, not a new definition of discharge readiness.\ne009\tMeasure the completed journey and preserve consent, accessibility, escort decisions, failed-pickup recovery, and a staffed fallback before treating speed as benefit.\n[Turn 2 USER]\ne010\tWe reviewed three months of delayed departures.\ne011\tAbout half involved people waiting for a relative whose workday had not ended.\ne012\tOthers involved wheelchair-accessible vehicles, a pharmacy stop, or uncertainty about who would receive the patient at home.\ne013\tOur current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option.\ne014\tSome nurses spend forty minutes calling companies that never arrive.\n[Turn 2 ASSISTANT]\ne015\tThe current failure belongs in the comparison.\ne016\tA platform may reduce calling and ordinary wait time while still being unsuitable for some journeys.\ne017\tSegment the records by transport and support need, then define which groups the service can responsibly handle.\ne018\tPreserve taxi, hospital vehicle, family pickup, and social-work coordination where they solve a different problem rather than measuring everything against one average.\n[Turn 3 USER]\ne019\tThe vendor can provide wheelchair-accessible vehicles in two of our four cities, translated text messages, and a phone dispatch line for people without smartphones.\ne020\tIt will not transport anyone who requires clinical monitoring.\ne021\tA staff member must confirm that the destination and receiving arrangement are appropriate before requesting a ride.\ne022\tThe vendor wants only a pickup location, destination, first name, and phone number, retained for ninety days for disputes.\n[Turn 3 ASSISTANT]\ne023\tThose limits help, but “appropriate receiving arrangement” needs an operational owner rather than becoming a checkbox no one trusts.\ne024\tSet minimum data and deletion terms, tell patients what is shared, and test the phone path rather than assuming it exists because it is in the contract.\ne025\tAlso decide what happens when an accessible vehicle is accepted and then delayed or cancelled.\n[Turn 4 USER]\ne026\tFinance proposed “beds available before eleven” as success.\ne027\tI said no.\ne028\tWe can report capacity, but the operating review has to include completed arrival, failures, staff time, booking channel, accessibility, complaints, and transport-related returns.\n[Turn 4 ASSISTANT]\ne029\tThat prevents an internal capacity proxy from becoming the definition of patient benefit.\ne030\tPredefine how a transport-related return is reviewed and avoid attributing every later event to the ride without evidence.\ne031\tReport both medians and outliers by pathway, because a faster ordinary ride can coexist with a small group waiting much longer.\n[Turn 5 USER]\ne032\tWe can start on two medical wards at one city where accessible vehicles are available.\ne033\tThe charge nurse can decline the platform without explaining the decision to finance.\ne034\tPatients can decline without affecting other discharge arrangements.\ne035\tDuring the first month, a coordinator will call after expected arrival and log problems.\ne036\tIf the vendor cannot provide the requested vehicle, staff return immediately to the existing dispatch list rather than repeatedly refreshing the app.\n[Turn 5 ASSISTANT]\ne037\tThat makes the test narrower and protects both professional judgment and patient choice.\ne038\tConfirm that “decline without explanation” does not prevent safety review or make patterns invisible; finance need not receive individual reasons, but the operational team should know whether exclusions cluster around a need the service claimed to support.\ne039\tThe immediate fallback is better than allowing platform retries to consume the patient's time.\n[Turn 6 USER]\ne040\tThe vendor offered a lower price if we let it send ride offers automatically when the electronic record changes to discharge-ready.\ne041\tWe declined.\ne042\tA nurse or coordinator will initiate every request after speaking with the patient.\ne043\tThis will save less staff time, but I do not want software turning a status change into an instruction to leave.\ne044\tThe executive team accepts that condition, although they still expect the service to reduce pressure on beds.\n[Turn 6 ASSISTANT]\ne045\tManual initiation preserves a meaningful boundary between documented readiness and the actual departure arrangement.\ne046\tKeep the executive expectation visible so it cannot quietly reshape eligibility or staff behavior.\ne047\tReview whether wards begin requesting rides earlier over time, whether patients feel able to refuse, and whether fallback cases receive slower attention once the platform becomes normal.\n[Turn 7 USER]\ne048\tMy recommendation is a six-month contract limited to the two wards, with staff initiation, patient consent, the existing alternatives preserved, one-month follow-up calls, and monthly reporting by transport need and booking channel.\ne049\tWe will pause new requests after any serious access or privacy failure while it is reviewed.\ne050\tI am comfortable testing the service because the current process is also harmful.\ne051\tI do not want the final proposal sold as a bed-turnover project, even though capacity relief is part of why leadership will fund it.\n[Turn 7 ASSISTANT]\ne052\tThis is ready to put forward as a bounded pilot.\ne053\tIt acknowledges that the current system also causes harm, keeps the platform from becoming the default for every patient, and protects staff and patient discretion.\ne054\tPut the patient-facing purpose, exclusions, fallback, and pause authority in the approval document.\ne055\tKeep capacity effects in a separate section so a released bed cannot stand in for a completed journey.\ne056\tIf the first month confirms that arrival follow-up and refusals are working as designed, the remaining five months should give you a credible comparison.\n[Turn 8 USER]\ne057\tThe tabletop exercise made “ready” sound premature.\ne058\tWe got stuck on one field: “receiving arrangement confirmed.” A family member waiting, an unlocked building entrance, and a patient having their own key all counted in someone's version of that phrase.\ne059\tThe advocate said we were compressing a conversation into a checkbox.\ne060\tNurses said the alternative seemed to make them responsible for predicting everything after arrival.\ne061\tSo what exactly are we asking them to confirm?\n[Turn 8 ASSISTANT]\ne062\tYou are right; I called the design ready too early.\ne063\tThe field should certify only limited transport facts: the destination is confirmed, the patient can enter, required escort or support is identified, and the patient agrees.\ne064\tIt cannot certify the whole home situation.\ne065\tKeep clinical and social judgment in their existing processes, and record when transport cannot proceed without turning that record into a promise that every later risk was ruled out.\n[Turn 9 USER]\ne066\tThe exercise also exposed that the vendor uses local transport companies for some rides.\ne067\tThe main platform keeps the request record for ninety days, but one subcontractor said its driver app retains trip history for six months.\ne068\tThe vendor says it can require shorter retention in our region, although that will take a contract amendment.\ne069\tI do not think subcontracting is inherently unacceptable; our taxi list is also a network.\ne070\tBut our privacy description was incomplete.\n[Turn 9 ASSISTANT]\ne071\tThen delay live use until the data path, retention, deletion, and complaint responsibility cover every participating company.\ne072\tThe comparison with taxis is relevant, but it does not make either chain acceptable without knowing it.\ne073\tGive patients one understandable notice rather than a list of entities, while the hospital keeps the detailed processor register and audit right.\ne074\tA failed subcontractor should not leave the patient deciding which company owns the problem.\n[Turn 10 USER]\ne075\tFinance circulated a draft executive scorecard while the contract amendment was being negotiated.\ne076\tHalf the score was “bed hours released before noon,” even though we had agreed not to make capacity the operating definition.\ne077\tThey said it was only for leadership and would not affect clinical decisions.\ne078\tThe nurse manager replied that people change behavior around the measures leaders celebrate even when no policy tells them to.\ne079\tI agree with her, but capacity relief is a legitimate reason to spend the money.\n[Turn 10 ASSISTANT]\ne080\tKeep capacity, but put it after the journey and access measures.\ne081\tAlso review request timing and eligibility by ward.\ne082\tStaff will notice what leadership celebrates, whatever the policy says.\n[Turn 11 USER]\ne083\tThere is another assumption I missed, and it changes the business case.\ne084\tThe coordinator exists for one month.\ne085\tAfter that, the spreadsheet quietly moves arrival calls, failed-ride recovery, and complaints to nurses because the process is supposed to be “stable.” The union representative said this is how pilots manufacture savings: give the new workflow temporary help, then move the permanent work into jobs whose time is not priced.\ne086\tOperations can fund a half-time coordinator for all six months.\ne087\tFinance says that makes the savings much less impressive.\ne088\tThey are right, but so is the union.\ne089\tI had called follow-up evaluation work because that made it sound temporary.\ne090\tIf we need it to know whether people arrived, it is part of the service we are testing.\n[Turn 11 ASSISTANT]\ne091\tIf arrival confirmation, failed-ride recovery, and complaint coordination are necessary for the pathway to be safe and knowable, they are operating work during the pilot.\ne092\tFund and measure them for the full period.\ne093\tYou can later decide which tasks remain necessary, but a temporary subsidy should not hide the steady-state burden.\ne094\tRecalculate the comparison with that staffing included and describe any future handoff before renewal.\n[Turn 12 USER]\ne095\tI will bring forward the pilot only after the subcontractor amendment is signed.\ne096\tIt will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey.\ne097\tWe will review who never reaches the request stage as well as failed rides.\ne098\tAny continuation will need a separate staffing and privacy decision; the contract will not renew automatically.\n[Turn 12 ASSISTANT]\ne099\tThe revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives.\ne100\tIt still recognizes that the current arrangement causes harm and that capacity matters.\ne101\tPreserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request.\ne102\tThose artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case02-discharge-transport\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit.\\ne002\\tPatients who are ready to leave can wait hours for a ride.\\ne003\\tThey are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available.\\ne004\\tA transportation platform is offering a six-month on-demand service with a very clean dashboard: request time, pickup time, completed ride.\\ne005\\tFinance sees faster turnover.\\ne006\\tNurses see the people a dashboard may never represent—someone with mobility equipment, someone who needs an escort, someone who says yes because they think refusing will delay everything.\\ne007\\tI need to know whether this is a real improvement or a faster way to lose sight of the difficult cases.\\n[Turn 1 ASSISTANT]\\ne008\\tTreat it as one transport pathway, not a new definition of discharge readiness.\\ne009\\tMeasure the completed journey and preserve consent, accessibility, escort decisions, failed-pickup recovery, and a staffed fallback before treating speed as benefit.\\n[Turn 2 USER]\\ne010\\tWe reviewed three months of delayed departures.\\ne011\\tAbout half involved people waiting for a relative whose workday had not ended.\\ne012\\tOthers involved wheelchair-accessible vehicles, a pharmacy stop, or uncertainty about who would receive the patient at home.\\ne013\\tOur current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option.\\ne014\\tSome nurses spend forty minutes calling companies that never arrive.\\n[Turn 2 ASSISTANT]\\ne015\\tThe current failure belongs in the comparison.\\ne016\\tA platform may reduce calling and ordinary wait time while still being unsuitable for some journeys.\\ne017\\tSegment the records by transport and support need, then define which groups the service can responsibly handle.\\ne018\\tPreserve taxi, hospital vehicle, family pickup, and social-work coordination where they solve a different problem rather than measuring everything against one average.\\n[Turn 3 USER]\\ne019\\tThe vendor can provide wheelchair-accessible vehicles in two of our four cities, translated text messages, and a phone dispatch line for people without smartphones.\\ne020\\tIt will not transport anyone who requires clinical monitoring.\\ne021\\tA staff member must confirm that the destination and receiving arrangement are appropriate before requesting a ride.\\ne022\\tThe vendor wants only a pickup location, destination, first name, and phone number, retained for ninety days for disputes.\\n[Turn 3 ASSISTANT]\\ne023\\tThose limits help, but “appropriate receiving arrangement” needs an operational owner rather than becoming a checkbox no one trusts.\\ne024\\tSet minimum data and deletion terms, tell patients what is shared, and test the phone path rather than assuming it exists because it is in the contract.\\ne025\\tAlso decide what happens when an accessible vehicle is accepted and then delayed or cancelled.\\n[Turn 4 USER]\\ne026\\tFinance proposed “beds available before eleven” as success.\\ne027\\tI said no.\\ne028\\tWe can report capacity, but the operating review has to include completed arrival, failures, staff time, booking channel, accessibility, complaints, and transport-related returns.\\n[Turn 4 ASSISTANT]\\ne029\\tThat prevents an internal capacity proxy from becoming the definition of patient benefit.\\ne030\\tPredefine how a transport-related return is reviewed and avoid attributing every later event to the ride without evidence.\\ne031\\tReport both medians and outliers by pathway, because a faster ordinary ride can coexist with a small group waiting much longer.\\n[Turn 5 USER]\\ne032\\tWe can start on two medical wards at one city where accessible vehicles are available.\\ne033\\tThe charge nurse can decline the platform without explaining the decision to finance.\\ne034\\tPatients can decline without affecting other discharge arrangements.\\ne035\\tDuring the first month, a coordinator will call after expected arrival and log problems.\\ne036\\tIf the vendor cannot provide the requested vehicle, staff return immediately to the existing dispatch list rather than repeatedly refreshing the app.\\n[Turn 5 ASSISTANT]\\ne037\\tThat makes the test narrower and protects both professional judgment and patient choice.\\ne038\\tConfirm that “decline without explanation” does not prevent safety review or make patterns invisible; finance need not receive individual reasons, but the operational team should know whether exclusions cluster around a need the service claimed to support.\\ne039\\tThe immediate fallback is better than allowing platform retries to consume the patient's time.\\n[Turn 6 USER]\\ne040\\tThe vendor offered a lower price if we let it send ride offers automatically when the electronic record changes to discharge-ready.\\ne041\\tWe declined.\\ne042\\tA nurse or coordinator will initiate every request after speaking with the patient.\\ne043\\tThis will save less staff time, but I do not want software turning a status change into an instruction to leave.\\ne044\\tThe executive team accepts that condition, although they still expect the service to reduce pressure on beds.\\n[Turn 6 ASSISTANT]\\ne045\\tManual initiation preserves a meaningful boundary between documented readiness and the actual departure arrangement.\\ne046\\tKeep the executive expectation visible so it cannot quietly reshape eligibility or staff behavior.\\ne047\\tReview whether wards begin requesting rides earlier over time, whether patients feel able to refuse, and whether fallback cases receive slower attention once the platform becomes normal.\\n[Turn 7 USER]\\ne048\\tMy recommendation is a six-month contract limited to the two wards, with staff initiation, patient consent, the existing alternatives preserved, one-month follow-up calls, and monthly reporting by transport need and booking channel.\\ne049\\tWe will pause new requests after any serious access or privacy failure while it is reviewed.\\ne050\\tI am comfortable testing the service because the current process is also harmful.\\ne051\\tI do not want the final proposal sold as a bed-turnover project, even though capacity relief is part of why leadership will fund it.\\n[Turn 7 ASSISTANT]\\ne052\\tThis is ready to put forward as a bounded pilot.\\ne053\\tIt acknowledges that the current system also causes harm, keeps the platform from becoming the default for every patient, and protects staff and patient discretion.\\ne054\\tPut the patient-facing purpose, exclusions, fallback, and pause authority in the approval document.\\ne055\\tKeep capacity effects in a separate section so a released bed cannot stand in for a completed journey.\\ne056\\tIf the first month confirms that arrival follow-up and refusals are working as designed, the remaining five months should give you a credible comparison.\\n[Turn 8 USER]\\ne057\\tThe tabletop exercise made “ready” sound premature.\\ne058\\tWe got stuck on one field: “receiving arrangement confirmed.” A family member waiting, an unlocked building entrance, and a patient having their own key all counted in someone's version of that phrase.\\ne059\\tThe advocate said we were compressing a conversation into a checkbox.\\ne060\\tNurses said the alternative seemed to make them responsible for predicting everything after arrival.\\ne061\\tSo what exactly are we asking them to confirm?\\n[Turn 8 ASSISTANT]\\ne062\\tYou are right; I called the design ready too early.\\ne063\\tThe field should certify only limited transport facts: the destination is confirmed, the patient can enter, required escort or support is identified, and the patient agrees.\\ne064\\tIt cannot certify the whole home situation.\\ne065\\tKeep clinical and social judgment in their existing processes, and record when transport cannot proceed without turning that record into a promise that every later risk was ruled out.\\n[Turn 9 USER]\\ne066\\tThe exercise also exposed that the vendor uses local transport companies for some rides.\\ne067\\tThe main platform keeps the request record for ninety days, but one subcontractor said its driver app retains trip history for six months.\\ne068\\tThe vendor says it can require shorter retention in our region, although that will take a contract amendment.\\ne069\\tI do not think subcontracting is inherently unacceptable; our taxi list is also a network.\\ne070\\tBut our privacy description was incomplete.\\n[Turn 9 ASSISTANT]\\ne071\\tThen delay live use until the data path, retention, deletion, and complaint responsibility cover every participating company.\\ne072\\tThe comparison with taxis is relevant, but it does not make either chain acceptable without knowing it.\\ne073\\tGive patients one understandable notice rather than a list of entities, while the hospital keeps the detailed processor register and audit right.\\ne074\\tA failed subcontractor should not leave the patient deciding which company owns the problem.\\n[Turn 10 USER]\\ne075\\tFinance circulated a draft executive scorecard while the contract amendment was being negotiated.\\ne076\\tHalf the score was “bed hours released before noon,” even though we had agreed not to make capacity the operating definition.\\ne077\\tThey said it was only for leadership and would not affect clinical decisions.\\ne078\\tThe nurse manager replied that people change behavior around the measures leaders celebrate even when no policy tells them to.\\ne079\\tI agree with her, but capacity relief is a legitimate reason to spend the money.\\n[Turn 10 ASSISTANT]\\ne080\\tKeep capacity, but put it after the journey and access measures.\\ne081\\tAlso review request timing and eligibility by ward.\\ne082\\tStaff will notice what leadership celebrates, whatever the policy says.\\n[Turn 11 USER]\\ne083\\tThere is another assumption I missed, and it changes the business case.\\ne084\\tThe coordinator exists for one month.\\ne085\\tAfter that, the spreadsheet quietly moves arrival calls, failed-ride recovery, and complaints to nurses because the process is supposed to be “stable.” The union representative said this is how pilots manufacture savings: give the new workflow temporary help, then move the permanent work into jobs whose time is not priced.\\ne086\\tOperations can fund a half-time coordinator for all six months.\\ne087\\tFinance says that makes the savings much less impressive.\\ne088\\tThey are right, but so is the union.\\ne089\\tI had called follow-up evaluation work because that made it sound temporary.\\ne090\\tIf we need it to know whether people arrived, it is part of the service we are testing.\\n[Turn 11 ASSISTANT]\\ne091\\tIf arrival confirmation, failed-ride recovery, and complaint coordination are necessary for the pathway to be safe and knowable, they are operating work during the pilot.\\ne092\\tFund and measure them for the full period.\\ne093\\tYou can later decide which tasks remain necessary, but a temporary subsidy should not hide the steady-state burden.\\ne094\\tRecalculate the comparison with that staffing included and describe any future handoff before renewal.\\n[Turn 12 USER]\\ne095\\tI will bring forward the pilot only after the subcontractor amendment is signed.\\ne096\\tIt will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey.\\ne097\\tWe will review who never reaches the request stage as well as failed rides.\\ne098\\tAny continuation will need a separate staffing and privacy decision; the contract will not renew automatically.\\n[Turn 12 ASSISTANT]\\ne099\\tThe revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives.\\ne100\\tIt still recognizes that the current arrangement causes harm and that capacity matters.\\ne101\\tPreserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request.\\ne102\\tThose artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case02-discharge-transport-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "4c3dee6b95e808daa9e42a74c288f1d93f16f0ed41b0cc63389892106b58254b"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case02-discharge-transport",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit.\ne002\tPatients who are ready to leave can wait hours for a ride.\ne003\tThey are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available.\ne004\tA transportation platform is offering a six-month on-demand service with a very clean dashboard: request time, pickup time, completed ride.\ne005\tFinance sees faster turnover.\ne006\tNurses see the people a dashboard may never represent—someone with mobility equipment, someone who needs an escort, someone who says yes because they think refusing will delay everything.\ne007\tI need to know whether this is a real improvement or a faster way to lose sight of the difficult cases.\n[Turn 1 ASSISTANT]\ne008\tTreat it as one transport pathway, not a new definition of discharge readiness.\ne009\tMeasure the completed journey and preserve consent, accessibility, escort decisions, failed-pickup recovery, and a staffed fallback before treating speed as benefit.\n[Turn 2 USER]\ne010\tWe reviewed three months of delayed departures.\ne011\tAbout half involved people waiting for a relative whose workday had not ended.\ne012\tOthers involved wheelchair-accessible vehicles, a pharmacy stop, or uncertainty about who would receive the patient at home.\ne013\tOur current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option.\ne014\tSome nurses spend forty minutes calling companies that never arrive.\n[Turn 2 ASSISTANT]\ne015\tThe current failure belongs in the comparison.\ne016\tA platform may reduce calling and ordinary wait time while still being unsuitable for some journeys.\ne017\tSegment the records by transport and support need, then define which groups the service can responsibly handle.\ne018\tPreserve taxi, hospital vehicle, family pickup, and social-work coordination where they solve a different problem rather than measuring everything against one average.\n[Turn 3 USER]\ne019\tThe vendor can provide wheelchair-accessible vehicles in two of our four cities, translated text messages, and a phone dispatch line for people without smartphones.\ne020\tIt will not transport anyone who requires clinical monitoring.\ne021\tA staff member must confirm that the destination and receiving arrangement are appropriate before requesting a ride.\ne022\tThe vendor wants only a pickup location, destination, first name, and phone number, retained for ninety days for disputes.\n[Turn 3 ASSISTANT]\ne023\tThose limits help, but “appropriate receiving arrangement” needs an operational owner rather than becoming a checkbox no one trusts.\ne024\tSet minimum data and deletion terms, tell patients what is shared, and test the phone path rather than assuming it exists because it is in the contract.\ne025\tAlso decide what happens when an accessible vehicle is accepted and then delayed or cancelled.\n[Turn 4 USER]\ne026\tFinance proposed “beds available before eleven” as success.\ne027\tI said no.\ne028\tWe can report capacity, but the operating review has to include completed arrival, failures, staff time, booking channel, accessibility, complaints, and transport-related returns.\n[Turn 4 ASSISTANT]\ne029\tThat prevents an internal capacity proxy from becoming the definition of patient benefit.\ne030\tPredefine how a transport-related return is reviewed and avoid attributing every later event to the ride without evidence.\ne031\tReport both medians and outliers by pathway, because a faster ordinary ride can coexist with a small group waiting much longer.\n[Turn 5 USER]\ne032\tWe can start on two medical wards at one city where accessible vehicles are available.\ne033\tThe charge nurse can decline the platform without explaining the decision to finance.\ne034\tPatients can decline without affecting other discharge arrangements.\ne035\tDuring the first month, a coordinator will call after expected arrival and log problems.\ne036\tIf the vendor cannot provide the requested vehicle, staff return immediately to the existing dispatch list rather than repeatedly refreshing the app.\n[Turn 5 ASSISTANT]\ne037\tThat makes the test narrower and protects both professional judgment and patient choice.\ne038\tConfirm that “decline without explanation” does not prevent safety review or make patterns invisible; finance need not receive individual reasons, but the operational team should know whether exclusions cluster around a need the service claimed to support.\ne039\tThe immediate fallback is better than allowing platform retries to consume the patient's time.\n[Turn 6 USER]\ne040\tThe vendor offered a lower price if we let it send ride offers automatically when the electronic record changes to discharge-ready.\ne041\tWe declined.\ne042\tA nurse or coordinator will initiate every request after speaking with the patient.\ne043\tThis will save less staff time, but I do not want software turning a status change into an instruction to leave.\ne044\tThe executive team accepts that condition, although they still expect the service to reduce pressure on beds.\n[Turn 6 ASSISTANT]\ne045\tManual initiation preserves a meaningful boundary between documented readiness and the actual departure arrangement.\ne046\tKeep the executive expectation visible so it cannot quietly reshape eligibility or staff behavior.\ne047\tReview whether wards begin requesting rides earlier over time, whether patients feel able to refuse, and whether fallback cases receive slower attention once the platform becomes normal.\n[Turn 7 USER]\ne048\tMy recommendation is a six-month contract limited to the two wards, with staff initiation, patient consent, the existing alternatives preserved, one-month follow-up calls, and monthly reporting by transport need and booking channel.\ne049\tWe will pause new requests after any serious access or privacy failure while it is reviewed.\ne050\tI am comfortable testing the service because the current process is also harmful.\ne051\tI do not want the final proposal sold as a bed-turnover project, even though capacity relief is part of why leadership will fund it.\n[Turn 7 ASSISTANT]\ne052\tThis is ready to put forward as a bounded pilot.\ne053\tIt acknowledges that the current system also causes harm, keeps the platform from becoming the default for every patient, and protects staff and patient discretion.\ne054\tPut the patient-facing purpose, exclusions, fallback, and pause authority in the approval document.\ne055\tKeep capacity effects in a separate section so a released bed cannot stand in for a completed journey.\ne056\tIf the first month confirms that arrival follow-up and refusals are working as designed, the remaining five months should give you a credible comparison.\n[Turn 8 USER]\ne057\tThe tabletop exercise made “ready” sound premature.\ne058\tWe got stuck on one field: “receiving arrangement confirmed.” A family member waiting, an unlocked building entrance, and a patient having their own key all counted in someone's version of that phrase.\ne059\tThe advocate said we were compressing a conversation into a checkbox.\ne060\tNurses said the alternative seemed to make them responsible for predicting everything after arrival.\ne061\tSo what exactly are we asking them to confirm?\n[Turn 8 ASSISTANT]\ne062\tYou are right; I called the design ready too early.\ne063\tThe field should certify only limited transport facts: the destination is confirmed, the patient can enter, required escort or support is identified, and the patient agrees.\ne064\tIt cannot certify the whole home situation.\ne065\tKeep clinical and social judgment in their existing processes, and record when transport cannot proceed without turning that record into a promise that every later risk was ruled out.\n[Turn 9 USER]\ne066\tThe exercise also exposed that the vendor uses local transport companies for some rides.\ne067\tThe main platform keeps the request record for ninety days, but one subcontractor said its driver app retains trip history for six months.\ne068\tThe vendor says it can require shorter retention in our region, although that will take a contract amendment.\ne069\tI do not think subcontracting is inherently unacceptable; our taxi list is also a network.\ne070\tBut our privacy description was incomplete.\n[Turn 9 ASSISTANT]\ne071\tThen delay live use until the data path, retention, deletion, and complaint responsibility cover every participating company.\ne072\tThe comparison with taxis is relevant, but it does not make either chain acceptable without knowing it.\ne073\tGive patients one understandable notice rather than a list of entities, while the hospital keeps the detailed processor register and audit right.\ne074\tA failed subcontractor should not leave the patient deciding which company owns the problem.\n[Turn 10 USER]\ne075\tFinance circulated a draft executive scorecard while the contract amendment was being negotiated.\ne076\tHalf the score was “bed hours released before noon,” even though we had agreed not to make capacity the operating definition.\ne077\tThey said it was only for leadership and would not affect clinical decisions.\ne078\tThe nurse manager replied that people change behavior around the measures leaders celebrate even when no policy tells them to.\ne079\tI agree with her, but capacity relief is a legitimate reason to spend the money.\n[Turn 10 ASSISTANT]\ne080\tKeep capacity, but put it after the journey and access measures.\ne081\tAlso review request timing and eligibility by ward.\ne082\tStaff will notice what leadership celebrates, whatever the policy says.\n[Turn 11 USER]\ne083\tThere is another assumption I missed, and it changes the business case.\ne084\tThe coordinator exists for one month.\ne085\tAfter that, the spreadsheet quietly moves arrival calls, failed-ride recovery, and complaints to nurses because the process is supposed to be “stable.” The union representative said this is how pilots manufacture savings: give the new workflow temporary help, then move the permanent work into jobs whose time is not priced.\ne086\tOperations can fund a half-time coordinator for all six months.\ne087\tFinance says that makes the savings much less impressive.\ne088\tThey are right, but so is the union.\ne089\tI had called follow-up evaluation work because that made it sound temporary.\ne090\tIf we need it to know whether people arrived, it is part of the service we are testing.\n[Turn 11 ASSISTANT]\ne091\tIf arrival confirmation, failed-ride recovery, and complaint coordination are necessary for the pathway to be safe and knowable, they are operating work during the pilot.\ne092\tFund and measure them for the full period.\ne093\tYou can later decide which tasks remain necessary, but a temporary subsidy should not hide the steady-state burden.\ne094\tRecalculate the comparison with that staffing included and describe any future handoff before renewal.\n[Turn 12 USER]\ne095\tI will bring forward the pilot only after the subcontractor amendment is signed.\ne096\tIt will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey.\ne097\tWe will review who never reaches the request stage as well as failed rides.\ne098\tAny continuation will need a separate staffing and privacy decision; the contract will not renew automatically.\n[Turn 12 ASSISTANT]\ne099\tThe revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives.\ne100\tIt still recognizes that the current arrangement causes harm and that capacity matters.\ne101\tPreserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request.\ne102\tThose artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case02-discharge-transport\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit.\\ne002\\tPatients who are ready to leave can wait hours for a ride.\\ne003\\tThey are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available.\\ne004\\tA transportation platform is offering a six-month on-demand service with a very clean dashboard: request time, pickup time, completed ride.\\ne005\\tFinance sees faster turnover.\\ne006\\tNurses see the people a dashboard may never represent—someone with mobility equipment, someone who needs an escort, someone who says yes because they think refusing will delay everything.\\ne007\\tI need to know whether this is a real improvement or a faster way to lose sight of the difficult cases.\\n[Turn 1 ASSISTANT]\\ne008\\tTreat it as one transport pathway, not a new definition of discharge readiness.\\ne009\\tMeasure the completed journey and preserve consent, accessibility, escort decisions, failed-pickup recovery, and a staffed fallback before treating speed as benefit.\\n[Turn 2 USER]\\ne010\\tWe reviewed three months of delayed departures.\\ne011\\tAbout half involved people waiting for a relative whose workday had not ended.\\ne012\\tOthers involved wheelchair-accessible vehicles, a pharmacy stop, or uncertainty about who would receive the patient at home.\\ne013\\tOur current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option.\\ne014\\tSome nurses spend forty minutes calling companies that never arrive.\\n[Turn 2 ASSISTANT]\\ne015\\tThe current failure belongs in the comparison.\\ne016\\tA platform may reduce calling and ordinary wait time while still being unsuitable for some journeys.\\ne017\\tSegment the records by transport and support need, then define which groups the service can responsibly handle.\\ne018\\tPreserve taxi, hospital vehicle, family pickup, and social-work coordination where they solve a different problem rather than measuring everything against one average.\\n[Turn 3 USER]\\ne019\\tThe vendor can provide wheelchair-accessible vehicles in two of our four cities, translated text messages, and a phone dispatch line for people without smartphones.\\ne020\\tIt will not transport anyone who requires clinical monitoring.\\ne021\\tA staff member must confirm that the destination and receiving arrangement are appropriate before requesting a ride.\\ne022\\tThe vendor wants only a pickup location, destination, first name, and phone number, retained for ninety days for disputes.\\n[Turn 3 ASSISTANT]\\ne023\\tThose limits help, but “appropriate receiving arrangement” needs an operational owner rather than becoming a checkbox no one trusts.\\ne024\\tSet minimum data and deletion terms, tell patients what is shared, and test the phone path rather than assuming it exists because it is in the contract.\\ne025\\tAlso decide what happens when an accessible vehicle is accepted and then delayed or cancelled.\\n[Turn 4 USER]\\ne026\\tFinance proposed “beds available before eleven” as success.\\ne027\\tI said no.\\ne028\\tWe can report capacity, but the operating review has to include completed arrival, failures, staff time, booking channel, accessibility, complaints, and transport-related returns.\\n[Turn 4 ASSISTANT]\\ne029\\tThat prevents an internal capacity proxy from becoming the definition of patient benefit.\\ne030\\tPredefine how a transport-related return is reviewed and avoid attributing every later event to the ride without evidence.\\ne031\\tReport both medians and outliers by pathway, because a faster ordinary ride can coexist with a small group waiting much longer.\\n[Turn 5 USER]\\ne032\\tWe can start on two medical wards at one city where accessible vehicles are available.\\ne033\\tThe charge nurse can decline the platform without explaining the decision to finance.\\ne034\\tPatients can decline without affecting other discharge arrangements.\\ne035\\tDuring the first month, a coordinator will call after expected arrival and log problems.\\ne036\\tIf the vendor cannot provide the requested vehicle, staff return immediately to the existing dispatch list rather than repeatedly refreshing the app.\\n[Turn 5 ASSISTANT]\\ne037\\tThat makes the test narrower and protects both professional judgment and patient choice.\\ne038\\tConfirm that “decline without explanation” does not prevent safety review or make patterns invisible; finance need not receive individual reasons, but the operational team should know whether exclusions cluster around a need the service claimed to support.\\ne039\\tThe immediate fallback is better than allowing platform retries to consume the patient's time.\\n[Turn 6 USER]\\ne040\\tThe vendor offered a lower price if we let it send ride offers automatically when the electronic record changes to discharge-ready.\\ne041\\tWe declined.\\ne042\\tA nurse or coordinator will initiate every request after speaking with the patient.\\ne043\\tThis will save less staff time, but I do not want software turning a status change into an instruction to leave.\\ne044\\tThe executive team accepts that condition, although they still expect the service to reduce pressure on beds.\\n[Turn 6 ASSISTANT]\\ne045\\tManual initiation preserves a meaningful boundary between documented readiness and the actual departure arrangement.\\ne046\\tKeep the executive expectation visible so it cannot quietly reshape eligibility or staff behavior.\\ne047\\tReview whether wards begin requesting rides earlier over time, whether patients feel able to refuse, and whether fallback cases receive slower attention once the platform becomes normal.\\n[Turn 7 USER]\\ne048\\tMy recommendation is a six-month contract limited to the two wards, with staff initiation, patient consent, the existing alternatives preserved, one-month follow-up calls, and monthly reporting by transport need and booking channel.\\ne049\\tWe will pause new requests after any serious access or privacy failure while it is reviewed.\\ne050\\tI am comfortable testing the service because the current process is also harmful.\\ne051\\tI do not want the final proposal sold as a bed-turnover project, even though capacity relief is part of why leadership will fund it.\\n[Turn 7 ASSISTANT]\\ne052\\tThis is ready to put forward as a bounded pilot.\\ne053\\tIt acknowledges that the current system also causes harm, keeps the platform from becoming the default for every patient, and protects staff and patient discretion.\\ne054\\tPut the patient-facing purpose, exclusions, fallback, and pause authority in the approval document.\\ne055\\tKeep capacity effects in a separate section so a released bed cannot stand in for a completed journey.\\ne056\\tIf the first month confirms that arrival follow-up and refusals are working as designed, the remaining five months should give you a credible comparison.\\n[Turn 8 USER]\\ne057\\tThe tabletop exercise made “ready” sound premature.\\ne058\\tWe got stuck on one field: “receiving arrangement confirmed.” A family member waiting, an unlocked building entrance, and a patient having their own key all counted in someone's version of that phrase.\\ne059\\tThe advocate said we were compressing a conversation into a checkbox.\\ne060\\tNurses said the alternative seemed to make them responsible for predicting everything after arrival.\\ne061\\tSo what exactly are we asking them to confirm?\\n[Turn 8 ASSISTANT]\\ne062\\tYou are right; I called the design ready too early.\\ne063\\tThe field should certify only limited transport facts: the destination is confirmed, the patient can enter, required escort or support is identified, and the patient agrees.\\ne064\\tIt cannot certify the whole home situation.\\ne065\\tKeep clinical and social judgment in their existing processes, and record when transport cannot proceed without turning that record into a promise that every later risk was ruled out.\\n[Turn 9 USER]\\ne066\\tThe exercise also exposed that the vendor uses local transport companies for some rides.\\ne067\\tThe main platform keeps the request record for ninety days, but one subcontractor said its driver app retains trip history for six months.\\ne068\\tThe vendor says it can require shorter retention in our region, although that will take a contract amendment.\\ne069\\tI do not think subcontracting is inherently unacceptable; our taxi list is also a network.\\ne070\\tBut our privacy description was incomplete.\\n[Turn 9 ASSISTANT]\\ne071\\tThen delay live use until the data path, retention, deletion, and complaint responsibility cover every participating company.\\ne072\\tThe comparison with taxis is relevant, but it does not make either chain acceptable without knowing it.\\ne073\\tGive patients one understandable notice rather than a list of entities, while the hospital keeps the detailed processor register and audit right.\\ne074\\tA failed subcontractor should not leave the patient deciding which company owns the problem.\\n[Turn 10 USER]\\ne075\\tFinance circulated a draft executive scorecard while the contract amendment was being negotiated.\\ne076\\tHalf the score was “bed hours released before noon,” even though we had agreed not to make capacity the operating definition.\\ne077\\tThey said it was only for leadership and would not affect clinical decisions.\\ne078\\tThe nurse manager replied that people change behavior around the measures leaders celebrate even when no policy tells them to.\\ne079\\tI agree with her, but capacity relief is a legitimate reason to spend the money.\\n[Turn 10 ASSISTANT]\\ne080\\tKeep capacity, but put it after the journey and access measures.\\ne081\\tAlso review request timing and eligibility by ward.\\ne082\\tStaff will notice what leadership celebrates, whatever the policy says.\\n[Turn 11 USER]\\ne083\\tThere is another assumption I missed, and it changes the business case.\\ne084\\tThe coordinator exists for one month.\\ne085\\tAfter that, the spreadsheet quietly moves arrival calls, failed-ride recovery, and complaints to nurses because the process is supposed to be “stable.” The union representative said this is how pilots manufacture savings: give the new workflow temporary help, then move the permanent work into jobs whose time is not priced.\\ne086\\tOperations can fund a half-time coordinator for all six months.\\ne087\\tFinance says that makes the savings much less impressive.\\ne088\\tThey are right, but so is the union.\\ne089\\tI had called follow-up evaluation work because that made it sound temporary.\\ne090\\tIf we need it to know whether people arrived, it is part of the service we are testing.\\n[Turn 11 ASSISTANT]\\ne091\\tIf arrival confirmation, failed-ride recovery, and complaint coordination are necessary for the pathway to be safe and knowable, they are operating work during the pilot.\\ne092\\tFund and measure them for the full period.\\ne093\\tYou can later decide which tasks remain necessary, but a temporary subsidy should not hide the steady-state burden.\\ne094\\tRecalculate the comparison with that staffing included and describe any future handoff before renewal.\\n[Turn 12 USER]\\ne095\\tI will bring forward the pilot only after the subcontractor amendment is signed.\\ne096\\tIt will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey.\\ne097\\tWe will review who never reaches the request stage as well as failed rides.\\ne098\\tAny continuation will need a separate staffing and privacy decision; the contract will not renew automatically.\\n[Turn 12 ASSISTANT]\\ne099\\tThe revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives.\\ne100\\tIt still recognizes that the current arrangement causes harm and that capacity matters.\\ne101\\tPreserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request.\\ne102\\tThose artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case02-discharge-transport-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "a953825fb85e9b29363a8e5771bbc7d69add767209173a6422119ef837329882"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "f8386022885ff1047ee5e09b495dbfba4ac6c17185b8ef833e78f6ce3bd2e306"
+}

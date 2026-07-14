@@ -54,14 +54,14 @@ otherwise clean `high_stakes` runs conservative with `ask_user_first`.
 Schema version:
 
 ```json
-"lolla_agent_result.v1"
+"lolla_agent_result.v2"
 ```
 
 Core fields:
 
 ```json
 {
-  "schema_version": "lolla_agent_result.v1",
+  "schema_version": "lolla_agent_result.v2",
   "run_id": "20260624T120000Z_example",
   "case_id": "founder-pivot",
   "status": "ok",
@@ -95,7 +95,7 @@ Core fields:
     "risk_flags": []
   },
   "risk_mode": "standard",
-  "caller_action": "use_revised_answer",
+  "caller_action": "review_revised_answer",
   "control_context": {
     "schema_version": "lolla_control_input.v1",
     "expected_schema_version": "lolla_control_input.v1",
@@ -192,7 +192,8 @@ not semantically reconstruct omitted turns.
 
 `caller_action` is a closed enum:
 
-- `use_revised_answer`
+- `review_revised_answer`
+- `use_revised_answer` (legacy v1 receipts only)
 - `ask_user_first`
 - `rerun_deeper`
 - `do_not_use_run_degraded`
@@ -200,7 +201,9 @@ not semantically reconstruct omitted turns.
 
 The first implementation is conservative:
 
-- Clean completed standard runs can return `use_revised_answer`.
+- Clean completed standard runs return `review_revised_answer`. This means the
+  revised artifact is available for inspection; it does not approve its
+  recommendation, certify quality, or authorize an external action.
 - Partial, degraded, incomplete, or product/live-output-unsafe runs return
   `do_not_use_run_degraded`.
 - A contained provider-boundary warning (`provider_boundary_health.status:
@@ -249,7 +252,8 @@ Current caller-action mappings:
 
 | `caller_action` | Control-plane outcome |
 |---|---|
-| `use_revised_answer` | `proceed_with_external_policy` |
+| `review_revised_answer` | `require_external_review` |
+| `use_revised_answer` (legacy v1) | `proceed_with_external_policy` |
 | `ask_user_first` | `require_human_approval` |
 | `rerun_deeper` | `rerun_deeper` |
 | `do_not_use_run_degraded` | `block_reasoning_incomplete` |
@@ -299,11 +303,10 @@ PR40 adds the contract-lock tests:
 tests/test_risk_mode_contract.py
 ```
 
-Those tests lock the current behavior: otherwise clean `high_stakes` runs
-return `caller_action: ask_user_first`, degraded runs return
-`do_not_use_run_degraded`, clean `standard` runs keep `use_revised_answer`, and
-review-corpus records preserve the risk/reliance fields. PR40 does not change
-this contract or runtime behavior.
+Those tests originally locked the v1 behavior. The R1 constitutional-hardening
+migration keeps clean `high_stakes` at `ask_user_first` and degraded runs at
+`do_not_use_run_degraded`, while clean `standard` now returns the neutral
+`review_revised_answer`. Historical v1 archives remain readable.
 
 PR41 clarifies `evaluation.json` with a deterministic
 `risk_mode_reliance_policy` check for high-stakes runs. It does not change

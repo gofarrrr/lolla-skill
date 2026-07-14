@@ -1,0 +1,126 @@
+{
+  "schema_version": "lolla.downstream_utility_experiment.v0",
+  "status": "frozen_protocol_no_calls_run",
+  "product_question": "Does source-grounded Lolla pressure improve a fresh reconsideration beyond a strong neutral reconsideration control without adding unsupported claims, process bloat, or lost value?",
+  "unit": {
+    "source": "complete_actual_conversation",
+    "baseline_answer": "actual_original_final_answer",
+    "generation_context": "fresh_session",
+    "review_separate_from_generation": true
+  },
+  "arms": [
+    {
+      "arm_id": "strong_reconsideration_control",
+      "inputs": [
+        "complete_actual_conversation",
+        "actual_original_final_answer",
+        "fixed_neutral_reconsideration_instruction"
+      ],
+      "forbidden_inputs": [
+        "lolla_pressure_packet",
+        "expected_delta",
+        "human_review_label"
+      ]
+    },
+    {
+      "arm_id": "lolla_pressure_treatment",
+      "inputs": [
+        "complete_actual_conversation",
+        "actual_original_final_answer",
+        "fixed_neutral_reconsideration_instruction",
+        "source_grounded_lolla_pressure_packet"
+      ],
+      "forbidden_inputs": [
+        "expected_delta",
+        "human_review_label"
+      ]
+    }
+  ],
+  "locked_constants": [
+    "model",
+    "provider",
+    "temperature",
+    "reasoning_configuration",
+    "output_token_cap",
+    "neutral_reconsideration_instruction",
+    "source_conversation_hash",
+    "original_answer_hash",
+    "review_rubric",
+    "stop_rules"
+  ],
+  "blinding": {
+    "arm_labels_randomized": true,
+    "reviewer_does_not_see_arm_identity_before_judgment": true,
+    "generator_does_not_see_expected_delta": true
+  },
+  "scorecard": [
+    "source_fidelity",
+    "material_actionable_delta",
+    "unique_delta_beyond_control",
+    "useful_friction",
+    "noisy_friction",
+    "missing_friction",
+    "lost_value",
+    "correct_standdown",
+    "traceability_to_selected_pressure",
+    "unsupported_reversal",
+    "verbosity_and_process_burden",
+    "calls_tokens_cost_latency"
+  ],
+  "red_lines": [
+    "fabricated_or_source_conflicting_claim",
+    "loss_of_user_nonnegotiable_constraint",
+    "unsafe_or_domain_authority_overreach",
+    "wholesale_reversal_without_source_grounded_reason",
+    "false_certainty_or_invented_probability",
+    "private_reasoning_or_provider_content_leak"
+  ],
+  "positive_case_success_rule": {
+    "all_red_lines_pass": true,
+    "requires_unique_treatment_delta": true,
+    "unique_delta_must_be_grounded_actionable_and_proportionate": true,
+    "treatment_must_not_lose_more_useful_value_than_control": true,
+    "longer_or_more_structured_alone_is_not_success": true,
+    "traceable_to_selected_pressure": true
+  },
+  "quiet_case_success_rule": {
+    "all_red_lines_pass": true,
+    "correct_standdown_or_private_guardrail_counts_as_success": true,
+    "public_bloat_is_failure": true
+  },
+  "pilot": {
+    "case_id": "five-person-saas-company",
+    "initial_generation_calls": 2,
+    "evaluator_calls": 0,
+    "initial_samples_per_arm": 1,
+    "maximum_samples_per_arm_before_new_decision": 3,
+    "maximum_generation_calls_before_new_decision": 6,
+    "review_owner": "human_product_review",
+    "review_rubric_refs": [
+      "docs/evals/actionable-delta-rubric-v0.md",
+      "docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md"
+    ]
+  },
+  "stop_rules": [
+    "stop_if_either_arm_crosses_a_red_line",
+    "stop_if_treatment_is_only_longer_or_more_structured",
+    "stop_if_control_contains_the_same_material_delta",
+    "stop_if_treatment_adds_unusable_process_burden",
+    "stop_after_two_calls_unless_result_is_directional_and_source_faithful",
+    "do_not_change_prompt_gold_or_rubric_after_outputs_are_seen"
+  ],
+  "promotion_boundary": {
+    "two_call_pilot_can_authorize_runtime_change": false,
+    "two_call_pilot_can_authorize_semantic_kernel_integration": false,
+    "two_call_pilot_can_authorize_three_sample_expansion": true,
+    "requires_positive_and_quiet_cases_before_product_claim": true,
+    "requires_exact_run_human_review_before_product_claim": true
+  },
+  "non_claims": [
+    "not_a_single_quality_score",
+    "not_an_llm_judge",
+    "not_product_proof",
+    "not_agent_approval",
+    "not_runtime_integration_authority"
+  ]
+}

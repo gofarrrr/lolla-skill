@@ -1,0 +1,67 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_stage_a_decision.v1",
+  "date": "2026-07-10",
+  "case_id": "case-05-parenting-teen",
+  "run_id": "stage_a_case05_20260710_a1",
+  "contract_sha256": "00e163794d0d896d8d8de15431239ce083c5a2856a16f5c8857aefcd8b7d3c16",
+  "formal_stage_a_status": "failed",
+  "failure_classification": "F8_deterministic_scorer_contract_mismatch",
+  "failed_gate": "extraction_exit_zero",
+  "evidence": {
+    "runner_field": "extractor_exit_zero",
+    "runner_field_value": true,
+    "sealer_requested_field": "extraction_exit_zero",
+    "sealer_observed_value": false,
+    "actual_extraction_exit_code": 0,
+    "actual_pipeline_exit_code": 0,
+    "all_other_frozen_gate_results": true
+  },
+  "observed_operability": {
+    "captured_messages": 24,
+    "omitted_messages": 0,
+    "verified_reasoning_passages": 6,
+    "remaining_quote_failures": 0,
+    "extraction_calls": 1,
+    "core_pressure_calls": 11,
+    "bullshit_index_calls": 12,
+    "total_openrouter_calls": 24,
+    "direct_openai_embedding_and_expansion_calls": 7,
+    "total_tokens": 122549,
+    "estimated_total_cost_usd": 0.036802,
+    "extraction_wall_time_seconds": 3.747,
+    "pipeline_wall_time_seconds": 29.039,
+    "experiment_retries": 0,
+    "private_table_status": "ready",
+    "v60_status": "active"
+  },
+  "preserved_pipeline_warnings": {
+    "run_health": "partial",
+    "issue": "lane3_all_dropped",
+    "lane3_candidates_dropped": 1,
+    "lane3_candidates_kept": 0,
+    "main_delta_findings_produced": false,
+    "interpretation": "Not semantically adjudicated because the formal Stage A stop rule fired. This may be correct stand-down, false stand-down, or a lane weakness."
+  },
+  "authorizations": {
+    "preliminary_pressure_review": false,
+    "gate_4_paired_contract_construction": false,
+    "gate_4_provider_calls": false,
+    "graph_promotion": false,
+    "runtime_integration": false
+  },
+  "prospective_next_action": [
+    "Do not rerun or reseal Case 05.",
+    "Repair the runner/sealer field identity prospectively with one shared schema or constant.",
+    "Add an integration test that passes the runner's real execution-envelope shape into the sealer instead of maintaining independent hand-built field names.",
+    "After provider-free verification, freeze a new selection and Stage A contract on the next eligible untouched case; under the existing digest order that case is Case 10.",
+    "Do not inspect or tune Case 05 pressure output to design the next pipeline prompt."
+  ],
+  "non_claims": [
+    "not a semantic-quality result",
+    "not child-safety legal clinical custody financial or parenting advice",
+    "not proof that the graph pressure is useful",
+    "not permission to override the frozen failed gate",
+    "not Stage B or runtime authority"
+  ]
+}
+

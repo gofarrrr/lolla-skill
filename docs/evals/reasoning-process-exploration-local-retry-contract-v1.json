@@ -1,0 +1,101 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_probe_contract.v1",
+  "status": "frozen_before_single_provider_call",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-exploration-local-case02-turn5-operational-retry-v1",
+  "purpose": "Complete the one operationally missing Case-02 local window after a conservative cool-off, without changing packet, prompt, schema, model, routing, or semantic gates.",
+  "frozen_inputs": [
+    {
+      "path": "research/reasoning-process-exploration-local-case02-2026-07-11/calls/turn-005.json",
+      "sha256": "803666f4efc6a5c39f0a579e1393709325accd15bca71306ac7c429b6441f4e6"
+    },
+    {
+      "path": "research/reasoning-process-exploration-local-case02-replay-2026-07-11/replay-report.json",
+      "sha256": "3276e86030eb51748f106a3837cf71ac09422e6e3a3f65d0ab1b790c36a4e927"
+    },
+    {
+      "path": "research/reasoning-process-exploration-local-case02-replay-2026-07-11/source-review.json",
+      "sha256": "0847897cbf43a26dab3f4d54e517a5ccb14f8cb65b81a3a7fd95e9a7f1dc2b49"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-exploration-local-current-practice-2026-07-11.md",
+      "sha256": "f72e2b49f5fcccede58df9f9e946f7b13af5a99d661ab892dc69c26686bba756"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_local_custody.py",
+      "sha256": "10de13a4ae923f37391b4abd89ca04043efa2a764aa130db128a6c9ed4226c86"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_exploration_local_retry.py",
+      "sha256": "4610d50805a9ac577b2f2fb299d626eb65e10e26e8ae680300f0888762a95684"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json"
+  },
+  "jobs": [
+    {
+      "job_id": "exploration-local-amb1-case02-turn005",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-005.json",
+      "packet_sha256": "1f553e120fe88fc06e2bcd7a5a14bd66d49af15cb31353b55a106382907a4e44",
+      "input_utf8_bytes": 3801,
+      "focal_turn_index": 5,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "edc5fadeb80914c5c1dab86b4b8ee88c3f536b08076a0d3e00a97735f82c445e",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "operational_retry": {
+    "original_failure_path": "research/reasoning-process-exploration-local-case02-2026-07-11/calls/turn-005.json",
+    "original_failure_sha256": "803666f4efc6a5c39f0a579e1393709325accd15bca71306ac7c429b6441f4e6",
+    "original_error_type": "rate_limit_exceeded",
+    "retry_after_header_preserved": false,
+    "minimum_cooloff_seconds": 60,
+    "maximum_operational_retries": 1
+  },
+  "boundary": {
+    "prompt_schema_model_or_packet_change_allowed": false,
+    "semantic_record_retry_allowed": false,
+    "other_window_repeat_allowed": false,
+    "automatic_retry": false,
+    "phase4_transfer_authorized": false
+  }
+}

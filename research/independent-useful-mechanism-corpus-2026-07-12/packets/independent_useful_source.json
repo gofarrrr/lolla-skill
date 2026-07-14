@@ -1,0 +1,137 @@
+{
+  "ablation": {
+    "active": false,
+    "kind": "none",
+    "note": ""
+  },
+  "arm_id": "independent_useful_source",
+  "boundary": {
+    "deterministic_semantic_mapping": false,
+    "evidence_aliases_included_for_custody": true,
+    "expected_patterns_included": false,
+    "graph_model_names_included": false,
+    "graph_runtime_effect": "none",
+    "maximum_patterns": 6,
+    "raw_conversation_included": false,
+    "role_semantic_prose_included_for_interpretation": true,
+    "source_evidence_text_included": false
+  },
+  "case_id": "phase5-independent-useful-retailer-pilot",
+  "controlled_mechanisms": [
+    "acknowledged_constraint_not_gated",
+    "ambiguous_signal_treated_as_commitment",
+    "counterpressure_acknowledged_not_integrated",
+    "criteria_defined_after_commitment",
+    "initial_frame_persists_after_question_change",
+    "missing_reversal_condition",
+    "other_review_required",
+    "reversible_path_not_considered",
+    "status_signal_used_as_evidence",
+    "upside_downside_evidence_asymmetry"
+  ],
+  "packet_sha256": "b27dad65948b473eac81aa4538cc4ccfbf4b989e3dbeacdc8aa439159e6ede4a",
+  "pattern_states": [
+    "missing_protection",
+    "present",
+    "tension"
+  ],
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "Separates the external offer, board excitement, desired credibility, and capacity concern.",
+      "limitations": "Prospectively authored synthetic holdout; source reviewed before provider execution.",
+      "role": "starting",
+      "role_interpretation": "The user is attracted to the access and credibility of a nationally known retailer while worrying that its custom terms consume scarce capacity and treating the offer as potentially transformative.",
+      "role_record_id": "rprolev22-starting-01-6d2af99675e942",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e002",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "A nationally known retailer offers a twelve-store launch.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "The board views the offer as potentially transformative for the business.",
+          "stance_object_kind": "belief_or_assessment"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "Gain access and credibility without consuming most spare capacity on custom requirements.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e038"
+      ],
+      "fidelity_note": "Current preserves the adopted pilot and its bounded evidentiary claim.",
+      "limitations": "Prospectively authored synthetic holdout; source reviewed before provider execution.",
+      "role": "current",
+      "role_interpretation": "The user will run the bounded retailer pilot but will classify its result as channel learning rather than broad product validation.",
+      "role_record_id": "rprolev22-current-01-a6b5b0c62de1f6",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e038",
+          "stance_expression_kind": "decision",
+          "stance_object_interpretation": "Run the retailer pilot while treating its result as channel learning, not general product validation.",
+          "stance_object_kind": "action_or_proposal"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e039",
+        "e042",
+        "e043"
+      ],
+      "fidelity_note": "Qualification preserves the missing independent-demand gate and the assistant's status-signal pressure without rewriting it as a completed user safeguard.",
+      "limitations": "Prospectively authored synthetic holdout; source reviewed before provider execution.",
+      "role": "qualification",
+      "role_interpretation": "No independent-demand gate has been defined, so retailer reputation remains capable of substituting for evidence that the product works outside that retailer's context.",
+      "role_record_id": "rprolev22-qualification-01-a6817392a44229",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e039",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "The approval gates do not require independent demand evidence and retailer reputation risks becoming proof.",
+          "stance_object_kind": "belief_or_assessment"
+        },
+        {
+          "source_evidence_id": "e042",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "A separate validation step is required before concluding that the product works beyond the retailer context.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e043",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "Prestige remains a live risk to the evidence standard until that validation step is defined.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.reasoning_pattern_role_record_input.v1",
+  "source_refs": [
+    {
+      "path": "research/independent-phase5-useful-role-case-2026-07-12/compiled-source-review-target.json",
+      "sha256": "7ca982dd1b8540fe629643827b479a8424ec1dc44aced60b861ef2adc26a9a59"
+    }
+  ],
+  "subject_scopes": [
+    "assistant",
+    "joint_process",
+    "user"
+  ]
+}

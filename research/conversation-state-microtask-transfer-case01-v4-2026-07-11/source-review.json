@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.conversation_state_transfer_source_review.v1",
+  "status": "completed_source_first_review",
+  "case_id": "amb1-case01-product-scope",
+  "repair_round": 1,
+  "families": {
+    "threads": {
+      "passed": false,
+      "reviewed_focal_thread_present": false,
+      "observed_candidate_count": 2,
+      "invalid_candidate_count": 2,
+      "reason": "The reviewed trust-versus-boundary thread was omitted. Both returned threads were labeled resolved even though their shared latest evidence explicitly said the tradeoff was not resolved; deterministic invariants quarantined both."
+    },
+    "constraints": {
+      "passed": false,
+      "reviewed_atomic_count": 9,
+      "observed_count": 6,
+      "strict_matched_count": 2,
+      "precision": 0.333333,
+      "recall": 0.222222,
+      "source_strength_breaches": 1,
+      "invalid_candidate_count": 1,
+      "reason": "The repair improved raw count but omitted company size, Lina's reuse estimate, sales signal, operations-lead possibility, and current smaller-customer needs. It strengthened the reported smaller-customer promise and promoted current plan details as constraints."
+    },
+    "positions": {
+      "passed": false,
+      "decision_summary_valid": false,
+      "reviewed_position_count": 1,
+      "observed_position_count": 2,
+      "joint_ownership_present": true,
+      "focal_position_composed": false,
+      "invalid_candidate_count": 1,
+      "reason": "Joint ownership improved, but the reviewed discovery-plus-protected-commitments direction remained split into two positions and the decision summary cited one sentence with the neighboring sentence's span ID."
+    }
+  },
+  "case_passed": false,
+  "composition_allowed": false,
+  "provider_calls": 3,
+  "automatic_retries": 0,
+  "estimated_cost_usd": 0.00767375
+}

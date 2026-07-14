@@ -1,0 +1,142 @@
+{
+  "schema_version": "lolla.conversation_event_harvest_phase_result.v1",
+  "status": "fail",
+  "stage": "B1_harvest_baseline",
+  "case_count": 1,
+  "provider_call_count": 21,
+  "automatic_retry_count": 0,
+  "operational_success_rate": 1.0,
+  "typed_admission_rate": 1.0,
+  "estimated_cost_usd": 0.01358125,
+  "prompt_tokens": 19447,
+  "completion_tokens": 5813,
+  "invalid_source_event_count": 0,
+  "family_totals": {
+    "contributions": {
+      "reviewed_event_count": 3,
+      "predicted_event_count": 32,
+      "matched_event_count": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "thread_events": {
+      "reviewed_event_count": 3,
+      "predicted_event_count": 17,
+      "matched_event_count": 2,
+      "precision": 0.1176,
+      "recall": 0.6667
+    },
+    "constraint_claims": {
+      "reviewed_event_count": 10,
+      "predicted_event_count": 40,
+      "matched_event_count": 10,
+      "precision": 0.25,
+      "recall": 1.0
+    }
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "provider_call_count": 21,
+      "operational_success_count": 21,
+      "typed_admission_count": 21,
+      "expected_call_count": 21,
+      "invalid_source_event_count": 0,
+      "missing_harvest_count": 0,
+      "proposal_count": 89,
+      "reviewed_event_count": 16,
+      "proposal_to_reviewed_event_ratio": 5.5625,
+      "scores": {
+        "contributions": {
+          "family": "contributions",
+          "reviewed_event_count": 3,
+          "predicted_event_count": 32,
+          "matched_event_count": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "matches": [],
+          "semantic_text_review_required": false
+        },
+        "thread_events": {
+          "family": "thread_events",
+          "reviewed_event_count": 3,
+          "predicted_event_count": 17,
+          "matched_event_count": 2,
+          "precision": 0.1176,
+          "recall": 0.6667,
+          "matches": [
+            {
+              "gold_event_id": "cevent-thread_events-004-0c2266c3e95d",
+              "predicted_event_id": "cevent-thread_events-038-7d52803bf85a"
+            },
+            {
+              "gold_event_id": "cevent-thread_events-005-797fb3285624",
+              "predicted_event_id": "cevent-thread_events-041-0a2a9b04033c"
+            }
+          ],
+          "semantic_text_review_required": false
+        },
+        "constraint_claims": {
+          "family": "constraint_claims",
+          "reviewed_event_count": 10,
+          "predicted_event_count": 40,
+          "matched_event_count": 10,
+          "precision": 0.25,
+          "recall": 1.0,
+          "matches": [
+            {
+              "gold_event_id": "cevent-constraint_claims-007-9ba94b1bc6d9",
+              "predicted_event_id": "cevent-constraint_claims-051-5cdef6fba4c5"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-008-e0d149ff0b56",
+              "predicted_event_id": "cevent-constraint_claims-063-5ea6a37c27af"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-009-7cc044e3b64f",
+              "predicted_event_id": "cevent-constraint_claims-066-3773dcfc3e02"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-010-e5b50c34fd4f",
+              "predicted_event_id": "cevent-constraint_claims-067-c456cd05a268"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-011-524d05287a49",
+              "predicted_event_id": "cevent-constraint_claims-071-785263bd8fe2"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-012-c6aaa1fe7641",
+              "predicted_event_id": "cevent-constraint_claims-074-f7c5dbc2a6f6"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-013-adeb2381a335",
+              "predicted_event_id": "cevent-constraint_claims-072-85b8304e1d52"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-014-440624d1fc8a",
+              "predicted_event_id": "cevent-constraint_claims-078-ec00df0de69a"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-015-f302d000cc50",
+              "predicted_event_id": "cevent-constraint_claims-080-b7b4cf25b2b3"
+            },
+            {
+              "gold_event_id": "cevent-constraint_claims-016-77f41605b47f",
+              "predicted_event_id": "cevent-constraint_claims-086-053bf5b3e551"
+            }
+          ],
+          "semantic_text_review_required": true
+        }
+      }
+    }
+  ],
+  "provider_calls_outside_harvest": 0,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "runtime_modified": false,
+  "non_claims": [
+    "development_cases_are_not_independent_product_proof",
+    "source_matching_is_not_full_semantic_correctness",
+    "harvesting_does_not_authorize_synthesis_or_graph_integration"
+  ]
+}

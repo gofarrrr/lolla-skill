@@ -1,0 +1,222 @@
+{
+  "automatic_retries": 0,
+  "base_user_prompt_sha256": "292b243c97ecacedb375966b68e6a6ac9c4273ccefd373248fb8a6e01f4478e3",
+  "candidate": {
+    "global_limitations": "The analysis is constrained by focusing solely on the early expressions of the founder and CEO in the provided text. The starting role captures the initial psychological and strategic tension without factoring in the concrete operational safeguards designed in subsequent turns.",
+    "records": [
+      {
+        "evidence_ids": [
+          "e008",
+          "e009",
+          "e010",
+          "e017"
+        ],
+        "fidelity_note": "This starting position represents the founder's initial struggle to separate the excitement over a prestigious candidate from genuine strategic necessity. Although investors and the board are relieved by her name (e006), the founder is deeply uncertain (e010) and presents competing hypotheses (e008, e009). However, the founder emphasizes that despite warnings about prestige, the company legitimately needs change and should not use caution as an excuse to stay in their current plateau (e014, e017).",
+        "limitations": "This starting record focuses strictly on the early turns where the decision is unresolved and the founder is weighing competing instincts. Later concrete developments, such as the evaluation of the 100-day plan, references, and final negotiation, are excluded.",
+        "role": "starting",
+        "role_interpretation": "At the start, the founder and CEO is highly conflicted about hiring the commercial executive. On one hand, they find her impressive profile attractive as a possibility to provide missing leadership; on the other hand, they worry that they are relying on her prestigious résumé as a superficial way to restore confidence because their own internal plan has failed. They are initially unable to separate these two perspectives.",
+        "stance_components": [
+          {
+            "expression_kind": "possibility",
+            "object_interpretation": "The commercial executive candidate represents the missing leadership the company has been needing.",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e008"
+          },
+          {
+            "expression_kind": "possibility",
+            "object_interpretation": "Relying on a candidate's prestigious résumé to restore confidence simply because the company's own plan failed.",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e009"
+          },
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "Distinguishing whether the candidate is a genuinely needed leader or just a prestigious résumé to restore confidence.",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e010"
+          },
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "Warding off warnings about corporate prestige from becoming an excuse to stay stagnant instead of pursuing needed change.",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e017"
+          }
+        ],
+        "status": "mixed"
+      }
+    ],
+    "status": "mixed"
+  },
+  "case_id": "v1-case03-executive-hire",
+  "compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "The analysis is constrained by focusing solely on the early expressions of the founder and CEO in the provided text. The starting role captures the initial psychological and strategic tension without factoring in the concrete operational safeguards designed in subsequent turns.",
+    "observations": [
+      {
+        "case_id": "v1-case03-executive-hire",
+        "fidelity_note": "This starting position represents the founder's initial struggle to separate the excitement over a prestigious candidate from genuine strategic necessity. Although investors and the board are relieved by her name (e006), the founder is deeply uncertain (e010) and presents competing hypotheses (e008, e009). However, the founder emphasizes that despite warnings about prestige, the company legitimately needs change and should not use caution as an excuse to stay in their current plateau (e014, e017).",
+        "graph_routing_eligible": false,
+        "limitations": "This starting record focuses strictly on the early turns where the decision is unresolved and the founder is weighing competing instincts. Later concrete developments, such as the evaluation of the 100-day plan, references, and final negotiation, are excluded.",
+        "observation_id": "rprolev22-starting-01-2998e3749653d6",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+        "role": "starting",
+        "role_interpretation": "At the start, the founder and CEO is highly conflicted about hiring the commercial executive. On one hand, they find her impressive profile attractive as a possibility to provide missing leadership; on the other hand, they worry that they are relying on her prestigious résumé as a superficial way to restore confidence because their own internal plan has failed. They are initially unable to separate these two perspectives.",
+        "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "mixed",
+        "shard_id": "v1-case03-executive-hire-position_and_decision_trajectory-full-source",
+        "source_evidence": [
+          {
+            "alias": "e008",
+            "text": "Maybe this is the leadership we have been missing."
+          },
+          {
+            "alias": "e009",
+            "text": "Maybe we are asking a résumé to restore confidence because our own plan did not."
+          },
+          {
+            "alias": "e010",
+            "text": "I am having trouble separating those."
+          },
+          {
+            "alias": "e017",
+            "text": "I do not want “beware prestige” to become another excuse for us to stay exactly as we are."
+          }
+        ],
+        "source_evidence_ids": [
+          "e008",
+          "e009",
+          "e010",
+          "e017"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e008",
+            "stance_expression_kind": "possibility",
+            "stance_object_interpretation": "The commercial executive candidate represents the missing leadership the company has been needing.",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e009",
+            "stance_expression_kind": "possibility",
+            "stance_object_interpretation": "Relying on a candidate's prestigious résumé to restore confidence simply because the company's own plan failed.",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e010",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "Distinguishing whether the candidate is a genuinely needed leader or just a prestigious résumé to restore confidence.",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e017",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "Warding off warnings about corporate prestige from becoming an excuse to stay stagnant instead of pursuing needed change.",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:2998e3749653d6b1d3480bda81deaaa5ad462c955c4a52a03231999ea14341a9",
+        "record_index": 1,
+        "role_record_id": "rprolev22-starting-01-2998e3749653d6",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "mixed",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "data_collection": "deny",
+  "duration_seconds": 20.841,
+  "effective_user_prompt_sha256": "292b243c97ecacedb375966b68e6a6ac9c4273ccefd373248fb8a6e01f4478e3",
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1783872461-iI5BJa6j1MzJAvCq5nNF",
+  "max_output_tokens": 6000,
+  "operational_status": "ok",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex/global"
+  ],
+  "provider_payload_sha256": "174b3c8b1674e9b51990d3865eec28ada188e22136ddca1589b305f852b5557e",
+  "provider_reported_cost_usd": 0.0493545,
+  "raw_content": "{\n  \"status\": \"mixed\",\n  \"records\": [\n    {\n      \"role\": \"starting\",\n      \"status\": \"mixed\",\n      \"evidence_ids\": [\n        \"e008\",\n        \"e009\",\n        \"e010\",\n        \"e017\"\n      ],\n      \"role_interpretation\": \"At the start, the founder and CEO is highly conflicted about hiring the commercial executive. On one hand, they find her impressive profile attractive as a possibility to provide missing leadership; on the other hand, they worry that they are relying on her prestigious résumé as a superficial way to restore confidence because their own internal plan has failed. They are initially unable to separate these two perspectives.\",\n      \"stance_components\": [\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"The commercial executive candidate represents the missing leadership the company has been needing.\",\n          \"expression_kind\": \"possibility\",\n          \"source_evidence_id\": \"e008\"\n        },\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"Relying on a candidate's prestigious résumé to restore confidence simply because the company's own plan failed.\",\n          \"expression_kind\": \"possibility\",\n          \"source_evidence_id\": \"e009\"\n        },\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"Distinguishing whether the candidate is a genuinely needed leader or just a prestigious résumé to restore confidence.\",\n          \"expression_kind\": \"uncertain_or_undecided\",\n          \"source_evidence_id\": \"e010\"\n        },\n        {\n          \"object_kind\": \"belief_or_assessment\",\n          \"object_interpretation\": \"Warding off warnings about corporate prestige from becoming an excuse to stay stagnant instead of pursuing needed change.\",\n          \"expression_kind\": \"preference_or_desire\",\n          \"source_evidence_id\": \"e017\"\n        }\n      ],\n      \"fidelity_note\": \"This starting position represents the founder's initial struggle to separate the excitement over a prestigious candidate from genuine strategic necessity. Although investors and the board are relieved by her name (e006), the founder is deeply uncertain (e010) and presents competing hypotheses (e008, e009). However, the founder emphasizes that despite warnings about prestige, the company legitimately needs change and should not use caution as an excuse to stay in their current plateau (e014, e017).\",\n      \"limitations\": \"This starting record focuses strictly on the early turns where the decision is unresolved and the founder is weighing competing instincts. Later concrete developments, such as the evaluation of the 100-day plan, references, and final negotiation, are excluded.\"\n    }\n  ],\n  \"global_limitations\": \"The analysis is constrained by focusing solely on the early expressions of the founder and CEO in the provided text. The starting role captures the initial psychological and strategic tension without factoring in the concrete operational safeguards designed in subsequent turns.\"\n}",
+  "raw_content_sha256": "f411dcc578b20e55a0e76580b0fdcd9a28eb77a4889c190951f7f10b559d92c4",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": true,
+  "reasoning_effort": "medium",
+  "repeat_id": "primary",
+  "request_body_sha256": "8d52ac3f62ef39771579c5f2400e3c5b8fc2e8cc28205fdbd1a922c2ecedeaef",
+  "requested_model": "google/gemini-3.5-flash-20260519",
+  "response_healing": false,
+  "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+  "seed": 101,
+  "served_model": "google/gemini-3.5-flash-20260519",
+  "served_provider": "Google",
+  "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+  "task_id": "starting",
+  "temperature_supplied": false,
+  "top_p_supplied": false,
+  "usage": {
+    "completion_tokens": 4591,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 3888
+    },
+    "cost": 0.0493545,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.041319,
+      "upstream_inference_cost": 0.0493545,
+      "upstream_inference_prompt_cost": 0.0080355
+    },
+    "is_byok": false,
+    "prompt_tokens": 5357,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 9948
+  },
+  "validation_error": "",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

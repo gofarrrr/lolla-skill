@@ -21,7 +21,7 @@ def test_openrouter_default_uses_priced_low_cost_model(monkeypatch):
 
     assert client.model == DEFAULT_OPENROUTER_MODEL
     assert client.model == "google/gemini-3.1-flash-lite"
-    assert client._reasoning_config() == {"effort": "none"}
+    assert client._reasoning_config() == {"enabled": False}
 
 
 def test_boundary_metadata_records_requested_and_served_model_mismatch():

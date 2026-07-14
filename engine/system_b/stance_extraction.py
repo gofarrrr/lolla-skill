@@ -38,6 +38,7 @@ from typing import Protocol, runtime_checkable
 from .boundary_validation import coerce_str, require_list_of_dicts
 from .conversation_context import ConversationContext
 from .ir import SpanProvenance, SpanRef, StanceEvent
+from .semantic_candidate_ledger import SemanticCandidateLedgerRecorder
 from .text_matching import find_substring_tolerant
 
 
@@ -172,6 +173,7 @@ def extract_stance_events(
     *,
     context: ConversationContext,
     boundary: _BoundaryClient,
+    candidate_recorder: SemanticCandidateLedgerRecorder | None = None,
 ) -> tuple[list[StanceEvent], _ValidationStats]:
     """Run the stance-extraction LLM call, validate output, return typed
     StanceEvent objects plus validation stats.
@@ -202,6 +204,24 @@ def extract_stance_events(
     dropped_invalid_relation = 0
     dropped_not_substring = 0
 
+    def record(
+        proposal_index: int,
+        raw: dict[str, object],
+        state: str,
+        reason: str,
+        event: StanceEvent | None = None,
+    ) -> None:
+        if candidate_recorder is not None:
+            candidate_recorder.record_candidate(
+                reader_role="assistant_stances",
+                family="assistant_stance_events",
+                proposal_index=proposal_index,
+                raw_proposal=raw,
+                mechanical_state=state,
+                mechanical_reason=reason,
+                event=event,
+            )
+
     for idx, item in enumerate(raw_items):
         text = coerce_str(item.get("text")).strip()
         relation = coerce_str(item.get("relation")).strip().lower()
@@ -215,17 +235,41 @@ def extract_stance_events(
         turn_text = turn_map.get(turn_index)
         if turn_text is None:
             dropped_invalid_turn += 1
+            record(
+                idx,
+                item,
+                "not_supported_by_source",
+                "candidate_assistant_turn_not_found",
+            )
             continue
         if relation not in VALID_RELATIONS:
             dropped_invalid_relation += 1
+            record(
+                idx,
+                item,
+                "invalid_evidence",
+                "candidate_relation_is_invalid",
+            )
             continue
         if not text:
             dropped_not_substring += 1
+            record(
+                idx,
+                item,
+                "not_supported_by_source",
+                "candidate_quote_is_missing",
+            )
             continue
 
         matched = find_substring_tolerant(text, turn_text)
         if matched is None:
             dropped_not_substring += 1
+            record(
+                idx,
+                item,
+                "not_supported_by_source",
+                "candidate_quote_not_found_in_source_turn",
+            )
             continue
 
         # Compute the exact span position using the matched (transcript-cased)
@@ -237,6 +281,12 @@ def extract_stance_events(
             start_char = turn_text.lower().find(matched.lower())
         if start_char == -1:
             dropped_not_substring += 1
+            record(
+                idx,
+                item,
+                "not_supported_by_source",
+                "candidate_quote_offset_not_found",
+            )
             continue
 
         span_ref = SpanRef(
@@ -246,16 +296,22 @@ def extract_stance_events(
             end_char=start_char + len(matched),
         )
         stance_id = f"stance_t{turn_index}_{relation}_{idx:02d}"
-        validated.append(
-            StanceEvent(
-                stance_id=stance_id,
-                speaker="assistant",
-                stance=relation,
-                text=matched,
-                provenance=SpanProvenance(span_ref=span_ref),
-                turn_index=turn_index,
-                relation_ambiguity=relation_ambiguity,
-            )
+        event = StanceEvent(
+            stance_id=stance_id,
+            speaker="assistant",
+            stance=relation,
+            text=matched,
+            provenance=SpanProvenance(span_ref=span_ref),
+            turn_index=turn_index,
+            relation_ambiguity=relation_ambiguity,
+        )
+        validated.append(event)
+        record(
+            idx,
+            item,
+            "validated",
+            "exact_source_and_contract_validation_passed",
+            event,
         )
 
     stats = _ValidationStats(

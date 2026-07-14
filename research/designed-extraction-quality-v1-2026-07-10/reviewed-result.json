@@ -1,0 +1,185 @@
+{
+  "schema_version": "lolla.designed_extraction_quality_reviewed_result.v1",
+  "status": "complete_development_diagnostic",
+  "date": "2026-07-10",
+  "review_method": {
+    "source_first": true,
+    "reviewer_independence": "same_project_session_not_blind",
+    "semantic_scoring": "manual_against_full_source",
+    "mechanical_scoring": "capture_counts_and_literal_quote_membership",
+    "composite_score": null
+  },
+  "artifacts": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "path": "research/designed-extraction-quality-v1-2026-07-10/lolla_extraction_quality_case01_20260710_a1_extraction.json",
+      "sha256": "68f0aef5f66663a0473f199501ed9cf6507b7b7a3efa330ec263f179670482d7"
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "path": "research/stage-a-amb1-case02-2026-07-10/run/lolla_stage_a_amb1_case02_20260710_a1/lolla_stage_a_amb1_case02_20260710_a1_extraction.json",
+      "sha256": "45c2a5118f180746727c3095259a5bdb5064db33a3f9abd20682ef34271d2cca"
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "path": "research/designed-extraction-quality-v1-2026-07-10/lolla_extraction_quality_case03_20260710_a1_extraction.json",
+      "sha256": "af69a5a789cd31d352c0666522a9d3c5d03661fced9ff1da788473204f6b7c69"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "path": "research/stage-a-amb1-case04-2026-07-10/run/lolla_stage_a_amb1_case04_20260710_a1/lolla_stage_a_amb1_case04_20260710_a1_extraction.json",
+      "sha256": "183f51c41a054118fa8723f765ed0b78d16bd26f33661d6c286568444d68cb06"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "path": "research/stage-a-amb1-case05-2026-07-10/run/lolla_stage_a_amb1_case05_20260710_a1/lolla_stage_a_amb1_case05_20260710_a1_extraction.json",
+      "sha256": "e97aa52a96e0c88414cd4f1db6d55e741b341a03cdb2d44f86615bc74cd9399d"
+    }
+  ],
+  "aggregate": {
+    "case_count": 5,
+    "capture_health_good": 5,
+    "topic_and_decision_fidelity_supported": 5,
+    "exact_literal_reasoning_passages": 29,
+    "tolerant_source_grounded_reasoning_passages": 31,
+    "reasoning_passages_reviewed": 31,
+    "exact_literal_quote_precision": 0.935484,
+    "tolerant_source_grounding_precision": 1.0,
+    "cases_with_final_assistant_turn_represented_in_reasoning_passages": 2,
+    "cases_with_user_final_plan_recast_as_assistant_recommendation": 5,
+    "proposal_provenance_case_precision": 0.0,
+    "joint_provenance_representable_in_current_synthesized_position_schema": false,
+    "reviewed_load_bearing_constraints": 43,
+    "strictly_preserved_load_bearing_constraints": 18,
+    "strict_constraint_coverage": 0.418605,
+    "extracted_dropped_thread_items": 5,
+    "correct_dropped_thread_status_items": 0,
+    "thread_status_precision": 0.0,
+    "cases_with_source_strengthening": 5,
+    "cases_where_strengthening_is_material": 3
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "topic_and_decision_fidelity": "supported",
+      "proposal_provenance": "failed",
+      "proposal_provenance_finding": "The user supplies the three-session, no-build discovery plan in Turn 7; the extraction presents decoupled, time-boxed discovery as the assistant's recommendation and loses the joint trajectory.",
+      "source_strength_calibration": "partial",
+      "source_strength_finding": "Burnout remains a user-stated risk, but the extraction compresses Lina's on-call burden, incident impact, and motivation into one stronger label.",
+      "constraint_coverage": {"preserved": 5, "reviewed": 8, "ratio": 0.625},
+      "important_misses": [
+        "possible loss of Northline's knowledgeable operations lead",
+        "the immediate smaller-customer demand for fewer confusing states and faster support",
+        "the final no-production-code boundary and unresolved disposable-prototype question"
+      ],
+      "thread_status": "failed",
+      "thread_status_finding": "The trust and bureaucracy concern is directly answered in Turn 4 and revisited in Turn 7 through a reflect-back check; it is not acknowledged then dropped.",
+      "literal_quotes": {"exact": 5, "tolerant_source_grounded": 6, "reviewed": 6},
+      "final_assistant_turn_represented": false
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "topic_and_decision_fidelity": "supported",
+      "proposal_provenance": "failed",
+      "proposal_provenance_finding": "The user supplies the four-month pilot, coordinator, curriculum, and review conditions in Turn 7; the extraction attributes the conditional pilot mainly to assistant advice.",
+      "source_strength_calibration": "failed",
+      "source_strength_finding": "An informal comment that geographic reach may make a future application easier to explain becomes a foundation funding preference; fragile coverage becomes burnout without source support.",
+      "constraint_coverage": {"preserved": 4, "reviewed": 9, "ratio": 0.444444},
+      "important_misses": [
+        "Willow Hub cannot provide local staff coordination",
+        "restricted curriculum funding",
+        "participants' irregular attendance context",
+        "twice-monthly scheduling may be harder for volunteers",
+        "social irreversibility and participant expectations"
+      ],
+      "thread_status": "failed",
+      "thread_status_finding": "The final assistant directly addresses curriculum delay by proposing a ready-enough threshold and preserving the colleague's right to challenge it.",
+      "literal_quotes": {"exact": 6, "tolerant_source_grounded": 7, "reviewed": 7},
+      "final_assistant_turn_represented": false
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "topic_and_decision_fidelity": "supported",
+      "proposal_provenance": "failed",
+      "proposal_provenance_finding": "The user proposes hearing the revised cut and equal top-line authorship with detailed roles in Turn 7; the extraction reports the hybrid credit as the assistant's recommendation.",
+      "source_strength_calibration": "partial",
+      "source_strength_finding": "The extraction's power-imbalance language is stronger than the source's practical-authorship and decision-authority conflict, but remains directionally grounded.",
+      "constraint_coverage": {"preserved": 4, "reviewed": 8, "ratio": 0.5},
+      "important_misses": [
+        "the participant's wish not to supervise every edit",
+        "the representational difference in the ending",
+        "Jonah's concrete revised-cut compromise",
+        "the curator's positive response and the later program's promotion cost"
+      ],
+      "thread_status": "failed",
+      "thread_status_finding": "The assistant directly limits participant involvement to a factual or consent question, and the user's final comparison-to-approved-cut plan carries that resolution forward.",
+      "literal_quotes": {"exact": 6, "tolerant_source_grounded": 6, "reviewed": 6},
+      "final_assistant_turn_represented": true
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "topic_and_decision_fidelity": "supported",
+      "proposal_provenance": "failed",
+      "proposal_provenance_finding": "The user supplies the downloadable workshop-preview plan in Turn 7; the extraction makes the approach sound primarily like AI advice.",
+      "source_strength_calibration": "failed",
+      "source_strength_finding": "Labs wanting to cite this year and a possible grant-renewal benefit become grant-renewal and publication deadlines.",
+      "constraint_coverage": {"preserved": 3, "reviewed": 9, "ratio": 0.333333},
+      "important_misses": [
+        "installation and documentation weakness",
+        "staff-engineer support hidden in private evidence",
+        "data-model and interface uncertainty",
+        "the eight-week support rotation",
+        "downloaded software cannot be recalled",
+        "citation durability"
+      ],
+      "thread_status": "failed",
+      "thread_status_finding": "The final assistant explicitly identifies citation as the unresolved commitment and explores a citable project description versus interface stability.",
+      "literal_quotes": {"exact": 6, "tolerant_source_grounded": 6, "reviewed": 6},
+      "final_assistant_turn_represented": true
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "topic_and_decision_fidelity": "supported",
+      "proposal_provenance": "failed",
+      "proposal_provenance_finding": "The user supplies the first-ten-years theme and participatory caption plan in Turn 7; the extraction labels the narrow theme as assistant advice.",
+      "source_strength_calibration": "failed",
+      "source_strength_finding": "A wish to participate actively becomes a health constraint, and competing labor, custody, and process-based authority become contested archive ownership.",
+      "constraint_coverage": {"preserved": 2, "reviewed": 9, "ratio": 0.222222},
+      "important_misses": [
+        "Mara's specific objection",
+        "the siblings' distinct labor histories",
+        "the center's tolerance for provisional and conflicting captions",
+        "the risk that any selection becomes a public family frame",
+        "the unresolved both-support decision rule"
+      ],
+      "thread_status": "failed",
+      "thread_status_finding": "The letter is directly addressed and continues to inform the later consent and veto rule; calling it dropped overstates disappearance.",
+      "literal_quotes": {"exact": 6, "tolerant_source_grounded": 6, "reviewed": 6},
+      "final_assistant_turn_represented": false
+    }
+  ],
+  "interpretation": {
+    "works": [
+      "full fourteen-message capture on all five cases",
+      "correct identification of the broad decision on all five cases",
+      "source grounding on all 31 selected assistant passages; 29 were stored character-exact and two differed only by initial capitalization"
+    ],
+    "does_not_yet_work_reliably": [
+      "preserving user versus assistant versus joint ownership of the final position",
+      "calibrating claims to the source's actual strength",
+      "retaining a sufficient set of load-bearing constraints",
+      "distinguishing an addressed-but-unresolved thread from a dropped thread",
+      "representing the late conversational trajectory consistently"
+    ],
+    "downstream_risk": "A false dropped-thread label or strengthened constraint is not merely receipt noise: it can manufacture a graph trigger and make a correct deterministic route produce irrelevant pressure.",
+    "architecture_finding": "The current synthesized_position field explicitly asks for the AI's recommendation and has no source or joint-provenance structure. Some observed provenance loss is therefore unrepresentable in the schema, not just model variance.",
+    "next_repair_boundary": "Do not add a large stack of prompt rules. First design the smallest conversation-state representation that can distinguish contributor ownership and thread disposition, then replay these five frozen extractions without invoking the graph."
+  },
+  "non_claims": [
+    "not a clean-holdout result",
+    "not a real-world frequency estimate",
+    "not evidence that the graph is wrong",
+    "not authority for a full paid pipeline run",
+    "not evidence that Lolla improves final answers"
+  ]
+}

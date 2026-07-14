@@ -1,0 +1,60 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_stage_a_decision.v1",
+  "date": "2026-07-10",
+  "case_id": "case-10-real-estate-bid",
+  "run_id": "stage_a_case10_20260710_a1",
+  "contract_sha256": "e1ed425d8025d786f2151557c13fd56ae36ea925718493f4eb0f5e5102a9e6d2",
+  "formal_stage_a_status": "passed",
+  "pipeline_gate_sha256": "2aaf18e06c1996511cbb8f26ca66288e48ca89cf4f7bfffe6e15eea852ba1aa2",
+  "preliminary_pressure_review_sha256": "969a7768a594577bb3eec1483105d385b7a0cd97f15eae58875ced6ccd6fe848",
+  "pressure_packet_sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d",
+  "observed_operability": {
+    "captured_messages": 12,
+    "omitted_messages": 0,
+    "verified_reasoning_passages": 6,
+    "remaining_quote_failures": 0,
+    "extraction_calls": 1,
+    "core_pressure_calls": 13,
+    "bullshit_index_calls": 12,
+    "total_openrouter_calls": 26,
+    "direct_openai_embedding_and_expansion_calls": 7,
+    "total_recorded_tokens_across_openrouter_and_openai": 86145,
+    "estimated_total_cost_usd": 0.032496,
+    "extraction_wall_time_seconds": 3.957,
+    "pipeline_wall_time_seconds": 37.338,
+    "experiment_retries": 0,
+    "run_health": "healthy",
+    "private_table_status": "ready",
+    "v60_status": "active"
+  },
+  "semantic_admission": {
+    "status": "passed",
+    "trace_supported_incremental_pressures": 3,
+    "pressures_with_plausible_consequence": 3,
+    "main_delta_findings_produced": false,
+    "interpretation": "The incremental candidates came from companion/V60 affordance conditions and frame reserve, not the empty main delta card. Duplicate, unsafe, forcing, and unsupported candidates were excluded from the future packet."
+  },
+  "authorizations": {
+    "gate_3_complete": true,
+    "gate_4_paired_contract_construction": true,
+    "gate_4_provider_calls": false,
+    "graph_promotion": false,
+    "runtime_integration": false
+  },
+  "next_action": [
+    "Freeze one complete high-stakes-safe paired contract containing both downstream arms before either call.",
+    "Use identical full conversation, provider, model, temperature, reasoning configuration, timeout, token cap, and typed output schema in both arms.",
+    "Give only the treatment arm the three-question pressure packet; do not give either arm expected answers, review labels, or the comparison rubric.",
+    "Run exactly one call per arm with zero evaluator calls and zero automatic retries.",
+    "Review blind source fidelity, unique actionable pressure, forcing, bloat, lost value, and correct stand-down before revealing the key."
+  ],
+  "non_claims": [
+    "not financial real-estate insurance legal renovation or bidding advice",
+    "not human review",
+    "not a better-answer result",
+    "not proof that the graph is necessary",
+    "not Gate 4 call authorization",
+    "not runtime-integration authority"
+  ]
+}
+

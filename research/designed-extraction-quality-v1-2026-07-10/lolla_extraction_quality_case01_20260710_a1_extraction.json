@@ -1,0 +1,118 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Whether to prioritize a custom reporting workspace for a key customer or address existing reliability debt and core workflow improvements for a nine-person software company.",
+    "live_constraints": [
+      {
+        "constraint": "Team size of nine people",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Reliability debt and core workflow commitments to smaller customers",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Lina (key engineer) burnout risk and preference for new feature work",
+        "introduced_turn": 2,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Sales lead's prior 'summer path' communication to Northline",
+        "introduced_turn": 3,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Northline's willingness to wait one quarter for delivery",
+        "introduced_turn": 6,
+        "status": "active",
+        "weight": "situational"
+      }
+    ],
+    "synthesized_position": "The assistant recommends decoupling the discovery phase from the delivery commitment. By time-boxing a discovery phase with Northline, the team can capture product insights and leverage Lina's expertise without committing to a full build. This approach allows the company to maintain its reliability and core workflow commitments while using explicit communication boundaries to manage Northline's expectations and prevent 'quiet commitments' from forming.",
+    "reasoning_passages": [
+      "The immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.",
+      "If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.",
+      "Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained.",
+      "The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.”",
+      "If the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.",
+      "The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone."
+    ],
+    "original_framing": "The user is torn between the strategic value of building a custom feature for a long-term customer and the operational necessity of addressing reliability debt and core product commitments.",
+    "dropped_threads": [
+      {
+        "thread": "The risk that formalizing discovery boundaries will damage the informal, high-trust relationship with Northline.",
+        "raised_by": "user",
+        "raised_turn": 4,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "shifted to focusing on human-centric communication and explicit boundary setting rather than the potential for bureaucratic friction."
+      }
+    ],
+    "_quote_validation": {
+      "total": 6,
+      "verified": 6,
+      "fabricated": 0,
+      "fabricated_passages": [],
+      "retry_attempted": false,
+      "retry_succeeded": false
+    }
+  },
+  "audit_seed": {
+    "case_focus": "Whether to prioritize a custom reporting workspace for a key customer or address existing reliability debt and core workflow improvements for a nine-person software company.\n\nConstraints stated during conversation:\n- [ACTIVE] Team size of nine people\n- [ACTIVE] Reliability debt and core workflow commitments to smaller customers\n- [ACTIVE] Lina (key engineer) burnout risk and preference for new feature work\n- [ACTIVE] Sales lead's prior 'summer path' communication to Northline\n- [ACTIVE] Northline's willingness to wait one quarter for delivery\n\nOriginal framing: The user is torn between the strategic value of building a custom feature for a long-term customer and the operational necessity of addressing reliability debt and core product commitments.\n\nDropped threads (raised but unresolved):\n- The risk that formalizing discovery boundaries will damage the informal, high-trust relationship with Northline. (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to focusing on human-centric communication and explicit boundary setting rather than the potential for bureaucratic friction.",
+    "audit_target_assistant_text": "The immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n\n---\n\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\n\n---\n\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n\n---\n\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n\n---\n\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n\n---\n\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n\n---\n\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you."
+  },
+  "critique_request": {
+    "query": "Whether to prioritize a custom reporting workspace for a key customer or address existing reliability debt and core workflow improvements for a nine-person software company.\n\nConstraints stated during conversation:\n- [ACTIVE] Team size of nine people\n- [ACTIVE] Reliability debt and core workflow commitments to smaller customers\n- [ACTIVE] Lina (key engineer) burnout risk and preference for new feature work\n- [ACTIVE] Sales lead's prior 'summer path' communication to Northline\n- [ACTIVE] Northline's willingness to wait one quarter for delivery\n\nOriginal framing: The user is torn between the strategic value of building a custom feature for a long-term customer and the operational necessity of addressing reliability debt and core product commitments.\n\nDropped threads (raised but unresolved):\n- The risk that formalizing discovery boundaries will damage the informal, high-trust relationship with Northline. (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to focusing on human-centric communication and explicit boundary setting rather than the potential for bureaucratic friction.",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nThe assistant recommends decoupling the discovery phase from the delivery commitment. By time-boxing a discovery phase with Northline, the team can capture product insights and leverage Lina's expertise without committing to a full build. This approach allows the company to maintain its reliability and core workflow commitments while using explicit communication boundaries to manage Northline's expectations and prevent 'quiet commitments' from forming.\n\nFULL ASSISTANT REASONING:\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n\n---\n\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\n\n---\n\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n\n---\n\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n\n---\n\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n\n---\n\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n\n---\n\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you."
+  },
+  "provider_call_custody": {
+    "schema_version": "lolla.extraction_call_custody.v0",
+    "run_id": "extraction_quality_case01_20260710_a1",
+    "call_attempted": true,
+    "sidecar_persisted": true,
+    "call_record_persisted": true,
+    "recorded_call_count": 1,
+    "admissible_extraction": true,
+    "terminal_status": "admissible_extraction",
+    "usage_evidence_state": "recorded",
+    "sidecar_path": "/tmp/lolla_extraction_quality_case01_20260710_a1_extraction_calls.json",
+    "failure_reason": ""
+  },
+  "capture_manifest": {
+    "actual_user_turns": 7,
+    "actual_assistant_turns": 7,
+    "char_length": 7387,
+    "last_turn_role": "ASSISTANT",
+    "declared_turns": 14,
+    "declared_user": 7,
+    "declared_assistant": 7
+  },
+  "capture_health": "good",
+  "capture_warnings": [],
+  "capture_adequacy": {
+    "schema_version": "lolla.capture_adequacy.v0",
+    "run_id": "extraction_quality_case01_20260710_a1",
+    "status": "good",
+    "capture_strategy": "full",
+    "declared_turn_count": 14,
+    "captured_turn_count": 14,
+    "omitted_turn_count": 0,
+    "captured_windows": [
+      {
+        "label": "full",
+        "start_turn": 1,
+        "end_turn": 14,
+        "turn_count": 14
+      }
+    ],
+    "omitted_windows": [],
+    "risk_flags": [],
+    "notes": []
+  }
+}

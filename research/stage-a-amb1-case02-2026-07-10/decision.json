@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.designed_ambiguous_development_stage_a_decision.v1",
+  "date": "2026-07-10",
+  "status": "formal_stage_a_stop_after_extraction_no_rerun",
+  "run_id": "stage_a_amb1_case02_20260710_a1",
+  "contract_sha256": "092a687c8e5ec5ef6712d4f38c45827206f1dfa9e8bac33c7408b5efc3e0aa40",
+  "execution": {
+    "orchestrator_invocations": 1,
+    "experiment_retries": 0,
+    "extraction_calls": 1,
+    "pipeline_openrouter_calls": 0,
+    "direct_openai_calls": 0,
+    "extraction_wall_time_seconds": 2.907,
+    "extraction_prompt_tokens": 2637,
+    "extraction_completion_tokens": 587,
+    "extraction_total_tokens": 3224,
+    "estimated_extraction_cost_usd": 0.00153975,
+    "pricing_table_version": "2026-05-25"
+  },
+  "passed_gates": [
+    "fresh run paths",
+    "extraction artifact and call sidecar persisted",
+    "14 captured messages and zero omitted messages",
+    "seven exact reasoning passages and zero quote failures",
+    "provider call custody and model attribution",
+    "reasoning disabled with zero reasoning tokens",
+    "call ceiling and outer timeout"
+  ],
+  "failed_gate": {
+    "id": "capture_health_good",
+    "reason": "The designed source omitted the required CONVERSATION count header, so the extractor correctly labeled capture health unknown even though all 14 markers were present."
+  },
+  "classification": "evaluation_input_envelope_defect_not_reasoning_quality_failure",
+  "pipeline": {
+    "ran": false,
+    "why": "The Stage A orchestrator stopped at the frozen extraction admission gate."
+  },
+  "prospective_repairs": [
+    "Preserve the original frozen conversation files and generate separate deterministic capture-ready wrappers.",
+    "Make Stage A dry-run validation reject a missing or inconsistent capture envelope before any provider call.",
+    "Consume this case permanently for the current attempt and move to the next frozen-ranked development case rather than rerunning it."
+  ],
+  "authorizations": {
+    "rerun_case02": false,
+    "build_capture_ready_wrappers": true,
+    "prepare_next_ranked_case05_stage_a": true,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_semantic_tuning": false
+  },
+  "non_claims": [
+    "not an admitted Stage A result",
+    "not Lolla pressure evidence",
+    "not answer-quality evidence",
+    "not clean-holdout evidence",
+    "not provider failure"
+  ]
+}

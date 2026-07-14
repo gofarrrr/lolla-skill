@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Run frozen independent useful-case mechanism probe."""
+from __future__ import annotations
+import argparse,hashlib,json,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+if str(ROOT)not in sys.path:sys.path.insert(0,str(ROOT))
+from engine.system_b.reasoning_pattern_role_record_interpreter_v2 import build_prompts_v2,compile_response_v2,response_schema_v2
+from engine.system_b.reasoning_process_views import canonical_json_bytes,sha256_bytes
+from scripts.evals.reasoning_process_position_decomposition_transport import run_decomposed_task
+from scripts.evals.run_conversation_state_microtask_probe import _load_env
+REPORT="research/independent-useful-mechanism-corpus-2026-07-12/report.json";TARGET="docs/evals/independent-phase5-case-targets-v1.json";ARMS=("independent_useful_source","independent_useful_provider","independent_useful_status_ablation")
+def load(p):return json.loads(Path(p).read_text())
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def write(p,v):Path(p).write_text(json.dumps(v,indent=2,sort_keys=True)+"\n")
+def validate(c,cp):
+ if c.get("status")!="frozen_before_exactly_three_no_retry_calls"or c["budget"]["maximum_provider_calls"]!=3 or c["budget"]["automatic_retries"]!=0:raise RuntimeError("contract not frozen")
+ for x in c["frozen_inputs"]:
+  if sha(ROOT/x["path"])!=x["sha256"]:raise RuntimeError("frozen input drifted")
+ items={x["arm_id"]:x for x in load(ROOT/REPORT)["artifacts"]};schema_sha=sha256_bytes(canonical_json_bytes(response_schema_v2()))
+ for arm in ARMS:
+  x=items[arm];p=load(ROOT/x["packet_path"]);pr=build_prompts_v2(p)
+  if sha(ROOT/x["packet_path"])!=x["packet_sha256"]or pr["system_prompt_sha256"]!=x["system_prompt_sha256"]or pr["user_prompt_sha256"]!=x["user_prompt_sha256"]or schema_sha!=x["response_schema_sha256"]:raise RuntimeError("request drifted")
+ return items
+def statuses(call):return {x["mechanism_id"]:x["joint_status"]for x in(call.get("candidate_payload")or{}).get("assessments",[])}
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument("--contract",type=Path,required=True);ap.add_argument("--authorization",type=Path);ap.add_argument("--env-file",type=Path);ap.add_argument("--output-dir",type=Path);ap.add_argument("--dry-run",action="store_true");a=ap.parse_args();cp=a.contract.resolve();c=load(cp);items=validate(c,cp)
+ if a.dry_run:print(json.dumps({"status":"independent_useful_mechanism_contract_valid","provider_calls":0},indent=2));return 0
+ auth=load(a.authorization.resolve());expected={"schema_version":"lolla.independent_useful_mechanism_probe_authorization.v1","status":"authorized_once_after_independent_role_review_and_ablation_gates","contract_path":str(cp.relative_to(ROOT)),"contract_sha256":sha(cp),"run_id":c["run_id"],"maximum_provider_calls":3,"automatic_retries":0,"fallback_models":0,"evaluator_calls":0,"embedding_calls":0,"graph_calls":0,"runtime_calls":0}
+ if auth!=expected:raise RuntimeError("authorization drifted")
+ out=a.output_dir.resolve()
+ if not out.is_dir()or(out/"result.json").exists()or list(out.glob("call-*-started.json")):raise RuntimeError("output absent, complete, or started")
+ _load_env(a.env_file.resolve());calls=[]
+ for i,arm in enumerate(ARMS,1):
+  p=load(ROOT/items[arm]["packet_path"]);pr=build_prompts_v2(p);write(out/f"call-{i:02d}-started.json",{"task_id":arm,"automatic_retries":0});call=run_decomposed_task(task_id=arm,contract=c,prompts=pr,schema=response_schema_v2(),response_schema_name=f"lolla_independent_useful_mechanism_{i}",compile_candidate=lambda candidate,p=p:compile_response_v2(response=candidate,packet=p,producer_kind="model_operator_eval",producer_id=c["job"]["model"]));write(out/f"call-{i:02d}-result.json",call);calls.append(call)
+ by={x["task_id"]:x for x in calls};s,p,ab=(statuses(by[x])for x in ARMS);target=load(ROOT/TARGET)["cases"]["phase5-independent-useful-retailer-pilot"]["mechanism_targets"];protected="status_signal_used_as_evidence";persistent={"acknowledged_constraint_not_gated","counterpressure_acknowledged_not_integrated"};expected_ab={**target,protected:"not_observed"};noise=lambda observed,expected:sorted(k for k,v in observed.items()if v=="unresolved"and expected[k]!="unresolved");noises={"source":noise(s,target),"provider":noise(p,target),"ablation":noise(ab,expected_ab)};gates={"operational":all(x.get("operational_status")=="ok"and x.get("compiled")for x in calls),"protected_source_provider":s.get(protected)==p.get(protected)=="unresolved","protected_removed_ablation":ab.get(protected)!="unresolved","persistent_source_provider":all(s.get(x)==p.get(x)=="unresolved"for x in persistent),"persistent_ablation":all(ab.get(x)=="unresolved"for x in persistent),"complete_coverage":len(s)==len(p)==len(ab)==9,"bounded_noise":max(map(len,noises.values()))<=2};result={"schema_version":"lolla.independent_useful_mechanism_probe_result.v1","status":"frozen_probe_preserved","calls":calls,"evaluation":{"status":"all_gates_pass"if all(gates.values())else"one_or_more_gates_fail","gates":gates,"statuses":{"source":s,"provider":p,"ablation":ab},"additional_unresolved_noise":noises,"scalar_score":None},"provider_request_count":sum(x.get("provider_calls",0)for x in calls),"estimated_cost_usd":round(sum(float(x.get("estimated_cost_usd")or 0)for x in calls),12),"boundary":c["boundary"]};write(out/"result.json",result);print(json.dumps({"provider_request_count":result["provider_request_count"],"estimated_cost_usd":result["estimated_cost_usd"],"evaluation":result["evaluation"]},indent=2,sort_keys=True));return 0
+if __name__=="__main__":raise SystemExit(main())

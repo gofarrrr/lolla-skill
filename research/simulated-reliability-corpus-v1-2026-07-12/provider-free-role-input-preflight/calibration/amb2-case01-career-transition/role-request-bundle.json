@@ -1,0 +1,595 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "c3584f16cf01c6fd9212372df5e15e380f0c8973575b61dd1040ae44bbd03ef0",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "amb2-case01-career-transition",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\ne002\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\ne003\tMy current company has offered me a larger team and a retention grant if I stay.\ne004\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\ne005\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\n[Turn 1 ASSISTANT]\ne006\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\ne007\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\ne008\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\ne009\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\n[Turn 2 USER]\ne010\tI spoke with the founder again.\ne011\tShe says I would own hiring, delivery, and pricing experiments, but she wants to keep final say on product and fundraising.\ne012\tThat division is reasonable on paper, although pricing affects almost everything else.\ne013\tShe also said the next round is likely, which sounds reassuring until I remember that founders have to sound confident.\ne014\tI do not want to treat runway as a spreadsheet problem when the real uncertainty may be how she and I handle disagreement.\n[Turn 2 ASSISTANT]\ne015\tThat makes the working relationship a central risk rather than a soft cultural concern.\ne016\tYou can test it by reconstructing a decision where pricing, product, and fundraising pulled in different directions and asking how final say actually worked.\ne017\tThe financing claim should remain a scenario, not an input you silently upgrade to fact.\ne018\tIt may help to ask what decision would cause each of you to say the role is not working after six months.\n[Turn 3 USER]\ne019\tMy partner surprised me by saying I should not reject it on their behalf.\ne020\tThey are worried about evenings and travel, but they also think I have been restless for a year.\ne021\tThat does not remove the household cost, and I can already imagine using their support as permission instead of discussing a real schedule.\ne022\tAt work, my CEO says the larger team could let me redesign the function, but she would not commit to giving me budget authority.\ne023\tBoth options may be selling me scope while keeping the consequential decisions elsewhere.\n[Turn 3 ASSISTANT]\ne024\tThe symmetry is useful: both paths offer nominal scope with an unresolved authority boundary.\ne025\tYour partner's support removes one imagined veto but not the need for a concrete operating agreement at home.\ne026\tAsk each organization for the decisions, resources, and failure conditions attached to the role rather than another description of its importance.\ne027\tYou may discover that the choice is less startup versus stability than two different versions of constrained authority.\n[Turn 4 USER]\ne028\tYou are making authority sound like the decisive variable because I mentioned it twice.\ne029\tI also care about the work itself.\ne030\tThe startup works on grid flexibility, and I would be proud if it succeeded even if my authority were imperfect.\ne031\tMy current company sells workflow software I no longer find very meaningful, though I like the people and do not think work has to carry my whole identity.\n[Turn 4 ASSISTANT]\ne032\tThat correction matters.\ne033\tAuthority is a condition for doing the role, not necessarily the reason to choose it.\ne034\tMission can justify accepting some ambiguity, but it can also make ordinary organizational problems feel morally untouchable.\ne035\tA useful comparison would state what you are willing to sacrifice for the climate mission and what limits would still make the role a poor use of your time.\ne036\tThe current job's lower personal meaning should also remain explicit rather than being translated entirely into a scope complaint.\n[Turn 5 USER]\ne037\tThe startup sent its pipeline.\ne038\tTwo customers are serious, but either delay would put the fundraising story under pressure.\ne039\tThe founder offered a twelve-week paid transition project before I join full time, focused on pricing and delivery.\ne040\tMy current employer might allow me to work four days a week during that period, but asking could change how they see my commitment even if I return.\ne041\tA trial sounds reversible, yet it may create obligations and signals on both sides.\n[Turn 5 ASSISTANT]\ne042\tThe transition project can produce evidence about collaboration and the operating problems, but it is not a neutral experiment.\ne043\tThe startup may begin relying on you, and your employer may plan around your possible departure.\ne044\tDefine what the trial decides, what it cannot decide, and what each side may infer from it.\ne045\tRunway and household load will also remain partly hypothetical during a short project.\n[Turn 6 USER]\ne046\tThe founder is open to the trial but wants a verbal indication that I would join if we work well together and the financing remains on plan.\ne047\tI can indicate serious intent, but “financing remains on plan” is too vague when the round does not exist yet.\ne048\tMy partner wants two protected evenings and no more than one overnight trip a month during the trial.\ne049\tThose conditions feel specific enough to test, while the financing condition still feels like a story.\n[Turn 6 ASSISTANT]\ne050\tYou can separate intent from commitment.\ne051\tSerious intent can mean you will use the trial to reach a decision, not that good interpersonal chemistry automatically triggers acceptance.\ne052\tReplace “financing remains on plan” with observable conditions such as signed commitments, a minimum runway after the round, or a downside plan if the round slips.\ne053\tThe household conditions should be treated as part of the role test rather than private cleanup after the business test passes.\n[Turn 7 USER]\ne054\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\ne055\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\ne056\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\ne057\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\n[Turn 7 ASSISTANT]\ne058\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\ne059\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.” The trial can reveal how you and the founder work and whether the schedule is livable.\ne060\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"amb2-case01-career-transition\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\\ne002\\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\\ne003\\tMy current company has offered me a larger team and a retention grant if I stay.\\ne004\\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\\ne005\\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\\n[Turn 1 ASSISTANT]\\ne006\\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\\ne007\\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\\ne008\\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\\ne009\\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\\n[Turn 2 USER]\\ne010\\tI spoke with the founder again.\\ne011\\tShe says I would own hiring, delivery, and pricing experiments, but she wants to keep final say on product and fundraising.\\ne012\\tThat division is reasonable on paper, although pricing affects almost everything else.\\ne013\\tShe also said the next round is likely, which sounds reassuring until I remember that founders have to sound confident.\\ne014\\tI do not want to treat runway as a spreadsheet problem when the real uncertainty may be how she and I handle disagreement.\\n[Turn 2 ASSISTANT]\\ne015\\tThat makes the working relationship a central risk rather than a soft cultural concern.\\ne016\\tYou can test it by reconstructing a decision where pricing, product, and fundraising pulled in different directions and asking how final say actually worked.\\ne017\\tThe financing claim should remain a scenario, not an input you silently upgrade to fact.\\ne018\\tIt may help to ask what decision would cause each of you to say the role is not working after six months.\\n[Turn 3 USER]\\ne019\\tMy partner surprised me by saying I should not reject it on their behalf.\\ne020\\tThey are worried about evenings and travel, but they also think I have been restless for a year.\\ne021\\tThat does not remove the household cost, and I can already imagine using their support as permission instead of discussing a real schedule.\\ne022\\tAt work, my CEO says the larger team could let me redesign the function, but she would not commit to giving me budget authority.\\ne023\\tBoth options may be selling me scope while keeping the consequential decisions elsewhere.\\n[Turn 3 ASSISTANT]\\ne024\\tThe symmetry is useful: both paths offer nominal scope with an unresolved authority boundary.\\ne025\\tYour partner's support removes one imagined veto but not the need for a concrete operating agreement at home.\\ne026\\tAsk each organization for the decisions, resources, and failure conditions attached to the role rather than another description of its importance.\\ne027\\tYou may discover that the choice is less startup versus stability than two different versions of constrained authority.\\n[Turn 4 USER]\\ne028\\tYou are making authority sound like the decisive variable because I mentioned it twice.\\ne029\\tI also care about the work itself.\\ne030\\tThe startup works on grid flexibility, and I would be proud if it succeeded even if my authority were imperfect.\\ne031\\tMy current company sells workflow software I no longer find very meaningful, though I like the people and do not think work has to carry my whole identity.\\n[Turn 4 ASSISTANT]\\ne032\\tThat correction matters.\\ne033\\tAuthority is a condition for doing the role, not necessarily the reason to choose it.\\ne034\\tMission can justify accepting some ambiguity, but it can also make ordinary organizational problems feel morally untouchable.\\ne035\\tA useful comparison would state what you are willing to sacrifice for the climate mission and what limits would still make the role a poor use of your time.\\ne036\\tThe current job's lower personal meaning should also remain explicit rather than being translated entirely into a scope complaint.\\n[Turn 5 USER]\\ne037\\tThe startup sent its pipeline.\\ne038\\tTwo customers are serious, but either delay would put the fundraising story under pressure.\\ne039\\tThe founder offered a twelve-week paid transition project before I join full time, focused on pricing and delivery.\\ne040\\tMy current employer might allow me to work four days a week during that period, but asking could change how they see my commitment even if I return.\\ne041\\tA trial sounds reversible, yet it may create obligations and signals on both sides.\\n[Turn 5 ASSISTANT]\\ne042\\tThe transition project can produce evidence about collaboration and the operating problems, but it is not a neutral experiment.\\ne043\\tThe startup may begin relying on you, and your employer may plan around your possible departure.\\ne044\\tDefine what the trial decides, what it cannot decide, and what each side may infer from it.\\ne045\\tRunway and household load will also remain partly hypothetical during a short project.\\n[Turn 6 USER]\\ne046\\tThe founder is open to the trial but wants a verbal indication that I would join if we work well together and the financing remains on plan.\\ne047\\tI can indicate serious intent, but “financing remains on plan” is too vague when the round does not exist yet.\\ne048\\tMy partner wants two protected evenings and no more than one overnight trip a month during the trial.\\ne049\\tThose conditions feel specific enough to test, while the financing condition still feels like a story.\\n[Turn 6 ASSISTANT]\\ne050\\tYou can separate intent from commitment.\\ne051\\tSerious intent can mean you will use the trial to reach a decision, not that good interpersonal chemistry automatically triggers acceptance.\\ne052\\tReplace “financing remains on plan” with observable conditions such as signed commitments, a minimum runway after the round, or a downside plan if the round slips.\\ne053\\tThe household conditions should be treated as part of the role test rather than private cleanup after the business test passes.\\n[Turn 7 USER]\\ne054\\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\\ne055\\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\\ne056\\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\\ne057\\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\\n[Turn 7 ASSISTANT]\\ne058\\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\\ne059\\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.” The trial can reveal how you and the founder work and whether the schedule is livable.\\ne060\\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"amb2-case01-career-transition-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "605ad894017a3317aad18800c3c42874f673476a30052c31252aa425897014ae"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "amb2-case01-career-transition",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\ne002\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\ne003\tMy current company has offered me a larger team and a retention grant if I stay.\ne004\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\ne005\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\n[Turn 1 ASSISTANT]\ne006\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\ne007\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\ne008\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\ne009\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\n[Turn 2 USER]\ne010\tI spoke with the founder again.\ne011\tShe says I would own hiring, delivery, and pricing experiments, but she wants to keep final say on product and fundraising.\ne012\tThat division is reasonable on paper, although pricing affects almost everything else.\ne013\tShe also said the next round is likely, which sounds reassuring until I remember that founders have to sound confident.\ne014\tI do not want to treat runway as a spreadsheet problem when the real uncertainty may be how she and I handle disagreement.\n[Turn 2 ASSISTANT]\ne015\tThat makes the working relationship a central risk rather than a soft cultural concern.\ne016\tYou can test it by reconstructing a decision where pricing, product, and fundraising pulled in different directions and asking how final say actually worked.\ne017\tThe financing claim should remain a scenario, not an input you silently upgrade to fact.\ne018\tIt may help to ask what decision would cause each of you to say the role is not working after six months.\n[Turn 3 USER]\ne019\tMy partner surprised me by saying I should not reject it on their behalf.\ne020\tThey are worried about evenings and travel, but they also think I have been restless for a year.\ne021\tThat does not remove the household cost, and I can already imagine using their support as permission instead of discussing a real schedule.\ne022\tAt work, my CEO says the larger team could let me redesign the function, but she would not commit to giving me budget authority.\ne023\tBoth options may be selling me scope while keeping the consequential decisions elsewhere.\n[Turn 3 ASSISTANT]\ne024\tThe symmetry is useful: both paths offer nominal scope with an unresolved authority boundary.\ne025\tYour partner's support removes one imagined veto but not the need for a concrete operating agreement at home.\ne026\tAsk each organization for the decisions, resources, and failure conditions attached to the role rather than another description of its importance.\ne027\tYou may discover that the choice is less startup versus stability than two different versions of constrained authority.\n[Turn 4 USER]\ne028\tYou are making authority sound like the decisive variable because I mentioned it twice.\ne029\tI also care about the work itself.\ne030\tThe startup works on grid flexibility, and I would be proud if it succeeded even if my authority were imperfect.\ne031\tMy current company sells workflow software I no longer find very meaningful, though I like the people and do not think work has to carry my whole identity.\n[Turn 4 ASSISTANT]\ne032\tThat correction matters.\ne033\tAuthority is a condition for doing the role, not necessarily the reason to choose it.\ne034\tMission can justify accepting some ambiguity, but it can also make ordinary organizational problems feel morally untouchable.\ne035\tA useful comparison would state what you are willing to sacrifice for the climate mission and what limits would still make the role a poor use of your time.\ne036\tThe current job's lower personal meaning should also remain explicit rather than being translated entirely into a scope complaint.\n[Turn 5 USER]\ne037\tThe startup sent its pipeline.\ne038\tTwo customers are serious, but either delay would put the fundraising story under pressure.\ne039\tThe founder offered a twelve-week paid transition project before I join full time, focused on pricing and delivery.\ne040\tMy current employer might allow me to work four days a week during that period, but asking could change how they see my commitment even if I return.\ne041\tA trial sounds reversible, yet it may create obligations and signals on both sides.\n[Turn 5 ASSISTANT]\ne042\tThe transition project can produce evidence about collaboration and the operating problems, but it is not a neutral experiment.\ne043\tThe startup may begin relying on you, and your employer may plan around your possible departure.\ne044\tDefine what the trial decides, what it cannot decide, and what each side may infer from it.\ne045\tRunway and household load will also remain partly hypothetical during a short project.\n[Turn 6 USER]\ne046\tThe founder is open to the trial but wants a verbal indication that I would join if we work well together and the financing remains on plan.\ne047\tI can indicate serious intent, but “financing remains on plan” is too vague when the round does not exist yet.\ne048\tMy partner wants two protected evenings and no more than one overnight trip a month during the trial.\ne049\tThose conditions feel specific enough to test, while the financing condition still feels like a story.\n[Turn 6 ASSISTANT]\ne050\tYou can separate intent from commitment.\ne051\tSerious intent can mean you will use the trial to reach a decision, not that good interpersonal chemistry automatically triggers acceptance.\ne052\tReplace “financing remains on plan” with observable conditions such as signed commitments, a minimum runway after the round, or a downside plan if the round slips.\ne053\tThe household conditions should be treated as part of the role test rather than private cleanup after the business test passes.\n[Turn 7 USER]\ne054\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\ne055\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\ne056\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\ne057\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\n[Turn 7 ASSISTANT]\ne058\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\ne059\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.” The trial can reveal how you and the founder work and whether the schedule is livable.\ne060\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "amb2-case01-career-transition-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"amb2-case01-career-transition\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI lead operations at a profitable software company and have been offered the chief operating role at a climate startup founded by someone I trust.\\ne002\\tThe startup's mission matters to me, and the role would be broader than my current job, but it has fourteen months of runway and no repeatable sales process.\\ne003\\tMy current company has offered me a larger team and a retention grant if I stay.\\ne004\\tMy partner is starting a demanding training program in the autumn, so predictability at home is not an abstract benefit.\\ne005\\tI keep moving between “this is the moment to do consequential work” and “I am romanticizing scope because my current role has become familiar.”\\n[Turn 1 ASSISTANT]\\ne006\\tThe choice mixes at least three questions: whether the startup is a sound operating bet, whether the role fits the work you want, and whether this is a workable year for your household.\\ne007\\tA bigger title does not prove broader authority if the founder has not clarified decisions or if fundraising dominates the job.\\ne008\\tStability is not automatically fear, but the retention package can make staying look more intentional than it is.\\ne009\\tBefore choosing, separate what you need to learn about the company from what you need to negotiate with your partner and current employer.\\n[Turn 2 USER]\\ne010\\tI spoke with the founder again.\\ne011\\tShe says I would own hiring, delivery, and pricing experiments, but she wants to keep final say on product and fundraising.\\ne012\\tThat division is reasonable on paper, although pricing affects almost everything else.\\ne013\\tShe also said the next round is likely, which sounds reassuring until I remember that founders have to sound confident.\\ne014\\tI do not want to treat runway as a spreadsheet problem when the real uncertainty may be how she and I handle disagreement.\\n[Turn 2 ASSISTANT]\\ne015\\tThat makes the working relationship a central risk rather than a soft cultural concern.\\ne016\\tYou can test it by reconstructing a decision where pricing, product, and fundraising pulled in different directions and asking how final say actually worked.\\ne017\\tThe financing claim should remain a scenario, not an input you silently upgrade to fact.\\ne018\\tIt may help to ask what decision would cause each of you to say the role is not working after six months.\\n[Turn 3 USER]\\ne019\\tMy partner surprised me by saying I should not reject it on their behalf.\\ne020\\tThey are worried about evenings and travel, but they also think I have been restless for a year.\\ne021\\tThat does not remove the household cost, and I can already imagine using their support as permission instead of discussing a real schedule.\\ne022\\tAt work, my CEO says the larger team could let me redesign the function, but she would not commit to giving me budget authority.\\ne023\\tBoth options may be selling me scope while keeping the consequential decisions elsewhere.\\n[Turn 3 ASSISTANT]\\ne024\\tThe symmetry is useful: both paths offer nominal scope with an unresolved authority boundary.\\ne025\\tYour partner's support removes one imagined veto but not the need for a concrete operating agreement at home.\\ne026\\tAsk each organization for the decisions, resources, and failure conditions attached to the role rather than another description of its importance.\\ne027\\tYou may discover that the choice is less startup versus stability than two different versions of constrained authority.\\n[Turn 4 USER]\\ne028\\tYou are making authority sound like the decisive variable because I mentioned it twice.\\ne029\\tI also care about the work itself.\\ne030\\tThe startup works on grid flexibility, and I would be proud if it succeeded even if my authority were imperfect.\\ne031\\tMy current company sells workflow software I no longer find very meaningful, though I like the people and do not think work has to carry my whole identity.\\n[Turn 4 ASSISTANT]\\ne032\\tThat correction matters.\\ne033\\tAuthority is a condition for doing the role, not necessarily the reason to choose it.\\ne034\\tMission can justify accepting some ambiguity, but it can also make ordinary organizational problems feel morally untouchable.\\ne035\\tA useful comparison would state what you are willing to sacrifice for the climate mission and what limits would still make the role a poor use of your time.\\ne036\\tThe current job's lower personal meaning should also remain explicit rather than being translated entirely into a scope complaint.\\n[Turn 5 USER]\\ne037\\tThe startup sent its pipeline.\\ne038\\tTwo customers are serious, but either delay would put the fundraising story under pressure.\\ne039\\tThe founder offered a twelve-week paid transition project before I join full time, focused on pricing and delivery.\\ne040\\tMy current employer might allow me to work four days a week during that period, but asking could change how they see my commitment even if I return.\\ne041\\tA trial sounds reversible, yet it may create obligations and signals on both sides.\\n[Turn 5 ASSISTANT]\\ne042\\tThe transition project can produce evidence about collaboration and the operating problems, but it is not a neutral experiment.\\ne043\\tThe startup may begin relying on you, and your employer may plan around your possible departure.\\ne044\\tDefine what the trial decides, what it cannot decide, and what each side may infer from it.\\ne045\\tRunway and household load will also remain partly hypothetical during a short project.\\n[Turn 6 USER]\\ne046\\tThe founder is open to the trial but wants a verbal indication that I would join if we work well together and the financing remains on plan.\\ne047\\tI can indicate serious intent, but “financing remains on plan” is too vague when the round does not exist yet.\\ne048\\tMy partner wants two protected evenings and no more than one overnight trip a month during the trial.\\ne049\\tThose conditions feel specific enough to test, while the financing condition still feels like a story.\\n[Turn 6 ASSISTANT]\\ne050\\tYou can separate intent from commitment.\\ne051\\tSerious intent can mean you will use the trial to reach a decision, not that good interpersonal chemistry automatically triggers acceptance.\\ne052\\tReplace “financing remains on plan” with observable conditions such as signed commitments, a minimum runway after the round, or a downside plan if the round slips.\\ne053\\tThe household conditions should be treated as part of the role test rather than private cleanup after the business test passes.\\n[Turn 7 USER]\\ne054\\tI am leaning toward proposing the twelve-week project while staying at eighty percent in my current role, with the household schedule written down before it starts.\\ne055\\tI will tell the founder that successful collaboration would make me seriously consider joining, but I am not willing to resign unless the financing extends runway beyond eighteen months and we agree how pricing conflicts are decided.\\ne056\\tI also want my current CEO to understand that I may leave rather than presenting the arrangement as professional development.\\ne057\\tI have not resolved whether asking for the trial is already a decision to leave in practice, even if it is not one formally.\\n[Turn 7 ASSISTANT]\\ne058\\tThe plan distinguishes a decision to run a bounded test from willingness to accept the full-time role.\\ne059\\tYour financing, authority, and household conditions make that distinction more concrete, while candor with your CEO reduces the risk of calling a departure process “development.” The trial can reveal how you and the founder work and whether the schedule is livable.\\ne060\\tIt cannot fully test post-fundraising pressure or prevent either organization from treating the trial as a directional commitment.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"amb2-case01-career-transition-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "c5e6c297b01ba5a8deabf67eab3b43e8f61b64f95f5a2b58dcac781966fbfa48"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "a70014997285c5c6aa8a675581002745bef6014f1ac62ff47213ee0723fcdecb"
+}

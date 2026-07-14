@@ -1,0 +1,134 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case01-product-scope",
+        "family": "challenge_and_revision_response",
+        "graph_routing_eligible": false,
+        "interpretation": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+        "observation_id": "rpshard-amb1-case01-product-scope-challenge_and_revision_response-01-b860b67607",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "chronological-shard-same-session-nonblind",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "challenge_evidence_ids": [
+              "e011"
+            ],
+            "challenge_type": "correction",
+            "interpretation": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "prior_claim_or_frame_evidence_ids": [
+              "e006"
+            ],
+            "response_evidence_ids": [
+              "e016",
+              "e017"
+            ],
+            "response_type": "revise",
+            "revision_evidence_ids": [
+              "e017"
+            ],
+            "status": "supported"
+          },
+          "record_identity": "case01-challenge-revision",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:b860b676076e96ee5e343deff72955cd59a15a038e1e812a33cc69a988225d45",
+        "role_source_span_ids": {
+          "challenge_evidence_ids": [
+            "span-0cb46b8381f4641a"
+          ],
+          "prior_claim_or_frame_evidence_ids": [
+            "span-07e458940a9db011"
+          ],
+          "response_evidence_ids": [
+            "span-1d554f7651ea7532",
+            "span-6646a854f9e7893f"
+          ],
+          "revision_evidence_ids": [
+            "span-6646a854f9e7893f"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case01-product-scope-challenge_and_revision_response-shard-01",
+        "source_span_ids": [
+          "span-07e458940a9db011",
+          "span-0cb46b8381f4641a",
+          "span-1d554f7651ea7532",
+          "span-6646a854f9e7893f"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case01-product-scope-challenge_and_revision_response-01-b860b67607",
+        "raw_record_sha256": "sha256:b860b676076e96ee5e343deff72955cd59a15a038e1e812a33cc69a988225d45",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "challenge_evidence_ids": [
+          "e011"
+        ],
+        "challenge_type": "correction",
+        "interpretation": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "prior_claim_or_frame_evidence_ids": [
+          "e006"
+        ],
+        "response_evidence_ids": [
+          "e016",
+          "e017"
+        ],
+        "response_type": "revise",
+        "revision_evidence_ids": [
+          "e017"
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case01-product-scope/challenge_and_revision_response.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case01-product-scope/challenge_and_revision_response/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-07e458940a9db011",
+      "span-0cb46b8381f4641a",
+      "span-1d554f7651ea7532",
+      "span-6646a854f9e7893f"
+    ],
+    "target_id": "case01-challenge-revision",
+    "view_kind": "challenge_and_revision_response"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "job_id": "three_lens_consolidation--window-002",
+  "architecture": "three_lens_consolidation",
+  "window_id": "window-002",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "system_prompt_sha256": "228fc830dcbf4dc1ab725b5e705ec271eebd44756dbdac0c92e214c5e07fac28",
+  "user_prompt_sha256": "8723720cb0c2c43ced31fadde8ad75f8265b481d338eca052dbab1d89916f7cd",
+  "schema_sha256": "3c4bd1c69a48ee2d39bd3df452d97278cbf579b4322be398200711ce6d6762bb",
+  "operational_status": "ok",
+  "typed_status": "quarantined",
+  "candidate_payload": {
+    "status": "supported",
+    "directional_moves": [
+      {
+        "text": "Prioritize cataloging and data accuracy versus narrative storytelling and engagement.",
+        "evidence": [
+          {
+            "span_id": "span-20ae1bdcc4d56125"
+          },
+          {
+            "span_e79db6f3b89a927d": "span-e79db6f3b89a927d"
+          }
+        ]
+      },
+      {
+        "text": "Evaluate the impact of conflicting memories on family representation.",
+        "evidence": [
+          {
+            "span_id": "span-214f44631d56bf39"
+          },
+          {
+            "span_id": "span-d3a57696ffe091e5"
+          }
+        ]
+      }
+    ],
+    "thread_signals": [
+      {
+        "text": "Methodological conflict between cataloging and storytelling.",
+        "local_move": "engaged",
+        "evidence": [
+          {
+            "span_id": "span-a17d62622004772a"
+          },
+          {
+            "span_id": "span-d0fc0d48fdbe520b"
+          }
+        ]
+      },
+      {
+        "text": "Curatorial strategy for conflicting family memories.",
+        "local_move": "raised",
+        "evidence": [
+          {
+            "span_id": "span-e79db6f3b89a927d"
+          },
+          {
+            "span_id": "span-214f44631d56bf39"
+          }
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "text": "Tomas prefers not to resolve the issue cosmetically.",
+        "claim_mode": "preference",
+        "evidence": {
+          "span_id": "span-a17d62622004772a"
+        }
+      },
+      {
+        "text": "The speaker prioritizes cataloging, dates, and names.",
+        "claim_mode": "stated_condition",
+        "evidence": {
+          "span_id": "span-20ae1bdcc4d56125"
+        }
+      },
+      {
+        "text": "Tomas believes the speaker's organizational standards delay public release.",
+        "claim_mode": "reported_statement",
+        "evidence": {
+          "span_id": "span-cfd5f2efd6c76cd0"
+        }
+      },
+      {
+        "text": "An exhibition could display conflicting memories, though this risks appearing as a curatorial device.",
+        "claim_mode": "possibility",
+        "evidence": {
+          "span_id": "span-214f44631d56bf39"
+        }
+      }
+    ],
+    "input_dispositions": [
+      {
+        "input_event_id": "cevent-contributions-005-4003ac9a55e1",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "cataloging_priority"
+        ]
+      },
+      {
+        "input_event_id": "cevent-contributions-006-3b190320a0ad",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "storytelling_priority"
+        ]
+      },
+      {
+        "input_event_id": "cevent-contributions-007-0b93c4f97668",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "exhibition_strategy"
+        ]
+      },
+      {
+        "input_event_id": "cevent-contributions-008-df5752de86f1",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "representation_impact"
+        ]
+      },
+      {
+        "input_event_id": "cevent-thread_events-032-778c9e502b1c",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "methodological_conflict"
+        ]
+      },
+      {
+        "input_event_id": "cevent-thread_events-033-5b7994a91082",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "curatorial_strategy"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-054-f430f0204c7c",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "tomas_preference"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-055-80d149025f30",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "speaker_priority"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-056-6af964c4a120",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "tomas_view"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-057-dd4d81b193a8",
+        "disposition": "set_aside_redundant",
+        "normalized_item_keys": []
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-058-da49319938d7",
+        "disposition": "set_aside_redundant",
+        "normalized_item_keys": []
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-059-2b85440435aa",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "exhibition_risk"
+        ]
+      },
+      {
+        "input_event_id": "cevent-constraint_claims-060-4133f47c064a",
+        "disposition": "preserved",
+        "normalized_item_keys": [
+          "disagreement_evaluation"
+        ]
+      }
+    ]
+  },
+  "validation_issues": [
+    {
+      "code": "required_field_missing",
+      "path": "/directional_moves/0/evidence/1/span_id"
+    },
+    {
+      "code": "additional_field_forbidden",
+      "path": "/directional_moves/0/evidence/1/span_e79db6f3b89a927d"
+    }
+  ],
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "model_attribution": "served_version_alias",
+  "prompt_tokens": 3687,
+  "completion_tokens": 1237,
+  "total_tokens": 4924,
+  "estimated_cost_usd": 0.00277725,
+  "response_sha256": "6ffa807bf2fa3caa73c348b9d8b81276dfbc8b4329ac30c561be706cd51b051a",
+  "provider_calls": 1,
+  "automatic_retries": 0,
+  "duration_seconds": 3.75
+}

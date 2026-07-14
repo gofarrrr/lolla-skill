@@ -1,0 +1,136 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_v43_development_contract.v1",
+  "status": "frozen_before_two_v43_synthetic_development_calls",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-model-operator-v43-synthetic-development-v1",
+  "purpose": "Compare the two wire-compatible July-2026 model/operator pairs after making the already-enforced role/component coverage invariant explicit in the prompt, without changing schema, validation, or using a reserved semantic case.",
+  "packet": {
+    "case_id": "synthetic-wire-compatibility-color-choice",
+    "path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-packet.json",
+    "sha256": "75dd94d4c2a7c5d827b6abd9d044e91ffc6042a1e2870e61d808b0e38a386d40",
+    "development_fixture_reuse": true,
+    "semantic_holdout": false
+  },
+  "request_contract": {
+    "mechanism": "chronological_shard_stance_object_v43",
+    "view_kind": "position_and_decision_trajectory",
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "b611c1d333d50083d1b6b18c63b44113a4b07177b9bc88d0f1e3062f820a9fa8",
+    "response_schema_sha256": "c1976c1e299ed8ff0877e2354b9f7cdc533fd512d1b4fe36f70004d72022d213",
+    "response_schema_bytes": 3597,
+    "response_schema_depth": 9,
+    "provider_schema_changed_from_v42": false,
+    "validator_changed_from_v42": false,
+    "prompt_change": "one explicit role/component coverage instruction"
+  },
+  "jobs": [
+    {
+      "job_id": "deepseek-v4-flash-alibaba-v43-development",
+      "model": "deepseek/deepseek-v4-flash",
+      "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+      "provider_slug": "alibaba",
+      "provider_display_name": "Alibaba",
+      "pricing_per_token": {
+        "prompt": 0.000000134,
+        "completion": 0.000000268
+      }
+    },
+    {
+      "job_id": "glm-5-2-deepinfra-v43-development",
+      "model": "z-ai/glm-5.2",
+      "canonical_slug": "z-ai/glm-5.2-20260616",
+      "provider_slug": "deepinfra",
+      "provider_display_name": "DeepInfra",
+      "pricing_per_token": {
+        "prompt": 0.00000093,
+        "completion": 0.000003
+      }
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v43.py",
+      "sha256": "e0fdb339075bce0fe95214db9034e80ee5725e5d53c187d3473e8b0d3dc6429d"
+    },
+    {
+      "path": "scripts/evals/reasoning_process_model_operator_transport.py",
+      "sha256": "2fbf3d8cc7d97ffb84de0be89310b5f45f4965f97b77ef8b29889a8c7ff6134b"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_model_operator_v43_development.py",
+      "sha256": "32dc94770f9de72abce96dfef38e2fee7ca81cf620e992b86f2b3347c905b90d"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-packet.json",
+      "sha256": "75dd94d4c2a7c5d827b6abd9d044e91ffc6042a1e2870e61d808b0e38a386d40"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-compatibility-2026-07-12/compatibility-review.json",
+      "sha256": "69169ed3529d9fa69e3979f82369169dcc70a2010c954299abb8fdad662f71e3"
+    },
+    {
+      "path": "research/reasoning-process-deepseek-alibaba-compatibility-2026-07-12/result.json",
+      "sha256": "da633182547f511437d69e52db7e144884ecb431ba10fd7028475beba78b9f04"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-compatibility-recovery-2026-07-12/call-02-result.json",
+      "sha256": "b2a79bf38b788901c469972526dd34fe4e08708a594c520af008ca044e1cd240"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1600,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "custody": {
+    "write_started_marker_before_each_call": true,
+    "never_rerun_if_started_marker_exists": true,
+    "write_result_before_next_call": true
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "wire_schema_accepted": true,
+    "provider_route_exactly_attributed": true,
+    "nonempty_record_returned": true,
+    "admitted_record_count_minimum": 1,
+    "quarantined_record_count_maximum": 0,
+    "source_first_synthetic_review_required": true
+  },
+  "stop_rules": {
+    "one_call_per_pair_only": true,
+    "no_retry_fallback_response_healing_or_second_prompt_edit": true,
+    "no_reserved_semantic_case_call_before_review": true,
+    "no_model_winner_from_general_benchmark_or_wire_success": true
+  },
+  "boundary": {
+    "development_fixture_reused": true,
+    "independent_semantic_holdout": false,
+    "provider_schema_changed_from_v42": false,
+    "validator_changed_from_v42": false,
+    "role_component_coverage_only_prompt_change": true,
+    "semantic_keyword_gate_added": false,
+    "agency_acquisition_call_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

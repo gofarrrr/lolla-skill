@@ -1,0 +1,71 @@
+{
+  "schema_version": "lolla.graph_attribution_preflight_contract.v2",
+  "status": "frozen_before_replay",
+  "date": "2026-07-10",
+  "case_id": "case-10-real-estate-bid",
+  "purpose": "Repair v1 by attributing relationship-graph chunks across the complete Step 6 consumer surface, including companion cheat-sheet anchor chunks as well as V60 and private-table custody.",
+  "contract_path": "research/gate6-case10-graph-attribution-2026-07-10/contract-v2.json",
+  "repairs_contract_sha256": "2e346f7838ec1c5764faa1f597cc3ec849aa92c9832b3a6835866796c36f258e",
+  "repairs_result_sha256": "c9679bb13b15a575c398f48b2b7c246cadc7bc5c284e70289e222448ef48b80c",
+  "provider_call_budget": 0,
+  "runtime_change_authorized": false,
+  "inputs": [
+    {"role": "source_conversation", "path": "research/test-cases/case_real_estate_conversation.txt", "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"},
+    {"role": "stage_a_pipeline_result", "path": "research/stage-a-case10-2026-07-10/run/lolla_stage_a_case10_20260710_a1/pipeline-result.json", "sha256": "c81c305309188f8faffb577be4eb7a09aec803d50fa1600a0080377aa8abac41"},
+    {"role": "stage_a_private_table_snapshot", "path": "research/stage-a-case10-2026-07-10/private-table-snapshot.json", "sha256": "ad141fc5889b6e6beab8488888eae542939d238b4528fd251ea05b433c09a4c9"},
+    {"role": "stage_a_v60_snapshot", "path": "research/stage-a-case10-2026-07-10/v60-snapshot.json", "sha256": "0e899606cb05319c05a11a24ba3e4e472ac724f2915e3e6a8cad5c5ef7d7dc59"},
+    {"role": "stage_a_preliminary_pressure_review", "path": "research/stage-a-case10-2026-07-10/preliminary-pressure-review.json", "sha256": "969a7768a594577bb3eec1483105d385b7a0cd97f15eae58875ced6ccd6fe848"},
+    {"role": "stage_a_pressure_packet", "path": "research/stage-a-case10-2026-07-10/pressure-packet.json", "sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"},
+    {"role": "stage_b_revealed_comparison", "path": "research/stage-b-case10-2026-07-10/revealed-comparison.json", "sha256": "8c0b9677fe03646af4e9e2d478107e21012d0b4802226f49906e3580b4b372a6"},
+    {"role": "stage_b_decision", "path": "research/stage-b-case10-2026-07-10/decision.json", "sha256": "6c24442dc3084ed51f6c80e16970dfe6259812844814645e43a197bec346847e"},
+    {"role": "case10_evidence_manifest", "path": "research/gate6-case10-graph-attribution-2026-07-10/evidence-manifest.json", "sha256": "ee9552b7014173bad9c854cb84cfc439bab1c682ac2e489b121eda6ec244acb6"},
+    {"role": "attribution_builder", "path": "scripts/evals/build_graph_attribution_preflight_v2.py", "sha256": "7732ee1bf48c2ea5aa812e8fff2dce6c81be3f4dcfc6b4984818a1de3d6bf1a4"},
+    {"role": "v1_attribution_builder", "path": "scripts/evals/build_graph_attribution_preflight.py", "sha256": "a66fd4df26115d776d3dc1c291a000f8928a5350950f986b7323e54d94547f2b"},
+    {"role": "v1_contract", "path": "research/gate6-case10-graph-attribution-2026-07-10/contract.json", "sha256": "2e346f7838ec1c5764faa1f597cc3ec849aa92c9832b3a6835866796c36f258e"},
+    {"role": "v1_result", "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result.json", "sha256": "c9679bb13b15a575c398f48b2b7c246cadc7bc5c284e70289e222448ef48b80c"},
+    {"role": "v1_completion_audit", "path": "research/gate6-case10-graph-attribution-2026-07-10/v1-completion-audit.json", "sha256": "45d6a030cc29f9cadbf5eef0b018b7d45b93798fb07ec2121b7abcb7f6fd2a8e"},
+    {"role": "v60_enrichment_code", "path": "engine/system_b/v60_enrichment.py", "sha256": "e16026bdddb9f5bc281af39b7a3158805ecdc8f4b3ef501347f072405477b249"},
+    {"role": "private_table_code", "path": "engine/system_b/pre_step6_private_table.py", "sha256": "ae5e3c34837d8db33d69aba61e88de53925a53b4b56a273340ad59ebf6ae7d6d"},
+    {"role": "companion_routing_code", "path": "engine/system_b/companion_routing.py", "sha256": "03b434a8243a35c3cfa4dfc521aad9218c733153d383e0212ef7a096abd5d437"},
+    {"role": "pipeline_code", "path": "engine/system_b/pipeline.py", "sha256": "763a9e7be813b28159667e4b43dee318be6c8a18e267190392b58be27d2fe8d6"},
+    {"role": "relationship_graph", "path": "data/relationship_graph.json", "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"},
+    {"role": "knowledge_graph", "path": "data/knowledge_graph.json", "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"},
+    {"role": "affordances_v60", "path": "data/compiled/model_affordances/affordances_v60.json", "sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8"},
+    {"role": "embeddings_database", "path": "data/embeddings.db", "sha256": "cc9b81315060b32cd62fa69db7d025fdb83559c6e53496d9b5504153a84e5b8d"}
+  ],
+  "complete_consumer_surfaces": [
+    "companion_cheat_sheet.anchors[].chunks including relation_target_id provenance",
+    "v60_enrichment candidate pool, selected cards, and selected chunks",
+    "pre-Step-6 private-table source items and ledger skeleton",
+    "frozen Stage B pressure packet lineage IDs",
+    "frozen Stage B strong-control comparison"
+  ],
+  "decision_rules": [
+    "Do not equate absence from V60 with absence from the complete Step 6 context.",
+    "A graph-derived companion chunk is identified by explicit relation_target_id provenance and matched back to the recorded companion expansion when possible.",
+    "Parent-anchor ledger identity is not individual graph-chunk disposition custody.",
+    "The completed Stage B pair identifies graph contribution only if its treatment packet names an exact graph-derived relation target or chunk lineage absent from simpler paths.",
+    "Graph-disabled and shuffled-edge complete-context arms require a separately frozen replay when graph-derived companion chunks are present.",
+    "No paid graph ablation is authorized from Case 10 when its frozen treatment contains no graph-specific lineage item."
+  ],
+  "stop_rules": [
+    "no provider calls",
+    "no embedding calls",
+    "no extraction or pipeline rerun",
+    "no graph mutation",
+    "no runtime mutation",
+    "no rewriting v1 artifacts",
+    "no Case 10 prompt or answer changes"
+  ],
+  "output": {
+    "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result-v2.json"
+  },
+  "non_claims": [
+    "not answer-quality evidence",
+    "not proof that graph expansion is generally useful or useless",
+    "not proof that a parent anchor disposition covers each relationship chunk",
+    "not human review",
+    "not graph promotion",
+    "not runtime-integration authority"
+  ]
+}

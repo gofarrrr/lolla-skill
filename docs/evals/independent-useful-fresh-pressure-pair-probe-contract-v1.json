@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.independent_useful_fresh_pressure_pair_probe_contract.v1",
+  "status": "frozen_before_exactly_two_fresh_no_retry_calls",
+  "run_id": "independent-useful-fresh-pressure-pair-probe-2026-07-12",
+  "frozen_inputs": [
+    {
+      "path": "research/independent-useful-fresh-pressure-pair-2026-07-12/report.json",
+      "sha256": "1674847d1b11d885b109db548ddace3281b04270cc91e6f573686dc02470ef9b"
+    },
+    {
+      "path": "docs/evals/independent-useful-fresh-pressure-pair-target-v1.json",
+      "sha256": "6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad"
+    }
+  ],
+  "job": {
+    "model": "deepseek/deepseek-v4-flash",
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "pricing_per_token": {
+      "prompt": 0.00000007,
+      "completion": 0.00000028
+    }
+  },
+  "call_configuration": {
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 3600,
+    "provider_timeout_seconds": 120,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_estimated_cost_usd": 0.02,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "boundary": {
+    "research_only": true,
+    "independent_synthetic_holdout": true,
+    "fresh_context_each_call": true,
+    "same_authoritative_conversation": true,
+    "candidate_prefiltering": false,
+    "all_pressure_candidates_preserved": true,
+    "graph_mutation": false,
+    "runtime_integration": false,
+    "receipts": false,
+    "scalar_scoring": false,
+    "production_authorization": false
+  }
+}

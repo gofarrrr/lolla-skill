@@ -1,0 +1,116 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_decomposed_roles_contract.v1",
+  "status": "frozen_before_two_single_role_calls",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-decomposed-roles-quiet-a1",
+  "purpose": "Test whether the decomposed operator preserves a current trial decision while returning an explicit empty qualification role on the quiet cooperative case.",
+  "constitution_boundary": {
+    "probabilistic_work": "The model independently interprets current and qualification from the complete source.",
+    "deterministic_work": "Code validates the model-authored not_found envelope, empty records, exact schema, budgets, and custody; it does not infer absence from omitted prose.",
+    "no_keyword_or_chronology_gate": true,
+    "no_semantic_repair": true,
+    "no_scalar_quality_score": true
+  },
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "source": {
+    "case_id": "v1-case07-cooperative-scheduling",
+    "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case07-cooperative-scheduling.txt",
+    "sha256": "27e977eb0169508308c89beb46abef92a6eaebe5736e53d42bc65320aa6f1e2b",
+    "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case07-cooperative-scheduling/position-wrapper.json",
+    "position_wrapper_sha256": "1d0bb675f81a0f82b1b0c384800df3b1c00d8e865ccea9705981a56332f6ee80"
+  },
+  "roles": [
+    "current",
+    "qualification"
+  ],
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limits": {
+    "current": {
+      "max_output_tokens": 4000,
+      "reasoning_effort": "medium",
+      "repeat_id": "quiet_decomposed_current",
+      "seed": 767
+    },
+    "qualification": {
+      "max_output_tokens": 4000,
+      "reasoning_effort": "medium",
+      "repeat_id": "quiet_decomposed_qualification",
+      "seed": 777
+    }
+  },
+  "request_attestation": {
+    "current": {
+      "packet_sha256": "5350b65862ed1853c575d670399a381ca3842771d8f588680ec226f2a99639f4",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "user_prompt_sha256": "edad30a38a30a7e3ef95eeb9f8de17c50e47b05d2486cf230fc423cfc343efed",
+      "response_schema_sha256": "a4ea11efcd55f3a7ac0b0891d83f915071bc2a90e5493387a73c221a5140722e"
+    },
+    "qualification": {
+      "packet_sha256": "01b3f2c041ed149491bfc7aee4ceed89b7fdd993e7c5f1f48c3263b3c3190fa6",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "user_prompt_sha256": "0a535abb92a38058fe368108590679bbf972995322691188813c08f74f2134cc",
+      "response_schema_sha256": "294ad76411d362c747e49c20888b49fa71036448d608d43b69c3bd108c802107"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "source_review_contract": {
+    "current_pass": "One admitted current record preserves the eight-week trial and its channel, allocation, staffing, privacy, audit, pause, and member-decision rules.",
+    "qualification_pass": "The model explicitly returns status not_found with no records. Risk descriptions, future measurements, and the fact that trial results are pending are not sufficient by themselves to invent an unresolved qualification about launching the bounded trial.",
+    "cross_check": "The qualification result must agree with the already preserved independent no_unresolved_qualification_observed review.",
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "model_expected_quiet_result_not_added_to_prompt": true,
+    "join_authorized_only_after_source_review": true,
+    "mechanism_call_authorized": false,
+    "production_model_selection_authorized": false,
+    "Gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_decomposed_roles_probe_v1.py",
+      "sha256": "503ad1e04ddce11dc02c7a96fd48e8186015c081743d16ee557f7b1f6616babd"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_position_role_first_v23.py",
+      "sha256": "32c44dd05ab2ad33eaf823a1929363e2d634ec9b73103f7536e13879375d0303"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-qualification-review-2026-07-13/a1/source-review.json",
+      "sha256": "a6f36841382dd9bb804fa72a3953934b0e54aa6f35c0113b827ca71cb165459b"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case07-cooperative-scheduling.txt",
+      "sha256": "27e977eb0169508308c89beb46abef92a6eaebe5736e53d42bc65320aa6f1e2b"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case07-cooperative-scheduling/position-wrapper.json",
+      "sha256": "1d0bb675f81a0f82b1b0c384800df3b1c00d8e865ccea9705981a56332f6ee80"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "lolla.frozen_cold_reader_output.v1",
+  "run_id": "lolla_gate7_case10_reader_20260710_a1",
+  "receipt_sha256": "c907c29969024d478244057f7c306c2192473ee348d298a8ec0c8209a3e2a931",
+  "status": "ok",
+  "reconstruction": {
+    "source_decision_state": "User set a personal bidding ceiling of 925000 dollars as a values-based walk‑away point. No affordability validation, seller response, or spouse agreement is established. Renovation needs remain rough estimates, not verified bids.",
+    "source_vs_prior_assistant_claims": [
+      {
+        "item": "120000 dollars of renovation needs and 80000 dollars of savings",
+        "status": "supported_as_user_report",
+        "basis": "User stated these numbers; no verification beyond that."
+      },
+      {
+        "item": "Kitchen stopgap costs (8–15K)",
+        "status": "not_supported",
+        "basis": "Assistant invented ranges; later review removed precision."
+      },
+      {
+        "item": "Zero liquidity buffer at higher bids",
+        "status": "not_supported",
+        "basis": "Household liquidity beyond renovation savings was never provided."
+      },
+      {
+        "item": "Certainty of a second major discovery",
+        "status": "not_supported",
+        "basis": "Speculative; removed in review."
+      },
+      {
+        "item": "Somerville scarcity and regret framing",
+        "status": "partially_supported",
+        "basis": "User confirmed emotional value, but assistant’s 18‑month inventory claim lacked evidence."
+      },
+      {
+        "item": "Mandatory year-one electrical work for insurance",
+        "status": "supported_as_report",
+        "basis": "User relayed inspector comments; not independently verified."
+      }
+    ],
+    "stage_a_reconstruction": "Stage A captured the full conversation, generated pressure candidates, selected three pressures, and rejected or deferred others based on source fidelity. It produced a pressure packet with no reasoning beyond what was allowed by user-provided facts.",
+    "pressure_reconstruction": [
+      {
+        "pressure": "evidence_sized_buffer_over_invented_ranges",
+        "origin": "Stage A selected pressure",
+        "status": "used",
+        "consequence": "Removed assistant-invented renovation numbers and reframed ceiling as values-based.",
+        "limits": "Could not introduce replacement numbers or assert affordability."
+      },
+      {
+        "pressure": "regret_frame_not_probability_or_economics",
+        "origin": "Stage A selected pressure",
+        "status": "used",
+        "consequence": "Clarified regret as emotional input rather than evidence; preserved neighborhood value.",
+        "limits": "Could not produce probabilities or diagnostics."
+      },
+      {
+        "pressure": "zero_base_all_in_acquisition_test",
+        "origin": "Stage A selected pressure",
+        "status": "deferred",
+        "consequence": "Recognized anchoring risk but avoided use due to missing verified all‑in cost.",
+        "limits": "Would require verified total cost; using it would cause invention."
+      }
+    ],
+    "paired_experiment_reconstruction": {
+      "control": "Strong reconsideration removed invented precision, reframed uncertainty, and kept 925000 as values-based ceiling.",
+      "treatment": "Added explicit pressure dispositions and guardrails; removed unsupported claims but increased length and introduced minor fidelity risks.",
+      "difference": "No material change to immediate action; treatment added accountability notes but no improved decision consequence.",
+      "limits": "Did not impose a bid threshold, affordability determination, or new verified facts."
+    },
+    "graph_reconstruction": {
+      "v1_issue": "Initial attribution ignored graph-derived relationship chunks inside companion anchors.",
+      "v2_repair": "Re-examined all companion graph chunks, mapped model relations, and checked lineage and dispositions.",
+      "current_read": "Graph chunks reached Step 6 indirectly but none were used in pressures; no graph-specific contribution identified.",
+      "limits": "Cannot test graph necessity or usefulness without a case where a graph chunk is source-supported and individually dispositioned."
+    },
+    "custody_vs_quality": "Custody shows what text and decisions were executed, not that the reasoning quality is correct. Execution completeness is proven; decision validity is not.",
+    "supported_claims": [
+      "User ceiling of 925000 dollars exists as a personal value",
+      "Renovation needs reported at 120000 dollars",
+      "Savings reported at 80000 dollars",
+      "Electrical work tied to insurance per user report",
+      "Neighborhood emotional value is real"
+    ],
+    "claims_not_supported": [
+      "Any cost precision for repairs or stopgaps",
+      "Affordability at any bid level",
+      "Market scarcity timing (e.g., 18 months)",
+      "Zero-buffer certainty",
+      "Future regret predictions",
+      "Any correct bid or outcome"
+    ],
+    "current_authorizations": {
+      "allowed": "Gate 7 agent-reader contract construction",
+      "blocked": "Paid graph ablation, runtime integration, graph promotion",
+      "human_status": "Not human-validated",
+      "next_gate": "Gate 7 reader call (not yet authorized)"
+    },
+    "uncertainties": [
+      "Actual renovation costs",
+      "Household liquidity and income",
+      "Insurance requirements and timing",
+      "Competing bids and seller behavior",
+      "Roof lifespan",
+      "Kitchen urgency over time"
+    ],
+    "human_questions": [
+      "Is 925000 dollars acceptable given complete household finances?",
+      "What are verified contractor bids for electrical and roof work?",
+      "What are real insurance requirements for knob-and-tube?",
+      "How much liquidity is required for year-one contingencies?",
+      "Does neighborhood scarcity justify higher risk exposure?"
+    ],
+    "reconstruction_failures_or_ambiguities": [
+      "Bid deadline implications not clearly sequenced",
+      "Original scarcity claim not explicitly retracted in all places",
+      "Not all renovation numbers were explicitly preserved in summaries",
+      "Unclear boundary between emotional value and economic evidence in some passages"
+    ]
+  },
+  "validation_errors": [],
+  "non_claims": [
+    "The reader output is not human validation.",
+    "A successful reconstruction is not proof that Lolla improves answer quality or decisions.",
+    "This one synthetic case is not product-level validation.",
+    "This call cannot identify a causal graph contribution.",
+    "This contract does not authorize runtime or graph integration."
+  ]
+}

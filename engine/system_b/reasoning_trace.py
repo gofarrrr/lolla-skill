@@ -25,8 +25,12 @@ REASONING_TRACE_FILENAME = "reasoning_trace.json"
 
 ARTIFACT_ROLES: dict[str, str] = {
     "conversation.txt": "source_conversation",
+    "conversation_processing_view.txt": "bounded_conversation_processing_view",
+    "conversation_processing_view.json": "bounded_conversation_processing_view_metadata",
     "extraction.json": "decision_structure",
+    "provider_budget.json": "provider_budget_ledger",
     "result.json": "pipeline_result",
+    "constitutional_graph_survival_ledger.json": "constitutional_graph_disposition_ledger",
     "revised.txt": "reconsidered_position",
     "memo.md": "decision_memo",
     "memo_note.json": "decision_memo_fields",
@@ -368,7 +372,22 @@ def _private_custody(*, result: Mapping[str, Any], run_dir: Path) -> dict[str, A
     private_table = _mapping(result.get("pre_step6_private_table"))
     v60 = _mapping(result.get("v60_enrichment"))
     v60_validation = _mapping(result.get("v60_consideration_validation"))
+    graph_survival = _mapping(result.get("constitutional_graph_survival"))
+    graph_validation = _mapping(
+        result.get("constitutional_graph_survival_ledger_validation")
+    )
     return {
+        "constitutional_graph_survival_status": str(
+            graph_survival.get("status") or ""
+        ),
+        "constitutional_graph_survival_ledger_status": str(
+            graph_validation.get("status")
+            or run_health.get("constitutional_graph_survival_ledger")
+            or ""
+        ),
+        "constitutional_graph_survival_ledger_file_present": (
+            run_dir / "constitutional_graph_survival_ledger.json"
+        ).exists(),
         "v60_enrichment_status": str(v60.get("status") or ""),
         "v60_consideration_ledger_status": str(
             v60_validation.get("status") or run_health.get("v60_consideration_ledger") or ""
@@ -415,6 +434,9 @@ def _usage_summary(result: Mapping[str, Any]) -> dict[str, Any]:
         "run_id": str(usage.get("run_id") or ""),
         "pricing_table_version": str(usage.get("pricing_table_version") or ""),
         "estimated_total_cost_usd": usage.get("estimated_total_cost_usd"),
+        "provider_reported_total_cost_usd": usage.get(
+            "provider_reported_total_cost_usd"
+        ),
         "cost_estimate_state": str(usage.get("cost_estimate_state") or ""),
         "vendor_calls": vendor_calls,
         "total_vendor_call_count": total_vendor_calls,

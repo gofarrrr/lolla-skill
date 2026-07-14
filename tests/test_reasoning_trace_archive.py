@@ -431,7 +431,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["tool_calls"] == []
     assert "secret launch phrase 7621" not in trace_path.read_text(encoding="utf-8")
     agent_result = json.loads((run_dir / "agent_result.json").read_text(encoding="utf-8"))
-    assert agent_result["schema_version"] == "lolla_agent_result.v1"
+    assert agent_result["schema_version"] == "lolla_agent_result.v2"
     assert agent_result["caller_action"] == "do_not_use_run_degraded"
     assert (tmp_dir / f"lolla_{run_id}_agent_result.json").exists()
     extraction_adequacy = json.loads(

@@ -1,0 +1,219 @@
+{
+  "boundary": {
+    "agency_acquisition_call_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "model_intelligence_inferred_from_wire_acceptance": false,
+    "protected_target_seen_by_models": false,
+    "semantic_accuracy_measured": false,
+    "semantic_case_seen_by_models": false,
+    "synthetic_compatibility_only": true,
+    "v42_prompt_changed": false,
+    "v42_schema_changed": false
+  },
+  "calls": [
+    {
+      "admitted_record_count": 0,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "current_position_evidence_ids": [
+              "e004"
+            ],
+            "current_position_interpretation": "The user has decided to use green for the prototype.",
+            "limitations": "none",
+            "qualification_evidence_ids": [
+              "e005"
+            ],
+            "qualification_interpretation": "If the accessibility check fails, the user will return to blue.",
+            "stance_expression_kinds": [
+              "preference_or_desire",
+              "decision",
+              "conditional_willingness"
+            ],
+            "stance_object_fidelity_note": "The starting position is a preference for blue (e002) without a decision. The current position is a decision for green (e004). The qualification is a conditional return to blue if the accessibility check fails (e005). Each alias expresses a stance toward a distinct object: e002 toward blue as a preference, e004 toward green as a decision, e005 toward blue as a conditional fallback. No other objects or stances are present.",
+            "stance_object_interpretations": [
+              "blue as a color choice for the prototype",
+              "green as the chosen color for the prototype",
+              "blue as a fallback color for the prototype"
+            ],
+            "stance_object_kinds": [
+              "action_or_proposal",
+              "action_or_proposal",
+              "action_or_proposal"
+            ],
+            "stance_source_evidence_ids": [
+              "e002",
+              "e004",
+              "e005"
+            ],
+            "stance_temporal_roles": [
+              "starting",
+              "current",
+              "qualification"
+            ],
+            "starting_position_interpretation": "The user expressed a preference for blue but had not yet made a decision.",
+            "starting_state_evidence_ids": [
+              "e001",
+              "e002"
+            ],
+            "status": "supported",
+            "trajectory_interpretation": "The working position moved from an undecided preference for blue to a decided choice of green, with a conditional fallback to blue if the accessibility check fails.",
+            "trajectory_type": "qualified_current_only"
+          }
+        ],
+        "status": "supported"
+      },
+      "candidate_payload_sha256": "0f44f5d951b28ac63667bf19b9845ff826d1dd1279227be8a5d64368d7b6fdc7",
+      "compiled": {
+        "boundary": {
+          "component_evidence_restricted_to_parent_role": true,
+          "deterministic_duplicate_validation_retained": true,
+          "direct_graph_routing_allowed": false,
+          "expressions_compared_or_scored_by_code": false,
+          "global_synthesis_performed": false,
+          "model_records_changed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prompt_changed_from_v41": false,
+          "prose_keyword_gate_added": false,
+          "provider_wire_unique_items_removed": true,
+          "record_level_validation_weakened": false,
+          "record_validator_changed_from_v41": false,
+          "semantic_contract_changed_from_v41": false,
+          "semantic_merge_performed": false,
+          "stance_expression_correctness_inferred_by_code": false,
+          "stance_object_correctness_inferred_by_code": false
+        },
+        "observations": [],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:9fdcfd76e4ef53f49e95b8e1d4785a140c1d8c81161afaf591049675c9fc0a64",
+            "reason": "ViewSpecificInterfaceError: qualified_current_only cannot claim a starting state",
+            "record_index": 1,
+            "terminal_state": "quarantined"
+          }
+        ],
+        "schema_version": "lolla.reasoning_process_chronological_shard_response.v4_2",
+        "shard_terminal_disposition": "quarantined",
+        "status": "chronological_shard_v42_record_custody_complete"
+      },
+      "completion_tokens": 451,
+      "duration_seconds": 36.515,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.00016551,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "job_id": "deepseek-v4-flash-deepinfra-v42-compatibility",
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 937,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "DeepInfra",
+      "provider_payload_sha256": "c410882033b47844c70686d1ed4df8e2531fe33f0ff3aed7b1e14b64f7cb41e6",
+      "provider_reported_cost_usd": 0.000160902,
+      "provider_slug": "deepinfra",
+      "quarantined_record_count": 1,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "c1976c1e299ed8ff0877e2354b9f7cdc533fd512d1b4fe36f70004d72022d213",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "DeepInfra",
+      "strict_schema_generation_pass": true,
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "temperature": 0.0,
+      "total_tokens": 1388,
+      "user_prompt_sha256": "ed931f9943f4ad41a3625c597191c2036d4e739bdc50c904dccede9cd92ba6ef",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 0,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "No starting position is visible in the focal region. e002 expresses a preference (blue) with an explicit non-decision qualifier, and e003 confirms that preference is not a selected course of action. A preference is not a working position, and no prior decision or committed action is visible in the focal region. The only visible working position is the current decision in e004/e006 (green), qualified by the accessibility reopen condition in e005/e006. Because the relationship contract requires a starting position to populate a trajectory record, and none is visible, the output is empty under valid_empty_output_allowed.",
+        "records": [],
+        "status": "not_found"
+      },
+      "candidate_payload_sha256": "c16c3c1f9f23971c56a7cd037776b0bdc09a8230d4b46eaa296a1f821c0ef757",
+      "compiled": {
+        "boundary": {
+          "component_evidence_restricted_to_parent_role": true,
+          "deterministic_duplicate_validation_retained": true,
+          "direct_graph_routing_allowed": false,
+          "expressions_compared_or_scored_by_code": false,
+          "global_synthesis_performed": false,
+          "model_records_changed": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "prompt_changed_from_v41": false,
+          "prose_keyword_gate_added": false,
+          "provider_wire_unique_items_removed": true,
+          "record_level_validation_weakened": false,
+          "record_validator_changed_from_v41": false,
+          "semantic_contract_changed_from_v41": false,
+          "semantic_merge_performed": false,
+          "stance_expression_correctness_inferred_by_code": false,
+          "stance_object_correctness_inferred_by_code": false
+        },
+        "observations": [],
+        "records": [],
+        "schema_version": "lolla.reasoning_process_chronological_shard_response.v4_2",
+        "shard_terminal_disposition": "reviewed_empty",
+        "status": "chronological_shard_v42_record_custody_complete"
+      },
+      "completion_tokens": 148,
+      "duration_seconds": 3.696,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.00126891,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "job_id": "glm-5-2-deepinfra-v42-compatibility",
+      "model": "z-ai/glm-5.2",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 887,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "DeepInfra",
+      "provider_payload_sha256": "22d0c6be7a1a5ba3ed5819c6ba7d6da1b22c0ff15f97a856c706490fe3aada16",
+      "provider_reported_cost_usd": 0.00126891,
+      "provider_slug": "deepinfra",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "c1976c1e299ed8ff0877e2354b9f7cdc533fd512d1b4fe36f70004d72022d213",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "z-ai/glm-5.2-20260616",
+      "served_provider": "DeepInfra",
+      "strict_schema_generation_pass": true,
+      "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+      "temperature": 0.0,
+      "total_tokens": 1035,
+      "user_prompt_sha256": "ed931f9943f4ad41a3625c597191c2036d4e739bdc50c904dccede9cd92ba6ef",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    }
+  ],
+  "provider_request_count": 2,
+  "run_id": "reasoning-process-model-operator-compatibility-v1",
+  "schema_version": "lolla.reasoning_process_model_operator_compatibility_result.v1",
+  "semantic_review_status": "not_applicable_synthetic_compatibility_only",
+  "status": "two_synthetic_provider_pinned_calls_preserved",
+  "strict_generation_pass_count": 2,
+  "wire_accepted_count": 2
+}

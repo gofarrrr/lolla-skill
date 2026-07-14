@@ -1,0 +1,40 @@
+{
+  "schema_version": "lolla.conversation_state_extraction_probe_custody.v1",
+  "run_id": "conversation_state_probe_v4_20260711_a1",
+  "recorded_call_count": 1,
+  "calls": [
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "call_attempted": true,
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "system_prompt_sha256": "d032bf4a4c182b34af34d32e0e34e8cc5e321ebff0d88bb73bff7271fbf78a83",
+      "user_prompt_sha256": "bca074dab0e630937f8ee17a6bf4087ea83c4fcbc7ee7c80c9b1c7dd68fd330d",
+      "response_schema_sha256": "08d1f7a01cc91b5f415469325b856cad6668af5a699c3d1fabdd9e8ce01f54af",
+      "reasoning_configuration": {
+        "enabled": false
+      },
+      "status": "invalid_contract",
+      "validation_errors": [
+        "joint_position_requires_both_speakers",
+        "source_quote_not_exact"
+      ],
+      "custody_violation_count": 2,
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "finish_reason": "stop",
+      "prompt_tokens": 2878,
+      "completion_tokens": 1179,
+      "total_tokens": 4057,
+      "reasoning_tokens": 0,
+      "usage_evidence_state": "complete",
+      "response_sha256": "cbea292365969eb11df27d0232ecfa2371b72227bc715367a95020fab9426353",
+      "provider_payload_sha256": "f288765ac656f6d6f53da28fca79713273cfbb657dfec5706aaf0b0fca840bbf",
+      "provider_diagnostic": {},
+      "raw_provider_content_included": false,
+      "duration_seconds": 3.824,
+      "sealed_packet_path": "research/conversation-state-extraction-probe-v4-2026-07-11/run/conversation_state_probe_v4_20260711_a1/amb1-case03-creative-partnership-unreviewed-state.json",
+      "sealed_packet_sha256": "63bc7c646b4c3c61c6e2da516564e44fad1292a12cc26e10222c32edd5d30951"
+    }
+  ],
+  "raw_provider_content_included": false
+}

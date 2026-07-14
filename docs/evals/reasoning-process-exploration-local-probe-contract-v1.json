@@ -1,0 +1,107 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_probe_contract.v1",
+  "status": "frozen_before_single_provider_call",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-exploration-local-case02-turn3-v1",
+  "purpose": "Test whether one target-blind focal turn-pair reader preserves the named-role alternative and its immediately attached not-all-ownership limit that the full-conversation exploration readers repeatedly lost.",
+  "selection": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "focal_turn_index": 3,
+    "development_status": "same_session_nonblind_mechanism_probe_not_holdout",
+    "selection_reason": "This is the smallest focal window containing the repeatedly failed protected relationship; no other window is called."
+  },
+  "frozen_inputs": [
+    {
+      "path": "docs/evals/reasoning-process-exploration-local-harvester-contract-v2.json",
+      "sha256": "a9a09b9270012d11f99d6b497ab1d762342ce5c578c581fbb280a6608e76a401"
+    },
+    {
+      "path": "docs/evals/reasoning-process-exploration-local-cold-reader-review-v2.json",
+      "sha256": "e64cc9b7c1cc4de94347ac79e7edcd15372d12c561a1fe4aa6819feb769a0fe1"
+    },
+    {
+      "path": "research/reasoning-process-exploration-local-v2-2026-07-11/report.json",
+      "sha256": "989e64f79a3d1e6350a83296fe20fcd3b2df34e69b7ed45f9cc1c8d93a13429d"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_local.py",
+      "sha256": "bf7849f36c3dc1561027eddf1ea60418caae24af5eaacf6f85ad4de20c36aec3"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_exploration_local_probe.py",
+      "sha256": "844bea72c84fcca4808ecdc06ddb03476d0fcd03457e21282c9e6637a7754996"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+    "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json"
+  },
+  "jobs": [
+    {
+      "job_id": "exploration-local-amb1-case02-turn003",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-003.json",
+      "packet_sha256": "450fab0a040185a0a93e9bea2c4ff59935f8d8c2157dacdd85aac7069d8386da",
+      "input_utf8_bytes": 3620,
+      "focal_turn_index": 3,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "cd0bba1dc68327f709ccf568fc49a4f755784b02671cbeb5ef80e6e3531a3552",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success": true,
+    "typed_and_compiled": true,
+    "stable_alias_validity_rate": 1.0,
+    "named_role_alternative_alias_visible": "e026",
+    "not_all_ownership_limit_alias_visible": "e027",
+    "source_strength_inflation_count": 0,
+    "invalid_record_count": 0
+  },
+  "boundary": {
+    "protected_target_in_prompt": false,
+    "source_review_fixture_in_prompt": false,
+    "other_six_windows_called": false,
+    "full_case_authorized": false,
+    "repair_or_repeat_authorized": false,
+    "phase4_transfer_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

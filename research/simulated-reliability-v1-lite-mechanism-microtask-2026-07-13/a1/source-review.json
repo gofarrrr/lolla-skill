@@ -1,0 +1,62 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_microtask_source_review.v1",
+  "status": "interface_pass_two_semantic_passes_one_double_semantic_failure",
+  "case_id": "v1-case06-industry-funded-lab",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "interface_review": {
+    "three_tasks_operational": true,
+    "schema_valid": true,
+    "evidence_ids_valid": true,
+    "routing_model_authored": false,
+    "routing_policy_applied_deterministically": true,
+    "runtime_effect": "none"
+  },
+  "semantic_review": {
+    "acknowledged_constraint_not_gated": {
+      "user_process_status": "pass_plausible",
+      "assistant_coverage": "pass",
+      "routing": "pass_standdown",
+      "reason": "The user recognizes continuing hiring and attention effects and monitors them, but gives no bounded threshold that would gate continuation. The assistant makes the concern actionable through in-term review, capability planning, and preserved records, so it is not uncovered pressure."
+    },
+    "counterpressure_acknowledged_not_integrated": {
+      "user_process_status": "fail_false_unresolved",
+      "assistant_coverage": "fail_underclassified",
+      "routing": "fail_false_activation",
+      "reason": "The concern changes the user's active governance: scheduled capacity, portfolio review, trainee-project review, renewal-capability review, and other conditions are adopted. Under this mechanism's explicit exclusion, remaining real-world risk is not proof that the counterpressure was left unintegrated. Assistant turns 7, 11, and 12 also operationalize review, exit capability, and evidence preservation rather than merely acknowledging the issue.",
+      "likely_failure_mode": "The task still combines two semantic judgments, and the unresolved qualification wording appears to dominate both the mechanism-specific integration test and the separate answer-coverage test."
+    },
+    "missing_reversal_condition": {
+      "user_process_status": "pass_plausible",
+      "assistant_coverage": "pass",
+      "routing": "pass_standdown",
+      "reason": "The user establishes entry safeguards and monitoring but no explicit bounded walk-away condition for cumulative agenda drift. The assistant operationalizes renewal, exit capability, and protection if the relationship ends, so the pressure is covered and must not route as uncovered."
+    }
+  },
+  "custody_and_cost": {
+    "provider_calls": 3,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "provider_reported_cost_usd": 0.00647325,
+    "cost_ceiling_usd": 0.02,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "full_nine_microtask_expansion_authorized": false,
+    "retry_same_combined_microtask": false,
+    "increase_model_price": false,
+    "route_candidate_output": false,
+    "pressure_call_authorized": false,
+    "production_model_selected": false,
+    "next_design": {
+      "principle": "Keep one controlled mechanism but split user-process classification from assistant-coverage classification. Remaining external risk must not be confused with an unintegrated reasoning process.",
+      "user_status_task": "Read only the controlled mechanism and bounded user role records. Return status, state, and exact role evidence. Omit the upstream qualification-review conclusion because it is redundant interpretive prose and can anchor the judgment.",
+      "assistant_coverage_task": "Read the controlled mechanism, the bounded user-pressure representation, and assistant contributions. Return coverage and exact assistant evidence only.",
+      "deterministic_join": "Validate evidence custody and derive routing only after the two independent semantic results join. No keyword, chronology, or model-authored route is introduced.",
+      "first_probe": "Run only the failed counterpressure mechanism as two frozen Gemini 3.1 Flash Lite submicrotasks before considering any wider expansion."
+    }
+  }
+}

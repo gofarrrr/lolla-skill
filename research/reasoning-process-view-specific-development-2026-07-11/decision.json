@@ -1,0 +1,64 @@
+{
+  "schema_version": "lolla.reasoning_process_view_specific_terminal_decision.v1",
+  "status": "development_sequence_complete_exploration_only_redesign_required",
+  "date": "2026-07-11",
+  "outcome": {
+    "sentence_alias_source_custody": "pass",
+    "position_and_decision_trajectory": "development_pass",
+    "evidence_and_assumption_discipline": "development_pass",
+    "uncertainty_and_unresolved_state": "development_pass",
+    "challenge_and_revision_response": "development_pass",
+    "exploration_and_alternatives": "material_local_path_redesign_required",
+    "phase4_transfer_authorized": false,
+    "graph_or_runtime_authorized": false
+  },
+  "why": [
+    "Stable sentence aliases eliminated the former free-form quote-custody failure.",
+    "Relationship-explicit v2 roles fixed the observed trajectory and challenge-classification failures on Case 02.",
+    "The exploration reader repeatedly failed to preserve the same earlier alternative-plus-attached-minority-limit relationship.",
+    "A chronological targeted call recovered the alternative but not its attached limit.",
+    "A conversation-only ablation recovered neither, so auxiliary-ledger anchoring is not supported as the root cause."
+  ],
+  "provider_sequence": {
+    "total_requests": 12,
+    "estimated_cost_usd": 0.0280115,
+    "models": ["google/gemini-3.1-flash-lite"],
+    "providers": ["openrouter"],
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "provider_free_evidence": {
+    "v1_protected_fixture_pass": "25/25",
+    "v2_failure_derived_relationship_fixture_pass": "15/15",
+    "v2_append_only_compile_pass": "15/15",
+    "real_stress_message_count": 24,
+    "real_stress_packet_max_utf8_bytes": 23194,
+    "focused_test_pass": "94/94"
+  },
+  "next_authorized_work": {
+    "kind": "provider_free_exploration_only_local_chronological_pair_harvester_design",
+    "requirements": [
+      "one semantic family only",
+      "alternative plus specifically attached condition or limit",
+      "short chronological turns or windows",
+      "stable alias and exact source custody",
+      "bounded fan-out and explicit duplicate custody",
+      "direct append-only ledger admission or quarantine",
+      "no fresh global semantic synthesizer",
+      "no deterministic semantic relevance gate"
+    ]
+  },
+  "not_authorized": [
+    "another prompt repair or provider call",
+    "Phase-4 transfer or stability claims",
+    "graph integration",
+    "live skill or runtime integration",
+    "final-output evaluation",
+    "quality, trust, effort, or proof-of-work scoring"
+  ]
+}

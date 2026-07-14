@@ -1,0 +1,64 @@
+{
+  "schema_version": "lolla.conversation_state_transfer_observed_results.v1",
+  "run_id": "conversation_state_transfer_case01_v4_20260711_a1",
+  "case_id": "amb1-case01-product-scope",
+  "calls": [
+    {
+      "kind": "threads",
+      "operational_status": "ok",
+      "semantic_status": "candidate_quarantined",
+      "candidate_payload_sha256": "ab314e1ef8400d8d28bc3616039691b3292b97b3634382a56a48a87c146e7a3d",
+      "candidate_payload": {
+        "status": "supported",
+        "threads": [
+          {"text": "Northline's request for a new reporting workspace versus existing reliability and roadmap commitments.", "disposition": "resolved", "evidence_mode": "multi_turn_derivation", "introduced": {"span_id": "span-1b65c948c77f0d73", "excerpt": "One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter."}, "responses": [{"engagement": "substantive", "evidence": {"span_id": "span-907a20bcad22a7b8", "excerpt": "Ask what exact job the workspace enables, what they do today, and which parts could serve other customers."}}, {"engagement": "substantive", "evidence": {"span_id": "span-1a2f0ff0549447c9", "excerpt": "A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior."}}, {"engagement": "substantive", "evidence": {"span_id": "span-150313ee9a5f28fb", "excerpt": "Then discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward."}}, {"engagement": "substantive", "evidence": {"span_id": "span-c9902a73ee6c654e", "excerpt": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."}}], "latest": {"span_id": "span-0fa0d1b6a512da05", "excerpt": "That plan protects the learning opportunity without pretending the underlying tradeoff is resolved."}, "superseded_by": null},
+          {"text": "Lina's involvement in the reporting project versus her on-call reliability responsibilities.", "disposition": "resolved", "evidence_mode": "multi_turn_derivation", "introduced": {"span_id": "span-386a3b2f6554d113", "excerpt": "Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer."}, "responses": [{"engagement": "substantive", "evidence": {"span_id": "span-e281ba6436f7c77a", "excerpt": "Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained."}}, {"engagement": "substantive", "evidence": {"span_id": "span-4434a9ae17a3851c", "excerpt": "One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership."}}, {"engagement": "substantive", "evidence": {"span_id": "span-95cae0910bfe0291", "excerpt": "Lina can lead the sessions but not start production code."}}], "latest": {"span_id": "span-0fa0d1b6a512da05", "excerpt": "That plan protects the learning opportunity without pretending the underlying tradeoff is resolved."}, "superseded_by": null}
+        ]
+      },
+      "validation_issues": ["resolved_thread_requires_resolution_response", "resolved_thread_requires_resolution_response"],
+      "invalid_candidate_count": 2,
+      "estimated_cost_usd": 0.00275775
+    },
+    {
+      "kind": "constraints",
+      "operational_status": "ok",
+      "semantic_status": "candidate_quarantined",
+      "candidate_payload_sha256": "a2115c9f3088405947c85ea576b973d4d0a7915ef4359a3ba88b03d8376311b9",
+      "candidate_payload": {
+        "status": "supported",
+        "constraints": [
+          {"text": "The company has reliability work that has been postponed twice.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-23f1f3064d85f198", "excerpt": "we have reliability work we have postponed twice"}]},
+          {"text": "Smaller customers were promised that the next release would simplify the core workflow.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-23f1f3064d85f198", "excerpt": "we told smaller customers that the next release would simplify the core workflow."}]},
+          {"text": "Lina is one of two people carrying on-call responsibilities.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-f8e6ccd2b0e17bcb", "excerpt": "Lina is also one of two people carrying on-call"}]},
+          {"text": "Northline can live with their manual CSV process for another quarter.", "state": "active", "claim_mode": "reported_statement", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-4f3e2d263db50216", "excerpt": "They can live with their manual CSV process for another quarter"}]},
+          {"text": "The product team will offer Northline three focused sessions over the next two weeks to document the workflow without making a build commitment.", "state": "active", "claim_mode": "preference", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-c9902a73ee6c654e", "excerpt": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."}]},
+          {"text": "Lina is permitted to lead the discovery sessions but cannot start production code.", "state": "active", "claim_mode": "stated_condition", "evidence_mode": "exact_span", "evidence": [{"span_id": "span-95cae0910bfe0291", "excerpt": "Lina can lead the sessions but not start production code."}]}
+        ]
+      },
+      "validation_issues": ["source_excerpt_not_exact"],
+      "invalid_candidate_count": 1,
+      "observed_count": 6,
+      "reviewed_atomic_count": 9,
+      "maximum_possible_recall": 0.666667,
+      "estimated_cost_usd": 0.00238625
+    },
+    {
+      "kind": "positions",
+      "operational_status": "ok",
+      "semantic_status": "candidate_quarantined",
+      "candidate_payload_sha256": "d7c59e4e1ee69707f0c161a18f6d9a94491a2a1b91486c5043479390645f8679",
+      "candidate_payload": {
+        "status": "supported",
+        "decision_summary": {"text": "The user has decided to conduct a time-boxed discovery process with Northline to evaluate a potential reporting foundation without committing to a full build, while simultaneously defining reliability and core-workflow release commitments.", "evidence_mode": "multi_turn_derivation", "evidence": [{"span_id": "span-c9902a73ee6c654e", "excerpt": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."}, {"span_id": "span-c94f69abe788b3e9", "excerpt": "Lina can lead the sessions but not start production code."}, {"span_id": "span-c94f69abe788b3e9", "excerpt": "In the same period we will define the reliability work and the core-workflow release we are actually willing to promise."}]},
+        "positions": [
+          {"text": "Conduct a time-boxed discovery phase with Northline to assess the feasibility of a reusable reporting layer while maintaining explicit boundaries to avoid implied delivery promises.", "ownership": "joint", "state": "accepted", "evidence_mode": "multi_turn_derivation", "contributions": [{"role": "originated", "evidence": {"span_id": "span-1a2f0ff0549447c9", "excerpt": "A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior."}}, {"role": "qualified", "evidence": {"span_id": "span-150313ee9a5f28fb", "excerpt": "Then discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward."}}, {"role": "developed", "evidence": {"span_id": "span-c9902a73ee6c654e", "excerpt": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."}}]},
+          {"text": "Prioritize defining and staffing reliability and core-workflow commitments alongside the discovery process to ensure they are not displaced by new feature requests.", "ownership": "joint", "state": "accepted", "evidence_mode": "multi_turn_derivation", "contributions": [{"role": "originated", "evidence": {"span_id": "span-92b427f67956a523", "excerpt": "In parallel, make the reliability and roadmap cost visible."}}, {"role": "developed", "evidence": {"span_id": "span-c94f69abe788b3e9", "excerpt": "In the same period we will define the reliability work and the core-workflow release we are actually willing to promise."}}, {"role": "qualified", "evidence": {"span_id": "span-6405991606afe191", "excerpt": "It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated."}}]}
+        ]
+      },
+      "validation_issues": ["source_excerpt_not_exact"],
+      "invalid_candidate_count": 1,
+      "estimated_cost_usd": 0.00252975
+    }
+  ],
+  "aggregate": {"provider_calls": 3, "automatic_retries": 0, "estimated_cost_usd": 0.00767375, "case_passed": false, "composition_allowed": false}
+}

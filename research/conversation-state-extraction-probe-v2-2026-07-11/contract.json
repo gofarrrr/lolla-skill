@@ -1,0 +1,111 @@
+{
+  "schema_version": "lolla.conversation_state_extraction_probe_contract.v1",
+  "status": "frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_probe_v2_20260711_a1",
+  "purpose": "Prospectively repair the preserved v1 Google INVALID_ARGUMENT by replacing only unsupported JSON Schema const with a one-value enum, then test the same two-case conversation-state extraction contract.",
+  "selection": {
+    "rule": "unique_resolved_case_plus_unique_material_downstream_propagation_case",
+    "selected_case_ids": ["amb1-case03-creative-partnership", "amb1-case04-research-tool-release"],
+    "selection_reason": [
+      "Case 03 is the only reviewed case whose focal thread is resolved rather than still open.",
+      "Case 04 is the addressed-but-unresolved case where a false never-addressed label demonstrably propagated into false downstream pressure and source strength was materially inflated."
+    ],
+    "selected_for_likely_success": false,
+    "clean_holdout": false
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "selection_role": "resolved_thread",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+      "source_sha256": "9788de101dee7661bcc9f76240874f088f9e97579a90deff1ee8c91462004f0f",
+      "message_count": 14,
+      "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case03-creative-partnership.json",
+      "reviewed_packet_sha256": "5e6ff9046bfe3225316a636d16bab7952591b9b5ebcde2c2f340360b6af54663",
+      "expected_position_ownership": "joint",
+      "expected_thread_disposition": "resolved",
+      "reviewed_constraint_count": 8
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "selection_role": "addressed_unresolved_material_propagation",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+      "source_sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb",
+      "message_count": 14,
+      "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case04-research-tool-release.json",
+      "reviewed_packet_sha256": "aaffe78ed2cf3f97631ad5734a71621b03a1b4c58b82b9fa733e2530b98bf8f5",
+      "expected_position_ownership": "joint",
+      "expected_thread_disposition": "addressed_unresolved",
+      "reviewed_constraint_count": 9
+    }
+  ],
+  "system_prompt": "You extract source-linked conversation state from a complete decision conversation. Preserve who contributed what, what remains unresolved, and how strongly the source actually states each constraint. Do not evaluate reasoning quality, name mental models, propose graph seeds, or decide what advice is best. The full conversation is authoritative. Return only the structured response required by the schema.",
+  "extraction_instruction": "Read the entire conversation before classifying anything. Extract the current developed position, substantive thread state, and load-bearing constraints.\n\nFor positions, ownership is user when the user materially supplies the position, assistant when the assistant materially supplies it, joint when both parties materially shape it, and unclear when the source cannot support one of those readings. Record exact contribution quotes and distinguish originated, developed, qualified, challenged, and accepted contributions. Do not call a plan assistant-owned merely because the assistant restates or endorses it later.\n\nFor threads, classify the full trajectory: open_unaddressed means no response engaged the substance; addressed_unresolved means the substance was engaged but remains open; resolved means later conversation materially closes it; superseded means a later identified thread replaced it; genuinely_dropped means the conversation walked away after at most superficial acknowledgement; unclear preserves competing readings. Do not force a dropped thread. An empty thread list is valid.\n\nFor constraints, include the decision conditions whose removal would materially change the choice or its execution. Preserve source strength: stated_condition, reported_statement, possibility, preference, concern, inference, or mixed. A possible grant benefit is not a grant deadline; active participation is not a health condition; a reported opinion is not an objective fact. Use mixed only when one source passage truly contains materially different strengths.\n\nEvery source quote must be a character-exact contiguous substring from the named user or assistant turn. Prefer fewer grounded items over invented completeness. Represent the late conversation, including Turn 7 when it materially changes the current position or thread state.",
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0.0,
+    "reasoning": {"enabled": false},
+    "strict_structured_output": true,
+    "require_supported_parameters": true,
+    "max_output_tokens": 6000,
+    "provider_timeout_seconds": 60,
+    "wall_clock_timeout_seconds": 150,
+    "calls_per_case": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "pipeline_calls": 0,
+    "graph_calls": 0
+  },
+  "call_budget": {
+    "maximum_provider_calls": 2,
+    "estimated_total_cost_ceiling_usd": 0.02,
+    "pricing_table_version": "2026-05-25"
+  },
+  "scoring_contract": {
+    "composite_score": null,
+    "source_first_human_review_required": true,
+    "review_order": "source_then_reviewed_packet_then_observed_packet",
+    "axes": {
+      "position_ownership": {"pass": "The focal current position is present and ownership matches the reviewed packet in both cases."},
+      "thread_disposition": {"pass": "The focal thread is present and disposition matches the reviewed packet in both cases; no false genuinely_dropped label is allowed."},
+      "source_strength": {"pass": "Zero material strengthening breaches in either case."},
+      "constraint_coverage": {"pass": "Recall is at least 0.75 and precision at least 0.80 in each case against the reviewed source inventory."},
+      "exact_quote_grounding": {"pass": "Every persisted evidence quote passes exact named-turn validation."},
+      "late_turn_trajectory": {"pass": "The current position includes material evidence from both user Turn 7 and assistant Turn 7 in each case."}
+    }
+  },
+  "experiment_stop_rule": "stop_after_first_nonpassing_call_without_retry",
+  "prompt_hashes": {
+    "response_schema_sha256": "08d1f7a01cc91b5f415469325b856cad6668af5a699c3d1fabdd9e8ce01f54af",
+    "cases": {
+      "amb1-case03-creative-partnership": {"system_prompt_sha256": "d032bf4a4c182b34af34d32e0e34e8cc5e321ebff0d88bb73bff7271fbf78a83", "user_prompt_sha256": "7acfc73641d4e9bba08d865ad43c99e540b1f9e716615105e4cc5ffc9e16adf5"},
+      "amb1-case04-research-tool-release": {"system_prompt_sha256": "d032bf4a4c182b34af34d32e0e34e8cc5e321ebff0d88bb73bff7271fbf78a83", "user_prompt_sha256": "24454c1a8dabd7d6b090fc604e2238795eed62777669e0dd6b4b55ccce387ab6"}
+    }
+  },
+  "hash_locks": [
+    {"role": "probe_runner", "path": "scripts/evals/run_conversation_state_extraction_probe_v2.py", "sha256": "f46c506c93c4933b1753c87c148613b42b28b7919ec380e9ba6e4c4909144365"},
+    {"role": "reviewed_v1_runner", "path": "scripts/evals/run_conversation_state_extraction_probe.py", "sha256": "0aba1968394df35afb4f3f1160ace011bb299817ce35c728f208e7ddaf3ffe83"},
+    {"role": "state_handoff", "path": "engine/system_b/conversation_state_handoff.py", "sha256": "db528315ee1a5714bffe9546f58a2879b409a182d121bd09210777730d2d8c8b"},
+    {"role": "pricing", "path": "engine/system_b/pricing.py", "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"},
+    {"role": "provider_custody_helper", "path": "scripts/evals/run_fixed_safe_holdout_pool_v2.py", "sha256": "01725b2253139666085e84f15ad9f52a560fc0e1ec53cd906a223df2bb1c3e7a"},
+    {"role": "evaluation_doctrine", "path": "docs/conversation-understanding/lolla-evaluation-doctrine-v0.md", "sha256": "a236fea812b8edf593aa9f0c1e063acedb13896592bce4187bc6cee8c149f04e"}
+  ],
+  "artifacts": {
+    "output_dir": "research/conversation-state-extraction-probe-v2-2026-07-11/run/conversation_state_probe_v2_20260711_a1",
+    "call_custody_path": "research/conversation-state-extraction-probe-v2-2026-07-11/run/conversation_state_probe_v2_20260711_a1/call-custody.json",
+    "mechanical_summary_path": "research/conversation-state-extraction-probe-v2-2026-07-11/run/conversation_state_probe_v2_20260711_a1/mechanical-summary.json",
+    "source_review_shell_path": "research/conversation-state-extraction-probe-v2-2026-07-11/run/conversation_state_probe_v2_20260711_a1/source-review-shell.json",
+    "source_review_result_path": "research/conversation-state-extraction-probe-v2-2026-07-11/run/conversation_state_probe_v2_20260711_a1/source-review-result.json",
+    "require_output_dir_absent_before_run": true
+  },
+  "non_claims": [
+    "not_clean_holdout",
+    "not_independent_gold",
+    "not_graph_value",
+    "not_reasoning_quality_proof",
+    "not_full_pipeline_authority",
+    "not_runtime_integration_authority"
+  ]
+}

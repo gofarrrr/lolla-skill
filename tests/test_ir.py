@@ -18,6 +18,7 @@ from engine.system_b.conversation_context import (
 from engine.system_b.conversation_loader import load_conversation_context
 from engine.system_b.ir import (
     ConversationIR,
+    DerivationComponent,
     DerivationProvenance,
     FrameAnchor,
     SpanProvenance,
@@ -162,6 +163,48 @@ def test_turn_ref_and_derivation_provenance_keep_paraphrases_honest() -> None:
         "source_object_ids": ["issue_001", "frame_001"],
         "note": "inferred across objects",
     }
+
+
+def test_derivation_provenance_round_trips_exact_components() -> None:
+    component = DerivationComponent(
+        component_id="component_001",
+        quote="eight months runway",
+        span_ref=SpanRef(
+            turn_index=2,
+            speaker="user",
+            start_char=7,
+            end_char=7 + len("eight months runway"),
+        ),
+    )
+    provenance = DerivationProvenance(
+        turn_refs=(TurnRef(turn_index=2, speaker="user"),),
+        derivation_id="derivation_001",
+        components=(component,),
+        rejection_reasons=("derivation_requires_two_distinct_user_turns",),
+    )
+
+    serialized = provenance.to_dict()
+    restored = DerivationProvenance.from_dict(serialized)
+
+    assert restored == provenance
+    assert serialized["components"][0]["quote"] == "eight months runway"
+    assert serialized["components"][0]["span_ref"] == {
+        "turn_index": 2,
+        "speaker": "user",
+        "start_char": 7,
+        "end_char": 7 + len("eight months runway"),
+    }
+    assert provenance.evidence_status == "component_evidence_incomplete"
+    assert provenance.routing_eligible is False
+
+
+def test_turn_ref_only_derivation_is_explicitly_legacy_incomplete() -> None:
+    provenance = DerivationProvenance(
+        turn_refs=(TurnRef(turn_index=2, speaker="user"),),
+    )
+
+    assert provenance.evidence_status == "legacy_incomplete_provenance"
+    assert provenance.routing_eligible is False
 
 
 def test_user_issue_event_records_kind_and_ambiguity_without_adding_a_fourth_kind() -> None:

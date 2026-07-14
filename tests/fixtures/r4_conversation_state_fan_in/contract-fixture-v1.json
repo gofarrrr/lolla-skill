@@ -1,0 +1,193 @@
+{
+  "schema_version": "lolla.r4_conversation_state_fan_in_fixture.v1",
+  "purpose": "Structural provider-free fixture only; it does not claim semantic usefulness or model reliability.",
+  "source": {
+    "case_id": "fan-in-contract-fixture",
+    "path": "tests/fixtures/r4_conversation_state_fan_in/fixture-conversation.txt",
+    "message_count": 5,
+    "text": "[Turn 1] USER: I began undecided between acting now and waiting for more evidence.\n[Turn 1] ASSISTANT: Separate the reversible pilot from the irreversible commitment.\n[Turn 2] USER: I now support a bounded pilot with a stop rule.\n[Turn 3] USER: I still do not know whether the stop rule will protect the affected group.\n[Turn 3] USER: Reopen the decision if the pilot shifts harm to that group.\n",
+    "aliases": [
+      {
+        "alias": "e001",
+        "span_id": "span-fixture-001",
+        "speaker": "user",
+        "turn_index": 1,
+        "text_sha256": "22f58102405e10244e248a0a0b98d2636300acb3ead575c680b555650ac5f0bb"
+      },
+      {
+        "alias": "e002",
+        "span_id": "span-fixture-002",
+        "speaker": "assistant",
+        "turn_index": 1,
+        "text_sha256": "0221741ba8cc13b2265a093fcb4400c609c0b62095f25057d7dee71aaba784f1"
+      },
+      {
+        "alias": "e003",
+        "span_id": "span-fixture-003",
+        "speaker": "user",
+        "turn_index": 2,
+        "text_sha256": "b75c90dea8753c8d9cad8bcf895cc5d4be44689c6b57c0033c30c4f7e9def0b6"
+      },
+      {
+        "alias": "e004",
+        "span_id": "span-fixture-004",
+        "speaker": "user",
+        "turn_index": 3,
+        "text_sha256": "e20a211f10958168b76bef9101a77a722d7bce68fb55828ebf7f08b06aeba690"
+      },
+      {
+        "alias": "e005",
+        "span_id": "span-fixture-005",
+        "speaker": "user",
+        "turn_index": 3,
+        "text_sha256": "93c1fe21dfc3ff3df1a984c90fd1dc7f62015929e59f5d0b59d324d7f7358f49"
+      }
+    ]
+  },
+  "planned_readers": [
+    {
+      "reader_id": "current-reader-a",
+      "surface": "current_position",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader-a"
+    },
+    {
+      "reader_id": "current-reader-b",
+      "surface": "current_position",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader-b"
+    },
+    {
+      "reader_id": "qualification-reader",
+      "surface": "qualification",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader"
+    },
+    {
+      "reader_id": "relationship-reader",
+      "surface": "cross_thread_relationship",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader"
+    },
+    {
+      "reader_id": "reopen-reader",
+      "surface": "reopen_condition",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader"
+    },
+    {
+      "reader_id": "starting-reader",
+      "surface": "starting_position",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader"
+    },
+    {
+      "reader_id": "unresolved-reader",
+      "surface": "unresolved_matter",
+      "producer_kind": "fixture",
+      "producer_id": "opaque-reader"
+    }
+  ],
+  "record_specs": [
+    {
+      "reader_id": "starting-reader",
+      "record_id": "fixture-starting-01",
+      "source_aliases": ["e001"],
+      "related_record_ids": [],
+      "semantic_payload": {
+        "interpretation": "A provider-authored starting-position fixture payload.",
+        "limitations": "Structural fixture only."
+      }
+    },
+    {
+      "reader_id": "current-reader-a",
+      "record_id": "fixture-current-a-01",
+      "source_aliases": ["e003"],
+      "related_record_ids": [],
+      "semantic_payload": {
+        "interpretation": "A provider-authored current-position fixture payload shared by two complementary readers.",
+        "limitations": "Structural fixture only."
+      }
+    },
+    {
+      "reader_id": "current-reader-b",
+      "record_id": "fixture-current-b-01",
+      "source_aliases": ["e003"],
+      "related_record_ids": [],
+      "semantic_payload": {
+        "interpretation": "A provider-authored current-position fixture payload shared by two complementary readers.",
+        "limitations": "Structural fixture only."
+      }
+    },
+    {
+      "reader_id": "qualification-reader",
+      "record_id": "fixture-qualification-01",
+      "source_aliases": ["e003"],
+      "related_record_ids": [],
+      "semantic_payload": {
+        "interpretation": "A provider-authored qualification fixture payload.",
+        "limitations": "Structural fixture only."
+      }
+    },
+    {
+      "reader_id": "unresolved-reader",
+      "record_id": "fixture-unresolved-01",
+      "source_aliases": ["e004"],
+      "related_record_ids": [],
+      "semantic_payload": {
+        "interpretation": "A provider-authored unresolved-matter fixture payload.",
+        "limitations": "Structural fixture only."
+      }
+    },
+    {
+      "reader_id": "reopen-reader",
+      "record_id": "fixture-reopen-01",
+      "source_aliases": ["e005"],
+      "related_record_ids": [],
+      "semantic_payload": {
+        "interpretation": "A provider-authored reopen-condition fixture payload.",
+        "limitations": "Structural fixture only."
+      }
+    },
+    {
+      "reader_id": "relationship-reader",
+      "record_id": "fixture-relationship-01",
+      "source_aliases": ["e003", "e004", "e005"],
+      "related_record_ids": [
+        "fixture-current-a-01",
+        "fixture-reopen-01",
+        "fixture-unresolved-01"
+      ],
+      "semantic_payload": {
+        "interpretation": "A provider-authored relationship fixture payload.",
+        "limitations": "Structural fixture only."
+      }
+    }
+  ],
+  "expected_complete": {
+    "status": "conversation_state_fan_in_complete",
+    "planned_reader_count": 7,
+    "total_record_count": 7,
+    "reader_state_counts": {
+      "complete": 7,
+      "completed_zero": 0,
+      "partial": 0,
+      "failed": 0,
+      "missing": 0
+    },
+    "exact_semantic_payload_overlap_pair_count": 1,
+    "source_alias_overlap_pair_count_minimum": 1
+  },
+  "adversarial_mutations": [
+    "unknown state",
+    "unknown issue code",
+    "payload hash drift",
+    "source locator drift",
+    "artifact hash drift",
+    "relationship endpoint missing",
+    "duplicate reader ID",
+    "duplicate record ID",
+    "reader surface drift",
+    "record bound overflow"
+  ]
+}

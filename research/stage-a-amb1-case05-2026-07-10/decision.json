@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.designed_ambiguous_development_stage_a_decision.v1",
+  "date": "2026-07-10",
+  "status": "formal_stage_a_stop_at_pipeline_import_no_rerun",
+  "run_id": "stage_a_amb1_case05_20260710_a1",
+  "contract_sha256": "b412a604cc742faef5bbbbdb43b50df3904c9332f5bd822dd869827bf9ff6d86",
+  "execution": {
+    "orchestrator_invocations": 1,
+    "experiment_retries": 0,
+    "extraction_calls": 1,
+    "pipeline_openrouter_calls": 0,
+    "direct_openai_calls": 0,
+    "extraction_wall_time_seconds": 2.704,
+    "pipeline_wall_time_seconds": 0.077,
+    "extraction_prompt_tokens": 2667,
+    "extraction_completion_tokens": 515,
+    "extraction_total_tokens": 3182,
+    "estimated_extraction_cost_usd": 0.00143925,
+    "pricing_table_version": "2026-05-25"
+  },
+  "extraction_admission": {
+    "passed": true,
+    "captured_messages": 14,
+    "omitted_messages": 0,
+    "exact_reasoning_passages": 6,
+    "quote_failures": 0,
+    "capture_health": "good",
+    "call_custody": "admissible"
+  },
+  "failed_gate": {
+    "id": "pipeline_exit_zero",
+    "reason": "The Stage A orchestrator inherited /usr/bin/python3 version 3.9.6. The pipeline imports a PEP 604 runtime union in engine/system_b/ir.py and therefore requires Python 3.10 or newer.",
+    "stderr_sha256": "36bfedb292b8497504a3ddbb0429aec4062415ae732103d9aec4407e02263c8c",
+    "diagnostic_hash_match": true
+  },
+  "classification": "execution_runtime_preflight_defect_not_reasoning_quality_failure",
+  "prospective_repairs": [
+    "Require and hash an exact Python runtime in the Stage A contract.",
+    "Make dry-run validation reject Python versions below the pipeline minimum before any provider call.",
+    "Launch the next Stage A orchestrator with the bundled Python 3.12 runtime.",
+    "Consume this case permanently and move to the next frozen-ranked case rather than rerunning it."
+  ],
+  "authorizations": {
+    "rerun_case05": false,
+    "repair_execution_runtime_preflight": true,
+    "prepare_next_ranked_case04_stage_a": true,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_semantic_tuning": false
+  },
+  "non_claims": [
+    "not a completed Stage A result",
+    "not Lolla pressure evidence",
+    "not answer-quality evidence",
+    "not clean-holdout evidence",
+    "not provider failure"
+  ]
+}

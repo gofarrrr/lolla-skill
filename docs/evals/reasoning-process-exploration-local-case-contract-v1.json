@@ -1,0 +1,156 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_local_case_contract.v1",
+  "status": "frozen_before_six_provider_calls",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-exploration-local-case02-remaining-v1",
+  "purpose": "Run the six remaining Case-02 focal windows once after Turn 3 passed, then inspect empty behavior, fan-out, source validity, and cross-window duplicates without repeating the protected window or synthesizing globally.",
+  "frozen_inputs": [
+    {
+      "path": "research/reasoning-process-exploration-local-probe-2026-07-11/result.json",
+      "sha256": "3bc61e1837376f1c57fd5813345dd97adbe60aedddec0a43b6a61715267afb39"
+    },
+    {
+      "path": "research/reasoning-process-exploration-local-probe-2026-07-11/source-review.json",
+      "sha256": "8964c799415a23baccec6927847b7ce1d4bfa3e6fb90e24e97b748c3f0758dce"
+    },
+    {
+      "path": "research/reasoning-process-exploration-local-v2-2026-07-11/report.json",
+      "sha256": "989e64f79a3d1e6350a83296fe20fcd3b2df34e69b7ed45f9cc1c8d93a13429d"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_local.py",
+      "sha256": "bf7849f36c3dc1561027eddf1ea60418caae24af5eaacf6f85ad4de20c36aec3"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_exploration_local_case.py",
+      "sha256": "95daee240daef490b9e33e46d0caf0012c617d01e1ebeaaf80225518953910de"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+    "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json"
+  },
+  "jobs": [
+    {
+      "job_id": "exploration-local-amb1-case02-turn001",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-001.json",
+      "packet_sha256": "b9cb5b590c67aa887d14557ae414fd3a40412c34c8c169ea771c3021348e2c23",
+      "input_utf8_bytes": 2602,
+      "focal_turn_index": 1,
+      "system_prompt_sha256": "2e4c70b6375d0791b41690070019c4e91152765222e4100fde1572ca0c141366",
+      "user_prompt_sha256": "792ba17901dc7246011c3d3337de20a022aa34df1782ebb5beb0d9d4b01a4f17",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    },
+    {
+      "job_id": "exploration-local-amb1-case02-turn002",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-002.json",
+      "packet_sha256": "6142e3155e6d4d1d183691bfe16f62f11d9c117f358e957ba31f9e4166fbb8ab",
+      "input_utf8_bytes": 3649,
+      "focal_turn_index": 2,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "61094ed6ca2f1897875891960a77af8d9fcd78526c3c63304458604b0406d14c",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    },
+    {
+      "job_id": "exploration-local-amb1-case02-turn004",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-004.json",
+      "packet_sha256": "d8e467d5febe1ba6bfbc463eaad6dfdf612eb4a32812c4667fa1091a399907ac",
+      "input_utf8_bytes": 3757,
+      "focal_turn_index": 4,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "0ed233b5c76271f3bb254ad89e41b09fa305c2844ea595c9c7a1de769788c9f0",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    },
+    {
+      "job_id": "exploration-local-amb1-case02-turn005",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-005.json",
+      "packet_sha256": "1f553e120fe88fc06e2bcd7a5a14bd66d49af15cb31353b55a106382907a4e44",
+      "input_utf8_bytes": 3801,
+      "focal_turn_index": 5,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "edc5fadeb80914c5c1dab86b4b8ee88c3f536b08076a0d3e00a97735f82c445e",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    },
+    {
+      "job_id": "exploration-local-amb1-case02-turn006",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-006.json",
+      "packet_sha256": "6e2dcbefef7c0247cb183fe9191d3012e07fd13becbcd3b82f957dbefc27455d",
+      "input_utf8_bytes": 3691,
+      "focal_turn_index": 6,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "1479baf0a36f7667b6ac10ca6e22560b4bd257af826953fe21478e8fbae50bbd",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    },
+    {
+      "job_id": "exploration-local-amb1-case02-turn007",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-local-v2-2026-07-11/cases/amb1-case02-nonprofit-scale/windows/turn-007.json",
+      "packet_sha256": "9483a1d14a8ed6c7053859d0066cc5c88ca1bb75b4bd275805b127f3cc42e7c8",
+      "input_utf8_bytes": 3789,
+      "focal_turn_index": 7,
+      "system_prompt_sha256": "3aa0304715d1c4cf984fc10dd230aa2e232076e2e4d96756396b97d368845052",
+      "user_prompt_sha256": "026624e8acfcb6c7edeba06486c2e859f69730eb1a1fdd2157b821ec98a25caa",
+      "response_schema_sha256": "245fe966d952fd0aa92c6c6318cf7a6384b20aa73b95b97f6bede867eee5e76d"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "budget": {
+    "maximum_provider_calls": 6,
+    "maximum_estimated_cost_usd": 0.05,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success_rate": 1.0,
+    "typed_admission_rate": 1.0,
+    "stable_alias_validity_rate": 1.0,
+    "invalid_record_count": 0,
+    "source_strength_inflation_count": 0,
+    "valid_empty_output_allowed": true,
+    "cross_window_duplicate_count_measured_not_scored": true,
+    "source_review_required": true
+  },
+  "boundary": {
+    "turn3_repeated": false,
+    "global_synthesis_authorized": false,
+    "semantic_deduplication_authorized": false,
+    "repair_or_retry_authorized": false,
+    "phase4_transfer_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "automatic_retries": 0,
+  "candidate": {
+    "messages": [
+      {
+        "role": "USER",
+        "text": "I am an associate dean at a public university. We are managing an introductory statistics course with nearly nine hundred students. The evening tutoring sessions are constantly packed. A vendor has proposed an AI tutor trained on our syllabus, promising faster explanations and more practice. However, faculty are worried about it generating confident errors or acting as a cheap replacement for human staff, while student reps are concerned about data privacy and the accuracy of the tool. I need to figure out if this actually helps without compromising the support we owe these students."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "To evaluate this, you should frame the pilot as a supplement rather than a replacement, keeping a human baseline clearly defined. You need to establish specific parameters: what tasks the tool handles, how students can verify its output, what data is kept, and how you will ensure equal access. Most importantly, don't rely on engagement metrics alone to judge success, and remember that a standard disclaimer isn't a substitute for actual safety measures against errors."
+      },
+      {
+        "role": "USER",
+        "text": "The problem is that our current system isn't truly equal either. Commuter students and those working evening shifts miss out on tutoring, and some feel too embarrassed to ask basic questions in front of others. I don't want to use these concerns to justify keeping the status quo, but I am worried that students who are already hesitant to ask a person might be the ones most likely to trust a polished—but potentially incorrect—AI answer."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "That is a valid tension. You should view both the current access gaps and the new verification burden as part of the same problem set. Keep your human office hours and tutoring capacity exactly as they are during the test. Make sure there is a simple path for students to escalate a question to a human if they are unsure. Ultimately, you want to measure if the students who are currently underserved are actually getting better support, not just if the total number of interactions increases."
+      },
+      {
+        "role": "USER",
+        "text": "The vendor has agreed to limit the tutor to our specific syllabus, worked examples, and approved reference pages. It will cite the source for every answer and explicitly state when a question falls outside the scope. They also promised that conversations won't be used for model training, logs will be purged after thirty days, and students won't need to create separate vendor accounts to use it."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "Those constraints are helpful for limiting exposure, but they don't solve the core issue of reasoning. You need to test whether those citations actually back up the generated answer and whether the tool correctly refuses to answer out-of-scope questions. You should also clarify who has access to those logs, how you verify the deletion process, and how you will audit the tool's accessibility for all students."
+      },
+      {
+        "role": "USER",
+        "text": "Faculty suggested a six-week pilot across four sections. We would keep all current resources—lectures, assignments, and tutoring—the same for everyone. Two sections get the tool immediately, and two get it after the review period, so no one loses support. Instructors plan to generate a set of common, edge-case, and intentionally misleading questions to test the AI before launch and will publish corrections whenever it fails."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "The staggered access design is smart because it allows for a comparative analysis without removing support from anyone. Just be careful not to rely solely on grades as your outcome. Track student confidence, how often they successfully escalate to a human, and any accessibility hurdles. Also, make sure the limitations of the tool are clearly visible to students at the point of use, not buried in an administrative report."
+      },
+      {
+        "role": "USER",
+        "text": "Student representatives pushed back on instructors having access to individual chats. We reached a compromise: instructors only see aggregated topics unless a student chooses to share a transcript. A separate instructional-tech reviewer can look at sampled conversations after stripping identifiers. Usage is entirely optional, and faculty have agreed not to use chat content or participation in grading."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "That separation between help-seeking and evaluation is crucial. You should set the aggregation threshold high enough that individual students can't be identified by a niche question. Regarding the 'optional' use, don't just focus on the users; try to understand why some students choose not to use it. It might be a design barrier rather than just a personal preference."
+      },
+      {
+        "role": "USER",
+        "text": "The vendor tried to push a discounted annual contract if we signed before the pilot, but we said no. The agreement is for six weeks only, we own the aggregate results, and we can pull the plug without disrupting the course. We also set a hard pause rule: if there's a repeated material error on a core concept, an unfixable accessibility issue, or a privacy breach, the pilot stops immediately."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "Good call on keeping the contract independent of the pilot. It keeps the focus on education, not sales. You should explicitly define what constitutes a 'repeated material error' and determine exactly who has the authority to trigger that pause before you start. Keep a meticulous record of every correction made; you don't want a low total error count to mask a persistent failure on a foundational topic."
+      },
+      {
+        "role": "USER",
+        "text": "I’m moving forward with the six-week, four-section pilot. We have the human support baseline, the delayed access for the control group, optional student participation, and the strict pause conditions. I’m going to look at learning outcomes, access, and privacy as a whole package. Any long-term contract will be subject to a full academic review after the pilot, regardless of how popular the tool is with students."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "That authorization structure keeps your educational obligations stable while providing a clear test of the new channel. By decoupling usage from success, you avoid letting vanity metrics drive the decision. Make sure you document every deviation from the protocol and prepare that full record for the review board before any wider implementation is considered."
+      },
+      {
+        "role": "USER",
+        "text": "We ran the pre-launch question set, and we hit a snag. The AI handled math well, but on two ambiguously phrased questions, it stitched together correct facts into a nonsensical answer. The citations looked legitimate, which made the error look dangerously convincing. One professor wants to scrap the whole thing, but the students argue that human tutors mess up too and that quitting now would make the pilot seem like a sham."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "Don't cancel yet, but do treat this as a signal. You need to determine if this is a systemic issue—can the AI be taught to identify ambiguity and defer to a human instead? Compare this to human error, but don't use human fallibility as an excuse for an AI's consistent, scalable error. Add these types of questions to your adversarial test set and set a clear threshold for what is acceptable before you go live."
+      },
+      {
+        "role": "USER",
+        "text": "The vendor can add a 'don't know' response, but they usually update the model monthly. Faculty are worried the AI's behavior will shift during the six weeks. The vendor offered to pin our course to a specific version for the duration of the pilot and give us a week to test any safety patches. It means we won't get general updates, but that feels safer for an evaluation."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "Pinning the version is the right move for data integrity. Define exactly what qualifies as an emergency patch, and make sure you re-run that fixed question set every time a change is proposed. It is better to have a static, predictable tool for six weeks than a moving target. If you do apply a patch, ensure students are notified if it fundamentally changes the nature of the answers they might have previously seen."
+      },
+      {
+        "role": "USER",
+        "text": "We found another complication: some math equations are rendered incorrectly by screen readers. The source document is fine, but the AI's generated explanation is not. The vendor said they can fix the math rendering before launch. A faculty member suggested moving affected students to the human-only sections, but the accessibility office said that would be discriminatory because it excludes them from the very thing we are testing."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "The accessibility office is absolutely right. Excluding those students would just hide a technical failure rather than solving it. You must require the fix and verify it with an audit before those sections go live. Accessibility isn't an 'add-on' or a reason to move students elsewhere; it is a core performance metric that needs to be tracked just as rigorously as learning outcomes."
+      },
+      {
+        "role": "USER",
+        "text": "There is also the issue of faculty workload. The vendor claimed this would save time, but my faculty are spending hours building test sets, reviewing logs, and writing corrections. This pilot isn't cutting tutoring hours, and the oversight work might actually increase the total labor. I still think the access benefit is worth it, but I realize now that I let the promise of 'automation' obscure the real operational costs."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "You need to be transparent about those costs. Track every hour spent on design, review, and correction. Some of this is setup, but some will be recurring. Don't try to force a business case that isn't there. If the pilot succeeds, it should be because it improves access, not because it saves labor. Any future expansion needs to account for who is doing this quality-control work and what other teaching tasks they are sacrificing to do it."
+      },
+      {
+        "role": "USER",
+        "text": "We are only launching once the ambiguity and screen-reader issues are resolved and verified. The version will be pinned, patches will be tested, and we will track faculty time as a formal metric. Human support remains constant, and we will keep the comparison sections separate. We are ready to accept that the pilot might show the tool is useful, or that it is too burdensome to maintain. We won't call it a success just to satisfy the vendor."
+      },
+      {
+        "role": "ASSISTANT",
+        "text": "You have built a robust framework for this experiment. By addressing the synthesis errors, version control, accessibility, and the hidden labor costs upfront, you have transformed a potential sales pitch into a genuine academic inquiry. Keep the full record of failures, fixes, and time logs. Whatever the outcome, this data will provide the evidence needed to make an informed decision rather than relying on marketing claims or abstract fears."
+      }
+    ]
+  },
+  "candidate_sha256": "b77937f3cfb11df66335b6d6051e98fdc52766717298e0b7652decf3d8ae91a9",
+  "case_id": "v1-case05-ai-tutoring",
+  "completion_tokens": 2496,
+  "duration_seconds": 11.46,
+  "evaluator_call": false,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "lolla_pipeline_call": false,
+  "operational_status": "ok",
+  "parse_error": "",
+  "prompt_tokens": 2572,
+  "provider_calls": 1,
+  "provider_free_shape_review": {
+    "diagnostics": {
+      "assistant": {
+        "coefficient_of_variation": 0.1186,
+        "maximum_words": 86,
+        "mean_words": 69.417,
+        "minimum_words": 54
+      },
+      "total_words": 1681,
+      "user": {
+        "coefficient_of_variation": 0.1227,
+        "maximum_words": 94,
+        "mean_words": 70.667,
+        "minimum_words": 57
+      }
+    },
+    "issues": [
+      "user_has_no_short_turn",
+      "user_has_no_long_turn",
+      "user_length_variation_below_diagnostic_floor",
+      "assistant_has_no_short_turn",
+      "assistant_has_no_long_turn",
+      "assistant_length_variation_below_diagnostic_floor"
+    ],
+    "status": "reject"
+  },
+  "provider_payload_sha256": "8e94f079bcd458ab8e7689124676aaa9a7e8a2b8067e2efdbdc3e15cd9ae3794",
+  "provider_reported_cost_usd": 0.004387,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_healing": false,
+  "response_schema_sha256": "d4dc0f00ca42eb0b55a9828285c5c401fd00188615f6795a4554fe7752011b8c",
+  "seed": 105,
+  "semantic_and_naturalism_review": "pending",
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "served_provider": "Google",
+  "source_authoring_call": true,
+  "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/transfer-sources/v1-case05-ai-tutoring.txt",
+  "source_sha256": "54913f9b558a00fef2a2fdd993f8042514de33286f9a1df226bf69916c1ad944",
+  "system_prompt_sha256": "2838485a0b7f40c16d993f1974ed98b4c22405bbc3f4a0220f804f3aca7fd38d",
+  "temperature": 0.65,
+  "total_tokens": 5068,
+  "user_prompt_sha256": "54158d3743ca32ea4d6287dcb5642cded23251e5dc727212a9a7185545ef63a0"
+}

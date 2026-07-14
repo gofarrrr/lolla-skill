@@ -48,7 +48,8 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 - Preserve your (assistant) reasoning passages verbatim — the companion lane needs literal substrings
 - Omit tool calls and their outputs (code execution, file reads, search results)
 - Omit system reminders and meta-conversation about the skill itself
-- If the conversation is very long (>100 turns), include the first 3 turns and last 15 turns
+- Preserve the complete available prose conversation even when it exceeds 100 turns. Do not pre-truncate the authoritative transcript.
+- Long-conversation compaction belongs to a separately named processing view. `run_extract.py` may create `conversation_processing_view.txt` plus exact omission metadata, while the original `conversation.txt` remains authoritative and is archived unchanged.
 
 <a id="step-2-extract-decision-structure"></a>
 
@@ -151,16 +152,16 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 - `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the accounting invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
 - `references/private-enrichment-treatment.md` — how to privately handle lane pressure and V60 chunks: freedom of conclusion, not freedom from consideration; strongest plausible application; rejection/deferral standards; public/private split.
 
-Also read `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md` if it exists. Treat it as private context: a cleaner table, not a command. It may include only the current run's compact lane/V60 material, or it may also include cached portfolio cards. Use it to think more clearly before writing; do not expose the table, source IDs, card IDs, lane labels, V60 labels, or cache state in user-facing prose.
+Also read `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md` if it exists. Treat it as private context: a cleaner table, not a command. It may include only the current run's compact lane/V60 material, or it may also include cached portfolio cards. If the Markdown says it was capped, also read `source_items` in `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.json`; every ledger-required item is either inline in the Markdown or exactly resolvable there. Do not disposition material you were unable to inspect. Use the table to think more clearly before writing; do not expose the table, source IDs, card IDs, lane labels, V60 labels, or cache state in user-facing prose.
 
 After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
 **Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back or set aside` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
 
 **Timing note:** Post-Step-6 pressure-check sub-agents are rested by default.
-First write Step 6, fill the deterministic V60 ledger skeleton, and run
-`scripts/skill/finalize_step6_ledgers.sh --v60-only`. Continue to the default-off
-pressure-check persistence path only after the ledger is `valid` or
+First write Step 6, fill every active custody ledger, and run
+`scripts/skill/finalize_step6_ledgers.sh --all`. Continue to the default-off
+pressure-check persistence path only after every required ledger is `valid` or
 `not_required`. If the user/operator explicitly requests the optional deeper
 review mode, Step 7 may run only after this same ledger gate succeeds. This
 prevents an invalid private-consideration trace from continuing into memo
@@ -177,6 +178,14 @@ The audit findings are **hints, not commands — but not disposable hints.** The
 - **Treat CompanionCheatSheet as enrichment — and apply `anchor-treatment.md`.** Each anchor has a `display_name`. Anchors are evidence-bearing hypotheses, not canonical diagnoses; consider every anchor, disposition it privately, and surface only the decision-relevant mechanism. Public model names are optional, not proof of consideration.
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 - **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has.
+
+**Constitutional graph pressure.** If `constitutional_graph_survival.status == "active"`, read every `active_pressure_items[*]` object in full from `result.json`, even when the private Markdown table was capped. These are deliberately noisy canonical lenses admitted before the probabilistic verifier; graph admission is not relevance proof. For each active `pressure_id`, first state the strongest plausible application and attempted condition, then choose exactly one private disposition:
+
+- `apply` when it earns a concrete test, condition, alternative, reversal rule, private guardrail, or visible shift;
+- `reject` when the strongest application fails—name the failed condition and the risk of forcing it;
+- `park` when evidence or timing is insufficient—name the exact reopening condition.
+
+Do not disposition the compact reserve in this run. Reserve means inspectable capacity custody, not semantic rejection. Do not force an active item into public prose: a fully grounded rejection or park is successful consideration, and public stand-down is allowed.
 
 **V60 private enrichment.** If `/tmp/lolla_${LOLLA_RUN_ID}_result.json` contains `v60_enrichment.status == "active"`, read it before writing the updated position. This is the source-backed affordance / absence layer selected after the four lanes. It is private consideration material, not user-facing content and not a command to name mental models.
 
@@ -234,7 +243,44 @@ LOLLA_REVISED_EOF
 python3 "$SKILL_DIR/scripts/skill/persist_revised_answer.py" --run-id "${LOLLA_RUN_ID}" --revised-file "/tmp/lolla_${LOLLA_RUN_ID}_revised.txt"
 ```
 
-**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the atom-level table items and cached cards that were placed in front of you. Copy the provided `source_id` values exactly — do not invent, rename, or aggregate IDs. Fill each item with one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
+**If `constitutional_graph_survival.status == "active"`, persist its apply/reject/park ledger first.** Start from `constitutional_graph_survival.disposition_ledger_skeleton` in `result.json`. Copy every item and immutable field exactly. Fill only the empty decision fields. Every active item must appear once in packet order; `not_considered` is not allowed.
+
+```bash
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+cat > /tmp/lolla_${LOLLA_RUN_ID}_constitutional_graph_survival_ledger.json << 'LOLLA_GRAPH_LEDGER_EOF'
+{
+  "schema_version": "lolla.constitutional_graph_survival_ledger.v1",
+  "status": "completed",
+  "portfolio_sha256": "<copy exact portfolio_sha256 from the skeleton>",
+  "items": [
+    {
+      "pressure_id": "<copy>",
+      "model_id": "<copy>",
+      "candidate_origin": "<copy>",
+      "consumer_locator": "<copy>",
+      "disposition": "reject",
+      "strongest_plausible_application": "The strongest case-specific application you tested.",
+      "attempted_application_condition": "The condition that would need to hold.",
+      "why": "Why the disposition follows.",
+      "failed_condition": "Required for reject; otherwise empty.",
+      "reopen_condition": "Required for park; otherwise empty.",
+      "visible_effect": "Required for a public apply; otherwise empty.",
+      "private_guardrail": "May satisfy a private-only apply; otherwise empty.",
+      "risk_if_forced": "What becomes misleading if forced.",
+      "risk_if_ignored": "What might be missed if ignored."
+    }
+  ],
+  "notes": ["Private custody only. Every active candidate received apply, reject, or park."]
+}
+LOLLA_GRAPH_LEDGER_EOF
+
+bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --graph-only
+```
+
+If graph-ledger finalization exits non-zero, stop and repair it against the exact skeleton before continuing. A missing or `not_considered` active item is a technical custody failure, not a semantic judgment.
+
+**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the atom-level table items and cached cards that were placed in front of you. Copy the provided `source_id` values exactly. Copy every skeleton item in full: preserve all source metadata without removing, renaming, aggregating, or adding fields. Fill only `disposition`, `why`, `visible_effect`, and `private_guardrail`. Use one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
 
 ```bash
 : "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
@@ -276,7 +322,7 @@ Write exactly one completed transaction for every skeleton transaction:
 . "$LOLLA_ENV_STATE"
 cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
 {
-  "schema_version": "v60_skill_consideration_ledger.v1",
+  "schema_version": "v60_skill_consideration_ledger.v2",
   "status": "completed",
   "transactions": [
     {
@@ -290,7 +336,8 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
       "risk_if_forced": "What would go wrong if this chunk were forced despite weak fit, or empty if used cleanly.",
       "why": "Short private rationale for how this affected reasoning.",
       "visible_effect": "Short public-facing effect, or empty if private-only.",
-      "private_guardrail": "Short private guardrail if used privately, otherwise empty."
+      "private_guardrail": "Short private guardrail if used privately, otherwise empty.",
+      "technical_blocker": "Empty unless the chunk is technically unusable."
     }
   ],
   "notes": [
@@ -302,7 +349,7 @@ LOLLA_V60_LEDGER_EOF
 bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --v60-only
 ```
 
-The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, and `duplicate`.
+The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`, and `technical_failure`.
 
 If the finalization helper exits non-zero, stop before pressure checks, memo rendering, Observatory, or archive. Read the validation errors, repair `/tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json` against the skeleton, rerun the same helper command, and continue only after `v60_consideration_ledger` is `valid` (or `not_required` when V60 is inactive).
 
@@ -311,9 +358,9 @@ Route compatibility:
 - `used`: `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`
 - `rejected`: `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`
 - `deferred`: `set_aside`, `missing_evidence`, `evidence_gate`, `diagnostic_question`
-- `not_considered`: `already_covered`, `duplicate`, `irrelevant`
+- `not_considered`: `technical_failure` only
 
-For every transaction, fill `strongest_plausible_application`. For `used` transactions, fill either `visible_effect` or `private_guardrail`; a chunk can be used privately without changing public prose, but the guardrail must be named. For `rejected`, `deferred`, and `not_considered` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Empty `risk_if_forced` is acceptable only when the chunk was actually used cleanly.
+For every readable transaction, fill `strongest_plausible_application`. For `used` transactions, fill either `visible_effect` or `private_guardrail`; a chunk can be used privately without changing public prose, but the guardrail must be named. For `rejected` and `deferred` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Use `not_considered` only when the chunk was malformed, inaccessible, or technically unusable; set `route: technical_failure` and fill `technical_blocker` instead of pretending to know its strongest application. A readable duplicate, already-covered item, or irrelevant item was considered and must be `rejected` with a concrete reason.
 
 For `chunk_kind == "absence"` and `disposition == "used"`, also fill at least one of:
 
@@ -656,13 +703,13 @@ The archive script:
 - Finalizes V60 consideration telemetry before copying artifacts. If V60 was active and the private ledger is missing, the run is marked degraded with `v60_consideration_ledger_missing` instead of looking complete.
 - Runs the product-output hygiene scanner before copying artifacts. If revised text, memo markdown, or memo-note fields leak internal terms such as V60, affordance, chunk, ledger, lane, pipeline, or independent review, `run_health.product_output_health` becomes `unsafe` and the run is degraded with `product_output_leak`.
 - Runs the live-output hygiene scanner before copying artifacts. If `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt` exists, it is scanned as the `live_narration` product surface; detected leaks set `run_health.live_output_health` to `unsafe`, while a manually maintained no-leak transcript is `not_checked` unless a complete trusted transcript was explicitly supplied to the finalizer. If it is missing, `live_output_health` becomes `missing` without degrading archive compatibility unless the explicit `--require-live-output-clean` gate was run.
-- Reads the 20 core/optional artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `pre_step6_shadow_portfolio.json`, `pre_step6_private_table.json`, `pre_step6_private_table.md`, `pre_step6_private_table_ledger.json`, `live_transcript.txt`, `operator.log`, `run_events.json`, `user_usefulness_review.json`, `outcome_review.json`, `control_input.json`). `extraction.json` and `result.json` carry capture-adequacy custody when available; `control_input.json` carries optional external trace/action/approval metadata when supplied. Missing artifacts (e.g., if Step 6b, private-table ledger persistence, V60 ledger persistence, live transcript capture, operator logging, recovery-event recording, Step 8c, or external control-input staging did not run) are skipped gracefully.
+- Reads the core/optional artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*`, including the authoritative conversation, separately bounded processing view, provider budget, result, revised answer, memo, constitutional graph-survival ledger, V60/private-table ledgers, trace inputs, reviews, and control input. `result.json` carries the complete active-plus-reserve graph portfolio; `constitutional_graph_survival_ledger.json` carries Step 6 apply/reject/park custody. Missing optional artifacts are skipped gracefully, while required active ledgers fail their Step 6 finalizer before archive.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact captured-conversation hash first**, then exact/fuzzy extractor fingerprint matching against stored fingerprints (token-set Jaccard ≥ 0.80). Identical captured reruns archive into the same case even when `decision_situation` is paraphrased differently by extraction. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching. Legacy manifests without `conversation_hashes` are still matchable because archive time can compute hashes from archived `conversation.txt` files.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
 - Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias), the run_id, and metadata-only `risk_mode`.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/graph_survival_report.json` and `.md`, operator reports showing graph candidates, embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated signals, and visible/private survival.
-- Generates `{case_folder}/${LOLLA_RUN_ID}/agent_result.json`, a compact `lolla_agent_result.v1` handoff for machine callers with conservative caller action, risk mode, provider-boundary summary, and compact capture-adequacy status, plus `/tmp/lolla_${LOLLA_RUN_ID}_agent_result.json` as a convenience copy.
+- Generates `{case_folder}/${LOLLA_RUN_ID}/agent_result.json`, a compact `lolla_agent_result.v2` handoff for machine callers with neutral review action, risk mode, provider-boundary summary, exact/estimated usage custody, and compact capture-adequacy status, plus `/tmp/lolla_${LOLLA_RUN_ID}_agent_result.json` as a convenience copy.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/control_result.json` only when `control_input.json` was supplied. This optional `lolla_control_result.v1` wrapper maps Lolla's existing `caller_action` to control-plane outcome language and preserves compact external references; it does not approve actions or replace policy, sandbox, proxy, approval, identity, or observability systems. When present, it also writes `/tmp/lolla_${LOLLA_RUN_ID}_control_result.json` as a convenience copy.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/evaluation.json`, a deterministic `lolla.evaluation.v0` run-readiness receipt for artifact presence, schema validity, reasoning-trace custody, product/live hygiene, provider-boundary policy, capture adequacy, and caller conservatism. It is not an advice-quality score, does not use an LLM judge, and writes `/tmp/lolla_${LOLLA_RUN_ID}_evaluation.json` as a convenience copy.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, `risk_mode`, run health, capture-adequacy metadata, optional control-plane references, usage summary, pressure-check state, private-custody status, reasoning-lens IDs, model-call telemetry, and future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts, including `agent_result.json`, optional `control_input.json` / `control_result.json`, and `evaluation.json`, without duplicating conversation or memo text.

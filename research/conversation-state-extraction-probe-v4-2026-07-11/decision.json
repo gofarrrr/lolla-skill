@@ -1,0 +1,86 @@
+{
+  "schema_version": "lolla.conversation_state_extraction_probe_decision.v1",
+  "status": "closed_failed_on_first_case",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_probe_v4_20260711_a1",
+  "execution": {
+    "openrouter_calls": 1,
+    "successful_inference_calls": 1,
+    "second_case_called": false,
+    "automatic_retries": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "evaluator_calls": 0,
+    "prompt_tokens": 2878,
+    "completion_tokens": 1179,
+    "estimated_cost_usd": 0.002488,
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "finish_reason": "stop",
+    "reasoning_tokens": 0
+  },
+  "mechanical_result": {
+    "status": "invalid_contract",
+    "validation_errors": [
+      "joint_position_requires_both_speakers",
+      "source_quote_not_exact"
+    ],
+    "formal_source_review_authorized": false,
+    "invalid_packet_quarantined_for_postmortem": true,
+    "invalid_packet_was_incorrectly_given_an_observed_packet_path": true
+  },
+  "source_first_postmortem": {
+    "review_order": "source_then_reviewed_packet_then_quarantined_model_packet",
+    "composite_score": null,
+    "axes": {
+      "position_ownership": {
+        "status": "failed",
+        "reason": "The reviewed focal position is joint. The model fragmented it and labeled its credit fragment joint using only user contributions."
+      },
+      "thread_disposition": {
+        "status": "failed",
+        "reason": "The reviewed focal participant-authorship thread is resolved, but the model omitted it and extracted different unresolved edit and credit threads."
+      },
+      "source_strength": {
+        "status": "failed",
+        "reason": "The model merged prior approval with the participant's reported wish not to supervise edits and flattened both into stated_condition."
+      },
+      "constraint_coverage": {
+        "status": "failed",
+        "reviewed_constraint_count": 8,
+        "maximum_reviewed_items_materially_represented": 3,
+        "recall_ceiling": 0.375,
+        "required_recall": 0.75,
+        "precision": null,
+        "reason": "The invalid, non-atomic packet does not support a defensible formal precision calculation."
+      },
+      "exact_quote_grounding": {
+        "status": "failed",
+        "violation_count": 1,
+        "reason": "One claimed exact quote joins non-contiguous source statements."
+      },
+      "late_turn_trajectory": {
+        "status": "failed",
+        "user_turn_7_represented": true,
+        "assistant_turn_7_represented": false,
+        "reason": "The packet does not carry the assistant's final qualification that credit must not be treated as proof of mutual process."
+      }
+    }
+  },
+  "decision": {
+    "probe_passed": false,
+    "case04_authorized_from_this_run": false,
+    "full_development_run_authorized": false,
+    "graph_integration_authorized": false,
+    "runtime_integration_authorized": false,
+    "more_provider_calls_authorized": false
+  },
+  "lessons": [
+    "JSON wire mode plus local typed validation is operationally viable.",
+    "Operational viability did not produce acceptable conversation-state extraction.",
+    "Ownership needs contribution-completeness custody rather than a label alone.",
+    "Thread evaluation must score focal-thread recall, not merely whether some threads were returned.",
+    "Constraint extraction still compresses source strength and loses coverage.",
+    "Invalid non-empty packets must be quarantined without an observed_packet_path or zero-violation implication."
+  ],
+  "next_boundary": "Perform provider-free design and replay work on the observed failure before authorizing another extraction call. Do not tune only to Case 03, run Case 04, grow the graph, or launch a full pipeline."
+}

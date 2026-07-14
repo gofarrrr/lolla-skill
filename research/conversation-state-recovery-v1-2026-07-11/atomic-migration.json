@@ -1,0 +1,64 @@
+{
+  "schema_version": "lolla.conversation_state_atomic_constraint_migration.v1",
+  "status": "source_reviewed_provider_free",
+  "date": "2026-07-11",
+  "purpose": "Split the two reviewed mixed-strength constraints into atomic candidates without changing their source custody.",
+  "migrations": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "legacy_constraint_id": "constraint-northline-collaborator-clock",
+      "legacy_claim_mode": "mixed",
+      "replacement_candidates": [
+        {
+          "text": "Northline can continue its manual CSV process for another quarter.",
+          "state": "active",
+          "claim_mode": "stated_condition",
+          "evidence_mode": "exact_span",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 6, "quote": "They can live with their manual CSV process for another quarter"}
+          ]
+        },
+        {
+          "text": "Northline's operations lead may move to a different role within that quarter.",
+          "state": "active",
+          "claim_mode": "possibility",
+          "evidence_mode": "exact_span",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 6, "quote": "their operations lead may move to a different role by then"}
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "legacy_constraint_id": "constraint-citation-and-grant-possibility",
+      "legacy_claim_mode": "mixed",
+      "replacement_candidates": [
+        {
+          "text": "Two labs want to cite the tool in papers this year.",
+          "state": "active",
+          "claim_mode": "reported_statement",
+          "evidence_mode": "exact_span",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 3, "quote": "the two labs want to cite the tool in papers this year"}
+          ]
+        },
+        {
+          "text": "A public version may help the grant renewal.",
+          "state": "active",
+          "claim_mode": "possibility",
+          "evidence_mode": "exact_span",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 3, "quote": "may help our grant renewal"}
+          ]
+        }
+      ]
+    }
+  ],
+  "non_claims": [
+    "migration_does_not_change_source_text",
+    "migration_does_not_prove_semantic_gold",
+    "migration_does_not_authorize_provider_calls",
+    "migration_does_not_authorize_graph_routing"
+  ]
+}

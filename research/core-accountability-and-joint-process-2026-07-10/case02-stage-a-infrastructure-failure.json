@@ -1,0 +1,26 @@
+{
+  "schema_version": "lolla.holdout_stage_a_failure.v0",
+  "status": "stopped_no_retry",
+  "case_id": "case-02-multi-offer-career",
+  "contract_sha256": "c2c10ee0af1e7fec3d3feea1b51207faf1f94c0796d2584a27c03bbc0a751923",
+  "failure_phase": "fresh_extraction_artifact_persistence",
+  "provider_call_completed_before_failure": true,
+  "artifact_persisted": false,
+  "failure": "The configured output parent directory did not exist. The runner made the extraction call, then raised FileNotFoundError while writing the result.",
+  "experiment_retry_count": 0,
+  "same_case_retry_authorized": false,
+  "pipeline_authorized": false,
+  "stage_b_authorized": false,
+  "usage_and_cost": "unknown_because_the_completed_response_and_call_metadata_were_not_persisted",
+  "repair": {
+    "scope": "prospective_runner_preflight_only",
+    "same_case_reused": false,
+    "description": "The extraction runner now creates or rejects the output parent before provider initialization and has regression tests proving preflight ordering."
+  },
+  "non_claims": [
+    "not_a_semantic_extraction_failure",
+    "not_a_provider_failure",
+    "not_permission_to_retry_case02",
+    "not_downstream_evidence"
+  ]
+}

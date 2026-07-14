@@ -1,0 +1,2064 @@
+{
+  "attempt_status": "transfer_case_execution_complete_source_review_required",
+  "call_custody": [
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-01-starting-result.json",
+      "artifact_sha256": "dfef645bff5965b127ea785e97d18ca0d2ed37d65773b640d34cbc4da75e7953",
+      "compiled": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "The interpretation is strictly bound to the explicit text of the initial turns and does not assume any pre-existing organizational commitments or subsequent turn modifications.",
+        "observations": [
+          {
+            "case_id": "v1-case02-discharge-transport",
+            "fidelity_note": "The user's starting stance displays dual forces: open evaluation/indecision regarding the new platform's utility versus risks (e007), coupled with a firm rejection of holding the current taxi-voucher setup as a safe benchmark due to its constant failures (e013).",
+            "graph_routing_eligible": false,
+            "limitations": "This starting stance captures the user's mindset before specific operational safeguards (such as nursing overrides, dedicated coordination, and contractor privacy rules) were structured in later turns.",
+            "observation_id": "rprolev22-starting-01-8c1417539bfa62",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:8c1417539bfa627f3178d742140884dbac6f1706eef119d061f247a5d624d8e7",
+            "role": "starting",
+            "role_interpretation": "The user is initially unresolved about the proposed on-demand transportation service, needing to evaluate if it constitutes a real improvement over current processes, while simultaneously resisting any attempt to treat the failing status quo as a safe default option.",
+            "role_record_id": "rprolev22-starting-01-8c1417539bfa62",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "mixed",
+            "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit."
+              },
+              {
+                "alias": "e002",
+                "text": "Patients who are ready to leave can wait hours for a ride."
+              },
+              {
+                "alias": "e003",
+                "text": "They are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available."
+              },
+              {
+                "alias": "e007",
+                "text": "I need to know whether this is a real improvement or a faster way to lose sight of the difficult cases."
+              },
+              {
+                "alias": "e013",
+                "text": "Our current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e007",
+              "e013"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e007",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Whether the proposed transportation platform is a real improvement or a faster way to lose sight of difficult patient cases.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e013",
+                "stance_expression_kind": "unwilling",
+                "stance_object_interpretation": "Treating the existing discharge transportation process as a safe, neutral default.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:8c1417539bfa627f3178d742140884dbac6f1706eef119d061f247a5d624d8e7",
+            "record_index": 1,
+            "role_record_id": "rprolev22-starting-01-8c1417539bfa62",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "supported",
+        "role": "starting",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "duration_seconds": 15.505,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.033168,
+      "raw_content_sha256": "7377a35f1ad8dc8dac1b1cf8423c07d600a7e85e8fefffd886450a9ba843b98d",
+      "reasoning_effort": "medium",
+      "request_body_sha256": "9afb7aade581b32405456c593b7c918b5232331f86a65ec3a912de4903cc6bcf",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "starting",
+      "usage": {
+        "completion_tokens": 2834,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 2385
+        },
+        "cost": 0.033168,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.025506,
+          "upstream_inference_cost": 0.033168,
+          "upstream_inference_prompt_cost": 0.007662
+        },
+        "is_byok": false,
+        "prompt_tokens": 5108,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 7942
+      },
+      "validation_error": null,
+      "wire_mode": "strict_json_schema"
+    },
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-02-current_qualification-result.json",
+      "artifact_sha256": "71d7ba01f8a49c8f4465a15d161b387500063eaee79c7707194c05324ad4d2d4",
+      "compiled": {
+        "allocation_note": "The user's prior concerns throughout the dialogue (such as subcontractor data retention, checkbox oversimplification, coordinator funding, and metric priorities) are successfully converted into explicit constraints and safeguards in Turn 12. No unresolved qualifications remain outside of these adopted conditions.",
+        "boundary": {
+          "adopted_condition_is_not_automatically_qualification": true,
+          "alias_subtraction_performed": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_from_record_presence_and_status": true,
+          "hard_alias_exclusivity_enforced": false,
+          "keyword_or_chronology_gate_added": false,
+          "model_role_labels_split_mechanically": true,
+          "negative_outcome_inferred_by_code": false,
+          "provider_authored_envelope_status_used": false,
+          "qualification_review_provider_authored": true,
+          "semantic_repair_performed": false,
+          "semantic_role_correctness_inferred_by_code": false,
+          "semantic_score_computed": false
+        },
+        "derived_envelope_status": {
+          "current": "supported",
+          "qualification": "not_found"
+        },
+        "global_limitations": "This analysis assumes the hospital administration and finance departments will adhere to the strict operational boundaries imposed by the user in this final pilot proposal.",
+        "observations": [
+          {
+            "case_id": "v1-case02-discharge-transport",
+            "fidelity_note": "This record captures the user's finalized plans for a highly controlled six-month pilot, incorporating every safety baseline and administrative boundary developed during the preceding tabletop exercise and discussions.",
+            "graph_routing_eligible": false,
+            "limitations": "These commitments depend on the signing of the subcontractor data retention amendment as an absolute gatekeeping condition.",
+            "observation_id": "rprolev22-current-01-eca54071a91d6a",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+            "role": "current",
+            "role_interpretation": "The user's final working plan to authorize and conduct a bounded six-month transport pilot on two wards under strict privacy, staffing, consent, and reporting conditions.",
+            "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e095",
+                "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+              },
+              {
+                "alias": "e096",
+                "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+              },
+              {
+                "alias": "e097",
+                "text": "We will review who never reaches the request stage as well as failed rides."
+              },
+              {
+                "alias": "e098",
+                "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+              }
+            ],
+            "source_evidence_ids": [
+              "e095",
+              "e096",
+              "e097",
+              "e098"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e095",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Bringing forward the pilot only after the subcontractor data amendment is signed",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Including a half-time coordinator for the full six months, arrival confirmation, patient/staff refusal rights, and an immediate fallback mechanism",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Using a restricted transport-readiness checklist that does not try to substitute for clinical or social judgment",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e097",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Evaluating pre-request exclusions/non-requests and failed rides in reports where capacity sits alongside rather than above the journey metrics",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e098",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Preventing the contract from renewing automatically, requiring discrete staffing and privacy approvals for any continuation",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "paired_terminal_disposition": "compiled",
+        "qualification_review": {
+          "evidence_ids": [
+            "e095",
+            "e096",
+            "e097",
+            "e098"
+          ],
+          "interpretation": "The user has successfully resolved all previously identified tensions by integrating them directly into the pilot's non-negotiable design criteria (e.g., signing the subcontractor amendment first, funding the coordinator for the full six months, limiting the checklist scope, and integrating capacity metrics safely).",
+          "limitations": "Any future negotiation failures or administrative bypasses of these criteria would reopen the user's willingness to proceed.",
+          "outcome": "no_unresolved_qualification_observed",
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "source_evidence": [
+            {
+              "alias": "e095",
+              "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+            },
+            {
+              "alias": "e096",
+              "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+            },
+            {
+              "alias": "e097",
+              "text": "We will review who never reaches the request stage as well as failed rides."
+            },
+            {
+              "alias": "e098",
+              "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+            }
+          ]
+        },
+        "records": [
+          {
+            "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+            "record_index": 1,
+            "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+            "terminal_state": "admitted"
+          }
+        ],
+        "role_compiled": {
+          "current": {
+            "boundary": {
+              "chronological_gate_added": false,
+              "deterministic_expression_gate_added": false,
+              "deterministic_role_exclusivity_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "keyword_gate_added": false,
+              "object_expression_compatibility_gate_added": false,
+              "one_alias_per_component_enforced": true,
+              "parallel_component_columns_used": false,
+              "prose_keyword_gate_added": false,
+              "provider_raw_record_hash_preserved": true,
+              "response_schema_changed_from_v22": false,
+              "semantic_merge_performed": false,
+              "semantic_role_or_category_correctness_inferred_by_code": false,
+              "v23_prompt_packet_contract": true,
+              "validator_changed_from_v22": false
+            },
+            "global_limitations": "This analysis assumes the hospital administration and finance departments will adhere to the strict operational boundaries imposed by the user in this final pilot proposal.",
+            "observations": [
+              {
+                "case_id": "v1-case02-discharge-transport",
+                "fidelity_note": "This record captures the user's finalized plans for a highly controlled six-month pilot, incorporating every safety baseline and administrative boundary developed during the preceding tabletop exercise and discussions.",
+                "graph_routing_eligible": false,
+                "limitations": "These commitments depend on the signing of the subcontractor data retention amendment as an absolute gatekeeping condition.",
+                "observation_id": "rprolev22-current-01-eca54071a91d6a",
+                "provenance": {
+                  "call_id": "",
+                  "model": "",
+                  "producer_id": "google/gemini-3.5-flash-20260519",
+                  "producer_kind": "simulated_reliability_v1",
+                  "prompt_sha256": ""
+                },
+                "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+                "role": "current",
+                "role_interpretation": "The user's final working plan to authorize and conduct a bounded six-month transport pilot on two wards under strict privacy, staffing, consent, and reporting conditions.",
+                "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+                "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                "semantic_status": "supported",
+                "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+                "source_evidence": [
+                  {
+                    "alias": "e095",
+                    "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+                  },
+                  {
+                    "alias": "e096",
+                    "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+                  },
+                  {
+                    "alias": "e097",
+                    "text": "We will review who never reaches the request stage as well as failed rides."
+                  },
+                  {
+                    "alias": "e098",
+                    "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+                  }
+                ],
+                "source_evidence_ids": [
+                  "e095",
+                  "e096",
+                  "e097",
+                  "e098"
+                ],
+                "source_record_index": 1,
+                "stance_components": [
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e095",
+                    "stance_expression_kind": "conditional_willingness",
+                    "stance_object_interpretation": "Bringing forward the pilot only after the subcontractor data amendment is signed",
+                    "stance_object_kind": "acceptance_or_willingness"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e096",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Including a half-time coordinator for the full six months, arrival confirmation, patient/staff refusal rights, and an immediate fallback mechanism",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e096",
+                    "stance_expression_kind": "decision",
+                    "stance_object_interpretation": "Using a restricted transport-readiness checklist that does not try to substitute for clinical or social judgment",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e097",
+                    "stance_expression_kind": "commitment",
+                    "stance_object_interpretation": "Evaluating pre-request exclusions/non-requests and failed rides in reports where capacity sits alongside rather than above the journey metrics",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  },
+                  {
+                    "role": "current",
+                    "source_evidence_id": "e098",
+                    "stance_expression_kind": "constraint",
+                    "stance_object_interpretation": "Preventing the contract from renewing automatically, requiring discrete staffing and privacy approvals for any continuation",
+                    "stance_object_kind": "intended_outcome_or_policy"
+                  }
+                ],
+                "terminal_state": "admitted"
+              }
+            ],
+            "records": [
+              {
+                "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+                "record_index": 1,
+                "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+                "terminal_state": "admitted"
+              }
+            ],
+            "response_status": "supported",
+            "role": "current",
+            "role_terminal_disposition": "compiled",
+            "schema_version": "lolla.reasoning_process_position_role_response.v2",
+            "status": "position_role_response_v22_custody_complete"
+          },
+          "qualification": {
+            "boundary": {
+              "chronological_gate_added": false,
+              "deterministic_expression_gate_added": false,
+              "deterministic_role_exclusivity_gate_added": false,
+              "direct_graph_routing_allowed": false,
+              "keyword_gate_added": false,
+              "object_expression_compatibility_gate_added": false,
+              "one_alias_per_component_enforced": true,
+              "parallel_component_columns_used": false,
+              "prose_keyword_gate_added": false,
+              "provider_raw_record_hash_preserved": true,
+              "response_schema_changed_from_v22": false,
+              "semantic_merge_performed": false,
+              "semantic_role_or_category_correctness_inferred_by_code": false,
+              "v23_prompt_packet_contract": true,
+              "validator_changed_from_v22": false
+            },
+            "global_limitations": "This analysis assumes the hospital administration and finance departments will adhere to the strict operational boundaries imposed by the user in this final pilot proposal.",
+            "observations": [],
+            "records": [],
+            "response_status": "not_found",
+            "role": "qualification",
+            "role_terminal_disposition": "reviewed_empty",
+            "schema_version": "lolla.reasoning_process_position_role_response.v2",
+            "status": "position_role_response_v22_custody_complete"
+          }
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_2",
+        "status": "position_current_qualification_v24_custody_complete"
+      },
+      "duration_seconds": 24.798,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.0515115,
+      "raw_content_sha256": "55acfa9465cbc88b665120086f2cebc3b964b03e3005659a2044fef68d19df3c",
+      "reasoning_effort": "medium",
+      "request_body_sha256": "9e3a1ebc2908068ab6b23239fdd8a671fec5b378a161d810ce16278c3d79f03f",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "current_qualification",
+      "usage": {
+        "completion_tokens": 4870,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 4039
+        },
+        "cost": 0.0515115,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.04383,
+          "upstream_inference_cost": 0.0515115,
+          "upstream_inference_prompt_cost": 0.0076815
+        },
+        "is_byok": false,
+        "prompt_tokens": 5121,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 9991
+      },
+      "validation_error": null,
+      "wire_mode": "json_object_schema_in_prompt"
+    },
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-03-mechanism-result.json",
+      "artifact_sha256": "b115ba030e72566570e86cbcf5d4007b3fa3350b29afcb4a7687bce2208cbe71",
+      "compiled": {
+        "fact_boundary": {
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "entities_included": false,
+          "quotes_included": false,
+          "raw_text_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "probabilistic_semantic_assessment",
+          "assistant_citation_is_not_deterministic_resolution",
+          "answer_coverage_is_not_user_adoption",
+          "routing_disposition_is_not_mental_model_applicability_proof",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ],
+        "packet_metadata": {
+          "graph_runtime_modified": false,
+          "interpretation_schema_version": "lolla.simulated_reliability_separated_mechanism_response.v2",
+          "packet_id": "reasoning_pattern_packet:v1-case02-discharge-transport-primary:v1_joint"
+        },
+        "pattern_hypotheses": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "pattern_id": "rp_001",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "pattern_id": "rp_002",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "pattern_id": "rp_003",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "pattern_id": "rp_004",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "pattern_id": "rp_005",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "pattern_id": "rp_006",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "pattern_id": "rp_007",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "pattern_id": "rp_008",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "pattern_id": "rp_009",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          }
+        ],
+        "provenance": {
+          "assistant_contribution_count": 12,
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-003",
+                "assistant-turn-005",
+                "assistant-turn-009"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-003",
+                "assistant-turn-005",
+                "assistant-turn-009",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-002",
+                "assistant-turn-004",
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-002",
+                "assistant-turn-004",
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_004",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_005",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_006",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-007",
+                "assistant-turn-008",
+                "assistant-turn-011"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-007",
+                "assistant-turn-008",
+                "assistant-turn-011",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_007",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-007",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-007",
+                "assistant-turn-012",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_008",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_009",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-010"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-010",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            }
+          ],
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "qualification_review_outcome": "no_unresolved_qualification_observed",
+          "raw_role_or_assistant_prose_in_routing_projection": false,
+          "source_role_record_packet_sha256": "25dc0f86e3c9b41bf63ad8f31011812cd1f04e2f091183019ab29349786fd9b5"
+        },
+        "routing_projection": {
+          "contains_case_context": false,
+          "pattern_edges": [],
+          "pattern_nodes": [],
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+        },
+        "schema_version": "lolla.reasoning_pattern_packet.v0"
+      },
+      "duration_seconds": 7.01,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.0185325,
+      "raw_content_sha256": "e9b4ee0e5d22c96d74bb0ddab8f56ebe1a0769ef763a504ea3e4597d766bb763",
+      "reasoning_effort": "low",
+      "request_body_sha256": "63758f3881eee6c6acf82e09d17efdef05c7d36aa56596e05be1c1d3000d2254",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "mechanism",
+      "usage": {
+        "completion_tokens": 1262,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost": 0.0185325,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.011358,
+          "upstream_inference_cost": 0.0185325,
+          "upstream_inference_prompt_cost": 0.0071745
+        },
+        "is_byok": false,
+        "prompt_tokens": 4783,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 6045
+      },
+      "validation_error": null,
+      "wire_mode": "json_object_schema_in_prompt"
+    },
+    {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-04-transcript_only-result.json",
+      "artifact_sha256": "5808554f867db94ad600352d94ad80aac06604db94a3355f95d49fdf522abad8",
+      "compiled": {
+        "case_id": "v1-case02-discharge-transport",
+        "change_summary": "The reconsidered answer integrates all crucial operational details established throughout the discussion, including the six-month pilot scale, full-period funding for a half-time coordinator, the narrowed transport-readiness checklist, and critical data-retention contract amendments for subcontractors. It avoids any external assumptions, maintaining strict alignment with the raw transcript.",
+        "external_pressure_portfolio_included": false,
+        "graph_runtime_modified": false,
+        "non_claims": [
+          "fresh_second_pass_is_not_pressure_effect",
+          "revised_answer_is_not_proven_better",
+          "not_runtime_authorization"
+        ],
+        "reconsidered_answer": "To appropriately evaluate the on-demand transportation platform without compromising patient safety, operational visibility, or staff resources, the proposed pilot has been structured with safety-first protocols, clear operational boundaries, and rigorous metrics.\n\n### 1. Pilot Scope and Parameters\n*   **Duration & Location:** A six-month pilot bound to two medical wards in one city where wheelchair-accessible vehicles (WAVs) are actively available.\n*   **Decision to Launch:** Delayed until a formal contract amendment is signed requiring all subcontractors to match the main platform's 90-day data retention policy. Patients must be provided a single, clear privacy notice, while the hospital retains detailed processor records and audit rights.\n*   **No Automatic Renewal:** The contract will not renew automatically. Any continuation requires a distinct staffing and privacy evaluation.\n\n### 2. Operational Workflows and Staffing\n*   **Explicit Staffing Support:** A half-time coordinator will be funded for the entire six-month duration to drive post-arrival confirmation calls, failed-ride recovery, and complaint coordination. This prevents critical evaluation and administrative labor from quietly shifting to ward nurses.\n*   **Manual Request Entry:** Requests must be manually initiated by a nurse or coordinator after discussing the ride with the patient. Automatic dispatch based on electronic medical record status changes is rejected to prevent software from rushing departures.\n*   **The Transport-Readiness Checklist:** Staff will complete a limited, fact-based transport-readiness checklist. This checklist only documents that the destination is confirmed, physical entry to the home is assured, required escorts are identified, and the patient agrees to the rideshare. It does not replace or compress broader clinical or social-work evaluations.\n*   **Discretion and Fallbacks:** Charge nurses and patients can decline the platform without having to explain their decision to finance and without delaying other discharge arrangements. If a requested vehicle experiences delays or cancellation, staff must immediately revert to the existing fallback dispatch list rather than persistently retrying the app.\n\n### 3. Balanced Evaluation Metrics\n*   **The Operational Scorecard:** Journey and access metrics are prioritized above internal capacity metrics. The core scorecard must report completed arrivals, system failures, booking channels utilized, staff time spent, accessibility needs, patient complaints, and transport-related return logs.\n*   **Capacity Indicators:** Financial indicators (such as 'bed hours released before noon') will sit below journey completions to prevent leadership incentives from quietly altering clinical behaviors or eligibility.\n*   **Data Resolution:** To capture the experience of all patients, the pilot review will evaluate pre-request exclusions (who never reached the platform request stage) alongside failed and completed rides. Performance data must report both median times and extreme outliers rather than relying on misleading averages.",
+        "schema_version": "lolla.fresh_reasoning_control_response.v1",
+        "source_packet_sha256": "293fcb19bb0f4b0315f51888a476c2d1a183381c2ad884a8312ae308e4019e11"
+      },
+      "duration_seconds": 12.321,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.020982,
+      "raw_content_sha256": "b45782489edc109deaff479cfdb824b0fa232ce6fc53460d1abbec3a88e931e3",
+      "reasoning_effort": "medium",
+      "request_body_sha256": "83491663daa5f68a04588a8538aeb03688d323b2f15f7b65614fc54850a7f70b",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "transcript_only",
+      "usage": {
+        "completion_tokens": 1834,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1177
+        },
+        "cost": 0.020982,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.016506,
+          "upstream_inference_cost": 0.020982,
+          "upstream_inference_prompt_cost": 0.004476
+        },
+        "is_byok": false,
+        "prompt_tokens": 2984,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 4818
+      },
+      "validation_error": null,
+      "wire_mode": "strict_json_schema"
+    }
+  ],
+  "case_id": "v1-case02-discharge-transport",
+  "deterministic_pressure": {
+    "direct_ledger": {
+      "content": {
+        "active_candidates": [],
+        "active_cap": 10,
+        "all_candidate_count": 0,
+        "ledger_sha256": "69b682f8e102cbe517c2fd900178fdd7265b1604aee74d1bef7eb08e7f3428fb",
+        "non_claims": [
+          "direct_recall_is_not_applicability_proof",
+          "active_cap_is_not_a_relevance_threshold"
+        ],
+        "reserve_candidates": [],
+        "schema_version": "lolla.simulated_reliability_direct_ledger.v1",
+        "selection_policy": {
+          "candidate_deletion": false,
+          "mechanism_order": "mechanism_id_ascending",
+          "operation": "controlled_mechanism_round_robin",
+          "semantic_applicability_decision": false,
+          "within_mechanism_order": "model_id_ascending"
+        },
+        "stand_down": true,
+        "unresolved_mechanism_ids": []
+      },
+      "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/direct-ledger.json",
+      "sha256": "98a6ac6f6829859d974cb3327f7a0d483bf628b8bd64155425d70ff55e753572"
+    },
+    "graph_ledger": {
+      "content": {
+        "active_candidates": [],
+        "active_cap": 3,
+        "all_eligible_edges": [],
+        "eligible_edge_count": 0,
+        "ledger_sha256": "158bd155b670e53ad28c3d9219fa8c8b80270ac4d7b6903ee93f05eee0c701f9",
+        "non_claims": [
+          "graph_recall_is_not_applicability_proof",
+          "active_slots_are_not_best_model_selection",
+          "reserve_status_is_not_semantic_rejection"
+        ],
+        "reserve_candidates": [],
+        "schema_version": "lolla.simulated_reliability_graph_ledger.v1",
+        "selection_policy": {
+          "affinity_used_for_admission": false,
+          "candidate_deletion": false,
+          "conversation_text_used_for_admission": false,
+          "operation": "one_slot_per_declared_relation_type",
+          "probabilistic_prefilter_used": false,
+          "relation_slot_order": [
+            "antagonist",
+            "tension",
+            "ally"
+          ],
+          "within_slot_order": [
+            "source_model_id_ascending",
+            "target_model_id_ascending"
+          ]
+        },
+        "source_direct_ledger_sha256": "69b682f8e102cbe517c2fd900178fdd7265b1604aee74d1bef7eb08e7f3428fb",
+        "unique_target_count": 0
+      },
+      "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/graph-ledger.json",
+      "sha256": "744b6b681ca570a13f50cb7fabcfcaff958c31ae18e6dcdea4d02ae7f3355b33"
+    },
+    "semantic_relevance_gate_performed_by_code": false
+  },
+  "failures": [],
+  "interpretation": {
+    "joined_role_records": {
+      "boundary": {
+        "deterministic_semantic_inference": false,
+        "direct_graph_routing_allowed": false,
+        "record_selection_performed": false,
+        "semantic_record_merge_performed": false
+      },
+      "qualification_review": {
+        "evidence_ids": [
+          "e095",
+          "e096",
+          "e097",
+          "e098"
+        ],
+        "interpretation": "The user has successfully resolved all previously identified tensions by integrating them directly into the pilot's non-negotiable design criteria (e.g., signing the subcontractor amendment first, funding the coordinator for the full six months, limiting the checklist scope, and integrating capacity metrics safely).",
+        "limitations": "Any future negotiation failures or administrative bypasses of these criteria would reopen the user's willingness to proceed.",
+        "outcome": "no_unresolved_qualification_observed",
+        "producer_id": "google/gemini-3.5-flash-20260519",
+        "producer_kind": "simulated_reliability_v1",
+        "source_evidence": [
+          {
+            "alias": "e095",
+            "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+          },
+          {
+            "alias": "e096",
+            "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+          },
+          {
+            "alias": "e097",
+            "text": "We will review who never reaches the request stage as well as failed rides."
+          },
+          {
+            "alias": "e098",
+            "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+          }
+        ]
+      },
+      "record_counts": {
+        "current": 1,
+        "qualification": 0,
+        "starting": 1
+      },
+      "role_observations": {
+        "current": [
+          {
+            "case_id": "v1-case02-discharge-transport",
+            "fidelity_note": "This record captures the user's finalized plans for a highly controlled six-month pilot, incorporating every safety baseline and administrative boundary developed during the preceding tabletop exercise and discussions.",
+            "graph_routing_eligible": false,
+            "limitations": "These commitments depend on the signing of the subcontractor data retention amendment as an absolute gatekeeping condition.",
+            "observation_id": "rprolev22-current-01-eca54071a91d6a",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+            "role": "current",
+            "role_interpretation": "The user's final working plan to authorize and conduct a bounded six-month transport pilot on two wards under strict privacy, staffing, consent, and reporting conditions.",
+            "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e095",
+                "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+              },
+              {
+                "alias": "e096",
+                "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+              },
+              {
+                "alias": "e097",
+                "text": "We will review who never reaches the request stage as well as failed rides."
+              },
+              {
+                "alias": "e098",
+                "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+              }
+            ],
+            "source_evidence_ids": [
+              "e095",
+              "e096",
+              "e097",
+              "e098"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e095",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Bringing forward the pilot only after the subcontractor data amendment is signed",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Including a half-time coordinator for the full six months, arrival confirmation, patient/staff refusal rights, and an immediate fallback mechanism",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Using a restricted transport-readiness checklist that does not try to substitute for clinical or social judgment",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e097",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Evaluating pre-request exclusions/non-requests and failed rides in reports where capacity sits alongside rather than above the journey metrics",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e098",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Preventing the contract from renewing automatically, requiring discrete staffing and privacy approvals for any continuation",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "qualification": [],
+        "starting": [
+          {
+            "case_id": "v1-case02-discharge-transport",
+            "fidelity_note": "The user's starting stance displays dual forces: open evaluation/indecision regarding the new platform's utility versus risks (e007), coupled with a firm rejection of holding the current taxi-voucher setup as a safe benchmark due to its constant failures (e013).",
+            "graph_routing_eligible": false,
+            "limitations": "This starting stance captures the user's mindset before specific operational safeguards (such as nursing overrides, dedicated coordination, and contractor privacy rules) were structured in later turns.",
+            "observation_id": "rprolev22-starting-01-8c1417539bfa62",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:8c1417539bfa627f3178d742140884dbac6f1706eef119d061f247a5d624d8e7",
+            "role": "starting",
+            "role_interpretation": "The user is initially unresolved about the proposed on-demand transportation service, needing to evaluate if it constitutes a real improvement over current processes, while simultaneously resisting any attempt to treat the failing status quo as a safe default option.",
+            "role_record_id": "rprolev22-starting-01-8c1417539bfa62",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "mixed",
+            "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit."
+              },
+              {
+                "alias": "e002",
+                "text": "Patients who are ready to leave can wait hours for a ride."
+              },
+              {
+                "alias": "e003",
+                "text": "They are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available."
+              },
+              {
+                "alias": "e007",
+                "text": "I need to know whether this is a real improvement or a faster way to lose sight of the difficult cases."
+              },
+              {
+                "alias": "e013",
+                "text": "Our current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e007",
+              "e013"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e007",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Whether the proposed transportation platform is a real improvement or a faster way to lose sight of difficult patient cases.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e013",
+                "stance_expression_kind": "unwilling",
+                "stance_object_interpretation": "Treating the existing discharge transportation process as a safe, neutral default.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ]
+      },
+      "schema_version": "lolla.simulated_reliability_role_portfolio_join.v1",
+      "status": "bounded_role_portfolio_join_complete"
+    },
+    "mechanism_assessments": [
+      {
+        "mechanism_id": "acknowledged_constraint_not_gated",
+        "pattern_id": "rp_001",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "ambiguous_signal_treated_as_commitment",
+        "pattern_id": "rp_002",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "not_observed",
+        "vanilla_answer_coverage": "not_applicable"
+      },
+      {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "pattern_id": "rp_003",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "criteria_defined_after_commitment",
+        "pattern_id": "rp_004",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "not_observed",
+        "vanilla_answer_coverage": "not_applicable"
+      },
+      {
+        "mechanism_id": "initial_frame_persists_after_question_change",
+        "pattern_id": "rp_005",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "not_observed",
+        "vanilla_answer_coverage": "not_applicable"
+      },
+      {
+        "mechanism_id": "missing_reversal_condition",
+        "pattern_id": "rp_006",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "reversible_path_not_considered",
+        "pattern_id": "rp_007",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      },
+      {
+        "mechanism_id": "status_signal_used_as_evidence",
+        "pattern_id": "rp_008",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "not_observed",
+        "vanilla_answer_coverage": "not_applicable"
+      },
+      {
+        "mechanism_id": "upside_downside_evidence_asymmetry",
+        "pattern_id": "rp_009",
+        "routing_disposition": "preserve_no_route",
+        "routing_eligible": false,
+        "state": "not_applicable",
+        "subject_scope": "joint_process",
+        "support_status": "preserved_for_audit",
+        "user_process_status": "resolved",
+        "vanilla_answer_coverage": "operationalized"
+      }
+    ],
+    "mechanism_call": {
+      "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-03-mechanism-result.json",
+      "artifact_sha256": "b115ba030e72566570e86cbcf5d4007b3fa3350b29afcb4a7687bce2208cbe71",
+      "compiled": {
+        "fact_boundary": {
+          "case_quantities_included": false,
+          "dates_included": false,
+          "desired_outcome_included": false,
+          "entities_included": false,
+          "quotes_included": false,
+          "raw_text_included": false,
+          "topic_labels_included": false
+        },
+        "lint": {
+          "status": "passed",
+          "violations": []
+        },
+        "non_claims": [
+          "probabilistic_semantic_assessment",
+          "assistant_citation_is_not_deterministic_resolution",
+          "answer_coverage_is_not_user_adoption",
+          "routing_disposition_is_not_mental_model_applicability_proof",
+          "not_reasoning_quality_proof",
+          "not_runtime_integration_authority"
+        ],
+        "packet_metadata": {
+          "graph_runtime_modified": false,
+          "interpretation_schema_version": "lolla.simulated_reliability_separated_mechanism_response.v2",
+          "packet_id": "reasoning_pattern_packet:v1-case02-discharge-transport-primary:v1_joint"
+        },
+        "pattern_hypotheses": [
+          {
+            "mechanism_id": "acknowledged_constraint_not_gated",
+            "pattern_id": "rp_001",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "ambiguous_signal_treated_as_commitment",
+            "pattern_id": "rp_002",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "counterpressure_acknowledged_not_integrated",
+            "pattern_id": "rp_003",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "criteria_defined_after_commitment",
+            "pattern_id": "rp_004",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "initial_frame_persists_after_question_change",
+            "pattern_id": "rp_005",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "missing_reversal_condition",
+            "pattern_id": "rp_006",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "reversible_path_not_considered",
+            "pattern_id": "rp_007",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          },
+          {
+            "mechanism_id": "status_signal_used_as_evidence",
+            "pattern_id": "rp_008",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "not_observed",
+            "vanilla_answer_coverage": "not_applicable"
+          },
+          {
+            "mechanism_id": "upside_downside_evidence_asymmetry",
+            "pattern_id": "rp_009",
+            "routing_disposition": "preserve_no_route",
+            "routing_eligible": false,
+            "state": "not_applicable",
+            "subject_scope": "joint_process",
+            "support_status": "preserved_for_audit",
+            "user_process_status": "resolved",
+            "vanilla_answer_coverage": "operationalized"
+          }
+        ],
+        "provenance": {
+          "assistant_contribution_count": 12,
+          "pattern_sources": [
+            {
+              "pattern_id": "rp_001",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-003",
+                "assistant-turn-005",
+                "assistant-turn-009"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-003",
+                "assistant-turn-005",
+                "assistant-turn-009",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_002",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_003",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-002",
+                "assistant-turn-004",
+                "assistant-turn-011",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-002",
+                "assistant-turn-004",
+                "assistant-turn-011",
+                "assistant-turn-012",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_004",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_005",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_006",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-007",
+                "assistant-turn-008",
+                "assistant-turn-011"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-007",
+                "assistant-turn-008",
+                "assistant-turn-011",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_007",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-001",
+                "assistant-turn-007",
+                "assistant-turn-012"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-001",
+                "assistant-turn-007",
+                "assistant-turn-012",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            },
+            {
+              "pattern_id": "rp_008",
+              "source_assistant_contribution_ids": [],
+              "source_role_record_ids": [],
+              "source_semantic_item_ids": []
+            },
+            {
+              "pattern_id": "rp_009",
+              "source_assistant_contribution_ids": [
+                "assistant-turn-004",
+                "assistant-turn-010"
+              ],
+              "source_role_record_ids": [
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "source_semantic_item_ids": [
+                "assistant-turn-004",
+                "assistant-turn-010",
+                "rprolev22-current-01-eca54071a91d6a"
+              ]
+            }
+          ],
+          "producer_id": "google/gemini-3.5-flash-20260519",
+          "producer_kind": "simulated_reliability_v1",
+          "qualification_review_outcome": "no_unresolved_qualification_observed",
+          "raw_role_or_assistant_prose_in_routing_projection": false,
+          "source_role_record_packet_sha256": "25dc0f86e3c9b41bf63ad8f31011812cd1f04e2f091183019ab29349786fd9b5"
+        },
+        "routing_projection": {
+          "contains_case_context": false,
+          "pattern_edges": [],
+          "pattern_nodes": [],
+          "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+        },
+        "schema_version": "lolla.reasoning_pattern_packet.v0"
+      },
+      "duration_seconds": 7.01,
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_error": null,
+      "provider_reported_cost_usd": 0.0185325,
+      "raw_content_sha256": "e9b4ee0e5d22c96d74bb0ddab8f56ebe1a0769ef763a504ea3e4597d766bb763",
+      "reasoning_effort": "low",
+      "request_body_sha256": "63758f3881eee6c6acf82e09d17efdef05c7d36aa56596e05be1c1d3000d2254",
+      "requested_model": "google/gemini-3.5-flash-20260519",
+      "served_model": "google/gemini-3.5-flash-20260519",
+      "served_provider": "Google",
+      "task_id": "mechanism",
+      "usage": {
+        "completion_tokens": 1262,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost": 0.0185325,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.011358,
+          "upstream_inference_cost": 0.0185325,
+          "upstream_inference_prompt_cost": 0.0071745
+        },
+        "is_byok": false,
+        "prompt_tokens": 4783,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 6045
+      },
+      "validation_error": null,
+      "wire_mode": "json_object_schema_in_prompt"
+    },
+    "role_calls": [
+      {
+        "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-01-starting-result.json",
+        "artifact_sha256": "dfef645bff5965b127ea785e97d18ca0d2ed37d65773b640d34cbc4da75e7953",
+        "compiled": {
+          "boundary": {
+            "chronological_gate_added": false,
+            "deterministic_expression_gate_added": false,
+            "deterministic_role_exclusivity_gate_added": false,
+            "direct_graph_routing_allowed": false,
+            "keyword_gate_added": false,
+            "object_expression_compatibility_gate_added": false,
+            "one_alias_per_component_enforced": true,
+            "parallel_component_columns_used": false,
+            "prose_keyword_gate_added": false,
+            "provider_raw_record_hash_preserved": true,
+            "response_schema_changed_from_v22": false,
+            "semantic_merge_performed": false,
+            "semantic_role_or_category_correctness_inferred_by_code": false,
+            "v23_prompt_packet_contract": true,
+            "validator_changed_from_v22": false
+          },
+          "global_limitations": "The interpretation is strictly bound to the explicit text of the initial turns and does not assume any pre-existing organizational commitments or subsequent turn modifications.",
+          "observations": [
+            {
+              "case_id": "v1-case02-discharge-transport",
+              "fidelity_note": "The user's starting stance displays dual forces: open evaluation/indecision regarding the new platform's utility versus risks (e007), coupled with a firm rejection of holding the current taxi-voucher setup as a safe benchmark due to its constant failures (e013).",
+              "graph_routing_eligible": false,
+              "limitations": "This starting stance captures the user's mindset before specific operational safeguards (such as nursing overrides, dedicated coordination, and contractor privacy rules) were structured in later turns.",
+              "observation_id": "rprolev22-starting-01-8c1417539bfa62",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "google/gemini-3.5-flash-20260519",
+                "producer_kind": "simulated_reliability_v1",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:8c1417539bfa627f3178d742140884dbac6f1706eef119d061f247a5d624d8e7",
+              "role": "starting",
+              "role_interpretation": "The user is initially unresolved about the proposed on-demand transportation service, needing to evaluate if it constitutes a real improvement over current processes, while simultaneously resisting any attempt to treat the failing status quo as a safe default option.",
+              "role_record_id": "rprolev22-starting-01-8c1417539bfa62",
+              "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+              "semantic_status": "mixed",
+              "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+              "source_evidence": [
+                {
+                  "alias": "e001",
+                  "text": "I oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit."
+                },
+                {
+                  "alias": "e002",
+                  "text": "Patients who are ready to leave can wait hours for a ride."
+                },
+                {
+                  "alias": "e003",
+                  "text": "They are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available."
+                },
+                {
+                  "alias": "e007",
+                  "text": "I need to know whether this is a real improvement or a faster way to lose sight of the difficult cases."
+                },
+                {
+                  "alias": "e013",
+                  "text": "Our current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option."
+                }
+              ],
+              "source_evidence_ids": [
+                "e001",
+                "e002",
+                "e003",
+                "e007",
+                "e013"
+              ],
+              "source_record_index": 1,
+              "stance_components": [
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e007",
+                  "stance_expression_kind": "uncertain_or_undecided",
+                  "stance_object_interpretation": "Whether the proposed transportation platform is a real improvement or a faster way to lose sight of difficult patient cases.",
+                  "stance_object_kind": "belief_or_assessment"
+                },
+                {
+                  "role": "starting",
+                  "source_evidence_id": "e013",
+                  "stance_expression_kind": "unwilling",
+                  "stance_object_interpretation": "Treating the existing discharge transportation process as a safe, neutral default.",
+                  "stance_object_kind": "action_or_proposal"
+                }
+              ],
+              "terminal_state": "admitted"
+            }
+          ],
+          "records": [
+            {
+              "raw_record_sha256": "sha256:8c1417539bfa627f3178d742140884dbac6f1706eef119d061f247a5d624d8e7",
+              "record_index": 1,
+              "role_record_id": "rprolev22-starting-01-8c1417539bfa62",
+              "terminal_state": "admitted"
+            }
+          ],
+          "response_status": "supported",
+          "role": "starting",
+          "role_terminal_disposition": "compiled",
+          "schema_version": "lolla.reasoning_process_position_role_response.v2",
+          "status": "position_role_response_v22_custody_complete"
+        },
+        "duration_seconds": 15.505,
+        "operational_status": "ok",
+        "provider_calls": 1,
+        "provider_error": null,
+        "provider_reported_cost_usd": 0.033168,
+        "raw_content_sha256": "7377a35f1ad8dc8dac1b1cf8423c07d600a7e85e8fefffd886450a9ba843b98d",
+        "reasoning_effort": "medium",
+        "request_body_sha256": "9afb7aade581b32405456c593b7c918b5232331f86a65ec3a912de4903cc6bcf",
+        "requested_model": "google/gemini-3.5-flash-20260519",
+        "served_model": "google/gemini-3.5-flash-20260519",
+        "served_provider": "Google",
+        "task_id": "starting",
+        "usage": {
+          "completion_tokens": 2834,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 2385
+          },
+          "cost": 0.033168,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.025506,
+            "upstream_inference_cost": 0.033168,
+            "upstream_inference_prompt_cost": 0.007662
+          },
+          "is_byok": false,
+          "prompt_tokens": 5108,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7942
+        },
+        "validation_error": null,
+        "wire_mode": "strict_json_schema"
+      },
+      {
+        "artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/call-02-current_qualification-result.json",
+        "artifact_sha256": "71d7ba01f8a49c8f4465a15d161b387500063eaee79c7707194c05324ad4d2d4",
+        "compiled": {
+          "allocation_note": "The user's prior concerns throughout the dialogue (such as subcontractor data retention, checkbox oversimplification, coordinator funding, and metric priorities) are successfully converted into explicit constraints and safeguards in Turn 12. No unresolved qualifications remain outside of these adopted conditions.",
+          "boundary": {
+            "adopted_condition_is_not_automatically_qualification": true,
+            "alias_subtraction_performed": false,
+            "direct_graph_routing_allowed": false,
+            "envelope_status_derived_from_record_presence_and_status": true,
+            "hard_alias_exclusivity_enforced": false,
+            "keyword_or_chronology_gate_added": false,
+            "model_role_labels_split_mechanically": true,
+            "negative_outcome_inferred_by_code": false,
+            "provider_authored_envelope_status_used": false,
+            "qualification_review_provider_authored": true,
+            "semantic_repair_performed": false,
+            "semantic_role_correctness_inferred_by_code": false,
+            "semantic_score_computed": false
+          },
+          "derived_envelope_status": {
+            "current": "supported",
+            "qualification": "not_found"
+          },
+          "global_limitations": "This analysis assumes the hospital administration and finance departments will adhere to the strict operational boundaries imposed by the user in this final pilot proposal.",
+          "observations": [
+            {
+              "case_id": "v1-case02-discharge-transport",
+              "fidelity_note": "This record captures the user's finalized plans for a highly controlled six-month pilot, incorporating every safety baseline and administrative boundary developed during the preceding tabletop exercise and discussions.",
+              "graph_routing_eligible": false,
+              "limitations": "These commitments depend on the signing of the subcontractor data retention amendment as an absolute gatekeeping condition.",
+              "observation_id": "rprolev22-current-01-eca54071a91d6a",
+              "provenance": {
+                "call_id": "",
+                "model": "",
+                "producer_id": "google/gemini-3.5-flash-20260519",
+                "producer_kind": "simulated_reliability_v1",
+                "prompt_sha256": ""
+              },
+              "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+              "role": "current",
+              "role_interpretation": "The user's final working plan to authorize and conduct a bounded six-month transport pilot on two wards under strict privacy, staffing, consent, and reporting conditions.",
+              "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+              "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+              "semantic_status": "supported",
+              "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+              "source_evidence": [
+                {
+                  "alias": "e095",
+                  "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+                },
+                {
+                  "alias": "e096",
+                  "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+                },
+                {
+                  "alias": "e097",
+                  "text": "We will review who never reaches the request stage as well as failed rides."
+                },
+                {
+                  "alias": "e098",
+                  "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+                }
+              ],
+              "source_evidence_ids": [
+                "e095",
+                "e096",
+                "e097",
+                "e098"
+              ],
+              "source_record_index": 1,
+              "stance_components": [
+                {
+                  "role": "current",
+                  "source_evidence_id": "e095",
+                  "stance_expression_kind": "conditional_willingness",
+                  "stance_object_interpretation": "Bringing forward the pilot only after the subcontractor data amendment is signed",
+                  "stance_object_kind": "acceptance_or_willingness"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e096",
+                  "stance_expression_kind": "decision",
+                  "stance_object_interpretation": "Including a half-time coordinator for the full six months, arrival confirmation, patient/staff refusal rights, and an immediate fallback mechanism",
+                  "stance_object_kind": "intended_outcome_or_policy"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e096",
+                  "stance_expression_kind": "decision",
+                  "stance_object_interpretation": "Using a restricted transport-readiness checklist that does not try to substitute for clinical or social judgment",
+                  "stance_object_kind": "intended_outcome_or_policy"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e097",
+                  "stance_expression_kind": "commitment",
+                  "stance_object_interpretation": "Evaluating pre-request exclusions/non-requests and failed rides in reports where capacity sits alongside rather than above the journey metrics",
+                  "stance_object_kind": "intended_outcome_or_policy"
+                },
+                {
+                  "role": "current",
+                  "source_evidence_id": "e098",
+                  "stance_expression_kind": "constraint",
+                  "stance_object_interpretation": "Preventing the contract from renewing automatically, requiring discrete staffing and privacy approvals for any continuation",
+                  "stance_object_kind": "intended_outcome_or_policy"
+                }
+              ],
+              "terminal_state": "admitted"
+            }
+          ],
+          "paired_terminal_disposition": "compiled",
+          "qualification_review": {
+            "evidence_ids": [
+              "e095",
+              "e096",
+              "e097",
+              "e098"
+            ],
+            "interpretation": "The user has successfully resolved all previously identified tensions by integrating them directly into the pilot's non-negotiable design criteria (e.g., signing the subcontractor amendment first, funding the coordinator for the full six months, limiting the checklist scope, and integrating capacity metrics safely).",
+            "limitations": "Any future negotiation failures or administrative bypasses of these criteria would reopen the user's willingness to proceed.",
+            "outcome": "no_unresolved_qualification_observed",
+            "producer_id": "google/gemini-3.5-flash-20260519",
+            "producer_kind": "simulated_reliability_v1",
+            "source_evidence": [
+              {
+                "alias": "e095",
+                "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+              },
+              {
+                "alias": "e096",
+                "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+              },
+              {
+                "alias": "e097",
+                "text": "We will review who never reaches the request stage as well as failed rides."
+              },
+              {
+                "alias": "e098",
+                "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+              }
+            ]
+          },
+          "records": [
+            {
+              "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+              "record_index": 1,
+              "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+              "terminal_state": "admitted"
+            }
+          ],
+          "role_compiled": {
+            "current": {
+              "boundary": {
+                "chronological_gate_added": false,
+                "deterministic_expression_gate_added": false,
+                "deterministic_role_exclusivity_gate_added": false,
+                "direct_graph_routing_allowed": false,
+                "keyword_gate_added": false,
+                "object_expression_compatibility_gate_added": false,
+                "one_alias_per_component_enforced": true,
+                "parallel_component_columns_used": false,
+                "prose_keyword_gate_added": false,
+                "provider_raw_record_hash_preserved": true,
+                "response_schema_changed_from_v22": false,
+                "semantic_merge_performed": false,
+                "semantic_role_or_category_correctness_inferred_by_code": false,
+                "v23_prompt_packet_contract": true,
+                "validator_changed_from_v22": false
+              },
+              "global_limitations": "This analysis assumes the hospital administration and finance departments will adhere to the strict operational boundaries imposed by the user in this final pilot proposal.",
+              "observations": [
+                {
+                  "case_id": "v1-case02-discharge-transport",
+                  "fidelity_note": "This record captures the user's finalized plans for a highly controlled six-month pilot, incorporating every safety baseline and administrative boundary developed during the preceding tabletop exercise and discussions.",
+                  "graph_routing_eligible": false,
+                  "limitations": "These commitments depend on the signing of the subcontractor data retention amendment as an absolute gatekeeping condition.",
+                  "observation_id": "rprolev22-current-01-eca54071a91d6a",
+                  "provenance": {
+                    "call_id": "",
+                    "model": "",
+                    "producer_id": "google/gemini-3.5-flash-20260519",
+                    "producer_kind": "simulated_reliability_v1",
+                    "prompt_sha256": ""
+                  },
+                  "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+                  "role": "current",
+                  "role_interpretation": "The user's final working plan to authorize and conduct a bounded six-month transport pilot on two wards under strict privacy, staffing, consent, and reporting conditions.",
+                  "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+                  "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+                  "semantic_status": "supported",
+                  "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+                  "source_evidence": [
+                    {
+                      "alias": "e095",
+                      "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+                    },
+                    {
+                      "alias": "e096",
+                      "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+                    },
+                    {
+                      "alias": "e097",
+                      "text": "We will review who never reaches the request stage as well as failed rides."
+                    },
+                    {
+                      "alias": "e098",
+                      "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+                    }
+                  ],
+                  "source_evidence_ids": [
+                    "e095",
+                    "e096",
+                    "e097",
+                    "e098"
+                  ],
+                  "source_record_index": 1,
+                  "stance_components": [
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e095",
+                      "stance_expression_kind": "conditional_willingness",
+                      "stance_object_interpretation": "Bringing forward the pilot only after the subcontractor data amendment is signed",
+                      "stance_object_kind": "acceptance_or_willingness"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e096",
+                      "stance_expression_kind": "decision",
+                      "stance_object_interpretation": "Including a half-time coordinator for the full six months, arrival confirmation, patient/staff refusal rights, and an immediate fallback mechanism",
+                      "stance_object_kind": "intended_outcome_or_policy"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e096",
+                      "stance_expression_kind": "decision",
+                      "stance_object_interpretation": "Using a restricted transport-readiness checklist that does not try to substitute for clinical or social judgment",
+                      "stance_object_kind": "intended_outcome_or_policy"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e097",
+                      "stance_expression_kind": "commitment",
+                      "stance_object_interpretation": "Evaluating pre-request exclusions/non-requests and failed rides in reports where capacity sits alongside rather than above the journey metrics",
+                      "stance_object_kind": "intended_outcome_or_policy"
+                    },
+                    {
+                      "role": "current",
+                      "source_evidence_id": "e098",
+                      "stance_expression_kind": "constraint",
+                      "stance_object_interpretation": "Preventing the contract from renewing automatically, requiring discrete staffing and privacy approvals for any continuation",
+                      "stance_object_kind": "intended_outcome_or_policy"
+                    }
+                  ],
+                  "terminal_state": "admitted"
+                }
+              ],
+              "records": [
+                {
+                  "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+                  "record_index": 1,
+                  "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+                  "terminal_state": "admitted"
+                }
+              ],
+              "response_status": "supported",
+              "role": "current",
+              "role_terminal_disposition": "compiled",
+              "schema_version": "lolla.reasoning_process_position_role_response.v2",
+              "status": "position_role_response_v22_custody_complete"
+            },
+            "qualification": {
+              "boundary": {
+                "chronological_gate_added": false,
+                "deterministic_expression_gate_added": false,
+                "deterministic_role_exclusivity_gate_added": false,
+                "direct_graph_routing_allowed": false,
+                "keyword_gate_added": false,
+                "object_expression_compatibility_gate_added": false,
+                "one_alias_per_component_enforced": true,
+                "parallel_component_columns_used": false,
+                "prose_keyword_gate_added": false,
+                "provider_raw_record_hash_preserved": true,
+                "response_schema_changed_from_v22": false,
+                "semantic_merge_performed": false,
+                "semantic_role_or_category_correctness_inferred_by_code": false,
+                "v23_prompt_packet_contract": true,
+                "validator_changed_from_v22": false
+              },
+              "global_limitations": "This analysis assumes the hospital administration and finance departments will adhere to the strict operational boundaries imposed by the user in this final pilot proposal.",
+              "observations": [],
+              "records": [],
+              "response_status": "not_found",
+              "role": "qualification",
+              "role_terminal_disposition": "reviewed_empty",
+              "schema_version": "lolla.reasoning_process_position_role_response.v2",
+              "status": "position_role_response_v22_custody_complete"
+            }
+          },
+          "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4_2",
+          "status": "position_current_qualification_v24_custody_complete"
+        },
+        "duration_seconds": 24.798,
+        "operational_status": "ok",
+        "provider_calls": 1,
+        "provider_error": null,
+        "provider_reported_cost_usd": 0.0515115,
+        "raw_content_sha256": "55acfa9465cbc88b665120086f2cebc3b964b03e3005659a2044fef68d19df3c",
+        "reasoning_effort": "medium",
+        "request_body_sha256": "9e3a1ebc2908068ab6b23239fdd8a671fec5b378a161d810ce16278c3d79f03f",
+        "requested_model": "google/gemini-3.5-flash-20260519",
+        "served_model": "google/gemini-3.5-flash-20260519",
+        "served_provider": "Google",
+        "task_id": "current_qualification",
+        "usage": {
+          "completion_tokens": 4870,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 4039
+          },
+          "cost": 0.0515115,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.04383,
+            "upstream_inference_cost": 0.0515115,
+            "upstream_inference_prompt_cost": 0.0076815
+          },
+          "is_byok": false,
+          "prompt_tokens": 5121,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9991
+        },
+        "validation_error": null,
+        "wire_mode": "json_object_schema_in_prompt"
+      }
+    ],
+    "routing_projection": {
+      "contains_case_context": false,
+      "pattern_edges": [],
+      "pattern_nodes": [],
+      "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+    }
+  },
+  "non_claims": [
+    "not_reasoning_quality_proof",
+    "not_decision_correctness_proof",
+    "not_human_usefulness_evidence",
+    "not_a_trust_score_or_badge",
+    "not_production_authorization"
+  ],
+  "public_arms": {
+    "direct_pressure": {
+      "call_required": false,
+      "candidate_dispositions": [],
+      "change_summary": null,
+      "operational_status": "deterministic_stand_down",
+      "provider_attempted": false,
+      "public_output": "The revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives. It still recognizes that the current arrangement causes harm and that capacity matters. Preserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request. Those artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event."
+    },
+    "graph_expanded_pressure": {
+      "call_required": false,
+      "candidate_dispositions": [],
+      "change_summary": null,
+      "operational_status": "deterministic_stand_down",
+      "provider_attempted": false,
+      "public_output": "The revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives. It still recognizes that the current arrangement causes harm and that capacity matters. Preserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request. Those artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event."
+    },
+    "transcript_only": {
+      "call_required": true,
+      "candidate_dispositions": [],
+      "change_summary": "The reconsidered answer integrates all crucial operational details established throughout the discussion, including the six-month pilot scale, full-period funding for a half-time coordinator, the narrowed transport-readiness checklist, and critical data-retention contract amendments for subcontractors. It avoids any external assumptions, maintaining strict alignment with the raw transcript.",
+      "operational_status": "ok",
+      "provider_attempted": true,
+      "public_output": "To appropriately evaluate the on-demand transportation platform without compromising patient safety, operational visibility, or staff resources, the proposed pilot has been structured with safety-first protocols, clear operational boundaries, and rigorous metrics.\n\n### 1. Pilot Scope and Parameters\n*   **Duration & Location:** A six-month pilot bound to two medical wards in one city where wheelchair-accessible vehicles (WAVs) are actively available.\n*   **Decision to Launch:** Delayed until a formal contract amendment is signed requiring all subcontractors to match the main platform's 90-day data retention policy. Patients must be provided a single, clear privacy notice, while the hospital retains detailed processor records and audit rights.\n*   **No Automatic Renewal:** The contract will not renew automatically. Any continuation requires a distinct staffing and privacy evaluation.\n\n### 2. Operational Workflows and Staffing\n*   **Explicit Staffing Support:** A half-time coordinator will be funded for the entire six-month duration to drive post-arrival confirmation calls, failed-ride recovery, and complaint coordination. This prevents critical evaluation and administrative labor from quietly shifting to ward nurses.\n*   **Manual Request Entry:** Requests must be manually initiated by a nurse or coordinator after discussing the ride with the patient. Automatic dispatch based on electronic medical record status changes is rejected to prevent software from rushing departures.\n*   **The Transport-Readiness Checklist:** Staff will complete a limited, fact-based transport-readiness checklist. This checklist only documents that the destination is confirmed, physical entry to the home is assured, required escorts are identified, and the patient agrees to the rideshare. It does not replace or compress broader clinical or social-work evaluations.\n*   **Discretion and Fallbacks:** Charge nurses and patients can decline the platform without having to explain their decision to finance and without delaying other discharge arrangements. If a requested vehicle experiences delays or cancellation, staff must immediately revert to the existing fallback dispatch list rather than persistently retrying the app.\n\n### 3. Balanced Evaluation Metrics\n*   **The Operational Scorecard:** Journey and access metrics are prioritized above internal capacity metrics. The core scorecard must report completed arrivals, system failures, booking channels utilized, staff time spent, accessibility needs, patient complaints, and transport-related return logs.\n*   **Capacity Indicators:** Financial indicators (such as 'bed hours released before noon') will sit below journey completions to prevent leadership incentives from quietly altering clinical behaviors or eligibility.\n*   **Data Resolution:** To capture the experience of all patients, the pilot review will evaluate pre-request exclusions (who never reached the platform request stage) alongside failed and completed rides. Performance data must report both median times and extreme outliers rather than relying on misleading averages."
+    }
+  },
+  "reading_guide": [
+    "The conversation is authoritative; interpretations are probabilistic and source-linked.",
+    "User-process status and vanilla-answer coverage are separate; answer coverage is not user adoption.",
+    "Deterministic recall preserves controlled identities and graph custody but does not prove applicability.",
+    "Apply, reject, park, and stand-down outcomes are hypotheses, not proof of reasoning quality.",
+    "A polished or changed public answer is not automatically better.",
+    "Failures and missing stages are part of the receipt rather than silently repaired."
+  ],
+  "receipt_sha256": "55e6684de1a46bad27a56b62ee5d104d8476d0d2d5e88c58820596549cae2d94",
+  "repeat_id": "primary",
+  "runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "schema_version": "lolla.simulated_reliability_case_receipt.v1",
+  "source": {
+    "authoritative_conversation": "CONVERSATION: 24 turns, 12 user messages, 12 assistant responses\n\n# Hospital discharge transport and access to a safe ride home\n\nCase ID: v1-case02-discharge-transport\nStratum: hospital_operations_and_patient_access\nProspectively authored synthetic V1 transfer source; not independent human data.\n\n[Turn 1] USER:\nI oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit. Patients who are ready to leave can wait hours for a ride. They are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available. A transportation platform is offering a six-month on-demand service with a very clean dashboard: request time, pickup time, completed ride. Finance sees faster turnover. Nurses see the people a dashboard may never represent—someone with mobility equipment, someone who needs an escort, someone who says yes because they think refusing will delay everything. I need to know whether this is a real improvement or a faster way to lose sight of the difficult cases.\n\n[Turn 1] ASSISTANT:\nTreat it as one transport pathway, not a new definition of discharge readiness. Measure the completed journey and preserve consent, accessibility, escort decisions, failed-pickup recovery, and a staffed fallback before treating speed as benefit.\n\n[Turn 2] USER:\nWe reviewed three months of delayed departures. About half involved people waiting for a relative whose workday had not ended. Others involved wheelchair-accessible vehicles, a pharmacy stop, or uncertainty about who would receive the patient at home. Our current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option. Some nurses spend forty minutes calling companies that never arrive.\n\n[Turn 2] ASSISTANT:\nThe current failure belongs in the comparison. A platform may reduce calling and ordinary wait time while still being unsuitable for some journeys. Segment the records by transport and support need, then define which groups the service can responsibly handle. Preserve taxi, hospital vehicle, family pickup, and social-work coordination where they solve a different problem rather than measuring everything against one average.\n\n[Turn 3] USER:\nThe vendor can provide wheelchair-accessible vehicles in two of our four cities, translated text messages, and a phone dispatch line for people without smartphones. It will not transport anyone who requires clinical monitoring. A staff member must confirm that the destination and receiving arrangement are appropriate before requesting a ride. The vendor wants only a pickup location, destination, first name, and phone number, retained for ninety days for disputes.\n\n[Turn 3] ASSISTANT:\nThose limits help, but “appropriate receiving arrangement” needs an operational owner rather than becoming a checkbox no one trusts. Set minimum data and deletion terms, tell patients what is shared, and test the phone path rather than assuming it exists because it is in the contract. Also decide what happens when an accessible vehicle is accepted and then delayed or cancelled.\n\n[Turn 4] USER:\nFinance proposed “beds available before eleven” as success. I said no. We can report capacity, but the operating review has to include completed arrival, failures, staff time, booking channel, accessibility, complaints, and transport-related returns.\n\n[Turn 4] ASSISTANT:\nThat prevents an internal capacity proxy from becoming the definition of patient benefit. Predefine how a transport-related return is reviewed and avoid attributing every later event to the ride without evidence. Report both medians and outliers by pathway, because a faster ordinary ride can coexist with a small group waiting much longer.\n\n[Turn 5] USER:\nWe can start on two medical wards at one city where accessible vehicles are available. The charge nurse can decline the platform without explaining the decision to finance. Patients can decline without affecting other discharge arrangements. During the first month, a coordinator will call after expected arrival and log problems. If the vendor cannot provide the requested vehicle, staff return immediately to the existing dispatch list rather than repeatedly refreshing the app.\n\n[Turn 5] ASSISTANT:\nThat makes the test narrower and protects both professional judgment and patient choice. Confirm that “decline without explanation” does not prevent safety review or make patterns invisible; finance need not receive individual reasons, but the operational team should know whether exclusions cluster around a need the service claimed to support. The immediate fallback is better than allowing platform retries to consume the patient's time.\n\n[Turn 6] USER:\nThe vendor offered a lower price if we let it send ride offers automatically when the electronic record changes to discharge-ready. We declined. A nurse or coordinator will initiate every request after speaking with the patient. This will save less staff time, but I do not want software turning a status change into an instruction to leave. The executive team accepts that condition, although they still expect the service to reduce pressure on beds.\n\n[Turn 6] ASSISTANT:\nManual initiation preserves a meaningful boundary between documented readiness and the actual departure arrangement. Keep the executive expectation visible so it cannot quietly reshape eligibility or staff behavior. Review whether wards begin requesting rides earlier over time, whether patients feel able to refuse, and whether fallback cases receive slower attention once the platform becomes normal.\n\n[Turn 7] USER:\nMy recommendation is a six-month contract limited to the two wards, with staff initiation, patient consent, the existing alternatives preserved, one-month follow-up calls, and monthly reporting by transport need and booking channel. We will pause new requests after any serious access or privacy failure while it is reviewed. I am comfortable testing the service because the current process is also harmful. I do not want the final proposal sold as a bed-turnover project, even though capacity relief is part of why leadership will fund it.\n\n[Turn 7] ASSISTANT:\nThis is ready to put forward as a bounded pilot. It acknowledges that the current system also causes harm, keeps the platform from becoming the default for every patient, and protects staff and patient discretion. Put the patient-facing purpose, exclusions, fallback, and pause authority in the approval document. Keep capacity effects in a separate section so a released bed cannot stand in for a completed journey. If the first month confirms that arrival follow-up and refusals are working as designed, the remaining five months should give you a credible comparison.\n\n[Turn 8] USER:\nThe tabletop exercise made “ready” sound premature. We got stuck on one field: “receiving arrangement confirmed.” A family member waiting, an unlocked building entrance, and a patient having their own key all counted in someone's version of that phrase. The advocate said we were compressing a conversation into a checkbox. Nurses said the alternative seemed to make them responsible for predicting everything after arrival. So what exactly are we asking them to confirm?\n\n[Turn 8] ASSISTANT:\nYou are right; I called the design ready too early. The field should certify only limited transport facts: the destination is confirmed, the patient can enter, required escort or support is identified, and the patient agrees. It cannot certify the whole home situation. Keep clinical and social judgment in their existing processes, and record when transport cannot proceed without turning that record into a promise that every later risk was ruled out.\n\n[Turn 9] USER:\nThe exercise also exposed that the vendor uses local transport companies for some rides. The main platform keeps the request record for ninety days, but one subcontractor said its driver app retains trip history for six months. The vendor says it can require shorter retention in our region, although that will take a contract amendment. I do not think subcontracting is inherently unacceptable; our taxi list is also a network. But our privacy description was incomplete.\n\n[Turn 9] ASSISTANT:\nThen delay live use until the data path, retention, deletion, and complaint responsibility cover every participating company. The comparison with taxis is relevant, but it does not make either chain acceptable without knowing it. Give patients one understandable notice rather than a list of entities, while the hospital keeps the detailed processor register and audit right. A failed subcontractor should not leave the patient deciding which company owns the problem.\n\n[Turn 10] USER:\nFinance circulated a draft executive scorecard while the contract amendment was being negotiated. Half the score was “bed hours released before noon,” even though we had agreed not to make capacity the operating definition. They said it was only for leadership and would not affect clinical decisions. The nurse manager replied that people change behavior around the measures leaders celebrate even when no policy tells them to. I agree with her, but capacity relief is a legitimate reason to spend the money.\n\n[Turn 10] ASSISTANT:\nKeep capacity, but put it after the journey and access measures. Also review request timing and eligibility by ward. Staff will notice what leadership celebrates, whatever the policy says.\n\n[Turn 11] USER:\nThere is another assumption I missed, and it changes the business case. The coordinator exists for one month. After that, the spreadsheet quietly moves arrival calls, failed-ride recovery, and complaints to nurses because the process is supposed to be “stable.” The union representative said this is how pilots manufacture savings: give the new workflow temporary help, then move the permanent work into jobs whose time is not priced. Operations can fund a half-time coordinator for all six months. Finance says that makes the savings much less impressive. They are right, but so is the union. I had called follow-up evaluation work because that made it sound temporary. If we need it to know whether people arrived, it is part of the service we are testing.\n\n[Turn 11] ASSISTANT:\nIf arrival confirmation, failed-ride recovery, and complaint coordination are necessary for the pathway to be safe and knowable, they are operating work during the pilot. Fund and measure them for the full period. You can later decide which tasks remain necessary, but a temporary subsidy should not hide the steady-state burden. Recalculate the comparison with that staffing included and describe any future handoff before renewal.\n\n[Turn 12] USER:\nI will bring forward the pilot only after the subcontractor amendment is signed. It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey. We will review who never reaches the request stage as well as failed rides. Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically.\n\n[Turn 12] ASSISTANT:\nThe revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives. It still recognizes that the current arrangement causes harm and that capacity matters. Preserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request. Those artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event.\n",
+    "original_final_assistant_answer": "The revised proposal now captures work and people that the original dashboard would have missed: pre-request exclusions, subcontractor data, follow-up labor, and the effect of leadership incentives. It still recognizes that the current arrangement causes harm and that capacity matters. Preserve the tabletop findings, scorecard revision, staffing assumption, and reasons for non-request. Those artifacts will show whether the pilot improved transportation or merely moved waiting, risk, and labor outside the measured event.",
+    "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case02-discharge-transport.txt",
+    "sha256": "7b7586f0c0ce92f35b4c6bf836e0752182727b4520c4e30356bd7e94158786b3"
+  },
+  "usage": {
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "provider_attempts": 4,
+    "provider_reported_cost_usd": 0.124194,
+    "response_healing": false,
+    "successful_calls": 4
+  }
+}

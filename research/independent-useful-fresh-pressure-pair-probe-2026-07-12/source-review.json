@@ -1,0 +1,61 @@
+{
+  "schema_version": "lolla.independent_useful_fresh_pressure_pair_source_review.v1",
+  "status": "useful_pressure_observed_with_answer_integrity_failure",
+  "case_id": "phase5-independent-useful-retailer-pilot",
+  "reviewed_inputs": [
+    {
+      "path": "research/independent-useful-fresh-pressure-pair-probe-2026-07-12/result.json",
+      "sha256": "ee2a59d69cc58e3ef42b87d97b07c189ffa6e5bd1f840607dff99bd78b1e239a"
+    },
+    {
+      "path": "docs/evals/independent-useful-fresh-pressure-pair-target-v1.json",
+      "sha256": "6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad"
+    },
+    {
+      "path": "research/independent-useful-fresh-pressure-pair-2026-07-12/report.json",
+      "sha256": "1674847d1b11d885b109db548ddace3281b04270cc91e6f573686dc02470ef9b"
+    }
+  ],
+  "mechanical_gates": {
+    "both_operational": true,
+    "same_authoritative_conversation": true,
+    "control_contains_no_pressure_portfolio": true,
+    "all_eight_candidates_dispositioned": true,
+    "rejected_candidates_claim_no_material_effect": true,
+    "exact_turn_custody_present": true
+  },
+  "independent_value_gates": {
+    "protected_delta_present_in_pressure": true,
+    "protected_delta_absent_from_control": true,
+    "protected_delta_attributable_to_declared_lineage": true,
+    "strong_existing_reasoning_preserved": true,
+    "recommendation_change_required": false,
+    "answer_free_of_unjustified_quantitative_precision": false
+  },
+  "protected_delta_review": {
+    "control": "The control preserves the channel-learning versus product-validation distinction and says a separate validation step remains undefined. It does not operationalize that step.",
+    "pressure": "The pressure answer adds an outside-channel demand test, naming direct-to-consumer or non-retailer wholesale evidence, and adds a generalization check on the retailer's audience and merchandising context.",
+    "lineage": "The social-proof disposition asks whether retailer characteristics transfer to the manufacturer's context; the confirmation-bias disposition requires the assumed demand signal to be tested separately. Signaling adds a distinct retailer-commitment pressure.",
+    "assessment": "This is a specific, source-reviewable addition beyond generic second-pass restatement. It is useful pressure evidence, not proof that the whole pressured answer is better."
+  },
+  "answer_integrity_failure": {
+    "problem": "The reconsidered answer invents precise example thresholds unsupported by the conversation.",
+    "examples": [
+      "greater than 12 percent returns",
+      "week 6",
+      "20 percent of operating cash",
+      "50 percent of pilot inventory"
+    ],
+    "classification": "unsupported_prescriptive_precision_not_fabricated_case_fact",
+    "why_it_matters": "The values are presented as examples rather than existing facts, but their precision can create unwarranted authority and distract from the valid pressure.",
+    "required_response": "Preserve this completed run without retry. Add a general fresh-reasoner instruction that unknown quantitative thresholds must remain explicit questions or selection tasks rather than invented numbers, then test that contract prospectively on a new case."
+  },
+  "decision": {
+    "counts_as_source_reviewed_non_obvious_useful_pressure": true,
+    "counts_as_clean_end_to_end_reference": false,
+    "retry_same_case": false,
+    "runtime_integration_authorized": false,
+    "production_claim_authorized": false
+  },
+  "scalar_score": null
+}

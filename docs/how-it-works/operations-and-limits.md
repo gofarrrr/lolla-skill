@@ -74,9 +74,11 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 |-----------|-------------|
 | Conversation is about code debugging | Extraction returns `not_strategic`, Claude presents polite decline |
 | Conversation is 1-2 turns | Extraction still works. Less material for Lane 2 fingerprinting. Lane 3 (frame pressure) is most useful on short conversations. |
-| Conversation is very long | Claude/`run_extract.py` truncate to first 3 + last 15 turns when the long-conversation or 80K-character cap fires. `capture_manifest.truncation_applied` records what was omitted, and `run_health.issues[]` includes `capture_truncated`. |
+| Conversation is very long | The complete available prose remains authoritative in `conversation.txt`. Above the 80K-character extraction cap, `run_extract.py` creates a separate first-3-plus-last-15 `conversation_processing_view.txt` and exact JSON omission metadata. The processing view is explicitly partial and non-authoritative. |
 | Pipeline finds zero tendencies | Valid outcome. "No structural pressures detected." |
-| OpenRouter times out | Boundary client returns empty payload + a degraded `BoundaryCallMetadata` (status `timeout` / `http_error_*` / `url_error` / `response_json_error`). No internal retry loop. The pipeline degrades — affected lanes return empty/partial results, the run continues, and the failure is visible in `audit_summary.boundary_calls[]`. The only application-level retry is extraction's single quote-fabrication retry (see *Capture validation* in Step 2). |
+| OpenRouter times out | Boundary client returns empty payload + a degraded `BoundaryCallMetadata` (status `timeout` / `http_error_*` / `url_error` / `response_json_error`). No internal retry loop. Extraction atomically persists that record before schema validation returns; other affected lanes return empty/partial results and preserve the failure in `audit_summary.boundary_calls[]`. The only application-level retry is extraction's single quote-fabrication retry (see *Capture validation* in Step 2). Frozen evaluation smokes additionally enforce an outer subprocess wall-clock ceiling; timeout seals a failed result and never retries the experiment. |
+| Extraction returns empty or misses required fields | The semantic artifact remains `status: error`; Python does not invent the missing meaning. The provider call record is already persisted, and `provider_call_custody` distinguishes the attempted call from the non-admissible extraction. |
+| Attempted extraction call has no usage record | Admission fails. Calls, tokens, served model, and cost are reported as unknown/null rather than zero. |
 | `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
 | V60 artifact missing or disabled | The four lanes still run. `v60_enrichment` becomes `disabled` or `skipped_error`; if enabled but unavailable, `run_health.issues[]` includes `v60_enrichment_failed`. |
 | V60 active but ledger missing | Step 6b/Step 9 finalization marks `run_health.v60_consideration_ledger: missing`, adds `v60_consideration_ledger_missing`, and records every selected chunk as unaccounted. The run archives, but it is visibly incomplete. |
@@ -100,9 +102,23 @@ A typical run makes 18-25 OpenRouter calls against `google/gemini-3.1-flash-lite
 
 Total: roughly 60-110K tokens for the core pipeline before the Bullshit Index pass, with final cost depending on the served OpenRouter model and answer length. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude/Codex produces the updated position directly.
 
-The Bullshit Index runs one OpenRouter call per passage of the audited answer (typically 30-60 calls in parallel). On a long answer this can dominate the OpenRouter call count. It runs in `_run_bullshit_index` after the lanes complete and is recorded under `stage="bullshit_index"` in the per-run telemetry.
+The Bullshit Index runs one OpenRouter call per evaluation passage of the
+audited answer, capped at 12 calls in parallel. When the ordinary split yields
+more than 12 source passages, adjacent passages are merged deterministically;
+none are selected away, but localization becomes coarser. It runs in
+`_run_bullshit_index` after the lanes complete and is recorded under
+`stage="bullshit_index"` in the per-run telemetry. The result exposes source
+passage count, evaluation passage count, cap, compaction state, and evaluation
+failures.
 
 V60 private enrichment adds no extra OpenRouter chat call. It does deterministic artifact lookup plus optional reuse of the embedding retriever when embeddings are enabled; that can add the same small OpenAI query-expansion/embedding cost profile described above. The dominant V60 cost is context and orchestration attention in Step 6, which is why the default cap is 8 private cards and the ledger records presented-but-not-used chunks.
+
+Embedding and query-expansion requests go directly to OpenAI using
+`OPENAI_API_KEY`; they do not reuse the OpenRouter key. Under `--embeddings
+auto`, an empty OpenAI key disables the embedding layer. The five embedding
+and two expansion calls in the July 2026 Case09 holdout were attributed to the
+OpenAI vendor block, while all reasoning calls remained in the OpenRouter
+block.
 
 The Step-7 pressure-check sub-agents are rested by default. If the user/operator explicitly enables deeper-review mode, they fire from inside the SKILL via Claude Code's Agent tool, *not* through the OpenRouter boundary client. They run on whatever Claude model the orchestrator inherits (typically Opus). On optional runs this can be the dominant cost line. Their `total_tokens` (no prompt/completion split available) is recorded into the same `usage_summary` block by Step 8b.
 

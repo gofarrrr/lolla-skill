@@ -1,0 +1,83 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_v3_probe_contract.v1",
+  "status": "frozen_before_provider_call",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-exploration-v3-case02-v1",
+  "purpose": "Test whether an exploration-only chronological coverage instruction recovers the remaining earlier minority alternative after v2 fixed relationship roles, while removing mechanical parking from model authority.",
+  "frozen_inputs": [
+    {
+      "path": "research/reasoning-process-view-specific-v2-probe-2026-07-11/source-review.json",
+      "sha256": "b900beb36b6a72755f97f7ad6adfd6bbf911105e61741ceafd099102fe032ab3"
+    },
+    {
+      "path": "research/reasoning-process-view-specific-v2-2026-07-11/report.json",
+      "sha256": "23f0328aa85a6e0650476b63b21063e04a91e5be9d4e53a8fd204968555960f0"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_v3.py",
+      "sha256": "2662ddf5f4722fb389041bb534d97c5849366a7b0d3614287ad1f6381c861ee9"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_exploration_v3_probe.py",
+      "sha256": "a3a2f2c2db84d06cd52757c775c67eb6a1eb1829b34978a9af7bd7b35177eb7b"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+    "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json"
+  },
+  "view_order": ["exploration_and_alternatives"],
+  "jobs": [
+    {
+      "job_id": "exploration-v3-amb1-case02-nonprofit-scale",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-view-specific-interface-2026-07-11/cases/amb1-case02-nonprofit-scale/exploration_and_alternatives/reader-packet.json",
+      "packet_sha256": "7fa451dbd988c95a801771dc0c4a4e35942f868c7c8c9b0b8e6dfb405e9f1822",
+      "input_utf8_bytes": 16380,
+      "system_prompt_sha256": "47c6d295e4917273e5340d81d3d62684df56d5c406d1e5d2d214ea8a5b89d875",
+      "user_prompt_sha256": "816956fc32aaa14b90985cbc118bb46fee143945ca229746cad261412e708aad",
+      "response_schema_sha256": "0b84417c4e7c3eee237a2af1edcae91ebb5b1c1e8346a290eb6cea5e0d10274b"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0.0,
+    "seed": 0,
+    "max_output_tokens": 2400,
+    "provider_timeout_seconds": 90
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.015,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success": true,
+    "typed_and_compiled": true,
+    "stable_alias_validity_rate": 1.0,
+    "case02_named_role_alternative_visible": true,
+    "case02_not_all_ownership_limit_visible": true,
+    "source_strength_inflation_count": 0
+  },
+  "boundary": {
+    "target_in_prompt": false,
+    "case_specific_example_in_prompt": false,
+    "mechanical_complement_parking_model_authored": false,
+    "five_view_rerun": false,
+    "phase4_transfer_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

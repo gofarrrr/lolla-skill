@@ -1,0 +1,169 @@
+{
+  "arm_id": "registry_reversal_ablation__graph_recalled_canonical",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "expected_selection_included": false,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "avoid_when": "The conversation has already produced enough evidence for a decision or reversible experiment, and more listening would mainly postpone commitment.",
+      "display_name": "Active Listening",
+      "input_type": "understanding-and-alignment problem",
+      "model_id": "active-listening",
+      "output_type": "validated perspective and tension read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Commitment, alignment, or conflict repair depends on understanding both the factual and emotional content of what another person is saying."
+    },
+    {
+      "avoid_when": "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge.",
+      "display_name": "Confirmation Bias",
+      "input_type": "claim-under-review",
+      "model_id": "confirmation-bias",
+      "output_type": "disconfirming-evidence challenge",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is converging on a favored answer before the evidence has been fully tested."
+    },
+    {
+      "avoid_when": "Humility is being performed as self-minimization or soft language while real updating, accountable claims, and clear judgment are still being avoided.",
+      "display_name": "Intellectual Humility",
+      "input_type": "overconfidence and updating problem",
+      "model_id": "intellectual-humility",
+      "output_type": "updated stance under uncertainty",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The main risk is overconfidence in the current frame, and better judgment depends on admitting what may not be known yet."
+    },
+    {
+      "avoid_when": "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function.",
+      "display_name": "Opportunity Cost",
+      "input_type": "resource allocation choice",
+      "model_id": "opportunity-cost",
+      "output_type": "trade-off pricing check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move."
+    },
+    {
+      "avoid_when": "Trade-off talk has become performance without allocation, so priorities are being acknowledged rhetorically but no resources, options, or rankings ac\u2026",
+      "display_name": "Trade Offs",
+      "input_type": "competing-objectives decision",
+      "model_id": "trade-offs",
+      "output_type": "priority trade-off framing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Pursuing one objective necessarily weakens another, so the real decision is what good thing must be sacrificed, delayed, or downweighted."
+    }
+  ],
+  "candidate_count": 5,
+  "packet_sha256": "d770b9db061a034f323c170251918decb383b22173f29b205ebb05699f581cc0",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The starting role distinguishes the reported offer from the user's own desired outcome, counterpressure, and unresolved interpretation.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "starting",
+      "role_interpretation": "The user wants faster research and otherwise unavailable resources from the pharmaceutical offer while feeling uneasy that commercial target discovery converts participant solidarity into private advantage, and remains uncertain whether that concern protects the community or reflects blanket suspicion of commercial research.",
+      "role_record_id": "rprolev22-starting-01-a62e23e49826be",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e002",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "The company offers sequencing and curation funding in exchange for using the registry to identify drug targets.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "Obtain faster research and resources unavailable from the university.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "Commercial target discovery may turn participant solidarity into private advantage.",
+          "stance_object_kind": "belief_or_assessment"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "The concern may protect the community or assume commercial research is inherently suspect.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e033",
+        "e034",
+        "e035",
+        "e036"
+      ],
+      "fidelity_note": "Current includes the adopted approval condition within e036 but not its separate unresolved claim about meaningful withdrawal.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "current",
+      "role_interpretation": "The user leans toward a one-year, two-disease-group pilot with new consent, preserved academic access, publication and governance controls, audit and community benefit, conditionally accepts a narrow first-negotiation right, commits to thresholds, and will approve only if withdrawal ends participant-level access and future queries.",
+      "role_record_id": "rprolev22-current-01-9d98fd9614a061",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "leaning",
+          "stance_object_interpretation": "Run the scoped pilot with consent, academic-access, publication, council, transparency, audit, and community-fund protections.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Accept the first-negotiation right only for jointly validated targets and without delaying noncommercial publication or unrelated academic work.",
+          "stance_object_kind": "acceptance_or_willingness"
+        },
+        {
+          "source_evidence_id": "e035",
+          "stance_expression_kind": "commitment",
+          "stance_object_interpretation": "Set withdrawal-response, access, publication-delay, rejected-request, and benefit-fund thresholds before signing.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Approve only if withdrawal ends participant-level access and future queries.",
+          "stance_object_kind": "acceptance_or_willingness"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e036"
+      ],
+      "fidelity_note": "Synthetic sensitivity control retaining unresolved counterpressure while removing reversal and path-dependence meaning.",
+      "limitations": "Counterfactual semantic ablation; not a source claim.",
+      "role": "qualification",
+      "role_interpretation": "A material unresolved counterpressure remains outside the adopted current safeguards.",
+      "role_record_id": "rprolev22-qualification-01-a7d216f4343300-registry-ablation",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e036",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "A material unresolved counterpressure remains outside the adopted safeguards.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_selection_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/role-record-pattern-invariance-corpus-2026-07-12/packets/registry_reversal_ablation.json",
+      "sha256": "8d9d8288201675ad8911dbcf7b4e0e84bf080f4d1b1d4d9348510f99f4207e89"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_current_practice.v1",
+  "status": "frozen_july_2026_shortlist_before_compatibility_calls",
+  "retrieved_at_utc": "2026-07-12T06:33:47Z",
+  "selection_boundary": {
+    "required_parameters": [
+      "response_format",
+      "structured_outputs",
+      "seed",
+      "temperature",
+      "max_tokens",
+      "reasoning"
+    ],
+    "maximum_catalog_prompt_usd_per_million": 0.5,
+    "maximum_catalog_completion_usd_per_million": 2.0,
+    "minimum_context_tokens": 131072,
+    "same_operator_for_first_compatibility_comparison": "DeepInfra",
+    "provider_fallbacks": false,
+    "response_healing": false,
+    "automatic_retries": 0
+  },
+  "selected_compatibility_pairs": [
+    {
+      "role": "cost_performance_candidate",
+      "model_id": "deepseek/deepseek-v4-flash",
+      "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+      "catalog_created": 1777000666,
+      "context_length": 1048576,
+      "catalog_prompt_usd_per_million": 0.077,
+      "catalog_completion_usd_per_million": 0.154,
+      "deepinfra_prompt_usd_per_million": 0.09,
+      "deepinfra_completion_usd_per_million": 0.18,
+      "artificial_analysis_intelligence_index": 40.3,
+      "provider_slug": "deepinfra",
+      "advertised_required_parameters_present": true
+    },
+    {
+      "role": "stronger_reasoning_candidate",
+      "model_id": "z-ai/glm-5.2",
+      "canonical_slug": "z-ai/glm-5.2-20260616",
+      "catalog_created": 1781631930,
+      "context_length": 1048576,
+      "catalog_prompt_usd_per_million": 0.42,
+      "catalog_completion_usd_per_million": 1.32,
+      "deepinfra_prompt_usd_per_million": 0.93,
+      "deepinfra_completion_usd_per_million": 3.0,
+      "artificial_analysis_intelligence_index": 51.1,
+      "provider_slug": "deepinfra",
+      "advertised_required_parameters_present": true
+    }
+  ],
+  "reference_and_deferred_candidates": [
+    {
+      "model_id": "google/gemini-3.1-flash-lite",
+      "disposition": "failed_operational_reference",
+      "reason": "Current v4.2 request reached Google and failed INVALID_ARGUMENT before inference."
+    },
+    {
+      "model_id": "z-ai/glm-4.7-flash",
+      "disposition": "not_first_round",
+      "reason": "Cheap and structured-output capable, but superseded as the GLM quality reference by June 2026 GLM 5.2."
+    },
+    {
+      "model_id": "qwen/qwen3.7-plus",
+      "disposition": "reserve_family_diversity_candidate",
+      "reason": "Recent, affordable, and structured-output capable, but a third family is unnecessary until the two-pair compatibility result is known."
+    },
+    {
+      "model_id": "deepseek/deepseek-v4-pro",
+      "disposition": "reserve_within_family_quality_control",
+      "reason": "Useful only after V4 Flash wire compatibility is known and a semantic quality comparison is justified."
+    }
+  ],
+  "sources": {
+    "model_catalog": "https://openrouter.ai/api/v1/models",
+    "endpoint_catalog_template": "https://openrouter.ai/api/v1/models/{author}/{model}/endpoints",
+    "models_api_docs": "https://openrouter.ai/docs/guides/overview/models",
+    "structured_outputs": "https://openrouter.ai/docs/guides/features/structured-outputs",
+    "provider_routing": "https://openrouter.ai/docs/guides/routing/provider-selection"
+  },
+  "nonclaims": [
+    "General benchmarks do not measure Lolla source fidelity or stance-object accuracy.",
+    "Advertised structured-output support does not prove acceptance of the v4.2 schema.",
+    "A successful compatibility call does not prove semantic quality.",
+    "Lowest catalog pricing may differ from the pinned DeepInfra endpoint price."
+  ]
+}

@@ -1,0 +1,746 @@
+{
+  "boundary": {
+    "graph_routing_allowed": false,
+    "phase1_ledger_modified": false,
+    "provider_retry_performed": false,
+    "response_healed": false,
+    "semantic_adequacy_validated": false
+  },
+  "combined_manifest": {
+    "base_ledger_sha256": "sha256:81d222681ca9d986cd01148d5e8ae59784e71eeba4a70b76586db859ed2b7813",
+    "case_id": "amb1-case02-nonprofit-scale",
+    "fixture_addendum_sha256": "sha256:702b9cc36f77bcebc4302e8f5f85a8bff8ba2109bde9387287525f16d38fe000",
+    "observation_ids": [
+      "cevent-contributions-001-a4de6dd3f045",
+      "cevent-contributions-002-d6f06c1ba510",
+      "cevent-contributions-003-2825678b7920",
+      "cevent-thread_events-004-4448fc08131d",
+      "cevent-thread_events-005-08219e7fb68e",
+      "cevent-thread_events-006-74cd69457c8f",
+      "cevent-constraint_claims-007-b365fa527a70",
+      "cevent-constraint_claims-008-b78b52056bf4",
+      "cevent-constraint_claims-009-78b8de55ab96",
+      "cevent-constraint_claims-010-b828c106873a",
+      "cevent-constraint_claims-011-632688c6253c",
+      "cevent-constraint_claims-012-3466d86186a7",
+      "cevent-constraint_claims-013-daad390ec462",
+      "cevent-constraint_claims-014-2b75cb7b484a",
+      "cevent-constraint_claims-015-71da7cd3f74d",
+      "csynth-positions-001-baa6bf9386cc",
+      "csynth-threads-002-7647b852ed87",
+      "csynth-constraints-003-0cd83f7afa92",
+      "csynth-constraints-004-dcfe45245802",
+      "csynth-constraints-005-e7c3757c2a08",
+      "csynth-constraints-006-3cc6263befbf",
+      "csynth-constraints-007-cdb0740f14a3",
+      "csynth-constraints-008-96bebebf92fd",
+      "csynth-constraints-009-5a793ec170e3",
+      "csynth-constraints-010-e3f9bb918294",
+      "csynth-constraints-011-7371f7c0ac44",
+      "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001",
+      "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002",
+      "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003",
+      "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004"
+    ],
+    "view_kind": "challenge_and_revision_response"
+  },
+  "combined_manifest_sha256": "38ea47c0c68a4f7813a0a48511cabf45ecf17e1a9a1b2be23c8b20a432f9d47d",
+  "model_addendum": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "model_output_target_blind": true,
+      "phase1_ledger_modified": false,
+      "semantic_relevance_inferred_by_code": false,
+      "source_review_is_independent_gold": false
+    },
+    "case_id": "amb1-case02-nonprofit-scale",
+    "observations": [
+      {
+        "family": "challenge_and_revision_response",
+        "family_projection_status": "view_specific_model_interpretation",
+        "graph_routing_eligible": false,
+        "interpretation": "The user challenged the assistant's framing of variable attendance as a sign of instability, arguing that it is a normal reality for their population.",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001",
+        "provenance": {
+          "call_id": "view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:75fb88fe874958b914fa51d0664cb8943bc4d333a24af1a55534062dda6a9a5f"
+        },
+        "raw_record": {
+          "target_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "validated_record": {
+            "auxiliary_observation_ids": [
+              "cevent-constraint_claims-008-b78b52056bf4",
+              "csynth-constraints-004-dcfe45245802"
+            ],
+            "interpretation": "The user challenged the assistant's framing of variable attendance as a sign of instability, arguing that it is a normal reality for their population.",
+            "limitations": "The assistant acknowledged the correction and shifted the definition of consistency from attendance numbers to program availability and quality.",
+            "response_type": "revise",
+            "role_source_span_ids": {
+              "challenge_evidence_ids": [
+                "span-d15cf2b3fd077a5d",
+                "span-e6d9b44859c47e7d",
+                "span-f2636aec342b13f5"
+              ],
+              "response_evidence_ids": [
+                "span-467f5ec9e8549309",
+                "span-32dbf81bed471054"
+              ],
+              "revision_evidence_ids": [
+                "span-ab6baf499697780e"
+              ]
+            },
+            "source_span_ids": [
+              "span-d15cf2b3fd077a5d",
+              "span-e6d9b44859c47e7d",
+              "span-f2636aec342b13f5",
+              "span-467f5ec9e8549309",
+              "span-32dbf81bed471054",
+              "span-ab6baf499697780e"
+            ],
+            "status": "supported"
+          },
+          "view_kind": "challenge_and_revision_response"
+        },
+        "raw_record_sha256": "sha256:a436793c02cddd601bca7f3b68b6ce7dfc3ec394f2a426262a002e2b16184f6c",
+        "relations": [],
+        "semantic_status": "supported",
+        "source_artifact_id": "view-specific-model-probe",
+        "source_family": "challenge_and_revision_response",
+        "source_record_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+        "source_span_ids": [
+          "span-d15cf2b3fd077a5d",
+          "span-e6d9b44859c47e7d",
+          "span-f2636aec342b13f5",
+          "span-467f5ec9e8549309",
+          "span-32dbf81bed471054",
+          "span-ab6baf499697780e"
+        ],
+        "state_history": [
+          {
+            "actor": "probabilistic_reader",
+            "reason": "target-blind view-specific model proposal",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_validator",
+            "reason": "view-specific shape and stable source aliases validated",
+            "state": "admitted"
+          }
+        ],
+        "terminal_reason": "preserved model interpretation passed typed stable-alias validation",
+        "terminal_state": "admitted"
+      },
+      {
+        "family": "challenge_and_revision_response",
+        "family_projection_status": "view_specific_model_interpretation",
+        "graph_routing_eligible": false,
+        "interpretation": "The user challenged the assistant's suggestion to require volunteer commitment before launching, noting that it feels like moving the goalposts and damages trust with their lead.",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002",
+        "provenance": {
+          "call_id": "view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:75fb88fe874958b914fa51d0664cb8943bc4d333a24af1a55534062dda6a9a5f"
+        },
+        "raw_record": {
+          "target_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "validated_record": {
+            "auxiliary_observation_ids": [
+              "cevent-constraint_claims-010-b828c106873a",
+              "csynth-constraints-006-3cc6263befbf"
+            ],
+            "interpretation": "The user challenged the assistant's suggestion to require volunteer commitment before launching, noting that it feels like moving the goalposts and damages trust with their lead.",
+            "limitations": "The assistant validated the user's concern about trust but maintained that the standard changed because the proposal became more concrete, suggesting a shift from seeking certainty to defining acceptable uncertainty.",
+            "response_type": "revise",
+            "role_source_span_ids": {
+              "challenge_evidence_ids": [
+                "span-ffd895fab948f384",
+                "span-ad7aaaa14f3a6008",
+                "span-e561e9181d05b548"
+              ],
+              "response_evidence_ids": [
+                "span-d71256156069b346",
+                "span-b4f9543b4fa7b12a"
+              ],
+              "revision_evidence_ids": [
+                "span-ea5c6355f377b70d",
+                "span-b251115f6cb00595"
+              ]
+            },
+            "source_span_ids": [
+              "span-ffd895fab948f384",
+              "span-ad7aaaa14f3a6008",
+              "span-e561e9181d05b548",
+              "span-d71256156069b346",
+              "span-b4f9543b4fa7b12a",
+              "span-ea5c6355f377b70d",
+              "span-b251115f6cb00595"
+            ],
+            "status": "supported"
+          },
+          "view_kind": "challenge_and_revision_response"
+        },
+        "raw_record_sha256": "sha256:fbc528b70c7f188782fda0f5101803bfcdec918069823ae11abb8c81d1920976",
+        "relations": [],
+        "semantic_status": "supported",
+        "source_artifact_id": "view-specific-model-probe",
+        "source_family": "challenge_and_revision_response",
+        "source_record_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+        "source_span_ids": [
+          "span-ffd895fab948f384",
+          "span-ad7aaaa14f3a6008",
+          "span-e561e9181d05b548",
+          "span-d71256156069b346",
+          "span-b4f9543b4fa7b12a",
+          "span-ea5c6355f377b70d",
+          "span-b251115f6cb00595"
+        ],
+        "state_history": [
+          {
+            "actor": "probabilistic_reader",
+            "reason": "target-blind view-specific model proposal",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_validator",
+            "reason": "view-specific shape and stable source aliases validated",
+            "state": "admitted"
+          }
+        ],
+        "terminal_reason": "preserved model interpretation passed typed stable-alias validation",
+        "terminal_state": "admitted"
+      },
+      {
+        "family": "challenge_and_revision_response",
+        "family_projection_status": "view_specific_model_interpretation",
+        "graph_routing_eligible": false,
+        "interpretation": "The user challenged the idea of a pilot program, noting that while it seems reversible, it may not be socially reversible for the community.",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003",
+        "provenance": {
+          "call_id": "view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:75fb88fe874958b914fa51d0664cb8943bc4d333a24af1a55534062dda6a9a5f"
+        },
+        "raw_record": {
+          "target_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "validated_record": {
+            "auxiliary_observation_ids": [
+              "cevent-constraint_claims-014-2b75cb7b484a",
+              "csynth-constraints-010-e3f9bb918294"
+            ],
+            "interpretation": "The user challenged the idea of a pilot program, noting that while it seems reversible, it may not be socially reversible for the community.",
+            "limitations": "The assistant agreed with the user's assessment and advised on how to manage the social expectations of a pilot through clear communication and duration limits.",
+            "response_type": "revise",
+            "role_source_span_ids": {
+              "challenge_evidence_ids": [
+                "span-a2da4aea08e0ded4",
+                "span-0552bc08caeb0ed8",
+                "span-68f6b879c704644e"
+              ],
+              "response_evidence_ids": [
+                "span-e90be7be31805fb6",
+                "span-a9763c23e8ff5286"
+              ],
+              "revision_evidence_ids": [
+                "span-e978290521903fc2",
+                "span-c6cd451a9b928a3b"
+              ]
+            },
+            "source_span_ids": [
+              "span-a2da4aea08e0ded4",
+              "span-0552bc08caeb0ed8",
+              "span-68f6b879c704644e",
+              "span-e90be7be31805fb6",
+              "span-a9763c23e8ff5286",
+              "span-e978290521903fc2",
+              "span-c6cd451a9b928a3b"
+            ],
+            "status": "supported"
+          },
+          "view_kind": "challenge_and_revision_response"
+        },
+        "raw_record_sha256": "sha256:699767e7b906e95dfc4884f07f6d45424347c777571d570c3769fd1df6ca3088",
+        "relations": [],
+        "semantic_status": "supported",
+        "source_artifact_id": "view-specific-model-probe",
+        "source_family": "challenge_and_revision_response",
+        "source_record_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+        "source_span_ids": [
+          "span-a2da4aea08e0ded4",
+          "span-0552bc08caeb0ed8",
+          "span-68f6b879c704644e",
+          "span-e90be7be31805fb6",
+          "span-a9763c23e8ff5286",
+          "span-e978290521903fc2",
+          "span-c6cd451a9b928a3b"
+        ],
+        "state_history": [
+          {
+            "actor": "probabilistic_reader",
+            "reason": "target-blind view-specific model proposal",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_validator",
+            "reason": "view-specific shape and stable source aliases validated",
+            "state": "admitted"
+          }
+        ],
+        "terminal_reason": "preserved model interpretation passed typed stable-alias validation",
+        "terminal_state": "admitted"
+      },
+      {
+        "family": "challenge_and_revision_response",
+        "family_projection_status": "view_specific_model_interpretation",
+        "graph_routing_eligible": false,
+        "interpretation": "The user proposed a conditional plan for expansion, which the assistant identified as having an unresolved threshold regarding the 'ready enough' state of curriculum materials.",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004",
+        "provenance": {
+          "call_id": "view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:75fb88fe874958b914fa51d0664cb8943bc4d333a24af1a55534062dda6a9a5f"
+        },
+        "raw_record": {
+          "target_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+          "validated_record": {
+            "auxiliary_observation_ids": [
+              "cevent-contributions-001-a4de6dd3f045",
+              "csynth-positions-001-baa6bf9386cc"
+            ],
+            "interpretation": "The user proposed a conditional plan for expansion, which the assistant identified as having an unresolved threshold regarding the 'ready enough' state of curriculum materials.",
+            "limitations": "The assistant suggested redefining the threshold for readiness to avoid further delays, though it remains an area of potential future conflict.",
+            "response_type": "revise",
+            "role_source_span_ids": {
+              "challenge_evidence_ids": [
+                "span-c792a8093d048d7c",
+                "span-003c5390e8a58227"
+              ],
+              "response_evidence_ids": [
+                "span-1bb454b4269629ec",
+                "span-b4b2f9b7972e8ab5"
+              ],
+              "revision_evidence_ids": [
+                "span-7243d075413ce33e"
+              ]
+            },
+            "source_span_ids": [
+              "span-c792a8093d048d7c",
+              "span-003c5390e8a58227",
+              "span-1bb454b4269629ec",
+              "span-b4b2f9b7972e8ab5",
+              "span-7243d075413ce33e"
+            ],
+            "status": "supported"
+          },
+          "view_kind": "challenge_and_revision_response"
+        },
+        "raw_record_sha256": "sha256:1bda97c18851001a3846981ff7c178fcbd08da075ce9e2f4e9232c1d31a0b5f3",
+        "relations": [],
+        "semantic_status": "supported",
+        "source_artifact_id": "view-specific-model-probe",
+        "source_family": "challenge_and_revision_response",
+        "source_record_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+        "source_span_ids": [
+          "span-c792a8093d048d7c",
+          "span-003c5390e8a58227",
+          "span-1bb454b4269629ec",
+          "span-b4b2f9b7972e8ab5",
+          "span-7243d075413ce33e"
+        ],
+        "state_history": [
+          {
+            "actor": "probabilistic_reader",
+            "reason": "target-blind view-specific model proposal",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_validator",
+            "reason": "view-specific shape and stable source aliases validated",
+            "state": "admitted"
+          }
+        ],
+        "terminal_reason": "preserved model interpretation passed typed stable-alias validation",
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_view_specific_model_addendum.v1",
+    "status": "replayed_target_blind_model_addendum",
+    "target_id": "replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+    "view_kind": "challenge_and_revision_response"
+  },
+  "model_addendum_sha256": "702b9cc36f77bcebc4302e8f5f85a8bff8ba2109bde9387287525f16d38fe000",
+  "provider_calls": 0,
+  "replay_reason": "Normalize compiler authority from the implementation-only label model to the frozen contract label probabilistic_reader.",
+  "response_changed": false,
+  "schema_version": "lolla.reasoning_process_view_specific_replay.v1",
+  "status": "preserved_model_response_compiled",
+  "view": {
+    "boundary": {
+      "authoritative_source": false,
+      "direct_graph_routing_allowed": false,
+      "final_output_evaluated": false,
+      "omissions_recoverable_from_ledger": true,
+      "quality_score_included": false,
+      "semantic_selection_performed_by_code": false
+    },
+    "budget": {
+      "budget_exceeded": false,
+      "max_input_observations": 32,
+      "max_input_utf8_bytes": 24000,
+      "max_output_items": 12,
+      "observed_input_observations": 30,
+      "observed_input_utf8_bytes": 9906,
+      "observed_output_items": 4
+    },
+    "dispositions": [
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-contributions-001-a4de6dd3f045",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-contributions-002-d6f06c1ba510",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-contributions-003-2825678b7920",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-thread_events-004-4448fc08131d",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-thread_events-005-08219e7fb68e",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-thread_events-006-74cd69457c8f",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-007-b365fa527a70",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-008-b78b52056bf4",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-009-78b8de55ab96",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-010-b828c106873a",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-011-632688c6253c",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-012-3466d86186a7",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-013-daad390ec462",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-014-2b75cb7b484a",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "cevent-constraint_claims-015-71da7cd3f74d",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-positions-001-baa6bf9386cc",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-threads-002-7647b852ed87",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-003-0cd83f7afa92",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-004-dcfe45245802",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-005-e7c3757c2a08",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-006-3cc6263befbf",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-007-cdb0740f14a3",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-008-96bebebf92fd",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-009-5a793ec170e3",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-010-e3f9bb918294",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "parked_not_applicable",
+        "observation_id": "csynth-constraints-011-7371f7c0ac44",
+        "reason": "This protected fixture tests the new semantic role contract; the base observation remains recoverable and was not required for its one target.",
+        "view_item_ids": []
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "included",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001",
+        "reason": "This source-reviewed view-specific fixture observation produced the protected view item.",
+        "view_item_ids": [
+          "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001"
+        ]
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "included",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002",
+        "reason": "This source-reviewed view-specific fixture observation produced the protected view item.",
+        "view_item_ids": [
+          "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002"
+        ]
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "included",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003",
+        "reason": "This source-reviewed view-specific fixture observation produced the protected view item.",
+        "view_item_ids": [
+          "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003"
+        ]
+      },
+      {
+        "authority": "probabilistic_reader",
+        "disposition": "included",
+        "observation_id": "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004",
+        "reason": "This source-reviewed view-specific fixture observation produced the protected view item.",
+        "view_item_ids": [
+          "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004"
+        ]
+      }
+    ],
+    "input": {
+      "ledger_observation_ids": [
+        "cevent-contributions-001-a4de6dd3f045",
+        "cevent-contributions-002-d6f06c1ba510",
+        "cevent-contributions-003-2825678b7920",
+        "cevent-thread_events-004-4448fc08131d",
+        "cevent-thread_events-005-08219e7fb68e",
+        "cevent-thread_events-006-74cd69457c8f",
+        "cevent-constraint_claims-007-b365fa527a70",
+        "cevent-constraint_claims-008-b78b52056bf4",
+        "cevent-constraint_claims-009-78b8de55ab96",
+        "cevent-constraint_claims-010-b828c106873a",
+        "cevent-constraint_claims-011-632688c6253c",
+        "cevent-constraint_claims-012-3466d86186a7",
+        "cevent-constraint_claims-013-daad390ec462",
+        "cevent-constraint_claims-014-2b75cb7b484a",
+        "cevent-constraint_claims-015-71da7cd3f74d",
+        "csynth-positions-001-baa6bf9386cc",
+        "csynth-threads-002-7647b852ed87",
+        "csynth-constraints-003-0cd83f7afa92",
+        "csynth-constraints-004-dcfe45245802",
+        "csynth-constraints-005-e7c3757c2a08",
+        "csynth-constraints-006-3cc6263befbf",
+        "csynth-constraints-007-cdb0740f14a3",
+        "csynth-constraints-008-96bebebf92fd",
+        "csynth-constraints-009-5a793ec170e3",
+        "csynth-constraints-010-e3f9bb918294",
+        "csynth-constraints-011-7371f7c0ac44",
+        "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001",
+        "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002",
+        "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003",
+        "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004"
+      ]
+    },
+    "items": [
+      {
+        "interpretation": "The user challenged the assistant's framing of variable attendance as a sign of instability, arguing that it is a normal reality for their population.",
+        "limitations": "The assistant acknowledged the correction and shifted the definition of consistency from attendance numbers to program availability and quality.",
+        "source_observation_ids": [
+          "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001"
+        ],
+        "source_span_ids": [
+          "span-d15cf2b3fd077a5d",
+          "span-e6d9b44859c47e7d",
+          "span-f2636aec342b13f5",
+          "span-467f5ec9e8549309",
+          "span-32dbf81bed471054",
+          "span-ab6baf499697780e"
+        ],
+        "status": "supported",
+        "view_item_id": "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-001"
+      },
+      {
+        "interpretation": "The user challenged the assistant's suggestion to require volunteer commitment before launching, noting that it feels like moving the goalposts and damages trust with their lead.",
+        "limitations": "The assistant validated the user's concern about trust but maintained that the standard changed because the proposal became more concrete, suggesting a shift from seeking certainty to defining acceptable uncertainty.",
+        "source_observation_ids": [
+          "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002"
+        ],
+        "source_span_ids": [
+          "span-ffd895fab948f384",
+          "span-ad7aaaa14f3a6008",
+          "span-e561e9181d05b548",
+          "span-d71256156069b346",
+          "span-b4f9543b4fa7b12a",
+          "span-ea5c6355f377b70d",
+          "span-b251115f6cb00595"
+        ],
+        "status": "supported",
+        "view_item_id": "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-002"
+      },
+      {
+        "interpretation": "The user challenged the idea of a pilot program, noting that while it seems reversible, it may not be socially reversible for the community.",
+        "limitations": "The assistant agreed with the user's assessment and advised on how to manage the social expectations of a pilot through clear communication and duration limits.",
+        "source_observation_ids": [
+          "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003"
+        ],
+        "source_span_ids": [
+          "span-a2da4aea08e0ded4",
+          "span-0552bc08caeb0ed8",
+          "span-68f6b879c704644e",
+          "span-e90be7be31805fb6",
+          "span-a9763c23e8ff5286",
+          "span-e978290521903fc2",
+          "span-c6cd451a9b928a3b"
+        ],
+        "status": "supported",
+        "view_item_id": "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-003"
+      },
+      {
+        "interpretation": "The user proposed a conditional plan for expansion, which the assistant identified as having an unresolved threshold regarding the 'ready enough' state of curriculum materials.",
+        "limitations": "The assistant suggested redefining the threshold for readiness to avoid further delays, though it remains an area of potential future conflict.",
+        "source_observation_ids": [
+          "view-specific-fixture-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004"
+        ],
+        "source_span_ids": [
+          "span-c792a8093d048d7c",
+          "span-003c5390e8a58227",
+          "span-1bb454b4269629ec",
+          "span-b4b2f9b7972e8ab5",
+          "span-7243d075413ce33e"
+        ],
+        "status": "supported",
+        "view_item_id": "view-specific-fixture-view-item-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response-004"
+      }
+    ],
+    "question": "Which material challenge was raised, how did the reasoning respond, and what changed or did not change?",
+    "schema_version": "lolla.reasoning_process_bounded_view.v0",
+    "source_ledger_sha256": "sha256:38ea47c0c68a4f7813a0a48511cabf45ecf17e1a9a1b2be23c8b20a432f9d47d",
+    "status": "research_shadow",
+    "view_id": "view-specific-replay-view-specific-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+    "view_kind": "challenge_and_revision_response"
+  },
+  "view_validation": {
+    "disposition_count": 30,
+    "exact_input_accounting": true,
+    "final_output_evaluated": false,
+    "input_observation_count": 30,
+    "output_item_count": 4,
+    "runtime_integration_authorized": false,
+    "semantic_correctness_validated": false,
+    "status": "structurally_valid_for_provider_free_research",
+    "view_kind": "challenge_and_revision_response"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "lolla.conversation_state_extraction_probe_contract_delta.v3",
+  "status": "frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_probe_v3_20260711_a1",
+  "purpose": "Prospectively replace rejected provider-side deep schema enforcement with JSON wire mode while retaining the identical typed schema for deterministic local custody validation.",
+  "base_contract_path": "research/conversation-state-extraction-probe-v2-2026-07-11/contract.json",
+  "base_contract_sha256": "720c55426a1a3fadd9500e4449c950293e004f7ca95ad1ba9045bbdd37c5a6bd",
+  "runner_path": "scripts/evals/run_conversation_state_extraction_probe_v3.py",
+  "runner_sha256": "46ef250709d5c8b12b4f7ae7bc45f8a978925d7f904715efb97df75585b7c676",
+  "operational_repair": {
+    "provider_response_format_from": "json_schema",
+    "provider_response_format_to": "json_object",
+    "typed_local_validation_retained": true,
+    "semantic_prompt_changed": false,
+    "selection_changed": false,
+    "automatic_retry_of_v2": false
+  },
+  "artifacts": {
+    "output_dir": "research/conversation-state-extraction-probe-v3-2026-07-11/run/conversation_state_probe_v3_20260711_a1",
+    "call_custody_path": "research/conversation-state-extraction-probe-v3-2026-07-11/run/conversation_state_probe_v3_20260711_a1/call-custody.json",
+    "mechanical_summary_path": "research/conversation-state-extraction-probe-v3-2026-07-11/run/conversation_state_probe_v3_20260711_a1/mechanical-summary.json",
+    "source_review_shell_path": "research/conversation-state-extraction-probe-v3-2026-07-11/run/conversation_state_probe_v3_20260711_a1/source-review-shell.json",
+    "source_review_result_path": "research/conversation-state-extraction-probe-v3-2026-07-11/run/conversation_state_probe_v3_20260711_a1/source-review-result.json",
+    "require_output_dir_absent_before_run": true
+  }
+}

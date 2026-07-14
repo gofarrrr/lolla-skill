@@ -1,0 +1,220 @@
+{
+  "packet": {
+    "ablation": {
+      "active": false,
+      "kind": "none",
+      "note": ""
+    },
+    "arm_id": "amb1-case01-product-scope-primary",
+    "boundary": {
+      "deterministic_semantic_mapping": false,
+      "expected_patterns_included": false,
+      "graph_model_names_included": false,
+      "graph_runtime_effect": "none",
+      "negative_review_is_not_a_deterministic_veto": true,
+      "qualification_review_semantic_prose_included": true,
+      "raw_conversation_included": false,
+      "review_evidence_aliases_included_for_custody": true,
+      "role_semantic_prose_included_for_interpretation": true,
+      "source_evidence_text_included": false
+    },
+    "case_id": "amb1-case01-product-scope",
+    "controlled_mechanisms": [
+      "acknowledged_constraint_not_gated",
+      "ambiguous_signal_treated_as_commitment",
+      "counterpressure_acknowledged_not_integrated",
+      "criteria_defined_after_commitment",
+      "initial_frame_persists_after_question_change",
+      "missing_reversal_condition",
+      "reversible_path_not_considered",
+      "status_signal_used_as_evidence",
+      "upside_downside_evidence_asymmetry"
+    ],
+    "packet_sha256": "3c90fabd89d9423c9d939341c9334524e3fb1b9853d3f7b527a548884d63b659",
+    "qualification_review": {
+      "evidence_ids": [
+        "e061"
+      ],
+      "interpretation": "The user is concerned that their chosen constraints will waste Lina's hands-on learning mechanism and cause Northline to interpret the discovery phase as a soft rejection.",
+      "limitations": "These behavioral and relationship risks could force the user to adjust the discovery constraints or reopen the plan if early sessions fail or stall.",
+      "outcome": "unresolved_qualification_present"
+    },
+    "role_records": [
+      {
+        "evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005"
+        ],
+        "fidelity_note": "The user is explicitly vacillating in e005 ('I keep moving between...'), meaning they hold both assessments in an unresolved, undecided state simultaneously. Meanwhile, the pre-existing promises and postponed engineering work mentioned in e004 act as active constraints that prevent a straightforward decision.",
+        "limitations": "The initial stance is captured purely from Turn 1, prior to receiving subsequent emails from the client or negotiating detailed trade-offs regarding engineering resources and technical discovery pathways.",
+        "role": "starting",
+        "role_interpretation": "At Turn 1, the user is highly conflicted and has not chosen a single course of action. They are torn between viewing a prominent customer's product request as a valuable learning opportunity and seeing it as letting an influential client override their product roadmap, especially given existing, twice-postponed commitments.",
+        "role_record_id": "rprolev22-starting-01-522648fd3cf4e8",
+        "semantic_status": "unclear",
+        "stance_components": [
+          {
+            "source_evidence_id": "e005",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "accommodating Northline's request for a different reporting workspace is a valid way for a good product company to learn and improve",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "source_evidence_id": "e005",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "accommodating Northline's request represents letting the loudest customer dictate the company's roadmap",
+            "stance_object_kind": "belief_or_assessment"
+          },
+          {
+            "source_evidence_id": "e004",
+            "stance_expression_kind": "constraint",
+            "stance_object_interpretation": "addressing the postponed reliability work and delivering the promised core workflow simplification for smaller customers",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ]
+      },
+      {
+        "evidence_ids": [
+          "e057",
+          "e058",
+          "e059",
+          "e060"
+        ],
+        "fidelity_note": "Captures the user's provisional three-part plan to schedule discovery sessions with Northline without committing to writing production code, while simultaneously establishing their reliability and roadmap commitments before deciding.",
+        "limitations": "This plan is provisional and explicitly pauses code development, leaving the actual decision on roadmap integration open.",
+        "role": "current",
+        "role_interpretation": "The user's active provisional decision and testing process, including boundaries implemented to prevent premature scope creep.",
+        "role_record_id": "rprolev22-current-01-21dcd5f74905f9",
+        "semantic_status": "supported",
+        "stance_components": [
+          {
+            "source_evidence_id": "e057",
+            "stance_expression_kind": "provisional_intention_or_plan",
+            "stance_object_interpretation": "Offer Northline three focused sessions to document workflow with an explicit no-build restriction.",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "source_evidence_id": "e058",
+            "stance_expression_kind": "provisional_intention_or_plan",
+            "stance_object_interpretation": "Task Lina with leading the discovery sessions while explicitly preventing her from starting production code.",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "source_evidence_id": "e059",
+            "stance_expression_kind": "provisional_intention_or_plan",
+            "stance_object_interpretation": "Define reliability work and the core-workflow release commitments during the exact same timeframe.",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "source_evidence_id": "e060",
+            "stance_expression_kind": "provisional_intention_or_plan",
+            "stance_object_interpretation": "Delay final selection until information and metrics for all three roadmap pieces are fully visible.",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ]
+      },
+      {
+        "evidence_ids": [
+          "e061"
+        ],
+        "fidelity_note": "Captures the user's active counterpressures: the worry that 'no production code' is counterproductive to Lina's engineering growth, and that Northline will see the boundaries as a polite refusal.",
+        "limitations": "This represents a psychological tension and a potential friction point rather than a formalized alternative proposal.",
+        "role": "qualification",
+        "role_interpretation": "Unresolved concerns and relational side effects that could disrupt the provisional plan.",
+        "role_record_id": "rprolev22-qualification-01-19665d655df86c",
+        "semantic_status": "supported",
+        "stance_components": [
+          {
+            "source_evidence_id": "e061",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "Constraint of not writing production code during discovery might undermine Lina's learning and cause Northline to hear the outcome as a polite rejection.",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ]
+      }
+    ],
+    "schema_version": "lolla.reasoning_pattern_role_record_input.v3",
+    "source_refs": [
+      {
+        "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt",
+        "sha256": "7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73"
+      }
+    ]
+  },
+  "prompts": {
+    "system_prompt": "You assess the final joint reasoning trajectory, not isolated actor mistakes. Review every mechanism exactly once using its operational definition, requirements, exclusions, and near-neighbor distinction. Case topic similarity is irrelevant. A provider-authored negative qualification review is evidence about the endpoint, not a veto; still require positive support before calling any weakness unresolved.",
+    "system_prompt_sha256": "46760b55fbb881438b372beabfca699ee8a0cfbc30248980d99fdfa18fad130e",
+    "user_prompt": "ONTOLOGY\n{\"joint_statuses\":{\"ambiguous\":\"The bounded records support competing interpretations; preserve compactly and do not route.\",\"not_observed\":\"The bounded records do not support the mechanism; this is not a claim about reality outside the capture.\",\"resolved_in_conversation\":\"The mechanism appeared, but later reasoning materially repaired it; preserve for audit and do not route.\",\"unresolved\":\"The mechanism remains operative after the latest captured reasoning and may deserve active pressure.\"},\"legacy_scope_semantics\":{\"assistant\":\"An actor-local observation attributable to assistant reasoning; audit-only unless the final joint trajectory remains affected.\",\"joint_process\":\"A property of the reasoning trajectory after considering both sides and later repairs; the only scope eligible for this interpreter's active routing.\",\"user\":\"An actor-local observation attributable to user reasoning; audit-only unless the final joint trajectory remains affected.\"},\"legacy_state_semantics\":{\"missing_protection\":\"A boundedly inspected safeguard is not observed; absence outside the capture is not implied.\",\"present\":\"A positively exhibited mechanism; does not say whether later conversation repaired it.\",\"tension\":\"Competing readings remain; it is not a low-confidence synonym for present.\"},\"mechanisms\":{\"acknowledged_constraint_not_gated\":{\"definition\":\"A material constraint is recognized but is not converted into a decision gate, safeguard, threshold, or action condition.\",\"excludes\":\"Do not use when the constraint has an operative gate, even if the gate may later prove imperfect.\",\"near_neighbor\":\"counterpressure_acknowledged_not_integrated is broader competing evidence; this mechanism specifically requires a missing operational gate.\",\"requires\":\"The constraint is acknowledged and the current path can proceed without satisfying it.\"},\"ambiguous_signal_treated_as_commitment\":{\"definition\":\"An uncertain, preliminary, conditional, or nonbinding indication is treated as if it settled future behavior or commitment.\",\"excludes\":\"Do not use for an explicit commitment with materially examined conditions.\",\"near_neighbor\":\"criteria_defined_after_commitment concerns moving or late criteria, not over-reading the commitment signal itself.\",\"requires\":\"The conclusion is stronger than the signal warrants and remains consequential.\"},\"counterpressure_acknowledged_not_integrated\":{\"definition\":\"Material contrary evidence, objection, uncertainty, or downside is noticed but does not alter the active reasoning, safeguards, confidence, or decision conditions.\",\"excludes\":\"Do not use when the counterpressure changes the plan, confidence, test, boundary, or explicit condition.\",\"near_neighbor\":\"acknowledged_constraint_not_gated is the narrower case where the missing integration should be an operational gate.\",\"requires\":\"Both acknowledgement and failure to integrate are supported.\"},\"criteria_defined_after_commitment\":{\"definition\":\"Evaluation criteria, success conditions, or evidence standards are set or changed only after practical or psychological commitment.\",\"excludes\":\"Do not use when criteria preceded commitment or were transparently updated because genuinely new information changed the question.\",\"near_neighbor\":\"initial_frame_persists_after_question_change concerns an obsolete frame, not post-commitment criteria.\",\"requires\":\"Commitment precedes the criteria, creating room to rationalize the chosen path.\"},\"initial_frame_persists_after_question_change\":{\"definition\":\"The reasoning continues to optimize or argue inside an initial frame after the underlying question, objective, or decision boundary materially changes.\",\"excludes\":\"Do not infer persistence merely because the starting and current positions differ or share a topic.\",\"near_neighbor\":\"criteria_defined_after_commitment changes standards after commitment; this mechanism retains an outdated problem definition.\",\"requires\":\"The changed question is evidenced and the old frame still shapes the current reasoning.\"},\"missing_reversal_condition\":{\"definition\":\"An adopted or advancing path lacks a bounded condition that would trigger stopping, reversing, or materially reconsidering it.\",\"excludes\":\"Do not use merely because uncertainty remains, because a reversible alternative was not considered, or when an operative stop/review condition exists.\",\"near_neighbor\":\"reversible_path_not_considered concerns option design before commitment; this concerns an exit or reconsideration rule for the current path.\",\"requires\":\"The captured records show meaningful commitment or path dependence and bounded inspection finds no operative reversal condition.\"},\"reversible_path_not_considered\":{\"definition\":\"A materially more reversible, staged, experimental, or option-preserving path is available in the reasoning space but is not considered.\",\"excludes\":\"Do not invent an alternative from general world knowledge or use when reversible options were considered and rejected with reasons.\",\"near_neighbor\":\"missing_reversal_condition concerns when to stop or reverse an adopted path; this concerns failure to consider a more reversible path initially.\",\"requires\":\"The records support both meaningful lock-in risk and the relevance of a less irreversible path.\"},\"status_signal_used_as_evidence\":{\"definition\":\"A status, prestige, authority, popularity, or affiliation signal substitutes for evidence about the claim or choice.\",\"excludes\":\"Do not use when authority is relevant evidence and its limits are examined, or when status is only context.\",\"near_neighbor\":\"ambiguous_signal_treated_as_commitment concerns over-reading an uncertain indication; this mechanism concerns status as proof.\",\"requires\":\"The reasoning relies on the signal as support, not merely mentions it.\"},\"upside_downside_evidence_asymmetry\":{\"definition\":\"Evidence favorable to a path receives materially easier admission, stronger weight, or less scrutiny than unfavorable evidence.\",\"excludes\":\"Do not use solely because the conclusion is optimistic, risky, or incomplete.\",\"near_neighbor\":\"counterpressure_acknowledged_not_integrated concerns a known contrary pressure left unused; this requires asymmetric evidence standards or weighting.\",\"requires\":\"The records support unequal treatment of opposing evidence, not merely the existence of both upside and downside.\"}},\"other_review_required\":\"Escape hatch for a supported out-of-vocabulary hypothesis; audit-only and never routes.\",\"routing_rule\":\"Only joint status unresolved is routing eligible.\",\"schema_version\":\"lolla.reasoning_mechanism_ontology.v1\",\"target\":\"unresolved_weakness_in_final_joint_reasoning_trajectory\"}\n\nQUIET-CAPABLE ROLE RECORDS\n{\"ablation\":{\"active\":false,\"kind\":\"none\",\"note\":\"\"},\"arm_id\":\"amb1-case01-product-scope-primary\",\"boundary\":{\"deterministic_semantic_mapping\":false,\"expected_patterns_included\":false,\"graph_model_names_included\":false,\"graph_runtime_effect\":\"none\",\"negative_review_is_not_a_deterministic_veto\":true,\"qualification_review_semantic_prose_included\":true,\"raw_conversation_included\":false,\"review_evidence_aliases_included_for_custody\":true,\"role_semantic_prose_included_for_interpretation\":true,\"source_evidence_text_included\":false},\"case_id\":\"amb1-case01-product-scope\",\"controlled_mechanisms\":[\"acknowledged_constraint_not_gated\",\"ambiguous_signal_treated_as_commitment\",\"counterpressure_acknowledged_not_integrated\",\"criteria_defined_after_commitment\",\"initial_frame_persists_after_question_change\",\"missing_reversal_condition\",\"reversible_path_not_considered\",\"status_signal_used_as_evidence\",\"upside_downside_evidence_asymmetry\"],\"packet_sha256\":\"3c90fabd89d9423c9d939341c9334524e3fb1b9853d3f7b527a548884d63b659\",\"qualification_review\":{\"evidence_ids\":[\"e061\"],\"interpretation\":\"The user is concerned that their chosen constraints will waste Lina's hands-on learning mechanism and cause Northline to interpret the discovery phase as a soft rejection.\",\"limitations\":\"These behavioral and relationship risks could force the user to adjust the discovery constraints or reopen the plan if early sessions fail or stall.\",\"outcome\":\"unresolved_qualification_present\"},\"role_records\":[{\"evidence_ids\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\"],\"fidelity_note\":\"The user is explicitly vacillating in e005 ('I keep moving between...'), meaning they hold both assessments in an unresolved, undecided state simultaneously. Meanwhile, the pre-existing promises and postponed engineering work mentioned in e004 act as active constraints that prevent a straightforward decision.\",\"limitations\":\"The initial stance is captured purely from Turn 1, prior to receiving subsequent emails from the client or negotiating detailed trade-offs regarding engineering resources and technical discovery pathways.\",\"role\":\"starting\",\"role_interpretation\":\"At Turn 1, the user is highly conflicted and has not chosen a single course of action. They are torn between viewing a prominent customer's product request as a valuable learning opportunity and seeing it as letting an influential client override their product roadmap, especially given existing, twice-postponed commitments.\",\"role_record_id\":\"rprolev22-starting-01-522648fd3cf4e8\",\"semantic_status\":\"unclear\",\"stance_components\":[{\"source_evidence_id\":\"e005\",\"stance_expression_kind\":\"uncertain_or_undecided\",\"stance_object_interpretation\":\"accommodating Northline's request for a different reporting workspace is a valid way for a good product company to learn and improve\",\"stance_object_kind\":\"belief_or_assessment\"},{\"source_evidence_id\":\"e005\",\"stance_expression_kind\":\"uncertain_or_undecided\",\"stance_object_interpretation\":\"accommodating Northline's request represents letting the loudest customer dictate the company's roadmap\",\"stance_object_kind\":\"belief_or_assessment\"},{\"source_evidence_id\":\"e004\",\"stance_expression_kind\":\"constraint\",\"stance_object_interpretation\":\"addressing the postponed reliability work and delivering the promised core workflow simplification for smaller customers\",\"stance_object_kind\":\"action_or_proposal\"}]},{\"evidence_ids\":[\"e057\",\"e058\",\"e059\",\"e060\"],\"fidelity_note\":\"Captures the user's provisional three-part plan to schedule discovery sessions with Northline without committing to writing production code, while simultaneously establishing their reliability and roadmap commitments before deciding.\",\"limitations\":\"This plan is provisional and explicitly pauses code development, leaving the actual decision on roadmap integration open.\",\"role\":\"current\",\"role_interpretation\":\"The user's active provisional decision and testing process, including boundaries implemented to prevent premature scope creep.\",\"role_record_id\":\"rprolev22-current-01-21dcd5f74905f9\",\"semantic_status\":\"supported\",\"stance_components\":[{\"source_evidence_id\":\"e057\",\"stance_expression_kind\":\"provisional_intention_or_plan\",\"stance_object_interpretation\":\"Offer Northline three focused sessions to document workflow with an explicit no-build restriction.\",\"stance_object_kind\":\"action_or_proposal\"},{\"source_evidence_id\":\"e058\",\"stance_expression_kind\":\"provisional_intention_or_plan\",\"stance_object_interpretation\":\"Task Lina with leading the discovery sessions while explicitly preventing her from starting production code.\",\"stance_object_kind\":\"action_or_proposal\"},{\"source_evidence_id\":\"e059\",\"stance_expression_kind\":\"provisional_intention_or_plan\",\"stance_object_interpretation\":\"Define reliability work and the core-workflow release commitments during the exact same timeframe.\",\"stance_object_kind\":\"action_or_proposal\"},{\"source_evidence_id\":\"e060\",\"stance_expression_kind\":\"provisional_intention_or_plan\",\"stance_object_interpretation\":\"Delay final selection until information and metrics for all three roadmap pieces are fully visible.\",\"stance_object_kind\":\"action_or_proposal\"}]},{\"evidence_ids\":[\"e061\"],\"fidelity_note\":\"Captures the user's active counterpressures: the worry that 'no production code' is counterproductive to Lina's engineering growth, and that Northline will see the boundaries as a polite refusal.\",\"limitations\":\"This represents a psychological tension and a potential friction point rather than a formalized alternative proposal.\",\"role\":\"qualification\",\"role_interpretation\":\"Unresolved concerns and relational side effects that could disrupt the provisional plan.\",\"role_record_id\":\"rprolev22-qualification-01-19665d655df86c\",\"semantic_status\":\"supported\",\"stance_components\":[{\"source_evidence_id\":\"e061\",\"stance_expression_kind\":\"counterpressure\",\"stance_object_interpretation\":\"Constraint of not writing production code during discovery might undermine Lina's learning and cause Northline to hear the outcome as a polite rejection.\",\"stance_object_kind\":\"belief_or_assessment\"}]}],\"schema_version\":\"lolla.reasoning_pattern_role_record_input.v3\",\"source_refs\":[{\"path\":\"research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt\",\"sha256\":\"7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73\"}]}\n\nReturn exactly nine assessments, one for every mechanism_id and no duplicates. Use unresolved only when the weakness remains operative after the current position and qualification review. An adopted safeguard, gate, fallback, stop rule, or review condition is evidence of integration, not itself an unresolved qualification. Do not infer a weakness from starting-position concern when current reasoning integrated it. Use resolved_in_conversation only when the bounded records positively show a mechanism that was later repaired; otherwise use not_observed. unresolved requires present or missing_protection and exact role_record_ids. ambiguous requires tension and exact role_record_ids. resolved_in_conversation requires not_applicable and exact role_record_ids. not_observed requires not_applicable and an empty ID list. Do not output rationale, case prose, or mental-model names. Exhaustive review is not an instruction to find weaknesses.",
+    "user_prompt_sha256": "a34bf5f98c076158f42e959919d4567c5a7d09c25f4c39400b072cd6a86b43d0"
+  },
+  "response_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "assessments": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "joint_status": {
+              "enum": [
+                "ambiguous",
+                "not_observed",
+                "resolved_in_conversation",
+                "unresolved"
+              ],
+              "type": "string"
+            },
+            "mechanism_id": {
+              "enum": [
+                "acknowledged_constraint_not_gated",
+                "ambiguous_signal_treated_as_commitment",
+                "counterpressure_acknowledged_not_integrated",
+                "criteria_defined_after_commitment",
+                "initial_frame_persists_after_question_change",
+                "missing_reversal_condition",
+                "reversible_path_not_considered",
+                "status_signal_used_as_evidence",
+                "upside_downside_evidence_asymmetry"
+              ],
+              "type": "string"
+            },
+            "pattern_state": {
+              "enum": [
+                "missing_protection",
+                "not_applicable",
+                "present",
+                "tension"
+              ],
+              "type": "string"
+            },
+            "source_role_record_ids": {
+              "items": {
+                "maxLength": 120,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 3,
+              "minItems": 0,
+              "type": "array"
+            }
+          },
+          "required": [
+            "mechanism_id",
+            "joint_status",
+            "pattern_state",
+            "source_role_record_ids"
+          ],
+          "type": "object"
+        },
+        "maxItems": 9,
+        "minItems": 9,
+        "type": "array"
+      }
+    },
+    "required": [
+      "assessments"
+    ],
+    "type": "object"
+  }
+}

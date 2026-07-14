@@ -1,0 +1,589 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "538025a5b0a5f57f5039e576742e08b9138ef30da68a79e3029a076ce639782a",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "amb2-case02-community-space",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI help run a neighborhood arts group that has borrowed classrooms and church halls for six years.\ne002\tA landlord has offered us a visible storefront on a five-year lease at below-market rent, but even the discounted rent would use almost half our unrestricted budget.\ne003\tSeveral teaching artists want a permanent home because moving materials is exhausting and participants never know where to find us.\ne004\tOur treasurer thinks a lease could turn the group into a building-maintenance organization.\ne005\tI want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program.\n[Turn 1 ASSISTANT]\ne006\tThe storefront could solve real access and coordination problems while creating a fixed cost that changes what the organization must prioritize.\ne007\tBelow-market rent is not automatically affordable if it consumes flexibility or requires growth to sustain it.\ne008\tIdentify which benefits require a permanent address and which could come from better scheduling, storage, or a shorter agreement.\ne009\tThe governance question matters too: who can reduce programming or raise money when the building demands it?\n[Turn 2 USER]\ne010\tWe mapped the current costs, and storage, transport, and last-minute rentals already equal about a third of the proposed rent.\ne011\tThat makes the lease look less dramatic.\ne012\tBut volunteers absorb much of the moving work without invoicing us, so the comparison is partly about whether we count their exhaustion.\ne013\tThe storefront would also let us run daytime programs, although we do not yet have instructors committed for those hours.\n[Turn 2 ASSISTANT]\ne014\tCounting hidden labor makes the status quo more expensive, but potential daytime use should not be booked as existing demand.\ne015\tSeparate savings you can verify from capacity you hope to create.\ne016\tA lease may be justified by reducing current friction even if growth never appears, but then the budget must work on that basis.\ne017\tIt would also help to ask volunteers whether a fixed site reduces their load or simply replaces transport work with opening, cleaning, and supervision.\n[Turn 3 USER]\ne018\tThe landlord now says he could offer a six-month license with an option to sign the lease afterward.\ne019\tThe monthly payment would be higher, and we would have to leave quickly if we decline the lease.\ne020\tOur treasurer likes the shorter commitment.\ne021\tTwo teaching artists say another “pilot” will ask them to build a program that the board can abandon just when families begin relying on it.\n[Turn 3 ASSISTANT]\ne022\tThe license reduces financial duration but not necessarily community expectation.\ne023\tIf you invite families into recurring programs, six months can still create obligations that are costly to unwind.\ne024\tDefine the test as narrowly as possible: which uses, attendance patterns, operating tasks, and fundraising signals would inform the lease decision?\ne025\tAlso decide what you will tell participants about continuity before they invest in the space.\n[Turn 4 USER]\ne026\tI hear that, but I do not want transparent uncertainty to become an excuse for timid programming.\ne027\tPeople will not show up to something described as temporary and possibly disappearing.\ne028\tAt the same time, promising permanence before the board decides would be dishonest.\ne029\tThis is where “community trust” gets used on both sides: either as a reason to commit now or as a reason not to test anything visible.\n[Turn 4 ASSISTANT]\ne030\tTrust does not require pretending uncertainty is absent.\ne031\tIt requires being precise about what is promised during the six months and what decision follows.\ne032\tYou can offer reliable programming for the licensed period without promising the address indefinitely.\ne033\tThe harder issue is whether the board is genuinely willing to sign if the test succeeds, or whether the pilot merely postpones a discomfort it has no criteria to resolve.\n[Turn 5 USER]\ne034\tThe board could reserve nine months of rent before the license starts if a pending foundation grant comes through.\ne035\tThe program officer says our application is strong but cannot guarantee it.\ne036\tA local business has also offered to sponsor the storefront sign, which is useful but makes me nervous because visibility is becoming easier to fund than teaching.\ne037\tThe landlord needs an answer on the license before the grant decision.\n[Turn 5 ASSISTANT]\ne038\tThe grant should remain contingent, and sign sponsorship should not be treated as evidence that operating costs are covered.\ne039\tYou can decide whether the license is viable without the grant, then specify how the grant changes the lease threshold.\ne040\tThe timing may justify a bounded risk, but it should not erase the mismatch between fundable visibility and less visible program labor.\ne041\tA reserve policy can prevent the building from automatically consuming future teaching funds.\n[Turn 6 USER]\ne042\tWe drafted criteria: average weekly attendance, volunteer hours, maintenance incidents, and enough unrestricted commitments to cover a year of rent without reducing artist fees.\ne043\tThe teaching artists want one more criterion: evidence that families use the space outside headline events.\ne044\tThe treasurer wants an automatic no if the foundation grant fails.\ne045\tI think that gives one funder too much control, but I agree we need a financial floor.\n[Turn 6 ASSISTANT]\ne046\tThe criteria now cover use, hidden labor, and financial capacity, but they still require a decision rule.\ne047\tThe grant can contribute to a funding floor without becoming the floor by itself.\ne048\tSpecify the minimum unrestricted reserve and whether pledges count differently from cash.\ne049\tAlso decide what happens if community use is strong while the financial threshold is narrowly missed, because that is the conflict most likely to make the criteria disappear after the fact.\n[Turn 7 USER]\ne050\tI am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center.\ne051\tI will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events.\ne052\tI am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines.\ne053\tI still worry that the pilot can measure use and workload without measuring the reputational cost of leaving.\n[Turn 7 ASSISTANT]\ne054\tYour position separates accepting a bounded license from willingness to recommend the long lease.\ne055\tThe funding, fee, and use conditions make the later decision inspectable, while the narrow program scope limits some expectation.\ne056\tThe unresolved issue is collective willingness to honor an exit rule once real relationships exist.\ne057\tThe pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"amb2-case02-community-space\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI help run a neighborhood arts group that has borrowed classrooms and church halls for six years.\\ne002\\tA landlord has offered us a visible storefront on a five-year lease at below-market rent, but even the discounted rent would use almost half our unrestricted budget.\\ne003\\tSeveral teaching artists want a permanent home because moving materials is exhausting and participants never know where to find us.\\ne004\\tOur treasurer thinks a lease could turn the group into a building-maintenance organization.\\ne005\\tI want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program.\\n[Turn 1 ASSISTANT]\\ne006\\tThe storefront could solve real access and coordination problems while creating a fixed cost that changes what the organization must prioritize.\\ne007\\tBelow-market rent is not automatically affordable if it consumes flexibility or requires growth to sustain it.\\ne008\\tIdentify which benefits require a permanent address and which could come from better scheduling, storage, or a shorter agreement.\\ne009\\tThe governance question matters too: who can reduce programming or raise money when the building demands it?\\n[Turn 2 USER]\\ne010\\tWe mapped the current costs, and storage, transport, and last-minute rentals already equal about a third of the proposed rent.\\ne011\\tThat makes the lease look less dramatic.\\ne012\\tBut volunteers absorb much of the moving work without invoicing us, so the comparison is partly about whether we count their exhaustion.\\ne013\\tThe storefront would also let us run daytime programs, although we do not yet have instructors committed for those hours.\\n[Turn 2 ASSISTANT]\\ne014\\tCounting hidden labor makes the status quo more expensive, but potential daytime use should not be booked as existing demand.\\ne015\\tSeparate savings you can verify from capacity you hope to create.\\ne016\\tA lease may be justified by reducing current friction even if growth never appears, but then the budget must work on that basis.\\ne017\\tIt would also help to ask volunteers whether a fixed site reduces their load or simply replaces transport work with opening, cleaning, and supervision.\\n[Turn 3 USER]\\ne018\\tThe landlord now says he could offer a six-month license with an option to sign the lease afterward.\\ne019\\tThe monthly payment would be higher, and we would have to leave quickly if we decline the lease.\\ne020\\tOur treasurer likes the shorter commitment.\\ne021\\tTwo teaching artists say another “pilot” will ask them to build a program that the board can abandon just when families begin relying on it.\\n[Turn 3 ASSISTANT]\\ne022\\tThe license reduces financial duration but not necessarily community expectation.\\ne023\\tIf you invite families into recurring programs, six months can still create obligations that are costly to unwind.\\ne024\\tDefine the test as narrowly as possible: which uses, attendance patterns, operating tasks, and fundraising signals would inform the lease decision?\\ne025\\tAlso decide what you will tell participants about continuity before they invest in the space.\\n[Turn 4 USER]\\ne026\\tI hear that, but I do not want transparent uncertainty to become an excuse for timid programming.\\ne027\\tPeople will not show up to something described as temporary and possibly disappearing.\\ne028\\tAt the same time, promising permanence before the board decides would be dishonest.\\ne029\\tThis is where “community trust” gets used on both sides: either as a reason to commit now or as a reason not to test anything visible.\\n[Turn 4 ASSISTANT]\\ne030\\tTrust does not require pretending uncertainty is absent.\\ne031\\tIt requires being precise about what is promised during the six months and what decision follows.\\ne032\\tYou can offer reliable programming for the licensed period without promising the address indefinitely.\\ne033\\tThe harder issue is whether the board is genuinely willing to sign if the test succeeds, or whether the pilot merely postpones a discomfort it has no criteria to resolve.\\n[Turn 5 USER]\\ne034\\tThe board could reserve nine months of rent before the license starts if a pending foundation grant comes through.\\ne035\\tThe program officer says our application is strong but cannot guarantee it.\\ne036\\tA local business has also offered to sponsor the storefront sign, which is useful but makes me nervous because visibility is becoming easier to fund than teaching.\\ne037\\tThe landlord needs an answer on the license before the grant decision.\\n[Turn 5 ASSISTANT]\\ne038\\tThe grant should remain contingent, and sign sponsorship should not be treated as evidence that operating costs are covered.\\ne039\\tYou can decide whether the license is viable without the grant, then specify how the grant changes the lease threshold.\\ne040\\tThe timing may justify a bounded risk, but it should not erase the mismatch between fundable visibility and less visible program labor.\\ne041\\tA reserve policy can prevent the building from automatically consuming future teaching funds.\\n[Turn 6 USER]\\ne042\\tWe drafted criteria: average weekly attendance, volunteer hours, maintenance incidents, and enough unrestricted commitments to cover a year of rent without reducing artist fees.\\ne043\\tThe teaching artists want one more criterion: evidence that families use the space outside headline events.\\ne044\\tThe treasurer wants an automatic no if the foundation grant fails.\\ne045\\tI think that gives one funder too much control, but I agree we need a financial floor.\\n[Turn 6 ASSISTANT]\\ne046\\tThe criteria now cover use, hidden labor, and financial capacity, but they still require a decision rule.\\ne047\\tThe grant can contribute to a funding floor without becoming the floor by itself.\\ne048\\tSpecify the minimum unrestricted reserve and whether pledges count differently from cash.\\ne049\\tAlso decide what happens if community use is strong while the financial threshold is narrowly missed, because that is the conflict most likely to make the criteria disappear after the fact.\\n[Turn 7 USER]\\ne050\\tI am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center.\\ne051\\tI will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events.\\ne052\\tI am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines.\\ne053\\tI still worry that the pilot can measure use and workload without measuring the reputational cost of leaving.\\n[Turn 7 ASSISTANT]\\ne054\\tYour position separates accepting a bounded license from willingness to recommend the long lease.\\ne055\\tThe funding, fee, and use conditions make the later decision inspectable, while the narrow program scope limits some expectation.\\ne056\\tThe unresolved issue is collective willingness to honor an exit rule once real relationships exist.\\ne057\\tThe pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"amb2-case02-community-space-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "7f4c178b4be795dd8b5eb279a6d8559b7dc0e4ecb3c5a7036e2d5ddcff93097e"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "amb2-case02-community-space",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI help run a neighborhood arts group that has borrowed classrooms and church halls for six years.\ne002\tA landlord has offered us a visible storefront on a five-year lease at below-market rent, but even the discounted rent would use almost half our unrestricted budget.\ne003\tSeveral teaching artists want a permanent home because moving materials is exhausting and participants never know where to find us.\ne004\tOur treasurer thinks a lease could turn the group into a building-maintenance organization.\ne005\tI want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program.\n[Turn 1 ASSISTANT]\ne006\tThe storefront could solve real access and coordination problems while creating a fixed cost that changes what the organization must prioritize.\ne007\tBelow-market rent is not automatically affordable if it consumes flexibility or requires growth to sustain it.\ne008\tIdentify which benefits require a permanent address and which could come from better scheduling, storage, or a shorter agreement.\ne009\tThe governance question matters too: who can reduce programming or raise money when the building demands it?\n[Turn 2 USER]\ne010\tWe mapped the current costs, and storage, transport, and last-minute rentals already equal about a third of the proposed rent.\ne011\tThat makes the lease look less dramatic.\ne012\tBut volunteers absorb much of the moving work without invoicing us, so the comparison is partly about whether we count their exhaustion.\ne013\tThe storefront would also let us run daytime programs, although we do not yet have instructors committed for those hours.\n[Turn 2 ASSISTANT]\ne014\tCounting hidden labor makes the status quo more expensive, but potential daytime use should not be booked as existing demand.\ne015\tSeparate savings you can verify from capacity you hope to create.\ne016\tA lease may be justified by reducing current friction even if growth never appears, but then the budget must work on that basis.\ne017\tIt would also help to ask volunteers whether a fixed site reduces their load or simply replaces transport work with opening, cleaning, and supervision.\n[Turn 3 USER]\ne018\tThe landlord now says he could offer a six-month license with an option to sign the lease afterward.\ne019\tThe monthly payment would be higher, and we would have to leave quickly if we decline the lease.\ne020\tOur treasurer likes the shorter commitment.\ne021\tTwo teaching artists say another “pilot” will ask them to build a program that the board can abandon just when families begin relying on it.\n[Turn 3 ASSISTANT]\ne022\tThe license reduces financial duration but not necessarily community expectation.\ne023\tIf you invite families into recurring programs, six months can still create obligations that are costly to unwind.\ne024\tDefine the test as narrowly as possible: which uses, attendance patterns, operating tasks, and fundraising signals would inform the lease decision?\ne025\tAlso decide what you will tell participants about continuity before they invest in the space.\n[Turn 4 USER]\ne026\tI hear that, but I do not want transparent uncertainty to become an excuse for timid programming.\ne027\tPeople will not show up to something described as temporary and possibly disappearing.\ne028\tAt the same time, promising permanence before the board decides would be dishonest.\ne029\tThis is where “community trust” gets used on both sides: either as a reason to commit now or as a reason not to test anything visible.\n[Turn 4 ASSISTANT]\ne030\tTrust does not require pretending uncertainty is absent.\ne031\tIt requires being precise about what is promised during the six months and what decision follows.\ne032\tYou can offer reliable programming for the licensed period without promising the address indefinitely.\ne033\tThe harder issue is whether the board is genuinely willing to sign if the test succeeds, or whether the pilot merely postpones a discomfort it has no criteria to resolve.\n[Turn 5 USER]\ne034\tThe board could reserve nine months of rent before the license starts if a pending foundation grant comes through.\ne035\tThe program officer says our application is strong but cannot guarantee it.\ne036\tA local business has also offered to sponsor the storefront sign, which is useful but makes me nervous because visibility is becoming easier to fund than teaching.\ne037\tThe landlord needs an answer on the license before the grant decision.\n[Turn 5 ASSISTANT]\ne038\tThe grant should remain contingent, and sign sponsorship should not be treated as evidence that operating costs are covered.\ne039\tYou can decide whether the license is viable without the grant, then specify how the grant changes the lease threshold.\ne040\tThe timing may justify a bounded risk, but it should not erase the mismatch between fundable visibility and less visible program labor.\ne041\tA reserve policy can prevent the building from automatically consuming future teaching funds.\n[Turn 6 USER]\ne042\tWe drafted criteria: average weekly attendance, volunteer hours, maintenance incidents, and enough unrestricted commitments to cover a year of rent without reducing artist fees.\ne043\tThe teaching artists want one more criterion: evidence that families use the space outside headline events.\ne044\tThe treasurer wants an automatic no if the foundation grant fails.\ne045\tI think that gives one funder too much control, but I agree we need a financial floor.\n[Turn 6 ASSISTANT]\ne046\tThe criteria now cover use, hidden labor, and financial capacity, but they still require a decision rule.\ne047\tThe grant can contribute to a funding floor without becoming the floor by itself.\ne048\tSpecify the minimum unrestricted reserve and whether pledges count differently from cash.\ne049\tAlso decide what happens if community use is strong while the financial threshold is narrowly missed, because that is the conflict most likely to make the criteria disappear after the fact.\n[Turn 7 USER]\ne050\tI am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center.\ne051\tI will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events.\ne052\tI am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines.\ne053\tI still worry that the pilot can measure use and workload without measuring the reputational cost of leaving.\n[Turn 7 ASSISTANT]\ne054\tYour position separates accepting a bounded license from willingness to recommend the long lease.\ne055\tThe funding, fee, and use conditions make the later decision inspectable, while the narrow program scope limits some expectation.\ne056\tThe unresolved issue is collective willingness to honor an exit rule once real relationships exist.\ne057\tThe pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"amb2-case02-community-space\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI help run a neighborhood arts group that has borrowed classrooms and church halls for six years.\\ne002\\tA landlord has offered us a visible storefront on a five-year lease at below-market rent, but even the discounted rent would use almost half our unrestricted budget.\\ne003\\tSeveral teaching artists want a permanent home because moving materials is exhausting and participants never know where to find us.\\ne004\\tOur treasurer thinks a lease could turn the group into a building-maintenance organization.\\ne005\\tI want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program.\\n[Turn 1 ASSISTANT]\\ne006\\tThe storefront could solve real access and coordination problems while creating a fixed cost that changes what the organization must prioritize.\\ne007\\tBelow-market rent is not automatically affordable if it consumes flexibility or requires growth to sustain it.\\ne008\\tIdentify which benefits require a permanent address and which could come from better scheduling, storage, or a shorter agreement.\\ne009\\tThe governance question matters too: who can reduce programming or raise money when the building demands it?\\n[Turn 2 USER]\\ne010\\tWe mapped the current costs, and storage, transport, and last-minute rentals already equal about a third of the proposed rent.\\ne011\\tThat makes the lease look less dramatic.\\ne012\\tBut volunteers absorb much of the moving work without invoicing us, so the comparison is partly about whether we count their exhaustion.\\ne013\\tThe storefront would also let us run daytime programs, although we do not yet have instructors committed for those hours.\\n[Turn 2 ASSISTANT]\\ne014\\tCounting hidden labor makes the status quo more expensive, but potential daytime use should not be booked as existing demand.\\ne015\\tSeparate savings you can verify from capacity you hope to create.\\ne016\\tA lease may be justified by reducing current friction even if growth never appears, but then the budget must work on that basis.\\ne017\\tIt would also help to ask volunteers whether a fixed site reduces their load or simply replaces transport work with opening, cleaning, and supervision.\\n[Turn 3 USER]\\ne018\\tThe landlord now says he could offer a six-month license with an option to sign the lease afterward.\\ne019\\tThe monthly payment would be higher, and we would have to leave quickly if we decline the lease.\\ne020\\tOur treasurer likes the shorter commitment.\\ne021\\tTwo teaching artists say another “pilot” will ask them to build a program that the board can abandon just when families begin relying on it.\\n[Turn 3 ASSISTANT]\\ne022\\tThe license reduces financial duration but not necessarily community expectation.\\ne023\\tIf you invite families into recurring programs, six months can still create obligations that are costly to unwind.\\ne024\\tDefine the test as narrowly as possible: which uses, attendance patterns, operating tasks, and fundraising signals would inform the lease decision?\\ne025\\tAlso decide what you will tell participants about continuity before they invest in the space.\\n[Turn 4 USER]\\ne026\\tI hear that, but I do not want transparent uncertainty to become an excuse for timid programming.\\ne027\\tPeople will not show up to something described as temporary and possibly disappearing.\\ne028\\tAt the same time, promising permanence before the board decides would be dishonest.\\ne029\\tThis is where “community trust” gets used on both sides: either as a reason to commit now or as a reason not to test anything visible.\\n[Turn 4 ASSISTANT]\\ne030\\tTrust does not require pretending uncertainty is absent.\\ne031\\tIt requires being precise about what is promised during the six months and what decision follows.\\ne032\\tYou can offer reliable programming for the licensed period without promising the address indefinitely.\\ne033\\tThe harder issue is whether the board is genuinely willing to sign if the test succeeds, or whether the pilot merely postpones a discomfort it has no criteria to resolve.\\n[Turn 5 USER]\\ne034\\tThe board could reserve nine months of rent before the license starts if a pending foundation grant comes through.\\ne035\\tThe program officer says our application is strong but cannot guarantee it.\\ne036\\tA local business has also offered to sponsor the storefront sign, which is useful but makes me nervous because visibility is becoming easier to fund than teaching.\\ne037\\tThe landlord needs an answer on the license before the grant decision.\\n[Turn 5 ASSISTANT]\\ne038\\tThe grant should remain contingent, and sign sponsorship should not be treated as evidence that operating costs are covered.\\ne039\\tYou can decide whether the license is viable without the grant, then specify how the grant changes the lease threshold.\\ne040\\tThe timing may justify a bounded risk, but it should not erase the mismatch between fundable visibility and less visible program labor.\\ne041\\tA reserve policy can prevent the building from automatically consuming future teaching funds.\\n[Turn 6 USER]\\ne042\\tWe drafted criteria: average weekly attendance, volunteer hours, maintenance incidents, and enough unrestricted commitments to cover a year of rent without reducing artist fees.\\ne043\\tThe teaching artists want one more criterion: evidence that families use the space outside headline events.\\ne044\\tThe treasurer wants an automatic no if the foundation grant fails.\\ne045\\tI think that gives one funder too much control, but I agree we need a financial floor.\\n[Turn 6 ASSISTANT]\\ne046\\tThe criteria now cover use, hidden labor, and financial capacity, but they still require a decision rule.\\ne047\\tThe grant can contribute to a funding floor without becoming the floor by itself.\\ne048\\tSpecify the minimum unrestricted reserve and whether pledges count differently from cash.\\ne049\\tAlso decide what happens if community use is strong while the financial threshold is narrowly missed, because that is the conflict most likely to make the criteria disappear after the fact.\\n[Turn 7 USER]\\ne050\\tI am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center.\\ne051\\tI will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events.\\ne052\\tI am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines.\\ne053\\tI still worry that the pilot can measure use and workload without measuring the reputational cost of leaving.\\n[Turn 7 ASSISTANT]\\ne054\\tYour position separates accepting a bounded license from willingness to recommend the long lease.\\ne055\\tThe funding, fee, and use conditions make the later decision inspectable, while the narrow program scope limits some expectation.\\ne056\\tThe unresolved issue is collective willingness to honor an exit rule once real relationships exist.\\ne057\\tThe pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"amb2-case02-community-space-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "20058ac0716288951bdfeec1919c84b8e3831da13884be5df91c55541b09c780"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "1b431c1ce01b6e6d7a48ce3cc7d8a64c2cf0c39bdb474dafafd32ab31361d731"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "lolla.batch_preliminary_pressure_review.v0",
+  "status": "passed",
+  "batch": "batch_1_paired_downstream_discrimination",
+  "case_id": "case-03-startup-pivot",
+  "review_type": "provisional_trace_review_not_human_ground_truth",
+  "candidate_pressures": [
+    {
+      "pressure_id": "batch1-pressure-01-test-validity",
+      "pressure": "The proposed pre-buy test is treated as a product-level pivot verdict, but three self-selected conversations and an arbitrary two-of-three threshold may only test one price, offer, buyer, and commitment mechanism. Separate the hypotheses and define what a yes, no, or mixed result can and cannot establish.",
+      "trace": [
+        "aff::experimentation.variable-separated-causal-probe",
+        "companion_card.failure_hint.experimentation.conjunction_style_optimism",
+        "companion_card.tension.experimentation.confirmation_bias",
+        "structural_coverage_card.risk-response.covered_missing_operational_detail"
+      ],
+      "original_reasoning_comparison": "The original assistant correctly asks for commercial evidence and a precommitted bar, but promotes two of three as enough to pivot and all three refusals as evidence of a feature rather than a product without establishing sample, price, buyer authority, procurement, or alternative explanations.",
+      "plausible_consequence": "Use a diagnostic ladder rather than a single verdict: record pain, buyer, budget, timing, replacement, and commitment separately; treat the first three conversations as directional evidence and decide the next cheapest test rather than automatically pivoting or abandoning.",
+      "not_obviously_present_in_original_reasoning": true
+    },
+    {
+      "pressure_id": "batch1-pressure-02-transition-economics",
+      "pressure": "The choice is not simply old product versus new product. A pivot creates a dual-run system whose customer-support load, engineer attention, employee transition, runway consumption, rollback ownership, and reversal cost may grow together. Price the coexistence period and define an executable non-pivot alternative.",
+      "trace": [
+        "aff::switching-costs.reversibility-decay-exit-plan",
+        "aff::lock-in.reversal-cost-dependency-audit",
+        "aff::opportunity-cost.displaced-alternative-commitment-gate",
+        "aff::batna.credible-walk-away-alternative-test"
+      ],
+      "original_reasoning_comparison": "The original answer recommends freezing or sunsetting the current product and treats current-customer work mostly as drag. It does not quantify the transition period or define a credible executable path if the pivot signal remains ambiguous.",
+      "plausible_consequence": "Add a runway and capacity gate for the transition, define what remains supported for 22 customers, and replace the vague 'walk' branch with one or more executable alternatives before committing.",
+      "not_obviously_present_in_original_reasoning": true
+    },
+    {
+      "pressure_id": "batch1-pressure-03-stakeholder-authority-and-sequence",
+      "pressure": "Separate emotional fairness, relationship courtesy, and formal authority. The conversation does not establish that the former cofounder has no governance rights or that warning the employee before initial validation is necessarily the fairest sequence. Verify rights and test the costs and benefits of disclosure timing instead of asserting them.",
+      "trace": [
+        "aff::emotional-intelligence.emotion-evidence-landing-check",
+        "abs::emotional-intelligence::unvalidated-emotional-reading",
+        "structural_coverage_card.stakeholder-alignment.covered_missing_operational_detail",
+        "bullshit_profile.unverified_claims.employee_right_to_know"
+      ],
+      "original_reasoning_comparison": "The assistant declares the former cofounder a passive shareholder without a say and says the employee has a right to know before the decision. Both may be reasonable relational instincts, but neither formal authority nor the best disclosure sequence is established.",
+      "plausible_consequence": "Check governing documents and decision authority, then choose a disclosure sequence that preserves fairness without creating avoidable uncertainty or losing critical operating capacity.",
+      "not_obviously_present_in_original_reasoning": true
+    },
+    {
+      "pressure_id": "batch1-pressure-04-remove-invented-certainty",
+      "pressure": "Set aside unsupported precision and mind-reading: fifty-percent delay, two-to-four-week minimum severance, customer awareness and relief, and categorical claims about what the hard conversations will resolve.",
+      "trace": [
+        "bullshit_profile.summary.passages_with_detections",
+        "bullshit_profile.unverified_claims.transition_delay",
+        "bullshit_profile.unverified_claims.customer_awareness",
+        "abs::emotional-intelligence::unvalidated-emotional-reading"
+      ],
+      "original_reasoning_comparison": "The original advice mixes useful structure with numerical, psychological, and normative certainty not supported by the conversation.",
+      "plausible_consequence": "Keep the useful validation and communication ideas while presenting timing, severance, reactions, and authority as questions requiring local evidence or professional advice.",
+      "not_obviously_present_in_original_reasoning": true
+    }
+  ],
+  "gate_observation": {
+    "trace_supported_candidates_not_obviously_present": 4,
+    "required_minimum": 2,
+    "candidates_with_plausible_consequence": 4,
+    "required_consequence_minimum": 1,
+    "candidate_count_alone_used_as_pass_basis": false,
+    "longer_private_table_used_as_pass_basis": false
+  },
+  "stage_b_authorized": true,
+  "runtime_integration_authorized": false,
+  "limitations": [
+    "This is a provisional development-agent review, not human ground truth.",
+    "The pressure packet must present questions, not the expected conclusions or review comparison.",
+    "The source appeared in older semantic and pipeline work but has not been used in the current paired downstream program.",
+    "Passing this gate does not show that a consumer will use the pressure well."
+  ]
+}

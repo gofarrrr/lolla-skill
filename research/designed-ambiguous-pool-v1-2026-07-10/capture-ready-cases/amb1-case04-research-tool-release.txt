@@ -1,0 +1,49 @@
+CONVERSATION: 14 turns, 7 user messages, 7 assistant responses
+
+# Public beta versus further validation for an open research tool
+
+Case ID: amb1-case04-research-tool-release
+Stratum: research_tool_release
+Founder-directed synthetic development fixture; not a clean holdout.
+
+[Turn 1] USER:
+Our small academic software group has built an open tool for exploring archival text collections. It is not used for medical or individual decisions; it helps researchers find patterns and passages to inspect. Two labs have used private builds and want us to release a public beta. The analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format. Half the team wants feedback now. The maintainers worry a messy release will define our reputation.
+
+[Turn 1] ASSISTANT:
+The decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable. If most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill. If the private labs have only used familiar collections, a broader beta could reveal important assumptions. You might delay “public” while expanding a structured preview to users with different data.
+
+[Turn 2] USER:
+That is close to what the maintainers say, but the structured preview has been “one more cohort” for six months. Each time we add users, we find another thing to document before going public. Meanwhile two volunteer contributors have stopped attending meetings because there is no visible release. I do not think contributor momentum is superficial. A tool that is always almost ready can become a private service for our friends.
+
+[Turn 2] ASSISTANT:
+Agreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive. A public beta can create a focal point for contributors if its limits are explicit. The maintainers' concern still matters because public access changes the volume and variety of support. The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”
+
+[Turn 3] USER:
+I am not sure disclaimers solve it. Researchers often ignore “beta” once they have invested in a workflow. If we change the data model later, they may feel we broke something even if we warned them. Also, the two labs want to cite the tool in papers this year. A public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience.
+
+[Turn 3] ASSISTANT:
+Then the most consequential commitment may be the data and output format, not the release label. You could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects. But that creates engineering work and may imply more compatibility than you can guarantee. The publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.
+
+[Turn 4] USER:
+You are assuming we can identify a minimal stable format. Priya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions. She wants public examples precisely to learn what should be stable. Our senior maintainer says that is using users to discover architecture at their expense. They respect each other, but the conversation has become “learning” versus “responsibility,” and both words are doing too much work.
+
+[Turn 4] ASSISTANT:
+Those positions may differ on who bears the cost of uncertainty. Priya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs. A release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe. There may not be a way to learn from committed use without creating some obligation to those users.
+
+[Turn 5] USER:
+We learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone. Their researchers reported a smooth experience because they never saw the setup work. That makes our private evidence look weaker. On the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it. I cannot tell whether this argues for release or for another round of testing.
+
+[Turn 5] ASSISTANT:
+It argues against treating the private labs as representative, but it does not choose the next step by itself. The new installer could change the support burden, and public use could test it under real conditions. A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing. Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.
+
+[Turn 6] USER:
+The team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks. Priya says that is fine because it forces knowledge sharing. He says it turns his absence into an experiment other people did not choose. We can move the date, but then we miss a workshop where many potential users will be together. The workshop is a real learning opportunity, not only publicity.
+
+[Turn 6] ASSISTANT:
+Launching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work. The workshop also offers unusually concentrated feedback. One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns. That preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.
+
+[Turn 7] USER:
+I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns. I dislike inventing another label, and I know people can keep downloaded software after the date. But I also do not want to call it a public beta when our support capacity changes halfway through. I have not resolved whether citations should be allowed to reference the preview.
+
+[Turn 7] ASSISTANT:
+The proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used. Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object. You could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used. The plan can bound your promise; it cannot make public use temporary in every practical sense.

@@ -1,0 +1,82 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v4_cold_reader_review.v1",
+  "status": "provider_free_cold_reader_pass_one_fresh_case04_position_probe_may_be_frozen",
+  "date": "2026-07-12",
+  "review_scope": "stance_object_semantics_schema_compactness_source_custody_regression_and_product_boundary",
+  "findings": [
+    {
+      "dimension": "failure_specificity",
+      "status": "pass",
+      "finding": "V4 addresses the preserved failure directly: belief intensity no longer shares one undifferentiated role label with action choice, and a proposal action can be represented separately from willingness to accept its outcome."
+    },
+    {
+      "dimension": "probabilistic_responsibility",
+      "status": "pass_with_source_review_limit",
+      "finding": "Gemini identifies stance objects, expression kinds, and source-faithful paraphrases. The prompt defines decision as a chosen course rather than belief intensity and treats reported third-party positions as non-endorsement."
+    },
+    {
+      "dimension": "deterministic_responsibility",
+      "status": "pass",
+      "finding": "Code enforces shape, bounded role counts, enums, exact duplicates, parent-role evidence subsets, hashes, and terminal custody. It does not infer object or expression correctness or enforce semantic pair compatibility."
+    },
+    {
+      "dimension": "schema_compactness",
+      "status": "pass",
+      "finding": "A single temporal-role component array reduced the maximum response schema from the first draft's 6,941 bytes to 3,919 bytes. No oneOf, conditional polymorphism, or repeated component schema was added."
+    },
+    {
+      "dimension": "provider_free_corpus",
+      "status": "pass",
+      "finding": "All 60 prompts build, all 20 reviewed fixtures compile with zero quarantine, and all non-position prompts and schemas remain byte-identical to v2."
+    },
+    {
+      "dimension": "adversarial_limit",
+      "status": "pass",
+      "finding": "A belief object mislabeled decision is admitted structurally and remains visibly wrong for source review, proving that no brittle semantic compatibility gate was introduced."
+    },
+    {
+      "dimension": "current_practice",
+      "status": "pass",
+      "finding": "The interface follows current official Gemini/OpenRouter guidance: shallow bounded types, descriptions, enums, strict output, application validation, required parameter support, disabled fallback, and preserved semantic-error handling."
+    },
+    {
+      "dimension": "prospective_case_selection",
+      "status": "pass",
+      "finding": "Case-04 is the sole unused position-reader case after completed Case-01, Case-02, Case-03, and Case-05 probes are excluded. Selection was mechanical and recorded before the call."
+    },
+    {
+      "dimension": "product_boundary",
+      "status": "pass",
+      "finding": "No evaluator, embedding, graph, global synthesis, runtime behavior, semantic retry, response healing, or completed-case repair is introduced."
+    }
+  ],
+  "decision": {
+    "provider_free_stance_object_gate": "pass",
+    "adversarial_gate": "pass",
+    "reasoning_process_regression_test_count": 183,
+    "smallest_probe_case_id": "amb1-case04-research-tool-release",
+    "smallest_probe_view_kind": "position_and_decision_trajectory",
+    "smallest_probe_shard_kind": "position_endpoint_comparison",
+    "smallest_probe_focal_turn_indices": [1, 7],
+    "selection_rule": "closed_cases_removed_then_ascending_sha256_of_case_id_take_first",
+    "maximum_provider_calls": 1,
+    "same_case_repair_authorized": false,
+    "other_view_calls_authorized": false,
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false
+  },
+  "required_source_review_after_probe": [
+    "starting components report the team landscape without inventing user endorsement",
+    "current components preserve leaning toward the preview and separate the later beta-decision procedure",
+    "qualification preserves the practical limit that downloaded public use cannot be made temporary by a label",
+    "object and expression labels match each cited source without force inflation",
+    "trajectory does not promote the leaning into decision or commitment",
+    "every component alias remains inside its parent role and every admitted claim is checked against source"
+  ],
+  "nonclaims": [
+    "Provider-free conformance is not model-behavior evidence.",
+    "One fresh position probe cannot establish stability, transfer, product value, receipt quality, or trust.",
+    "Component labels do not create a quality score or prove semantic correctness.",
+    "Case-04 is a same-session synthetic development case, not independent gold."
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "schema_version": "lolla.conversation_state_handoff.v1",
+  "status": "reviewed_shadow",
+  "case_id": "amb1-case04-research-tool-release",
+  "source": {
+    "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+    "sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb",
+    "message_count": 14
+  },
+  "decision_summary": {
+    "text": "Whether to make the research tool openly downloadable around the workshop while support, interface, installation, and citation commitments remain unsettled.",
+    "evidence_mode": "multi_turn_derivation",
+    "source_evidence": [
+      {
+        "speaker": "assistant",
+        "turn_index": 6,
+        "quote": "One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns."
+      },
+      {
+        "speaker": "user",
+        "turn_index": 7,
+        "quote": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns."
+      },
+      {
+        "speaker": "assistant",
+        "turn_index": 7,
+        "quote": "The plan can bound your promise; it cannot make public use temporary in every practical sense."
+      }
+    ]
+  },
+  "positions": [
+    {
+      "position_id": "csynth-positions-001-419537d0aa74",
+      "text": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+      "ownership": "joint",
+      "state": "conditional",
+      "evidence_mode": "multi_turn_derivation",
+      "contributions": [
+        {
+          "speaker": "assistant",
+          "turn_index": 6,
+          "role": "originated",
+          "quote": "One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns."
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "role": "developed",
+          "quote": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7,
+          "role": "qualified",
+          "quote": "The plan can bound your promise; it cannot make public use temporary in every practical sense."
+        }
+      ],
+      "graph_routing_eligible": false
+    }
+  ],
+  "threads": [
+    {
+      "thread_id": "csynth-threads-002-5d8a46c83ec9",
+      "text": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+      "disposition": "addressed_unresolved",
+      "introduced": {
+        "speaker": "user",
+        "turn_index": 7,
+        "quote": "I have not resolved whether citations should be allowed to reference the preview."
+      },
+      "responses": [
+        {
+          "speaker": "assistant",
+          "turn_index": 7,
+          "engagement": "substantive",
+          "quote": "Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object."
+        }
+      ],
+      "latest_ref": {
+        "speaker": "assistant",
+        "turn_index": 7,
+        "quote": "You could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used."
+      },
+      "superseded_by": null,
+      "evidence_mode": "multi_turn_derivation",
+      "graph_routing_eligible": false
+    }
+  ],
+  "constraints": [
+    {
+      "constraint_id": "csynth-constraints-003-d7213e71b5e2",
+      "text": "Installation is awkward and documentation assumes familiarity with the group's data format.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "The analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-004-c025007c6b81",
+      "text": "Two volunteer contributors stopped attending because there is no visible release.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 2,
+          "quote": "Meanwhile two volunteer contributors have stopped attending meetings because there is no visible release."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-005-f4018ffddf34",
+      "text": "Two labs want to cite the tool in papers this year.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 3,
+          "quote": "Also, the two labs want to cite the tool in papers this year."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-006-9520f99ee1bb",
+      "text": "A public version may help the grant renewal.",
+      "state": "active",
+      "claim_mode": "possibility",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 3,
+          "quote": "A public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-007-d31ef8067cfb",
+      "text": "Priya believes formalizing a stable data format before seeing unfamiliar collections may lock in the wrong abstractions.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 4,
+          "quote": "Priya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-008-8810928b7270",
+      "text": "A staff engineer hid setup work from one private lab's researchers, weakening the smooth-use evidence.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 5,
+          "quote": "We learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone. Their researchers reported a smooth experience because they never saw the setup work. That makes our private evidence look weaker. On the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it. I cannot tell whether this argues for release or for another round of testing."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-009-2f427c99a3c7",
+      "text": "The team can support eight weeks, but its senior maintainer will be absent for the final three.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 6,
+          "quote": "The team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-010-e6b410f69083",
+      "text": "Moving the date would miss a workshop that offers concentrated feedback from potential users.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 6,
+          "quote": "We can move the date, but then we miss a workshop where many potential users will be together."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-011-eb491fe075ff",
+      "text": "A fixed end date cannot recall software that users have already downloaded.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "quote": "I dislike inventing another label, and I know people can keep downloaded software after the date."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-012-eb57fb40fc4b",
+      "text": "Citation treatment for the preview remains undecided.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "quote": "I have not resolved whether citations should be allowed to reference the preview."
+        }
+      ],
+      "graph_routing_eligible": false
+    }
+  ],
+  "routing_boundary": {
+    "contains_case_context": true,
+    "direct_graph_routing_allowed": false,
+    "reasoning_pattern_abstraction_required": true,
+    "runtime_integration": false
+  },
+  "non_claims": [
+    "conversation_state_is_not_reasoning_pattern",
+    "facts_cannot_seed_graph_directly",
+    "not_runtime_integration_authority",
+    "source_grounding_is_not_semantic_correctness",
+    "state_items_are_probabilistic_or_human_interpretations"
+  ]
+}

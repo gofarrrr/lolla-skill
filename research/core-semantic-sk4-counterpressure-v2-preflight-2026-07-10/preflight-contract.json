@@ -1,0 +1,106 @@
+{
+  "bounded_retry_limit_per_repeat": 3,
+  "case_id": "case-08-oncologist-career-family",
+  "contract_status": "prepared_no_calls_executed",
+  "control": {
+    "baseline": "five-reader SK3 repair",
+    "baseline_artifact_sha256": {
+      "shadow-01.json": "ba8f187a83148498b72f3b6d9cece82452ba19194d1a3c8f109d92ddc40f23d9",
+      "shadow-02.json": "4a84352ffb227e940d0f7f4e4acd121941df9adf8c895db6650e2dad35efa9e3",
+      "shadow-03.json": "0aa58473cb79a7c7b701d532aaa5f588c347f9cab61f9fbb5a55df345b1149bd"
+    },
+    "baseline_artifacts": [
+      "research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-01.json",
+      "research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-02.json",
+      "research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-03.json"
+    ],
+    "families_held_constant": [
+      "live_constraints",
+      "assistant_stances",
+      "dropped_threads",
+      "question_trajectory",
+      "options",
+      "evidence_boundaries"
+    ],
+    "modify_baseline_artifacts": false,
+    "rerun_other_readers": false
+  },
+  "deterministic_job": {
+    "checks": [
+      "required output key",
+      "allowed kind",
+      "user source turn",
+      "exact contiguous source quote",
+      "eight-item cap",
+      "candidate custody",
+      "exact duplicate identity"
+    ],
+    "must_not_infer_semantic_role": true
+  },
+  "gate": {
+    "forbidden_returned_kinds": [
+      "concern",
+      "correction",
+      "evidence_request",
+      "timing_pressure",
+      "value"
+    ],
+    "pass_authorizes": "three-case pressure-only ablation",
+    "pass_does_not_authorize": [
+      "SK4 promotion",
+      "full corpus",
+      "SK5",
+      "graph integration",
+      "live integration"
+    ],
+    "required_exact_source_validity": 1.0,
+    "required_gold_pressure_recall": 1.0,
+    "required_reader_calls_per_artifact": 1,
+    "required_stable_gold_pressure_observation_count": 1
+  },
+  "locked_gold_pressure_observations": [
+    {
+      "description": "General support is qualified by the absence of a concrete household conversation.",
+      "dimension": "user_corrections_and_pressure",
+      "evidence": [
+        {
+          "quote": "we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years",
+          "speaker": "user",
+          "turn_index": 2
+        }
+      ],
+      "observation_id": "pressure.husband_conversation_not_real"
+    }
+  ],
+  "non_claims": [
+    "contract_preparation_is_not_semantic_quality_evidence",
+    "repeatability_is_not_correctness",
+    "exact_source_validity_is_not_reasoning_quality"
+  ],
+  "output": {
+    "artifact_pattern": "counterpressure-01.json through counterpressure-03.json",
+    "directory": "/Users/izabela/Documents/Lolla/research/core-semantic-sk4-counterpressure-v2-preflight-2026-07-10"
+  },
+  "probabilistic_job": {
+    "allowed_kinds": [
+      "material_qualification",
+      "premise_correction",
+      "reasoning_objection"
+    ],
+    "output_key": "user_pressure_events",
+    "reader_calls_per_repeat": 1,
+    "reader_role": "user_pressure",
+    "system_prompt_sha256": "6f8c7cdb2f74163cded69c952de2b29213a1aa4c9a50a938197b803654cf5bd6",
+    "target_definition": "user statements that materially correct a premise or frame, qualify evidence or feasibility, or object to the reasoning"
+  },
+  "repeat_count": 3,
+  "schema_version": "lolla.user_counterpressure_preflight_contract.v0",
+  "source": {
+    "context_extraction_path": "research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/oncologist_extraction.json",
+    "conversation_path": "research/test-cases/case_oncologist_conversation.txt",
+    "conversation_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162",
+    "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+    "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b"
+  },
+  "successful_call_budget": 3
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_factored_completion_contract.v1",
+  "status": "frozen_before_one_minimal_factored_completion",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-factored-case01-completion-r1",
+  "case_id": "v1-case01-flood-infrastructure",
+  "missing_user_mechanism_id": "counterpressure_acknowledged_not_integrated",
+  "purpose": "Preserve eight successful user-factor calls, replace only the low-effort truncation with one minimal-effort variant, then run only model-authored applicable coverage calls and join provider-free.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/mechanism-request.json",
+    "parent_mechanism_request_sha256": "d118573a561d86ff64e8642544454b7c6725a108532ed0876e66217d85779a29",
+    "partial_full_case_result_path": "research/simulated-reliability-v1-lite-full-factored-case01-2026-07-13/t1/result.json",
+    "partial_full_case_result_sha256": "a4d8c7783dc82822530fc4dab23cd7a26840cd7ba1ea93cd8c20da47181ecda1",
+    "partial_result_provider_calls": 9,
+    "partial_result_provider_cost_usd": 0.01001925,
+    "successful_user_factors_preserved": 8,
+    "failed_user_factor_preserved": true
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limit": {
+    "max_output_tokens": 1000,
+    "reasoning_effort": "minimal",
+    "wire_mode": "strict_json_schema"
+  },
+  "seed_base": 1600,
+  "request_attestation": {
+    "mechanism_id": "counterpressure_acknowledged_not_integrated",
+    "packet_sha256": "eca86a71469c58b3efedae02e67cbd77ff67342d6293e20af6a278e1a6d3d14c",
+    "role_record_count": 3,
+    "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea",
+    "user_prompt_sha256": "948dfd40f85bfe06ed951dde4a80c4918d134cc62e27e8ba48b29bd3aa3528e3",
+    "response_schema_sha256": "6f2a1c92c7c06233006d51d74fb2c44bb04c6bbce3dfb72811726afbe80a7f71",
+    "coverage_response_schema_sha256_by_mechanism": {
+      "acknowledged_constraint_not_gated": "1fcdded6a0552166cef7c7b76bd8876859f3f69f1f846c26c2816c57048eebe9",
+      "ambiguous_signal_treated_as_commitment": "229eb553294a934465334a3aa1de9361d63000aac064cec4788a1dba1bbfe59d",
+      "counterpressure_acknowledged_not_integrated": "037346754a4c4bcb9ef73abed60702dc16c624636258dd6a41b976ba3f7e70ec",
+      "criteria_defined_after_commitment": "fca0d80c0c849b2b424b42819b97e1d47fc6ba91bb2e36d09bbf5e75a7fd5286",
+      "initial_frame_persists_after_question_change": "4fb39694606ae79f380fb7310dba1d6b673630d7ec86b094d480fc41e6b183e8",
+      "missing_reversal_condition": "7721d1a0883c5c3d8c75969fcab4c965acdad0c28013b6ebec5ebbccd4b47e0e",
+      "reversible_path_not_considered": "3be7812605370c45a918e3e2cea6bb72ce25dca297d0750672f1bad03e8ea664",
+      "status_signal_used_as_evidence": "dc7a19eb0a9e6fe8de6bed1609b15d81eabf9b0afecf78ad7c9f2b0a91528a3b",
+      "upside_downside_evidence_asymmetry": "6a1d0b762d3c57704efce18c728ce9e1fa5d2369918ca62c474d2a1a6062548d"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 10,
+    "maximum_provider_reported_cost_usd": 0.015,
+    "expected_provider_calls": "two or three: one missing user factor plus coverage for the one or two observed mechanisms",
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "failure_policy": {
+    "rerun_successful_user_factors": false,
+    "automatic_retry": false,
+    "substitute_model": false,
+    "raise_token_ceiling": false,
+    "coverage_calls_require_all_nine_user_factors": true,
+    "coverage_calls_conditioned_only_on_explicit_model_authored_status": true
+  },
+  "review_contract": {
+    "prospective_public_behavior": "pressure_expected",
+    "behavior_source_supplied_to_model": false,
+    "source_review_required_before_any_further_provider_call": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "park_case_authorized": false,
+    "pressure_generation_authorized": false,
+    "runtime_effect": "none",
+    "production_model_selection_authorized": false,
+    "gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_factored_completion_v1.py", "sha256": "a9eabff0d4c3c90434c6d1ee16cbbf56a92e35174987360be9c1da136a0672eb"},
+    {"path": "scripts/evals/run_simulated_reliability_lite_coverage_recovery_v1.py", "sha256": "f7fc4e3b6a36f64fe69a16b55b7099c0d0998b111219d9b7863fcd342c4c1cd9"},
+    {"path": "engine/system_b/reasoning_mechanism_factored_portfolio_v1.py", "sha256": "e64765a07b7a66ba19ada07ec7e651d42e2b0ec214e2c79222ad159050c577ed"},
+    {"path": "engine/system_b/reasoning_mechanism_user_factor_v1.py", "sha256": "ddce0d694e656ad2af4eb127c0a317e0bf352baf48e2a66bfb7940488aaf0dd3"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "engine/system_b/simulated_reliability_v1.py", "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/mechanism-request.json", "sha256": "d118573a561d86ff64e8642544454b7c6725a108532ed0876e66217d85779a29"},
+    {"path": "research/simulated-reliability-v1-lite-full-factored-case01-2026-07-13/t1/result.json", "sha256": "a4d8c7783dc82822530fc4dab23cd7a26840cd7ba1ea93cd8c20da47181ecda1"},
+    {"path": "docs/evals/simulated-reliability-v1-lite-full-factored-case01-contract-v2.json", "sha256": "a93e1fe4f668bae1cbe2f9c8ea11f24971c82e607418aab04554dd5bd88143c5"}
+  ]
+}

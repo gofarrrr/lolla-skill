@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.reasoning_process_phase3_model_snapshot.v1",
+  "status": "frozen_from_official_openrouter_model_catalog_before_calls",
+  "checked_at": "2026-07-11",
+  "model_id": "google/gemini-3.1-flash-lite",
+  "canonical_slug": "google/gemini-3.1-flash-lite-20260507",
+  "name": "Google: Gemini 3.1 Flash Lite",
+  "context_length": 1048576,
+  "max_completion_tokens": 65536,
+  "supported_parameters": [
+    "include_reasoning",
+    "max_tokens",
+    "reasoning",
+    "reasoning_effort",
+    "response_format",
+    "seed",
+    "structured_outputs",
+    "temperature",
+    "tool_choice",
+    "tools",
+    "top_p",
+    "stop"
+  ],
+  "pricing": {
+    "prompt_usd_per_token": 0.00000025,
+    "cached_prompt_usd_per_token": 0.000000025,
+    "completion_usd_per_token": 0.0000015
+  },
+  "sources": {
+    "model_catalog": "https://openrouter.ai/api/v1/models",
+    "structured_outputs": "https://openrouter.ai/docs/guides/features/structured-outputs",
+    "provider_routing": "https://openrouter.ai/docs/features/provider-routing"
+  },
+  "selection_reason": "This is Lolla's established small, repeatable OpenRouter model line. The current route supports strict structured output, temperature, seed, token controls, and explicit reasoning disablement without any embedding call.",
+  "non_claims": [
+    "model_selection_is_not_a_frontier_model_comparison",
+    "catalog_support_does_not_guarantee_provider_acceptance",
+    "temperature_and_seed_do_not_guarantee_identical_outputs",
+    "model_age_or_price_is_not_reasoning_quality"
+  ]
+}

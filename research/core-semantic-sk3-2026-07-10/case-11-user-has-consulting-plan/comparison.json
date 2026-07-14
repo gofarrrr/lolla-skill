@@ -1,0 +1,253 @@
+{
+  "case_id": "case-11-user-has-consulting-plan",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.0,
+      "never_observation_ids": [
+        "boundary.friendly_interest_only",
+        "constraint.eight_month_runway",
+        "drop.requested_launch_tactics",
+        "pressure.no_actual_commitments",
+        "question.current_fractional_bridge",
+        "question.initial_launch_plan",
+        "stance.launch_condition",
+        "stance.network_not_pipeline",
+        "threshold.delay_rule"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 9
+        }
+      ],
+      "stable_observation_ids": []
+    },
+    "provenance_status": {
+      "counts_by_run": [
+        {
+          "exact_span": 5,
+          "legacy_turn_ref_only": 5
+        },
+        {
+          "exact_span": 6,
+          "legacy_turn_ref_only": 4
+        },
+        {
+          "exact_span": 5,
+          "legacy_turn_ref_only": 4
+        }
+      ],
+      "invalid_component_count": 0,
+      "legacy_incomplete_count": 0
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            1,
+            0,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraints": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.047619047619047616,
+          "span_jaccard": 0.047619047619047616
+        },
+        "reasoning_passages": {
+          "counts": [
+            5,
+            6,
+            5
+          ],
+          "labeled_jaccard": 0.888888888888889,
+          "span_jaccard": 0.888888888888889
+        }
+      },
+      "mean_labeled_jaccard": 0.42328042328042326,
+      "mean_span_jaccard": 0.42328042328042326
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.3333333333333333,
+      "never_observation_ids": [
+        "boundary.friendly_interest_only",
+        "drop.requested_launch_tactics",
+        "pressure.no_actual_commitments",
+        "question.current_fractional_bridge",
+        "stance.launch_condition",
+        "threshold.delay_rule"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "constraint.eight_month_runway",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline"
+          ],
+          "recall": 0.3333333333333333,
+          "recovered_count": 3,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [
+            "constraint.eight_month_runway",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline"
+          ],
+          "recall": 0.3333333333333333,
+          "recovered_count": 3,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [
+            "constraint.eight_month_runway",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline"
+          ],
+          "recall": 0.3333333333333333,
+          "recovered_count": 3,
+          "total_count": 9
+        }
+      ],
+      "stable_observation_ids": [
+        "constraint.eight_month_runway",
+        "question.initial_launch_plan",
+        "stance.network_not_pipeline"
+      ]
+    },
+    "provenance_status": {
+      "counts_by_run": [
+        {
+          "exact_span": 22
+        },
+        {
+          "exact_span": 22
+        },
+        {
+          "component_evidence_complete": 2,
+          "exact_span": 18
+        }
+      ],
+      "invalid_component_count": 0,
+      "legacy_incomplete_count": 0
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            5,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.7777777777777777,
+          "span_jaccard": 0.7777777777777777
+        },
+        "dropped_thread_events": {
+          "counts": [
+            2,
+            2,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraint_events": {
+          "counts": [
+            4,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.3511904761904762,
+          "span_jaccard": 0.3511904761904762
+        },
+        "option_events": {
+          "counts": [
+            3,
+            3,
+            3
+          ],
+          "labeled_jaccard": 0.6666666666666666,
+          "span_jaccard": 0.6666666666666666
+        },
+        "question_events": {
+          "counts": [
+            3,
+            3,
+            3
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            3,
+            2,
+            2
+          ],
+          "labeled_jaccard": 0.4166666666666667,
+          "span_jaccard": 0.4166666666666667
+        }
+      },
+      "mean_labeled_jaccard": 0.5541383219954649,
+      "mean_span_jaccard": 0.5541383219954649
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e",
+    "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+    "shadow_run_count": 3
+  }
+}

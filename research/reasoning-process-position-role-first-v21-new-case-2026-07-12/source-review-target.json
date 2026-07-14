@@ -1,0 +1,140 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_source_review_target.v1",
+  "status": "source_reviewed_and_frozen_before_provider_execution",
+  "date": "2026-07-12",
+  "case_id": "amb3-case02-architecture-firm-succession",
+  "independent_human_gold": false,
+  "role_responses": {
+    "starting": {
+      "status": "supported",
+      "records": [
+        {
+          "role": "starting",
+          "status": "supported",
+          "evidence_ids": ["e001", "e004", "e005"],
+          "role_interpretation": "The user wants to step back within two years and wants the practice to outlast them, while feeling attracted to the certainty of an external sale, worried that an internal transition will consume the final working years, and uncertain whether employee ownership protects culture or seeks personal validation.",
+          "object_kinds": [
+            "action_or_proposal",
+            "intended_outcome_or_policy",
+            "belief_or_assessment",
+            "belief_or_assessment"
+          ],
+          "object_interpretations": [
+            "Step back from the architecture practice within two years.",
+            "Obtain the certainty of the external offer while the practice outlasts the founder.",
+            "An internal transition may consume the founder's final working years.",
+            "The employee-ownership preference may protect culture or seek validation from colleagues."
+          ],
+          "expression_kinds": [
+            "preference_or_desire",
+            "preference_or_desire",
+            "counterpressure",
+            "uncertain_or_undecided"
+          ],
+          "source_evidence_ids": ["e001", "e004", "e004", "e005"],
+          "fidelity_note": "The starting role separates the exit horizon, desired continuity and certainty, transition burden, and unresolved culture-versus-validation motive.",
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+        }
+      ],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "current": {
+      "status": "supported",
+      "records": [
+        {
+          "role": "current",
+          "status": "supported",
+          "evidence_ids": ["e049", "e050", "e051"],
+          "role_interpretation": "The user is leaning toward a sixty-day evidence period for the employee option while keeping the external conversation nonexclusive, accepting price risk, withholding seller financing and a chair commitment unless exposure and authority are bounded, and explicitly framing the process as comparison rather than promise with a scheduled decision.",
+          "object_kinds": [
+            "action_or_proposal",
+            "action_or_proposal",
+            "acceptance_or_willingness",
+            "acceptance_or_willingness",
+            "intended_outcome_or_policy"
+          ],
+          "object_interpretations": [
+            "Give the employee group sixty days to produce financing, governance, leadership, and hiring evidence.",
+            "Keep the external buyer conversation nonexclusive during the comparison.",
+            "Accept that the external price may change during the evidence period.",
+            "Provide seller financing or remain chair only if repayment exposure, authority, and end date are explicit.",
+            "Tell the senior team this is a comparison rather than a promise and schedule the decision meeting now."
+          ],
+          "expression_kinds": [
+            "leaning",
+            "commitment",
+            "willing",
+            "conditional_willingness",
+            "commitment"
+          ],
+          "source_evidence_ids": ["e049", "e050", "e050", "e050", "e051"],
+          "fidelity_note": "The current role separates the evidence-period leaning, external-option action, accepted price risk, conditional seller exposure and chair role, and comparison framing with a decision date.",
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+        }
+      ],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "qualification": {
+      "status": "supported",
+      "records": [
+        {
+          "role": "qualification",
+          "status": "supported",
+          "evidence_ids": ["e052", "e055", "e056"],
+          "role_interpretation": "The user has not resolved wider-staff involvement without implying an offer or making people feel used; the process may weaken buyer confidence and create employee expectations; and failed internal financing cannot restore those expectations or the senior group's view of its readiness to the prior state.",
+          "object_kinds": [
+            "belief_or_assessment",
+            "reported_position_landscape",
+            "reported_position_landscape",
+            "belief_or_assessment"
+          ],
+          "object_interpretations": [
+            "Wider-staff involvement may imply an offer or leave people feeling used after an external sale.",
+            "The external buyer may infer reduced commitment during the internal comparison.",
+            "Employees may form ownership expectations despite careful comparison language.",
+            "Failed internal financing cannot fully reverse employee expectations or the senior group's changed view of its readiness."
+          ],
+          "expression_kinds": [
+            "uncertain_or_undecided",
+            "counterpressure",
+            "counterpressure",
+            "constraint"
+          ],
+          "source_evidence_ids": ["e052", "e055", "e055", "e056"],
+          "fidelity_note": "The qualification preserves the staff-involvement dilemma, buyer inference, employee expectations, and the irreversible change in expectations and perceived readiness as distinct limits.",
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+        }
+      ],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    }
+  },
+  "relationship_target": {
+    "status": "supported",
+    "starting_source_record_index": 1,
+    "current_source_record_index": 1,
+    "qualification_source_record_index": 1,
+    "relationship_interpretation": "The user moves from mixed succession goals, external-sale certainty, internal-transition burden, and motive uncertainty to a bounded sixty-day comparison with explicit evidence, option, exposure, framing, and deadline conditions, while preserving staff-involvement uncertainty and recognizing that the comparison itself may irreversibly change both options and internal expectations.",
+    "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+  },
+  "protected_target": {
+    "evidence_id": "e056",
+    "meaning": "If the internal proposal fails, employee expectations and the senior group's view of its own readiness will not simply return to their prior state."
+  },
+  "source_first_gates": {
+    "starting_role_must_preserve_exit_horizon_mixed_path_preferences_and_motive_uncertainty": true,
+    "current_role_must_preserve_one_coherent_comparison_thread_across_e049_e050_e051": true,
+    "qualification_role_must_include_e052_e055_and_e056": true,
+    "protected_e056_irreversibility_meaning_must_survive": true,
+    "assistant_qualification_must_not_be_rewritten_as_user_adoption": true,
+    "relationship_must_preserve_bounded_comparison_and_option_changing_limits": true,
+    "exact_evidence_alias_custody_required": true
+  },
+  "boundary": {
+    "written_before_provider_execution": true,
+    "included_in_provider_context": false,
+    "used_for_provider_prompt_examples": false,
+    "semantic_gold_is_independent": false,
+    "provider_calls": 0,
+    "graph_or_runtime_authorized": false
+  }
+}

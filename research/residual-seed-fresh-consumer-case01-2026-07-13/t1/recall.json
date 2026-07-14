@@ -1,0 +1,1117 @@
+{
+  "boundary": {
+    "candidate_deletion": false,
+    "deterministic_semantic_inference": false,
+    "every_seed_graph_recall_eligible": true,
+    "fresh_consumer_disposition_required": true,
+    "graph_recall_is_not_relevance_proof": true,
+    "joint_coverage_preserved_as_metadata": true,
+    "joint_coverage_used_for_admission": false,
+    "legacy_direct_ledger_unresolved_field_is_route_identity_not_semantic_claim": true,
+    "portfolio_tier_used_for_admission": false,
+    "probabilistic_applicability_filter": false,
+    "runtime_effect": "none"
+  },
+  "case_id": "v1-case01-flood-infrastructure",
+  "counts": {
+    "covered_seed_routes": 3,
+    "direct_active_candidates": 6,
+    "direct_reserve_candidates": 3,
+    "graph_active_candidates": 3,
+    "graph_reserve_candidates": 23,
+    "seed_routes": 3
+  },
+  "direct_ledger": {
+    "active_candidates": [
+      {
+        "admission_rank": 1,
+        "candidate_origin": "direct_seed",
+        "model_id": "bottlenecks",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ]
+      },
+      {
+        "admission_rank": 2,
+        "candidate_origin": "direct_seed",
+        "model_id": "game-theory-payoffs",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ]
+      },
+      {
+        "admission_rank": 3,
+        "candidate_origin": "direct_seed",
+        "model_id": "inversion",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ]
+      },
+      {
+        "admission_rank": 4,
+        "candidate_origin": "direct_seed",
+        "model_id": "systems-thinking",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ]
+      },
+      {
+        "admission_rank": 5,
+        "candidate_origin": "direct_seed",
+        "model_id": "incentives",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ]
+      },
+      {
+        "admission_rank": 6,
+        "candidate_origin": "direct_seed",
+        "model_id": "margin-of-safety",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ]
+      }
+    ],
+    "active_cap": 6,
+    "all_candidate_count": 9,
+    "ledger_sha256": "c4df6f286027cd5cbc1807c9c2993ad638113521d4200535ed271d5f10735e00",
+    "non_claims": [
+      "direct_recall_is_not_applicability_proof",
+      "active_cap_is_not_a_relevance_threshold"
+    ],
+    "reserve_candidates": [
+      {
+        "candidate_origin": "direct_seed",
+        "custody_status": "direct_active_capacity_overflow",
+        "model_id": "power-dynamics",
+        "reactivation_condition": "a future frozen contract raises or batches the direct active cap",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "direct_seed",
+        "custody_status": "direct_active_capacity_overflow",
+        "model_id": "premortem",
+        "reactivation_condition": "a future frozen contract raises or batches the direct active cap",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "direct_seed",
+        "custody_status": "direct_active_capacity_overflow",
+        "model_id": "theory-of-constraints",
+        "reactivation_condition": "a future frozen contract raises or batches the direct active cap",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      }
+    ],
+    "schema_version": "lolla.simulated_reliability_direct_ledger.v1",
+    "selection_policy": {
+      "candidate_deletion": false,
+      "mechanism_order": "mechanism_id_ascending",
+      "operation": "controlled_mechanism_round_robin",
+      "semantic_applicability_decision": false,
+      "within_mechanism_order": "model_id_ascending"
+    },
+    "stand_down": false,
+    "unresolved_mechanism_ids": [
+      "residual_seed:rc1",
+      "residual_seed:rc2",
+      "residual_seed:rc3"
+    ]
+  },
+  "graph_ledger": {
+    "active_candidates": [
+      {
+        "admission_edge": {
+          "activation_condition": "When fast intuitive processing is producing constraint diagnoses based on pattern-matching shortcuts rather than the disciplined serial analysis that bottleneck identification requires",
+          "affinity_rationale": "Directly opposes the analysis mode — 'the disciplined, slow, and serial nature of processing at the bottleneck stands in contrast to Type 1 thinking, which is fast, intuitive, and relies on mental shortcuts' — heuristic processing actively misidentifies constraints.",
+          "edge_type": "antagonist",
+          "source_description": "System-1's fast, intuitive, shortcut-driven processing directly opposes bottleneck thinking — bottleneck analysis requires the disciplined, slow, serial processing of System 2, while System 1's heuristics produce the pattern-jumping that misidentifies constraints and bypasses the real limit.",
+          "source_model_id": "bottlenecks",
+          "target_model_id": "system-1"
+        },
+        "admission_rank": 1,
+        "all_active_source_edge_count": 1,
+        "candidate_origin": "graph_expansion",
+        "model_id": "system-1",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "selected_relation_slot": "antagonist"
+      },
+      {
+        "admission_edge": {
+          "activation_condition": "",
+          "affinity_rationale": "",
+          "edge_type": "tension",
+          "source_description": "Bottlenecks conflicts with confirmation-bias when teams protect the chosen constraint diagnosis instead of testing alternate system limiters.",
+          "source_model_id": "bottlenecks",
+          "target_model_id": "confirmation-bias"
+        },
+        "admission_rank": 2,
+        "all_active_source_edge_count": 9,
+        "candidate_origin": "graph_expansion",
+        "model_id": "confirmation-bias",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1",
+          "residual_seed:rc2",
+          "residual_seed:rc3"
+        ],
+        "selected_relation_slot": "tension"
+      },
+      {
+        "admission_edge": {
+          "activation_condition": "When bottleneck identification requires understanding that working memory limits are the primary cognitive constraint driving throughput failures in learning or decision-making",
+          "affinity_rationale": "Described as 'a direct ally' where 'the central finding of CLT—that working memory is limited—is the primary cognitive bottleneck the theory seeks to manage' — CLT defines the foundational constraint that bottleneck analysis targets.",
+          "edge_type": "ally",
+          "source_description": "Cognitive Load Theory is a direct ally because bottlenecks often show up as working-memory limits that need chunking and scaffolding.",
+          "source_model_id": "bottlenecks",
+          "target_model_id": "cognitive-load-theory"
+        },
+        "admission_rank": 3,
+        "all_active_source_edge_count": 1,
+        "candidate_origin": "graph_expansion",
+        "model_id": "cognitive-load-theory",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "selected_relation_slot": "ally"
+      }
+    ],
+    "active_cap": 3,
+    "all_eligible_edges": [
+      {
+        "activation_condition": "When bottleneck identification requires understanding that working memory limits are the primary cognitive constraint driving throughput failures in learning or decision-making",
+        "affinity_rationale": "Described as 'a direct ally' where 'the central finding of CLT—that working memory is limited—is the primary cognitive bottleneck the theory seeks to manage' — CLT defines the foundational constraint that bottleneck analysis targets.",
+        "edge_type": "ally",
+        "source_description": "Cognitive Load Theory is a direct ally because bottlenecks often show up as working-memory limits that need chunking and scaffolding.",
+        "source_model_id": "bottlenecks",
+        "target_model_id": "cognitive-load-theory"
+      },
+      {
+        "activation_condition": "When hidden intellectual bottlenecks need to be surfaced by forcing complex ideas into simple language that exposes gaps in understanding",
+        "affinity_rationale": "Described as 'aligning with the bottleneck model' by 'immediately revealing gaps or blind spots—the intellectual bottlenecks' — a diagnostic tool that surfaces hidden constraints but operates as a reveal mechanism rather than a core bottleneck framework.",
+        "edge_type": "ally",
+        "source_description": "The Feynman Technique helps reveal the hidden intellectual bottleneck by forcing the idea into simple language.",
+        "source_model_id": "bottlenecks",
+        "target_model_id": "feynman-technique"
+      },
+      {
+        "activation_condition": "When laying out structured option-counter-option-outcome branches for probabilistic or uncertain multi-move payoff scenarios",
+        "affinity_rationale": "Described as a practical analytical tool that game theory 'often guides the use of' — useful complement for structured analysis but a tool-level relationship, not a core mechanism.",
+        "edge_type": "ally",
+        "source_description": "Decision-trees help game-theory-payoffs lay out options, counter-options, and outcome branches when choices are explicit and interdependent.",
+        "source_model_id": "game-theory-payoffs",
+        "target_model_id": "decision-trees"
+      },
+      {
+        "activation_condition": "When identifying what each player is trying to maximize, avoid, or preserve within the game structure before modeling payoffs",
+        "affinity_rationale": "Incentives are what game theory models ('what each side is trying to maximize, avoid, or preserve') — foundational context for the game rather than a mechanism that strengthens game-theoretic analysis itself.",
+        "edge_type": "ally",
+        "source_description": "Incentives clarify what each player is trying to maximize, avoid, or preserve inside the game.",
+        "source_model_id": "game-theory-payoffs",
+        "target_model_id": "incentives"
+      },
+      {
+        "activation_condition": "When analyzing how commitments, threats, promises, or credibility signals can change the strategic landscape between interdependent players",
+        "affinity_rationale": "Signaling is described as the core mechanism for 'changing the game' — commitments, threats, and promises are integral to game theory's most powerful applications, not external supplements.",
+        "edge_type": "ally",
+        "source_description": "Signaling matters because commitments, threats, and promises only change the game when the other side updates its expectations credibly.",
+        "source_model_id": "game-theory-payoffs",
+        "target_model_id": "signaling"
+      },
+      {
+        "activation_condition": "When designing incentive structures requires understanding the emotional motivations and inner realities of the people whose behavior the incentives aim to shape",
+        "affinity_rationale": "Canonical states EI 'enables understanding of motivations, intentions, and behaviors — the causes behind their actions. Understanding the emotional motivations of others is key to setting effective external incentives'.",
+        "edge_type": "ally",
+        "source_description": "Emotional-intelligence helps incentives model the motivations behind behavior so external rewards align with how people actually respond.",
+        "source_model_id": "incentives",
+        "target_model_id": "emotional-intelligence"
+      },
+      {
+        "activation_condition": "When the intrinsic mastery incentive requires effective learning tools that make complex information accessible and retainable",
+        "affinity_rationale": "Canonical describes FT as supporting 'the incentive to achieve mastery' by connecting new information to pre-existing mental models through analogies — a learning-incentive connection rather than core incentive mechanism.",
+        "edge_type": "ally",
+        "source_description": "The Feynman Technique supports intrinsic mastery incentives by accelerating understanding through simple explanations and analogies.",
+        "source_model_id": "incentives",
+        "target_model_id": "feynman-technique"
+      },
+      {
+        "activation_condition": "When motivation requires connecting tasks to meaningful goals that provide purpose beyond the immediate activity",
+        "affinity_rationale": "Canonical states 'Incentives provide the necessary relevance (R) for SMART goals by ensuring they fit broader, meaningful values' — connects goals to something larger, preventing work from becoming stale.",
+        "edge_type": "ally",
+        "source_description": "Goal-setting gives incentives meaningful direction by tying local rewards to a broader purpose instead of letting effort chase trivial outputs.",
+        "source_model_id": "incentives",
+        "target_model_id": "goal-setting"
+      },
+      {
+        "activation_condition": "When incentive design must account for how reward signals will reshape cooperation, avoidance, and status games beyond the first-order intended effect",
+        "affinity_rationale": "Canonical states 'Together they prevent teams from mistaking short-term harmony for durable behavioral improvement' — second-order thinking traces how reward signals reshape behavior beyond the immediate visible effect.",
+        "edge_type": "ally",
+        "source_description": "Second-order-thinking extends incentive analysis beyond the first visible reward into the later cooperation, escalation, and status effects it creates.",
+        "source_model_id": "incentives",
+        "target_model_id": "second-order-thinking"
+      },
+      {
+        "activation_condition": "When assumptions need to be stripped away to complement inversion's top-down failure diagnosis with bottom-up fundamental truth building",
+        "affinity_rationale": "Complementary from opposite directions — 'together they provide a complete picture' — but each functions independently. The synergy is structural completeness, not mutual dependency.",
+        "edge_type": "ally",
+        "source_description": "First-principles-thinking and inversion strip away inherited assumptions from opposite directions — first principles builds up from elemental truths while inversion tears down from failure states.",
+        "source_model_id": "inversion",
+        "target_model_id": "first-principles-thinking"
+      },
+      {
+        "activation_condition": "When worst-case scenarios identified through inversion need to be translated into protective buffers and defensive architecture",
+        "affinity_rationale": "Described as forming 'a complete defensive architecture' together — each completes what the other starts (diagnose risk then build cushion), a strong complementary mechanism.",
+        "edge_type": "ally",
+        "source_description": "Margin-of-safety completes what inversion starts: inversion identifies the worst-case paths, margin-of-safety builds the buffer to survive them.",
+        "source_model_id": "inversion",
+        "target_model_id": "margin-of-safety"
+      },
+      {
+        "activation_condition": "When backward-from-failure reasoning needs to be operationalized as a structured team exercise that overcomes groupthink and psychological safety barriers",
+        "affinity_rationale": "Described as 'a direct, procedural application of inversion' — near-identity relationship where premortem IS inversion operationalized as a team exercise.",
+        "edge_type": "ally",
+        "source_description": "Premortem is a direct procedural application of inversion — it operationalizes backward-from-failure reasoning into a repeatable team exercise that overcomes groupthink.",
+        "source_model_id": "inversion",
+        "target_model_id": "premortem"
+      },
+      {
+        "activation_condition": "When failure analysis needs to extend beyond immediate causes to cascading downstream effects and secondary consequences",
+        "affinity_rationale": "Described as 'naturally synergizes' — a natural complement that extends backward analysis depth, but not described as essential or required for inversion to function.",
+        "edge_type": "ally",
+        "source_description": "Second-order-thinking extends inversion's failure tracing beyond the immediate cause to the cascading consequences, giving the inverse analysis depth instead of just surface-level avoidance.",
+        "source_model_id": "inversion",
+        "target_model_id": "second-order-thinking"
+      },
+      {
+        "activation_condition": "When sizing protective buffers requires quantifying uncertainty distributions rather than relying on best-case or point-estimate forecasts",
+        "affinity_rationale": "Described as 'quantifying the uncertainty that necessitates the margin' — provides the quantitative foundation for evidence-based buffer sizing, making the margin rational rather than arbitrary.",
+        "edge_type": "ally",
+        "source_description": "Probabilistic-thinking helps margin-of-safety size the buffer from realistic uncertainty instead of the cleanest forecast path.",
+        "source_model_id": "margin-of-safety",
+        "target_model_id": "probabilistic-thinking"
+      },
+      {
+        "activation_condition": "When systems analysis requires disaggregating complex problems into analyzable sub-components",
+        "affinity_rationale": "Canonical describes problem disaggregation using logic trees to cleave problems into parts, which is decomposition in practice",
+        "edge_type": "ally",
+        "source_description": "Decomposition supports systems thinking by breaking a complex system into analyzable parts without losing the larger structure.",
+        "source_model_id": "systems-thinking",
+        "target_model_id": "decomposition"
+      },
+      {
+        "activation_condition": "When fast intuitive processing is producing constraint diagnoses based on pattern-matching shortcuts rather than the disciplined serial analysis that bottleneck identification requires",
+        "affinity_rationale": "Directly opposes the analysis mode — 'the disciplined, slow, and serial nature of processing at the bottleneck stands in contrast to Type 1 thinking, which is fast, intuitive, and relies on mental shortcuts' — heuristic processing actively misidentifies constraints.",
+        "edge_type": "antagonist",
+        "source_description": "System-1's fast, intuitive, shortcut-driven processing directly opposes bottleneck thinking — bottleneck analysis requires the disciplined, slow, serial processing of System 2, while System 1's heuristics produce the pattern-jumping that misidentifies constraints and bypasses the real limit.",
+        "source_model_id": "bottlenecks",
+        "target_model_id": "system-1"
+      },
+      {
+        "activation_condition": "When the team has settled on a game structure and payoff model without stress-testing whether the wrong players, incentives, or assumptions were chosen",
+        "affinity_rationale": "Directly distorts the game analysis — locks in the wrong players, incentives, or payoff assumptions and stops testing whether contradictory structural evidence invalidates the game model.",
+        "edge_type": "antagonist",
+        "source_description": "Confirmation-bias distorts game-theory-payoffs by locking in the wrong players, incentives, or payoff assumptions before contradictory evidence is considered.",
+        "source_model_id": "game-theory-payoffs",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "When the emotional or social incentive to confirm desired conclusions overrides the intellectual incentive to discover uncomfortable truths",
+        "affinity_rationale": "Canonical describes the core tension: 'the incentive to discover the truth clashes with the emotional incentive to reach a desired conclusion' — organizational pressure makes conformity more rewarding than truth-seeking.",
+        "edge_type": "antagonist",
+        "source_description": "Confirmation bias becomes antagonistic when the emotional incentive to reach a preferred answer overwhelms the incentive to discover what is true.",
+        "source_model_id": "incentives",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "When the cognitive ease incentive of using familiar frameworks prevents exploration of novel approaches that might produce better outcomes",
+        "affinity_rationale": "Mapped from canonical 'Maslow's Hammer' — the 'incentive for cognitive ease' drives reliance on familiar tools, blocking novel solutions that would require uncomfortable new approaches.",
+        "edge_type": "antagonist",
+        "source_description": "Einstellung-effect undermines incentive design by fixating on a single familiar reward mechanism — the lock-in to a known tool prevents the novel incentive structures that complex behavior-shaping requires.",
+        "source_model_id": "incentives",
+        "target_model_id": "einstellung-effect"
+      },
+      {
+        "activation_condition": "When the team has already invested significantly in the current direction and reversing feels like admitting failure rather than exercising diligence",
+        "affinity_rationale": "The deeper the commitment, the harder inversion becomes — prior public commitments create psychological walls against genuine backward analysis precisely when it is most needed.",
+        "edge_type": "antagonist",
+        "source_description": "Commitment-bias hardens prior commitments into psychological walls that make genuine inversion feel like disloyalty, precisely when backward analysis is most needed.",
+        "source_model_id": "inversion",
+        "target_model_id": "commitment-bias"
+      },
+      {
+        "activation_condition": "When the team has a preferred forward plan and backward analysis is at risk of being subconsciously constrained to scenarios that still validate it",
+        "affinity_rationale": "Described as the 'ultimate enemy of inversion' — directly blocks the disconfirmation discipline that inversion demands by seeking only evidence confirming the forward plan.",
+        "edge_type": "antagonist",
+        "source_description": "Confirmation-bias is the ultimate enemy of inversion — it drives the team to seek only evidence that confirms the forward plan, directly blocking the disconfirmation discipline that inversion demands.",
+        "source_model_id": "inversion",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "When confidence in the plan comes from internal project details rather than base-rate evidence from comparable efforts that have failed",
+        "affinity_rationale": "Specific mechanism — traps decision-makers in narrow project-specific optimism, blocking the outside-view adoption that inversion requires to surface comparable failures.",
+        "edge_type": "antagonist",
+        "source_description": "Optimism bias and planning fallacy trap decision-makers in narrow project-specific optimism, while inversion forces adoption of the outside view by looking broadly at how similar efforts have failed.",
+        "source_model_id": "inversion",
+        "target_model_id": "optimism-bias-and-planning-fallacy"
+      },
+      {
+        "activation_condition": "When safety margin estimates are derived from data selected to validate the current plan rather than from adversarial stress-testing",
+        "affinity_rationale": "Prevents acknowledgment of potential failure modes — selects safety estimates that confirm the current exposure is acceptable rather than stress-testing honestly against adverse scenarios.",
+        "edge_type": "antagonist",
+        "source_description": "Confirmation-bias undermines margin-of-safety by selecting a safety estimate that confirms the current exposure is acceptable.",
+        "source_model_id": "margin-of-safety",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "When forecast confidence is high and the proposed safety buffer feels large enough based on the most likely scenario rather than the tail-risk distribution",
+        "affinity_rationale": "The PRIMARY threat to margin sizing — described as producing 'bold forecasts and thin buffers' — directly causes people to overestimate conjunctive success probability and undersize required margins.",
+        "edge_type": "antagonist",
+        "source_description": "Optimism-bias-and-planning-fallacy directly undermines margin-of-safety by producing bold forecasts and thin buffers — the planning fallacy causes people to overestimate conjunctive success probability, making the required safety margin feel larger than necessary.",
+        "source_model_id": "margin-of-safety",
+        "target_model_id": "optimism-bias-and-planning-fallacy"
+      },
+      {
+        "activation_condition": "When cognitive shortcuts limit information gathering to surface-level data, preventing systemic understanding",
+        "affinity_rationale": "Canonical identifies WYSIATI and System 1 biases as requiring active resistance through systems-level information seeking",
+        "edge_type": "antagonist",
+        "source_description": "Cognitive biases like WYSIATI push the thinker toward surface-level stories instead of the wider interacting system.",
+        "source_model_id": "systems-thinking",
+        "target_model_id": "cognitive-biases"
+      },
+      {
+        "activation_condition": "When fixation on familiar solution patterns prevents recognition of novel systemic interactions",
+        "affinity_rationale": "Canonical describes the Law of the Instrument as applying familiar frameworks to novel problems, which is the Einstellung effect",
+        "edge_type": "antagonist",
+        "source_description": "Einstellung-effect undermines systems thinking by anchoring attention to the first familiar disciplinary framework — the fixated lens misses the cross-system interconnections that require multi-model synthesis.",
+        "source_model_id": "systems-thinking",
+        "target_model_id": "einstellung-effect"
+      },
+      {
+        "activation_condition": "When single-discipline expertise misses interconnections that require multidisciplinary systemic analysis",
+        "affinity_rationale": "Canonical states systems thinking counters the natural human inclination for specialization that creates blind spots",
+        "edge_type": "antagonist",
+        "source_description": "Specialization narrows attention to one discipline and undermines the multidisciplinary picture systems thinking depends on.",
+        "source_model_id": "systems-thinking",
+        "target_model_id": "specialization"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Bottlenecks conflicts with confirmation-bias when teams protect the chosen constraint diagnosis instead of testing alternate system limiters.",
+        "source_model_id": "bottlenecks",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Bottlenecks conflicts with opportunity-cost when blocked capacity hides the throughput value being sacrificed elsewhere.",
+        "source_model_id": "bottlenecks",
+        "target_model_id": "opportunity-cost"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Bottlenecks conflicts with optimization-theory when local utilization maximization destabilizes downstream queues.",
+        "source_model_id": "bottlenecks",
+        "target_model_id": "optimization-theory"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Game-theory-payoffs conflicts with confirmation-bias when the team locks in the wrong game structure and stops testing contradictory evidence.",
+        "source_model_id": "game-theory-payoffs",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Incentives conflicts with authenticity when extrinsic incentive structures displace intrinsic motivation and genuine engagement with the work itself.",
+        "source_model_id": "incentives",
+        "target_model_id": "authenticity"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Incentives conflicts with confirmation-bias when incentive alignment causes selective attention to information that supports the rewarded outcome.",
+        "source_model_id": "incentives",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Inversion conflicts with commitment-bias when prior public commitment makes genuine failure-mode exploration feel like disloyalty rather than diligence.",
+        "source_model_id": "inversion",
+        "target_model_id": "commitment-bias"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Inversion conflicts with confirmation-bias when backward analysis is subconsciously constrained to scenarios that still validate the preferred forward plan.",
+        "source_model_id": "inversion",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Inversion conflicts with optimism-bias-and-planning-fallacy when project-specific optimism overrides the base-rate evidence that inversion surfaces from comparable failures.",
+        "source_model_id": "inversion",
+        "target_model_id": "optimism-bias-and-planning-fallacy"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Margin-of-safety conflicts with confirmation-bias when safety estimates are chosen to validate the current plan rather than stress-test it honestly.",
+        "source_model_id": "margin-of-safety",
+        "target_model_id": "confirmation-bias"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Margin-of-safety conflicts with feedback-loops when delayed signals create false confidence in thin buffers.",
+        "source_model_id": "margin-of-safety",
+        "target_model_id": "feedback-loops"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Margin-of-safety conflicts with optionality when strategic branching expands downside exposure without preserving minimum safety buffers.",
+        "source_model_id": "margin-of-safety",
+        "target_model_id": "optionality"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Systems-thinking conflicts with decomposition when reductionist decomposition breaks feedback loops that only exist at the system level.",
+        "source_model_id": "systems-thinking",
+        "target_model_id": "decomposition"
+      },
+      {
+        "activation_condition": "",
+        "affinity_rationale": "",
+        "edge_type": "tension",
+        "source_description": "Systems-thinking conflicts with simplification when holistic system maps add complexity that obscures the one lever that would actually move the outcome.",
+        "source_model_id": "systems-thinking",
+        "target_model_id": "simplification"
+      }
+    ],
+    "eligible_edge_count": 41,
+    "ledger_sha256": "075d7089bdb9bdf5597e2706771afc019b9b5212027770e1221e4018d7c13768",
+    "non_claims": [
+      "graph_recall_is_not_applicability_proof",
+      "active_slots_are_not_best_model_selection",
+      "reserve_status_is_not_semantic_rejection"
+    ],
+    "reserve_candidates": [
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Incentives conflicts with authenticity when extrinsic incentive structures displace intrinsic motivation and genuine engagement with the work itself.",
+            "source_model_id": "incentives",
+            "target_model_id": "authenticity"
+          }
+        ],
+        "model_id": "authenticity",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When cognitive shortcuts limit information gathering to surface-level data, preventing systemic understanding",
+            "affinity_rationale": "Canonical identifies WYSIATI and System 1 biases as requiring active resistance through systems-level information seeking",
+            "edge_type": "antagonist",
+            "source_description": "Cognitive biases like WYSIATI push the thinker toward surface-level stories instead of the wider interacting system.",
+            "source_model_id": "systems-thinking",
+            "target_model_id": "cognitive-biases"
+          }
+        ],
+        "model_id": "cognitive-biases",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When the team has already invested significantly in the current direction and reversing feels like admitting failure rather than exercising diligence",
+            "affinity_rationale": "The deeper the commitment, the harder inversion becomes — prior public commitments create psychological walls against genuine backward analysis precisely when it is most needed.",
+            "edge_type": "antagonist",
+            "source_description": "Commitment-bias hardens prior commitments into psychological walls that make genuine inversion feel like disloyalty, precisely when backward analysis is most needed.",
+            "source_model_id": "inversion",
+            "target_model_id": "commitment-bias"
+          },
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Inversion conflicts with commitment-bias when prior public commitment makes genuine failure-mode exploration feel like disloyalty rather than diligence.",
+            "source_model_id": "inversion",
+            "target_model_id": "commitment-bias"
+          }
+        ],
+        "model_id": "commitment-bias",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When laying out structured option-counter-option-outcome branches for probabilistic or uncertain multi-move payoff scenarios",
+            "affinity_rationale": "Described as a practical analytical tool that game theory 'often guides the use of' — useful complement for structured analysis but a tool-level relationship, not a core mechanism.",
+            "edge_type": "ally",
+            "source_description": "Decision-trees help game-theory-payoffs lay out options, counter-options, and outcome branches when choices are explicit and interdependent.",
+            "source_model_id": "game-theory-payoffs",
+            "target_model_id": "decision-trees"
+          }
+        ],
+        "model_id": "decision-trees",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When systems analysis requires disaggregating complex problems into analyzable sub-components",
+            "affinity_rationale": "Canonical describes problem disaggregation using logic trees to cleave problems into parts, which is decomposition in practice",
+            "edge_type": "ally",
+            "source_description": "Decomposition supports systems thinking by breaking a complex system into analyzable parts without losing the larger structure.",
+            "source_model_id": "systems-thinking",
+            "target_model_id": "decomposition"
+          },
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Systems-thinking conflicts with decomposition when reductionist decomposition breaks feedback loops that only exist at the system level.",
+            "source_model_id": "systems-thinking",
+            "target_model_id": "decomposition"
+          }
+        ],
+        "model_id": "decomposition",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When the cognitive ease incentive of using familiar frameworks prevents exploration of novel approaches that might produce better outcomes",
+            "affinity_rationale": "Mapped from canonical 'Maslow's Hammer' — the 'incentive for cognitive ease' drives reliance on familiar tools, blocking novel solutions that would require uncomfortable new approaches.",
+            "edge_type": "antagonist",
+            "source_description": "Einstellung-effect undermines incentive design by fixating on a single familiar reward mechanism — the lock-in to a known tool prevents the novel incentive structures that complex behavior-shaping requires.",
+            "source_model_id": "incentives",
+            "target_model_id": "einstellung-effect"
+          },
+          {
+            "activation_condition": "When fixation on familiar solution patterns prevents recognition of novel systemic interactions",
+            "affinity_rationale": "Canonical describes the Law of the Instrument as applying familiar frameworks to novel problems, which is the Einstellung effect",
+            "edge_type": "antagonist",
+            "source_description": "Einstellung-effect undermines systems thinking by anchoring attention to the first familiar disciplinary framework — the fixated lens misses the cross-system interconnections that require multi-model synthesis.",
+            "source_model_id": "systems-thinking",
+            "target_model_id": "einstellung-effect"
+          }
+        ],
+        "model_id": "einstellung-effect",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1",
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When designing incentive structures requires understanding the emotional motivations and inner realities of the people whose behavior the incentives aim to shape",
+            "affinity_rationale": "Canonical states EI 'enables understanding of motivations, intentions, and behaviors — the causes behind their actions. Understanding the emotional motivations of others is key to setting effective external incentives'.",
+            "edge_type": "ally",
+            "source_description": "Emotional-intelligence helps incentives model the motivations behind behavior so external rewards align with how people actually respond.",
+            "source_model_id": "incentives",
+            "target_model_id": "emotional-intelligence"
+          }
+        ],
+        "model_id": "emotional-intelligence",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Margin-of-safety conflicts with feedback-loops when delayed signals create false confidence in thin buffers.",
+            "source_model_id": "margin-of-safety",
+            "target_model_id": "feedback-loops"
+          }
+        ],
+        "model_id": "feedback-loops",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When hidden intellectual bottlenecks need to be surfaced by forcing complex ideas into simple language that exposes gaps in understanding",
+            "affinity_rationale": "Described as 'aligning with the bottleneck model' by 'immediately revealing gaps or blind spots—the intellectual bottlenecks' — a diagnostic tool that surfaces hidden constraints but operates as a reveal mechanism rather than a core bottleneck framework.",
+            "edge_type": "ally",
+            "source_description": "The Feynman Technique helps reveal the hidden intellectual bottleneck by forcing the idea into simple language.",
+            "source_model_id": "bottlenecks",
+            "target_model_id": "feynman-technique"
+          },
+          {
+            "activation_condition": "When the intrinsic mastery incentive requires effective learning tools that make complex information accessible and retainable",
+            "affinity_rationale": "Canonical describes FT as supporting 'the incentive to achieve mastery' by connecting new information to pre-existing mental models through analogies — a learning-incentive connection rather than core incentive mechanism.",
+            "edge_type": "ally",
+            "source_description": "The Feynman Technique supports intrinsic mastery incentives by accelerating understanding through simple explanations and analogies.",
+            "source_model_id": "incentives",
+            "target_model_id": "feynman-technique"
+          }
+        ],
+        "model_id": "feynman-technique",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1",
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When assumptions need to be stripped away to complement inversion's top-down failure diagnosis with bottom-up fundamental truth building",
+            "affinity_rationale": "Complementary from opposite directions — 'together they provide a complete picture' — but each functions independently. The synergy is structural completeness, not mutual dependency.",
+            "edge_type": "ally",
+            "source_description": "First-principles-thinking and inversion strip away inherited assumptions from opposite directions — first principles builds up from elemental truths while inversion tears down from failure states.",
+            "source_model_id": "inversion",
+            "target_model_id": "first-principles-thinking"
+          }
+        ],
+        "model_id": "first-principles-thinking",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When motivation requires connecting tasks to meaningful goals that provide purpose beyond the immediate activity",
+            "affinity_rationale": "Canonical states 'Incentives provide the necessary relevance (R) for SMART goals by ensuring they fit broader, meaningful values' — connects goals to something larger, preventing work from becoming stale.",
+            "edge_type": "ally",
+            "source_description": "Goal-setting gives incentives meaningful direction by tying local rewards to a broader purpose instead of letting effort chase trivial outputs.",
+            "source_model_id": "incentives",
+            "target_model_id": "goal-setting"
+          }
+        ],
+        "model_id": "goal-setting",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "duplicate_of_direct_candidate",
+        "graph_provenance": [
+          {
+            "activation_condition": "When identifying what each player is trying to maximize, avoid, or preserve within the game structure before modeling payoffs",
+            "affinity_rationale": "Incentives are what game theory models ('what each side is trying to maximize, avoid, or preserve') — foundational context for the game rather than a mechanism that strengthens game-theoretic analysis itself.",
+            "edge_type": "ally",
+            "source_description": "Incentives clarify what each player is trying to maximize, avoid, or preserve inside the game.",
+            "source_model_id": "game-theory-payoffs",
+            "target_model_id": "incentives"
+          }
+        ],
+        "model_id": "incentives",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "duplicate_of_direct_candidate",
+        "graph_provenance": [
+          {
+            "activation_condition": "When worst-case scenarios identified through inversion need to be translated into protective buffers and defensive architecture",
+            "affinity_rationale": "Described as forming 'a complete defensive architecture' together — each completes what the other starts (diagnose risk then build cushion), a strong complementary mechanism.",
+            "edge_type": "ally",
+            "source_description": "Margin-of-safety completes what inversion starts: inversion identifies the worst-case paths, margin-of-safety builds the buffer to survive them.",
+            "source_model_id": "inversion",
+            "target_model_id": "margin-of-safety"
+          }
+        ],
+        "model_id": "margin-of-safety",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Bottlenecks conflicts with opportunity-cost when blocked capacity hides the throughput value being sacrificed elsewhere.",
+            "source_model_id": "bottlenecks",
+            "target_model_id": "opportunity-cost"
+          }
+        ],
+        "model_id": "opportunity-cost",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When confidence in the plan comes from internal project details rather than base-rate evidence from comparable efforts that have failed",
+            "affinity_rationale": "Specific mechanism — traps decision-makers in narrow project-specific optimism, blocking the outside-view adoption that inversion requires to surface comparable failures.",
+            "edge_type": "antagonist",
+            "source_description": "Optimism bias and planning fallacy trap decision-makers in narrow project-specific optimism, while inversion forces adoption of the outside view by looking broadly at how similar efforts have failed.",
+            "source_model_id": "inversion",
+            "target_model_id": "optimism-bias-and-planning-fallacy"
+          },
+          {
+            "activation_condition": "When forecast confidence is high and the proposed safety buffer feels large enough based on the most likely scenario rather than the tail-risk distribution",
+            "affinity_rationale": "The PRIMARY threat to margin sizing — described as producing 'bold forecasts and thin buffers' — directly causes people to overestimate conjunctive success probability and undersize required margins.",
+            "edge_type": "antagonist",
+            "source_description": "Optimism-bias-and-planning-fallacy directly undermines margin-of-safety by producing bold forecasts and thin buffers — the planning fallacy causes people to overestimate conjunctive success probability, making the required safety margin feel larger than necessary.",
+            "source_model_id": "margin-of-safety",
+            "target_model_id": "optimism-bias-and-planning-fallacy"
+          },
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Inversion conflicts with optimism-bias-and-planning-fallacy when project-specific optimism overrides the base-rate evidence that inversion surfaces from comparable failures.",
+            "source_model_id": "inversion",
+            "target_model_id": "optimism-bias-and-planning-fallacy"
+          }
+        ],
+        "model_id": "optimism-bias-and-planning-fallacy",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Bottlenecks conflicts with optimization-theory when local utilization maximization destabilizes downstream queues.",
+            "source_model_id": "bottlenecks",
+            "target_model_id": "optimization-theory"
+          }
+        ],
+        "model_id": "optimization-theory",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Margin-of-safety conflicts with optionality when strategic branching expands downside exposure without preserving minimum safety buffers.",
+            "source_model_id": "margin-of-safety",
+            "target_model_id": "optionality"
+          }
+        ],
+        "model_id": "optionality",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When backward-from-failure reasoning needs to be operationalized as a structured team exercise that overcomes groupthink and psychological safety barriers",
+            "affinity_rationale": "Described as 'a direct, procedural application of inversion' — near-identity relationship where premortem IS inversion operationalized as a team exercise.",
+            "edge_type": "ally",
+            "source_description": "Premortem is a direct procedural application of inversion — it operationalizes backward-from-failure reasoning into a repeatable team exercise that overcomes groupthink.",
+            "source_model_id": "inversion",
+            "target_model_id": "premortem"
+          }
+        ],
+        "model_id": "premortem",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When sizing protective buffers requires quantifying uncertainty distributions rather than relying on best-case or point-estimate forecasts",
+            "affinity_rationale": "Described as 'quantifying the uncertainty that necessitates the margin' — provides the quantitative foundation for evidence-based buffer sizing, making the margin rational rather than arbitrary.",
+            "edge_type": "ally",
+            "source_description": "Probabilistic-thinking helps margin-of-safety size the buffer from realistic uncertainty instead of the cleanest forecast path.",
+            "source_model_id": "margin-of-safety",
+            "target_model_id": "probabilistic-thinking"
+          }
+        ],
+        "model_id": "probabilistic-thinking",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When incentive design must account for how reward signals will reshape cooperation, avoidance, and status games beyond the first-order intended effect",
+            "affinity_rationale": "Canonical states 'Together they prevent teams from mistaking short-term harmony for durable behavioral improvement' — second-order thinking traces how reward signals reshape behavior beyond the immediate visible effect.",
+            "edge_type": "ally",
+            "source_description": "Second-order-thinking extends incentive analysis beyond the first visible reward into the later cooperation, escalation, and status effects it creates.",
+            "source_model_id": "incentives",
+            "target_model_id": "second-order-thinking"
+          },
+          {
+            "activation_condition": "When failure analysis needs to extend beyond immediate causes to cascading downstream effects and secondary consequences",
+            "affinity_rationale": "Described as 'naturally synergizes' — a natural complement that extends backward analysis depth, but not described as essential or required for inversion to function.",
+            "edge_type": "ally",
+            "source_description": "Second-order-thinking extends inversion's failure tracing beyond the immediate cause to the cascading consequences, giving the inverse analysis depth instead of just surface-level avoidance.",
+            "source_model_id": "inversion",
+            "target_model_id": "second-order-thinking"
+          }
+        ],
+        "model_id": "second-order-thinking",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2",
+          "residual_seed:rc3"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When analyzing how commitments, threats, promises, or credibility signals can change the strategic landscape between interdependent players",
+            "affinity_rationale": "Signaling is described as the core mechanism for 'changing the game' — commitments, threats, and promises are integral to game theory's most powerful applications, not external supplements.",
+            "edge_type": "ally",
+            "source_description": "Signaling matters because commitments, threats, and promises only change the game when the other side updates its expectations credibly.",
+            "source_model_id": "game-theory-payoffs",
+            "target_model_id": "signaling"
+          }
+        ],
+        "model_id": "signaling",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc2"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "",
+            "affinity_rationale": "",
+            "edge_type": "tension",
+            "source_description": "Systems-thinking conflicts with simplification when holistic system maps add complexity that obscures the one lever that would actually move the outcome.",
+            "source_model_id": "systems-thinking",
+            "target_model_id": "simplification"
+          }
+        ],
+        "model_id": "simplification",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      },
+      {
+        "candidate_origin": "graph_expansion",
+        "custody_status": "graph_active_capacity_overflow",
+        "graph_provenance": [
+          {
+            "activation_condition": "When single-discipline expertise misses interconnections that require multidisciplinary systemic analysis",
+            "affinity_rationale": "Canonical states systems thinking counters the natural human inclination for specialization that creates blind spots",
+            "edge_type": "antagonist",
+            "source_description": "Specialization narrows attention to one discipline and undermines the multidisciplinary picture systems thinking depends on.",
+            "source_model_id": "systems-thinking",
+            "target_model_id": "specialization"
+          }
+        ],
+        "model_id": "specialization",
+        "reactivation_condition": "inspect the private graph ledger or use a future frozen batching contract",
+        "recalled_by_mechanism_ids": [
+          "residual_seed:rc1"
+        ],
+        "semantic_rejection_performed": false
+      }
+    ],
+    "schema_version": "lolla.simulated_reliability_graph_ledger.v1",
+    "selection_policy": {
+      "affinity_used_for_admission": false,
+      "candidate_deletion": false,
+      "conversation_text_used_for_admission": false,
+      "operation": "one_slot_per_declared_relation_type",
+      "probabilistic_prefilter_used": false,
+      "relation_slot_order": [
+        "antagonist",
+        "tension",
+        "ally"
+      ],
+      "within_slot_order": [
+        "source_model_id_ascending",
+        "target_model_id_ascending"
+      ]
+    },
+    "source_direct_ledger_sha256": "c4df6f286027cd5cbc1807c9c2993ad638113521d4200535ed271d5f10735e00",
+    "unique_target_count": 26
+  },
+  "result_sha256": "4d142902f3ff8ad2b6cef9e38464ee0aa5af793d0cd5eca67f81a605c1cede92",
+  "schema_version": "lolla.residual_seed_graph_recall.v1",
+  "seed_custody": [
+    {
+      "candidate_id": "rc1",
+      "candidate_kind": "omitted_dependency",
+      "coverage_used_for_graph_admission": false,
+      "direct_active_model_ids": [
+        "bottlenecks",
+        "systems-thinking"
+      ],
+      "direct_reserve_model_ids": [
+        "theory-of-constraints"
+      ],
+      "joint_coverage": "operationalized",
+      "portfolio_tier": "covered_receipt",
+      "seed_route_id": "residual_seed:rc1"
+    },
+    {
+      "candidate_id": "rc2",
+      "candidate_kind": "stakeholder_or_distribution",
+      "coverage_used_for_graph_admission": false,
+      "direct_active_model_ids": [
+        "game-theory-payoffs",
+        "incentives"
+      ],
+      "direct_reserve_model_ids": [
+        "power-dynamics"
+      ],
+      "joint_coverage": "operationalized",
+      "portfolio_tier": "covered_receipt",
+      "seed_route_id": "residual_seed:rc2"
+    },
+    {
+      "candidate_id": "rc3",
+      "candidate_kind": "external_break_condition",
+      "coverage_used_for_graph_admission": false,
+      "direct_active_model_ids": [
+        "inversion",
+        "margin-of-safety"
+      ],
+      "direct_reserve_model_ids": [
+        "premortem"
+      ],
+      "joint_coverage": "operationalized",
+      "portfolio_tier": "covered_receipt",
+      "seed_route_id": "residual_seed:rc3"
+    }
+  ],
+  "status": "all_residual_seeds_recalled_without_coverage_gate"
+}

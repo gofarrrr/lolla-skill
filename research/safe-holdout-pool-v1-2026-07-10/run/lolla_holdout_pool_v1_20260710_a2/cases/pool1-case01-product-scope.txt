@@ -1,0 +1,41 @@
+# Small product team and custom customer request
+
+Case ID: pool1-case01-product-scope
+Stratum: small_team_product_scope
+Synthetic evaluation fixture; not a real person's conversation.
+
+[Turn 1] USER:
+Our team at VeloSync is in a bit of a bind. Our biggest client, Meridian Logistics, is asking for a custom analytics dashboard that tracks real-time fleet efficiency. It’s a significant request that would take our three-person engineering team about six weeks to build. We are currently mid-sprint on our core stability roadmap, which is supposed to address some technical debt we’ve been ignoring for three quarters.
+
+[Turn 1] ASSISTANT:
+That is a classic dilemma for a small team. When you are balancing a major client's specific needs against long-term technical health, it often helps to look at the opportunity cost. If you delay the technical debt work, what is the specific risk to your core roadmap? Is the stability work required to prevent a total system failure, or is it more about making future feature development faster?
+
+[Turn 2] USER:
+The stability work is mostly about performance degradation. If we don't fix the database indexing now, we'll likely hit a wall in about four months where the system slows down for everyone. However, Meridian is threatening to move to a competitor if we don't provide this analytics suite. They are 40% of our monthly recurring revenue. I’m worried that if I say no, we lose the revenue we need to hire a fourth person who could actually help us fix the debt.
+
+[Turn 2] ASSISTANT:
+That 40% figure makes it a much more urgent business decision. If you lose that revenue, the roadmap might become moot anyway. Have you considered a middle ground, like a phased delivery? Perhaps you could build a simplified version of the dashboard that uses the existing database structure, avoiding the need for the heavy indexing work right now, and then iterate once you've secured their contract for another year?
+
+[Turn 3] USER:
+I suggested that, but Meridian wants the full suite. They have internal stakeholders expecting these specific metrics. They aren't interested in a 'lite' version. I feel like I'm being backed into a corner where I have to choose between short-term survival and long-term viability. Maybe I should just bite the bullet and work weekends for a month to get it done?
+
+[Turn 3] ASSISTANT:
+Working weekends is a temporary fix that often leads to burnout and mistakes, which could actually make your technical debt worse. If you do proceed with their request, you should probably frame it as a premium service. Could you charge them a one-time implementation fee that covers the cost of a contractor to handle the routine maintenance, allowing your core team to focus on the custom build?
+
+[Turn 4] USER:
+We don't have the budget to hire a contractor. Honestly, the team is already feeling the pressure. I think your suggestion about framing it as a premium service is a bit naive given our current contract terms; they already pay a premium, and they expect this kind of support as part of that. I need to figure out if I can push back on the timeline instead.
+
+[Turn 4] ASSISTANT:
+That is a fair critique; I apologize for overlooking the existing contract structure. Pushing back on the timeline is a much more sustainable approach. If you present them with a realistic timeline that includes the necessary stability work, it shows you are protecting the platform they rely on. Have you tried showing them the performance impact data to explain why a rush job would be risky for their own data accuracy?
+
+[Turn 5] USER:
+I haven't shown them the data, but that might be a good angle. My fear is that they'll just see it as an excuse. However, I’ve been thinking—what if we prioritize the dashboard but only for their specific data subset, effectively siloing it? It wouldn't require a full system refactor.
+
+[Turn 5] ASSISTANT:
+Siloing the data could work as a tactical compromise. It keeps their project isolated, which might reduce the risk of impacting the rest of your users. It creates a bit of 'technical debt' in the sense of a custom branch, but it might be the least risky way to keep them happy while keeping your core platform stable for the time being.
+
+[Turn 6] USER:
+That's an interesting thought. It’s essentially creating a temporary fork. I’d have to be very careful about how we maintain that code later, but it might buy us the time we need to stabilize the core system in the background. It feels like a gamble, but maybe a calculated one.
+
+[Turn 6] ASSISTANT:
+It is definitely a gamble, but in a small team, you are often choosing between different types of risk. If you go this route, I suggest documenting exactly how and when you plan to merge that code back into the main branch, so it doesn't become a permanent maintenance burden. I’ll prepare a draft proposal for the team meeting tomorrow that outlines the siloed approach versus the full-system integration so we can weigh the long-term maintenance costs.

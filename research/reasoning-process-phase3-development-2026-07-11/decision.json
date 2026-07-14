@@ -1,0 +1,83 @@
+{
+  "schema_version": "lolla.reasoning_process_phase3_decision.v1",
+  "status": "complete_material_redesign_required",
+  "date": "2026-07-11",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "model_route": "google/gemini-3.1-flash-lite via OpenRouter",
+  "baseline": {
+    "provider_calls": 3,
+    "operational_success_count": 2,
+    "typed_admission_count": 2,
+    "protected_target_visible_count": 1,
+    "estimated_cost_usd": 0.0044435,
+    "stop_reason": "OpenRouter rate_limit_exceeded on the third call; two remaining baseline calls were not attempted.",
+    "result": {
+      "path": "research/reasoning-process-phase3-development-2026-07-11/baseline/result.json",
+      "sha256": "52ade988ca18c72e1392f4bc71f1301fdb8bd4847f7ad11ba60cf6b63e508775"
+    },
+    "source_review": {
+      "path": "research/reasoning-process-phase3-development-2026-07-11/baseline/source-review.json",
+      "sha256": "7a82334ff00af1ee7ad14a01c67733ccca866a6c36e0b892a42abd6c9f75b96c"
+    }
+  },
+  "generic_repair": {
+    "provider_calls": 5,
+    "operational_success_count": 5,
+    "typed_admission_count": 4,
+    "protected_target_visible_count": 4,
+    "protected_target_visibility_rate": 0.8,
+    "exact_source_reference_validity_rate": 0.9655,
+    "invalid_admitted_item_count": 1,
+    "source_strength_inflation_count": 1,
+    "context_invisible_label_count": 1,
+    "critical_dimension_zero_count": 1,
+    "estimated_cost_usd": 0.0142385,
+    "result": {
+      "path": "research/reasoning-process-phase3-development-2026-07-11/repair/result.json",
+      "sha256": "6ca80121c29f43296e6d904a081e8b19c9b0ec475e37d2115b477c3049c42ef4"
+    },
+    "source_review": {
+      "path": "research/reasoning-process-phase3-development-2026-07-11/repair/source-review.json",
+      "sha256": "8a7548ae490836aaf76336afcb7a4380cbd639eefcdff47ad28a5041e4ff2127"
+    }
+  },
+  "total_custody": {
+    "provider_calls": 8,
+    "estimated_cost_usd": 0.018682,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0,
+    "protected_targets_seen_by_model": false,
+    "source_review_addenda_seen_by_model": false
+  },
+  "decision": {
+    "outcome": "material_redesign_required",
+    "phase3_gate_passed": false,
+    "phase4_transfer_authorized": false,
+    "second_generic_repair_authorized": false,
+    "reason": "The generic repair materially improved coverage but one of five dimensions remained quarantined and semantically incomplete, while one admitted position item overclaimed its cited evidence. The frozen gates require five admitted dimensions, complete target visibility, exact source validity, and zero source-strength or context-invisible errors.",
+    "next_work_class": "provider_free_view_specific_contract_redesign",
+    "next_work": [
+      "Create five small view-specific output contracts rather than one universal item shape, with explicit semantic roles such as alternative-plus-limit and challenge-plus-response.",
+      "Test a lossless sentence-span table that exposes stable evidence IDs to the reader so source custody does not depend on reproducing long free-form quotations.",
+      "Keep the authoritative conversation, probabilistic semantic reading, deterministic validation, append-only custody, and target-blind evaluation boundaries unchanged."
+    ]
+  },
+  "frozen_inputs": [
+    {"path": "docs/evals/reasoning-process-phase3-probe-contract-v1.json", "sha256": "e7c2ca0326e9b509952a0000f05c15e96f24d00d64ae91a04edc4846b9a29307"},
+    {"path": "docs/evals/reasoning-process-phase3-probe-authorization-v1.json", "sha256": "353a028cd58100caa2950af415284db3c5d09eb31df6cb592f22f9feb8b32536"},
+    {"path": "docs/evals/reasoning-process-phase3-repair-contract-v1.json", "sha256": "e2c245244e59ed8d0dc4aa4fc386bdf5ae860669cb28b500d225d5713f9fa4a3"},
+    {"path": "docs/evals/reasoning-process-phase3-repair-authorization-v1.json", "sha256": "7e7db24d493ab15eedd8a84fb164fac61480c63ba1ccbd0fe3dc29ad7065ecb6"}
+  ],
+  "non_claims": [
+    "four_of_five_target_visibility_is_not_a_product_pass",
+    "provider_activity_or_cost_is_not_reasoning_quality",
+    "source_validity_is_not_final_answer_correctness",
+    "one_development_case_is_not_transfer_or_stability_evidence",
+    "this_result_does_not_authorize_graph_or_runtime_integration"
+  ]
+}

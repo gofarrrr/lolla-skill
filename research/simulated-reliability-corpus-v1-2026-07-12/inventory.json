@@ -1,0 +1,87 @@
+{
+  "schema_version": "lolla.simulated_reliability_corpus_inventory.v1",
+  "date": "2026-07-12",
+  "status": "complete",
+  "claim_boundary": "All available conversations are synthetic or development-contaminated. Existing material can calibrate V1 but cannot establish real-user usefulness or clean generalization.",
+  "calibration_sources": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt",
+      "prior_use": "development and Stage A diagnostics",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case02-nonprofit-scale.txt",
+      "prior_use": "development and Stage A diagnostics",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case03-creative-partnership.txt",
+      "prior_use": "development and completed pipeline diagnostics",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case04-research-tool-release.txt",
+      "prior_use": "development",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case05-family-archive.txt",
+      "prior_use": "development and Stage A diagnostics",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb2-case01-career-transition",
+      "path": "research/stance-object-v41-fresh-corpus-2026-07-12/cases/amb2-case01-career-transition.txt",
+      "prior_use": "stance-object ontology development",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb2-case02-community-space",
+      "path": "research/stance-object-v41-fresh-corpus-2026-07-12/cases/amb2-case02-community-space.txt",
+      "prior_use": "stance-object ontology development",
+      "v1_role": "calibration"
+    },
+    {
+      "case_id": "amb2-case03-agency-acquisition",
+      "path": "research/stance-object-v41-fresh-corpus-2026-07-12/cases/amb2-case03-agency-acquisition.txt",
+      "prior_use": "stance-object ontology development",
+      "v1_role": "calibration"
+    }
+  ],
+  "excluded_mechanistic_fixtures": [
+    {
+      "case_id": "phase5-independent-useful-retailer-pilot",
+      "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+      "reason": "The intended evidence-boundary issue is stated directly in the dialogue and was used to prove the minimum loop."
+    },
+    {
+      "case_id": "phase5-independent-quiet-research-meeting",
+      "path": "research/independent-phase5-cases-2026-07-12/quiet-standdown-case.txt",
+      "reason": "The desired stand-down and absence of unresolved concerns are stated directly."
+    },
+    {
+      "case_id": "phase5-independent-quiet-library-laptop-pilot",
+      "path": "research/independent-phase5-cases-2026-07-12/quiet-library-laptop-case.txt",
+      "reason": "The desired stand-down and absence of unresolved concerns are stated directly."
+    }
+  ],
+  "new_transfer_requirement": {
+    "count": 12,
+    "source_type": "prospectively authored synthetic multi-turn conversations",
+    "independent_human_data": false,
+    "eligible_claim": "prospective simulated transfer under a frozen runtime and evaluation contract",
+    "ineligible_claims": [
+      "real-user usefulness",
+      "population representativeness",
+      "human decision improvement",
+      "clean independence from project-author knowledge",
+      "proof that graph-expanded pressure is better reasoning"
+    ]
+  }
+}
+

@@ -1,0 +1,182 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a1",
+  "goal": "Test source custody, controlled mechanism interpretation, direct pressure, graph-expanded pressure, restraint, and fresh reconsideration before any transfer call.",
+  "constitution": {
+    "path": "docs/conversation-understanding/lolla-product-constitution-v5.md",
+    "sha256": "c8e6f4f09f24ad6512edb5a3478cbcbcd5659886dea373e8e43c90d53d1b9b7b"
+  },
+  "provider_request": {
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.5-flash-20260519",
+    "provider_order": ["google-vertex/global"],
+    "provider_only": ["google-vertex"],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zdr": true,
+    "max_price_usd_per_million_tokens": {
+      "prompt": 1.5,
+      "completion": 9.0
+    },
+    "wire_mode": "strict_json_schema",
+    "strict": true,
+    "stream": false,
+    "temperature_supplied": false,
+    "top_p_supplied": false,
+    "reasoning": {
+      "effort": "medium",
+      "exclude": true
+    },
+    "timeout_seconds": 180,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "fallback_models": 0,
+    "tools": 0
+  },
+  "task_limits": {
+    "starting": {"max_output_tokens": 6000},
+    "current_qualification": {"max_output_tokens": 7000},
+    "mechanism": {"max_output_tokens": 5000},
+    "transcript_only": {"max_output_tokens": 8000},
+    "direct_pressure": {"max_output_tokens": 12000},
+    "graph_expanded_pressure": {"max_output_tokens": 12000}
+  },
+  "seeds": {
+    "primary": 101,
+    "repeat_2": 202,
+    "repeat_3": 303
+  },
+  "schema_contract": {
+    "maximum_schema_bytes": 12000,
+    "maximum_schema_depth": 11,
+    "role_starting_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+    "role_current_qualification_sha256": "4a8287bc0f55e118c2e684b6a38d32ca14fa6d6e355be7c8b07740e17c533b01",
+    "mechanism_sha256": "ff6174cecefa1f19f8531209ac2cdb67eb0cbcd06c46f5144c56b73d131fcc39",
+    "transcript_control_sha256": "55704fcd301154d40ce8a88186f1b349a58f42a32ecb240ea38a6e2cb2d3ff6b",
+    "pressure_schema_generator": "engine.system_b.simulated_reliability_v1.pressure_response_schema",
+    "pressure_maximum_candidates": 13,
+    "pressure_placeholder_max13_sha256": "023bdf1a10bdc959287c9b4f21c08d5483073b8f472526826cd9ec9c15ba25f8",
+    "actual_case_candidate_enums_are_hashed_before_each_call": true,
+    "local_validation_after_provider_shape": true,
+    "valid_empty_substitution_for_failure": false
+  },
+  "pipeline": {
+    "maximum_calls_per_case": 6,
+    "role_calls": ["starting", "current_qualification"],
+    "role_relation_call": false,
+    "mechanism_call": "exactly one after a valid role join",
+    "reasoning_arms": ["transcript_only", "direct_pressure", "graph_expanded_pressure"],
+    "arm_call_order": "ascending_sha256(run_id|case_id|repeat_id|arm_id)",
+    "direct_empty_behavior": "preserve authoritative final assistant answer; no direct or graph pressure call",
+    "graph_empty_behavior": "reuse compiled direct-pressure response; no graph pressure call",
+    "candidate_semantic_prefilter": false,
+    "graph_active_slots": ["antagonist", "tension", "ally"],
+    "graph_maximum_additions": 3,
+    "full_overflow_ledgers_preserved": true
+  },
+  "calibration": {
+    "authorized_case_ids": [
+      "amb1-case01-product-scope",
+      "amb1-case03-creative-partnership",
+      "phase5-independent-quiet-library-laptop-pilot"
+    ],
+    "external_controls": [
+      {
+        "case_id": "phase5-independent-quiet-library-laptop-pilot",
+        "path": "research/independent-phase5-cases-2026-07-12/quiet-library-laptop-case.txt",
+        "sha256": "e36801b3267797e52ead121a124e49ab46f9e3bc4f744838db605599620a4ffa"
+      }
+    ],
+    "sentinel_review_path": "docs/evals/simulated-reliability-v1-calibration-sentinel-review.json",
+    "sentinel_review_sha256": "2e16cbd35124e4594108818163bb078b6b0ca2ba566960729e623c09a19c3f4c",
+    "sentinel_review_supplied_to_calls": false,
+    "maximum_provider_calls": 18,
+    "maximum_provider_reported_cost_usd": 5.0,
+    "repeat_ids": ["primary"],
+    "source_review_required_before_transfer_seal": true,
+    "allowed_corrections": "Only a general provider, prompt, schema, compiler, or review-contract repair supported by calibration evidence; any correction creates a new frozen contract and reruns every sentinel from fresh call identities.",
+    "forbidden_corrections": [
+      "case-specific wording",
+      "keyword or chronological semantic gates",
+      "lowering a source-fidelity bar to admit an output",
+      "silent retry or response healing",
+      "using transfer results"
+    ]
+  },
+  "failure_and_retry": {
+    "durable_started_marker_before_transport": true,
+    "stop_current_case_after_first_failed_dependency": true,
+    "provider_schema_or_semantic_failure_retryable": false,
+    "automatic_retry": false,
+    "separate_identical_transport_reattempt": {
+      "maximum": 1,
+      "eligible_statuses": [429, 500, 502, 503, 504],
+      "requires_pre_inference_evidence": true,
+      "requires_identical_request_body_sha256": true,
+      "first_failure_remains_scored": true,
+      "requires_separate_started_and_result_artifacts": true
+    }
+  },
+  "evaluation": {
+    "scalar_quality_score": false,
+    "exact_answer_key": false,
+    "changed_recommendation_required": false,
+    "dimensions": [
+      "source_and_turn_custody",
+      "role_and_temporal_fidelity",
+      "mechanism_traceability",
+      "direct_and_graph_replay",
+      "candidate_disposition_completeness",
+      "useful_novel_pressure",
+      "accountable_rejection_or_park",
+      "false_stand_down",
+      "forced_absorption",
+      "unsupported_fact_or_precision",
+      "lost_original_value",
+      "bloat_and_hedging",
+      "operability_cost_and_latency"
+    ],
+    "blind_arm_labels": true,
+    "source_review_hidden_from_reasoners_and_first_blind_review": true,
+    "human_calibration_required_before_usefulness_claim": true
+  },
+  "transfer": {
+    "provider_calls_authorized": false,
+    "runtime_must_be_refrozen_after_calibration": true,
+    "transfer_results_may_not_tune_v1": true,
+    "planned_primary_case_count": 12,
+    "planned_repeat_case_ids": [
+      "v1-case02-discharge-transport",
+      "v1-case05-ai-tutoring",
+      "v1-case11-elder-care-relocation"
+    ],
+    "planned_repeat_ids": ["primary", "repeat_2", "repeat_3"]
+  },
+  "frozen_inputs": [
+    {"path": "engine/system_b/simulated_reliability_v1.py", "sha256": "a6aa7caaef43c45522c983c7c48368b8bc21413319f1e8ec41c9a7ce8b2343e7"},
+    {"path": "engine/system_b/reasoning_process_position_role_first_v24.py", "sha256": "52e8954847581bd7b18c9f5aa6906fc72bd0272fbacc66db93e713c67a2d5293"},
+    {"path": "engine/system_b/reasoning_process_position_role_first_v242.py", "sha256": "2bad044e19ca09a61de6cee1e71fc676758e4997ff3c43718eeb7d44a9391a8b"},
+    {"path": "engine/system_b/reasoning_pattern_role_record_interpreter_v3.py", "sha256": "3750631b89323292c1aa2689465a29f203ba4de5646f0749998329a17d2bd5b3"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "0826a203c24c3679fdcdcd5e95b6f86c1b48067140d2ba1c3e4a021b464b1843"},
+    {"path": "scripts/evals/build_simulated_reliability_role_inputs_v1.py", "sha256": "6aacdb90342fe3c9c5d49756af3ef74c7616ed81e75e9858bee99c4a2b198a3f"},
+    {"path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json", "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"},
+    {"path": "data/knowledge_graph.json", "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"},
+    {"path": "data/relationship_graph.json", "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/manifest.json", "sha256": "93fabb750960e9c3c2b683f8ae576ca61ca2c50204039718cde0aff7c9ffbb27"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/report.json", "sha256": "45b1ffbe2d9402345e2fd9476fea1550acc8365235e77adeabac70005366ca8a"},
+    {"path": "docs/evals/simulated-reliability-v1-model-snapshot-2026-07-12.json", "sha256": "729944aca8ba8265d027a7863290c7291ff752fa20f37c015fe773888ae6fbe3"},
+    {"path": "docs/conversation-understanding/simulated-reliability-v1-current-practice-2026-07-12.md", "sha256": "dcd31a7d6ef5439ad7aea94df402b480a1b6d2a40d7169d71458212156a89117"},
+    {"path": "docs/evals/simulated-reliability-v1-calibration-sentinel-review.json", "sha256": "2e16cbd35124e4594108818163bb078b6b0ca2ba566960729e623c09a19c3f4c"},
+    {"path": "research/independent-phase5-cases-2026-07-12/quiet-library-laptop-case.txt", "sha256": "e36801b3267797e52ead121a124e49ab46f9e3bc4f744838db605599620a4ffa"}
+  ],
+  "non_claims": [
+    "calibration_is_not_transfer_evidence",
+    "schema_acceptance_is_not_semantic_fidelity",
+    "graph_recall_is_not_relevance",
+    "receipt_activity_is_not_reasoning_quality",
+    "not_runtime_integration_authority"
+  ]
+}

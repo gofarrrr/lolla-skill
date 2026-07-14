@@ -785,9 +785,18 @@ def _load_extraction(path: Path) -> dict:
         return json.load(f)
 
 
-def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
-    """Given N extraction payloads, compute per-field drift metrics across
-    every pair of runs."""
+def compute_extraction_drift(
+    extractions: list[tuple[str, dict]],
+    *,
+    embedding_fn=None,
+) -> dict:
+    """Given N extraction payloads, compute per-field drift metrics.
+
+    ``embedding_fn`` is deliberately opt-in because the rest of this function
+    is deterministic and offline. Passing ``_get_embedding`` enables the
+    OpenAI-backed semantic metric; omitting it records ``not_requested`` and
+    performs no provider I/O.
+    """
     if len(extractions) < 2:
         return {"n_runs": len(extractions),
                 "run_ids": [rid for rid, _ in extractions],
@@ -843,17 +852,24 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
         keys_b = [(c.get("canonical_key", "") or "").strip().lower()
                   for c in cb
                   if (c.get("canonical_key", "") or "").strip()]
-        if not keys_a and not keys_b:
+        if embedding_fn is None:
             ck_embedding = None
+            ck_embedding_status = "not_requested"
+        elif not keys_a and not keys_b:
+            ck_embedding = None
+            ck_embedding_status = "undefined_both_empty"
         elif not keys_a or not keys_b:
             ck_embedding = 0.0
+            ck_embedding_status = "computed"
         else:
-            vecs_a = [_get_embedding(k) for k in keys_a]
-            vecs_b = [_get_embedding(k) for k in keys_b]
+            vecs_a = [embedding_fn(k) for k in keys_a]
+            vecs_b = [embedding_fn(k) for k in keys_b]
             ck_embedding = _best_match_mean_cosine(vecs_a, vecs_b)
+            ck_embedding_status = "computed"
         pair["live_constraints_canonical_key_embedding"] = {
             "count_a": len(keys_a), "count_b": len(keys_b),
             "mean_cosine": None if ck_embedding is None else round(ck_embedding, 3),
+            "status": ck_embedding_status,
         }
         # reasoning_passages — Jaccard on normalized quote strings
         pa = xa.get("reasoning_passages", []) or []
@@ -912,6 +928,16 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
         "mean_cosine": round(sum(cke_vals) / len(cke_vals), 3) if cke_vals else None,
         "min_cosine": round(min(cke_vals), 3) if cke_vals else None,
         "max_cosine": round(max(cke_vals), 3) if cke_vals else None,
+        "computed_pair_count": sum(
+            1
+            for p in pairs
+            if p["live_constraints_canonical_key_embedding"]["status"] == "computed"
+        ),
+        "measurement_status": (
+            "not_requested"
+            if embedding_fn is None
+            else ("computed" if cke_vals else "undefined")
+        ),
         "undefined_pair_count": sum(
             1 for p in pairs if p["live_constraints_canonical_key_embedding"]["mean_cosine"] is None
         ),
@@ -1079,6 +1105,15 @@ def main() -> int:
         ),
     )
     ap.add_argument(
+        "--canonical-key-embedding-metric",
+        choices=("on", "off"),
+        default="off",
+        help=(
+            "Opt in to the OpenAI text-embedding-3-small semantic drift "
+            "metric. Default off keeps extraction-drift comparison offline."
+        ),
+    )
+    ap.add_argument(
         "--companion-candidate-cap",
         type=int,
         default=None,
@@ -1106,7 +1141,14 @@ def main() -> int:
         print(f"[drift] {args.n} extractions from {conv.name}", file=sys.stderr)
         extraction_paths = _rerun_extractions(conv, args.n, skill_dir)
         extractions = [(_run_id_from_extraction_path(p), _load_extraction(p)) for p in extraction_paths]
-        drift = compute_extraction_drift(extractions)
+        drift = compute_extraction_drift(
+            extractions,
+            embedding_fn=(
+                _get_embedding
+                if args.canonical_key_embedding_metric == "on"
+                else None
+            ),
+        )
 
         (out_dir / "drift.json").write_text(json.dumps(drift, indent=2))
         (out_dir / "runs.txt").write_text("\n".join(drift["run_ids"]) + "\n")
@@ -1154,7 +1196,14 @@ def main() -> int:
             ap.error("--from-extractions requires at least 2 paths")
         print(f"[cross-capture] {len(ext_paths)} pre-extracted JSONs", file=sys.stderr)
         extractions = [(_run_id_from_extraction_path(p), _load_extraction(p)) for p in ext_paths]
-        drift = compute_extraction_drift(extractions)
+        drift = compute_extraction_drift(
+            extractions,
+            embedding_fn=(
+                _get_embedding
+                if args.canonical_key_embedding_metric == "on"
+                else None
+            ),
+        )
 
         (out_dir / "drift.json").write_text(json.dumps(drift, indent=2))
         (out_dir / "runs.txt").write_text("\n".join(drift["run_ids"]) + "\n")

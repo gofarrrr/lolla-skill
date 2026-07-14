@@ -1,0 +1,48 @@
+{
+  "schema_version": "lolla.extraction_admission_smoke_decision.v0",
+  "status": "failed",
+  "smoke_id": "case12-extraction-admission-20260710-a1",
+  "run_id": "admission_smoke_case12_20260710_a1",
+  "classification": "provider_schema_and_usage_custody_failure",
+  "root_failures": [
+    "provider_boundary_returned_empty_parsed_object_missing_required_extraction_fields",
+    "terminal_error_path_did_not_persist_extraction_call_sidecar"
+  ],
+  "passed_evidence": {
+    "output_parent_preflight": true,
+    "terminal_error_artifact_persisted": true,
+    "capture_health": "good",
+    "captured_turns": 2,
+    "required_turns": 2,
+    "omitted_turns": 0,
+    "experiment_invocations": 1,
+    "experiment_retries": 0
+  },
+  "unknown_evidence": {
+    "provider_call_count": "usage_sidecar_missing",
+    "requested_and_served_model_attribution": "usage_sidecar_missing",
+    "token_usage": "usage_sidecar_missing",
+    "cost_usd": "usage_sidecar_missing"
+  },
+  "observed_wall_time_seconds_approx": 207,
+  "contract_sha256": "3221aaa8541d7c5106863758ba8ece78648cd00d3dbbc99b40d27629775cff12",
+  "extraction_sha256": "2065f9bd9fd625914b80ea8e7896ec1b4abbad81105f8fc39eae30f08e6d2ff3",
+  "sidecar_persisted": false,
+  "next_holdout_authorized": false,
+  "runtime_integration_authorized": false,
+  "same_case_retry_authorized": false,
+  "next_engineering_gate": [
+    "persist_call_evidence_on_every_terminal_extraction_path",
+    "represent_attempted_call_with_missing_usage_as_unknown_cost_not_zero",
+    "freeze_and_enforce_outer_wall_clock_ceiling",
+    "pass_provider_free_terminal_path_tests",
+    "run_one_new_non_holdout_smoke_under_a_new_frozen_contract"
+  ],
+  "non_claims": [
+    "not_a_conversation_understanding_result",
+    "not_a_quote_quality_result",
+    "not_a_graph_value_result",
+    "not_a_downstream_utility_result",
+    "not_zero_provider_cost"
+  ]
+}

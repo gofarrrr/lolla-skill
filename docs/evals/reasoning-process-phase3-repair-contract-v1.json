@@ -1,0 +1,181 @@
+{
+  "schema_version": "lolla.reasoning_process_phase3_repair_contract.v1",
+  "status": "generic_repair_frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-phase3-development-case02-generic-repair-v1",
+  "purpose": "Test one generic prompt correction for minority-signal loss by requiring a chronological full-conversation scan and up to four materially distinct process items per bounded question.",
+  "prompt_version": "lolla.reasoning_process_phase3_generic_repair_prompt.v1",
+  "baseline_contract": {
+    "path": "docs/evals/reasoning-process-phase3-probe-contract-v1.json",
+    "sha256": "e7c2ca0326e9b509952a0000f05c15e96f24d00d64ae91a04edc4846b9a29307"
+  },
+  "baseline_result": {
+    "path": "research/reasoning-process-phase3-development-2026-07-11/baseline/result.json",
+    "sha256": "52ade988ca18c72e1392f4bc71f1301fdb8bd4847f7ad11ba60cf6b63e508775"
+  },
+  "baseline_source_review": {
+    "path": "research/reasoning-process-phase3-development-2026-07-11/baseline/source-review.json",
+    "sha256": "7a82334ff00af1ee7ad14a01c67733ccca866a6c36e0b892a42abd6c9f75b96c"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "development_status": "same_session_synthetic_not_holdout",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json",
+    "phase1_ledger_sha256": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23"
+  },
+  "view_order": [
+    "position_and_decision_trajectory",
+    "exploration_and_alternatives",
+    "evidence_and_assumption_discipline",
+    "uncertainty_and_unresolved_state",
+    "challenge_and_revision_response"
+  ],
+  "jobs": [
+    {
+      "job_id": "phase3-repair-amb1-case02-nonprofit-scale-position_and_decision_trajectory",
+      "view_kind": "position_and_decision_trajectory",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/position_and_decision_trajectory.json",
+      "packet_sha256": "ca375d00e5496264491064804270ff068f82ecaab876445af5c0936e274734b5",
+      "input_utf8_bytes": 16127,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "0e419da1f0d8381af0067af2209e63fbab4ad0f1ab112b2297a2ef3b1ea6baaa",
+      "user_prompt_sha256": "36084539c43a1ec43d4f450141e0599556c6e9e923921559e93dc472d2b0e139",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-repair-amb1-case02-nonprofit-scale-exploration_and_alternatives",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/exploration_and_alternatives.json",
+      "packet_sha256": "f67bef0354240acbe7558ddb55f94d2e125d39d513a885a5317998ee52061370",
+      "input_utf8_bytes": 16104,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "0e419da1f0d8381af0067af2209e63fbab4ad0f1ab112b2297a2ef3b1ea6baaa",
+      "user_prompt_sha256": "9245e34cda63deb8e10100a5d5a124ec2c9aac5aefd8b7df6fce9e9b6ef2be1a",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-repair-amb1-case02-nonprofit-scale-evidence_and_assumption_discipline",
+      "view_kind": "evidence_and_assumption_discipline",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/evidence_and_assumption_discipline.json",
+      "packet_sha256": "0182284fb5f8cec7b5c8f79c1ebe79c28d17fcfc9d7deb96e89ea042d6c62f58",
+      "input_utf8_bytes": 16117,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "0e419da1f0d8381af0067af2209e63fbab4ad0f1ab112b2297a2ef3b1ea6baaa",
+      "user_prompt_sha256": "2ee5746ed3785554651ff5ecaea0f306514d64dba43c0a60ee908f16edb07cdc",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-repair-amb1-case02-nonprofit-scale-uncertainty_and_unresolved_state",
+      "view_kind": "uncertainty_and_unresolved_state",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/uncertainty_and_unresolved_state.json",
+      "packet_sha256": "fb6e67a56a672975ab39d345cb47aea143bc51411bdba7413e8302044b6a254e",
+      "input_utf8_bytes": 16130,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "0e419da1f0d8381af0067af2209e63fbab4ad0f1ab112b2297a2ef3b1ea6baaa",
+      "user_prompt_sha256": "8ea0a444e741764806347b6a8b1f9c45c1320b75731a7192b23e355925315d1c",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-repair-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+      "view_kind": "challenge_and_revision_response",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/challenge_and_revision_response.json",
+      "packet_sha256": "70e45374420ddd921d25ab65f78706b4f12b94fe8a9588eb09f2bcd4b538ee3e",
+      "input_utf8_bytes": 16128,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "0e419da1f0d8381af0067af2209e63fbab4ad0f1ab112b2297a2ef3b1ea6baaa",
+      "user_prompt_sha256": "5ac536b08b317fbaf37b1519253b30314218d4f3d1647edbfd03d371022f49a8",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "reasoning_parameter_sent": true,
+    "max_output_tokens": 2200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+    "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+  },
+  "budget": {
+    "maximum_provider_calls": 5,
+    "maximum_calls_per_view": 1,
+    "maximum_estimated_cost_usd": 0.05,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "allowed_change": {
+    "shared_system_prompt_full_conversation_scan_instruction": true,
+    "generic_per_view_coverage_instruction": true,
+    "case_specific_examples": false,
+    "protected_target_or_addendum_input": false,
+    "model_changed": false,
+    "schema_changed": false,
+    "budget_increased": false,
+    "gates_weakened": false,
+    "conversation_only_ablation": false
+  },
+  "success_requirements": {
+    "operational_success_rate": 1.0,
+    "typed_admission_rate": 1.0,
+    "exact_source_reference_validity_rate": 1.0,
+    "protected_target_visibility_rate": 1.0,
+    "invalid_admitted_item_count": 0,
+    "source_strength_inflation_count": 0,
+    "context_invisible_label_count": 0,
+    "critical_dimension_zero_count": 0,
+    "second_generic_repair_allowed": false
+  },
+  "stop_rules": {
+    "operational_failure_stops_remaining_repair_calls": true,
+    "semantic_or_valid_empty_result_is_preserved_without_retry": true,
+    "cost_ceiling_stops_remaining_calls": true,
+    "no_prompt_change_inside_repair": true,
+    "no_fallback_retry_or_response_healing": true,
+    "no_graph_pipeline_runtime_embedding_or_evaluator_calls": true,
+    "source_review_required_for_terminal_decision": true
+  },
+  "artifact_locks": [
+    {"role": "repair_runner", "path": "scripts/evals/run_reasoning_process_phase3_repair.py", "sha256": "44ea57aa90c661f296eea889f80f24c57941ad5e063ae252ddd6c46af7ff9bde"},
+    {"role": "repair_prompt_and_rekey", "path": "engine/system_b/reasoning_process_probe_repair.py", "sha256": "dad2e631082ce91f0a77c2bd04e64eb965ec6a4e665c730b8e083b1b1a2695e1"},
+    {"role": "baseline_runner", "path": "scripts/evals/run_reasoning_process_phase3_probe.py", "sha256": "a7c4137c9218b39beab62c221bd93b9d3b8b5dbc42dc54f30fdbe6668f0a902c"},
+    {"role": "baseline_probe_contracts", "path": "engine/system_b/reasoning_process_probe.py", "sha256": "b68dd05def047316f37670459cc8d505f565efeaea070f989d0bd9c9ac66d4b1"},
+    {"role": "baseline_source_review", "path": "research/reasoning-process-phase3-development-2026-07-11/baseline/source-review.json", "sha256": "7a82334ff00af1ee7ad14a01c67733ccca866a6c36e0b892a42abd6c9f75b96c"}
+  ],
+  "non_claims": [
+    "repair_is_not_a_retry_of_the_rate_limited_baseline_call",
+    "development_case_is_not_a_holdout",
+    "source_valid_output_is_not_semantic_adequacy",
+    "protected_target_recall_is_not_reasoning_quality",
+    "final_answer_quality_is_not_evaluated",
+    "repair_does_not_authorize_graph_or_runtime_integration"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": "lolla.conversation_event_synthesis_replay.v1",
+  "status": "fail_closed",
+  "source_contract_path": "research/conversation-event-synthesis-c2-repair-2026-07-11/contract.json",
+  "source_contract_sha256": "aa0cde3253b6e8f9266be8dadba63247b180f36f618dca5b7b38b73decdbb432",
+  "provider_calls": 0,
+  "automatic_retries": 0,
+  "compiled_case_count": 1,
+  "quarantined_case_count": 2,
+  "direct_graph_seed_count": 0,
+  "cases": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "admitted_family_count": 2,
+      "missing_families": [
+        "threads"
+      ],
+      "invalid_synthesis_count": 0,
+      "compiled": false,
+      "compiler_status": "quarantined",
+      "compiler_reason": "synthesis_matrix_incomplete",
+      "handoff_violation_count": 0,
+      "direct_graph_seed_count": null,
+      "call_evidence": [
+        {
+          "family": "positions",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case05-family-archive--positions.json",
+          "sha256": "9471e4dfc3a35f5ff503276a6f743844cd1e8a75831b64e3d36c0d3e10a383c0"
+        },
+        {
+          "family": "threads",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case05-family-archive--threads.json",
+          "sha256": "b5a06b669f49329fade27d354348fa4a126061ae83197c8f3f7a9537c73d42de"
+        },
+        {
+          "family": "constraints",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case05-family-archive--constraints.json",
+          "sha256": "b513b3de1383fd5fd7542d44869cee4d85842cc4327eb526caa74673a2c98325"
+        }
+      ],
+      "event_ledger_sha256": "dcc14686fd8cceb956e8da176e6583fd2c29ce1f1ef6167489ea618b05009640"
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "admitted_family_count": 2,
+      "missing_families": [
+        "threads"
+      ],
+      "invalid_synthesis_count": 1,
+      "compiled": false,
+      "compiler_status": "quarantined",
+      "compiler_reason": "invalid_synthesis_references_present",
+      "handoff_violation_count": 0,
+      "direct_graph_seed_count": null,
+      "call_evidence": [
+        {
+          "family": "positions",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case01-product-scope--positions.json",
+          "sha256": "185f774e99a7289ebe3b5d7944e68f37a54232bffa05b77b739b5a2f5c7057ae"
+        },
+        {
+          "family": "threads",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case01-product-scope--threads.json",
+          "sha256": "aa7f69c3deb05e1f7e732383682ba522256eac7806b83131e3640704860b2066"
+        },
+        {
+          "family": "constraints",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case01-product-scope--constraints.json",
+          "sha256": "3ace2a31361d4d59188b8b8ac3706b0c251844b44e255820c79e74c935d67f34"
+        }
+      ],
+      "event_ledger_sha256": "24bd9f46294848be3f13aaf04b443590f84552bafd5c1ef21fdacfe836a9ba50"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "admitted_family_count": 3,
+      "missing_families": [],
+      "invalid_synthesis_count": 0,
+      "compiled": true,
+      "compiler_status": "compiled",
+      "compiler_reason": "all_harvest_and_synthesis_records_validated",
+      "handoff_violation_count": 0,
+      "direct_graph_seed_count": 0,
+      "call_evidence": [
+        {
+          "family": "positions",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case04-research-tool-release--positions.json",
+          "sha256": "3f5eb018faae2b80352d64521050e0dffe8b78c2214e2abeccd93319708b74ec"
+        },
+        {
+          "family": "threads",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case04-research-tool-release--threads.json",
+          "sha256": "464463104d0b4fbf17bffb94ded683d4e368fb7b7a3b166d9150a346afdcbc57"
+        },
+        {
+          "family": "constraints",
+          "path": "research/conversation-event-synthesis-c2-repair-2026-07-11/calls/amb1-case04-research-tool-release--constraints.json",
+          "sha256": "6d11de3caafaf3bcb69ee4bfc37ddbd76ddf0bd6bd14210627cdf24cc85dfdd1"
+        }
+      ],
+      "event_ledger_sha256": "d4d2b95785b6531b9226a16572ce74db49370adbe749333b3b1d736a06667255"
+    }
+  ],
+  "non_claims": [
+    "replay_does_not_change_or_heal_model_outputs",
+    "current_deterministic_custody_is_applied_to_preserved_payloads",
+    "no_graph_or_runtime_authority"
+  ]
+}

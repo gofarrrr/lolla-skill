@@ -1,0 +1,118 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case02-nonprofit-scale",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "observation_id": "rpshard-amb1-case02-nonprofit-scale-position_and_decision_trajectory-01-94898a4e48",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "chronological-shard-same-session-nonblind",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e059"
+            ],
+            "interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e063"
+            ],
+            "starting_state_evidence_ids": [
+              "e005"
+            ],
+            "status": "supported",
+            "trajectory_type": "emerged_from_uncertainty"
+          },
+          "record_identity": "case02-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:94898a4e482402793ee27741b505b172148c3d1526b28aa5b2e7842dd0e93189",
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-c792a8093d048d7c"
+          ],
+          "qualification_evidence_ids": [
+            "span-1bb454b4269629ec"
+          ],
+          "starting_state_evidence_ids": [
+            "span-98d16114b36c9814"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-98d16114b36c9814",
+          "span-c792a8093d048d7c",
+          "span-1bb454b4269629ec"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case02-nonprofit-scale-position_and_decision_trajectory-01-94898a4e48",
+        "raw_record_sha256": "sha256:94898a4e482402793ee27741b505b172148c3d1526b28aa5b2e7842dd0e93189",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e059"
+        ],
+        "interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e063"
+        ],
+        "starting_state_evidence_ids": [
+          "e005"
+        ],
+        "status": "supported",
+        "trajectory_type": "emerged_from_uncertainty"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case02-nonprofit-scale/position_and_decision_trajectory.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case02-nonprofit-scale/position_and_decision_trajectory/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-98d16114b36c9814",
+      "span-c792a8093d048d7c",
+      "span-1bb454b4269629ec"
+    ],
+    "target_id": "case02-position-trajectory",
+    "view_kind": "position_and_decision_trajectory"
+  }
+}

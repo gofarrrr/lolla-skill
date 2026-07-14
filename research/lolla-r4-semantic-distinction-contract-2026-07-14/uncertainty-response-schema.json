@@ -1,0 +1,94 @@
+{
+  "additionalProperties": false,
+  "description": "Paired unresolved-matter and reopen-condition review.",
+  "properties": {
+    "global_limitations": {
+      "description": "Limits applying to the whole read; empty if none.",
+      "type": "string"
+    },
+    "reviews": {
+      "description": "Exactly one review for each declared surface.",
+      "items": {
+        "additionalProperties": false,
+        "description": "One explicit semantic-surface review.",
+        "properties": {
+          "outcome": {
+            "description": "Present, quiet, or ambiguous result of this review.",
+            "enum": [
+              "records_present",
+              "no_supported_record_observed",
+              "ambiguous_review"
+            ],
+            "type": "string"
+          },
+          "records": {
+            "description": "Zero to two candidates for this surface.",
+            "items": {
+              "additionalProperties": false,
+              "description": "One source-linked semantic candidate.",
+              "properties": {
+                "evidence_ids": {
+                  "description": "Exact source aliases supporting this candidate.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 8,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "interpretation": {
+                  "description": "Concise meaning of this candidate without advice.",
+                  "type": "string"
+                },
+                "limitations": {
+                  "description": "Uncertainty or scope limit; use an empty string if none.",
+                  "type": "string"
+                },
+                "support": {
+                  "description": "Whether the source supports the read or leaves it ambiguous.",
+                  "enum": [
+                    "supported",
+                    "ambiguous"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "support",
+                "interpretation",
+                "evidence_ids",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "surface": {
+            "description": "The semantic surface reviewed.",
+            "enum": [
+              "unresolved_matter",
+              "reopen_condition"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "surface",
+          "outcome",
+          "records"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    }
+  },
+  "required": [
+    "reviews",
+    "global_limitations"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "lolla.semantic_overlay_counterfactual_provisional_review.v0",
+  "status": "codex_assisted_provisional_blind_then_revealed",
+  "human_validated": false,
+  "ground_truth": false,
+  "reviewer_type": "codex",
+  "model_calls_for_review": 0,
+  "review_order": [
+    "blind_outputs_reviewed_without_arm_key",
+    "blind_ranking_recorded_as_A_approximately_equal_C_better_than_B",
+    "arm_key_revealed",
+    "arm_specific_interpretation_recorded"
+  ],
+  "case_id": "case-07-messy-linked-decisions",
+  "blind_assessment": {
+    "red_lines": {
+      "A": "pass",
+      "B": "pass",
+      "C": "pass"
+    },
+    "ranking": "A_approximately_equal_C_better_than_B",
+    "all_preserved_seattle_as_unresolved": true,
+    "summary": "All three outputs recovered the unresolved Seattle state from the full transcript. A explicitly used the user's self-correction and challenged the implied Seattle preference. C explicitly took back the single-root-decision frame and preserved multiple values and emotional pacing. B stated that the choice was undecided but did not explicitly retract the root-decision framing carried in the actual overlay.",
+    "output_reads": {
+      "A": "Strongest direct use of the user's self-correction and own-preference gap; source-faithful and practical.",
+      "B": "Adequate and calibrated, but flatter; retains more of the assistant's root-decision organization and does not directly surface the omitted self-correction as a correction.",
+      "C": "Strongest challenge to the single-root frame and best preservation of multiple value dimensions and overwhelm; roughly tied with A rather than clearly better."
+    }
+  },
+  "revealed_mapping": {
+    "A": "strong_fresh_reconsideration_control",
+    "B": "actual_sk3_overlay",
+    "C": "actual_sk3_plus_reviewed_omission_oracle"
+  },
+  "arm_assessment": {
+    "strong_control": {
+      "preserves_unresolved_state": true,
+      "explicitly_uses_self_correction": true,
+      "challenges_root_frame": true,
+      "completion_tokens": 688
+    },
+    "actual_sk3_overlay": {
+      "preserves_unresolved_state": true,
+      "explicitly_uses_self_correction": false,
+      "challenges_root_frame": false,
+      "context_burden_events": 27,
+      "completion_tokens": 610,
+      "relative_read": "worse_than_control"
+    },
+    "oracle_overlay": {
+      "preserves_unresolved_state": true,
+      "explicitly_uses_self_correction": false,
+      "challenges_root_frame": true,
+      "context_burden_events": 28,
+      "completion_tokens": 640,
+      "relative_read": "roughly_equal_to_control_better_than_actual_overlay"
+    }
+  },
+  "decision": {
+    "label": "naive_full_semantic_overlay_integration_blocked",
+    "actual_overlay_worse_than_control": true,
+    "oracle_better_than_actual": true,
+    "control_equal_to_oracle": true,
+    "known_omission_is_receipt_material": true,
+    "known_omission_is_uniquely_reasoning_material": false,
+    "reason": "The full transcript let the strong control recover the unresolved state without an overlay. The actual 27-event overlay added context and preserved the assistant's root frame without improving the answer. Restoring the omitted observation repaired the frame challenge but did not outperform control.",
+    "runtime_change_authorized": false,
+    "graph_integration_authorized": false,
+    "full_semantic_overlay_to_reconsideration_authorized": false,
+    "semantic_kernel_receipt_use_remains_open": true
+  },
+  "implications": [
+    "A complete semantic event inventory is useful for audit and navigation but should not be dumped wholesale into the reasoning consumer.",
+    "Source-valid context can still be attention-distorting when it overrepresents the assistant's prior frame.",
+    "The raw transcript remains a critical defense because a strong reasoner can recover material omitted by the semantic index.",
+    "A future reasoning projection must be consumer-specific and probabilistically selected; deterministic code may validate and transport it but must not decide semantic relevance.",
+    "The oracle arm is diagnostic only and cannot retroactively improve SK3 or justify a prompt repair."
+  ],
+  "next_gate": "stop_paid_calls_and_define_minimal_reasoning_projection_requirements_from_existing_evidence",
+  "non_claims": [
+    "not_human_review",
+    "not_ground_truth",
+    "not_product_proof",
+    "not_a_claim_that_semantic_events_have_no_receipt_value",
+    "not_runtime_integration_authority"
+  ]
+}

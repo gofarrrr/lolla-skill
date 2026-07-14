@@ -1,0 +1,45 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_2",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a3",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v2.json",
+  "base_contract_sha256": "0f7929bf6cb4d1e01026c9aa96803bab88b8296381642781df490e79fba8ec69",
+  "repair_basis": "A2 source review showed that user role records omitted the assistant's final operational repair before joint-mechanism interpretation, causing false duplicate pressure.",
+  "pipeline": {
+    "mechanism_visible_context": [
+      "source-linked user starting position",
+      "source-linked user current position",
+      "source-linked unresolved qualification or explicit negative review",
+      "every exact assistant contribution with source turn number"
+    ],
+    "assistant_contribution_semantic_prefilter": false,
+    "assistant_mention_deterministically_means_resolved": false,
+    "fact_free_routing_projection_unchanged": true,
+    "additional_provider_calls": 0
+  },
+  "calibration": {
+    "a2_failure_preserved_at": "research/simulated-reliability-v1-calibration-2026-07-12/a2/amb1-case01-product-scope-primary",
+    "a2_completed_calls_reused": false,
+    "all_a3_call_identities_are_fresh": true,
+    "stop_rule": "If already-operationalized pressure is again marked unresolved on the product-scope sentinel, stop mechanism prompt tuning and reclassify the interface before another paid call."
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "engine/system_b/simulated_reliability_v1.py",
+      "sha256": "48d60d1028f1ac70ff290a92d19bcb51389f228773376ed0d3d77f6853e6d8c7"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "30bd405df2df0b2201135633c7c7827ff2c0f4ee4628f12e29645d1473f965dc"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a2/amb1-case01-product-scope-primary/source-review.json",
+      "sha256": "0906a483717f34303fb4c3e28ae33c0c5c22f8b1260409924f035de5523dd301"
+    },
+    {
+      "path": "docs/conversation-understanding/simulated-reliability-v1-joint-trajectory-gap-2026-07-12.md",
+      "sha256": "a2d47bd1aed8666ff29393e76a5d923e0296f3e3fc64d1516fd8fb6a8267a8b5"
+    }
+  ]
+}

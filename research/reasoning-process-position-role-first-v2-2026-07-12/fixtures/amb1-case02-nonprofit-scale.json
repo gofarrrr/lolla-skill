@@ -1,0 +1,745 @@
+{
+  "case_id": "amb1-case02-nonprofit-scale",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprelationv2-01-420bf44f77105e",
+          "provenance": {
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+          "raw_record_sha256": "sha256:420bf44f77105e1d1bc9ce3cded1758c14ba26029fae2c185dfa39d53dfa0849",
+          "relation_record_id": "rprelationv2-01-420bf44f77105e",
+          "relationship_interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb1-case02-nonprofit-scale",
+            "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-current-01-57e303ddb6c31e",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:57e303ddb6c31e639bed0008851d2a3345216b1068fc9f6106c2e70377195e66",
+            "role": "current",
+            "role_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+            "role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e059",
+                "text": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch."
+              }
+            ],
+            "source_evidence_ids": [
+              "e059"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e059",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Accept a four-month twice-monthly program at Willow Hub under named readiness conditions.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb1-case02-nonprofit-scale",
+            "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-qualification-01-543ed29e16e758",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:543ed29e16e758fb3d83d038e0e356a4610c14dfdd33f7e092bae2c5c0a113ba",
+            "role": "qualification",
+            "role_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+            "role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e063",
+                "text": "That is a conditional direction, not a disguised final answer, and the unresolved point matters."
+              }
+            ],
+            "source_evidence_ids": [
+              "e063"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e063",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Accepting the program remains conditional rather than final.",
+                "stance_object_kind": "acceptance_or_willingness"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb1-case02-nonprofit-scale",
+            "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-starting-01-d05b9359e69bcb",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:d05b9359e69bcbf2251fce16a16276d3bc6a8c40f27ccb0529f01a38d97e003b",
+            "role": "starting",
+            "role_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+            "role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e005",
+                "text": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable."
+              }
+            ],
+            "source_evidence_ids": [
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Expansion may improve the organization or expose instability at the first site.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+        "graph_routing_eligible": false,
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "observation_id": "rprelationv2-01-420bf44f77105e",
+        "provenance": {
+          "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+        "raw_record_sha256": "sha256:420bf44f77105e1d1bc9ce3cded1758c14ba26029fae2c185dfa39d53dfa0849",
+        "relation_record_id": "rprelationv2-01-420bf44f77105e",
+        "relationship_interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:420bf44f77105e1d1bc9ce3cded1758c14ba26029fae2c185dfa39d53dfa0849",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-420bf44f77105e",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false
+    },
+    "call_required": true,
+    "case_id": "amb1-case02-nonprofit-scale",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "current",
+          "role_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+          "role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e059",
+              "text": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "qualification",
+          "role_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+          "role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e063",
+              "text": "That is a conditional direction, not a disguised final answer, and the unresolved point matters."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "starting",
+          "role_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+          "role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable."
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2",
+    "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+        "relationship_interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "starting_role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case02-nonprofit-scale",
+          "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-current-01-57e303ddb6c31e",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:57e303ddb6c31e639bed0008851d2a3345216b1068fc9f6106c2e70377195e66",
+          "role": "current",
+          "role_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+          "role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e059",
+              "text": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch."
+            }
+          ],
+          "source_evidence_ids": [
+            "e059"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e059",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Accept a four-month twice-monthly program at Willow Hub under named readiness conditions.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:57e303ddb6c31e639bed0008851d2a3345216b1068fc9f6106c2e70377195e66",
+          "record_index": 1,
+          "role_record_id": "rprolev2-current-01-57e303ddb6c31e",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case02-nonprofit-scale",
+          "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-qualification-01-543ed29e16e758",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:543ed29e16e758fb3d83d038e0e356a4610c14dfdd33f7e092bae2c5c0a113ba",
+          "role": "qualification",
+          "role_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+          "role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e063",
+              "text": "That is a conditional direction, not a disguised final answer, and the unresolved point matters."
+            }
+          ],
+          "source_evidence_ids": [
+            "e063"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e063",
+              "stance_expression_kind": "conditional_willingness",
+              "stance_object_interpretation": "Accepting the program remains conditional rather than final.",
+              "stance_object_kind": "acceptance_or_willingness"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:543ed29e16e758fb3d83d038e0e356a4610c14dfdd33f7e092bae2c5c0a113ba",
+          "record_index": 1,
+          "role_record_id": "rprolev2-qualification-01-543ed29e16e758",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case02-nonprofit-scale",
+          "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-starting-01-d05b9359e69bcb",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:d05b9359e69bcbf2251fce16a16276d3bc6a8c40f27ccb0529f01a38d97e003b",
+          "role": "starting",
+          "role_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+          "role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable."
+            }
+          ],
+          "source_evidence_ids": [
+            "e005"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "Expansion may improve the organization or expose instability at the first site.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:d05b9359e69bcbf2251fce16a16276d3bc6a8c40f27ccb0529f01a38d97e003b",
+          "record_index": 1,
+          "role_record_id": "rprolev2-starting-01-d05b9359e69bcb",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    }
+  },
+  "role_packets": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case02-nonprofit-scale",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI direct a small nonprofit that runs evening digital-literacy workshops for adults.\ne002\tA community center across town, Willow Hub, wants us to start a second site in autumn.\ne003\tTheir neighborhood has very little free support, and our mission is access.\ne004\tBut our current site is inconsistent: some nights we have thirty participants, some nights twelve, and volunteer coverage is fragile.\ne005\tI cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.\n[Turn 1 ASSISTANT]\ne006\tExpansion will not automatically create discipline; it can just duplicate uncertainty.\ne007\tBefore committing, I would separate demand, delivery capacity, and what you mean by a successful site.\ne008\tWillow Hub's interest establishes a possible channel, not yet reliable attendance or staffing.\ne009\tIf the current variation comes from scheduling or outreach, a second location might help.\ne010\tIf it comes from an unclear program or exhausted volunteers, another site could magnify it.\n[Turn 7 USER]\ne059\tI am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.\ne060\tI want to tell participants from the beginning that the schedule will be reviewed after four months.\ne061\tMy volunteer lead thinks those conditions are reasonable, although she worries the curriculum requirement will become another delay.\ne062\tI have not decided what happens if we find the coordinator but the materials are only partly ready.\n[Turn 7 ASSISTANT]\ne063\tThat is a conditional direction, not a disguised final answer, and the unresolved point matters.\ne064\tYou could define what “ready enough” means in terms of what a participant and volunteer must be able to do, rather than whether every planned material is finished.\ne065\tBut setting that threshold will still involve judgment, and your colleague may reasonably challenge it.\ne066\tThe most useful next conversation is probably not “are we expanding?”\ne067\tbut “which imperfections are we willing to carry into a time-limited public commitment, and who carries them?”",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e059",
+          "e060",
+          "e061",
+          "e062",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067"
+        ]
+      },
+      "maximum_components_per_record": 5,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What current working position, decision, leaning, plan, or commitment is visible? Keep proposals, intentions, decisions, and willingness distinct.",
+      "role": "current",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case02-nonprofit-scale",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI direct a small nonprofit that runs evening digital-literacy workshops for adults.\ne002\tA community center across town, Willow Hub, wants us to start a second site in autumn.\ne003\tTheir neighborhood has very little free support, and our mission is access.\ne004\tBut our current site is inconsistent: some nights we have thirty participants, some nights twelve, and volunteer coverage is fragile.\ne005\tI cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.\n[Turn 1 ASSISTANT]\ne006\tExpansion will not automatically create discipline; it can just duplicate uncertainty.\ne007\tBefore committing, I would separate demand, delivery capacity, and what you mean by a successful site.\ne008\tWillow Hub's interest establishes a possible channel, not yet reliable attendance or staffing.\ne009\tIf the current variation comes from scheduling or outreach, a second location might help.\ne010\tIf it comes from an unclear program or exhausted volunteers, another site could magnify it.\n[Turn 7 USER]\ne059\tI am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.\ne060\tI want to tell participants from the beginning that the schedule will be reviewed after four months.\ne061\tMy volunteer lead thinks those conditions are reasonable, although she worries the curriculum requirement will become another delay.\ne062\tI have not decided what happens if we find the coordinator but the materials are only partly ready.\n[Turn 7 ASSISTANT]\ne063\tThat is a conditional direction, not a disguised final answer, and the unresolved point matters.\ne064\tYou could define what “ready enough” means in terms of what a participant and volunteer must be able to do, rather than whether every planned material is finished.\ne065\tBut setting that threshold will still involve judgment, and your colleague may reasonably challenge it.\ne066\tThe most useful next conversation is probably not “are we expanding?”\ne067\tbut “which imperfections are we willing to carry into a time-limited public commitment, and who carries them?”",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e059",
+          "e060",
+          "e061",
+          "e062",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What qualification, counterpressure, unresolved condition, or reopen reason remains capable of changing or limiting the current position?",
+      "role": "qualification",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case02-nonprofit-scale",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI direct a small nonprofit that runs evening digital-literacy workshops for adults.\ne002\tA community center across town, Willow Hub, wants us to start a second site in autumn.\ne003\tTheir neighborhood has very little free support, and our mission is access.\ne004\tBut our current site is inconsistent: some nights we have thirty participants, some nights twelve, and volunteer coverage is fragile.\ne005\tI cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.\n[Turn 1 ASSISTANT]\ne006\tExpansion will not automatically create discipline; it can just duplicate uncertainty.\ne007\tBefore committing, I would separate demand, delivery capacity, and what you mean by a successful site.\ne008\tWillow Hub's interest establishes a possible channel, not yet reliable attendance or staffing.\ne009\tIf the current variation comes from scheduling or outreach, a second location might help.\ne010\tIf it comes from an unclear program or exhausted volunteers, another site could magnify it.\n[Turn 7 USER]\ne059\tI am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.\ne060\tI want to tell participants from the beginning that the schedule will be reviewed after four months.\ne061\tMy volunteer lead thinks those conditions are reasonable, although she worries the curriculum requirement will become another delay.\ne062\tI have not decided what happens if we find the coordinator but the materials are only partly ready.\n[Turn 7 ASSISTANT]\ne063\tThat is a conditional direction, not a disguised final answer, and the unresolved point matters.\ne064\tYou could define what “ready enough” means in terms of what a participant and volunteer must be able to do, rather than whether every planned material is finished.\ne065\tBut setting that threshold will still involve judgment, and your colleague may reasonably challenge it.\ne066\tThe most useful next conversation is probably not “are we expanding?”\ne067\tbut “which imperfections are we willing to carry into a time-limited public commitment, and who carries them?”",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e059",
+          "e060",
+          "e061",
+          "e062",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+      "role": "starting",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    }
+  },
+  "role_responses": {
+    "current": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e059"
+          ],
+          "expression_kinds": [
+            "leaning"
+          ],
+          "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Accept a four-month twice-monthly program at Willow Hub under named readiness conditions."
+          ],
+          "object_kinds": [
+            "intended_outcome_or_policy"
+          ],
+          "role": "current",
+          "role_interpretation": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+          "source_evidence_ids": [
+            "e059"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "qualification": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e063"
+          ],
+          "expression_kinds": [
+            "conditional_willingness"
+          ],
+          "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Accepting the program remains conditional rather than final."
+          ],
+          "object_kinds": [
+            "acceptance_or_willingness"
+          ],
+          "role": "qualification",
+          "role_interpretation": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+          "source_evidence_ids": [
+            "e063"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "starting": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e005"
+          ],
+          "expression_kinds": [
+            "uncertain_or_undecided"
+          ],
+          "fidelity_note": "The starting object is uncertainty about what expansion would reveal. The current object is a leaning toward an outcome, and the qualification keeps acceptance conditional instead of recasting it as a decision.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Expansion may improve the organization or expose instability at the first site."
+          ],
+          "object_kinds": [
+            "belief_or_assessment"
+          ],
+          "role": "starting",
+          "role_interpretation": "I cannot tell whether expansion would force us to become better or expose that the first site is not actually stable.",
+          "source_evidence_ids": [
+            "e005"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_fixture.v2",
+  "source": {
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case02-nonprofit-scale/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "a573f005b267f0242194e5e07c232f8f3027fae9e336b26a178460eb8d66dc4a",
+    "reviewed_fixture_path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb1-case02-nonprofit-scale-position_and_decision_trajectory-shard-01.json",
+    "reviewed_fixture_sha256": "2f3e3cdfb286ecb2d5c312aa5888775125c4a50ba474b4df9878e1e78cab849b"
+  }
+}

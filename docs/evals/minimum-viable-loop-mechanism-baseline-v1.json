@@ -1,0 +1,73 @@
+{
+  "schema_version": "lolla.minimum_viable_loop_mechanism_baseline.v1",
+  "status": "provider_free_source_reviewed_baseline",
+  "date": "2026-07-12",
+  "controlled_mechanism_count": 9,
+  "cases": [
+    {
+      "case_id": "amb3-case05-registry-pharma-partnership",
+      "source_arm": "registry_source_first",
+      "provider_arm": "registry_provider",
+      "ablation_arm": "registry_reversal_ablation"
+    },
+    {
+      "case_id": "amb3-case06-housing-retrofit-partnership",
+      "source_arm": "housing_source_first",
+      "provider_arm": "housing_provider",
+      "ablation_arm": "housing_reversal_ablation"
+    },
+    {
+      "case_id": "amb3-case04-museum-ai-license",
+      "source_arm": "museum_source_first",
+      "provider_arm": "museum_provider",
+      "ablation_arm": "museum_reversal_ablation"
+    }
+  ],
+  "source_reviewed_statuses": {
+    "full": {
+      "acknowledged_constraint_not_gated": "not_observed",
+      "ambiguous_signal_treated_as_commitment": "not_observed",
+      "counterpressure_acknowledged_not_integrated": "unresolved",
+      "criteria_defined_after_commitment": "not_observed",
+      "initial_frame_persists_after_question_change": "not_observed",
+      "missing_reversal_condition": "unresolved",
+      "reversible_path_not_considered": "not_observed",
+      "status_signal_used_as_evidence": "not_observed",
+      "upside_downside_evidence_asymmetry": "not_observed"
+    },
+    "reversal_ablation": {
+      "acknowledged_constraint_not_gated": "not_observed",
+      "ambiguous_signal_treated_as_commitment": "not_observed",
+      "counterpressure_acknowledged_not_integrated": "unresolved",
+      "criteria_defined_after_commitment": "not_observed",
+      "initial_frame_persists_after_question_change": "not_observed",
+      "missing_reversal_condition": "not_observed",
+      "reversible_path_not_considered": "not_observed",
+      "status_signal_used_as_evidence": "not_observed",
+      "upside_downside_evidence_asymmetry": "not_observed"
+    }
+  },
+  "protected_mechanism": "missing_reversal_condition",
+  "persistent_mechanism": "counterpressure_acknowledged_not_integrated",
+  "evaluation_contract": {
+    "protected_survival": "The protected mechanism must be unresolved in source and provider arms for every case.",
+    "ablation_sensitivity": "The protected mechanism must not be unresolved in the reversal-ablation arm.",
+    "persistent_control": "The persistent counterpressure mechanism must remain unresolved in full and ablation arms.",
+    "bounded_noise": "Additional controlled mechanisms are enumerated as probabilistic portfolio noise; they do not fail the run unless they displace a protected mechanism, exceed the portfolio cap, break custody, or leak facts.",
+    "no_exact_set_gate": true,
+    "no_scalar_score": true
+  },
+  "source_review_notes": [
+    "acknowledged_constraint_not_gated was removed from the positive target because all three current positions contain multiple operative thresholds and approval conditions; treating it as independently unresolved double-counted the remaining counterpressure.",
+    "upside_downside_evidence_asymmetry requires unequal evidence standards or weighting, not merely visible upside, downside, and safeguards.",
+    "missing_reversal_condition is bounded to the captured conversation: each advancing pilot lacks an operative condition for stopping or materially reconsidering when persistent learning or dependence defeats meaningful exit.",
+    "The target distinguishes a pressure-worthy mechanism hypothesis from proof that any recalled mental model is applicable."
+  ],
+  "non_claims": [
+    "not_human_gold",
+    "not_open_domain_stability",
+    "not_graph_candidate_applicability",
+    "not_reasoning_quality_proof",
+    "not_runtime_authorization"
+  ]
+}

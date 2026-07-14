@@ -1,0 +1,139 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_source_review_target.v1",
+  "status": "source_reviewed_and_frozen_before_provider_execution",
+  "date": "2026-07-12",
+  "case_id": "amb3-case01-journalism-platform-pilot",
+  "independent_human_gold": false,
+  "role_responses": {
+    "starting": {
+      "status": "supported",
+      "records": [
+        {
+          "role": "starting",
+          "status": "supported",
+          "evidence_ids": ["e003", "e004", "e005"],
+          "role_interpretation": "The user wants greater reach and funding for reporting while worrying that platform incentives may shape coverage, and remains unsure whether the hesitation protects editorial independence or an identity built around struggle.",
+          "object_kinds": [
+            "intended_outcome_or_policy",
+            "belief_or_assessment",
+            "belief_or_assessment",
+            "belief_or_assessment"
+          ],
+          "object_interpretations": [
+            "Increase audience reach and fund a second city-hall reporter.",
+            "The newsroom may start shaping coverage around feed performance.",
+            "The hesitation may protect editorial independence.",
+            "The hesitation may protect an old belief that serious journalism must struggle."
+          ],
+          "expression_kinds": [
+            "preference_or_desire",
+            "uncertain_or_undecided",
+            "uncertain_or_undecided",
+            "uncertain_or_undecided"
+          ],
+          "source_evidence_ids": ["e003", "e004", "e005", "e005"],
+          "fidelity_note": "The starting role separates desired reach and staffing from the operating worry and from two competing explanations for the user's hesitation.",
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+        }
+      ],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "current": {
+      "status": "supported",
+      "records": [
+        {
+          "role": "current",
+          "status": "supported",
+          "evidence_ids": ["e049", "e050", "e051"],
+          "role_interpretation": "The user is leaning toward a bounded four-month nonexclusive pilot, rejects a homepage widget and endorsement framing, limits what the pilot can prove, conditionally allows story-level widgets, and sets prospective correction and ranking stop thresholds.",
+          "object_kinds": [
+            "action_or_proposal",
+            "intended_outcome_or_policy",
+            "intended_outcome_or_policy",
+            "acceptance_or_willingness",
+            "action_or_proposal"
+          ],
+          "object_interpretations": [
+            "Run a four-month nonexclusive pilot limited to service and explanatory stories.",
+            "Do not place the platform widget on the newsroom homepage.",
+            "Describe the pilot as a distribution test rather than institutional endorsement.",
+            "Allow the platform widget only on participating stories.",
+            "Stop the pilot if correction delays or unexplained ranking changes cross pre-set thresholds."
+          ],
+          "expression_kinds": [
+            "leaning",
+            "commitment",
+            "provisional_intention_or_plan",
+            "conditional_willingness",
+            "conditional_willingness"
+          ],
+          "source_evidence_ids": ["e049", "e049", "e050", "e051", "e051"],
+          "fidelity_note": "The current role separates the bounded pilot action, homepage policy, public framing, limited widget willingness, and conditional stop action without promoting the leaning to a final partnership decision.",
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+        }
+      ],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "qualification": {
+      "status": "supported",
+      "records": [
+        {
+          "role": "qualification",
+          "status": "supported",
+          "evidence_ids": ["e052", "e055", "e056"],
+          "role_interpretation": "Staff learning may become quiet self-censorship; the pilot cannot test investigations; and ending it cannot fully reverse audience habits, donor expectations, or source perceptions formed while it runs.",
+          "object_kinds": [
+            "belief_or_assessment",
+            "belief_or_assessment",
+            "belief_or_assessment",
+            "intended_outcome_or_policy"
+          ],
+          "object_interpretations": [
+            "Staff adaptation may be useful learning or quiet self-censorship.",
+            "The pilot cannot show how the platform would handle investigations.",
+            "Staff may change story choices in anticipation of platform performance.",
+            "Ending the pilot may not reverse audience habits, donor expectations, or source perceptions."
+          ],
+          "expression_kinds": [
+            "uncertain_or_undecided",
+            "constraint",
+            "counterpressure",
+            "constraint"
+          ],
+          "source_evidence_ids": ["e052", "e055", "e055", "e056"],
+          "fidelity_note": "The qualification keeps the user's unresolved staff question, the investigation blind spot, anticipatory newsroom behavior, and irreversible external expectations as distinct limits.",
+          "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+        }
+      ],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    }
+  },
+  "relationship_target": {
+    "status": "supported",
+    "starting_source_record_index": 1,
+    "current_source_record_index": 1,
+    "qualification_source_record_index": 1,
+    "relationship_interpretation": "The user moves from mixed attraction and independence concern to a bounded distribution experiment with explicit scope, framing, data, widget, and stop conditions, while preserving uncertainty about internal adaptation, investigation coverage, and effects that may outlast exit.",
+    "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+  },
+  "protected_target": {
+    "evidence_id": "e056",
+    "meaning": "Ending a bounded pilot cannot fully reverse audience habits, donor expectations, or source perceptions created while it runs."
+  },
+  "source_first_gates": {
+    "starting_role_must_preserve_mixed_desire_and_identity_uncertainty": true,
+    "current_role_must_not_promote_leaning_to_final_partnership_commitment": true,
+    "qualification_role_must_include_e052_e055_and_e056": true,
+    "protected_e056_meaning_must_survive": true,
+    "relationship_must_preserve_bounded_action_and_irreversible_limits": true,
+    "exact_evidence_alias_custody_required": true
+  },
+  "boundary": {
+    "written_before_provider_execution": true,
+    "included_in_provider_context": false,
+    "used_for_provider_prompt_examples": false,
+    "semantic_gold_is_independent": false,
+    "provider_calls": 0,
+    "graph_or_runtime_authorized": false
+  }
+}

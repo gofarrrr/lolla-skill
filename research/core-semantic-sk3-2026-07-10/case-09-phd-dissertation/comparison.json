@@ -1,0 +1,255 @@
+{
+  "case_id": "case-09-phd-dissertation",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.0,
+      "never_observation_ids": [
+        "boundary.data_access_gate",
+        "constraint.advisor_retirement",
+        "drop.option_two_closure",
+        "pressure.no_single_cell_advantage",
+        "question.current_overthinking",
+        "question.initial_dissertation_direction",
+        "stance.hybrid_reframe",
+        "stance.option_two_qualification",
+        "threshold.eighteen_month_checkpoint"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 9
+        }
+      ],
+      "stable_observation_ids": []
+    },
+    "provenance_status": {
+      "counts_by_run": [
+        {
+          "exact_span": 6,
+          "legacy_turn_ref_only": 3
+        },
+        {
+          "exact_span": 6,
+          "legacy_turn_ref_only": 5
+        },
+        {
+          "exact_span": 5,
+          "legacy_turn_ref_only": 4
+        }
+      ],
+      "invalid_component_count": 0,
+      "legacy_incomplete_count": 0
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            0,
+            1,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraints": {
+          "counts": [
+            3,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.7000000000000001,
+          "span_jaccard": 0.7000000000000001
+        },
+        "reasoning_passages": {
+          "counts": [
+            6,
+            6,
+            5
+          ],
+          "labeled_jaccard": 0.25925925925925924,
+          "span_jaccard": 0.25925925925925924
+        }
+      },
+      "mean_labeled_jaccard": 0.43086419753086425,
+      "mean_span_jaccard": 0.43086419753086425
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.5185185185185185,
+      "never_observation_ids": [
+        "boundary.data_access_gate",
+        "drop.option_two_closure",
+        "question.current_overthinking"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "constraint.advisor_retirement",
+            "pressure.no_single_cell_advantage",
+            "question.initial_dissertation_direction",
+            "threshold.eighteen_month_checkpoint"
+          ],
+          "recall": 0.4444444444444444,
+          "recovered_count": 4,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [
+            "constraint.advisor_retirement",
+            "pressure.no_single_cell_advantage",
+            "question.initial_dissertation_direction",
+            "stance.hybrid_reframe",
+            "stance.option_two_qualification",
+            "threshold.eighteen_month_checkpoint"
+          ],
+          "recall": 0.6666666666666666,
+          "recovered_count": 6,
+          "total_count": 9
+        },
+        {
+          "observation_ids": [
+            "constraint.advisor_retirement",
+            "pressure.no_single_cell_advantage",
+            "question.initial_dissertation_direction",
+            "threshold.eighteen_month_checkpoint"
+          ],
+          "recall": 0.4444444444444444,
+          "recovered_count": 4,
+          "total_count": 9
+        }
+      ],
+      "stable_observation_ids": [
+        "constraint.advisor_retirement",
+        "pressure.no_single_cell_advantage",
+        "question.initial_dissertation_direction",
+        "threshold.eighteen_month_checkpoint"
+      ]
+    },
+    "provenance_status": {
+      "counts_by_run": [
+        {
+          "exact_span": 26
+        },
+        {
+          "exact_span": 28
+        },
+        {
+          "exact_span": 25
+        }
+      ],
+      "invalid_component_count": 0,
+      "legacy_incomplete_count": 0
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            5,
+            6,
+            5
+          ],
+          "labeled_jaccard": 0.5376984126984127,
+          "span_jaccard": 0.5376984126984127
+        },
+        "dropped_thread_events": {
+          "counts": [
+            1,
+            1,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            3,
+            3,
+            2
+          ],
+          "labeled_jaccard": 0.7777777777777777,
+          "span_jaccard": 0.7777777777777777
+        },
+        "live_constraint_events": {
+          "counts": [
+            5,
+            5,
+            5
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "option_events": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.5111111111111111,
+          "span_jaccard": 0.5111111111111111
+        },
+        "question_events": {
+          "counts": [
+            6,
+            6,
+            6
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            2,
+            3,
+            3
+          ],
+          "labeled_jaccard": 0.7777777777777777,
+          "span_jaccard": 0.7777777777777777
+        }
+      },
+      "mean_labeled_jaccard": 0.7053854875283446,
+      "mean_span_jaccard": 0.7053854875283446
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33",
+    "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+    "shadow_run_count": 3
+  }
+}

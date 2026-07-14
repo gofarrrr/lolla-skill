@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_coverage_recovery_contract.v1",
+  "status": "frozen_before_one_minimal_coverage_recovery",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-coverage-recovery-case07-r1",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "mechanism_id": "acknowledged_constraint_not_gated",
+  "purpose": "Recover only the one truncated assistant-coverage result at minimal reasoning, then join the preserved nine-user portfolio provider-free.",
+  "base_runtime_contract": {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json",
+    "parent_mechanism_request_sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87",
+    "failed_full_case_result_path": "research/simulated-reliability-v1-lite-full-factored-case07-2026-07-13/t1/result.json",
+    "failed_full_case_result_sha256": "f35589a9b0e76e9963868eb266341fb2e044b1733c274821009992b78ed1bb45",
+    "failed_full_case_source_review_path": "research/simulated-reliability-v1-lite-full-factored-case07-2026-07-13/t1/source-review.json",
+    "failed_full_case_source_review_sha256": "099aad68ba61a2b5aa81eaf22d94fadfe077462818bd69536b64b86a3e809586"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limit": {
+    "max_output_tokens": 1000,
+    "reasoning_effort": "minimal",
+    "wire_mode": "strict_json_schema",
+    "current_catalog_observation": "OpenRouter's 2026-07-13 models API lists minimal as supported and as the default effort for Gemini 3.1 Flash Lite."
+  },
+  "seed": 1301,
+  "request_attestation": {
+    "packet_sha256": "9afe5e4c32bc1b2fdcf371206ee40e6c7b9573724d9b4ec237dde34f223c700d",
+    "assistant_contribution_count": 12,
+    "system_prompt_sha256": "9e748c964219894500b69332ba3ed337ca38a1742058fda2c97c3fdd6dccc268",
+    "user_prompt_sha256": "d5fdb35b41ea4d36f2c9a06dbd75f346952f8e6509f9751cdacbd8891e093201",
+    "response_schema_sha256": "1fcdded6a0552166cef7c7b76bd8876859f3f69f1f846c26c2816c57048eebe9"
+  },
+  "budget": {"maximum_provider_calls": 1, "maximum_provider_reported_cost_usd": 0.005, "automatic_retries": 0, "fallback_models": 0, "response_healing": false},
+  "review_contract": {
+    "prospective_coverage": "operationalized",
+    "reason": "The assistant translated channel, privacy, scheduling, and voluntariness constraints into actionable rules and tests.",
+    "prospective_route_after_join": "preserve_no_route",
+    "prospective_answer_not_in_model_prompt": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {"same_failed_bytes_retried": false, "case01_pressure_call_authorized": false, "pressure_generation_authorized": false, "runtime_effect": "none", "production_model_selection_authorized": false, "gemini_3_5_call_authorized": false},
+  "current_practice_sources": ["https://openrouter.ai/api/v1/models", "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"],
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_coverage_recovery_v1.py", "sha256": "f7fc4e3b6a36f64fe69a16b55b7099c0d0998b111219d9b7863fcd342c4c1cd9"},
+    {"path": "engine/system_b/reasoning_mechanism_factored_portfolio_v1.py", "sha256": "e64765a07b7a66ba19ada07ec7e651d42e2b0ec214e2c79222ad159050c577ed"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json", "sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87"},
+    {"path": "research/simulated-reliability-v1-lite-full-factored-case07-2026-07-13/t1/result.json", "sha256": "f35589a9b0e76e9963868eb266341fb2e044b1733c274821009992b78ed1bb45"},
+    {"path": "research/simulated-reliability-v1-lite-full-factored-case07-2026-07-13/t1/source-review.json", "sha256": "099aad68ba61a2b5aa81eaf22d94fadfe077462818bd69536b64b86a3e809586"}
+  ]
+}

@@ -237,7 +237,7 @@ def test_standard_clean_behavior_remains_ready_to_use_revised_answer(
 
     assert agent_result["risk_mode"] == "standard"
     assert agent_result["status"] == "ok"
-    assert agent_result["caller_action"] == "use_revised_answer"
+    assert agent_result["caller_action"] == "review_revised_answer"
     assert evaluation["overall"] == "pass"
     assert evaluation["caller_readiness"] == "ready"
     assert not any(

@@ -1,0 +1,83 @@
+{
+  "schema_version": "lolla.reasoning_process_view_specific_v2_source_review.v1",
+  "status": "source_review_complete_gate_failed",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-view-specific-v2-development-case02-v1",
+  "method": "Source aliases and relationship roles reviewed against the authoritative conversation before narrative polish; same-session, non-blind development review.",
+  "shared_envelope_failure": {
+    "field": "park_unselected_auxiliary_observations",
+    "schema_constraint": "const true",
+    "model_value_in_all_five_payloads": false,
+    "local_result": "all five quarantined",
+    "classification": "provider-facing mechanical custody field that should not have been delegated to the model",
+    "reason": "Whether unselected ledger observations remain parked and recoverable is deterministic custody policy, not a probabilistic semantic choice.",
+    "response_normalization_authorized": false,
+    "additional_call_authorized": false,
+    "design_action": "Remove the mechanical parking acknowledgement from future provider schemas and have deterministic compilation park the complement unconditionally."
+  },
+  "views": [
+    {
+      "view_kind": "position_and_decision_trajectory",
+      "semantic_relationship_review": "pass",
+      "protected_target_visible": true,
+      "review": "The record separately cites the initial inability to decide, the later conditional four-month direction, and the unresolved curriculum threshold. The former unsupported trajectory problem is fixed."
+    },
+    {
+      "view_kind": "exploration_and_alternatives",
+      "semantic_relationship_review": "fail",
+      "protected_target_visible": false,
+      "review": "All three returned alternative-limit pairs are source-supported, but the earlier named-role recruitment test and its crucial not-all-ownership limit are absent. The four-record ceiling was not reached, so the miss is not a transport overflow; later alternatives still dominated selection.",
+      "required_design_action": "Test one exploration-only contract with a six-record ceiling and an explicit chronological coverage instruction before considering window fan-out."
+    },
+    {
+      "view_kind": "evidence_and_assumption_discipline",
+      "semantic_relationship_review": "pass",
+      "protected_target_visible": true,
+      "review": "The informal foundation statement remains bounded by no funding promise, restricted current funding, and the difference between an easier narrative and a likely grant."
+    },
+    {
+      "view_kind": "uncertainty_and_unresolved_state",
+      "semantic_relationship_review": "pass",
+      "protected_target_visible": true,
+      "review": "The partly ready curriculum contingency and continuing judgment threshold are preserved, alongside three other source-supported unresolved matters."
+    },
+    {
+      "view_kind": "challenge_and_revision_response",
+      "semantic_relationship_review": "pass",
+      "protected_target_visible": true,
+      "review": "The attendance correction now cites the earlier frame, challenge, response, and revision separately. The view includes two other genuine challenge sequences and no longer misclassifies the final proposal itself as a challenge."
+    }
+  ],
+  "evidence_vector": {
+    "provider_requests": 5,
+    "operational_success": "5/5",
+    "full_local_admission": "0/5",
+    "semantic_role_and_alias_validation_excluding_mechanical_parking_field": "5/5",
+    "stable_alias_references": "59/59",
+    "protected_target_visibility": "4/5",
+    "semantic_relationship_view_pass": "4/5",
+    "source_strength_inflation_count": 0,
+    "critical_dimension_zero_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0,
+    "estimated_cost_usd": 0.01207775
+  },
+  "decision": {
+    "v2_development_gate_passed": false,
+    "phase4_transfer_authorized": false,
+    "five-view_rerun_authorized": false,
+    "targeted_exploration_probe_may_be_designed_provider_free": true,
+    "architecture_revolution_authorized": false,
+    "graph_or_runtime_work_authorized": false
+  },
+  "nonclaims": [
+    "The four semantic relationship passes are development evidence, not transfer or stability evidence.",
+    "A provider accepting a strict schema did not guarantee enforcement of the const keyword in this route.",
+    "No conclusion about final-answer quality, reasoning quality, trust, effort, or proof of work follows."
+  ]
+}

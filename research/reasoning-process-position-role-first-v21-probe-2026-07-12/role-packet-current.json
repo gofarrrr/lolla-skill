@@ -1,0 +1,54 @@
+{
+  "boundary": {
+    "direct_graph_routing_allowed": false,
+    "one_semantic_role_only": true,
+    "other_role_labels_requested": false,
+    "record_identity_semantics_made_explicit": true,
+    "response_schema_changed_from_v2": false,
+    "semantic_prefilter_performed": false,
+    "speaker_ownership_semantics_made_explicit": true,
+    "trajectory_relation_requested": false,
+    "validator_changed_from_v2": false
+  },
+  "case_id": "amb3-case02-architecture-firm-succession",
+  "endpoint_definition": "Current means the later visible working position in this endpoint-comparison shard, usually the final user endpoint. Preserve leanings, proposals, plans, decisions, commitments, and conditional willingness as different expressions.",
+  "focal_region": {
+    "annotated_sentence_text": "[Turn 1 USER]\ne001\tI founded a twenty-six-person architecture practice thirty years ago and want to step back within two years.\ne002\tA regional engineering group has offered to buy the firm, keep the name for five years, and give me a clean financial exit.\ne003\tSeveral senior architects have also asked whether I would consider selling the firm to employees instead.\ne004\tI want the practice to outlast me, but I am attracted to the certainty of the external offer and worried that an internal transition could consume my final working years.\ne005\tI cannot tell how much of my preference for employee ownership is about protecting the firm's culture and how much is about wanting my colleagues to validate what I built.\n[Turn 1 ASSISTANT]\ne006\tThe decision combines liquidity, succession risk, employee opportunity, client continuity, and your desired final role.\ne007\tAn external buyer can promise continuity while changing incentives after you leave, and employee ownership can preserve identity while placing financing and leadership risk on people who did not choose your timetable.\ne008\tSeparate the outcome you want for the practice from the recognition you want from the transition.\ne009\tNeither motive invalidates the other, but they imply different tests.\n[Turn 7 USER]\ne049\tI am leaning toward giving the employee group sixty days to produce an adviser-backed financing range, governance proposal, leadership commitments, and an estimate of the hiring constraint.\ne050\tI will keep the external conversation nonexclusive and accept that the price may change, but I will not provide seller financing or remain chair unless the repayment exposure, authority, and end date are explicit.\ne051\tI will tell the senior team this is a comparison period, not a promise of employee ownership, and set the decision meeting now.\ne052\tI have not resolved how to involve the wider staff without turning a feasibility exercise into an implied offer or making people feel used if we sell externally.\n[Turn 7 ASSISTANT]\ne053\tThe position buys bounded evidence about the internal path while preserving, but not freezing, the external option.\ne054\tThe financing, governance, leadership, hiring, seller-exposure, authority, and deadline conditions keep employee ownership from functioning as a symbolic preference.\ne055\tThe process can still alter both options: the buyer may infer reduced commitment, while employees may form expectations even with careful language.\ne056\tIf the internal proposal fails, those expectations and the senior group's new view of its own readiness will not simply return to their prior state.",
+    "citation_allowed": true,
+    "evidence_aliases": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e006",
+      "e007",
+      "e008",
+      "e009",
+      "e049",
+      "e050",
+      "e051",
+      "e052",
+      "e053",
+      "e054",
+      "e055",
+      "e056"
+    ]
+  },
+  "maximum_components_per_record": 5,
+  "maximum_records": 2,
+  "prior_context": {
+    "annotated_sentence_text": "",
+    "citation_allowed": false,
+    "evidence_aliases": [],
+    "included": false,
+    "role_limited_citation_policy": "none"
+  },
+  "question": "What current working position, decision, leaning, plan, or commitment is visible? Keep proposals, intentions, decisions, and willingness distinct.",
+  "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+  "role": "current",
+  "schema_version": "lolla.reasoning_process_position_role_packet.v2_1",
+  "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+  "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+  "valid_empty_output_allowed": true
+}

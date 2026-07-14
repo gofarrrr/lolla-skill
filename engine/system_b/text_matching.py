@@ -31,6 +31,7 @@ _QUOTE_WRAPPERS = {
     "‘": "’",
     "«": "»",
 }
+_DELIMITER_QUOTES = frozenset({'"', "'", "“", "”", "‘", "’", "«", "»"})
 
 
 def find_substring_tolerant(needle: str, haystack: str) -> str | None:
@@ -55,10 +56,15 @@ def find_substring_tolerant(needle: str, haystack: str) -> str | None:
     matched = _find_exact_or_casefolded(needle, haystack)
     if matched is not None:
         return matched
+    matched = _find_quote_delimiter_normalized(needle, haystack)
+    if matched is not None:
+        return matched
     stripped = _strip_symmetric_quote_wrapper(needle)
     if stripped == needle:
         return None
     matched = _find_exact_or_casefolded(stripped, haystack)
+    if matched is None:
+        matched = _find_quote_delimiter_normalized(stripped, haystack)
     if matched is None:
         return None
     _LOGGER.info(
@@ -66,6 +72,47 @@ def find_substring_tolerant(needle: str, haystack: str) -> str | None:
         needle[:80], matched[:80],
     )
     return matched
+
+
+def _find_quote_delimiter_normalized(needle: str, haystack: str) -> str | None:
+    """Accept only quote-delimiter glyph changes and return source punctuation.
+
+    Apostrophes between alphanumeric characters remain significant, so
+    ``isn't`` cannot match ``isnt``. Quote marks used as delimiters around a
+    phrase normalize to one same-width character, allowing the match index to
+    recover the exact source substring safely.
+    """
+
+    normalized_needle = _normalize_quote_delimiters(needle)
+    normalized_haystack = _normalize_quote_delimiters(haystack)
+    index = normalized_haystack.casefold().find(normalized_needle.casefold())
+    if index < 0:
+        return None
+    matched = haystack[index : index + len(needle)]
+    if len(matched) != len(needle):
+        return None
+    _LOGGER.info(
+        "text_matching.quote_delimiter_fallback: accepted %r (transcript: %r)",
+        needle[:80],
+        matched[:80],
+    )
+    return matched
+
+
+def _normalize_quote_delimiters(value: str) -> str:
+    chars = list(value)
+    normalized: list[str] = []
+    for index, char in enumerate(chars):
+        if char not in _DELIMITER_QUOTES:
+            normalized.append(char)
+            continue
+        previous = chars[index - 1] if index else ""
+        following = chars[index + 1] if index + 1 < len(chars) else ""
+        if char in {"'", "‘", "’"} and previous.isalnum() and following.isalnum():
+            normalized.append("'")
+        else:
+            normalized.append('"')
+    return "".join(normalized)
 
 
 def _find_exact_or_casefolded(needle: str, haystack: str) -> str | None:

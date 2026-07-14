@@ -1,0 +1,49 @@
+CONVERSATION: 14 turns, 7 user messages, 7 assistant responses
+
+# Customer customization versus product reliability
+
+Case ID: amb1-case01-product-scope
+Stratum: small_team_product_scope
+Founder-directed synthetic development fixture; not a clean holdout.
+
+[Turn 1] USER:
+I run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”
+
+[Turn 1] ASSISTANT:
+The immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.
+
+[Turn 2] USER:
+I think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.
+
+[Turn 2] ASSISTANT:
+Fair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.
+
+[Turn 3] USER:
+The phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.
+
+[Turn 3] ASSISTANT:
+Then discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.
+
+[Turn 4] USER:
+That sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.
+
+[Turn 4] ASSISTANT:
+You do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.
+
+[Turn 5] USER:
+There is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.
+
+[Turn 5] ASSISTANT:
+That makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.
+
+[Turn 6] USER:
+Northline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.
+
+[Turn 6] ASSISTANT:
+The new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.
+
+[Turn 7] USER:
+My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.
+
+[Turn 7] ASSISTANT:
+That plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.

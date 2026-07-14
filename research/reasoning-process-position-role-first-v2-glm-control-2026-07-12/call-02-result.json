@@ -1,0 +1,205 @@
+{
+  "admitted_record_count": 2,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "No evidence of a final decision to launch; the user frames the pilot as a leaning with conditions. Staff-adaptation concern (e052) remains unresolved.",
+    "records": [
+      {
+        "evidence_ids": [
+          "e049"
+        ],
+        "expression_kinds": [
+          "leaning"
+        ],
+        "fidelity_note": "User states 'I am leaning toward' a specific pilot structure.",
+        "limitations": "",
+        "object_interpretations": [
+          "four-month nonexclusive pilot limited to service and explanatory stories"
+        ],
+        "object_kinds": [
+          "action_or_proposal"
+        ],
+        "role": "current",
+        "role_interpretation": "leaning",
+        "source_evidence_ids": [
+          "e049"
+        ],
+        "status": "supported"
+      },
+      {
+        "evidence_ids": [
+          "e049"
+        ],
+        "expression_kinds": [
+          "commitment"
+        ],
+        "fidelity_note": "User states the pilot will include 'our approval of every feed headline' as a structural condition.",
+        "limitations": "",
+        "object_interpretations": [
+          "approval of every feed headline"
+        ],
+        "object_kinds": [
+          "action_or_proposal"
+        ],
+        "role": "current",
+        "role_interpretation": "commitment",
+        "source_evidence_ids": [
+          "e049"
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "candidate_payload_sha256": "5f026698d1d1f7bd9b9101d74ba39e2bfc916d1a14fddba22c929865da6dd6a5",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prose_keyword_gate_added": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false
+    },
+    "global_limitations": "No evidence of a final decision to launch; the user frames the pilot as a leaning with conditions. Staff-adaptation concern (e052) remains unresolved.",
+    "observations": [
+      {
+        "case_id": "amb3-case01-journalism-platform-pilot",
+        "fidelity_note": "User states 'I am leaning toward' a specific pilot structure.",
+        "graph_routing_eligible": false,
+        "limitations": "",
+        "observation_id": "rprolev2-current-01-06d1b8bf9f4f25",
+        "provenance": {
+          "call_id": "role-current",
+          "model": "z-ai/glm-5.2",
+          "producer_id": "z-ai/glm-5.2",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+        },
+        "raw_record_sha256": "sha256:06d1b8bf9f4f25402199dbfc08d5a424e9b5d76f5035ffd79fc509602e80783b",
+        "role": "current",
+        "role_interpretation": "leaning",
+        "role_record_id": "rprolev2-current-01-06d1b8bf9f4f25",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e049",
+            "text": "I am leaning toward a four-month nonexclusive pilot limited to service and explanatory stories, with our approval of every feed headline, story-level distribution and correction logs, and no homepage widget."
+          }
+        ],
+        "source_evidence_ids": [
+          "e049"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "current",
+            "source_evidence_id": "e049",
+            "stance_expression_kind": "leaning",
+            "stance_object_interpretation": "four-month nonexclusive pilot limited to service and explanatory stories",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ],
+        "terminal_state": "admitted"
+      },
+      {
+        "case_id": "amb3-case01-journalism-platform-pilot",
+        "fidelity_note": "User states the pilot will include 'our approval of every feed headline' as a structural condition.",
+        "graph_routing_eligible": false,
+        "limitations": "",
+        "observation_id": "rprolev2-current-02-3d03ae7a327eb1",
+        "provenance": {
+          "call_id": "role-current",
+          "model": "z-ai/glm-5.2",
+          "producer_id": "z-ai/glm-5.2",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d"
+        },
+        "raw_record_sha256": "sha256:3d03ae7a327eb13f82d37f6779561866831c437f7d0abee9c2481749b6a68f70",
+        "role": "current",
+        "role_interpretation": "commitment",
+        "role_record_id": "rprolev2-current-02-3d03ae7a327eb1",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e049",
+            "text": "I am leaning toward a four-month nonexclusive pilot limited to service and explanatory stories, with our approval of every feed headline, story-level distribution and correction logs, and no homepage widget."
+          }
+        ],
+        "source_evidence_ids": [
+          "e049"
+        ],
+        "source_record_index": 2,
+        "stance_components": [
+          {
+            "role": "current",
+            "source_evidence_id": "e049",
+            "stance_expression_kind": "commitment",
+            "stance_object_interpretation": "approval of every feed headline",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:06d1b8bf9f4f25402199dbfc08d5a424e9b5d76f5035ffd79fc509602e80783b",
+        "record_index": 1,
+        "role_record_id": "rprolev2-current-01-06d1b8bf9f4f25",
+        "terminal_state": "admitted"
+      },
+      {
+        "raw_record_sha256": "sha256:3d03ae7a327eb13f82d37f6779561866831c437f7d0abee9c2481749b6a68f70",
+        "record_index": 2,
+        "role_record_id": "rprolev2-current-02-3d03ae7a327eb1",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "supported",
+    "role": "current",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_custody_complete"
+  },
+  "completion_tokens": 244,
+  "duration_seconds": 6.539,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.00155598,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "z-ai/glm-5.2",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 886,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "DeepInfra",
+  "provider_payload_sha256": "20b290fef3b936e0e897e643078fa882199597e1a2eb6a503929ae7279186a0e",
+  "provider_reported_cost_usd": 0.00107598,
+  "provider_slug": "deepinfra",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "613f487d8eb40911d6dfebff28395d714c1a0912ecb151a3ce33aa40ef84b907",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "z-ai/glm-5.2-20260616",
+  "served_provider": "DeepInfra",
+  "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+  "task_id": "role-current",
+  "temperature": 0.0,
+  "total_tokens": 1130,
+  "user_prompt_sha256": "b514e0c30e2697504ef38e695a50a90045b7d4560669060a1a82749ff824cf7d",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

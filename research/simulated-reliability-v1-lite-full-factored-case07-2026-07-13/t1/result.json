@@ -1,0 +1,674 @@
+{
+  "assistant_coverage_tasks": [
+    {
+      "compiled": null,
+      "duration_seconds": 4.348,
+      "mechanism_id": "acknowledged_constraint_not_gated",
+      "operational_status": "local_validation_failed",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.002205,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 985,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 957
+        },
+        "cost": 0.002205,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0014775,
+          "upstream_inference_cost": 0.002205,
+          "upstream_inference_prompt_cost": 0.0007275
+        },
+        "is_byok": false,
+        "prompt_tokens": 2910,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 3895
+      },
+      "validation_error": "V1RunError: provider content is not strict JSON"
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "source_assistant_contribution_ids": [
+            "assistant-turn-001",
+            "assistant-turn-002",
+            "assistant-turn-012"
+          ],
+          "vanilla_answer_coverage": "operationalized"
+        },
+        "boundary": {
+          "routing_disposition_authored": false,
+          "semantic_fields_model_authored": true,
+          "semantic_repair_performed": false
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_assistant_coverage_response.v1",
+        "status": "assistant_coverage_custody_complete"
+      },
+      "duration_seconds": 1.324,
+      "mechanism_id": "counterpressure_acknowledged_not_integrated",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.0010015,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 182,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 100
+        },
+        "cost": 0.0010015,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.000273,
+          "upstream_inference_cost": 0.0010015,
+          "upstream_inference_prompt_cost": 0.0007285
+        },
+        "is_byok": false,
+        "prompt_tokens": 2914,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 3096
+      },
+      "validation_error": ""
+    }
+  ],
+  "automatic_retries": 0,
+  "case_id": "v1-case07-cooperative-scheduling",
+  "cost_ceiling_met": true,
+  "coverage_call_plan": {
+    "assistant_coverage_call_count": 2,
+    "assistant_coverage_call_mechanism_ids": [
+      "acknowledged_constraint_not_gated",
+      "counterpressure_acknowledged_not_integrated"
+    ],
+    "boundary": {
+      "conversation_prose_inspected": false,
+      "coverage_semantics_inferred": false,
+      "deterministic_semantic_inference": false,
+      "keyword_or_chronology_gate_added": false,
+      "plan_reads_model_authored_status_only": true
+    },
+    "materialize_not_applicable_mechanism_ids": [
+      "ambiguous_signal_treated_as_commitment",
+      "criteria_defined_after_commitment",
+      "initial_frame_persists_after_question_change",
+      "missing_reversal_condition",
+      "reversible_path_not_considered",
+      "status_signal_used_as_evidence",
+      "upside_downside_evidence_asymmetry"
+    ],
+    "schema_version": "lolla.reasoning_mechanism_coverage_call_plan.v1"
+  },
+  "fallback_models": 0,
+  "joined": null,
+  "production_model_selected": false,
+  "provider_calls": 11,
+  "provider_reported_cost_usd": 0.01012275,
+  "response_healing": false,
+  "run_id": "lolla-simulated-reliability-v1-lite-full-factored-case07-t1",
+  "runtime_effect": "none",
+  "scalar_quality_score": null,
+  "schema_version": "lolla.simulated_reliability_lite_full_factored_mechanisms_result.v1",
+  "source_review_status": "required",
+  "status": "full_factored_case_preserved_source_review_required",
+  "user_factor_tasks": [
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "acknowledged_constraint_not_gated",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [
+            "rprolev22-starting-01-5811f15d32fc53",
+            "rprolev22-current-01-c822692e4e9b47"
+          ],
+          "user_process_status": "resolved"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "integrated",
+          "mechanism_id": "acknowledged_constraint_not_gated",
+          "mechanism_observation": "observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [
+            "rprolev22-starting-01-5811f15d32fc53",
+            "rprolev22-current-01-c822692e4e9b47"
+          ]
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 1.9,
+      "mechanism_id": "acknowledged_constraint_not_gated",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00088075,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 258,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 164
+        },
+        "cost": 0.00088075,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.000387,
+          "upstream_inference_cost": 0.00088075,
+          "upstream_inference_prompt_cost": 0.00049375
+        },
+        "is_byok": false,
+        "prompt_tokens": 1975,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2233
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "ambiguous_signal_treated_as_commitment",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "ambiguous_signal_treated_as_commitment",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 1.39,
+      "mechanism_id": "ambiguous_signal_treated_as_commitment",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00072775,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 158,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 88
+        },
+        "cost": 0.00072775,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.000237,
+          "upstream_inference_cost": 0.00072775,
+          "upstream_inference_prompt_cost": 0.00049075
+        },
+        "is_byok": false,
+        "prompt_tokens": 1963,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2121
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [
+            "rprolev22-starting-01-5811f15d32fc53",
+            "rprolev22-current-01-c822692e4e9b47"
+          ],
+          "user_process_status": "resolved"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "integrated",
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "mechanism_observation": "observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [
+            "rprolev22-starting-01-5811f15d32fc53",
+            "rprolev22-current-01-c822692e4e9b47"
+          ]
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 2.161,
+      "mechanism_id": "counterpressure_acknowledged_not_integrated",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00087825,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 257,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 132
+        },
+        "cost": 0.00087825,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0003855,
+          "upstream_inference_cost": 0.00087825,
+          "upstream_inference_prompt_cost": 0.00049275
+        },
+        "is_byok": false,
+        "prompt_tokens": 1971,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2228
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "criteria_defined_after_commitment",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "criteria_defined_after_commitment",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 1.465,
+      "mechanism_id": "criteria_defined_after_commitment",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00071775,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 151,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 89
+        },
+        "cost": 0.00071775,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0002265,
+          "upstream_inference_cost": 0.00071775,
+          "upstream_inference_prompt_cost": 0.00049125
+        },
+        "is_byok": false,
+        "prompt_tokens": 1965,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2116
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "initial_frame_persists_after_question_change",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "initial_frame_persists_after_question_change",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 2.019,
+      "mechanism_id": "initial_frame_persists_after_question_change",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.000779,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 190,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 118
+        },
+        "cost": 0.000779,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.000285,
+          "upstream_inference_cost": 0.000779,
+          "upstream_inference_prompt_cost": 0.000494
+        },
+        "is_byok": false,
+        "prompt_tokens": 1976,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2166
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "missing_reversal_condition",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "missing_reversal_condition",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 1.388,
+      "mechanism_id": "missing_reversal_condition",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00073125,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 158,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 97
+        },
+        "cost": 0.00073125,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.000237,
+          "upstream_inference_cost": 0.00073125,
+          "upstream_inference_prompt_cost": 0.00049425
+        },
+        "is_byok": false,
+        "prompt_tokens": 1977,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2135
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "reversible_path_not_considered",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "reversible_path_not_considered",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 1.386,
+      "mechanism_id": "reversible_path_not_considered",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00072025,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 151,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 89
+        },
+        "cost": 0.00072025,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0002265,
+          "upstream_inference_cost": 0.00072025,
+          "upstream_inference_prompt_cost": 0.00049375
+        },
+        "is_byok": false,
+        "prompt_tokens": 1975,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2126
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "status_signal_used_as_evidence",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "status_signal_used_as_evidence",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 2.098,
+      "mechanism_id": "status_signal_used_as_evidence",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.0007585,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 177,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 120
+        },
+        "cost": 0.0007585,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0002655,
+          "upstream_inference_cost": 0.0007585,
+          "upstream_inference_prompt_cost": 0.000493
+        },
+        "is_byok": false,
+        "prompt_tokens": 1972,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2149
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "upside_downside_evidence_asymmetry",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "factor_semantics_model_authored": true,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_authored": false,
+          "semantic_repair_performed": false,
+          "user_process_status_derived_from_explicit_factors": true
+        },
+        "factor_assessment": {
+          "integration_status": "not_applicable",
+          "mechanism_id": "upside_downside_evidence_asymmetry",
+          "mechanism_observation": "not_observed",
+          "pattern_state": "not_applicable",
+          "source_role_record_ids": []
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+        "status": "user_status_custody_complete_from_explicit_factors"
+      },
+      "duration_seconds": 1.216,
+      "mechanism_id": "upside_downside_evidence_asymmetry",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.00072275,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 154,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 96
+        },
+        "cost": 0.00072275,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.000231,
+          "upstream_inference_cost": 0.00072275,
+          "upstream_inference_prompt_cost": 0.00049175
+        },
+        "is_byok": false,
+        "prompt_tokens": 1967,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2121
+      },
+      "validation_error": ""
+    }
+  ]
+}

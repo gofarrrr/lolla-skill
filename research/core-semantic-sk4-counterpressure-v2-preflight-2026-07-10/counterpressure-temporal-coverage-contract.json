@@ -1,0 +1,89 @@
+{
+  "schema_version": "lolla.counterpressure_temporal_coverage_contract.v0",
+  "contract_id": "counterpressure-temporal-coverage-v0-2026-07-10",
+  "annotation_status": "post_run_source_review_frozen_for_future_runs_only",
+  "current_artifact_use": "diagnostic_only_not_promotion_evidence",
+  "annotation_method": "human_source_first_review_after_case08_v2_preflight",
+  "semantic_runtime_judge_allowed": false,
+  "embedding_match_allowed": false,
+  "deterministic_scoring_only": true,
+  "metric_contract": {
+    "first_introduction_coverage": "Recovery of the source span where the counter-pressure thread first materially entered the reasoning.",
+    "concept_coverage": "Recovery of any researcher-reviewed source span declared here before a future run that expresses the same material counter-pressure concept.",
+    "later_strengthening_coverage": "Recovery of a declared later span that materially strengthens or makes the same counter-pressure more explicit.",
+    "substitution_rule": "Concept or later-strengthening recovery never substitutes for first-introduction recovery in the audit metric.",
+    "reasoning_substrate_read": "Use concept coverage to assess whether downstream reasoning receives the material issue.",
+    "audit_trail_read": "Use first-introduction and later-strengthening coverage separately to assess whether the process chronology is preserved."
+  },
+  "observations": [
+    {
+      "case_id": "case-02-multi-offer-career",
+      "observation_id": "pressure.family_joint_decision",
+      "concept": "The career choice is a joint household decision rather than the user's individual decision.",
+      "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+      "source_file_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab",
+      "first_introduction_evidence": [
+        {
+          "turn_index": 5,
+          "speaker": "user",
+          "quote": "This isn't my decision alone."
+        }
+      ],
+      "later_strengthening_evidence": [
+        {
+          "turn_index": 14,
+          "speaker": "user",
+          "quote": "If wife is a hard or soft no, I take A."
+        }
+      ]
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "observation_id": "pressure.husband_conversation_not_real",
+      "concept": "General husband support is not yet concrete household alignment on the multi-year travel arrangement.",
+      "source_path": "research/test-cases/case_oncologist_conversation.txt",
+      "source_file_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162",
+      "first_introduction_evidence": [
+        {
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years"
+        }
+      ],
+      "later_strengthening_evidence": [
+        {
+          "turn_index": 4,
+          "speaker": "user",
+          "quote": "But he said it in the way that means \"I will not stop you from taking it.\" Which is different from \"yes this is a good idea for us.\""
+        }
+      ]
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "observation_id": "pressure.no_actual_commitments",
+      "concept": "Friendly network interest is not a real consulting pipeline because no engagement is committed.",
+      "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+      "source_file_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e",
+      "first_introduction_evidence": [
+        {
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "None of them have committed to actual engagements."
+        }
+      ],
+      "later_strengthening_evidence": [
+        {
+          "turn_index": 4,
+          "speaker": "user",
+          "quote": "The conversations aren't a pipeline. I've been treating them as one because I wanted them to be."
+        }
+      ]
+    }
+  ],
+  "non_claims": [
+    "post_run_alternative_spans_do_not_change_the_case08_preflight_failure",
+    "concept_coverage_is_not_first_introduction_coverage",
+    "source_span_overlap_is_not_semantic_truth",
+    "future_use_requires_the_contract_to_remain_frozen_before_calls"
+  ]
+}

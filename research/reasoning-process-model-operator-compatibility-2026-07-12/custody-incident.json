@@ -1,0 +1,42 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_compatibility_custody_incident.v1",
+  "status": "first_batch_external_call_count_unknown_no_same_contract_rerun",
+  "date": "2026-07-12",
+  "contract_path": "research/reasoning-process-model-operator-compatibility-2026-07-12/contract.json",
+  "contract_sha256": "280e4954884bc4a461ecac3bf7c4aa9d0fba7b8dfc4673b7ad536e1f243313c0",
+  "observation": {
+    "runner_process_started": true,
+    "aggregate_result_written": false,
+    "runner_process_remaining_after_termination": false,
+    "provider_calls_observed_in_local_artifact": 0,
+    "provider_calls_possible": {
+      "minimum": 0,
+      "maximum": 2
+    },
+    "per_call_started_markers_available": false,
+    "per_call_results_available": false,
+    "exact_external_call_count_known": false
+  },
+  "account_metadata_check": {
+    "api_key_is_management_key": false,
+    "activity_api_status": "forbidden_management_key_required",
+    "current_key_usage_snapshot_usd": 1.9731884,
+    "current_key_daily_usage_snapshot_usd": 0.00288675,
+    "usage_snapshot_can_attribute_these_calls": false,
+    "signed_in_activity_page_available_to_automation": false
+  },
+  "decision": {
+    "rerun_original_contract": false,
+    "claim_zero_calls": false,
+    "claim_one_or_two_calls": false,
+    "semantic_evidence_exists": false,
+    "reserved_semantic_case_spent": false,
+    "prospective_recovery_allowed": true,
+    "recovery_requirement": "durable_started_marker_and_result_per_call_before_next_job"
+  },
+  "nonclaims": [
+    "The missing aggregate result does not prove that no provider request was sent.",
+    "The daily usage total cannot identify a model, provider, or request without activity access.",
+    "No model compatibility or semantic conclusion can be drawn from this interrupted batch."
+  ]
+}

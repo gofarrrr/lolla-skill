@@ -1,0 +1,46 @@
+{
+  "artifact_kind": "causal_failure_audit",
+  "artifact_sha256": "da8951e1c2e692e9563784b187f35440a369198153b2195d65f6791f634ae086",
+  "call_result_sha256": "712ec7d88bf429b8f260f734042169b8b8b2074eccba3bacb9051e29c4d7fa61",
+  "case_id": "v1-case01-flood-infrastructure",
+  "counterfactual_choices_not_taken": [
+    {
+      "preserve": "disposition",
+      "status": "semantic_choice_not_made_by_code",
+      "would_require": "change uncertainty_change to no_material_effect"
+    },
+    {
+      "preserve": "effect",
+      "status": "semantic_choice_not_made_by_code",
+      "would_require": "change park to apply_uncertainty_change and add missing effect custody"
+    }
+  ],
+  "diagnosis_vector": {
+    "combined_task_overload": "possible_not_established",
+    "model_capability_limit": "possible_not_established",
+    "ontology_ambiguity": "possible_not_established",
+    "provider_transport": "passed_for_exact_repaired_request",
+    "redundant_wire_coordination": "directly_observed"
+  },
+  "lossless_collapsed_outcome_mapping": false,
+  "mechanical_findings": [
+    {
+      "code": "park_contract_violation",
+      "expected": "no material effect, empty effects, and reopen condition",
+      "observed": {
+        "effect": "uncertainty_change",
+        "private_guardrail": "",
+        "visible_effect": ""
+      },
+      "path": "/candidate_dispositions/2"
+    }
+  ],
+  "next_call_authorized": false,
+  "provider_calls": 0,
+  "rows_returned": 9,
+  "rows_without_mechanical_findings": 8,
+  "schema_version": "lolla.r3_task_shape_reassessment_artifact.v1",
+  "semantic_review_status": "prohibited_after_mechanical_failure",
+  "status": "one_redundant_cross_field_conflict_observed_cause_not_overclaimed",
+  "why_lossless_mapping_is_impossible": "The preserved row asserts park and uncertainty_change simultaneously; one controlled outcome cannot preserve both conflicting labels."
+}

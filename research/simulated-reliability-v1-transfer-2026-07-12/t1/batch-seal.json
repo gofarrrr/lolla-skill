@@ -1,0 +1,74 @@
+{
+  "schema_version": "lolla.simulated_reliability_transfer_batch_seal.v1",
+  "status": "all_twelve_attempted_partial_operational_completion",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-transfer-t1",
+  "attempted_cases": 12,
+  "complete_cases": 7,
+  "role_join_failures": 1,
+  "starting_transport_failures": 4,
+  "provider_attempts": 34,
+  "successful_provider_calls": 30,
+  "failed_provider_calls": 4,
+  "provider_reported_cost_usd": 0.9705315,
+  "automatic_retries": 0,
+  "response_healing": false,
+  "fallback_models": 0,
+  "tuning_between_cases": false,
+  "complete_case_behavior": {
+    "stand_down": 7,
+    "pressure": 0,
+    "park": 0,
+    "pressure_arm_calls": 0,
+    "transcript_control_calls": 7
+  },
+  "prospective_source_review_for_complete_cases": {
+    "pressure_expected": [
+      "v1-case01-flood-infrastructure",
+      "v1-case02-discharge-transport",
+      "v1-case03-executive-hire"
+    ],
+    "stand_down_expected": [
+      "v1-case04-component-sourcing",
+      "v1-case05-ai-tutoring",
+      "v1-case07-cooperative-scheduling",
+      "v1-case08-museum-entry"
+    ],
+    "provisional_false_stand_down_count": 3,
+    "interpretation_boundary": "The source disposition is not a gold answer. Final classification requires evidence-based source review, but a seven-of-seven stand-down rate and three disagreements require diagnosis."
+  },
+  "preserved_failures": [
+    {
+      "case_id": "v1-case06-industry-funded-lab",
+      "stage": "role_join",
+      "failure": "starting extraction returned zero admitted records while current and qualification were admitted; V1 minimum starting-role bound correctly failed closed",
+      "provider_calls": 2,
+      "retry_authorized": false
+    },
+    {
+      "case_ids": [
+        "v1-case09-software-migration",
+        "v1-case10-restricted-funding",
+        "v1-case11-elder-care-relocation",
+        "v1-case12-newsroom-platform"
+      ],
+      "stage": "starting_transport",
+      "failure": "OpenRouter HTTP 402: remaining credit could fund at most 4442 output tokens while the frozen request allowed 6000",
+      "provider_calls": 4,
+      "retry_authorized": false,
+      "contract_lowered": false
+    }
+  ],
+  "initial_semantic_diagnostic": {
+    "case01": "user process retained unresolved counterpressure but answer coverage was marked operationalized, suppressing routing",
+    "case02": "five mechanisms were marked resolved and operationalized",
+    "case03": "all nine controlled mechanisms were marked resolved and operationalized, an unusually broad coverage claim",
+    "possible_explanations": [
+      "vanilla_answer_coverage operationalized is too permissive",
+      "the controlled nine-mechanism ontology does not represent the prospectively identified residual opportunities",
+      "both effects coexist",
+      "the prospective source review overestimated missing pressure"
+    ]
+  },
+  "freeze_rule": "No transfer-derived prompt, schema, model, routing, graph, or reviewer change is permitted in V1. Any repair belongs to V2 after review. The four credit-blocked cases require explicit new funding/authorization and fresh identities, not a hidden continuation."
+}

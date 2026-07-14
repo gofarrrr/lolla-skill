@@ -1,0 +1,104 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v22_source_review.v1",
+  "status": "structural_hypothesis_confirmed_semantic_gate_failed",
+  "case_id": "amb3-case03-farm-cooperative-retail",
+  "run_id": "reasoning-process-position-role-first-farm-cooperative-v22",
+  "review_basis": {
+    "source_path": "research/reasoning-process-position-role-first-v22-new-case-2026-07-12/case.txt",
+    "protected_target_path": "research/reasoning-process-position-role-first-v22-new-case-2026-07-12/source-review-target.json",
+    "protected_target_written_before_provider_execution": true,
+    "provider_result_path": "research/reasoning-process-position-role-first-v22-probe-2026-07-12/result.json",
+    "automatic_evaluator_calls": 0,
+    "human_or_agent_source_review_required": true
+  },
+  "operational_result": {
+    "provider_request_count": 4,
+    "estimated_cost_usd": 0.000991064,
+    "all_wire_schemas_accepted": true,
+    "exact_model_operator_attribution_matched": true,
+    "admitted_role_record_count": 3,
+    "admitted_relation_record_count": 1,
+    "quarantined_record_count": 0,
+    "join_status": "position_role_first_join_complete",
+    "nested_component_alignment_failure_repeated": false
+  },
+  "role_review": {
+    "starting": {
+      "coherent_record_count": 1,
+      "role_level_interpretation": "pass",
+      "evidence_coverage": "overinclusive_but_material_meaning_preserved",
+      "component_semantics": "fail",
+      "findings": [
+        "The role interpretation preserves economic attraction, buyer-orientation worry, and autonomy-versus-identity uncertainty.",
+        "The record includes e001 and e003 even though those sentences are context rather than necessary starting-position evidence.",
+        "Every component is labeled reported_without_endorsement, flattening the user's expressed excitement, worry, and uncertainty."
+      ]
+    },
+    "current": {
+      "coherent_record_count": 1,
+      "required_evidence_preserved": ["e049", "e050", "e051"],
+      "role_boundary": "fail",
+      "force_preservation": "pass_with_minor_category_doubt",
+      "findings": [
+        "The bounded agreement, conditional packing recommendation, and pre-signing requirements remain one coherent working-position thread.",
+        "Leaning, conditional willingness, and commitment are not inflated into a final decision.",
+        "The extractor incorrectly adds e052, an unresolved matter that belongs in qualification, to the current-position record.",
+        "The e052 stance object is categorized as intended_outcome_or_policy even though it is an unresolved assessment of spillover protection."
+      ]
+    },
+    "qualification": {
+      "coherent_record_count": 1,
+      "required_evidence_preserved": ["e052", "e055", "e056"],
+      "protected_target_survived": true,
+      "speaker_ownership_preserved": true,
+      "role_level_interpretation": "pass",
+      "component_semantics": "pass_with_coarse_object_categories",
+      "findings": [
+        "The user's unresolved nonparticipant spillover concern survives.",
+        "The assistant-authored expansion and planting pressure remains pressure rather than user adoption.",
+        "The full e056 meaning about crop choices, equipment use, buyer expectations, and member status differences not returning to their prior state survives.",
+        "Using unclear object kinds is coarse but does not corrupt the protected meanings or ownership."
+      ]
+    }
+  },
+  "relationship_review": {
+    "exact_id_join": "pass",
+    "trajectory_summary": "partial_pass",
+    "finding": "The relation correctly says the bounded terms remain limited by unresolved systemic effects, but it is less complete than the source-first target because it does not explicitly retain expansion pressure or irreversible exit effects."
+  },
+  "success_requirement_disposition": {
+    "wire_and_exact_route_pass_for_every_call": true,
+    "one_coherent_record_per_role": true,
+    "starting_preserves_economic_attraction_buyer_orientation_and_identity_uncertainty": true,
+    "current_preserves_one_thread_across_e049_e050_e051_without_force_inflation": true,
+    "qualification_preserves_e052_e055_e056": true,
+    "protected_e056_irreversibility_meaning_survives": true,
+    "assistant_qualification_preserves_speaker_ownership_without_user_adoption": true,
+    "relationship_preserves_bounded_trial_and_option_changing_limits": false,
+    "exact_nested_component_identity_and_join_complete": true,
+    "role_separation_is_source_faithful": false
+  },
+  "decision": {
+    "v22_nested_component_wire_retained_as_reference": true,
+    "direct_structured_extraction_closed": false,
+    "reason_direct_path_remains_open": "The protected qualification loss did not repeat and the v2.1 parallel-column failure was removed.",
+    "provider_retry_or_model_control_authorized": false,
+    "graph_or_runtime_integration_authorized": false,
+    "next_work_is_provider_free": true,
+    "next_problem": "Define and locally test mutually intelligible role-boundary and stance-expression instructions that keep unresolved matters out of current while preserving them in qualification, without adding deterministic semantic gates or brittle chronology rules."
+  },
+  "unknowns": [
+    "One synthetic case cannot establish transfer reliability.",
+    "The relative contribution of model capability, prompt wording, and role overlap remains unresolved.",
+    "Whether coarse object kinds materially reduce later graph usefulness has not been measured.",
+    "No downstream challenge-quality claim is authorized from this extraction result."
+  ],
+  "boundary": {
+    "scalar_quality_score_computed": false,
+    "semantic_correctness_inferred_by_deterministic_code": false,
+    "provider_output_repaired": false,
+    "retry_or_fallback_used": false,
+    "graph_or_runtime_called": false,
+    "production_integration_authorized": false
+  }
+}

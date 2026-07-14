@@ -1,0 +1,123 @@
+{
+  "aggregate": {
+    "admitted_record_count": 7,
+    "all_handoffs_within_bounds": true,
+    "case_count": 4,
+    "reader_result_count": 24,
+    "reader_state_counts": {
+      "complete": 5,
+      "completed_zero": 1,
+      "failed": 2,
+      "missing": 14,
+      "partial": 2
+    },
+    "source_locator_count": 21
+  },
+  "cases": [
+    {
+      "case_id": "v1-case01-flood-infrastructure",
+      "fan_in_file_sha256": "d5afa271e52c406df0da5e0906714bcdf6e9dbe12a9bfec223149bad62090af6",
+      "fan_in_path": "research/lolla-r4-conversation-state-fan-in-2026-07-13/v1-case01-flood-infrastructure/fan-in.json",
+      "fan_in_result_sha256": "4e800b43045528cdfe300246ae6d110d2c10fc468a87ccd3fb0489d22f7f209f",
+      "handoff_payload_utf8_bytes": 33677,
+      "reader_state_counts": {
+        "complete": 3,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 3,
+        "partial": 0
+      },
+      "status": "conversation_state_fan_in_partial",
+      "total_record_count": 3,
+      "total_source_locator_count": 8
+    },
+    {
+      "case_id": "v1-case02-discharge-transport",
+      "fan_in_file_sha256": "d132a148d1389873d4b0c032584f772e382b80ff789ed3a326ea32bb72eb3b63",
+      "fan_in_path": "research/lolla-r4-conversation-state-fan-in-2026-07-13/v1-case02-discharge-transport/fan-in.json",
+      "fan_in_result_sha256": "8458544af499d02097a51ae02d73733ae0fdf4933802aabf26af8069af035134",
+      "handoff_payload_utf8_bytes": 30798,
+      "reader_state_counts": {
+        "complete": 2,
+        "completed_zero": 1,
+        "failed": 0,
+        "missing": 3,
+        "partial": 0
+      },
+      "status": "conversation_state_fan_in_partial",
+      "total_record_count": 2,
+      "total_source_locator_count": 9
+    },
+    {
+      "case_id": "v1-case06-industry-funded-lab",
+      "fan_in_file_sha256": "91c001693c93ab53af337e75454118bf8c4332a3fdf29fe068828a9489d5842a",
+      "fan_in_path": "research/lolla-r4-conversation-state-fan-in-2026-07-13/v1-case06-industry-funded-lab/fan-in.json",
+      "fan_in_result_sha256": "f83d71a852b25cc49905800b498e55f881a62ae6289a8a0e28af0d563f2ec6c3",
+      "handoff_payload_utf8_bytes": 28713,
+      "reader_state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 1,
+        "missing": 3,
+        "partial": 2
+      },
+      "status": "conversation_state_fan_in_partial",
+      "total_record_count": 2,
+      "total_source_locator_count": 4
+    },
+    {
+      "case_id": "v1-case09-software-migration",
+      "fan_in_file_sha256": "63a1ce02914dd070cb574bdeef2962a885d1e3d92a26310766519f776f793a9b",
+      "fan_in_path": "research/lolla-r4-conversation-state-fan-in-2026-07-13/v1-case09-software-migration/fan-in.json",
+      "fan_in_result_sha256": "f378e58fe45e69f9a28fbdd31f1aa629373cb78595628e53bb8dfa84cb834e94",
+      "handoff_payload_utf8_bytes": 24036,
+      "reader_state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 1,
+        "missing": 5,
+        "partial": 0
+      },
+      "status": "conversation_state_fan_in_unavailable",
+      "total_record_count": 0,
+      "total_source_locator_count": 0
+    }
+  ],
+  "contract": {
+    "path": "docs/evals/lolla-r4-conversation-state-fan-in-contract-v1.json",
+    "sha256": "512ce0f1b75b58d13e60f803831abf60945fcb77d2ae140f230f3fa84f50bfc4"
+  },
+  "date": "2026-07-13",
+  "expected_changed_measurement": {
+    "observation": "Every planned reader has one inspectable tagged result, and completed-zero, partial, failed, and missing states remain mechanically distinguishable in the same handoff.",
+    "semantic_improvement_claimed": false,
+    "status": "passed_provider_free"
+  },
+  "findings": [
+    "The complete Case 01 path preserves three admitted role records and keeps all three unavailable surfaces explicitly missing.",
+    "Case 02 preserves a completed-zero qualification reader separately from three missing reader contracts.",
+    "Case 06 preserves two admitted partial surfaces beside one failed custody surface; no record is fabricated for the failure.",
+    "Case 09 preserves one transport failure separately from five missing downstream or unimplemented readers without copying raw provider error content.",
+    "Every preserved record retains its provider-authored payload, canonical payload hash, exact source locators, speaker, and turn index.",
+    "The fan-in measures overlap and load but performs no semantic merge, absence inference, graph routing, or quality scoring."
+  ],
+  "next_experiment_decision": {
+    "proposal": "Freeze one bounded complementary unresolved-matter/reopen-condition read and one exact-ID relationship read over an exposed false-stand-down case plus a restraint control, then authorize no call until source-first targets, schemas, cost, provider policy, and fan-in gates pass locally.",
+    "provider_call_authorized": false,
+    "provider_free_preparation_earned": true,
+    "reason": "The assembly defect is repaired provider-free, while the primary V1 evidence still contains no distinct records for the three newly visible semantic surfaces. Their usefulness and effect on false stand-down remain unknown.",
+    "runtime_integration_authorized": false
+  },
+  "non_claims": [
+    "not semantic correctness or coverage proof",
+    "not evidence that the missing readers will recover the reviewed material pressure",
+    "not graph, answer, decision, trust, or real-user usefulness evidence",
+    "not authorization for a provider call or runtime integration"
+  ],
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "result_sha256": "914f847b3cc724d7be52edcfa04a7be47e8dd0c9620c87efd50a8648259648bb",
+  "runtime_graph_prompt_or_model_changes": 0,
+  "schema_version": "lolla.r4_conversation_state_fan_in_replay_result.v1",
+  "status": "provider_free_fan_in_replay_complete"
+}

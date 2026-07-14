@@ -1,0 +1,224 @@
+{
+  "arm_id": "housing_provider__challenge_graph_v2",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "expected_selection_included": false,
+    "fact_free_recall_provenance_included": true,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "challenge_when": "The records support a understanding-and-alignment problem, and this failure signal remains unresolved: A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+      "display_name": "Active Listening",
+      "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when asking the pressure question would not materially change the validated perspective and tension read.",
+      "model_id": "active-listening",
+      "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a commitment-under-review, and this failure signal remains unresolved: Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+      "display_name": "Commitment Bias",
+      "do_not_apply_when": "Do not apply without source support for a commitment-under-review, or when asking the pressure question would not materially change the recommit-or-exit check.",
+      "model_id": "commitment-bias",
+      "pressure_question": "What evidence would make us reverse course rather than defend the original commitment?",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a claim-under-review, and this failure signal remains unresolved: Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+      "display_name": "Confirmation Bias",
+      "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when asking the pressure question would not materially change the disconfirming-evidence challenge.",
+      "model_id": "confirmation-bias",
+      "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a overconfidence and updating problem, and this failure signal remains unresolved: The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+      "display_name": "Intellectual Humility",
+      "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when asking the pressure question would not materially change the updated stance under uncertainty.",
+      "model_id": "intellectual-humility",
+      "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+      "recalled_by_mechanism_ids": [
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a resource allocation choice, and this failure signal remains unresolved: Commitment can hide what becomes impossible once resources, time, or attention are locked into one path.",
+      "display_name": "Opportunity Cost",
+      "do_not_apply_when": "Do not apply without source support for a resource allocation choice, or when asking the pressure question would not materially change the trade-off pricing check.",
+      "model_id": "opportunity-cost",
+      "pressure_question": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+      "recalled_by_mechanism_ids": [
+        "acknowledged_constraint_not_gated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a pre-commitment failure-exposure problem, and this failure signal remains unresolved: A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+      "display_name": "Premortem",
+      "do_not_apply_when": "Do not apply without source support for a pre-commitment failure-exposure problem, or when asking the pressure question would not materially change the failure-path mitigation plan.",
+      "model_id": "premortem",
+      "pressure_question": "Is the worst case bad enough?",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a escalation and legacy-investment problem, and this failure signal remains unresolved: Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+      "display_name": "Sunk Cost Fallacy",
+      "do_not_apply_when": "Do not apply without source support for a escalation and legacy-investment problem, or when asking the pressure question would not materially change the future-oriented recommitment test.",
+      "model_id": "sunk-cost-fallacy",
+      "pressure_question": "Would we start again today from current facts?",
+      "recalled_by_mechanism_ids": [
+        "missing_reversal_condition"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    },
+    {
+      "challenge_when": "The records support a competing-objectives decision, and this failure signal remains unresolved: Conjunction-style optimism can make a risky plan look acceptable by understating how many dependent steps must all work.",
+      "display_name": "Trade Offs",
+      "do_not_apply_when": "Do not apply without source support for a competing-objectives decision, or when asking the pressure question would not materially change the priority trade-off framing.",
+      "model_id": "trade-offs",
+      "pressure_question": "What would you have to believe?",
+      "recalled_by_mechanism_ids": [
+        "acknowledged_constraint_not_gated"
+      ],
+      "schema_version": "lolla.canonical_model_challenge_card.v2"
+    }
+  ],
+  "candidate_count": 8,
+  "packet_sha256": "3e4855ffa9c88a3f9391a17db2eafcc7d16dcc7490244432ede2643cefddc5be",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e001",
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The user's starting position thread is visible in Turn 1: they oversee housing authority, describe the offer, express attraction (lower bills, healthier buildings), hesitation (worry about vendor control), and unresolved stance (cannot tell if resistance protects tenants or failed maintenance culture).",
+      "limitations": "none",
+      "role": "starting",
+      "role_interpretation": "The user's own earliest visible working position: attraction to lower bills and healthier buildings, hesitation about vendor control, and unresolved stance about the motivation for resistance.",
+      "role_record_id": "rprolev22-starting-01-9463d0faa884ce",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "lower bills and healthier buildings",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "worry that a long performance contract will transfer practical control of residents' homes to a vendor",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "cannot tell whether resistance protects tenants or protects an old maintenance culture that has already failed them",
+          "stance_object_kind": "intended_outcome_or_policy"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e031",
+        "e032",
+        "e033",
+        "e034",
+        "e035",
+        "e036"
+      ],
+      "fidelity_note": "Current position: bounded pilot with safeguards, conditional acceptance of optimization, pre-set thresholds, and capped exit path.",
+      "limitations": "None.",
+      "role": "current",
+      "role_interpretation": "The user's later working answer: a bounded two-building, eighteen-month pilot with manual controls, opt-in sensors, ninety-day raw-data deletion, tenant-approved notices, no housing decisions from sensor data, independent verification, complaint staffing, and public operational reporting. Building-wide optimization accepted only if comfort minimums, override response times, outage protections, and resident appeal rights are contractual. Pre-set thresholds for bill, comfort, complaint, override,\u00a0",
+      "role_record_id": "rprolev22-current-01-c285daebc5ac7c",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e031",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "bounded pilot plan",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e032",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "acceptance of building-wide optimization with contractual safeguards",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "commitment",
+          "stance_object_interpretation": "pre-setting thresholds before signing",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "approval of pilot only with capped path to equipment ownership and exit",
+          "stance_object_kind": "action_or_proposal"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e034",
+        "e037",
+        "e038"
+      ],
+      "fidelity_note": "Qualification: unresolved sensor opt-out meaning, collective model concern, and path dependence risk.",
+      "limitations": "None.",
+      "role": "qualification",
+      "role_interpretation": "What still limits or could reopen the working answer: unresolved question about whether sensor opt-out is meaningful when every resident remains subject to a model trained on collective building behavior (e034). Unresolved issue of overstated individual choice under collective optimization (e037). Path dependence risk: after pilot ends, installed equipment, maintenance routines, resident expectations, and dependence on vendor-designed operating models may not return to prior state (e038).",
+      "role_record_id": "rprolev22-qualification-01-4f3cb9774eaf39",
+      "semantic_status": "unclear",
+      "stance_components": [
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "meaningfulness of sensor opt-out under collective model",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e037",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "whether individual choice is overstated when building-level optimization remains collective",
+          "stance_object_kind": "unclear"
+        },
+        {
+          "source_evidence_id": "e038",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "path dependence risk: equipment, routines, expectations, and vendor dependence may not revert after pilot",
+          "stance_object_kind": "unclear"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_selection_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/role-record-pattern-invariance-corpus-2026-07-12/packets/housing_provider.json",
+      "sha256": "90569d5c38a409dfe6d65dec9109352b93424c98c1cb2390114d3835c7f32dbb"
+    }
+  ]
+}

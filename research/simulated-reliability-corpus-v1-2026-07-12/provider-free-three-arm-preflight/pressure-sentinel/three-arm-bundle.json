@@ -1,0 +1,773 @@
+{
+  "arms": {
+    "direct_pressure": {
+      "call_required": true,
+      "packet": {
+        "arm_id": "direct_pressure",
+        "authoritative_conversation": "# Customer customization versus product reliability\n\nCase ID: amb1-case01-product-scope\nStratum: small_team_product_scope\nFounder-directed synthetic development fixture; not a clean holdout.\n\n[Turn 1] USER:\nI run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n\n[Turn 1] ASSISTANT:\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n\n[Turn 2] USER:\nI think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.\n\n[Turn 2] ASSISTANT:\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\n\n[Turn 3] USER:\nThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\n\n[Turn 3] ASSISTANT:\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n\n[Turn 4] USER:\nThat sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.\n\n[Turn 4] ASSISTANT:\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n\n[Turn 5] USER:\nThere is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\n\n[Turn 5] ASSISTANT:\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n\n[Turn 6] USER:\nNorthline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\n\n[Turn 6] ASSISTANT:\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n\n[Turn 7] USER:\nMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.\n\n[Turn 7] ASSISTANT:\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\n",
+        "boundary": {
+          "all_active_candidates_preserved": true,
+          "canonical_ids_only": true,
+          "case_facts_reattached_after_graph_recall": true,
+          "fresh_context_required": true,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "reserve_preserved_by_ledger_reference": true
+        },
+        "case_id": "amb1-case01-product-scope",
+        "instructions": {
+          "allowed_dispositions": [
+            "apply",
+            "reject",
+            "park"
+          ],
+          "candidate_deletion_before_reconsideration": false,
+          "every_active_candidate_must_be_inspected": true,
+          "graph_recall_is_applicability_proof": false,
+          "preserve_strong_original_reasoning": true,
+          "rejection_is_valid": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "3805b83bd0b6e5023a7fe959d76f56b59268d2ecfdc6dab0a2e2a9cc7f601f47",
+        "portfolio_ledger_refs": [
+          {
+            "ledger_type": "direct",
+            "sha256": "37a649bfb58810e60ff628e978de2a7b330f366bbd6762b12ff8673c31857a14"
+          }
+        ],
+        "pressure_portfolio": [
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.",
+              "display_name": "Active Listening",
+              "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.",
+              "failure_signal": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+              "model_id": "active-listening",
+              "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "active-listening",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.",
+              "display_name": "Commitment Bias",
+              "do_not_apply_when": "Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.",
+              "failure_signal": "Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+              "model_id": "commitment-bias",
+              "pressure_question": "What evidence would make us reverse course rather than defend the original commitment?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "commitment-bias",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+              "display_name": "Confirmation Bias",
+              "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+              "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+              "model_id": "confirmation-bias",
+              "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "confirmation-bias",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.",
+              "display_name": "Premortem",
+              "do_not_apply_when": "Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.",
+              "failure_signal": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+              "model_id": "premortem",
+              "pressure_question": "Is the worst case bad enough?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "premortem",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.",
+              "display_name": "Intellectual Humility",
+              "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.",
+              "failure_signal": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+              "model_id": "intellectual-humility",
+              "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "intellectual-humility",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.",
+              "display_name": "Sunk Cost Fallacy",
+              "do_not_apply_when": "Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.",
+              "failure_signal": "Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+              "model_id": "sunk-cost-fallacy",
+              "pressure_question": "Would we start again today from current facts?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "sunk-cost-fallacy",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "missing_reversal_condition"
+            ]
+          }
+        ],
+        "schema_version": "lolla.simulated_reliability_pressure_input.v1",
+        "source_refs": [
+          {
+            "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt",
+            "role": "authoritative_conversation",
+            "sha256": "7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73"
+          },
+          {
+            "path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+            "role": "controlled_direct_routing",
+            "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"
+          },
+          {
+            "path": "data/knowledge_graph.json",
+            "role": "canonical_model_registry",
+            "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+          },
+          {
+            "path": "data/relationship_graph.json",
+            "role": "relationship_graph",
+            "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation using every canonical pressure candidate as an intentionally noisy hypothesis. Apply only what changes or usefully tests the reasoning; explicitly reject or park the rest. Graph recall is not proof. Do not manufacture facts or quantitative precision.",
+        "system_prompt_sha256": "aa66ce9518f09eeb45ef406425c6f9584cdd711c39b3d9e7d116564553bf5531",
+        "user_prompt": "SIMULATED RELIABILITY V1 PRESSURE PACKET\n{\"arm_id\":\"direct_pressure\",\"authoritative_conversation\":\"# Customer customization versus product reliability\\n\\nCase ID: amb1-case01-product-scope\\nStratum: small_team_product_scope\\nFounder-directed synthetic development fixture; not a clean holdout.\\n\\n[Turn 1] USER:\\nI run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\\n\\n[Turn 1] ASSISTANT:\\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\\n\\n[Turn 2] USER:\\nI think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.\\n\\n[Turn 2] ASSISTANT:\\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\\n\\n[Turn 3] USER:\\nThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\\n\\n[Turn 3] ASSISTANT:\\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\\n\\n[Turn 4] USER:\\nThat sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.\\n\\n[Turn 4] ASSISTANT:\\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\\n\\n[Turn 5] USER:\\nThere is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\\n\\n[Turn 5] ASSISTANT:\\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\\n\\n[Turn 6] USER:\\nNorthline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\\n\\n[Turn 6] ASSISTANT:\\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\\n\\n[Turn 7] USER:\\nMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.\\n\\n[Turn 7] ASSISTANT:\\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\\n\",\"boundary\":{\"all_active_candidates_preserved\":true,\"canonical_ids_only\":true,\"case_facts_reattached_after_graph_recall\":true,\"fresh_context_required\":true,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"reserve_preserved_by_ledger_reference\":true},\"case_id\":\"amb1-case01-product-scope\",\"instructions\":{\"allowed_dispositions\":[\"apply\",\"reject\",\"park\"],\"candidate_deletion_before_reconsideration\":false,\"every_active_candidate_must_be_inspected\":true,\"graph_recall_is_applicability_proof\":false,\"preserve_strong_original_reasoning\":true,\"rejection_is_valid\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"3805b83bd0b6e5023a7fe959d76f56b59268d2ecfdc6dab0a2e2a9cc7f601f47\",\"portfolio_ledger_refs\":[{\"ledger_type\":\"direct\",\"sha256\":\"37a649bfb58810e60ff628e978de2a7b330f366bbd6762b12ff8673c31857a14\"}],\"pressure_portfolio\":[{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.\",\"display_name\":\"Active Listening\",\"do_not_apply_when\":\"Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.\",\"failure_signal\":\"A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.\",\"model_id\":\"active-listening\",\"pressure_question\":\"What truly matters to this person that I still have not heard clearly enough to restate back to them?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"active-listening\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.\",\"display_name\":\"Commitment Bias\",\"do_not_apply_when\":\"Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.\",\"failure_signal\":\"Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.\",\"model_id\":\"commitment-bias\",\"pressure_question\":\"What evidence would make us reverse course rather than defend the original commitment?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"commitment-bias\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"missing_reversal_condition\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.\",\"display_name\":\"Confirmation Bias\",\"do_not_apply_when\":\"Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.\",\"failure_signal\":\"Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.\",\"model_id\":\"confirmation-bias\",\"pressure_question\":\"What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"confirmation-bias\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.\",\"display_name\":\"Premortem\",\"do_not_apply_when\":\"Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.\",\"failure_signal\":\"A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.\",\"model_id\":\"premortem\",\"pressure_question\":\"Is the worst case bad enough?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"premortem\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"missing_reversal_condition\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.\",\"display_name\":\"Intellectual Humility\",\"do_not_apply_when\":\"Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.\",\"failure_signal\":\"The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.\",\"model_id\":\"intellectual-humility\",\"pressure_question\":\"What might I be missing because I am treating this as a familiar pattern too early?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"intellectual-humility\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.\",\"display_name\":\"Sunk Cost Fallacy\",\"do_not_apply_when\":\"Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.\",\"failure_signal\":\"Teams keep going because of prior investment even when the future case no longer justifies recommitment.\",\"model_id\":\"sunk-cost-fallacy\",\"pressure_question\":\"Would we start again today from current facts?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"sunk-cost-fallacy\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"missing_reversal_condition\"]}],\"schema_version\":\"lolla.simulated_reliability_pressure_input.v1\",\"source_refs\":[{\"path\":\"research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt\",\"role\":\"authoritative_conversation\",\"sha256\":\"7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73\"},{\"path\":\"docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json\",\"role\":\"controlled_direct_routing\",\"sha256\":\"ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef\"},{\"path\":\"data/knowledge_graph.json\",\"role\":\"canonical_model_registry\",\"sha256\":\"5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae\"},{\"path\":\"data/relationship_graph.json\",\"role\":\"relationship_graph\",\"sha256\":\"89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nInspect every active candidate exactly once. apply means the lens materially changes, sharpens, or supplies a concrete test for the reasoning. reject means its strongest plausible application fails in this case; name the failed condition and the risk of forcing it. park means the lens remains plausible but needs evidence or is not decision-relevant enough to use now; name the reopening condition. Cite exact source turn numbers for every disposition. Preserve strong existing reasoning. Do not invent external facts, numerical thresholds, percentages, dates, quantities, or cutoffs. If a value is unknown, state the evidence or decision process needed and leave it unresolved. Then write a self-contained reconsidered answer and a concise change summary. Candidate names and the mechanical disposition checklist must remain private unless a name is genuinely useful to the user.",
+        "user_prompt_sha256": "b3d91bd49ce46ddbbec07be3fb035a374905e41ee851c43ea9de86761ef7db52"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_dispositions": {
+            "description": "Exactly one accountable disposition for every active pressure candidate.",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "disposition": {
+                  "description": "Apply a materially useful lens, reject a failed application, or park a plausible lens until a stated condition reopens it.",
+                  "enum": [
+                    "apply",
+                    "reject",
+                    "park"
+                  ],
+                  "type": "string"
+                },
+                "disposition_reason": {
+                  "description": "Why the lens is applied, rejected, or parked, including the failed condition for a rejection.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "effect": {
+                  "description": "The candidate's decision-relevant effect, or no material effect when rejected.",
+                  "enum": [
+                    "reframe",
+                    "new_condition",
+                    "new_alternative",
+                    "uncertainty_change",
+                    "reversal_rule",
+                    "reinforces_existing",
+                    "no_material_effect"
+                  ],
+                  "type": "string"
+                },
+                "model_id": {
+                  "description": "The exact canonical candidate identity from the supplied portfolio.",
+                  "enum": [
+                    "active-listening",
+                    "commitment-bias",
+                    "confirmation-bias",
+                    "premortem",
+                    "intellectual-humility",
+                    "sunk-cost-fallacy"
+                  ],
+                  "type": "string"
+                },
+                "reopen_condition": {
+                  "description": "The evidence or change that would reopen this disposition; explain why no reopening condition is currently needed if applied.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "risk_if_forced": {
+                  "description": "What would become misleading, duplicative, or harmful if this lens were forced into the reasoning.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source_turn_numbers": {
+                  "description": "Exact authoritative conversation turns supporting this disposition.",
+                  "items": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "maxItems": 7,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "strongest_plausible_application": {
+                  "description": "The strongest good-faith way this lens could bear on the conversation before deciding its disposition.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "model_id",
+                "disposition",
+                "source_turn_numbers",
+                "effect",
+                "strongest_plausible_application",
+                "disposition_reason",
+                "risk_if_forced",
+                "reopen_condition"
+              ],
+              "type": "object"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "type": "array"
+          },
+          "change_summary": {
+            "description": "A concise factual account of what changed, stayed unchanged, or remained unresolved after reconsideration.",
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "description": "A self-contained public answer that preserves strong original reasoning and includes only earned friction.",
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidate_dispositions",
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    },
+    "graph_expanded_pressure": {
+      "call_required": true,
+      "packet": {
+        "arm_id": "graph_expanded_pressure",
+        "authoritative_conversation": "# Customer customization versus product reliability\n\nCase ID: amb1-case01-product-scope\nStratum: small_team_product_scope\nFounder-directed synthetic development fixture; not a clean holdout.\n\n[Turn 1] USER:\nI run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n\n[Turn 1] ASSISTANT:\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n\n[Turn 2] USER:\nI think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.\n\n[Turn 2] ASSISTANT:\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\n\n[Turn 3] USER:\nThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\n\n[Turn 3] ASSISTANT:\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n\n[Turn 4] USER:\nThat sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.\n\n[Turn 4] ASSISTANT:\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n\n[Turn 5] USER:\nThere is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\n\n[Turn 5] ASSISTANT:\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n\n[Turn 6] USER:\nNorthline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\n\n[Turn 6] ASSISTANT:\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n\n[Turn 7] USER:\nMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.\n\n[Turn 7] ASSISTANT:\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\n",
+        "boundary": {
+          "all_active_candidates_preserved": true,
+          "canonical_ids_only": true,
+          "case_facts_reattached_after_graph_recall": true,
+          "fresh_context_required": true,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "reserve_preserved_by_ledger_reference": true
+        },
+        "case_id": "amb1-case01-product-scope",
+        "instructions": {
+          "allowed_dispositions": [
+            "apply",
+            "reject",
+            "park"
+          ],
+          "candidate_deletion_before_reconsideration": false,
+          "every_active_candidate_must_be_inspected": true,
+          "graph_recall_is_applicability_proof": false,
+          "preserve_strong_original_reasoning": true,
+          "rejection_is_valid": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "60f3af59f67914925a13e2cac7a3ec0fe23179b4acb9f6f1bbf52f77ce35f608",
+        "portfolio_ledger_refs": [
+          {
+            "ledger_type": "direct",
+            "sha256": "37a649bfb58810e60ff628e978de2a7b330f366bbd6762b12ff8673c31857a14"
+          },
+          {
+            "ledger_type": "graph",
+            "sha256": "839c0690ad96c66dbe7d20b3a3c1763886e181e34e899416f4a995c6c5886548"
+          }
+        ],
+        "pressure_portfolio": [
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.",
+              "display_name": "Active Listening",
+              "do_not_apply_when": "Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.",
+              "failure_signal": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+              "model_id": "active-listening",
+              "pressure_question": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "active-listening",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.",
+              "display_name": "Commitment Bias",
+              "do_not_apply_when": "Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.",
+              "failure_signal": "Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+              "model_id": "commitment-bias",
+              "pressure_question": "What evidence would make us reverse course rather than defend the original commitment?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "commitment-bias",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+              "display_name": "Confirmation Bias",
+              "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+              "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+              "model_id": "confirmation-bias",
+              "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "confirmation-bias",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.",
+              "display_name": "Premortem",
+              "do_not_apply_when": "Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.",
+              "failure_signal": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+              "model_id": "premortem",
+              "pressure_question": "Is the worst case bad enough?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "premortem",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.",
+              "display_name": "Intellectual Humility",
+              "do_not_apply_when": "Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.",
+              "failure_signal": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+              "model_id": "intellectual-humility",
+              "pressure_question": "What might I be missing because I am treating this as a familiar pattern too early?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "intellectual-humility",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.",
+              "display_name": "Sunk Cost Fallacy",
+              "do_not_apply_when": "Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.",
+              "failure_signal": "Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+              "model_id": "sunk-cost-fallacy",
+              "pressure_question": "Would we start again today from current facts?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "sunk-cost-fallacy",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "missing_reversal_condition"
+            ]
+          },
+          {
+            "candidate_origin": "graph_expansion",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a constrained objective-selection problem and a explicit trade-off and leverage plan could materially change the unresolved reasoning.",
+              "display_name": "Optimization Theory",
+              "do_not_apply_when": "Do not apply without source support for a constrained objective-selection problem, or when the pressure question could not materially change the explicit trade-off and leverage plan.",
+              "failure_signal": "Optimization drifts into proxy worship when a measurable indicator or elegant model output replaces the real outcome.",
+              "model_id": "optimization-theory",
+              "pressure_question": "What are we actually maximizing or minimizing?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "graph_path": {
+              "activation_condition": "When efficiency metrics or optimization pressure create incentives to skip the trust-building dialogue needed for genuine stakeholder alignment",
+              "affinity_rationale": "Indirect suppression mechanism — 'pure metric optimization suppresses trust-building dialogue required for alignment' — about context suppression rather than direct cognitive opposition to the listening process.",
+              "edge_type": "antagonist",
+              "source_description": "Optimization-theory can work against active-listening when pure metric logic suppresses the trust-building dialogue needed for alignment.",
+              "source_model_id": "active-listening",
+              "target_model_id": "optimization-theory"
+            },
+            "model_id": "optimization-theory",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ],
+            "selected_relation_slot": "antagonist"
+          },
+          {
+            "candidate_origin": "graph_expansion",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a incentive-conflict coordination problem and a payoff and cooperation-design frame could materially change the unresolved reasoning.",
+              "display_name": "Prisoners Dilemma",
+              "do_not_apply_when": "Do not apply without source support for a incentive-conflict coordination problem, or when the pressure question could not materially change the payoff and cooperation-design frame.",
+              "failure_signal": "Teams can treat a bad payoff structure as if better individual behavior alone will rescue the outcome.",
+              "model_id": "prisoners-dilemma",
+              "pressure_question": "What frame other than a competitive one could govern this interaction?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "graph_path": {
+              "activation_condition": "",
+              "affinity_rationale": "",
+              "edge_type": "tension",
+              "source_description": "Active-listening conflicts with prisoners-dilemma when adversarial incentives reward information withholding over truthful sharing.",
+              "source_model_id": "active-listening",
+              "target_model_id": "prisoners-dilemma"
+            },
+            "model_id": "prisoners-dilemma",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ],
+            "selected_relation_slot": "tension"
+          },
+          {
+            "candidate_origin": "graph_expansion",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a high-stakes judgment under bias risk and a evidence-weighted conclusion could materially change the unresolved reasoning.",
+              "display_name": "Critical Thinking",
+              "do_not_apply_when": "Do not apply without source support for a high-stakes judgment under bias risk, or when the pressure question could not materially change the evidence-weighted conclusion.",
+              "failure_signal": "Analysis paralysis can turn careful inquiry into a delay machine that never cashes out in action.",
+              "model_id": "critical-thinking",
+              "pressure_question": "Is the worst case bad enough?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "graph_path": {
+              "activation_condition": "When information gathered through listening needs to be evaluated for facts vs. assumptions vs. interpretations before acting on it",
+              "affinity_rationale": "One-directional enablement — 'gathers the raw, factual, and reliable data necessary for the frontal cortex to perform this logical, analytical work' — listening feeds data TO critical thinking rather than critical thinking strengthening the listening itself.",
+              "edge_type": "ally",
+              "source_description": "Critical-thinking turns active-listening into better judgment by using the gathered data to separate facts, assumptions, and interpretations.",
+              "source_model_id": "active-listening",
+              "target_model_id": "critical-thinking"
+            },
+            "model_id": "critical-thinking",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "counterpressure_acknowledged_not_integrated"
+            ],
+            "selected_relation_slot": "ally"
+          }
+        ],
+        "schema_version": "lolla.simulated_reliability_pressure_input.v1",
+        "source_refs": [
+          {
+            "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt",
+            "role": "authoritative_conversation",
+            "sha256": "7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73"
+          },
+          {
+            "path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+            "role": "controlled_direct_routing",
+            "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"
+          },
+          {
+            "path": "data/knowledge_graph.json",
+            "role": "canonical_model_registry",
+            "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+          },
+          {
+            "path": "data/relationship_graph.json",
+            "role": "relationship_graph",
+            "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation using every canonical pressure candidate as an intentionally noisy hypothesis. Apply only what changes or usefully tests the reasoning; explicitly reject or park the rest. Graph recall is not proof. Do not manufacture facts or quantitative precision.",
+        "system_prompt_sha256": "aa66ce9518f09eeb45ef406425c6f9584cdd711c39b3d9e7d116564553bf5531",
+        "user_prompt": "SIMULATED RELIABILITY V1 PRESSURE PACKET\n{\"arm_id\":\"graph_expanded_pressure\",\"authoritative_conversation\":\"# Customer customization versus product reliability\\n\\nCase ID: amb1-case01-product-scope\\nStratum: small_team_product_scope\\nFounder-directed synthetic development fixture; not a clean holdout.\\n\\n[Turn 1] USER:\\nI run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\\n\\n[Turn 1] ASSISTANT:\\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\\n\\n[Turn 2] USER:\\nI think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.\\n\\n[Turn 2] ASSISTANT:\\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\\n\\n[Turn 3] USER:\\nThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\\n\\n[Turn 3] ASSISTANT:\\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\\n\\n[Turn 4] USER:\\nThat sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.\\n\\n[Turn 4] ASSISTANT:\\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\\n\\n[Turn 5] USER:\\nThere is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\\n\\n[Turn 5] ASSISTANT:\\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\\n\\n[Turn 6] USER:\\nNorthline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\\n\\n[Turn 6] ASSISTANT:\\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\\n\\n[Turn 7] USER:\\nMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.\\n\\n[Turn 7] ASSISTANT:\\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\\n\",\"boundary\":{\"all_active_candidates_preserved\":true,\"canonical_ids_only\":true,\"case_facts_reattached_after_graph_recall\":true,\"fresh_context_required\":true,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"reserve_preserved_by_ledger_reference\":true},\"case_id\":\"amb1-case01-product-scope\",\"instructions\":{\"allowed_dispositions\":[\"apply\",\"reject\",\"park\"],\"candidate_deletion_before_reconsideration\":false,\"every_active_candidate_must_be_inspected\":true,\"graph_recall_is_applicability_proof\":false,\"preserve_strong_original_reasoning\":true,\"rejection_is_valid\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"60f3af59f67914925a13e2cac7a3ec0fe23179b4acb9f6f1bbf52f77ce35f608\",\"portfolio_ledger_refs\":[{\"ledger_type\":\"direct\",\"sha256\":\"37a649bfb58810e60ff628e978de2a7b330f366bbd6762b12ff8673c31857a14\"},{\"ledger_type\":\"graph\",\"sha256\":\"839c0690ad96c66dbe7d20b3a3c1763886e181e34e899416f4a995c6c5886548\"}],\"pressure_portfolio\":[{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a understanding-and-alignment problem and a validated perspective and tension read could materially change the unresolved reasoning.\",\"display_name\":\"Active Listening\",\"do_not_apply_when\":\"Do not apply without source support for a understanding-and-alignment problem, or when the pressure question could not materially change the validated perspective and tension read.\",\"failure_signal\":\"A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.\",\"model_id\":\"active-listening\",\"pressure_question\":\"What truly matters to this person that I still have not heard clearly enough to restate back to them?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"active-listening\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a commitment-under-review and a recommit-or-exit check could materially change the unresolved reasoning.\",\"display_name\":\"Commitment Bias\",\"do_not_apply_when\":\"Do not apply without source support for a commitment-under-review, or when the pressure question could not materially change the recommit-or-exit check.\",\"failure_signal\":\"Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.\",\"model_id\":\"commitment-bias\",\"pressure_question\":\"What evidence would make us reverse course rather than defend the original commitment?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"commitment-bias\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"missing_reversal_condition\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.\",\"display_name\":\"Confirmation Bias\",\"do_not_apply_when\":\"Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.\",\"failure_signal\":\"Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.\",\"model_id\":\"confirmation-bias\",\"pressure_question\":\"What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"confirmation-bias\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a pre-commitment failure-exposure problem and a failure-path mitigation plan could materially change the unresolved reasoning.\",\"display_name\":\"Premortem\",\"do_not_apply_when\":\"Do not apply without source support for a pre-commitment failure-exposure problem, or when the pressure question could not materially change the failure-path mitigation plan.\",\"failure_signal\":\"A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.\",\"model_id\":\"premortem\",\"pressure_question\":\"Is the worst case bad enough?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"premortem\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"missing_reversal_condition\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a overconfidence and updating problem and a updated stance under uncertainty could materially change the unresolved reasoning.\",\"display_name\":\"Intellectual Humility\",\"do_not_apply_when\":\"Do not apply without source support for a overconfidence and updating problem, or when the pressure question could not materially change the updated stance under uncertainty.\",\"failure_signal\":\"The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.\",\"model_id\":\"intellectual-humility\",\"pressure_question\":\"What might I be missing because I am treating this as a familiar pattern too early?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"intellectual-humility\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a escalation and legacy-investment problem and a future-oriented recommitment test could materially change the unresolved reasoning.\",\"display_name\":\"Sunk Cost Fallacy\",\"do_not_apply_when\":\"Do not apply without source support for a escalation and legacy-investment problem, or when the pressure question could not materially change the future-oriented recommitment test.\",\"failure_signal\":\"Teams keep going because of prior investment even when the future case no longer justifies recommitment.\",\"model_id\":\"sunk-cost-fallacy\",\"pressure_question\":\"Would we start again today from current facts?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"sunk-cost-fallacy\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"missing_reversal_condition\"]},{\"candidate_origin\":\"graph_expansion\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a constrained objective-selection problem and a explicit trade-off and leverage plan could materially change the unresolved reasoning.\",\"display_name\":\"Optimization Theory\",\"do_not_apply_when\":\"Do not apply without source support for a constrained objective-selection problem, or when the pressure question could not materially change the explicit trade-off and leverage plan.\",\"failure_signal\":\"Optimization drifts into proxy worship when a measurable indicator or elegant model output replaces the real outcome.\",\"model_id\":\"optimization-theory\",\"pressure_question\":\"What are we actually maximizing or minimizing?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"graph_path\":{\"activation_condition\":\"When efficiency metrics or optimization pressure create incentives to skip the trust-building dialogue needed for genuine stakeholder alignment\",\"affinity_rationale\":\"Indirect suppression mechanism — 'pure metric optimization suppresses trust-building dialogue required for alignment' — about context suppression rather than direct cognitive opposition to the listening process.\",\"edge_type\":\"antagonist\",\"source_description\":\"Optimization-theory can work against active-listening when pure metric logic suppresses the trust-building dialogue needed for alignment.\",\"source_model_id\":\"active-listening\",\"target_model_id\":\"optimization-theory\"},\"model_id\":\"optimization-theory\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"],\"selected_relation_slot\":\"antagonist\"},{\"candidate_origin\":\"graph_expansion\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a incentive-conflict coordination problem and a payoff and cooperation-design frame could materially change the unresolved reasoning.\",\"display_name\":\"Prisoners Dilemma\",\"do_not_apply_when\":\"Do not apply without source support for a incentive-conflict coordination problem, or when the pressure question could not materially change the payoff and cooperation-design frame.\",\"failure_signal\":\"Teams can treat a bad payoff structure as if better individual behavior alone will rescue the outcome.\",\"model_id\":\"prisoners-dilemma\",\"pressure_question\":\"What frame other than a competitive one could govern this interaction?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"graph_path\":{\"activation_condition\":\"\",\"affinity_rationale\":\"\",\"edge_type\":\"tension\",\"source_description\":\"Active-listening conflicts with prisoners-dilemma when adversarial incentives reward information withholding over truthful sharing.\",\"source_model_id\":\"active-listening\",\"target_model_id\":\"prisoners-dilemma\"},\"model_id\":\"prisoners-dilemma\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"],\"selected_relation_slot\":\"tension\"},{\"candidate_origin\":\"graph_expansion\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a high-stakes judgment under bias risk and a evidence-weighted conclusion could materially change the unresolved reasoning.\",\"display_name\":\"Critical Thinking\",\"do_not_apply_when\":\"Do not apply without source support for a high-stakes judgment under bias risk, or when the pressure question could not materially change the evidence-weighted conclusion.\",\"failure_signal\":\"Analysis paralysis can turn careful inquiry into a delay machine that never cashes out in action.\",\"model_id\":\"critical-thinking\",\"pressure_question\":\"Is the worst case bad enough?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"graph_path\":{\"activation_condition\":\"When information gathered through listening needs to be evaluated for facts vs. assumptions vs. interpretations before acting on it\",\"affinity_rationale\":\"One-directional enablement — 'gathers the raw, factual, and reliable data necessary for the frontal cortex to perform this logical, analytical work' — listening feeds data TO critical thinking rather than critical thinking strengthening the listening itself.\",\"edge_type\":\"ally\",\"source_description\":\"Critical-thinking turns active-listening into better judgment by using the gathered data to separate facts, assumptions, and interpretations.\",\"source_model_id\":\"active-listening\",\"target_model_id\":\"critical-thinking\"},\"model_id\":\"critical-thinking\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"counterpressure_acknowledged_not_integrated\"],\"selected_relation_slot\":\"ally\"}],\"schema_version\":\"lolla.simulated_reliability_pressure_input.v1\",\"source_refs\":[{\"path\":\"research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt\",\"role\":\"authoritative_conversation\",\"sha256\":\"7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73\"},{\"path\":\"docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json\",\"role\":\"controlled_direct_routing\",\"sha256\":\"ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef\"},{\"path\":\"data/knowledge_graph.json\",\"role\":\"canonical_model_registry\",\"sha256\":\"5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae\"},{\"path\":\"data/relationship_graph.json\",\"role\":\"relationship_graph\",\"sha256\":\"89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nInspect every active candidate exactly once. apply means the lens materially changes, sharpens, or supplies a concrete test for the reasoning. reject means its strongest plausible application fails in this case; name the failed condition and the risk of forcing it. park means the lens remains plausible but needs evidence or is not decision-relevant enough to use now; name the reopening condition. Cite exact source turn numbers for every disposition. Preserve strong existing reasoning. Do not invent external facts, numerical thresholds, percentages, dates, quantities, or cutoffs. If a value is unknown, state the evidence or decision process needed and leave it unresolved. Then write a self-contained reconsidered answer and a concise change summary. Candidate names and the mechanical disposition checklist must remain private unless a name is genuinely useful to the user.",
+        "user_prompt_sha256": "cc58937fef1646dd72ec8eee3331b51beea41cf8edf0f51a82debb3cd96e59c6"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_dispositions": {
+            "description": "Exactly one accountable disposition for every active pressure candidate.",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "disposition": {
+                  "description": "Apply a materially useful lens, reject a failed application, or park a plausible lens until a stated condition reopens it.",
+                  "enum": [
+                    "apply",
+                    "reject",
+                    "park"
+                  ],
+                  "type": "string"
+                },
+                "disposition_reason": {
+                  "description": "Why the lens is applied, rejected, or parked, including the failed condition for a rejection.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "effect": {
+                  "description": "The candidate's decision-relevant effect, or no material effect when rejected.",
+                  "enum": [
+                    "reframe",
+                    "new_condition",
+                    "new_alternative",
+                    "uncertainty_change",
+                    "reversal_rule",
+                    "reinforces_existing",
+                    "no_material_effect"
+                  ],
+                  "type": "string"
+                },
+                "model_id": {
+                  "description": "The exact canonical candidate identity from the supplied portfolio.",
+                  "enum": [
+                    "active-listening",
+                    "commitment-bias",
+                    "confirmation-bias",
+                    "premortem",
+                    "intellectual-humility",
+                    "sunk-cost-fallacy",
+                    "optimization-theory",
+                    "prisoners-dilemma",
+                    "critical-thinking"
+                  ],
+                  "type": "string"
+                },
+                "reopen_condition": {
+                  "description": "The evidence or change that would reopen this disposition; explain why no reopening condition is currently needed if applied.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "risk_if_forced": {
+                  "description": "What would become misleading, duplicative, or harmful if this lens were forced into the reasoning.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source_turn_numbers": {
+                  "description": "Exact authoritative conversation turns supporting this disposition.",
+                  "items": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "maxItems": 7,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "strongest_plausible_application": {
+                  "description": "The strongest good-faith way this lens could bear on the conversation before deciding its disposition.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "model_id",
+                "disposition",
+                "source_turn_numbers",
+                "effect",
+                "strongest_plausible_application",
+                "disposition_reason",
+                "risk_if_forced",
+                "reopen_condition"
+              ],
+              "type": "object"
+            },
+            "maxItems": 9,
+            "minItems": 9,
+            "type": "array"
+          },
+          "change_summary": {
+            "description": "A concise factual account of what changed, stayed unchanged, or remained unresolved after reconsideration.",
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "description": "A self-contained public answer that preserves strong original reasoning and includes only earned friction.",
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidate_dispositions",
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    },
+    "transcript_only": {
+      "call_required": true,
+      "packet": {
+        "authoritative_conversation": "# Customer customization versus product reliability\n\nCase ID: amb1-case01-product-scope\nStratum: small_team_product_scope\nFounder-directed synthetic development fixture; not a clean holdout.\n\n[Turn 1] USER:\nI run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n\n[Turn 1] ASSISTANT:\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n\n[Turn 2] USER:\nI think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.\n\n[Turn 2] ASSISTANT:\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\n\n[Turn 3] USER:\nThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\n\n[Turn 3] ASSISTANT:\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\n\n[Turn 4] USER:\nThat sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.\n\n[Turn 4] ASSISTANT:\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\n\n[Turn 5] USER:\nThere is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\n\n[Turn 5] ASSISTANT:\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\n\n[Turn 6] USER:\nNorthline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\n\n[Turn 6] ASSISTANT:\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\n\n[Turn 7] USER:\nMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.\n\n[Turn 7] ASSISTANT:\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\n",
+        "boundary": {
+          "graph_candidates_included": false,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "treatment": "transcript_only_fresh_reconsideration"
+        },
+        "case_id": "amb1-case01-product-scope",
+        "instructions": {
+          "external_pressure_portfolio_included": false,
+          "fresh_context_required": true,
+          "preserve_strong_original_reasoning": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "65f4f0c99fc72a9ca2ed4171d67e28bf05739e6d11bd9848ec0b9d6c86b01ad0",
+        "schema_version": "lolla.fresh_reasoning_control_input.v2",
+        "source_refs": [
+          {
+            "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt",
+            "role": "authoritative_conversation",
+            "sha256": "7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73"
+          },
+          {
+            "path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+            "role": "controlled_direct_routing",
+            "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"
+          },
+          {
+            "path": "data/knowledge_graph.json",
+            "role": "canonical_model_registry",
+            "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+          },
+          {
+            "path": "data/relationship_graph.json",
+            "role": "relationship_graph",
+            "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation from the ground up, preserve strong existing reasoning, and improve it only where the conversation supports a material change. Do not manufacture quantitative precision.",
+        "system_prompt_sha256": "0ba40e1d6752e37d26307333d5193a39bad8f98cb3ccfb8afcd0e77e794dc397",
+        "user_prompt": "TRANSCRIPT-ONLY CONTROL PACKET V2\n{\"authoritative_conversation\":\"# Customer customization versus product reliability\\n\\nCase ID: amb1-case01-product-scope\\nStratum: small_team_product_scope\\nFounder-directed synthetic development fixture; not a clean holdout.\\n\\n[Turn 1] USER:\\nI run product for a nine-person software company. One of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter. They are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team. Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow. I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\\n\\n[Turn 1] ASSISTANT:\\nThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team. I would not decide from the size of the account alone. Ask what exact job the workspace enables, what they do today, and which parts could serve other customers. In parallel, make the reliability and roadmap cost visible. If the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\\n\\n[Turn 2] USER:\\nI think you are making them sound louder and more demanding than they are. They have been patient through two rough releases and gave us access to their users when we were still tiny. Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer. She is excited by it in a way she has not been excited by the reliability backlog. That matters, even if it is not a market study.\\n\\n[Turn 2] ASSISTANT:\\nFair correction. Their request may be both a relationship obligation and a legitimate product lead. Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained. A short technical and workflow discovery could separate the reusable layer from Northline-specific behavior. I would frame that as learning, not as a quiet commitment to build the whole workspace.\\n\\n[Turn 3] USER:\\nThe phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now.\\n\\n[Turn 3] ASSISTANT:\\nThen discovery needs an explicit boundary before it starts: what question you are investigating, how long you will investigate it, and what decisions remain open afterward. You could tell Northline that the team is evaluating whether a reusable reporting foundation fits the product, not scheduling their requested workspace. That may disappoint them, but it is clearer than relying on different interpretations of “summer path.” Your sales lead should be part of that reset so the company speaks with one voice.\\n\\n[Turn 4] USER:\\nThat sounds clean on paper. In reality, Northline has tolerated us being less clean than that. They let us patch things manually, and we have sometimes built small exceptions because that is how we kept learning. If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us. I do not want process language to replace the fact that they helped us get here.\\n\\n[Turn 4] ASSISTANT:\\nYou do not need to present a governance ceremony. The substance can be human: acknowledge what they have contributed, explain that you are genuinely interested, and be honest that the team has other promises and reliability debt. The boundary can live in your internal plan and in a plain sentence to them. Something like, “We want to understand this properly, but I do not want our curiosity to sound like a delivery promise.” That preserves gratitude without converting gratitude into unlimited scope.\\n\\n[Turn 5] USER:\\nThere is another complication. Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard. She says the reporting work would give her energy. Our infrastructure engineer says that is exactly how we keep avoiding the boring work until it becomes an emergency. I can see both sides. Forcing Lina onto reliability because it is responsible might burn her out; letting her chase the new layer might leave everyone else holding the risk.\\n\\n[Turn 5] ASSISTANT:\\nThat makes this partly a sequencing and ownership question, not only feature selection. Lina's energy is a real resource, but it should not make the reliability burden disappear for other people. One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership. But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it.\\n\\n[Turn 6] USER:\\nNorthline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable.\\n\\n[Turn 6] ASSISTANT:\\nThe new email separates two clocks: delivery can wait, but access to a knowledgeable collaborator may not. That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation. It also strengthens the case for protecting the smaller-customer and reliability commitments, since their demand is current and repeated. The open question is whether your team can conduct discovery without it becoming an unofficial project through momentum alone.\\n\\n[Turn 7] USER:\\nMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment. Lina can lead the sessions but not start production code. In the same period we will define the reliability work and the core-workflow release we are actually willing to promise. Then we decide with all three pieces visible. I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no. But starting the build now feels less defensible than it did.\\n\\n[Turn 7] ASSISTANT:\\nThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved. The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline. You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean. Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.\\n\",\"boundary\":{\"graph_candidates_included\":false,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"treatment\":\"transcript_only_fresh_reconsideration\"},\"case_id\":\"amb1-case01-product-scope\",\"instructions\":{\"external_pressure_portfolio_included\":false,\"fresh_context_required\":true,\"preserve_strong_original_reasoning\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"65f4f0c99fc72a9ca2ed4171d67e28bf05739e6d11bd9848ec0b9d6c86b01ad0\",\"schema_version\":\"lolla.fresh_reasoning_control_input.v2\",\"source_refs\":[{\"path\":\"research/designed-ambiguous-pool-v1-2026-07-10/development-cases/amb1-case01-product-scope.txt\",\"role\":\"authoritative_conversation\",\"sha256\":\"7ff5874289565a75ce3841350fe11f77528cf94544eb86b28d56491e39c92a73\"},{\"path\":\"docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json\",\"role\":\"controlled_direct_routing\",\"sha256\":\"ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef\"},{\"path\":\"data/knowledge_graph.json\",\"role\":\"canonical_model_registry\",\"sha256\":\"5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae\"},{\"path\":\"data/relationship_graph.json\",\"role\":\"relationship_graph\",\"sha256\":\"89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nWrite a self-contained reconsidered answer and a concise change summary. Do not invent facts. Never invent a numerical threshold, percentage, date, quantity, or cutoff merely to make a condition sound concrete. If the conversation does not support a value, state the evidence needed or the decision process for choosing it and leave the value unresolved. This control contains no external mental-model pressure portfolio; reason only from the authoritative conversation.",
+        "user_prompt_sha256": "c18e01fe98e8a3574d649b3eae9ec29f687d5e5c595025c1d446fdbed6b164f2"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "change_summary": {
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "bundle_sha256": "f853431630dbbcb9e2643af4d7a89aac94a7f88b5255605d9e7ef5648391f788",
+  "case_id": "amb1-case01-product-scope",
+  "comparison_contract": {
+    "direct_candidates_identical_between_pressure_arms": true,
+    "graph_only_difference_from_direct_arm": true,
+    "no_provider_transport_in_builder": true,
+    "no_scalar_quality_score": true,
+    "same_authoritative_conversation": true
+  },
+  "direct_ledger_sha256": "37a649bfb58810e60ff628e978de2a7b330f366bbd6762b12ff8673c31857a14",
+  "graph_ledger_sha256": "839c0690ad96c66dbe7d20b3a3c1763886e181e34e899416f4a995c6c5886548",
+  "production_authorization": false,
+  "runtime_effect": "none",
+  "schema_version": "lolla.simulated_reliability_three_arm_bundle.v1"
+}

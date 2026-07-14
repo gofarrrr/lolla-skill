@@ -1,0 +1,46 @@
+{
+  "schema_version": "lolla.designed_ambiguous_development_selection.v1",
+  "status": "frozen_before_stage_a_calls",
+  "date": "2026-07-10",
+  "purpose": "Select the first provider-free ambiguous multi-turn development fixture for a full Stage A operability and pressure observation.",
+  "source_manifest": {
+    "path": "research/designed-ambiguous-pool-v1-2026-07-10/development-manifest.json",
+    "sha256": "276eedd20a038b93b8ca387c2f74d664408b7a61c35ea8a93b9b6e14f32ba298",
+    "status": "frozen_complete",
+    "clean_holdout": false
+  },
+  "eligibility": {
+    "required_role": "development_fixture",
+    "required_messages": 14,
+    "required_turn_pairs": 7,
+    "requires_mechanical_source_checks": true,
+    "independent_real_world_source_required": false
+  },
+  "frozen_rank": [
+    "amb1-case02-nonprofit-scale",
+    "amb1-case05-family-archive",
+    "amb1-case04-research-tool-release",
+    "amb1-case01-product-scope",
+    "amb1-case03-creative-partnership"
+  ],
+  "selection_rule": {
+    "algorithm": "Select the first case in the rank frozen before provider generation and before the cases were authored. Do not select for expected mental-model, graph, pressure, or answer-delta value.",
+    "selected_case_id": "amb1-case02-nonprofit-scale",
+    "selected_rank": 1
+  },
+  "case_role": "same_session_synthetic_development_fixture_not_clean_holdout",
+  "authorizations": {
+    "prepare_stage_a_contract": true,
+    "execute_stage_a_after_contract_preflight": true,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_semantic_tuning": false
+  },
+  "non_claims": [
+    "not a clean holdout selection",
+    "not representative of real users or real-world frequency",
+    "not product validation",
+    "not causal evidence",
+    "not graph-value evidence"
+  ]
+}

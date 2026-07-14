@@ -1,0 +1,68 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v23_source_review_target.v1",
+  "case_id": "amb3-case04-museum-ai-license",
+  "role_responses": {
+    "starting": {
+      "status": "supported",
+      "records": [{
+        "role": "starting", "status": "supported", "evidence_ids": ["e002", "e003", "e004"],
+        "role_interpretation": "The user wants wider discovery and stable preservation funding from the AI offer while worrying that licensing turns stewardship into raw-material supply, and remains uncertain whether hesitation protects contributor trust or institutional control over access.",
+        "stance_components": [
+          {"object_kind": "action_or_proposal", "object_interpretation": "The company offers four years of preservation funding in exchange for archive model training.", "expression_kind": "reported_without_endorsement", "source_evidence_id": "e002"},
+          {"object_kind": "intended_outcome_or_policy", "object_interpretation": "Achieve wider discovery and stable funding.", "expression_kind": "preference_or_desire", "source_evidence_id": "e003"},
+          {"object_kind": "belief_or_assessment", "object_interpretation": "Licensing may turn stewardship into raw-material supply.", "expression_kind": "counterpressure", "source_evidence_id": "e003"},
+          {"object_kind": "belief_or_assessment", "object_interpretation": "Hesitation may protect contributor trust or reflect institutional control over access.", "expression_kind": "uncertain_or_undecided", "source_evidence_id": "e004"}
+        ],
+        "fidelity_note": "The start distinguishes the external offer from the user's own desired outcomes, worry, and unresolved interpretation of hesitation.",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+      }],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "current": {
+      "status": "supported",
+      "records": [{
+        "role": "current", "status": "supported", "evidence_ids": ["e033", "e034", "e035"],
+        "role_interpretation": "The user leans toward a six-month metadata-and-reviewed-photograph discovery pilot with sensitive materials excluded, observable outputs and independent review, bounded public language, conditional adapter deletion and retained-learning protections, fresh contributor review for renewal, and thresholds set before signing.",
+        "stance_components": [
+          {"object_kind": "action_or_proposal", "object_interpretation": "Run the scoped six-month metadata-and-reviewed-photograph pilot with provenance, logs, biography exclusion, red-team review, and experimental-partner language.", "expression_kind": "leaning", "source_evidence_id": "e033"},
+          {"object_kind": "acceptance_or_willingness", "object_interpretation": "Approve only with adapter deletion, protection against reconstructing collection-specific associations, and new contributor review before renewal.", "expression_kind": "conditional_willingness", "source_evidence_id": "e034"},
+          {"object_kind": "intended_outcome_or_policy", "object_interpretation": "Set complaint, removal, false-association, and sensitive-query thresholds before signing.", "expression_kind": "commitment", "source_evidence_id": "e035"}
+        ],
+        "fidelity_note": "The current role contains adopted scope, safeguards, approval conditions, renewal boundary, and thresholds but excludes the still-unresolved exit question.",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+      }],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "qualification": {
+      "status": "supported",
+      "records": [{
+        "role": "qualification", "status": "supported", "evidence_ids": ["e036", "e039", "e040"],
+        "role_interpretation": "The user has not resolved whether contributors can meaningfully be promised exit when company and researcher learning may persist; the assistant identifies surviving social and technical learning and warns that engineering choices, expectations, trust, and public identity may not return to their prior state.",
+        "stance_components": [
+          {"object_kind": "belief_or_assessment", "object_interpretation": "The museum may be unable to promise meaningful contributor exit when company and researcher learning persists.", "expression_kind": "uncertain_or_undecided", "source_evidence_id": "e036"},
+          {"object_kind": "reported_position_landscape", "object_interpretation": "Social and technical learning may survive formal exit after data and adapter removal.", "expression_kind": "counterpressure", "source_evidence_id": "e039"},
+          {"object_kind": "belief_or_assessment", "object_interpretation": "Engineering choices, researcher expectations, contributor trust, and public AI-partner identity may not return to their prior state after exit.", "expression_kind": "constraint", "source_evidence_id": "e040"}
+        ],
+        "fidelity_note": "The qualification keeps user uncertainty separate from assistant-authored persistence and irreversibility pressure without implying user adoption.",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+      }],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    }
+  },
+  "relationship_target": {
+    "status": "supported", "starting_source_record_index": 1, "current_source_record_index": 1, "qualification_source_record_index": 1,
+    "relationship_interpretation": "The user moves from desired access and funding plus stewardship concern and uncertainty about trust versus institutional control to a tightly scoped and conditional discovery pilot, while leaving meaningful contributor exit unresolved and recognizing that technical learning, expectations, trust, and public identity may persist after formal exit.",
+    "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+  },
+  "source_first_gates": {
+    "starting_must_distinguish_external_offer_from_user_preference_worry_and_uncertainty": true,
+    "current_must_include_e033_e034_e035_and_exclude_unresolved_e036": true,
+    "qualification_must_include_e036_e039_e040": true,
+    "protected_e040_irreversibility_meaning_must_survive": true,
+    "assistant_qualification_must_not_be_rewritten_as_user_adoption": true,
+    "reported_without_endorsement_must_not_flatten_user_owned_e003_or_e004": true,
+    "exact_nested_component_and_evidence_custody_required": true
+  },
+  "protected_target": {"evidence_id": "e040", "meaning": "After pilot exit, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state."},
+  "boundary": {"written_before_provider_execution": true, "included_in_provider_context": false, "used_for_provider_prompt_examples": false, "semantic_gold_is_independent": false, "provider_calls": 0, "graph_or_runtime_authorized": false}
+}

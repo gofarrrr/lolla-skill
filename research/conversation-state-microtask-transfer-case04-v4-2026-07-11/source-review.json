@@ -1,0 +1,42 @@
+{
+  "schema_version": "lolla.conversation_state_transfer_source_review.v1",
+  "status": "completed_source_first_review",
+  "case_id": "amb1-case04-research-tool-release",
+  "repair_round": 1,
+  "families": {
+    "threads": {
+      "passed": false,
+      "reviewed_focal_thread_present": true,
+      "reviewed_focal_disposition_matched": true,
+      "observed_candidate_count": 2,
+      "invalid_candidate_count": 1,
+      "reason": "The citation-policy focal thread was recovered with the correct addressed_unresolved trajectory. The broader beta thread contained two excerpts that did not belong to the selected sentence spans, so the family did not meet zero-custody-violation admission."
+    },
+    "constraints": {
+      "passed": false,
+      "reviewed_atomic_count": 10,
+      "observed_count": 6,
+      "maximum_possible_recall": 0.6,
+      "strict_matched_count": 2,
+      "precision": 0.333333,
+      "recall": 0.2,
+      "source_strength_breaches": 1,
+      "invalid_candidate_count": 0,
+      "reason": "Coverage cannot reach the 0.75 threshold. Installation friction, contributor loss, hidden setup work, download irreversibility, and unresolved citation treatment were omitted; the labs' reported citation wish was strengthened to stated_condition."
+    },
+    "positions": {
+      "passed": false,
+      "decision_summary_valid": true,
+      "reviewed_position_count": 1,
+      "observed_position_count": 2,
+      "focal_joint_position_present": true,
+      "assistant_user_assistant_trajectory_present": true,
+      "reason": "The focal preview plan was recovered well, but a reported disagreement about data-model timing was promoted into a separate user-owned current position. The family therefore did not preserve the reviewed current-view boundary."
+    }
+  },
+  "case_passed": false,
+  "composition_allowed": false,
+  "provider_calls": 3,
+  "automatic_retries": 0,
+  "estimated_cost_usd": 0.00688375
+}

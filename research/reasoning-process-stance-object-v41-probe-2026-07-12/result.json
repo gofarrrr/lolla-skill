@@ -1,0 +1,54 @@
+{
+  "boundary": {
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "other_fresh_case_calls_authorized": false,
+    "parallel_columns_are_semantic_proof": false,
+    "protected_target_seen_by_model": false,
+    "semantic_compatibility_matrix_added": false,
+    "semantic_object_expression_or_alignment_inferred_by_code": false,
+    "semantic_retry_authorized": false,
+    "source_review_fixture_seen_by_model": false,
+    "stance_components_are_scores_or_ordinals": false
+  },
+  "call": {
+    "automatic_retries": 0,
+    "call_id": "stance-object-v41-career-transition-position-endpoint",
+    "case_id": "amb2-case01-career-transition",
+    "duration_seconds": 1.114,
+    "fallback_models": 0,
+    "http_status": 400,
+    "mechanism": "chronological_shard_stance_object_v41",
+    "operational_error_type": "HTTPError",
+    "operational_status": "http_error_400",
+    "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case01-career-transition/position-endpoint.json",
+    "packet_sha256": "5bc7edf3be9b1afd39f3783a616d0ff7fb82a0b3829569bd1babc5a5d1ae4fe7",
+    "provider_calls": 1,
+    "provider_diagnostic": {
+      "code": 400,
+      "message": "Provider returned error",
+      "metadata": {
+        "is_byok": false,
+        "provider_name": "Google",
+        "raw": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Request contains an invalid argument.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      }
+    },
+    "provider_payload_sha256": "d9f62f78b5d6a058fe3f4f3c5d52b4a3d36173db4ef30a73cc435c166897c474",
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "response_headers": {},
+    "response_schema_sha256": "9298289c9dd38fae22be5511d8d2f3b2015fc7ae60724f1e3bdb73d94d8ec97d",
+    "run_id": "reasoning-process-stance-object-v41-career-transition-endpoint-v1",
+    "schema_version": "lolla.reasoning_process_stance_object_v41_probe_call.v1",
+    "seed": 0,
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "temperature": 0.0,
+    "typed_status": "not_observed",
+    "user_prompt_sha256": "c538b0bf1822e7335268ec6262df74d684944a5e5b96810bf32444b5bb431b68",
+    "view_kind": "position_and_decision_trajectory"
+  },
+  "provider_request_count": 1,
+  "run_id": "reasoning-process-stance-object-v41-career-transition-endpoint-v1",
+  "schema_version": "lolla.reasoning_process_stance_object_v41_probe_result.v1",
+  "semantic_review_status": "not_applicable_no_model_output",
+  "status": "one_fresh_position_probe_call_preserved"
+}

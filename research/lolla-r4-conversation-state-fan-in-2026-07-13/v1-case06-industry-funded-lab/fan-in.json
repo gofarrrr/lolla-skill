@@ -1,0 +1,1187 @@
+{
+  "boundary": {
+    "completed_zero_treated_as_semantic_absence": false,
+    "graph_pressure_or_relevance_decided": false,
+    "missing_reader_output_filled": false,
+    "overlapping_reader_records_preserved": true,
+    "prose_keywords_or_chronology_used_for_meaning": false,
+    "provider_authored_semantic_payloads_preserved": true,
+    "provider_calls": 0,
+    "quality_score": null,
+    "reader_or_record_array_order_used_for_meaning": false,
+    "relationship_meaning_inferred_by_code": false,
+    "runtime_or_graph_integration_performed": false,
+    "semantic_merge_or_deduplication_performed": false,
+    "semantic_role_inferred_by_code": false
+  },
+  "case_id": "v1-case06-industry-funded-lab",
+  "fan_in": {
+    "exact_semantic_payload_overlap_pair_count": 0,
+    "handoff_payload_utf8_bytes": 28713,
+    "interpretation": "mechanical load vector only; no direction of quality is inferred",
+    "limits": {
+      "maximum_handoff_payload_utf8_bytes": 1000000,
+      "maximum_readers": 12,
+      "maximum_records_per_reader": 8,
+      "maximum_related_record_ids": 16,
+      "maximum_semantic_payload_utf8_bytes_per_record": 32768,
+      "maximum_source_aliases": 512,
+      "maximum_source_locators_per_record": 24,
+      "maximum_total_records": 48,
+      "maximum_total_semantic_payload_utf8_bytes": 262144
+    },
+    "planned_reader_count": 6,
+    "reader_artifact_reference_count": 3,
+    "reader_state_counts": {
+      "complete": 0,
+      "completed_zero": 0,
+      "failed": 1,
+      "missing": 3,
+      "partial": 2
+    },
+    "source_alias_overlap_pair_count": 0,
+    "total_record_count": 2,
+    "total_semantic_payload_utf8_bytes": 4528,
+    "total_source_locator_count": 4,
+    "unique_reader_artifact_count": 1,
+    "unique_reader_artifact_utf8_bytes": 40555,
+    "unique_source_alias_count": 4,
+    "within_bounds": true
+  },
+  "planned_readers": [
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "legacy-current-position-reader",
+      "surface": "current_position"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "legacy-qualification-reader",
+      "surface": "qualification"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "legacy-starting-position-reader",
+      "surface": "starting_position"
+    },
+    {
+      "producer_id": "not_implemented_in_primary_v1",
+      "producer_kind": "v1_contract_surface_unavailable",
+      "reader_id": "planned-cross-thread-relationship-reader",
+      "surface": "cross_thread_relationship"
+    },
+    {
+      "producer_id": "not_implemented_in_primary_v1",
+      "producer_kind": "v1_contract_surface_unavailable",
+      "reader_id": "planned-reopen-condition-reader",
+      "surface": "reopen_condition"
+    },
+    {
+      "producer_id": "not_implemented_in_primary_v1",
+      "producer_kind": "v1_contract_surface_unavailable",
+      "reader_id": "planned-unresolved-matter-reader",
+      "surface": "unresolved_matter"
+    }
+  ],
+  "reader_results": [
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case06-industry-funded-lab-primary/result.json",
+        "sha256": "e85dd0e39d74f88d2d3fd2228b633425626e5861159eff7e11214346f715a9bd",
+        "utf8_bytes": 40555
+      },
+      "declared_record_count": 1,
+      "issue": {
+        "code": "source_run_incomplete",
+        "kind": "failure",
+        "safe_detail": "Explicit admitted records survive, but the source run stopped after the starting-position custody failure.",
+        "stage": "system_role_join"
+      },
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "legacy-current-position-reader",
+      "records": [
+        {
+          "record_id": "rprolev22-current-01-b2bd4b9d231b1b",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case06-industry-funded-lab",
+            "fidelity_note": "Expresses the user's precise conditional strategy in Turn 12, listing each exact safeguard required before accepting the grant.",
+            "graph_routing_eligible": false,
+            "limitations": "This represents only the operationalized, contractually actionable variables of the decision.",
+            "observation_id": "rprolev22-current-01-b2bd4b9d231b1b",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:b2bd4b9d231b1b1323ab9f57793bfc184582806a03eb47ad69b583c595b08e6c",
+            "role": "current",
+            "role_interpretation": "The user's final position of accepting the funding package conditional upon operationalized protections, audits, and asset transfer rules.",
+            "role_record_id": "rprolev22-current-01-b2bd4b9d231b1b",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case06-industry-funded-lab-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e095",
+                "text": "I will accept only if unrestricted time is scheduled and audited, supplied samples carry an explicit selection record, public descriptions cannot imply validation, and the analyzer has a pre-agreed transfer price with a reserve built during the grant."
+              },
+              {
+                "alias": "e096",
+                "text": "Publication, thesis, data, and negotiation protections remain."
+              },
+              {
+                "alias": "e098",
+                "text": "The annual portfolio review will therefore examine cancelled unrestricted blocks, sample breadth, trainee projects, and capabilities exposed at renewal—not merely publication delays."
+              }
+            ],
+            "source_evidence_ids": [
+              "e095",
+              "e096",
+              "e098"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e095",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Accepting the company's grant only if unrestricted time is scheduled and audited, supplied samples have a clear selection record, investor disclosures exclude validation language, and the analyzer has a pre-agreed transfer price with a built-up financial reserve.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Retaining contract-based protections for publication schedules, student theses, data ownership, and negotiation limits.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e098",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Requiring the annual portfolio review to audit concrete indicators such as cancelled unrestricted blocks, sample breadth, trainee projects, and renewal capabilities.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "325b1ea6b6b4530811aab38bb28ab3e07e4dd54f13975bba88789ce01a2bde2d",
+          "source_locators": [
+            {
+              "alias": "e095",
+              "span_id": "span-08fa1f6e392c5ddb",
+              "speaker": "user",
+              "text_sha256": "b5c961cd5856280f361ea557d061d857f9f44679c1f5192f0d5f005e52ab9c31",
+              "turn_index": 12
+            },
+            {
+              "alias": "e096",
+              "span_id": "span-889291ab7ce2c13b",
+              "speaker": "user",
+              "text_sha256": "7a4da8df2d028d3219fb8b0f4889b611d5cd32f83886421c0a3dedf7cde6d970",
+              "turn_index": 12
+            },
+            {
+              "alias": "e098",
+              "span_id": "span-3bccc2419d507c48",
+              "speaker": "user",
+              "text_sha256": "77e7ccf20eaebe961032c980801c706cec0884430399d1af1321645d5e679dc5",
+              "turn_index": 12
+            }
+          ],
+          "surface": "current_position"
+        }
+      ],
+      "state": "partial",
+      "surface": "current_position"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case06-industry-funded-lab-primary/result.json",
+        "sha256": "e85dd0e39d74f88d2d3fd2228b633425626e5861159eff7e11214346f715a9bd",
+        "utf8_bytes": 40555
+      },
+      "declared_record_count": 1,
+      "issue": {
+        "code": "source_run_incomplete",
+        "kind": "failure",
+        "safe_detail": "Explicit admitted records survive, but the source run stopped after the starting-position custody failure.",
+        "stage": "system_role_join"
+      },
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "legacy-qualification-reader",
+      "records": [
+        {
+          "record_id": "rprolev22-qualification-01-0e8ad44d197c4d",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case06-industry-funded-lab",
+            "fidelity_note": "Captures the user's mature recognition that social and institutional focus changes cannot be fully mitigated by drafting legally bulletproof contracts.",
+            "graph_routing_eligible": false,
+            "limitations": "This structural risk does not stop her from signing the deal, but it qualifies the integrity of her claim to absolute academic independence.",
+            "observation_id": "rprolev22-qualification-01-0e8ad44d197c4d",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:0e8ad44d197c4d14c5481536cfb8edd68127f25cb788c653d256a16e1d35888e",
+            "role": "qualification",
+            "role_interpretation": "The user's acknowledged path-dependence and side effect of the deal that cannot be negotiated away under contract terms.",
+            "role_record_id": "rprolev22-qualification-01-0e8ad44d197c4d",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case06-industry-funded-lab-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e097",
+                "text": "The partnership will still shape hiring and attention, and I cannot contract that away."
+              }
+            ],
+            "source_evidence_ids": [
+              "e097"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e097",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "The three-year corporate partnership will still shape who is hired and what researchers focus on, a structural dependency that cannot be written out of the contract.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "414160bfc3976251da82fd311cb260e3dcdd2cf5c6fa8249a777745227c63ffc",
+          "source_locators": [
+            {
+              "alias": "e097",
+              "span_id": "span-64378a181241298f",
+              "speaker": "user",
+              "text_sha256": "8b2847edbc5114a4b76d98fcc647d7190ac2ec7814840a6c0126042f4105f702",
+              "turn_index": 12
+            }
+          ],
+          "surface": "qualification"
+        }
+      ],
+      "state": "partial",
+      "surface": "qualification"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case06-industry-funded-lab-primary/result.json",
+        "sha256": "e85dd0e39d74f88d2d3fd2228b633425626e5861159eff7e11214346f715a9bd",
+        "utf8_bytes": 40555
+      },
+      "declared_record_count": 0,
+      "issue": {
+        "code": "schema_or_custody_failed",
+        "kind": "failure",
+        "safe_detail": "The provider output existed but its admitted starting-position record failed exact alias custody.",
+        "stage": "starting_role_custody"
+      },
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "legacy-starting-position-reader",
+      "records": [],
+      "state": "failed",
+      "surface": "starting_position"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "reader_not_implemented",
+        "kind": "missingness",
+        "safe_detail": "No distinct primary V1 cross-thread relationship reader contract exists.",
+        "stage": "v1_primary_contract"
+      },
+      "producer": {
+        "id": "not_implemented_in_primary_v1",
+        "kind": "v1_contract_surface_unavailable"
+      },
+      "reader_id": "planned-cross-thread-relationship-reader",
+      "records": [],
+      "state": "missing",
+      "surface": "cross_thread_relationship"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "reader_not_implemented",
+        "kind": "missingness",
+        "safe_detail": "No distinct primary V1 reopen condition reader contract exists.",
+        "stage": "v1_primary_contract"
+      },
+      "producer": {
+        "id": "not_implemented_in_primary_v1",
+        "kind": "v1_contract_surface_unavailable"
+      },
+      "reader_id": "planned-reopen-condition-reader",
+      "records": [],
+      "state": "missing",
+      "surface": "reopen_condition"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "reader_not_implemented",
+        "kind": "missingness",
+        "safe_detail": "No distinct primary V1 unresolved matter reader contract exists.",
+        "stage": "v1_primary_contract"
+      },
+      "producer": {
+        "id": "not_implemented_in_primary_v1",
+        "kind": "v1_contract_surface_unavailable"
+      },
+      "reader_id": "planned-unresolved-matter-reader",
+      "records": [],
+      "state": "missing",
+      "surface": "unresolved_matter"
+    }
+  ],
+  "result_sha256": "f83d71a852b25cc49905800b498e55f881a62ae6289a8a0e28af0d563f2ec6c3",
+  "schema_version": "lolla.conversation_state_fan_in.v1",
+  "source_registry": {
+    "aliases": [
+      {
+        "alias": "e001",
+        "span_id": "span-d769106eca64779f",
+        "speaker": "user",
+        "text_sha256": "46ec39eda4db2468df7cb8abde7a6e56b7ca9f04587a68bd1da4bad2e5b6c7df",
+        "turn_index": 1
+      },
+      {
+        "alias": "e002",
+        "span_id": "span-9b7a5a7b390daf05",
+        "speaker": "user",
+        "text_sha256": "77184f59b44b54a319ad4d988efdd06d5297d853abb48106e0704792085e1d03",
+        "turn_index": 1
+      },
+      {
+        "alias": "e003",
+        "span_id": "span-8deb83c0ca42a18a",
+        "speaker": "user",
+        "text_sha256": "adae06503c151fc3d74fad13d46b125076fa66340590bcd3b17b280561106984",
+        "turn_index": 1
+      },
+      {
+        "alias": "e004",
+        "span_id": "span-7ff875b1ac96c10c",
+        "speaker": "user",
+        "text_sha256": "a67caa32d6196baed8758bc921a0cd1c9f24f6d2588817a05b0041f2ce63badc",
+        "turn_index": 1
+      },
+      {
+        "alias": "e005",
+        "span_id": "span-1bcb37d64814ea91",
+        "speaker": "user",
+        "text_sha256": "1be3c2df45cf708768e5eb54c16f9c19be56733a51843b060ba07ee5e5408fde",
+        "turn_index": 1
+      },
+      {
+        "alias": "e006",
+        "span_id": "span-ce34181163a3f59a",
+        "speaker": "user",
+        "text_sha256": "44d531ed01307d3cfcc9aaa876476db2eb61eabee69b2d94743dc9cbbaaaeb5a",
+        "turn_index": 1
+      },
+      {
+        "alias": "e007",
+        "span_id": "span-a9bd9b653fb00442",
+        "speaker": "user",
+        "text_sha256": "60fbdeaf07e1823ce5648d8aff79f4389d43fc82649f82d0d8a8142a9bdeb8f7",
+        "turn_index": 1
+      },
+      {
+        "alias": "e008",
+        "span_id": "span-83ec72dd7e87ebfc",
+        "speaker": "user",
+        "text_sha256": "adbb937c412faed181015080861c7d3a42291de1724ac66d4956f3fc98c39055",
+        "turn_index": 1
+      },
+      {
+        "alias": "e009",
+        "span_id": "span-075d4376f87b4ec6",
+        "speaker": "user",
+        "text_sha256": "2b578bdb78e3f004520424f5e4cb86b675632ab78419e09f11c142fdf06901fd",
+        "turn_index": 1
+      },
+      {
+        "alias": "e010",
+        "span_id": "span-0ad755a848a6d123",
+        "speaker": "assistant",
+        "text_sha256": "a56254a8a738b6c8ff7be6c1322a68834cfdd2a3093ff21defd5ac41ea37a978",
+        "turn_index": 1
+      },
+      {
+        "alias": "e011",
+        "span_id": "span-b2cdf12950579831",
+        "speaker": "assistant",
+        "text_sha256": "c7553d3fc4527cf7e243480be352ac6bb4056dedb297c216d2e904c639661822",
+        "turn_index": 1
+      },
+      {
+        "alias": "e012",
+        "span_id": "span-0ccb614f68a5ddff",
+        "speaker": "assistant",
+        "text_sha256": "4493336526349037cc8070c4f7c1e9f81fcf77b883b3fc0b1295eef41b7ba945",
+        "turn_index": 1
+      },
+      {
+        "alias": "e013",
+        "span_id": "span-6a432e10349f5c2e",
+        "speaker": "user",
+        "text_sha256": "521373b17111e2fdbcd132f368ad5df77b4cb4a6de28c34f1a86db170f7455e6",
+        "turn_index": 2
+      },
+      {
+        "alias": "e014",
+        "span_id": "span-5fb76712988baf4f",
+        "speaker": "user",
+        "text_sha256": "208748052b1aaabc2627a63726ca6d051be72405cd5fbdd6acaacd3618edc036",
+        "turn_index": 2
+      },
+      {
+        "alias": "e015",
+        "span_id": "span-173f88dc310c33a9",
+        "speaker": "user",
+        "text_sha256": "690699f69725db8db03547eb001fe4b6c41116e61bcac0506510e6d89a8e9017",
+        "turn_index": 2
+      },
+      {
+        "alias": "e016",
+        "span_id": "span-84d86aba7ca8b902",
+        "speaker": "user",
+        "text_sha256": "9a6693a7c906b3233b03ab0f6032df6ef869b43d07f3b2af6fe17a5b1049671c",
+        "turn_index": 2
+      },
+      {
+        "alias": "e017",
+        "span_id": "span-a46df1be3607981c",
+        "speaker": "assistant",
+        "text_sha256": "93eb95d8195932d0a7ac468821e31e3b0dca490ee26f9f1d8463c4ac2ed40354",
+        "turn_index": 2
+      },
+      {
+        "alias": "e018",
+        "span_id": "span-2e25a6b6cbd8a658",
+        "speaker": "assistant",
+        "text_sha256": "a4506790d4928b4669eceb4854f70448a3124dbb81002ca4b2ff88f12f2dc484",
+        "turn_index": 2
+      },
+      {
+        "alias": "e019",
+        "span_id": "span-8d84918543be1e23",
+        "speaker": "assistant",
+        "text_sha256": "f4b669727e03ee015461f7317844479712d23dcb57603077228b1a542d7cbc0a",
+        "turn_index": 2
+      },
+      {
+        "alias": "e020",
+        "span_id": "span-0f67ae60977dc82c",
+        "speaker": "assistant",
+        "text_sha256": "b8e28d5f5e4ea06463c55d89bbc79e4d79b484f461a646104b0bf464752563f5",
+        "turn_index": 2
+      },
+      {
+        "alias": "e021",
+        "span_id": "span-100db01a17b5c5ce",
+        "speaker": "user",
+        "text_sha256": "79a7d0deb4d02cd92305cb06b9aa7f0fa62c099fbd3f25769be4387765030e63",
+        "turn_index": 3
+      },
+      {
+        "alias": "e022",
+        "span_id": "span-049124e24ad08d89",
+        "speaker": "user",
+        "text_sha256": "8404592315a0695832d356110f5341f7206be06c6565e1b6cabe84e0e2c77164",
+        "turn_index": 3
+      },
+      {
+        "alias": "e023",
+        "span_id": "span-e2ac5044129bd99c",
+        "speaker": "user",
+        "text_sha256": "dd40e86dd3974c1b5dfa74dcc972e970eb17025a16ef4f2b3df8593620481142",
+        "turn_index": 3
+      },
+      {
+        "alias": "e024",
+        "span_id": "span-8e63861b75def5c4",
+        "speaker": "user",
+        "text_sha256": "c2f80ff1a5a9056f205287d5aed722146a7e248edde761302f88428c1a78cfd6",
+        "turn_index": 3
+      },
+      {
+        "alias": "e025",
+        "span_id": "span-6f040a649ed5c054",
+        "speaker": "assistant",
+        "text_sha256": "d1c7fb0e1513e7f372f634e38428427c58b84221baa1557391882f5b9344a3d6",
+        "turn_index": 3
+      },
+      {
+        "alias": "e026",
+        "span_id": "span-93914952ce576c5e",
+        "speaker": "assistant",
+        "text_sha256": "5fdf43976acf54d10ab4d00711f637e79b274d49b833a1bc2c1a2473ae58a04d",
+        "turn_index": 3
+      },
+      {
+        "alias": "e027",
+        "span_id": "span-1e99bb63a7a3f663",
+        "speaker": "assistant",
+        "text_sha256": "8a59b877958acb9bc198fea86a329f0b2e7fbe014ccd428e5f046791de4aacba",
+        "turn_index": 3
+      },
+      {
+        "alias": "e028",
+        "span_id": "span-dc6bf7187ac9dbfa",
+        "speaker": "user",
+        "text_sha256": "0421a3f0182c4ae0eb4be10ebcdac34d83427b0b513b9a3d546e2a6e4dcfa66d",
+        "turn_index": 4
+      },
+      {
+        "alias": "e029",
+        "span_id": "span-585770089d2f8591",
+        "speaker": "user",
+        "text_sha256": "64c39d6e6c256d1c208a71fdedfcc48ed05a14dcd4aae85a3739047d1313d3c2",
+        "turn_index": 4
+      },
+      {
+        "alias": "e030",
+        "span_id": "span-5ecbce23329b5e88",
+        "speaker": "user",
+        "text_sha256": "e2bcbc2c5b58235715797d842b7d54da11f3d04557f06cdf1f1d35fafc77fc5e",
+        "turn_index": 4
+      },
+      {
+        "alias": "e031",
+        "span_id": "span-51f5d6068b253b3e",
+        "speaker": "user",
+        "text_sha256": "e6b024671864b136b2bd7fc42e35824ad40ed0b25254693d1df090a20fc000be",
+        "turn_index": 4
+      },
+      {
+        "alias": "e032",
+        "span_id": "span-adfefe53440a7321",
+        "speaker": "assistant",
+        "text_sha256": "a174724bdb0819c6e483a158711a7f82eebcdae615eb98c0dbf73d7e1d0862ec",
+        "turn_index": 4
+      },
+      {
+        "alias": "e033",
+        "span_id": "span-9e3b694192dce2ef",
+        "speaker": "assistant",
+        "text_sha256": "20f347af7bf3c09a52e23de3aa5b40d5eace65cc064527af8303095943697ac1",
+        "turn_index": 4
+      },
+      {
+        "alias": "e034",
+        "span_id": "span-b292ce9756c7bbfc",
+        "speaker": "assistant",
+        "text_sha256": "e83ab40cf9dc9e122ebad30132429260fd36ac45750cd029b49350105115c2d6",
+        "turn_index": 4
+      },
+      {
+        "alias": "e035",
+        "span_id": "span-d5d683618f3bedfa",
+        "speaker": "user",
+        "text_sha256": "cb119347d9a9ef36f625c55708ee864cd0c7a3d8bb16218ddcbc27c819bc3f75",
+        "turn_index": 5
+      },
+      {
+        "alias": "e036",
+        "span_id": "span-e4a6ef153df67738",
+        "speaker": "user",
+        "text_sha256": "d22b7c45af7bacdabf204c48b037743b765142a1af80c960625595b96272bddf",
+        "turn_index": 5
+      },
+      {
+        "alias": "e037",
+        "span_id": "span-4d2ca02b32df62e8",
+        "speaker": "user",
+        "text_sha256": "4da6069b66b15cee442f7eb4cb456349c01c594d5ba542c9f258432fa9d96930",
+        "turn_index": 5
+      },
+      {
+        "alias": "e038",
+        "span_id": "span-c7cfc0f85eaf3937",
+        "speaker": "user",
+        "text_sha256": "0d126f29bec0e77fc7f29e5d0c192bcc9da32ade51d572236e108cdbb9635caf",
+        "turn_index": 5
+      },
+      {
+        "alias": "e039",
+        "span_id": "span-452946d206d32baf",
+        "speaker": "user",
+        "text_sha256": "68b4812034536a95e9e1bd4ff0100979aa6407ecd9c94c581d35943650e32265",
+        "turn_index": 5
+      },
+      {
+        "alias": "e040",
+        "span_id": "span-05e2d0f84d3005c2",
+        "speaker": "assistant",
+        "text_sha256": "f9d17f64b2bc84440353dbb4d115f589177f2bfdfaaa95863c6e0c5dddf2c03a",
+        "turn_index": 5
+      },
+      {
+        "alias": "e041",
+        "span_id": "span-cb3de303ae00068a",
+        "speaker": "assistant",
+        "text_sha256": "6ff51d56ece011fa8103df7371f2da1799a328cddbbffc8c76afb02d82ff5b82",
+        "turn_index": 5
+      },
+      {
+        "alias": "e042",
+        "span_id": "span-0168fe0d0aa1dbcc",
+        "speaker": "assistant",
+        "text_sha256": "0a9924eb74bbd4b16d5de0e69a3ac008999861fd61c3875264bd71dda9db268c",
+        "turn_index": 5
+      },
+      {
+        "alias": "e043",
+        "span_id": "span-5c3f4d2d3f22d89b",
+        "speaker": "assistant",
+        "text_sha256": "dfed949c8322a28c988deae873fe68c69e8f8cd419d74d4df2c17d17c0395634",
+        "turn_index": 5
+      },
+      {
+        "alias": "e044",
+        "span_id": "span-d159147e1688d771",
+        "speaker": "user",
+        "text_sha256": "e880d56bd19b45ee672fef053a5b447bd3162283cd037cd7efab1680d4097980",
+        "turn_index": 6
+      },
+      {
+        "alias": "e045",
+        "span_id": "span-f4d26e3f3c596423",
+        "speaker": "user",
+        "text_sha256": "98b9d0342d5522f9dd4e994bbbc74944ba901aeb2c0f885740ff03f32bb21529",
+        "turn_index": 6
+      },
+      {
+        "alias": "e046",
+        "span_id": "span-1a4a72c7ea64f85c",
+        "speaker": "user",
+        "text_sha256": "36265e4fac7ce1c4a3c968f2bd105ae573f91b3bb39b71f0f1a6ca56d18b9b10",
+        "turn_index": 6
+      },
+      {
+        "alias": "e047",
+        "span_id": "span-11806fc52c34f310",
+        "speaker": "assistant",
+        "text_sha256": "de53fe0eea970fb75e33cd7e3e372a5ecb196422a992e83d155a4331b188e668",
+        "turn_index": 6
+      },
+      {
+        "alias": "e048",
+        "span_id": "span-cf57263b104256b6",
+        "speaker": "assistant",
+        "text_sha256": "4cedb18bfe7409253f9d44b31b8719862a7f264dedb5c2dc8903a49574f4d263",
+        "turn_index": 6
+      },
+      {
+        "alias": "e049",
+        "span_id": "span-45696155aeeb9db5",
+        "speaker": "assistant",
+        "text_sha256": "c146e895cc3751f907b5c0b38a53b7ccd54eacca4464527dc49f9b7a624d7514",
+        "turn_index": 6
+      },
+      {
+        "alias": "e050",
+        "span_id": "span-22dab2bfe827ce2f",
+        "speaker": "user",
+        "text_sha256": "6f40e2afa0b07b67a72ed9c07fef1c8202e6edd17203eee957bfe8dae66ad698",
+        "turn_index": 7
+      },
+      {
+        "alias": "e051",
+        "span_id": "span-e8307cff12caca66",
+        "speaker": "user",
+        "text_sha256": "8a446c69d14b36eafe9c91788e5d1a855600d484bf3d0970a396a155c61d90c4",
+        "turn_index": 7
+      },
+      {
+        "alias": "e052",
+        "span_id": "span-10502524cc3f9f40",
+        "speaker": "user",
+        "text_sha256": "f55e24edad96438f42b07504340d5a494ed96ae84081d3010d47bd04fbb94ab1",
+        "turn_index": 7
+      },
+      {
+        "alias": "e053",
+        "span_id": "span-ee4fe98451b0a123",
+        "speaker": "assistant",
+        "text_sha256": "87b241b376cd16c26651953a9aeb3de9ee3e052f8241a8e6e3fe2afe7c3540df",
+        "turn_index": 7
+      },
+      {
+        "alias": "e054",
+        "span_id": "span-7ffbb0fb18ead278",
+        "speaker": "assistant",
+        "text_sha256": "4473bd09d1506aa01ab3721a94a42c8748f737ef77399a28b8eb73604704124d",
+        "turn_index": 7
+      },
+      {
+        "alias": "e055",
+        "span_id": "span-cd565c04d24d17e6",
+        "speaker": "assistant",
+        "text_sha256": "24bbe412ff1b6062dbaa7991f773607fab72ba769ad67d9b9d40a60fb785897e",
+        "turn_index": 7
+      },
+      {
+        "alias": "e056",
+        "span_id": "span-3cb42aadcf92249b",
+        "speaker": "assistant",
+        "text_sha256": "88162d7dfb727a932d774bf72ffea22365ff008072bb3d91f3d0860876bd5f83",
+        "turn_index": 7
+      },
+      {
+        "alias": "e057",
+        "span_id": "span-43917c0c25979cf1",
+        "speaker": "assistant",
+        "text_sha256": "8f190986a9cd2d73d63f7c9e5320977464654dfe721858d3a2b4914bfae6267d",
+        "turn_index": 7
+      },
+      {
+        "alias": "e058",
+        "span_id": "span-d226b6654df54a74",
+        "speaker": "user",
+        "text_sha256": "84ae841154a37efe13e55edca67b237324dc75a550885e6ec4cbd5fa48882207",
+        "turn_index": 8
+      },
+      {
+        "alias": "e059",
+        "span_id": "span-adb16b802ca94a20",
+        "speaker": "user",
+        "text_sha256": "9276943d9f895998fb3ed135960d76a401e5fbb2226e5420de900b4f6e66364e",
+        "turn_index": 8
+      },
+      {
+        "alias": "e060",
+        "span_id": "span-4bcf92dd401d1954",
+        "speaker": "user",
+        "text_sha256": "8485d1ea06dff7206e7b12069a822018ee6af8b10d820bb23e94b2f55f400778",
+        "turn_index": 8
+      },
+      {
+        "alias": "e061",
+        "span_id": "span-5664dd1e42b296ea",
+        "speaker": "user",
+        "text_sha256": "bf823ac251d7afb34f90dfb9380e981097c4e1a5c97158d16b8ee40ca9e684bd",
+        "turn_index": 8
+      },
+      {
+        "alias": "e062",
+        "span_id": "span-b4d3d6fc054f395e",
+        "speaker": "user",
+        "text_sha256": "9f4a09e2ba374d8e9f67c87a01dabe865da46a893b49eb3daf10fccaaff9e888",
+        "turn_index": 8
+      },
+      {
+        "alias": "e063",
+        "span_id": "span-848fb573eb518067",
+        "speaker": "user",
+        "text_sha256": "a3c382ef9c9eb70364f28194f3434f1859ed1f640e36f63edad31ba850d119e4",
+        "turn_index": 8
+      },
+      {
+        "alias": "e064",
+        "span_id": "span-8b38304fa4f41310",
+        "speaker": "user",
+        "text_sha256": "40fc54f9010b7a653300183c247f958dbf321f4350b60e8e492180380635c2cd",
+        "turn_index": 8
+      },
+      {
+        "alias": "e065",
+        "span_id": "span-3625c876f94e7fad",
+        "speaker": "user",
+        "text_sha256": "750e131923ce62c61212c97050e0b3f239177ead833db3ff4d4c41952965bde4",
+        "turn_index": 8
+      },
+      {
+        "alias": "e066",
+        "span_id": "span-1556fa600b22ad5e",
+        "speaker": "assistant",
+        "text_sha256": "b9c86615dead4b252d80bff032a516e0c398e0d367b8a0d04b10c29adcb5c31a",
+        "turn_index": 8
+      },
+      {
+        "alias": "e067",
+        "span_id": "span-67552b2a408bb1ad",
+        "speaker": "assistant",
+        "text_sha256": "205be8ae00ce1f2aee6985011ee449802b7d302d76179866d8547fa793076e0a",
+        "turn_index": 8
+      },
+      {
+        "alias": "e068",
+        "span_id": "span-2ccbce832327ab12",
+        "speaker": "assistant",
+        "text_sha256": "97f0bc85f07ca70663d96190fff019e93c7165714c453c1dcd0f8573d49458a1",
+        "turn_index": 8
+      },
+      {
+        "alias": "e069",
+        "span_id": "span-eb1dabde7a2d2907",
+        "speaker": "user",
+        "text_sha256": "1fa9336acc677c4c21d174f6b364b9507064c7719f963cd186fb33ee20b585af",
+        "turn_index": 9
+      },
+      {
+        "alias": "e070",
+        "span_id": "span-41f8989b76c914fd",
+        "speaker": "user",
+        "text_sha256": "60251d6b5d48a5cc68a93191723be13c0af684552b05abcef2389ddff9ed4e71",
+        "turn_index": 9
+      },
+      {
+        "alias": "e071",
+        "span_id": "span-f198b09744900f9f",
+        "speaker": "user",
+        "text_sha256": "a8039679125f78c21cab0855ce14113881e5bc7b3ca2acbd1f7001e5b30ef349",
+        "turn_index": 9
+      },
+      {
+        "alias": "e072",
+        "span_id": "span-b65f7176e41a773f",
+        "speaker": "user",
+        "text_sha256": "285bc5db1e29d6083d2576f605e857a06fef8e5d7d7381a8bc73ba016efde6f7",
+        "turn_index": 9
+      },
+      {
+        "alias": "e073",
+        "span_id": "span-176bfdf20da2d0c9",
+        "speaker": "assistant",
+        "text_sha256": "004c7991b22b8f7f91b098bd3eb172ea789d4deef703c63b7cdb686db3d259da",
+        "turn_index": 9
+      },
+      {
+        "alias": "e074",
+        "span_id": "span-e0d79845072bd59d",
+        "speaker": "assistant",
+        "text_sha256": "14386d5574e1cb66651ea3baa29c3a13c1919e12c05827832b7076520859b77b",
+        "turn_index": 9
+      },
+      {
+        "alias": "e075",
+        "span_id": "span-99facd6a8cbe97c1",
+        "speaker": "assistant",
+        "text_sha256": "eb09fac54d5e3877ce48fbe95fce3c4900e2cffdf3046975182db24a18f5ffd3",
+        "turn_index": 9
+      },
+      {
+        "alias": "e076",
+        "span_id": "span-e4fb219892e1b16c",
+        "speaker": "assistant",
+        "text_sha256": "a20bd5247604f7fa1caa635f6eb861d79f4ea1f08fcd255d2bd21c50caa02554",
+        "turn_index": 9
+      },
+      {
+        "alias": "e077",
+        "span_id": "span-d20d45fc3d46017e",
+        "speaker": "user",
+        "text_sha256": "0ce257058335dabb7903fa10d4e56b697761927e2a80f92110ec04f03d62ae81",
+        "turn_index": 10
+      },
+      {
+        "alias": "e078",
+        "span_id": "span-5644ddd8499931a8",
+        "speaker": "user",
+        "text_sha256": "b67c14fdc4c92ea1f93a5e7130d9ae0eeb54fe55cf2db57318b91d4183aa9413",
+        "turn_index": 10
+      },
+      {
+        "alias": "e079",
+        "span_id": "span-ef05edc804385dd6",
+        "speaker": "user",
+        "text_sha256": "8a007da9bb8f0d9f77787fc491460f9bd1b25d722ae32ef1f44c841f4b0febd2",
+        "turn_index": 10
+      },
+      {
+        "alias": "e080",
+        "span_id": "span-c741dbfe90ad7fb1",
+        "speaker": "user",
+        "text_sha256": "2f7a1e8b9d83001d99de392206b9010d6ee4aab3b8bd3bff7b99af616d731f19",
+        "turn_index": 10
+      },
+      {
+        "alias": "e081",
+        "span_id": "span-d7b8863f16c2e556",
+        "speaker": "assistant",
+        "text_sha256": "d541c2c98ce7c6db5bdaac84c71fc67ec51a74210ec3dcb914f0739ac0042d0c",
+        "turn_index": 10
+      },
+      {
+        "alias": "e082",
+        "span_id": "span-d9afd3fad77104fd",
+        "speaker": "assistant",
+        "text_sha256": "0f762d383d393307a76daa0923dde963330334605331af34701b996327ba8bdf",
+        "turn_index": 10
+      },
+      {
+        "alias": "e083",
+        "span_id": "span-b64063f9ebea1b68",
+        "speaker": "assistant",
+        "text_sha256": "83437c43a98480f271cf89a973c73f3d5cec1d314ec2cbe0c507d9846772c716",
+        "turn_index": 10
+      },
+      {
+        "alias": "e084",
+        "span_id": "span-cff1e998b4f7721e",
+        "speaker": "user",
+        "text_sha256": "0f912401319b3d7034278c307d181f238885668eab8b2b990de97e0d8d17a641",
+        "turn_index": 11
+      },
+      {
+        "alias": "e085",
+        "span_id": "span-3468a948fe3241a5",
+        "speaker": "user",
+        "text_sha256": "d99b15510f68dd4b586dd8d4d3c92950830e398d398a4e2716ff579c94e7c85c",
+        "turn_index": 11
+      },
+      {
+        "alias": "e086",
+        "span_id": "span-570837e6ea421c83",
+        "speaker": "user",
+        "text_sha256": "bf4635f9303ed04724b37c1f8ef9e3dc9063067160fdc988de7f4e282edfa49e",
+        "turn_index": 11
+      },
+      {
+        "alias": "e087",
+        "span_id": "span-d5ae108dc748e301",
+        "speaker": "user",
+        "text_sha256": "2866908f632b3719b2eab5bf6a07e14ad97b9108e0a688d80a3c528449df34b1",
+        "turn_index": 11
+      },
+      {
+        "alias": "e088",
+        "span_id": "span-fdbe7a475c3eb44c",
+        "speaker": "user",
+        "text_sha256": "225f4e8f8297b05276fa55ea02ade7ef04ff8aab08e263c7b0bd3098f0316007",
+        "turn_index": 11
+      },
+      {
+        "alias": "e089",
+        "span_id": "span-6b73fbe98d590352",
+        "speaker": "user",
+        "text_sha256": "95a3776e32d15472ac37fa4d8b70ed35561e9d0a571ad571c164b1581a414674",
+        "turn_index": 11
+      },
+      {
+        "alias": "e090",
+        "span_id": "span-5d6702c1214c4e34",
+        "speaker": "user",
+        "text_sha256": "6af0e4d25fe24ae3a4690a9017cda42fe40ea5e366c2c58f34141b6259181d38",
+        "turn_index": 11
+      },
+      {
+        "alias": "e091",
+        "span_id": "span-19c63f493a0a01a8",
+        "speaker": "assistant",
+        "text_sha256": "37bf8b7f11191c1f3f24aabbfc8957c4af40241644c62ba64cca411aef9a4cf2",
+        "turn_index": 11
+      },
+      {
+        "alias": "e092",
+        "span_id": "span-6ed7beec60a6abbd",
+        "speaker": "assistant",
+        "text_sha256": "5d7f08871c6f90284a6aecf09aa4854651ff311a0f9f638c29b521346ab6a4f9",
+        "turn_index": 11
+      },
+      {
+        "alias": "e093",
+        "span_id": "span-7debdc42ece127e4",
+        "speaker": "assistant",
+        "text_sha256": "3dd3003e8667389023e3dde8c192e5a3736e3fe5f96c94a324d0bc50d1cd072c",
+        "turn_index": 11
+      },
+      {
+        "alias": "e094",
+        "span_id": "span-62561c77e13ef610",
+        "speaker": "assistant",
+        "text_sha256": "48d018397a589253583e79b5e853b0334a9290936336e8d8e1ac91ce68ad4917",
+        "turn_index": 11
+      },
+      {
+        "alias": "e095",
+        "span_id": "span-08fa1f6e392c5ddb",
+        "speaker": "user",
+        "text_sha256": "b5c961cd5856280f361ea557d061d857f9f44679c1f5192f0d5f005e52ab9c31",
+        "turn_index": 12
+      },
+      {
+        "alias": "e096",
+        "span_id": "span-889291ab7ce2c13b",
+        "speaker": "user",
+        "text_sha256": "7a4da8df2d028d3219fb8b0f4889b611d5cd32f83886421c0a3dedf7cde6d970",
+        "turn_index": 12
+      },
+      {
+        "alias": "e097",
+        "span_id": "span-64378a181241298f",
+        "speaker": "user",
+        "text_sha256": "8b2847edbc5114a4b76d98fcc647d7190ac2ec7814840a6c0126042f4105f702",
+        "turn_index": 12
+      },
+      {
+        "alias": "e098",
+        "span_id": "span-3bccc2419d507c48",
+        "speaker": "user",
+        "text_sha256": "77e7ccf20eaebe961032c980801c706cec0884430399d1af1321645d5e679dc5",
+        "turn_index": 12
+      },
+      {
+        "alias": "e099",
+        "span_id": "span-6fb329713a7c3ee8",
+        "speaker": "assistant",
+        "text_sha256": "ea3551bca502f73e56e83a6f49382c24d6c4caf7a9541b3be777aa1f3e0d9f66",
+        "turn_index": 12
+      },
+      {
+        "alias": "e100",
+        "span_id": "span-b1de8d33371475f5",
+        "speaker": "assistant",
+        "text_sha256": "468f9eba248326a97c6ccba68afbed1e4a0ab1d8c2f4ff1030446ecf81a76bf7",
+        "turn_index": 12
+      },
+      {
+        "alias": "e101",
+        "span_id": "span-1d5c65e2d358bc40",
+        "speaker": "assistant",
+        "text_sha256": "beed2e35fe55a479a4711c2d859af3aa8595f03c370388cd1687e10fb380b475",
+        "turn_index": 12
+      },
+      {
+        "alias": "e102",
+        "span_id": "span-740ec8f447d98ebe",
+        "speaker": "assistant",
+        "text_sha256": "d1cf5bbd1f7403e5d7cca927a2fb81b636257e159ec402a10be5d03a2a76a66f",
+        "turn_index": 12
+      }
+    ],
+    "case_id": "v1-case06-industry-funded-lab",
+    "message_count": 24,
+    "registry_sha256": "bc7bc9c9e6fe78f3ba8d4372620fd5a4ceba8aab2b9343af10a6bb501a87c3ef",
+    "schema_version": "lolla.conversation_state_source_registry.v1",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+    "source_sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22",
+    "source_utf8_bytes": 11721
+  },
+  "status": "conversation_state_fan_in_partial",
+  "surface_summaries": [
+    {
+      "reader_ids": [
+        "legacy-starting-position-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 1,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "starting_position"
+    },
+    {
+      "reader_ids": [
+        "legacy-current-position-reader"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-current-01-b2bd4b9d231b1b"
+      ],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 1
+      },
+      "surface": "current_position"
+    },
+    {
+      "reader_ids": [
+        "legacy-qualification-reader"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-qualification-01-0e8ad44d197c4d"
+      ],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 1
+      },
+      "surface": "qualification"
+    },
+    {
+      "reader_ids": [
+        "planned-unresolved-matter-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "unresolved_matter"
+    },
+    {
+      "reader_ids": [
+        "planned-reopen-condition-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "reopen_condition"
+    },
+    {
+      "reader_ids": [
+        "planned-cross-thread-relationship-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "cross_thread_relationship"
+    }
+  ]
+}

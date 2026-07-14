@@ -1,0 +1,41 @@
+{
+  "schema_version": "lolla.reasoning_process_paired_corpus_evaluation_contract.v1",
+  "status": "frozen_non_scalar_corpus_review_contract",
+  "date": "2026-07-12",
+  "purpose": "Compare preserved role-first architectures without collapsing distinct reasoning-process qualities into one score.",
+  "dimensions": {
+    "central_role_allocation": "Whether adopted current meaning and unresolved qualification meaning are placed in their correct roles, including distinct meanings within a shared alias.",
+    "protected_qualification_survival": "Whether the prospectively protected minority qualification remains materially visible.",
+    "speaker_ownership": "Whether user and assistant meanings retain their source ownership without manufacturing user adoption.",
+    "evidence_precision": "Whether evidence IDs are sufficient and materially relevant without unnecessary contextual or summary aliases.",
+    "expression_force": "Whether preference, leaning, proposal, commitment, conditional willingness, uncertainty, counterpressure, and assertion retain their source force.",
+    "object_category_precision": "Whether stance object categories remain useful and source-faithful rather than coarse or misleading.",
+    "relationship_preservation": "Whether the relation preserves the bounded current answer and the specific qualification capable of limiting or reopening it."
+  },
+  "allowed_dispositions": ["pass", "partial", "fail", "not_observed", "operationally_blocked"],
+  "review_rules": {
+    "source_first_target_required": true,
+    "preserved_provider_output_required": true,
+    "source_review_finding_required_per_dimension": true,
+    "dimension_disagreement_must_be_preserved": true,
+    "missing_or_blocked_dimension_must_not_be_imputed": true,
+    "scalar_score_forbidden": true,
+    "weighted_aggregation_forbidden": true,
+    "automatic_semantic_judge_forbidden": true,
+    "provider_calls": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "decision_options": {
+    "another_transfer_call": "Use only if transfer reliability remains the main unresolved product question.",
+    "read_only_shadow_graph_impact": "Use if central allocation is promising but the downstream consequence of residual extraction noise remains unknown.",
+    "stop_and_redesign": "Use if central allocation or protected qualification remains systematically unreliable."
+  },
+  "boundary": {
+    "human_or_agent_source_review_not_independent_human_gold": true,
+    "production_integration_authorized": false,
+    "graph_or_runtime_execution_authorized": false,
+    "product_utility_proven": false
+  }
+}

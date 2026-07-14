@@ -1,0 +1,431 @@
+{
+  "case_count": 12,
+  "compact_path": {
+    "case_recall_ceiling": 0.2857142857142857,
+    "case_recall_floor": 0.0,
+    "dimensions": {
+      "assistant_positions_and_revisions": {
+        "gold_observation_count": 22,
+        "never_observation_count": 14,
+        "stable_observation_count": 6,
+        "weighted_recall": 0.30303030303030304
+      },
+      "constraints_and_options": {
+        "gold_observation_count": 19,
+        "never_observation_count": 19,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "dropped_or_under_carried_threads": {
+        "gold_observation_count": 11,
+        "never_observation_count": 11,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "operative_question": {
+        "gold_observation_count": 22,
+        "never_observation_count": 22,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "uncertainty_and_evidence_boundaries": {
+        "gold_observation_count": 12,
+        "never_observation_count": 12,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      },
+      "user_corrections_and_pressure": {
+        "gold_observation_count": 16,
+        "never_observation_count": 16,
+        "stable_observation_count": 0,
+        "weighted_recall": 0.0
+      }
+    },
+    "gold_observation_count": 102,
+    "macro_labeled_repeatability": 0.37555916305916304,
+    "macro_mean_recall": 0.07589285714285714,
+    "macro_span_repeatability": 0.37555916305916304,
+    "never_observation_count": 94,
+    "stable_observation_count": 6,
+    "weighted_mean_recall": 0.06535947712418301
+  },
+  "comparison_limits": [
+    "gold annotations are provisional source-first research judgments",
+    "exact-span recall does not credit ungrounded paraphrases",
+    "three repeats are an initial stability signal, not production reliability proof",
+    "token totals are a cost proxy; provider billing amounts are not persisted",
+    "the short governance case has only one user and one assistant turn"
+  ],
+  "corpus_id": "core-semantic-corpus-v0",
+  "head_to_head": {
+    "case_count": 12,
+    "labeled_repeatability_wins": 11,
+    "recall_wins": 12,
+    "span_repeatability_wins": 11
+  },
+  "operational": {
+    "compact": {
+      "artifact_count": 36,
+      "call_count": 52,
+      "completion_tokens": 33795,
+      "prompt_tokens": 228006,
+      "total_tokens": 261801,
+      "usage_tracked_artifact_count": 33
+    },
+    "preserved_failed_attempt_count": 1,
+    "shadow": {
+      "artifact_count": 36,
+      "call_count": 144,
+      "completion_tokens": 55964,
+      "prompt_tokens": 575475,
+      "total_tokens": 631439,
+      "usage_tracked_artifact_count": 36
+    }
+  },
+  "per_case": [
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "compact": {
+        "labeled_repeatability": 0.4603174603174603,
+        "mean_recall": 0.0,
+        "never_observation_count": 15,
+        "span_repeatability": 0.4603174603174603,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.36666666666666664,
+        "mean_recall": 0.7777777777777778,
+        "span_repeatability": 0.4047619047619047
+      },
+      "gold_observation_count": 15,
+      "shadow": {
+        "labeled_repeatability": 0.8269841269841269,
+        "mean_recall": 0.7777777777777778,
+        "never_observation_count": 3,
+        "span_repeatability": 0.865079365079365,
+        "stable_observation_count": 11
+      },
+      "stratum": "business_evidence_gate"
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "compact": {
+        "labeled_repeatability": 0.4249158249158249,
+        "mean_recall": 0.0,
+        "never_observation_count": 8,
+        "span_repeatability": 0.4249158249158249,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": -0.03685837971552258,
+        "mean_recall": 0.20833333333333334,
+        "span_repeatability": -0.023101765958908838
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.38805744520030233,
+        "mean_recall": 0.20833333333333334,
+        "never_observation_count": 5,
+        "span_repeatability": 0.4018140589569161,
+        "stable_observation_count": 1
+      },
+      "stratum": "career_multi_option"
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "compact": {
+        "labeled_repeatability": 0.5471380471380471,
+        "mean_recall": 0.125,
+        "never_observation_count": 7,
+        "span_repeatability": 0.5471380471380471,
+        "stable_observation_count": 1
+      },
+      "delta": {
+        "labeled_repeatability": 0.02126709269566418,
+        "mean_recall": 0.45833333333333337,
+        "span_repeatability": 0.05424998282141147
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.5684051398337113,
+        "mean_recall": 0.5833333333333334,
+        "never_observation_count": 3,
+        "span_repeatability": 0.6013880299594586,
+        "stable_observation_count": 4
+      },
+      "stratum": "business_pivot_evidence"
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "compact": {
+        "labeled_repeatability": 0.3862433862433862,
+        "mean_recall": 0.2857142857142857,
+        "never_observation_count": 5,
+        "span_repeatability": 0.3862433862433862,
+        "stable_observation_count": 2
+      },
+      "delta": {
+        "labeled_repeatability": 0.18223733938019654,
+        "mean_recall": 0.4285714285714286,
+        "span_repeatability": 0.1933484504913076
+      },
+      "gold_observation_count": 7,
+      "shadow": {
+        "labeled_repeatability": 0.5684807256235828,
+        "mean_recall": 0.7142857142857143,
+        "never_observation_count": 2,
+        "span_repeatability": 0.5795918367346938,
+        "stable_observation_count": 5
+      },
+      "stratum": "ethical_institutional_risk"
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "compact": {
+        "labeled_repeatability": 0.17394179894179895,
+        "mean_recall": 0.125,
+        "never_observation_count": 7,
+        "span_repeatability": 0.17394179894179895,
+        "stable_observation_count": 1
+      },
+      "delta": {
+        "labeled_repeatability": 0.21736583522297803,
+        "mean_recall": 0.5,
+        "span_repeatability": 0.21736583522297803
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.391307634164777,
+        "mean_recall": 0.625,
+        "never_observation_count": 2,
+        "span_repeatability": 0.391307634164777,
+        "stable_observation_count": 3
+      },
+      "stratum": "family_safety"
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "compact": {
+        "labeled_repeatability": 0.31587301587301586,
+        "mean_recall": 0.0,
+        "never_observation_count": 8,
+        "span_repeatability": 0.31587301587301586,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.13531746031746034,
+        "mean_recall": 0.5,
+        "span_repeatability": 0.13531746031746034
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.4511904761904762,
+        "mean_recall": 0.5,
+        "never_observation_count": 4,
+        "span_repeatability": 0.4511904761904762,
+        "stable_observation_count": 4
+      },
+      "stratum": "relationship_financial"
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "compact": {
+        "labeled_repeatability": 0.5972222222222222,
+        "mean_recall": 0.08333333333333333,
+        "never_observation_count": 6,
+        "span_repeatability": 0.5972222222222222,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.0492630385487528,
+        "mean_recall": 0.625,
+        "span_repeatability": 0.0492630385487528
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.646485260770975,
+        "mean_recall": 0.7083333333333334,
+        "never_observation_count": 1,
+        "span_repeatability": 0.646485260770975,
+        "stable_observation_count": 5
+      },
+      "stratum": "multi_problem_dependency"
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "compact": {
+        "labeled_repeatability": 0.1794532627865961,
+        "mean_recall": 0.0,
+        "never_observation_count": 8,
+        "span_repeatability": 0.1794532627865961,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.5518907899860281,
+        "mean_recall": 0.5,
+        "span_repeatability": 0.5710827091779473
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.7313440527726243,
+        "mean_recall": 0.5,
+        "never_observation_count": 4,
+        "span_repeatability": 0.7505359719645435,
+        "stable_observation_count": 4
+      },
+      "stratum": "career_family_irreversibility"
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "compact": {
+        "labeled_repeatability": 0.43086419753086425,
+        "mean_recall": 0.0,
+        "never_observation_count": 9,
+        "span_repeatability": 0.43086419753086425,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.36448727639203826,
+        "mean_recall": 0.4444444444444444,
+        "span_repeatability": 0.38716301335348946
+      },
+      "gold_observation_count": 9,
+      "shadow": {
+        "labeled_repeatability": 0.7953514739229025,
+        "mean_recall": 0.4444444444444444,
+        "never_observation_count": 5,
+        "span_repeatability": 0.8180272108843537,
+        "stable_observation_count": 4
+      },
+      "stratum": "research_optionality"
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "compact": {
+        "labeled_repeatability": 0.20899470899470898,
+        "mean_recall": 0.125,
+        "never_observation_count": 7,
+        "span_repeatability": 0.20899470899470898,
+        "stable_observation_count": 1
+      },
+      "delta": {
+        "labeled_repeatability": 0.4349962207105065,
+        "mean_recall": 0.375,
+        "span_repeatability": 0.4576719576719578
+      },
+      "gold_observation_count": 8,
+      "shadow": {
+        "labeled_repeatability": 0.6439909297052154,
+        "mean_recall": 0.5,
+        "never_observation_count": 3,
+        "span_repeatability": 0.6666666666666667,
+        "stable_observation_count": 3
+      },
+      "stratum": "financial_deadline"
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "compact": {
+        "labeled_repeatability": 0.42328042328042326,
+        "mean_recall": 0.0,
+        "never_observation_count": 9,
+        "span_repeatability": 0.42328042328042326,
+        "stable_observation_count": 0
+      },
+      "delta": {
+        "labeled_repeatability": 0.5291005291005292,
+        "mean_recall": 0.3333333333333333,
+        "span_repeatability": 0.5291005291005292
+      },
+      "gold_observation_count": 9,
+      "shadow": {
+        "labeled_repeatability": 0.9523809523809524,
+        "mean_recall": 0.3333333333333333,
+        "never_observation_count": 6,
+        "span_repeatability": 0.9523809523809524,
+        "stable_observation_count": 3
+      },
+      "stratum": "user_precommitted_plan"
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "compact": {
+        "labeled_repeatability": 0.35846560846560843,
+        "mean_recall": 0.16666666666666666,
+        "never_observation_count": 5,
+        "span_repeatability": 0.35846560846560843,
+        "stable_observation_count": 1
+      },
+      "delta": {
+        "labeled_repeatability": 0.2177248677248677,
+        "mean_recall": 0.2777777777777778,
+        "span_repeatability": 0.2177248677248677
+      },
+      "gold_observation_count": 6,
+      "shadow": {
+        "labeled_repeatability": 0.5761904761904761,
+        "mean_recall": 0.4444444444444444,
+        "never_observation_count": 3,
+        "span_repeatability": 0.5761904761904761,
+        "stable_observation_count": 2
+      },
+      "stratum": "short_governance_boundary"
+    }
+  ],
+  "repeat_contract": {
+    "compact_runs_per_case": 3,
+    "exact_source_spans_required_for_recall": true,
+    "graph_runtime_may_be_modified": false,
+    "shadow_runs_per_case": 3
+  },
+  "schema_version": "lolla.core_semantic_corpus_comparison.v0",
+  "shadow_path": {
+    "case_recall_ceiling": 0.7777777777777778,
+    "case_recall_floor": 0.20833333333333334,
+    "dimensions": {
+      "assistant_positions_and_revisions": {
+        "gold_observation_count": 22,
+        "never_observation_count": 10,
+        "stable_observation_count": 12,
+        "weighted_recall": 0.5454545454545454
+      },
+      "constraints_and_options": {
+        "gold_observation_count": 19,
+        "never_observation_count": 7,
+        "stable_observation_count": 11,
+        "weighted_recall": 0.6140350877192983
+      },
+      "dropped_or_under_carried_threads": {
+        "gold_observation_count": 11,
+        "never_observation_count": 7,
+        "stable_observation_count": 2,
+        "weighted_recall": 0.2727272727272727
+      },
+      "operative_question": {
+        "gold_observation_count": 22,
+        "never_observation_count": 5,
+        "stable_observation_count": 13,
+        "weighted_recall": 0.696969696969697
+      },
+      "uncertainty_and_evidence_boundaries": {
+        "gold_observation_count": 12,
+        "never_observation_count": 4,
+        "stable_observation_count": 4,
+        "weighted_recall": 0.4722222222222222
+      },
+      "user_corrections_and_pressure": {
+        "gold_observation_count": 16,
+        "never_observation_count": 8,
+        "stable_observation_count": 7,
+        "weighted_recall": 0.4791666666666667
+      }
+    },
+    "gold_observation_count": 102,
+    "macro_labeled_repeatability": 0.6283473911450103,
+    "macro_mean_recall": 0.5282738095238095,
+    "macro_span_repeatability": 0.6417214949953045,
+    "never_observation_count": 41,
+    "stable_observation_count": 49,
+    "weighted_mean_recall": 0.5424836601307189
+  }
+}

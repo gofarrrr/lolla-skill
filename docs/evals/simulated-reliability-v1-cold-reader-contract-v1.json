@@ -1,0 +1,99 @@
+{
+  "schema_version": "lolla.simulated_reliability_cold_reader_contract.v1",
+  "status": "frozen_after_t1_before_any_cold_reader_review",
+  "date": "2026-07-13",
+  "purpose": "Test whether a fresh reader can reconstruct what happened, what Lolla inferred, what deterministic pressure did or did not reach reconsideration, what failed, and what the receipt cannot prove.",
+  "integrity_limit": "This contract was not frozen before T1 execution. It can test receipt transfer and comprehension, but it cannot repair T1's posthoc comparative-review limitation or establish a clean causal usefulness claim.",
+  "reader_context": {
+    "allowed": [
+      "one selected receipt.md only",
+      "this reader instruction and response contract"
+    ],
+    "withheld": [
+      "source-review disposition",
+      "diagnostic source review",
+      "arm identity mapping",
+      "builder explanation",
+      "expected answer",
+      "other repository files",
+      "the current development conversation"
+    ]
+  },
+  "sample": [
+    {
+      "case_id": "v1-case01-flood-infrastructure",
+      "reason_for_selection": "operationally complete case later diagnosed as a false stand-down",
+      "receipt_markdown_path": "research/simulated-reliability-v1-receipts-2026-07-13/t1/v1-case01-flood-infrastructure/receipt.md",
+      "receipt_markdown_sha256": "c5516c9b23a25ff0579e2d97174cc3f31fccbf04e095ec2c5ca05f8262859d7d"
+    },
+    {
+      "case_id": "v1-case08-museum-entry",
+      "reason_for_selection": "operationally complete case later diagnosed as a correct stand-down",
+      "receipt_markdown_path": "research/simulated-reliability-v1-receipts-2026-07-13/t1/v1-case08-museum-entry/receipt.md",
+      "receipt_markdown_sha256": "dd8bc1c6cc2809823803f30ba25e5f032af576942e04083c4b16716e46e57f7c"
+    },
+    {
+      "case_id": "v1-case06-industry-funded-lab",
+      "reason_for_selection": "role extraction succeeded at the provider boundary but failed the local join contract",
+      "receipt_markdown_path": "research/simulated-reliability-v1-receipts-2026-07-13/t1/v1-case06-industry-funded-lab/receipt.md",
+      "receipt_markdown_sha256": "26272f8618b6c238e8b79a81fd922b1332048d1e9c6b9ec387f779bc9dc102c9"
+    },
+    {
+      "case_id": "v1-case09-software-migration",
+      "reason_for_selection": "execution stopped at the first provider call because available credit could not cover the frozen request",
+      "receipt_markdown_path": "research/simulated-reliability-v1-receipts-2026-07-13/t1/v1-case09-software-migration/receipt.md",
+      "receipt_markdown_sha256": "d882e6072883c08cd7489014fc6484af1c3476a7e2daf3e5a6ff6cfc93118636"
+    }
+  ],
+  "reader_instruction": [
+    "Read the receipt as the only evidence. Distinguish quoted or recorded facts from Lolla's probabilistic interpretations and from your own inference.",
+    "Reconstruct the user's decision or problem, the important changes across the conversation, the final position, and any material unresolved matter.",
+    "Explain what Lolla extracted, which mechanisms it treated as unresolved or covered, and why the system routed to pressure, park, or stand-down.",
+    "Explain what deterministic candidate work occurred and whether any graph-only candidate actually reached a fresh reasoner.",
+    "Describe the public outputs or explain why they do not exist.",
+    "Name any execution failure, missing artifact, or ambiguity that limits reconstruction.",
+    "Separate what the receipt proves about custody and execution from what it does not prove about reasoning quality, correctness, usefulness, or trustworthiness.",
+    "Do not issue a score, badge, winner, confidence percentage, or recommendation about the underlying case."
+  ],
+  "response_contract": {
+    "required_fields": [
+      "case_reconstruction",
+      "conversation_trajectory",
+      "lolla_interpretation",
+      "routing_reconstruction",
+      "deterministic_pressure_reconstruction",
+      "public_output_reconstruction",
+      "preserved_failures",
+      "supported_process_claims",
+      "claims_not_supported",
+      "reader_ambiguities"
+    ],
+    "evidence_rule": "Each material statement must identify whether its basis is source conversation, probabilistic interpretation, deterministic ledger, provider custody, public output, or reader inference.",
+    "scalar_score": null,
+    "winner_label": null
+  },
+  "review_axes": {
+    "source_decision_state": ["reconstructed", "partial", "materially_wrong"],
+    "trajectory": ["reconstructed", "partial", "materially_wrong"],
+    "interpretation_vs_source_boundary": ["preserved", "blurred"],
+    "routing_and_standdown": ["reconstructed", "partial", "materially_wrong"],
+    "deterministic_graph_role": ["reconstructed", "partial", "materially_wrong"],
+    "failure_state": ["reconstructed", "partial", "materially_wrong"],
+    "custody_vs_quality_boundary": ["preserved", "inflated"],
+    "material_omissions": "source-linked list; empty is valid"
+  },
+  "execution_policy": {
+    "fresh_agent_review_required": true,
+    "fresh_human_review_required_for_product_claim": true,
+    "reviewers_must_not_see_each_others_outputs_before_submission": true,
+    "provider_calls_authorized": 0,
+    "reason": "The receipt structure can be frozen and validated locally. A model call remains paused pending the explicit cost/model decision, and human review requires founder participation."
+  },
+  "non_claims": [
+    "receipt_integrity_is_not_reader_comprehension",
+    "reader_comprehension_is_not_reasoning_quality",
+    "reasoning_quality_is_not_decision_correctness",
+    "activity_volume_is_not_proof_of_work_quality",
+    "no_single_trust_score_or_badge"
+  ]
+}

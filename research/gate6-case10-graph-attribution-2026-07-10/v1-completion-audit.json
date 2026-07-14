@@ -1,0 +1,38 @@
+{
+  "schema_version": "lolla.graph_attribution_preflight_completion_audit.v1",
+  "status": "incomplete_preserved_no_rewrite",
+  "date": "2026-07-10",
+  "case_id": "case-10-real-estate-bid",
+  "audited_contract": {
+    "path": "research/gate6-case10-graph-attribution-2026-07-10/contract.json",
+    "sha256": "2e346f7838ec1c5764faa1f597cc3ec849aa92c9832b3a6835866796c36f258e"
+  },
+  "audited_result": {
+    "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result.json",
+    "sha256": "c9679bb13b15a575c398f48b2b7c246cadc7bc5c284e70289e222448ef48b80c"
+  },
+  "finding": "The v1 result correctly attributes the V60 selected-card and private-table pressure packet, but it does not inspect relationship-graph chunks preserved inside companion_cheat_sheet.anchors[].chunks, which is also read by the Step 6 consumer.",
+  "still_valid": [
+    "No admitted Case 10 Stage B pressure lineage chunk came from a V60 graph/expansion selection source.",
+    "No companion expansion target entered the V60 candidate pool, V60 selected-card sources, or private-table source items as a separate model/card.",
+    "The completed Case 10 Stage B pair cannot identify graph contribution because its treatment packet contains no exact graph-derived lineage item."
+  ],
+  "invalid_or_too_broad": [
+    "The v1 graph-disabled exact-no-op claim is valid only for the V60/private-table packet, not for the complete Step 6 context.",
+    "The v1 shuffled-edge non-identifying-no-op claim is valid only for the V60/private-table packet; graph relationship chunks inside companion anchors could change under edge removal or shuffle.",
+    "The v1 report does not measure whether graph-derived companion chunks have exact private disposition custody."
+  ],
+  "prospective_repair": [
+    "Freeze a v2 contract and builder without altering the v1 contract, builder, or result.",
+    "Inventory graph-derived chunks inside companion_cheat_sheet anchors using their relation_target_id provenance.",
+    "Separate V60-packet no-op from complete-Step-6-context no-op.",
+    "Assess whether Stage B pressure IDs cite any of those exact graph-derived chunks and whether a ledger records their individual disposition."
+  ],
+  "provider_calls": 0,
+  "runtime_mutated": false,
+  "authorizations": {
+    "paid_graph_ablation": false,
+    "v2_provider_free_repair": true,
+    "runtime_change": false
+  }
+}

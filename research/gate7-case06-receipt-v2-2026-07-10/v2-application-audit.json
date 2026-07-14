@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.reasoning_run_receipt_v2_application_audit.v1",
+  "status": "stopped_before_receipt_assembly_contract_insufficient",
+  "date": "2026-07-10",
+  "receipt_contract_sha256": "d4d9a459bd426fca97aa79b7bf4aa0f2c3a4bb7f48bc401a185977d94d82707b",
+  "frozen_v2_inputs": {
+    "schema_sha256": "595ea0406bd2c6338d9b0f07285fbe900ad620ebc1d84cb6e8065d8e01b23158",
+    "validator_sha256": "003f004770a1e74355fe745a9810b7e87747da1dc0661723744c13badafaed32",
+    "synthetic_fixture_sha256": "37a3dbf83ae7d0ca8b72155e83a5d4664a91562d64587d343ab1870958ce3d86"
+  },
+  "provider_calls": 0,
+  "receipt_written": false,
+  "reader_call_authorized": false,
+  "failures": [
+    {
+      "failure_id": "self_contained_pair_payload_missing",
+      "finding": "comparison_evidence preserves summaries and artifact references but has no field for the exact anonymous outputs and reveal mapping. A cold reader receiving only the receipt would have to trust the assembler's narration rather than inspect the pair.",
+      "severity": "blocking"
+    },
+    {
+      "failure_id": "pressure_identity_mismatch_not_structured",
+      "finding": "pressure_accountability has one pressure_id and cannot separately preserve the frozen expected ID, returned consumer ID, identity match state, semantic-hearing state, and effect-consistency review. Case 06 requires all five distinctions.",
+      "severity": "blocking"
+    },
+    {
+      "failure_id": "partial_token_evidence_not_representable",
+      "finding": "operability requires an integer total_tokens but has no token evidence state or scope. Case 06 preserves complete Stage B token totals while the Stage A gate preserves calls and cost but not a whole-run token aggregate; using zero or 6587 as a whole-run total would be false custody.",
+      "severity": "blocking"
+    },
+    {
+      "failure_id": "v60_origin_not_named",
+      "finding": "The pressure origin vocabulary does not name the V60 affordance path that produced the protected empathy edge. Using direct_model, mixed, or unknown would weaken lineage precision.",
+      "severity": "repair_with_blocking_set"
+    }
+  ],
+  "decision": {
+    "assemble_under_original_v2": false,
+    "silently_edit_frozen_contract": false,
+    "repair_schema_validator_fixture_and_tests_prospectively": true,
+    "freeze_replacement_case06_contract_after_repair": true,
+    "rerun_case06": false,
+    "reader_call": false
+  },
+  "non_claims": [
+    "not a failure of Case 06",
+    "not evidence that receipts are useless",
+    "not semantic-quality scoring",
+    "not provider-call authorization",
+    "not runtime-integration authority"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "additionalProperties": false,
+  "description": "Two-record chronological shard response for challenge_and_revision_response.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 700,
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "challenge_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "challenge_type": {
+            "enum": [
+              "correction",
+              "objection",
+              "counterexample",
+              "reconsideration_request"
+            ],
+            "type": "string"
+          },
+          "interpretation": {
+            "maxLength": 700,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitations": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "prior_claim_or_frame_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "response_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "response_type": {
+            "enum": [
+              "acknowledge",
+              "qualify",
+              "revise",
+              "defer",
+              "reject",
+              "no_response",
+              "mixed"
+            ],
+            "type": "string"
+          },
+          "revision_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "interpretation",
+          "status",
+          "limitations",
+          "prior_claim_or_frame_evidence_ids",
+          "challenge_evidence_ids",
+          "response_evidence_ids",
+          "revision_evidence_ids",
+          "challenge_type",
+          "response_type"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "mixed",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "global_limitations"
+  ],
+  "type": "object"
+}

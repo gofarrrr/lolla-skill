@@ -520,6 +520,15 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
     # Companion card raw (Lane 2 raw detected models)
     output["companion_card"] = companion_card_to_payload(result.companion_card)
 
+    # R2 deterministic survival portfolio. This is built before the legacy
+    # probabilistic verifier and therefore remains independent of its
+    # accepted/rejected/omitted judgments.
+    output["constitutional_graph_survival"] = (
+        dict(result.constitutional_graph_survival)
+        if result.constitutional_graph_survival is not None
+        else None
+    )
+
     # Frame pressure card (Lane 3)
     if result.frame_pressure_card is not None:
         output["frame_pressure_card"] = result.frame_pressure_card.to_payload()
@@ -567,6 +576,23 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
                 "reasoning_tokens": bc.reasoning_tokens,
                 "reasoning_disabled": bc.reasoning_disabled,
                 "reasoning_details_present": bc.reasoning_details_present,
+                "provider_attempted": bc.provider_attempted,
+                "response_id": bc.response_id,
+                "exact_cost_usd": bc.exact_cost_usd,
+                "request_max_output_tokens": bc.request_max_output_tokens,
+                "request_max_price_prompt": bc.request_max_price_prompt,
+                "request_max_price_completion": bc.request_max_price_completion,
+                "request_provider_order": list(bc.request_provider_order),
+                "request_allow_fallbacks": bc.request_allow_fallbacks,
+                "request_require_parameters": bc.request_require_parameters,
+                "request_data_collection": bc.request_data_collection,
+                "request_zdr": bc.request_zdr,
+                "run_max_provider_calls": bc.run_max_provider_calls,
+                "run_max_cost_usd": bc.run_max_cost_usd,
+                "maximum_call_cost_usd": bc.maximum_call_cost_usd,
+                "budget_reservation_id": bc.budget_reservation_id,
+                "pricing_table_version": bc.pricing_table_version,
+                "pricing_table_stale": bc.pricing_table_stale,
             }
             for bc in result.audit.boundary_calls
         ],
@@ -1181,7 +1207,7 @@ def main() -> int:
             serialized["pre_step6_private_table"] = pre_step6_table
         except Exception as exc:
             serialized["pre_step6_private_table"] = {
-                "schema_version": "pre_step6_private_table.v1",
+                "schema_version": "pre_step6_private_table.v2",
                 "status": "error",
                 "runtime_policy": "step6_private_context",
                 "promotion_effect": "none_private_context_only",

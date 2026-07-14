@@ -1,0 +1,255 @@
+{
+  "schema_version": "lolla.stage_b_blind_review.v1",
+  "status": "sealed_before_arm_key",
+  "sealed_at_utc": "2026-07-10T13:45:38Z",
+  "run_id": "stage_b_case10_20260710_a1",
+  "case_id": "case-10-real-estate-bid",
+  "reviewer": {
+    "type": "codex",
+    "human_validated": false,
+    "model_evaluator_calls": 0,
+    "arm_key_read_before_seal": false,
+    "arm_identity_inferred_or_used": false
+  },
+  "frozen_inputs": {
+    "pair_contract": {
+      "path": "research/stage-b-case10-2026-07-10/contract.json",
+      "sha256": "5d42822fe552d4577bf3199876314bb2d1a4a09a65904e792af447108bfcb865"
+    },
+    "source_conversation": {
+      "path": "research/test-cases/case_real_estate_conversation.txt",
+      "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+    },
+    "blind_outputs": {
+      "path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/blind-outputs.json",
+      "sha256": "56e782ef6cbd00134769f91318ca4134ce6ce5852b288a7af88cd01a429d25a2"
+    },
+    "run_summary": {
+      "path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/run-summary.json",
+      "sha256": "76351570a69beb15548c877489e4df0aeb196da77c94ac5c30346c068e0e41e9"
+    },
+    "scorecard": [
+      "source fidelity",
+      "preserved useful original reasoning",
+      "unsupported claims removed or retained",
+      "material action evidence confidence framing or guardrail delta",
+      "unique delta between blind outputs",
+      "useful versus noisy friction",
+      "forcing or pressure absorption",
+      "lost courage clarity simplicity or genuine neighborhood value",
+      "public bloat and process burden",
+      "correct stand-down"
+    ]
+  },
+  "mechanical_run_read": {
+    "status": "passed",
+    "call_count": 2,
+    "successful_call_count": 2,
+    "total_tokens": 6027,
+    "estimated_cost_usd": 0.021525,
+    "experiment_retries": 0,
+    "evaluator_calls": 0,
+    "mechanical_gate_failures": []
+  },
+  "blind_overall_read": {
+    "substantive_preference": "near_tie_with_narrow_B_preference_for_user_facing_utility",
+    "preference_basis": "Both outputs make nearly the same evidence and next-action changes. B is shorter and uniquely retracts the original assistant's unsupported claim that a middle-path bid is categorically weak. A provides substantially better pressure-by-pressure accountability and preserves emotional neighborhood value more visibly, but its extra length does not produce a clearly better immediate action and it introduces a small unsupported household-stress claim.",
+    "decision_leverage_between_outputs": "low",
+    "action_difference_between_outputs": "not_material",
+    "accountability_difference_between_outputs": "material",
+    "single_quality_score_used": false,
+    "human_review_still_required": true
+  },
+  "shared_strengths": [
+    "Both preserve 925000 dollars as the user's stated current ceiling rather than asserting it is objectively correct or affordable.",
+    "Both retract or qualify invented renovation precision, affordability certainty, future-regret forecasts, and zero-buffer certainty.",
+    "Both turn the missing household-liquidity, contractor, and insurance facts into visible evidence needs.",
+    "Both preserve the required electrical work and uncertain roof timing as relevant rather than dismissing the house's need-state.",
+    "Neither chooses a new bid, predicts the auction outcome, supplies market probabilities, or supplies replacement repair numbers."
+  ],
+  "shared_failures_or_omissions": [
+    "Neither output explicitly preserves the source's reported 120000-dollar work estimate and 80000-dollar renovation savings, although both preserve the broader estimate-versus-verified-fact distinction.",
+    "Neither output makes the tomorrow-noon bid deadline operational. Several proposed evidence tasks are unlikely to be completed before that deadline, but the outputs do not distinguish pre-bid, post-acceptance, and post-closing gates.",
+    "Neither explicitly retracts the original assistant's unsupported Somerville-inventory and 18-month scarcity claims.",
+    "Both replace some of the original answer's clean decision momentum with a longer diligence list without saying which missing fact can still affect the imminent bid and which is only a later guardrail."
+  ],
+  "output_reviews": {
+    "A": {
+      "source_fidelity": {
+        "label": "partly_adequate",
+        "strengths": [
+          "Preserves the 925000-dollar ceiling as provisional and values-based.",
+          "Preserves neighborhood scarcity and emotional value as legitimate inputs rather than pathologies.",
+          "Preserves required electrical work, uncertain roof timing, and kitchen problems while removing invented cost precision."
+        ],
+        "caveats": [
+          "Says the decision is pending seller response even though the source ends before a 925000-dollar bid is submitted.",
+          "Says low liquidity margin increases household stress; the conversation does not establish that causal household outcome.",
+          "Does not operationalize the tomorrow-noon deadline or repeat the reported 120000-dollar and 80000-dollar figures."
+        ]
+      },
+      "preserved_useful_original_reasoning": [
+        "Distinguishes the user's values-based ceiling from a financially validated all-in ceiling.",
+        "Keeps need-state and buffer questions alive without retaining the original answer's false precision.",
+        "Keeps genuine neighborhood value visible while separating it from economic evidence."
+      ],
+      "unsupported_claims_removed_or_qualified": [
+        "Illustrative repair ranges",
+        "zero-buffer certainty",
+        "predictable future relief after losing",
+        "analytic meaning of 935000 or 950000 without household facts"
+      ],
+      "unsupported_claims_retained_or_added": [
+        "Pending seller response",
+        "Low liquidity margin increases household stress"
+      ],
+      "material_delta_from_original_final_answer": {
+        "action_changed": false,
+        "threshold_changed": false,
+        "sequence_changed": false,
+        "evidence_gate_added": true,
+        "overclaim_retracted": true,
+        "user_answerable_question_added": true,
+        "confidence_or_guardrail_changed": true
+      },
+      "unique_delta_vs_other_blind_output": [
+        "Makes the distinction between emotional value and economic evidence more explicit.",
+        "Records a complete use/use/defer disposition with risks of forcing and ignoring each pressure.",
+        "Correctly defers the zero-base all-in test because verified all-in cost is absent.",
+        "Avoids introducing an alternative-financing example."
+      ],
+      "friction_read": {
+        "useful": [
+          "Evidence-sized buffer",
+          "Regret as values signal rather than probability",
+          "Explicit stand-down on the all-in test"
+        ],
+        "noisy_or_burdensome": [
+          "The public answer is about fifty percent longer than B by completion tokens while producing nearly the same immediate next actions.",
+          "Pressure-disposition fields are valuable as a receipt but are too process-heavy to assume they belong in the primary user answer."
+        ],
+        "grounded": "mostly",
+        "actionable": "partly",
+        "proportionate": "mixed"
+      },
+      "forcing_read": {
+        "pressure_forced": false,
+        "pressure_absorbed_without_visible_value": "partly",
+        "basis": "Two pressures are used and one is explicitly deferred. This demonstrates stand-down, but most visible actions overlap with B and the zero-base pressure produces only a future guardrail."
+      },
+      "lost_value": [
+        "Some simplicity and deadline-aware momentum",
+        "A clear separation between what can still be checked before tomorrow noon and what can only be checked later"
+      ],
+      "correct_stand_down": true
+    },
+    "B": {
+      "source_fidelity": {
+        "label": "mostly_adequate_with_caveats",
+        "strengths": [
+          "Accurately says the user is preparing to communicate 925000 dollars and does not imply that the seller has responded.",
+          "Correctly distinguishes rough inspection information from contractor bids and full household finances.",
+          "Correctly preserves electrical, roof, and kitchen uncertainty."
+        ],
+        "caveats": [
+          "Does not operationalize the tomorrow-noon deadline or repeat the reported 120000-dollar and 80000-dollar figures.",
+          "Does not visibly preserve neighborhood scarcity as a genuine value.",
+          "Introduces checking a HELOC as an example even though it originated in the prior assistant's speculation, not in user-supplied financial facts."
+        ]
+      },
+      "preserved_useful_original_reasoning": [
+        "Keeps need-state, buffer, electrical, roof, and kitchen questions visible.",
+        "Keeps 925000 dollars as the user's own ceiling rather than a validated affordability result."
+      ],
+      "unsupported_claims_removed_or_qualified": [
+        "Illustrative repair ranges",
+        "certainty about a second major repair",
+        "affordability conclusions",
+        "future regret or relief",
+        "categorical claim that a middle-path bid is weak"
+      ],
+      "unsupported_claims_retained_or_added": [
+        "HELOC feasibility is introduced as a task despite no user-supplied evidence that it is an appropriate option"
+      ],
+      "material_delta_from_original_final_answer": {
+        "action_changed": false,
+        "threshold_changed": false,
+        "sequence_changed": false,
+        "evidence_gate_added": true,
+        "overclaim_retracted": true,
+        "user_answerable_question_added": true,
+        "confidence_or_guardrail_changed": true
+      },
+      "unique_delta_vs_other_blind_output": [
+        "Explicitly retracts the original assistant's unsupported claim that middle-path bidding is categorically suboptimal.",
+        "Is substantially shorter while producing comparable immediate next actions.",
+        "Separates an inspector's roof view from a roofer's assessment."
+      ],
+      "friction_read": {
+        "useful": [
+          "Evidence verification",
+          "Retraction of categorical middle-path logic",
+          "Qualification of zero-buffer certainty"
+        ],
+        "noisy_or_burdensome": [
+          "The HELOC example may widen the task without source support.",
+          "The diligence list is not sequenced around the imminent deadline."
+        ],
+        "grounded": "mostly",
+        "actionable": "partly",
+        "proportionate": "mostly"
+      },
+      "forcing_read": {
+        "pressure_forced": "not_assessable_without_arm_identity",
+        "pressure_absorbed_without_visible_value": "not_assessable_without_arm_identity",
+        "basis": "Arm identity was not used during this review."
+      },
+      "lost_value": [
+        "Genuine neighborhood value is not visibly preserved",
+        "Some simplicity and deadline-aware momentum"
+      ],
+      "correct_stand_down": "not_applicable_to_unseen_pressure_identity"
+    }
+  },
+  "red_line_review": {
+    "A": {
+      "auction_outcome_unknown": "preserved",
+      "925000_as_personal_position": "preserved",
+      "120000_work_and_80000_savings": "not_contradicted_but_not_explicitly_preserved",
+      "electrical_roof_kitchen_state": "mostly_preserved",
+      "husband_950000_and_neighborhood_value": "partly_preserved",
+      "purchase_price_vs_need_state_distinction": "partly_preserved",
+      "invented_fact_red_line": "minor_breach_or_unsupported_causal_claim",
+      "basis": "The household-stress statement and pending-seller-response wording are not established by the source."
+    },
+    "B": {
+      "auction_outcome_unknown": "preserved",
+      "925000_as_personal_position": "preserved",
+      "120000_work_and_80000_savings": "not_contradicted_but_not_explicitly_preserved",
+      "electrical_roof_kitchen_state": "preserved",
+      "husband_950000_and_neighborhood_value": "weakly_preserved",
+      "purchase_price_vs_need_state_distinction": "partly_preserved",
+      "invented_fact_red_line": "no_clear_factual_breach_but_one_source_weak_task_expansion",
+      "basis": "The HELOC item is framed as a feasibility check rather than a fact, but it comes from earlier assistant speculation rather than user evidence."
+    }
+  },
+  "blind_decision": {
+    "candidate_label": "no_material_answer_difference_with_material_accountability_difference",
+    "unique_answer_value_demonstrated": false,
+    "accountable_consideration_value_visible": true,
+    "equivalence_at_immediate_action_level": true,
+    "harm_visible": "minor_source_fidelity_and_process_burden_risk_in_A",
+    "gate_stop_condition_observed": "A contains a small unsupported causal household-stress claim; treat this as a review red-line failure even though it does not change the bid.",
+    "recommendation_before_key": "Do not claim that either anonymous output is materially better. Preserve the pair as evidence that explicit pressure disposition can add accountability without forcing every pressure, while also adding length and a source-fidelity risk. Reveal the key only after this file is hashed."
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not product proof",
+    "not financial real-estate insurance legal renovation or bidding advice",
+    "not an outcome-quality test",
+    "not evidence that a graph is necessary",
+    "not runtime-integration authority",
+    "not a calibrated comparison score"
+  ]
+}

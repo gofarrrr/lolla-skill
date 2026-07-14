@@ -1,0 +1,99 @@
+{
+  "additionalProperties": false,
+  "description": "Bounded exploration_and_alternatives response using visible evidence aliases.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 700,
+      "type": "string"
+    },
+    "park_unselected_auxiliary_observations": {
+      "const": true,
+      "type": "boolean"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "alternative_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "auxiliary_observation_ids": {
+            "items": {
+              "maxLength": 120,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "interpretation": {
+            "maxLength": 700,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitation_evidence_ids": {
+            "items": {
+              "maxLength": 4,
+              "minLength": 4,
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "limitations": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "interpretation",
+          "status",
+          "auxiliary_observation_ids",
+          "limitations",
+          "alternative_evidence_ids",
+          "limitation_evidence_ids"
+        ],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "mixed",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "park_unselected_auxiliary_observations",
+    "global_limitations"
+  ],
+  "type": "object"
+}

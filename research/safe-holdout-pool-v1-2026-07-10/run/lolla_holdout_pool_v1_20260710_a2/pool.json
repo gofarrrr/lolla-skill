@@ -1,0 +1,386 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool.v1",
+  "pool_id": "safe-holdout-pool-v1",
+  "status": "generation_failed",
+  "provenance": {
+    "kind": "synthetic_single_call",
+    "real_person_data": false,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "generation_contract_sha256": "5bcc317ccc1fe83e806447a825a28b96eec4e87292e77c59b13ceaa2501b0290"
+  },
+  "selection_contract": {
+    "algorithm": "sha256_seed_colon_case_id_ascending",
+    "public_seed": "lolla-safe-holdout-pool-v1:2026-07-10:selection-order",
+    "ranked_case_ids": [
+      "pool1-case03-nonprofit-program-scale",
+      "pool1-case05-community-arts-portfolio",
+      "pool1-case02-creative-collaboration",
+      "pool1-case04-research-tool-release",
+      "pool1-case01-product-scope"
+    ],
+    "generator_receives_selection_order": false,
+    "selection_rule_after_call": "Review the ranked cases in order for safety and contract fitness only. Select the first passing case. Do not inspect or rank for likely mental-model, graph, pressure, or answer-delta value."
+  },
+  "selected_case_id": null,
+  "selection_review_status": "pending_safety_and_contract_review",
+  "cases": [
+    {
+      "case_id": "pool1-case01-product-scope",
+      "title": "Small product team and custom customer request",
+      "stratum": "small_team_product_scope",
+      "messages": [
+        {
+          "message_id": 1,
+          "role": "user",
+          "content": "Our team at VeloSync is in a bit of a bind. Our biggest client, Meridian Logistics, is asking for a custom analytics dashboard that tracks real-time fleet efficiency. It’s a significant request that would take our three-person engineering team about six weeks to build. We are currently mid-sprint on our core stability roadmap, which is supposed to address some technical debt we’ve been ignoring for three quarters."
+        },
+        {
+          "message_id": 2,
+          "role": "assistant",
+          "content": "That is a classic dilemma for a small team. When you are balancing a major client's specific needs against long-term technical health, it often helps to look at the opportunity cost. If you delay the technical debt work, what is the specific risk to your core roadmap? Is the stability work required to prevent a total system failure, or is it more about making future feature development faster?"
+        },
+        {
+          "message_id": 3,
+          "role": "user",
+          "content": "The stability work is mostly about performance degradation. If we don't fix the database indexing now, we'll likely hit a wall in about four months where the system slows down for everyone. However, Meridian is threatening to move to a competitor if we don't provide this analytics suite. They are 40% of our monthly recurring revenue. I’m worried that if I say no, we lose the revenue we need to hire a fourth person who could actually help us fix the debt."
+        },
+        {
+          "message_id": 4,
+          "role": "assistant",
+          "content": "That 40% figure makes it a much more urgent business decision. If you lose that revenue, the roadmap might become moot anyway. Have you considered a middle ground, like a phased delivery? Perhaps you could build a simplified version of the dashboard that uses the existing database structure, avoiding the need for the heavy indexing work right now, and then iterate once you've secured their contract for another year?"
+        },
+        {
+          "message_id": 5,
+          "role": "user",
+          "content": "I suggested that, but Meridian wants the full suite. They have internal stakeholders expecting these specific metrics. They aren't interested in a 'lite' version. I feel like I'm being backed into a corner where I have to choose between short-term survival and long-term viability. Maybe I should just bite the bullet and work weekends for a month to get it done?"
+        },
+        {
+          "message_id": 6,
+          "role": "assistant",
+          "content": "Working weekends is a temporary fix that often leads to burnout and mistakes, which could actually make your technical debt worse. If you do proceed with their request, you should probably frame it as a premium service. Could you charge them a one-time implementation fee that covers the cost of a contractor to handle the routine maintenance, allowing your core team to focus on the custom build?"
+        },
+        {
+          "message_id": 7,
+          "role": "user",
+          "content": "We don't have the budget to hire a contractor. Honestly, the team is already feeling the pressure. I think your suggestion about framing it as a premium service is a bit naive given our current contract terms; they already pay a premium, and they expect this kind of support as part of that. I need to figure out if I can push back on the timeline instead."
+        },
+        {
+          "message_id": 8,
+          "role": "assistant",
+          "content": "That is a fair critique; I apologize for overlooking the existing contract structure. Pushing back on the timeline is a much more sustainable approach. If you present them with a realistic timeline that includes the necessary stability work, it shows you are protecting the platform they rely on. Have you tried showing them the performance impact data to explain why a rush job would be risky for their own data accuracy?"
+        },
+        {
+          "message_id": 9,
+          "role": "user",
+          "content": "I haven't shown them the data, but that might be a good angle. My fear is that they'll just see it as an excuse. However, I’ve been thinking—what if we prioritize the dashboard but only for their specific data subset, effectively siloing it? It wouldn't require a full system refactor."
+        },
+        {
+          "message_id": 10,
+          "role": "assistant",
+          "content": "Siloing the data could work as a tactical compromise. It keeps their project isolated, which might reduce the risk of impacting the rest of your users. It creates a bit of 'technical debt' in the sense of a custom branch, but it might be the least risky way to keep them happy while keeping your core platform stable for the time being."
+        },
+        {
+          "message_id": 11,
+          "role": "user",
+          "content": "That's an interesting thought. It’s essentially creating a temporary fork. I’d have to be very careful about how we maintain that code later, but it might buy us the time we need to stabilize the core system in the background. It feels like a gamble, but maybe a calculated one."
+        },
+        {
+          "message_id": 12,
+          "role": "assistant",
+          "content": "It is definitely a gamble, but in a small team, you are often choosing between different types of risk. If you go this route, I suggest documenting exactly how and when you plan to merge that code back into the main branch, so it doesn't become a permanent maintenance burden. I’ll prepare a draft proposal for the team meeting tomorrow that outlines the siloed approach versus the full-system integration so we can weigh the long-term maintenance costs."
+        }
+      ],
+      "message_count": 12,
+      "conversation_sha256": "fe9a2ac930e7949eb2c7a41c3ee558a8c1581b8e553f4de87ecc1843f7a76d98",
+      "conversation_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/cases/pool1-case01-product-scope.txt"
+    },
+    {
+      "case_id": "pool1-case02-creative-collaboration",
+      "title": "Creative partnership, edit scope, and public deadline",
+      "stratum": "creative_collaboration_credit",
+      "messages": [
+        {
+          "message_id": 1,
+          "role": "user",
+          "content": "My co-creator and I are working on an audio documentary about local urban gardening. We’re two weeks out from the public showcase, and he wants to scrap the entire second half of the edit. He says the pacing is off, but I think the narrative arc is solid. I’m worried that if we re-edit now, we’ll miss the deadline and look unprofessional."
+        },
+        {
+          "message_id": 2,
+          "role": "assistant",
+          "content": "That is a stressful position to be in so close to a deadline. When you have two strong creative visions, it can be hard to tell if a change is a necessary improvement or just a difference in taste. Have you asked him to walk you through exactly what he feels is missing in the second half? Sometimes the pacing issue is actually a symptom of a missing bridge or a transition that isn't landing."
+        },
+        {
+          "message_id": 3,
+          "role": "user",
+          "content": "He thinks the interviews with the community garden organizers are too repetitive. I agree they are a bit long, but they provide the emotional core of the piece. He wants to cut them down by half and replace them with more ambient sound and voice-over. I think that ruins the human element. We’ve been arguing about this for three days, and it’s starting to affect our ability to finish the technical mix."
+        },
+        {
+          "message_id": 4,
+          "role": "assistant",
+          "content": "It sounds like you are both protecting different aspects of the same project. If you cut the interviews, you lose the human connection, but if you keep them as is, you risk losing the audience's attention. Could you try a hybrid approach? Maybe keep the most impactful quotes from the organizers but trim the repetitive sections, and use the ambient sound to fill the gaps where the interviews were dragging?"
+        },
+        {
+          "message_id": 5,
+          "role": "user",
+          "content": "I’ve tried suggesting a hybrid, but he’s very attached to his vision of a more 'atmospheric' piece. I feel like he’s trying to take over the final cut because he’s done more of the sound design work. I’ve done all the research and interviewing, so I feel like I have a better sense of the story. I don't want to just yield to him."
+        },
+        {
+          "message_id": 6,
+          "role": "assistant",
+          "content": "That power struggle is tough. Since you both have different areas of expertise, it might be helpful to treat the documentary as two separate layers: the narrative content and the sonic texture. Could you agree to a compromise where you have final say on the interview selection, and he has final say on the sound design and pacing of those segments?"
+        },
+        {
+          "message_id": 7,
+          "role": "user",
+          "content": "That sounds good in theory, but in practice, the two are inseparable. If I cut the interviews, the sound design has to change. I think you're oversimplifying the collaborative process here. We need a way to resolve this without one of us feeling like we lost the argument. Maybe we should bring in a third party to listen to the current draft?"
+        },
+        {
+          "message_id": 8,
+          "role": "assistant",
+          "content": "You are right, that was an oversimplification. Bringing in a third party is a standard way to break a deadlock, but you have to be careful about who you pick. If you choose someone who is also a creator, they might just add a third opinion to the mix. What if you both agreed on a specific criteria for the edit, like 'the piece must be under 20 minutes' or 'the audience must feel a sense of progression'?"
+        },
+        {
+          "message_id": 9,
+          "role": "user",
+          "content": "We are already under the time limit. The issue is the tone. I’m going to try to sit down with him tonight and actually time out exactly how much we can cut without losing the heart of the story. If we can find a middle ground on the length, maybe he’ll back off on the total overhaul."
+        },
+        {
+          "message_id": 10,
+          "role": "assistant",
+          "content": "That sounds like a very productive step. If you can show him that you are willing to make cuts, he might feel more heard and be more willing to compromise on his vision. It’s a good way to shift the conversation from 'who is right' to 'what makes the piece work'."
+        },
+        {
+          "message_id": 11,
+          "role": "user",
+          "content": "I hope so. If we can't agree by tomorrow, I’m seriously considering just releasing the version I have and letting him submit his own version separately, though that would be a disaster for our reputation as a duo."
+        },
+        {
+          "message_id": 12,
+          "role": "assistant",
+          "content": "Splitting the project would definitely be a last resort. I think your plan to sit down and work through the specific cuts is the best way forward. I’ll wait to hear how that meeting goes before suggesting any further steps, as it seems like you have a clear path to try and reconcile your visions tonight."
+        }
+      ],
+      "message_count": 12,
+      "conversation_sha256": "65f17556e17d21c7eef21425bad225c6bb0da9b2134937161c5195124ee5fc72",
+      "conversation_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/cases/pool1-case02-creative-collaboration.txt"
+    },
+    {
+      "case_id": "pool1-case03-nonprofit-program-scale",
+      "title": "Adult digital-literacy program expansion",
+      "stratum": "nonprofit_program_scale",
+      "messages": [
+        {
+          "message_id": 1,
+          "role": "user",
+          "content": "I run a small nonprofit, 'TechBridge,' that teaches digital literacy to seniors. We’ve been operating in one neighborhood for two years. We have an opportunity to open a second site in a neighboring district, but our current site is still struggling with volunteer consistency and attendance. I’m torn between scaling up to reach more people or doubling down to fix the quality of our current program."
+        },
+        {
+          "message_id": 2,
+          "role": "assistant",
+          "content": "That is a difficult choice. Scaling often feels like the right move for mission growth, but if the foundation isn't solid, it can spread your resources too thin. Have you looked at why your current site is struggling with attendance and volunteers? Is it a location issue, a marketing problem, or perhaps the curriculum itself?"
+        },
+        {
+          "message_id": 3,
+          "role": "user",
+          "content": "I think it’s a mix of things. Our current location is a bit hard to reach by public transit, and our volunteer pool is mostly students who have erratic schedules. We’ve been talking to a community center in the new district that is much more accessible. Maybe moving or expanding there would solve our attendance issues, but I worry we're just running away from the problems at the first site."
+        },
+        {
+          "message_id": 4,
+          "role": "assistant",
+          "content": "Moving to a better location could certainly help with attendance, but it doesn't necessarily solve the volunteer retention issue. If you expand, you’ll need even more volunteers. Have you considered whether the new site could be a pilot for a different volunteer model, perhaps one that relies on local retirees rather than students?"
+        },
+        {
+          "message_id": 5,
+          "role": "user",
+          "content": "That’s an interesting idea. We haven't tapped into the local retiree network yet. But I’m worried that if I focus on building a new volunteer base in a new district, I’ll completely neglect the existing site. My board is pushing for expansion because they want to show 'growth' to our donors, but I feel like we need more evidence that our current program actually improves digital skills long-term."
+        },
+        {
+          "message_id": 6,
+          "role": "assistant",
+          "content": "The pressure from the board is common, but you are right to prioritize the evidence of impact. Donors often appreciate quality over quantity if you can show them that your program is truly effective. Could you propose a compromise to the board: spend the next quarter gathering that impact evidence at the current site, and use that data to secure funding for a more sustainable expansion later?"
+        },
+        {
+          "message_id": 7,
+          "role": "user",
+          "content": "I tried that, but they think we don't have enough time. They are worried that if we don't take this partnership opportunity now, the community center will give the space to another organization. You seem to be assuming that I can just tell the board 'no' and they'll listen, but it’s not that simple when they control the budget."
+        },
+        {
+          "message_id": 8,
+          "role": "assistant",
+          "content": "I apologize, you're right; I shouldn't have assumed it would be an easy conversation. If the board is dead set on this, maybe you can frame the expansion as a 'limited-term pilot' rather than a permanent site. That way, you can test if the new location solves the attendance issues without fully committing your resources for the long term."
+        },
+        {
+          "message_id": 9,
+          "role": "user",
+          "content": "A pilot might work. It would give us a chance to see if the location is the real problem. If it works, we can shift more focus there. If it doesn't, we can pull back without having made a huge investment. I just need to make sure we don't burn out our few reliable volunteers in the process."
+        },
+        {
+          "message_id": 10,
+          "role": "assistant",
+          "content": "That is a smart way to frame it. You could even involve your most reliable volunteers in the planning of the pilot, which might make them feel more valued and invested in the success of the expansion. It turns a potential burden into a leadership opportunity for them."
+        },
+        {
+          "message_id": 11,
+          "role": "user",
+          "content": "That's a good point. If I can get them on board, it might actually help with retention. I’m still nervous about the workload, but a pilot feels like a manageable risk compared to a full-scale expansion."
+        },
+        {
+          "message_id": 12,
+          "role": "assistant",
+          "content": "It sounds like you have a solid path forward. I'll help you outline the key metrics for the pilot so you can show the board that you are taking a data-driven approach to this expansion. We can focus on tracking both attendance and volunteer satisfaction to ensure the pilot is truly sustainable."
+        }
+      ],
+      "message_count": 12,
+      "conversation_sha256": "2f7f80bb861d3502e60b110d841662ca31fb3c80fe1a90ccbf3411f6c9cfc220",
+      "conversation_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/cases/pool1-case03-nonprofit-program-scale.txt"
+    },
+    {
+      "case_id": "pool1-case04-research-tool-release",
+      "title": "Open research tool release and validation scope",
+      "stratum": "research_tool_release",
+      "messages": [
+        {
+          "message_id": 1,
+          "role": "user",
+          "content": "My team and I have developed an open-source tool for visualizing large-scale network data. It’s been a passion project for a year. We’re debating whether to release a public beta now to get community feedback or spend another three months polishing the documentation and writing unit tests. I’m worried that if we wait, we’ll lose the momentum we’ve built."
+        },
+        {
+          "message_id": 2,
+          "role": "assistant",
+          "content": "That is a classic release dilemma. If you wait, you risk losing the excitement, but if you release too early, you risk a buggy experience that could turn off potential users. How stable is the core architecture? If you release now, are you prepared to handle bug reports and feature requests while you're still trying to finish your own work?"
+        },
+        {
+          "message_id": 3,
+          "role": "user",
+          "content": "The architecture is solid, but the user experience is a bit rough. You have to know how to code in Python to configure the inputs. We want to build a GUI, but that’s at least two months away. My co-lead thinks we should release the command-line version first to see if people actually use it, but I’m worried that people will just dismiss it as too technical."
+        },
+        {
+          "message_id": 4,
+          "role": "assistant",
+          "content": "Releasing the command-line version is a great way to gauge interest, but you have to manage expectations. If you market it as a 'tool for developers' rather than a 'general-purpose visualization tool,' you might attract the right audience who can handle the technical setup. Have you considered setting up a simple landing page that clearly states the current requirements?"
+        },
+        {
+          "message_id": 5,
+          "role": "user",
+          "content": "We have a landing page, but it doesn't mention the technical requirements clearly enough. I think your suggestion is good, but I’m still concerned about the maintenance burden. We only have three people, and we all have full-time jobs. I don't want to spend my weekends answering support emails for a tool that isn't even finished."
+        },
+        {
+          "message_id": 6,
+          "role": "assistant",
+          "content": "That is a very real concern. If you release, you are essentially committing to a support role. Could you limit the release to a small group of beta testers first? You could reach out to a few researchers you know who work with network data and ask them to try it out. That way, you get feedback without the pressure of a public launch."
+        },
+        {
+          "message_id": 7,
+          "role": "user",
+          "content": "We actually already did a small private beta, and the feedback was great. They said the visualization engine is better than anything else available. The problem is, they all asked for different features. I think you're underestimating the 'public' part of open source. If we don't go public, we won't get the community contributions we need to actually finish the GUI."
+        },
+        {
+          "message_id": 8,
+          "role": "assistant",
+          "content": "You are right, I was focusing too much on the support burden and not enough on the potential for community contributions. If you need help building the GUI, an open-source release is the best way to find collaborators. Have you thought about creating a 'roadmap' document that explicitly lists the features you want to build and invites others to contribute?"
+        },
+        {
+          "message_id": 9,
+          "role": "user",
+          "content": "That’s a good idea. We could use the GitHub Issues tracker to label things as 'good first issue' for contributors. But I’m still worried that people will just use it and complain rather than contribute. It’s hard to build a community from scratch."
+        },
+        {
+          "message_id": 10,
+          "role": "assistant",
+          "content": "It is definitely hard. You might have to be the primary contributor for a while before others start to join in. But if you have a clear roadmap and a welcoming environment, you’ll be more likely to attract the right kind of users. What if you set a specific date for the public release and spent the time until then preparing the documentation?"
+        },
+        {
+          "message_id": 11,
+          "role": "user",
+          "content": "I think that’s the way to go. We’ll spend the next four weeks cleaning up the docs and setting up the contribution guidelines. Then we’ll do a soft launch to the research community. It’s not a full public release, but it’s a step in that direction."
+        },
+        {
+          "message_id": 12,
+          "role": "assistant",
+          "content": "That sounds like a balanced approach. It gives you time to prepare without losing all your momentum. I’ll help you draft a template for the contribution guidelines so you can hit the ground running once you decide to launch."
+        }
+      ],
+      "message_count": 12,
+      "conversation_sha256": "b56bffd4c5c396fd026048829835a239a0a70abb57f58c2360c3dd3b016a6d4d",
+      "conversation_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/cases/pool1-case04-research-tool-release.txt"
+    },
+    {
+      "case_id": "pool1-case05-community-arts-portfolio",
+      "title": "Community arts collective program portfolio",
+      "stratum": "community_arts_portfolio",
+      "messages": [
+        {
+          "message_id": 1,
+          "role": "user",
+          "content": "Our community arts collective, 'ArtPulse,' has a modest annual budget of $15,000. We’re debating our strategy for the coming year. We can either put all our resources into one flagship mural project in the city center or fund five smaller, experimental workshops in local parks. I’m worried the mural will be too much work for our small volunteer group, but the workshops might not have enough impact."
+        },
+        {
+          "message_id": 2,
+          "role": "assistant",
+          "content": "That is a classic choice between depth and breadth. A flagship project like a mural can provide a lot of visibility and prestige, which can help with future funding, but it is a massive logistical undertaking. On the other hand, workshops build community engagement but might not have the same 'wow' factor. What is the primary goal of your collective this year?"
+        },
+        {
+          "message_id": 3,
+          "role": "user",
+          "content": "Our goal is to increase local participation. We’ve been around for three years, and we still feel like we’re talking to the same 50 people. The mural would definitely attract new eyes, but I’m worried it’s just a one-time event. The workshops would reach different neighborhoods, but I’m not sure we have the capacity to manage five separate events."
+        },
+        {
+          "message_id": 4,
+          "role": "assistant",
+          "content": "If your goal is to reach new people, the workshops sound like a better strategy for long-term growth. However, if you are worried about capacity, maybe you don't need to do five. Could you start with two workshops and see how they go? That would allow you to test the waters without committing to the full schedule."
+        },
+        {
+          "message_id": 5,
+          "role": "user",
+          "content": "We could do two, but then we’d have leftover budget. My board wants to spend the whole $15,000 to maximize our impact. They think the mural is the only way to get that kind of visibility. I feel like they’re ignoring the fact that our volunteers are already burnt out from last year’s gallery show."
+        },
+        {
+          "message_id": 6,
+          "role": "assistant",
+          "content": "That is a tough spot. If the board is focused on visibility, they might not realize the hidden costs of the mural, like maintenance and insurance. Have you put together a breakdown of the volunteer hours required for the mural versus the workshops? Sometimes seeing the actual labor hours can change the board's perspective."
+        },
+        {
+          "message_id": 7,
+          "role": "user",
+          "content": "I haven't done that yet, but it’s a good idea. I think the mural will take at least 300 volunteer hours, while the workshops would take about 100. But the board thinks that because the mural is a 'legacy' project, it’s worth the extra effort. I’m just not sure if a painted wall is really what our community needs right now."
+        },
+        {
+          "message_id": 8,
+          "role": "assistant",
+          "content": "The 'legacy' argument is powerful, but it doesn't account for the current needs of your volunteers. If you are already facing burnout, a 300-hour project could be the breaking point. Could you propose a compromise where you do one smaller, high-impact mural that requires less labor, and use the remaining budget to fund two or three workshops?"
+        },
+        {
+          "message_id": 9,
+          "role": "user",
+          "content": "That’s a potential middle ground. A smaller mural would still give us the visibility, and the workshops would keep us connected to the community. It would be a lot of work, but maybe it’s the best of both worlds."
+        },
+        {
+          "message_id": 10,
+          "role": "assistant",
+          "content": "It’s a lot to manage, but it might satisfy both the board's desire for visibility and your concern for community engagement. You could even frame the mural as a way to advertise the workshops. It creates a cohesive narrative for your year."
+        },
+        {
+          "message_id": 11,
+          "role": "user",
+          "content": "I like that. It turns the mural into a promotional tool. I’ll need to talk to our lead artist to see if they can design something that fits a smaller scale. It’s still a big ask, but it feels more balanced."
+        },
+        {
+          "message_id": 12,
+          "role": "assistant",
+          "content": "That sounds like a very promising strategy. If you can get the artist on board with the smaller scale, you’ll have a much stronger case to present to the board. I’m happy to help you draft a project plan that integrates both the mural and the workshops so you can show how they work together."
+        }
+      ],
+      "message_count": 12,
+      "conversation_sha256": "cb9a3874f5cca7b256f8af57cd27e06fb471114de05dc1953c58cdd23be1fd19",
+      "conversation_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/cases/pool1-case05-community-arts-portfolio.txt"
+    }
+  ],
+  "non_claims": [
+    "Synthetic conversations are not evidence of real-world product usefulness.",
+    "The generation model does not provide gold reasoning or expected answers.",
+    "Mechanical selection does not prove case representativeness.",
+    "A safety-passing case is not a favorable Lolla or graph case.",
+    "This contract does not authorize Stage A, Stage B, graph ablation, runtime integration, or product claims."
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "lolla.case06_reasoning_run_receipt_v2_repaired_contract.v1",
+  "status": "frozen_after_v2_application_repair_before_receipt_assembly",
+  "date": "2026-07-10",
+  "frozen_at_utc": "2026-07-10T16:50:18Z",
+  "purpose": "Replace the stopped initial Case 06 assembly contract with the repaired Reasoning Run Receipt v2 shape while inheriting the original hash-locked closed-case evidence.",
+  "provider_call_budget": 0,
+  "runtime_change_authorized": false,
+  "pipeline_rerun_authorized": false,
+  "reader_call_authorized": false,
+  "base_input_contract": {
+    "path": "research/gate7-case06-receipt-v2-2026-07-10/receipt-contract.json",
+    "sha256": "d4d9a459bd426fca97aa79b7bf4aa0f2c3a4bb7f48bc401a185977d94d82707b",
+    "input_hashes_inherited": true,
+    "superseded_input_roles": [
+      "receipt_v2_schema",
+      "receipt_v2_validator"
+    ],
+    "assembly_under_base_contract_authorized": false
+  },
+  "application_audit": {
+    "path": "research/gate7-case06-receipt-v2-2026-07-10/v2-application-audit.json",
+    "sha256": "3354fc15cee6ca267357ecf5470f70cfff72be157bd15d23fc72b07eb44ade45"
+  },
+  "repaired_contract_artifacts": [
+    {
+      "role": "receipt_v2_schema",
+      "path": "docs/evals/reasoning-run-receipt-v2.json",
+      "sha256": "dbd6aac6573eae2a3c2d2fa4aeb584889f18448d1fbee5455fad9aa0bcbb6b75"
+    },
+    {
+      "role": "receipt_v2_validator",
+      "path": "scripts/evals/validate_reasoning_run_receipt_v2.py",
+      "sha256": "2eff05bd9b772194330ead9da4e8717c05a84729fd3f01dddcbeb47e06233dfe"
+    },
+    {
+      "role": "prospective_fixture",
+      "path": "tests/fixtures/reasoning_run_receipt_v2/prospective-valid.json",
+      "sha256": "96dc318d442da420c856f1a0540da1186c4108f21c6db07196136e1ea6ff656f"
+    },
+    {
+      "role": "adversarial_tests",
+      "path": "tests/test_reasoning_run_receipt_v2.py",
+      "sha256": "a19d9ee93f7b8e19ff8f5f2e61037591f26ebb9b40333da57737091200a60636"
+    }
+  ],
+  "additional_required_receipt_content": [
+    "exact anonymous response objects and response hashes",
+    "exact reveal mapping and blind review summary",
+    "frozen expected pressure ID and returned consumer pressure ID",
+    "identity status and semantic hearing status as separate fields",
+    "effect consistency status separate from returned disposition",
+    "V60 affordance origin without relabeling it as graph pressure",
+    "partial Stage B token total with explicit scope and no false whole-run total"
+  ],
+  "stop_rules": [
+    "fail if any non-superseded inherited input hash drifts",
+    "fail if anonymous outputs are summarized without exact payloads",
+    "fail if expected and returned pressure IDs are collapsed",
+    "fail if substantive semantic hearing is treated as exact custody success",
+    "fail if private_guardrail labeling hides visible effect inconsistency",
+    "fail if partial tokens are reported as a whole-run total",
+    "fail if graph absence or graph value is inferred",
+    "do not call a reader until receipt validation and source-first preflight pass"
+  ],
+  "outputs": {
+    "json": "research/gate7-case06-receipt-v2-2026-07-10/receipt.json",
+    "markdown": "research/gate7-case06-receipt-v2-2026-07-10/receipt.md"
+  }
+}

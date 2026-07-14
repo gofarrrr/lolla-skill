@@ -33,6 +33,7 @@ from .pass2_runner import (
 from .conversation_context import ConversationContext
 from .ir_constructor import construct_conversation_ir
 from .companion import CompanionCard, DetectedModel, FingerprintMove, FingerprintPayload, build_companion_card
+from .constitutional_graph_survival import build_constitutional_graph_survival
 from .frame_pressure import (
     FramePressureCard,
     assemble_frame_card,
@@ -133,11 +134,23 @@ from .triage import TriageScore
 
 
 class BoundaryClient(Protocol):
-    def run_json(self, system_prompt: str, user_prompt: str) -> dict:
+    def run_json(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
+    ) -> dict:
         ...
 
     def run_json_with_metadata(
-        self, system_prompt: str, user_prompt: str
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
     ) -> tuple[dict, BoundaryCallMetadata]:
         ...
 
@@ -241,6 +254,7 @@ class PipelineResult:
     companion_cheat_sheet: CompanionCheatSheet | None = None
     frame_pressure_card: FramePressureCard | None = None
     structural_coverage_card: StructuralCoverageCard | None = None
+    constitutional_graph_survival: dict[str, object] | None = None
     prompt_versions: tuple[tuple[str, str], ...] = ()
 
 
@@ -281,6 +295,7 @@ class CompanionRunResult:
     verification_status: str = "not_run"
     verification_issue_code: str = ""
     verification_issue_detail: dict[str, object] = field(default_factory=dict)
+    constitutional_graph_survival: dict[str, object] | None = None
 
 
 class SystemBPipeline:
@@ -468,6 +483,7 @@ class SystemBPipeline:
                 companion_cheat_sheet=cheat_sheet,
                 frame_pressure_card=frame_card,
                 structural_coverage_card=structural_card,
+                constitutional_graph_survival=companion_result.constitutional_graph_survival,
                 prompt_versions=self._prompt_versions,
             )
             self._record_telemetry(
@@ -621,6 +637,7 @@ class SystemBPipeline:
             companion_cheat_sheet=cheat_sheet,
             frame_pressure_card=frame_card,
             structural_coverage_card=structural_card,
+            constitutional_graph_survival=companion_result.constitutional_graph_survival,
             prompt_versions=self._prompt_versions,
         )
         self._record_telemetry(
@@ -738,6 +755,15 @@ class SystemBPipeline:
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
+        # R2 constitutional path: admitted recall enters deterministic
+        # active/reserve custody before the probabilistic verifier runs. The
+        # verifier remains legacy interpretation telemetry and cannot delete
+        # or rank survival candidates.
+        graph_survival = build_constitutional_graph_survival(
+            candidates=candidates,
+            knowledge_graph=self._companion_knowledge_graph,
+            relationship_graph=self._companion_relation_graph,
+        )
         verification = run_verification_call_with_diagnostics(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
@@ -764,6 +790,7 @@ class SystemBPipeline:
             verification_status=verification.verification_status,
             verification_issue_code=verification.verification_issue_code,
             verification_issue_detail=dict(verification.verification_issue_detail or {}),
+            constitutional_graph_survival=graph_survival,
         )
 
     def _run_frame_pressure(

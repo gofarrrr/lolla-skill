@@ -1,0 +1,243 @@
+{
+  "automatic_retries": 0,
+  "base_user_prompt_sha256": "26c4c5afca09970dcdef9da81780b7ac27b816f419fbc9fbf22e7f6ebd78fbfc",
+  "candidate": {
+    "candidate_dispositions": [
+      {
+        "disposition": "apply",
+        "disposition_reason": "Applying this lens directly supports the Turn 7 recommendation to have Northline actively reflect back their understanding of the discovery limits, ensuring relationship alignment without over-promising.",
+        "effect": "reinforces_existing",
+        "model_id": "active-listening",
+        "reopen_condition": "No reopening condition needed as this is applied to reinforce alignment protocols.",
+        "risk_if_forced": "Over-focusing on relationship dynamics might mask the structural constraints of having only nine team members to share the heavy technical load.",
+        "source_turn_numbers": [
+          4,
+          7
+        ],
+        "strongest_plausible_application": "The PM can use direct feedback and reflective validation to ensure Northline is actually comfortable with exploration sessions instead of expecting immediate delivery, preventing soft promises from escalating."
+      },
+      {
+        "disposition": "apply",
+        "disposition_reason": "This lens exposes a clear gap: the belief that the reporting layer serves a market demand may just be confirmation bias driven by Lina's enthusiasm and Northline's historical presence.",
+        "effect": "uncertainty_change",
+        "model_id": "confirmation-bias",
+        "reopen_condition": "No reopening condition needed as it is applied to test the reusability assumption.",
+        "risk_if_forced": "It could lead the team to completely disregard Lina's architectural intuition or dismiss genuine technical innovation opportunities as biased.",
+        "source_turn_numbers": [
+          2,
+          6
+        ],
+        "strongest_plausible_application": "Interrogate the assumption that 70% of the custom reporting work is genuinely reusable for the broader market when smaller customers are actually asking for basic core workflow updates."
+      },
+      {
+        "disposition": "park",
+        "disposition_reason": "The PM has already adjusted their orientation, acknowledging that Northline is collaborative and that the urgency has dropped. Actively invoking intellectual humility at this stage does not generate new actionable steps beyond the 2-week timebox.",
+        "effect": "no_material_effect",
+        "model_id": "intellectual-humility",
+        "reopen_condition": "Reopen if the upcoming discovery sessions reveal completely contradictory user behavior or if Lina's core motivations shift again.",
+        "risk_if_forced": "Could lead to decision paralysis by forcing the team to continuously reassess their stance rather than testing the current provisional plan.",
+        "source_turn_numbers": [
+          2,
+          6
+        ],
+        "strongest_plausible_application": "Accepting that the situation with Northline is highly dynamic and refusing to quickly classify them as a 'loud' customer, staying open to their shifting role dynamics."
+      },
+      {
+        "disposition": "apply",
+        "disposition_reason": "It reframes the resource conflict: letting Lina avoid reliability tasks because reporting 'gives her energy' does not make the reliability burden disappear; it merely shifts the risk to the other on-call engineer, creating a system-wide optimization failure.",
+        "effect": "reframe",
+        "model_id": "optimization-theory",
+        "reopen_condition": "No reopening condition needed as this is applied to balance team delivery capacities.",
+        "risk_if_forced": "Treating human motivation and burnout purely as mathematical optimization variables might ignore the qualitative cost of developer demotivation.",
+        "source_turn_numbers": [
+          1,
+          5
+        ],
+        "strongest_plausible_application": "Expose the trade-offs of allocating Lina's finite resource capacity between system reliability and high-energy custom development."
+      },
+      {
+        "disposition": "reject",
+        "disposition_reason": "The system lacks adversarial or zero-sum dynamics. Sales is communicative, Northline is cooperative, and engineering is vocal about their workloads. Applying a competitive or game-theoretic framework here is artificial and counterproductive.",
+        "effect": "no_material_effect",
+        "model_id": "prisoners-dilemma",
+        "reopen_condition": "Reopen only if key actors begin negotiating private deals with accounts behind the PM's back or deliberately withholding critical operational contributions.",
+        "risk_if_forced": "Could introduce distrust or defensive positioning among team members, treating a classic prioritization problem as a structural coordination battle.",
+        "source_turn_numbers": [
+          3,
+          5
+        ],
+        "strongest_plausible_application": "Frame the internal division between sales, product, and engineering as an incentive conflict where parties must coordinate to avoid the worst default outcome."
+      },
+      {
+        "disposition": "apply",
+        "disposition_reason": "Evaluating the worst-case risk justifies the defensive structure of the PM's provisional plan. It validates why stopping production code development during discovery is a necessary safeguard.",
+        "effect": "reframe",
+        "model_id": "critical-thinking",
+        "reopen_condition": "No reopening condition needed as this is applied to manage high-stakes platform risks.",
+        "risk_if_forced": "Extremely defensive thinking may stifle low-risk, disposable prototyping that is valuable for the initial workflow discovery.",
+        "source_turn_numbers": [
+          5,
+          7
+        ],
+        "strongest_plausible_application": "Examine if the worst-case scenario—on-call infrastructure failure during a critical release combined with developer burnout—is too damaging to play chances with."
+      }
+    ],
+    "change_summary": "The provisional plan was validated and refined. We applied active listening to establish mutual validation with Northline, used confirmation bias analysis to treat the '70% reusability' claim as a hypothesis rather than a fact, applied optimization theory to balance Developer energy against systemic on-call risks, and applied critical thinking to validate the defensive design of the plan. Intellectual humility was parked as the PM already has a flexible stance, and the prisoners' dilemma was rejected due to a lack of adversarial incentives.",
+    "reconsidered_answer": "Your provisional plan—running three focused, time-boxed discovery sessions over two weeks while forbidding production code, and simultaneously defining the baseline reliability work—is highly defensible. To strengthen this approach and navigate the lingering tensions, you can integrate several key refinements:\n\n1. **Acknowledge and Track the Reusability Assumption (Confirmation Bias):** \nLina's estimate that seventy percent of the work will build a general reporting layer is an unvalidated hypothesis. Since your smaller customers are asking for core workflow simplifications rather than reporting, treat the discovery phase as a test of this 'general value' assumption. Document during the sessions what percentage of the requested workflow is purely specific to Northline versus what is globally applicable, ensuring you do not let the desire for a clean architecture write off the actual needs of the wider market.\n\n2. **Manage the On-Call Risk and Optimization Constraint:** \nFulfilling Lina's desire for exciting work must be explicitly weighed against systemic on-call burnout. If she focuses entirely on the new layer, the infrastructure engineer remains over-leveraged with reliability debt. Use the next two weeks to define the absolute minimum viable reliability backlog. This will ensure that when you reconvene, you are comparing estimated code efforts against a clear, quantified operational safety line, rather than choosing based on temporary developer excitement.\n\n3. **Refining the \"No Production Code\" Boundary:**\nAllow Lina to build strictly disposable, non-production mockups if that is her primary learning style. Ensure she understands that this code cannot be imported, refactored, or used as a foundation for product delivery. This supports her creative learning without creating the premature momentum of an official build.\n\n4. **Establishing Direct Alignment (Active Listening):** \nTo avoid a polite 'no' being misheard as an impending 'yes' (especially after your sales lead's 'summer path' comment), ask Northline's team directly at the start and end of these sessions to reflect back what they understand the next steps to be. This guarantees both parties are fully aware that this is a feasibility research boundary rather than a delivery promise. It honors their contribution to your growth with absolute transparency rather than bureaucratic distancing."
+  },
+  "case_id": "amb1-case01-product-scope",
+  "compiled": {
+    "all_active_candidates_accounted_for": true,
+    "arm_id": "graph_expanded_pressure",
+    "candidate_dispositions": [
+      {
+        "disposition": "apply",
+        "disposition_reason": "Applying this lens directly supports the Turn 7 recommendation to have Northline actively reflect back their understanding of the discovery limits, ensuring relationship alignment without over-promising.",
+        "effect": "reinforces_existing",
+        "model_id": "active-listening",
+        "reopen_condition": "No reopening condition needed as this is applied to reinforce alignment protocols.",
+        "risk_if_forced": "Over-focusing on relationship dynamics might mask the structural constraints of having only nine team members to share the heavy technical load.",
+        "source_turn_numbers": [
+          4,
+          7
+        ],
+        "strongest_plausible_application": "The PM can use direct feedback and reflective validation to ensure Northline is actually comfortable with exploration sessions instead of expecting immediate delivery, preventing soft promises from escalating."
+      },
+      {
+        "disposition": "apply",
+        "disposition_reason": "This lens exposes a clear gap: the belief that the reporting layer serves a market demand may just be confirmation bias driven by Lina's enthusiasm and Northline's historical presence.",
+        "effect": "uncertainty_change",
+        "model_id": "confirmation-bias",
+        "reopen_condition": "No reopening condition needed as it is applied to test the reusability assumption.",
+        "risk_if_forced": "It could lead the team to completely disregard Lina's architectural intuition or dismiss genuine technical innovation opportunities as biased.",
+        "source_turn_numbers": [
+          2,
+          6
+        ],
+        "strongest_plausible_application": "Interrogate the assumption that 70% of the custom reporting work is genuinely reusable for the broader market when smaller customers are actually asking for basic core workflow updates."
+      },
+      {
+        "disposition": "apply",
+        "disposition_reason": "Evaluating the worst-case risk justifies the defensive structure of the PM's provisional plan. It validates why stopping production code development during discovery is a necessary safeguard.",
+        "effect": "reframe",
+        "model_id": "critical-thinking",
+        "reopen_condition": "No reopening condition needed as this is applied to manage high-stakes platform risks.",
+        "risk_if_forced": "Extremely defensive thinking may stifle low-risk, disposable prototyping that is valuable for the initial workflow discovery.",
+        "source_turn_numbers": [
+          5,
+          7
+        ],
+        "strongest_plausible_application": "Examine if the worst-case scenario—on-call infrastructure failure during a critical release combined with developer burnout—is too damaging to play chances with."
+      },
+      {
+        "disposition": "park",
+        "disposition_reason": "The PM has already adjusted their orientation, acknowledging that Northline is collaborative and that the urgency has dropped. Actively invoking intellectual humility at this stage does not generate new actionable steps beyond the 2-week timebox.",
+        "effect": "no_material_effect",
+        "model_id": "intellectual-humility",
+        "reopen_condition": "Reopen if the upcoming discovery sessions reveal completely contradictory user behavior or if Lina's core motivations shift again.",
+        "risk_if_forced": "Could lead to decision paralysis by forcing the team to continuously reassess their stance rather than testing the current provisional plan.",
+        "source_turn_numbers": [
+          2,
+          6
+        ],
+        "strongest_plausible_application": "Accepting that the situation with Northline is highly dynamic and refusing to quickly classify them as a 'loud' customer, staying open to their shifting role dynamics."
+      },
+      {
+        "disposition": "apply",
+        "disposition_reason": "It reframes the resource conflict: letting Lina avoid reliability tasks because reporting 'gives her energy' does not make the reliability burden disappear; it merely shifts the risk to the other on-call engineer, creating a system-wide optimization failure.",
+        "effect": "reframe",
+        "model_id": "optimization-theory",
+        "reopen_condition": "No reopening condition needed as this is applied to balance team delivery capacities.",
+        "risk_if_forced": "Treating human motivation and burnout purely as mathematical optimization variables might ignore the qualitative cost of developer demotivation.",
+        "source_turn_numbers": [
+          1,
+          5
+        ],
+        "strongest_plausible_application": "Expose the trade-offs of allocating Lina's finite resource capacity between system reliability and high-energy custom development."
+      },
+      {
+        "disposition": "reject",
+        "disposition_reason": "The system lacks adversarial or zero-sum dynamics. Sales is communicative, Northline is cooperative, and engineering is vocal about their workloads. Applying a competitive or game-theoretic framework here is artificial and counterproductive.",
+        "effect": "no_material_effect",
+        "model_id": "prisoners-dilemma",
+        "reopen_condition": "Reopen only if key actors begin negotiating private deals with accounts behind the PM's back or deliberately withholding critical operational contributions.",
+        "risk_if_forced": "Could introduce distrust or defensive positioning among team members, treating a classic prioritization problem as a structural coordination battle.",
+        "source_turn_numbers": [
+          3,
+          5
+        ],
+        "strongest_plausible_application": "Frame the internal division between sales, product, and engineering as an incentive conflict where parties must coordinate to avoid the worst default outcome."
+      }
+    ],
+    "case_id": "amb1-case01-product-scope",
+    "change_summary": "The provisional plan was validated and refined. We applied active listening to establish mutual validation with Northline, used confirmation bias analysis to treat the '70% reusability' claim as a hypothesis rather than a fact, applied optimization theory to balance Developer energy against systemic on-call risks, and applied critical thinking to validate the defensive design of the plan. Intellectual humility was parked as the PM already has a flexible stance, and the prisoners' dilemma was rejected due to a lack of adversarial incentives.",
+    "non_claims": [
+      "dispositions_are_probabilistic",
+      "reconsidered_answer_is_not_proven_better",
+      "not_runtime_authorization"
+    ],
+    "reconsidered_answer": "Your provisional plan—running three focused, time-boxed discovery sessions over two weeks while forbidding production code, and simultaneously defining the baseline reliability work—is highly defensible. To strengthen this approach and navigate the lingering tensions, you can integrate several key refinements:\n\n1. **Acknowledge and Track the Reusability Assumption (Confirmation Bias):** \nLina's estimate that seventy percent of the work will build a general reporting layer is an unvalidated hypothesis. Since your smaller customers are asking for core workflow simplifications rather than reporting, treat the discovery phase as a test of this 'general value' assumption. Document during the sessions what percentage of the requested workflow is purely specific to Northline versus what is globally applicable, ensuring you do not let the desire for a clean architecture write off the actual needs of the wider market.\n\n2. **Manage the On-Call Risk and Optimization Constraint:** \nFulfilling Lina's desire for exciting work must be explicitly weighed against systemic on-call burnout. If she focuses entirely on the new layer, the infrastructure engineer remains over-leveraged with reliability debt. Use the next two weeks to define the absolute minimum viable reliability backlog. This will ensure that when you reconvene, you are comparing estimated code efforts against a clear, quantified operational safety line, rather than choosing based on temporary developer excitement.\n\n3. **Refining the \"No Production Code\" Boundary:**\nAllow Lina to build strictly disposable, non-production mockups if that is her primary learning style. Ensure she understands that this code cannot be imported, refactored, or used as a foundation for product delivery. This supports her creative learning without creating the premature momentum of an official build.\n\n4. **Establishing Direct Alignment (Active Listening):** \nTo avoid a polite 'no' being misheard as an impending 'yes' (especially after your sales lead's 'summer path' comment), ask Northline's team directly at the start and end of these sessions to reflect back what they understand the next steps to be. This guarantees both parties are fully aware that this is a feasibility research boundary rather than a delivery promise. It honors their contribution to your growth with absolute transparency rather than bureaucratic distancing.",
+    "schema_version": "lolla.simulated_reliability_pressure_response.v1",
+    "source_packet_sha256": "4b491eb7322f5dab9ab4a65732e3c1b1b0b66570225a32f676351c5917778a26"
+  },
+  "data_collection": "deny",
+  "duration_seconds": 31.082,
+  "effective_user_prompt_sha256": "26c4c5afca09970dcdef9da81780b7ac27b816f419fbc9fbf22e7f6ebd78fbfc",
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1783866186-JQBvucy0XstaSdCO4HZl",
+  "max_output_tokens": 12000,
+  "operational_status": "ok",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex/global"
+  ],
+  "provider_payload_sha256": "3c28830b98072051f8be5818edd81a3908124fd1ff984e35d67caa64b10edc79",
+  "provider_reported_cost_usd": 0.051069,
+  "raw_content": "{\n  \"candidate_dispositions\": [\n    {\n      \"model_id\": \"active-listening\",\n      \"disposition\": \"apply\",\n      \"source_turn_numbers\": [4, 7],\n      \"effect\": \"reinforces_existing\",\n      \"strongest_plausible_application\": \"The PM can use direct feedback and reflective validation to ensure Northline is actually comfortable with exploration sessions instead of expecting immediate delivery, preventing soft promises from escalating.\",\n      \"disposition_reason\": \"Applying this lens directly supports the Turn 7 recommendation to have Northline actively reflect back their understanding of the discovery limits, ensuring relationship alignment without over-promising.\",\n      \"risk_if_forced\": \"Over-focusing on relationship dynamics might mask the structural constraints of having only nine team members to share the heavy technical load.\",\n      \"reopen_condition\": \"No reopening condition needed as this is applied to reinforce alignment protocols.\"\n    },\n    {\n      \"model_id\": \"confirmation-bias\",\n      \"disposition\": \"apply\",\n      \"source_turn_numbers\": [2, 6],\n      \"effect\": \"uncertainty_change\",\n      \"strongest_plausible_application\": \"Interrogate the assumption that 70% of the custom reporting work is genuinely reusable for the broader market when smaller customers are actually asking for basic core workflow updates.\",\n      \"disposition_reason\": \"This lens exposes a clear gap: the belief that the reporting layer serves a market demand may just be confirmation bias driven by Lina's enthusiasm and Northline's historical presence.\",\n      \"risk_if_forced\": \"It could lead the team to completely disregard Lina's architectural intuition or dismiss genuine technical innovation opportunities as biased.\",\n      \"reopen_condition\": \"No reopening condition needed as it is applied to test the reusability assumption.\"\n    },\n    {\n      \"model_id\": \"intellectual-humility\",\n      \"disposition\": \"park\",\n      \"source_turn_numbers\": [2, 6],\n      \"effect\": \"no_material_effect\",\n      \"strongest_plausible_application\": \"Accepting that the situation with Northline is highly dynamic and refusing to quickly classify them as a 'loud' customer, staying open to their shifting role dynamics.\",\n      \"disposition_reason\": \"The PM has already adjusted their orientation, acknowledging that Northline is collaborative and that the urgency has dropped. Actively invoking intellectual humility at this stage does not generate new actionable steps beyond the 2-week timebox.\",\n      \"risk_if_forced\": \"Could lead to decision paralysis by forcing the team to continuously reassess their stance rather than testing the current provisional plan.\",\n      \"reopen_condition\": \"Reopen if the upcoming discovery sessions reveal completely contradictory user behavior or if Lina's core motivations shift again.\"\n    },\n    {\n      \"model_id\": \"optimization-theory\",\n      \"disposition\": \"apply\",\n      \"source_turn_numbers\": [1, 5],\n      \"effect\": \"reframe\",\n      \"strongest_plausible_application\": \"Expose the trade-offs of allocating Lina's finite resource capacity between system reliability and high-energy custom development.\",\n      \"disposition_reason\": \"It reframes the resource conflict: letting Lina avoid reliability tasks because reporting 'gives her energy' does not make the reliability burden disappear; it merely shifts the risk to the other on-call engineer, creating a system-wide optimization failure.\",\n      \"risk_if_forced\": \"Treating human motivation and burnout purely as mathematical optimization variables might ignore the qualitative cost of developer demotivation.\",\n      \"reopen_condition\": \"No reopening condition needed as this is applied to balance team delivery capacities.\"\n    },\n    {\n      \"model_id\": \"prisoners-dilemma\",\n      \"disposition\": \"reject\",\n      \"source_turn_numbers\": [3, 5],\n      \"effect\": \"no_material_effect\",\n      \"strongest_plausible_application\": \"Frame the internal division between sales, product, and engineering as an incentive conflict where parties must coordinate to avoid the worst default outcome.\",\n      \"disposition_reason\": \"The system lacks adversarial or zero-sum dynamics. Sales is communicative, Northline is cooperative, and engineering is vocal about their workloads. Applying a competitive or game-theoretic framework here is artificial and counterproductive.\",\n      \"risk_if_forced\": \"Could introduce distrust or defensive positioning among team members, treating a classic prioritization problem as a structural coordination battle.\",\n      \"reopen_condition\": \"Reopen only if key actors begin negotiating private deals with accounts behind the PM's back or deliberately withholding critical operational contributions.\"\n    },\n    {\n      \"model_id\": \"critical-thinking\",\n      \"disposition\": \"apply\",\n      \"source_turn_numbers\": [5, 7],\n      \"effect\": \"reframe\",\n      \"strongest_plausible_application\": \"Examine if the worst-case scenario—on-call infrastructure failure during a critical release combined with developer burnout—is too damaging to play chances with.\",\n      \"disposition_reason\": \"Evaluating the worst-case risk justifies the defensive structure of the PM's provisional plan. It validates why stopping production code development during discovery is a necessary safeguard.\",\n      \"risk_if_forced\": \"Extremely defensive thinking may stifle low-risk, disposable prototyping that is valuable for the initial workflow discovery.\",\n      \"reopen_condition\": \"No reopening condition needed as this is applied to manage high-stakes platform risks.\"\n    }\n  ],\n  \"reconsidered_answer\": \"Your provisional plan—running three focused, time-boxed discovery sessions over two weeks while forbidding production code, and simultaneously defining the baseline reliability work—is highly defensible. To strengthen this approach and navigate the lingering tensions, you can integrate several key refinements:\\n\\n1. **Acknowledge and Track the Reusability Assumption (Confirmation Bias):** \\nLina's estimate that seventy percent of the work will build a general reporting layer is an unvalidated hypothesis. Since your smaller customers are asking for core workflow simplifications rather than reporting, treat the discovery phase as a test of this 'general value' assumption. Document during the sessions what percentage of the requested workflow is purely specific to Northline versus what is globally applicable, ensuring you do not let the desire for a clean architecture write off the actual needs of the wider market.\\n\\n2. **Manage the On-Call Risk and Optimization Constraint:** \\nFulfilling Lina's desire for exciting work must be explicitly weighed against systemic on-call burnout. If she focuses entirely on the new layer, the infrastructure engineer remains over-leveraged with reliability debt. Use the next two weeks to define the absolute minimum viable reliability backlog. This will ensure that when you reconvene, you are comparing estimated code efforts against a clear, quantified operational safety line, rather than choosing based on temporary developer excitement.\\n\\n3. **Refining the \\\"No Production Code\\\" Boundary:**\\nAllow Lina to build strictly disposable, non-production mockups if that is her primary learning style. Ensure she understands that this code cannot be imported, refactored, or used as a foundation for product delivery. This supports her creative learning without creating the premature momentum of an official build.\\n\\n4. **Establishing Direct Alignment (Active Listening):** \\nTo avoid a polite 'no' being misheard as an impending 'yes' (especially after your sales lead's 'summer path' comment), ask Northline's team directly at the start and end of these sessions to reflect back what they understand the next steps to be. This guarantees both parties are fully aware that this is a feasibility research boundary rather than a delivery promise. It honors their contribution to your growth with absolute transparency rather than bureaucratic distancing.\",\n  \"change_summary\": \"The provisional plan was validated and refined. We applied active listening to establish mutual validation with Northline, used confirmation bias analysis to treat the '70% reusability' claim as a hypothesis rather than a fact, applied optimization theory to balance Developer energy against systemic on-call risks, and applied critical thinking to validate the defensive design of the plan. Intellectual humility was parked as the PM already has a flexible stance, and the prisoners' dilemma was rejected due to a lack of adversarial incentives.\"\n}",
+  "raw_content_sha256": "a26e4ad98aee86c99af557ec16436aabb39941313cad8ac5f20a9025f2636617",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": true,
+  "reasoning_effort": "medium",
+  "repeat_id": "primary",
+  "request_body_sha256": "60c278c46da835ac1c35831cba0db2a6b55c48c603b3dc548545154b629e9366",
+  "requested_model": "google/gemini-3.5-flash-20260519",
+  "response_healing": false,
+  "response_schema_sha256": "4bfab9d6259b07fe886fe96d899d0e84cbac78521fdb38acdb17c86e36def037",
+  "seed": 101,
+  "served_model": "google/gemini-3.5-flash-20260519",
+  "served_provider": "Google",
+  "system_prompt_sha256": "aa66ce9518f09eeb45ef406425c6f9584cdd711c39b3d9e7d116564553bf5531",
+  "task_id": "graph_expanded_pressure",
+  "temperature_supplied": false,
+  "top_p_supplied": false,
+  "usage": {
+    "completion_tokens": 4876,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 3072
+    },
+    "cost": 0.051069,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.043884,
+      "upstream_inference_cost": 0.051069,
+      "upstream_inference_prompt_cost": 0.007185
+    },
+    "is_byok": false,
+    "prompt_tokens": 4790,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 9666
+  },
+  "validation_error": "",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

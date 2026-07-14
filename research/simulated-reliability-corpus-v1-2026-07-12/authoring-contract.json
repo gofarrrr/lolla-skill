@@ -1,0 +1,96 @@
+{
+  "schema_version": "lolla.simulated_reliability_authoring_contract.v1",
+  "date": "2026-07-12",
+  "status": "frozen_complete_after_naturalism_correction",
+  "case_count": 12,
+  "turn_pairs_per_case": 12,
+  "public_behavior_mix": {
+    "pressure_expected": 6,
+    "stand_down_expected": 4,
+    "park_expected": 2
+  },
+  "scenario_order": [
+    "municipal_flood_infrastructure",
+    "hospital_discharge_transport_operations",
+    "senior_executive_hiring",
+    "critical_component_single_sourcing",
+    "university_ai_tutoring_pilot",
+    "research_lab_industry_funding",
+    "worker_cooperative_scheduling_trial",
+    "museum_timed_entry_trial",
+    "enterprise_software_migration",
+    "nonprofit_restricted_funding_renewal",
+    "family_elder_care_relocation",
+    "newsroom_distribution_partnership"
+  ],
+  "required_properties": [
+    "consequential but safe to evaluate without external expert advice",
+    "material information arrives after an initial view",
+    "at least two user corrections, resistances, or narrowing moves",
+    "two or more legitimate values remain in tension",
+    "assistant is strong and useful rather than a planted failure",
+    "ending is actionable, conditional, or genuinely unresolved",
+    "contains initial framing, complication, provisional position, later reopening evidence, and a final revised position",
+    "at least one earlier thread is dropped and later recovered",
+    "no Lolla, graph, mental-model, evaluation, or gold-answer vocabulary",
+    "no exact target mental-model identity",
+    "no conspicuous final-turn statement of the intended blind spot",
+    "no invented expert statistics"
+  ],
+  "quiet_case_extra_rules": [
+    "do not state that nothing remains unresolved",
+    "do not have the assistant explicitly request stand-down",
+    "make adequacy inferable from proportionate protections and decision scope"
+  ],
+  "pressure_case_extra_rules": [
+    "do not make the assistant obviously incompetent",
+    "do not name the desired challenge in the final turn",
+    "allow value through a question, test, boundary, or contingency rather than requiring a changed recommendation"
+  ],
+  "park_case_extra_rules": [
+    "include a specific missing input or consent boundary",
+    "do not reward false direction merely for decisiveness"
+  ],
+  "separation": {
+    "source_review_notes_supplied_to_pipeline": false,
+    "source_review_notes_supplied_to_control_reasoner": false,
+    "source_review_notes_supplied_to_pressure_reasoner": false,
+    "transfer_cases_available_for_tuning_after_freeze": false
+  },
+  "pre_call_correction": {
+    "reason": "Founder review found seven-pair cases too compressed to represent advanced real conversations.",
+    "pipeline_calls_before_reopening": 0,
+    "provider_calls_before_reopening": 0,
+    "evaluation_results_before_reopening": 0,
+    "prior_manifest_status": "pre_call_draft_invalidated",
+    "new_depth": "twelve user/assistant pairs per transfer case"
+  },
+  "naturalism_correction": {
+    "reason": "Structurally advanced cases remained too uniformly polished to approximate real user and LLM dialogue as closely as possible.",
+    "pipeline_calls_before_reopening": 0,
+    "evaluation_results_before_reopening": 0,
+    "requirements": [
+      "varied short medium and long turns",
+      "partial answers and delayed thread recovery",
+      "at least one assistant overreach or incomplete frame followed by repair",
+      "distinct user and assistant voices",
+      "no fake errors or planted evaluation target"
+    ],
+    "source_model_attempt": {
+      "attempted_calls": 12,
+      "operational_candidates": 11,
+      "shape_passes": 0,
+      "admitted": 0,
+      "automatic_retries": 0,
+      "provider_reported_cost_usd": 0.0476685,
+      "status": "preserved_failed_method"
+    },
+    "provider_free_result": {
+      "naturalized_variants": 12,
+      "shape_passes": 12,
+      "semantic_preservation_passes": 12,
+      "whole_conversation_naturalism_passes": 12,
+      "status": "admitted_for_final_source_freeze"
+    }
+  }
+}

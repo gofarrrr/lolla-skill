@@ -1,0 +1,192 @@
+{
+  "schema_version": "lolla.r4_complementary_reader_token_correction_contract.v1",
+  "status": "frozen_provider_free_call_authorization_required",
+  "date": "2026-07-14",
+  "run_id": "lolla-r4-complementary-reader-token-correction-a2",
+  "purpose": "Prospectively retest the unresolved-matter and reopen-condition reader after changing only the completion allocation earned by the first run's two length failures, while preserving the original semantic contract and stop rules.",
+  "original_contract": {
+    "path": "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
+    "sha256": "3305f8797cab0513036d752a09440212c392dde8cff5499905db932e61543a53"
+  },
+  "historical_execution_closeout": {
+    "path": "research/lolla-r4-complementary-reader-execution-2026-07-14-a1/execution-closeout.json",
+    "sha256": "946474b77fab8a095e284e39c9bb4acf08673fbbe2625ae5079ddbddc8ff4af5",
+    "historical_result_reclassified": false
+  },
+  "current_practice": {
+    "path": "docs/conversation-understanding/lolla-r4-token-allocation-current-practice-2026-07-14.md",
+    "sha256": "925b4ac626e249c6b84cb916d15412edb1f94841ec54de0d9f9809de29035a05"
+  },
+  "preflight": {
+    "path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/preflight-result.json",
+    "sha256": "935c6aabe98f9bcab5af61b980f7cc547afd66ac725d95e5b855864e5ad4635f",
+    "manifest_path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/manifest.json",
+    "manifest_sha256": "588dd16adce983870edcd91560204a42996e86c0465101bb5e8e256ce72e683c"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "allowed_served_model_ids": [
+      "google/gemini-3.1-flash-lite",
+      "google/gemini-3.1-flash-lite-20260507"
+    ],
+    "provider_slug": "google-vertex",
+    "allowed_served_provider_names": [
+      "Google"
+    ],
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "provider_order": [
+      "google-vertex"
+    ],
+    "provider_only": [
+      "google-vertex"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zdr": true,
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limits": {
+    "uncertainty": {
+      "max_tokens": 1600,
+      "reasoning_effort": "minimal"
+    },
+    "relationship": {
+      "max_tokens": 700,
+      "reasoning_effort": "minimal"
+    }
+  },
+  "schemas": {
+    "uncertainty_sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+    "uncertainty_canonical_utf8_bytes": 1653,
+    "relationship_sha256": "6e23a52fe2693e2b3864ae29a433d6334df2ef7f1f617821fd7cdaa1bcb9e690",
+    "relationship_canonical_utf8_bytes": 1442,
+    "wire_mode": "strict_json_schema",
+    "strict": true,
+    "google_documented_subset_only": true,
+    "local_admission_required": true
+  },
+  "cases": [
+    {
+      "case_id": "v1-case02-discharge-transport",
+      "uncertainty_request_preview_path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/cases/v1-case02-discharge-transport/uncertainty-request-preview.json",
+      "uncertainty_request_body_sha256": "d432643c8c0fed6a6e4c4203b43810dfc2f4c461fdf74beefbb2eba5666167ac",
+      "changed_json_paths": [
+        "/max_tokens",
+        "/reasoning/effort"
+      ]
+    },
+    {
+      "case_id": "v1-case03-executive-hire",
+      "uncertainty_request_preview_path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/cases/v1-case03-executive-hire/uncertainty-request-preview.json",
+      "uncertainty_request_body_sha256": "a3d85785c98b730b5c5261ce7711a7a83739c8e70ee9fc7262dd1ad52c678e59",
+      "changed_json_paths": [
+        "/max_tokens",
+        "/reasoning/effort"
+      ]
+    }
+  ],
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_calls_per_case": 2,
+    "maximum_provider_reported_cost_per_case_usd": 0.015,
+    "maximum_provider_reported_cost_total_usd": 0.03,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "execution_contract": {
+    "historical_attempt_reclassified": false,
+    "historical_attempt_retried": false,
+    "corrected_requests_frozen_before_new_authorization": true,
+    "only_changed_json_paths": [
+      "/max_tokens",
+      "/reasoning/effort"
+    ],
+    "relationship_request_built_only_from_newly_admitted_exact_id_records": true,
+    "durable_started_marker_before_every_network_transport": true,
+    "one_attempt_per_task": true,
+    "stop_relationship_on_uncertainty_failure": true,
+    "stop_further_calls_when_provider_cost_is_unknown": true,
+    "stop_at_case_or_total_cost_boundary": true,
+    "preserve_length_schema_custody_and_budget_failures": true,
+    "source_first_target_never_loaded_by_runner": true
+  },
+  "review_contract": {
+    "inherited_unchanged_from_original_contract": true,
+    "source_first_human_review_required": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "provider_calls_authorized": false,
+    "authorization_file_present": false,
+    "runtime_or_graph_integration_authorized": false,
+    "production_model_selection_authorized": false,
+    "model_comparison_authorized": false,
+    "wider_corpus_authorized": false,
+    "revised_answer_or_pressure_call_authorized": false,
+    "next_decision": "explicit founder authorization for this newly frozen prospective four-call maximum token-correction diagnostic"
+  },
+  "frozen_inputs": [
+    {
+      "path": "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
+      "sha256": "3305f8797cab0513036d752a09440212c392dde8cff5499905db932e61543a53"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-execution-2026-07-14-a1/execution-closeout.json",
+      "sha256": "946474b77fab8a095e284e39c9bb4acf08673fbbe2625ae5079ddbddc8ff4af5"
+    },
+    {
+      "path": "docs/conversation-understanding/lolla-r4-token-allocation-current-practice-2026-07-14.md",
+      "sha256": "925b4ac626e249c6b84cb916d15412edb1f94841ec54de0d9f9809de29035a05"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/preflight-result.json",
+      "sha256": "935c6aabe98f9bcab5af61b980f7cc547afd66ac725d95e5b855864e5ad4635f"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/manifest.json",
+      "sha256": "588dd16adce983870edcd91560204a42996e86c0465101bb5e8e256ce72e683c"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/task-limits.json",
+      "sha256": "e328a2b10dec55393115c3d3de8ca2581d3280132a13d7d7babbd100a0fc6f5d"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/cases/v1-case02-discharge-transport/uncertainty-request-preview.json",
+      "sha256": "1a8930c93dbf9196bf9e3e522145eb732b66515e4256831d777a80d51f3c872f"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/cases/v1-case03-executive-hire/uncertainty-request-preview.json",
+      "sha256": "1997a4081697be1ddf3a3784c5837c2457299ebe76b5847896f2652a649d239f"
+    },
+    {
+      "path": "scripts/evals/build_r4_complementary_reader_token_correction.py",
+      "sha256": "8073648bd3922cfc6074faac9e737118dcc386e0ba74f6c2a38ed968d7fc330b"
+    },
+    {
+      "path": "scripts/evals/run_r4_complementary_reader_token_correction.py",
+      "sha256": "b72bebd4ed7db3e9b9fd41bdda7542db09f1bd96ee72693ef47a8fc4d661aff1"
+    },
+    {
+      "path": "scripts/evals/finalize_r4_complementary_reader_execution.py",
+      "sha256": "e9390fc0f104735a9cb8d600cc97af676d70c99deb73c3656ad160b441bd1eab"
+    }
+  ],
+  "non_claims": [
+    "This contract does not authorize a provider call by itself.",
+    "This is not an automatic or semantic retry of the historical attempt.",
+    "Minimal reasoning and a 1600-token ceiling do not guarantee completion.",
+    "A completed candidate would still require the original source-first semantic review.",
+    "No deterministic code decides conversational meaning, relevance, relationship meaning, pressure, or quality."
+  ]
+}

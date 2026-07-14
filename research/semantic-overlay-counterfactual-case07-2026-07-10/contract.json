@@ -1,0 +1,71 @@
+{
+  "schema_version": "lolla.semantic_overlay_counterfactual_contract.v0",
+  "status": "no_cost_packet_design_no_calls_authorized",
+  "case": {
+    "case_id": "case-07-messy-linked-decisions",
+    "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+    "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+  },
+  "actual_overlay": {
+    "shadow_path": "research/core-semantic-sk3-2026-07-10/case-07-messy-linked-decisions/shadow-01.json",
+    "shadow_sha256": "94f240cfa112b148cad447e4af0126d0723dc914003aa5e7f512d5c987902166",
+    "selection_rule": "include_every_selected_for_current_view_event_without_semantic_reranking",
+    "expected_event_count": 27
+  },
+  "reviewed_oracle_addition": {
+    "contract_path": "research/core-semantic-observation-contract-v1-2026-07-10/semantic-observation-contract.json",
+    "contract_sha256": "c7393bf3ce5d38cba00f3ff6420833e27c29c12f299e26043041bac6b1af6a8b",
+    "qualified_observation_id": "case-07-messy-linked-decisions:pressure.claimed_but_not_actual_decision",
+    "allowed_review_status": "source_reviewed",
+    "purpose": "diagnose_whether_the_known_omission_changes_downstream_reasoning_not_to_retroactively_pass_sk3"
+  },
+  "arms": [
+    {
+      "arm_id": "strong_fresh_reconsideration_control",
+      "semantic_overlay": "none"
+    },
+    {
+      "arm_id": "actual_sk3_overlay",
+      "semantic_overlay": "all_actual_selected_events"
+    },
+    {
+      "arm_id": "actual_sk3_plus_reviewed_omission_oracle",
+      "semantic_overlay": "all_actual_selected_events_plus_one_reviewed_oracle_addition"
+    }
+  ],
+  "hypotheses": [
+    "If control already preserves the unresolved Seattle state, the semantic overlay must add something else to justify its context cost.",
+    "If actual SK3 performs worse than control, the overlay is an integration risk even though its events are source-valid.",
+    "If the oracle arm uniquely improves the decision framing, the known omission is downstream-material and deserves semantic ontology work.",
+    "If actual and oracle are equivalent, the omitted observation may matter for receipt fidelity without changing reconsideration."
+  ],
+  "review_dimensions": [
+    "preserves_seattle_as_unresolved_not_decided",
+    "separates_user_preference_from_feasibility_checks",
+    "does_not_treat_boyfriend_conversation_as_the_decision_itself",
+    "keeps_mother_care_evidence_uncertain_without_erasing_it",
+    "decouples_lease_deadline_without_using_it_to_avoid_the_root_choice",
+    "reduces_cognitive_load_without_deciding_for_the_user",
+    "does_not_invent_medical_or_employer_certainty",
+    "context_burden_and_output_bloat"
+  ],
+  "future_call_budget_if_separately_authorized": {
+    "generation_calls": 3,
+    "evaluator_calls": 0,
+    "samples_per_arm": 1,
+    "automatic_retries": 0
+  },
+  "decision_rules": [
+    "actual_overlay_worse_than_control_blocks_integration",
+    "oracle_better_than_actual_marks_the_omission_downstream_material",
+    "control_equal_to_oracle_means_no_overlay_leverage_on_this_case",
+    "no_result_can_retroactively_change_the_failed_sk3_observation_score",
+    "no_result_can_authorize_runtime_or_graph_integration"
+  ],
+  "non_claims": [
+    "oracle_is_not_current_system_output",
+    "oracle_is_not_prompt_repair_evidence",
+    "packet_design_is_not_a_model_result",
+    "not_runtime_integration_authority"
+  ]
+}

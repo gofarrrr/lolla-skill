@@ -1,0 +1,375 @@
+{
+  "schema_version": "lolla.conversation_state_candidate_recovery_result.v1",
+  "status": "passed",
+  "comparison_kind": "source_reviewed_decomposition_ledger_and_reassembly_replay",
+  "contract_sha256": "6d56c11b7ff5f831788c4013872ad46bd2ceeabad6e0e42101adb1382e1a5213",
+  "observed": {
+    "adversarial_absence_preserved_count": 1,
+    "adversarial_fixture_count": 4,
+    "adversarial_ledger_quarantine_count": 2,
+    "adversarial_parser_rejection_count": 1,
+    "candidate_count": 60,
+    "case_count": 5,
+    "constraint_count": 45,
+    "direct_graph_seed_count": 0,
+    "invalid_candidate_count": 0,
+    "late_trajectory_case_count": 5,
+    "message_count": 70,
+    "position_count": 5,
+    "thread_count": 5,
+    "position_ownership_counts": {
+      "joint": 5
+    },
+    "thread_disposition_counts": {
+      "addressed_unresolved": 4,
+      "resolved": 1
+    },
+    "prompt_contract_count": 30
+  },
+  "case_results": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "status": "passed",
+      "message_count": 14,
+      "source_span_count": 83,
+      "candidate_count": 12,
+      "atomic_constraint_count": 9,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved",
+      "late_trajectory_preserved": true,
+      "invalid_candidate_count": 0,
+      "direct_graph_seed_count": 0,
+      "compiler_status": "compiled"
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "status": "passed",
+      "message_count": 14,
+      "source_span_count": 81,
+      "candidate_count": 12,
+      "atomic_constraint_count": 9,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved",
+      "late_trajectory_preserved": true,
+      "invalid_candidate_count": 0,
+      "direct_graph_seed_count": 0,
+      "compiler_status": "compiled"
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "status": "passed",
+      "message_count": 14,
+      "source_span_count": 84,
+      "candidate_count": 11,
+      "atomic_constraint_count": 8,
+      "position_ownership": "joint",
+      "thread_disposition": "resolved",
+      "late_trajectory_preserved": true,
+      "invalid_candidate_count": 0,
+      "direct_graph_seed_count": 0,
+      "compiler_status": "compiled"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "status": "passed",
+      "message_count": 14,
+      "source_span_count": 78,
+      "candidate_count": 13,
+      "atomic_constraint_count": 10,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved",
+      "late_trajectory_preserved": true,
+      "invalid_candidate_count": 0,
+      "direct_graph_seed_count": 0,
+      "compiler_status": "compiled"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "status": "passed",
+      "message_count": 14,
+      "source_span_count": 79,
+      "candidate_count": 12,
+      "atomic_constraint_count": 9,
+      "position_ownership": "joint",
+      "thread_disposition": "addressed_unresolved",
+      "late_trajectory_preserved": true,
+      "invalid_candidate_count": 0,
+      "direct_graph_seed_count": 0,
+      "compiler_status": "compiled"
+    }
+  ],
+  "adversarial_results": [
+    {
+      "fixture_id": "joint-missing-assistant",
+      "status": "passed",
+      "terminal_outcome": "ledger_quarantined",
+      "expected_issue": "joint_position_requires_both_speakers",
+      "observed_issue_codes": [
+        "joint_position_requires_both_speakers"
+      ],
+      "accepted_observed_path_allowed": false
+    },
+    {
+      "fixture_id": "mixed-constraint",
+      "status": "passed",
+      "terminal_outcome": "parser_rejected",
+      "expected_issue": "enum_value_invalid",
+      "observed_issue_codes": [
+        "enum_value_invalid"
+      ],
+      "accepted_observed_path_allowed": false
+    },
+    {
+      "fixture_id": "noncontiguous-quote",
+      "status": "passed",
+      "terminal_outcome": "ledger_quarantined",
+      "expected_issue": "source_excerpt_not_exact",
+      "observed_issue_codes": [
+        "source_excerpt_not_exact"
+      ],
+      "accepted_observed_path_allowed": false
+    },
+    {
+      "fixture_id": "not-found",
+      "status": "passed",
+      "terminal_outcome": "absence_preserved",
+      "expected_issue": null,
+      "observed_issue_codes": [],
+      "accepted_observed_path_allowed": false
+    }
+  ],
+  "provider_compatibility": {
+    "openai": {
+      "schema_version": "lolla.conversation_state_provider_compatibility.v1",
+      "provider_projection": "openai",
+      "checked_against_practices_date": "2026-07-11",
+      "rows": [
+        {
+          "kind": "positions",
+          "schema_sha256": "4168365ff4268c63bbff980d5ded72db725f8605ea141df0119bf7571c6241e0",
+          "metrics": {
+            "bytes": 2864,
+            "depth": 6,
+            "property_nodes": 5
+          },
+          "keywords": [
+            "$defs",
+            "$ref",
+            "additionalProperties",
+            "anyOf",
+            "description",
+            "enum",
+            "items",
+            "maxItems",
+            "minItems",
+            "properties",
+            "required",
+            "type"
+          ],
+          "unsupported_keywords": [],
+          "depth_at_most_8": true,
+          "bytes_at_most_4096": true,
+          "compatible": true
+        },
+        {
+          "kind": "threads",
+          "schema_sha256": "50099815700831e0f13c3a97e4fab39ca14d90c6b01cf0fe7d77841a3283bc42",
+          "metrics": {
+            "bytes": 2313,
+            "depth": 7,
+            "property_nodes": 4
+          },
+          "keywords": [
+            "$defs",
+            "$ref",
+            "additionalProperties",
+            "anyOf",
+            "description",
+            "enum",
+            "items",
+            "maxItems",
+            "minItems",
+            "properties",
+            "required",
+            "type"
+          ],
+          "unsupported_keywords": [],
+          "depth_at_most_8": true,
+          "bytes_at_most_4096": true,
+          "compatible": true
+        },
+        {
+          "kind": "constraints",
+          "schema_sha256": "46033ee67a0964f6550ad86ba2bc9645906358cbd9ebc5ad9a2a92b60ecc4258",
+          "metrics": {
+            "bytes": 1684,
+            "depth": 6,
+            "property_nodes": 3
+          },
+          "keywords": [
+            "$defs",
+            "$ref",
+            "additionalProperties",
+            "description",
+            "enum",
+            "items",
+            "maxItems",
+            "minItems",
+            "properties",
+            "required",
+            "type"
+          ],
+          "unsupported_keywords": [],
+          "depth_at_most_8": true,
+          "bytes_at_most_4096": true,
+          "compatible": true
+        }
+      ],
+      "all_compatible": true,
+      "provider_calls": 0,
+      "non_claims": [
+        "schema_compatibility_is_not_provider_acceptance_proof",
+        "schema_compatibility_is_not_semantic_quality",
+        "no_provider_call_was_made"
+      ]
+    },
+    "gemini": {
+      "schema_version": "lolla.conversation_state_provider_compatibility.v1",
+      "provider_projection": "gemini",
+      "checked_against_practices_date": "2026-07-11",
+      "rows": [
+        {
+          "kind": "positions",
+          "schema_sha256": "4168365ff4268c63bbff980d5ded72db725f8605ea141df0119bf7571c6241e0",
+          "metrics": {
+            "bytes": 2864,
+            "depth": 6,
+            "property_nodes": 5
+          },
+          "keywords": [
+            "$defs",
+            "$ref",
+            "additionalProperties",
+            "anyOf",
+            "description",
+            "enum",
+            "items",
+            "maxItems",
+            "minItems",
+            "properties",
+            "required",
+            "type"
+          ],
+          "unsupported_keywords": [],
+          "depth_at_most_8": true,
+          "bytes_at_most_4096": true,
+          "compatible": true
+        },
+        {
+          "kind": "threads",
+          "schema_sha256": "bae807b79a2f942417e5d4a28af5e37ed681d31a453f79a8fa83e14132d5f5e3",
+          "metrics": {
+            "bytes": 2294,
+            "depth": 6,
+            "property_nodes": 4
+          },
+          "keywords": [
+            "$defs",
+            "$ref",
+            "additionalProperties",
+            "description",
+            "enum",
+            "items",
+            "maxItems",
+            "minItems",
+            "properties",
+            "required",
+            "type"
+          ],
+          "unsupported_keywords": [],
+          "depth_at_most_8": true,
+          "bytes_at_most_4096": true,
+          "compatible": true
+        },
+        {
+          "kind": "constraints",
+          "schema_sha256": "46033ee67a0964f6550ad86ba2bc9645906358cbd9ebc5ad9a2a92b60ecc4258",
+          "metrics": {
+            "bytes": 1684,
+            "depth": 6,
+            "property_nodes": 3
+          },
+          "keywords": [
+            "$defs",
+            "$ref",
+            "additionalProperties",
+            "description",
+            "enum",
+            "items",
+            "maxItems",
+            "minItems",
+            "properties",
+            "required",
+            "type"
+          ],
+          "unsupported_keywords": [],
+          "depth_at_most_8": true,
+          "bytes_at_most_4096": true,
+          "compatible": true
+        }
+      ],
+      "all_compatible": true,
+      "provider_calls": 0,
+      "non_claims": [
+        "schema_compatibility_is_not_provider_acceptance_proof",
+        "schema_compatibility_is_not_semantic_quality",
+        "no_provider_call_was_made"
+      ]
+    }
+  },
+  "prompt_contracts_sha256": "2690d6fd92c71c01fa68789322d616b722cea66579039a34062f149e0bc323cd",
+  "gates": {
+    "case_count": true,
+    "message_count": true,
+    "position_count": true,
+    "thread_count": true,
+    "constraint_count": true,
+    "candidate_count": true,
+    "invalid_candidate_count": true,
+    "direct_graph_seed_count": true,
+    "late_trajectory_case_count": true,
+    "adversarial_fixture_count": true,
+    "adversarial_parser_rejection_count": true,
+    "adversarial_ledger_quarantine_count": true,
+    "adversarial_absence_preserved_count": true,
+    "position_ownership_counts": true,
+    "thread_disposition_counts": true,
+    "prompt_contract_count": true,
+    "all_cases_passed": true,
+    "all_provider_projections_compatible": true,
+    "all_late_trajectories_preserved": true,
+    "no_invalid_candidate_entered_current_view": true,
+    "no_case_context_seeded_graph": true,
+    "provider_calls_zero": true,
+    "all_adversarial_fixtures_passed": true
+  },
+  "failed_gates": [],
+  "provider_calls": 0,
+  "graph_calls": 0,
+  "runtime_modified": false,
+  "interpretation": {
+    "typed_representation_and_composition_work": true,
+    "automatic_extraction_quality": "not_tested",
+    "semantic_label_correctness": "source_reviewed_same_session_not_independent_gold",
+    "provider_acceptance": "not_tested",
+    "graph_or_downstream_value": "not_tested"
+  },
+  "non_claims": [
+    "not_automatic_extraction_improvement",
+    "not_independent_gold",
+    "not_provider_acceptance_proof",
+    "not_graph_value",
+    "not_downstream_answer_value",
+    "not_runtime_authority"
+  ]
+}

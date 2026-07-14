@@ -185,7 +185,7 @@ def test_agent_result_contract_for_healthy_archived_run(tmp_path: Path) -> None:
     assert payload["status"] == "ok"
     assert payload["run_health_overall"] == "healthy"
     assert payload["risk_mode"] == "standard"
-    assert payload["caller_action"] == "use_revised_answer"
+    assert payload["caller_action"] == "review_revised_answer"
     assert payload["main_counter_pressure"] == (
         "The answer treated customer interest as evidence before naming a reversal gate."
     )

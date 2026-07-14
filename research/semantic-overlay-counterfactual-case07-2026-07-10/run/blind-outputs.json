@@ -1,0 +1,222 @@
+{
+  "schema_version": "lolla.semantic_overlay_counterfactual_blind_outputs.v0",
+  "case_id": "case-07-messy-linked-decisions",
+  "review_status": "pending_provisional_and_human_review",
+  "outputs": [
+    {
+      "blind_label": "A",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "User has not chosen Seattle or DC; has only drafted a plan to gather missing information before deciding.",
+        "updated_position": "User is preparing structured information-gathering steps but has not made a substantive life decision yet.",
+        "what_survived": [
+          "The Seattle job decision is upstream of the housing and cohabitation decisions.",
+          "The boyfriend conversation needs to shift from hypothetical to concrete details.",
+          "The mother’s emerging cognitive issues are a meaningful factor and require real information, not assumptions.",
+          "A short‑term rental can decouple the apartment deadline from the major decisions.",
+          "Asking Seattle for more time is reasonable and not unusual."
+        ],
+        "take_backs_or_set_aside": [
+          "The earlier assistant implicitly treated Seattle as the more likely choice; that preference came from tone, not from the user.",
+          "The framing that all decisions must be integrated immediately overstated how much must be solved at once; sequencing reduces pressure.",
+          "Descriptions implying inevitability of cognitive decline or specific trajectories for the mother went beyond what the user provided.",
+          "Assumptions about how the employer will react to an extension request should be softened; it’s plausible but not guaranteed."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Separate the lease problem from the bigger life choice without implying the user must operate on a fixed 14–17 day plan.",
+            "source_basis": "User said they felt overwhelmed by the 60‑day deadline; short‑term options buy time but don’t force a compressed major decision.",
+            "action_consequence": "Allows the user to extend the decision window if Seattle grants more time or if they choose not to rush."
+          },
+          {
+            "shift": "Rebalance the boyfriend factor toward fact‑finding rather than predicting his psychology.",
+            "source_basis": "User described withdrawal but did not claim what it means.",
+            "action_consequence": "Conversation becomes about learning his actual constraints and willingness rather than diagnosing motives."
+          },
+          {
+            "shift": "Clarify that the mother’s situation is a feasibility input, not a predetermined limitation on the Seattle option.",
+            "source_basis": "User described memory slips but no medical evaluation.",
+            "action_consequence": "Encourages getting medical and logistical clarity without foreclosing either Seattle or DC."
+          },
+          {
+            "shift": "Highlight that the user hasn’t articulated their own preference independent of pressures.",
+            "source_basis": "User said they tell themselves they’ve decided on Seattle but haven’t, and fear is clouding the signal.",
+            "action_consequence": "Supports the user in identifying what they want before logistics dominate."
+          }
+        ],
+        "next_actions": [
+          "Have the concrete conversation with the boyfriend focused on what he would do if Seattle were accepted: job, timing, housing, and willingness.",
+          "Ask Seattle for a short extension using a clear, simple request.",
+          "Talk with brother about your mother’s situation and ask her primary care doctor about whether a cognitive evaluation is appropriate.",
+          "Begin looking for short‑term housing options to remove immediate pressure.",
+          "Spend a brief, quiet moment identifying what a good year‑from‑now outcome looks like for you personally."
+        ],
+        "uncertainties": [
+          "Whether Seattle will grant more time.",
+          "What the boyfriend’s specific constraints and willingness actually are.",
+          "The true nature and pace of the mother’s cognitive issues.",
+          "How strongly the user actually prefers Seattle versus staying in DC once fear is separated from preference."
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "overlay_event_count": 0,
+        "prompt_tokens": 3191,
+        "completion_tokens": 688,
+        "total_tokens": 3879,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "b0263ae30e798aa1c7e3a9e28e0ed25474c3d667d32fecf20b76270aa31dfe0e",
+        "response_sha256": "7bfa9c4c8822f311d1e80bee16534fdd79a0866a823021df2a17737e314e2896"
+      }
+    },
+    {
+      "blind_label": "B",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "The user has not made a final decision about Seattle or staying in DC. They has only set a short-term action plan. The long-term decisions remain open.",
+        "updated_position": "The core decision is still genuinely undecided. The lease pressure can be managed with temporary housing. The next two determining factors are getting specific information from the boyfriend and clarifying the mother’s care situation. The Seattle decision depends on these inputs, not assumptions.",
+        "what_survived": [
+          "Short‑term rental or similar temporary housing is a valid way to remove immediate lease pressure.",
+          "A direct, concrete conversation with the boyfriend is necessary before deciding about Seattle.",
+          "The mother’s emerging memory issues are a real factor that needs to be understood with more data, not guessed at.",
+          "Asking Seattle for a brief extension is reasonable but not guaranteed—worth trying, not assumed.",
+          "Separating logistics (lease) from the core decision (Seattle vs DC) is helpful."
+        ],
+        "take_backs_or_set_aside": [
+          "Overstated confidence about employer flexibility on deadlines—extension is possible but not predictable.",
+          "Implying the lease issue is secondary was too strong; it’s a real constraint that needs handling but can be softened with temporary housing.",
+          "Avoid assuming the boyfriend’s withdrawal has a specific meaning without hearing from him.",
+          "Avoid premature framing of the mother’s situation as a defined decline without medical evaluation."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Treat employer deadline flexibility as uncertain rather than expected.",
+            "source_basis": "User must answer in 10 days; assistant overclaimed typical employer behavior.",
+            "action_consequence": "User should request an extension but prepare for either outcome."
+          },
+          {
+            "shift": "Keep the mother’s situation in the realm of ‘needs assessment’ not diagnosis.",
+            "source_basis": "User described concerning behaviors without medical input.",
+            "action_consequence": "Recommend medical evaluation steps, not assumptions about prognosis."
+          },
+          {
+            "shift": "Center the boyfriend conversation as an information-gathering step, not a predictor.",
+            "source_basis": "User said he’s withdrawn, but no specifics are known.",
+            "action_consequence": "User asks concrete logistical questions rather than interpreting behavior."
+          },
+          {
+            "shift": "Frame temporary housing as equal-weight option, not a last resort.",
+            "source_basis": "User overwhelmed by lease deadline; assistant treated it as trivial.",
+            "action_consequence": "User can confidently pursue short-term housing to gain decision time."
+          }
+        ],
+        "next_actions": [
+          "Have the specific conversation with the boyfriend about actual logistics and timeline if Seattle is accepted.",
+          "Request a deadline extension from Seattle; treat the answer as uncertain.",
+          "Call brother to discuss observations about mom and next steps; schedule or initiate a cognitive evaluation through her primary care doctor.",
+          "Begin short‑term rental/sublet search to remove 60‑day pressure.",
+          "After gathering this information, block time to reflect on what the user actually wants beyond logistics."
+        ],
+        "uncertainties": [
+          "Boyfriend’s true willingness and ability to move.",
+          "Mother’s actual cognitive status and expected care needs.",
+          "Seattle employer’s flexibility on the offer deadline.",
+          "User’s long-term preference between career advancement and remaining near support systems."
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "overlay_event_count": 27,
+        "prompt_tokens": 3956,
+        "completion_tokens": 610,
+        "total_tokens": 4566,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "9d0071358bd3b6bf713c9438bc44ba28aba6b4984def6e4a76db13f6d3441e6f",
+        "response_sha256": "54e3dc8022531b468cbcc138bb027391f7da3b3d1d68429c8af333e7924b15fe"
+      }
+    },
+    {
+      "blind_label": "C",
+      "status": "ok",
+      "response": {
+        "decision_state_read": "User has not decided on Seattle, cohabitation, or long‑term plans for her mother; she has only committed to a short-term actionable plan for the next 1–2 weeks.",
+        "updated_position": "Multiple threads remain open. The user has a workable short-term plan but none of the long-term decisions are resolved, and the prior assistant sometimes framed things as more determinate than the evidence supports.",
+        "what_survived": [
+          "Short‑term rental or temporary housing can decouple the lease deadline from major life decisions.",
+          "A direct, concrete conversation with the boyfriend is necessary for informed decision‑making.",
+          "A conversation with her brother and a medical evaluation for her mother are prudent given emerging memory issues.",
+          "Asking Seattle for more time is reasonable even if not guaranteed.",
+          "Sequencing tasks (boyfriend talk → family conversation → Seattle decision) is helpful."
+        ],
+        "take_backs_or_set_aside": [
+          "Claims about how employers \"usually\" behave with deadlines were too confident.",
+          "Framing the Seattle job as the single \"root decision\" oversimplified the user’s intertwined concerns.",
+          "Some emotional signals from the user (sleep issues, overwhelm) were acknowledged but not integrated into pacing or support.",
+          "The assistant implied her mother’s condition trajectory without medical support; should stay with uncertainty."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Remove assumption that employer deadline flexibility is likely.",
+            "source_basis": "User nowhere indicated employer flexibility; assistant’s claim overstated typical norms.",
+            "action_consequence": "User should ask for an extension without assuming it will be granted; prepare fallback if they refuse."
+          },
+          {
+            "shift": "Hold more uncertainty about boyfriend’s intentions.",
+            "source_basis": "User reported withdrawal and lack of specifics; assistant treated this heavily as diagnostic.",
+            "action_consequence": "User should gather concrete information rather than infer meaning from behavior."
+          },
+          {
+            "shift": "Clarify mom’s situation as uncertain and requiring evaluation, not assumed progression.",
+            "source_basis": "User reported stove incidents and memory lapses but no diagnosis.",
+            "action_consequence": "User should seek medical assessment rather than assume a decline path."
+          },
+          {
+            "shift": "Avoid framing Seattle vs DC as the single hub decision.",
+            "source_basis": "User expressed multiple value pulls: place identity, relationship, career, family care.",
+            "action_consequence": "User should evaluate options along each dimension instead of treating them as one binary."
+          }
+        ],
+        "next_actions": [
+          "Have the specific, concrete conversation with the boyfriend about what moving with you would actually entail, including timing and practical steps.",
+          "Email Seattle to request an extension without assuming approval; plan for a decision within the original deadline if needed.",
+          "Call your brother to coordinate a clear understanding of your mom’s situation and care expectations.",
+          "Start the process for a cognitive evaluation for your mom through her primary care provider.",
+          "Begin the search for a short-term rental to remove immediate housing pressure.",
+          "Set aside 20–30 minutes to identify what a satisfying life one year from now looks like, without forcing a decision."
+        ],
+        "uncertainties": [
+          "Whether Seattle will grant an extension.",
+          "Boyfriend’s true willingness and ability to relocate.",
+          "Your mother’s actual cognitive status and trajectory pending evaluation.",
+          "How much weight you personally place on career opportunity versus place attachment versus relationship stability versus family proximity."
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "overlay_event_count": 28,
+        "prompt_tokens": 3992,
+        "completion_tokens": 640,
+        "total_tokens": 4632,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "318c29b2bb1c1ccba48318687fbfba8ef70ba9d5cb19c2043c70fd26a81a5e00",
+        "response_sha256": "fc12b2845f265aa957eb7f3f9c0306b4250b7e4f8b1301cbf5848b3f48c506ec"
+      }
+    }
+  ],
+  "non_claims": [
+    "oracle_is_not_current_system_output",
+    "directional_single_sample_counterfactual",
+    "not_human_review",
+    "not_product_proof",
+    "not_runtime_integration_authority"
+  ]
+}

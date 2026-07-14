@@ -1,0 +1,83 @@
+{
+  "schema_version": "lolla.designed_extraction_quality_contract.v1",
+  "status": "frozen_before_new_measurement_calls",
+  "date": "2026-07-10",
+  "purpose": "Measure whether extraction preserves who contributed what, source strength, load-bearing constraints, and the true status of conversational threads before graph pressure is interpreted.",
+  "corpus_status": "same_session_synthetic_development_corpus_not_clean_holdout",
+  "model": "google/gemini-3.1-flash-lite",
+  "runtime": {
+    "python": "/Users/izabela/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "python_version": "3.12.13"
+  },
+  "hash_locks": {
+    "extractor_sha256": "6c0c28bb0ce600f46c181d0e56e93bcf3a9b147fece6a0db189f294cfe250de0",
+    "boundary_provider_sha256": "2620fc4b3c07bd73c4916b4a31c4e69404a8ae83f20b0751b82cd22039167464",
+    "extraction_system_prompt_sha256": "71fb3b023f6b24df2e0ff936a0f27fb75564e1af66c68f2a16f694181cd82bf1",
+    "extraction_retry_template_sha256": "d83a554e0046dd6fe3d6c45134d48bfe5e92958adbd6352e96b0f8251e3f54e9"
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+      "source_sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7",
+      "measurement_status": "new_extraction_required"
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+      "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+      "measurement_status": "existing_extraction_reused"
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+      "source_sha256": "9788de101dee7661bcc9f76240874f088f9e97579a90deff1ee8c91462004f0f",
+      "measurement_status": "new_extraction_required"
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+      "source_sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb",
+      "measurement_status": "existing_extraction_reused"
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+      "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d",
+      "measurement_status": "existing_extraction_reused"
+    }
+  ],
+  "new_call_envelope": {
+    "case_count": 2,
+    "initial_calls": 2,
+    "maximum_builtin_quote_repair_calls": 2,
+    "maximum_total_openrouter_calls": 4,
+    "experiment_retries": 0,
+    "pipeline_calls": 0,
+    "estimated_cost_ceiling_usd": 0.01,
+    "stop_on_capture_failure": true,
+    "stop_on_provider_or_schema_failure": true
+  },
+  "review_axes": {
+    "topic_and_decision_fidelity": "Does the extraction identify the actual decision without replacing ambiguity with a recommendation?",
+    "proposal_provenance": "Does it distinguish user proposals, assistant proposals, and jointly developed positions?",
+    "source_strength_calibration": "Does it avoid turning possibilities, preferences, or concerns into facts, deadlines, ownership, health, or certainty?",
+    "constraint_coverage": "How many source-reviewed load-bearing constraints remain visible?",
+    "thread_status": "Does never_addressed or acknowledged_then_dropped match the assistant's actual engagement and final treatment?",
+    "quote_fidelity": "Are reasoning passages exact assistant substrings and do they represent the late trajectory?"
+  },
+  "scoring_policy": {
+    "ordinal_labels": ["supported", "partial", "failed", "unobservable_in_schema"],
+    "constraint_coverage": "reviewed_constraints_preserved / reviewed_constraints_total",
+    "thread_status_precision": "correct_status_items / extracted_thread_items; null when no thread is extracted",
+    "no_composite_quality_score": true,
+    "reason": "The axes have different failure consequences; averaging them would hide downstream-corrupting provenance or status errors behind good quote fidelity."
+  },
+  "non_claims": [
+    "not a clean holdout",
+    "not an estimate of real-user failure frequency",
+    "not graph quality evidence",
+    "not evidence that a revised answer is better",
+    "not authority for prompt expansion or architecture replacement"
+  ]
+}

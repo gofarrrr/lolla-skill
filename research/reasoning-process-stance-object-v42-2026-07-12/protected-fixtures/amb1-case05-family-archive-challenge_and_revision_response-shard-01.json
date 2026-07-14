@@ -1,0 +1,133 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "display_interpretation_mechanically_formatted": true,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false,
+      "semantic_role_correctness_inferred_by_code": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case05-family-archive",
+        "family": "challenge_and_revision_response",
+        "graph_routing_eligible": false,
+        "interpretation": "Prior frame: A date can help with completion while also pressuring you to resolve ambiguity cosmetically. | Challenge: I do not think Tomas wants to resolve it cosmetically. | Response: Then the difference may be less honesty versus polish and more tolerance for incomplete evidence. | Revision: Then the difference may be less honesty versus polish and more tolerance for incomplete evidence. | Relationship: The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+        "observation_id": "rpshardv2-amb1-case05-family-archive-challenge_and_revision_response-01-e51186f95d",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v42-wire-only-replay-of-v41-reviewed-fixture",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "challenge_evidence_ids": [
+              "e010"
+            ],
+            "challenge_interpretation": "I do not think Tomas wants to resolve it cosmetically.",
+            "challenge_type": "correction",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "prior_claim_or_frame_evidence_ids": [
+              "e009"
+            ],
+            "prior_frame_interpretation": "A date can help with completion while also pressuring you to resolve ambiguity cosmetically.",
+            "relationship_interpretation": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+            "response_evidence_ids": [
+              "e016"
+            ],
+            "response_interpretation": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+            "response_type": "revise",
+            "revision_evidence_ids": [
+              "e016"
+            ],
+            "revision_interpretation": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+            "status": "supported"
+          },
+          "record_identity": "case05-challenge-revision",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:e51186f95d7676bab6ba1356e9c98692eeca03f1938e180876da9fa1638920a2",
+        "role_interpretations": {
+          "challenge_interpretation": "I do not think Tomas wants to resolve it cosmetically.",
+          "prior_frame_interpretation": "A date can help with completion while also pressuring you to resolve ambiguity cosmetically.",
+          "relationship_interpretation": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+          "response_interpretation": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+          "revision_interpretation": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence."
+        },
+        "role_source_span_ids": {
+          "challenge_evidence_ids": [
+            "span-a17d62622004772a"
+          ],
+          "prior_claim_or_frame_evidence_ids": [
+            "span-a2cbc172339e18c5"
+          ],
+          "response_evidence_ids": [
+            "span-d0fc0d48fdbe520b"
+          ],
+          "revision_evidence_ids": [
+            "span-d0fc0d48fdbe520b"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case05-family-archive-challenge_and_revision_response-shard-01",
+        "source_span_ids": [
+          "span-a2cbc172339e18c5",
+          "span-a17d62622004772a",
+          "span-d0fc0d48fdbe520b"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshardv2-amb1-case05-family-archive-challenge_and_revision_response-01-e51186f95d",
+        "raw_record_sha256": "sha256:e51186f95d7676bab6ba1356e9c98692eeca03f1938e180876da9fa1638920a2",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v2",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_v2_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "challenge_evidence_ids": [
+          "e010"
+        ],
+        "challenge_interpretation": "I do not think Tomas wants to resolve it cosmetically.",
+        "challenge_type": "correction",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "prior_claim_or_frame_evidence_ids": [
+          "e009"
+        ],
+        "prior_frame_interpretation": "A date can help with completion while also pressuring you to resolve ambiguity cosmetically.",
+        "relationship_interpretation": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+        "response_evidence_ids": [
+          "e016"
+        ],
+        "response_interpretation": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+        "response_type": "revise",
+        "revision_evidence_ids": [
+          "e016"
+        ],
+        "revision_interpretation": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence.",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "source_fixture_path": "research/reasoning-process-stance-object-v41-2026-07-12/legacy-protected-fixtures/amb1-case05-family-archive/challenge_and_revision_response.json"
+}

@@ -37,8 +37,16 @@ def _run_pass1_cluster_single(
     catalog: TendencyCatalog,
 ) -> tuple[list[TriageScore], BoundaryCallTrace]:
     """Run a single Pass 1 cluster triage call."""
-    payload, metadata = boundary.run_json_with_metadata(system_prompt, user_prompt)
-    trace = _metadata_to_boundary_call_trace(metadata, stage=f"pass1_cluster_{cluster_id}")
+    stage = f"pass1_cluster_{cluster_id}"
+    try:
+        payload, metadata = boundary.run_json_with_metadata(
+            system_prompt,
+            user_prompt,
+            stage=stage,
+        )
+    except TypeError:
+        payload, metadata = boundary.run_json_with_metadata(system_prompt, user_prompt)
+    trace = _metadata_to_boundary_call_trace(metadata, stage=stage)
     # Parse all returned scores against the full catalog, then filter to this
     # cluster's assigned tendencies. Belt-and-suspenders: if the LLM returns a
     # score outside the family (despite the prompt's instructions), drop it
@@ -76,7 +84,14 @@ def _run_pass1_clusters_parallel(
         merged_scores: list[TriageScore] = []
         traces: list[BoundaryCallTrace] = []
         for cluster_id, system_prompt, user_prompt in cluster_prompts:
-            payload = boundary.run_json(system_prompt, user_prompt)
+            try:
+                payload = boundary.run_json(
+                    system_prompt,
+                    user_prompt,
+                    stage=f"pass1_cluster_{cluster_id}",
+                )
+            except TypeError:
+                payload = boundary.run_json(system_prompt, user_prompt)
             traces.append(_capture_boundary_call(boundary, stage=f"pass1_cluster_{cluster_id}"))
             all_scores = parse_pass1_scores(payload, catalog)
             assigned = set(cluster_tendency_ids(cluster_id))

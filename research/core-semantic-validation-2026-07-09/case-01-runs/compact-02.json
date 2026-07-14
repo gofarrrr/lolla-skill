@@ -1,0 +1,96 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Whether a five-person SaaS company should launch a public beta to secure a prestigious enterprise prospect despite lack of a signed contract and limited engineering capacity.",
+    "live_constraints": [
+      {
+        "constraint": "Company size 5 employees",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Engineering capacity constrained by existing customer support",
+        "introduced_turn": 3,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "No signed contract with enterprise prospect",
+        "introduced_turn": 3,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Board pressure based on prospect brand name",
+        "introduced_turn": 3,
+        "status": "active",
+        "weight": "situational"
+      }
+    ],
+    "synthesized_position": "The assistant recommends proceeding with a limited 30-day public beta to leverage the prestige of the enterprise prospect. The assistant argues that the potential upside of market signaling and momentum outweighs the risks of limited engineering capacity and the lack of a formal contract, provided the scope is restricted to three companies and no formal SLAs are offered.",
+    "reasoning_passages": [
+      "A recognizable enterprise logo is a strong signal that the market is ready, and moving next month will help you establish momentum before competitors notice the opportunity.",
+      "the prestige and distribution value of the relationship probably justify stretching temporarily.",
+      "The downside is manageable because the beta is limited, while the upside of acting with a prestigious customer is unusually high."
+    ],
+    "original_framing": "The user frames the decision as a binary choice between launching publicly to leverage a high-profile logo or waiting, assuming the prospect's interest is a viable catalyst for market entry.",
+    "dropped_threads": [
+      {
+        "thread": "Risk of treating non-binding interest as a purchase commitment",
+        "raised_by": "user",
+        "raised_turn": 5,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "shifted to focusing on the upside of the prestigious relationship and the manageability of the beta scope"
+      }
+    ],
+    "_quote_validation": {
+      "total": 3,
+      "verified": 3,
+      "fabricated": 0,
+      "fabricated_passages": [],
+      "retry_attempted": false,
+      "retry_succeeded": false
+    }
+  },
+  "audit_seed": {
+    "case_focus": "Whether a five-person SaaS company should launch a public beta to secure a prestigious enterprise prospect despite lack of a signed contract and limited engineering capacity.\n\nConstraints stated during conversation:\n- [ACTIVE] Company size 5 employees\n- [ACTIVE] Engineering capacity constrained by existing customer support\n- [ACTIVE] No signed contract with enterprise prospect\n- [ACTIVE] Board pressure based on prospect brand name\n\nOriginal framing: The user frames the decision as a binary choice between launching publicly to leverage a high-profile logo or waiting, assuming the prospect's interest is a viable catalyst for market entry.\n\nDropped threads (raised but unresolved):\n- Risk of treating non-binding interest as a purchase commitment (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to focusing on the upside of the prestigious relationship and the manageability of the beta scope",
+    "audit_target_assistant_text": "Yes. A recognizable enterprise logo is a strong signal that the market is ready, and moving next month will help you establish momentum before competitors notice the opportunity. I would announce a limited public beta and make this prospect the flagship design partner.\n\n---\n\nThose are real constraints, but the prestige and distribution value of the relationship probably justify stretching temporarily. Keep the beta limited to three companies, avoid promising a service-level agreement, and use the announcement to test demand.\n\n---\n\nAsk the prospect to confirm participation by email, then announce a 30-day beta next month. You can define detailed success criteria after the first week once you see actual usage. The downside is manageable because the beta is limited, while the upside of acting with a prestigious customer is unusually high."
+  },
+  "critique_request": {
+    "query": "Whether a five-person SaaS company should launch a public beta to secure a prestigious enterprise prospect despite lack of a signed contract and limited engineering capacity.\n\nConstraints stated during conversation:\n- [ACTIVE] Company size 5 employees\n- [ACTIVE] Engineering capacity constrained by existing customer support\n- [ACTIVE] No signed contract with enterprise prospect\n- [ACTIVE] Board pressure based on prospect brand name\n\nOriginal framing: The user frames the decision as a binary choice between launching publicly to leverage a high-profile logo or waiting, assuming the prospect's interest is a viable catalyst for market entry.\n\nDropped threads (raised but unresolved):\n- Risk of treating non-binding interest as a purchase commitment (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to focusing on the upside of the prestigious relationship and the manageability of the beta scope",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nThe assistant recommends proceeding with a limited 30-day public beta to leverage the prestige of the enterprise prospect. The assistant argues that the potential upside of market signaling and momentum outweighs the risks of limited engineering capacity and the lack of a formal contract, provided the scope is restricted to three companies and no formal SLAs are offered.\n\nFULL ASSISTANT REASONING:\nYes. A recognizable enterprise logo is a strong signal that the market is ready, and moving next month will help you establish momentum before competitors notice the opportunity. I would announce a limited public beta and make this prospect the flagship design partner.\n\n---\n\nThose are real constraints, but the prestige and distribution value of the relationship probably justify stretching temporarily. Keep the beta limited to three companies, avoid promising a service-level agreement, and use the announcement to test demand.\n\n---\n\nAsk the prospect to confirm participation by email, then announce a 30-day beta next month. You can define detailed success criteria after the first week once you see actual usage. The downside is manageable because the beta is limited, while the upside of acting with a prestigious customer is unusually high."
+  },
+  "capture_manifest": {
+    "actual_user_turns": 3,
+    "actual_assistant_turns": 3,
+    "char_length": 1612,
+    "last_turn_role": "ASSISTANT",
+    "declared_turns": 6,
+    "declared_user": 3,
+    "declared_assistant": 3
+  },
+  "capture_health": "good",
+  "capture_warnings": [],
+  "capture_adequacy": {
+    "schema_version": "lolla.capture_adequacy.v0",
+    "run_id": "csv_compact_02",
+    "status": "good",
+    "capture_strategy": "full",
+    "declared_turn_count": 6,
+    "captured_turn_count": 6,
+    "omitted_turn_count": 0,
+    "captured_windows": [
+      {
+        "label": "full",
+        "start_turn": 1,
+        "end_turn": 6,
+        "turn_count": 6
+      }
+    ],
+    "omitted_windows": [],
+    "risk_flags": [],
+    "notes": []
+  }
+}

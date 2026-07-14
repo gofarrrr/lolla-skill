@@ -1,0 +1,125 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_probe_contract.v3",
+  "status": "frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_microtask_probe_v3_20260711_a1",
+  "purpose": "Establish JSON-mode semantic viability on Case 05 while keeping the exact typed schema in the prompt and local deterministic admission authoritative.",
+  "program_path": "plans/conversation-state-extraction-experiment-program-2026-07-11.md",
+  "program_stage": "case05_json_mode_mechanical_and_semantic_baseline",
+  "case": {
+    "case_id": "amb1-case05-family-archive",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+    "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d",
+    "message_count": 14,
+    "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case05-family-archive.json",
+    "reviewed_packet_sha256": "4e77e877533a58d42c11878c117a85ddfa7637b6855cf7a0805b2852f0a2d6a3",
+    "expected_position_ownership": "joint",
+    "expected_thread_disposition": "addressed_unresolved",
+    "expected_atomic_constraint_count": 9
+  },
+  "transport_delta": {
+    "wire_mode_from": "json_schema",
+    "wire_mode_to": "json_object",
+    "typed_schema_still_in_prompt": true,
+    "local_typed_validation_unchanged": true,
+    "source_id_enum_unchanged": true,
+    "semantic_instructions_unchanged_from_v2": true,
+    "silent_repair": false,
+    "automatic_retry_of_v2": false
+  },
+  "microtask_order": [
+    "threads",
+    "constraints",
+    "positions"
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "json_object",
+    "provider_projection": "openrouter_gemini_prompt_only",
+    "typed_schema_in_prompt": true,
+    "local_typed_validation": true,
+    "temperature": 0.0,
+    "reasoning": {
+      "enabled": false
+    },
+    "require_supported_parameters": true,
+    "max_output_tokens": 4000,
+    "provider_timeout_seconds": 60,
+    "wall_clock_timeout_seconds": 180,
+    "calls_per_microtask": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "pipeline_calls": 0,
+    "graph_calls": 0
+  },
+  "call_budget": {
+    "maximum_provider_calls": 3,
+    "estimated_total_cost_ceiling_usd": 0.02,
+    "program_maximum_provider_calls": 12,
+    "program_cost_ceiling_usd": 0.08,
+    "pricing_table_version": "2026-05-25"
+  },
+  "stop_rules": {
+    "operational_failure_stops_remaining_calls": true,
+    "valid_semantic_failure_is_preserved_and_does_not_trigger_retry": true,
+    "hard_stop_before_second_case": true
+  },
+  "scoring_contract": {
+    "source_first": true,
+    "composite_score": null,
+    "positions": "ownership, focal composition, late-turn contributions, exact custody",
+    "threads": "focal recall, full trajectory disposition, exact custody",
+    "constraints": "atomicity, source strength, precision >= 0.80, recall >= 0.75, exact custody",
+    "composition": "all families valid, source-valid handoff, zero graph seeds"
+  },
+  "prompt_hashes": {
+    "threads": {
+      "system_prompt_sha256": "914aab8a372857f11cbca2f1b9abca75c13214b8a9f491aa5caaad332b89a35d",
+      "user_prompt_sha256": "2cf62992d1d5a88ed2a93d10dd6171f1e668d91f59a1c91a0f1ff22d87a1d0cc",
+      "schema_sha256": "f3c0286d4070cb64e29ffec84afb971bcd511199786f5a74e5da0ef372532e9b",
+      "schema_metrics": {"bytes": 3937, "depth": 7, "property_nodes": 4},
+      "allowed_span_id_count": 65
+    },
+    "constraints": {
+      "system_prompt_sha256": "7844df85d91b6d70e4acad35a8dca001560dea71c684b8df920ec05a6305fcf5",
+      "user_prompt_sha256": "1f46aa1eacbf7e9373fc49864d5c06b635f619dc0845c713aff9486b44825e17",
+      "schema_sha256": "d4706925494e57a6ed0f8eadc323fd0101b99bce76afc46332fecca65aa95107",
+      "schema_metrics": {"bytes": 3308, "depth": 6, "property_nodes": 3},
+      "allowed_span_id_count": 65
+    },
+    "positions": {
+      "system_prompt_sha256": "7f666c7e14db063a919e914c4b4c7403ac78e1b3520447b2423d012c1ec9be82",
+      "user_prompt_sha256": "55b00c83f95e08fe890a62f653e9c77770384b999621e9f21d7b5b3a4c3c6f9b",
+      "schema_sha256": "291b037550938a0945b145f798ec21e6cb199aec550c1a790272f9af690f7aa0",
+      "schema_metrics": {"bytes": 4488, "depth": 6, "property_nodes": 5},
+      "allowed_span_id_count": 65
+    }
+  },
+  "hash_locks": [
+    {"role": "v3_runner", "path": "scripts/evals/run_conversation_state_microtask_probe_v3.py", "sha256": "501c913588e298b1e2fef28f046f6f1e07c52d7ad7137016158c683db5746bf4"},
+    {"role": "v2_runner", "path": "scripts/evals/run_conversation_state_microtask_probe_v2.py", "sha256": "2c943fc19661a2c71695253a96e5ed18b34923e389a1e218e375dbe0fe2bd04b"},
+    {"role": "v1_runner", "path": "scripts/evals/run_conversation_state_microtask_probe.py", "sha256": "c15718db68b654387b7655ffc9d9410f38b6a8a8c19094da81189824b5d5e141"},
+    {"role": "typed_candidates", "path": "engine/system_b/conversation_state_candidates.py", "sha256": "16ad9c58cff6a818bf9187b10e93285f2704be34cf891b257da671c6a89fe70b"},
+    {"role": "candidate_pipeline", "path": "engine/system_b/conversation_state_candidate_pipeline.py", "sha256": "86ed7326aa248d982fa1ebf6fe6e5686e5598f52d61ade8209ba2c6c8cb269b3"},
+    {"role": "state_handoff", "path": "engine/system_b/conversation_state_handoff.py", "sha256": "db528315ee1a5714bffe9546f58a2879b409a182d121bd09210777730d2d8c8b"},
+    {"role": "pricing", "path": "engine/system_b/pricing.py", "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"},
+    {"role": "experiment_program", "path": "plans/conversation-state-extraction-experiment-program-2026-07-11.md", "sha256": "309d93d4ed881f2f130fa2897f87dbdbddbc908d7b10a11433010741f52cd560"},
+    {"role": "v2_probe_decision", "path": "research/conversation-state-microtask-probe-v2-2026-07-11/decision.json", "sha256": "03bb0dc2acd71ddf61757eaa7ff6a9d1a85f5f02c644aefb58a5b516abeb5681"}
+  ],
+  "artifacts": {
+    "package_path": "research/conversation-state-microtask-probe-v3-2026-07-11",
+    "threads_result_path": "research/conversation-state-microtask-probe-v3-2026-07-11/threads-result.json",
+    "constraints_result_path": "research/conversation-state-microtask-probe-v3-2026-07-11/constraints-result.json",
+    "positions_result_path": "research/conversation-state-microtask-probe-v3-2026-07-11/positions-result.json",
+    "source_review_path": "research/conversation-state-microtask-probe-v3-2026-07-11/source-review.json",
+    "decision_path": "research/conversation-state-microtask-probe-v3-2026-07-11/decision.json"
+  },
+  "non_claims": [
+    "not_clean_holdout",
+    "not_independent_gold",
+    "not_graph_value",
+    "not_reasoning_quality_proof",
+    "not_runtime_authority"
+  ]
+}

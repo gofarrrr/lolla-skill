@@ -1,0 +1,50 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_v43_source_review.v1",
+  "status": "both_flash_pairs_fail_synthetic_source_review_stronger_controls_required",
+  "date": "2026-07-12",
+  "case_id": "synthetic-wire-compatibility-color-choice",
+  "protected_source_relationship": {
+    "starting": "The user prefers blue but has not decided.",
+    "current": "The user decides to use green.",
+    "qualification": "Accessibility failure reopens blue.",
+    "trajectory": "Preference without decision changes to a green decision with an explicit reopen condition."
+  },
+  "pair_reviews": [
+    {
+      "model_provider_pair": "deepseek/deepseek-v4-flash via Alibaba",
+      "wire_gate": "pass",
+      "deterministic_admission_gate": "pass",
+      "source_alias_gate": "pass",
+      "source_strength_gate": "pass",
+      "starting_role_coverage_gate": "fail",
+      "trajectory_consistency_gate": "fail",
+      "result": "fail",
+      "defect": "The record leaves starting evidence and interpretation empty and claims qualified_current_only while its trajectory explicitly describes the visible undecided blue preference. The new role-coverage instruction cannot help when the model incorrectly declares the source role absent."
+    },
+    {
+      "model_provider_pair": "z-ai/glm-5.2 via DeepInfra",
+      "wire_gate": "pass",
+      "deterministic_admission_gate": "reviewed_empty",
+      "source_alias_gate": "not_applicable",
+      "source_strength_gate": "not_applicable",
+      "starting_role_coverage_gate": "fail_no_record",
+      "trajectory_consistency_gate": "fail_no_record",
+      "result": "fail",
+      "defect": "The model returns not_found because it imagines a schema mismatch even though the provider accepted the schema and the source-explicit trajectory is visible."
+    }
+  ],
+  "decision": {
+    "flash_pair_ready_for_reserved_semantic_case": false,
+    "deepseek_flash_is_closer_than_glm_on_this_fixture": true,
+    "model_winner_declared": false,
+    "second_prompt_edit_authorized": false,
+    "stronger_model_controls_authorized": true,
+    "agency_acquisition_case_remains_reserved": true
+  },
+  "nonclaims": [
+    "One reused synthetic development fixture cannot establish general model quality.",
+    "Deterministic admission does not prove semantic correctness.",
+    "GLM's empty response does not show that the underlying model cannot reason about trajectories in other contracts.",
+    "DeepSeek's closer result does not authorize production selection."
+  ]
+}

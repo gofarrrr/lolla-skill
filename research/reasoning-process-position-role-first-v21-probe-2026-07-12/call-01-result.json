@@ -1,0 +1,196 @@
+{
+  "admitted_record_count": 1,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "none",
+    "records": [
+      {
+        "evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005"
+        ],
+        "expression_kinds": [
+          "decision",
+          "preference_or_desire",
+          "preference_or_desire",
+          "preference_or_desire"
+        ],
+        "fidelity_note": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+        "limitations": "none",
+        "object_interpretations": [
+          "step back within two years",
+          "external sale to regional engineering group",
+          "employee ownership",
+          "attraction to certainty of external offer; hesitation about internal transition consuming final working years; undecided about motive for employee ownership preference"
+        ],
+        "object_kinds": [
+          "action_or_proposal",
+          "action_or_proposal",
+          "action_or_proposal",
+          "belief_or_assessment"
+        ],
+        "role": "starting",
+        "role_interpretation": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+        "source_evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004"
+        ],
+        "status": "unclear"
+      }
+    ],
+    "status": "unclear"
+  },
+  "candidate_payload_sha256": "7ece3a4fad6614706deec990cd38434df088112baac6f498d94a41edd6abe768",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prose_keyword_gate_added": false,
+      "response_schema_changed_from_v2": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v21_prompt_packet_contract": true,
+      "validator_changed_from_v2": false
+    },
+    "global_limitations": "none",
+    "observations": [
+      {
+        "case_id": "amb3-case02-architecture-firm-succession",
+        "fidelity_note": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+        "graph_routing_eligible": false,
+        "limitations": "none",
+        "observation_id": "rprolev2-starting-01-e5c6b0b44fd558",
+        "provenance": {
+          "call_id": "role-starting",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:591325a6658103a78239d9ed0a65f4f99ceab554b728bca1d72ffc4c0b72f372"
+        },
+        "raw_record_sha256": "sha256:e5c6b0b44fd558ddd863c09d57b514a6f1aeb0b008d7286e511c07a1fe48b6b9",
+        "role": "starting",
+        "role_interpretation": "The user's starting position is a desire to step back within two years, with two concrete options (external sale and employee ownership) and an explicit attraction to the certainty of the external offer, a hesitation about the internal transition consuming final working years, and an undecided stance about whether the preference for employee ownership is about culture or validation.",
+        "role_record_id": "rprolev2-starting-01-e5c6b0b44fd558",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case02-architecture-firm-succession-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e001",
+            "text": "I founded a twenty-six-person architecture practice thirty years ago and want to step back within two years."
+          },
+          {
+            "alias": "e002",
+            "text": "A regional engineering group has offered to buy the firm, keep the name for five years, and give me a clean financial exit."
+          },
+          {
+            "alias": "e003",
+            "text": "Several senior architects have also asked whether I would consider selling the firm to employees instead."
+          },
+          {
+            "alias": "e004",
+            "text": "I want the practice to outlast me, but I am attracted to the certainty of the external offer and worried that an internal transition could consume my final working years."
+          },
+          {
+            "alias": "e005",
+            "text": "I cannot tell how much of my preference for employee ownership is about protecting the firm's culture and how much is about wanting my colleagues to validate what I built."
+          }
+        ],
+        "source_evidence_ids": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e001",
+            "stance_expression_kind": "decision",
+            "stance_object_interpretation": "step back within two years",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e002",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "external sale to regional engineering group",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e003",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "employee ownership",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e004",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "attraction to certainty of external offer; hesitation about internal transition consuming final working years; undecided about motive for employee ownership preference",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:e5c6b0b44fd558ddd863c09d57b514a6f1aeb0b008d7286e511c07a1fe48b6b9",
+        "record_index": 1,
+        "role_record_id": "rprolev2-starting-01-e5c6b0b44fd558",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "unclear",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_custody_complete"
+  },
+  "completion_tokens": 398,
+  "duration_seconds": 7.218,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.000264516,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 1178,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "4559f8411270a8f3051504c291b338175403a7f1015be3969fafb4f1b9452c62",
+  "provider_reported_cost_usd": 0.000264516,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "56c500e6f44597dfdbf7c52674023bc30c1bda0157cdfced268fd8ebf0671f9e",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "40cdcbde9c3b40fc1e20c83b6f65ff05452aa5d7c253107f5244f1abf187328d",
+  "task_id": "role-starting",
+  "temperature": 0.0,
+  "total_tokens": 1576,
+  "user_prompt_sha256": "591325a6658103a78239d9ed0a65f4f99ceab554b728bca1d72ffc4c0b72f372",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

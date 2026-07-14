@@ -1,0 +1,104 @@
+{
+  "base_contract": {
+    "path": "research/safe-holdout-pool-v1-2026-07-10/generation-contract-v2.json",
+    "sha256": "5bcc317ccc1fe83e806447a825a28b96eec4e87292e77c59b13ceaa2501b0290"
+  },
+  "schema_version": "lolla.fixed_safe_holdout_pool_generation_contract.v3",
+  "status": "frozen_before_call",
+  "date": "2026-07-10",
+  "run_id": "lolla_holdout_pool_v1_20260710_a3",
+  "purpose": "Prospectively rerun the unchanged synthetic-pool design after the v2 scorer mismatch, with model message IDs treated as non-authoritative input and canonical IDs assigned deterministically.",
+  "deterministic_id_repair": {
+    "supersedes_failed_run_id": "lolla_holdout_pool_v1_20260710_a2",
+    "failure_decision_path": "research/safe-holdout-pool-v1-2026-07-10/v2-failure.json",
+    "accepted_model_message_id": "unique non-empty string or integer",
+    "canonical_message_id_rule": "case_id_plus_one_based_message_index",
+    "semantic_prompt_changed": false,
+    "case_specs_changed": false,
+    "selection_contract_changed": false,
+    "model_message_ids_authoritative": false,
+    "canonical_ids_assigned_by_deterministic_code": true,
+    "automatic_retry_of_v2": false
+  },
+  "hash_locks": [
+    {
+      "role": "pool_runner",
+      "path": "scripts/evals/run_fixed_safe_holdout_pool_v3.py",
+      "sha256": "0c099b078e8081f1da44c772f027f1d4f53c6a5eb8dd72de2f1b38af6557e46b"
+    },
+    {
+      "role": "v2_pool_runner",
+      "path": "scripts/evals/run_fixed_safe_holdout_pool_v2.py",
+      "sha256": "01725b2253139666085e84f15ad9f52a560fc0e1ec53cd906a223df2bb1c3e7a"
+    },
+    {
+      "role": "v1_pool_runner",
+      "path": "scripts/evals/run_fixed_safe_holdout_pool.py",
+      "sha256": "a14854379c0a162c963e9ae6562f913a460e0a9867bc20053f7632b1bc551710"
+    },
+    {
+      "role": "v2_failure_decision",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/v2-failure.json",
+      "sha256": "e32ec5e2872775f5660666410fe1d174b0a71ba1c2e3d41a2fc8031099bb6f16"
+    },
+    {
+      "role": "v2_call_custody",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/call-custody.json",
+      "sha256": "6195df284b3ada96fcf62c0576cf5e52d8e0c7826bac9236e0d77f019ebf3925"
+    },
+    {
+      "role": "v2_run_summary",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/run-summary.json",
+      "sha256": "fe0d8d0429f5dc60add7d1488fa11a2f56fb91d415642651b19769ae521ff91b"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    },
+    {
+      "role": "evaluation_doctrine",
+      "path": "docs/conversation-understanding/lolla-evaluation-doctrine-v0.md",
+      "sha256": "a236fea812b8edf593aa9f0c1e063acedb13896592bce4187bc6cee8c149f04e"
+    },
+    {
+      "role": "holdout_protocol",
+      "path": "docs/evals/reasoning-portfolio-two-stage-holdout-protocol-v0.md",
+      "sha256": "99910c12b501fa7358be5ed1eb039b47f6ad3bf897e6f569be7e65c424215020"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v0.md",
+      "sha256": "952a7d8fb47640d7eccfc1aa815d784c96da77c7ab07f47b3f8c256b6032524f"
+    }
+  ],
+  "prompt_hashes": {
+    "system_prompt_sha256": "206fd88d1fdd0db331feceba56ce9703f2c531e43f6c9cccae98fcdd1769c992",
+    "user_prompt_sha256": "5ce89e49b94eb33a8ebafd4e1d0474a332d1394ba91a1ec593880ddc58947d69"
+  },
+  "artifacts": {
+    "output_dir": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a3",
+    "pool_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a3/pool.json",
+    "call_custody_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a3/call-custody.json",
+    "run_summary_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a3/run-summary.json",
+    "case_dir": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a3/cases"
+  },
+  "stop_rules": [
+    "do not retry or repair a malformed v3 generation response",
+    "stop all pool-generation calls if v3 fails",
+    "stop if any hash or prompt lock drifts",
+    "stop if output shape, case identity, order, role alternation, message count, bounded length, or model-ID uniqueness fails",
+    "assign canonical message IDs deterministically; never ask the model to satisfy a semantic gate through identifier formatting",
+    "stop if usage, served-model attribution, cost, or call custody is incomplete",
+    "do not select a case for likely Lolla, mental-model, graph, or answer-delta value",
+    "do not run Stage A until the first ranked safety-passing case has a separately frozen Stage A contract"
+  ],
+  "non_claims": [
+    "Synthetic conversations are not evidence of real-world product usefulness.",
+    "The generation model does not provide gold reasoning or expected answers.",
+    "Mechanical selection does not prove case representativeness.",
+    "Canonical deterministic IDs do not repair or judge conversation meaning.",
+    "A safety-passing case is not a favorable Lolla or graph case.",
+    "This contract does not authorize Stage A, Stage B, graph ablation, runtime integration, or product claims."
+  ]
+}

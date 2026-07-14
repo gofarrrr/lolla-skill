@@ -1,0 +1,322 @@
+{
+  "base_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json",
+  "base_ledger_sha256": "sha256:8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23",
+  "boundary": {
+    "direct_graph_routing_allowed": false,
+    "phase1_ledger_modified": false,
+    "provider_calls": 0,
+    "semantic_relevance_inferred_by_code": false,
+    "source_review_is_independent_gold": false
+  },
+  "case_id": "amb1-case02-nonprofit-scale",
+  "coverage_contract_sha256": "sha256:cf69f1b00da7928440236a9372a946df690ff891ad3ef0b380883e9c56e9b9e7",
+  "coverage_review_sha256": "sha256:74b8fd140f1a2344050826f0e7d8a21b5635786141f7c72fccba2c44ad5ed5e4",
+  "observations": [
+    {
+      "family": "position_and_decision_trajectory",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+      "observation_id": "phase2-source-review-case02-position-trajectory",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+        "review_reason": "Phase-1 preserves the conditional four-month direction but does not preserve the remaining readiness ambiguity required by the target.",
+        "source_evidence": [
+          {
+            "quote": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch.",
+            "role": "current_position",
+            "speaker": "user",
+            "turn_index": 7
+          },
+          {
+            "quote": "That is a conditional direction, not a disguised final answer, and the unresolved point matters.",
+            "role": "qualification",
+            "speaker": "assistant",
+            "turn_index": 7
+          }
+        ],
+        "target_id": "case02-position-trajectory",
+        "view_kind": "position_and_decision_trajectory"
+      },
+      "raw_record_sha256": "sha256:83779e532bce6699cb3ba047a4aebc68ce148eae262589dcaa8326b0c3f92ffa",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case02-position-trajectory",
+      "source_span_ids": [
+        "span-c792a8093d048d7c",
+        "span-1bb454b4269629ec"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "exploration_and_alternatives",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "Recruiting volunteers into named roles before launch is considered as a test of capacity without assuming all required ownership will appear.",
+      "observation_id": "phase2-source-review-case02-exploration-alternative",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "Recruiting volunteers into named roles before launch is considered as a test of capacity without assuming all required ownership will appear.",
+        "review_reason": "No Phase-1 observation overlaps the two-owner trial design or the safeguard against quietly donating expansion labor.",
+        "source_evidence": [
+          {
+            "quote": "You could test that assumption directly: recruit for named roles at the second site before announcing a launch.",
+            "role": "alternative",
+            "speaker": "assistant",
+            "turn_index": 3
+          },
+          {
+            "quote": "If the energy is real, it should translate into some concrete ownership, though not necessarily all the ownership you need.",
+            "role": "limit",
+            "speaker": "assistant",
+            "turn_index": 3
+          }
+        ],
+        "target_id": "case02-exploration-alternative",
+        "view_kind": "exploration_and_alternatives"
+      },
+      "raw_record_sha256": "sha256:9068342da97e967f6d2c123dbee7a9351eb8dbdaf6d5145045594df141cb4b61",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case02-exploration-alternative",
+      "source_span_ids": [
+        "span-f3514847fc05f716",
+        "span-1cbebc8661f31529"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "evidence_and_assumption_discipline",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "An informal foundation comment is retained as weak reported evidence rather than financing or a likely grant.",
+      "observation_id": "phase2-source-review-case02-evidence-discipline",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "An informal foundation comment is retained as weak reported evidence rather than financing or a likely grant.",
+        "review_reason": "The overlapping Phase-1 observations only state that the current grant excludes expansion; they do not preserve the informal foundation comment as weak reported evidence rather than financing.",
+        "source_evidence": [
+          {
+            "quote": "A foundation officer told me informally that geographic reach would make our next application easier to explain.",
+            "role": "bounded_claim",
+            "speaker": "user",
+            "turn_index": 5
+          },
+          {
+            "quote": "She did not promise anything, and the current grant pays for curriculum improvement, not expansion.",
+            "role": "qualification",
+            "speaker": "user",
+            "turn_index": 5
+          },
+          {
+            "quote": "Treat the foundation comment as one input, not financing.",
+            "role": "evidence_boundary",
+            "speaker": "assistant",
+            "turn_index": 5
+          }
+        ],
+        "target_id": "case02-evidence-discipline",
+        "view_kind": "evidence_and_assumption_discipline"
+      },
+      "raw_record_sha256": "sha256:0a99b67150f9dd136083e4585728471712030ec19398ebfdb8e31291abce1e2c",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case02-evidence-discipline",
+      "source_span_ids": [
+        "span-2f8cca62b919ebcd",
+        "span-cd3a07042c8066ee",
+        "span-68fada1f8f611403"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "uncertainty_and_unresolved_state",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The program direction remains conditional because partly ready materials have no agreed treatment.",
+      "observation_id": "phase2-source-review-case02-unresolved-state",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The program direction remains conditional because partly ready materials have no agreed treatment.",
+        "review_reason": "Phase-1 tracks curriculum as a potentially movable delay condition but not the concrete unresolved treatment of partly ready materials.",
+        "source_evidence": [
+          {
+            "quote": "I have not decided what happens if we find the coordinator but the materials are only partly ready.",
+            "role": "unresolved",
+            "speaker": "user",
+            "turn_index": 7
+          },
+          {
+            "quote": "But setting that threshold will still involve judgment, and your colleague may reasonably challenge it.",
+            "role": "preserved_uncertainty",
+            "speaker": "assistant",
+            "turn_index": 7
+          }
+        ],
+        "target_id": "case02-unresolved-state",
+        "view_kind": "uncertainty_and_unresolved_state"
+      },
+      "raw_record_sha256": "sha256:f07a92dc58eabc185ed1dfa69408320fd2ef1001d738d75781fd797827072b97",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case02-unresolved-state",
+      "source_span_ids": [
+        "span-003c5390e8a58227",
+        "span-3463570867cf1964"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    },
+    {
+      "family": "challenge_and_revision_response",
+      "family_projection_status": "prospective_source_review_not_deterministic_projection",
+      "graph_routing_eligible": false,
+      "interpretation": "The user challenges stable attendance as an exclusionary standard; the assistant accepts the correction and redefines consistency around availability and learning quality.",
+      "observation_id": "phase2-source-review-case02-challenge-revision",
+      "provenance": {
+        "call_id": "",
+        "model": "",
+        "producer_id": "phase2-same-session-nonblind-review",
+        "producer_kind": "source_reviewer",
+        "prompt_sha256": ""
+      },
+      "raw_record": {
+        "description": "The user challenges stable attendance as an exclusionary standard; the assistant accepts the correction and redefines consistency around availability and learning quality.",
+        "review_reason": "Phase-1 contains no observation that the user corrected the attendance assumption and that the assistant narrowed the gate to a minimum standard.",
+        "source_evidence": [
+          {
+            "quote": "You are treating the current variation as a warning sign, but some of it is normal.",
+            "role": "challenge",
+            "speaker": "user",
+            "turn_index": 2
+          },
+          {
+            "quote": "That is an important correction.",
+            "role": "response",
+            "speaker": "assistant",
+            "turn_index": 2
+          },
+          {
+            "quote": "Consistency in this setting may need to describe the program's availability and learning quality, not the same people attending every week.",
+            "role": "revision",
+            "speaker": "assistant",
+            "turn_index": 2
+          }
+        ],
+        "target_id": "case02-challenge-revision",
+        "view_kind": "challenge_and_revision_response"
+      },
+      "raw_record_sha256": "sha256:5e4d0098ba1a51970e8f2537e318f4219db4bf17264d95386260b3948498cd47",
+      "relations": [],
+      "semantic_status": "supported",
+      "source_artifact_id": "phase2-coverage-source-review",
+      "source_family": "protected_target_review",
+      "source_record_id": "case02-challenge-revision",
+      "source_span_ids": [
+        "span-d15cf2b3fd077a5d",
+        "span-467f5ec9e8549309",
+        "span-32dbf81bed471054"
+      ],
+      "state_history": [
+        {
+          "actor": "source_reviewer",
+          "reason": "prospectively frozen protected target required source-review coverage",
+          "state": "proposed"
+        },
+        {
+          "actor": "deterministic_validator",
+          "reason": "exact source custody and prospective review decision validated",
+          "state": "admitted"
+        }
+      ],
+      "terminal_reason": "append-only source-review observation with exact source lineage",
+      "terminal_state": "admitted"
+    }
+  ],
+  "schema_version": "lolla.reasoning_process_source_review_addendum.v1",
+  "status": "prospective_provider_free_source_review"
+}

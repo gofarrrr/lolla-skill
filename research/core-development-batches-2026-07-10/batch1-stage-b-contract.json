@@ -1,0 +1,150 @@
+{
+  "schema_version": "lolla.downstream_utility_pilot_contract.v0",
+  "status": "frozen_before_calls",
+  "batch": "batch_1_paired_downstream_discrimination",
+  "case": {
+    "case_id": "case-03-startup-pivot",
+    "case_role": "non_obvious_paired_downstream_holdout",
+    "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+    "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+  },
+  "protocol": {
+    "path": "docs/evals/lolla-downstream-utility-experiment-v0.json",
+    "sha256": "06d98095ae5840ac6b37c45cb974b0b821fed4bc8b219d98ae24e8c10fd3b8b0"
+  },
+  "runner": {
+    "path": "scripts/evals/run_downstream_utility_pilot.py",
+    "sha256": "f2ec4ce3774912b1ecb29f6b7e8811186d7a0f222d1de611770daea7e7d23c31"
+  },
+  "source_artifacts": [
+    {
+      "path": "research/core-development-batches-2026-07-10/batch1-stage-a-contract.json",
+      "sha256": "d24a9ebbfa3e4d308bc11b6671e3eed344df1269aa9e6591f9683a382a45b3e9"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch1-stage-a/pipeline-gate-result.json",
+      "sha256": "de047fe81fa3843cf03fb59d5f184ff55cab20496d9596de3ed9a01b1a72ee2a"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch1-stage-a/private-table-snapshot.json",
+      "sha256": "cf9dda879c79e7565558b05fabb37306d3559dda332365084a142f4374192773"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch1-stage-a/v60-snapshot.json",
+      "sha256": "86273712317a437b71ed654d83c17b0ff7715c05b94de8c0a98fac535899f9e9"
+    },
+    {
+      "path": "research/core-development-batches-2026-07-10/batch1-preliminary-pressure-review.json",
+      "sha256": "7c13debd1e1f1a4ec1f77c82f9e9fe8ecc181dadaac203e9240196ada50cae47"
+    }
+  ],
+  "treatment_pressure_packet_source": {
+    "path": "research/core-development-batches-2026-07-10/batch1-pressure-packet.json",
+    "sha256": "89c70846b9f31b1a58967fb429568d374e17bb2ac7a5984639d31cdb76ffecc8"
+  },
+  "system_prompt": "You are independently reassessing a prior assistant's reasoning in a serious strategic conversation. Use the complete conversation as authority. Preserve valid advice, correct unsupported reasoning, and do not decide the founder's values or pivot choice for them. Treat additional pressure, if supplied, as questions rather than conclusions. Do not mention experiments, controls, audits, packets, mental-model machinery, internal labels, or comparison arms. Return only the requested JSON object.",
+  "neutral_reconsideration_instruction": "Reassess the prior reasoning from scratch. Identify the actual decision state; what remains valid; unsupported factual, numerical, causal, legal, governance, or psychological claims; whether proposed evidence supports the conclusion assigned to it; dependencies that may fail together; reversibility; executable alternatives; stakeholder authority and incentives; sequencing; and the smallest useful next actions. Do not optimize for pivoting or staying as styles. Do not invent conversion rates, universal thresholds, customer or employee reactions, governance rights, legal obligations, severance requirements, or the correct business decision.",
+  "treatment_pressure_packet": [
+    {
+      "pressure_id": "batch1-pressure-01-test-validity",
+      "source_turns": [
+        1,
+        2,
+        6
+      ],
+      "challenge": "What does the three-customer pre-buy test actually falsify, and what alternative explanations remain for a yes, no, or mixed result? Check whether one price, offer, buyer set, and arbitrary threshold can support a product-level pivot verdict, or whether pain, authority, budget, timing, replacement, and commitment require separate evidence.",
+      "trace_ids": [
+        "aff::experimentation.variable-separated-causal-probe",
+        "structural_coverage_card.risk-response.covered_missing_operational_detail"
+      ]
+    },
+    {
+      "pressure_id": "batch1-pressure-02-transition-economics",
+      "source_turns": [
+        1,
+        3,
+        4,
+        6
+      ],
+      "challenge": "What must run in both the current and proposed products during a pivot, for how long, and at what cost in runway, customer support, engineer attention, employee capacity, rollback ownership, and future reversibility? Compare the pivot against an executable non-pivot alternative rather than a vague 'walk' branch.",
+      "trace_ids": [
+        "aff::switching-costs.reversibility-decay-exit-plan",
+        "aff::lock-in.reversal-cost-dependency-audit",
+        "aff::opportunity-cost.displaced-alternative-commitment-gate",
+        "aff::batna.credible-walk-away-alternative-test"
+      ]
+    },
+    {
+      "pressure_id": "batch1-pressure-03-stakeholder-authority-and-sequence",
+      "source_turns": [
+        4,
+        5
+      ],
+      "challenge": "Which parts of the employee and former-cofounder questions are emotional fairness, relationship courtesy, operational dependency, or formal authority? What evidence is needed before assuming governance rights or the best disclosure timing, and what could be lost by warning too early or informing too late?",
+      "trace_ids": [
+        "aff::emotional-intelligence.emotion-evidence-landing-check",
+        "abs::emotional-intelligence::unvalidated-emotional-reading",
+        "structural_coverage_card.stakeholder-alignment.covered_missing_operational_detail"
+      ]
+    }
+  ],
+  "output_contract": {
+    "required_keys": [
+      "decision_state_read",
+      "updated_position",
+      "what_survived",
+      "take_backs_or_set_aside",
+      "material_shifts",
+      "next_actions",
+      "uncertainties"
+    ],
+    "field_types": {
+      "decision_state_read": "string",
+      "updated_position": "string",
+      "what_survived": "array_of_strings",
+      "take_backs_or_set_aside": "array_of_strings",
+      "material_shifts": "array_of_objects",
+      "next_actions": "array_of_strings",
+      "uncertainties": "array_of_strings"
+    },
+    "material_shift_required_keys": [
+      "shift",
+      "source_basis",
+      "action_consequence"
+    ],
+    "maximum_material_shifts": 4
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "temperature": 0.2,
+    "max_output_tokens": 1800,
+    "reasoning_effort": "none",
+    "samples_per_arm": 1,
+    "total_generation_calls": 2,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "timeout_seconds": 120
+  },
+  "blind_label_seed": "batch1-case03-startup-paired-20260710",
+  "review_status": "pending_provisional_and_exact_human_review",
+  "stop_rules": [
+    "exactly_one_call_per_arm",
+    "no_automatic_retry",
+    "no_prompt_packet_model_cap_or_contract_change_after_either_call",
+    "no_evaluator_model_call",
+    "stop_if_either_arm_crosses_a_source_red_line",
+    "stop_if_treatment_is_only_longer_more_structured_or_more_cautious",
+    "stop_if_control_contains_the_same_material_delta",
+    "stop_if_treatment_forces_selected_pressure_or_loses_useful_original_value",
+    "no_runtime_or_semantic_kernel_promotion_from_this_pair"
+  ],
+  "non_claims": [
+    "not_human_review",
+    "not_product_proof",
+    "not_business_employment_legal_or_governance_advice",
+    "not_an_outcome_quality_test",
+    "not_runtime_integration_authority",
+    "not_evidence_that_more_context_is_better"
+  ]
+}

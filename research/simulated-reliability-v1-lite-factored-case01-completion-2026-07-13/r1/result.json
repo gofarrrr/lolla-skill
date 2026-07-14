@@ -1,0 +1,701 @@
+{
+  "assistant_coverage_tasks": [
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "acknowledged_constraint_not_gated",
+          "source_assistant_contribution_ids": [
+            "assistant-turn-004",
+            "assistant-turn-005",
+            "assistant-turn-007",
+            "assistant-turn-012"
+          ],
+          "vanilla_answer_coverage": "operationalized"
+        },
+        "boundary": {
+          "routing_disposition_authored": false,
+          "semantic_fields_model_authored": true,
+          "semantic_repair_performed": false
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_assistant_coverage_response.v1",
+        "status": "assistant_coverage_custody_complete"
+      },
+      "duration_seconds": 1.562,
+      "mechanism_id": "acknowledged_constraint_not_gated",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.000701,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 93,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost": 0.000701,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0001395,
+          "upstream_inference_cost": 0.000701,
+          "upstream_inference_prompt_cost": 0.0005615
+        },
+        "is_byok": false,
+        "prompt_tokens": 2246,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2339
+      },
+      "validation_error": ""
+    },
+    {
+      "compiled": {
+        "assessment": {
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "source_assistant_contribution_ids": [
+            "assistant-turn-005",
+            "assistant-turn-007",
+            "assistant-turn-008"
+          ],
+          "vanilla_answer_coverage": "operationalized"
+        },
+        "boundary": {
+          "routing_disposition_authored": false,
+          "semantic_fields_model_authored": true,
+          "semantic_repair_performed": false
+        },
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "schema_version": "lolla.reasoning_mechanism_assistant_coverage_response.v1",
+        "status": "assistant_coverage_custody_complete"
+      },
+      "duration_seconds": 1.197,
+      "mechanism_id": "counterpressure_acknowledged_not_integrated",
+      "operational_status": "ok",
+      "provider_calls": 1,
+      "provider_reported_cost_usd": 0.000788,
+      "served_model": "google/gemini-3.1-flash-lite",
+      "served_provider": "Google",
+      "usage": {
+        "completion_tokens": 83,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost": 0.000788,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0001245,
+          "upstream_inference_cost": 0.000788,
+          "upstream_inference_prompt_cost": 0.0006635
+        },
+        "is_byok": false,
+        "prompt_tokens": 2654,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2737
+      },
+      "validation_error": ""
+    }
+  ],
+  "automatic_retries": 0,
+  "case_id": "v1-case01-flood-infrastructure",
+  "combined_case_provider_calls": 12,
+  "combined_case_provider_reported_cost_usd": 0.01218575,
+  "cost_ceiling_met": true,
+  "coverage_call_plan": {
+    "assistant_coverage_call_count": 2,
+    "assistant_coverage_call_mechanism_ids": [
+      "acknowledged_constraint_not_gated",
+      "counterpressure_acknowledged_not_integrated"
+    ],
+    "boundary": {
+      "conversation_prose_inspected": false,
+      "coverage_semantics_inferred": false,
+      "deterministic_semantic_inference": false,
+      "keyword_or_chronology_gate_added": false,
+      "plan_reads_model_authored_status_only": true
+    },
+    "materialize_not_applicable_mechanism_ids": [
+      "ambiguous_signal_treated_as_commitment",
+      "criteria_defined_after_commitment",
+      "initial_frame_persists_after_question_change",
+      "missing_reversal_condition",
+      "reversible_path_not_considered",
+      "status_signal_used_as_evidence",
+      "upside_downside_evidence_asymmetry"
+    ],
+    "schema_version": "lolla.reasoning_mechanism_coverage_call_plan.v1"
+  },
+  "fallback_models": 0,
+  "joined_full_portfolio": {
+    "boundary": {
+      "all_nine_mechanisms_present": true,
+      "conversation_prose_inspected_by_join": false,
+      "coverage_calls_conditioned_on_model_authored_status": true,
+      "deterministic_semantic_inference": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_or_chronology_gate_added": false,
+      "routing_dispositions_derived_from_explicit_semantic_fields": true,
+      "semantic_repair_performed": false
+    },
+    "compiled_mechanism_packet": {
+      "fact_boundary": {
+        "case_quantities_included": false,
+        "dates_included": false,
+        "desired_outcome_included": false,
+        "entities_included": false,
+        "quotes_included": false,
+        "raw_text_included": false,
+        "topic_labels_included": false
+      },
+      "lint": {
+        "status": "passed",
+        "violations": []
+      },
+      "non_claims": [
+        "probabilistic_semantic_assessment",
+        "assistant_citation_is_not_deterministic_resolution",
+        "answer_coverage_is_not_user_adoption",
+        "routing_disposition_is_not_mental_model_applicability_proof",
+        "not_reasoning_quality_proof",
+        "not_runtime_integration_authority"
+      ],
+      "packet_metadata": {
+        "graph_runtime_modified": false,
+        "interpretation_schema_version": "lolla.simulated_reliability_separated_mechanism_response.v2",
+        "packet_id": "reasoning_pattern_packet:v1-case01-flood-infrastructure-primary:v1_joint"
+      },
+      "pattern_hypotheses": [
+        {
+          "mechanism_id": "acknowledged_constraint_not_gated",
+          "pattern_id": "rp_001",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "missing_protection",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "unresolved",
+          "vanilla_answer_coverage": "operationalized"
+        },
+        {
+          "mechanism_id": "ambiguous_signal_treated_as_commitment",
+          "pattern_id": "rp_002",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        {
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "pattern_id": "rp_003",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "present",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "unresolved",
+          "vanilla_answer_coverage": "operationalized"
+        },
+        {
+          "mechanism_id": "criteria_defined_after_commitment",
+          "pattern_id": "rp_004",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        {
+          "mechanism_id": "initial_frame_persists_after_question_change",
+          "pattern_id": "rp_005",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        {
+          "mechanism_id": "missing_reversal_condition",
+          "pattern_id": "rp_006",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        {
+          "mechanism_id": "reversible_path_not_considered",
+          "pattern_id": "rp_007",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        {
+          "mechanism_id": "status_signal_used_as_evidence",
+          "pattern_id": "rp_008",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        {
+          "mechanism_id": "upside_downside_evidence_asymmetry",
+          "pattern_id": "rp_009",
+          "routing_disposition": "preserve_no_route",
+          "routing_eligible": false,
+          "state": "not_applicable",
+          "subject_scope": "joint_process",
+          "support_status": "preserved_for_audit",
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        }
+      ],
+      "provenance": {
+        "assistant_contribution_count": 12,
+        "pattern_sources": [
+          {
+            "pattern_id": "rp_001",
+            "source_assistant_contribution_ids": [
+              "assistant-turn-004",
+              "assistant-turn-005",
+              "assistant-turn-007",
+              "assistant-turn-012"
+            ],
+            "source_role_record_ids": [
+              "rprolev22-qualification-01-aaa69b13c9b0e2"
+            ],
+            "source_semantic_item_ids": [
+              "assistant-turn-004",
+              "assistant-turn-005",
+              "assistant-turn-007",
+              "assistant-turn-012",
+              "rprolev22-qualification-01-aaa69b13c9b0e2"
+            ]
+          },
+          {
+            "pattern_id": "rp_002",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          },
+          {
+            "pattern_id": "rp_003",
+            "source_assistant_contribution_ids": [
+              "assistant-turn-005",
+              "assistant-turn-007",
+              "assistant-turn-008"
+            ],
+            "source_role_record_ids": [
+              "rprolev22-qualification-01-aaa69b13c9b0e2",
+              "rprolev22-starting-01-794011d9a18024"
+            ],
+            "source_semantic_item_ids": [
+              "assistant-turn-005",
+              "assistant-turn-007",
+              "assistant-turn-008",
+              "rprolev22-qualification-01-aaa69b13c9b0e2",
+              "rprolev22-starting-01-794011d9a18024"
+            ]
+          },
+          {
+            "pattern_id": "rp_004",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          },
+          {
+            "pattern_id": "rp_005",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          },
+          {
+            "pattern_id": "rp_006",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          },
+          {
+            "pattern_id": "rp_007",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          },
+          {
+            "pattern_id": "rp_008",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          },
+          {
+            "pattern_id": "rp_009",
+            "source_assistant_contribution_ids": [],
+            "source_role_record_ids": [],
+            "source_semantic_item_ids": []
+          }
+        ],
+        "producer_id": "google/gemini-3.1-flash-lite",
+        "producer_kind": "factored_mechanism_portfolio_v1",
+        "qualification_review_outcome": "unresolved_qualification_present",
+        "raw_role_or_assistant_prose_in_routing_projection": false,
+        "source_role_record_packet_sha256": "0dd74fbe471962ac576d5ee7006bf9d7e922ab30545a62e90176f130c789a549"
+      },
+      "routing_projection": {
+        "contains_case_context": false,
+        "pattern_edges": [],
+        "pattern_nodes": [],
+        "schema_version": "lolla.graph_reasoning_pattern_projection.v0"
+      },
+      "schema_version": "lolla.reasoning_pattern_packet.v0"
+    },
+    "counts": {
+      "assistant_coverage_model_calls": 2,
+      "materialized_not_applicable": 7,
+      "routing_mechanisms": 0,
+      "total_model_calls": 11,
+      "user_factor_model_calls": 9
+    },
+    "coverage_call_plan": {
+      "assistant_coverage_call_count": 2,
+      "assistant_coverage_call_mechanism_ids": [
+        "acknowledged_constraint_not_gated",
+        "counterpressure_acknowledged_not_integrated"
+      ],
+      "boundary": {
+        "conversation_prose_inspected": false,
+        "coverage_semantics_inferred": false,
+        "deterministic_semantic_inference": false,
+        "keyword_or_chronology_gate_added": false,
+        "plan_reads_model_authored_status_only": true
+      },
+      "materialize_not_applicable_mechanism_ids": [
+        "ambiguous_signal_treated_as_commitment",
+        "criteria_defined_after_commitment",
+        "initial_frame_persists_after_question_change",
+        "missing_reversal_condition",
+        "reversible_path_not_considered",
+        "status_signal_used_as_evidence",
+        "upside_downside_evidence_asymmetry"
+      ],
+      "schema_version": "lolla.reasoning_mechanism_coverage_call_plan.v1"
+    },
+    "schema_version": "lolla.reasoning_mechanism_factored_portfolio.v1",
+    "split_results": [
+      {
+        "assessment": {
+          "mechanism_id": "acknowledged_constraint_not_gated",
+          "pattern_state": "missing_protection",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [
+            "assistant-turn-004",
+            "assistant-turn-005",
+            "assistant-turn-007",
+            "assistant-turn-012"
+          ],
+          "source_role_record_ids": [
+            "rprolev22-qualification-01-aaa69b13c9b0e2"
+          ],
+          "user_process_status": "unresolved",
+          "vanilla_answer_coverage": "operationalized"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "ambiguous_signal_treated_as_commitment",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "counterpressure_acknowledged_not_integrated",
+          "pattern_state": "present",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [
+            "assistant-turn-005",
+            "assistant-turn-007",
+            "assistant-turn-008"
+          ],
+          "source_role_record_ids": [
+            "rprolev22-starting-01-794011d9a18024",
+            "rprolev22-qualification-01-aaa69b13c9b0e2"
+          ],
+          "user_process_status": "unresolved",
+          "vanilla_answer_coverage": "operationalized"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "criteria_defined_after_commitment",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "initial_frame_persists_after_question_change",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "missing_reversal_condition",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "reversible_path_not_considered",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "status_signal_used_as_evidence",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      },
+      {
+        "assessment": {
+          "mechanism_id": "upside_downside_evidence_asymmetry",
+          "pattern_state": "not_applicable",
+          "routing_disposition": "preserve_no_route",
+          "source_assistant_contribution_ids": [],
+          "source_role_record_ids": [],
+          "user_process_status": "not_observed",
+          "vanilla_answer_coverage": "not_applicable"
+        },
+        "boundary": {
+          "deterministic_semantic_inference": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_or_chronology_gate_added": false,
+          "routing_disposition_derived_from_explicit_statuses": true,
+          "routing_disposition_model_authored": false,
+          "semantic_repair_performed": false,
+          "two_independent_semantic_tasks": true
+        },
+        "schema_version": "lolla.reasoning_mechanism_split_assessment.v1",
+        "status": "split_mechanism_assessment_joined"
+      }
+    ],
+    "status": "full_factored_mechanism_portfolio_joined"
+  },
+  "preserved_partial_result_path": "research/simulated-reliability-v1-lite-full-factored-case01-2026-07-13/t1/result.json",
+  "preserved_user_factor_count": 8,
+  "production_model_selected": false,
+  "provider_calls": 3,
+  "provider_reported_cost_usd": 0.0021665,
+  "recovered_user_factor_task": {
+    "compiled": {
+      "assessment": {
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "pattern_state": "present",
+        "source_role_record_ids": [
+          "rprolev22-starting-01-794011d9a18024",
+          "rprolev22-qualification-01-aaa69b13c9b0e2"
+        ],
+        "user_process_status": "unresolved"
+      },
+      "boundary": {
+        "deterministic_semantic_inference": false,
+        "factor_semantics_model_authored": true,
+        "keyword_or_chronology_gate_added": false,
+        "routing_disposition_authored": false,
+        "semantic_repair_performed": false,
+        "user_process_status_derived_from_explicit_factors": true
+      },
+      "factor_assessment": {
+        "integration_status": "not_integrated",
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "mechanism_observation": "observed",
+        "pattern_state": "present",
+        "source_role_record_ids": [
+          "rprolev22-starting-01-794011d9a18024",
+          "rprolev22-qualification-01-aaa69b13c9b0e2"
+        ]
+      },
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "schema_version": "lolla.reasoning_mechanism_user_status_response.v1",
+      "status": "user_status_custody_complete_from_explicit_factors"
+    },
+    "duration_seconds": 1.359,
+    "mechanism_id": "counterpressure_acknowledged_not_integrated",
+    "operational_status": "ok",
+    "provider_calls": 1,
+    "provider_reported_cost_usd": 0.0006775,
+    "served_model": "google/gemini-3.1-flash-lite",
+    "served_provider": "Google",
+    "usage": {
+      "completion_tokens": 124,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "cost": 0.0006775,
+      "cost_details": {
+        "upstream_inference_completions_cost": 0.000186,
+        "upstream_inference_cost": 0.0006775,
+        "upstream_inference_prompt_cost": 0.0004915
+      },
+      "is_byok": false,
+      "prompt_tokens": 1966,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "total_tokens": 2090
+    },
+    "validation_error": ""
+  },
+  "response_healing": false,
+  "run_id": "lolla-simulated-reliability-v1-lite-factored-case01-completion-r1",
+  "runtime_effect": "none",
+  "scalar_quality_score": null,
+  "schema_version": "lolla.simulated_reliability_lite_factored_completion_result.v1",
+  "source_review_status": "required",
+  "status": "minimal_factored_completion_preserved_source_review_required"
+}

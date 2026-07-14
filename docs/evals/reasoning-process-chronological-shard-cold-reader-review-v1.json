@@ -1,0 +1,58 @@
+{
+  "schema_version": "lolla.reasoning_process_chronological_shard_cold_reader_review.v1",
+  "status": "provider_free_cold_reader_pass_smallest_probe_may_be_frozen",
+  "date": "2026-07-11",
+  "review_scope": "packet_prompt_schema_role_validation_and_record_custody_only",
+  "findings": [
+    {
+      "dimension": "semantic_job_size",
+      "status": "pass",
+      "finding": "Each packet asks one family question over at most three focal turn pairs and permits at most two records."
+    },
+    {
+      "dimension": "source_and_target_blinding",
+      "status": "pass",
+      "finding": "All source sentences remain exact and aliased; protected targets and fixture answers are absent from every prompt."
+    },
+    {
+      "dimension": "probabilistic_deterministic_boundary",
+      "status": "pass",
+      "finding": "Chronology and role-valid citation regions are deterministic. Relevance, relationship meaning, uncertainty, and semantic selection remain model judgments."
+    },
+    {
+      "dimension": "cross_boundary_roles",
+      "status": "pass_with_explicit_limit",
+      "finding": "Prior context is generally non-citable. It may support only a challenge's prior frame or a position's starting state; all other roles remain focal."
+    },
+    {
+      "dimension": "provider_interface",
+      "status": "pass",
+      "finding": "Schemas are strict, auxiliary and mechanical parking fields are absent, query and relationship contract follow the source context, and record-level custody preserves valid siblings."
+    },
+    {
+      "dimension": "fan_out_and_cost",
+      "status": "open_risk",
+      "finding": "The design raises the ceiling from eleven to nineteen calls and from thirty to thirty-eight records per case. A one-call failure-target probe must demonstrate value before a full case is considered."
+    },
+    {
+      "dimension": "within_shard_competition",
+      "status": "open_risk",
+      "finding": "A three-pair shard can still contain more than two plausible records. The smallest probe directly tests whether the omitted Case-05 evidence boundary survives this remaining competition."
+    }
+  ],
+  "decision": {
+    "provider_free_interface_gate": "pass",
+    "smallest_probe_case_id": "amb1-case05-family-archive",
+    "smallest_probe_view_kind": "evidence_and_assumption_discipline",
+    "smallest_probe_focal_turn_indices": [1, 2, 3],
+    "reason": "This is the smallest target-blind shard containing the evidence-family target omitted by the Phase-4 global reader, and evidence failed on both transfer cases.",
+    "maximum_provider_calls": 1,
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false
+  },
+  "nonclaims": [
+    "Cold-reader pass is not model-behavior evidence.",
+    "Protected fixture compilation is same-session and non-independent.",
+    "One passing shard would not authorize nineteen calls or prove transfer."
+  ]
+}

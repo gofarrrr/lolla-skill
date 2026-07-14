@@ -1,0 +1,129 @@
+{
+  "schema_version": "lolla.reasoning_process_modal_strength_v3_probe_contract.v1",
+  "status": "frozen_before_one_fresh_provider_call",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-modal-strength-v3-case03-position-endpoint-v1",
+  "purpose": "Test prospectively whether role-explicit categorical force fields help Gemini preserve a stated view, an explicitly provisional plan, and a possibility-plus-unresolved qualification without inflating them into demand, decision, commitment, certainty, or totality.",
+  "case": {
+    "case_id": "amb1-case03-creative-partnership",
+    "development_status": "same_session_synthetic_fresh_for_modal_strength_position_reader_not_independent_holdout",
+    "selection_rule": "ascending_sha256_of_case_id_take_first",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+    "source_sha256": "9788de101dee7661bcc9f76240874f088f9e97579a90deff1ee8c91462004f0f"
+  },
+  "job": {
+    "job_id": "modal-strength-v3-case03-position-endpoint",
+    "case_id": "amb1-case03-creative-partnership",
+    "mechanism": "chronological_shard_modal_strength_v3",
+    "view_kind": "position_and_decision_trajectory",
+    "shard_kind": "position_endpoint_comparison",
+    "focal_turn_indices": [1, 7],
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case03-creative-partnership/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "c9fd98e3c3f619c3909842d8dbe12137e87ce0d7148f489871539e76fecbcb68",
+    "input_utf8_bytes": 4925,
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "07e00cbe4605fbfff59a5a8567b9a6477ea44191304171fe4ba382a661708382",
+    "response_schema_sha256": "87010f7496228b7e5d22e5033feb5c86963c1e7ba6327cc548c26feb80105f71",
+    "maximum_output_records": 2
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v3.py",
+      "sha256": "3c5abb53ef30d0868bd3171baa97a2bf89d05f8ba88598518f9bef335b915a18"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_phase4_transfer.py",
+      "sha256": "2eba5deb09e9d4d99e0cca12ca07a35578f3c82a4afdf3788378f0bec921c96d"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_modal_strength_v3_probe.py",
+      "sha256": "0382276752f1ecbefa93370009fd3f34bdaafb42a179c83cee38355d552b7038"
+    },
+    {
+      "path": "research/reasoning-process-modal-strength-v3-2026-07-12/report.json",
+      "sha256": "af7e440d26f2454a667e19a9fbf6eb455e0b0be55b228d920b73e69bd40a8c1f"
+    },
+    {
+      "path": "research/reasoning-process-modal-strength-v3-2026-07-12/adversarial-review.json",
+      "sha256": "b7185f9329551bde1b080013241443e28e73cdfec193dbcfa52599a42f968bfe"
+    },
+    {
+      "path": "docs/evals/reasoning-process-modal-strength-v3-cold-reader-review.json",
+      "sha256": "d7284a320dc54969d7904930d4a240813c502a6dd5e0c0c612cfb1e233d62c9c"
+    },
+    {
+      "path": "docs/evals/reasoning-process-position-force-fixtures-v1.json",
+      "sha256": "7d93e6ac847750426d1222f7da2442b6e8f6bf0d8cce833373d88ea42c00f5f3"
+    },
+    {
+      "path": "docs/conversation-understanding/reasoning-process-modal-strength-contract-v1.md",
+      "sha256": "7ca2fe9e5bf3710dcf947a4dec7cd25d7a3b92ad85f16137d81362888d27a956"
+    },
+    {
+      "path": "docs/evals/reasoning-process-role-explicit-v2-model-snapshot-2026-07-12.json",
+      "sha256": "52b9d8e294409541b9909eb2ba56410c2bd5308d0c6cf527fffb3171930d3354"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-role-explicit-v2-model-snapshot-2026-07-12.json",
+    "sha256": "52b9d8e294409541b9909eb2ba56410c2bd5308d0c6cf527fffb3171930d3354"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "full_reader_max_output_tokens": 1200,
+    "local_reader_max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success": true,
+    "typed_record_level_custody_complete": true,
+    "starting_position_interpretation_source_supported_without_force_inflation": true,
+    "starting_position_force_source_supported": true,
+    "current_position_interpretation_preserves_provisionality_and_deferred_decision": true,
+    "current_position_force_source_supported": true,
+    "qualification_interpretation_preserves_possibility_and_open_question": true,
+    "qualification_modalities_source_supported": true,
+    "trajectory_interpretation_source_supported_without_force_inflation": true,
+    "invalid_admitted_record_count": 0,
+    "source_first_review_required": true
+  },
+  "stop_rules": {
+    "one_fresh_position_call_only": true,
+    "no_retry_fallback_response_healing_or_prompt_change": true,
+    "no_same_case_repair_authorized": true,
+    "source_review_required_before_any_next_goal": true
+  },
+  "boundary": {
+    "protected_target_seen_by_model": false,
+    "source_review_fixture_seen_by_model": false,
+    "force_labels_are_scores_or_ordinals": false,
+    "semantic_force_inferred_or_compared_by_code": false,
+    "other_view_calls_authorized": false,
+    "full_case_calls_authorized": false,
+    "semantic_retry_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

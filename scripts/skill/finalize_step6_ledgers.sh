@@ -14,6 +14,10 @@ while [ "$#" -gt 0 ]; do
       MODE="v60"
       shift
       ;;
+    --graph-only)
+      MODE="graph"
+      shift
+      ;;
     --all)
       MODE="all"
       shift
@@ -27,6 +31,7 @@ while [ "$#" -gt 0 ]; do
 Usage:
   bash scripts/skill/finalize_step6_ledgers.sh --pre-step6-only
   bash scripts/skill/finalize_step6_ledgers.sh --v60-only
+  bash scripts/skill/finalize_step6_ledgers.sh --graph-only
   bash scripts/skill/finalize_step6_ledgers.sh --all
 
 Finalizes Step 6b custody ledgers for the current Lolla run.
@@ -86,7 +91,13 @@ case "$MODE" in
     record_run_event_quiet step6_ledgers_finalized --detail "mode=v60"
     echo "STEP6_LEDGER_STATUS: v60 finalized"
     ;;
+  graph)
+    python3 "$SKILL_DIR/scripts/finalize_constitutional_graph_survival_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
+    record_run_event_quiet step6_ledgers_finalized --detail "mode=constitutional_graph_survival"
+    echo "STEP6_LEDGER_STATUS: constitutional graph survival finalized"
+    ;;
   all)
+    python3 "$SKILL_DIR/scripts/finalize_constitutional_graph_survival_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
     python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
     python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
     record_run_event_quiet step6_ledgers_finalized --detail "mode=all"

@@ -1,0 +1,1358 @@
+{
+  "boundary": {
+    "completed_zero_treated_as_semantic_absence": false,
+    "graph_pressure_or_relevance_decided": false,
+    "missing_reader_output_filled": false,
+    "overlapping_reader_records_preserved": true,
+    "prose_keywords_or_chronology_used_for_meaning": false,
+    "provider_authored_semantic_payloads_preserved": true,
+    "provider_calls": 0,
+    "quality_score": null,
+    "reader_or_record_array_order_used_for_meaning": false,
+    "relationship_meaning_inferred_by_code": false,
+    "runtime_or_graph_integration_performed": false,
+    "semantic_merge_or_deduplication_performed": false,
+    "semantic_role_inferred_by_code": false
+  },
+  "case_id": "v1-case01-flood-infrastructure",
+  "fan_in": {
+    "exact_semantic_payload_overlap_pair_count": 0,
+    "handoff_payload_utf8_bytes": 33677,
+    "interpretation": "mechanical load vector only; no direction of quality is inferred",
+    "limits": {
+      "maximum_handoff_payload_utf8_bytes": 1000000,
+      "maximum_readers": 12,
+      "maximum_records_per_reader": 8,
+      "maximum_related_record_ids": 16,
+      "maximum_semantic_payload_utf8_bytes_per_record": 32768,
+      "maximum_source_aliases": 512,
+      "maximum_source_locators_per_record": 24,
+      "maximum_total_records": 48,
+      "maximum_total_semantic_payload_utf8_bytes": 262144
+    },
+    "planned_reader_count": 6,
+    "reader_artifact_reference_count": 3,
+    "reader_state_counts": {
+      "complete": 3,
+      "completed_zero": 0,
+      "failed": 0,
+      "missing": 3,
+      "partial": 0
+    },
+    "source_alias_overlap_pair_count": 0,
+    "total_record_count": 3,
+    "total_semantic_payload_utf8_bytes": 7258,
+    "total_source_locator_count": 8,
+    "unique_reader_artifact_count": 1,
+    "unique_reader_artifact_utf8_bytes": 10739,
+    "unique_source_alias_count": 8,
+    "within_bounds": true
+  },
+  "planned_readers": [
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "legacy-current-position-reader",
+      "surface": "current_position"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "legacy-qualification-reader",
+      "surface": "qualification"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "legacy-starting-position-reader",
+      "surface": "starting_position"
+    },
+    {
+      "producer_id": "not_implemented_in_primary_v1",
+      "producer_kind": "v1_contract_surface_unavailable",
+      "reader_id": "planned-cross-thread-relationship-reader",
+      "surface": "cross_thread_relationship"
+    },
+    {
+      "producer_id": "not_implemented_in_primary_v1",
+      "producer_kind": "v1_contract_surface_unavailable",
+      "reader_id": "planned-reopen-condition-reader",
+      "surface": "reopen_condition"
+    },
+    {
+      "producer_id": "not_implemented_in_primary_v1",
+      "producer_kind": "v1_contract_surface_unavailable",
+      "reader_id": "planned-unresolved-matter-reader",
+      "surface": "unresolved_matter"
+    }
+  ],
+  "reader_results": [
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/joined-role-records.json",
+        "sha256": "4ce920c93ce17cb37d4910ddb5b736700bf338abee06869f16827e9970be0263",
+        "utf8_bytes": 10739
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "legacy-current-position-reader",
+      "records": [
+        {
+          "record_id": "rprolev22-current-01-502b76db545ccc",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case01-flood-infrastructure",
+            "fidelity_note": "Captures the user's formal, final recommendation structure to the city council, combining the six-block infrastructure option with strict, newly adopted operational and legal safeguards.",
+            "graph_routing_eligible": false,
+            "limitations": "The viability of this recommendation hinges entirely on the successful deployment of the city's resources (transit agency, emergency services, and deployment crews).",
+            "observation_id": "rprolev22-current-01-502b76db545ccc",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:502b76db545ccc2ea889c4ce95bdd101a8057c8a62166ec5a11dfff1bc77e3f2",
+            "role": "current",
+            "role_interpretation": "The user's final, operationalized, and safeguarded recommendation regarding the modular flood barrier.",
+            "role_record_id": "rprolev22-current-01-502b76db545ccc",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case01-flood-infrastructure-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e104",
+                "text": "My final council recommendation will remain the six-block installation, but only after a full deployment exercise and a written partial-installation procedure."
+              },
+              {
+                "alias": "e105",
+                "text": "The public plan will pair the frequent-flood protection range with shuttle and emergency-routing arrangements for closures the barrier cannot prevent."
+              },
+              {
+                "alias": "e106",
+                "text": "We will decline the extra anchors without equivalent review, keep the drainage study funded, publish incidents and operating deviations, and separate equipment defects from city deployment responsibility in the contract."
+              }
+            ],
+            "source_evidence_ids": [
+              "e104",
+              "e105",
+              "e106"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e104",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Recommending the six-block barrier installation only after executing a full deployment exercise and formalizing a written partial-installation procedure.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e105",
+                "stance_expression_kind": "provisional_intention_or_plan",
+                "stance_object_interpretation": "Pairing physical flood protection with a committed plan for transit shuttle services and emergency routing during closures.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e106",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Declining extra unreviewed anchors, securing drainage study funds, publishing incident deviations, and excluding deployment delays from the equipment defect warranty.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "607fd0c97dd81e350778dabfb86e749431c6b5eff47845b6cca1265d460f835f",
+          "source_locators": [
+            {
+              "alias": "e104",
+              "span_id": "span-72714f2718381d4d",
+              "speaker": "user",
+              "text_sha256": "b2f1f1cfd7c0d5bae69860da0198ec2788bf937a7eee3e6ec17eff106d26f129",
+              "turn_index": 12
+            },
+            {
+              "alias": "e105",
+              "span_id": "span-0c10e598268b89b4",
+              "speaker": "user",
+              "text_sha256": "2c0d083c55cf4286245fc2879c6137fd11e5a185fab21310b217019ae66e260b",
+              "turn_index": 12
+            },
+            {
+              "alias": "e106",
+              "span_id": "span-ff34925cf61d68de",
+              "speaker": "user",
+              "text_sha256": "ab9e7061e00da43bc72b5205babbb5211e05dca2baa7f2053575ab78c2745b4f",
+              "turn_index": 12
+            }
+          ],
+          "surface": "current_position"
+        }
+      ],
+      "state": "complete",
+      "surface": "current_position"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/joined-role-records.json",
+        "sha256": "4ce920c93ce17cb37d4910ddb5b736700bf338abee06869f16827e9970be0263",
+        "utf8_bytes": 10739
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "legacy-qualification-reader",
+      "records": [
+        {
+          "record_id": "rprolev22-qualification-01-aaa69b13c9b0e2",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case01-flood-infrastructure",
+            "fidelity_note": "Captures the user's persistent concern that the grant's timeline is structurally compromising what would otherwise be a more deliberate and fully explained decision process.",
+            "graph_routing_eligible": false,
+            "limitations": "This constraint cannot be resolved within the parameters of accepting the grant and must be integrated as an established risk.",
+            "observation_id": "rprolev22-qualification-01-aaa69b13c9b0e2",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:aaa69b13c9b0e237d03e783c93ae04792804cfeff64ed637384ed8b705982b9e",
+            "role": "qualification",
+            "role_interpretation": "The lingering temporal constraint and decision-making pressure that continues to limit the decision.",
+            "role_record_id": "rprolev22-qualification-01-aaa69b13c9b0e2",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case01-flood-infrastructure-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e107",
+                "text": "The grant still accelerates the decision, but it no longer defines the scope we are willing to defend."
+              }
+            ],
+            "source_evidence_ids": [
+              "e107"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e107",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "The grant timeline continues to compress and accelerate a decision that ideally deserves a more extensive public explanation.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "155d3fb4947bd1d3f9a2e33b974bf8cc662cd548e20a05d55d50fd22550166ec",
+          "source_locators": [
+            {
+              "alias": "e107",
+              "span_id": "span-a08d286029e8b838",
+              "speaker": "user",
+              "text_sha256": "ca4c8d3777f3bb15f831a11b982f7e4bf3b6a5a7d4c449de9d09182bd17d96db",
+              "turn_index": 12
+            }
+          ],
+          "surface": "qualification"
+        }
+      ],
+      "state": "complete",
+      "surface": "qualification"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/joined-role-records.json",
+        "sha256": "4ce920c93ce17cb37d4910ddb5b736700bf338abee06869f16827e9970be0263",
+        "utf8_bytes": 10739
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "legacy-starting-position-reader",
+      "records": [
+        {
+          "record_id": "rprolev22-starting-01-794011d9a18024",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case01-flood-infrastructure",
+            "fidelity_note": "The user's starting stance is defined by hesitation and a rejection of the binary framing. They express clear worries (counterpressures) pushing back against both immediate options: they fear that rushing fails to protect people, but recognize that delay is also highly detrimental to the community.",
+            "graph_routing_eligible": false,
+            "limitations": "Our insight into the starting position is limited to the user's initial worries and is evaluated before downstream turn interactions settle on a compromised pilot approach.",
+            "observation_id": "rprolev22-starting-01-794011d9a18024",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:794011d9a18024d8bee3fa6842381ae3500d7b33cfed2b26956904ac41d2977a",
+            "role": "starting",
+            "role_interpretation": "At the start, the developer is highly undecided and anxious about the simplified choice between a fast modular barrier or more study, recognizing that both choices carry significant risks that are not easily balanced.",
+            "role_record_id": "rprolev22-starting-01-794011d9a18024",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case01-flood-infrastructure-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e006",
+                "text": "Everyone keeps asking me whether I am for the barrier or for more study."
+              },
+              {
+                "alias": "e007",
+                "text": "Honestly, that framing is already making me nervous."
+              },
+              {
+                "alias": "e008",
+                "text": "Moving fast is not the same thing as protecting people."
+              },
+              {
+                "alias": "e009",
+                "text": "Waiting through another flood season is not neutral either."
+              }
+            ],
+            "source_evidence_ids": [
+              "e006",
+              "e007",
+              "e008",
+              "e009"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e007",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The binary choice between immediately installing the modular barrier or waiting for a slow study is anxiety-inducing and remains unresolved.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e008",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Moving fast to install the modular barrier may fail to actually protect vulnerable populations.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e009",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Waiting and delaying through another flood season exposes the city and residents to active harms.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "e697585bd06e85ce433e73f5d4699707723d7fd291bcb500393c39aaccb67aca",
+          "source_locators": [
+            {
+              "alias": "e006",
+              "span_id": "span-986dda67f4703a16",
+              "speaker": "user",
+              "text_sha256": "8c9530aad26546ad1eb4ae57da9a64b8337ae8986d3a42bf11fdc521fc50ff66",
+              "turn_index": 1
+            },
+            {
+              "alias": "e007",
+              "span_id": "span-c72e3cf8208a3eb7",
+              "speaker": "user",
+              "text_sha256": "4b13c5da9dd3d591c6e705533f546d3e342ecc33adaa70e4adca3bff02cdcb97",
+              "turn_index": 1
+            },
+            {
+              "alias": "e008",
+              "span_id": "span-d6e10336690e13b0",
+              "speaker": "user",
+              "text_sha256": "8f5c7b7b8db803ea9e5c9cbf5ba1548283a47d5d8caf7465dd5312bbf961197a",
+              "turn_index": 1
+            },
+            {
+              "alias": "e009",
+              "span_id": "span-2292a4550a84863a",
+              "speaker": "user",
+              "text_sha256": "c87ce8a865ca0143010970a94ba02a06541df5b9166c55d9fa243589722103db",
+              "turn_index": 1
+            }
+          ],
+          "surface": "starting_position"
+        }
+      ],
+      "state": "complete",
+      "surface": "starting_position"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "reader_not_implemented",
+        "kind": "missingness",
+        "safe_detail": "No distinct primary V1 cross-thread relationship reader contract exists.",
+        "stage": "v1_primary_contract"
+      },
+      "producer": {
+        "id": "not_implemented_in_primary_v1",
+        "kind": "v1_contract_surface_unavailable"
+      },
+      "reader_id": "planned-cross-thread-relationship-reader",
+      "records": [],
+      "state": "missing",
+      "surface": "cross_thread_relationship"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "reader_not_implemented",
+        "kind": "missingness",
+        "safe_detail": "No distinct primary V1 reopen condition reader contract exists.",
+        "stage": "v1_primary_contract"
+      },
+      "producer": {
+        "id": "not_implemented_in_primary_v1",
+        "kind": "v1_contract_surface_unavailable"
+      },
+      "reader_id": "planned-reopen-condition-reader",
+      "records": [],
+      "state": "missing",
+      "surface": "reopen_condition"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "reader_not_implemented",
+        "kind": "missingness",
+        "safe_detail": "No distinct primary V1 unresolved matter reader contract exists.",
+        "stage": "v1_primary_contract"
+      },
+      "producer": {
+        "id": "not_implemented_in_primary_v1",
+        "kind": "v1_contract_surface_unavailable"
+      },
+      "reader_id": "planned-unresolved-matter-reader",
+      "records": [],
+      "state": "missing",
+      "surface": "unresolved_matter"
+    }
+  ],
+  "result_sha256": "4e800b43045528cdfe300246ae6d110d2c10fc468a87ccd3fb0489d22f7f209f",
+  "schema_version": "lolla.conversation_state_fan_in.v1",
+  "source_registry": {
+    "aliases": [
+      {
+        "alias": "e001",
+        "span_id": "span-a87be86114dc7148",
+        "speaker": "user",
+        "text_sha256": "6066dc61ab7ee824e48b7db76264a09845d03c5dbf0694d80d7a4e7140825a10",
+        "turn_index": 1
+      },
+      {
+        "alias": "e002",
+        "span_id": "span-a969b639c757aa3f",
+        "speaker": "user",
+        "text_sha256": "52daf5bda7f5561ce7fa1b178fea6b3104db3cdfccf118fe76528915c130bcbd",
+        "turn_index": 1
+      },
+      {
+        "alias": "e003",
+        "span_id": "span-48136b634b1b02d6",
+        "speaker": "user",
+        "text_sha256": "f0da1a7d00d8460b991ec0ab85105b61ee71cd92d859ad9550fcc9d584f8c870",
+        "turn_index": 1
+      },
+      {
+        "alias": "e004",
+        "span_id": "span-c1bdb833061d7a8a",
+        "speaker": "user",
+        "text_sha256": "8a52070203fb4dc473c01038b7f5f0e7a8e236db95b573c35b3f6129ab7b6cdd",
+        "turn_index": 1
+      },
+      {
+        "alias": "e005",
+        "span_id": "span-dcba282bc78c2584",
+        "speaker": "user",
+        "text_sha256": "88334777638426e2bd7c0f8f3cfe86c41b9e26fafa1fc843f1065a2be581e47d",
+        "turn_index": 1
+      },
+      {
+        "alias": "e006",
+        "span_id": "span-986dda67f4703a16",
+        "speaker": "user",
+        "text_sha256": "8c9530aad26546ad1eb4ae57da9a64b8337ae8986d3a42bf11fdc521fc50ff66",
+        "turn_index": 1
+      },
+      {
+        "alias": "e007",
+        "span_id": "span-c72e3cf8208a3eb7",
+        "speaker": "user",
+        "text_sha256": "4b13c5da9dd3d591c6e705533f546d3e342ecc33adaa70e4adca3bff02cdcb97",
+        "turn_index": 1
+      },
+      {
+        "alias": "e008",
+        "span_id": "span-d6e10336690e13b0",
+        "speaker": "user",
+        "text_sha256": "8f5c7b7b8db803ea9e5c9cbf5ba1548283a47d5d8caf7465dd5312bbf961197a",
+        "turn_index": 1
+      },
+      {
+        "alias": "e009",
+        "span_id": "span-2292a4550a84863a",
+        "speaker": "user",
+        "text_sha256": "c87ce8a865ca0143010970a94ba02a06541df5b9166c55d9fa243589722103db",
+        "turn_index": 1
+      },
+      {
+        "alias": "e010",
+        "span_id": "span-c653cedabcd70f66",
+        "speaker": "assistant",
+        "text_sha256": "330075c068da84193396cc82932546f29be9da3ae7f79d712c70dcc5cb7f0b0a",
+        "turn_index": 1
+      },
+      {
+        "alias": "e011",
+        "span_id": "span-a5c86d8f0d589e70",
+        "speaker": "assistant",
+        "text_sha256": "18ef49892c49970d420450b68e4b9f10f840a65c6999bbe56203b57589ae31b1",
+        "turn_index": 1
+      },
+      {
+        "alias": "e012",
+        "span_id": "span-f25a21a661e0052b",
+        "speaker": "assistant",
+        "text_sha256": "1ec01d0c0841bbd0e4901fad6fe9ead04012af02b34218b56c2f10d56d99d536",
+        "turn_index": 1
+      },
+      {
+        "alias": "e013",
+        "span_id": "span-a1ce3bc59d67f9a3",
+        "speaker": "assistant",
+        "text_sha256": "1c559436abe444afd36578c99a65bc42f37db3a4fc15b9245b15101406ba0e77",
+        "turn_index": 1
+      },
+      {
+        "alias": "e014",
+        "span_id": "span-74b4ce506726c45f",
+        "speaker": "user",
+        "text_sha256": "fba8b0f1533f2fd2ff89446b8ace7c426abe3caf414993e192c12529ee6199f3",
+        "turn_index": 2
+      },
+      {
+        "alias": "e015",
+        "span_id": "span-02a1933bae1de188",
+        "speaker": "user",
+        "text_sha256": "9865c156177c4a089e573ac7aaa1e86e0bb8f0754b21d506ef39e9e542aae32e",
+        "turn_index": 2
+      },
+      {
+        "alias": "e016",
+        "span_id": "span-124ec3cfbb40355c",
+        "speaker": "user",
+        "text_sha256": "abddd8ca2a1ccc13d8e0017ffc2ec05bb7691dea687b6268e8c96fa377e1927e",
+        "turn_index": 2
+      },
+      {
+        "alias": "e017",
+        "span_id": "span-c6c0b0f1db3a452d",
+        "speaker": "user",
+        "text_sha256": "f51c600d94b4929a0f641657acf069cb7c9fbbdce443c1590cb4fa9c5c11f14d",
+        "turn_index": 2
+      },
+      {
+        "alias": "e018",
+        "span_id": "span-b387ee8754e7ca6e",
+        "speaker": "user",
+        "text_sha256": "b11e6110e90e58cb5d135f44e97cdd8c63face6b2ffb90775bcab220946c8ce9",
+        "turn_index": 2
+      },
+      {
+        "alias": "e019",
+        "span_id": "span-45e055de61228dad",
+        "speaker": "assistant",
+        "text_sha256": "21c6ca936c30fe07ac9b3030d8518a9a998a3ec19526bd05f23f06e6981b5efc",
+        "turn_index": 2
+      },
+      {
+        "alias": "e020",
+        "span_id": "span-9dba455eff104983",
+        "speaker": "assistant",
+        "text_sha256": "3a87115e00d2cb552f8b33d9d7b52ae8424c3e4b2146037461b06be5d3852a54",
+        "turn_index": 2
+      },
+      {
+        "alias": "e021",
+        "span_id": "span-178d1c1ddbbeb929",
+        "speaker": "assistant",
+        "text_sha256": "366597c0aeffd5abd9a7bd75d3302ff6b1e02d85a92ba3f03aef58c250019a10",
+        "turn_index": 2
+      },
+      {
+        "alias": "e022",
+        "span_id": "span-98247fbdf4ef8694",
+        "speaker": "assistant",
+        "text_sha256": "9a38d8514a2164155a58405d8a597058346b20ef5a7b6dcc08a83d9c9916dd50",
+        "turn_index": 2
+      },
+      {
+        "alias": "e023",
+        "span_id": "span-525f9cb441699bb0",
+        "speaker": "user",
+        "text_sha256": "6b5fc9659ade343e214e3b175465b3f59728af99a7841a3cd6b8bd0e78990990",
+        "turn_index": 3
+      },
+      {
+        "alias": "e024",
+        "span_id": "span-b64e868b4262497a",
+        "speaker": "user",
+        "text_sha256": "3de56273ecc5492b7e8578099672d552239244315b432abf4abb77a797f75b45",
+        "turn_index": 3
+      },
+      {
+        "alias": "e025",
+        "span_id": "span-3bfe06ce4c2c6ab9",
+        "speaker": "user",
+        "text_sha256": "73f852c8e63f6c2715f5809adca6db3c09521aeceb8f7bdf4c197080d81f1d69",
+        "turn_index": 3
+      },
+      {
+        "alias": "e026",
+        "span_id": "span-f1b92e5776d4e688",
+        "speaker": "user",
+        "text_sha256": "38de30927623548924e40055efa3591b0c4b60e53ccc60356edcba32076bfad7",
+        "turn_index": 3
+      },
+      {
+        "alias": "e027",
+        "span_id": "span-ecbc1732cbfa995f",
+        "speaker": "user",
+        "text_sha256": "5e12854638cd44ac165a02e485dbc54081d5cded08c2972ca7fa78698d76312f",
+        "turn_index": 3
+      },
+      {
+        "alias": "e028",
+        "span_id": "span-5d692b2581ca07a7",
+        "speaker": "assistant",
+        "text_sha256": "87e89e19f46d092b46ebee6cf9cffbe789f6c25ff154f62ddafd2595b82a1f7a",
+        "turn_index": 3
+      },
+      {
+        "alias": "e029",
+        "span_id": "span-322d26d3f32b6b54",
+        "speaker": "assistant",
+        "text_sha256": "95aa30c5c1b6765aa36e108a68818a4f856edd9edc2ad61685c5d342eff6b739",
+        "turn_index": 3
+      },
+      {
+        "alias": "e030",
+        "span_id": "span-0cf07c3e372747d4",
+        "speaker": "assistant",
+        "text_sha256": "576ae491ade59b69ade0f6b2e94d2ff8deeac3c99a63143e8ae271c23c90434e",
+        "turn_index": 3
+      },
+      {
+        "alias": "e031",
+        "span_id": "span-171010e74a1739b7",
+        "speaker": "user",
+        "text_sha256": "069955d7a45da37f4c10379ec6bb42e851bc7ac0499fb6ddc9f1262dc2e50a58",
+        "turn_index": 4
+      },
+      {
+        "alias": "e032",
+        "span_id": "span-1b3f0760f3041516",
+        "speaker": "user",
+        "text_sha256": "21d5f1b591b06d79074cd8496155d7c9dfa7dde968634b4166d513847b079923",
+        "turn_index": 4
+      },
+      {
+        "alias": "e033",
+        "span_id": "span-cb9ca1fbd2cf301a",
+        "speaker": "user",
+        "text_sha256": "fe8316a5269442fa1dba2fe61e82723c0c93dee9b076ac553b8e9d105beee373",
+        "turn_index": 4
+      },
+      {
+        "alias": "e034",
+        "span_id": "span-d70467ae2128033d",
+        "speaker": "user",
+        "text_sha256": "25177176c7ba03e4a092cee0e16c04b3d25d6847fbdb1b32a56b1aaecda03f3a",
+        "turn_index": 4
+      },
+      {
+        "alias": "e035",
+        "span_id": "span-a868caa117f34e96",
+        "speaker": "assistant",
+        "text_sha256": "c879a246e5b7a10dcd30354bbb5062f7441b206eede39ca8d3b1e3cb69329369",
+        "turn_index": 4
+      },
+      {
+        "alias": "e036",
+        "span_id": "span-03fc46721e1f003e",
+        "speaker": "assistant",
+        "text_sha256": "8d73293b069d4a7ed3231cd14cba9a134897128bd30befe4bef885b51548de00",
+        "turn_index": 4
+      },
+      {
+        "alias": "e037",
+        "span_id": "span-b198786abdcff56e",
+        "speaker": "assistant",
+        "text_sha256": "b5eeef39e30f0121156f7e99c4408a638ace9835432106d729711963f6c77ab0",
+        "turn_index": 4
+      },
+      {
+        "alias": "e038",
+        "span_id": "span-ba00a4edf697fd5d",
+        "speaker": "assistant",
+        "text_sha256": "6fd1d14f4f18951f883a5052b67c221d1f658923c1790e4e38bac74c4fe7e121",
+        "turn_index": 4
+      },
+      {
+        "alias": "e039",
+        "span_id": "span-bca70d5f02520bd1",
+        "speaker": "user",
+        "text_sha256": "6da792e0514daec337c057a1131609067fd110588a7eb81ace46f8f04bfbd8ae",
+        "turn_index": 5
+      },
+      {
+        "alias": "e040",
+        "span_id": "span-3808153ca23784ea",
+        "speaker": "user",
+        "text_sha256": "9d4041c5b950b31f5f0c98b3b063381375604040bdd4402e7f0ab7abd3b43ead",
+        "turn_index": 5
+      },
+      {
+        "alias": "e041",
+        "span_id": "span-75d8b5df221c2e73",
+        "speaker": "user",
+        "text_sha256": "3ddfde5595b01252316f164b63dd551b70ca3cf828591e3620b6cdaf81977ffb",
+        "turn_index": 5
+      },
+      {
+        "alias": "e042",
+        "span_id": "span-3e111edd06af8638",
+        "speaker": "user",
+        "text_sha256": "853a3f74c9980af0fbc0af8b2a8adf48da44bb6d023107f3e472d2c7e8c7c4ca",
+        "turn_index": 5
+      },
+      {
+        "alias": "e043",
+        "span_id": "span-2a46125e7aec8805",
+        "speaker": "assistant",
+        "text_sha256": "74b15f2dc0b79b8b7e1ac56c5b6dc8669dcbb48eb835ec4d78ad1972c0d53d5e",
+        "turn_index": 5
+      },
+      {
+        "alias": "e044",
+        "span_id": "span-fedee6e3cbccf72b",
+        "speaker": "assistant",
+        "text_sha256": "f76b361ef3acf94d177be01ce609167f11cb5a3b9fb170e83b51522cf9fb77f2",
+        "turn_index": 5
+      },
+      {
+        "alias": "e045",
+        "span_id": "span-a0772f133d8f3216",
+        "speaker": "assistant",
+        "text_sha256": "0fe9e92155c8975a2779356cecc6e70bab0981a20b412552be682d6fedd4e0dc",
+        "turn_index": 5
+      },
+      {
+        "alias": "e046",
+        "span_id": "span-6764875b29fcf765",
+        "speaker": "assistant",
+        "text_sha256": "a71c8cb26a45f74ce99e33c62a2d909e4fd381ce5cb477605f492e2de4517336",
+        "turn_index": 5
+      },
+      {
+        "alias": "e047",
+        "span_id": "span-3d646731ef024abf",
+        "speaker": "user",
+        "text_sha256": "feb10c497684ab62f8ad27e15cb7021d4c209dbd60d935f9ab1a7cd869a8ca00",
+        "turn_index": 6
+      },
+      {
+        "alias": "e048",
+        "span_id": "span-151b2bfc1e0caedc",
+        "speaker": "user",
+        "text_sha256": "51cb83baaa2c0d52b34a612b6055b63ab34962f86b6d969b67e97c1f84b39677",
+        "turn_index": 6
+      },
+      {
+        "alias": "e049",
+        "span_id": "span-461d15665767f78a",
+        "speaker": "user",
+        "text_sha256": "35464b458dd2d46c9ebd82b60d91a5aced8a285b5f2506cfc8bad6d87f2522af",
+        "turn_index": 6
+      },
+      {
+        "alias": "e050",
+        "span_id": "span-8e8c0815d84ebaba",
+        "speaker": "user",
+        "text_sha256": "4c20926668be309e7072ef559e77c47df8e169a66a039d5a6fd1b9976399ae7e",
+        "turn_index": 6
+      },
+      {
+        "alias": "e051",
+        "span_id": "span-a37e30a1366048b3",
+        "speaker": "assistant",
+        "text_sha256": "22726a99c7e8b0eb96330229eaa61c5c46b5c86da15d9341f9351fb2387f6f6c",
+        "turn_index": 6
+      },
+      {
+        "alias": "e052",
+        "span_id": "span-7c0be2bfe69ba338",
+        "speaker": "assistant",
+        "text_sha256": "4ddabb6e2d0bd108285778cd6695602884e35dbc4cd2384f242072f21c5bdad6",
+        "turn_index": 6
+      },
+      {
+        "alias": "e053",
+        "span_id": "span-7e3aaae8fe96dbcd",
+        "speaker": "assistant",
+        "text_sha256": "e5395eae67ea3dca575a8a60108f09847992f13129725e50e71443667c87f90c",
+        "turn_index": 6
+      },
+      {
+        "alias": "e054",
+        "span_id": "span-165aa2b242d13998",
+        "speaker": "assistant",
+        "text_sha256": "ac969e96f3ed748f381b78fa784743b8e86ccd26c751d6e04a1e55610b637271",
+        "turn_index": 6
+      },
+      {
+        "alias": "e055",
+        "span_id": "span-2e69ed37c72bfc2c",
+        "speaker": "assistant",
+        "text_sha256": "c840b150ec57ae6039e055fc622e95e04cd97dc8a9fc077461ea13b89e115384",
+        "turn_index": 6
+      },
+      {
+        "alias": "e056",
+        "span_id": "span-505193c7006f31d8",
+        "speaker": "user",
+        "text_sha256": "43a752bce1cb68a2d7e86e20ab96bcd60a04252dbca8cab77e0cbb9a2be414db",
+        "turn_index": 7
+      },
+      {
+        "alias": "e057",
+        "span_id": "span-82602472806d890f",
+        "speaker": "user",
+        "text_sha256": "7c737ff66c9eaca86dba316755c08ad717b2b614577e25babb93473a430e0da3",
+        "turn_index": 7
+      },
+      {
+        "alias": "e058",
+        "span_id": "span-7f6f8a4413dba77e",
+        "speaker": "user",
+        "text_sha256": "8e0b1c2ce1d2ea70dc0c41dd3bc5cc89695686f342fa226d50c048f141a863ea",
+        "turn_index": 7
+      },
+      {
+        "alias": "e059",
+        "span_id": "span-e47536aabddf65b5",
+        "speaker": "user",
+        "text_sha256": "c49a27f3f487a5124c4f0f3bef8562ff6edf43304264663ab8f49c480e939490",
+        "turn_index": 7
+      },
+      {
+        "alias": "e060",
+        "span_id": "span-6f87c038a22618cf",
+        "speaker": "assistant",
+        "text_sha256": "f224d7eec546e1692e324cf91c6546bf19034eb56c8b4fe892b4c0dfa901bb0a",
+        "turn_index": 7
+      },
+      {
+        "alias": "e061",
+        "span_id": "span-9b83059e39d8b8aa",
+        "speaker": "assistant",
+        "text_sha256": "ff3137fc9e25a8b6f54acc7a0fde7a2c9c06ceeb407c7693a9644cf4caf8d10b",
+        "turn_index": 7
+      },
+      {
+        "alias": "e062",
+        "span_id": "span-1c7e4714a3fc484a",
+        "speaker": "assistant",
+        "text_sha256": "b9ee84c5aa703445c2112e040fa9fe513beb6c9f83e17a34d5c102f0dc1304c5",
+        "turn_index": 7
+      },
+      {
+        "alias": "e063",
+        "span_id": "span-03d300b1ef8ae1f4",
+        "speaker": "assistant",
+        "text_sha256": "633784d7c3659d8350aeb33a28cb5fe49da6c764905c24080ac7a2abd99a43f2",
+        "turn_index": 7
+      },
+      {
+        "alias": "e064",
+        "span_id": "span-af334a455a395ac0",
+        "speaker": "user",
+        "text_sha256": "5ba1fa6af5f6e6c5dca44b4dbbe37bf1b95a1dca8ca680e4fe42077a18b03bd9",
+        "turn_index": 8
+      },
+      {
+        "alias": "e065",
+        "span_id": "span-94f66528947d31ac",
+        "speaker": "user",
+        "text_sha256": "ca7fdb54c417f5afe8146766bb07998ff871df87c593e877e489c798e35eb6ad",
+        "turn_index": 8
+      },
+      {
+        "alias": "e066",
+        "span_id": "span-9c34794fc88aee9a",
+        "speaker": "user",
+        "text_sha256": "5a40c0c69b68bf75e65f5925d383ac4d7d896e0bb03e91613a890e66c8f7a776",
+        "turn_index": 8
+      },
+      {
+        "alias": "e067",
+        "span_id": "span-be660c6b170356f1",
+        "speaker": "user",
+        "text_sha256": "8f98524a740e186a9ea68f2ef6cdbdd245488bfa7277da7f15854581e2f0246d",
+        "turn_index": 8
+      },
+      {
+        "alias": "e068",
+        "span_id": "span-200039ed03b9bdbf",
+        "speaker": "user",
+        "text_sha256": "ea5ce2bdd884e3e56f5064e82e528e10b5c029c708fbc14392a25c8809cbc137",
+        "turn_index": 8
+      },
+      {
+        "alias": "e069",
+        "span_id": "span-1f08d7d839e7799b",
+        "speaker": "user",
+        "text_sha256": "8b023594829ec6cae507654146d0132febcdf3613869598ccd4af036c2c49121",
+        "turn_index": 8
+      },
+      {
+        "alias": "e070",
+        "span_id": "span-44540fef5922dc43",
+        "speaker": "user",
+        "text_sha256": "e06da143dfa53f501d3d7f6d417c1e1ed1f694102e5880e4d53a00ed81b86958",
+        "turn_index": 8
+      },
+      {
+        "alias": "e071",
+        "span_id": "span-8140e37c1e4203ae",
+        "speaker": "user",
+        "text_sha256": "2f52f99133ec3e36de24a22bd28f3881ec35f87cad7951eb818c9e46f28bacc0",
+        "turn_index": 8
+      },
+      {
+        "alias": "e072",
+        "span_id": "span-f6ba261d66e9f5ee",
+        "speaker": "assistant",
+        "text_sha256": "bd2ff971e303e759b9c0f8ac9037c9e6640bf7877859601ca12c39ff7ef7f5b3",
+        "turn_index": 8
+      },
+      {
+        "alias": "e073",
+        "span_id": "span-8fefe2021b97b29c",
+        "speaker": "assistant",
+        "text_sha256": "80c1a2a6edbe96152a248e7304abb022b926326e7f8109a7a183fe0a3d893c2b",
+        "turn_index": 8
+      },
+      {
+        "alias": "e074",
+        "span_id": "span-97feb40626868926",
+        "speaker": "assistant",
+        "text_sha256": "43227e19caabc504ab15661ad0b3b5fd7e8dc5fa9c8bb7b5869d5818f95893ca",
+        "turn_index": 8
+      },
+      {
+        "alias": "e075",
+        "span_id": "span-b28d49e0b2ce52b5",
+        "speaker": "user",
+        "text_sha256": "cb5525c6488b09b311def71c3708e29924d585ee19939bcac5e8ec777b6d773b",
+        "turn_index": 9
+      },
+      {
+        "alias": "e076",
+        "span_id": "span-b822c96be389d65c",
+        "speaker": "user",
+        "text_sha256": "61ad727d72aa5ef01af22cce96c5dbb6f82b0ebbdc459cba94d59027d9949fc6",
+        "turn_index": 9
+      },
+      {
+        "alias": "e077",
+        "span_id": "span-ed3e828fc81efc7b",
+        "speaker": "user",
+        "text_sha256": "6f35b78521474832a716aca77315dabc5bdbe96c4674952782a4533287b7373d",
+        "turn_index": 9
+      },
+      {
+        "alias": "e078",
+        "span_id": "span-9af77919c5f3c21c",
+        "speaker": "user",
+        "text_sha256": "2b6e147ddd3c5e0c2ad60964708ba6ade110cded487b066409387e9d398842ec",
+        "turn_index": 9
+      },
+      {
+        "alias": "e079",
+        "span_id": "span-97487f235b4d4b0c",
+        "speaker": "user",
+        "text_sha256": "22f7decb2e527b3a17065111cdea7985f1249443dabd6114f9400d5486445f54",
+        "turn_index": 9
+      },
+      {
+        "alias": "e080",
+        "span_id": "span-71e15c2e503c1691",
+        "speaker": "assistant",
+        "text_sha256": "19b0489a9d4fbbdefea26c7814af7eb9603321e3eae6c2e788eee24da0a4446a",
+        "turn_index": 9
+      },
+      {
+        "alias": "e081",
+        "span_id": "span-9e73e151e2522984",
+        "speaker": "assistant",
+        "text_sha256": "206bf892aaf0da4a8dcb1dd18274eaeb1572b8699a4721bdaf17d3bc82f03f0c",
+        "turn_index": 9
+      },
+      {
+        "alias": "e082",
+        "span_id": "span-b21535b61977ebe1",
+        "speaker": "assistant",
+        "text_sha256": "b07a93b774dc3972bea428cce1a6ebed33fa659c73bf943342c49bffe7aa3fe7",
+        "turn_index": 9
+      },
+      {
+        "alias": "e083",
+        "span_id": "span-9ca7731d3eead7fc",
+        "speaker": "assistant",
+        "text_sha256": "9a918c73eef6b52ab26f1e470783bfb7d3f709f02ffa4e7b61696a196740beec",
+        "turn_index": 9
+      },
+      {
+        "alias": "e084",
+        "span_id": "span-98a7bd26255d17f9",
+        "speaker": "assistant",
+        "text_sha256": "ec0788f82b44fb7a37b22c9601f51363ad9f31ae09210480570a8eb0dbed1040",
+        "turn_index": 9
+      },
+      {
+        "alias": "e085",
+        "span_id": "span-db820f4f5c8a2471",
+        "speaker": "user",
+        "text_sha256": "4eebe10141bf363b6be49ea510692af558a0cded51dc17aef64d4748ba221049",
+        "turn_index": 10
+      },
+      {
+        "alias": "e086",
+        "span_id": "span-1f9428d48cc7c2cc",
+        "speaker": "user",
+        "text_sha256": "7a4f4cf829191ee2661d421cc5e201bafad31cbedf79c7a7a8aa51106d31d836",
+        "turn_index": 10
+      },
+      {
+        "alias": "e087",
+        "span_id": "span-aba9ce8ebd65edbd",
+        "speaker": "user",
+        "text_sha256": "b72ebacda6a120ecb0a272477f1a1a0167d3f3957cacfc3fc463673ed2e1d0ef",
+        "turn_index": 10
+      },
+      {
+        "alias": "e088",
+        "span_id": "span-84c98c0f1541c352",
+        "speaker": "user",
+        "text_sha256": "52c3c85f1aa2112c2f33955c38b2c551782b0b9b16f156f86323e4b55f40a374",
+        "turn_index": 10
+      },
+      {
+        "alias": "e089",
+        "span_id": "span-e87118a95a53973a",
+        "speaker": "assistant",
+        "text_sha256": "e6c2ee62dd0683fcb0fd532ed4089d175404a2fc206e16cf18d923892784977f",
+        "turn_index": 10
+      },
+      {
+        "alias": "e090",
+        "span_id": "span-5490add28989deab",
+        "speaker": "assistant",
+        "text_sha256": "63cb6d3b50cd839c1d50b4dd047cc3de096a9caef22bac32622cf473d7e56fd3",
+        "turn_index": 10
+      },
+      {
+        "alias": "e091",
+        "span_id": "span-9748d65255c7b1c7",
+        "speaker": "assistant",
+        "text_sha256": "cce688de4d3f2a316fb3bd111df0365697a7e0dbad05d4670d6040250634303b",
+        "turn_index": 10
+      },
+      {
+        "alias": "e092",
+        "span_id": "span-36b7ce8bfb787a93",
+        "speaker": "user",
+        "text_sha256": "6d79259b6ecb6e10cca1ec97f925c468fedc05d616f558762fc16f45636c24c8",
+        "turn_index": 11
+      },
+      {
+        "alias": "e093",
+        "span_id": "span-463469182f1ffbd6",
+        "speaker": "user",
+        "text_sha256": "bc4b9faa487125fa109bf2c8c4e470a66565693f755f44d5c6f877c0c5231bb9",
+        "turn_index": 11
+      },
+      {
+        "alias": "e094",
+        "span_id": "span-7ec43aa017705480",
+        "speaker": "user",
+        "text_sha256": "787340dc577635e0f5929b1ff4ade33836541d84fd991e7447bd31f48bce2554",
+        "turn_index": 11
+      },
+      {
+        "alias": "e095",
+        "span_id": "span-4e113de838f62354",
+        "speaker": "user",
+        "text_sha256": "1ed61ddc7a6424966f8cbc273760efacd9eb35d15b1424decee25fd9a2af44b8",
+        "turn_index": 11
+      },
+      {
+        "alias": "e096",
+        "span_id": "span-c38b4183b709f0b4",
+        "speaker": "user",
+        "text_sha256": "a03feb39485a949f9c484be3f290b91e32e0158dd052255ffece10d305311849",
+        "turn_index": 11
+      },
+      {
+        "alias": "e097",
+        "span_id": "span-41b3d89facde76a6",
+        "speaker": "user",
+        "text_sha256": "58516b52148ba6f527144e4d40f43acc1367b94ce0c83c1a90458e2b9a070e20",
+        "turn_index": 11
+      },
+      {
+        "alias": "e098",
+        "span_id": "span-6105d15052cab90e",
+        "speaker": "user",
+        "text_sha256": "7d0c3762ccf9fa41d78edab7d95bd9c555c3ae5cbbf9438568997ff6919b3dc3",
+        "turn_index": 11
+      },
+      {
+        "alias": "e099",
+        "span_id": "span-4aed528b96de41fc",
+        "speaker": "user",
+        "text_sha256": "0d926a0410f0d76e76408628c397bed050b8ab326381bf73d836a1e0d7484c3b",
+        "turn_index": 11
+      },
+      {
+        "alias": "e100",
+        "span_id": "span-08885a060442feda",
+        "speaker": "assistant",
+        "text_sha256": "a321261aae5db4dede1586bacb6f16d3378e6ed7f9b3988300856025f0328e02",
+        "turn_index": 11
+      },
+      {
+        "alias": "e101",
+        "span_id": "span-e3a2d6c8892bb51d",
+        "speaker": "assistant",
+        "text_sha256": "d8ddc0deb4aa6a340802117dc59944b3fa9f7347777f2cebcceea21901f9f49b",
+        "turn_index": 11
+      },
+      {
+        "alias": "e102",
+        "span_id": "span-55e52aa5cd9d0000",
+        "speaker": "assistant",
+        "text_sha256": "5406994560c485a411f900fc6ec3e5619b2e3b3fcbf22bde03e443a5d16d73f0",
+        "turn_index": 11
+      },
+      {
+        "alias": "e103",
+        "span_id": "span-ef4ba45cf9529505",
+        "speaker": "assistant",
+        "text_sha256": "39f39f4d5af0784f4c694b65ccfb77ff20d7c57f5836f72b13160d01b2ccf203",
+        "turn_index": 11
+      },
+      {
+        "alias": "e104",
+        "span_id": "span-72714f2718381d4d",
+        "speaker": "user",
+        "text_sha256": "b2f1f1cfd7c0d5bae69860da0198ec2788bf937a7eee3e6ec17eff106d26f129",
+        "turn_index": 12
+      },
+      {
+        "alias": "e105",
+        "span_id": "span-0c10e598268b89b4",
+        "speaker": "user",
+        "text_sha256": "2c0d083c55cf4286245fc2879c6137fd11e5a185fab21310b217019ae66e260b",
+        "turn_index": 12
+      },
+      {
+        "alias": "e106",
+        "span_id": "span-ff34925cf61d68de",
+        "speaker": "user",
+        "text_sha256": "ab9e7061e00da43bc72b5205babbb5211e05dca2baa7f2053575ab78c2745b4f",
+        "turn_index": 12
+      },
+      {
+        "alias": "e107",
+        "span_id": "span-a08d286029e8b838",
+        "speaker": "user",
+        "text_sha256": "ca4c8d3777f3bb15f831a11b982f7e4bf3b6a5a7d4c449de9d09182bd17d96db",
+        "turn_index": 12
+      },
+      {
+        "alias": "e108",
+        "span_id": "span-3b196f48ae1f63bb",
+        "speaker": "assistant",
+        "text_sha256": "79878a66488d2a82cf8eeb63b36804228aa291a05ff7cd758ad015d5718c28ab",
+        "turn_index": 12
+      },
+      {
+        "alias": "e109",
+        "span_id": "span-ace0852f7ee5bc51",
+        "speaker": "assistant",
+        "text_sha256": "cda6ffa16c99640975b2fb27155d5a0458b5adf7b723a080b0f02cf27350b0af",
+        "turn_index": 12
+      },
+      {
+        "alias": "e110",
+        "span_id": "span-24509b52b340c948",
+        "speaker": "assistant",
+        "text_sha256": "26b701f05b91d93b1d650295c86dfc62eaee2b7f1ec7f2bb0da6596f72fbe371",
+        "turn_index": 12
+      },
+      {
+        "alias": "e111",
+        "span_id": "span-6d099b7e52b46c02",
+        "speaker": "assistant",
+        "text_sha256": "0d946c5f04e88fe2c86de9d182fc7314660c31573e8b642e391f51e626f8495a",
+        "turn_index": 12
+      },
+      {
+        "alias": "e112",
+        "span_id": "span-bb8e9e34e29e69ab",
+        "speaker": "assistant",
+        "text_sha256": "2893c76b5ac17103fbb1e125fad626fccd2e57e5d222ef54ede66955a021ebc3",
+        "turn_index": 12
+      },
+      {
+        "alias": "e113",
+        "span_id": "span-a9ccdeeb02f96ba2",
+        "speaker": "assistant",
+        "text_sha256": "0510e3e01bba7310e38cded282a8dfe31b8efa37b47c3055ea86ca675858c800",
+        "turn_index": 12
+      }
+    ],
+    "case_id": "v1-case01-flood-infrastructure",
+    "message_count": 24,
+    "registry_sha256": "2220dad2e599adcd2cf220962e9850425a38e0683d0a3ef6ffec60cc11f61002",
+    "schema_version": "lolla.conversation_state_source_registry.v1",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case01-flood-infrastructure.txt",
+    "source_sha256": "04e787853c65c43dbca1c0d974a902fbb2bf70fabc90c533fd3e676ed910fecf",
+    "source_utf8_bytes": 12402
+  },
+  "status": "conversation_state_fan_in_partial",
+  "surface_summaries": [
+    {
+      "reader_ids": [
+        "legacy-starting-position-reader"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-starting-01-794011d9a18024"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "starting_position"
+    },
+    {
+      "reader_ids": [
+        "legacy-current-position-reader"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-current-01-502b76db545ccc"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "current_position"
+    },
+    {
+      "reader_ids": [
+        "legacy-qualification-reader"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-qualification-01-aaa69b13c9b0e2"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "qualification"
+    },
+    {
+      "reader_ids": [
+        "planned-unresolved-matter-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "unresolved_matter"
+    },
+    {
+      "reader_ids": [
+        "planned-reopen-condition-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "reopen_condition"
+    },
+    {
+      "reader_ids": [
+        "planned-cross-thread-relationship-reader"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "cross_thread_relationship"
+    }
+  ]
+}

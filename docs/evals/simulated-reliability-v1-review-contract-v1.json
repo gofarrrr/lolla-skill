@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.simulated_reliability_review_contract.v1",
+  "status": "posthoc_for_t1_prospective_for_continuation_and_repeats",
+  "date": "2026-07-13",
+  "scalar_quality_score_forbidden": true,
+  "winner_label_forbidden": true,
+  "source_review_disposition_hidden": true,
+  "arm_identity_hidden": true,
+  "output_order": "sha256(run_id|case_id|arm_id) ascending",
+  "review_unit": "one complete conversation and three public outputs",
+  "arm_outputs": [
+    "fresh transcript-only reconsideration",
+    "direct-pressure reconsideration or explicit stand-down output",
+    "graph-expanded reconsideration or explicit stand-down output"
+  ],
+  "scorecard": {
+    "per_output": {
+      "material_concept_coverage": ["complete", "partial", "material_loss"],
+      "source_grounding": ["grounded", "mixed", "unsupported"],
+      "unsupported_specificity": ["none", "factual", "numeric", "behavioral", "risk_or_recommendation"],
+      "friction_character": ["none", "useful", "duplicative", "forced", "harmful"],
+      "uncertainty_treatment": ["preserved", "clarified", "prematurely_closed", "made_vague"],
+      "human_decision_authority": ["preserved", "weakened"],
+      "verbosity_burden": ["proportionate", "some_bloat", "material_bloat"],
+      "material_additions": "source-linked list; empty is valid",
+      "material_losses": "source-linked list; empty is valid",
+      "harm_findings": "source-linked list; empty is valid"
+    },
+    "comparative": {
+      "control_only_contribution": "material contribution unique to one output; no value judgment implied",
+      "pressure_only_contribution": "material contribution unique to pressure-bearing output(s)",
+      "overlap": "material contribution shared across outputs",
+      "graph_only_contribution": "material contribution unique to the graph-expanded output",
+      "graph_only_burden_or_harm": "extra duplication, forcing, unsupported inference, or attention cost",
+      "stand_down_assessment": ["correct", "false_stand_down", "indeterminate", "not_applicable"],
+      "forced_absorption_observed": [true, false],
+      "recommendation_change_is_not_improvement": true
+    }
+  },
+  "review_rules": [
+    "Judge claims against the authoritative conversation only.",
+    "Do not reward polish, length, confident tone, number of lenses, or recommendation change by themselves.",
+    "A useful result may preserve the recommendation while adding a falsifier, boundary, question, contingency, or accountable rejection.",
+    "A strange lens is allowed; forcing it into the public answer is not.",
+    "A model name or graph path is not evidence about the case.",
+    "Record contribution and harm independently; both may be present.",
+    "Use indeterminate when the conversation cannot support the judgment.",
+    "Never collapse fields into a score, badge, winner, trust percentage, or quality grade."
+  ],
+  "integrity_limit": "This exact contract was not frozen before T1. T1 review is diagnostic and cannot support a clean blinded causal claim. It is frozen before any continuation, repeat, or reviewer-model call."
+}

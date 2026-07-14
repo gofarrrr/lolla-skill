@@ -1,0 +1,27 @@
+{
+  "provider_error": {
+    "error": {
+      "code": 400,
+      "message": "Provider returned error",
+      "metadata": {
+        "is_byok": false,
+        "provider_name": "Google",
+        "raw": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Request contains an invalid argument.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      }
+    },
+    "user_id": "[redacted-private-identifier]"
+  },
+  "raw_error_preserved_outside_git": true,
+  "raw_provider_error_file_sha256": "88249e533f6c81a2be7a178c927010c2c3b2a5c74e6da61b3d69ec11ca15fabf",
+  "raw_provider_error_value_sha256": "d9f62f78b5d6a058fe3f4f3c5d52b4a3d36173db4ef30a73cc435c166897c474",
+  "redacted_error_sha256": "a069e763ad337028fe4f63378cd845010ad05506e259a0d577cc914eb441ac07",
+  "redactions": [
+    {
+      "json_pointer": "/provider_error/user_id",
+      "reason": "private account or credential field",
+      "replacement": "[redacted-private-identifier]"
+    }
+  ],
+  "schema_version": "lolla.r3_provider_error_redacted.v1",
+  "status": "safe_to_commit_redaction_of_privately_preserved_raw_error"
+}

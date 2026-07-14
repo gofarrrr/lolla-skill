@@ -1,0 +1,78 @@
+{
+  "schema_version": "lolla.minimum_viable_loop_cold_reader_source_review.v1",
+  "status": "content_traceability_pass_transport_contract_fail",
+  "date": "2026-07-12",
+  "method": "Source-first Codex comparison after the single frozen reader call; no evaluator call, retry, receipt mutation, prompt mutation, or post-output regrading.",
+  "artifacts": {
+    "contract": {
+      "path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-contract.json",
+      "sha256": "a6ac035693a02e2b7a50f5be7d693349d56e62fc7e95ebf509163ba7a3483e72"
+    },
+    "reader_output": {
+      "path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run/reader-output.json",
+      "sha256": "51f05f6f09100415144f8d35396705563c975e51c04bb4e9dab1c93067cca394"
+    },
+    "call_custody": {
+      "path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run/call-custody.json",
+      "sha256": "ca54db0a041188fc6fdf86e8705fe5c7a8de029368d23fb2ec10f03084f3186a"
+    },
+    "run_summary": {
+      "path": "research/minimum-viable-loop-receipt-2026-07-12/cold-reader-run/run-summary.json",
+      "sha256": "7094f7b52aaa15493f3f4de268854f1060bf4ee4cf9e603e03f6953a280739b4"
+    }
+  },
+  "execution": {
+    "calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "served_model": "deepseek/deepseek-v4-flash-20260423",
+    "served_provider": "OpenRouter routed provider",
+    "prompt_tokens": 7989,
+    "completion_tokens": 1574,
+    "total_tokens": 9563,
+    "estimated_cost_usd": 0.0011137,
+    "mechanical_run_status": "failed",
+    "mechanical_failure": "current_authorizations object shape invalid"
+  },
+  "content_traceability_gates": {
+    "useful_source_state_reconstructed": true,
+    "useful_starting_current_qualification_trajectory_reconstructed": true,
+    "protected_survival_and_ablation_reconstructed": true,
+    "eight_candidate_no_deletion_portfolio_reconstructed": true,
+    "control_pressure_difference_reconstructed": true,
+    "non_obvious_useful_pressure_reconstructed": true,
+    "false_precision_failure_reconstructed": true,
+    "quiet_source_state_reconstructed": true,
+    "negative_qualification_review_reconstructed": true,
+    "quiet_modal_force_caveat_reconstructed": true,
+    "nine_mechanism_empty_result_reconstructed": true,
+    "zero_candidate_standdown_and_no_fresh_call_reconstructed": true,
+    "probabilistic_deterministic_boundary_reconstructed": true,
+    "custody_not_inflated_into_quality": true,
+    "authorization_boundary_reconstructed": true
+  },
+  "transport_contract_failure": {
+    "classification": "F8_gold_or_scorer_mismatch",
+    "cause": "The generic validator requires every value in an object contract to be a string. The receipt and reader naturally represented allowed and blocked authorizations as arrays of strings, while the frozen output instruction specified only the object keys and did not state the string-only validator rule.",
+    "content_loss": false,
+    "response_shape_otherwise_complete": true,
+    "same_run_retry_authorized": false,
+    "retroactive_contract_repair_authorized": false
+  },
+  "reader_misses_or_ambiguities": [
+    "The quiet preserved-failures sentence awkwardly says future evidence cannot reopen the decision and then says this is not guaranteed; the separate claims-not-supported list correctly preserves the intended boundary.",
+    "The reader repeats the receipt's pre-call next gate after the call completed; this is a frozen-snapshot staleness issue.",
+    "The reader notes that graph construction and validation are not explained in the receipt; that detail is intentionally outside this run-level receipt, whose deterministic mapping and artifact hash are preserved.",
+    "The reader asks product-judgment questions despite being asked only to reconstruct; these questions do not alter its reconstruction."
+  ],
+  "decision": {
+    "cold_reader_traceability_requirement_satisfied": true,
+    "typed_transport_contract_satisfied": false,
+    "human_usefulness_proven": false,
+    "receipt_is_clean_or_certification_grade": false,
+    "retry_same_frozen_run": false,
+    "runtime_integration_authorized": false,
+    "production_claim_authorized": false
+  },
+  "scalar_score": null
+}

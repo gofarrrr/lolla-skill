@@ -1,0 +1,1130 @@
+{
+  "case_id": "amb2-case02-community-space",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev22-current-01-b53cd87031b61a",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprelationv2-01-9260ce5f590adf",
+          "provenance": {
+            "producer_id": "v24-provider-free-reviewed-target",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+          "raw_record_sha256": "sha256:9260ce5f590adf47d18dd0768e57750854ea45b62fac3c312e2d9a3f8c8e739b",
+          "relation_record_id": "rprelationv2-01-9260ce5f590adf",
+          "relationship_interpretation": "The user moves from an unresolved desire for permanence to a bounded license, conditional lease recommendation, and explicitly uncertain collective exit willingness.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb2-case02-community-space",
+            "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-current-01-b53cd87031b61a",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v24-provider-free-reviewed-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a six-month license and would recommend the five-year lease only after explicit funding, fee, and regular-use conditions are met.",
+            "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e050",
+                "text": "I am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center."
+              },
+              {
+                "alias": "e051",
+                "text": "I will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events."
+              }
+            ],
+            "source_evidence_ids": [
+              "e050",
+              "e051"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Accept the six-month license and run three recurring programs.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e051",
+                "stance_expression_kind": "provisional_intention_or_plan",
+                "stance_object_interpretation": "Recommend the five-year lease only after funding, artist-fee, and regular-use conditions are met.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb2-case02-community-space",
+            "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-qualification-01-0d648f253b3bcf",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v24-provider-free-reviewed-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+            "role": "qualification",
+            "role_interpretation": "The pilot cannot make departure reputationally neutral or guarantee that the board will honor its current criteria once relationships exist.",
+            "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e052",
+                "text": "I am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines."
+              },
+              {
+                "alias": "e057",
+                "text": "The pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria."
+              }
+            ],
+            "source_evidence_ids": [
+              "e052",
+              "e057"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The board and teaching artists may not accept closing after families form routines.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e057",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Leaving after the pilot cannot be made reputationally neutral.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e057",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "The board may not follow today's decision criteria after the pilot.",
+                "stance_object_kind": "reported_position_landscape"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb2-case02-community-space",
+            "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-starting-01-b2701560bafdc1",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v24-provider-free-reviewed-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:b2701560bafdc13ae3456c48ff5e49452ac0d7e2af1505ac595163a4be39ebe2",
+            "role": "starting",
+            "role_interpretation": "The user wants stability and visibility but is unsure whether a permanent space would serve the program or displace it.",
+            "role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e005",
+                "text": "I want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program."
+              }
+            ],
+            "source_evidence_ids": [
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "Gain the stability and visibility of a permanent community space.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The space may serve the program or slowly become the program.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case02-community-space/position-endpoint.json",
+  "paired_compiled": {
+    "allocation_note": "Source reviewer allocated current and qualification comparatively; shared aliases are allowed only for distinct meanings.",
+    "boundary": {
+      "alias_subtraction_performed": false,
+      "direct_graph_routing_allowed": false,
+      "hard_alias_exclusivity_enforced": false,
+      "keyword_or_chronology_gate_added": false,
+      "model_role_labels_split_mechanically": true,
+      "semantic_role_correctness_inferred_by_code": false,
+      "semantic_score_computed": false
+    },
+    "global_limitations": "Source-reviewed prospective target; other valid allocations may exist.",
+    "observations": [
+      {
+        "case_id": "amb2-case02-community-space",
+        "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "observation_id": "rprolev22-current-01-b53cd87031b61a",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v24-provider-free-reviewed-target",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+        "role": "current",
+        "role_interpretation": "The user is leaning toward a six-month license and would recommend the five-year lease only after explicit funding, fee, and regular-use conditions are met.",
+        "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e050",
+            "text": "I am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center."
+          },
+          {
+            "alias": "e051",
+            "text": "I will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events."
+          }
+        ],
+        "source_evidence_ids": [
+          "e050",
+          "e051"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "current",
+            "source_evidence_id": "e050",
+            "stance_expression_kind": "leaning",
+            "stance_object_interpretation": "Accept the six-month license and run three recurring programs.",
+            "stance_object_kind": "action_or_proposal"
+          },
+          {
+            "role": "current",
+            "source_evidence_id": "e051",
+            "stance_expression_kind": "provisional_intention_or_plan",
+            "stance_object_interpretation": "Recommend the five-year lease only after funding, artist-fee, and regular-use conditions are met.",
+            "stance_object_kind": "action_or_proposal"
+          }
+        ],
+        "terminal_state": "admitted"
+      },
+      {
+        "case_id": "amb2-case02-community-space",
+        "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "observation_id": "rprolev22-qualification-01-0d648f253b3bcf",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v24-provider-free-reviewed-target",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+        "role": "qualification",
+        "role_interpretation": "The pilot cannot make departure reputationally neutral or guarantee that the board will honor its current criteria once relationships exist.",
+        "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e052",
+            "text": "I am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines."
+          },
+          {
+            "alias": "e057",
+            "text": "The pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria."
+          }
+        ],
+        "source_evidence_ids": [
+          "e052",
+          "e057"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "qualification",
+            "source_evidence_id": "e052",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "The board and teaching artists may not accept closing after families form routines.",
+            "stance_object_kind": "acceptance_or_willingness"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e057",
+            "stance_expression_kind": "constraint",
+            "stance_object_interpretation": "Leaving after the pilot cannot be made reputationally neutral.",
+            "stance_object_kind": "intended_outcome_or_policy"
+          },
+          {
+            "role": "qualification",
+            "source_evidence_id": "e057",
+            "stance_expression_kind": "counterpressure",
+            "stance_object_interpretation": "The board may not follow today's decision criteria after the pilot.",
+            "stance_object_kind": "reported_position_landscape"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "paired_terminal_disposition": "compiled",
+    "records": [
+      {
+        "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+        "record_index": 1,
+        "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+        "terminal_state": "admitted"
+      },
+      {
+        "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+        "record_index": 1,
+        "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+        "terminal_state": "admitted"
+      }
+    ],
+    "role_compiled": {
+      "current": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "Source-reviewed prospective target; other valid allocations may exist.",
+        "observations": [
+          {
+            "case_id": "amb2-case02-community-space",
+            "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-current-01-b53cd87031b61a",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v24-provider-free-reviewed-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+            "role": "current",
+            "role_interpretation": "The user is leaning toward a six-month license and would recommend the five-year lease only after explicit funding, fee, and regular-use conditions are met.",
+            "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e050",
+                "text": "I am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center."
+              },
+              {
+                "alias": "e051",
+                "text": "I will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events."
+              }
+            ],
+            "source_evidence_ids": [
+              "e050",
+              "e051"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e050",
+                "stance_expression_kind": "leaning",
+                "stance_object_interpretation": "Accept the six-month license and run three recurring programs.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e051",
+                "stance_expression_kind": "provisional_intention_or_plan",
+                "stance_object_interpretation": "Recommend the five-year lease only after funding, artist-fee, and regular-use conditions are met.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+            "record_index": 1,
+            "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "supported",
+        "role": "current",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "qualification": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "Source-reviewed prospective target; other valid allocations may exist.",
+        "observations": [
+          {
+            "case_id": "amb2-case02-community-space",
+            "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+            "graph_routing_eligible": false,
+            "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+            "observation_id": "rprolev22-qualification-01-0d648f253b3bcf",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "v24-provider-free-reviewed-target",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+            "role": "qualification",
+            "role_interpretation": "The pilot cannot make departure reputationally neutral or guarantee that the board will honor its current criteria once relationships exist.",
+            "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e052",
+                "text": "I am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines."
+              },
+              {
+                "alias": "e057",
+                "text": "The pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria."
+              }
+            ],
+            "source_evidence_ids": [
+              "e052",
+              "e057"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e052",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The board and teaching artists may not accept closing after families form routines.",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e057",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Leaving after the pilot cannot be made reputationally neutral.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e057",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "The board may not follow today's decision criteria after the pilot.",
+                "stance_object_kind": "reported_position_landscape"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+            "record_index": 1,
+            "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "supported",
+        "role": "qualification",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      }
+    },
+    "schema_version": "lolla.reasoning_process_position_current_qualification_response.v2_4",
+    "status": "position_current_qualification_v24_custody_complete"
+  },
+  "paired_response": {
+    "allocation_note": "Source reviewer allocated current and qualification comparatively; shared aliases are allowed only for distinct meanings.",
+    "current_status": "supported",
+    "global_limitations": "Source-reviewed prospective target; other valid allocations may exist.",
+    "qualification_status": "supported",
+    "records": [
+      {
+        "evidence_ids": [
+          "e050",
+          "e051"
+        ],
+        "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "role": "current",
+        "role_interpretation": "The user is leaning toward a six-month license and would recommend the five-year lease only after explicit funding, fee, and regular-use conditions are met.",
+        "stance_components": [
+          {
+            "expression_kind": "leaning",
+            "object_interpretation": "Accept the six-month license and run three recurring programs.",
+            "object_kind": "action_or_proposal",
+            "source_evidence_id": "e050"
+          },
+          {
+            "expression_kind": "provisional_intention_or_plan",
+            "object_interpretation": "Recommend the five-year lease only after funding, artist-fee, and regular-use conditions are met.",
+            "object_kind": "action_or_proposal",
+            "source_evidence_id": "e051"
+          }
+        ],
+        "status": "supported"
+      },
+      {
+        "evidence_ids": [
+          "e052",
+          "e057"
+        ],
+        "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "role": "qualification",
+        "role_interpretation": "The pilot cannot make departure reputationally neutral or guarantee that the board will honor its current criteria once relationships exist.",
+        "stance_components": [
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "The board and teaching artists may not accept closing after families form routines.",
+            "object_kind": "acceptance_or_willingness",
+            "source_evidence_id": "e052"
+          },
+          {
+            "expression_kind": "constraint",
+            "object_interpretation": "Leaving after the pilot cannot be made reputationally neutral.",
+            "object_kind": "intended_outcome_or_policy",
+            "source_evidence_id": "e057"
+          },
+          {
+            "expression_kind": "counterpressure",
+            "object_interpretation": "The board may not follow today's decision criteria after the pilot.",
+            "object_kind": "reported_position_landscape",
+            "source_evidence_id": "e057"
+          }
+        ],
+        "status": "supported"
+      }
+    ]
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "response_schema_changed_from_v2": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false,
+      "v21_prompt_packet_contract": true,
+      "validator_changed_from_v2": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev22-current-01-b53cd87031b61a",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "observation_id": "rprelationv2-01-9260ce5f590adf",
+        "provenance": {
+          "producer_id": "v24-provider-free-reviewed-target",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+        "raw_record_sha256": "sha256:9260ce5f590adf47d18dd0768e57750854ea45b62fac3c312e2d9a3f8c8e739b",
+        "relation_record_id": "rprelationv2-01-9260ce5f590adf",
+        "relationship_interpretation": "The user moves from an unresolved desire for permanence to a bounded license, conditional lease recommendation, and explicitly uncertain collective exit willingness.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:9260ce5f590adf47d18dd0768e57750854ea45b62fac3c312e2d9a3f8c8e739b",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-9260ce5f590adf",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "relationship_identity_semantics_made_explicit": true,
+      "response_schema_changed_from_v2": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false,
+      "validator_changed_from_v2": false
+    },
+    "call_required": true,
+    "case_id": "amb2-case02-community-space",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "relationship_identity_contract": "One relationship record links the coherent starting, current, and qualification records for one position thread. Do not pair records by array order or surface proximity. Use a second relationship only for a genuinely separate concurrent position thread. Preserve missingness and speaker ownership; do not manufacture adoption or agreement.",
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a six-month license and would recommend the five-year lease only after explicit funding, fee, and regular-use conditions are met.",
+          "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e050",
+              "text": "I am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center."
+            },
+            {
+              "alias": "e051",
+              "text": "I will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "qualification",
+          "role_interpretation": "The pilot cannot make departure reputationally neutral or guarantee that the board will honor its current criteria once relationships exist.",
+          "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e052",
+              "text": "I am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines."
+            },
+            {
+              "alias": "e057",
+              "text": "The pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "role": "starting",
+          "role_interpretation": "The user wants stability and visibility but is unsure whether a permanent space would serve the program or displace it.",
+          "role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program."
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2_1",
+    "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev22-current-01-b53cd87031b61a",
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "qualification_role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+        "relationship_interpretation": "The user moves from an unresolved desire for permanence to a bounded license, conditional lease recommendation, and explicitly uncertain collective exit willingness.",
+        "starting_role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "chronological_gate_added": false,
+        "deterministic_expression_gate_added": false,
+        "deterministic_role_exclusivity_gate_added": false,
+        "direct_graph_routing_allowed": false,
+        "keyword_gate_added": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "response_schema_changed_from_v22": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v23_prompt_packet_contract": true,
+        "validator_changed_from_v22": false
+      },
+      "global_limitations": "Source-reviewed prospective target; other valid allocations may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case02-community-space",
+          "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev22-current-01-b53cd87031b61a",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "v24-provider-free-reviewed-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+          "role": "current",
+          "role_interpretation": "The user is leaning toward a six-month license and would recommend the five-year lease only after explicit funding, fee, and regular-use conditions are met.",
+          "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e050",
+              "text": "I am leaning toward accepting the six-month license and running three recurring programs rather than treating the storefront as an open-ended community center."
+            },
+            {
+              "alias": "e051",
+              "text": "I will recommend the five-year lease only if we finish the license with twelve months of rent committed, stable artist fees, and evidence that regular participants use the space beyond special events."
+            }
+          ],
+          "source_evidence_ids": [
+            "e050",
+            "e051"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e050",
+              "stance_expression_kind": "leaning",
+              "stance_object_interpretation": "Accept the six-month license and run three recurring programs.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e051",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Recommend the five-year lease only after funding, artist-fee, and regular-use conditions are met.",
+              "stance_object_kind": "action_or_proposal"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:b53cd87031b61a665953788ea75ffd5d26f00d6e070ddf4a4114df945cd3e4fd",
+          "record_index": 1,
+          "role_record_id": "rprolev22-current-01-b53cd87031b61a",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "chronological_gate_added": false,
+        "deterministic_expression_gate_added": false,
+        "deterministic_role_exclusivity_gate_added": false,
+        "direct_graph_routing_allowed": false,
+        "keyword_gate_added": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "response_schema_changed_from_v22": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v23_prompt_packet_contract": true,
+        "validator_changed_from_v22": false
+      },
+      "global_limitations": "Source-reviewed prospective target; other valid allocations may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case02-community-space",
+          "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev22-qualification-01-0d648f253b3bcf",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "v24-provider-free-reviewed-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+          "role": "qualification",
+          "role_interpretation": "The pilot cannot make departure reputationally neutral or guarantee that the board will honor its current criteria once relationships exist.",
+          "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e052",
+              "text": "I am willing to close the storefront after six months if those conditions fail, but I am not sure the rest of the board or the teaching artists will accept that after families have formed routines."
+            },
+            {
+              "alias": "e057",
+              "text": "The pilot can reveal use and operating burden; it cannot make departure reputationally neutral or guarantee that the board will follow today's criteria."
+            }
+          ],
+          "source_evidence_ids": [
+            "e052",
+            "e057"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e052",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The board and teaching artists may not accept closing after families form routines.",
+              "stance_object_kind": "acceptance_or_willingness"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e057",
+              "stance_expression_kind": "constraint",
+              "stance_object_interpretation": "Leaving after the pilot cannot be made reputationally neutral.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e057",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "The board may not follow today's decision criteria after the pilot.",
+              "stance_object_kind": "reported_position_landscape"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:0d648f253b3bcf33ab38df9fd0a87cab611ecde114d09d659d0cbee2e5fa71a0",
+          "record_index": 1,
+          "role_record_id": "rprolev22-qualification-01-0d648f253b3bcf",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "chronological_gate_added": false,
+        "deterministic_expression_gate_added": false,
+        "deterministic_role_exclusivity_gate_added": false,
+        "direct_graph_routing_allowed": false,
+        "keyword_gate_added": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "parallel_component_columns_used": false,
+        "prose_keyword_gate_added": false,
+        "provider_raw_record_hash_preserved": true,
+        "response_schema_changed_from_v22": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false,
+        "v23_prompt_packet_contract": true,
+        "validator_changed_from_v22": false
+      },
+      "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+      "observations": [
+        {
+          "case_id": "amb2-case02-community-space",
+          "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+          "graph_routing_eligible": false,
+          "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+          "observation_id": "rprolev22-starting-01-b2701560bafdc1",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "v24-provider-free-reviewed-target",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:b2701560bafdc13ae3456c48ff5e49452ac0d7e2af1505ac595163a4be39ebe2",
+          "role": "starting",
+          "role_interpretation": "The user wants stability and visibility but is unsure whether a permanent space would serve the program or displace it.",
+          "role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program."
+            }
+          ],
+          "source_evidence_ids": [
+            "e005"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "preference_or_desire",
+              "stance_object_interpretation": "Gain the stability and visibility of a permanent community space.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The space may serve the program or slowly become the program.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:b2701560bafdc13ae3456c48ff5e49452ac0d7e2af1505ac595163a4be39ebe2",
+          "record_index": 1,
+          "role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_v22_custody_complete"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_v24_fixture.v1",
+  "starting_compiled": {
+    "boundary": {
+      "chronological_gate_added": false,
+      "deterministic_expression_gate_added": false,
+      "deterministic_role_exclusivity_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "keyword_gate_added": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "parallel_component_columns_used": false,
+      "prose_keyword_gate_added": false,
+      "provider_raw_record_hash_preserved": true,
+      "response_schema_changed_from_v22": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false,
+      "v23_prompt_packet_contract": true,
+      "validator_changed_from_v22": false
+    },
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "observations": [
+      {
+        "case_id": "amb2-case02-community-space",
+        "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+        "graph_routing_eligible": false,
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "observation_id": "rprolev22-starting-01-b2701560bafdc1",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v24-provider-free-reviewed-target",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record_sha256": "sha256:b2701560bafdc13ae3456c48ff5e49452ac0d7e2af1505ac595163a4be39ebe2",
+        "role": "starting",
+        "role_interpretation": "The user wants stability and visibility but is unsure whether a permanent space would serve the program or displace it.",
+        "role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "supported",
+        "shard_id": "amb2-case02-community-space-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e005",
+            "text": "I want the stability and visibility, but I cannot tell whether the space would serve the program or slowly become the program."
+          }
+        ],
+        "source_evidence_ids": [
+          "e005"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e005",
+            "stance_expression_kind": "preference_or_desire",
+            "stance_object_interpretation": "Gain the stability and visibility of a permanent community space.",
+            "stance_object_kind": "intended_outcome_or_policy"
+          },
+          {
+            "role": "starting",
+            "source_evidence_id": "e005",
+            "stance_expression_kind": "uncertain_or_undecided",
+            "stance_object_interpretation": "The space may serve the program or slowly become the program.",
+            "stance_object_kind": "belief_or_assessment"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:b2701560bafdc13ae3456c48ff5e49452ac0d7e2af1505ac595163a4be39ebe2",
+        "record_index": 1,
+        "role_record_id": "rprolev22-starting-01-b2701560bafdc1",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "supported",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_v22_custody_complete"
+  },
+  "starting_response": {
+    "global_limitations": "One reviewed endpoint relationship; other valid records may exist.",
+    "records": [
+      {
+        "evidence_ids": [
+          "e005"
+        ],
+        "fidelity_note": "The starting evidence separates desire for a space from uncertainty about its effect. The current evidence separates a leaning toward the license from a conditional later recommendation. The qualification preserves both collective willingness and unavoidable reputational cost.",
+        "limitations": "Synthetic prospective development fixture; not independent gold and not exhaustive of the conversation.",
+        "role": "starting",
+        "role_interpretation": "The user wants stability and visibility but is unsure whether a permanent space would serve the program or displace it.",
+        "stance_components": [
+          {
+            "expression_kind": "preference_or_desire",
+            "object_interpretation": "Gain the stability and visibility of a permanent community space.",
+            "object_kind": "intended_outcome_or_policy",
+            "source_evidence_id": "e005"
+          },
+          {
+            "expression_kind": "uncertain_or_undecided",
+            "object_interpretation": "The space may serve the program or slowly become the program.",
+            "object_kind": "belief_or_assessment",
+            "source_evidence_id": "e005"
+          }
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  }
+}

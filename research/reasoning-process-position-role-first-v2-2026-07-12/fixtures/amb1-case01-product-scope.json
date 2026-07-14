@@ -1,0 +1,802 @@
+{
+  "case_id": "amb1-case01-product-scope",
+  "joined": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "join_keys": [
+        "fixed_role",
+        "role_record_id"
+      ],
+      "missing_or_quarantined_records_filled": false,
+      "object_expression_compatibility_gate_added": false,
+      "prose_keyword_gate_added": false,
+      "semantic_join_inferred_by_code": false
+    },
+    "custody": {
+      "quarantined_relation_record_count": 0,
+      "quarantined_role_record_count": 0,
+      "relation_missing_despite_current_role": false
+    },
+    "fan_in": {
+      "actual_relationship_records": 1,
+      "actual_role_records": 3,
+      "maximum_provider_calls": 4,
+      "maximum_relationship_records": 2,
+      "maximum_role_records": 6
+    },
+    "records": [
+      {
+        "relation_observation": {
+          "current_role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprelationv2-01-cd1b74199e9560",
+          "provenance": {
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer"
+          },
+          "qualification_role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+          "raw_record_sha256": "sha256:cd1b74199e9560152a274d1acb1bdb1b15bb01cda18745c6df8a3620b3b63f63",
+          "relation_record_id": "rprelationv2-01-cd1b74199e9560",
+          "relationship_interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+          "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+          "semantic_status": "supported",
+          "starting_role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+          "terminal_state": "admitted"
+        },
+        "role_observations": {
+          "current": {
+            "case_id": "amb1-case01-product-scope",
+            "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-current-01-fa0c23696e6f5b",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:fa0c23696e6f5b3f4e52e0412f4606317e944d45b0b8ee9e72a5e27f23ec7626",
+            "role": "current",
+            "role_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+            "role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e060",
+                "text": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+              }
+            ],
+            "source_evidence_ids": [
+              "e060"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e060",
+                "stance_expression_kind": "provisional_intention_or_plan",
+                "stance_object_interpretation": "Offer Northline three focused sessions and document the workflow.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e060",
+                "stance_expression_kind": "provisional_intention_or_plan",
+                "stance_object_interpretation": "Make no build commitment during the bounded discovery period.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "qualification": {
+            "case_id": "amb1-case01-product-scope",
+            "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:eceff5fc1a3e8e4cb5e155c547d6e370fd71264b77858cece55e960964ad40c4",
+            "role": "qualification",
+            "role_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+            "role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e067",
+                "text": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline."
+              }
+            ],
+            "source_evidence_ids": [
+              "e067"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e067",
+                "stance_expression_kind": "possibility",
+                "stance_object_interpretation": "Restricting prototypes may make discovery artificial.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e067",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Careful language may still feel like distance to Northline.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "starting": {
+            "case_id": "amb1-case01-product-scope",
+            "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+            "graph_routing_eligible": false,
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "observation_id": "rprolev2-starting-01-034166a7adc8bb",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+              "producer_kind": "source_reviewer",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:034166a7adc8bb090e91992eaea12a1004bc70debb25daeb373e724d8615cdb2",
+            "role": "starting",
+            "role_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+            "role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e005",
+                "text": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”"
+              }
+            ],
+            "source_evidence_ids": [
+              "e005"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Focused customer sessions may be how good products learn.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e005",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "The loudest customer may be setting the roadmap.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        }
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_position_role_first_join.v2",
+    "status": "position_role_first_join_complete",
+    "unreferenced_role_record_ids": {
+      "current": [],
+      "qualification": [],
+      "starting": []
+    }
+  },
+  "relation_compiled": {
+    "boundary": {
+      "categorical_trajectory_gate_added": false,
+      "direct_graph_routing_allowed": false,
+      "prose_keyword_gate_added": false,
+      "semantic_relationship_correctness_inferred_by_code": false,
+      "semantic_role_matching_performed": false
+    },
+    "observations": [
+      {
+        "current_role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+        "graph_routing_eligible": false,
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "observation_id": "rprelationv2-01-cd1b74199e9560",
+        "provenance": {
+          "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+          "producer_kind": "source_reviewer"
+        },
+        "qualification_role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+        "raw_record_sha256": "sha256:cd1b74199e9560152a274d1acb1bdb1b15bb01cda18745c6df8a3620b3b63f63",
+        "relation_record_id": "rprelationv2-01-cd1b74199e9560",
+        "relationship_interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "schema_version": "lolla.reasoning_process_position_relation_observation.v2",
+        "semantic_status": "supported",
+        "starting_role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:cd1b74199e9560152a274d1acb1bdb1b15bb01cda18745c6df8a3620b3b63f63",
+        "record_index": 1,
+        "relation_record_id": "rprelationv2-01-cd1b74199e9560",
+        "terminal_state": "admitted"
+      }
+    ],
+    "relation_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_relation_response.v2",
+    "status": "position_relation_response_custody_complete"
+  },
+  "relation_packet": {
+    "boundary": {
+      "categorical_trajectory_label_requested": false,
+      "deterministic_role_matching_performed": false,
+      "direct_graph_routing_allowed": false,
+      "role_records_changed": false,
+      "semantic_prefilter_performed": false
+    },
+    "call_required": true,
+    "case_id": "amb1-case01-product-scope",
+    "maximum_input_role_records": 6,
+    "maximum_relationship_records": 2,
+    "role_records": {
+      "current": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "current",
+          "role_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+          "role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e060",
+              "text": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+            }
+          ]
+        }
+      ],
+      "qualification": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "qualification",
+          "role_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+          "role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e067",
+              "text": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline."
+            }
+          ]
+        }
+      ],
+      "starting": [
+        {
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "role": "starting",
+          "role_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+          "role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+          "semantic_status": "supported",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”"
+            }
+          ]
+        }
+      ]
+    },
+    "schema_version": "lolla.reasoning_process_position_relation_packet.v2",
+    "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01"
+  },
+  "relation_response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+        "relationship_interpretation": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+        "starting_role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "role_compiled": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case01-product-scope",
+          "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-current-01-fa0c23696e6f5b",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:fa0c23696e6f5b3f4e52e0412f4606317e944d45b0b8ee9e72a5e27f23ec7626",
+          "role": "current",
+          "role_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+          "role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e060",
+              "text": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+            }
+          ],
+          "source_evidence_ids": [
+            "e060"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "current",
+              "source_evidence_id": "e060",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Offer Northline three focused sessions and document the workflow.",
+              "stance_object_kind": "action_or_proposal"
+            },
+            {
+              "role": "current",
+              "source_evidence_id": "e060",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Make no build commitment during the bounded discovery period.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:fa0c23696e6f5b3f4e52e0412f4606317e944d45b0b8ee9e72a5e27f23ec7626",
+          "record_index": 1,
+          "role_record_id": "rprolev2-current-01-fa0c23696e6f5b",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "current",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case01-product-scope",
+          "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:eceff5fc1a3e8e4cb5e155c547d6e370fd71264b77858cece55e960964ad40c4",
+          "role": "qualification",
+          "role_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+          "role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e067",
+              "text": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline."
+            }
+          ],
+          "source_evidence_ids": [
+            "e067"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "qualification",
+              "source_evidence_id": "e067",
+              "stance_expression_kind": "possibility",
+              "stance_object_interpretation": "Restricting prototypes may make discovery artificial.",
+              "stance_object_kind": "intended_outcome_or_policy"
+            },
+            {
+              "role": "qualification",
+              "source_evidence_id": "e067",
+              "stance_expression_kind": "counterpressure",
+              "stance_object_interpretation": "Careful language may still feel like distance to Northline.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:eceff5fc1a3e8e4cb5e155c547d6e370fd71264b77858cece55e960964ad40c4",
+          "record_index": 1,
+          "role_record_id": "rprolev2-qualification-01-eceff5fc1a3e8e",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "qualification",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "object_expression_compatibility_gate_added": false,
+        "one_alias_per_component_enforced": true,
+        "prose_keyword_gate_added": false,
+        "semantic_merge_performed": false,
+        "semantic_role_or_category_correctness_inferred_by_code": false
+      },
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "observations": [
+        {
+          "case_id": "amb1-case01-product-scope",
+          "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+          "graph_routing_eligible": false,
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "observation_id": "rprolev2-starting-01-034166a7adc8bb",
+          "provenance": {
+            "call_id": "",
+            "model": "",
+            "producer_id": "role-first-v2-mechanical-projection-of-reviewed-v41-fixture",
+            "producer_kind": "source_reviewer",
+            "prompt_sha256": ""
+          },
+          "raw_record_sha256": "sha256:034166a7adc8bb090e91992eaea12a1004bc70debb25daeb373e724d8615cdb2",
+          "role": "starting",
+          "role_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+          "role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+          "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+          "source_evidence": [
+            {
+              "alias": "e005",
+              "text": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”"
+            }
+          ],
+          "source_evidence_ids": [
+            "e005"
+          ],
+          "source_record_index": 1,
+          "stance_components": [
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "Focused customer sessions may be how good products learn.",
+              "stance_object_kind": "belief_or_assessment"
+            },
+            {
+              "role": "starting",
+              "source_evidence_id": "e005",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The loudest customer may be setting the roadmap.",
+              "stance_object_kind": "belief_or_assessment"
+            }
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "raw_record_sha256": "sha256:034166a7adc8bb090e91992eaea12a1004bc70debb25daeb373e724d8615cdb2",
+          "record_index": 1,
+          "role_record_id": "rprolev2-starting-01-034166a7adc8bb",
+          "terminal_state": "admitted"
+        }
+      ],
+      "response_status": "supported",
+      "role": "starting",
+      "role_terminal_disposition": "compiled",
+      "schema_version": "lolla.reasoning_process_position_role_response.v2",
+      "status": "position_role_response_custody_complete"
+    }
+  },
+  "role_packets": {
+    "current": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case01-product-scope",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI run product for a nine-person software company.\ne002\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\ne003\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\ne004\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\ne005\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n[Turn 1 ASSISTANT]\ne006\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\ne007\tI would not decide from the size of the account alone.\ne008\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\ne009\tIn parallel, make the reliability and roadmap cost visible.\ne010\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n[Turn 7 USER]\ne060\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\ne061\tLina can lead the sessions but not start production code.\ne062\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\ne063\tThen we decide with all three pieces visible.\ne064\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\ne065\tBut starting the build now feels less defensible than it did.\n[Turn 7 ASSISTANT]\ne066\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\ne067\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\ne068\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\ne069\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e060",
+          "e061",
+          "e062",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067",
+          "e068",
+          "e069"
+        ]
+      },
+      "maximum_components_per_record": 5,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What current working position, decision, leaning, plan, or commitment is visible? Keep proposals, intentions, decisions, and willingness distinct.",
+      "role": "current",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "qualification": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case01-product-scope",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI run product for a nine-person software company.\ne002\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\ne003\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\ne004\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\ne005\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n[Turn 1 ASSISTANT]\ne006\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\ne007\tI would not decide from the size of the account alone.\ne008\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\ne009\tIn parallel, make the reliability and roadmap cost visible.\ne010\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n[Turn 7 USER]\ne060\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\ne061\tLina can lead the sessions but not start production code.\ne062\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\ne063\tThen we decide with all three pieces visible.\ne064\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\ne065\tBut starting the build now feels less defensible than it did.\n[Turn 7 ASSISTANT]\ne066\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\ne067\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\ne068\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\ne069\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e060",
+          "e061",
+          "e062",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067",
+          "e068",
+          "e069"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What qualification, counterpressure, unresolved condition, or reopen reason remains capable of changing or limiting the current position?",
+      "role": "qualification",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    },
+    "starting": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "one_semantic_role_only": true,
+        "other_role_labels_requested": false,
+        "semantic_prefilter_performed": false,
+        "trajectory_relation_requested": false
+      },
+      "case_id": "amb1-case01-product-scope",
+      "focal_region": {
+        "annotated_sentence_text": "[Turn 1 USER]\ne001\tI run product for a nine-person software company.\ne002\tOne of our oldest customers, Northline, wants a reporting workspace that is quite different from what we planned this quarter.\ne003\tThey are not threatening to leave, but their operations lead keeps saying it would make the product usable across the rest of their team.\ne004\tMeanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow.\ne005\tI keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”\n[Turn 1 ASSISTANT]\ne006\tThe immediate distinction is whether Northline is revealing a broader need or buying influence over a small team.\ne007\tI would not decide from the size of the account alone.\ne008\tAsk what exact job the workspace enables, what they do today, and which parts could serve other customers.\ne009\tIn parallel, make the reliability and roadmap cost visible.\ne010\tIf the request consumes the same people who own those commitments, “we can probably fit it in” is already a choice to delay them.\n[Turn 7 USER]\ne060\tMy provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.\ne061\tLina can lead the sessions but not start production code.\ne062\tIn the same period we will define the reliability work and the core-workflow release we are actually willing to promise.\ne063\tThen we decide with all three pieces visible.\ne064\tI still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no.\ne065\tBut starting the build now feels less defensible than it did.\n[Turn 7 ASSISTANT]\ne066\tThat plan protects the learning opportunity without pretending the underlying tradeoff is resolved.\ne067\tThe two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.\ne068\tYou can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean.\ne069\tNeither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you.",
+        "citation_allowed": true,
+        "evidence_aliases": [
+          "e001",
+          "e002",
+          "e003",
+          "e004",
+          "e005",
+          "e006",
+          "e007",
+          "e008",
+          "e009",
+          "e010",
+          "e060",
+          "e061",
+          "e062",
+          "e063",
+          "e064",
+          "e065",
+          "e066",
+          "e067",
+          "e068",
+          "e069"
+        ]
+      },
+      "maximum_components_per_record": 4,
+      "maximum_records": 2,
+      "prior_context": {
+        "annotated_sentence_text": "",
+        "citation_allowed": false,
+        "evidence_aliases": [],
+        "included": false,
+        "role_limited_citation_policy": "none"
+      },
+      "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+      "role": "starting",
+      "schema_version": "lolla.reasoning_process_position_role_packet.v2",
+      "shard_id": "amb1-case01-product-scope-position_and_decision_trajectory-shard-01",
+      "valid_empty_output_allowed": true
+    }
+  },
+  "role_responses": {
+    "current": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e060"
+          ],
+          "expression_kinds": [
+            "provisional_intention_or_plan",
+            "provisional_intention_or_plan"
+          ],
+          "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Offer Northline three focused sessions and document the workflow.",
+            "Make no build commitment during the bounded discovery period."
+          ],
+          "object_kinds": [
+            "action_or_proposal",
+            "intended_outcome_or_policy"
+          ],
+          "role": "current",
+          "role_interpretation": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment.",
+          "source_evidence_ids": [
+            "e060",
+            "e060"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "qualification": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e067"
+          ],
+          "expression_kinds": [
+            "possibility",
+            "counterpressure"
+          ],
+          "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Restricting prototypes may make discovery artificial.",
+            "Careful language may still feel like distance to Northline."
+          ],
+          "object_kinds": [
+            "intended_outcome_or_policy",
+            "belief_or_assessment"
+          ],
+          "role": "qualification",
+          "role_interpretation": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline.",
+          "source_evidence_ids": [
+            "e067",
+            "e067"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    },
+    "starting": {
+      "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+      "records": [
+        {
+          "evidence_ids": [
+            "e005"
+          ],
+          "expression_kinds": [
+            "uncertain_or_undecided",
+            "uncertain_or_undecided"
+          ],
+          "fidelity_note": "The starting state contains competing assessments rather than one choice. The current sentence contains both a proposed procedure and a provisional no-build policy, while the qualification preserves two distinct risks.",
+          "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+          "object_interpretations": [
+            "Focused customer sessions may be how good products learn.",
+            "The loudest customer may be setting the roadmap."
+          ],
+          "object_kinds": [
+            "belief_or_assessment",
+            "belief_or_assessment"
+          ],
+          "role": "starting",
+          "role_interpretation": "I keep moving between “this is how good products learn” and “we are letting the loudest customer set the roadmap.”",
+          "source_evidence_ids": [
+            "e005",
+            "e005"
+          ],
+          "status": "supported"
+        }
+      ],
+      "status": "supported"
+    }
+  },
+  "schema_version": "lolla.reasoning_process_position_role_first_fixture.v2",
+  "source": {
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case01-product-scope/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "1d606fba8741c0fa77adede5fbbb8b67432a62039e62d94ef29d8f9ff5d1fce2",
+    "reviewed_fixture_path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb1-case01-product-scope-position_and_decision_trajectory-shard-01.json",
+    "reviewed_fixture_sha256": "6c6b42e396c21296360c8ee2f03b387270e2509b73f758212b3ba61dac4d64fb"
+  }
+}

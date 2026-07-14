@@ -1,0 +1,129 @@
+{
+  "schema_version": "lolla.simulated_reliability_model_value_probe_contract.v1",
+  "status": "frozen_before_two_starting_calls",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-affordable-model-value-probe-a1",
+  "decision_boundary": {
+    "purpose": "Determine whether either materially cheaper runtime can faithfully complete the exact separated starting-position microtask on which the Gemini 3.5 Flash transfer run failed.",
+    "not_authorized": [
+      "production model selection",
+      "full-case execution",
+      "transfer continuation",
+      "repeat execution",
+      "prompt repair",
+      "schema repair",
+      "fallback routing",
+      "response healing",
+      "scalar model ranking"
+    ],
+    "premium_reference_policy": "The existing Gemini 3.5 Flash artifacts remain preserved comparison evidence. This contract authorizes no Gemini 3.5 Flash call."
+  },
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "microtask": {
+    "case_id": "v1-case06-industry-funded-lab",
+    "task_id": "starting",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+    "source_sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22",
+    "role_request_bundle_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/role-request-bundle.json",
+    "role_request_bundle_sha256": "a922b1e54658fb7b03653ab6d8a612d0e072431e8f0be68725e4ca64eb1c14f5",
+    "why_selected": "The preserved Gemini 3.5 Flash result for this exact task was a local validation failure with no compiled starting records. A cheaper model must therefore demonstrate capability rather than merely match an easy success."
+  },
+  "repeat_id": "model_value_probe",
+  "seed": 707,
+  "jobs": [
+    {
+      "job_id": "deepseek-v4-flash-deepinfra-starting",
+      "model": "deepseek/deepseek-v4-flash",
+      "expected_canonical_model_prefix": "deepseek/deepseek-v4-flash-20260423",
+      "provider_slug": "deepinfra",
+      "expected_served_provider": "DeepInfra",
+      "maximum_price_usd_per_million_tokens": {
+        "prompt": 0.09,
+        "completion": 0.18
+      },
+      "reasoning_effort": "medium"
+    },
+    {
+      "job_id": "gemini-3-1-flash-lite-vertex-starting",
+      "model": "google/gemini-3.1-flash-lite",
+      "expected_canonical_model_prefix": "google/gemini-3.1-flash-lite-20260507",
+      "provider_slug": "google-vertex",
+      "expected_served_provider": "Google",
+      "maximum_price_usd_per_million_tokens": {
+        "prompt": 0.25,
+        "completion": 1.5
+      },
+      "reasoning_effort": "medium"
+    }
+  ],
+  "budget": {
+    "maximum_provider_calls": 2,
+    "maximum_provider_reported_cost_usd": 0.02,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "stop_if_one_job_fails": false,
+    "reason_for_two_independent_attempts": "A failure of one pinned provider must not prevent preservation of the other already-authorized comparison call."
+  },
+  "source_review_contract": {
+    "review_order": [
+      "read the source without model identity or price as the decision criterion",
+      "inspect each candidate and compiled record",
+      "compare with the preserved Gemini 3.5 failure only after source review",
+      "record provider attribution and exact cost"
+    ],
+    "required_dimensions": [
+      "starting-role fidelity",
+      "source grounding",
+      "speaker ownership",
+      "modal-force preservation",
+      "material early attraction coverage",
+      "material early hesitation or uncertainty coverage",
+      "unsupported strengthening",
+      "material omission",
+      "operational validity",
+      "provider custody",
+      "provider-reported cost"
+    ],
+    "scalar_quality_score": null
+  },
+  "advancement_rule": {
+    "eligible": "A candidate may receive a separately frozen next-stage microtask only if it returns a compiled record, exact custody is observed, and source review finds no material role error, ownership error, modal strengthening, unsupported invention, or omission that defeats the purpose of the starting view.",
+    "ineligible": "Operational success or low price alone is insufficient.",
+    "tie_policy": "If both are source-faithful, prefer the materially cheaper candidate for the next bounded task; retain the other as a same-family control, not as an automatic second pipeline.",
+    "no_candidate_policy": "If neither is source-faithful, stop. Do not escalate automatically to Gemini 3.5 or broaden the prompt."
+  },
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_model_value_probe_v1.py",
+      "sha256": "f8603dc444e89e768fcdf2b38605e0ef7636afb1558dcb2de8c9b6191636e714"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_position_role_first_v24.py",
+      "sha256": "52e8954847581bd7b18c9f5aa6906fc72bd0272fbacc66db93e713c67a2d5293"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-affordable-model-snapshot-2026-07-13.json",
+      "sha256": "7eeb754edb702c7926c17024be46ff0ec33471cd73c04d2b3d9c7c6d007537fa"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/role-request-bundle.json",
+      "sha256": "a922b1e54658fb7b03653ab6d8a612d0e072431e8f0be68725e4ca64eb1c14f5"
+    }
+  ]
+}

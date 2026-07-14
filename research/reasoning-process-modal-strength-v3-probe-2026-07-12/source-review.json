@@ -1,0 +1,120 @@
+{
+  "schema_version": "lolla.reasoning_process_modal_strength_v3_probe_source_review.v1",
+  "status": "operational_and_structural_pass_semantic_modal_strength_fail",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-modal-strength-v3-case03-position-endpoint-v1",
+  "result_path": "research/reasoning-process-modal-strength-v3-probe-2026-07-12/result.json",
+  "provider_observation": {
+    "provider_request_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "semantic_retries": 0,
+    "operational_status": "ok",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "model_attribution_status": "served_version_alias",
+    "typed_status": "admitted",
+    "admitted_record_count": 2,
+    "quarantined_record_count": 0,
+    "estimated_cost_usd": 0.00185025
+  },
+  "source_review": [
+    {
+      "record_index": 1,
+      "terminal_structural_state": "admitted",
+      "starting_position": {
+        "evidence_id": "e004",
+        "source": "After listening to the latest cut, I think the final third needs a major re-edit.",
+        "model_interpretation": "The user held a firm belief that the final third of the documentary required a major re-edit.",
+        "model_force": "decision",
+        "review": "fail_force_inflation",
+        "reason": "The source states an evaluative view with 'I think'; it does not report a chosen course of action. 'Firm belief' strengthens the source and the decision label confuses conviction about an assessment with a decision."
+      },
+      "current_position": {
+        "evidence_ids": ["e063", "e064"],
+        "source_summary": "The user explicitly calls the plan provisional, will hear and compare the revised cut, and defers the postponement decision.",
+        "model_force": "provisional_plan",
+        "review": "pass",
+        "reason": "The interpretation and categorical force preserve provisionality and the deferred decision."
+      },
+      "qualification": {
+        "evidence_id": "e065",
+        "source_summary": "The user will propose equal credit but is unsure about accepting it if structural authority remains unequal.",
+        "model_modalities": ["condition", "unresolved_question"],
+        "review": "source_supported_but_relationship_partial",
+        "reason": "The qualification is supported locally, but it qualifies the credit proposal more directly than the cited edit/postponement position and omits the protected revised-cut possibility in e070."
+      },
+      "trajectory": {
+        "model_interpretation": "The user moved from an immediate, unilateral assessment of the work's quality to a structured, collaborative verification process.",
+        "review": "fail_inflated_and_partly_invented",
+        "reason": "The source contains an assessment and disagreement, not an immediate unilateral decision. The later verification process is supported, but the starting characterization overstates force."
+      },
+      "record_semantic_result": "fail"
+    },
+    {
+      "record_index": 2,
+      "terminal_structural_state": "admitted",
+      "starting_position": {
+        "evidence_id": "e006",
+        "source_summary": "The collaborators are avoiding a credit conversation.",
+        "model_force": "undecided_or_ambivalent",
+        "review": "pass_with_paraphrase_caution",
+        "reason": "Avoidance and lack of resolution support an unsettled starting state, although 'inability to resolve' is stronger than merely avoiding the conversation."
+      },
+      "current_position": {
+        "evidence_id": "e065",
+        "source_summary": "The user says they will propose equal top-line authorship and detailed role credits, but may not accept it under unequal structural authority.",
+        "model_force": "leaning",
+        "review": "ambiguous_or_misaligned",
+        "reason": "The evidence contains a definite plan to make a proposal and uncertainty about accepting the arrangement. One force label over the combined sentence cannot cleanly represent both."
+      },
+      "qualification": {
+        "evidence_id": "e066",
+        "source_summary": "The user wants to separate current-film credit from future-collaboration rules and doubts that they can be separated.",
+        "model_modalities": ["unresolved_question", "concern_or_risk"],
+        "review": "pass",
+        "reason": "The interpretation preserves the explicit unresolved question; concern_or_risk is defensible but not independently decisive."
+      },
+      "trajectory": {
+        "review": "pass_with_force_ambiguity",
+        "reason": "Movement from avoidance to a concrete proposal is supported, but the proposal and willingness to accept it remain different stance objects."
+      },
+      "record_semantic_result": "mixed"
+    }
+  ],
+  "protected_target_review": {
+    "fixture_seen_by_model": false,
+    "target": "The revised cut could resolve the edit question and leave the partnership question open.",
+    "target_evidence_id": "e070",
+    "status": "not_present_in_either_record",
+    "reason": "The model captured neighboring credit and authority uncertainty but not the intended possibility-plus-unresolved relationship connecting the revised cut to the open partnership question."
+  },
+  "gate_results": {
+    "operational_gate": "pass",
+    "strict_schema_gate": "pass",
+    "record_custody_gate": "pass",
+    "starting_force_fidelity_gate": "fail",
+    "current_force_fidelity_gate": "mixed",
+    "qualification_relationship_gate": "fail_protected_target_absent",
+    "trajectory_force_fidelity_gate": "fail",
+    "overall_semantic_gate": "fail"
+  },
+  "what_the_experiment_established": [
+    "Role-specific force fields make source-strength mistakes explicit and reviewable.",
+    "The current generic label names and warning prompt are not sufficient to prevent Gemini from treating a strongly worded belief as a decision.",
+    "A single force label can become ambiguous when one sentence contains a definite proposal action and uncertainty about accepting its outcome.",
+    "Structural admission must remain distinct from semantic approval."
+  ],
+  "decision": {
+    "modal_strength_v3_ready_for_integration": false,
+    "same_case_repair_or_retry_authorized": false,
+    "additional_provider_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "next_work": "provider_free_redesign_of_stance_object_and_label_definitions_before_any_new_fresh_case"
+  },
+  "nonclaims": [
+    "This failure does not show that categorical force fields have no value.",
+    "Two admitted records do not establish model stability or transfer.",
+    "The reviewed fixture is development evidence, not independent gold.",
+    "No final-answer quality or user trust conclusion follows from this probe."
+  ]
+}

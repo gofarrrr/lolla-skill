@@ -1,0 +1,81 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v4_probe_operational_review.v1",
+  "status": "provider_rejected_before_inference_semantic_result_not_observed",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-stance-object-v4-case04-position-endpoint-v1",
+  "result_path": "research/reasoning-process-stance-object-v4-probe-2026-07-12/result.json",
+  "observation": {
+    "provider_request_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "semantic_retries": 0,
+    "operational_status": "http_error_400",
+    "http_status": 400,
+    "provider_name": "Google",
+    "provider_status": "INVALID_ARGUMENT",
+    "provider_message": "Request contains an invalid argument.",
+    "candidate_payload_present": false,
+    "compiled_payload_present": false,
+    "model_inference_observed": false,
+    "estimated_cost_usd": null
+  },
+  "append_only_result_clarification": {
+    "frozen_result_field": "semantic_review_status=pending_source_first_review",
+    "correct_reading": "not_applicable_no_model_output",
+    "frozen_result_mutated": false
+  },
+  "provider_free_compatibility_audit": {
+    "openrouter_route_and_parameters_advertised": true,
+    "strict_schema_accepted_by_openrouter_router": true,
+    "google_provider_accepted_request": false,
+    "v4_schema_bytes": 3919,
+    "v4_schema_depth": 11,
+    "v3_previously_served_schema_bytes": 3051,
+    "v3_previously_served_schema_depth": 9,
+    "v4_adds_nested_component_object_and_nested_component_evidence_array": true,
+    "official_gemini_warning": "Very large or deeply nested schemas may be rejected.",
+    "exact_invalid_argument_identified": false,
+    "possible_causes_not_proven": [
+      "schema nesting or complexity",
+      "provider handling of a nested evidence array and its validation keywords",
+      "another provider-specific structured-output translation limit not exposed in the error"
+    ]
+  },
+  "gate_results": {
+    "provider_free_representation_gate": "pass",
+    "adversarial_gate": "pass",
+    "regression_gate": "pass",
+    "frozen_contract_gate": "pass",
+    "operational_provider_gate": "fail",
+    "strict_schema_generation_gate": "not_observed",
+    "record_custody_gate": "not_observed",
+    "semantic_stance_object_gate": "not_observed"
+  },
+  "what_the_experiment_established": [
+    "The stance-object representation can express the reviewed corpus and the preserved mixed proposal-versus-acceptance failure provider-free.",
+    "Provider-free JSON Schema validity does not establish that a specific Gemini/OpenRouter route will accept the schema.",
+    "The historical frozen-runner regression check prevented a completed experiment from being silently invalidated.",
+    "No semantic claim about Case-04 or stance-object effectiveness can be made because inference did not occur."
+  ],
+  "decision": {
+    "stance_object_v4_ready_for_integration": false,
+    "case04_repair_or_retry_authorized": false,
+    "additional_provider_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "next_work": "provider_free_v4_1_schema_simplification_and_new_fresh_case_design"
+  },
+  "next_design_constraints": [
+    "Keep object-specific semantics and one component array.",
+    "Make each component atomic with one source alias, splitting multi-alias landscapes into multiple components.",
+    "Remove new nested evidence arrays and avoid schema keywords not listed in Gemini's documented subset where deterministic post-validation can replace them.",
+    "Preserve parent-role evidence custody and no deterministic semantic compatibility matrix.",
+    "Create new ambiguous multi-turn cases before any future call because all five existing position cases are now closed.",
+    "Use a different fresh case and one frozen call only after the simplified schema passes local and provider-compatibility gates."
+  ],
+  "nonclaims": [
+    "The HTTP 400 does not show that the stance-object semantics are wrong.",
+    "Schema depth is a plausible cause, not a proven root cause.",
+    "No model behavior, semantic accuracy, stability, product value, or trust was measured.",
+    "A future simplified schema is not authorized to reuse Case-04."
+  ]
+}

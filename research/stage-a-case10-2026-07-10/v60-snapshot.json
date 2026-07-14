@@ -1,0 +1,448 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_v60_snapshot.v0",
+  "status": "review_safe_snapshot",
+  "source_pipeline_sha256": "c81c305309188f8faffb577be4eb7a09aec803d50fa1600a0080377aa8abac41",
+  "v60_schema_version": "v60_runtime_enrichment.v1",
+  "v60_status": "active",
+  "selected_cards": [
+    {
+      "card_id": "v60-card-001-regret-theory",
+      "model_id": "regret-theory",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant contrasts the immediate, vivid regret of losing a bid with the long-term, lived regret of financial overextension to reframe the user's decision-making process.",
+      "affordance_chunk_ids": [
+        "aff::regret-theory.long-run-regret-with-risk-check"
+      ],
+      "absence_chunk_ids": [
+        "abs::regret-theory::anticipated-regret-without-probability"
+      ]
+    },
+    {
+      "card_id": "v60-card-002-margin-of-safety",
+      "model_id": "margin-of-safety",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant explicitly identifies the lack of a financial buffer as a critical risk factor, defining the 'liquid margin' as the necessary protection against the volatility of old-house repairs.",
+      "affordance_chunk_ids": [
+        "aff::margin-of-safety.evidence-sized-operating-buffer"
+      ],
+      "absence_chunk_ids": [
+        "abs::margin-of-safety::standalone-generic-downside-analysis"
+      ]
+    },
+    {
+      "card_id": "v60-card-003-calculated-risk-taking",
+      "model_id": "calculated-risk-taking",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant performs a quantitative sensitivity analysis by mapping mandatory repair costs against available liquid savings to size the downside risk of the purchase.",
+      "affordance_chunk_ids": [
+        "aff::calculated-risk-taking.pressure-tested-bounded-wager"
+      ],
+      "absence_chunk_ids": [
+        "abs::calculated-risk-taking::calculated-label-with-unbounded-downside"
+      ]
+    },
+    {
+      "card_id": "v60-card-004-optionality",
+      "model_id": "optionality",
+      "selection_source": "lane_preserved",
+      "selection_reason": "Shifts the focus from the 'loss' of this specific house to the 'opportunity cost' of capital, allowing for a comparison of total cost-of-ownership across different properties. | binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::optionality.expand-before-evaluating"
+      ],
+      "absence_chunk_ids": [
+        "abs::optionality::disjunctive-failsafe-as-optionality"
+      ]
+    },
+    {
+      "card_id": "v60-card-005-inversion",
+      "model_id": "inversion",
+      "selection_source": "frame_opportunity_reserved",
+      "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::inversion.zero-base-continuation-test"
+      ],
+      "absence_chunk_ids": [
+        "abs::inversion::generic-hidden-denominator-without-reversed-target"
+      ]
+    },
+    {
+      "card_id": "v60-card-006-problem-framing-and-reframing",
+      "model_id": "problem-framing-and-reframing",
+      "selection_source": "frame_opportunity_reserved",
+      "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::problem-framing-and-reframing.test-alternative-frames"
+      ],
+      "absence_chunk_ids": [
+        "abs::problem-framing-and-reframing::persona-configuration-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-007-endowment-effect",
+      "model_id": "endowment-effect",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::endowment-effect.reprice-owned-option-from-outside-view"
+      ],
+      "absence_chunk_ids": [
+        "abs::endowment-effect::unearned-endowment-premium"
+      ]
+    },
+    {
+      "card_id": "v60-card-008-prospect-theory",
+      "model_id": "prospect-theory",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::prospect-theory.loss-frame-decision-quality-check"
+      ],
+      "absence_chunk_ids": [
+        "abs::prospect-theory::manipulative-loss-framing"
+      ]
+    }
+  ],
+  "consideration_ledger_skeleton": {
+    "schema_version": "v60_skill_consideration_ledger.v2",
+    "transactions": [
+      {
+        "card_id": "v60-card-001-regret-theory",
+        "model_id": "regret-theory",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant contrasts the immediate, vivid regret of losing a bid with the long-term, lived regret of financial overextension to reframe the user's decision-making process.",
+        "source_file": "Regret_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::regret-theory.long-run-regret-with-risk-check",
+        "chunk_kind": "affordance",
+        "affordance_id": "regret-theory.long-run-regret-with-risk-check",
+        "chunk_status": "supported",
+        "chunk_source_file": "Regret_Theory_rag.md"
+      },
+      {
+        "card_id": "v60-card-001-regret-theory",
+        "model_id": "regret-theory",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant contrasts the immediate, vivid regret of losing a bid with the long-term, lived regret of financial overextension to reframe the user's decision-making process.",
+        "source_file": "Regret_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::regret-theory::anticipated-regret-without-probability",
+        "chunk_kind": "absence",
+        "attempted_field": "anticipated-regret-without-probability",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Regret_Theory_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-002-margin-of-safety",
+        "model_id": "margin-of-safety",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant explicitly identifies the lack of a financial buffer as a critical risk factor, defining the 'liquid margin' as the necessary protection against the volatility of old-house repairs.",
+        "source_file": "Margin_Of_Safety_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::margin-of-safety.evidence-sized-operating-buffer",
+        "chunk_kind": "affordance",
+        "affordance_id": "margin-of-safety.evidence-sized-operating-buffer",
+        "chunk_status": "supported",
+        "chunk_source_file": "Margin_Of_Safety_rag.md"
+      },
+      {
+        "card_id": "v60-card-002-margin-of-safety",
+        "model_id": "margin-of-safety",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant explicitly identifies the lack of a financial buffer as a critical risk factor, defining the 'liquid margin' as the necessary protection against the volatility of old-house repairs.",
+        "source_file": "Margin_Of_Safety_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::margin-of-safety::standalone-generic-downside-analysis",
+        "chunk_kind": "absence",
+        "attempted_field": "standalone-generic-downside-analysis",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Margin_Of_Safety_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-003-calculated-risk-taking",
+        "model_id": "calculated-risk-taking",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant performs a quantitative sensitivity analysis by mapping mandatory repair costs against available liquid savings to size the downside risk of the purchase.",
+        "source_file": "Calculated_Risk_Taking_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+        "chunk_kind": "affordance",
+        "affordance_id": "calculated-risk-taking.pressure-tested-bounded-wager",
+        "chunk_status": "supported",
+        "chunk_source_file": "Calculated_Risk_Taking_rag.md"
+      },
+      {
+        "card_id": "v60-card-003-calculated-risk-taking",
+        "model_id": "calculated-risk-taking",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant performs a quantitative sensitivity analysis by mapping mandatory repair costs against available liquid savings to size the downside risk of the purchase.",
+        "source_file": "Calculated_Risk_Taking_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::calculated-risk-taking::calculated-label-with-unbounded-downside",
+        "chunk_kind": "absence",
+        "attempted_field": "calculated-label-with-unbounded-downside",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Calculated_Risk_Taking_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-004-optionality",
+        "model_id": "optionality",
+        "selection_source": "lane_preserved",
+        "selection_reason": "Shifts the focus from the 'loss' of this specific house to the 'opportunity cost' of capital, allowing for a comparison of total cost-of-ownership across different properties. | binary_collapse",
+        "source_file": "Optionality_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::optionality.expand-before-evaluating",
+        "chunk_kind": "affordance",
+        "affordance_id": "optionality.expand-before-evaluating",
+        "chunk_status": "supported",
+        "chunk_source_file": "Optionality_rag.md"
+      },
+      {
+        "card_id": "v60-card-004-optionality",
+        "model_id": "optionality",
+        "selection_source": "lane_preserved",
+        "selection_reason": "Shifts the focus from the 'loss' of this specific house to the 'opportunity cost' of capital, allowing for a comparison of total cost-of-ownership across different properties. | binary_collapse",
+        "source_file": "Optionality_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::optionality::disjunctive-failsafe-as-optionality",
+        "chunk_kind": "absence",
+        "attempted_field": "disjunctive-failsafe-as-optionality",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Optionality_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-005-inversion",
+        "model_id": "inversion",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Inversion_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::inversion.zero-base-continuation-test",
+        "chunk_kind": "affordance",
+        "affordance_id": "inversion.zero-base-continuation-test",
+        "chunk_status": "supported",
+        "chunk_source_file": "Inversion_rag.md"
+      },
+      {
+        "card_id": "v60-card-005-inversion",
+        "model_id": "inversion",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Inversion_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::inversion::generic-hidden-denominator-without-reversed-target",
+        "chunk_kind": "absence",
+        "attempted_field": "generic-hidden-denominator-without-reversed-target",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Inversion_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-006-problem-framing-and-reframing",
+        "model_id": "problem-framing-and-reframing",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Problem_Framing_and_Reframing_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::problem-framing-and-reframing.test-alternative-frames",
+        "chunk_kind": "affordance",
+        "affordance_id": "problem-framing-and-reframing.test-alternative-frames",
+        "chunk_status": "supported",
+        "chunk_source_file": "Problem_Framing_and_Reframing_rag.md"
+      },
+      {
+        "card_id": "v60-card-006-problem-framing-and-reframing",
+        "model_id": "problem-framing-and-reframing",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Problem_Framing_and_Reframing_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::problem-framing-and-reframing::persona-configuration-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "persona-configuration-affordance",
+        "chunk_status": "source_too_thin",
+        "chunk_source_file": "Problem_Framing_and_Reframing_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-007-endowment-effect",
+        "model_id": "endowment-effect",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Endowment_Effect_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::endowment-effect.reprice-owned-option-from-outside-view",
+        "chunk_kind": "affordance",
+        "affordance_id": "endowment-effect.reprice-owned-option-from-outside-view",
+        "chunk_status": "supported",
+        "chunk_source_file": "Endowment_Effect_rag.md"
+      },
+      {
+        "card_id": "v60-card-007-endowment-effect",
+        "model_id": "endowment-effect",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Endowment_Effect_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::endowment-effect::unearned-endowment-premium",
+        "chunk_kind": "absence",
+        "attempted_field": "unearned-endowment-premium",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Endowment_Effect_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-008-prospect-theory",
+        "model_id": "prospect-theory",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Prospect_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::prospect-theory.loss-frame-decision-quality-check",
+        "chunk_kind": "affordance",
+        "affordance_id": "prospect-theory.loss-frame-decision-quality-check",
+        "chunk_status": "supported",
+        "chunk_source_file": "Prospect_Theory_rag.md"
+      },
+      {
+        "card_id": "v60-card-008-prospect-theory",
+        "model_id": "prospect-theory",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Prospect_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::prospect-theory::manipulative-loss-framing",
+        "chunk_kind": "absence",
+        "attempted_field": "manipulative-loss-framing",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Prospect_Theory_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      }
+    ]
+  },
+  "raw_chunk_text_included": false,
+  "absolute_paths_included": false
+}

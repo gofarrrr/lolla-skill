@@ -1,0 +1,75 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_decomposed_roles_quiet_source_review.v1",
+  "status": "current_pass_qualification_false_positive_unconditional_extraction_rejected",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "current_review": {
+    "operational": "pass",
+    "interface": "pass_one_admitted_observation",
+    "role_fidelity": "pass",
+    "source_grounding": "pass",
+    "modal_force": "pass",
+    "assessment": "The record accurately preserves the decision to run a bounded eight-week trial with routine-versus-urgent handling, requested-hours rotation, a staffing threshold, decline privacy, voluntary barrier help, auditing, pause rights, and a final member decision.",
+    "category_caveat": "The phrase 'anonymous pause vote' in the prose is inaccurate; the source says any member can propose stopping and a majority vote can pause. The structured component says pause vote without calling the vote anonymous, so the main current meaning survives."
+  },
+  "qualification_review": {
+    "operational": "pass",
+    "interface": "pass_one_admitted_observation",
+    "role_fidelity": "fail_false_positive",
+    "source_grounding": "source_aliases_exist_but_role_allocation_is_wrong",
+    "false_positive_evidence": [
+      {
+        "alias": "e069",
+        "why_not_unresolved": "The assistant warned about urgent-category creep; e095 then distinguishes routine and urgent offers, and the broader design separately reports urgent use. The pressure was integrated into current governance."
+      },
+      {
+        "alias": "e091",
+        "why_not_unresolved": "The user supported separating voluntary help from decline history, and e096 adopts exactly that boundary. The tension changed the current plan rather than remaining outside it."
+      },
+      {
+        "alias": "e103",
+        "why_not_unresolved": "The assistant notes that future metrics may conflict and assigns the trade-off to the cooperative. Pending trial evidence and a future member decision are part of the bounded experimental path, not a missing answer about whether to launch it."
+      }
+    ],
+    "assessment": "The extractor treated any continuing risk, future measurement, or possible trade-off as unresolved even when the source had operationalized it. This violates the role boundary and would create unnecessary pressure on a quiet case.",
+    "material_fact_invented": false,
+    "material_role_error": true
+  },
+  "independent_review_cross_check": {
+    "artifact": "research/simulated-reliability-v1-lite-qualification-review-2026-07-13/a1/v1-case07-cooperative-scheduling/call-02-qualification_review-result.json",
+    "outcome": "no_unresolved_qualification_observed",
+    "source_review_disposition": "pass",
+    "agreement_with_unconditional_extractor": false
+  },
+  "custody_and_cost": {
+    "provider_calls": 2,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "current_duration_seconds": 17.71,
+    "qualification_duration_seconds": 6.202,
+    "current_cost_usd": 0.003702,
+    "qualification_cost_usd": 0.003293,
+    "total_provider_reported_cost_usd": 0.006995,
+    "cost_ceiling_usd": 0.01,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "unconditional_separate_current_extraction_retained": true,
+    "unconditional_separate_qualification_extraction_retained": false,
+    "quiet_portfolio_joined": false,
+    "mechanism_call_authorized": false,
+    "production_model_selected": false,
+    "premium_model_call_authorized": false,
+    "next_architecture": {
+      "step_1": "Run the small provider-authored, source-linked qualification review on the complete source.",
+      "step_2_present_only": "When outcome is unresolved_qualification_present, build a bounded detail packet from the exact review evidence and ask the model to produce the structured qualification record.",
+      "step_2_quiet": "When outcome is no_unresolved_qualification_observed, preserve the review and do not manufacture or request a qualification record.",
+      "deterministic_boundary": "Code may validate the explicit outcome, select the exact cited source excerpts, enforce the call branch, and join identifiers. It may not infer presence from prose, repair the review, or decide role meaning."
+    },
+    "why_not_brittle_deterministic_gating": "The branch is based on an explicit probabilistic semantic judgment with source evidence, not keywords, chronology, or code-authored interpretation. Its false-negative and false-positive rates remain eval targets."
+  }
+}

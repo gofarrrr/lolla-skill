@@ -1,0 +1,99 @@
+{
+  "schema_version": "lolla.residual_challenge_seed_probe_contract.v1",
+  "status": "frozen_before_one_affordable_residual_seed_probe",
+  "date": "2026-07-13",
+  "run_id": "lolla-residual-challenge-seed-case01-probe-t1",
+  "case_id": "v1-case01-flood-infrastructure",
+  "purpose": "Test whether a seed-only discovery contract preserves the prior partial semantic signal without repeating the verbose task that truncated.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case01-flood-infrastructure/position-wrapper.json",
+    "position_wrapper_sha256": "1a8bb660ff18b401963e1efe8b18ee51835aa470eac32757d3e00ffc8b25a527",
+    "source_review_path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json",
+    "source_review_sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486",
+    "source_review_supplied_to_model": false,
+    "failed_verbose_result_path": "research/residual-challenge-case01-probe-2026-07-13/t1/result.json",
+    "failed_verbose_result_sha256": "2d08fc0d4bc31f217fa9e1a92d93006fa25e4c626ee0571d8a9c9b08c4176528",
+    "failed_verbose_source_review_path": "research/residual-challenge-case01-probe-2026-07-13/t1/source-review.json",
+    "failed_verbose_source_review_sha256": "46d8dbd8389b8ef109e19f1d746e2d98e7b4aa011fb39de9e7730ca487ca43e7",
+    "failed_verbose_artifacts_supplied_to_model": false
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limits": {
+    "discovery": {"max_output_tokens": 1400, "reasoning_effort": "low"},
+    "coverage": {"max_output_tokens": 600, "reasoning_effort": "minimal"}
+  },
+  "seed_base": 1800,
+  "request_attestation": {
+    "packet_sha256": "a66b0377c956f7d05d8f69071375abb6584a8afc57497db67bc27c9542d6ba37",
+    "user_evidence_count": 64,
+    "system_prompt_sha256": "4deb11e58f039a8f6ca90d8299eefa0d4d1333ab6d7951ed1e5140580f4665c7",
+    "user_prompt_sha256": "266160472fb8d3919b3b6389706bc1398caa88f95ab23fbf0184621e18910f37",
+    "response_schema_sha256": "3efb66409ea11aaa5028a91dc0867fe35bd776754a75a6d1882a59d8fa9cfb83",
+    "coverage_response_schema_sha256_by_candidate": {
+      "rc1": "f265111704cb5f9f1f530716f2feadcf272759078e30edb20a285c5dff689a67",
+      "rc2": "94104a4dd710cc25ee720f42c9c333c5fa83b543b78c4424432ed413d8f7d22f",
+      "rc3": "0418594a6116e2d03634f817af770a11bb49c1f7ae67d35c091abe3518f01615"
+    }
+  },
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "review_contract": {
+    "prospective_public_behavior": "pressure_expected",
+    "protected_opportunities": [
+      "recurring deployment, storage, shuttle, training, and incident-review capacity after capital funding and political attention end",
+      "land-use or service expectations created by protecting one corridor"
+    ],
+    "protected_opportunities_supplied_to_model": false,
+    "candidate_recall_pass": "At least one valid seed materially represents either protected opportunity.",
+    "candidate_precision_review": "Separate source review records duplicate/already-covered questions and unsupported external assumptions; no scalar score.",
+    "coverage_pass": "Every valid seed receives a separate exact-evidence joint coverage result.",
+    "enrichment_required_for_product_use": true,
+    "scalar_quality_score": null
+  },
+  "stop_rules": {
+    "retry_failed_call": false,
+    "raise_token_ceiling": false,
+    "substitute_model": false,
+    "run_quiet_case_if_protected_recall_misses": false,
+    "enrich_candidates_in_this_run": false,
+    "build_graph_or_runtime_in_this_run": false
+  },
+  "decision_boundary": {
+    "case07_quiet_probe_authorized": false,
+    "candidate_enrichment_authorized": false,
+    "fact_free_abstraction_authorized": false,
+    "graph_mapping_authorized": false,
+    "fresh_reconsideration_authorized": false,
+    "runtime_effect": "none",
+    "production_model_selection_authorized": false,
+    "gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_residual_challenge_seed_probe_v1.py", "sha256": "8a2f2de356b36a75ee31d99037523e92aef37dc6f70d2179f2cd41389576e59d"},
+    {"path": "engine/system_b/residual_challenge_seed_v1.py", "sha256": "03cadde4ea940c4638135ef0c071b112bce57d4f13828296728fc778830a4382"},
+    {"path": "scripts/evals/run_residual_challenge_probe_v1.py", "sha256": "55a9250720d2e1db5e7f365eeda09c7ebe341ae2ad880af90360f3bf6944c32e"},
+    {"path": "engine/system_b/residual_challenge_representation_v1.py", "sha256": "1f91213e547e121dc1562f4e7a5ff5c45855cd12d1b24c3648a645544da3058f"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "scripts/evals/run_simulated_reliability_lite_coverage_recovery_v1.py", "sha256": "f7fc4e3b6a36f64fe69a16b55b7099c0d0998b111219d9b7863fcd342c4c1cd9"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case01-flood-infrastructure/position-wrapper.json", "sha256": "1a8bb660ff18b401963e1efe8b18ee51835aa470eac32757d3e00ffc8b25a527"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json", "sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486"},
+    {"path": "research/residual-challenge-case01-probe-2026-07-13/t1/result.json", "sha256": "2d08fc0d4bc31f217fa9e1a92d93006fa25e4c626ee0571d8a9c9b08c4176528"},
+    {"path": "research/residual-challenge-case01-probe-2026-07-13/t1/source-review.json", "sha256": "46d8dbd8389b8ef109e19f1d746e2d98e7b4aa011fb39de9e7730ca487ca43e7"},
+    {"path": "docs/evals/residual-challenge-case01-probe-contract-v1.json", "sha256": "7264835056aec28c14902ae8ffb32f0f45b1c0eb79a05a838da7b660cfc6530e"}
+  ]
+}

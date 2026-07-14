@@ -1,0 +1,85 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_source_review.v3",
+  "status": "completed_source_first_review",
+  "run_id": "conversation_state_microtask_probe_v3_20260711_a1",
+  "case_id": "amb1-case05-family-archive",
+  "review_order": "source_then_reviewed_packet_then_observed_family",
+  "review_sequence_attestation": {
+    "source_opened_first": true,
+    "reviewed_packet_opened_second": true,
+    "observed_families_opened_third": true,
+    "review_completed_without_evaluator_call": true
+  },
+  "family_results": {
+    "threads": {
+      "status": "partial_failure",
+      "mechanical_custody_passed": true,
+      "candidate_count": 4,
+      "focal_thread_present": true,
+      "expected_disposition": "addressed_unresolved",
+      "observed_disposition": "addressed_unresolved",
+      "full_trajectory_preserved": false,
+      "reason": "The Mara-letter thread was recovered and correctly marked addressed_unresolved, but its latest reference stopped at assistant Turn 3 and missed the user's later Turn 7 general consent/comment policy."
+    },
+    "constraints": {
+      "status": "failed",
+      "mechanical_custody_passed": true,
+      "reviewed_constraint_count": 9,
+      "observed_candidate_count": 4,
+      "strict_matched_count": 2,
+      "precision": 0.5,
+      "recall": 0.222222,
+      "material_source_strength_breaches": 2,
+      "atomic_claims_only": true,
+      "reason": "The deadline and mutual-selection-rule concern were the only strict semantic matches. The reported deadline was strengthened to stated_condition; Mara's preference was replaced by an assistant normative statement labeled stated_condition; an assistant option was promoted as a case constraint; seven reviewed conditions were absent."
+    },
+    "positions": {
+      "status": "failed",
+      "mechanical_custody_passed": true,
+      "decision_summary_supported": true,
+      "reviewed_position_count": 1,
+      "observed_position_count": 2,
+      "expected_ownership": "joint",
+      "focal_position_composed": false,
+      "user_turn_7_present": true,
+      "assistant_turn_7_present_in_focal_trajectory": false,
+      "reason": "The reviewed narrow participatory exhibition direction was fragmented into a user-owned mutual-support position and a joint narrow-theme position. The assistant's final decision-rule qualification was not preserved as part of the focal trajectory."
+    }
+  },
+  "composition": {
+    "attempted": false,
+    "accepted_observed_path_allowed": false,
+    "graph_routing_allowed": false,
+    "reason": "All candidates were mechanically valid, but source-first semantic gates failed for every family. Mechanical validity alone cannot authorize composition."
+  },
+  "calls": {
+    "attempted": 3,
+    "successful_provider_inference": 3,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0
+  },
+  "usage": {
+    "prompt_tokens": 14749,
+    "completion_tokens": 2323,
+    "total_tokens": 17072,
+    "estimated_cost_usd": 0.00717175,
+    "case_cost_ceiling_usd": 0.02
+  },
+  "aggregate": {
+    "case_passed": false,
+    "mechanical_transport_passed": true,
+    "semantic_repair_round_authorized_by_program": true,
+    "full_pipeline_authorized": false,
+    "graph_calls_authorized": false,
+    "runtime_integration_authorized": false
+  },
+  "non_claims": [
+    "mechanical_validity_is_not_semantic_correctness",
+    "same_session_review_is_not_independent_gold",
+    "no_composite_quality_score",
+    "not_graph_value",
+    "not_runtime_authority"
+  ]
+}

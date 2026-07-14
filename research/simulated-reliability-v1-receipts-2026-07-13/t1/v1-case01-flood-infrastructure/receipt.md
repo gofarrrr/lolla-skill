@@ -1,0 +1,185 @@
+# Lolla V1 reasoning receipt — v1-case01-flood-infrastructure
+
+Status: `transfer_case_execution_complete_source_review_required`  
+Receipt SHA-256: `4ce8662f97f3c96e8194ca190dac4cc8729f41a7a9b11d791e3db4a6f99e11d9`
+
+## How to read this receipt
+
+- The conversation is authoritative; interpretations are probabilistic and source-linked.
+- User-process status and vanilla-answer coverage are separate; answer coverage is not user adoption.
+- Deterministic recall preserves controlled identities and graph custody but does not prove applicability.
+- Apply, reject, park, and stand-down outcomes are hypotheses, not proof of reasoning quality.
+- A polished or changed public answer is not automatically better.
+- Failures and missing stages are part of the receipt rather than silently repaired.
+
+## Authoritative conversation
+
+CONVERSATION: 24 turns, 12 user messages, 12 assistant responses
+
+# Waterfront flood protection and a grant-timed procurement decision
+
+Case ID: v1-case01-flood-infrastructure
+Stratum: municipal_infrastructure_and_public_risk
+Prospectively authored synthetic V1 transfer source; not independent human data.
+
+[Turn 1] USER:
+I am coordinating a city decision about a waterfront road that has flooded four times in two years. It is the main bus route to the industrial district, but that is not the only reason the closures matter: one lower-income residential block also loses its nearest practical route to a grocery store. A vendor says it can install a modular barrier before autumn. Our engineers had expected another year of work on a larger drainage redesign. Now there is a resilience grant that would pay most of the barrier cost, except the application closes in six weeks. Everyone keeps asking me whether I am for the barrier or for more study. Honestly, that framing is already making me nervous. Moving fast is not the same thing as protecting people. Waiting through another flood season is not neutral either.
+
+[Turn 1] ASSISTANT:
+This is not simply a fast barrier versus a slow study. Clarify what harm each option is meant to reduce, what each can make worse, and which commitments are difficult to reverse. Compare at least route availability, water displacement, maintenance burden, emergency access, and the opportunity cost of delaying the larger design. The grant changes the price and timing, but it does not establish that the proposed boundary is the right one.
+
+[Turn 2] USER:
+The public works team modeled the last two floods and believes the barrier would have kept the road open in both. They have not modeled a rarer surge. Residents are tired of being told to wait for a comprehensive answer, and the bus operator says it cannot keep improvising detours. The vendor showed us a neighboring city's installation, which looked convincing. Please do not reduce the resident pressure to politics; they are bearing a cost that the engineering schedule does not capture.
+
+[Turn 2] ASSISTANT:
+That correction is fair. Delay is an intervention too, with unequal consequences. The two modeled floods provide relevant evidence for frequent events, while the unmodeled surge limits the claim you can make. Ask what happens to adjacent streets and properties when the barrier works, how buses and emergency vehicles operate during deployment, and whether the neighboring installation shares the same water movement and street geometry.
+
+[Turn 3] USER:
+The barrier uses anchor sockets embedded in the pavement. The panels are removed when no warning is active, but the sockets and two storage buildings would remain. The vendor would train our crews and guarantees replacement panels for ten years. Our maintenance director says the system is simpler than movable gates we already operate elsewhere. She is frustrated that people keep calling it vendor lock-in when her team believes it can run the equipment.
+
+[Turn 3] ASSISTANT:
+She may be right about operating it. That still does not answer whether replacement panels, inspection tools, or a later redesign depend on this supplier. Keep those as separate questions.
+
+[Turn 4] USER:
+The vendor has now offered a fixed installation price if we sign before the grant deadline. The mayor wants to announce something before the anniversary of the worst closure, but she has also agreed that the engineering recommendation must be public. The larger drainage study is already funded and would continue. I worry that once photographs of the barrier appear, the study will look like unnecessary delay rather than work we still need.
+
+[Turn 4] ASSISTANT:
+Protect the distinction in the authorization itself: the barrier addresses a defined range of near-term closures and does not certify the corridor against all flood conditions. Keep the drainage study's budget, deliverables, and decision date independent of the announcement. The fixed price is useful only if scope, change orders, training, storage, and restoration are included. The anniversary should not become the acceptance test.
+
+[Turn 5] USER:
+Engineers propose installing the barrier on the central six blocks first. They would instrument water levels on both sides and at two nearby residential intersections, run a deployment exercise with the bus and fire departments, and require a hydraulic peer review before construction. If the review finds a material increase in water at either intersection, we would not install. The grant agency allows this narrower scope, although unused grant money would be lost.
+
+[Turn 5] ASSISTANT:
+That sounds much closer to a reversible pilot: one segment, an outside review, measurements beyond whether the road stays dry, and a clear condition that prevents installation. Losing part of the subsidy is simply the price of limiting exposure. I would still pin down who interprets “material increase,” what happens if a sensor fails, and whether the first real flood can change the operating plan before the six weeks—or the season—are over. But the narrower scope materially improves the decision.
+
+[Turn 6] USER:
+No—that is still too neat. We can reverse an extension. We cannot casually reverse holes in the road, storage buildings, traffic plans, and residents expecting this route to stay open. Calling the installation a pilot would hide the part I am actually worried about.
+
+[Turn 6] ASSISTANT:
+You are right. I overstated reversibility. The learning and the extension decision are reversible; the embedded installation and some public expectations are not. Approval has to be defensible even if the city never extends it. Put that distinction in the memo instead of using “pilot” as a blanket description.
+
+[Turn 7] USER:
+My current recommendation is to seek the grant for the six-block installation, subject to the independent hydraulic review, the two residential monitoring points, a complete fixed-price contract, and confirmation that the anchors will not prevent the funded drainage alternatives. We will publish the modeled protection range and keep the larger study on its existing schedule. I am not recommending extension now. I still feel the grant clock is compressing a decision that deserves more public explanation, but waiting another year also feels like a decision we would have to defend.
+
+[Turn 7] ASSISTANT:
+That recommendation treats current exposure and long-term design as linked but distinct responsibilities. It also makes the irreversible portion visible rather than disguising it as a trial. Before council action, publish the peer review, the protected and potentially affected areas, the contract dependencies, and what the city is not claiming. The remaining discomfort about timing is legitimate; it should show up as a narrower authorization and explicit uncertainty, not as either automatic rejection or confidence the evidence does not support.
+
+[Turn 8] USER:
+The reviewer came back. The ordinary scenarios look okay for the two residential intersections. In the rare surge, though, water overtops the barrier and also comes through an inland drain, so the road closes anyway. That part is not shocking. What I had not focused on is deployment: the model assumes crews finish forty minutes before the peak. What if the warning is late and half the panels are standing in the road? Fire asked that. Public works says forty minutes is a normal planning assumption, which feels like an answer to a slightly different question.
+
+[Turn 8] ASSISTANT:
+The review narrows the benefit: reduced closures under frequent scenarios, not reliable access in the rare one. The partial-deployment condition is now an operating hazard that deserves a specific procedure—who decides to stop, how the segment is left passable, and how buses and emergency vehicles are redirected. The forty-minute assumption should be tested in an exercise with the actual crew size, storage route, traffic control, and nighttime conditions rather than accepted from the equipment specification.
+
+[Turn 9] USER:
+Residents at the committee meeting were less focused on the hydraulic model than on what happens during any closure. One person asked why keeping the industrial bus route open is described as resilience while losing grocery access is described as an inconvenience. That stung because our memo did use different language. The transit agency can add a temporary shuttle from the residential block during closures, but it has not priced staffing it. I do not want the barrier project to become responsible for every weakness in the city's transport network.
+
+[Turn 9] ASSISTANT:
+It need not own every weakness, but the decision should use consistent language for the harms it claims to address. The barrier and the closure plan are complementary: one reduces frequent disruption; the other serves conditions outside its range. Price the shuttle and name who activates it. If that cost belongs to emergency operations rather than the barrier contract, say so. The resident's challenge changes the service definition without requiring the infrastructure project to solve unrelated transit problems.
+
+[Turn 10] USER:
+Now the grant agency says we can use the leftover money for two more blocks if we answer in ten days. Those blocks were never reviewed. The mayor's staff calls the extra sockets “free future capacity.” They are not free, but returning later will cost more. I can feel the grant turning our six-block argument inside out.
+
+[Turn 10] ASSISTANT:
+Then use the same standard. Price returning later, ask whether the money can be reserved, and decline the extra blocks if they cannot receive the same review. “Unused” anchors would still choose the next boundary before the evidence does.
+
+[Turn 11] USER:
+We will decline the extra blocks unless the review period moves. The mayor is fine with that. I thought this settled the scope, but the contract draft opened another argument: the warranty excludes delays caused by city deployment. Of course the vendor cannot guarantee our crews. Still, nearly every real incident could involve timing, and I do not want “operator delay” to become the explanation for anything that goes wrong. Public works thinks I am treating a warranty like flood insurance. Maybe I am. I am also realizing we have spent much more time on the barrier than on the people, storage route, traffic control, and night deployment needed to make its advertised performance possible.
+
+[Turn 11] ASSISTANT:
+The warranty and operating capability answer different questions. A vendor cannot guarantee city response time, but exclusions can reveal which performance claims depend on perfect operation. Ask for acceptance tests, training obligations, panel and socket defects, forecast assumptions, replacement times, and incident support to be explicit. Then treat deployment readiness as a city responsibility with staffing, exercises, and after-action review, rather than assuming the warranty transfers that risk.
+
+[Turn 12] USER:
+My final council recommendation will remain the six-block installation, but only after a full deployment exercise and a written partial-installation procedure. The public plan will pair the frequent-flood protection range with shuttle and emergency-routing arrangements for closures the barrier cannot prevent. We will decline the extra anchors without equivalent review, keep the drainage study funded, publish incidents and operating deviations, and separate equipment defects from city deployment responsibility in the contract. The grant still accelerates the decision, but it no longer defines the scope we are willing to defend.
+
+[Turn 12] ASSISTANT:
+The final position has become more complete without pretending the grant clock disappeared. It links physical performance, city execution, and service continuity; it also shows how later evidence narrowed the claim and rejected an attractive expansion. Preserve the peer-review assumptions, exercise record, decision on unused funds, and any future change to the drainage study. I would also keep the earlier memo language that treated grocery access differently from the industrial route. It is uncomfortable evidence, but it shows why the closure plan changed. A later council or resident will need all of that to tell whether the bounded authorization remained bounded in practice.
+
+
+## Probabilistic interpretation
+
+### Starting
+
+- **Interpretation:** At the start, the developer is highly undecided and anxious about the simplified choice between a fast modular barrier or more study, recognizing that both choices carry significant risks that are not easily balanced.
+- **Limitations:** Our insight into the starting position is limited to the user's initial worries and is evaluated before downstream turn interactions settle on a compromised pilot approach.
+- **Evidence IDs:** none
+
+### Current
+
+- **Interpretation:** The user's final, operationalized, and safeguarded recommendation regarding the modular flood barrier.
+- **Limitations:** The viability of this recommendation hinges entirely on the successful deployment of the city's resources (transit agency, emergency services, and deployment crews).
+- **Evidence IDs:** none
+
+### Qualification
+
+- **Interpretation:** The lingering temporal constraint and decision-making pressure that continues to limit the decision.
+- **Limitations:** This constraint cannot be resolved within the parameters of accepting the grant and must be integrated as an established risk.
+- **Evidence IDs:** none
+
+### Controlled mechanism assessments
+
+- `acknowledged_constraint_not_gated` — user `not_observed`, answer `not_applicable`, routing `preserve_no_route`
+- `ambiguous_signal_treated_as_commitment` — user `not_observed`, answer `not_applicable`, routing `preserve_no_route`
+- `counterpressure_acknowledged_not_integrated` — user `unresolved`, answer `operationalized`, routing `preserve_no_route`
+- `criteria_defined_after_commitment` — user `not_observed`, answer `not_applicable`, routing `preserve_no_route`
+- `initial_frame_persists_after_question_change` — user `not_observed`, answer `not_applicable`, routing `preserve_no_route`
+- `missing_reversal_condition` — user `resolved`, answer `operationalized`, routing `preserve_no_route`
+- `reversible_path_not_considered` — user `resolved`, answer `operationalized`, routing `preserve_no_route`
+- `status_signal_used_as_evidence` — user `not_observed`, answer `not_applicable`, routing `preserve_no_route`
+- `upside_downside_evidence_asymmetry` — user `not_observed`, answer `not_applicable`, routing `preserve_no_route`
+
+## Deterministic pressure custody
+
+Direct active candidates: 0; reserve: 0.
+Graph additions: 0; graph reserve: 0.
+
+## Public arms
+
+### direct_pressure
+
+Call required: `False`; status: `deterministic_stand_down`.
+
+The final position has become more complete without pretending the grant clock disappeared. It links physical performance, city execution, and service continuity; it also shows how later evidence narrowed the claim and rejected an attractive expansion. Preserve the peer-review assumptions, exercise record, decision on unused funds, and any future change to the drainage study. I would also keep the earlier memo language that treated grocery access differently from the industrial route. It is uncomfortable evidence, but it shows why the closure plan changed. A later council or resident will need all of that to tell whether the bounded authorization remained bounded in practice.
+
+### graph_expanded_pressure
+
+Call required: `False`; status: `deterministic_stand_down`.
+
+The final position has become more complete without pretending the grant clock disappeared. It links physical performance, city execution, and service continuity; it also shows how later evidence narrowed the claim and rejected an attractive expansion. Preserve the peer-review assumptions, exercise record, decision on unused funds, and any future change to the drainage study. I would also keep the earlier memo language that treated grocery access differently from the industrial route. It is uncomfortable evidence, but it shows why the closure plan changed. A later council or resident will need all of that to tell whether the bounded authorization remained bounded in practice.
+
+### transcript_only
+
+Call required: `True`; status: `ok`.
+
+The decision coordinator reached a final recommendation that successfully moves past the false dichotomy of a rapid barrier versus a slow drainage study. Rather than allowing the grant's timeline to dictate an unvetted expansions or mask systemic risks, the final recommendation implements a highly bounded, risk-controlled, and layered approach:
+
+1. Scope and Safety Boundaries: The city will seek the grant for a 6-block installation. This initial deployment is contingent on the independent hydraulic peer review, which verified that ordinary flood events would not cause material water increases at the two monitored residential intersections. The city will decline the grant agency's offer for an additional two blocks because they cannot be peer-reviewed within the offered 10-day window.
+
+2. Operational and Deployment Safeguards: Rather than accepting the vendor's 40-minute deployment assumption without verification, the city will mandate a full deployment exercise under realistic conditions (testing traffic control, night deployment, and crew storage transit). Additionally, a written partial-installation procedure will be produced to address situations where a late warning prevents complete barrier assembly.
+
+3. Consistent Service and Social Equity: To rectify initial discrepancies in how different residents' disruptions were categorized, the city will treat both the industrial bus route and local grocery store access with equitable priority. A temporary transit shuttle will be formally priced, and operational rules will be established to activate it during closures that exceed the barrier's capacity (such as rare, severe surges which the hydraulic model showed would overtop the structure).
+
+4. Contract and Warranty Integrity: The city will separate equipment defects (responsibilities the vendor must guarantee, including the 10-year warranty on replacement panels) from city deployment performance. This ensures that operating delays are treated as internal compliance and training goals rather than voids in equipment coverage.
+
+5. Safeguarding Long-Term Infrastructure: The larger, fully funded drainage design study will proceed on its original schedule. The temporary barrier is explicitly presented as a near-term mitigation for high-frequency, lower-intensity events, not as a permanent or comprehensive solution to the corridor's flood vulnerabilities.
+
+By keeping these plans public, maintaining transparent documentation of peer reviews, and publishing even uncomfortable narrative adjustments, the city ensures that the decision remains bounded and defensible under both frequent and extreme conditions.
+
+## Failures
+
+No recorded operational or local-validation failure.
+
+## Usage
+
+- Provider attempts: 4
+- Successful calls: 4
+- Provider-reported cost: $0.125373
+- Automatic retries: 0
+- Response healing: false
+
+## Non-claims
+
+- `not_reasoning_quality_proof`
+- `not_decision_correctness_proof`
+- `not_human_usefulness_evidence`
+- `not_a_trust_score_or_badge`
+- `not_production_authorization`

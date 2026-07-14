@@ -1,0 +1,133 @@
+{
+  "authorization_sha256": "624a1bfba44f8f0aa06fef12a069f646f195dbd452fdc96b5a20af7899d1e7db",
+  "bundle_sha256": "9d9b9439627756bf702c2e0e3cce00988fd40e923b0befa3a26709bdf533bc95",
+  "call_result_sha256": "bb63baad9e85eadbfdd8142dc7c29a0999bdea1bd9cb4397a80faf52ffb72567",
+  "case_id": "v1-case01-flood-infrastructure",
+  "contract_sha256": "2b03c3bbd9f4d667bdb7b52ae590057416125f82b3417993c23756e565d3064c",
+  "cost_result": {
+    "accounting_basis": "reserved_worst_case_unknown_charge",
+    "conservative_accounted_cost_usd": 0.00816425,
+    "exact_provider_cost_status": "unavailable_no_usage_returned",
+    "exact_provider_cost_usd": null,
+    "within_frozen_total_budget": true
+  },
+  "decision": {
+    "additional_provider_call_authorized": false,
+    "next_boundary": "Return provider-free. Build a smaller documented-subset schema and local compatibility lint; any new attempt requires a new frozen authorization.",
+    "quiet_control_authorized": false,
+    "r3_semantic_exit_condition_met": false
+  },
+  "diagnosis": {
+    "current_documentation_observation": "Google documents enum/format for strings, not minLength/maxLength, and warns that large or deeply constrained schemas may be rejected.",
+    "established_facts": [
+      "OpenRouter routed the request to Google.",
+      "Google rejected the request as INVALID_ARGUMENT before inference.",
+      "Gemini 3.1 Flash-Lite and strict structured output worked in smaller repository probes.",
+      "The frozen R3 schema contains 14 row properties and repeats string length constraints."
+    ],
+    "exact_root_cause": "unknown_from_generic_provider_400",
+    "probable_problem_class_not_single_cause": "Google structured-output schema subset or complexity interoperability",
+    "schema_keyword_counts": {
+      "additionalProperties": 2,
+      "attempted_application_condition": 1,
+      "candidate_dispositions": 1,
+      "change_summary": 1,
+      "disposition": 1,
+      "effect": 1,
+      "enum": 5,
+      "failed_condition": 1,
+      "items": 2,
+      "maxItems": 2,
+      "maxLength": 11,
+      "maximum": 1,
+      "minItems": 2,
+      "minLength": 11,
+      "minimum": 1,
+      "model_id": 1,
+      "original_answer_preservation": 1,
+      "pressure_id": 1,
+      "private_guardrail": 1,
+      "properties": 2,
+      "reconsidered_answer": 1,
+      "reopen_condition": 1,
+      "required": 2,
+      "risk_if_forced": 1,
+      "risk_if_ignored": 1,
+      "source_turn_numbers": 1,
+      "strongest_plausible_application": 1,
+      "type": 21,
+      "visible_effect": 1,
+      "why": 1
+    },
+    "why_not_proven": "The response names no offending field, and prior smaller successful calls used some of the same constraints."
+  },
+  "execution_contract_result": {
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "provider_calls_attempted": 1,
+    "provider_calls_succeeded": 0,
+    "quiet_control_authorized": false,
+    "quiet_control_calls": 0,
+    "response_healing": false
+  },
+  "failure_closeout_sha256": "28d278bbb5ff054e09ebce866660ec87307a315ceb7af0ff7e8d93528b9923ab",
+  "provider_error": {
+    "checked_in_redacted_error_sha256": "a069e763ad337028fe4f63378cd845010ad05506e259a0d577cc914eb441ac07",
+    "http_status": 400,
+    "inference_reached": false,
+    "private_raw_file_sha256": "88249e533f6c81a2be7a178c927010c2c3b2a5c74e6da61b3d69ec11ca15fabf",
+    "provider_error_value_sha256": "d9f62f78b5d6a058fe3f4f3c5d52b4a3d36173db4ef30a73cc435c166897c474",
+    "provider_name": "Google"
+  },
+  "request_body_sha256": "edf53770f7a67359eda6898b2e37d6f229f2b69b9286d9c40a7d8316ad7b23ec",
+  "run_id": "lolla-r3-fresh-consumer-case01-pressure-r1",
+  "schema_version": "lolla.r3_fresh_consumer_failure_closeout.v1",
+  "source_review": {
+    "dimensions": [
+      {
+        "dimension": "source_grounding",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "disposition_quality",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "non_forced_graph_contribution",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "original_advice_preservation",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "unsupported_claim_leakage",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "private_over_absorption",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "public_bloat_and_hedging",
+        "verdict": "not_evaluable_before_inference",
+        "why": "The provider rejected the request before returning a candidate."
+      },
+      {
+        "dimension": "exact_cost_and_failure_custody",
+        "verdict": "partial",
+        "why": "Failure custody, the one-call ceiling, no-retry policy, and worst-case budget accounting passed; the provider returned no generation identity or exact usage cost."
+      }
+    ],
+    "scalar_quality_score": null,
+    "status": "not_run_candidate_absent",
+    "value_signal": "not_evaluable_candidate_absent"
+  },
+  "status": "r3_pressure_request_rejected_before_inference_preserved"
+}

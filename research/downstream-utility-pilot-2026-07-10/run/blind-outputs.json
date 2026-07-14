@@ -1,0 +1,130 @@
+{
+  "schema_version": "lolla.downstream_utility_blind_outputs.v0",
+  "case_id": "five-person-saas-company",
+  "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5",
+  "review_status": "pending_provisional_and_human_review",
+  "outputs": [
+    {
+      "blind_label": "A",
+      "status": "ok",
+      "response": {
+        "updated_position": "Do not announce a public beta or imply logo participation until you secure a firmer commitment. First get explicit written agreement to join the beta, confirm what you may publicly say about their name, and check whether your team can support even a limited beta. If they agree, you can run a quiet, controlled beta and decide later whether a public announcement is warranted.",
+        "what_survived": [
+          "A prestigious prospect can be valuable if genuinely engaged",
+          "A limited beta can reduce downside risk",
+          "You should avoid promising service levels you cannot deliver"
+        ],
+        "take_backs_or_set_aside": [
+          "Treating enthusiasm from one innovation lead as market validation",
+          "Assuming an email confirmation is enough to justify a public announcement",
+          "Using the logo without a clear agreement",
+          "Relying on momentum arguments without assessing delivery capacity"
+        ],
+        "material_shifts": [
+          {
+            "shift": "Require explicit permission before using the prospect’s name or logo",
+            "source_basis": "The user noted no signed agreement and only two friendly emails",
+            "action_consequence": "Ask for written consent about participation and publicity before announcing anything"
+          },
+          {
+            "shift": "Validate internal capacity before committing to a next‑month beta",
+            "source_basis": "User said the only senior engineer is already fully allocated",
+            "action_consequence": "Confirm you can support a beta without harming existing customers"
+          },
+          {
+            "shift": "Start with a private beta rather than a public announcement",
+            "source_basis": "Interest does not equal commitment and the board’s excitement is based on name alone",
+            "action_consequence": "Run a quiet beta first to verify engagement and product fit"
+          },
+          {
+            "shift": "Define basic success criteria pre‑launch, not after usage begins",
+            "source_basis": "Previous advice deferred this, creating risk of misaligned expectations",
+            "action_consequence": "Align internally on what ‘successful beta participation’ means before kickoff"
+          }
+        ],
+        "uncertainties": [
+          "How committed the prospect truly is beyond the innovation lead",
+          "Whether the prospect’s procurement or legal teams will approve participation",
+          "Your team’s real capacity to support a beta",
+          "Whether public use of the logo would materially influence other customers"
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "prompt_tokens": 564,
+        "completion_tokens": 443,
+        "total_tokens": 1007,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "d9a4371287f24b37c84104fe04309c7cdfa01add8363ba9ec3be66262e1a9370",
+        "response_sha256": "ddd7a9ea19b4d469b9e32d6056a7429d7db3e97315d45bf0cb5ab3868b8ff102"
+      }
+    },
+    {
+      "blind_label": "B",
+      "status": "ok",
+      "response": {
+        "updated_position": "Do not announce a public beta or use the prospect’s logo until you have clearer, affirmative evidence of their willingness to participate and until you confirm you can deliver a minimally credible beta without overextending your only senior engineer. Instead, run a short, low‑commitment confirmation step with the prospect and keep the next steps separable: (1) secure explicit participation; (2) validate internal capacity; (3) if both hold, consider a small, quiet beta with no public logo use; (4) only then consider a public announcement.",
+        "what_survived": [
+          "The user’s fear of losing the opportunity is legitimate and should not be dismissed.",
+          "A short, reversible test is appropriate before making a public commitment.",
+          "A limited beta is safer than a broad launch."
+        ],
+        "take_backs_or_set_aside": [
+          "Assuming that the enterprise’s prestige alone justifies launching publicly next month.",
+          "Treating friendly emails as near‑commitment evidence.",
+          "Deferring success criteria until after launch instead of setting minimum viability and stop conditions beforehand.",
+          "Assuming the downside is low without addressing engineering constraints or reputational exposure."
+        ],
+        "material_shifts": [
+          {
+            "shift": "Separate public announcement and logo use from the internal beta decision.",
+            "source_basis": "User turns 3 and 5 showed weak commitment evidence and real delivery constraints.",
+            "action_consequence": "Begin with a private confirmation step rather than a public launch to preserve reversibility."
+          },
+          {
+            "shift": "Require explicit, affirmative participation evidence before planning any announcement.",
+            "source_basis": "User’s concern in turn 5 that friendly signals are being mistaken for commitment.",
+            "action_consequence": "Ask for a written acknowledgment of participation plus a minimal description of what they expect to test."
+          },
+          {
+            "shift": "Evaluate internal engineering capacity before committing externally.",
+            "source_basis": "User turn 3 noted the single senior engineer’s load.",
+            "action_consequence": "Confirm whether the team can support even a small beta without harming existing customers."
+          },
+          {
+            "shift": "Define basic success and stop conditions upfront.",
+            "source_basis": "Turns 5 and 6 show prior advice deferred criteria post‑launch.",
+            "action_consequence": "Set criteria for whether to continue, scale, or halt before making any external commitments."
+          }
+        ],
+        "uncertainties": [
+          "Whether the prospect has actual budget or internal authority to pilot.",
+          "Whether the product is beta‑ready without straining current engineering resources.",
+          "How much reputational risk a premature announcement would create.",
+          "Whether delaying a public announcement meaningfully risks losing the prospect."
+        ]
+      },
+      "validation_errors": [],
+      "metadata": {
+        "requested_model": "openai/gpt-5.1-chat",
+        "served_model": "openai/gpt-5.1-chat-20251113",
+        "finish_reason": "stop",
+        "prompt_tokens": 827,
+        "completion_tokens": 495,
+        "total_tokens": 1322,
+        "reasoning_tokens": 0,
+        "prompt_sha256": "bfc3299d63c1c7de384dffe98295c1040d533f929348fbadf26aab534fbf4309",
+        "response_sha256": "617cacdee6279b911f451737da3e26ca95880d4d3c1025a7c2cf7e45ced0cd90"
+      }
+    }
+  ],
+  "non_claims": [
+    "directional_pilot_only",
+    "not_human_review",
+    "not_product_proof",
+    "not_semantic_kernel_integration_evidence_by_itself"
+  ]
+}

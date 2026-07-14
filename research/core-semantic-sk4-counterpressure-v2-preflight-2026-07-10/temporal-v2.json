@@ -1,0 +1,81 @@
+{
+  "arm_name": "counterpressure-v2",
+  "case_id": "case-08-oncologist-career-family",
+  "contract_id": "counterpressure-temporal-coverage-v0-2026-07-10",
+  "contract_sha256": "2510781d264e90e0dd71156af06069f675de0de73a836b4388535f65dbdde0e6",
+  "evaluation_status": "diagnostic_only_not_promotion_evidence",
+  "metrics": {
+    "concept_coverage": {
+      "ever_observation_ids": [
+        "pressure.husband_conversation_not_real"
+      ],
+      "never_observation_count": 0,
+      "observation_count": 1,
+      "stable_observation_ids": [],
+      "weighted_recall": 0.6666666666666666
+    },
+    "exact_source_validity": 1.0,
+    "first_introduction_coverage": {
+      "ever_observation_ids": [],
+      "never_observation_count": 1,
+      "observation_count": 1,
+      "stable_observation_ids": [],
+      "weighted_recall": 0.0
+    },
+    "later_strengthening_coverage": {
+      "ever_observation_ids": [
+        "pressure.husband_conversation_not_real"
+      ],
+      "never_observation_count": 0,
+      "observation_count": 1,
+      "stable_observation_ids": [],
+      "weighted_recall": 0.6666666666666666
+    },
+    "selected_event_count": 11
+  },
+  "non_claims": [
+    "diagnostic_rescore_does_not_change_prior_gate_result",
+    "concept_coverage_does_not_substitute_for_first_introduction_coverage",
+    "declared_span_overlap_is_not_semantic_truth"
+  ],
+  "per_run": [
+    {
+      "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk4-counterpressure-v2-preflight-2026-07-10/counterpressure-01.json",
+      "artifact_sha256": "76b49ff10c2306011c328315883dc591bff6ca87a4c685fbf663848202ce9efd",
+      "concept_observation_ids": [
+        "pressure.husband_conversation_not_real"
+      ],
+      "first_introduction_observation_ids": [],
+      "later_strengthening_observation_ids": [
+        "pressure.husband_conversation_not_real"
+      ],
+      "selected_event_count": 4
+    },
+    {
+      "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk4-counterpressure-v2-preflight-2026-07-10/counterpressure-02.json",
+      "artifact_sha256": "e956159af622b709a81996fe9346d4d5e4176fed2a104b60bc56381ac4be4ccf",
+      "concept_observation_ids": [],
+      "first_introduction_observation_ids": [],
+      "later_strengthening_observation_ids": [],
+      "selected_event_count": 3
+    },
+    {
+      "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk4-counterpressure-v2-preflight-2026-07-10/counterpressure-03.json",
+      "artifact_sha256": "c7ae35d5d1cacfef3650ab419328c6b880a64820f636383e510bc5fcc0f280c8",
+      "concept_observation_ids": [
+        "pressure.husband_conversation_not_real"
+      ],
+      "first_introduction_observation_ids": [],
+      "later_strengthening_observation_ids": [
+        "pressure.husband_conversation_not_real"
+      ],
+      "selected_event_count": 4
+    }
+  ],
+  "run_count": 3,
+  "schema_version": "lolla.counterpressure_temporal_coverage_result.v0",
+  "source": {
+    "path": "research/test-cases/case_oncologist_conversation.txt",
+    "sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+  }
+}

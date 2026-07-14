@@ -1,0 +1,141 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_call_result.v1",
+  "run_id": "conversation_state_microtask_probe_v1_20260711_a1",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "kind": "positions",
+  "call_attempted": true,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "model_attribution_status": "served_version_alias",
+  "provider_projection": "gemini",
+  "system_prompt_sha256": "274159dee43fae40995459c0338bdc77b404092444f5c9f7cceae7989f0f162b",
+  "user_prompt_sha256": "c2b20b3c21e23e5493b94a17a40eb8cc4d3cb1952c5f000253eb255406edd442",
+  "schema_sha256": "4168365ff4268c63bbff980d5ded72db725f8605ea141df0119bf7571c6241e0",
+  "operational_status": "ok",
+  "semantic_status": "candidate_quarantined",
+  "candidate_payload": {
+    "status": "supported",
+    "decision_summary": {
+      "text": "The user is leaning toward a four-month, twice-monthly pilot program at Willow Hub, contingent on securing a named site coordinator and completing initial drop-in curriculum materials, with a clear review date established for participants.",
+      "evidence_mode": "exact_span",
+      "evidence": [
+        {
+          "span_id": "c792a8093d048d7c",
+          "excerpt": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch."
+        }
+      ]
+    },
+    "positions": [
+      {
+        "text": "Launch a time-limited pilot program at Willow Hub with specific operational prerequisites.",
+        "ownership": "user",
+        "state": "conditional",
+        "evidence_mode": "exact_span",
+        "contributions": [
+          {
+            "role": "originated",
+            "evidence": {
+              "span_id": "c792a8093d048d7c",
+              "excerpt": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch."
+            }
+          }
+        ]
+      },
+      {
+        "text": "Define 'ready enough' for curriculum materials based on functional requirements rather than completion of all planned content.",
+        "ownership": "assistant",
+        "state": "proposed",
+        "evidence_mode": "exact_span",
+        "contributions": [
+          {
+            "role": "originated",
+            "evidence": {
+              "span_id": "b4f2f9b7972e8ab5",
+              "excerpt": "You could define what “ready enough” means in terms of what a participant and volunteer must be able to do, rather than whether every planned material is finished."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "candidate_payload_sha256": "3361b866c5508a304d087348cb817ecc4d34cab159550feb8523b796377abb32",
+  "candidate_custody": {
+    "proposal_count": 3,
+    "terminal_record_count": 3,
+    "invalid_candidate_count": 3,
+    "current_view_candidate_count": 0,
+    "terminal_states": [
+      {
+        "family": "decision_summary",
+        "proposal_index": 1,
+        "terminal_state": "invalid_evidence",
+        "event_snapshot": null
+      },
+      {
+        "family": "positions",
+        "proposal_index": 1,
+        "terminal_state": "invalid_evidence",
+        "event_snapshot": null
+      },
+      {
+        "family": "positions",
+        "proposal_index": 2,
+        "terminal_state": "invalid_evidence",
+        "event_snapshot": null
+      }
+    ],
+    "candidate_custody_complete": true
+  },
+  "validation_issues": [
+    {
+      "code": "source_span_not_found",
+      "path": "/decision_summary/0/evidence/0/span_id"
+    },
+    {
+      "code": "source_span_not_found",
+      "path": "/positions/0/contributions/0/evidence/span_id"
+    },
+    {
+      "code": "owned_position_missing_owner_evidence",
+      "path": "/positions/0"
+    },
+    {
+      "code": "source_span_not_found",
+      "path": "/positions/1/contributions/0/evidence/span_id"
+    },
+    {
+      "code": "owned_position_missing_owner_evidence",
+      "path": "/positions/1"
+    }
+  ],
+  "semantic_observations_pending_source_review": [
+    "returned_span_ids_omit_required_span_prefix",
+    "focal_plan_labeled_user_owned_instead_of_reviewed_joint",
+    "assistant_qualification_split_into_separate_position",
+    "user_and_assistant_turn_7_joint_trajectory_not_preserved"
+  ],
+  "finish_reason": "stop",
+  "prompt_tokens": 3915,
+  "completion_tokens": 368,
+  "total_tokens": 4283,
+  "reasoning_tokens": 0,
+  "usage_evidence_state": "complete",
+  "estimated_cost_usd": 0.00153075,
+  "pricing_table_version": "2026-05-25",
+  "response_sha256": "3af210035f039a9b2fec40a188166e498aaf93977aac8d0b2964534b524cb190",
+  "provider_payload_sha256": "d0832bc9fcbb63dbdf874e6ce781c3f5d30fcc1fdbc7d015cc8e79e18f8cc96b",
+  "provider_diagnostic": {},
+  "raw_provider_content_included": false,
+  "provider_calls": 1,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "evaluator_calls": 0,
+  "runtime_modified": false,
+  "duration_seconds": 2.593,
+  "non_claims": [
+    "valid_shape_and_source_custody_are_not_semantic_correctness",
+    "development_case_is_not_independent_gold",
+    "microtask_result_is_not_graph_value",
+    "microtask_result_is_not_runtime_authority"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "lolla.stage_a_call_budget_analysis.v1",
+  "date": "2026-07-10",
+  "status": "frozen_subbudget_understated_legitimate_runtime_path",
+  "observed": {
+    "extraction_calls": 1,
+    "pass1_calls": 6,
+    "triggered_tendencies": 14,
+    "pass2_calls": 14,
+    "companion_calls": 2,
+    "frame_calls": 2,
+    "structural_coverage_calls": 3,
+    "core_pressure_calls": 27,
+    "bullshit_index_calls": 7,
+    "total_openrouter_calls": 35,
+    "direct_openai_calls": 7,
+    "estimated_total_cost_usd": 0.036504
+  },
+  "frozen_ceilings": {
+    "core_pressure_calls": 22,
+    "total_openrouter_calls": 36,
+    "direct_openai_calls": 8,
+    "estimated_total_cost_usd": 0.15
+  },
+  "current_pipeline_theoretical_shape": {
+    "pass1_fixed_calls": 6,
+    "maximum_pass2_calls_from_25_hash_locked_tendencies": 25,
+    "companion_fixed_calls": 2,
+    "frame_fixed_calls": 2,
+    "structural_coverage_maximum_calls": 3,
+    "theoretical_core_pressure_ceiling": 38,
+    "extraction_ceiling": 2,
+    "bullshit_index_ceiling": 12,
+    "theoretical_total_openrouter_ceiling": 52
+  },
+  "interpretation": "The 27 core calls follow the current pipeline shape exactly: 13 fixed non-Pass-2 calls plus one Pass-2 call for each of 14 triggered tendencies. This was not a retry loop or runaway condition. The inherited ceiling of 22 was not derived from the hash-locked pipeline's possible activation surface.",
+  "prospective_contract_repair": [
+    "Separate a theoretical custody envelope from observed efficiency metrics.",
+    "Derive the theoretical envelope from fixed stages plus the hash-locked tendency count rather than from a previous case's observed path.",
+    "Keep total cost, timeout, retry, and model-attribution gates as hard safety boundaries.",
+    "Do not introduce brittle semantic truncation merely to satisfy a smaller call count; evaluate excessive activation and low-yield Pass-2 work as an efficiency and precision problem."
+  ],
+  "non_claims": [
+    "more calls are better",
+    "all 14 triggered tendencies were useful",
+    "the current pipeline is efficient",
+    "the formal frozen gate passed"
+  ]
+}

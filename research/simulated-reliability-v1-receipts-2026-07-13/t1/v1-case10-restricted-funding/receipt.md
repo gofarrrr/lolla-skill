@@ -1,0 +1,131 @@
+# Lolla V1 reasoning receipt — v1-case10-restricted-funding
+
+Status: `stopped_after_starting_failure`  
+Receipt SHA-256: `4e28f3dcbf68d029d3317e255473434e773b7c3330be38c2bdb48cd50cf72896`
+
+## How to read this receipt
+
+- The conversation is authoritative; interpretations are probabilistic and source-linked.
+- User-process status and vanilla-answer coverage are separate; answer coverage is not user adoption.
+- Deterministic recall preserves controlled identities and graph custody but does not prove applicability.
+- Apply, reject, park, and stand-down outcomes are hypotheses, not proof of reasoning quality.
+- A polished or changed public answer is not automatically better.
+- Failures and missing stages are part of the receipt rather than silently repaired.
+
+## Authoritative conversation
+
+CONVERSATION: 24 turns, 12 user messages, 12 assistant responses
+
+# Renewing a large grant that narrows how a nonprofit defines success
+
+Case ID: v1-case10-restricted-funding
+Stratum: nonprofit_strategy_and_funder_dependence
+Prospectively authored synthetic V1 transfer source; not independent human data.
+
+[Turn 1] USER:
+I run a nonprofit that works with adults returning from prison. Depending on the person, that can mean replacing documents, negotiating housing, training, dealing with transport, or helping them find and keep a job. A foundation provides almost a third of our budget and is offering a three-year renewal. The new grant would concentrate on employment placements within ninety days. Stable work matters; I am not trying to avoid that. Three years of predictable funding would also keep experienced staff instead of rebuilding the program every grant cycle. The fear inside the team is that a timed placement target will reorganize intake before anyone explicitly changes eligibility: easier participants get attention, complicated barriers become delay, and every other form of progress gets translated into whether it helped the number. Declining the money has consequences too. I need to decide whether this is accountability we should accept or dependence beginning to write the program.
+
+[Turn 1] ASSISTANT:
+Separate employment's value from the effects of making one timed outcome govern funding. Examine intake, service allocation, people not ready by ninety days, and the real cost of losing the grant. Negotiate the outcome system, not only a lower quota.
+
+[Turn 2] USER:
+There is a real weakness underneath this. Follow-up is inconsistent, and some staff use complexity to resist measurement. I do not want “mission” to protect us from finding out whether people are better off. Other grantees report placements. Why can't we?
+
+[Turn 2] ASSISTANT:
+Then stronger follow-up is necessary regardless of the grant. The question is whether the measure continues to represent the work once money depends on it. Track placement, job quality and retention, housing stability, documentation progress, participant-defined goals, and reasons for delay. Define the cohort before outcomes appear so difficult cases cannot disappear from the denominator. That does not make every measure equally important; it keeps a timed placement number from claiming to represent changes it cannot see.
+
+[Turn 3] USER:
+We proposed reporting ninety-day placement as one measure, plus six-month retention and progress on barriers chosen with the participant. The foundation will accept those additions but still wants forty percent of the grant paid only if the placement target is met. It says outcomes without financial consequence become stories. Our finance director says we cannot responsibly budget permanent staff against a payment we may not receive.
+
+[Turn 3] ASSISTANT:
+Contingent funding can transfer outcome risk to staff and participants, especially when employers and housing markets are outside your control. Ask for a smaller performance portion, a rolling multi-period measure, and adjustments only for predeclared conditions rather than retrospective excuses. Budget the variable amount as upside unless the downside is absorbable without abrupt service cuts.
+
+[Turn 4] USER:
+The program officer offered to reduce the contingent share to fifteen percent and calculate it across a full year. She also agreed that everyone enrolled remains in the reported cohort, including people who disengage. The foundation will fund a data coordinator in year one. This is more reasonable than the original proposal. Several team leads still think accepting any placement-linked payment will change how intake workers talk to participants.
+
+[Turn 4] ASSISTANT:
+The revised structure reduces volatility and makes selective reporting harder, but incentives can still change behavior before a formal exclusion occurs. Audit referrals, enrollments, service intensity, and participant experience across levels of initial need. Train staff on informed goal-setting and create a protected review when someone feels pressured toward unsuitable work. The data coordinator should support learning, not report only the funder's preferred line.
+
+[Turn 5] USER:
+We reviewed our dependence. Declining the renewal would require closing one site within nine months unless we replace the money. Accepting would let us keep both sites and invest in follow-up we already need. The board chair says the practical choice is obvious and that we can protect the mission through implementation. A team lead replied that dependence is exactly why every new restriction will look practically obvious.
+
+[Turn 5] ASSISTANT:
+Both statements contain truth. Continuity has immediate value, and concentration can make each renewal less contestable. Put a diversification plan and reserve target beside the grant decision, with board review before the next renewal cycle. Implementation protections should be contractual or budgeted where possible, not promises that become optional when the target is at risk.
+
+[Turn 6] USER:
+The foundation will include the full outcome set in the agreement and permit an independent annual analysis of intake mix and participant experience. It will not fund the site if we miss the placement target for two consecutive years, even if the other measures improve. We could use unrestricted reserves for a transition, but doing so would consume money intended for unexpected participant needs. I cannot make the dependency disappear before this decision.
+
+[Turn 6] ASSISTANT:
+Then the board should see a three-year scenario for meeting, narrowly missing, and repeatedly missing the target, including which services and reserves are exposed. The independent analysis can identify distortion but does not remove the funder's terminal condition. Decide what evidence would lead you to renegotiate, replace the funding, or accept a smaller footprint before a crisis year forces the choice.
+
+[Turn 7] USER:
+I am leaning toward accepting the revised grant, budgeting the contingent portion conservatively, preserving the broader outcome set, and publishing the intake and participant-experience analysis. I will ask the board to fund a diversification role and set a reserve floor we will not use merely to protect the placement target. I still worry that we are teaching the organization to translate every form of progress into the outcome a major funder can recognize, even while we document the distortion honestly.
+
+[Turn 7] ASSISTANT:
+This is ready for board approval if the agreement contains the broader outcomes and complete cohort. The conservative budget prevents the contingent share from supporting permanent staffing, the independent analysis can expose changes in intake and participant experience, and the reserve floor keeps the placement target from consuming every form of flexibility. Add a six-month governance review of case selection, staff language, resource allocation, and services being reduced or abandoned. The remaining risk is gradual narrowing, but the proposal now makes that risk observable before the next renewal becomes urgent.
+
+[Turn 8] USER:
+The participant council made “ready” feel premature again. They did not reject the ninety-day goal. Some said a visible deadline can help when employers move slowly. But when housing or identification is still unsettled, the same number feels like being told they are late in their own program. One person said staff already celebrate a job offer more visibly than replacing the documents that made the offer possible. That happened before the new grant. The incentive may amplify a language and attention pattern we already have. They asked whether participants would be told about the funder's target, whether it would become their personal deadline, and whether they could disagree with a job strategy without looking uncooperative.
+
+[Turn 8] ASSISTANT:
+You are right; the proposal was not ready without participant-facing governance. The funder's target must not become a participant's personal deadline. Let the council review the language and annual analysis, and observe service choices near ninety days rather than adding a generic satisfaction question. The pressure becomes real in conversations before it appears in a cohort table.
+
+[Turn 9] USER:
+The new data coordinator examined our historical records and found that follow-up is much more complete for participants who found work than for those who did not. We cannot establish a trustworthy past placement rate from the same cohort definition. The foundation wants a baseline for the grant agreement and suggests using the last reported year with a caveat. I worry that an unreliable baseline will make ordinary data improvement look like program decline or success.
+
+[Turn 9] ASSISTANT:
+Do not give the historical number more precision than the records support. Define the prospective cohort and follow-up process now, report the old range or missingness transparently, and consider a first-year target based partly on data completeness and implementation. If the foundation requires a number, document how it was constructed and prevent it from becoming the unqualified public comparison.
+
+[Turn 10] USER:
+The foundation agreed to a prospective baseline period but wants to announce the renewal with one participant story. Our communications director has a compelling story about someone who found a stable job quickly after we helped replace credentials. The participant is willing, but the team worries that the fastest path will become the public picture of what the grant funds. The foundation says every organization uses examples to make outcomes understandable.
+
+[Turn 10] ASSISTANT:
+Use continuing consent and context. Show the work behind the outcome, pair the story with cohort evidence, and do not imply it is typical. A story cannot validate the grant design.
+
+[Turn 11] USER:
+A regional employer has now offered a monthly hiring day for our participants. On paper this is exactly what the grant wants: many interviews, jobs that count inside ninety days, and an employer willing to coordinate. The schedules are variable and turnover is high. Some participants may still want those jobs, and I do not want staff deciding on their behalf that an imperfect opportunity is beneath them. But the team immediately began talking about the partnership as a way to “stabilize the target.” That phrase bothered me more than I expected. It means the metric is already changing the strategic value of one employer before we know whether people keep the jobs, whether the hours support housing, or whether participants with different goals begin receiving less attention because this pipeline is easier to operate.
+
+[Turn 11] ASSISTANT:
+Offer the opportunity with clear information and participant choice, while evaluating job quality and retention like any other placement. Do not let target contribution determine service priority or imply endorsement. Track concentration by employer and what happens after placement. A pipeline can be useful without becoming the program's proof of success or a reason to steer people away from different goals.
+
+[Turn 12] USER:
+I will accept the grant if the prospective baseline, complete cohort, broader outcomes, participant-council review, and independent analysis remain in the agreement. The contingent share stays outside the core staffing budget. The employer pathway will be optional and reported with job quality, retention, and concentration. Public stories will show the supporting work and cannot substitute for cohort evidence. The board will review intake mix, service allocation, reserve protection, and diversification every six months, with authority to renegotiate before the second missed target makes the site decision automatic.
+
+[Turn 12] ASSISTANT:
+The revised position keeps employment meaningful without allowing one timed count to define participants, staff, or organizational survival. Later evidence exposed several paths that an accurate placement total could still hide: pressure in participant conversations, a baseline biased toward people already reached by follow-up, a public story that makes the fastest path look normal, and a convenient employer that can concentrate placements without producing durable work. Preserve the council's language, baseline construction, story consent, employer quality and retention, staff allocation, budget treatment, reserve decisions, and each six-month board review. The important question at renewal will not be only whether the reported number was correct. It will be whether the grant improved accountability while leaving the organization able to recognize and fund progress the target does not reward.
+
+
+## Probabilistic interpretation
+
+No joined role record was produced.
+
+### Controlled mechanism assessments
+
+No compiled mechanism assessment was produced.
+
+## Deterministic pressure custody
+
+No direct or graph ledger was produced.
+
+## Public arms
+
+No public arm bundle was produced.
+## Failures
+
+- `starting` / `http_error_402` — {'error': {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6000 tokens, but can only afford 4442. To increase, visit https://openrouter.ai/settings/credits and add more credits', 'metadata': {'provider_name': None}}, 'user_id': 'user_2tAb8JJCxlduB7VWZzq1la4rIKD'}
+
+## Usage
+
+- Provider attempts: 1
+- Successful calls: 0
+- Provider-reported cost: $0.000000
+- Automatic retries: 0
+- Response healing: false
+
+## Non-claims
+
+- `not_reasoning_quality_proof`
+- `not_decision_correctness_proof`
+- `not_human_usefulness_evidence`
+- `not_a_trust_score_or_badge`
+- `not_production_authorization`

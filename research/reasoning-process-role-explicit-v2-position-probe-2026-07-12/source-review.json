@@ -1,0 +1,89 @@
+{
+  "schema_version": "lolla.reasoning_process_role_explicit_v2_position_probe_source_review.v1",
+  "status": "source_first_review_complete_relationship_fixed_strength_gate_fail",
+  "date": "2026-07-12",
+  "case_id": "amb1-case05-family-archive",
+  "view_kind": "position_and_decision_trajectory",
+  "review_method": {
+    "authoritative_source_read_before_output_polish": true,
+    "provider_or_evaluator_review_calls": 0,
+    "protected_target_seen_by_model": false,
+    "semantic_correctness_inferred_by_code": false
+  },
+  "operational": {
+    "provider_requests": 1,
+    "operational_status": "ok",
+    "typed_status": "admitted",
+    "admitted_records": 1,
+    "quarantined_records": 0,
+    "prompt_tokens": 2040,
+    "completion_tokens": 351,
+    "estimated_cost_usd": 0.0010365,
+    "served_model": "google/gemini-3.1-flash-lite-20260507"
+  },
+  "role_review": [
+    {
+      "role": "starting_position",
+      "evidence_aliases": ["e004", "e005"],
+      "status": "mixed_source_strength_inflation",
+      "finding": "The source says the user wants the archive organized first and reports incomplete captions and conflicting stories. The model strengthens this to 'initially insisted on organizing the entire archive' and later 'total archival completion.' The general starting preference is supported, but insistence, totality, and commitment strength are overstated."
+    },
+    {
+      "role": "current_position",
+      "evidence_aliases": ["e057", "e058"],
+      "status": "supported",
+      "finding": "The model accurately states that the user is leaning toward the slot with a narrow timeframe and participatory caption review."
+    },
+    {
+      "role": "qualification",
+      "evidence_aliases": ["e059", "e060"],
+      "status": "supported",
+      "finding": "The unresolved disputed-item rule and the concern that the deadline will make it feel settled are both preserved without inflation."
+    },
+    {
+      "role": "trajectory",
+      "evidence_aliases": ["e004", "e005", "e057", "e058", "e059", "e060"],
+      "status": "supported_with_starting_strength_caveat",
+      "finding": "The movement from catalog-first preference to bounded participatory exhibition is correctly expressed, and the unresolved veto/dispute condition remains active. The phrase 'total archival completion' inherits the starting-strength inflation."
+    }
+  ],
+  "protected_target": {
+    "target_id": "case05-position-trajectory",
+    "semantic_target_visible": true,
+    "protected_assistant_restatement_e061_visible": false,
+    "stronger_adjacent_user_evidence_e059_e060_visible": true,
+    "status": "supported_semantically_with_alternative_authoritative_evidence",
+    "finding": "The intended move and unresolved decision rule are present. Exact e061 visibility is unnecessary for semantic support because the model cites the user's more direct e059/e060 evidence, but exact protected-span accounting remains false."
+  },
+  "aggregate": {
+    "required_role_interpretations_present": "4_of_4",
+    "required_role_evidence_groups_present": "3_of_3",
+    "protected_semantic_target_visible": true,
+    "invalid_source_alias_count": 0,
+    "deterministically_quarantined_record_count": 0,
+    "source_review_source_strength_inflation_count": 1,
+    "source_review_semantic_role_mismatch_count": 0,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "decision": {
+    "role_explicit_relationship_representation": "pass",
+    "frozen_probe_success_gate": "fail_source_strength_inflation",
+    "same_case_prompt_repair_or_retry_authorized": false,
+    "uncertainty_or_challenge_probe_authorized": false,
+    "full_case_calls_authorized": false,
+    "next_step": "provider_free_generic_modal_and_commitment_strength_fidelity_contract_then_prospective_fresh_case_design",
+    "graph_or_runtime_authorized": false
+  },
+  "interpretation": "Separate role meanings corrected the prior missing-current-position failure. The remaining error is not chronology or source custody; it is probabilistic paraphrase strength. That should be addressed generically and tested prospectively, not patched on this completed case.",
+  "nonclaims": [
+    "The probe is not a transfer or stability result.",
+    "A complete role structure does not prove semantic or modal fidelity.",
+    "No quality, effort, proof-of-work, trust, final-answer, graph, or runtime conclusion follows."
+  ]
+}

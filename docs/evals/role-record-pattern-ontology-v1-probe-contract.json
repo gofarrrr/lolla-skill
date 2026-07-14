@@ -1,0 +1,13 @@
+{
+  "schema_version": "lolla.role_record_pattern_ontology_probe_contract.v1",
+  "status": "frozen_before_exactly_six_no_retry_calls",
+  "run_id": "role-record-pattern-ontology-v1-probe-2026-07-12",
+  "frozen_inputs": [
+    {"path": "research/role-record-pattern-ontology-v1-corpus-2026-07-12/report.json", "sha256": "0e432104e4c00980200eb88ab2ba6eb3dcd50c947b6fce56444ca2310c6d0c75"},
+    {"path": "docs/evals/role-record-pattern-ontology-v1-target.json", "sha256": "165b927f7dd238fa0e7c10f0380d2f16be37fbfc56b37e5f5eee859fad7ff8d7"}
+  ],
+  "job": {"model": "deepseek/deepseek-v4-flash", "provider_slug": "alibaba", "provider_display_name": "Alibaba", "pricing_per_token": {"prompt": 0.00000007, "completion": 0.00000028}},
+  "call_configuration": {"endpoint": "https://openrouter.ai/api/v1/chat/completions", "wire_mode": "strict_json_schema", "temperature": 0.0, "seed": 0, "reasoning_enabled": false, "max_output_tokens": 1300, "provider_timeout_seconds": 90, "require_supported_parameters": true, "allow_provider_fallbacks": false, "automatic_retries": 0, "response_healing": false, "parallel_calls": false},
+  "budget": {"maximum_provider_calls": 6, "maximum_estimated_cost_usd": 0.01, "automatic_retries": 0, "semantic_retries": 0, "fallback_models": 0, "evaluator_calls": 0, "embedding_calls": 0, "graph_calls": 0, "pipeline_calls": 0, "runtime_calls": 0},
+  "boundary": {"research_only": true, "deterministic_semantic_mapping": false, "raw_fact_graph_input": false, "reconsideration": false, "runtime_integration": false, "receipts": false, "scalar_scoring": false, "production_authorization": false}
+}

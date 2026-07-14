@@ -1,0 +1,251 @@
+{
+  "schema_version": "lolla.conversation_state_handoff.v1",
+  "status": "reviewed_shadow",
+  "case_id": "amb1-case01-product-scope",
+  "source": {
+    "path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+    "sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7",
+    "message_count": 14
+  },
+  "decision_summary": {
+    "text": "Whether to investigate Northline's reporting need now while protecting reliability and smaller-customer commitments.",
+    "evidence_mode": "multi_turn_derivation",
+    "source_evidence": [
+      {
+        "speaker": "assistant",
+        "turn_index": 6,
+        "quote": "That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation."
+      },
+      {
+        "speaker": "user",
+        "turn_index": 7,
+        "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+      },
+      {
+        "speaker": "assistant",
+        "turn_index": 7,
+        "quote": "You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean."
+      }
+    ]
+  },
+  "positions": [
+    {
+      "position_id": "csynth-positions-001-716d003c4c7f",
+      "text": "Run bounded discovery with Northline without beginning the build, while making reliability and core-workflow commitments visible before deciding.",
+      "ownership": "joint",
+      "state": "conditional",
+      "evidence_mode": "multi_turn_derivation",
+      "contributions": [
+        {
+          "speaker": "assistant",
+          "turn_index": 6,
+          "role": "originated",
+          "quote": "That supports a narrower move—capture the workflow and test the reusable concept now without beginning full implementation."
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7,
+          "role": "developed",
+          "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7,
+          "role": "qualified",
+          "quote": "You can decide in advance what kind of disposable prototype is allowed and ask Northline to reflect back what they believe the sessions mean."
+        }
+      ],
+      "graph_routing_eligible": false
+    }
+  ],
+  "threads": [
+    {
+      "thread_id": "csynth-threads-002-a84ee1a0dd2d",
+      "text": "Whether formal discovery boundaries will damage the informal trust Northline earned through early support.",
+      "disposition": "addressed_unresolved",
+      "introduced": {
+        "speaker": "user",
+        "turn_index": 4,
+        "quote": "If I suddenly arrive with a formal evaluation boundary, it could feel like we have become bureaucratic just when they need us."
+      },
+      "responses": [
+        {
+          "speaker": "assistant",
+          "turn_index": 4,
+          "engagement": "substantive",
+          "quote": "You do not need to present a governance ceremony."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7,
+          "engagement": "substantive",
+          "quote": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline."
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7,
+          "engagement": "acknowledged",
+          "quote": "Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you."
+        }
+      ],
+      "latest_ref": {
+        "speaker": "assistant",
+        "turn_index": 7,
+        "quote": "Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you."
+      },
+      "superseded_by": null,
+      "evidence_mode": "multi_turn_derivation",
+      "graph_routing_eligible": false
+    }
+  ],
+  "constraints": [
+    {
+      "constraint_id": "csynth-constraints-003-3a0412ae1d9c",
+      "text": "The company has nine people.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "I run product for a nine-person software company."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-004-2c68bf686d67",
+      "text": "Reliability work has already been postponed twice.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-005-eff3934d0bfa",
+      "text": "Smaller customers were promised a simpler core workflow in the next release.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 1,
+          "quote": "Meanwhile we have reliability work we have postponed twice, and we told smaller customers that the next release would simplify the core workflow."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-006-a59a2240edab",
+      "text": "Lina believes roughly seventy percent of the reporting work could be reusable.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 2,
+          "quote": "Also, Lina, our strongest engineer, thinks about seventy percent of the underlying work could become a general reporting layer."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-007-cdbd61d80e0e",
+      "text": "Sales has already signaled serious consideration of a summer path without calling it a promise.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 3,
+          "quote": "The phrase “quiet commitment” is exactly what worries me, because our sales lead has already told them we are “looking seriously at a summer path.” He says that is not a promise. Northline probably hears more than that. I also do not know how to run discovery without signaling that the feature is coming. If we spend two weeks in their workflow, then say no, we might damage more trust than if we decline now."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-008-88d9e56b2ac9",
+      "text": "Lina is one of two people carrying on-call and was hit hard by the last incident.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 5,
+          "quote": "Lina is excited, but she is also one of two people carrying on-call, and the last incident hit her hard."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-009-37942be0c438",
+      "text": "Northline can continue its manual CSV process for another quarter.",
+      "state": "active",
+      "claim_mode": "stated_condition",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 6,
+          "quote": "They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-010-65caadb32df9",
+      "text": "Northline's operations lead may move to a different role within that quarter.",
+      "state": "active",
+      "claim_mode": "possibility",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 6,
+          "quote": "They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then."
+        }
+      ],
+      "graph_routing_eligible": false
+    },
+    {
+      "constraint_id": "csynth-constraints-011-5170e515acfd",
+      "text": "Smaller customers currently want fewer confusing states and faster support, not reporting.",
+      "state": "active",
+      "claim_mode": "reported_statement",
+      "evidence_mode": "exact_span",
+      "source_evidence": [
+        {
+          "speaker": "user",
+          "turn_index": 6,
+          "quote": "Northline emailed this morning. They can live with their manual CSV process for another quarter, although their operations lead may move to a different role by then. That reduces the urgency, but it also means we could lose the person who understands the problem best. Our smaller customers are not asking for reporting. They are asking for fewer confusing states and faster support. I am less sure this is a broad product signal than I was yesterday, but more sure the discovery could be valuable."
+        }
+      ],
+      "graph_routing_eligible": false
+    }
+  ],
+  "routing_boundary": {
+    "contains_case_context": true,
+    "direct_graph_routing_allowed": false,
+    "reasoning_pattern_abstraction_required": true,
+    "runtime_integration": false
+  },
+  "non_claims": [
+    "conversation_state_is_not_reasoning_pattern",
+    "facts_cannot_seed_graph_directly",
+    "not_runtime_integration_authority",
+    "source_grounding_is_not_semantic_correctness",
+    "state_items_are_probabilistic_or_human_interpretations"
+  ]
+}

@@ -1,0 +1,2819 @@
+{
+  "current_view_manifest": {
+    "ambiguous_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": []
+    },
+    "event_count": 25,
+    "invalid_candidates_excluded": true,
+    "reconstructible_from_candidate_ledger": true,
+    "schema_version": "lolla.current_semantic_view.v0",
+    "selected_candidate_ids_by_family": {
+      "assistant_stance_events": [
+        "candidate_assistant_stance_events_000_2bcebc86823f",
+        "candidate_assistant_stance_events_001_1d94c1be80cb",
+        "candidate_assistant_stance_events_002_bc4b01c27a20",
+        "candidate_assistant_stance_events_003_5d99ee1962ca",
+        "candidate_assistant_stance_events_004_41af8d1533af"
+      ],
+      "dropped_thread_events": [
+        "candidate_dropped_thread_events_000_32a9c105443b"
+      ],
+      "evidence_boundary_events": [
+        "candidate_evidence_boundary_events_000_c7ba2386c55b",
+        "candidate_evidence_boundary_events_001_7dd5d1124137",
+        "candidate_evidence_boundary_events_002_4ff37209d607"
+      ],
+      "live_constraint_events": [
+        "candidate_live_constraint_events_000_75f9cfe267e0",
+        "candidate_live_constraint_events_001_fa61dbb7b1a1",
+        "candidate_live_constraint_events_002_30efc9fe6b1a",
+        "candidate_live_constraint_events_003_c02d8ba75ed4",
+        "candidate_live_constraint_events_004_a99348eb1adc"
+      ],
+      "option_events": [
+        "candidate_option_events_000_6fe28704fd56",
+        "candidate_option_events_001_205c9b228bd2",
+        "candidate_option_events_002_03359b732861",
+        "candidate_option_events_003_1d66902c65e1"
+      ],
+      "question_events": [
+        "candidate_question_events_000_4f59f8ba8c4a",
+        "candidate_question_events_001_43124c2676ba",
+        "candidate_question_events_002_59e8705ccebd",
+        "candidate_question_events_003_e0f456a9db2f"
+      ],
+      "user_pressure_events": [
+        "candidate_user_pressure_events_000_90dae73c9d02",
+        "candidate_user_pressure_events_001_0aaf47d04ceb",
+        "candidate_user_pressure_events_002_e196b0f2f33f"
+      ]
+    },
+    "view_sha256": "236a82c94be96cf3a1d47407c1e601c6dc409e0e084a97d774c247e1de78aca2"
+  },
+  "decision_work_projection": [
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "question_initial_t1_c8774ee86bda",
+        "question_intermediate_t3_7d6d87d2974c",
+        "question_intermediate_t4_19656b09a113",
+        "question_current_t9_8537adbdc801"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "stance_t2_revision_00"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "option_option_t2_711b58f16703",
+        "option_option_t3_1ed72f1a8db9",
+        "option_option_t4_87e0d1807f8e",
+        "option_option_t5_c8a7fc20b2cc"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "user_pressure_concern_t4_393d3e1c9f6f",
+        "user_pressure_correction_t5_4501b655bb38",
+        "user_pressure_concern_t8_57cb3780434a"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "dropped_thread_t8_user_97d64a0d18d3"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "live_constraint_t1_constraint_1d23c609c039",
+        "live_constraint_t3_constraint_3a661572f345",
+        "live_constraint_t5_concern_c6afba50d151",
+        "live_constraint_derivation_30ca2bbfa823",
+        "live_constraint_t9_concern_a1ddbffda906"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 5,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "evidence_boundary_stated_unknown_t3_1b4385030a24",
+        "evidence_boundary_unsupported_assistant_claim_t2_04cae95232f6",
+        "evidence_boundary_deferred_criterion_t5_e28285874e7d"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "assistant_stance_trajectory",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "stance_t2_revision_00",
+        "stance_t3_commitment_01",
+        "stance_t3_commitment_02",
+        "stance_t7_commitment_03",
+        "stance_t9_commitment_04"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 5,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "user_corrections_and_counter_pressure",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "user_pressure_concern_t4_393d3e1c9f6f",
+        "user_pressure_correction_t5_4501b655bb38",
+        "user_pressure_concern_t8_57cb3780434a"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    }
+  ],
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 619,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 6162,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.live_constraints",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 6781
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 499,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 6140,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.assistant_stances",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 6639
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 86,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 6155,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.dropped_threads",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 6241
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 1001,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 5933,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.joint_process",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 6934
+      }
+    ]
+  },
+  "non_claims": [
+    "shadow_is_not_live_lane_input",
+    "shadow_does_not_modify_graph_routing",
+    "shadow_is_not_decision_quality_proof",
+    "shadow_is_not_human_validation",
+    "question_change_is_not_user_mind_change",
+    "missing_event_is_not_proof_of_real_world_absence",
+    "candidate_state_is_not_semantic_truth",
+    "reader_agreement_is_not_correctness"
+  ],
+  "schema_version": "lolla.core_semantic_shadow.v0",
+  "semantic_candidate_ledger": {
+    "authoritative_source": {
+      "contains_raw_conversation": false,
+      "contains_source_excerpts": true,
+      "conversation_sha256": "8e3aa5fd613e5a0ce22ee8b3a4d052c4be0863f1f29f63243f0c66492b7d66bb",
+      "turn_count": 24
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_75f9cfe267e0",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 1,
+          "issue_id": "live_constraint_t1_constraint_1d23c609c039",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 703,
+              "speaker": "user",
+              "start_char": 615,
+              "turn_index": 1
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The ex-husband's minimization and custody status is a fixed external fact the user must navigate.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff.",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "4ae0d5ed83d5e56909c4b8d6d3a16232e525eccee9a5282cd5d7c09cffdc9c1b",
+        "reader_call_id": "semantic_reader_call_01_350d3b8e2fe5",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The ex-husband's minimization and custody status is a fixed external fact the user must navigate.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The ex-husband's minimization and custody status is a fixed external fact the user must navigate.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_fa61dbb7b1a1",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_t3_constraint_3a661572f345",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 130,
+              "speaker": "user",
+              "start_char": 92,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "He lives in a different state I think."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The perpetrator's location is a jurisdictional fact complicating potential legal action.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "He lives in a different state I think.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "5034770abce24a35f3b3fc279d97a8e1149f5c47f395571b168353d531aa261f",
+        "reader_call_id": "semantic_reader_call_01_350d3b8e2fe5",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The perpetrator's location is a jurisdictional fact complicating potential legal action.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The perpetrator's location is a jurisdictional fact complicating potential legal action.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_30efc9fe6b1a",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 5,
+          "issue_id": "live_constraint_t5_concern_c6afba50d151",
+          "kind": "concern",
+          "kind_ambiguity": true,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 143,
+              "speaker": "user",
+              "start_char": 75,
+              "turn_index": 5
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I've been going through her phone for months. She doesn't know this."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The user's ongoing secret surveillance is a behavioral state that creates a significant risk of future trust rupture.",
+          "kind": "concern",
+          "kind_ambiguity": true,
+          "mode": "span",
+          "text": "I've been going through her phone for months. She doesn't know this.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "dde8c7ef8eeaa95dd70b74dd5ae2d3a60a2d342bf9b754c1e05a06732c1a4ae0",
+        "reader_call_id": "semantic_reader_call_01_350d3b8e2fe5",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The user's ongoing secret surveillance is a behavioral state that creates a significant risk of future trust rupture.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The user's ongoing secret surveillance is a behavioral state that creates a significant risk of future trust rupture.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_c02d8ba75ed4",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 4,
+          "issue_id": "live_constraint_derivation_30ca2bbfa823",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "components": [
+              {
+                "component_id": "derivation_component_t4_d73dd9700732",
+                "quote": "If he's undermining me on this when she eventually does come to talk, it's going to blow up the whole thing.",
+                "span_ref": {
+                  "end_char": 347,
+                  "speaker": "user",
+                  "start_char": 239,
+                  "turn_index": 4
+                }
+              },
+              {
+                "component_id": "derivation_component_t7_4b713bb881b5",
+                "quote": "if we report, it becomes a legal case, she becomes a witness, she has to do interviews, there's a high chance nothing happens to him because he's in a different state and the jurisdictional stuff is complicated",
+                "span_ref": {
+                  "end_char": 485,
+                  "speaker": "user",
+                  "start_char": 275,
+                  "turn_index": 7
+                }
+              }
+            ],
+            "derivation_id": "live_constraint_derivation_30ca2bbfa823",
+            "kind": "derivation",
+            "note": "live_constraints_specialist",
+            "provenance_status": "component_evidence_complete",
+            "source_object_ids": [],
+            "turn_refs": [
+              {
+                "speaker": "user",
+                "turn_index": 4
+              },
+              {
+                "speaker": "user",
+                "turn_index": 7
+              }
+            ]
+          },
+          "provenance_status": "component_evidence_complete",
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "The user's ex-husband's minimization and potential interference during custody time creates a constraint on reporting the grooming to authorities."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The user must weigh the legal reporting path against the risk of the ex-husband's interference during the process.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "derivation",
+          "text": "The user's ex-husband's minimization and potential interference during custody time creates a constraint on reporting the grooming to authorities.",
+          "turn_refs": [
+            {
+              "span_excerpt": "If he's undermining me on this when she eventually does come to talk, it's going to blow up the whole thing.",
+              "turn_index": 4
+            },
+            {
+              "span_excerpt": "if we report, it becomes a legal case, she becomes a witness, she has to do interviews, there's a high chance nothing happens to him because he's in a different state and the jurisdictional stuff is complicated",
+              "turn_index": 7
+            }
+          ]
+        },
+        "raw_proposal_sha256": "a05f7d81cca12b003bca625162bd6c4a8c5f51f89de7f093e706ed7f74b40218",
+        "reader_call_id": "semantic_reader_call_01_350d3b8e2fe5",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "validated_derivation_components_preserved",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The user must weigh the legal reporting path against the risk of the ex-husband's interference during the process.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The user must weigh the legal reporting path against the risk of the ex-husband's interference during the process.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_a99348eb1adc",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 9,
+          "issue_id": "live_constraint_t9_concern_a1ddbffda906",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 96,
+              "speaker": "user",
+              "start_char": 15,
+              "turn_index": 9
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I want to handle everything right and I'm scared I'm going to screw something up."
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "The user explicitly carries the worry of causing further damage to the relationship.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I want to handle everything right and I'm scared I'm going to screw something up.",
+          "turn_index": 9
+        },
+        "raw_proposal_sha256": "557e3e257f1b3dda72b548a33ec97537fbed0bb40d3f353dd7b9abb8e6d012a8",
+        "reader_call_id": "semantic_reader_call_01_350d3b8e2fe5",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "The user explicitly carries the worry of causing further damage to the relationship.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "The user explicitly carries the worry of causing further damage to the relationship.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_2bcebc86823f",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 654,
+              "speaker": "assistant",
+              "start_char": 518,
+              "turn_index": 2
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "revision",
+          "stance_id": "stance_t2_revision_00",
+          "text": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "revision",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 2
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Reframes the user's priority from the groomer to the daughter's emotional state.",
+          "relation": "revision",
+          "relation_ambiguity": false,
+          "text": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "40908b2d9da521db8034b2737549e957c29850b32576227961c1a438ebaec60d",
+        "reader_call_id": "semantic_reader_call_02_bbf6d5ac8bff",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Reframes the user's priority from the groomer to the daughter's emotional state.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Reframes the user's priority from the groomer to the daughter's emotional state.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_1d94c1be80cb",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 124,
+              "speaker": "assistant",
+              "start_char": 92,
+              "turn_index": 3
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t3_commitment_01",
+          "text": "you don't call the police today.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 3
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Direct directive regarding the police.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "you don't call the police today.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "1bc9243b7fd7163dfa022bc20d61b562dbc26b6390ac233ab847bfb35abd7dd4",
+        "reader_call_id": "semantic_reader_call_02_bbf6d5ac8bff",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Direct directive regarding the police.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Direct directive regarding the police.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_bc4b01c27a20",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 856,
+              "speaker": "assistant",
+              "start_char": 836,
+              "turn_index": 3
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t3_commitment_02",
+          "text": "Don't block him yet.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 3
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Direct directive regarding the groomer's account.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "Don't block him yet.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "00d38d362c5fab8f0f0b06fb6fad6a82775b335c47d8ded379e3bad0a993c531",
+        "reader_call_id": "semantic_reader_call_02_bbf6d5ac8bff",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Direct directive regarding the groomer's account.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Direct directive regarding the groomer's account.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_5d99ee1962ca",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 1099,
+              "speaker": "assistant",
+              "start_char": 948,
+              "turn_index": 7
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t7_commitment_03",
+          "text": "if your goal is protecting her, not reporting and getting her to a specialized therapist is probably the better path given your co-parenting situation.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 7
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Provides a clear decision criterion based on the user's stated goal.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "if your goal is protecting her, not reporting and getting her to a specialized therapist is probably the better path given your co-parenting situation.",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "eca52cde01bdec75ccb7e18a787afaed8e7339b60ace4bfe58fd1ae71c8826aa",
+        "reader_call_id": "semantic_reader_call_02_bbf6d5ac8bff",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Provides a clear decision criterion based on the user's stated goal.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Provides a clear decision criterion based on the user's stated goal.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_004_41af8d1533af",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 51,
+              "speaker": "assistant",
+              "start_char": 0,
+              "turn_index": 9
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t9_commitment_04",
+          "text": "Don't call Mia's mom about this specific situation.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 9
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Direct directive regarding the friend's mother.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "Don't call Mia's mom about this specific situation.",
+          "turn_index": 9
+        },
+        "raw_proposal_sha256": "6b8fa9c61bce472b52bd73c22b10c14b40145ba0f2bd9109820e0b68cdf9d4c4",
+        "reader_call_id": "semantic_reader_call_02_bbf6d5ac8bff",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Direct directive regarding the friend's mother.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Direct directive regarding the friend's mother.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_32a9c105443b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 8,
+          "issue_id": "dropped_thread_t8_user_97d64a0d18d3",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 141,
+              "speaker": "user",
+              "start_char": 52,
+              "turn_index": 8
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "acknowledged_then_dropped",
+          "superseded_by": "The assistant focused on the mother's choice to prioritize her daughter's therapy over legal accountability.",
+          "text": "It just feels wrong that he just gets to keep being online and doing this to other girls."
+        },
+        "family": "dropped_thread_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "speaker": "user",
+          "superseded_by": "The assistant focused on the mother's choice to prioritize her daughter's therapy over legal accountability.",
+          "text": "It just feels wrong that he just gets to keep being online and doing this to other girls.",
+          "turn_index": 8
+        },
+        "raw_proposal_sha256": "9d95aa6ed708a12ecbc39e9ad88115b6f351ff4eff78833b664c8622ab054481",
+        "reader_call_id": "semantic_reader_call_03_13fe25a483fe",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_000_4f59f8ba8c4a",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": false,
+          "event_id": "question_initial_t1_c8774ee86bda",
+          "family": "question",
+          "grounding": "span",
+          "kind": "initial",
+          "provisional": true,
+          "question_function": "diagnosis",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 728,
+            "quote": "I don't know what to do.",
+            "speaker": "user",
+            "start_char": 704,
+            "turn_index": 1
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "user",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "opens",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "changes_prior_question": false,
+          "question_function": "diagnosis",
+          "quote": "I don't know what to do.",
+          "related_question_quote": null,
+          "related_question_turn_index": null,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "opens",
+          "stage": "initial",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "d9e8229eff3adc1e4a10462cb9d284621d316038ba7cd606e14fe93c192f94f0",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_001_43124c2676ba",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t3_7d6d87d2974c",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 91,
+            "quote": "But what about the guy? Do I call the police? Do I confront him somehow?",
+            "speaker": "user",
+            "start_char": 19,
+            "turn_index": 3
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "I don't know what to do.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_4f59f8ba8c4a"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "But what about the guy? Do I call the police? Do I confront him somehow?",
+          "related_question_quote": "I don't know what to do.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "intermediate",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "ceba0ab115a776cf20d8af4702cbc218924a8f96bbc982febcffb68f0526697d",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_002_59e8705ccebd",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t4_19656b09a113",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 408,
+            "quote": "Do I loop him in now or do I handle this and tell him later?",
+            "speaker": "user",
+            "start_char": 348,
+            "turn_index": 4
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "unknown",
+            "declared_target": {
+              "quote": "But what about the guy?",
+              "speaker": "user",
+              "turn_index": 3
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "coexists",
+            "reference_status": "unresolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "decision_choice",
+          "quote": "Do I loop him in now or do I handle this and tell him later?",
+          "related_question_quote": "But what about the guy?",
+          "related_question_turn_index": 3,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "coexists",
+          "stage": "intermediate",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "32c0bf3bdcc326d826f7c4b61888928e313b532f4f127c320c71418b4a4e77f1",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_003_e0f456a9db2f",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_current_t9_8537adbdc801",
+          "family": "question",
+          "grounding": "span",
+          "kind": "current",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 240,
+            "quote": "Do I call Mia's mom?",
+            "speaker": "user",
+            "start_char": 220,
+            "turn_index": 9
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "Do I loop him in now or do I handle this and tell him later?",
+              "speaker": "user",
+              "turn_index": 4
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "coexists",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_002_59e8705ccebd"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "Do I call Mia's mom?",
+          "related_question_quote": "Do I loop him in now or do I handle this and tell him later?",
+          "related_question_turn_index": 4,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "coexists",
+          "stage": "current",
+          "turn_index": 9
+        },
+        "raw_proposal_sha256": "567d47a0ba6c732dc4b69518755d6d80d5af4dfcc1493864dc9efcd1e46f9504",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_000_90dae73c9d02",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t4_393d3e1c9f6f",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 238,
+            "quote": "He's a \"kids these days\" guy. He thinks I'm paranoid.",
+            "speaker": "user",
+            "start_char": 185,
+            "turn_index": 4
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "He's a \"kids these days\" guy. He thinks I'm paranoid.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "4395338f34caf7c9f6674f65622fc21806b0f874c9b6b6f1f00ff6a01a25c996",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_0aaf47d04ceb",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_correction_t5_4501b655bb38",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "correction",
+          "provisional": true,
+          "source": {
+            "end_char": 143,
+            "quote": "I've been going through her phone for months. She doesn't know this.",
+            "speaker": "user",
+            "start_char": 75,
+            "turn_index": 5
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "correction",
+          "quote": "I've been going through her phone for months. She doesn't know this.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "d255f9752955d0ca226617eff96b7706b9350129eedafcafcfb8bf03425e7bd6",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_e196b0f2f33f",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t8_57cb3780434a",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 141,
+            "quote": "I want to pick her. I know that's the right answer. It just feels wrong that he just gets to keep being online and doing this to other girls.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 8
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "I want to pick her. I know that's the right answer. It just feels wrong that he just gets to keep being online and doing this to other girls.",
+          "turn_index": 8
+        },
+        "raw_proposal_sha256": "190320b7bcd9fd85aaeb36b800e081b97e27712924a2d6177e671b07f6d88299",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_000_6fe28704fd56",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t2_711b58f16703",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 698,
+            "quote": "slide a note under her door",
+            "speaker": "assistant",
+            "start_char": 671,
+            "turn_index": 2
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "slide a note under her door",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "5d5dc6b0e959adf6f62be243d0cb28b3db339714d7387bbbaafb5bd6652acc10",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_205c9b228bd2",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t3_1ed72f1a8db9",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 64,
+            "quote": "Do I call the police?",
+            "speaker": "user",
+            "start_char": 43,
+            "turn_index": 3
+          },
+          "status": "rejected"
+        },
+        "family": "option_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "Do I call the police?",
+          "speaker": "USER",
+          "status": "rejected",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "ee5d64868a53e2acba549db907c16958838ecb3df27746ee5f3dfd1bb72a36ec",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_002_03359b732861",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t4_87e0d1807f8e",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 852,
+            "quote": "loop him in now but on specific terms",
+            "speaker": "assistant",
+            "start_char": 815,
+            "turn_index": 4
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "loop him in now but on specific terms",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "cb1743640ba2ce8e3bf332dacd5b1ccb94aae13a8f305f503d895a3287820867",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_003_1d66902c65e1",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t5_c8a7fc20b2cc",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 760,
+            "quote": "tell her. Not as part of confronting her about the guy — as a separate conversation.",
+            "speaker": "assistant",
+            "start_char": 676,
+            "turn_index": 5
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "tell her. Not as part of confronting her about the guy — as a separate conversation.",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "d7077d61a1a7f1d1d2dea624b9f51ffbed85a55b6fc85f8157a3c7cd6b2445bb",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_c7ba2386c55b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "User does not know if the 19-year-old lives in a different state.",
+          "event_id": "evidence_boundary_stated_unknown_t3_1b4385030a24",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "stated_unknown",
+          "provisional": true,
+          "source": {
+            "end_char": 130,
+            "quote": "He lives in a different state I think.",
+            "speaker": "user",
+            "start_char": 92,
+            "turn_index": 3
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "claim": "User does not know if the 19-year-old lives in a different state.",
+          "kind": "stated_unknown",
+          "quote": "He lives in a different state I think.",
+          "speaker": "USER",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "8aadbeb3b551ce0577208338acbcab379ae10ebe053793ff23c53b3d46f29206",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_7dd5d1124137",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Assistant claims the daughter is not hiding because she is guilty of something worse.",
+          "event_id": "evidence_boundary_unsupported_assistant_claim_t2_04cae95232f6",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "unsupported_assistant_claim",
+          "provisional": true,
+          "source": {
+            "end_char": 470,
+            "quote": "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment",
+            "speaker": "assistant",
+            "start_char": 321,
+            "turn_index": 2
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "claim": "Assistant claims the daughter is not hiding because she is guilty of something worse.",
+          "kind": "unsupported_assistant_claim",
+          "quote": "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment",
+          "speaker": "ASSISTANT",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "db3eba8f5674995e078994edcca695c919f4ca3b914bd07e3aa520fca59bcbc2",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_002_4ff37209d607",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "The conversation about the surveillance is deferred until communication is re-opened.",
+          "event_id": "evidence_boundary_deferred_criterion_t5_e28285874e7d",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "deferred_criterion",
+          "provisional": true,
+          "source": {
+            "end_char": 685,
+            "quote": "at some point in the next few weeks, after communication is re-opened, tell her.",
+            "speaker": "assistant",
+            "start_char": 605,
+            "turn_index": 5
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "claim": "The conversation about the surveillance is deferred until communication is re-opened.",
+          "kind": "deferred_criterion",
+          "quote": "at some point in the next few weeks, after communication is re-opened, tell her.",
+          "speaker": "ASSISTANT",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "d9d98b6320047b80a48d5fe03e5c2549d6c9a14842bb61c8c6c51b6d66b7b9c3",
+        "reader_call_id": "semantic_reader_call_04_130674062879",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      }
+    ],
+    "metrics": {
+      "ambiguous_candidate_count": 0,
+      "candidate_custody_complete": true,
+      "counts_by_family": {
+        "assistant_stance_events": 5,
+        "dropped_thread_events": 1,
+        "evidence_boundary_events": 3,
+        "live_constraint_events": 5,
+        "option_events": 4,
+        "question_events": 4,
+        "user_pressure_events": 3
+      },
+      "counts_by_terminal_state": {
+        "selected_for_current_view": 25
+      },
+      "current_view_candidate_count": 25,
+      "expected_proposal_count": 25,
+      "proposal_count": 25,
+      "referenced_source_turns": [
+        {
+          "speaker": "user",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 2
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 3
+        },
+        {
+          "speaker": "user",
+          "turn_index": 3
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 4
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5
+        },
+        {
+          "speaker": "user",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7
+        },
+        {
+          "speaker": "user",
+          "turn_index": 8
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 9
+        },
+        {
+          "speaker": "user",
+          "turn_index": 9
+        }
+      ],
+      "source_turn_reference_coverage": 0.5416666666666666,
+      "terminal_record_count": 25,
+      "trajectory_references": {
+        "ambiguous_relation_count": 0,
+        "counts_by_chronology_status": {
+          "not_applicable": 6,
+          "prior_or_same_position": 2,
+          "unknown": 1
+        },
+        "counts_by_reference_status": {
+          "not_declared": 6,
+          "resolved": 2,
+          "unresolved": 1
+        },
+        "counts_by_relation_status": {
+          "declared": 9
+        },
+        "must_not_be_used_as_quality_label": true,
+        "trajectory_event_count": 9
+      },
+      "unreferenced_source_turns": [
+        {
+          "speaker": "assistant",
+          "turn_index": 1
+        },
+        {
+          "speaker": "user",
+          "turn_index": 2
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 6
+        },
+        {
+          "speaker": "user",
+          "turn_index": 6
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 8
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 10
+        },
+        {
+          "speaker": "user",
+          "turn_index": 10
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 11
+        },
+        {
+          "speaker": "user",
+          "turn_index": 11
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 12
+        },
+        {
+          "speaker": "user",
+          "turn_index": 12
+        }
+      ],
+      "unterminated_record_count": 0
+    },
+    "non_claims": [
+      "candidate_state_is_not_semantic_truth",
+      "validation_is_not_reasoning_quality_proof",
+      "source_turn_coverage_is_not_semantic_completeness",
+      "reader_agreement_is_not_correctness"
+    ],
+    "reader_calls": [
+      {
+        "call_id": "semantic_reader_call_01_350d3b8e2fe5",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 1,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "live_constraints": 5
+        },
+        "reader_role": "live_constraints",
+        "system_prompt_sha256": "a5797f98c1a42179422a81b7911be765d692fb44d8df9cffe04c896d6b4707b5",
+        "user_prompt_sha256": "86e66bc1a7f89cb212443ec9a85761cc10159624d7b5656012641bf49363fa41"
+      },
+      {
+        "call_id": "semantic_reader_call_02_bbf6d5ac8bff",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 2,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "stance_events": 5
+        },
+        "reader_role": "assistant_stances",
+        "system_prompt_sha256": "b87650e55752dac8ffff1911c89ead8f38447af20f110ef0aabd7c14b26ee232",
+        "user_prompt_sha256": "998cbdc579cbbee8c392d4f0b4bf7168b084ee409bbb6783cde18de1538458d7"
+      },
+      {
+        "call_id": "semantic_reader_call_03_13fe25a483fe",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 3,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "dropped_threads": 1
+        },
+        "reader_role": "dropped_threads",
+        "system_prompt_sha256": "2b3ba325694c3827bba00e0aa361a27aeafe4e39985cb00d3632a54f3f9b8bda",
+        "user_prompt_sha256": "560238e9a3e0ac4b6d1549937eb78750d0c9819d13371b73405a2505e23a6e54"
+      },
+      {
+        "call_id": "semantic_reader_call_04_130674062879",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 4,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "evidence_boundary_events": 3,
+          "option_events": 4,
+          "question_events": 4,
+          "user_pressure_events": 3
+        },
+        "reader_role": "joint_process",
+        "system_prompt_sha256": "2959b1918c87f20d1fec683524d9151aee1e3230d3288003f2d025af682ac91a",
+        "user_prompt_sha256": "ee59201f9896c4c9c50b6fb0adf23dd5861ac9bdbcc426d04f7be530c810cb65"
+      }
+    ],
+    "schema_version": "lolla.semantic_candidate_ledger.v0",
+    "supported_candidate_states": [
+      "proposed",
+      "validated",
+      "invalid_evidence",
+      "set_aside_semantically",
+      "selected_for_current_view",
+      "ambiguous_competing_read",
+      "not_supported_by_source",
+      "not_evaluated_budget"
+    ]
+  },
+  "semantic_events": {
+    "assistant_stance_events": [
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_2bcebc86823f",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 654,
+            "speaker": "assistant",
+            "start_char": 518,
+            "turn_index": 2
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "revision",
+        "stance_id": "stance_t2_revision_00",
+        "text": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "revision",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 2
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_1d94c1be80cb",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 124,
+            "speaker": "assistant",
+            "start_char": 92,
+            "turn_index": 3
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t3_commitment_01",
+        "text": "you don't call the police today.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 3
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_bc4b01c27a20",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 856,
+            "speaker": "assistant",
+            "start_char": 836,
+            "turn_index": 3
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t3_commitment_02",
+        "text": "Don't block him yet.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 3
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_5d99ee1962ca",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 1099,
+            "speaker": "assistant",
+            "start_char": 948,
+            "turn_index": 7
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t7_commitment_03",
+        "text": "if your goal is protecting her, not reporting and getting her to a specialized therapist is probably the better path given your co-parenting situation.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 7
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_004_41af8d1533af",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 51,
+            "speaker": "assistant",
+            "start_char": 0,
+            "turn_index": 9
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t9_commitment_04",
+        "text": "Don't call Mia's mom about this specific situation.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 9
+      }
+    ],
+    "dropped_thread_events": [
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_32a9c105443b",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 8,
+        "issue_id": "dropped_thread_t8_user_97d64a0d18d3",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 141,
+            "speaker": "user",
+            "start_char": 52,
+            "turn_index": 8
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "The assistant focused on the mother's choice to prioritize her daughter's therapy over legal accountability.",
+        "text": "It just feels wrong that he just gets to keep being online and doing this to other girls."
+      }
+    ],
+    "evidence_boundary_events": [
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_c7ba2386c55b",
+        "candidate_state": "selected_for_current_view",
+        "claim": "User does not know if the 19-year-old lives in a different state.",
+        "event_id": "evidence_boundary_stated_unknown_t3_1b4385030a24",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "stated_unknown",
+        "provisional": true,
+        "source": {
+          "end_char": 130,
+          "quote": "He lives in a different state I think.",
+          "speaker": "user",
+          "start_char": 92,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_7dd5d1124137",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Assistant claims the daughter is not hiding because she is guilty of something worse.",
+        "event_id": "evidence_boundary_unsupported_assistant_claim_t2_04cae95232f6",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "unsupported_assistant_claim",
+        "provisional": true,
+        "source": {
+          "end_char": 470,
+          "quote": "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment",
+          "speaker": "assistant",
+          "start_char": 321,
+          "turn_index": 2
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_002_4ff37209d607",
+        "candidate_state": "selected_for_current_view",
+        "claim": "The conversation about the surveillance is deferred until communication is re-opened.",
+        "event_id": "evidence_boundary_deferred_criterion_t5_e28285874e7d",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "deferred_criterion",
+        "provisional": true,
+        "source": {
+          "end_char": 685,
+          "quote": "at some point in the next few weeks, after communication is re-opened, tell her.",
+          "speaker": "assistant",
+          "start_char": 605,
+          "turn_index": 5
+        }
+      }
+    ],
+    "live_constraint_events": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_75f9cfe267e0",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_1d23c609c039",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 703,
+            "speaker": "user",
+            "start_char": 615,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_fa61dbb7b1a1",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_t3_constraint_3a661572f345",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 130,
+            "speaker": "user",
+            "start_char": 92,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "He lives in a different state I think."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_30efc9fe6b1a",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 5,
+        "issue_id": "live_constraint_t5_concern_c6afba50d151",
+        "kind": "concern",
+        "kind_ambiguity": true,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 143,
+            "speaker": "user",
+            "start_char": 75,
+            "turn_index": 5
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I've been going through her phone for months. She doesn't know this."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_c02d8ba75ed4",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 4,
+        "issue_id": "live_constraint_derivation_30ca2bbfa823",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "components": [
+            {
+              "component_id": "derivation_component_t4_d73dd9700732",
+              "quote": "If he's undermining me on this when she eventually does come to talk, it's going to blow up the whole thing.",
+              "span_ref": {
+                "end_char": 347,
+                "speaker": "user",
+                "start_char": 239,
+                "turn_index": 4
+              }
+            },
+            {
+              "component_id": "derivation_component_t7_4b713bb881b5",
+              "quote": "if we report, it becomes a legal case, she becomes a witness, she has to do interviews, there's a high chance nothing happens to him because he's in a different state and the jurisdictional stuff is complicated",
+              "span_ref": {
+                "end_char": 485,
+                "speaker": "user",
+                "start_char": 275,
+                "turn_index": 7
+              }
+            }
+          ],
+          "derivation_id": "live_constraint_derivation_30ca2bbfa823",
+          "kind": "derivation",
+          "note": "live_constraints_specialist",
+          "provenance_status": "component_evidence_complete",
+          "source_object_ids": [],
+          "turn_refs": [
+            {
+              "speaker": "user",
+              "turn_index": 4
+            },
+            {
+              "speaker": "user",
+              "turn_index": 7
+            }
+          ]
+        },
+        "provenance_status": "component_evidence_complete",
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "The user's ex-husband's minimization and potential interference during custody time creates a constraint on reporting the grooming to authorities."
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_a99348eb1adc",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 9,
+        "issue_id": "live_constraint_t9_concern_a1ddbffda906",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 96,
+            "speaker": "user",
+            "start_char": 15,
+            "turn_index": 9
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I want to handle everything right and I'm scared I'm going to screw something up."
+      }
+    ],
+    "option_events": [
+      {
+        "candidate_id": "candidate_option_events_000_6fe28704fd56",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t2_711b58f16703",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 698,
+          "quote": "slide a note under her door",
+          "speaker": "assistant",
+          "start_char": 671,
+          "turn_index": 2
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_205c9b228bd2",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t3_1ed72f1a8db9",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 64,
+          "quote": "Do I call the police?",
+          "speaker": "user",
+          "start_char": 43,
+          "turn_index": 3
+        },
+        "status": "rejected"
+      },
+      {
+        "candidate_id": "candidate_option_events_002_03359b732861",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t4_87e0d1807f8e",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 852,
+          "quote": "loop him in now but on specific terms",
+          "speaker": "assistant",
+          "start_char": 815,
+          "turn_index": 4
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_003_1d66902c65e1",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t5_c8a7fc20b2cc",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 760,
+          "quote": "tell her. Not as part of confronting her about the guy — as a separate conversation.",
+          "speaker": "assistant",
+          "start_char": 676,
+          "turn_index": 5
+        },
+        "status": "proposed"
+      }
+    ],
+    "question_events": [
+      {
+        "candidate_id": "candidate_question_events_000_4f59f8ba8c4a",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": false,
+        "event_id": "question_initial_t1_c8774ee86bda",
+        "family": "question",
+        "grounding": "span",
+        "kind": "initial",
+        "provisional": true,
+        "question_function": "diagnosis",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 728,
+          "quote": "I don't know what to do.",
+          "speaker": "user",
+          "start_char": 704,
+          "turn_index": 1
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "user",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "opens",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_001_43124c2676ba",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t3_7d6d87d2974c",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 91,
+          "quote": "But what about the guy? Do I call the police? Do I confront him somehow?",
+          "speaker": "user",
+          "start_char": 19,
+          "turn_index": 3
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "I don't know what to do.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_4f59f8ba8c4a"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_002_59e8705ccebd",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t4_19656b09a113",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 408,
+          "quote": "Do I loop him in now or do I handle this and tell him later?",
+          "speaker": "user",
+          "start_char": 348,
+          "turn_index": 4
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "unknown",
+          "declared_target": {
+            "quote": "But what about the guy?",
+            "speaker": "user",
+            "turn_index": 3
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "coexists",
+          "reference_status": "unresolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_003_e0f456a9db2f",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_current_t9_8537adbdc801",
+        "family": "question",
+        "grounding": "span",
+        "kind": "current",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 240,
+          "quote": "Do I call Mia's mom?",
+          "speaker": "user",
+          "start_char": 220,
+          "turn_index": 9
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "Do I loop him in now or do I handle this and tell him later?",
+            "speaker": "user",
+            "turn_index": 4
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "coexists",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_002_59e8705ccebd"
+          ]
+        }
+      }
+    ],
+    "user_pressure_events": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_90dae73c9d02",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t4_393d3e1c9f6f",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 238,
+          "quote": "He's a \"kids these days\" guy. He thinks I'm paranoid.",
+          "speaker": "user",
+          "start_char": 185,
+          "turn_index": 4
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_0aaf47d04ceb",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_correction_t5_4501b655bb38",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 143,
+          "quote": "I've been going through her phone for months. She doesn't know this.",
+          "speaker": "user",
+          "start_char": 75,
+          "turn_index": 5
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_e196b0f2f33f",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t8_57cb3780434a",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 141,
+          "quote": "I want to pick her. I know that's the right answer. It just feels wrong that he just gets to keep being online and doing this to other girls.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 8
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "8e3aa5fd613e5a0ce22ee8b3a4d052c4be0863f1f29f63243f0c66492b7d66bb",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 24
+  },
+  "validation": {
+    "joint_process": {
+      "evidence_boundary_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 3,
+        "truncated_count": 0,
+        "validated_count": 3
+      },
+      "option_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 4
+      },
+      "question_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 4
+      },
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 3,
+        "truncated_count": 0,
+        "validated_count": 3
+      }
+    },
+    "specialists": {
+      "assistant_stances": {
+        "dropped_invalid_relation": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 5,
+        "validated_count": 5
+      },
+      "dropped_threads": {
+        "assistant_raised_count": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_speaker": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "dropped_speaker_mismatch": 0,
+        "raw_count": 1,
+        "user_raised_count": 1,
+        "validated_count": 1
+      },
+      "live_constraints": {
+        "derivation_mode_count": 1,
+        "dropped_derivation_no_valid_excerpt": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_mode": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "incomplete_derivation_count": 0,
+        "raw_count": 5,
+        "rejected_derivations": [],
+        "span_mode_count": 4,
+        "validated_count": 5
+      }
+    }
+  }
+}

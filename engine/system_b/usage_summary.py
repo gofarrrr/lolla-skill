@@ -36,8 +36,8 @@ from pathlib import Path
 from typing import Mapping, Sequence
 
 from .boundary_provider import BoundaryCallRecord
+from .live_pricing import PRICES_LAST_VERIFIED
 from .pricing import (
-    PRICES_LAST_VERIFIED,
     estimate_chat_cost_usd,
     estimate_embedding_cost_usd,
     lookup_chat_price,
@@ -102,6 +102,26 @@ def _safe_int(value: object) -> int:
         return int(value)
     except (TypeError, ValueError):
         return 0
+
+
+def _safe_float_or_none(value: object) -> float | None:
+    if value is None:
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _provider_was_attempted(rec: Mapping[str, object]) -> bool:
+    status = _string(rec.get("status"))
+    if status in {"not_called", "missing_api_key", "budget_blocked_preflight"}:
+        return False
+    if rec.get("provider_attempted") is True:
+        return True
+    # Historical traces predate provider_attempted. Any other recorded status
+    # represents a call that reached (or tried to reach) the provider.
+    return bool(status)
 
 
 def _safe_div(num: float, den: float) -> float:
@@ -174,6 +194,10 @@ def _apply_usage_totals(usage_summary: dict) -> dict:
     )
     coverage = _cost_estimate_coverage(vendors)
     usage_summary["estimated_total_cost_usd"] = round(grand_total, 6)
+    usage_summary["provider_reported_total_cost_usd"] = round(
+        float(vendors.get("openrouter", {}).get("provider_reported_cost_usd", 0.0) or 0.0),
+        9,
+    )
     usage_summary["cost_estimate_coverage"] = coverage
     usage_summary["cost_estimate_state"] = coverage["state"]
     return usage_summary
@@ -200,12 +224,29 @@ def _build_chat_vendor_block(
     attribution_counts: dict[str, int] = defaultdict(int)
     mismatches: list[dict[str, object]] = []
     primary_model = ""
+    exact_cost_total = 0.0
+    exact_cost_calls = 0
+    exact_response_ids: list[str] = []
+    preflight_non_attempts: list[dict[str, object]] = []
+    request_contracts: set[tuple[object, ...]] = set()
 
     for raw in records:
         rec = _record_to_dict(raw)
         if not rec:
             continue
         stage = str(rec.get("stage") or "unlabeled")
+        if not _provider_was_attempted(rec):
+            preflight_non_attempts.append(
+                {
+                    "stage": stage,
+                    "status": _string(rec.get("status")) or "not_called",
+                    "requested_model": _string(rec.get("requested_model")),
+                    "maximum_call_cost_usd": _safe_float_or_none(
+                        rec.get("maximum_call_cost_usd")
+                    ),
+                }
+            )
+            continue
         requested_model = _string(rec.get("requested_model"))
         served_model = _string(rec.get("served_model"))
         model = served_model or _string(rec.get("model"))
@@ -236,6 +277,29 @@ def _build_chat_vendor_block(
 
         _accumulate_stage(stage_totals[stage], rec)
         _accumulate_stage(overall, rec)
+
+        exact_cost = _safe_float_or_none(rec.get("exact_cost_usd"))
+        if exact_cost is not None:
+            exact_cost_total += max(0.0, exact_cost)
+            exact_cost_calls += 1
+        response_id = _string(rec.get("response_id"))
+        if response_id:
+            exact_response_ids.append(response_id)
+        request_contracts.add(
+            (
+                _safe_int(rec.get("request_max_output_tokens")),
+                _safe_float_or_none(rec.get("request_max_price_prompt")) or 0.0,
+                _safe_float_or_none(rec.get("request_max_price_completion")) or 0.0,
+                tuple(rec.get("request_provider_order") or ()),
+                bool(rec.get("request_allow_fallbacks")),
+                bool(rec.get("request_require_parameters")),
+                _string(rec.get("request_data_collection")),
+                bool(rec.get("request_zdr")),
+                _safe_int(rec.get("run_max_provider_calls")),
+                _safe_float_or_none(rec.get("run_max_cost_usd")) or 0.0,
+                bool(rec.get("pricing_table_stale")),
+            )
+        )
 
         price = lookup_chat_price(provider_label, model)
         if price is None:
@@ -271,6 +335,31 @@ def _build_chat_vendor_block(
         "total_tokens": overall["total_tokens"],
         "cache_hit_rate": round(cache_hit_rate, 4),
         "estimated_cost_usd": round(cost_total, 6),
+        "provider_reported_cost_usd": round(exact_cost_total, 9),
+        "provider_reported_cost_call_count": exact_cost_calls,
+        "provider_reported_cost_coverage": {
+            "calls_with_exact_cost": exact_cost_calls,
+            "calls_without_exact_cost": max(0, overall["calls"] - exact_cost_calls),
+        },
+        "provider_response_ids": exact_response_ids,
+        "preflight_non_attempt_count": len(preflight_non_attempts),
+        "preflight_non_attempts": preflight_non_attempts,
+        "request_contracts": [
+            {
+                "max_output_tokens": item[0],
+                "max_price_prompt": item[1],
+                "max_price_completion": item[2],
+                "provider_order": list(item[3]),
+                "allow_fallbacks": item[4],
+                "require_parameters": item[5],
+                "data_collection": item[6],
+                "zdr": item[7],
+                "maximum_provider_calls": item[8],
+                "maximum_run_cost_usd": item[9],
+                "pricing_table_stale": item[10],
+            }
+            for item in sorted(request_contracts, key=repr)
+        ],
         "cost_estimate_coverage": {
             "calls_with_known_price": cost_known_calls,
             "calls_with_unknown_price": cost_unknown_calls,

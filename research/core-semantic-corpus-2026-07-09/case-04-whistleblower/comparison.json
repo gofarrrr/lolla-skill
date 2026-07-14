@@ -1,0 +1,231 @@
+{
+  "case_id": "case-04-whistleblower",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.2857142857142857,
+      "never_observation_ids": [
+        "boundary.brief_visual_access",
+        "constraint.active_regulatory_audit",
+        "drop.former_manager_implication",
+        "pressure.partial_document_confidence",
+        "question.initial_what_to_do"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "stance.external_counsel_path",
+            "stance.internal_confidence_threshold"
+          ],
+          "recall": 0.2857142857142857,
+          "recovered_count": 2,
+          "total_count": 7
+        },
+        {
+          "observation_ids": [
+            "stance.external_counsel_path",
+            "stance.internal_confidence_threshold"
+          ],
+          "recall": 0.2857142857142857,
+          "recovered_count": 2,
+          "total_count": 7
+        },
+        {
+          "observation_ids": [
+            "stance.external_counsel_path",
+            "stance.internal_confidence_threshold"
+          ],
+          "recall": 0.2857142857142857,
+          "recovered_count": 2,
+          "total_count": 7
+        }
+      ],
+      "stable_observation_ids": [
+        "stance.external_counsel_path",
+        "stance.internal_confidence_threshold"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "live_constraints": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.047619047619047616,
+          "span_jaccard": 0.047619047619047616
+        },
+        "reasoning_passages": {
+          "counts": [
+            5,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.7777777777777777,
+          "span_jaccard": 0.7777777777777777
+        }
+      },
+      "mean_labeled_jaccard": 0.3862433862433862,
+      "mean_span_jaccard": 0.3862433862433862
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.7142857142857143,
+      "never_observation_ids": [
+        "constraint.active_regulatory_audit",
+        "pressure.partial_document_confidence"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "boundary.brief_visual_access",
+            "drop.former_manager_implication",
+            "question.initial_what_to_do",
+            "stance.external_counsel_path",
+            "stance.internal_confidence_threshold"
+          ],
+          "recall": 0.7142857142857143,
+          "recovered_count": 5,
+          "total_count": 7
+        },
+        {
+          "observation_ids": [
+            "boundary.brief_visual_access",
+            "drop.former_manager_implication",
+            "question.initial_what_to_do",
+            "stance.external_counsel_path",
+            "stance.internal_confidence_threshold"
+          ],
+          "recall": 0.7142857142857143,
+          "recovered_count": 5,
+          "total_count": 7
+        },
+        {
+          "observation_ids": [
+            "boundary.brief_visual_access",
+            "drop.former_manager_implication",
+            "question.initial_what_to_do",
+            "stance.external_counsel_path",
+            "stance.internal_confidence_threshold"
+          ],
+          "recall": 0.7142857142857143,
+          "recovered_count": 5,
+          "total_count": 7
+        }
+      ],
+      "stable_observation_ids": [
+        "boundary.brief_visual_access",
+        "drop.former_manager_implication",
+        "question.initial_what_to_do",
+        "stance.external_counsel_path",
+        "stance.internal_confidence_threshold"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            7,
+            5,
+            6
+          ],
+          "labeled_jaccard": 0.35714285714285715,
+          "span_jaccard": 0.35714285714285715
+        },
+        "dropped_thread_events": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            3,
+            4,
+            3
+          ],
+          "labeled_jaccard": 0.05555555555555555,
+          "span_jaccard": 0.13333333333333333
+        },
+        "live_constraint_events": {
+          "counts": [
+            3,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.4666666666666666,
+          "span_jaccard": 0.4666666666666666
+        },
+        "option_events": {
+          "counts": [
+            3,
+            4,
+            3
+          ],
+          "labeled_jaccard": 0.5499999999999999,
+          "span_jaccard": 0.5499999999999999
+        },
+        "question_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            3,
+            3,
+            4
+          ],
+          "labeled_jaccard": 0.5499999999999999,
+          "span_jaccard": 0.5499999999999999
+        }
+      },
+      "mean_labeled_jaccard": 0.5684807256235828,
+      "mean_span_jaccard": 0.5795918367346938
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28",
+    "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+    "shadow_run_count": 3
+  }
+}

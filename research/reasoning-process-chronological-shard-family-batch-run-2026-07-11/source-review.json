@@ -1,0 +1,95 @@
+{
+  "schema_version": "lolla.reasoning_process_chronological_shard_family_batch_source_review.v1",
+  "status": "representative_family_batch_review_complete_gate_fail",
+  "date": "2026-07-11",
+  "review_method": {
+    "source_first": true,
+    "protected_targets_seen_by_models": false,
+    "provider_or_evaluator_review_calls": 0,
+    "same_session_non_independent_targets": true
+  },
+  "targets": [
+    {
+      "target_id": "case01-evidence-discipline",
+      "case_id": "amb1-case01-product-scope",
+      "view_kind": "evidence_and_assumption_discipline",
+      "status": "supported",
+      "protected_relationship_in_one_record": true,
+      "finding": "The first record cites Lina's reuse estimate and the exact remaining-work/support boundary, correcting the evidence-family miss observed in Phase 4."
+    },
+    {
+      "target_id": "case05-position-trajectory",
+      "case_id": "amb1-case05-family-archive",
+      "view_kind": "position_and_decision_trajectory",
+      "status": "partial",
+      "protected_relationship_in_one_record": false,
+      "finding": "Starting, current, and qualification roles cite strong source evidence, including the user's direct unresolved-rule and deadline concern. But the single interpretation describes only the initial resistance and fails to state the move toward acceptance despite trajectory_type=changed. The protected assistant restatement e061 is also omitted."
+    },
+    {
+      "target_id": "case05-unresolved-state",
+      "case_id": "amb1-case05-family-archive",
+      "view_kind": "uncertainty_and_unresolved_state",
+      "status": "partial",
+      "protected_relationship_in_one_record": false,
+      "finding": "Both protected source spans are recovered, but the unresolved decision rule and deadline-hardening concern are split across two records rather than expressed as one reopen relationship."
+    },
+    {
+      "target_id": "case05-challenge-revision",
+      "case_id": "amb1-case05-family-archive",
+      "view_kind": "challenge_and_revision_response",
+      "status": "supported",
+      "protected_relationship_in_one_record": true,
+      "finding": "The first record correctly preserves the assistant's cosmetic-resolution frame, the user's correction, and the assistant's revision toward tolerance for incomplete evidence."
+    }
+  ],
+  "additional_record_review": [
+    {
+      "call_id": "shard-family-batch-amb1-case05-family-archive-position_and_decision_trajectory",
+      "record_index": 1,
+      "status": "semantic_role_mismatch",
+      "finding": "The evidence roles and trajectory_type indicate change, but the prose interpretation states only the starting position."
+    },
+    {
+      "call_id": "shard-family-batch-amb1-case05-family-archive-challenge_and_revision_response",
+      "record_index": 2,
+      "status": "semantic_role_mismatch",
+      "finding": "The interpretation describes a challenge to Tomas's stance, but prior-frame and challenge aliases are assigned in the reverse semantic order. The source is valid; the role placement is not."
+    }
+  ],
+  "aggregate": {
+    "provider_requests": 4,
+    "operational_success": "4_of_4",
+    "typed_admission": "4_of_4",
+    "raw_records": 7,
+    "deterministically_quarantined_records": 0,
+    "source_review_semantic_role_mismatch_records": 2,
+    "protected_relationships_supported": 2,
+    "protected_relationships_partial": 2,
+    "protected_relationships_not_observed": 0,
+    "protected_relationships_in_one_record": "2_of_4",
+    "source_strength_inflation_count": 0,
+    "estimated_cost_usd": 0.003996,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "decision": {
+    "representative_family_batch_gate": "fail",
+    "full_nineteen_call_case_authorized": false,
+    "completed_case_prompt_tuning_authorized": false,
+    "evidence_shard_candidate_status": "promising_not_transferred",
+    "challenge_shard_candidate_status": "protected_target_pass_with_additional_role_error",
+    "position_and_uncertainty_next_step": "provider_free_role_specific_interpretation_contracts",
+    "graph_or_runtime_authorized": false
+  },
+  "interpretation": "Chronological sharding improved minority-source recall, but generic prose fields still allow relationship meaning to be lost or role assignments to sound convincing while being wrong. The next repair must be semantic-role explicit, not another layer of deterministic conversation judgment.",
+  "nonclaims": [
+    "The batch does not show that all shards or a full case would pass.",
+    "Target recovery is not a reasoning-quality or trust score.",
+    "The two useful families are not yet production-ready or transferred."
+  ]
+}

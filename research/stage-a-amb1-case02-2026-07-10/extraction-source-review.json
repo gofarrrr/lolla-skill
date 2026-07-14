@@ -1,0 +1,50 @@
+{
+  "schema_version": "lolla.development_extraction_source_review.v1",
+  "date": "2026-07-10",
+  "status": "provisional_observation_not_admitted_stage_a",
+  "source_first": true,
+  "review_independence": "same_project_session_not_blind",
+  "artifact": {
+    "path": "research/stage-a-amb1-case02-2026-07-10/run/lolla_stage_a_amb1_case02_20260710_a1/lolla_stage_a_amb1_case02_20260710_a1_extraction.json",
+    "sha256": "45c2a5118f180746727c3095259a5bdb5064db33a3f9abd20682ef34271d2cca"
+  },
+  "observed_strengths": [
+    "The extraction correctly identified the live expansion decision and preserved seven exact assistant passages without quote repair.",
+    "It retained the calendar deadline, operating inconsistency, volunteer-growth pressure, and funder narrative as relevant decision structure.",
+    "It noticed the unresolved risk that curriculum readiness could become a recurring delay mechanism."
+  ],
+  "observed_weaknesses": [
+    {
+      "type": "provenance_collapse",
+      "finding": "The synthesized position attributes the conditional time-bound pilot mainly to the assistant even though the user states that direction and conditions in Turn 7 after a jointly developed conversation."
+    },
+    {
+      "type": "unsupported_strengthening",
+      "finding": "Foundation guidance that geographic reach would make an application easier to explain is strengthened into a funding preference, which is more definite than the source."
+    },
+    {
+      "type": "invented_or_unlicensed_label",
+      "finding": "The synthesized position introduces volunteer burnout although the source establishes fragile coverage and after-work contribution, not burnout."
+    },
+    {
+      "type": "constraint_compression",
+      "finding": "The four listed constraints omit or blur Willow Hub's lack of staff coordination, restricted curriculum funding, participant expectations, twice-monthly scheduling difficulty, and the socially costly reversibility of ending a pilot."
+    },
+    {
+      "type": "trajectory_loss",
+      "finding": "The exact passage set contains no Turn 7 assistant passage and therefore weakly represents the final ready-enough threshold, the user's conditional position, and the remaining disagreement with the volunteer lead."
+    },
+    {
+      "type": "dropped_thread_status_error",
+      "finding": "The curriculum-delay thread is marked never addressed even though the final assistant explicitly proposes a ready-enough threshold and acknowledges that the threshold can still be challenged."
+    }
+  ],
+  "interpretation": "Even though the Stage A pipeline was not admitted, the persisted extraction suggests that realistic ambiguity stresses joint-process provenance, source-strength calibration, constraint coverage, and thread-status tracking more than basic topic identification or quote fidelity.",
+  "non_claims": [
+    "not an admitted Stage A result",
+    "not independent scoring",
+    "not a clean-holdout finding",
+    "not evidence of failure frequency",
+    "not authority to tune on this case"
+  ]
+}

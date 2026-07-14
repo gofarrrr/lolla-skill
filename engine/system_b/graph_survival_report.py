@@ -25,6 +25,13 @@ def build_graph_survival_report(run_dir: Path | str) -> dict[str, Any]:
     result = _read_json_object(run_path / "result.json")
     v60_ledger = _read_json_object(run_path / "v60_ledger.json")
     pre_step6_ledger = _read_json_object(run_path / "pre_step6_private_table_ledger.json")
+    constitutional_ledger = _read_json_object(
+        run_path / "constitutional_graph_survival_ledger.json"
+    )
+    constitutional = _mapping(result.get("constitutional_graph_survival"))
+    constitutional_validation = _mapping(
+        result.get("constitutional_graph_survival_ledger_validation")
+    )
 
     v60 = _mapping(result.get("v60_enrichment"))
     candidate_pool = _mapping(v60.get("candidate_pool"))
@@ -121,6 +128,35 @@ def build_graph_survival_report(run_dir: Path | str) -> dict[str, Any]:
             "pre_step6_private_table_ledger": (
                 "pre_step6_private_table_ledger.json" if private_table_survival else ""
             ),
+            "constitutional_graph_survival": (
+                "result.json#/constitutional_graph_survival" if constitutional else ""
+            ),
+            "constitutional_graph_survival_ledger": (
+                "constitutional_graph_survival_ledger.json"
+                if constitutional_ledger
+                else ""
+            ),
+        },
+        "constitutional_graph_survival": {
+            "status": _text(constitutional.get("status")) or "not_present",
+            "portfolio_sha256": _text(constitutional.get("portfolio_sha256")),
+            "path_counts": dict(_mapping(constitutional.get("path_counts"))),
+            "fan_in_measurement": dict(
+                _mapping(constitutional.get("fan_in_measurement"))
+            ),
+            "active_pressure_items": list(
+                _list(constitutional.get("active_pressure_items"))
+            ),
+            "reserve_custody": dict(_mapping(constitutional.get("reserve_custody"))),
+            "ledger_status": (
+                _text(constitutional_validation.get("status"))
+                or _text(constitutional_ledger.get("status"))
+                or "not_present"
+            ),
+            "disposition_counts": dict(
+                _mapping(constitutional_validation.get("disposition_counts"))
+            ),
+            "graph_recall_is_relevance_proof": False,
         },
         "summary": summary,
         "candidate_survival": candidate_survival,
@@ -163,6 +199,7 @@ def write_graph_survival_artifacts(run_dir: Path | str) -> tuple[Path, Path, dic
 def render_graph_survival_markdown(report: Mapping[str, Any]) -> str:
     """Render a compact operator-facing Markdown report."""
     summary = _mapping(report.get("summary"))
+    constitutional = _mapping(report.get("constitutional_graph_survival"))
     lines = [
         "# Graph Survival Report",
         "",
@@ -180,6 +217,9 @@ def render_graph_survival_markdown(report: Mapping[str, Any]) -> str:
         f"- Confirming/private-table models: {_safe_int(summary.get('confirming_support_model_count'))}",
         f"- Suppressed models: {_safe_int(summary.get('suppressed_model_count'))}",
         f"- Suppressed or unadjudicated signals: {_safe_int(summary.get('suppressed_signal_count'))}",
+        f"- Constitutional active pressure: {_safe_int(_mapping(constitutional.get('fan_in_measurement')).get('active_item_count'))}",
+        f"- Constitutional reserve candidates: {_safe_int(_mapping(constitutional.get('fan_in_measurement')).get('reserve_candidate_count'))}",
+        f"- Constitutional ledger: {_text(constitutional.get('ledger_status')) or 'not_present'}",
         "",
         "## Candidate Survival",
         "",
@@ -242,6 +282,8 @@ def graph_survival_summary_for_trace(run_dir: Path | str) -> dict[str, Any]:
     if not report:
         return {"status": "missing", "artifact_path": ""}
     summary = _mapping(report.get("summary"))
+    constitutional = _mapping(report.get("constitutional_graph_survival"))
+    constitutional_fan_in = _mapping(constitutional.get("fan_in_measurement"))
     budget_suppressed = _budget_suppressed_lenses(report, limit=12)
     return {
         "status": _text(report.get("status")) or "unknown",
@@ -264,6 +306,18 @@ def graph_survival_summary_for_trace(run_dir: Path | str) -> dict[str, Any]:
         ),
         "unadjudicated_candidate_count": _safe_int(summary.get("unadjudicated_candidate_count")),
         "top_budget_suppressed_lenses": budget_suppressed,
+        "constitutional_graph_survival_status": _text(
+            constitutional.get("status")
+        ),
+        "constitutional_active_pressure_count": _safe_int(
+            constitutional_fan_in.get("active_item_count")
+        ),
+        "constitutional_reserve_candidate_count": _safe_int(
+            constitutional_fan_in.get("reserve_candidate_count")
+        ),
+        "constitutional_ledger_status": _text(
+            constitutional.get("ledger_status")
+        ),
     }
 
 

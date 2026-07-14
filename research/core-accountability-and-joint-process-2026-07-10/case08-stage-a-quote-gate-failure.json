@@ -1,0 +1,39 @@
+{
+  "schema_version": "lolla.holdout_stage_a_failure.v0",
+  "status": "stopped_no_retry",
+  "case_id": "case-08-oncologist-career-family",
+  "contract_sha256": "c346dce52566b39b556089b82c7da1d310765f5a8c19ce145f355cf30e49609f",
+  "fresh_extraction_sha256": "17f746decc031d811e7b6fac7615c429312a2cb2f0e553918f93e47840ab3b30",
+  "failure_phase": "fresh_extraction_quote_custody",
+  "capture": {
+    "health": "good",
+    "captured_message_count": 18,
+    "required_message_count": 18,
+    "truncated": false
+  },
+  "quote_validation": {
+    "initial_call_count": 1,
+    "allowed_repair_call_count": 1,
+    "repair_attempted": true,
+    "repair_succeeded": false,
+    "verified_passage_count": 4,
+    "failed_passage_count": 2,
+    "failed_passage_text_included": false,
+    "diagnosis": "Both failures preserved the source words but changed internal phrase delimiters from double to single quotation marks. The frozen exact matcher rejected them."
+  },
+  "experiment_retry_count": 0,
+  "same_case_retry_authorized": false,
+  "pipeline_authorized": false,
+  "stage_b_authorized": false,
+  "repair": {
+    "scope": "prospective_mechanical_quote_delimiter_tolerance",
+    "same_case_reused": false,
+    "description": "The shared matcher may now normalize only quote delimiters, preserves apostrophes inside words, and returns the literal source substring with original punctuation."
+  },
+  "non_claims": [
+    "not_a_capture_failure",
+    "not_a_semantic_pipeline_result",
+    "not_permission_to_retry_case08",
+    "not_downstream_evidence"
+  ]
+}

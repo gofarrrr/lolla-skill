@@ -1,0 +1,110 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v42_adversarial_review.v1",
+  "status": "wire_only_compatibility_adversarial_pass",
+  "date": "2026-07-12",
+  "cases": [
+    {
+      "adversarial_id": "schema-diff-scope",
+      "expected": "only_three_position_unique_items_keywords_removed",
+      "observed": "only_three_position_unique_items_keywords_removed",
+      "mechanism": "recursive exact projection comparison",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "prompt-invariance",
+      "expected": "all_sixty_three_prompts_byte_identical_to_v41",
+      "observed": "all_sixty_three_prompts_byte_identical_to_v41",
+      "mechanism": "prompt object and hash equality",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "validator-invariance",
+      "expected": "v42_record_validation_equals_v41",
+      "observed": "v42_record_validation_equals_v41",
+      "mechanism": "direct validator delegation and equality test",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "google-native-schema-control",
+      "expected": "v41_fail_v42_pass",
+      "observed": "v41_fail_v42_pass",
+      "mechanism": "google-genai 2.11.0 process_schema plus native Schema validation",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "duplicate-evidence-without-wire-unique-items",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "deterministic v2 parent-role duplicate validation remains authoritative",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "enum-valid-semantic-error",
+      "expected": "admit_structurally_and_require_source_review",
+      "observed": "admit_structurally_and_require_source_review",
+      "mechanism": "semantic object and expression correctness remain probabilistic/source-reviewed",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "parallel-column-semantic-permutation",
+      "expected": "unchanged_v41_structural_admission_and_source_review_limit",
+      "observed": "unchanged_v41_structural_admission_and_source_review_limit",
+      "mechanism": "wire change does not add a semantic alignment gate",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "compiled-custody-versioning",
+      "expected": "v42_versions_with_raw_model_record_unchanged",
+      "observed": "v42_versions_with_raw_model_record_unchanged",
+      "mechanism": "post-validation version and observation-id projection",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "legacy-and-fresh-replay",
+      "expected": "all_twenty_three_reviewed_fixtures_admit",
+      "observed": "all_twenty_three_reviewed_fixtures_admit",
+      "mechanism": "unchanged responses and validator through v42 compiler",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "non-position-invariance",
+      "expected": "all_non_position_schemas_byte_identical_to_v41",
+      "observed": "all_non_position_schemas_byte_identical_to_v41",
+      "mechanism": "uniqueItems projection limited to position family",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "reserved-case-selection",
+      "expected": "exclude_closed_career_then_select_community_space_by_frozen_hash_order",
+      "observed": "exclude_closed_career_then_select_community_space_by_frozen_hash_order",
+      "mechanism": "pre-existing case-id hash ranking",
+      "semantic_gate_added": false
+    }
+  ],
+  "summary": {
+    "adversarial_case_count": 11,
+    "expected_outcomes_met": 11,
+    "wire_scope_checks": 4,
+    "deterministic_duplicate_rejections": 1,
+    "semantic_admissions_requiring_source_review": 2,
+    "custody_versioning_checks": 1,
+    "fixture_replay_checks": 1,
+    "non_position_invariance_checks": 1,
+    "selection_checks": 1,
+    "new_deterministic_semantic_gates": 0,
+    "provider_calls": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "decision": {
+    "adversarial_gate": "pass",
+    "wire_only_change_confirmed": true,
+    "semantic_source_review_remains_mandatory": true,
+    "deterministic_duplicate_validation_retained": true,
+    "cold_reader_review_authorized": true,
+    "provider_probe_authorized": false
+  },
+  "nonclaim": "Removing uniqueItems fixes current native SDK schema compatibility without weakening deterministic uniqueness checks; it does not prove provider acceptance or semantic correctness."
+}

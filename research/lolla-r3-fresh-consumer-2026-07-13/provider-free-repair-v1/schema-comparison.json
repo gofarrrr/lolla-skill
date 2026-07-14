@@ -1,0 +1,200 @@
+{
+  "failed_r3_schema": {
+    "canonical_bytes": 2565,
+    "keyword_counts": {
+      "additionalProperties": 2,
+      "enum": 5,
+      "items": 2,
+      "maxItems": 2,
+      "maxLength": 11,
+      "maximum": 1,
+      "minItems": 2,
+      "minLength": 11,
+      "minimum": 1,
+      "properties": 2,
+      "required": 2,
+      "type": 21
+    },
+    "pattern_constraint_count": 0,
+    "schema_structural_depth": 4,
+    "string_length_constraint_count": 22,
+    "total_object_properties": 18,
+    "unique_items_constraint_count": 0
+  },
+  "interpretation": "The projection removes undocumented constraints and redundant generated fields. The historical success is operational evidence only, not proof that any particular keyword caused the R3 failure.",
+  "operational_smaller_reference": {
+    "call_result_file_sha256": "3dfdf0b4069c1523687e26336c4724fa8a417455cda984d372da9f72c97b70b0",
+    "call_result_path": "research/simulated-reliability-v1-model-value-probe-2026-07-13/a1/gemini-3-1-flash-lite-vertex-starting/call-01-starting-result.json",
+    "current_endpoint_verification": {
+      "file_sha256": "975bf36cf9d9707719117c56167ebc1e5a403258fc64d718c805cc8099dfe1aa",
+      "model": "google/gemini-3.1-flash-lite",
+      "path": "research/lolla-r3-fresh-consumer-2026-07-13/preflight/provider-endpoint-verification.json",
+      "provider_calls": 0,
+      "provider_tag": "google-vertex/global",
+      "required_parameters_present": [
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "seed",
+        "structured_outputs"
+      ],
+      "verified_at_date": "2026-07-13"
+    },
+    "documented_subset_lint": {
+      "errors": [
+        {
+          "code": "undocumented_keyword",
+          "detail": "maxLength is not in the documented subset for string.",
+          "path": "/properties/global_limitations/maxLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "pattern is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/evidence_ids/items/pattern"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "maxLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/fidelity_note/maxLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "minLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/fidelity_note/minLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "maxLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/limitations/maxLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "maxLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/role_interpretation/maxLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "minLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/role_interpretation/minLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "maxLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/stance_components/items/properties/object_interpretation/maxLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "minLength is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/stance_components/items/properties/object_interpretation/minLength"
+        },
+        {
+          "code": "undocumented_keyword",
+          "detail": "pattern is not in the documented subset for string.",
+          "path": "/properties/records/items/properties/stance_components/items/properties/source_evidence_id/pattern"
+        }
+      ],
+      "metrics": {
+        "canonical_bytes": 1946,
+        "keyword_counts": {
+          "additionalProperties": 3,
+          "description": 2,
+          "enum": 5,
+          "items": 3,
+          "maxItems": 3,
+          "maxLength": 5,
+          "minItems": 3,
+          "minLength": 3,
+          "pattern": 2,
+          "properties": 3,
+          "required": 3,
+          "type": 18
+        },
+        "pattern_constraint_count": 2,
+        "schema_structural_depth": 5,
+        "string_length_constraint_count": 8,
+        "total_object_properties": 14,
+        "unique_items_constraint_count": 0
+      },
+      "provider_acceptance_proven": false,
+      "schema_version": "lolla.google_documented_schema_subset_lint.v1",
+      "source_snapshot": {
+        "as_of_date": "2026-07-13",
+        "documented_array_keywords": [
+          "items",
+          "prefixItems",
+          "minItems",
+          "maxItems"
+        ],
+        "documented_number_keywords": [
+          "enum",
+          "minimum",
+          "maximum"
+        ],
+        "documented_object_keywords": [
+          "properties",
+          "required",
+          "additionalProperties"
+        ],
+        "documented_string_keywords": [
+          "enum",
+          "format"
+        ],
+        "google_structured_output_docs": "https://ai.google.dev/gemini-api/docs/structured-output"
+      },
+      "status": "fail_documented_subset"
+    },
+    "metrics": {
+      "canonical_bytes": 1946,
+      "keyword_counts": {
+        "additionalProperties": 3,
+        "description": 2,
+        "enum": 5,
+        "items": 3,
+        "maxItems": 3,
+        "maxLength": 5,
+        "minItems": 3,
+        "minLength": 3,
+        "pattern": 2,
+        "properties": 3,
+        "required": 3,
+        "type": 18
+      },
+      "pattern_constraint_count": 2,
+      "schema_structural_depth": 5,
+      "string_length_constraint_count": 8,
+      "total_object_properties": 14,
+      "unique_items_constraint_count": 0
+    },
+    "non_claim": "Historical provider acceptance does not prove that undocumented keywords remain accepted or identify the cause of the failed R3 request.",
+    "provider_reported_cost_usd": 0.00207675,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+    "role_bundle_file_sha256": "a922b1e54658fb7b03653ab6d8a612d0e072431e8f0be68725e4ca64eb1c14f5",
+    "role_bundle_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/role-request-bundle.json",
+    "served_model": "google/gemini-3.1-flash-lite",
+    "served_provider": "Google",
+    "status": "historical_smaller_schema_operational_success"
+  },
+  "projected_schema": {
+    "canonical_bytes": 2411,
+    "keyword_counts": {
+      "additionalProperties": 2,
+      "description": 14,
+      "enum": 3,
+      "items": 2,
+      "maxItems": 2,
+      "maximum": 1,
+      "minItems": 2,
+      "minimum": 1,
+      "properties": 2,
+      "required": 2,
+      "type": 17
+    },
+    "pattern_constraint_count": 0,
+    "schema_structural_depth": 4,
+    "string_length_constraint_count": 0,
+    "total_object_properties": 14,
+    "unique_items_constraint_count": 0
+  }
+}

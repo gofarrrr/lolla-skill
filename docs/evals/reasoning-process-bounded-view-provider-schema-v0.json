@@ -1,0 +1,133 @@
+{
+  "type": "object",
+  "description": "Bounded reasoning-process view response.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "Process-view items.",
+      "items": {
+        "type": "object",
+        "description": "One source-linked interpretation for a bounded process question.",
+        "properties": {
+          "view_item_id": {
+            "type": "string",
+            "description": "Stable view-local item ID."
+          },
+          "interpretation": {
+            "type": "string",
+            "description": "Neutral process interpretation."
+          },
+          "status": {
+            "type": "string",
+            "description": "Evidence status.",
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ]
+          },
+          "source_observation_ids": {
+            "type": "array",
+            "description": "Ledger observations supporting the item.",
+            "items": {
+              "type": "string",
+              "description": "Ledger observation ID."
+            },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "source_span_ids": {
+            "type": "array",
+            "description": "Exact source spans supporting the item.",
+            "items": {
+              "type": "string",
+              "description": "Source span ID."
+            },
+            "minItems": 1,
+            "maxItems": 12
+          },
+          "limitations": {
+            "type": "string",
+            "description": "Uncertainty or missing context; empty only when none is known."
+          }
+        },
+        "required": [
+          "view_item_id",
+          "interpretation",
+          "status",
+          "source_observation_ids",
+          "source_span_ids",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 12
+    },
+    "dispositions": {
+      "type": "array",
+      "description": "Exact input-observation accounting.",
+      "items": {
+        "type": "object",
+        "description": "Terminal per-view accounting for one input observation.",
+        "properties": {
+          "observation_id": {
+            "type": "string",
+            "description": "Input ledger observation ID."
+          },
+          "disposition": {
+            "type": "string",
+            "description": "How this view treated the observation.",
+            "enum": [
+              "included",
+              "parked_not_applicable",
+              "parked_redundant",
+              "parked_unclear",
+              "excluded_invalid_source",
+              "excluded_schema_failure",
+              "not_evaluated_budget"
+            ]
+          },
+          "authority": {
+            "type": "string",
+            "description": "Who made the disposition.",
+            "enum": [
+              "probabilistic_reader",
+              "source_reviewer",
+              "deterministic_validator"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "description": "Concrete reason for the disposition."
+          },
+          "view_item_ids": {
+            "type": "array",
+            "description": "Resulting view item IDs; empty unless included.",
+            "items": {
+              "type": "string",
+              "description": "View item ID."
+            },
+            "minItems": 0,
+            "maxItems": 4
+          }
+        },
+        "required": [
+          "observation_id",
+          "disposition",
+          "authority",
+          "reason",
+          "view_item_ids"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 32
+    }
+  },
+  "required": [
+    "items",
+    "dispositions"
+  ],
+  "additionalProperties": false
+}

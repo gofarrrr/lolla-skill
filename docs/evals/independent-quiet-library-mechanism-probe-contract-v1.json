@@ -1,0 +1,67 @@
+{
+  "schema_version": "lolla.independent_quiet_mechanism_probe_contract.v1",
+  "status": "frozen_before_exactly_one_no_retry_call",
+  "run_id": "independent-quiet-library-mechanism-probe-2026-07-12",
+  "frozen_inputs": [
+    {
+      "path": "research/independent-quiet-library-mechanism-packet-2026-07-12/report.json",
+      "sha256": "f1febda00b8e40bbc4237123d68b46736e3956739d9428f747fa0d058a83ff9f"
+    },
+    {
+      "path": "research/independent-phase5-quiet-library-v242-role-case-2026-07-12/source-review-target.json",
+      "sha256": "58b991df91b5decf70a0015e19634d98c180381113fe65cfb9e5510000d1066c"
+    }
+  ],
+  "job": {
+    "model": "deepseek/deepseek-v4-flash",
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "pricing_per_token": {
+      "prompt": 0.00000007,
+      "completion": 0.00000028
+    }
+  },
+  "call_configuration": {
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1300,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "acceptance": {
+    "complete_nine_mechanism_review": true,
+    "no_unresolved_or_ambiguous_mechanism": true,
+    "empty_routing_projection": true,
+    "fact_free_projection": true,
+    "negative_review_is_probabilistic_evidence_not_veto": true,
+    "no_scalar_score": true
+  },
+  "boundary": {
+    "independent_synthetic_holdout": true,
+    "source_target_excluded_from_provider": true,
+    "deterministic_semantic_mapping": false,
+    "deterministic_negative_veto": false,
+    "graph_mutation": false,
+    "runtime_integration": false,
+    "production_authorization": false
+  }
+}

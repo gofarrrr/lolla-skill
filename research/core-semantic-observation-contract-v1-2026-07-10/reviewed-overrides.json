@@ -1,0 +1,522 @@
+{
+  "schema_version": "lolla.semantic_observation_review_overrides.v0",
+  "annotation_status": "source_reviewed_after_diagnostic_runs_frozen_for_future_only",
+  "observations": {
+    "case-01-enterprise-logo-beta:pressure.board_brand_excitement": {
+      "concept": "Board enthusiasm is partly prestige-driven and therefore weak evidence of customer demand.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_board_prestige_motivation",
+          "turn_index": 3,
+          "speaker": "user",
+          "quote": "the board is excited mainly because of the company's name",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-01-enterprise-logo-beta:pressure.no_signed_commitment": {
+      "concept": "The prospect's interest is not a signed commitment.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_no_signed_commitment",
+          "turn_index": 3,
+          "speaker": "user",
+          "quote": "They have not signed anything.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence",
+            "unresolved_constraint"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-01-enterprise-logo-beta:pressure.purchase_commitment_concern": {
+      "concept": "The user challenges treating friendly interest as purchase commitment.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_interest_not_purchase_objection",
+          "turn_index": 5,
+          "speaker": "user",
+          "quote": "I am worried we are treating their interest as a purchase commitment",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "reasoning_objection",
+            "weak_evidence"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-01-enterprise-logo-beta:pressure.weak_email_evidence": {
+      "concept": "Two friendly emails are weak evidence of commercial intent.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_two_friendly_emails",
+          "turn_index": 3,
+          "speaker": "user",
+          "quote": "We only have two friendly emails from their innovation lead",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-01-enterprise-logo-beta:value.opportunity_loss_concern": {
+      "concept": "Waiting may destroy a valuable opportunity, so delay has a user-relevant cost.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_opportunity_loss_value",
+          "turn_index": 5,
+          "speaker": "user",
+          "quote": "I am also worried that waiting will make us lose the opportunity",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "explicit_value",
+            "timing_pressure"
+          ],
+          "acceptable_families": [
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-02-multi-offer-career:pressure.family_joint_decision": {
+      "concept": "The career choice is a joint household decision rather than the user's individual decision.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_joint_decision_frame_correction",
+          "turn_index": 5,
+          "speaker": "user",
+          "quote": "This isn't my decision alone.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "premise_correction"
+          ],
+          "acceptable_families": [
+            "user_pressure_events"
+          ]
+        },
+        {
+          "evidence_id": "later_spouse_answer_conditions_option",
+          "turn_index": 14,
+          "speaker": "user",
+          "quote": "If wife is a hard or soft no, I take A.",
+          "temporal_role": "later_strengthening",
+          "semantic_roles": [
+            "material_qualification",
+            "conditional_option"
+          ],
+          "acceptable_families": [
+            "option_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_and_later_strengthening_with_acceptable_role"
+        }
+      }
+    },
+    "case-03-startup-pivot:pressure.no_price_or_timeline": {
+      "concept": "The apparent customer pull has no specific price or decision timeline behind it.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_no_price_or_timeline",
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "None of them have given me a specific price or timeline.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence",
+            "unresolved_constraint"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-04-whistleblower:pressure.partial_document_confidence": {
+      "concept": "Confidence applies to the documents and email, not to the broader client interpretation.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_document_confidence_boundary",
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "90% confident those were financial docs and email.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-05-parenting-teen:pressure.ongoing_phone_monitoring": {
+      "concept": "The parent has covertly monitored the teenager's phone for months, changing the trust context.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_months_of_phone_monitoring",
+          "turn_index": 5,
+          "speaker": "user",
+          "quote": "I've been going through her phone for months.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "behavioral_constraint"
+          ],
+          "acceptable_families": [
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-06-friendship-money:pressure.not_financial_manager": {
+      "concept": "The user rejects taking responsibility for managing the friend's finances or choices.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_reject_manager_frame",
+          "turn_index": 3,
+          "speaker": "user",
+          "quote": "I'm not trying to be her manager.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "premise_correction",
+            "reasoning_objection"
+          ],
+          "acceptable_families": [
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-07-messy-linked-decisions:pressure.claimed_but_not_actual_decision": {
+      "concept": "The claimed Seattle decision is not actually settled.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_seattle_self_correction",
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "I keep telling myself I've decided on Seattle but I haven't actually decided.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "premise_correction",
+            "stated_unknown"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-08-oncologist-career-family:pressure.husband_conversation_not_real": {
+      "concept": "General husband support is not yet concrete household alignment on the multi-year travel arrangement.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_household_alignment_unknown",
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "stated_unknown",
+            "unresolved_constraint"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        },
+        {
+          "evidence_id": "later_permission_not_alignment",
+          "turn_index": 4,
+          "speaker": "user",
+          "quote": "But he said it in the way that means \"I will not stop you from taking it.\" Which is different from \"yes this is a good idea for us.\"",
+          "temporal_role": "later_strengthening",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_and_later_strengthening_with_acceptable_role"
+        }
+      }
+    },
+    "case-09-phd-dissertation:pressure.no_single_cell_advantage": {
+      "concept": "The user has no special advantage that would make the single-cell path unusually defensible.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_no_specific_advantage",
+          "turn_index": 3,
+          "speaker": "user",
+          "quote": "I don't have a specific advantage.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "premise_correction",
+            "stated_unknown"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-10-real-estate-bid:pressure.insurance_requirement": {
+      "concept": "Insurance makes the electrical update a real requirement rather than an optional preference.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_insurance_requirement",
+          "turn_index": 3,
+          "speaker": "user",
+          "quote": "our insurance won't cover us long-term without updating it",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "unresolved_constraint"
+          ],
+          "acceptable_families": [
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    },
+    "case-11-user-has-consulting-plan:pressure.no_actual_commitments": {
+      "concept": "Friendly network interest is not a real consulting pipeline because no engagement is committed.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_no_committed_engagements",
+          "turn_index": 2,
+          "speaker": "user",
+          "quote": "None of them have committed to actual engagements.",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence",
+            "unresolved_constraint"
+          ],
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        },
+        {
+          "evidence_id": "later_pipeline_self_correction",
+          "turn_index": 4,
+          "speaker": "user",
+          "quote": "The conversations aren't a pipeline. I've been treating them as one because I wanted them to be.",
+          "temporal_role": "later_strengthening",
+          "semantic_roles": [
+            "premise_correction"
+          ],
+          "acceptable_families": [
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_and_later_strengthening_with_acceptable_role"
+        }
+      }
+    },
+    "case-12-lolla-project-governance:pressure.avoid_ad_hoc_work": {
+      "concept": "Development must follow a coherent plan rather than continue as disconnected ad-hoc work.",
+      "review_status": "source_reviewed",
+      "evidence": [
+        {
+          "evidence_id": "first_reject_ad_hoc_development",
+          "turn_index": 1,
+          "speaker": "user",
+          "quote": "what I don't want us to do is to work ad hoc and not having big plan",
+          "temporal_role": "first_introduction",
+          "semantic_roles": [
+            "reasoning_objection",
+            "process_constraint"
+          ],
+          "acceptable_families": [
+            "live_constraint_events",
+            "user_pressure_events"
+          ]
+        }
+      ],
+      "consumer_requirements": {
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        },
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        }
+      }
+    }
+  },
+  "non_claims": [
+    "reviewed_overrides_do_not_change_prior_experiment_results",
+    "acceptable_families_are_source_review_hypotheses_not_deterministic_classifiers",
+    "future_evaluation_requires_overrides_to_remain_frozen_before_calls"
+  ]
+}

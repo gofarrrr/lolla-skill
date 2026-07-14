@@ -1,0 +1,243 @@
+{
+  "schema_version": "lolla.r4_complementary_reader_experiment_contract.v1",
+  "status": "frozen_provider_free_call_authorization_required",
+  "date": "2026-07-13",
+  "run_id": "lolla-r4-complementary-reader-diagnostic-a1",
+  "purpose": "Test whether one paired unresolved-matter/reopen-condition reader recovers an already exposed false stand-down while remaining quiet on a matched restraint control, then test whether a subsequent reader can state any source-grounded relationship through exact admitted record IDs.",
+  "source_first_target": {
+    "path": "docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json",
+    "sha256": "978e2d724939ff74873c7c89c0f4c8eb65a91310c90bbb5c42d531fcc453451d",
+    "visible_to_provider": false
+  },
+  "current_practice": {
+    "path": "docs/conversation-understanding/lolla-r4-complementary-reader-current-practice-2026-07-13.md",
+    "sha256": "4369bd21901a032419e13f7caa477775135f6291213917b3ec1c42bbe24f57b1"
+  },
+  "model_snapshot": {
+    "path": "docs/evals/lolla-r4-complementary-reader-model-snapshot-2026-07-13.json",
+    "sha256": "b103238538cebce1bd76be416a99d2d04a87dccb71e653e686c733976019069d"
+  },
+  "preflight": {
+    "path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/preflight-result.json",
+    "sha256": "4718c917ecf6c08c4fb7cc9fdd2758d9e8367aced100ef3ef51dd8679745c32b",
+    "manifest_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/manifest.json",
+    "manifest_sha256": "8b5d1717ff0b0490fb47b6c41d068bd8505aa72556ebf24e4f5e84c247de4e5a"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "allowed_served_model_ids": [
+      "google/gemini-3.1-flash-lite",
+      "google/gemini-3.1-flash-lite-20260507"
+    ],
+    "provider_slug": "google-vertex",
+    "allowed_served_provider_names": [
+      "Google"
+    ],
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "provider_order": [
+      "google-vertex"
+    ],
+    "provider_only": [
+      "google-vertex"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zdr": true,
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    }
+  },
+  "task_limits": {
+    "uncertainty": {
+      "max_tokens": 900,
+      "reasoning_effort": "low"
+    },
+    "relationship": {
+      "max_tokens": 700,
+      "reasoning_effort": "minimal"
+    }
+  },
+  "schemas": {
+    "uncertainty_sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+    "uncertainty_canonical_utf8_bytes": 1653,
+    "relationship_sha256": "6e23a52fe2693e2b3864ae29a433d6334df2ef7f1f617821fd7cdaa1bcb9e690",
+    "relationship_canonical_utf8_bytes": 1442,
+    "wire_mode": "strict_json_schema",
+    "strict": true,
+    "google_documented_subset_only": true,
+    "local_admission_required": true
+  },
+  "cases": [
+    {
+      "case_id": "v1-case02-discharge-transport",
+      "selection_role": "exposed_false_stand_down_target",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case02-discharge-transport.txt",
+      "source_sha256": "7b7586f0c0ce92f35b4c6bf836e0752182727b4520c4e30356bd7e94158786b3",
+      "wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case02-discharge-transport/position-wrapper.json",
+      "wrapper_sha256": "449a49aff896e187590f427fc1c6d08444c5cdc11b04ccfa7f915798a954962f",
+      "role_artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/joined-role-records.json",
+      "role_artifact_sha256": "e656a579afc096e99a845ebfd6d8987748138a23791f0b9c708946740e9ec0ec",
+      "uncertainty_packet_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case02-discharge-transport/uncertainty-packet.json",
+      "uncertainty_prompts_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case02-discharge-transport/uncertainty-prompts.json",
+      "uncertainty_request_preview_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case02-discharge-transport/uncertainty-request-preview.json",
+      "uncertainty_packet_sha256": "3eb332091d40cb2c1cb4f3cdf5ac0a878018233024fa6f42522bfea1b4c0822a",
+      "uncertainty_system_prompt_sha256": "fba477dc7ac8be4ed964c4ea7fd50eb08ce348fc15fd0284badff437b8fbb958",
+      "uncertainty_user_prompt_sha256": "75ec44d961ab0b5eab9c4d07ee9039ff73745cd73af494947d1027182a5826a3",
+      "uncertainty_request_body_sha256": "c2f84114df306127139d64b1629118ba4d710e1ae9591175e079b6f3577ed676",
+      "seeds": {
+        "uncertainty": 8202,
+        "relationship": 8203
+      }
+    },
+    {
+      "case_id": "v1-case03-executive-hire",
+      "selection_role": "matched_restraint_control",
+      "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case03-executive-hire.txt",
+      "source_sha256": "e3ce228ad21db1b606547174d575c002ca33bf50731dd7082ffc2a528e8cf2a0",
+      "wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case03-executive-hire/position-wrapper.json",
+      "wrapper_sha256": "2b71c065dd8a41618b2e717369674ce212fc8dfd4ac8bcdf8bf9b3c1373324a5",
+      "role_artifact_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/joined-role-records.json",
+      "role_artifact_sha256": "9404abbcf025f093cbcea10e77fc55d4aafc01daf3a08e8d0925cf9d0521afc7",
+      "uncertainty_packet_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case03-executive-hire/uncertainty-packet.json",
+      "uncertainty_prompts_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case03-executive-hire/uncertainty-prompts.json",
+      "uncertainty_request_preview_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case03-executive-hire/uncertainty-request-preview.json",
+      "uncertainty_packet_sha256": "380f6c0e22d68a62c1d6257feac19d06ff0c41e72de44149d4186bb4b7b7a7f1",
+      "uncertainty_system_prompt_sha256": "fba477dc7ac8be4ed964c4ea7fd50eb08ce348fc15fd0284badff437b8fbb958",
+      "uncertainty_user_prompt_sha256": "b0e5625df089c4527bf0d202c268278434e6fe07ba480cb16944b822a5bff024",
+      "uncertainty_request_body_sha256": "1bc8f83c6e4b886536a92c2bb906b4a7c7623926b6f28fbc5c50da257d591df7",
+      "seeds": {
+        "uncertainty": 8302,
+        "relationship": 8303
+      }
+    }
+  ],
+  "budget": {
+    "maximum_provider_calls": 4,
+    "maximum_calls_per_case": 2,
+    "maximum_provider_reported_cost_per_case_usd": 0.015,
+    "maximum_provider_reported_cost_total_usd": 0.03,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "execution_contract": {
+    "uncertainty_request_frozen_exactly_before_authorization": true,
+    "relationship_request_built_only_from_admitted_exact_id_records": true,
+    "relationship_schema_and_system_prompt_frozen_before_authorization": true,
+    "relationship_user_prompt_hash_written_before_its_network_transport": true,
+    "durable_started_marker_before_every_network_transport": true,
+    "one_attempt_per_task": true,
+    "stop_relationship_on_uncertainty_failure": true,
+    "stop_further_calls_when_provider_cost_is_unknown": true,
+    "stop_at_case_or_total_cost_boundary": true,
+    "preserve_transport_schema_custody_and_budget_failures": true,
+    "source_first_target_never_loaded_by_runner": true
+  },
+  "review_contract": {
+    "source_first_human_review_required": true,
+    "review_dimensions": [
+      "material_pressure_recovered",
+      "false_positive_restraint",
+      "evidence_precision",
+      "role_placement",
+      "relationship_fidelity",
+      "operational_load_and_cost"
+    ],
+    "target_case_pass": "At least one admitted uncertainty record recovers the frozen cross-setting or temporary-support gap with exact supporting aliases, and any relationship uses exact admitted IDs without rewriting endpoints.",
+    "restraint_case_pass": "The reader does not turn already operationalized review and monitoring safeguards into performative new uncertainty; completed zero is valid for both stages.",
+    "ambiguous_outcome": "Preserve and review; do not count as discovery or restraint pass automatically.",
+    "schema_or_custody_success_is_not_semantic_success": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "provider_calls_authorized": false,
+    "authorization_file_present": false,
+    "runtime_or_graph_integration_authorized": false,
+    "production_model_selection_authorized": false,
+    "model_comparison_authorized": false,
+    "wider_corpus_authorized": false,
+    "revised_answer_or_pressure_call_authorized": false,
+    "next_decision": "explicit founder authorization for this frozen four-call maximum diagnostic"
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/r4_complementary_readers.py",
+      "sha256": "9253290093e62f62a9adbf8902ccf010ac4d4417c345222e4756e771496bf777"
+    },
+    {
+      "path": "scripts/evals/build_r4_complementary_reader_preflight.py",
+      "sha256": "f286a112406e332f84148e13896d6e48e1abaa328bf84fc7deaa41ab14c56386"
+    },
+    {
+      "path": "scripts/evals/run_r4_complementary_reader_experiment.py",
+      "sha256": "ec91fe1d4cfafa0366e1a0eeec1aef39a01f167297de11257f8889fcc30f4f2d"
+    },
+    {
+      "path": "docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json",
+      "sha256": "978e2d724939ff74873c7c89c0f4c8eb65a91310c90bbb5c42d531fcc453451d"
+    },
+    {
+      "path": "docs/evals/lolla-r4-complementary-reader-model-snapshot-2026-07-13.json",
+      "sha256": "b103238538cebce1bd76be416a99d2d04a87dccb71e653e686c733976019069d"
+    },
+    {
+      "path": "docs/conversation-understanding/lolla-r4-complementary-reader-current-practice-2026-07-13.md",
+      "sha256": "4369bd21901a032419e13f7caa477775135f6291213917b3ec1c42bbe24f57b1"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/preflight-result.json",
+      "sha256": "4718c917ecf6c08c4fb7cc9fdd2758d9e8367aced100ef3ef51dd8679745c32b"
+    },
+    {
+      "path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/manifest.json",
+      "sha256": "8b5d1717ff0b0490fb47b6c41d068bd8505aa72556ebf24e4f5e84c247de4e5a"
+    },
+    {
+      "path": "tests/fixtures/r4_complementary_readers/v1-case02-discharge-transport-uncertainty-positive.json",
+      "sha256": "023684009d695b5aa5eea12b2e635bb971858fdc00bdd2028c6fbaae1cb66200"
+    },
+    {
+      "path": "tests/fixtures/r4_complementary_readers/v1-case03-executive-hire-uncertainty-zero.json",
+      "sha256": "6f5ad019ac1d032e8af483b867151aef66f9782e27cb6c10095957cdb1470f01"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case02-discharge-transport.txt",
+      "sha256": "7b7586f0c0ce92f35b4c6bf836e0752182727b4520c4e30356bd7e94158786b3"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case02-discharge-transport/position-wrapper.json",
+      "sha256": "449a49aff896e187590f427fc1c6d08444c5cdc11b04ccfa7f915798a954962f"
+    },
+    {
+      "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/joined-role-records.json",
+      "sha256": "e656a579afc096e99a845ebfd6d8987748138a23791f0b9c708946740e9ec0ec"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case03-executive-hire.txt",
+      "sha256": "e3ce228ad21db1b606547174d575c002ca33bf50731dd7082ffc2a528e8cf2a0"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case03-executive-hire/position-wrapper.json",
+      "sha256": "2b71c065dd8a41618b2e717369674ce212fc8dfd4ac8bcdf8bf9b3c1373324a5"
+    },
+    {
+      "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case03-executive-hire-primary/joined-role-records.json",
+      "sha256": "9404abbcf025f093cbcea10e77fc55d4aafc01daf3a08e8d0925cf9d0521afc7"
+    }
+  ],
+  "non_claims": [
+    "This contract does not authorize a provider call by itself.",
+    "A two-case result is not a reliability, real-user usefulness, graph-value, answer-improvement, decision-quality, or trust claim.",
+    "Gemini 3.1 Flash Lite is not selected as a production model.",
+    "The source-first target is review-only and is excluded from all request packets.",
+    "No deterministic code decides semantic relevance, relationship meaning, mental-model selection, pressure, or quality."
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "lolla.extraction_admission_smoke_contract.v0",
+  "status": "frozen_before_calls",
+  "smoke_id": "case12-extraction-admission-20260710-a1",
+  "run_id": "admission_smoke_case12_20260710_a1",
+  "purpose": "Prove pre-call output custody, complete conversation capture, exact quote custody, persisted provider usage metadata, and a no-experiment-retry boundary before authorizing another paired holdout.",
+  "scope": "extraction_only",
+  "fixture": {
+    "fixture_id": "case-12-lolla-project-governance",
+    "path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+    "sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede",
+    "required_captured_message_count": 2,
+    "permanently_excluded_from_downstream_holdout": true,
+    "historical_semantic_corpus_use_disclosed": true
+  },
+  "prompt_hashes": {
+    "system_prompt_sha256": "71fb3b023f6b24df2e0ff936a0f27fb75564e1af66c68f2a16f694181cd82bf1",
+    "user_prompt_sha256": "a9f0b37fa36439fe38e5c3e32fea5c976a64d3d57738ba77ede9b9611899c6ae",
+    "retry_system_prompt_sha256": "71fb3b023f6b24df2e0ff936a0f27fb75564e1af66c68f2a16f694181cd82bf1",
+    "retry_template_sha256": "d83a554e0046dd6fe3d6c45134d48bfe5e92958adbd6352e96b0f8251e3f54e9"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "orchestrator_invocations": 1,
+    "initial_extraction_calls": 1,
+    "maximum_builtin_quote_repair_calls": 1,
+    "experiment_retries": 0,
+    "estimated_cost_ceiling_usd": 0.02
+  },
+  "hash_locks": [
+    {
+      "role": "extractor",
+      "path": "scripts/run_extract.py",
+      "sha256": "5f971562148eba34d0150cd6c14166441a0c980ac62f5127f428201d1f40faec"
+    },
+    {
+      "role": "quote_matcher",
+      "path": "engine/system_b/text_matching.py",
+      "sha256": "99f10c4fda81606fbb452aad83fda2f0777d9d658fbdadceb06f7b80dfee8214"
+    },
+    {
+      "role": "boundary_provider",
+      "path": "engine/system_b/boundary_provider.py",
+      "sha256": "02f69fa8e02fad98e6c788238e376c0d45646150cbaea7edd76ee488208448e4"
+    },
+    {
+      "role": "capture_adequacy",
+      "path": "engine/system_b/capture_adequacy.py",
+      "sha256": "f5b231cf6773829e0bf205e6f2a2e1fc84b2906a81699efdd633a83c3681a584"
+    },
+    {
+      "role": "run_state",
+      "path": "engine/system_b/run_state.py",
+      "sha256": "06fdff954b966f2ce426625203532778fe5e8d1ac03790c90add6e868aa225c2"
+    },
+    {
+      "role": "usage_summary",
+      "path": "engine/system_b/usage_summary.py",
+      "sha256": "578a90ee554c718ebdf2a74b4a869018b9368c00b13a986ae0e4ed710c7af5e0"
+    },
+    {
+      "role": "smoke_runner",
+      "path": "scripts/evals/run_extraction_admission_smoke.py",
+      "sha256": "cebe133697dd5d9c5d73894f26778539c4f7b0a722530f340e0745dedbf3425e"
+    }
+  ],
+  "artifacts": {
+    "extraction_path": "research/extraction-admission-smoke-2026-07-10/run/lolla_admission_smoke_case12_20260710_a1_extraction.json",
+    "extraction_call_sidecar_path": "/tmp/lolla_admission_smoke_case12_20260710_a1_extraction_calls.json",
+    "require_output_parent_absent_before_run": true,
+    "require_sidecar_absent_before_run": true
+  },
+  "admission_gates": {
+    "minimum_reasoning_passages": 3
+  },
+  "stop_rules": [
+    "Do not rerun this frozen smoke after any provider, persistence, quote, capture, telemetry, hash, cost, or admission failure.",
+    "The extractor's single built-in quote-repair call is part of the frozen treatment and is not an experiment retry.",
+    "Do not run the deterministic graph or downstream pressure pipeline in this smoke.",
+    "Do not authorize a new paired holdout unless every admission gate passes."
+  ],
+  "non_claims": [
+    "This smoke does not establish extraction accuracy beyond the deterministic custody gates.",
+    "This smoke does not establish mental-model relevance, graph value, challenge usefulness, better reasoning, or better decisions.",
+    "This smoke does not validate a paired holdout result or authorize runtime integration.",
+    "This smoke does not use or test embeddings."
+  ]
+}

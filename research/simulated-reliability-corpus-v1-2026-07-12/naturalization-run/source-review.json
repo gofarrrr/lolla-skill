@@ -1,0 +1,36 @@
+{
+  "schema_version": "lolla.simulated_reliability_naturalization_source_review.v1",
+  "date": "2026-07-12",
+  "status": "all_source_model_proposals_rejected_preserved_no_retry",
+  "review_scope": "provider operation, deterministic dialogue-shape diagnostics, and qualitative inspection of whether the source editor created a more realistic conversation without semantic drift",
+  "call_summary": {
+    "attempted": 12,
+    "operational_json_candidates": 11,
+    "invalid_responses": 1,
+    "shape_passes": 0,
+    "automatic_retries": 0,
+    "provider_reported_cost_usd": 0.0476685,
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "served_provider_observed": "Google"
+  },
+  "finding": "The source editor mostly paraphrased the semantic skeletons while preserving their uniform paragraph rhythm. In the inspected case it also flattened nuance into generic advisory language and made the final answer more congratulatory. Fluency did not produce naturalism.",
+  "decision": {
+    "admitted_proposal_count": 0,
+    "lower_diagnostic_to_admit_outputs": false,
+    "automatic_retry": false,
+    "second_identical_batch": false,
+    "next_method": "provider-free whole-conversation editing from the stronger semantic skeleton, followed by deterministic shape diagnostics and qualitative naturalism plus semantic-preservation review"
+  },
+  "preserved_failure_value": [
+    "A distinct source model did not solve the polished-dialogue problem merely because the prompt requested naturalism.",
+    "Strict structured output can still return a provider finish error with malformed JSON and zero attributable usage.",
+    "Turn-length variability is useful as an anti-uniformity diagnostic but remains insufficient to establish realism.",
+    "Source generation and system evaluation must remain separate; failed source proposals do not become transfer cases."
+  ],
+  "non_claims": [
+    "Gemini is generally unable to write natural dialogue.",
+    "A different prompt or model could not work.",
+    "The original semantic skeletons are realistic enough.",
+    "No semantic review is needed after provider-free editing."
+  ]
+}

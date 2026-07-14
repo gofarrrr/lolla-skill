@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_v1_failure.v1",
+  "status": "failed_unsupported_reasoning_effort_and_incomplete_error_custody",
+  "date": "2026-07-10",
+  "run_id": "lolla_holdout_pool_v1_20260710_a1",
+  "frozen_evidence": {
+    "generation_contract_sha256": "7c9ab7e2fcb0ce94d327e8f7c46b6ecc39207753a524e1a533fa3b428b83ab86",
+    "runner_sha256": "a14854379c0a162c963e9ae6562f913a460e0a9867bc20053f7632b1bc551710",
+    "pool_sha256": "629e67c625947da886a9a4088167a1f5505ba3243ea06983760a4e3fc26148c1",
+    "call_custody_sha256": "cb2354b1fb198d4dba1453eee3ba5270f9a7f28aee993a4d0ec9db6a90ea79bb",
+    "run_summary_sha256": "f41e7d0fe6c739d8a9e468863c35ba275b40734fb85ea952f05fe3ed0a851588"
+  },
+  "observed": {
+    "call_attempted": true,
+    "recorded_call_count": 1,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "finish_reason": "error",
+    "parsed_response": {},
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "total_tokens": null,
+    "usage_evidence_state": "unknown",
+    "estimated_cost_usd": null,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "selected_case_id": null
+  },
+  "diagnosis": {
+    "requested_reasoning_effort": "none",
+    "current_supported_efforts": [
+      "minimal",
+      "low",
+      "medium",
+      "high"
+    ],
+    "metadata_source": "https://openrouter.ai/api/v1/models",
+    "metadata_checked_date": "2026-07-10",
+    "classification": "F11_provider_configuration_failure",
+    "confidence": "high",
+    "why": "The current provider metadata for the exact requested model does not list none as a supported reasoning effort, and the provider failed before recording positive token usage."
+  },
+  "custody_defect": {
+    "present": true,
+    "finding": "The v1 runner preserved finish_reason=error and the empty response but dropped provider-level error fields and the full provider-envelope hash, so the exact error message cannot be recovered from the frozen artifact.",
+    "prospective_repair": "Preserve a bounded provider diagnostic and provider-envelope hash on every HTTP-success error response."
+  },
+  "authorizations": {
+    "retry_v1": false,
+    "prospective_operational_v2_contract": true,
+    "change_prompts_domains_or_selection": false,
+    "stage_a": false,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_integration": false
+  },
+  "non_claims": [
+    "No conversation was generated or selected.",
+    "This failure says nothing about Lolla reasoning quality or graph value.",
+    "Unknown usage and cost are not numeric zero.",
+    "A prospective v2 run is an operability repair, not permission for semantic retuning."
+  ]
+}

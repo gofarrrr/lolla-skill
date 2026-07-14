@@ -10,6 +10,7 @@ from engine.system_b.conversation_context import (
 )
 from engine.system_b.v60_enrichment import (
     LEDGER_SCHEMA_VERSION,
+    LEGACY_LEDGER_SCHEMA_VERSION,
     _selection_tokens,
     build_v60_consideration_ledger_skeleton,
     build_v60_enrichment,
@@ -521,6 +522,7 @@ def test_v60_enrichment_includes_deterministic_ledger_skeleton(tmp_path: Path) -
     assert all(row["card_id"] == "v60-card-001-opportunity-cost" for row in skeleton["transactions"])
     assert all(row["model_id"] == "opportunity-cost" for row in skeleton["transactions"])
     assert "visible_effect" in skeleton["transactions"][0]
+    assert "technical_blocker" in skeleton["transactions"][0]
     absence_row = next(row for row in skeleton["transactions"] if row["chunk_kind"] == "absence")
     assert "blocked_or_guarded_claim" in absence_row
     assert "uncertainty_boundary" in absence_row
@@ -744,6 +746,122 @@ def test_v60_ledger_validation_rejects_cheap_non_used_transactions(tmp_path: Pat
     assert validation["status"] == "invalid"
     assert any("strongest_plausible_application" in err for err in validation["errors"])
     assert any("risk_if_forced" in err for err in validation["errors"])
+
+
+def test_v2_ledger_rejects_semantic_not_considered_route(tmp_path: Path) -> None:
+    artifact_path = tmp_path / "affordances_v60.json"
+    _write_json(artifact_path, _artifact())
+    enrichment = build_v60_enrichment(
+        root=tmp_path,
+        result_payload={"delta_card": {"selected_model_ids": ["opportunity-cost"]}},
+        conversation_context=_context(),
+        affordances_path=artifact_path,
+        enable_embeddings=False,
+    )
+    rows = enrichment["consideration_ledger_skeleton"]["transactions"]
+    ledger = {
+        "schema_version": LEDGER_SCHEMA_VERSION,
+        "transactions": [
+            {
+                **rows[0],
+                "disposition": "not_considered",
+                "route": "duplicate",
+                "why": "It looked duplicative.",
+                "risk_if_forced": "It would repeat the same point.",
+            },
+            {
+                **rows[1],
+                "disposition": "rejected",
+                "route": "duplicate",
+                "strongest_plausible_application": "Block generic pro/con framing.",
+                "why": "The same boundary is already explicit.",
+                "risk_if_forced": "It would repeat the same point.",
+            },
+        ],
+    }
+
+    validation = validate_v60_consideration_ledger(ledger, enrichment=enrichment)
+
+    assert validation["status"] == "invalid"
+    assert any("route is incompatible" in error for error in validation["errors"])
+    assert any("technical_blocker is required" in error for error in validation["errors"])
+
+
+def test_v2_ledger_reserves_not_considered_for_technical_failure(tmp_path: Path) -> None:
+    artifact_path = tmp_path / "affordances_v60.json"
+    _write_json(artifact_path, _artifact())
+    enrichment = build_v60_enrichment(
+        root=tmp_path,
+        result_payload={"delta_card": {"selected_model_ids": ["opportunity-cost"]}},
+        conversation_context=_context(),
+        affordances_path=artifact_path,
+        enable_embeddings=False,
+    )
+    rows = enrichment["consideration_ledger_skeleton"]["transactions"]
+    ledger = {
+        "schema_version": LEDGER_SCHEMA_VERSION,
+        "transactions": [
+            {
+                **rows[0],
+                "disposition": "not_considered",
+                "route": "technical_failure",
+                "why": "The selected payload could not be decoded.",
+                "technical_blocker": "malformed selected chunk payload",
+            },
+            {
+                **rows[1],
+                "disposition": "rejected",
+                "route": "duplicate",
+                "strongest_plausible_application": "Block generic pro/con framing.",
+                "why": "The same boundary is already explicit.",
+                "risk_if_forced": "It would repeat the same point.",
+            },
+        ],
+    }
+
+    validation = validate_v60_consideration_ledger(ledger, enrichment=enrichment)
+
+    assert validation["status"] == "valid"
+
+
+def test_v1_ledger_remains_readable_for_archived_semantic_not_considered(
+    tmp_path: Path,
+) -> None:
+    artifact_path = tmp_path / "affordances_v60.json"
+    _write_json(artifact_path, _artifact())
+    enrichment = build_v60_enrichment(
+        root=tmp_path,
+        result_payload={"delta_card": {"selected_model_ids": ["opportunity-cost"]}},
+        conversation_context=_context(),
+        affordances_path=artifact_path,
+        enable_embeddings=False,
+    )
+    rows = enrichment["consideration_ledger_skeleton"]["transactions"]
+    ledger = {
+        "schema_version": LEGACY_LEDGER_SCHEMA_VERSION,
+        "transactions": [
+            {
+                **rows[0],
+                "disposition": "not_considered",
+                "route": "duplicate",
+                "strongest_plausible_application": "Name the displaced alternative.",
+                "why": "Legacy run called this duplicate.",
+                "risk_if_forced": "It would repeat the same point.",
+            },
+            {
+                **rows[1],
+                "disposition": "rejected",
+                "route": "duplicate",
+                "strongest_plausible_application": "Block generic pro/con framing.",
+                "why": "The same boundary is already explicit.",
+                "risk_if_forced": "It would repeat the same point.",
+            },
+        ],
+    }
+
+    validation = validate_v60_consideration_ledger(ledger, enrichment=enrichment)
+
+    assert validation["status"] == "valid"
 
 
 def test_finalize_v60_consideration_marks_missing_ledger_degraded(tmp_path: Path) -> None:

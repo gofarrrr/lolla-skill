@@ -1,0 +1,218 @@
+{
+  "schema_version": "lolla.reasoning_process_phase3_probe_contract.v1",
+  "status": "frozen_before_provider_calls",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-phase3-development-case02-v1",
+  "purpose": "Test whether five target-blind bounded probabilistic readers can recover source-valid reasoning-process views from one ambiguous multi-turn development conversation without evaluating the final answer.",
+  "authorization_basis": "Founder explicitly approved Phase 3 as a goal on 2026-07-11.",
+  "phase2_coverage_review": {
+    "path": "docs/evals/reasoning-process-phase2-coverage-review-v1.json",
+    "sha256": "3f352e55116879ec43810ed4800275f48fc4183dfd8293ba1bd55fad3a87f4ad"
+  },
+  "selection": {
+    "eligibility_rule": "all five protected targets required prospective Phase-2 addenda",
+    "ranking_rule": "ascending SHA-256 of case_id",
+    "eligible_case_ids": [
+      "amb1-case01-product-scope",
+      "amb1-case02-nonprofit-scale",
+      "amb1-case03-creative-partnership",
+      "amb1-case04-research-tool-release"
+    ],
+    "ranking": [
+      {
+        "case_id": "amb1-case02-nonprofit-scale",
+        "sha256_case_id": "3294faa0c2010ee6028445e6d9a31fa9d558dec32fd504a8e082f9bd522a8d7b"
+      },
+      {
+        "case_id": "amb1-case01-product-scope",
+        "sha256_case_id": "abff142f6e91b3e9ba727ac2727f72e3b7e5155f9931bbd6cf1134b77e71a656"
+      },
+      {
+        "case_id": "amb1-case03-creative-partnership",
+        "sha256_case_id": "b90234cc9049120758789f20847a09198f054889c545bb2dc9271f07f624ed01"
+      },
+      {
+        "case_id": "amb1-case04-research-tool-release",
+        "sha256_case_id": "ddc4cf912659fc22b6300178636bf6819ce609036d0167b1764c0d4c2d7c5161"
+      }
+    ],
+    "selected_case_id": "amb1-case02-nonprofit-scale"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "development_status": "same_session_synthetic_not_holdout",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json",
+    "phase1_ledger_sha256": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23"
+  },
+  "view_order": [
+    "position_and_decision_trajectory",
+    "exploration_and_alternatives",
+    "evidence_and_assumption_discipline",
+    "uncertainty_and_unresolved_state",
+    "challenge_and_revision_response"
+  ],
+  "jobs": [
+    {
+      "job_id": "phase3-amb1-case02-nonprofit-scale-position_and_decision_trajectory",
+      "view_kind": "position_and_decision_trajectory",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/position_and_decision_trajectory.json",
+      "packet_sha256": "ca375d00e5496264491064804270ff068f82ecaab876445af5c0936e274734b5",
+      "input_utf8_bytes": 16127,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "7a7e1a5fecc70a20fd35d1d7142a7295d03e850523f045f37605c4d82237e2d8",
+      "user_prompt_sha256": "08597f49c6d5929608ccd58785cd2e9479d37446c2f14847da9dde6b15660f6f",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-amb1-case02-nonprofit-scale-exploration_and_alternatives",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/exploration_and_alternatives.json",
+      "packet_sha256": "f67bef0354240acbe7558ddb55f94d2e125d39d513a885a5317998ee52061370",
+      "input_utf8_bytes": 16104,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "7a7e1a5fecc70a20fd35d1d7142a7295d03e850523f045f37605c4d82237e2d8",
+      "user_prompt_sha256": "0bfb551c4f9ed86b09b6957d0c29d3811d08a4af67a1a7db114d54b8ffd54709",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-amb1-case02-nonprofit-scale-evidence_and_assumption_discipline",
+      "view_kind": "evidence_and_assumption_discipline",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/evidence_and_assumption_discipline.json",
+      "packet_sha256": "0182284fb5f8cec7b5c8f79c1ebe79c28d17fcfc9d7deb96e89ea042d6c62f58",
+      "input_utf8_bytes": 16117,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "7a7e1a5fecc70a20fd35d1d7142a7295d03e850523f045f37605c4d82237e2d8",
+      "user_prompt_sha256": "22583a681238183dca640ecaf5380c9e61c0fbef13440564eb967d19dc877c69",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-amb1-case02-nonprofit-scale-uncertainty_and_unresolved_state",
+      "view_kind": "uncertainty_and_unresolved_state",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/uncertainty_and_unresolved_state.json",
+      "packet_sha256": "fb6e67a56a672975ab39d345cb47aea143bc51411bdba7413e8302044b6a254e",
+      "input_utf8_bytes": 16130,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "7a7e1a5fecc70a20fd35d1d7142a7295d03e850523f045f37605c4d82237e2d8",
+      "user_prompt_sha256": "870959d2f644c523d24fc2dad20959116283f48d632a9114fd86169d362b1859",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    },
+    {
+      "job_id": "phase3-amb1-case02-nonprofit-scale-challenge_and_revision_response",
+      "view_kind": "challenge_and_revision_response",
+      "packet_path": "research/reasoning-process-phase2-views-2026-07-11/cases/amb1-case02-nonprofit-scale/probe-inputs/challenge_and_revision_response.json",
+      "packet_sha256": "70e45374420ddd921d25ab65f78706b4f12b94fe8a9588eb09f2bcd4b538ee3e",
+      "input_utf8_bytes": 16128,
+      "auxiliary_observation_count": 26,
+      "system_prompt_sha256": "7a7e1a5fecc70a20fd35d1d7142a7295d03e850523f045f37605c4d82237e2d8",
+      "user_prompt_sha256": "b57e4ee9042470aa3e5999b5d6f30f398b1f0515a4c08dbae7fd2322ceb3ff07",
+      "response_schema_sha256": "55dafa5f429dba8470b516928b6c43661b2edab435de04fd28741ae0d324f776",
+      "response_schema_metrics": {"bytes": 2558, "depth": 8}
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "reasoning_parameter_sent": true,
+    "max_output_tokens": 2200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+    "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+  },
+  "budget": {
+    "maximum_provider_calls": 5,
+    "maximum_calls_per_view": 1,
+    "maximum_estimated_cost_usd": 0.05,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success_rate": 1.0,
+    "typed_admission_rate": 1.0,
+    "exact_source_reference_validity_rate": 1.0,
+    "protected_target_visibility_rate": 1.0,
+    "invalid_admitted_item_count": 0,
+    "source_strength_inflation_count": 0,
+    "context_invisible_label_count": 0,
+    "critical_dimension_zero_count": 0,
+    "max_output_items_per_view": 4,
+    "valid_empty_output_allowed": true,
+    "source_review_required_for_semantic_pass": true
+  },
+  "source_review_contract": {
+    "method": "source_first_before_polish",
+    "reviewer_independence": "same_project_session_not_blind",
+    "protected_targets_are_exhaustive_gold": false,
+    "review_exact_evidence_before_interpretation": true,
+    "semantic_adequacy_inferred_by_code": false,
+    "model_output_may_change_the_gate": false,
+    "final_answer_quality_reviewed": false,
+    "scalar_score_allowed": false
+  },
+  "repair_policy": {
+    "baseline_authorizes_repair_calls": false,
+    "separate_prospective_authorization_required": true,
+    "maximum_generic_repair_calls": 5,
+    "repair_must_address_shared_prompt_or_representation_failure": true,
+    "case_specific_examples_allowed": false,
+    "gate_weakening_allowed": false,
+    "target_or_addendum_leakage_allowed": false,
+    "model_change_allowed": false,
+    "conversation_only_ablation_counts_as_repair": false
+  },
+  "stop_rules": {
+    "operational_failure_stops_remaining_baseline_calls": true,
+    "semantic_or_valid_empty_result_is_preserved_without_retry": true,
+    "cost_ceiling_stops_remaining_calls": true,
+    "no_prompt_change_inside_baseline": true,
+    "no_fallback_retry_or_response_healing": true,
+    "no_graph_pipeline_runtime_or_evaluator_calls": true,
+    "source_review_required_before_repair_decision": true
+  },
+  "artifact_locks": [
+    {"role": "phase3_runner", "path": "scripts/evals/run_reasoning_process_phase3_probe.py", "sha256": "a7c4137c9218b39beab62c221bd93b9d3b8b5dbc42dc54f30fdbe6668f0a902c"},
+    {"role": "phase3_probe_contracts", "path": "engine/system_b/reasoning_process_probe.py", "sha256": "b68dd05def047316f37670459cc8d505f565efeaea070f989d0bd9c9ac66d4b1"},
+    {"role": "phase0_contract", "path": "docs/evals/reasoning-process-phase0-contract-v0.json", "sha256": "e1b6d5864467d2c29de872f252969e68b9b47c5b2c526190ae9503baf3c22318"},
+    {"role": "phase2_coverage_contract", "path": "docs/evals/reasoning-process-phase2-coverage-contract-v1.json", "sha256": "a30c3ba108587a4d98ee84d2b5ab1a0d1799dcf53e1e8a2a3050c8b4f77c704a"},
+    {"role": "phase2_coverage_review", "path": "docs/evals/reasoning-process-phase2-coverage-review-v1.json", "sha256": "3f352e55116879ec43810ed4800275f48fc4183dfd8293ba1bd55fad3a87f4ad"},
+    {"role": "phase2_result", "path": "docs/conversation-understanding/reasoning-process-bounded-views-v1.md", "sha256": "294282fa83558a38f079cee1e575395175e6b4600b4e8eeff8f4308a616a59d8"},
+    {"role": "phase1_ledger", "path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json", "sha256": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23"},
+    {"role": "product_constitution", "path": "docs/conversation-understanding/lolla-product-constitution-v1.md", "sha256": "3271be0269ea6ba43786edd5ebd4a8fa50cdddf879000339718a7ef9feddd03b"},
+    {"role": "evaluation_doctrine", "path": "docs/conversation-understanding/lolla-evaluation-doctrine-v0.md", "sha256": "a236fea812b8edf593aa9f0c1e063acedb13896592bce4187bc6cee8c149f04e"},
+    {"role": "phase3_current_practice", "path": "docs/conversation-understanding/reasoning-process-phase3-current-practice-check-2026-07-11.md", "sha256": "04569ff84223660a8fa278a706e3a7a906000acc2e0ec009dd279e8837699ec2"}
+  ],
+  "non_claims": [
+    "development_case_is_not_a_holdout",
+    "source_valid_output_is_not_semantic_adequacy",
+    "protected_target_recall_is_not_reasoning_quality",
+    "activity_or_cost_is_not_effort_or_trust",
+    "final_answer_quality_is_not_evaluated",
+    "baseline_does_not_authorize_graph_or_runtime_integration"
+  ]
+}

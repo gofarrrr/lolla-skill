@@ -1,0 +1,583 @@
+{
+  "artifact_root": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10",
+  "case_count": 3,
+  "corpus_id": "core-semantic-corpus-v0",
+  "cross_family": {
+    "rescue_family_counts": {
+      "evidence_boundary_events": 4,
+      "live_constraint_events": 10,
+      "question_events": 3,
+      "user_pressure_events": 2
+    },
+    "rescued_observation_run_count": 16,
+    "weighted_recall_delta": 0.21333333333333335
+  },
+  "dimensions": {
+    "assistant_positions_and_revisions": {
+      "cross_family_delta": 0.0,
+      "family_aligned_weighted_recall": 0.6,
+      "observation_count": 5,
+      "run_opportunity_count": 15,
+      "system_weighted_recall": 0.6
+    },
+    "constraints_and_options": {
+      "cross_family_delta": 0.0,
+      "family_aligned_weighted_recall": 0.8,
+      "observation_count": 5,
+      "run_opportunity_count": 15,
+      "system_weighted_recall": 0.8
+    },
+    "dropped_or_under_carried_threads": {
+      "cross_family_delta": 0.6666666666666666,
+      "family_aligned_weighted_recall": 0.0,
+      "observation_count": 3,
+      "run_opportunity_count": 9,
+      "system_weighted_recall": 0.6666666666666666
+    },
+    "operative_question": {
+      "cross_family_delta": 0.1111111111111111,
+      "family_aligned_weighted_recall": 0.8888888888888888,
+      "observation_count": 6,
+      "run_opportunity_count": 18,
+      "system_weighted_recall": 1.0
+    },
+    "uncertainty_and_evidence_boundaries": {
+      "cross_family_delta": 0.0,
+      "family_aligned_weighted_recall": 0.3333333333333333,
+      "observation_count": 3,
+      "run_opportunity_count": 9,
+      "system_weighted_recall": 0.3333333333333333
+    },
+    "user_corrections_and_pressure": {
+      "cross_family_delta": 0.8888888888888888,
+      "family_aligned_weighted_recall": 0.1111111111111111,
+      "observation_count": 3,
+      "run_opportunity_count": 9,
+      "system_weighted_recall": 1.0
+    }
+  },
+  "family_aligned": {
+    "stable_observation_count": 13,
+    "stable_observation_ids": [
+      "case-02-multi-offer-career:boundary.spouse_yes_may_not_be_real",
+      "case-02-multi-offer-career:constraint.spouse_primary_earner",
+      "case-02-multi-offer-career:question.current_due_diligence",
+      "case-02-multi-offer-career:stance.financial_reframe",
+      "case-08-oncologist-career-family:constraint.decision_deadline",
+      "case-08-oncologist-career-family:question.current_direct_call",
+      "case-08-oncologist-career-family:question.initial_greedy_or_smart",
+      "case-08-oncologist-career-family:stance.take_role_with_conditions",
+      "case-11-user-has-consulting-plan:constraint.eight_month_runway",
+      "case-11-user-has-consulting-plan:question.current_fractional_bridge",
+      "case-11-user-has-consulting-plan:question.initial_launch_plan",
+      "case-11-user-has-consulting-plan:stance.network_not_pipeline",
+      "case-11-user-has-consulting-plan:threshold.delay_rule"
+    ],
+    "weighted_recall": 0.5466666666666666
+  },
+  "gold_observation_count": 25,
+  "non_claims": [
+    "cross_family_recovery_is_not_proof_of_correct_family_assignment",
+    "exact_span_recovery_is_not_reasoning_quality",
+    "system_coverage_does_not_replace_temporal_coverage",
+    "three_repeats_are_not_production_reliability_proof"
+  ],
+  "per_case": [
+    {
+      "case_id": "case-02-multi-offer-career",
+      "family_aligned": {
+        "ever_observation_ids": [
+          "boundary.spouse_yes_may_not_be_real",
+          "constraint.spouse_primary_earner",
+          "pressure.family_joint_decision",
+          "question.current_due_diligence",
+          "question.initial_three_offers",
+          "stance.financial_reframe"
+        ],
+        "never_observation_ids": [
+          "drop.expected_value_argument",
+          "stance.final_conditional_choice"
+        ],
+        "observation_count": 8,
+        "run_count": 3,
+        "stable_observation_ids": [
+          "boundary.spouse_yes_may_not_be_real",
+          "constraint.spouse_primary_earner",
+          "question.current_due_diligence",
+          "stance.financial_reframe"
+        ],
+        "weighted_recall": 0.5833333333333334
+      },
+      "gold_observation_count": 8,
+      "per_run": [
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-02-multi-offer-career/shadow-01.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "operative_question",
+              "matching_families": [
+                "live_constraint_events",
+                "user_pressure_events"
+              ],
+              "observation_id": "question.initial_three_offers"
+            },
+            {
+              "dimension": "dropped_or_under_carried_threads",
+              "matching_families": [
+                "evidence_boundary_events"
+              ],
+              "observation_id": "drop.expected_value_argument"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "boundary.spouse_yes_may_not_be_real",
+            "constraint.spouse_primary_earner",
+            "pressure.family_joint_decision",
+            "question.current_due_diligence",
+            "stance.financial_reframe"
+          ],
+          "run": 1,
+          "system_recovered_observation_ids": [
+            "boundary.spouse_yes_may_not_be_real",
+            "constraint.spouse_primary_earner",
+            "drop.expected_value_argument",
+            "pressure.family_joint_decision",
+            "question.current_due_diligence",
+            "question.initial_three_offers",
+            "stance.financial_reframe"
+          ]
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-02-multi-offer-career/shadow-02.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.family_joint_decision"
+            },
+            {
+              "dimension": "dropped_or_under_carried_threads",
+              "matching_families": [
+                "evidence_boundary_events"
+              ],
+              "observation_id": "drop.expected_value_argument"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "boundary.spouse_yes_may_not_be_real",
+            "constraint.spouse_primary_earner",
+            "question.current_due_diligence",
+            "question.initial_three_offers",
+            "stance.financial_reframe"
+          ],
+          "run": 2,
+          "system_recovered_observation_ids": [
+            "boundary.spouse_yes_may_not_be_real",
+            "constraint.spouse_primary_earner",
+            "drop.expected_value_argument",
+            "pressure.family_joint_decision",
+            "question.current_due_diligence",
+            "question.initial_three_offers",
+            "stance.financial_reframe"
+          ]
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-02-multi-offer-career/shadow-03.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "operative_question",
+              "matching_families": [
+                "live_constraint_events",
+                "user_pressure_events"
+              ],
+              "observation_id": "question.initial_three_offers"
+            },
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.family_joint_decision"
+            },
+            {
+              "dimension": "dropped_or_under_carried_threads",
+              "matching_families": [
+                "evidence_boundary_events"
+              ],
+              "observation_id": "drop.expected_value_argument"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "boundary.spouse_yes_may_not_be_real",
+            "constraint.spouse_primary_earner",
+            "question.current_due_diligence",
+            "stance.financial_reframe"
+          ],
+          "run": 3,
+          "system_recovered_observation_ids": [
+            "boundary.spouse_yes_may_not_be_real",
+            "constraint.spouse_primary_earner",
+            "drop.expected_value_argument",
+            "pressure.family_joint_decision",
+            "question.current_due_diligence",
+            "question.initial_three_offers",
+            "stance.financial_reframe"
+          ]
+        }
+      ],
+      "system_level": {
+        "ever_observation_ids": [
+          "boundary.spouse_yes_may_not_be_real",
+          "constraint.spouse_primary_earner",
+          "drop.expected_value_argument",
+          "pressure.family_joint_decision",
+          "question.current_due_diligence",
+          "question.initial_three_offers",
+          "stance.financial_reframe"
+        ],
+        "never_observation_ids": [
+          "stance.final_conditional_choice"
+        ],
+        "observation_count": 8,
+        "run_count": 3,
+        "stable_observation_ids": [
+          "boundary.spouse_yes_may_not_be_real",
+          "constraint.spouse_primary_earner",
+          "drop.expected_value_argument",
+          "pressure.family_joint_decision",
+          "question.current_due_diligence",
+          "question.initial_three_offers",
+          "stance.financial_reframe"
+        ],
+        "weighted_recall": 0.875
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "family_aligned": {
+        "ever_observation_ids": [
+          "constraint.decision_deadline",
+          "question.current_direct_call",
+          "question.initial_greedy_or_smart",
+          "stance.take_role_with_conditions"
+        ],
+        "never_observation_ids": [
+          "boundary.schedule_flexibility_verbal",
+          "constraint.mother_finite_window",
+          "drop.stuck_feeling",
+          "pressure.husband_conversation_not_real"
+        ],
+        "observation_count": 8,
+        "run_count": 3,
+        "stable_observation_ids": [
+          "constraint.decision_deadline",
+          "question.current_direct_call",
+          "question.initial_greedy_or_smart",
+          "stance.take_role_with_conditions"
+        ],
+        "weighted_recall": 0.5
+      },
+      "gold_observation_count": 8,
+      "per_run": [
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-01.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.husband_conversation_not_real"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "constraint.decision_deadline",
+            "question.current_direct_call",
+            "question.initial_greedy_or_smart",
+            "stance.take_role_with_conditions"
+          ],
+          "run": 1,
+          "system_recovered_observation_ids": [
+            "constraint.decision_deadline",
+            "pressure.husband_conversation_not_real",
+            "question.current_direct_call",
+            "question.initial_greedy_or_smart",
+            "stance.take_role_with_conditions"
+          ]
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-02.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "evidence_boundary_events",
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.husband_conversation_not_real"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "constraint.decision_deadline",
+            "question.current_direct_call",
+            "question.initial_greedy_or_smart",
+            "stance.take_role_with_conditions"
+          ],
+          "run": 2,
+          "system_recovered_observation_ids": [
+            "constraint.decision_deadline",
+            "pressure.husband_conversation_not_real",
+            "question.current_direct_call",
+            "question.initial_greedy_or_smart",
+            "stance.take_role_with_conditions"
+          ]
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-03.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.husband_conversation_not_real"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "constraint.decision_deadline",
+            "question.current_direct_call",
+            "question.initial_greedy_or_smart",
+            "stance.take_role_with_conditions"
+          ],
+          "run": 3,
+          "system_recovered_observation_ids": [
+            "constraint.decision_deadline",
+            "pressure.husband_conversation_not_real",
+            "question.current_direct_call",
+            "question.initial_greedy_or_smart",
+            "stance.take_role_with_conditions"
+          ]
+        }
+      ],
+      "system_level": {
+        "ever_observation_ids": [
+          "constraint.decision_deadline",
+          "pressure.husband_conversation_not_real",
+          "question.current_direct_call",
+          "question.initial_greedy_or_smart",
+          "stance.take_role_with_conditions"
+        ],
+        "never_observation_ids": [
+          "boundary.schedule_flexibility_verbal",
+          "constraint.mother_finite_window",
+          "drop.stuck_feeling"
+        ],
+        "observation_count": 8,
+        "run_count": 3,
+        "stable_observation_ids": [
+          "constraint.decision_deadline",
+          "pressure.husband_conversation_not_real",
+          "question.current_direct_call",
+          "question.initial_greedy_or_smart",
+          "stance.take_role_with_conditions"
+        ],
+        "weighted_recall": 0.625
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "family_aligned": {
+        "ever_observation_ids": [
+          "constraint.eight_month_runway",
+          "question.current_fractional_bridge",
+          "question.initial_launch_plan",
+          "stance.network_not_pipeline",
+          "threshold.delay_rule"
+        ],
+        "never_observation_ids": [
+          "boundary.friendly_interest_only",
+          "drop.requested_launch_tactics",
+          "pressure.no_actual_commitments",
+          "stance.launch_condition"
+        ],
+        "observation_count": 9,
+        "run_count": 3,
+        "stable_observation_ids": [
+          "constraint.eight_month_runway",
+          "question.current_fractional_bridge",
+          "question.initial_launch_plan",
+          "stance.network_not_pipeline",
+          "threshold.delay_rule"
+        ],
+        "weighted_recall": 0.5555555555555556
+      },
+      "gold_observation_count": 9,
+      "per_run": [
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-11-user-has-consulting-plan/shadow-01.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.no_actual_commitments"
+            },
+            {
+              "dimension": "dropped_or_under_carried_threads",
+              "matching_families": [
+                "question_events"
+              ],
+              "observation_id": "drop.requested_launch_tactics"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "constraint.eight_month_runway",
+            "question.current_fractional_bridge",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline",
+            "threshold.delay_rule"
+          ],
+          "run": 1,
+          "system_recovered_observation_ids": [
+            "constraint.eight_month_runway",
+            "drop.requested_launch_tactics",
+            "pressure.no_actual_commitments",
+            "question.current_fractional_bridge",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline",
+            "threshold.delay_rule"
+          ]
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-11-user-has-consulting-plan/shadow-02.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.no_actual_commitments"
+            },
+            {
+              "dimension": "dropped_or_under_carried_threads",
+              "matching_families": [
+                "question_events"
+              ],
+              "observation_id": "drop.requested_launch_tactics"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "constraint.eight_month_runway",
+            "question.current_fractional_bridge",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline",
+            "threshold.delay_rule"
+          ],
+          "run": 2,
+          "system_recovered_observation_ids": [
+            "constraint.eight_month_runway",
+            "drop.requested_launch_tactics",
+            "pressure.no_actual_commitments",
+            "question.current_fractional_bridge",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline",
+            "threshold.delay_rule"
+          ]
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-11-user-has-consulting-plan/shadow-03.json",
+          "cross_family_rescues": [
+            {
+              "dimension": "user_corrections_and_pressure",
+              "matching_families": [
+                "live_constraint_events"
+              ],
+              "observation_id": "pressure.no_actual_commitments"
+            },
+            {
+              "dimension": "dropped_or_under_carried_threads",
+              "matching_families": [
+                "question_events"
+              ],
+              "observation_id": "drop.requested_launch_tactics"
+            }
+          ],
+          "family_aligned_observation_ids": [
+            "constraint.eight_month_runway",
+            "question.current_fractional_bridge",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline",
+            "threshold.delay_rule"
+          ],
+          "run": 3,
+          "system_recovered_observation_ids": [
+            "constraint.eight_month_runway",
+            "drop.requested_launch_tactics",
+            "pressure.no_actual_commitments",
+            "question.current_fractional_bridge",
+            "question.initial_launch_plan",
+            "stance.network_not_pipeline",
+            "threshold.delay_rule"
+          ]
+        }
+      ],
+      "system_level": {
+        "ever_observation_ids": [
+          "constraint.eight_month_runway",
+          "drop.requested_launch_tactics",
+          "pressure.no_actual_commitments",
+          "question.current_fractional_bridge",
+          "question.initial_launch_plan",
+          "stance.network_not_pipeline",
+          "threshold.delay_rule"
+        ],
+        "never_observation_ids": [
+          "boundary.friendly_interest_only",
+          "stance.launch_condition"
+        ],
+        "observation_count": 9,
+        "run_count": 3,
+        "stable_observation_ids": [
+          "constraint.eight_month_runway",
+          "drop.requested_launch_tactics",
+          "pressure.no_actual_commitments",
+          "question.current_fractional_bridge",
+          "question.initial_launch_plan",
+          "stance.network_not_pipeline",
+          "threshold.delay_rule"
+        ],
+        "weighted_recall": 0.7777777777777778
+      }
+    }
+  ],
+  "run_opportunity_count": 75,
+  "schema_version": "lolla.core_semantic_system_coverage.v0",
+  "system_level": {
+    "stable_observation_count": 19,
+    "stable_observation_ids": [
+      "case-02-multi-offer-career:boundary.spouse_yes_may_not_be_real",
+      "case-02-multi-offer-career:constraint.spouse_primary_earner",
+      "case-02-multi-offer-career:drop.expected_value_argument",
+      "case-02-multi-offer-career:pressure.family_joint_decision",
+      "case-02-multi-offer-career:question.current_due_diligence",
+      "case-02-multi-offer-career:question.initial_three_offers",
+      "case-02-multi-offer-career:stance.financial_reframe",
+      "case-08-oncologist-career-family:constraint.decision_deadline",
+      "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+      "case-08-oncologist-career-family:question.current_direct_call",
+      "case-08-oncologist-career-family:question.initial_greedy_or_smart",
+      "case-08-oncologist-career-family:stance.take_role_with_conditions",
+      "case-11-user-has-consulting-plan:constraint.eight_month_runway",
+      "case-11-user-has-consulting-plan:drop.requested_launch_tactics",
+      "case-11-user-has-consulting-plan:pressure.no_actual_commitments",
+      "case-11-user-has-consulting-plan:question.current_fractional_bridge",
+      "case-11-user-has-consulting-plan:question.initial_launch_plan",
+      "case-11-user-has-consulting-plan:stance.network_not_pipeline",
+      "case-11-user-has-consulting-plan:threshold.delay_rule"
+    ],
+    "weighted_recall": 0.76
+  }
+}

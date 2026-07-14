@@ -1,0 +1,4175 @@
+{
+  "case_count": 12,
+  "contract_status": "prospective_scaffold_not_ready_for_promotion",
+  "manifest": {
+    "corpus_id": "core-semantic-corpus-v0",
+    "path": "tests/fixtures/core_semantic_validation/corpus-v0/manifest.json",
+    "sha256": "918b7016d7734adc8455d69316475fdcdc8fcfa677561c338842924af2dd9850"
+  },
+  "non_claims": [
+    "legacy_dimensions_are_not_final_product_ontology",
+    "pending_observations_are_not_promotion_ready",
+    "acceptable_families_are_not_deterministic_classifiers",
+    "contract_does_not_change_prior_experiment_results"
+  ],
+  "observation_count": 102,
+  "observations": [
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The conversation begins with a public-launch and logo-use decision.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Should we launch publicly and use its logo to attract other customers?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_public_launch",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:question.initial_public_launch",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The current question changes from whether to launch to what evidence should gate announcement.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "What evidence should we require before announcing?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.change_to_evidence_gate",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:question.change_to_evidence_gate",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The prospect's interest is not a signed commitment.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_no_signed_commitment",
+          "quote": "They have not signed anything.",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence",
+            "unresolved_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.no_signed_commitment",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:pressure.no_signed_commitment",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "Two friendly emails are weak evidence of commercial intent.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_two_friendly_emails",
+          "quote": "We only have two friendly emails from their innovation lead",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.weak_email_evidence",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:pressure.weak_email_evidence",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The only senior engineer is already supporting existing customers.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "our only senior engineer is already supporting existing customers",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.engineering_capacity",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:constraint.engineering_capacity",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "Board enthusiasm is partly prestige-driven and therefore weak evidence of customer demand.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_board_prestige_motivation",
+          "quote": "the board is excited mainly because of the company's name",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.board_brand_excitement",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:pressure.board_brand_excitement",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The user challenges treating friendly interest as purchase commitment.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_interest_not_purchase_objection",
+          "quote": "I am worried we are treating their interest as a purchase commitment",
+          "semantic_roles": [
+            "reasoning_objection",
+            "weak_evidence"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.purchase_commitment_concern",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:pressure.purchase_commitment_concern",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "Waiting may destroy a valuable opportunity, so delay has a user-relevant cost.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_opportunity_loss_value",
+          "quote": "I am also worried that waiting will make us lose the opportunity",
+          "semantic_roles": [
+            "explicit_value",
+            "timing_pressure"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "value.opportunity_loss_concern",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:value.opportunity_loss_concern",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The assistant initially commits to a public beta and flagship partner framing.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I would announce a limited public beta and make this prospect the flagship design partner.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.initial_public_beta_commitment",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:stance.initial_public_beta_commitment",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The assistant narrows implementation but does not reverse the public-launch direction.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Keep the beta limited to three companies, avoid promising a service-level agreement, and use the announcement to test demand.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.qualification_without_direction_change",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:stance.qualification_without_direction_change",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "Email confirmation becomes the only explicit pre-announcement threshold.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Ask the prospect to confirm participation by email, then announce a 30-day beta next month.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "threshold.email_confirmation",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:threshold.email_confirmation",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "Detailed success criteria are deferred until after launch.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "You can define detailed success criteria after the first week once you see actual usage.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.success_criteria_deferred",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:boundary.success_criteria_deferred",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The board's prestige-driven excitement is not integrated as an evidence problem.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "the board is excited mainly because of the company's name",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.board_pressure_under_carried",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:drop.board_pressure_under_carried",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The purchase-commitment concern receives only an email-confirmation response and remains under-carried.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I am worried we are treating their interest as a purchase commitment",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.commitment_concern_under_carried",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:drop.commitment_concern_under_carried",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "concept": "The direct request for an evidence standard is not answered with a substantive evidence set.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "What evidence should we require before announcing?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.evidence_question_not_answered",
+      "qualified_observation_id": "case-01-enterprise-logo-beta:drop.evidence_question_not_answered",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/gold.json",
+        "gold_sha256": "297d7a378e7fbd664ccf2e41835192656122b0aeaa7e2e8c9894fa1148be0351",
+        "source_path": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt",
+        "source_sha256": "17fbd7836acf740c0c9225661a0a5dc7329b9e222be203a203392316b6fb38c5"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The initial decision is a three-option career choice under a deadline.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Just got three offers and I have to pick one within 7 days.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_three_offers",
+      "qualified_observation_id": "case-02-multi-offer-career:question.initial_three_offers",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The current question moves to diligence before signing.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Any other due diligence I should do before signing?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 12
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_due_diligence",
+      "qualified_observation_id": "case-02-multi-offer-career:question.current_due_diligence",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The career choice is a joint household decision rather than the user's individual decision.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_and_later_strengthening_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_joint_decision_frame_correction",
+          "quote": "This isn't my decision alone.",
+          "semantic_roles": [
+            "premise_correction"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 5
+        },
+        {
+          "acceptable_families": [
+            "option_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "later_spouse_answer_conditions_option",
+          "quote": "If wife is a hard or soft no, I take A.",
+          "semantic_roles": [
+            "material_qualification",
+            "conditional_option"
+          ],
+          "speaker": "user",
+          "temporal_role": "later_strengthening",
+          "turn_index": 14
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.family_joint_decision",
+      "qualified_observation_id": "case-02-multi-offer-career:pressure.family_joint_decision",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The spouse is the current primary earner.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "She's the primary earner right now",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.spouse_primary_earner",
+      "qualified_observation_id": "case-02-multi-offer-career:constraint.spouse_primary_earner",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The assistant reframes the choice as not primarily financial.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "It's not actually a financial decision, or not primarily.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.financial_reframe",
+      "qualified_observation_id": "case-02-multi-offer-career:stance.financial_reframe",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The final recommendation is conditional on spouse alignment.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "If the wife conversation goes well, take B.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 15
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.final_conditional_choice",
+      "qualified_observation_id": "case-02-multi-offer-career:stance.final_conditional_choice",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The startup base-rate argument is displaced by a career-shape reframe.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "80% of startups don't exit at that level.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.expected_value_argument",
+      "qualified_observation_id": "case-02-multi-offer-career:drop.expected_value_argument",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "concept": "The user identifies uncertainty about whether spouse assent would be genuine.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "What if she says yes but I can tell she doesn't mean it?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 11
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.spouse_yes_may_not_be_real",
+      "qualified_observation_id": "case-02-multi-offer-career:boundary.spouse_yes_may_not_be_real",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_02_multi_offer_career.json",
+        "gold_sha256": "dd05e1e277ea07d87d8991ce9681b7fc6f30774bcd6c90ea287b13d533a8b6d8",
+        "source_path": "research/test-cases/case_multi_offer_conversation.txt",
+        "source_sha256": "d48f0e0d026f5901c80c1644376f9109248d43090c7bd650a9180ca0e34e83ab"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "The initial question is whether to pivot or push the existing product.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_pivot_or_push",
+      "qualified_observation_id": "case-03-startup-pivot:question.initial_pivot_or_push",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "The current question asks whether the action list is complete.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Am I missing anything?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_plan_completeness",
+      "qualified_observation_id": "case-03-startup-pivot:question.current_plan_completeness",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "The apparent customer pull has no specific price or decision timeline behind it.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_no_price_or_timeline",
+          "quote": "None of them have given me a specific price or timeline.",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence",
+            "unresolved_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.no_price_or_timeline",
+      "qualified_observation_id": "case-03-startup-pivot:pressure.no_price_or_timeline",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "The company has a bounded runway.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "We have maybe 14 months of runway left at current burn.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.runway",
+      "qualified_observation_id": "case-03-startup-pivot:constraint.runway",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "Stopping the current product becomes an explicit option question.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "What about the current product? Do I just kill it?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "option.kill_current_product",
+      "qualified_observation_id": "case-03-startup-pivot:option.kill_current_product",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "The assistant sets a two-of-three pre-buy threshold.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "If two of three say yes, you have enough signal to pivot.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.prebuy_threshold",
+      "qualified_observation_id": "case-03-startup-pivot:stance.prebuy_threshold",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "The final frame identifies avoided conversations as the bottleneck.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Those conversations are the bottleneck, not the strategic question.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.conversation_bottleneck_reframe",
+      "qualified_observation_id": "case-03-startup-pivot:stance.conversation_bottleneck_reframe",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "concept": "Customer interest is explicitly only conversational.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Conversational, by your definition.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.conversational_signal_only",
+      "qualified_observation_id": "case-03-startup-pivot:boundary.conversational_signal_only",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_03_startup_pivot.json",
+        "gold_sha256": "02cbc3ed4a3f0f49d74ad6107d7857a8d35952b91c1f16e4b82d96a60377a77f",
+        "source_path": "research/test-cases/case_startup_pivot_conversation.txt",
+        "source_sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "The conversation begins with a request for action guidance after witnessing shredding.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "What do I do.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_what_to_do",
+      "qualified_observation_id": "case-04-whistleblower:question.initial_what_to_do",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "Confidence applies to the documents and email, not to the broader client interpretation.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_document_confidence_boundary",
+          "quote": "90% confident those were financial docs and email.",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.partial_document_confidence",
+      "qualified_observation_id": "case-04-whistleblower:pressure.partial_document_confidence",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "The client account is under active regulatory audit.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "That account is in active audit with a major regulator right now.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.active_regulatory_audit",
+      "qualified_observation_id": "case-04-whistleblower:constraint.active_regulatory_audit",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "The assistant recommends the external counsel route as most protected.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.external_counsel_path",
+      "qualified_observation_id": "case-04-whistleblower:stance.external_counsel_path",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "The assistant converts the user's confidence estimate into an external-reporting conclusion.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.internal_confidence_threshold",
+      "qualified_observation_id": "case-04-whistleblower:stance.internal_confidence_threshold",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "Potential implications for a former manager remain unresolved.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "it might implicate her for not reporting two years ago",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.former_manager_implication",
+      "qualified_observation_id": "case-04-whistleblower:drop.former_manager_implication",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "concept": "The witness did not inspect the pages for long.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I didn't get a long look, I turned around and left.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.brief_visual_access",
+      "qualified_observation_id": "case-04-whistleblower:boundary.brief_visual_access",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_04_whistleblower.json",
+        "gold_sha256": "9248e2263a0c9bfd177c7174b97a38f3026cbde6fed5af6c57cddace62427a3e",
+        "source_path": "research/test-cases/case_whistleblower_conversation.txt",
+        "source_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The initial request asks how the parent should respond.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I don't know what to do.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_parent_response",
+      "qualified_observation_id": "case-05-parenting-teen:question.initial_parent_response",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The current request becomes an implementation summary.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Can you walk me through what the plan is, like a summary?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 11
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_plan_summary",
+      "qualified_observation_id": "case-05-parenting-teen:question.current_plan_summary",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The parent has covertly monitored the teenager's phone for months, changing the trust context.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_months_of_phone_monitoring",
+          "quote": "I've been going through her phone for months.",
+          "semantic_roles": [
+            "material_qualification",
+            "behavioral_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.ongoing_phone_monitoring",
+      "qualified_observation_id": "case-05-parenting-teen:pressure.ongoing_phone_monitoring",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The daughter has shut down communication.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "she just shut down completely",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.daughter_shutdown",
+      "qualified_observation_id": "case-05-parenting-teen:constraint.daughter_shutdown",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The co-parent considers the concern an overreaction.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.coparent_disagreement",
+      "qualified_observation_id": "case-05-parenting-teen:constraint.coparent_disagreement",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The assistant prioritizes reopening the parent-child relationship.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.relationship_first_reframe",
+      "qualified_observation_id": "case-05-parenting-teen:stance.relationship_first_reframe",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "The assistant explicitly defers police contact.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "you don't call the police today",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.defer_police",
+      "qualified_observation_id": "case-05-parenting-teen:stance.defer_police",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "concept": "Physical contact is not established.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Nothing has happened physically that I can tell",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.no_known_physical_contact",
+      "qualified_observation_id": "case-05-parenting-teen:boundary.no_known_physical_contact",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_05_parenting_teen.json",
+        "gold_sha256": "2711bc71d266099348ca5f76bf164a5d04e4a868c3ead836e72b1c2d9ad82d73",
+        "source_path": "research/test-cases/case_parenting_teen_conversation.txt",
+        "source_sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The initial question is how to refuse the loan without losing the friendship.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "help me figure out how to say no without losing the friendship",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_say_no_preserve_friendship",
+      "qualified_observation_id": "case-06-friendship-money:question.initial_say_no_preserve_friendship",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The user redirects the question away from the assistant's pattern framing.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Can you just help me figure out how to say no without it being a pattern-thing.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_drop_pattern_frame",
+      "qualified_observation_id": "case-06-friendship-money:question.current_drop_pattern_frame",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The user rejects taking responsibility for managing the friend's finances or choices.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_reject_manager_frame",
+          "quote": "I'm not trying to be her manager.",
+          "semantic_roles": [
+            "premise_correction",
+            "reasoning_objection"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.not_financial_manager",
+      "qualified_observation_id": "case-06-friendship-money:pressure.not_financial_manager",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The friend is three months behind on rent.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "she's 3 months behind on rent",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.rent_arrears",
+      "qualified_observation_id": "case-06-friendship-money:constraint.rent_arrears",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The assistant offers a concrete refusal-plus-limited-help script.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "You can say no like this",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.smaller_help_script",
+      "qualified_observation_id": "case-06-friendship-money:stance.smaller_help_script",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The assistant retracts its characterization of the friend's intent.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "You're right that I don't know her and I shouldn't characterize her intent. Let me walk that back.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 9
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.intent_walkback",
+      "qualified_observation_id": "case-06-friendship-money:stance.intent_walkback",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The homelessness stakes are acknowledged but displaced by pattern analysis.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "She's going to be homeless. With her kids. If I don't help her.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.homelessness_stakes",
+      "qualified_observation_id": "case-06-friendship-money:drop.homelessness_stakes",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "concept": "The availability of social-work support is unknown.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I don't know about the social worker thing.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.social_worker_unknown",
+      "qualified_observation_id": "case-06-friendship-money:boundary.social_worker_unknown",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_06_friendship_money.json",
+        "gold_sha256": "c37a33392e7b3e06e607cd75458c375bb42facd646ccc7bffbeadf7fab9cce0e",
+        "source_path": "research/test-cases/case_friendship_money_conversation.txt",
+        "source_sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The initial request is how to begin untangling three linked problems.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I don't even know where to start.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_where_to_start",
+      "qualified_observation_id": "case-07-messy-linked-decisions:question.initial_where_to_start",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The current request asks whether the sequenced plan is missing anything.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Am I missing anything.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 11
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_plan_completeness",
+      "qualified_observation_id": "case-07-messy-linked-decisions:question.current_plan_completeness",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The claimed Seattle decision is not actually settled.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_seattle_self_correction",
+          "quote": "I keep telling myself I've decided on Seattle but I haven't actually decided.",
+          "semantic_roles": [
+            "premise_correction",
+            "stated_unknown"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.claimed_but_not_actual_decision",
+      "qualified_observation_id": "case-07-messy-linked-decisions:pressure.claimed_but_not_actual_decision",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The lease ends in sixty days.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "my lease is up in 60 days and my landlord isn't renewing",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.lease_deadline",
+      "qualified_observation_id": "case-07-messy-linked-decisions:constraint.lease_deadline",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The assistant initially frames Seattle as the root decision.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "the lease thing is secondary to the bigger question, which is: are you taking the Seattle job",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.seattle_root_decision",
+      "qualified_observation_id": "case-07-messy-linked-decisions:stance.seattle_root_decision",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The assistant later decouples the apartment deadline from the life decisions.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "The lease can be decoupled.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.lease_decoupling",
+      "qualified_observation_id": "case-07-messy-linked-decisions:stance.lease_decoupling",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "Attachment to the user's existing life in DC is not substantively explored.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I love DC and my whole life is here",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.life_in_dc",
+      "qualified_observation_id": "case-07-messy-linked-decisions:drop.life_in_dc",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "concept": "The boyfriend's willingness to move has not been tested concretely.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I've been avoiding specifics because I was afraid he'd back out.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.boyfriend_commitment_untested",
+      "qualified_observation_id": "case-07-messy-linked-decisions:boundary.boyfriend_commitment_untested",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_07_messy_linked_decisions.json",
+        "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+        "source_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+        "source_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "The initial decision is framed as whether taking the role is greedy or smart.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I don't know if I'm being greedy or smart.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_greedy_or_smart",
+      "qualified_observation_id": "case-08-oncologist-career-family:question.initial_greedy_or_smart",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "The user eventually asks for the assistant's actual call.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "What would you actually do. Not what should I consider, what's the call.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_direct_call",
+      "qualified_observation_id": "case-08-oncologist-career-family:question.current_direct_call",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "General husband support is not yet concrete household alignment on the multi-year travel arrangement.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_and_later_strengthening_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_household_alignment_unknown",
+          "quote": "we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years",
+          "semantic_roles": [
+            "material_qualification",
+            "stated_unknown",
+            "unresolved_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 2
+        },
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "later_permission_not_alignment",
+          "quote": "But he said it in the way that means \"I will not stop you from taking it.\" Which is different from \"yes this is a good idea for us.\"",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence"
+          ],
+          "speaker": "user",
+          "temporal_role": "later_strengthening",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.husband_conversation_not_real",
+      "qualified_observation_id": "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "The offer has a ten-day deadline.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I have 10 days to decide.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.decision_deadline",
+      "qualified_observation_id": "case-08-oncologist-career-family:constraint.decision_deadline",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "The mother may have only a few good years of meaningful visits.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "She has maybe 3-5 good years left where visits still mean something.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.mother_finite_window",
+      "qualified_observation_id": "case-08-oncologist-career-family:constraint.mother_finite_window",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "The assistant ultimately recommends taking the role with negotiated conditions.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Take the role. Negotiate the 90-day start date, the flexible-day schedule with Chicago weeks explicitly protected, and adjunct status at BAMC",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.take_role_with_conditions",
+      "qualified_observation_id": "case-08-oncologist-career-family:stance.take_role_with_conditions",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "The user's broader feeling of being stuck is not fully resolved by the offer analysis.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I've been feeling a little stuck.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.stuck_feeling",
+      "qualified_observation_id": "case-08-oncologist-career-family:drop.stuck_feeling",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "concept": "Schedule flexibility is only a possibility inferred from a verbal comment.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "That might mean I can flex to Chicago weeks.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.schedule_flexibility_verbal",
+      "qualified_observation_id": "case-08-oncologist-career-family:boundary.schedule_flexibility_verbal",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_08_oncologist_career_family.json",
+        "gold_sha256": "91e8161e4e3e3c76a4b22d7b4357d6e8ec975879141b256a7981a759337a854b",
+        "source_path": "research/test-cases/case_oncologist_conversation.txt",
+        "source_sha256": "385c0d37d7bcc246a8259677599be305e2f985deb28272181f72ab38eaa55162"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The initial question is how to choose among three dissertation directions.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "How do I think about this.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_dissertation_direction",
+      "qualified_observation_id": "case-09-phd-dissertation:question.initial_dissertation_direction",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The current question asks whether deliberation has become overthinking.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "am I overthinking this?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 21
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_overthinking",
+      "qualified_observation_id": "case-09-phd-dissertation:question.current_overthinking",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The user has no special advantage that would make the single-cell path unusually defensible.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_no_specific_advantage",
+          "quote": "I don't have a specific advantage.",
+          "semantic_roles": [
+            "premise_correction",
+            "stated_unknown"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.no_single_cell_advantage",
+      "qualified_observation_id": "case-09-phd-dissertation:pressure.no_single_cell_advantage",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The advisor plans to retire within roughly two to three years.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "My advisor is 67 and planning to retire in 2 years, maybe 3.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.advisor_retirement",
+      "qualified_observation_id": "case-09-phd-dissertation:constraint.advisor_retirement",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The assistant narrows rather than fully rejects option two.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "The former is possibly viable; the latter isn't, based on what you've described.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.option_two_qualification",
+      "qualified_observation_id": "case-09-phd-dissertation:stance.option_two_qualification",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "After more specificity, the assistant materially upgrades option three.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I'd actually flip my earlier framing.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 8
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.hybrid_reframe",
+      "qualified_observation_id": "case-09-phd-dissertation:stance.hybrid_reframe",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The strongest option-two version is set aside without a definitive resolution.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "the latter isn't, based on what you've described",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.option_two_closure",
+      "qualified_observation_id": "case-09-phd-dissertation:drop.option_two_closure",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "Access to suitable data becomes the existence condition for option three.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "without them, option 3 doesn't exist.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 9
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.data_access_gate",
+      "qualified_observation_id": "case-09-phd-dissertation:boundary.data_access_gate",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "concept": "The conversation creates a go/no-go checkpoint for one publishable result.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Set a go/no-go checkpoint at 18 months — do you have at least one publishable result on the pipeline — and commit to pivoting if the answer is no.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 17
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "threshold.eighteen_month_checkpoint",
+      "qualified_observation_id": "case-09-phd-dissertation:threshold.eighteen_month_checkpoint",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_09_phd_dissertation.json",
+        "gold_sha256": "431fbdc4c50c6c6187b69e1c30e897be739e60f44e1565b4f6783839094c642e",
+        "source_path": "research/test-cases/case_phd_research_conversation.txt",
+        "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "The initial decision is whether to raise the bid or walk.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "We have until tomorrow noon to raise or walk.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_raise_or_walk",
+      "qualified_observation_id": "case-10-real-estate-bid:question.initial_raise_or_walk",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "The current question asks whether a lower counter is a middle path.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Would that be a middle path?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 5
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_middle_path",
+      "qualified_observation_id": "case-10-real-estate-bid:question.current_middle_path",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "Insurance makes the electrical update a real requirement rather than an optional preference.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_insurance_requirement",
+          "quote": "our insurance won't cover us long-term without updating it",
+          "semantic_roles": [
+            "material_qualification",
+            "unresolved_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.insurance_requirement",
+      "qualified_observation_id": "case-10-real-estate-bid:pressure.insurance_requirement",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "Known repairs exceed the renovation savings.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "it needs about $120K in work",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        },
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_02",
+          "quote": "We have $80K saved for renovation beyond the down payment.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.renovation_gap",
+      "qualified_observation_id": "case-10-real-estate-bid:constraint.renovation_gap",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "The assistant distinguishes buying affordability from owning-in-need-state affordability.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "you can afford the purchase price. You likely can't afford the house in its actual need-state with no buffer.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 3
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.need_state_affordability",
+      "qualified_observation_id": "case-10-real-estate-bid:stance.need_state_affordability",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "The husband's scarcity-and-regret argument remains emotionally live.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "we'll regret walking away over $45K",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.regret_argument",
+      "qualified_observation_id": "case-10-real-estate-bid:drop.regret_argument",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "The user cannot distinguish financial caution from fear.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I don't know if I'm being sensible or just scared.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.sensible_or_scared",
+      "qualified_observation_id": "case-10-real-estate-bid:boundary.sensible_or_scared",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "concept": "The user establishes a final bid ceiling.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Probably $925K if I'm being honest.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "option.final_ceiling",
+      "qualified_observation_id": "case-10-real-estate-bid:option.final_ceiling",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_10_real_estate_bid.json",
+        "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+        "source_path": "research/test-cases/case_real_estate_conversation.txt",
+        "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The initial request asks for help with a planned consulting launch.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Can you help me think through the launch plan?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.initial_launch_plan",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:question.initial_launch_plan",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The current question moves to how a fractional bridge would work.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "How would that actually work?",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 6
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.current_fractional_bridge",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:question.current_fractional_bridge",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "Friendly network interest is not a real consulting pipeline because no engagement is committed.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_and_later_strengthening_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events",
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_no_committed_engagements",
+          "quote": "None of them have committed to actual engagements.",
+          "semantic_roles": [
+            "material_qualification",
+            "weak_evidence",
+            "unresolved_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 2
+        },
+        {
+          "acceptable_families": [
+            "user_pressure_events"
+          ],
+          "evidence_id": "later_pipeline_self_correction",
+          "quote": "The conversations aren't a pipeline. I've been treating them as one because I wanted them to be.",
+          "semantic_roles": [
+            "premise_correction"
+          ],
+          "speaker": "user",
+          "temporal_role": "later_strengthening",
+          "turn_index": 4
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.no_actual_commitments",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:pressure.no_actual_commitments",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The user has eight months of runway.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I have 8 months runway saved.",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.eight_month_runway",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:constraint.eight_month_runway",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The assistant reframes friendly network statements as not yet a pipeline.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "You don't have a pipeline; you have a network that might become a pipeline.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.network_not_pipeline",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:stance.network_not_pipeline",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The final position permits the planned launch only with three conditions.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Launching in 6 weeks is viable if you do three things in those 6 weeks",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.launch_condition",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:stance.launch_condition",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The assistant supplies an explicit delay threshold.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 7
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "threshold.delay_rule",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:threshold.delay_rule",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The original request for launch tactics is initially displaced by fundamentals.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "dropped_thread_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "help me think through the launch plan",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "dropped_or_under_carried_threads",
+      "legacy_primary_families": [
+        "dropped_thread_events"
+      ],
+      "observation_id": "drop.requested_launch_tactics",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:drop.requested_launch_tactics",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "concept": "The evidence consists of informal, hypothetical interest.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "if you were independent, we'd consider you",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.friendly_interest_only",
+      "qualified_observation_id": "case-11-user-has-consulting-plan:boundary.friendly_interest_only",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_11_user_has_consulting_plan.json",
+        "gold_sha256": "0cb150eced85ae48613145f4ce9caf003c40664947c5f3b78d7727cfa97ab9ac",
+        "source_path": "research/test-cases/case_user_has_plan_conversation.txt",
+        "source_sha256": "6561e5d0a28421bad4dc200a84c10fd67c631af4e5a90630e2173089df8ff81e"
+      }
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "concept": "The user asks for the big picture before more implementation.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "question_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I want to understand big picture. I want to understand what we've figured out and what the plan is",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "operative_question",
+      "legacy_primary_families": [
+        "question_events"
+      ],
+      "observation_id": "question.big_picture_plan",
+      "qualified_observation_id": "case-12-lolla-project-governance:question.big_picture_plan",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_12_lolla_project_governance.json",
+        "gold_sha256": "eea57529bdc91adb6be4d8436dbc81901f375ea70947b561d8ecccf5036eadc6",
+        "source_path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+        "source_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede"
+      }
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "concept": "Development must follow a coherent plan rather than continue as disconnected ad-hoc work.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "preserve_first_introduction_with_acceptable_role"
+        },
+        "reasoning_substrate": {
+          "requirement": "any_declared_evidence_preserves_concept"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "user_pressure_events"
+          ],
+          "evidence_id": "first_reject_ad_hoc_development",
+          "quote": "what I don't want us to do is to work ad hoc and not having big plan",
+          "semantic_roles": [
+            "reasoning_objection",
+            "process_constraint"
+          ],
+          "speaker": "user",
+          "temporal_role": "first_introduction",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "user_corrections_and_pressure",
+      "legacy_primary_families": [
+        "user_pressure_events"
+      ],
+      "observation_id": "pressure.avoid_ad_hoc_work",
+      "qualified_observation_id": "case-12-lolla-project-governance:pressure.avoid_ad_hoc_work",
+      "review_status": "source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_12_lolla_project_governance.json",
+        "gold_sha256": "eea57529bdc91adb6be4d8436dbc81901f375ea70947b561d8ecccf5036eadc6",
+        "source_path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+        "source_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede"
+      }
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "concept": "The repository should later be understandable to selected outside readers.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "live_constraint_events",
+            "option_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "I would like to share it with some people soon",
+          "semantic_roles": [],
+          "speaker": "user",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 1
+        }
+      ],
+      "legacy_dimension": "constraints_and_options",
+      "legacy_primary_families": [
+        "live_constraint_events",
+        "option_events"
+      ],
+      "observation_id": "constraint.future_shareability",
+      "qualified_observation_id": "case-12-lolla-project-governance:constraint.future_shareability",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_12_lolla_project_governance.json",
+        "gold_sha256": "eea57529bdc91adb6be4d8436dbc81901f375ea70947b561d8ecccf5036eadc6",
+        "source_path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+        "source_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede"
+      }
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "concept": "The assistant proposes coordinated reasoning and repository tracks.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "The roadmap has two coordinated tracks. Track A proves the core reasoning loop. Track B makes the repository understandable, reproducible, and safe to share.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.two_track_roadmap",
+      "qualified_observation_id": "case-12-lolla-project-governance:stance.two_track_roadmap",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_12_lolla_project_governance.json",
+        "gold_sha256": "eea57529bdc91adb6be4d8436dbc81901f375ea70947b561d8ecccf5036eadc6",
+        "source_path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+        "source_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede"
+      }
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "concept": "The assistant limits what current evidence can support.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "assistant_stance_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "It cannot yet claim stable conversation understanding, unique graph value, better decisions, correctness, or proof of reasoning quality.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "assistant_positions_and_revisions",
+      "legacy_primary_families": [
+        "assistant_stance_events"
+      ],
+      "observation_id": "stance.bounded_utility_claim",
+      "qualified_observation_id": "case-12-lolla-project-governance:stance.bounded_utility_claim",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_12_lolla_project_governance.json",
+        "gold_sha256": "eea57529bdc91adb6be4d8436dbc81901f375ea70947b561d8ecccf5036eadc6",
+        "source_path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+        "source_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede"
+      }
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "concept": "Graph work is gated behind semantic fidelity and repeatability.",
+      "consumer_requirements": {
+        "audit_trail": {
+          "requirement": "semantic_and_temporal_review_pending"
+        },
+        "reasoning_substrate": {
+          "requirement": "concept_coverage_review_pending"
+        }
+      },
+      "evidence": [
+        {
+          "acceptable_families": [
+            "evidence_boundary_events"
+          ],
+          "evidence_id": "provisional_gold_01",
+          "quote": "Semantic work must show source fidelity and repeatability. Pattern work must show fact invariance and mechanism sensitivity.",
+          "semantic_roles": [],
+          "speaker": "assistant",
+          "temporal_role": "not_source_reviewed",
+          "turn_index": 2
+        }
+      ],
+      "legacy_dimension": "uncertainty_and_evidence_boundaries",
+      "legacy_primary_families": [
+        "evidence_boundary_events"
+      ],
+      "observation_id": "boundary.semantic_gate_before_graph",
+      "qualified_observation_id": "case-12-lolla-project-governance:boundary.semantic_gate_before_graph",
+      "review_status": "inherited_provisional_gold_not_source_reviewed",
+      "source": {
+        "gold_annotation_status": "source_first_researcher_reviewed_provisional",
+        "gold_path": "tests/fixtures/core_semantic_validation/corpus-v0/gold/case_12_lolla_project_governance.json",
+        "gold_sha256": "eea57529bdc91adb6be4d8436dbc81901f375ea70947b561d8ecccf5036eadc6",
+        "source_path": "tests/fixtures/core_semantic_validation/corpus-v0/sources/case_12_lolla_project_governance.txt",
+        "source_sha256": "5de5383906564ca8e8a09eda45a5753f67cbc46410261d6a914c97127d03dede"
+      }
+    }
+  ],
+  "review_overrides": {
+    "annotation_status": "source_reviewed_after_diagnostic_runs_frozen_for_future_only",
+    "path": "research/core-semantic-observation-contract-v1-2026-07-10/reviewed-overrides.json",
+    "sha256": "3495d8ed55ff9ec8e2aab8713c3c3de5e8da411a747acb02c85c31d112a263c5"
+  },
+  "review_summary": {
+    "pending_source_review_observation_count": 86,
+    "source_reviewed_observation_count": 16
+  },
+  "schema_version": "lolla.semantic_observation_contract.v1",
+  "scoring_policy": {
+    "audit_trail": "score temporal and semantic-role requirements separately",
+    "deterministic_exact_span_scoring": true,
+    "embedding_match_allowed": false,
+    "pending_observations": "may be used for legacy diagnostics but not promotion",
+    "reasoning_substrate": "score concept recovery across evidence/families declared by source review",
+    "semantic_runtime_judge_allowed": false
+  }
+}

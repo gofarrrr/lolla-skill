@@ -1,0 +1,224 @@
+{
+  "schema_version": "lolla.frozen_downstream_pair_contract.v1",
+  "status": "frozen_before_calls",
+  "date": "2026-07-10",
+  "run_id": "stage_b_case10_20260710_a1",
+  "purpose": "Test whether three source-grounded Lolla pressure questions change a fresh reconsideration beyond an identically configured transcript-only control without forcing a bid recommendation or leaking expected answers.",
+  "case": {
+    "case_id": "case-10-real-estate-bid",
+    "case_role": "high_stakes_synthetic_paired_holdout_for_evidence_sizing_regret_frame_and_clean_sheet_acquisition",
+    "source_path": "research/test-cases/case_real_estate_conversation.txt",
+    "source_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5",
+    "original_final_answer_location": "final_assistant_turn_inside_complete_conversation"
+  },
+  "treatment_pressure_packet_source": {
+    "path": "research/stage-a-case10-2026-07-10/pressure-packet.json",
+    "sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"
+  },
+  "treatment_pressure_packet": [
+    {
+      "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+      "source_turns": [1, 3],
+      "lineage_chunk_ids": [
+        "aff::margin-of-safety.evidence-sized-operating-buffer",
+        "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+        "abs::calculated-risk-taking::calculated-label-with-unbounded-downside"
+      ],
+      "challenge": "Check whether the proposed ceiling and buffer rely on user-reported estimates or on the assistant's invented repair ranges. What written repair, insurance, financing, and complete-household-liquidity facts would have to be verified before any all-in ceiling is treated as supported? Preserve uncertainty and do not supply replacement numbers."
+    },
+    {
+      "pressure_id": "regret_frame_not_probability_or_economics",
+      "source_turns": [4, 6],
+      "lineage_chunk_ids": [
+        "aff::regret-theory.long-run-regret-with-risk-check",
+        "abs::regret-theory::anticipated-regret-without-probability",
+        "aff::prospect-theory.loss-frame-decision-quality-check"
+      ],
+      "challenge": "Treat regret in both directions as a values signal, not as evidence. Check whether asking price, current bid, spouse preference, winning or losing language, and vivid imagined futures are setting the reference point without changing the underlying economics. Do not dismiss genuine neighborhood value merely because it is emotional."
+    },
+    {
+      "pressure_id": "zero_base_all_in_acquisition_test",
+      "source_turns": [1, 3, 6],
+      "lineage_chunk_ids": [
+        "aff::inversion.zero-base-continuation-test",
+        "aff::endowment-effect.reprice-owned-option-from-outside-view",
+        "aff::problem-framing-and-reframing.test-alternative-frames"
+      ],
+      "challenge": "Ask whether the couple would choose this same house at its verified all-in need-state cost if there were no prior offer, asking-price anchor, or winning/losing frame. Preserve real deadline, scarcity, switching-cost, and neighborhood constraints; do not invent alternative houses or diagnose endowment."
+    }
+  ],
+  "system_prompt": "You are independently reassessing a prior assistant's reasoning in a high-stakes but synthetic real-estate decision conversation. Use the complete conversation as authority. Preserve useful reasoning, correct unsupported factual, numerical, financial, market, insurance, renovation, causal, and psychological claims, and do not choose a bid or claim the household can afford one. Treat additional pressure, if supplied, as questions that may be used, rejected, deferred, or kept as private guardrails. Do not mention experiments, controls, audits, packets, mental models, internal labels, or comparison arms. Return only the requested JSON object.",
+  "neutral_reconsideration_instruction": "Reassess the prior reasoning from scratch. Identify the actual decision state at the end of the conversation; what remains valid; which numerical, market, repair, insurance, affordability, causal, emotional, or outcome claims should be taken back or verified; what facts are absent; and the smallest useful next actions or evidence gates. Preserve the user's stated 925000-dollar ceiling as their current position, not as an objectively correct number. Do not invent comparable sales, market probabilities, repair costs, household income or liquidity, financing terms, insurance rules, future regret, marital outcomes, alternative houses, or the correct bid. A strong result may preserve the user's action while changing the evidence, confidence, framing, or private guardrails behind it.",
+  "output_contract": {
+    "required_keys": [
+      "decision_state_read",
+      "updated_position",
+      "what_survived",
+      "take_backs_or_set_aside",
+      "material_shifts",
+      "pressure_dispositions",
+      "next_actions",
+      "uncertainties"
+    ],
+    "field_types": {
+      "decision_state_read": "string",
+      "updated_position": "string",
+      "what_survived": "array_of_strings",
+      "take_backs_or_set_aside": "array_of_strings",
+      "material_shifts": "array_of_objects",
+      "pressure_dispositions": "array_of_objects",
+      "next_actions": "array_of_strings",
+      "uncertainties": "array_of_strings"
+    },
+    "material_shift_required_keys": [
+      "shift",
+      "source_basis",
+      "action_consequence"
+    ],
+    "maximum_material_shifts": 4,
+    "object_array_contracts": {
+      "pressure_dispositions": {
+        "required_keys": [
+          "pressure_id",
+          "strongest_plausible_application",
+          "disposition",
+          "why",
+          "visible_effect",
+          "private_guardrail",
+          "risk_if_forced",
+          "risk_if_ignored"
+        ],
+        "maximum_items": 3,
+        "allowed_values": {
+          "pressure_id": [
+            "evidence_sized_buffer_over_invented_ranges",
+            "regret_frame_not_probability_or_economics",
+            "zero_base_all_in_acquisition_test"
+          ],
+          "disposition": [
+            "use",
+            "reject",
+            "defer",
+            "private_guardrail"
+          ]
+        },
+        "id_custody": {
+          "source": "treatment_pressure_packet",
+          "source_id_field": "pressure_id",
+          "item_id_field": "pressure_id",
+          "coverage": "exactly_once_in_treatment_empty_in_control"
+        }
+      }
+    }
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "temperature": 0.2,
+    "max_output_tokens": 2200,
+    "reasoning_effort": "none",
+    "samples_per_arm": 1,
+    "total_generation_calls": 2,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "provider_timeout_seconds": 120,
+    "wall_clock_timeout_seconds": 180
+  },
+  "call_budget": {
+    "estimated_cost_ceiling_usd": 0.1,
+    "pricing_table_version": "2026-05-25"
+  },
+  "blind_label_seed": "case10-stage-b-frozen-pair-20260710-a1",
+  "prompt_hashes": {
+    "strong_reconsideration_control": {
+      "system_prompt_sha256": "3f45fffc0a0c80b5fb5a29ffb11805a00a5b79378e651fdfde85dcfdcd787dad",
+      "user_prompt_sha256": "958494ad30c076df38608b24267a88c8d1e23bc105f50ef226745c69643ae96d"
+    },
+    "lolla_pressure_treatment": {
+      "system_prompt_sha256": "3f45fffc0a0c80b5fb5a29ffb11805a00a5b79378e651fdfde85dcfdcd787dad",
+      "user_prompt_sha256": "e16e0e6e5c2084e1a7a5c0e940eabe4c04be0cd74a58f9ff1e2d443816251cdc"
+    }
+  },
+  "artifacts": {
+    "output_dir": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1",
+    "blind_outputs_path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/blind-outputs.json",
+    "arm_key_path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/arm-key.json",
+    "run_summary_path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/run-summary.json",
+    "call_custody_path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/call-custody.json"
+  },
+  "source_red_lines": {
+    "must_preserve": [
+      "The auction outcome is unknown and no bid has been accepted in the source.",
+      "The user states 925000 dollars as the ceiling they can honestly accept; it is a personal position, not validated affordability.",
+      "The source reports 120000 dollars of work and 80000 dollars of renovation savings, but full household finances and written repair bids are absent.",
+      "Electrical work is reportedly tied to future insurance coverage, the roof reportedly has two-to-three years, and the kitchen is functional with problems.",
+      "The husband prefers 950000 dollars and neighborhood scarcity/regret remain real values rather than pathologies.",
+      "The original assistant's useful distinction between purchase price and need-state affordability may survive after its invented precision is removed."
+    ],
+    "must_not_invent": [
+      "market value, comparable sales, inventory timing, competing bids, seller behavior, or probability of winning",
+      "income, monthly payment, taxes, financing, credit, gifts, bonuses, complete liquidity, or affordability",
+      "repair costs, hidden-defect ranges, sequencing, urgency, contractor availability, permits, or actual insurance terms",
+      "the husband's motives, marital conflict, canceled spending, future regret, relief, or auction outcome",
+      "that any bid number or walking away is the correct action"
+    ]
+  },
+  "review_contract": {
+    "blind_review_before_key": true,
+    "reviewer_inputs_before_key": [
+      "complete conversation",
+      "frozen source red lines",
+      "blind outputs only",
+      "frozen scorecard and stop rules"
+    ],
+    "scorecard": [
+      "source fidelity",
+      "preserved useful original reasoning",
+      "unsupported claims removed or retained",
+      "material action evidence confidence framing or guardrail delta",
+      "unique delta between blind outputs",
+      "useful versus noisy friction",
+      "forcing or pressure absorption",
+      "lost courage clarity simplicity or genuine neighborhood value",
+      "public bloat and process burden",
+      "correct stand-down",
+      "traceability after key reveal"
+    ],
+    "no_single_quality_score": true,
+    "no_model_evaluator": true
+  },
+  "stop_rules": [
+    "exactly one call per arm",
+    "no automatic retry",
+    "no prompt packet model cap schema red-line or contract change after either call",
+    "no evaluator model call",
+    "blind review must be sealed before arm key is read",
+    "stop if either output invents financial market repair insurance or outcome facts",
+    "stop if treatment forces a selected pressure or loses useful original value",
+    "equivalence or treatment-only length blocks a unique answer-improvement claim",
+    "no runtime graph or semantic-kernel promotion from this pair"
+  ],
+  "non_claims": [
+    "not human review",
+    "not product proof",
+    "not financial real-estate insurance legal renovation or bidding advice",
+    "not an outcome-quality test",
+    "not evidence that the graph is necessary",
+    "not runtime-integration authority"
+  ],
+  "hash_locks": [
+    {"role":"pair_runner","path":"scripts/evals/run_frozen_downstream_pair.py","sha256":"79bdbf3b1f2da5128208c2264cf4f982d9c3863e17144f0bd3363daf113880b1"},
+    {"role":"source_conversation","path":"research/test-cases/case_real_estate_conversation.txt","sha256":"61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"},
+    {"role":"stage_a_contract","path":"research/stage-a-case10-2026-07-10/contract.json","sha256":"e1ed425d8025d786f2151557c13fd56ae36ea925718493f4eb0f5e5102a9e6d2"},
+    {"role":"stage_a_gate","path":"research/stage-a-case10-2026-07-10/pipeline-gate-result.json","sha256":"2aaf18e06c1996511cbb8f26ca66288e48ca89cf4f7bfffe6e15eea852ba1aa2"},
+    {"role":"private_table_snapshot","path":"research/stage-a-case10-2026-07-10/private-table-snapshot.json","sha256":"ad141fc5889b6e6beab8488888eae542939d238b4528fd251ea05b433c09a4c9"},
+    {"role":"v60_snapshot","path":"research/stage-a-case10-2026-07-10/v60-snapshot.json","sha256":"0e899606cb05319c05a11a24ba3e4e472ac724f2915e3e6a8cad5c5ef7d7dc59"},
+    {"role":"preliminary_pressure_review","path":"research/stage-a-case10-2026-07-10/preliminary-pressure-review.json","sha256":"969a7768a594577bb3eec1483105d385b7a0cd97f15eae58875ced6ccd6fe848"},
+    {"role":"pressure_packet","path":"research/stage-a-case10-2026-07-10/pressure-packet.json","sha256":"25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"},
+    {"role":"two_stage_protocol","path":"docs/evals/reasoning-portfolio-two-stage-holdout-protocol-v0.md","sha256":"99910c12b501fa7358be5ed1eb039b47f6ad3bf897e6f569be7e65c424215020"},
+    {"role":"downstream_experiment_protocol","path":"docs/evals/lolla-downstream-utility-experiment-v0.json","sha256":"06d98095ae5840ac6b37c45cb974b0b821fed4bc8b219d98ae24e8c10fd3b8b0"},
+    {"role":"actionable_delta_rubric","path":"docs/evals/actionable-delta-rubric-v0.md","sha256":"e2499b0dba3ba59f92709240e4da969609ff4db6916557afb5bbf7c46b08a579"},
+    {"role":"blind_review_protocol","path":"docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md","sha256":"a9d8fbf139417629fe3153e0085fa3c367aa03d59e3f40cf74171e8f454f23cd"},
+    {"role":"pricing","path":"engine/system_b/pricing.py","sha256":"4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"}
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "lolla.controlled_vocabulary_selection_boundary.v1",
+  "status": "provider_free_decision_calls_blocked",
+  "canonical_registry": {
+    "path": "data/knowledge_graph.json",
+    "model_count": 222,
+    "id_policy": "canonical_ids_only",
+    "unknown_id_policy": "quarantine_without_silent_alias_repair"
+  },
+  "contracts": {
+    "mechanism_first": {
+      "input_vocabulary": "nine_operational_reasoning_mechanisms",
+      "output": "bounded_joint_process_mechanism_ids",
+      "deterministic_graph_pressure_preserved": true,
+      "status": "preferred_first_stage_not_yet_invariant"
+    },
+    "direct_model": {
+      "input_vocabulary": "222_canonical_model_ids_and_cards",
+      "output": "bounded_canonical_model_ids_or_abstention",
+      "deterministic_graph_pressure_preserved": false,
+      "status": "future_control_arm_requires_compact_cards"
+    },
+    "existing_hierarchy": {
+      "input_vocabulary": "nine_overlapping_reasoning_types",
+      "output": "large_overlapping_model_sets",
+      "deterministic_graph_pressure_preserved": true,
+      "status": "rejected_as_nondiscriminating"
+    }
+  },
+  "recommended_flow": [
+    "probabilistic_controlled_mechanism_interpretation",
+    "deterministic_canonical_graph_recall",
+    "probabilistic_bounded_canonical_model_adjudication",
+    "probabilistic_pressure_composition"
+  ],
+  "hard_rules": [
+    "no_invented_mechanism_ids",
+    "no_invented_model_ids",
+    "no_runtime_alias_creation",
+    "no_deterministic_semantic_judgment",
+    "all_candidates_may_be_rejected",
+    "unknown_ids_are_quarantined"
+  ],
+  "provider_call_authorization": false
+}

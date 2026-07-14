@@ -1,0 +1,98 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v4_adversarial_review.v1",
+  "status": "provider_free_adversarial_pass_with_semantic_source_review_required",
+  "date": "2026-07-12",
+  "cases": [
+    {
+      "adversarial_id": "missing-stance-components",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "position records require the component array and fidelity note",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "starting-components-role-presence-mismatch",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "starting components mechanically move with the existing starting interpretation and evidence role",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "missing-current-or-qualification-components",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "role-specific component cardinality",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "component-evidence-crosses-parent-role",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "component aliases must be a unique non-empty subset of their already validated parent role",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "exact-duplicate-component",
+      "expected": "reject",
+      "observed": "reject",
+      "mechanism": "exact canonical duplicate detection without semantic merging",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "belief-object-mislabeled-decision",
+      "mutation": "Case-03 held_assessment changed to decision while all enums and evidence remain valid",
+      "expected": "admit_structurally_and_require_source_review",
+      "observed": "admit_structurally_and_require_source_review",
+      "mechanism": "code preserves the claim but does not enforce an object/expression semantic compatibility matrix",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "mixed-proposal-and-acceptance-object",
+      "source": "preserved Case-03 v3 second record",
+      "expected": "represent_as_two_current_components_with_shared_evidence",
+      "observed": "represent_as_two_current_components_with_shared_evidence",
+      "mechanism": "one action-or-proposal component and one acceptance-or-willingness component cite e065 independently",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "record-level-sibling-custody",
+      "expected": "admit_valid_quarantine_invalid",
+      "observed": "admit_valid_quarantine_invalid",
+      "mechanism": "recordwise terminal custody",
+      "semantic_gate_added": false
+    },
+    {
+      "adversarial_id": "non-position-regression",
+      "expected": "byte_identical_v2_prompt_and_schema",
+      "observed": "byte_identical_v2_prompt_and_schema",
+      "mechanism": "v4 delegates every non-position family to v2",
+      "semantic_gate_added": false
+    }
+  ],
+  "summary": {
+    "adversarial_case_count": 9,
+    "expected_outcomes_met": 9,
+    "hard_rejection_classes": 5,
+    "structural_admissions_requiring_semantic_review": 1,
+    "mixed_force_representability_cases": 1,
+    "record_level_partial_compilation": 1,
+    "non_position_interfaces_changed": 0,
+    "deterministic_semantic_compatibility_gates": 0,
+    "provider_calls": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "runtime_calls": 0
+  },
+  "decision": {
+    "adversarial_gate": "pass",
+    "semantic_source_review_remains_mandatory": true,
+    "object_expression_compatibility_matrix_rejected": true,
+    "force_ladder_or_score_rejected": true,
+    "prose_keyword_gate_rejected": true,
+    "completed_case_repairs_or_repeats_rejected": true,
+    "cold_reader_review_authorized": true,
+    "provider_probe_authorized": false
+  },
+  "nonclaim": "Stance objects make mixed and misclassified force easier to inspect; structurally valid object and expression labels can still be semantically wrong."
+}

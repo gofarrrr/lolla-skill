@@ -1,0 +1,17 @@
+{
+  "schema_version": "lolla.post_run_preflight_repair.v1",
+  "date": "2026-07-10",
+  "status": "applied_after_terminal_run",
+  "file": "scripts/evals/run_reasoning_portfolio_stage_a.py",
+  "frozen_run_version_sha256": "c775170d5569a88e159211b135e5e800a965d4982aed16c775698b8bd598b93b",
+  "repaired_version_sha256": "bd987afda8ffdb72f82da158aa3c69074b128487435e187af6dbfb4c9d468133",
+  "repair": "Stage A contracts must now freeze a minimum and exact Python version plus the resolved interpreter path and executable hash. Dry-run validation checks all four before source or provider work.",
+  "why": "The terminal Case 05 attempt spent one extraction call under Python 3.9 before the pipeline failed on a Python 3.10+ language feature.",
+  "semantic_pipeline_change": false,
+  "provider_prompt_change": false,
+  "applied_to_terminal_run": false,
+  "prospective_only": true,
+  "tests": [
+    "tests/test_run_reasoning_portfolio_stage_a.py::test_contract_rejects_incompatible_python_before_any_provider_call"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_transfer_1",
+  "status": "frozen_before_transfer_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-transfer-t1",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract-v13.json",
+  "base_contract_sha256": "7db3ad3aae40a767ccb037b288b0c65ed235d20c266a6ddddf9ae1e5e81423d5",
+  "freeze_basis": "Calibration A13 is terminal. Run all twelve untouched transfer cases without tuning, retries, healing, or between-case review-driven changes.",
+  "transfer": {
+    "authorized_case_ids": [
+      "v1-case01-flood-infrastructure",
+      "v1-case02-discharge-transport",
+      "v1-case03-executive-hire",
+      "v1-case04-component-sourcing",
+      "v1-case05-ai-tutoring",
+      "v1-case06-industry-funded-lab",
+      "v1-case07-cooperative-scheduling",
+      "v1-case08-museum-entry",
+      "v1-case09-software-migration",
+      "v1-case10-restricted-funding",
+      "v1-case11-elder-care-relocation",
+      "v1-case12-newsroom-platform"
+    ],
+    "maximum_provider_calls": 72,
+    "maximum_provider_reported_cost_usd": 15.0,
+    "repeat_ids": ["primary"],
+    "automatic_retries": 0,
+    "response_healing": false,
+    "fallback_models": 0,
+    "tuning_between_cases": false,
+    "source_review_during_execution": false,
+    "batch_must_be_sealed_before_review": true,
+    "failure_policy": "preserve each failed case and continue the frozen batch when execution can safely proceed; make no repair until all twelve case attempts are sealed"
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "research/simulated-reliability-v1-calibration-2026-07-12/a13/terminal-review.json",
+      "sha256": "163a47e0942081e928fe5075913a26b714346baf2f2e09a01c8e97ed4ea4e3f1"
+    },
+    {
+      "path": "plans/lolla-simulated-reliability-corpus-v1-2026-07-12.md",
+      "sha256": "c670943fbeb454e8bd3e11cd189da4830c9e898ac7e1eb1acd45be288f4200b3"
+    }
+  ]
+}

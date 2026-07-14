@@ -1,0 +1,206 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_probe_contract.v2",
+  "status": "frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_microtask_probe_v2_20260711_a1",
+  "purpose": "Transfer-test the bounded OpenRouter-Gemini projection and focal-position repair on Case 05 without retrying the Case 02 failure.",
+  "selection": {
+    "rule": "only_remaining_non_case02_non_case03_case_without_atomic_migration",
+    "selected_case_id": "amb1-case05-family-archive",
+    "selected_for_likely_success": false,
+    "clean_holdout": false,
+    "repair_exposure_cases_excluded": [
+      "amb1-case02-nonprofit-scale",
+      "amb1-case03-creative-partnership"
+    ],
+    "atomic_migration_cases_excluded": true
+  },
+  "case": {
+    "case_id": "amb1-case05-family-archive",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+    "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d",
+    "message_count": 14,
+    "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case05-family-archive.json",
+    "reviewed_packet_sha256": "4e77e877533a58d42c11878c117a85ddfa7637b6855cf7a0805b2852f0a2d6a3",
+    "expected_position_ownership": "joint",
+    "expected_thread_disposition": "addressed_unresolved",
+    "expected_atomic_constraint_count": 9
+  },
+  "repair_delta": {
+    "openrouter_gemini_nullable_anyof": true,
+    "direct_gemini_projection_changed": false,
+    "source_specific_span_id_enum": true,
+    "silent_span_id_normalization": false,
+    "generic_focal_qualification_composition_instruction": true,
+    "case02_prompt_specific_language": false,
+    "automatic_retry_of_v1": false
+  },
+  "microtask_order": [
+    "threads",
+    "constraints",
+    "positions"
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_projection": "openrouter_gemini",
+    "temperature": 0.0,
+    "reasoning": {
+      "enabled": false
+    },
+    "require_supported_parameters": true,
+    "max_output_tokens": 4000,
+    "provider_timeout_seconds": 60,
+    "wall_clock_timeout_seconds": 180,
+    "calls_per_microtask": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "pipeline_calls": 0,
+    "graph_calls": 0
+  },
+  "call_budget": {
+    "maximum_provider_calls": 3,
+    "estimated_total_cost_ceiling_usd": 0.02,
+    "pricing_table_version": "2026-05-25"
+  },
+  "stop_rules": {
+    "operational_failure_stops_remaining_calls": true,
+    "valid_semantic_failure_is_preserved_and_does_not_trigger_retry": true,
+    "hard_stop_before_second_case": true
+  },
+  "scoring_contract": {
+    "composite_score": null,
+    "review_order": "source_then_reviewed_packet_then_observed_family",
+    "threads": {
+      "required": [
+        "focal_thread_present",
+        "disposition_addressed_unresolved",
+        "full_trajectory_represented",
+        "zero_false_genuinely_dropped",
+        "zero_material_source_custody_violations"
+      ]
+    },
+    "constraints": {
+      "required": [
+        "atomic_claims_only",
+        "zero_source_strength_inflation",
+        "recall_at_least_0_75",
+        "precision_at_least_0_80",
+        "zero_material_source_custody_violations"
+      ]
+    },
+    "positions": {
+      "required": [
+        "decision_summary_supported",
+        "focal_position_present",
+        "ownership_joint",
+        "user_turn_7_contribution_present",
+        "assistant_turn_7_contribution_present",
+        "zero_material_source_custody_violations"
+      ]
+    },
+    "composition": {
+      "allowed_only_if_all_family_candidates_are_valid": true,
+      "graph_routing_allowed": false
+    }
+  },
+  "prompt_hashes": {
+    "threads": {
+      "system_prompt_sha256": "914aab8a372857f11cbca2f1b9abca75c13214b8a9f491aa5caaad332b89a35d",
+      "user_prompt_sha256": "2cf62992d1d5a88ed2a93d10dd6171f1e668d91f59a1c91a0f1ff22d87a1d0cc",
+      "schema_sha256": "f3c0286d4070cb64e29ffec84afb971bcd511199786f5a74e5da0ef372532e9b",
+      "schema_metrics": {
+        "bytes": 3937,
+        "depth": 7,
+        "property_nodes": 4
+      },
+      "allowed_span_id_count": 65
+    },
+    "constraints": {
+      "system_prompt_sha256": "7844df85d91b6d70e4acad35a8dca001560dea71c684b8df920ec05a6305fcf5",
+      "user_prompt_sha256": "1f46aa1eacbf7e9373fc49864d5c06b635f619dc0845c713aff9486b44825e17",
+      "schema_sha256": "d4706925494e57a6ed0f8eadc323fd0101b99bce76afc46332fecca65aa95107",
+      "schema_metrics": {
+        "bytes": 3308,
+        "depth": 6,
+        "property_nodes": 3
+      },
+      "allowed_span_id_count": 65
+    },
+    "positions": {
+      "system_prompt_sha256": "7f666c7e14db063a919e914c4b4c7403ac78e1b3520447b2423d012c1ec9be82",
+      "user_prompt_sha256": "55b00c83f95e08fe890a62f653e9c77770384b999621e9f21d7b5b3a4c3c6f9b",
+      "schema_sha256": "291b037550938a0945b145f798ec21e6cb199aec550c1a790272f9af690f7aa0",
+      "schema_metrics": {
+        "bytes": 4488,
+        "depth": 6,
+        "property_nodes": 5
+      },
+      "allowed_span_id_count": 65
+    }
+  },
+  "hash_locks": [
+    {
+      "role": "v2_runner",
+      "path": "scripts/evals/run_conversation_state_microtask_probe_v2.py",
+      "sha256": "2c943fc19661a2c71695253a96e5ed18b34923e389a1e218e375dbe0fe2bd04b"
+    },
+    {
+      "role": "v1_runner",
+      "path": "scripts/evals/run_conversation_state_microtask_probe.py",
+      "sha256": "c15718db68b654387b7655ffc9d9410f38b6a8a8c19094da81189824b5d5e141"
+    },
+    {
+      "role": "typed_candidates",
+      "path": "engine/system_b/conversation_state_candidates.py",
+      "sha256": "16ad9c58cff6a818bf9187b10e93285f2704be34cf891b257da671c6a89fe70b"
+    },
+    {
+      "role": "candidate_pipeline",
+      "path": "engine/system_b/conversation_state_candidate_pipeline.py",
+      "sha256": "86ed7326aa248d982fa1ebf6fe6e5686e5598f52d61ade8209ba2c6c8cb269b3"
+    },
+    {
+      "role": "state_handoff",
+      "path": "engine/system_b/conversation_state_handoff.py",
+      "sha256": "db528315ee1a5714bffe9546f58a2879b409a182d121bd09210777730d2d8c8b"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v1.md",
+      "sha256": "3271be0269ea6ba43786edd5ebd4a8fa50cdddf879000339718a7ef9feddd03b"
+    },
+    {
+      "role": "structured_extraction_practices",
+      "path": "docs/conversation-understanding/structured-extraction-practices-july-2026.md",
+      "sha256": "c0fd9dde51e943f5f0aa2652db46f059242f53de5fbb34be0b1976fc5f601238"
+    },
+    {
+      "role": "v1_probe_decision",
+      "path": "research/conversation-state-microtask-probe-v1-2026-07-11/decision.json",
+      "sha256": "e0fd99db5219bc6c7153238e906a848a88e4d2a059d310391f58326201ea4299"
+    }
+  ],
+  "artifacts": {
+    "package_path": "research/conversation-state-microtask-probe-v2-2026-07-11",
+    "threads_result_path": "research/conversation-state-microtask-probe-v2-2026-07-11/threads-result.json",
+    "constraints_result_path": "research/conversation-state-microtask-probe-v2-2026-07-11/constraints-result.json",
+    "positions_result_path": "research/conversation-state-microtask-probe-v2-2026-07-11/positions-result.json",
+    "source_review_path": "research/conversation-state-microtask-probe-v2-2026-07-11/source-review.json",
+    "decision_path": "research/conversation-state-microtask-probe-v2-2026-07-11/decision.json",
+    "require_family_results_absent_before_run": true
+  },
+  "non_claims": [
+    "not_clean_holdout",
+    "not_independent_gold",
+    "not_graph_value",
+    "not_reasoning_quality_proof",
+    "not_full_pipeline_authority",
+    "not_runtime_integration_authority"
+  ]
+}

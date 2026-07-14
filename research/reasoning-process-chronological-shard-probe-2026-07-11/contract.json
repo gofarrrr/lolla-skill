@@ -1,0 +1,93 @@
+{
+  "schema_version": "lolla.reasoning_process_chronological_shard_probe_contract.v1",
+  "status": "frozen_before_one_provider_call",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-chronological-shard-case05-evidence-v1",
+  "purpose": "Test whether the smallest target-blind early evidence shard recovers the Case-05 principle-versus-action evidence boundary omitted by the full-conversation transfer reader.",
+  "case": {
+    "case_id": "amb1-case05-family-archive",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+    "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d"
+  },
+  "job": {
+    "job_id": "chronological-shard-case05-evidence-early",
+    "case_id": "amb1-case05-family-archive",
+    "mechanism": "chronological_shard_v1",
+    "view_kind": "evidence_and_assumption_discipline",
+    "focal_turn_indices": [1, 2, 3],
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/evidence_and_assumption_discipline/shard-01.json",
+    "packet_sha256": "538fb7e9a852e364387d59c8df9fca59733ad0715f91e81a8c0df8e5c7a1aed3",
+    "input_utf8_bytes": 4877,
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "0c7df2c777327e93a8db5a8b902358112854c253acab571461b74623c8cc122a",
+    "response_schema_sha256": "65ed4474c2474ceb295b4f852b47b5a3e15f81cfcfdba92be5977774a16a006c",
+    "maximum_output_records": 2
+  },
+  "frozen_inputs": [
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shards.py",
+      "sha256": "29b4fa459cc0ee431bde28b7a7e2b99ec26915dde650f5554d68bb134a5c3900"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader.py",
+      "sha256": "1bdd6c4aa3033ff10b75fddc704502ad37b21319a4edf3ba7254bfebca57cc6a"
+    },
+    {
+      "path": "research/reasoning-process-chronological-shard-interface-2026-07-11/report.json",
+      "sha256": "e791b4aa1bd09bf1956cb5705609779a8a81327879411efc5fc56a8376f46fe4"
+    },
+    {
+      "path": "research/reasoning-process-phase4-transfer-review-2026-07-11/source-review.json",
+      "sha256": "604aa6edc5da856290fea205026f576ead0f0463e88922f77e06ab8b6eabc88b"
+    },
+    {
+      "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json",
+      "sha256": "b5ab607bc8b755708e8ba78e24aa8738a168739e50e3db6d50ef432ac33cfb1b"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "full_reader_max_output_tokens": 1200,
+    "local_reader_max_output_tokens": 1200,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.01,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "operational_success": true,
+    "record_level_custody_complete": true,
+    "invalid_admitted_record_count": 0,
+    "source_strength_inflation_count": 0,
+    "protected_claim_span_visible": true,
+    "protected_boundary_span_visible": true,
+    "source_first_review_required": true
+  },
+  "boundary": {
+    "protected_target_seen_by_model": false,
+    "source_review_fixture_seen_by_model": false,
+    "full_case_calls_authorized": false,
+    "semantic_retry_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

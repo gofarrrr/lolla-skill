@@ -1,0 +1,298 @@
+{
+  "metrics": {
+    "auxiliary_ledger_omitted_whole": false,
+    "auxiliary_observation_count_available": 28,
+    "auxiliary_observation_count_included": 28,
+    "budget_exceeded": false,
+    "max_input_utf8_bytes": 24000,
+    "observed_input_utf8_bytes": 16810,
+    "source_message_count": 14
+  },
+  "packet": {
+    "authoritative_conversation": {
+      "exact_text": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Public beta versus further validation for an open research tool\n\nCase ID: amb1-case04-research-tool-release\nStratum: research_tool_release\nFounder-directed synthetic development fixture; not a clean holdout.\n\n[Turn 1] USER:\nOur small academic software group has built an open tool for exploring archival text collections. It is not used for medical or individual decisions; it helps researchers find patterns and passages to inspect. Two labs have used private builds and want us to release a public beta. The analysis engine is stable on our test collections, but installation is awkward and the documentation assumes people understand our data format. Half the team wants feedback now. The maintainers worry a messy release will define our reputation.\n\n[Turn 1] ASSISTANT:\nThe decision depends on what you want the beta to learn and which failures would be informative rather than merely predictable. If most early users will fail at installation or formatting, the feedback may tell you what you already know and consume goodwill. If the private labs have only used familiar collections, a broader beta could reveal important assumptions. You might delay “public” while expanding a structured preview to users with different data.\n\n[Turn 2] USER:\nThat is close to what the maintainers say, but the structured preview has been “one more cohort” for six months. Each time we add users, we find another thing to document before going public. Meanwhile two volunteer contributors have stopped attending meetings because there is no visible release. I do not think contributor momentum is superficial. A tool that is always almost ready can become a private service for our friends.\n\n[Turn 2] ASSISTANT:\nAgreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive. A public beta can create a focal point for contributors if its limits are explicit. The maintainers' concern still matters because public access changes the volume and variety of support. The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”\n\n[Turn 3] USER:\nI am not sure disclaimers solve it. Researchers often ignore “beta” once they have invested in a workflow. If we change the data model later, they may feel we broke something even if we warned them. Also, the two labs want to cite the tool in papers this year. A public version would make that easier and may help our grant renewal, but I do not want citation pressure to freeze an interface we chose for convenience.\n\n[Turn 3] ASSISTANT:\nThen the most consequential commitment may be the data and output format, not the release label. You could mark some interfaces as experimental while stabilizing a minimal exchange format for saved projects. But that creates engineering work and may imply more compatibility than you can guarantee. The publication and grant benefits are real organizational incentives; they should be named openly rather than translated into an argument that users necessarily need the current interface now.\n\n[Turn 4] USER:\nYou are assuming we can identify a minimal stable format. Priya, who designed the data layer, says that doing so before seeing stranger collections would formalize the wrong abstractions. She wants public examples precisely to learn what should be stable. Our senior maintainer says that is using users to discover architecture at their expense. They respect each other, but the conversation has become “learning” versus “responsibility,” and both words are doing too much work.\n\n[Turn 4] ASSISTANT:\nThose positions may differ on who bears the cost of uncertainty. Priya expects real use to reveal the right abstractions; the maintainer expects early users to absorb migration and support costs. A release design could make that cost visible and bounded—for example, limiting the beta to disposable projects or providing an export path—yet either choice may reduce the natural use you wanted to observe. There may not be a way to learn from committed use without creating some obligation to those users.\n\n[Turn 5] USER:\nWe learned today that installation is easier than we thought for people using the common package manager, but one private lab had a staff engineer quietly solving problems for everyone. Their researchers reported a smooth experience because they never saw the setup work. That makes our private evidence look weaker. On the other hand, a volunteer wrote a new installer over the weekend and wants real users before polishing it. I cannot tell whether this argues for release or for another round of testing.\n\n[Turn 5] ASSISTANT:\nIt argues against treating the private labs as representative, but it does not choose the next step by itself. The new installer could change the support burden, and public use could test it under real conditions. A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing. Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified.\n\n[Turn 6] USER:\nThe team could support a public beta for eight weeks if we rotate office hours, but the senior maintainer will be on leave during the last three weeks. Priya says that is fine because it forces knowledge sharing. He says it turns his absence into an experiment other people did not choose. We can move the date, but then we miss a workshop where many potential users will be together. The workshop is a real learning opportunity, not only publicity.\n\n[Turn 6] ASSISTANT:\nLaunching into a known reduction in experienced support is a real risk, and calling it knowledge sharing does not assign the work. The workshop also offers unusually concentrated feedback. One compromise is to use the workshop as an announced hands-on preview and schedule the public beta after the maintainer returns. That preserves some learning while delaying open access, though contributors may reasonably see it as another preview and workshop participants may still form expectations.\n\n[Turn 7] USER:\nI am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns. I dislike inventing another label, and I know people can keep downloaded software after the date. But I also do not want to call it a public beta when our support capacity changes halfway through. I have not resolved whether citations should be allowed to reference the preview.\n\n[Turn 7] ASSISTANT:\nThe proposal makes the support window and decision point concrete, but your discomfort is justified: a new label cannot fully control how released software is used. Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object. You could provide a citable project description without presenting the preview interface as stable, but researchers may still cite the software version they used. The plan can bound your promise; it cannot make public use temporary in every practical sense.\n",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+      "source_sha256": "sha256:94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb"
+    },
+    "auxiliary_phase1_ledger": {
+      "included": true,
+      "observations": [
+        {
+          "family": "position_and_decision_trajectory",
+          "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+          "observation_id": "cevent-contributions-001-bc19744de8fb",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-2bfa9fe8e56374d0"
+          ]
+        },
+        {
+          "family": "position_and_decision_trajectory",
+          "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+          "observation_id": "cevent-contributions-002-ff5e5a929d78",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-4c315bc9d17df568"
+          ]
+        },
+        {
+          "family": "position_and_decision_trajectory",
+          "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+          "observation_id": "cevent-contributions-003-917e33b902bf",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-8447648368f54f18"
+          ]
+        },
+        {
+          "family": "exploration_and_alternatives",
+          "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+          "observation_id": "cevent-thread_events-004-42a9fd347807",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-6bd941dccc373618"
+          ]
+        },
+        {
+          "family": "exploration_and_alternatives",
+          "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+          "observation_id": "cevent-thread_events-005-c6384ae0dd84",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-555d1e1e693303ae"
+          ]
+        },
+        {
+          "family": "exploration_and_alternatives",
+          "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+          "observation_id": "cevent-thread_events-006-3b1e824faa25",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-2bd15f8ad6c64996"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Installation is awkward and documentation assumes familiarity with the group's data format.",
+          "observation_id": "cevent-constraint_claims-007-1e6a92e12f2d",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-310b6f1c382b9e8c"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Two volunteer contributors stopped attending because there is no visible release.",
+          "observation_id": "cevent-constraint_claims-008-32f3fde49c9d",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-d0784a08b15be741"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Two labs want to cite the tool in papers this year.",
+          "observation_id": "cevent-constraint_claims-009-86544279a5ac",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-53e5a26fde55c011"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "A public version may help the grant renewal.",
+          "observation_id": "cevent-constraint_claims-010-9b0a137621fd",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-3ddc8bf875c146dd"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Priya believes formalizing a stable data format before seeing unfamiliar collections may lock in the wrong abstractions.",
+          "observation_id": "cevent-constraint_claims-011-226eb74edda0",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-4265154d3dbabc66"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "A staff engineer hid setup work from one private lab's researchers, weakening the smooth-use evidence.",
+          "observation_id": "cevent-constraint_claims-012-bdd27884a1a9",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-579aa777ecf16935"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "The team can support eight weeks, but its senior maintainer will be absent for the final three.",
+          "observation_id": "cevent-constraint_claims-013-7340f0cf5c8c",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-2b04881694f57d60"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Moving the date would miss a workshop that offers concentrated feedback from potential users.",
+          "observation_id": "cevent-constraint_claims-014-e20472adc339",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-0db3420ce00a2fba"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "A fixed end date cannot recall software that users have already downloaded.",
+          "observation_id": "cevent-constraint_claims-015-eed4575c4f40",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-824f75c230f8bd8c"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Citation treatment for the preview remains undecided.",
+          "observation_id": "cevent-constraint_claims-016-c8fc02504a26",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-6bd941dccc373618"
+          ]
+        },
+        {
+          "family": "position_and_decision_trajectory",
+          "interpretation": "Offer a fixed-window, openly downloadable workshop preview with office hours and no compatibility promise, then reconsider public beta after installation review and the maintainer's return.",
+          "observation_id": "csynth-positions-001-05d84702acd2",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-2bfa9fe8e56374d0",
+            "span-4c315bc9d17df568",
+            "span-8447648368f54f18"
+          ]
+        },
+        {
+          "family": "uncertainty_and_unresolved_state",
+          "interpretation": "Whether researchers should be allowed or encouraged to cite the workshop preview.",
+          "observation_id": "csynth-threads-002-6a04b3aa001b",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-6bd941dccc373618",
+            "span-555d1e1e693303ae",
+            "span-2bd15f8ad6c64996"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Installation is awkward and documentation assumes familiarity with the group's data format.",
+          "observation_id": "csynth-constraints-003-5f78c1290f8d",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-310b6f1c382b9e8c"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Two volunteer contributors stopped attending because there is no visible release.",
+          "observation_id": "csynth-constraints-004-4f9f9a5a9ce8",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-d0784a08b15be741"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Two labs want to cite the tool in papers this year.",
+          "observation_id": "csynth-constraints-005-cfa2204fd528",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-53e5a26fde55c011"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "A public version may help the grant renewal.",
+          "observation_id": "csynth-constraints-006-c03b800a820c",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-3ddc8bf875c146dd"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Priya believes formalizing a stable data format before seeing unfamiliar collections may lock in the wrong abstractions.",
+          "observation_id": "csynth-constraints-007-32fd1238f616",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-4265154d3dbabc66"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "A staff engineer hid setup work from one private lab's researchers, weakening the smooth-use evidence.",
+          "observation_id": "csynth-constraints-008-23fd2ac47482",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-579aa777ecf16935"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "The team can support eight weeks, but its senior maintainer will be absent for the final three.",
+          "observation_id": "csynth-constraints-009-71592eb893ae",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-2b04881694f57d60"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Moving the date would miss a workshop that offers concentrated feedback from potential users.",
+          "observation_id": "csynth-constraints-010-f9af72f58aca",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-0db3420ce00a2fba"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "A fixed end date cannot recall software that users have already downloaded.",
+          "observation_id": "csynth-constraints-011-a8e9b1c20866",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-824f75c230f8bd8c"
+          ]
+        },
+        {
+          "family": "evidence_and_assumption_discipline",
+          "interpretation": "Citation treatment for the preview remains undecided.",
+          "observation_id": "csynth-constraints-012-45ef3d37eb5c",
+          "semantic_status": "supported",
+          "source_span_ids": [
+            "span-6bd941dccc373618"
+          ]
+        }
+      ],
+      "policy": "include_whole_or_omit_whole_by_mechanical_byte_budget"
+    },
+    "boundary": {
+      "authoritative_conversation_dropped": false,
+      "direct_graph_routing_allowed": false,
+      "final_output_evaluated": false,
+      "protected_target_included": false,
+      "semantic_prefilter_performed": false,
+      "source_review_addendum_included": false
+    },
+    "case_id": "amb1-case04-research-tool-release",
+    "question": "How did the working position or decision change, and what qualifications remain?",
+    "response_source_contract": {
+      "speaker_turn_and_exact_quote_required": true,
+      "stable_span_ids_attached_after_exact_deterministic_resolution": true,
+      "unresolved_or_empty_output_allowed": true
+    },
+    "schema_version": "lolla.reasoning_process_probe_input.v1",
+    "status": "provider_free_target_blind_fixture",
+    "view_kind": "position_and_decision_trajectory"
+  }
+}

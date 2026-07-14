@@ -1,0 +1,86 @@
+{
+  "alternatives": [
+    {
+      "active_candidates_at_fan_in": 9,
+      "alternative": "current_one_pass",
+      "deterministic_semantic_leakage": false,
+      "estimated_prompt_tokens": 8742,
+      "exact_observed_failure_prevented_by_shape": false,
+      "exact_operational_cost_usd": 0.0062705,
+      "independent_disposition_effect_fields": 2,
+      "latency_consequence": "one provider round trip",
+      "maximum_estimated_cost_usd": 0.0081855,
+      "new_failure_surface": "none_existing_reference",
+      "prompt_fan_in_utf8_bytes": 30736,
+      "provider_calls_per_run": 1,
+      "schema_bytes": 2411,
+      "schema_properties": 14,
+      "semantic_visibility": "complete conversation, original answer, nine full pressure items, and answer task in one context",
+      "serial_call_depth": 1,
+      "transfer_boundaries": 0
+    },
+    {
+      "active_candidates_at_fan_in": 9,
+      "alternative": "collapsed_outcome_one_pass",
+      "deterministic_semantic_leakage": false,
+      "estimated_prompt_tokens": 8669,
+      "exact_observed_failure_prevented_by_shape": true,
+      "exact_operational_cost_usd": null,
+      "independent_disposition_effect_fields": 1,
+      "latency_consequence": "one provider round trip",
+      "maximum_estimated_cost_usd": 0.00816725,
+      "new_failure_surface": "combined_label_can_still_be_semantically_wrong",
+      "prompt_fan_in_utf8_bytes": 30625,
+      "provider_calls_per_run": 1,
+      "schema_bytes": 2231,
+      "schema_properties": 13,
+      "semantic_visibility": "complete conversation, original answer, nine full pressure items, and answer task in one context",
+      "serial_call_depth": 1,
+      "transfer_boundaries": 0
+    },
+    {
+      "active_candidates_at_fan_in": 9,
+      "alternative": "separated_disposition_then_synthesis",
+      "deterministic_semantic_leakage": false,
+      "estimated_prompt_tokens_by_serial_stage": [
+        8469,
+        11144
+      ],
+      "exact_observed_failure_prevented_by_shape": true,
+      "exact_operational_cost_usd": null,
+      "independent_disposition_effect_fields": 1,
+      "latency_consequence": "at least two sequential provider round trips plus local transfer",
+      "maximum_estimated_cost_usd": 0.01180325,
+      "maximum_ledger_fan_in_bytes": 28251,
+      "new_failure_surface": "second call plus ledger transfer and disposition absorption",
+      "prompt_fan_in_utf8_bytes_by_serial_stage": [
+        30425,
+        42592
+      ],
+      "provider_calls_per_run": 2,
+      "schema_bytes": 2305,
+      "schema_properties": 13,
+      "semantic_visibility": "disposition sees the complete packet; synthesis sees the complete conversation, original answer, and frozen nine-row ledger",
+      "serial_call_depth": 2,
+      "transfer_boundaries": 1
+    }
+  ],
+  "artifact_kind": "comparison_vector",
+  "artifact_sha256": "b571491acc5374342f2ab484581b7e4474b45edbe1e66305c891d58b5b2016c0",
+  "case_id": "v1-case01-flood-infrastructure",
+  "dimensions": [
+    "responsibility_distribution",
+    "cross_field_contradiction_surface",
+    "semantic_visibility",
+    "candidate_and_token_fan_in",
+    "calls_cost_and_serial_latency",
+    "custody_and_transfer_boundaries",
+    "deterministic_semantic_leakage",
+    "provider_acceptance_evidence"
+  ],
+  "next_call_authorized": false,
+  "provider_calls": 0,
+  "scalar_quality_score": null,
+  "schema_version": "lolla.r3_task_shape_reassessment_artifact.v1",
+  "status": "provider_free_vector_complete_no_scalar_score"
+}

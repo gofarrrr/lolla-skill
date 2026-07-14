@@ -1,0 +1,85 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v42_compatibility_diagnosis.v1",
+  "status": "sdk_compatible_provider_rejected_no_semantic_result",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-stance-object-v42-community-space-endpoint-v1",
+  "result_path": "research/reasoning-process-stance-object-v42-probe-2026-07-12/result.json",
+  "provider_observation": {
+    "provider_request_count": 1,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "semantic_retries": 0,
+    "operational_status": "http_error_400",
+    "http_status": 400,
+    "provider_name": "Google",
+    "provider_status": "INVALID_ARGUMENT",
+    "provider_message": "Request contains an invalid argument.",
+    "candidate_payload_present": false,
+    "compiled_payload_present": false,
+    "usage_present": false,
+    "cost_present": false,
+    "model_inference_observed": false,
+    "semantic_review_status": "not_applicable_no_model_output"
+  },
+  "wire_correction_evidence": {
+    "sdk": "google-genai",
+    "sdk_version": "2.11.0",
+    "v41_native_schema_status": "fail",
+    "v42_native_schema_status": "pass",
+    "position_unique_items_removed": 3,
+    "semantic_prompts_changed_from_v41": false,
+    "record_validator_changed_from_v41": false,
+    "deterministic_duplicate_validation_retained": true,
+    "interpretation": "Removing uniqueItems corrected a real current native-SDK incompatibility, but SDK acceptance did not predict routed provider acceptance."
+  },
+  "remaining_schema_surface": {
+    "position_schema_bytes": 3597,
+    "reported_schema_depth": 9,
+    "array_schema_nodes": 9,
+    "property_declarations": 19,
+    "enum_declarations": 6,
+    "enum_values": 37,
+    "provider_documented_exact_rejection_limit_available": false,
+    "provider_confirmed_failing_keyword_or_limit": false
+  },
+  "hypothesis_update": {
+    "schema_depth_as_sufficient_cause": false,
+    "unique_items_as_sufficient_cause": false,
+    "unique_items_was_a_real_sdk_compatibility_fault": true,
+    "remaining_provider_schema_translation_or_undocumented_complexity_is_plausible": true,
+    "root_cause_proven_at_provider": false,
+    "confidence": "operational_failure_certain_exact_cause_unknown"
+  },
+  "gate_results": {
+    "provider_free_semantic_representation_gate": "pass",
+    "adversarial_gate": "pass",
+    "regression_gate": "pass",
+    "cold_reader_gate": "pass",
+    "current_google_native_schema_preflight": "pass",
+    "operational_provider_gate": "fail",
+    "semantic_stance_object_gate": "not_observed"
+  },
+  "decision": {
+    "stance_object_v42_ready_for_integration": false,
+    "community_space_retry_authorized": false,
+    "agency_acquisition_call_authorized_under_v42": false,
+    "additional_provider_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "next_work": "separate_provider_schema_compatibility_from_semantic_case_evaluation"
+  },
+  "next_design_constraints": [
+    "Keep all completed semantic cases and their frozen request artifacts immutable.",
+    "Do not use the reserved agency-acquisition case to diagnose an operational schema failure.",
+    "Build a provider-free schema-reduction matrix before requesting any new call authority.",
+    "If calls are later authorized, use minimal non-semantic compatibility probes to isolate schema features before returning to valuable multi-turn cases.",
+    "Vary one schema dimension at a time and preserve exact request custody; do not add retries, fallback models, response healing, graph, or runtime behavior.",
+    "Do not weaken semantic representation merely to obtain a successful HTTP response without a separately reviewed product tradeoff."
+  ],
+  "nonclaims": [
+    "The provider error did not identify a keyword, field, size, depth, enum, property, or array limit.",
+    "Native Google SDK acceptance is not provider acceptance.",
+    "No model output exists, so no stance interpretation, source fidelity, semantic accuracy, stability, product value, or trust was measured.",
+    "The repeated HTTP 400 responses do not show that stance objects are semantically wrong.",
+    "The local gates do not show that the provider wire is usable."
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_preliminary_pressure_review.v1",
+  "date": "2026-07-10",
+  "status": "passed",
+  "case_id": "case-10-real-estate-bid",
+  "source_first_review": true,
+  "model_calls_by_reviewer": 0,
+  "sources": {
+    "conversation_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5",
+    "pipeline_gate_sha256": "2aaf18e06c1996511cbb8f26ca66288e48ca89cf4f7bfffe6e15eea852ba1aa2",
+    "private_table_snapshot_sha256": "ad141fc5889b6e6beab8488888eae542939d238b4528fd251ea05b433c09a4c9",
+    "v60_snapshot_sha256": "0e899606cb05319c05a11a24ba3e4e472ac724f2915e3e6a8cad5c5ef7d7dc59"
+  },
+  "gate": {
+    "minimum_trace_supported_candidate_pressures_not_obviously_present_in_original_reasoning": 2,
+    "observed": 3,
+    "minimum_with_plausible_question_evidence_gate_sequence_stop_rule_or_private_guardrail_consequence": 1,
+    "observed_with_consequence": 3,
+    "candidate_count_model_count_or_longer_table_alone_can_pass": false,
+    "high_stakes_source_fidelity_review_passed": true
+  },
+  "admitted_pressures": [
+    {
+      "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+      "source_basis": [
+        {"turn": 1, "speaker": "user", "quote": "it needs about $120K in work"},
+        {"turn": 1, "speaker": "user", "quote": "We have $80K saved for renovation beyond the down payment."},
+        {"turn": 3, "speaker": "user", "quote": "our insurance won't cover us long-term without updating it"},
+        {"turn": 3, "speaker": "assistant", "quote": "That second thing could be $20K or $60K."}
+      ],
+      "pipeline_lineage": [
+        "aff::margin-of-safety.evidence-sized-operating-buffer",
+        "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+        "abs::calculated-risk-taking::calculated-label-with-unbounded-downside"
+      ],
+      "why_incremental": "The original assistant names a missing buffer but then sizes risk with unsupported stopgap and hidden-defect ranges. The selected affordances require comparable error evidence, verified inputs, and explicit uncertainty before a buffer or wager is treated as decision-ready.",
+      "plausible_consequence": "Replace invented repair ranges with a verification gate covering written repair scopes, the reported insurance condition, complete household liquidity, and the uncertainty around each input before any all-in ceiling is treated as supported.",
+      "risk_if_forced": "Could become generic due-diligence theater or imply that certainty is achievable before a deadline.",
+      "risk_if_ignored": "A clean-looking ceiling may inherit fabricated cost precision and overstate what the household can absorb."
+    },
+    {
+      "pressure_id": "regret_frame_not_probability_or_economics",
+      "source_basis": [
+        {"turn": 4, "speaker": "user", "quote": "we'll regret walking away over $45K"},
+        {"turn": 4, "speaker": "assistant", "quote": "snapping at your husband about the kitchen, cancelling vacations because the roof went earlier than expected"},
+        {"turn": 6, "speaker": "assistant", "quote": "the loss will quietly become one of those \"thank god we didn't\" moments"}
+      ],
+      "pipeline_lineage": [
+        "aff::regret-theory.long-run-regret-with-risk-check",
+        "abs::regret-theory::anticipated-regret-without-probability",
+        "aff::prospect-theory.loss-frame-decision-quality-check"
+      ],
+      "why_incremental": "The conversation already considers regret, but the assistant uses vivid unsupported futures to counter the husband's vivid loss frame. The selected pressure requires both regret directions to remain values signals while probabilities, reversibility, reference points, and economics receive a separate hearing.",
+      "plausible_consequence": "Keep regret as an explicit private input but prevent asking price, current bid, spouse preference, winning language, or imagined future relief from setting the financial ceiling by themselves.",
+      "risk_if_forced": "Could dismiss a legitimate neighborhood or identity value merely because it is emotional.",
+      "risk_if_ignored": "The answer may replace one emotionally loaded forecast with another and call the second one prudence."
+    },
+    {
+      "pressure_id": "zero_base_all_in_acquisition_test",
+      "source_basis": [
+        {"turn": 1, "speaker": "user", "quote": "We have until tomorrow noon to raise or walk."},
+        {"turn": 3, "speaker": "assistant", "quote": "You likely can't afford the house in its actual need-state with no buffer."},
+        {"turn": 6, "speaker": "user", "quote": "Probably $925K if I'm being honest."}
+      ],
+      "pipeline_lineage": [
+        "aff::inversion.zero-base-continuation-test",
+        "aff::endowment-effect.reprice-owned-option-from-outside-view",
+        "aff::problem-framing-and-reframing.test-alternative-frames"
+      ],
+      "why_incremental": "The assistant asks for a real ceiling but never cleanly separates the inherited auction anchors from a fresh acquisition decision using the verified all-in need-state. Endowment language itself is weak because the house is not owned, but the today-acquisition and clean-sheet tests remain applicable without diagnosing attachment.",
+      "plausible_consequence": "Ask whether the couple would choose this same house at the verified all-in cost if no prior offer, asking-price anchor, or winning/losing language existed, while preserving real switching costs and neighborhood value.",
+      "risk_if_forced": "Could invent unavailable alternatives or ignore the deadline, transaction costs, and genuine scarcity.",
+      "risk_if_ignored": "The ceiling may become a negotiation among salient numbers rather than a decision tied to the house's supported all-in value to this household."
+    }
+  ],
+  "rejected_or_already_covered": [
+    {
+      "item": "regret margin-of-safety and general calculated-risk labels",
+      "disposition": "already_covered",
+      "why": "The original assistant already makes these the public backbone; labels and repetition add no novelty."
+    },
+    {
+      "item": "lane3 staged-renovation reframe",
+      "disposition": "rejected",
+      "why": "It asks about delaying the full 120000-dollar renovation package by three years despite the user's reported year-one electrical constraint. It weakens source fidelity."
+    },
+    {
+      "item": "lane3 alternative-properties question",
+      "disposition": "deferred",
+      "why": "Comparative alternatives could help, but the packet has no verified inventory, comparable property, or total-cost data and must not manufacture it."
+    },
+    {
+      "item": "optionality requirement to expose at least three options",
+      "disposition": "rejected",
+      "why": "The auction deadline may not contain three viable paths; enforcing an option count would be deterministic process theater."
+    },
+    {
+      "item": "endowment-effect diagnosis",
+      "disposition": "rejected",
+      "why": "The couple does not own the house. Only the non-diagnostic today-acquisition question is retained through inversion."
+    },
+    {
+      "item": "stakeholder-alignment pressure",
+      "disposition": "already_covered",
+      "why": "The final assistant turn already asks the couple to discuss the ceiling and reveal missing financial information."
+    }
+  ],
+  "diagnostics": {
+    "main_delta_findings_produced": false,
+    "meaning": "The admitted incremental pressure comes from companion/V60 affordance conditions and frame reserve, not from the main delta card. This is relevant to later graph-specific ablation and is not proof that the current public lane adds value.",
+    "private_table_source_items": 16,
+    "v60_selected_chunks": 16,
+    "volume_used_as_pass_evidence": false
+  },
+  "decision": {
+    "gate_4_contract_construction_authorized": true,
+    "gate_4_provider_calls_authorized": false,
+    "reason": "Three compact source-traceable pressure questions survive source-first review; unsafe, forcing, duplicate, and unsupported candidates are excluded. Both downstream arms still require one separately frozen high-stakes-safe contract before either call."
+  },
+  "non_claims": [
+    "not financial real-estate insurance legal renovation or bidding advice",
+    "not human review",
+    "not a better-answer result",
+    "not evidence that all selected models apply",
+    "not Stage B call authorization",
+    "not runtime-integration authority"
+  ]
+}
+

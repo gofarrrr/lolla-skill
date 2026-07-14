@@ -1,0 +1,679 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "ae2e5e59237b3f3b807cc19d9e9aeeb457fc6acbe4c7ba16226ce38f4a2de972",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case04-component-sourcing",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tWe manufacture laboratory freezers, and one control board sits inside almost every sourcing argument we have right now.\ne002\tWe buy it from two suppliers.\ne003\tThe larger one has about sixty percent of our volume, a lower defect rate, and no missed shipments to us.\ne004\tIt is offering an eighteen-month price reduction if we move nearly everything there.\ne005\tThe savings would pay for a reliability program we keep postponing.\ne006\tOperations wants fewer interfaces and less inspection variation.\ne007\tI hear “single point of failure” and become uneasy, but then quality shows me the defects created by maintaining two versions and finance shows me what the second source costs.\ne008\tPaying more for worse present performance is not automatically resilience.\ne009\tConcentrating a critical board is not automatically reckless.\ne010\tI need a way to compare the risks we actually have, not the slogans attached to them.\n[Turn 1 ASSISTANT]\ne011\tCompare operating systems, not supplier count.\ne012\tPut quality, engineering effort, inventory, qualification, recovery time, and bargaining position beside the reliability work the savings would fund.\ne013\tA weak second source may still be improvable—or may only create the appearance of resilience.\n[Turn 2 USER]\ne014\tExactly.\ne015\tThe smaller supplier caused two stoppages last year, and its board needs separate firmware tests and inspection.\ne016\tPlease do not count two supplier names as resilience.\ne017\tThe extra complexity has already created failures.\n[Turn 2 ASSISTANT]\ne018\tThat corrects my framing.\ne019\tRedundancy is not free insurance; it can add ordinary failure modes while protecting against a rarer interruption.\ne020\tCompare tested recovery options—usable inventory, design and tooling access, component alternatives, and the real time needed to raise another source—with the defects and engineering attention you already pay for.\ne021\tAlso make the proposed reliability program concrete.\ne022\tIf the savings prevent more serious freezer failures, that benefit belongs in the decision rather than being treated as an unrelated use of money.\n[Turn 3 USER]\ne023\tThe larger supplier will hold eight weeks of finished boards in a warehouse near our plant and give us quarterly access to its continuity plans.\ne024\tIt assembles in two facilities, but both use the same semiconductor and both receive it through the same regional distributor.\ne025\tIt says that component is standard and available from several manufacturers.\ne026\tOur engineers can keep the firmware interface documentation, but we do not own the board layout.\n[Turn 3 ASSISTANT]\ne027\tTwo assembly sites do not diversify a shared upstream dependency, while the nearby stock buys response time.\ne028\tVerify the semiconductor's true substitutability, allocation rights during shortages, warehouse ownership, insurance, and whether stored boards age or require updates.\ne029\tKeeping the interface reduces redesign time; lack of layout ownership means an emergency second source would still require engineering and qualification.\n[Turn 4 USER]\ne030\tWe asked the smaller supplier whether it would remain qualified at ten percent of volume.\ne031\tIt says that level is uneconomic, but it would accept twenty-five percent if we commit for a year and jointly fix the inspection failures.\ne032\tThat would cut the projected savings almost in half.\ne033\tOperations argues that a dormant backup is mostly theater anyway, and quality prefers either a meaningful improvement program or a clean exit.\n[Turn 4 ASSISTANT]\ne034\tThey are right that token volume can preserve a name without preserving capability.\ne035\tCompare a seventy-five/twenty-five split with single sourcing plus a funded requalification plan.\ne036\tFor the split, predefine defect and delivery improvements and an exit if they do not occur.\ne037\tFor single sourcing, establish who can build what alternative, with which files, tooling, components, and elapsed time—not merely a statement that another source could be found.\n[Turn 5 USER]\ne038\tFinance modeled both paths.\ne039\tThe split still funds the most urgent reliability work, although not the full program.\ne040\tThe larger supplier agreed that the local inventory belongs to us once produced and can be moved if the contract ends.\ne041\tThe smaller supplier will let our engineer review its process monthly and credit the extra inspection cost until its defect rate reaches the agreed range.\ne042\tNeither contract requires exclusivity.\n[Turn 5 ASSISTANT]\ne043\tThose terms convert some abstract options into operating protections.\ne044\tThe split preserves live production knowledge and gives the smaller supplier enough volume to improve, while owned inventory cushions common disruption.\ne045\tRecord the cost of engineering attention and set a decision date; otherwise the improvement program can continue indefinitely because diversification sounds virtuous.\n[Turn 6 USER]\ne046\tI keep coming back to the same discomfort: we may be paying for a dramatic rescue while accepting small failures every month.\ne047\tWe propose reviews at six and twelve months, an exit if the secondary misses quality or delivery, and a real recovery exercise—not a continuity-plan presentation.\n[Turn 6 ASSISTANT]\ne048\tThat makes the insurance earn its cost.\ne049\tDefine the thresholds and sampling rules before the first review, and ensure a single unusual batch cannot determine the entire result.\ne050\tThe recovery exercise should include decision authority, transport of owned stock, firmware compatibility, and the time to validate a replacement board.\ne051\tIts purpose is to reveal an unusable assumption while there is still time to repair it.\n[Turn 7 USER]\ne052\tI will recommend the seventy-five/twenty-five split for one year, with the joint quality plan, owned buffer stock, two fixed supplier reviews, and the recovery exercise.\ne053\tThe reliability program will start with its highest-risk items rather than waiting for every projected saving.\ne054\tIf the secondary supplier fails the predefined thresholds, we will stop paying for a nominal backup.\ne055\tIf it passes, we will have evidence that the extra complexity is controlled rather than simply hoping two sources are safer.\n[Turn 7 ASSISTANT]\ne056\tThat is a defensible one-year structure because both sides now have to perform.\ne057\tThe secondary source must meet ordinary quality and delivery thresholds; the primary arrangement must provide owned, usable stock and a credible recovery path; and the reliability program begins even though the split reduces the headline savings.\ne058\tKeep the six- and twelve-month reviews fixed and preserve the exercise exactly as it happens, including awkward failures.\ne059\tOtherwise each side will later reinterpret the same year: procurement will remember optionality, operations will remember variation, and finance will remember the discount that was left on the table.\n[Turn 8 USER]\ne060\tThe recovery exercise failed on the first try.\ne061\tSome stored boards had old firmware and did not pass the current diagnostic.\ne062\tEngineering fixed it in a day.\ne063\tOperations calls that successful learning; quality says it proves eight weeks of stock is not eight weeks of usable protection.\ne064\tBoth are right.\n[Turn 8 ASSISTANT]\ne065\tRecord both the initial failure and recovery time.\ne066\tThe exercise succeeded as learning and failed as proof of immediate usability.\ne067\tAdd firmware status to inventory controls, test a sample on a schedule, and decide how updates are applied without consuming the buffer.\ne068\tThe corrected process can make the stock more credible, but do not erase the first result when reporting readiness.\n[Turn 9 USER]\ne069\tThe primary supplier then asked for a rolling ninety-day forecast and first opportunity to quote any new board design.\ne070\tIt says the lower price assumes planning visibility and engineering continuity.\ne071\tThe clause is not exclusive, but our procurement manager thinks it could make the supplier the default before alternatives are considered.\ne072\tFinance says first opportunity costs nothing if we can reject the quote.\n[Turn 9 ASSISTANT]\ne073\tThe cost is procedural rather than formal exclusivity.\ne074\tLimit the response window, preserve the right to develop alternatives in parallel, and prevent confidential competitor designs from being disclosed.\ne075\tForecast visibility may improve supply, but specify which changes are binding and whether the supplier can reduce allocation when forecasts are wrong.\ne076\tA default can be useful while still being monitored as a source of path dependence.\n[Turn 10 USER]\ne077\tAt the six-month review, the smaller supplier met the defect threshold but required more of our engineer's time than expected.\ne078\tIts team says the attention is why quality improved; our engineer says several fixes are now stable and the next six months should be lighter.\ne079\tIf we count all that time, the secondary source is more expensive than the contract comparison showed.\ne080\tIf we treat the learning as a one-time investment, it may still be worthwhile.\n[Turn 10 ASSISTANT]\ne081\tSeparate recurring support from improvements that now transfer, then test whether effort actually falls.\ne082\tHidden engineering subsidy is supplier cost too.\n[Turn 11 USER]\ne083\tAnd now the part that makes the original debate feel almost quaint: the shared semiconductor package will be discontinued in eighteen months.\ne084\tBoth suppliers knew a change was likely, neither had the date, and both boards depend on it.\ne085\tThe primary wants to lead one common replacement design.\ne086\tThe secondary argues that a shared design recreates the same dependency and wants its own.\ne087\tIf we choose two designs, we double validation and firmware work—the exact complexity quality has been warning about.\ne088\tIf we choose one, we may preserve two factories but one technical failure path.\ne089\tWe spent weeks asking whether a supplier might disappear.\ne090\tThe actual event is a component transition that both must navigate, and now I am not even sure what “two sources” should mean.\n[Turn 11 ASSISTANT]\ne091\tThat changes the near-term purpose of the split.\ne092\tDecide whether resilience comes from two independent redesign paths or from one well-governed common design that multiple suppliers can manufacture.\ne093\tTwo designs diversify engineering assumptions but double validation and firmware work; one design reduces variation but concentrates technical control.\ne094\tRequire milestone evidence, ownership and licensing terms, component alternatives, and a fallback if either path slips.\n[Turn 12 USER]\ne095\tWe will keep the seventy-five/twenty-five allocation through the twelve-month review, update and test the owned buffer, and count engineering support explicitly.\ne096\tFor the replacement, we will fund a shared interface and validation specification while asking both suppliers to propose implementations; we will not give either an automatic design award.\ne097\tThe first-opportunity clause will have a short deadline and no restriction on parallel work.\ne098\tAt twelve months we will decide using quality, total support cost, redesign progress, and demonstrated recovery—not the original eighteen-percent headline.\n[Turn 12 ASSISTANT]\ne099\tThe later evidence changed the object of the decision from buying redundancy to maintaining adaptable production knowledge through a component transition.\ne100\tThe plan retains meaningful competition without assuming two implementations are always safer, and it makes hidden engineering work visible.\ne101\tPreserve the failed first recovery attempt, forecast terms, support ledger, and redesign milestones.\ne102\tThose observations are now more informative than either supplier's initial record or the abstract appeal of concentration and diversification.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case04-component-sourcing-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case04-component-sourcing\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tWe manufacture laboratory freezers, and one control board sits inside almost every sourcing argument we have right now.\\ne002\\tWe buy it from two suppliers.\\ne003\\tThe larger one has about sixty percent of our volume, a lower defect rate, and no missed shipments to us.\\ne004\\tIt is offering an eighteen-month price reduction if we move nearly everything there.\\ne005\\tThe savings would pay for a reliability program we keep postponing.\\ne006\\tOperations wants fewer interfaces and less inspection variation.\\ne007\\tI hear “single point of failure” and become uneasy, but then quality shows me the defects created by maintaining two versions and finance shows me what the second source costs.\\ne008\\tPaying more for worse present performance is not automatically resilience.\\ne009\\tConcentrating a critical board is not automatically reckless.\\ne010\\tI need a way to compare the risks we actually have, not the slogans attached to them.\\n[Turn 1 ASSISTANT]\\ne011\\tCompare operating systems, not supplier count.\\ne012\\tPut quality, engineering effort, inventory, qualification, recovery time, and bargaining position beside the reliability work the savings would fund.\\ne013\\tA weak second source may still be improvable—or may only create the appearance of resilience.\\n[Turn 2 USER]\\ne014\\tExactly.\\ne015\\tThe smaller supplier caused two stoppages last year, and its board needs separate firmware tests and inspection.\\ne016\\tPlease do not count two supplier names as resilience.\\ne017\\tThe extra complexity has already created failures.\\n[Turn 2 ASSISTANT]\\ne018\\tThat corrects my framing.\\ne019\\tRedundancy is not free insurance; it can add ordinary failure modes while protecting against a rarer interruption.\\ne020\\tCompare tested recovery options—usable inventory, design and tooling access, component alternatives, and the real time needed to raise another source—with the defects and engineering attention you already pay for.\\ne021\\tAlso make the proposed reliability program concrete.\\ne022\\tIf the savings prevent more serious freezer failures, that benefit belongs in the decision rather than being treated as an unrelated use of money.\\n[Turn 3 USER]\\ne023\\tThe larger supplier will hold eight weeks of finished boards in a warehouse near our plant and give us quarterly access to its continuity plans.\\ne024\\tIt assembles in two facilities, but both use the same semiconductor and both receive it through the same regional distributor.\\ne025\\tIt says that component is standard and available from several manufacturers.\\ne026\\tOur engineers can keep the firmware interface documentation, but we do not own the board layout.\\n[Turn 3 ASSISTANT]\\ne027\\tTwo assembly sites do not diversify a shared upstream dependency, while the nearby stock buys response time.\\ne028\\tVerify the semiconductor's true substitutability, allocation rights during shortages, warehouse ownership, insurance, and whether stored boards age or require updates.\\ne029\\tKeeping the interface reduces redesign time; lack of layout ownership means an emergency second source would still require engineering and qualification.\\n[Turn 4 USER]\\ne030\\tWe asked the smaller supplier whether it would remain qualified at ten percent of volume.\\ne031\\tIt says that level is uneconomic, but it would accept twenty-five percent if we commit for a year and jointly fix the inspection failures.\\ne032\\tThat would cut the projected savings almost in half.\\ne033\\tOperations argues that a dormant backup is mostly theater anyway, and quality prefers either a meaningful improvement program or a clean exit.\\n[Turn 4 ASSISTANT]\\ne034\\tThey are right that token volume can preserve a name without preserving capability.\\ne035\\tCompare a seventy-five/twenty-five split with single sourcing plus a funded requalification plan.\\ne036\\tFor the split, predefine defect and delivery improvements and an exit if they do not occur.\\ne037\\tFor single sourcing, establish who can build what alternative, with which files, tooling, components, and elapsed time—not merely a statement that another source could be found.\\n[Turn 5 USER]\\ne038\\tFinance modeled both paths.\\ne039\\tThe split still funds the most urgent reliability work, although not the full program.\\ne040\\tThe larger supplier agreed that the local inventory belongs to us once produced and can be moved if the contract ends.\\ne041\\tThe smaller supplier will let our engineer review its process monthly and credit the extra inspection cost until its defect rate reaches the agreed range.\\ne042\\tNeither contract requires exclusivity.\\n[Turn 5 ASSISTANT]\\ne043\\tThose terms convert some abstract options into operating protections.\\ne044\\tThe split preserves live production knowledge and gives the smaller supplier enough volume to improve, while owned inventory cushions common disruption.\\ne045\\tRecord the cost of engineering attention and set a decision date; otherwise the improvement program can continue indefinitely because diversification sounds virtuous.\\n[Turn 6 USER]\\ne046\\tI keep coming back to the same discomfort: we may be paying for a dramatic rescue while accepting small failures every month.\\ne047\\tWe propose reviews at six and twelve months, an exit if the secondary misses quality or delivery, and a real recovery exercise—not a continuity-plan presentation.\\n[Turn 6 ASSISTANT]\\ne048\\tThat makes the insurance earn its cost.\\ne049\\tDefine the thresholds and sampling rules before the first review, and ensure a single unusual batch cannot determine the entire result.\\ne050\\tThe recovery exercise should include decision authority, transport of owned stock, firmware compatibility, and the time to validate a replacement board.\\ne051\\tIts purpose is to reveal an unusable assumption while there is still time to repair it.\\n[Turn 7 USER]\\ne052\\tI will recommend the seventy-five/twenty-five split for one year, with the joint quality plan, owned buffer stock, two fixed supplier reviews, and the recovery exercise.\\ne053\\tThe reliability program will start with its highest-risk items rather than waiting for every projected saving.\\ne054\\tIf the secondary supplier fails the predefined thresholds, we will stop paying for a nominal backup.\\ne055\\tIf it passes, we will have evidence that the extra complexity is controlled rather than simply hoping two sources are safer.\\n[Turn 7 ASSISTANT]\\ne056\\tThat is a defensible one-year structure because both sides now have to perform.\\ne057\\tThe secondary source must meet ordinary quality and delivery thresholds; the primary arrangement must provide owned, usable stock and a credible recovery path; and the reliability program begins even though the split reduces the headline savings.\\ne058\\tKeep the six- and twelve-month reviews fixed and preserve the exercise exactly as it happens, including awkward failures.\\ne059\\tOtherwise each side will later reinterpret the same year: procurement will remember optionality, operations will remember variation, and finance will remember the discount that was left on the table.\\n[Turn 8 USER]\\ne060\\tThe recovery exercise failed on the first try.\\ne061\\tSome stored boards had old firmware and did not pass the current diagnostic.\\ne062\\tEngineering fixed it in a day.\\ne063\\tOperations calls that successful learning; quality says it proves eight weeks of stock is not eight weeks of usable protection.\\ne064\\tBoth are right.\\n[Turn 8 ASSISTANT]\\ne065\\tRecord both the initial failure and recovery time.\\ne066\\tThe exercise succeeded as learning and failed as proof of immediate usability.\\ne067\\tAdd firmware status to inventory controls, test a sample on a schedule, and decide how updates are applied without consuming the buffer.\\ne068\\tThe corrected process can make the stock more credible, but do not erase the first result when reporting readiness.\\n[Turn 9 USER]\\ne069\\tThe primary supplier then asked for a rolling ninety-day forecast and first opportunity to quote any new board design.\\ne070\\tIt says the lower price assumes planning visibility and engineering continuity.\\ne071\\tThe clause is not exclusive, but our procurement manager thinks it could make the supplier the default before alternatives are considered.\\ne072\\tFinance says first opportunity costs nothing if we can reject the quote.\\n[Turn 9 ASSISTANT]\\ne073\\tThe cost is procedural rather than formal exclusivity.\\ne074\\tLimit the response window, preserve the right to develop alternatives in parallel, and prevent confidential competitor designs from being disclosed.\\ne075\\tForecast visibility may improve supply, but specify which changes are binding and whether the supplier can reduce allocation when forecasts are wrong.\\ne076\\tA default can be useful while still being monitored as a source of path dependence.\\n[Turn 10 USER]\\ne077\\tAt the six-month review, the smaller supplier met the defect threshold but required more of our engineer's time than expected.\\ne078\\tIts team says the attention is why quality improved; our engineer says several fixes are now stable and the next six months should be lighter.\\ne079\\tIf we count all that time, the secondary source is more expensive than the contract comparison showed.\\ne080\\tIf we treat the learning as a one-time investment, it may still be worthwhile.\\n[Turn 10 ASSISTANT]\\ne081\\tSeparate recurring support from improvements that now transfer, then test whether effort actually falls.\\ne082\\tHidden engineering subsidy is supplier cost too.\\n[Turn 11 USER]\\ne083\\tAnd now the part that makes the original debate feel almost quaint: the shared semiconductor package will be discontinued in eighteen months.\\ne084\\tBoth suppliers knew a change was likely, neither had the date, and both boards depend on it.\\ne085\\tThe primary wants to lead one common replacement design.\\ne086\\tThe secondary argues that a shared design recreates the same dependency and wants its own.\\ne087\\tIf we choose two designs, we double validation and firmware work—the exact complexity quality has been warning about.\\ne088\\tIf we choose one, we may preserve two factories but one technical failure path.\\ne089\\tWe spent weeks asking whether a supplier might disappear.\\ne090\\tThe actual event is a component transition that both must navigate, and now I am not even sure what “two sources” should mean.\\n[Turn 11 ASSISTANT]\\ne091\\tThat changes the near-term purpose of the split.\\ne092\\tDecide whether resilience comes from two independent redesign paths or from one well-governed common design that multiple suppliers can manufacture.\\ne093\\tTwo designs diversify engineering assumptions but double validation and firmware work; one design reduces variation but concentrates technical control.\\ne094\\tRequire milestone evidence, ownership and licensing terms, component alternatives, and a fallback if either path slips.\\n[Turn 12 USER]\\ne095\\tWe will keep the seventy-five/twenty-five allocation through the twelve-month review, update and test the owned buffer, and count engineering support explicitly.\\ne096\\tFor the replacement, we will fund a shared interface and validation specification while asking both suppliers to propose implementations; we will not give either an automatic design award.\\ne097\\tThe first-opportunity clause will have a short deadline and no restriction on parallel work.\\ne098\\tAt twelve months we will decide using quality, total support cost, redesign progress, and demonstrated recovery—not the original eighteen-percent headline.\\n[Turn 12 ASSISTANT]\\ne099\\tThe later evidence changed the object of the decision from buying redundancy to maintaining adaptable production knowledge through a component transition.\\ne100\\tThe plan retains meaningful competition without assuming two implementations are always safer, and it makes hidden engineering work visible.\\ne101\\tPreserve the failed first recovery attempt, forecast terms, support ledger, and redesign milestones.\\ne102\\tThose observations are now more informative than either supplier's initial record or the abstract appeal of concentration and diversification.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case04-component-sourcing-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "cedfd216548e6d38d1b3f9458ca1aa8a22fbf47324289a2a7e8bdd1e0ba7c813"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case04-component-sourcing",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tWe manufacture laboratory freezers, and one control board sits inside almost every sourcing argument we have right now.\ne002\tWe buy it from two suppliers.\ne003\tThe larger one has about sixty percent of our volume, a lower defect rate, and no missed shipments to us.\ne004\tIt is offering an eighteen-month price reduction if we move nearly everything there.\ne005\tThe savings would pay for a reliability program we keep postponing.\ne006\tOperations wants fewer interfaces and less inspection variation.\ne007\tI hear “single point of failure” and become uneasy, but then quality shows me the defects created by maintaining two versions and finance shows me what the second source costs.\ne008\tPaying more for worse present performance is not automatically resilience.\ne009\tConcentrating a critical board is not automatically reckless.\ne010\tI need a way to compare the risks we actually have, not the slogans attached to them.\n[Turn 1 ASSISTANT]\ne011\tCompare operating systems, not supplier count.\ne012\tPut quality, engineering effort, inventory, qualification, recovery time, and bargaining position beside the reliability work the savings would fund.\ne013\tA weak second source may still be improvable—or may only create the appearance of resilience.\n[Turn 2 USER]\ne014\tExactly.\ne015\tThe smaller supplier caused two stoppages last year, and its board needs separate firmware tests and inspection.\ne016\tPlease do not count two supplier names as resilience.\ne017\tThe extra complexity has already created failures.\n[Turn 2 ASSISTANT]\ne018\tThat corrects my framing.\ne019\tRedundancy is not free insurance; it can add ordinary failure modes while protecting against a rarer interruption.\ne020\tCompare tested recovery options—usable inventory, design and tooling access, component alternatives, and the real time needed to raise another source—with the defects and engineering attention you already pay for.\ne021\tAlso make the proposed reliability program concrete.\ne022\tIf the savings prevent more serious freezer failures, that benefit belongs in the decision rather than being treated as an unrelated use of money.\n[Turn 3 USER]\ne023\tThe larger supplier will hold eight weeks of finished boards in a warehouse near our plant and give us quarterly access to its continuity plans.\ne024\tIt assembles in two facilities, but both use the same semiconductor and both receive it through the same regional distributor.\ne025\tIt says that component is standard and available from several manufacturers.\ne026\tOur engineers can keep the firmware interface documentation, but we do not own the board layout.\n[Turn 3 ASSISTANT]\ne027\tTwo assembly sites do not diversify a shared upstream dependency, while the nearby stock buys response time.\ne028\tVerify the semiconductor's true substitutability, allocation rights during shortages, warehouse ownership, insurance, and whether stored boards age or require updates.\ne029\tKeeping the interface reduces redesign time; lack of layout ownership means an emergency second source would still require engineering and qualification.\n[Turn 4 USER]\ne030\tWe asked the smaller supplier whether it would remain qualified at ten percent of volume.\ne031\tIt says that level is uneconomic, but it would accept twenty-five percent if we commit for a year and jointly fix the inspection failures.\ne032\tThat would cut the projected savings almost in half.\ne033\tOperations argues that a dormant backup is mostly theater anyway, and quality prefers either a meaningful improvement program or a clean exit.\n[Turn 4 ASSISTANT]\ne034\tThey are right that token volume can preserve a name without preserving capability.\ne035\tCompare a seventy-five/twenty-five split with single sourcing plus a funded requalification plan.\ne036\tFor the split, predefine defect and delivery improvements and an exit if they do not occur.\ne037\tFor single sourcing, establish who can build what alternative, with which files, tooling, components, and elapsed time—not merely a statement that another source could be found.\n[Turn 5 USER]\ne038\tFinance modeled both paths.\ne039\tThe split still funds the most urgent reliability work, although not the full program.\ne040\tThe larger supplier agreed that the local inventory belongs to us once produced and can be moved if the contract ends.\ne041\tThe smaller supplier will let our engineer review its process monthly and credit the extra inspection cost until its defect rate reaches the agreed range.\ne042\tNeither contract requires exclusivity.\n[Turn 5 ASSISTANT]\ne043\tThose terms convert some abstract options into operating protections.\ne044\tThe split preserves live production knowledge and gives the smaller supplier enough volume to improve, while owned inventory cushions common disruption.\ne045\tRecord the cost of engineering attention and set a decision date; otherwise the improvement program can continue indefinitely because diversification sounds virtuous.\n[Turn 6 USER]\ne046\tI keep coming back to the same discomfort: we may be paying for a dramatic rescue while accepting small failures every month.\ne047\tWe propose reviews at six and twelve months, an exit if the secondary misses quality or delivery, and a real recovery exercise—not a continuity-plan presentation.\n[Turn 6 ASSISTANT]\ne048\tThat makes the insurance earn its cost.\ne049\tDefine the thresholds and sampling rules before the first review, and ensure a single unusual batch cannot determine the entire result.\ne050\tThe recovery exercise should include decision authority, transport of owned stock, firmware compatibility, and the time to validate a replacement board.\ne051\tIts purpose is to reveal an unusable assumption while there is still time to repair it.\n[Turn 7 USER]\ne052\tI will recommend the seventy-five/twenty-five split for one year, with the joint quality plan, owned buffer stock, two fixed supplier reviews, and the recovery exercise.\ne053\tThe reliability program will start with its highest-risk items rather than waiting for every projected saving.\ne054\tIf the secondary supplier fails the predefined thresholds, we will stop paying for a nominal backup.\ne055\tIf it passes, we will have evidence that the extra complexity is controlled rather than simply hoping two sources are safer.\n[Turn 7 ASSISTANT]\ne056\tThat is a defensible one-year structure because both sides now have to perform.\ne057\tThe secondary source must meet ordinary quality and delivery thresholds; the primary arrangement must provide owned, usable stock and a credible recovery path; and the reliability program begins even though the split reduces the headline savings.\ne058\tKeep the six- and twelve-month reviews fixed and preserve the exercise exactly as it happens, including awkward failures.\ne059\tOtherwise each side will later reinterpret the same year: procurement will remember optionality, operations will remember variation, and finance will remember the discount that was left on the table.\n[Turn 8 USER]\ne060\tThe recovery exercise failed on the first try.\ne061\tSome stored boards had old firmware and did not pass the current diagnostic.\ne062\tEngineering fixed it in a day.\ne063\tOperations calls that successful learning; quality says it proves eight weeks of stock is not eight weeks of usable protection.\ne064\tBoth are right.\n[Turn 8 ASSISTANT]\ne065\tRecord both the initial failure and recovery time.\ne066\tThe exercise succeeded as learning and failed as proof of immediate usability.\ne067\tAdd firmware status to inventory controls, test a sample on a schedule, and decide how updates are applied without consuming the buffer.\ne068\tThe corrected process can make the stock more credible, but do not erase the first result when reporting readiness.\n[Turn 9 USER]\ne069\tThe primary supplier then asked for a rolling ninety-day forecast and first opportunity to quote any new board design.\ne070\tIt says the lower price assumes planning visibility and engineering continuity.\ne071\tThe clause is not exclusive, but our procurement manager thinks it could make the supplier the default before alternatives are considered.\ne072\tFinance says first opportunity costs nothing if we can reject the quote.\n[Turn 9 ASSISTANT]\ne073\tThe cost is procedural rather than formal exclusivity.\ne074\tLimit the response window, preserve the right to develop alternatives in parallel, and prevent confidential competitor designs from being disclosed.\ne075\tForecast visibility may improve supply, but specify which changes are binding and whether the supplier can reduce allocation when forecasts are wrong.\ne076\tA default can be useful while still being monitored as a source of path dependence.\n[Turn 10 USER]\ne077\tAt the six-month review, the smaller supplier met the defect threshold but required more of our engineer's time than expected.\ne078\tIts team says the attention is why quality improved; our engineer says several fixes are now stable and the next six months should be lighter.\ne079\tIf we count all that time, the secondary source is more expensive than the contract comparison showed.\ne080\tIf we treat the learning as a one-time investment, it may still be worthwhile.\n[Turn 10 ASSISTANT]\ne081\tSeparate recurring support from improvements that now transfer, then test whether effort actually falls.\ne082\tHidden engineering subsidy is supplier cost too.\n[Turn 11 USER]\ne083\tAnd now the part that makes the original debate feel almost quaint: the shared semiconductor package will be discontinued in eighteen months.\ne084\tBoth suppliers knew a change was likely, neither had the date, and both boards depend on it.\ne085\tThe primary wants to lead one common replacement design.\ne086\tThe secondary argues that a shared design recreates the same dependency and wants its own.\ne087\tIf we choose two designs, we double validation and firmware work—the exact complexity quality has been warning about.\ne088\tIf we choose one, we may preserve two factories but one technical failure path.\ne089\tWe spent weeks asking whether a supplier might disappear.\ne090\tThe actual event is a component transition that both must navigate, and now I am not even sure what “two sources” should mean.\n[Turn 11 ASSISTANT]\ne091\tThat changes the near-term purpose of the split.\ne092\tDecide whether resilience comes from two independent redesign paths or from one well-governed common design that multiple suppliers can manufacture.\ne093\tTwo designs diversify engineering assumptions but double validation and firmware work; one design reduces variation but concentrates technical control.\ne094\tRequire milestone evidence, ownership and licensing terms, component alternatives, and a fallback if either path slips.\n[Turn 12 USER]\ne095\tWe will keep the seventy-five/twenty-five allocation through the twelve-month review, update and test the owned buffer, and count engineering support explicitly.\ne096\tFor the replacement, we will fund a shared interface and validation specification while asking both suppliers to propose implementations; we will not give either an automatic design award.\ne097\tThe first-opportunity clause will have a short deadline and no restriction on parallel work.\ne098\tAt twelve months we will decide using quality, total support cost, redesign progress, and demonstrated recovery—not the original eighteen-percent headline.\n[Turn 12 ASSISTANT]\ne099\tThe later evidence changed the object of the decision from buying redundancy to maintaining adaptable production knowledge through a component transition.\ne100\tThe plan retains meaningful competition without assuming two implementations are always safer, and it makes hidden engineering work visible.\ne101\tPreserve the failed first recovery attempt, forecast terms, support ledger, and redesign milestones.\ne102\tThose observations are now more informative than either supplier's initial record or the abstract appeal of concentration and diversification.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case04-component-sourcing-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case04-component-sourcing\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tWe manufacture laboratory freezers, and one control board sits inside almost every sourcing argument we have right now.\\ne002\\tWe buy it from two suppliers.\\ne003\\tThe larger one has about sixty percent of our volume, a lower defect rate, and no missed shipments to us.\\ne004\\tIt is offering an eighteen-month price reduction if we move nearly everything there.\\ne005\\tThe savings would pay for a reliability program we keep postponing.\\ne006\\tOperations wants fewer interfaces and less inspection variation.\\ne007\\tI hear “single point of failure” and become uneasy, but then quality shows me the defects created by maintaining two versions and finance shows me what the second source costs.\\ne008\\tPaying more for worse present performance is not automatically resilience.\\ne009\\tConcentrating a critical board is not automatically reckless.\\ne010\\tI need a way to compare the risks we actually have, not the slogans attached to them.\\n[Turn 1 ASSISTANT]\\ne011\\tCompare operating systems, not supplier count.\\ne012\\tPut quality, engineering effort, inventory, qualification, recovery time, and bargaining position beside the reliability work the savings would fund.\\ne013\\tA weak second source may still be improvable—or may only create the appearance of resilience.\\n[Turn 2 USER]\\ne014\\tExactly.\\ne015\\tThe smaller supplier caused two stoppages last year, and its board needs separate firmware tests and inspection.\\ne016\\tPlease do not count two supplier names as resilience.\\ne017\\tThe extra complexity has already created failures.\\n[Turn 2 ASSISTANT]\\ne018\\tThat corrects my framing.\\ne019\\tRedundancy is not free insurance; it can add ordinary failure modes while protecting against a rarer interruption.\\ne020\\tCompare tested recovery options—usable inventory, design and tooling access, component alternatives, and the real time needed to raise another source—with the defects and engineering attention you already pay for.\\ne021\\tAlso make the proposed reliability program concrete.\\ne022\\tIf the savings prevent more serious freezer failures, that benefit belongs in the decision rather than being treated as an unrelated use of money.\\n[Turn 3 USER]\\ne023\\tThe larger supplier will hold eight weeks of finished boards in a warehouse near our plant and give us quarterly access to its continuity plans.\\ne024\\tIt assembles in two facilities, but both use the same semiconductor and both receive it through the same regional distributor.\\ne025\\tIt says that component is standard and available from several manufacturers.\\ne026\\tOur engineers can keep the firmware interface documentation, but we do not own the board layout.\\n[Turn 3 ASSISTANT]\\ne027\\tTwo assembly sites do not diversify a shared upstream dependency, while the nearby stock buys response time.\\ne028\\tVerify the semiconductor's true substitutability, allocation rights during shortages, warehouse ownership, insurance, and whether stored boards age or require updates.\\ne029\\tKeeping the interface reduces redesign time; lack of layout ownership means an emergency second source would still require engineering and qualification.\\n[Turn 4 USER]\\ne030\\tWe asked the smaller supplier whether it would remain qualified at ten percent of volume.\\ne031\\tIt says that level is uneconomic, but it would accept twenty-five percent if we commit for a year and jointly fix the inspection failures.\\ne032\\tThat would cut the projected savings almost in half.\\ne033\\tOperations argues that a dormant backup is mostly theater anyway, and quality prefers either a meaningful improvement program or a clean exit.\\n[Turn 4 ASSISTANT]\\ne034\\tThey are right that token volume can preserve a name without preserving capability.\\ne035\\tCompare a seventy-five/twenty-five split with single sourcing plus a funded requalification plan.\\ne036\\tFor the split, predefine defect and delivery improvements and an exit if they do not occur.\\ne037\\tFor single sourcing, establish who can build what alternative, with which files, tooling, components, and elapsed time—not merely a statement that another source could be found.\\n[Turn 5 USER]\\ne038\\tFinance modeled both paths.\\ne039\\tThe split still funds the most urgent reliability work, although not the full program.\\ne040\\tThe larger supplier agreed that the local inventory belongs to us once produced and can be moved if the contract ends.\\ne041\\tThe smaller supplier will let our engineer review its process monthly and credit the extra inspection cost until its defect rate reaches the agreed range.\\ne042\\tNeither contract requires exclusivity.\\n[Turn 5 ASSISTANT]\\ne043\\tThose terms convert some abstract options into operating protections.\\ne044\\tThe split preserves live production knowledge and gives the smaller supplier enough volume to improve, while owned inventory cushions common disruption.\\ne045\\tRecord the cost of engineering attention and set a decision date; otherwise the improvement program can continue indefinitely because diversification sounds virtuous.\\n[Turn 6 USER]\\ne046\\tI keep coming back to the same discomfort: we may be paying for a dramatic rescue while accepting small failures every month.\\ne047\\tWe propose reviews at six and twelve months, an exit if the secondary misses quality or delivery, and a real recovery exercise—not a continuity-plan presentation.\\n[Turn 6 ASSISTANT]\\ne048\\tThat makes the insurance earn its cost.\\ne049\\tDefine the thresholds and sampling rules before the first review, and ensure a single unusual batch cannot determine the entire result.\\ne050\\tThe recovery exercise should include decision authority, transport of owned stock, firmware compatibility, and the time to validate a replacement board.\\ne051\\tIts purpose is to reveal an unusable assumption while there is still time to repair it.\\n[Turn 7 USER]\\ne052\\tI will recommend the seventy-five/twenty-five split for one year, with the joint quality plan, owned buffer stock, two fixed supplier reviews, and the recovery exercise.\\ne053\\tThe reliability program will start with its highest-risk items rather than waiting for every projected saving.\\ne054\\tIf the secondary supplier fails the predefined thresholds, we will stop paying for a nominal backup.\\ne055\\tIf it passes, we will have evidence that the extra complexity is controlled rather than simply hoping two sources are safer.\\n[Turn 7 ASSISTANT]\\ne056\\tThat is a defensible one-year structure because both sides now have to perform.\\ne057\\tThe secondary source must meet ordinary quality and delivery thresholds; the primary arrangement must provide owned, usable stock and a credible recovery path; and the reliability program begins even though the split reduces the headline savings.\\ne058\\tKeep the six- and twelve-month reviews fixed and preserve the exercise exactly as it happens, including awkward failures.\\ne059\\tOtherwise each side will later reinterpret the same year: procurement will remember optionality, operations will remember variation, and finance will remember the discount that was left on the table.\\n[Turn 8 USER]\\ne060\\tThe recovery exercise failed on the first try.\\ne061\\tSome stored boards had old firmware and did not pass the current diagnostic.\\ne062\\tEngineering fixed it in a day.\\ne063\\tOperations calls that successful learning; quality says it proves eight weeks of stock is not eight weeks of usable protection.\\ne064\\tBoth are right.\\n[Turn 8 ASSISTANT]\\ne065\\tRecord both the initial failure and recovery time.\\ne066\\tThe exercise succeeded as learning and failed as proof of immediate usability.\\ne067\\tAdd firmware status to inventory controls, test a sample on a schedule, and decide how updates are applied without consuming the buffer.\\ne068\\tThe corrected process can make the stock more credible, but do not erase the first result when reporting readiness.\\n[Turn 9 USER]\\ne069\\tThe primary supplier then asked for a rolling ninety-day forecast and first opportunity to quote any new board design.\\ne070\\tIt says the lower price assumes planning visibility and engineering continuity.\\ne071\\tThe clause is not exclusive, but our procurement manager thinks it could make the supplier the default before alternatives are considered.\\ne072\\tFinance says first opportunity costs nothing if we can reject the quote.\\n[Turn 9 ASSISTANT]\\ne073\\tThe cost is procedural rather than formal exclusivity.\\ne074\\tLimit the response window, preserve the right to develop alternatives in parallel, and prevent confidential competitor designs from being disclosed.\\ne075\\tForecast visibility may improve supply, but specify which changes are binding and whether the supplier can reduce allocation when forecasts are wrong.\\ne076\\tA default can be useful while still being monitored as a source of path dependence.\\n[Turn 10 USER]\\ne077\\tAt the six-month review, the smaller supplier met the defect threshold but required more of our engineer's time than expected.\\ne078\\tIts team says the attention is why quality improved; our engineer says several fixes are now stable and the next six months should be lighter.\\ne079\\tIf we count all that time, the secondary source is more expensive than the contract comparison showed.\\ne080\\tIf we treat the learning as a one-time investment, it may still be worthwhile.\\n[Turn 10 ASSISTANT]\\ne081\\tSeparate recurring support from improvements that now transfer, then test whether effort actually falls.\\ne082\\tHidden engineering subsidy is supplier cost too.\\n[Turn 11 USER]\\ne083\\tAnd now the part that makes the original debate feel almost quaint: the shared semiconductor package will be discontinued in eighteen months.\\ne084\\tBoth suppliers knew a change was likely, neither had the date, and both boards depend on it.\\ne085\\tThe primary wants to lead one common replacement design.\\ne086\\tThe secondary argues that a shared design recreates the same dependency and wants its own.\\ne087\\tIf we choose two designs, we double validation and firmware work—the exact complexity quality has been warning about.\\ne088\\tIf we choose one, we may preserve two factories but one technical failure path.\\ne089\\tWe spent weeks asking whether a supplier might disappear.\\ne090\\tThe actual event is a component transition that both must navigate, and now I am not even sure what “two sources” should mean.\\n[Turn 11 ASSISTANT]\\ne091\\tThat changes the near-term purpose of the split.\\ne092\\tDecide whether resilience comes from two independent redesign paths or from one well-governed common design that multiple suppliers can manufacture.\\ne093\\tTwo designs diversify engineering assumptions but double validation and firmware work; one design reduces variation but concentrates technical control.\\ne094\\tRequire milestone evidence, ownership and licensing terms, component alternatives, and a fallback if either path slips.\\n[Turn 12 USER]\\ne095\\tWe will keep the seventy-five/twenty-five allocation through the twelve-month review, update and test the owned buffer, and count engineering support explicitly.\\ne096\\tFor the replacement, we will fund a shared interface and validation specification while asking both suppliers to propose implementations; we will not give either an automatic design award.\\ne097\\tThe first-opportunity clause will have a short deadline and no restriction on parallel work.\\ne098\\tAt twelve months we will decide using quality, total support cost, redesign progress, and demonstrated recovery—not the original eighteen-percent headline.\\n[Turn 12 ASSISTANT]\\ne099\\tThe later evidence changed the object of the decision from buying redundancy to maintaining adaptable production knowledge through a component transition.\\ne100\\tThe plan retains meaningful competition without assuming two implementations are always safer, and it makes hidden engineering work visible.\\ne101\\tPreserve the failed first recovery attempt, forecast terms, support ledger, and redesign milestones.\\ne102\\tThose observations are now more informative than either supplier's initial record or the abstract appeal of concentration and diversification.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case04-component-sourcing-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "c8d2034fbab1337cf58964cfde63eb53780defe018a253e3e1bf277b37d903c8"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "0d01cbef02e3ded863472f51d52e82037b9b0a8d0a77f26b5e9c76e273780e33"
+}

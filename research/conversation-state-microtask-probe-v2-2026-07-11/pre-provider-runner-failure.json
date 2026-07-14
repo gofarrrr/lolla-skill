@@ -1,0 +1,20 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_pre_provider_failure.v1",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_microtask_probe_v2_20260711_a1",
+  "case_id": "amb1-case05-family-archive",
+  "requested_kind": "threads",
+  "status": "stopped_before_provider_call",
+  "failure": "The v2 wrapper passed the base runner's internal provider label gemini to an adapter that accepted only the external label openrouter_gemini.",
+  "repair": "Accept the internal gemini label at the wrapper boundary while continuing to construct only the frozen OpenRouter-Gemini projection.",
+  "semantic_prompt_changed": false,
+  "provider_schema_changed": false,
+  "case_selection_changed": false,
+  "call_budget_changed": false,
+  "provider_calls": 0,
+  "automatic_retries": 0,
+  "graph_calls": 0,
+  "pipeline_calls": 0,
+  "evaluator_calls": 0,
+  "api_key_read_before_failure": false
+}

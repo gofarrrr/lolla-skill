@@ -1,0 +1,86 @@
+{
+  "schema_version": "lolla.graph_attribution_preflight_contract.v1",
+  "status": "frozen_before_replay",
+  "date": "2026-07-10",
+  "case_id": "case-10-real-estate-bid",
+  "purpose": "Determine from frozen evidence whether any pressure admitted to the Case 10 downstream treatment had graph-specific provenance, before authorizing a paid graph ablation.",
+  "contract_path": "research/gate6-case10-graph-attribution-2026-07-10/contract.json",
+  "provider_call_budget": 0,
+  "runtime_change_authorized": false,
+  "inputs": [
+    {"role": "source_conversation", "path": "research/test-cases/case_real_estate_conversation.txt", "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"},
+    {"role": "stage_a_pipeline_result", "path": "research/stage-a-case10-2026-07-10/run/lolla_stage_a_case10_20260710_a1/pipeline-result.json", "sha256": "c81c305309188f8faffb577be4eb7a09aec803d50fa1600a0080377aa8abac41"},
+    {"role": "stage_a_private_table_snapshot", "path": "research/stage-a-case10-2026-07-10/private-table-snapshot.json", "sha256": "ad141fc5889b6e6beab8488888eae542939d238b4528fd251ea05b433c09a4c9"},
+    {"role": "stage_a_v60_snapshot", "path": "research/stage-a-case10-2026-07-10/v60-snapshot.json", "sha256": "0e899606cb05319c05a11a24ba3e4e472ac724f2915e3e6a8cad5c5ef7d7dc59"},
+    {"role": "stage_a_preliminary_pressure_review", "path": "research/stage-a-case10-2026-07-10/preliminary-pressure-review.json", "sha256": "969a7768a594577bb3eec1483105d385b7a0cd97f15eae58875ced6ccd6fe848"},
+    {"role": "stage_a_pressure_packet", "path": "research/stage-a-case10-2026-07-10/pressure-packet.json", "sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"},
+    {"role": "stage_b_revealed_comparison", "path": "research/stage-b-case10-2026-07-10/revealed-comparison.json", "sha256": "8c0b9677fe03646af4e9e2d478107e21012d0b4802226f49906e3580b4b372a6"},
+    {"role": "stage_b_decision", "path": "research/stage-b-case10-2026-07-10/decision.json", "sha256": "6c24442dc3084ed51f6c80e16970dfe6259812844814645e43a197bec346847e"},
+    {"role": "case10_evidence_manifest", "path": "research/gate6-case10-graph-attribution-2026-07-10/evidence-manifest.json", "sha256": "ee9552b7014173bad9c854cb84cfc439bab1c682ac2e489b121eda6ec244acb6"},
+    {"role": "attribution_builder", "path": "scripts/evals/build_graph_attribution_preflight.py", "sha256": "a66fd4df26115d776d3dc1c291a000f8928a5350950f986b7323e54d94547f2b"},
+    {"role": "v60_enrichment_code", "path": "engine/system_b/v60_enrichment.py", "sha256": "e16026bdddb9f5bc281af39b7a3158805ecdc8f4b3ef501347f072405477b249"},
+    {"role": "private_table_code", "path": "engine/system_b/pre_step6_private_table.py", "sha256": "ae5e3c34837d8db33d69aba61e88de53925a53b4b56a273340ad59ebf6ae7d6d"},
+    {"role": "companion_routing_code", "path": "engine/system_b/companion_routing.py", "sha256": "03b434a8243a35c3cfa4dfc521aad9218c733153d383e0212ef7a096abd5d437"},
+    {"role": "pipeline_code", "path": "engine/system_b/pipeline.py", "sha256": "763a9e7be813b28159667e4b43dee318be6c8a18e267190392b58be27d2fe8d6"},
+    {"role": "relationship_graph", "path": "data/relationship_graph.json", "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"},
+    {"role": "knowledge_graph", "path": "data/knowledge_graph.json", "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"},
+    {"role": "affordances_v60", "path": "data/compiled/model_affordances/affordances_v60.json", "sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8"},
+    {"role": "embeddings_database", "path": "data/embeddings.db", "sha256": "cc9b81315060b32cd62fa69db7d025fdb83559c6e53496d9b5504153a84e5b8d"}
+  ],
+  "baseline_contract": [
+    {
+      "baseline_id": "transcript_only_strong_control",
+      "method": "reuse the completed frozen Stage B control and blind review; do not regenerate"
+    },
+    {
+      "baseline_id": "direct_labels_only",
+      "method": "use only recorded Lane 2 direct companion anchors"
+    },
+    {
+      "baseline_id": "frame_routes_only",
+      "method": "use only recorded Lane 3 deterministic route candidates and reframing grounds"
+    },
+    {
+      "baseline_id": "embedding_only_same_card_cap",
+      "method": "take recorded embedding model hits in rank order under the existing eight-card cap"
+    },
+    {
+      "baseline_id": "graph_expansion_targets_only",
+      "method": "use only recorded relationship-graph expansion target model IDs"
+    },
+    {
+      "baseline_id": "graph_disabled_artifact_replay",
+      "method": "remove graph expansion outputs from the recorded handoff; classify exact no-op only if none entered candidates, selected cards, or the private table"
+    },
+    {
+      "baseline_id": "shuffled_edges",
+      "method": "classify as non-identifying when graph expansion outputs were not consumed; do not fabricate a replay"
+    }
+  ],
+  "decision_rules": [
+    "A pressure is graph-specific only if its selected model or chunk entered through a graph/expansion source or if its graph target model was unavailable from direct anchors, frame routes, structural gaps, and recorded embeddings.",
+    "Model availability is not answer simulation and does not prove that another pathway would write the same challenge.",
+    "If no admitted pressure is graph-specific at the recorded handoff, Case 10 cannot authorize a paid graph ablation.",
+    "If graph expansion was unconsumed, graph-disabled and shuffled-edge comparisons are non-identifying no-ops rather than negative evidence about graph quality.",
+    "No output may claim that graph expansion is useless in other cases."
+  ],
+  "stop_rules": [
+    "no provider calls",
+    "no embedding calls",
+    "no extraction or pipeline rerun",
+    "no graph mutation",
+    "no runtime mutation",
+    "no Case 10 prompt or answer changes",
+    "stop paid-ablation authorization if graph-specific admitted pressure count is zero"
+  ],
+  "output": {
+    "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result.json"
+  },
+  "non_claims": [
+    "not answer-quality evidence",
+    "not proof that graph expansion is generally useful or useless",
+    "not human review",
+    "not graph promotion",
+    "not runtime-integration authority"
+  ]
+}

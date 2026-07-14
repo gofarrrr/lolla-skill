@@ -1,0 +1,34 @@
+{
+  "schema_version": "lolla.simulated_reliability_runtime_contract.v1_1",
+  "status": "frozen_before_calibration_calls",
+  "date": "2026-07-12",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a2",
+  "base_contract_path": "docs/evals/simulated-reliability-v1-runtime-contract.json",
+  "base_contract_sha256": "9680bc6c4c4ee5ece422cdef9de10dfe97abc855e1a6c1181eb92e203bb1f1bd",
+  "repair_basis": "The a1 paired current/qualification request returned a pre-inference Google INVALID_ARGUMENT while the smaller starting schema passed. The exact problem-class note authorizes JSON-object transport with the unchanged schema in the prompt and unchanged local validation.",
+  "task_limits": {
+    "current_qualification": {
+      "wire_mode": "json_object_schema_in_prompt"
+    }
+  },
+  "schema_contract": {
+    "current_qualification_provider_wire": "json_object_schema_in_prompt",
+    "current_qualification_local_schema_sha256_unchanged": "4a8287bc0f55e118c2e684b6a38d32ca14fa6d6e355be7c8b07740e17c533b01",
+    "other_task_wire_modes": "strict_json_schema"
+  },
+  "calibration": {
+    "a1_failure_preserved_at": "research/simulated-reliability-v1-calibration-2026-07-12/amb1-case01-product-scope-primary",
+    "a1_completed_calls_reused": false,
+    "all_a2_call_identities_are_fresh": true
+  },
+  "frozen_input_overrides": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "e745df89ffd54817a2c9dc9a531904b57fd8470cf95cb6320d1c46347cf856c6"
+    },
+    {
+      "path": "docs/conversation-understanding/simulated-reliability-v1-gemini-paired-schema-problem-2026-07-12.md",
+      "sha256": "731701a010ce0db865f718dfe394e4b1542680d1342a0d1c8bfed5b3043c15e9"
+    }
+  ]
+}

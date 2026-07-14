@@ -1,0 +1,216 @@
+{
+  "admitted_record_count": 2,
+  "automatic_retries": 0,
+  "cached_prompt_tokens": 0,
+  "call_id": "shard-family-batch-amb1-case01-product-scope-evidence_and_assumption_discipline",
+  "candidate_payload": {
+    "global_limitations": "The analysis is constrained by the user's subjective interpretation of customer intent and the internal tension between engineering motivation and sales communication.",
+    "records": [
+      {
+        "boundary_evidence_ids": [
+          "e018"
+        ],
+        "claim_or_input_evidence_ids": [
+          "e013",
+          "e014",
+          "e015"
+        ],
+        "interpretation": "The user considers the potential for Northline's request to serve as a general reporting layer for the product, supported by the lead engineer's assessment.",
+        "limitations": "The engineer's technical assessment does not account for the remaining thirty percent of the work or the long-term support expectations, which remain unverified.",
+        "status": "mixed"
+      },
+      {
+        "boundary_evidence_ids": [
+          "e026",
+          "e027"
+        ],
+        "claim_or_input_evidence_ids": [
+          "e024",
+          "e025"
+        ],
+        "interpretation": "The user considers conducting a discovery phase to evaluate the reporting workspace request.",
+        "limitations": "The discovery process risks signaling a commitment to the customer, potentially damaging trust if the final decision is to decline the feature.",
+        "status": "mixed"
+      }
+    ],
+    "status": "supported"
+  },
+  "candidate_payload_sha256": "8e45d1e0c3d948869fe8c7228ad3fd74a6869c9c31721c5c61da254aa43e9e9c",
+  "case_id": "amb1-case01-product-scope",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 2,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case01-product-scope",
+        "family": "evidence_and_assumption_discipline",
+        "graph_routing_eligible": false,
+        "interpretation": "The user considers the potential for Northline's request to serve as a general reporting layer for the product, supported by the lead engineer's assessment.",
+        "observation_id": "rpshard-amb1-case01-product-scope-evidence_and_assumption_discipline-01-2d9ce2a297",
+        "provenance": {
+          "call_id": "shard-family-batch-amb1-case01-product-scope-evidence_and_assumption_discipline",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:0397ac64597d2fc00f048c71ae4ccf3f2484a6137c35687f2ceeb87c69411c27"
+        },
+        "raw_record": {
+          "record": {
+            "boundary_evidence_ids": [
+              "e018"
+            ],
+            "claim_or_input_evidence_ids": [
+              "e013",
+              "e014",
+              "e015"
+            ],
+            "interpretation": "The user considers the potential for Northline's request to serve as a general reporting layer for the product, supported by the lead engineer's assessment.",
+            "limitations": "The engineer's technical assessment does not account for the remaining thirty percent of the work or the long-term support expectations, which remain unverified.",
+            "status": "mixed"
+          },
+          "record_identity": "probe-shard-family-batch-amb1-case01-product-scope-evidence_and_assumption_discipline",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:2d9ce2a29721a8680f38cdb07d50cc190d06501d4bff54f067816c98e6fbfe02",
+        "role_source_span_ids": {
+          "boundary_evidence_ids": [
+            "span-e281ba6436f7c77a"
+          ],
+          "claim_or_input_evidence_ids": [
+            "span-386a3b2f6554d113",
+            "span-9ac0c4b9993e6d31",
+            "span-a18bd006465dd276"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "mixed",
+        "shard_id": "amb1-case01-product-scope-evidence_and_assumption_discipline-shard-01",
+        "source_span_ids": [
+          "span-386a3b2f6554d113",
+          "span-9ac0c4b9993e6d31",
+          "span-a18bd006465dd276",
+          "span-e281ba6436f7c77a"
+        ],
+        "terminal_state": "admitted"
+      },
+      {
+        "case_id": "amb1-case01-product-scope",
+        "family": "evidence_and_assumption_discipline",
+        "graph_routing_eligible": false,
+        "interpretation": "The user considers conducting a discovery phase to evaluate the reporting workspace request.",
+        "observation_id": "rpshard-amb1-case01-product-scope-evidence_and_assumption_discipline-02-82e6029c0f",
+        "provenance": {
+          "call_id": "shard-family-batch-amb1-case01-product-scope-evidence_and_assumption_discipline",
+          "model": "google/gemini-3.1-flash-lite-20260507",
+          "producer_id": "google/gemini-3.1-flash-lite",
+          "producer_kind": "model",
+          "prompt_sha256": "sha256:0397ac64597d2fc00f048c71ae4ccf3f2484a6137c35687f2ceeb87c69411c27"
+        },
+        "raw_record": {
+          "record": {
+            "boundary_evidence_ids": [
+              "e026",
+              "e027"
+            ],
+            "claim_or_input_evidence_ids": [
+              "e024",
+              "e025"
+            ],
+            "interpretation": "The user considers conducting a discovery phase to evaluate the reporting workspace request.",
+            "limitations": "The discovery process risks signaling a commitment to the customer, potentially damaging trust if the final decision is to decline the feature.",
+            "status": "mixed"
+          },
+          "record_identity": "probe-shard-family-batch-amb1-case01-product-scope-evidence_and_assumption_discipline",
+          "record_index": 2
+        },
+        "raw_record_sha256": "sha256:82e6029c0f815c4ee52a63fc3d5e224fd97f4aa45271eeafb0636b077a936096",
+        "role_source_span_ids": {
+          "boundary_evidence_ids": [
+            "span-150313ee9a5f28fb",
+            "span-5f5240197ae9d57a"
+          ],
+          "claim_or_input_evidence_ids": [
+            "span-6e7175164ef58c14",
+            "span-0c347bbe2ab73abc"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "mixed",
+        "shard_id": "amb1-case01-product-scope-evidence_and_assumption_discipline-shard-01",
+        "source_span_ids": [
+          "span-6e7175164ef58c14",
+          "span-0c347bbe2ab73abc",
+          "span-150313ee9a5f28fb",
+          "span-5f5240197ae9d57a"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case01-product-scope-evidence_and_assumption_discipline-01-2d9ce2a297",
+        "raw_record_sha256": "sha256:2d9ce2a29721a8680f38cdb07d50cc190d06501d4bff54f067816c98e6fbfe02",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      },
+      {
+        "observation_id": "rpshard-amb1-case01-product-scope-evidence_and_assumption_discipline-02-82e6029c0f",
+        "raw_record_sha256": "sha256:82e6029c0f815c4ee52a63fc3d5e224fd97f4aa45271eeafb0636b077a936096",
+        "record_index": 2,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "completion_tokens": 299,
+  "duration_seconds": 2.021,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.00095425,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "focal_turn_index": null,
+  "graph_calls": 0,
+  "mechanism": "chronological_shard_v1",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case01-product-scope/evidence_and_assumption_discipline/shard-01.json",
+  "packet_sha256": "b2c03ea863e2b175fbd8d968b5ea2cd85f29f8866fe9f2c7645ed4bf6f8d4204",
+  "pipeline_calls": 0,
+  "pricing_snapshot_sha256": "e76bb1a71f8576643edf18ae42fcc7533ec1d20d9fcce804a4d990d383bf7155",
+  "prompt_tokens": 2023,
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_payload_sha256": "ed33705a5fe8c15692effbe66481711d4c1c532728638a064b746834e0081576",
+  "provider_reported_cost_usd": 0.00095425,
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_schema_sha256": "65ed4474c2474ceb295b4f852b47b5a3e15f81cfcfdba92be5977774a16a006c",
+  "response_sha256": "39245aa5c05f11b6bcfaf9afd0632e6a15f678be88d29e7a1c8c577b9d6bd2ad",
+  "run_id": "reasoning-process-chronological-shard-family-batch-v1",
+  "runtime_calls": 0,
+  "schema_version": "lolla.reasoning_process_phase4_transfer_call.v1",
+  "seed": 0,
+  "served_model": "google/gemini-3.1-flash-lite-20260507",
+  "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+  "temperature": 0.0,
+  "total_tokens": 2322,
+  "typed_status": "admitted",
+  "usage_evidence_state": "complete",
+  "user_prompt_sha256": "0397ac64597d2fc00f048c71ae4ccf3f2484a6137c35687f2ceeb87c69411c27",
+  "validation_error": "",
+  "view_kind": "evidence_and_assumption_discipline"
+}

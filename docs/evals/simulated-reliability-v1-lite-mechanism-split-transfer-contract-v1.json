@@ -1,0 +1,62 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_mechanism_split_contract.v1",
+  "status": "frozen_before_failed_mechanism_split_probe",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-mechanism-split-transfer-t1",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "mechanism_id": "counterpressure_acknowledged_not_integrated",
+  "purpose": "Test the split mechanism contract on a separate prospectively stand-down-expected source whose concerns were integrated into the final design.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json",
+    "parent_mechanism_request_sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87",
+    "source_review_path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json",
+    "source_review_sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486",
+    "upstream_role_operator": "google/gemini-3.5-flash"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limit": {"max_output_tokens": 1000, "reasoning_effort": "medium", "wire_mode": "strict_json_schema"},
+  "seeds": {"user_status": 927, "assistant_coverage": 937},
+  "decomposition_contract": {
+    "user_status_task": "Mechanism contract plus bounded role records only; upstream qualification-review conclusion is omitted.",
+    "assistant_coverage_task": "Compiled user-process assessment plus its cited role records and assistant contributions; it does not reclassify user status.",
+    "join": "Code validates custody and derives routing from explicit semantic outputs without interpreting conversation prose.",
+    "remaining_external_risk_is_not_unresolved_process": true,
+    "user_adoption_is_not_assistant_coverage": true,
+    "keyword_or_chronology_gate_added": false
+  },
+  "request_attestation": {
+    "user_status_packet_sha256": "4e67dfec74a191a3add8ae7ab265824a9dd84508f5e7945d610a18e2622a4148",
+    "user_status_role_record_count": 2,
+    "user_status_system_prompt_sha256": "bad2eaef0c50fe751b0344ec50fa8efab3fcc6ca9c23843cb8fcf400248cd3a8",
+    "user_status_user_prompt_sha256": "2a10a3d10f4ede6b6928c8ebc29efd39a4c6b3b05ad6602d535471338f2e12ac",
+    "user_status_response_schema_sha256": "6f8e77805577df4f77547e59b05bf807fd63fd4147bb1a2f91d2c90928ec859f",
+    "assistant_coverage_response_schema_sha256": "037346754a4c4bcb9ef73abed60702dc16c624636258dd6a41b976ba3f7e70ec"
+  },
+  "budget": {"maximum_provider_calls": 2, "maximum_provider_reported_cost_usd": 0.01, "automatic_retries": 0, "fallback_models": 0, "response_healing": false},
+  "review_contract": {
+    "prospective_user_status": "resolved: initial concerns materially changed channel timing, allocation, staffing, privacy, audit, pause, and vote rules.",
+    "prospective_assistant_coverage": "operationalized: the assistant supplied concrete tests, thresholds, boundaries, and governance conditions throughout.",
+    "prospective_route": "preserve_no_route",
+    "prospective_answers_not_in_model_prompt": true,
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {"full_nine_expansion_authorized": false, "pressure_call_authorized": false, "runtime_effect": "none", "production_model_selection_authorized": false, "gemini_3_5_call_authorized": false},
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_mechanism_split_probe_v1.py", "sha256": "2af45113eedd82ae5fcde5ba348ddb55e8225b34f4992c3ec410cb9657396f14"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "engine/system_b/simulated_reliability_v1.py", "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case07-cooperative-scheduling-primary/mechanism-request.json", "sha256": "6c75dace0b2591e9c08139034a395d1f1d16cef4c1ab27b3bae73b19dab4ae87"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json", "sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486"}
+  ]
+}

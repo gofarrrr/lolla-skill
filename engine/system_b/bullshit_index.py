@@ -43,6 +43,7 @@ from dataclasses import dataclass, field, asdict
 from typing import Sequence
 
 _LOGGER = logging.getLogger("system_b.bullshit_index")
+DEFAULT_MAX_EVALUATION_PASSAGES = 12
 
 
 # ---------------------------------------------------------------------------
@@ -93,6 +94,8 @@ class PassageBIResult:
 class BullshitProfile:
     """Aggregated bullshit profile across all passages."""
     passages: list[PassageBIResult] = field(default_factory=list)
+    source_passage_count: int = 0
+    max_evaluation_passages: int = DEFAULT_MAX_EVALUATION_PASSAGES
 
     @property
     def total_clear(self) -> int:
@@ -122,6 +125,14 @@ class BullshitProfile:
             ],
             "summary": {
                 "total_passages": len(self.passages),
+                "source_passage_count": self.source_passage_count
+                or len(self.passages),
+                "evaluation_passage_count": len(self.passages),
+                "max_evaluation_passages": self.max_evaluation_passages,
+                "passage_compaction_applied": (
+                    (self.source_passage_count or len(self.passages))
+                    > len(self.passages)
+                ),
                 "passages_with_detections": sum(1 for p in self.passages if p.any_detected),
                 "total_clear": self.total_clear,
                 "total_marginal": self.total_marginal,
@@ -312,6 +323,34 @@ def _split_sentences(text: str) -> list[str]:
     return [p for p in parts if p.strip()]
 
 
+def merge_passages_to_budget(
+    passages: Sequence[str],
+    *,
+    max_passages: int = DEFAULT_MAX_EVALUATION_PASSAGES,
+) -> list[str]:
+    """Merge adjacent passages into a hard call budget without dropping text.
+
+    This is deterministic transport compaction, not a relevance selector. It
+    preserves every passage exactly once and in source order. The trade-off is
+    coarser localization inside the Bullshit Index, which is preferable to
+    allowing a peripheral detector's calls to grow without bound on long
+    conversations.
+    """
+    values = list(passages)
+    if max_passages < 1:
+        raise ValueError("max_passages must be at least 1")
+    if len(values) <= max_passages:
+        return values
+    merged: list[str] = []
+    total = len(values)
+    for bucket in range(max_passages):
+        start = bucket * total // max_passages
+        end = (bucket + 1) * total // max_passages
+        if start < end:
+            merged.append("\n\n".join(values[start:end]))
+    return merged
+
+
 # ---------------------------------------------------------------------------
 # Core evaluation
 # ---------------------------------------------------------------------------
@@ -390,6 +429,7 @@ def evaluate_text(
     context_summary: str = "",
     max_workers: int = 4,
     max_chars_per_passage: int = 1500,
+    max_evaluation_passages: int = DEFAULT_MAX_EVALUATION_PASSAGES,
 ) -> BullshitProfile:
     """Evaluate a full text block for bullshit subtypes.
 
@@ -404,12 +444,21 @@ def evaluate_text(
             distinguish grounded claims from unverified ones.
         max_workers: Parallel evaluation threads.
         max_chars_per_passage: Split threshold for oversized paragraphs.
+        max_evaluation_passages: Hard upper bound on detector calls. Adjacent
+            source passages are merged deterministically; none are dropped.
     """
     from concurrent.futures import ThreadPoolExecutor, as_completed
 
-    passages = split_into_passages(text, max_chars=max_chars_per_passage)
-    if not passages:
-        return BullshitProfile()
+    source_passages = split_into_passages(text, max_chars=max_chars_per_passage)
+    if not source_passages:
+        return BullshitProfile(
+            source_passage_count=0,
+            max_evaluation_passages=max_evaluation_passages,
+        )
+    passages = merge_passages_to_budget(
+        source_passages,
+        max_passages=max_evaluation_passages,
+    )
 
     results: list[tuple[int, PassageBIResult]] = []
 
@@ -431,4 +480,8 @@ def evaluate_text(
 
     # Maintain original passage order
     results.sort(key=lambda x: x[0])
-    return BullshitProfile(passages=[r for _, r in results])
+    return BullshitProfile(
+        passages=[r for _, r in results],
+        source_passage_count=len(source_passages),
+        max_evaluation_passages=max_evaluation_passages,
+    )

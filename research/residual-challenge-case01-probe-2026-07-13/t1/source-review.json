@@ -1,0 +1,64 @@
+{
+  "schema_version": "lolla.residual_challenge_probe_source_review.v1",
+  "status": "operational_fail_partial_semantic_signal_task_shape_too_verbose",
+  "case_id": "v1-case01-flood-infrastructure",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "operational_review": {
+    "status": "fail",
+    "finish_reason": "length",
+    "strict_json_complete": false,
+    "local_validation": "fail",
+    "provider_calls": 1,
+    "provider_reported_cost_usd": 0.0032975,
+    "prompt_tokens": 3686,
+    "completion_tokens": 1584,
+    "reasoning_tokens": 891,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "partial_output_review": {
+    "valid_product_output": false,
+    "complete_candidates_visible": 2,
+    "third_candidate_truncated": true,
+    "candidates": [
+      {
+        "candidate_id": "rc1",
+        "source_fidelity": "mixed",
+        "protected_opportunity_recall": "no",
+        "review": "The candidate reopens deployment timing and warranty allocation that the conversation already treats extensively. It also escalates to catastrophic failure, uninsurable risk, and significant liability without source support."
+      },
+      {
+        "candidate_id": "rc2",
+        "source_fidelity": "mixed",
+        "protected_opportunity_recall": "partial_yes",
+        "review": "The candidate recovers the residential-service and distribution concern and asks about committed transit alternatives, which materially overlaps the protected service-expectation opportunity. It overextends the evidence by asserting cannibalized political capital and funding streams and that the barrier reinforces a structural hierarchy."
+      }
+    ]
+  },
+  "prospective_gate_review": {
+    "candidate_recall": "partial_not_pass",
+    "unknown_unknown_safety": "mixed_not_pass",
+    "coverage": "not_run_because_discovery_failed",
+    "pressure_activation": "not_tested",
+    "reason": "A partial provider string cannot become a valid candidate portfolio. The semantic hint is diagnostic evidence only."
+  },
+  "diagnosis": {
+    "primary_failure": "The discovery task required seven prose fields plus evidence for as many as three candidates. Low reasoning consumed 891 output tokens and the response hit the 1,600-token ceiling while writing the third item.",
+    "model_intelligence_failure_established": false,
+    "representation_failure_established": false,
+    "task_shape_failure_established": true,
+    "why_not_buy_premium": "The affordable model demonstrated partial recall before truncation. A smaller output contract is the controlled next test."
+  },
+  "decision": {
+    "retry_same_request": false,
+    "raise_same_token_ceiling": false,
+    "run_coverage_on_partial_json": false,
+    "substitute_model": false,
+    "use_gemini_3_5": false,
+    "next": "Build and locally test a seed-only discovery contract containing candidate identity, kind, question, source evidence, and question-not-fact status. Defer applicability, risk-if-ignored, and force-boundary enrichment until after discovery and coverage. Freeze a separate bounded call only after local tests pass."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.designed_ambiguous_development_selection.v1",
+  "status": "frozen_before_stage_a_calls",
+  "date": "2026-07-10",
+  "purpose": "Select the next frozen-ranked ambiguous development fixture after Case 02 was permanently consumed by a capture-envelope preflight defect.",
+  "predecessor": {
+    "selection_path": "research/stage-a-amb1-case02-2026-07-10/selection-contract.json",
+    "selection_sha256": "8659e23aa0eb3b94b61d6cca81b0b5a26797fc23ce54f37ad81aa972ebbb7a3d",
+    "decision_path": "research/stage-a-amb1-case02-2026-07-10/decision.json",
+    "decision_sha256": "9be40f81b99f58461d9545e09c3bcc9ac025af14a8932d556fcbf4ebf87bfe68",
+    "selected_case_id": "amb1-case02-nonprofit-scale",
+    "terminal_status": "formal_stage_a_stop_after_extraction_no_rerun"
+  },
+  "source_corpus": {
+    "original_manifest_path": "research/designed-ambiguous-pool-v1-2026-07-10/development-manifest.json",
+    "original_manifest_sha256": "276eedd20a038b93b8ca387c2f74d664408b7a61c35ea8a93b9b6e14f32ba298",
+    "capture_ready_manifest_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/manifest.json",
+    "capture_ready_manifest_sha256": "bcfabfb44ac41dcbec40613d40ffb654a3fa28ee0559053de4877da427163c6f",
+    "capture_transform": "prepend_declared_capture_counts_only",
+    "semantic_rewrite": false,
+    "clean_holdout": false
+  },
+  "frozen_rank": [
+    "amb1-case02-nonprofit-scale",
+    "amb1-case05-family-archive",
+    "amb1-case04-research-tool-release",
+    "amb1-case01-product-scope",
+    "amb1-case03-creative-partnership"
+  ],
+  "selection_rule": {
+    "algorithm": "Remove the permanently consumed predecessor from the rank frozen before authoring and select the next case. Do not select for expected mental-model, graph, pressure, or answer-delta value.",
+    "removed_case_ids": ["amb1-case02-nonprofit-scale"],
+    "selected_case_id": "amb1-case05-family-archive",
+    "selected_original_rank": 2
+  },
+  "case_role": "same_session_synthetic_capture_ready_development_fixture_not_clean_holdout",
+  "authorizations": {
+    "prepare_stage_a_contract": true,
+    "execute_stage_a_after_contract_preflight": true,
+    "stage_b": false,
+    "graph_ablation": false,
+    "runtime_semantic_tuning": false
+  },
+  "non_claims": [
+    "not a clean holdout selection",
+    "not representative of real users or real-world frequency",
+    "not product validation",
+    "not causal evidence",
+    "not graph-value evidence"
+  ]
+}

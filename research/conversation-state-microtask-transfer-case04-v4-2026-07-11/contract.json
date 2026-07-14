@@ -1,0 +1,33 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_probe_contract.v4",
+  "status": "frozen_before_calls",
+  "date": "2026-07-11",
+  "run_id": "conversation_state_transfer_case04_v4_20260711_a1",
+  "program_stage": "generic_repair_transfer_2",
+  "case": {
+    "case_id": "amb1-case04-research-tool-release",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+    "source_sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb",
+    "message_count": 14,
+    "reviewed_packet_path": "research/conversation-state-handoff-v1-2026-07-10/cases/amb1-case04-research-tool-release.json",
+    "reviewed_packet_sha256": "aaffe78ed2cf3f97631ad5734a71621b03a1b4c58b82b9fa733e2530b98bf8f5",
+    "expected_position_ownership": "joint",
+    "expected_thread_disposition": "addressed_unresolved",
+    "expected_atomic_constraint_count": 10
+  },
+  "repair_round": {"round": 1, "maximum_rounds": 1, "case_specific_language": false, "thresholds_changed": false},
+  "microtask_order": ["threads", "constraints", "positions"],
+  "call_configuration": {"provider": "openrouter", "model": "google/gemini-3.1-flash-lite", "wire_mode": "json_object", "temperature": 0.0, "reasoning": {"enabled": false}, "max_output_tokens": 4000, "provider_timeout_seconds": 60, "automatic_retries": 0, "evaluator_calls": 0, "pipeline_calls": 0, "graph_calls": 0},
+  "call_budget": {"maximum_provider_calls": 3, "estimated_total_cost_ceiling_usd": 0.02, "program_maximum_provider_calls": 12, "program_cost_ceiling_usd": 0.08},
+  "stop_rules": {"operational_failure_stops_remaining_calls": true, "valid_semantic_failure_is_preserved_and_does_not_trigger_retry": true, "hard_stop_before_second_case": true},
+  "prompt_hashes": {
+    "threads": {"system_prompt_sha256": "42e6aba293e4dbe935269d3a66079976f484ef430e26fef8135ce877cdf8963d", "user_prompt_sha256": "47d59638bac782d92a9c20f1d782b8f773c3894609ef9f8926744977a53b97f2", "schema_sha256": "056249a705fd7c97fd2a9062c7700beadefdc41b502bdcef12d774487ea524b2", "schema_metrics": {"bytes": 3913, "depth": 7, "property_nodes": 4}, "allowed_span_id_count": 64},
+    "constraints": {"system_prompt_sha256": "5919c497c30120418fb811a2110ad92ad3739f95aa463b1176bd1dd8b39436c7", "user_prompt_sha256": "3c7f3835b42c67e49c60d3d57c606a0b17698ff5f200a7441562a88af8f1de00", "schema_sha256": "7cef02a3c346a60a8588c9c2b6ce8a04dd085a66cdfd3dd42ddb42f5525089a2", "schema_metrics": {"bytes": 3284, "depth": 6, "property_nodes": 3}, "allowed_span_id_count": 64},
+    "positions": {"system_prompt_sha256": "4a85d1d1f9469a3ee25875c40ab638dd83008e8f2ec8e04d8508f68cb8a38545", "user_prompt_sha256": "6ca604bcc21fe0a35ce4785404b066211a7ce26cbc18b6903fde9c8721c5b335", "schema_sha256": "79dd32eb42cd2ae635bb41a57c5f7b97fbd1b33bfb43d41f17c20e5b48354e71", "schema_metrics": {"bytes": 4464, "depth": 6, "property_nodes": 5}, "allowed_span_id_count": 64}
+  },
+  "hash_locks": [
+    {"role": "v4_runner", "path": "scripts/evals/run_conversation_state_microtask_probe_v4.py", "sha256": "3a027a421034679bfabed351fe5c030517f20f2bd198c07fbf1421ac3b3d456b"},
+    {"role": "program", "path": "plans/conversation-state-extraction-experiment-program-2026-07-11.md", "sha256": "309d93d4ed881f2f130fa2897f87dbdbddbc908d7b10a11433010741f52cd560"},
+    {"role": "repair_decision", "path": "research/conversation-state-microtask-probe-v3-2026-07-11/decision.json", "sha256": "5a91c2ee6ccba7d1abb0ffcc5e2371c896594b50d23bbcf6f300cd011d1b2c90"}
+  ]
+}

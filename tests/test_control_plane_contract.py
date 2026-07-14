@@ -192,8 +192,8 @@ def test_control_result_wraps_agent_result_without_approving_action(tmp_path: Pa
 
     assert payload["schema_version"] == CONTROL_RESULT_SCHEMA_VERSION
     assert payload["control_mode"] == "pre_action_reasoning_gate"
-    assert payload["caller_action"] == "use_revised_answer"
-    assert payload["approval_outcome"] == "proceed_with_external_policy"
+    assert payload["caller_action"] == "review_revised_answer"
+    assert payload["approval_outcome"] == "require_external_review"
     assert payload["boundary"] == {
         "lolla_approves_actions": False,
         "lolla_replaces_policy_engine": False,

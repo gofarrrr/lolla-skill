@@ -1,0 +1,19 @@
+{
+  "schema_version": "lolla.core_semantic_gold.v0",
+  "case_id": "case-04-whistleblower",
+  "source_file_sha256": "29afe19484f8d6aeaf85ac1df1b62b55b432ab613df63d0a37660105bac45e28",
+  "annotation_status": "source_first_researcher_reviewed_provisional",
+  "required_observations": [
+    {"observation_id": "question.initial_what_to_do", "dimension": "operative_question", "description": "The conversation begins with a request for action guidance after witnessing shredding.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "What do I do."}]},
+    {"observation_id": "pressure.partial_document_confidence", "dimension": "user_corrections_and_pressure", "description": "The user distinguishes document confidence from client confidence.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "90% confident those were financial docs and email."}]},
+    {"observation_id": "constraint.active_regulatory_audit", "dimension": "constraints_and_options", "description": "The client account is under active regulatory audit.", "evidence": [{"turn_index": 1, "speaker": "user", "quote": "That account is in active audit with a major regulator right now."}]},
+    {"observation_id": "stance.external_counsel_path", "dimension": "assistant_positions_and_revisions", "description": "The assistant recommends the external counsel route as most protected.", "evidence": [{"turn_index": 4, "speaker": "assistant", "quote": "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator"}]},
+    {"observation_id": "stance.internal_confidence_threshold", "dimension": "assistant_positions_and_revisions", "description": "The assistant converts the user's confidence estimate into an external-reporting conclusion.", "evidence": [{"turn_index": 6, "speaker": "assistant", "quote": "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path."}]},
+    {"observation_id": "drop.former_manager_implication", "dimension": "dropped_or_under_carried_threads", "description": "Potential implications for a former manager remain unresolved.", "evidence": [{"turn_index": 7, "speaker": "user", "quote": "it might implicate her for not reporting two years ago"}]},
+    {"observation_id": "boundary.brief_visual_access", "dimension": "uncertainty_and_evidence_boundaries", "description": "The witness did not inspect the pages for long.", "evidence": [{"turn_index": 2, "speaker": "user", "quote": "I didn't get a long look, I turned around and left."}]}
+  ],
+  "explicit_unresolved_or_absent": [
+    {"observation_id": "absence.legal_advice", "description": "The assistant explicitly disclaims legal advice."},
+    {"observation_id": "absence.filing_completed", "description": "No report is filed during the conversation."}
+  ]
+}

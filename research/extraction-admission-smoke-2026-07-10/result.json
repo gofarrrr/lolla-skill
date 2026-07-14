@@ -1,0 +1,156 @@
+{
+  "schema_version": "lolla.extraction_admission_smoke_result.v0",
+  "status": "failed",
+  "smoke_id": "case12-extraction-admission-20260710-a1",
+  "run_id": "admission_smoke_case12_20260710_a1",
+  "fixture_id": "case-12-lolla-project-governance",
+  "contract_sha256": "3221aaa8541d7c5106863758ba8ece78648cd00d3dbbc99b40d27629775cff12",
+  "extraction_sha256": "2065f9bd9fd625914b80ea8e7896ec1b4abbad81105f8fc39eae30f08e6d2ff3",
+  "sidecar_sha256": "",
+  "gates": {
+    "contract_and_transitive_hashes_valid": true,
+    "single_orchestrator_invocation": true,
+    "output_parent_absent_before_run": true,
+    "output_parent_exists_after_run": true,
+    "sidecar_absent_before_run": true,
+    "extractor_exit_zero": false,
+    "extraction_artifact_persisted": true,
+    "sidecar_persisted": false,
+    "extraction_status_ok": false,
+    "capture_health_good": true,
+    "capture_adequacy_status_good": true,
+    "capture_run_id_exact": true,
+    "complete_capture": true,
+    "capture_not_truncated": true,
+    "quote_validation_present": false,
+    "quote_failures_zero": false,
+    "quote_counts_consistent": false,
+    "all_persisted_passages_verified": true,
+    "reasoning_passage_floor_met": false,
+    "initial_call_count_exact": false,
+    "repair_call_ceiling_met": true,
+    "total_call_ceiling_met": true,
+    "all_call_statuses_ok": false,
+    "provider_metadata_exact": false,
+    "requested_model_exact": false,
+    "served_model_exact": false,
+    "model_attribution_matched": false,
+    "token_usage_present": false,
+    "cost_estimate_complete": false,
+    "cost_ceiling_met": true,
+    "experiment_retry_zero": true
+  },
+  "failed_gates": [
+    "extractor_exit_zero",
+    "sidecar_persisted",
+    "extraction_status_ok",
+    "quote_validation_present",
+    "quote_failures_zero",
+    "quote_counts_consistent",
+    "reasoning_passage_floor_met",
+    "initial_call_count_exact",
+    "all_call_statuses_ok",
+    "provider_metadata_exact",
+    "requested_model_exact",
+    "served_model_exact",
+    "model_attribution_matched",
+    "token_usage_present",
+    "cost_estimate_complete"
+  ],
+  "observed": {
+    "extractor_exit_code": 1,
+    "orchestrator_invocation_count": 1,
+    "initial_extraction_calls": 0,
+    "builtin_quote_repair_calls": 0,
+    "provider_call_count": 0,
+    "capture_health": "good",
+    "captured_message_count": 2,
+    "omitted_message_count": 0,
+    "verified_reasoning_passage_count": 0,
+    "remaining_quote_failure_count": 0,
+    "stdout_sha256": "8bbdfc2df2b53b989dedff185cc5a8dbc938bd94c6517a8ae33d5f8033e37329",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "usage_summary": {
+    "run_id": "admission_smoke_case12_20260710_a1",
+    "pricing_table_version": "2026-05-25",
+    "vendors": {
+      "openrouter": {
+        "provider": "openrouter",
+        "primary_model": "",
+        "models_seen": [],
+        "requested_models_seen": [],
+        "model_attribution": {
+          "status_counts": {},
+          "mismatch_count": 0,
+          "mismatches": [],
+          "truncated_mismatch_count": 0
+        },
+        "calls": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "cached_tokens": 0,
+        "total_tokens": 0,
+        "cache_hit_rate": 0.0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0,
+          "unknown_price_models": []
+        },
+        "stages": {}
+      },
+      "openai_embeddings": {
+        "provider": "openai",
+        "endpoints_seen": [],
+        "calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "by_model": {}
+      },
+      "anthropic_subagents": {
+        "provider": "anthropic",
+        "calls": 0,
+        "total_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "estimation_method": "conservative_input_only_no_split_available",
+        "by_model": {},
+        "by_lane": {}
+      }
+    },
+    "notes": [
+      "Cost estimates use the hardcoded pricing table at engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when rates change.",
+      "Anthropic sub-agent costs are conservative — only total_tokens is surfaced by Claude Code task notifications, so the full amount is billed as input tokens.",
+      "Embedding costs cover OpenAI text-embedding-3-large and the gpt-4o-mini query-expansion calls made inside the pipeline.",
+      "Cost estimate is not complete: one or more calls used a model missing from engine/system_b/pricing.py. Treat the total as a lower bound until pricing is added."
+    ],
+    "estimated_total_cost_usd": 0.0,
+    "cost_estimate_coverage": {
+      "state": "not_applicable",
+      "calls_with_known_price": 0,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
+    "cost_estimate_state": "not_applicable"
+  },
+  "raw_provider_content_included": false,
+  "fixture_permanently_excluded_from_downstream_holdout": true,
+  "next_holdout_authorized": false,
+  "runtime_integration_authorized": false,
+  "pricing_table_version": "2026-05-25",
+  "non_claims": [
+    "This smoke does not establish extraction accuracy beyond the deterministic custody gates.",
+    "This smoke does not establish mental-model relevance, graph value, challenge usefulness, better reasoning, or better decisions.",
+    "This smoke does not validate a paired holdout result or authorize runtime integration.",
+    "This smoke does not use or test embeddings."
+  ]
+}

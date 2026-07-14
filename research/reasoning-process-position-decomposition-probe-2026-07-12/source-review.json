@@ -1,0 +1,67 @@
+{
+  "schema_version": "lolla.reasoning_process_position_decomposition_probe_source_review.v1",
+  "status": "source_review_complete_overall_fail",
+  "date": "2026-07-12",
+  "case_id": "amb2-case03-agency-acquisition",
+  "review_basis": {
+    "provider_result_path": "research/reasoning-process-position-decomposition-probe-2026-07-12/result.json",
+    "call_result_path": "research/reasoning-process-position-decomposition-probe-2026-07-12/call-01-result.json",
+    "source_packet_path": "research/reasoning-process-stance-object-v41-fresh-corpus-2026-07-12/packets/amb2-case03-agency-acquisition/position-endpoint.json",
+    "protected_review_path": "research/reasoning-process-stance-object-v42-2026-07-12/protected-fixtures/amb2-case03-agency-acquisition-position_and_decision_trajectory-shard-01.json",
+    "protected_review_in_provider_context": false
+  },
+  "operational_review": {
+    "provider_request_count": 1,
+    "wire_schema_accepted": true,
+    "exact_model_attribution": true,
+    "exact_provider_attribution": true,
+    "automatic_retries": 0,
+    "fallbacks": 0,
+    "estimated_cost_usd": 0.000273092,
+    "provider_reported_cost_usd": 0.000273092,
+    "stop_rule_fired": "trajectory_wire_or_admission_gate_failed"
+  },
+  "deterministic_review": {
+    "record_terminal_state": "quarantined",
+    "reason": "The response cited and interpreted a visible starting state but selected qualified_current_only, whose frozen definition requires no visible starting state.",
+    "remaining_stance_calls_attempted": 0,
+    "custody_result": "pass",
+    "join_status_result": "fail_false_complete",
+    "join_defect": "The v1 join labeled zero admitted trajectories complete because it counted no missing role records, even though the trajectory custody contained one quarantined record. The frozen artifact is preserved; prospective v2 makes any quarantined or unreferenced record incomplete."
+  },
+  "source_first_axes": {
+    "starting_role": {
+      "status": "pass",
+      "finding": "e004 and e005 preserve attraction to security, method-control concern, and uncertainty about work protection versus founder identity."
+    },
+    "current_role": {
+      "status": "partial",
+      "finding": "e050 through e052 and the main conditional position survive, but the current interpretation ends mid-sentence at the schema length boundary."
+    },
+    "qualification_role": {
+      "status": "fail",
+      "finding": "The response preserves e053 employee-timing uncertainty but omits e057: momentum may narrow perceived alternatives and involving employees before certainty has an unavoidable cost."
+    },
+    "trajectory_relationship": {
+      "status": "fail",
+      "finding": "The categorical label contradicts the visible starting role, and the relationship prose also ends mid-sentence."
+    },
+    "stance_objects_and_expressions": {
+      "status": "not_observed",
+      "finding": "The frozen stop rule prevented all three stance calls after trajectory quarantine."
+    }
+  },
+  "decision": {
+    "v1_decomposition_semantic_gate": "fail",
+    "more_v1_provider_calls_authorized": false,
+    "same_case_retry_authorized": false,
+    "provider_free_role_first_redesign_authorized": true,
+    "reason": "The first call remained a single semantic bottleneck and could delete qualification evidence before role-specific stance work began."
+  },
+  "non_claims": [
+    "The model/operator pair is not globally bad.",
+    "Schema acceptance is not semantic success.",
+    "Removing the contradictory category alone would not recover omitted e057 evidence.",
+    "The role-first v2 design is not proven automatically better by this negative result."
+  ]
+}

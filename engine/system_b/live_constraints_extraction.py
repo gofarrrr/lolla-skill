@@ -33,12 +33,14 @@ from typing import Protocol, runtime_checkable
 from .boundary_validation import coerce_str, require_list_of_dicts
 from .conversation_context import ConversationContext
 from .ir import (
+    DerivationComponent,
     DerivationProvenance,
     SpanProvenance,
     SpanRef,
     TurnRef,
     UserIssueEvent,
 )
+from .semantic_candidate_ledger import SemanticCandidateLedgerRecorder
 from .text_matching import find_substring_tolerant
 
 
@@ -177,7 +179,9 @@ class _ValidationStats:
     dropped_invalid_turn: int
     dropped_not_substring: int
     dropped_derivation_no_valid_excerpt: int
+    incomplete_derivation_count: int
     dropped_invalid_mode: int
+    rejected_derivations: tuple[dict[str, object], ...]
 
 
 def _user_turn_map(context: ConversationContext) -> dict[int, str]:
@@ -192,9 +196,24 @@ def _span_issue_id(turn_index: int, kind: str, matched_text: str) -> str:
     return f"live_constraint_t{turn_index}_{kind}_{_hash12(matched_text)}"
 
 
-def _derivation_issue_id(kind: str, label: str, refs: tuple[TurnRef, ...]) -> str:
-    key = f"{kind}|{label}|{'|'.join(f'{r.turn_index}:{r.speaker}' for r in refs)}"
+def _derivation_issue_id(
+    kind: str,
+    label: str,
+    entries: tuple[tuple[int, str, int], ...],
+) -> str:
+    evidence_key = "|".join(
+        f"{turn_index}:{start_char}:{matched}"
+        for turn_index, matched, start_char in entries
+    )
+    key = f"{kind}|{label}|{evidence_key}"
     return f"live_constraint_derivation_{_hash12(key)}"
+
+
+def _derivation_component_id(
+    *, turn_index: int, matched: str, start_char: int
+) -> str:
+    key = f"user|{turn_index}|{start_char}|{start_char + len(matched)}|{matched}"
+    return f"derivation_component_t{turn_index}_{_hash12(key)}"
 
 
 def _locate_span(turn_text: str, excerpt: str) -> tuple[str, int] | None:
@@ -248,6 +267,7 @@ def extract_live_constraints(
     *,
     context: ConversationContext,
     boundary: _BoundaryClient,
+    candidate_recorder: SemanticCandidateLedgerRecorder | None = None,
 ) -> tuple[list[UserIssueEvent], _ValidationStats]:
     """Run the live_constraints specialist LLM call, validate output,
     return typed UserIssueEvent objects plus validation stats.
@@ -279,15 +299,41 @@ def extract_live_constraints(
     dropped_invalid_turn = 0
     dropped_not_substring = 0
     dropped_derivation_no_valid_excerpt = 0
+    incomplete_derivation_count = 0
     dropped_invalid_mode = 0
+    rejected_derivations: list[dict[str, object]] = []
 
-    for item in raw_items:
+    def record(
+        proposal_index: int,
+        raw: dict[str, object],
+        state: str,
+        reason: str,
+        event: UserIssueEvent | None = None,
+    ) -> None:
+        if candidate_recorder is not None:
+            candidate_recorder.record_candidate(
+                reader_role="live_constraints",
+                family="live_constraint_events",
+                proposal_index=proposal_index,
+                raw_proposal=raw,
+                mechanical_state=state,
+                mechanical_reason=reason,
+                event=event,
+            )
+
+    for proposal_index, item in enumerate(raw_items):
         mode = coerce_str(item.get("mode")).strip().lower()
         kind = coerce_str(item.get("kind")).strip().lower()
         kind_ambiguity = bool(item.get("kind_ambiguity", False))
 
         if kind not in VALID_KINDS:
             dropped_invalid_kind += 1
+            record(
+                proposal_index,
+                item,
+                "invalid_evidence",
+                "candidate_kind_is_invalid",
+            )
             continue
 
         if mode == "span":
@@ -301,9 +347,21 @@ def extract_live_constraints(
             turn_text = turn_map.get(turn_index)
             if turn_text is None:
                 dropped_invalid_turn += 1
+                record(
+                    proposal_index,
+                    item,
+                    "not_supported_by_source",
+                    "candidate_user_turn_not_found",
+                )
                 continue
             if not text:
                 dropped_not_substring += 1
+                record(
+                    proposal_index,
+                    item,
+                    "not_supported_by_source",
+                    "candidate_quote_is_missing",
+                )
                 continue
 
             event = _emit_span_event(
@@ -315,9 +373,22 @@ def extract_live_constraints(
             )
             if event is None:
                 dropped_not_substring += 1
+                record(
+                    proposal_index,
+                    item,
+                    "not_supported_by_source",
+                    "candidate_quote_not_found_in_source_turn",
+                )
                 continue
             validated.append(event)
             span_mode_count += 1
+            record(
+                proposal_index,
+                item,
+                "validated",
+                "exact_source_and_contract_validation_passed",
+                event,
+            )
 
         elif mode == "derivation":
             label = coerce_str(item.get("text")).strip()
@@ -327,9 +398,13 @@ def extract_live_constraints(
 
             # Per-ref validation: keep refs where (a) turn_index is a user
             # turn, (b) span_excerpt substring-validates on that turn.
-            valid_entries: list[tuple[int, str, str, int]] = []  # (turn_index, turn_text, matched, start_char)
-            for ref in raw_refs:
+            valid_entries: list[tuple[int, str, int]] = []
+            component_rejections: list[str] = []
+            for ref_index, ref in enumerate(raw_refs, start=1):
                 if not isinstance(ref, dict):
+                    component_rejections.append(
+                        f"component_{ref_index}:invalid_shape"
+                    )
                     continue
                 ref_turn_val = ref.get("turn_index")
                 try:
@@ -338,24 +413,49 @@ def extract_live_constraints(
                     ref_turn = -1
                 ref_text = turn_map.get(ref_turn)
                 if ref_text is None:
+                    component_rejections.append(
+                        f"component_{ref_index}:invalid_user_turn"
+                    )
                     continue
                 excerpt = coerce_str(ref.get("span_excerpt")).strip()
                 if not excerpt:
+                    component_rejections.append(
+                        f"component_{ref_index}:missing_excerpt"
+                    )
                     continue
                 located = _locate_span(ref_text, excerpt)
                 if located is None:
+                    component_rejections.append(
+                        f"component_{ref_index}:excerpt_not_found"
+                    )
                     continue
                 matched, start_char = located
-                valid_entries.append((ref_turn, ref_text, matched, start_char))
+                valid_entries.append((ref_turn, matched, start_char))
 
             if not valid_entries:
                 dropped_derivation_no_valid_excerpt += 1
+                rejected_derivations.append(
+                    {
+                        "label": label,
+                        "kind": kind,
+                        "routing_eligible": False,
+                        "reasons": tuple(component_rejections)
+                        or ("no_component_evidence",),
+                    }
+                )
+                record(
+                    proposal_index,
+                    item,
+                    "not_supported_by_source",
+                    ";".join(component_rejections) or "no_component_evidence",
+                )
                 continue
 
             # Single-turn derivation auto-downgrades to span mode: prevents
             # the LLM using derivation as a bypass for span validation.
-            if len(valid_entries) == 1:
-                turn_index, turn_text, matched, _start = valid_entries[0]
+            if len(raw_refs) == 1 and len(valid_entries) == 1:
+                turn_index, matched, _start = valid_entries[0]
+                turn_text = turn_map[turn_index]
                 event = _emit_span_event(
                     turn_index=turn_index,
                     turn_text=turn_text,
@@ -369,32 +469,96 @@ def extract_live_constraints(
                     continue
                 validated.append(event)
                 span_mode_count += 1
+                record(
+                    proposal_index,
+                    item,
+                    "validated",
+                    "single_valid_component_downgraded_to_exact_span",
+                    event,
+                )
                 continue
 
-            # Multi-turn derivation: emit DerivationProvenance.
-            turn_refs = tuple(
-                TurnRef(turn_index=entry[0], speaker="user") for entry in valid_entries
-            )
-            display_text = label or "(multi-turn live constraint)"
-            validated.append(
-                UserIssueEvent(
-                    issue_id=_derivation_issue_id(kind, display_text, turn_refs),
-                    text=display_text,
-                    kind=kind,
-                    status="active",
-                    provenance=DerivationProvenance(
-                        turn_refs=turn_refs,
-                        source_object_ids=(),
-                        note="live_constraints_specialist",
-                    ),
-                    introduced_at_turn=valid_entries[0][0],
-                    kind_ambiguity=kind_ambiguity,
+            # Multi-turn derivation: retain every exact source component.
+            # Missing or structurally insufficient component evidence keeps
+            # the semantic proposal inspectable but blocks routing.
+            distinct_turn_indexes = tuple(dict.fromkeys(entry[0] for entry in valid_entries))
+            if len(distinct_turn_indexes) < 2:
+                component_rejections.append(
+                    "derivation_requires_two_distinct_user_turns"
                 )
+            display_text = label or "(multi-turn live constraint)"
+            derivation_id = _derivation_issue_id(
+                kind,
+                display_text,
+                tuple(valid_entries),
             )
+            turn_refs = tuple(
+                TurnRef(turn_index=turn_index, speaker="user")
+                for turn_index in distinct_turn_indexes
+            )
+            components = tuple(
+                DerivationComponent(
+                    component_id=_derivation_component_id(
+                        turn_index=turn_index,
+                        matched=matched,
+                        start_char=start_char,
+                    ),
+                    quote=matched,
+                    span_ref=SpanRef(
+                        turn_index=turn_index,
+                        speaker="user",
+                        start_char=start_char,
+                        end_char=start_char + len(matched),
+                    ),
+                )
+                for turn_index, matched, start_char in valid_entries
+            )
+            rejection_reasons = tuple(component_rejections)
+            event = UserIssueEvent(
+                issue_id=derivation_id,
+                text=display_text,
+                kind=kind,
+                status="active",
+                provenance=DerivationProvenance(
+                    turn_refs=turn_refs,
+                    source_object_ids=(),
+                    note="live_constraints_specialist",
+                    derivation_id=derivation_id,
+                    components=components,
+                    rejection_reasons=rejection_reasons,
+                ),
+                introduced_at_turn=valid_entries[0][0],
+                kind_ambiguity=kind_ambiguity,
+            )
+            validated.append(event)
             derivation_mode_count += 1
+            if rejection_reasons:
+                incomplete_derivation_count += 1
+                rejected_derivations.append(
+                    {
+                        "derivation_id": derivation_id,
+                        "label": display_text,
+                        "kind": kind,
+                        "routing_eligible": False,
+                        "reasons": rejection_reasons,
+                    }
+                )
+            record(
+                proposal_index,
+                item,
+                "validated",
+                "validated_derivation_components_preserved",
+                event,
+            )
 
         else:
             dropped_invalid_mode += 1
+            record(
+                proposal_index,
+                item,
+                "invalid_evidence",
+                "candidate_provenance_mode_is_invalid",
+            )
             continue
 
     stats = _ValidationStats(
@@ -406,16 +570,19 @@ def extract_live_constraints(
         dropped_invalid_turn=dropped_invalid_turn,
         dropped_not_substring=dropped_not_substring,
         dropped_derivation_no_valid_excerpt=dropped_derivation_no_valid_excerpt,
+        incomplete_derivation_count=incomplete_derivation_count,
         dropped_invalid_mode=dropped_invalid_mode,
+        rejected_derivations=tuple(rejected_derivations),
     )
     _LOGGER.info(
         "live_constraints_extraction.completed raw=%d validated=%d "
         "span_mode=%d derivation_mode=%d dropped_kind=%d dropped_turn=%d "
-        "dropped_substring=%d dropped_derivation=%d dropped_mode=%d",
+        "dropped_substring=%d dropped_derivation=%d incomplete_derivation=%d "
+        "dropped_mode=%d",
         stats.raw_count, stats.validated_count,
         stats.span_mode_count, stats.derivation_mode_count,
         stats.dropped_invalid_kind, stats.dropped_invalid_turn,
         stats.dropped_not_substring, stats.dropped_derivation_no_valid_excerpt,
-        stats.dropped_invalid_mode,
+        stats.incomplete_derivation_count, stats.dropped_invalid_mode,
     )
     return validated, stats

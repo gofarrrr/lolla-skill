@@ -1,0 +1,606 @@
+{
+  "decision_work_projection": [
+    {
+      "contract_field": true,
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "question_initial_t1_09ff49bc978d",
+        "question_current_t7_af1d0d9d61c1"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "stance_t2_revision_00"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "user_pressure_correction_t4_27e7c5f46ffa",
+        "user_pressure_correction_t6_f410e138114c"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "dropped_thread_t4_assistant_d77890cb5788"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "live_constraint_t1_constraint_15ade3c59583",
+        "live_constraint_t1_constraint_004f9c473d09",
+        "live_constraint_t2_constraint_6eab79bcddcb",
+        "live_constraint_t5_concern_aaafa4eea7da",
+        "live_constraint_t8_constraint_6b1c0f33d86f"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": false,
+      "field_group": "conversation_process",
+      "field_name": "assistant_stance_trajectory",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "stance_t2_revision_00",
+        "stance_t2_commitment_01",
+        "stance_t7_condition_02",
+        "stance_t7_qualification_03",
+        "stance_t8_deferral_04"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "field_group": "conversation_process",
+      "field_name": "user_corrections_and_counter_pressure",
+      "grounding": "span",
+      "item_count": 2,
+      "item_ids": [
+        "user_pressure_correction_t4_27e7c5f46ffa",
+        "user_pressure_correction_t6_f410e138114c"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "status": "present_provisional"
+    }
+  ],
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 315,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3346,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.live_constraints",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3661
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 325,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3214,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.assistant_stances",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3539
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 111,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3340,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.dropped_threads",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3451
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 544,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 2986,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.joint_process",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3530
+      }
+    ]
+  },
+  "non_claims": [
+    "shadow_is_not_live_lane_input",
+    "shadow_does_not_modify_graph_routing",
+    "shadow_is_not_decision_quality_proof",
+    "shadow_is_not_human_validation",
+    "question_change_is_not_user_mind_change",
+    "missing_event_is_not_proof_of_real_world_absence"
+  ],
+  "schema_version": "lolla.core_semantic_shadow.v0",
+  "semantic_events": {
+    "assistant_stance_events": [
+      {
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 487,
+            "speaker": "assistant",
+            "start_char": 412,
+            "turn_index": 2
+          }
+        },
+        "relation_ambiguity": false,
+        "speaker": "assistant",
+        "stance": "revision",
+        "stance_id": "stance_t2_revision_00",
+        "text": "You don't have a pipeline; you have a network that might become a pipeline.",
+        "turn_index": 2
+      },
+      {
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 1157,
+            "speaker": "assistant",
+            "start_char": 1003,
+            "turn_index": 2
+          }
+        },
+        "relation_ambiguity": false,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t2_commitment_01",
+        "text": "A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days of your last day.",
+        "turn_index": 2
+      },
+      {
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 457,
+            "speaker": "assistant",
+            "start_char": 303,
+            "turn_index": 7
+          }
+        },
+        "relation_ambiguity": false,
+        "speaker": "assistant",
+        "stance": "condition",
+        "stance_id": "stance_t7_condition_02",
+        "text": "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months.",
+        "turn_index": 7
+      },
+      {
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 610,
+            "speaker": "assistant",
+            "start_char": 508,
+            "turn_index": 7
+          }
+        },
+        "relation_ambiguity": false,
+        "speaker": "assistant",
+        "stance": "qualification",
+        "stance_id": "stance_t7_qualification_03",
+        "text": "Don't push back just because you're nervous. Push back only if the fundamentals haven't come together.",
+        "turn_index": 7
+      },
+      {
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 465,
+            "speaker": "assistant",
+            "start_char": 362,
+            "turn_index": 8
+          }
+        },
+        "relation_ambiguity": false,
+        "speaker": "assistant",
+        "stance": "deferral",
+        "stance_id": "stance_t8_deferral_04",
+        "text": "Come back in 4 weeks with results from those three things and we can build the actual launch plan then.",
+        "turn_index": 8
+      }
+    ],
+    "dropped_thread_events": [
+      {
+        "introduced_at_turn": 4,
+        "issue_id": "dropped_thread_t4_assistant_d77890cb5788",
+        "kind": "open_loop",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 532,
+            "speaker": "assistant",
+            "start_char": 407,
+            "turn_index": 4
+          }
+        },
+        "resolved_at_turn": null,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "The conversation shifted to evaluating the three options for launching the consulting practice.",
+        "text": "The risk: your current employer may notice you're spending evening hours business-developing, which creates its own problems."
+      }
+    ],
+    "evidence_boundary_events": [],
+    "live_constraint_events": [
+      {
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_15ade3c59583",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 197,
+            "speaker": "user",
+            "start_char": 176,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "status": "active",
+        "superseded_by": null,
+        "text": "8 months runway saved"
+      },
+      {
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_004f9c473d09",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 244,
+            "speaker": "user",
+            "start_char": 199,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "status": "active",
+        "superseded_by": null,
+        "text": "Plan is to go independent starting in 6 weeks"
+      },
+      {
+        "introduced_at_turn": 2,
+        "issue_id": "live_constraint_t2_constraint_6eab79bcddcb",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 214,
+            "speaker": "user",
+            "start_char": 165,
+            "turn_index": 2
+          }
+        },
+        "resolved_at_turn": null,
+        "status": "active",
+        "superseded_by": null,
+        "text": "None of them have committed to actual engagements"
+      },
+      {
+        "introduced_at_turn": 5,
+        "issue_id": "live_constraint_t5_concern_aaafa4eea7da",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 128,
+            "speaker": "user",
+            "start_char": 46,
+            "turn_index": 5
+          }
+        },
+        "resolved_at_turn": null,
+        "status": "active",
+        "superseded_by": null,
+        "text": "Hasn't been part of the runway discussion in specifics — I've kept that in my head"
+      },
+      {
+        "introduced_at_turn": 8,
+        "issue_id": "live_constraint_t8_constraint_6b1c0f33d86f",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 126,
+            "speaker": "user",
+            "start_char": 50,
+            "turn_index": 8
+          }
+        },
+        "resolved_at_turn": null,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I'll do the three things over the next 4 weeks and decide at that checkpoint"
+      }
+    ],
+    "option_events": [],
+    "question_events": [
+      {
+        "changes_prior_question": false,
+        "event_id": "question_initial_t1_09ff49bc978d",
+        "family": "question",
+        "grounding": "span",
+        "kind": "initial",
+        "provisional": true,
+        "question_function": "other",
+        "source": {
+          "end_char": 292,
+          "quote": "Can you help me think through the launch plan?",
+          "speaker": "user",
+          "start_char": 246,
+          "turn_index": 1
+        }
+      },
+      {
+        "changes_prior_question": true,
+        "event_id": "question_current_t7_af1d0d9d61c1",
+        "family": "question",
+        "grounding": "span",
+        "kind": "current",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "source": {
+          "end_char": 125,
+          "quote": "should I still launch in 6 weeks, or should I push back.",
+          "speaker": "user",
+          "start_char": 69,
+          "turn_index": 7
+        }
+      }
+    ],
+    "user_pressure_events": [
+      {
+        "event_id": "user_pressure_correction_t4_27e7c5f46ffa",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 54,
+          "quote": "The conversations aren't a pipeline.",
+          "speaker": "user",
+          "start_char": 18,
+          "turn_index": 4
+        }
+      },
+      {
+        "event_id": "user_pressure_correction_t6_f410e138114c",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 61,
+          "quote": "You're right. I'll have that conversation this weekend.",
+          "speaker": "user",
+          "start_char": 6,
+          "turn_index": 6
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "e7e8c7f0cc0ee6d3c6a66a55078896f54ca1bce0e71d086b2c031911ca9392eb",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 16
+  },
+  "validation": {
+    "joint_process": {
+      "evidence_boundary_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 2,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 0
+      },
+      "option_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 4,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 0
+      },
+      "question_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      },
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 2,
+        "truncated_count": 0,
+        "validated_count": 2
+      }
+    },
+    "specialists": {
+      "assistant_stances": {
+        "dropped_invalid_relation": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 5,
+        "validated_count": 5
+      },
+      "dropped_threads": {
+        "assistant_raised_count": 1,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_speaker": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "dropped_speaker_mismatch": 0,
+        "raw_count": 1,
+        "user_raised_count": 0,
+        "validated_count": 1
+      },
+      "live_constraints": {
+        "derivation_mode_count": 0,
+        "dropped_derivation_no_valid_excerpt": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_mode": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 5,
+        "span_mode_count": 5,
+        "validated_count": 5
+      }
+    }
+  }
+}

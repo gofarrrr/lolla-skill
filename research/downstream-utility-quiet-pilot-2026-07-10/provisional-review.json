@@ -1,0 +1,80 @@
+{
+  "schema_version": "lolla.downstream_utility_provisional_review.v0",
+  "status": "codex_assisted_provisional_blind_then_revealed",
+  "human_validated": false,
+  "ground_truth": false,
+  "reviewer_type": "codex",
+  "model_calls_for_review": 0,
+  "review_order": [
+    "blind_outputs_reviewed_without_arm_key",
+    "blind_read_recorded_as_B_better_calibrated_without_material_action_change",
+    "arm_key_revealed",
+    "arm_specific_interpretation_recorded"
+  ],
+  "case_id": "user-has-plan-consulting-launch",
+  "blind_assessment": {
+    "red_lines": {
+      "A": "partial_pass_minor_external_market_assertion",
+      "B": "pass"
+    },
+    "source_fidelity": {
+      "A": "partly_adequate",
+      "B": "adequate"
+    },
+    "same_likely_next_action": true,
+    "material_action_winner": "none",
+    "calibration_winner": "B",
+    "summary": "Both answers preserved the six-week conditional launch, spouse-specific runway alignment, concrete network tests, four-week checkpoint, and fractional bridge as an option. B more completely retracted unsupported conversion, timing, and retainer precision while staying compact.",
+    "minor_differences": [
+      "A qualified only the fractional compensation range and introduced an external claim about market-rate variation.",
+      "B qualified conversion probabilities, first-engagement timing, and retainer ranges using only source-visible evidence boundaries.",
+      "B explicitly kept fractional work as an option to probe rather than a likely fallback.",
+      "B used 448 completion tokens versus A's 435, a three-percent difference rather than meaningful public bloat."
+    ]
+  },
+  "revealed_mapping": {
+    "A": "strong_reconsideration_control",
+    "B": "lolla_pressure_treatment"
+  },
+  "arm_assessment": {
+    "control": {
+      "material_actionable_delta": "small_calibration_only",
+      "useful_friction": "partial",
+      "noisy_friction": "minor_external_market_assertion",
+      "correct_standdown": true,
+      "completion_tokens": 435
+    },
+    "treatment": {
+      "material_actionable_delta": "small_calibration_only",
+      "unique_delta_beyond_control": "more_complete_source_bound_retraction_of_unsupported_numeric_authority",
+      "useful_friction": "present",
+      "noisy_friction": "absent",
+      "correct_standdown": true,
+      "public_bloat": "absent",
+      "completion_tokens": 448
+    }
+  },
+  "pilot_decision": {
+    "label": "quiet_case_treatment_advantage_candidate",
+    "quiet_case_success_rule_passed_provisionally": true,
+    "reason": "Treatment preserved the existing action and useful core, made only two small calibration corrections, avoided public machinery, and more completely removed unsupported numerical authority than control.",
+    "same_case_repeat_authorized": false,
+    "runtime_change_authorized": false,
+    "semantic_kernel_integration_authorized": false,
+    "human_review_required": true
+  },
+  "interpretation": [
+    "Lolla pressure may add value as calibration and restraint even when it should not change the user's action.",
+    "The pressure packet did not force a model parade, checklist, new decision tree, or wholesale rewrite.",
+    "This is one sample and a Codex-assisted provisional read; it is not evidence of reliable stand-down behavior.",
+    "The positive pilot and quiet pilot together suggest that the next product target is not more extraction recall but discriminating when pressure is uniquely useful and when it should stay small."
+  ],
+  "next_gate": "freeze_a_non_obvious_positive_case_or_pause_calls_for_exact_human_review",
+  "non_claims": [
+    "not_human_review",
+    "not_ground_truth",
+    "not_product_proof",
+    "not_runtime_integration_authority",
+    "not_reliable_standdown_rate"
+  ]
+}

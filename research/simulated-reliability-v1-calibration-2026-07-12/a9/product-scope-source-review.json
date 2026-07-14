@@ -1,0 +1,38 @@
+{
+  "schema_version": "lolla.simulated_reliability_case_source_review.v1",
+  "status": "product_scope_sentinel_passed",
+  "run_id": "lolla-simulated-reliability-v1-calibration-a9",
+  "case_id": "amb1-case01-product-scope",
+  "execution": {
+    "status": "complete",
+    "provider_requests": 4,
+    "automatic_retries": 0,
+    "provider_reported_cost_usd": 0.148071,
+    "pressure_arms_called": 0,
+    "transcript_control_called": true
+  },
+  "source_review": {
+    "starting_position": "supported: conflict between Northline learning/relationship value and reliability plus smaller-customer commitments",
+    "current_position": "supported: bounded discovery, no build commitment, parallel reliability definition, later decision",
+    "qualification": "supported: contact loss, Lina learning constraint, and Northline interpretation remain active concerns",
+    "target_mechanism": "counterpressure_acknowledged_not_integrated",
+    "target_user_process_status": "unresolved",
+    "target_answer_coverage": "operationalized",
+    "target_assistant_evidence": ["assistant-turn-007"],
+    "target_routing_disposition": "preserve_no_route",
+    "target_assessment": "correct under the source-reviewed contract"
+  },
+  "restraint": {
+    "routing_nodes": 0,
+    "duplicate_pressure_avoided": true,
+    "stand_down_was_source_defensible": true
+  },
+  "receipt_projection_issue": {
+    "finding": "The compiler serialized all non-routed hypothesis states as present, including resolved and not_observed rows.",
+    "impact": "receipt clarity only; model interpretation and routing projection were correct",
+    "provider_free_fix": "serialize the validated provider-authored pattern_state directly",
+    "recompile_result": "resolved and not_observed now retain not_applicable; unresolved covered pressure retains present; routing remains empty"
+  },
+  "control_output_note": "The transcript-only second pass remained grounded and operationalized the same two concerns, but its polished confidence is not evidence of reasoning quality or pressure value.",
+  "decision": "Allow quiet and creative calibration sentinels under a fresh contract containing only the receipt projection correction. Transfer remains unauthorized pending batch review."
+}

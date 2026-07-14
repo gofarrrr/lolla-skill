@@ -1,0 +1,36 @@
+{
+  "schema_version": "lolla.independent_phase5_role_extraction_probe_contract.v1",
+  "status": "frozen_before_at_most_six_no_retry_calls",
+  "run_id": "independent-phase5-role-extraction-probe-2026-07-12",
+  "jobs": [
+    {
+      "case_id": "phase5-independent-useful-retailer-pilot",
+      "packet_path": "research/independent-phase5-useful-role-case-2026-07-12/position-endpoint.json",
+      "packet_sha256": "8bf4926cc796979be821c417a438f7f730acf11bcf479ef364541649a1d50127",
+      "target_report_path": "research/independent-phase5-useful-role-case-2026-07-12/target-report.json",
+      "target_report_sha256": "0c9bba206dfafb60be391347f3055ef3aeff1861a4da5105e3074fce2b23d1bc",
+      "request_contracts": {
+        "starting": {"system_prompt_sha256":"0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982","user_prompt_sha256":"4fd5a18bab900d1752fa185471395bd1cc5916ae4385b3548f6fb720c30700f4","response_schema_sha256":"76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd"},
+        "current_qualification": {"system_prompt_sha256":"f2027471e628f214922969d1441f358c12950f3e92594ce9a6bc5b37d08f7653","user_prompt_sha256":"9a427dd0e0600ff0c529f58c64357abef569fcb84a2b2d5cc0b19fbc51a8844e","response_schema_sha256":"02610b49fea4d01e798b87e3948768efdeb02ff69213b198d18a4c9690ad5cb1"},
+        "relation_response_schema_sha256":"e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3"
+      }
+    },
+    {
+      "case_id": "phase5-independent-quiet-research-meeting",
+      "packet_path": "research/independent-phase5-quiet-role-case-2026-07-12/position-endpoint.json",
+      "packet_sha256": "b018d3ddad7c27f6e9fcef6f2fb6656287c682be52b795d9bc70a9e12b5e6453",
+      "target_report_path": "research/independent-phase5-quiet-role-case-2026-07-12/target-report.json",
+      "target_report_sha256": "621dd395ec08129939c74eed5696bc92ca8def9f62d8e19e4014b2ab41bdf57a",
+      "request_contracts": {
+        "starting": {"system_prompt_sha256":"0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982","user_prompt_sha256":"505abdd827528e226f33a55876c4a0b87a145838e9d4c9f95639894f2655691e","response_schema_sha256":"76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd"},
+        "current_qualification": {"system_prompt_sha256":"f2027471e628f214922969d1441f358c12950f3e92594ce9a6bc5b37d08f7653","user_prompt_sha256":"9dc59b0c50674c142805245d36d12fb07a9f5a7b6a7b8ca9bbdc7011aecfb473","response_schema_sha256":"02610b49fea4d01e798b87e3948768efdeb02ff69213b198d18a4c9690ad5cb1"},
+        "relation_response_schema_sha256":"e6b716f15eb5bbbd49d0d66233253b7d912ffe62e87e19bec56335aa11d206e3"
+      }
+    }
+  ],
+  "model_route": {"model":"deepseek/deepseek-v4-flash","provider_slug":"alibaba","provider_display_name":"Alibaba","pricing_per_token":{"prompt":0.00000007,"completion":0.00000028}},
+  "frozen_inputs": [{"path":"docs/evals/independent-phase5-case-targets-v1.json","sha256":"84dec508fbaacad78429c008b86458cf8a0a1f4f2ce298245e627cffeda750a4"}],
+  "call_configuration": {"endpoint":"https://openrouter.ai/api/v1/chat/completions","wire_mode":"strict_json_schema","temperature":0.0,"seed":0,"reasoning_enabled":false,"max_output_tokens":1600,"provider_timeout_seconds":90,"require_supported_parameters":true,"allow_provider_fallbacks":false,"automatic_retries":0,"response_healing":false,"parallel_calls":false},
+  "budget": {"maximum_provider_calls":6,"maximum_estimated_cost_usd":0.02,"automatic_retries":0,"semantic_retries":0,"fallback_models":0,"evaluator_calls":0,"embedding_calls":0,"graph_calls":0,"pipeline_calls":0,"runtime_calls":0},
+  "boundary": {"independent_synthetic_holdouts":true,"source_targets_excluded_from_provider":true,"deterministic_semantic_gate":false,"semantic_repair":false,"graph_or_runtime_authorized":false,"production_authorized":false}
+}

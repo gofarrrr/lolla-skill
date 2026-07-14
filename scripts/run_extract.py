@@ -16,10 +16,12 @@ critique_request compatibility fields.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 
@@ -105,6 +107,9 @@ from system_b.boundary_provider import load_boundary_client_from_env  # noqa: E4
 from system_b.capture_adequacy import build_capture_adequacy  # noqa: E402
 from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 from system_b.text_matching import find_substring_tolerant  # noqa: E402
+
+
+EXTRACTION_CALL_CUSTODY_SCHEMA_VERSION = "lolla.extraction_call_custody.v0"
 
 
 # ---------------------------------------------------------------------------
@@ -218,6 +223,45 @@ def _truncate_conversation(text: str) -> tuple[str, dict]:
         "keep_last_turns": KEEP_LAST_TURNS,
         "omitted_turns": omitted,
     }
+
+
+def _write_conversation_processing_view(
+    *,
+    conversation_path: Path,
+    authoritative_text: str,
+    processing_text: str,
+    truncation_info: dict,
+) -> dict:
+    """Persist the bounded extraction view without replacing source custody."""
+
+    stem = conversation_path.stem
+    base = stem[: -len("_conversation")] if stem.endswith("_conversation") else stem
+    view_path = conversation_path.with_name(f"{base}_conversation_processing_view.txt")
+    metadata_path = conversation_path.with_name(f"{base}_conversation_processing_view.json")
+    partial = bool(truncation_info.get("truncation_applied"))
+    metadata = {
+        "schema_version": "lolla.conversation_processing_view.v1",
+        "status": "partial" if partial else "full",
+        "authoritative_artifact": "conversation.txt",
+        "processing_artifact": "conversation_processing_view.txt",
+        "authoritative_conversation_preserved": True,
+        "processing_view_is_authoritative": False,
+        "processing_strategy": "first_n_plus_last_n" if partial else "full",
+        "authoritative_sha256": hashlib.sha256(
+            authoritative_text.encode("utf-8")
+        ).hexdigest(),
+        "processing_sha256": hashlib.sha256(processing_text.encode("utf-8")).hexdigest(),
+        "authoritative_char_length": len(authoritative_text),
+        "processing_char_length": len(processing_text),
+        "omitted_turn_count": int(truncation_info.get("omitted_turns", 0) or 0),
+        "omission_metadata": dict(truncation_info) if partial else {"truncation_applied": False},
+    }
+    view_path.write_text(processing_text, encoding="utf-8")
+    metadata_path.write_text(
+        json.dumps(metadata, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return metadata
 
 
 # ---------------------------------------------------------------------------
@@ -579,6 +623,147 @@ def _emit_result(
     print(output_text)
 
 
+def _prepare_output_parent(output_file: str | None) -> str | None:
+    """Make output persistence ready before any provider call.
+
+    Returning an error string keeps the failure observable on stdout without
+    attempting to write through the same invalid path.
+    """
+
+    if not output_file:
+        return None
+    path = Path(output_file)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        return f"Unable to prepare output directory {path.parent}: {exc}"
+    if path.exists() and path.is_dir():
+        return f"Output file path is a directory: {path}"
+    return None
+
+
+def _call_record_payloads(client: object) -> list[dict]:
+    records: list[dict] = []
+    for record in getattr(client, "call_log", []) or []:
+        if isinstance(record, dict):
+            records.append(dict(record))
+            continue
+        to_dict = getattr(record, "to_dict", None)
+        if callable(to_dict):
+            value = to_dict()
+            if isinstance(value, dict):
+                records.append(value)
+    return records
+
+
+def _not_attempted_call_custody(*, run_id: str, terminal_status: str) -> dict:
+    return {
+        "schema_version": EXTRACTION_CALL_CUSTODY_SCHEMA_VERSION,
+        "run_id": run_id,
+        "call_attempted": False,
+        "sidecar_persisted": False,
+        "call_record_persisted": False,
+        "recorded_call_count": 0,
+        "admissible_extraction": False,
+        "terminal_status": terminal_status,
+        "usage_evidence_state": "not_applicable_no_call",
+        "sidecar_path": "",
+        "failure_reason": "",
+    }
+
+
+def _persist_extraction_call_sidecar(
+    client: object,
+    *,
+    run_id: str,
+    output_file: str | None,
+    terminal_status: str,
+    admissible_extraction: bool,
+) -> dict:
+    """Atomically persist provider-call evidence and describe its custody.
+
+    This function judges no semantic field. It records only whether a call was
+    attempted, whether a corresponding record survived, and whether the caller
+    has reached an admissible extraction terminal state.
+    """
+
+    active_run_id = run_id or infer_run_id_from_lolla_path(output_file)
+    records = _call_record_payloads(client)
+    non_attempt_statuses = {"not_called", "missing_api_key", "budget_blocked_preflight"}
+    provider_attempted = any(
+        record.get("provider_attempted") is True
+        or str(record.get("status") or "") not in non_attempt_statuses
+        for record in records
+    )
+    custody = {
+        "schema_version": EXTRACTION_CALL_CUSTODY_SCHEMA_VERSION,
+        "run_id": active_run_id,
+        "call_attempted": provider_attempted,
+        "sidecar_persisted": False,
+        "call_record_persisted": False,
+        "recorded_call_count": len(records),
+        "admissible_extraction": bool(admissible_extraction),
+        "terminal_status": terminal_status,
+        "usage_evidence_state": (
+            "recorded"
+            if provider_attempted and records
+            else "preflight_non_attempt_recorded"
+            if records
+            else "missing_after_attempt"
+        ),
+        "sidecar_path": "",
+        "failure_reason": "",
+    }
+    if not active_run_id:
+        custody["failure_reason"] = "missing_run_id"
+        return custody
+
+    from system_b.usage_summary import is_valid_run_id
+
+    if not is_valid_run_id(active_run_id):
+        custody["failure_reason"] = "invalid_run_id"
+        return custody
+
+    sidecar_path = Path(f"/tmp/lolla_{active_run_id}_extraction_calls.json")
+    custody["sidecar_path"] = str(sidecar_path)
+    temporary_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=sidecar_path.parent,
+            prefix=f".{sidecar_path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            json.dump(records, handle, indent=2)
+            handle.write("\n")
+            handle.flush()
+            temporary_path = Path(handle.name)
+        temporary_path.replace(sidecar_path)
+    except OSError as exc:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)
+        custody["failure_reason"] = f"sidecar_write_failed:{type(exc).__name__}"
+        return custody
+
+    custody["sidecar_persisted"] = True
+    custody["call_record_persisted"] = bool(records)
+    return custody
+
+
+def _terminal_call_custody(
+    custody: dict,
+    *,
+    terminal_status: str,
+    admissible_extraction: bool,
+) -> dict:
+    finalized = dict(custody)
+    finalized["terminal_status"] = terminal_status
+    finalized["admissible_extraction"] = bool(admissible_extraction)
+    return finalized
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -601,6 +786,11 @@ def main() -> int:
         help="Write output JSON to this file instead of stdout",
     )
     args = parser.parse_args()
+
+    output_path_error = _prepare_output_parent(args.output_file)
+    if output_path_error:
+        print(json.dumps({"status": "error", "error": output_path_error}))
+        return 1
 
     # Load env: explicit flag → project .claude/lolla.env → repo .env → ~/.config/lolla/.env
     if args.env_file:
@@ -647,7 +837,8 @@ def main() -> int:
         )
         return 1
 
-    conversation_text = conv_path.read_text(encoding="utf-8")
+    authoritative_conversation_text = conv_path.read_text(encoding="utf-8")
+    conversation_text = authoritative_conversation_text
     if not conversation_text.strip():
         _emit_result(
             {"status": "error", "error": "Empty conversation file"},
@@ -678,6 +869,10 @@ def main() -> int:
         _emit_result(
             {
                 "status": "capture_critical",
+                "provider_call_custody": _not_attempted_call_custody(
+                    run_id=run_id_for_guard,
+                    terminal_status="capture_rejected_before_provider",
+                ),
                 "decline_reason": (
                     "Conversation capture is critically degraded — more than half "
                     "of the assistant turns declared in the transcript header are "
@@ -693,20 +888,27 @@ def main() -> int:
         )
         return 0
 
-    # Truncate if needed. If truncation fires, merge diagnostic info into
-    # capture_manifest so run_pipeline.py / run_health / Step 4 chat can
-    # surface that context was dropped.
+    # Build a bounded extraction view when needed. The source transcript stays
+    # untouched and authoritative; processing omissions are recorded on the
+    # separate derivative rather than being mislabeled as capture loss.
     conversation_text, truncation_info = _truncate_conversation(conversation_text)
+    processing_view = _write_conversation_processing_view(
+        conversation_path=conv_path,
+        authoritative_text=authoritative_conversation_text,
+        processing_text=conversation_text,
+        truncation_info=truncation_info,
+    )
+    capture_result["conversation_processing_view"] = processing_view
     if truncation_info.get("truncation_applied"):
-        capture_result["capture_manifest"].update(truncation_info)
         capture_result["capture_warnings"].append(
-            f"Conversation truncated: {truncation_info['omitted_turns']} middle "
-            f"turns omitted ({truncation_info['original_char_length']} → "
-            f"{truncation_info['truncated_char_length']} chars). Audit will run "
-            f"on first {KEEP_FIRST_TURNS} + last {KEEP_LAST_TURNS} turns only."
+            f"Extraction processing view is partial: {truncation_info['omitted_turns']} middle "
+            f"turns omitted from the bounded extraction call "
+            f"({truncation_info['original_char_length']} → "
+            f"{truncation_info['truncated_char_length']} chars). The complete "
+            "authoritative conversation remains preserved separately."
         )
         capture_result["capture_adequacy"] = build_capture_adequacy(
-            conversation_text=conversation_text,
+            conversation_text=authoritative_conversation_text,
             run_id=run_id_for_guard,
             capture_manifest=capture_result["capture_manifest"],
             capture_health=capture_result["capture_health"],
@@ -718,7 +920,14 @@ def main() -> int:
         client = load_boundary_client_from_env("openrouter")
     except Exception as exc:
         _emit_result(
-            {"status": "error", "error": f"Failed to initialize OpenRouter client: {exc}"},
+            {
+                "status": "error",
+                "error": f"Failed to initialize OpenRouter client: {exc}",
+                "provider_call_custody": _not_attempted_call_custody(
+                    run_id=run_id_for_guard,
+                    terminal_status="provider_client_initialization_failed",
+                ),
+            },
             output_file=args.output_file,
             capture_result=capture_result,
         )
@@ -731,12 +940,34 @@ def main() -> int:
             EXTRACTION_SYSTEM_PROMPT, user_prompt, stage="extraction"
         )
     except Exception as exc:
+        call_custody = _persist_extraction_call_sidecar(
+            client,
+            run_id=run_id_for_guard,
+            output_file=args.output_file,
+            terminal_status="initial_provider_call_failed",
+            admissible_extraction=False,
+        )
         _emit_result(
-            {"status": "error", "error": f"OpenRouter call failed: {exc}"},
+            {
+                "status": "error",
+                "error": f"OpenRouter call failed: {exc}",
+                "provider_call_custody": call_custody,
+            },
             output_file=args.output_file,
             capture_result=capture_result,
         )
         return 1
+
+    # Persist immediately after the provider boundary returns, before semantic
+    # validation can take an early exit. This is what keeps an empty or
+    # schema-invalid response from masquerading as a zero-call run.
+    call_custody = _persist_extraction_call_sidecar(
+        client,
+        run_id=run_id_for_guard,
+        output_file=args.output_file,
+        terminal_status="initial_call_persisted_pending_validation",
+        admissible_extraction=False,
+    )
 
     # Check if strategic
     if not payload.get("is_strategic", True):
@@ -744,6 +975,11 @@ def main() -> int:
             {
                 "status": "not_strategic",
                 "decline_reason": payload.get("decline_reason", "Not a strategic conversation"),
+                "provider_call_custody": _terminal_call_custody(
+                    call_custody,
+                    terminal_status="not_strategic",
+                    admissible_extraction=False,
+                ),
             },
             output_file=args.output_file,
             capture_result=capture_result,
@@ -759,6 +995,11 @@ def main() -> int:
                 "status": "error",
                 "error": f"Extraction missing required fields: {missing}",
                 "raw_extraction": payload,
+                "provider_call_custody": _terminal_call_custody(
+                    call_custody,
+                    terminal_status="missing_required_fields",
+                    admissible_extraction=False,
+                ),
             },
             output_file=args.output_file,
             capture_result=capture_result,
@@ -792,6 +1033,13 @@ def main() -> int:
         except Exception as exc:
             capture_warnings.append(f"Quote-fabrication retry failed: {exc}")
             retry_payload = None
+        call_custody = _persist_extraction_call_sidecar(
+            client,
+            run_id=run_id_for_guard,
+            output_file=args.output_file,
+            terminal_status="quote_repair_call_persisted_pending_validation",
+            admissible_extraction=False,
+        )
 
         if (retry_payload
                 and retry_payload.get("is_strategic", True)
@@ -813,6 +1061,12 @@ def main() -> int:
             f"{' after retry' if retry_attempted else ''} "
             f"(not literal substrings of the transcript)"
         )
+
+    # Persist the exact source span returned by the tolerant matcher even when
+    # every passage passed. This canonicalizes harmless case/quote-delimiter
+    # drift back to the transcript and makes the stored receipt byte-literal,
+    # rather than merely source-grounded under the matcher.
+    payload["reasoning_passages"] = verified
 
     if initial_passage_count or retry_attempted:
         payload["_quote_validation"] = {
@@ -841,6 +1095,11 @@ def main() -> int:
         "extraction": payload,
         "audit_seed": audit_seed,
         "critique_request": critique_request,
+        "provider_call_custody": _terminal_call_custody(
+            call_custody,
+            terminal_status="admissible_extraction",
+            admissible_extraction=True,
+        ),
         **capture_result,
     }
 
@@ -850,43 +1109,6 @@ def main() -> int:
         print(f"Extraction written to {args.output_file}")
     else:
         print(output_text)
-
-    # Sidecar: write the client's call_log so run_pipeline.py can merge
-    # extraction's OpenRouter calls into the unified usage_summary. Without
-    # this bridge the extraction call is invisible to cost telemetry. The
-    # file path uses $LOLLA_RUN_ID (set by the SKILL preamble); falls back
-    # to deriving the run_id from the output_file path if unset.
-    try:
-        from system_b.usage_summary import is_valid_run_id
-
-        run_id = os.getenv("LOLLA_RUN_ID", "")
-        if not run_id and args.output_file:
-            run_id = infer_run_id_from_lolla_path(args.output_file)
-        if run_id:
-            if not is_valid_run_id(run_id):
-                # Refuse to interpolate a malformed run_id into a /tmp path.
-                # Printing the literal bytes lets the operator see what's
-                # wrong without us silently writing somewhere unexpected.
-                print(
-                    f"warning: refusing to write extraction sidecar — "
-                    f"run_id {run_id!r} contains characters outside "
-                    f"[A-Za-z0-9_-]",
-                    file=sys.stderr,
-                )
-            else:
-                sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
-                sidecar_path.write_text(
-                    json.dumps(
-                        [r.to_dict() for r in client.call_log],
-                        indent=2,
-                    ),
-                    encoding="utf-8",
-                )
-    except (OSError, ImportError) as exc:  # non-fatal: telemetry, not correctness
-        print(
-            f"warning: extraction call-log sidecar write failed: {exc}",
-            file=sys.stderr,
-        )
 
     return 0
 

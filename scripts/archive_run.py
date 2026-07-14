@@ -25,8 +25,10 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (20 core/optional):
-  conversation.txt, extraction.json, result.json, revised.txt, memo.md,
+Files archived (24 core/optional):
+  conversation.txt, conversation_processing_view.txt/.json, extraction.json,
+  provider_budget.json, result.json, constitutional_graph_survival_ledger.json,
+  revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
   v60_ledger.json, pre_step6_shadow_portfolio.json, pre_step6_private_table.json,
   pre_step6_private_table.md, pre_step6_private_table_ledger.json,
@@ -36,7 +38,7 @@ Files archived (20 core/optional):
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Generated archive artifacts:
-  agent_result.json — compact machine-readable lolla_agent_result.v1 handoff
+  agent_result.json — compact machine-readable lolla_agent_result.v2 handoff
   for agents and control systems.
   control_result.json — optional lolla_control_result.v1 wrapper generated
   only when control_input.json was supplied.
@@ -78,8 +80,12 @@ from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 # Files to archive, in order. Missing files are skipped.
 CORE_FILES = (
     "conversation.txt",
+    "conversation_processing_view.txt",
+    "conversation_processing_view.json",
     "extraction.json",
+    "provider_budget.json",
     "result.json",
+    "constitutional_graph_survival_ledger.json",
     "revised.txt",
     "memo.md",
     "memo_note.json",

@@ -1,0 +1,80 @@
+{
+  "additionalProperties": false,
+  "description": "Two-record chronological shard response for uncertainty_and_unresolved_state.",
+  "properties": {
+    "global_limitations": {
+      "maxLength": 700,
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "interpretation": {
+            "maxLength": 700,
+            "minLength": 1,
+            "type": "string"
+          },
+          "limitations": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "preservation_or_reopen_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear"
+            ],
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "pattern": "^e[0-9]{3}$",
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "interpretation",
+          "status",
+          "limitations",
+          "unresolved_evidence_ids",
+          "preservation_or_reopen_evidence_ids"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "mixed",
+        "unclear",
+        "not_found"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "records",
+    "global_limitations"
+  ],
+  "type": "object"
+}

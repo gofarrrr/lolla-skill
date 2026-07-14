@@ -160,6 +160,7 @@ if [ -n "$RECEIPT_FILE" ]; then
   sync_trusted_transcript_to_default
 fi
 
+python3 "$SKILL_DIR/scripts/finalize_constitutional_graph_survival_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
 python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
 python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
 sync_trusted_transcript_to_default

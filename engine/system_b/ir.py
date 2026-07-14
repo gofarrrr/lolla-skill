@@ -7,7 +7,7 @@ source provenance without changing lane prompts, routing, or extraction.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Literal, Mapping
+from typing import Any, Literal, Mapping, Union
 
 
 Speaker = Literal["user", "assistant"]
@@ -122,6 +122,45 @@ class SpanRef:
 
 
 @dataclass(frozen=True)
+class DerivationComponent:
+    """One exact source component used by a synthesized derivation.
+
+    The quote is deliberately retained alongside turn-relative offsets. This
+    lets a cold reader inspect the evidence without treating the synthesized
+    derivation label as though it were a literal source span.
+    """
+
+    component_id: str
+    quote: str
+    span_ref: SpanRef
+
+    def __post_init__(self) -> None:
+        if not self.component_id:
+            raise ValueError("DerivationComponent.component_id is required")
+        if not self.quote:
+            raise ValueError("DerivationComponent.quote is required")
+        if self.span_ref.end_char - self.span_ref.start_char != len(self.quote):
+            raise ValueError(
+                "DerivationComponent quote length must match its span offsets"
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "component_id": self.component_id,
+            "quote": self.quote,
+            "span_ref": self.span_ref.to_dict(),
+        }
+
+    @classmethod
+    def from_dict(cls, raw: dict[str, Any]) -> "DerivationComponent":
+        return cls(
+            component_id=raw["component_id"],
+            quote=raw["quote"],
+            span_ref=SpanRef.from_dict(raw["span_ref"]),
+        )
+
+
+@dataclass(frozen=True)
 class SpanProvenance:
     span_ref: SpanRef
     kind: Literal["span"] = "span"
@@ -172,15 +211,44 @@ class DerivationProvenance:
     turn_refs: tuple[TurnRef, ...] = ()
     source_object_ids: tuple[str, ...] = ()
     note: str = ""
+    derivation_id: str = ""
+    components: tuple[DerivationComponent, ...] = ()
+    rejection_reasons: tuple[str, ...] = ()
     kind: Literal["derivation"] = "derivation"
 
     def __post_init__(self) -> None:
         if self.kind != "derivation":
             raise ValueError("DerivationProvenance.kind must be 'derivation'")
-        if not self.turn_refs and not self.source_object_ids:
+        if not self.turn_refs and not self.source_object_ids and not self.components:
             raise ValueError(
-                "DerivationProvenance requires turn_refs or source_object_ids"
+                "DerivationProvenance requires turn_refs, source_object_ids, or components"
             )
+        component_ids = [component.component_id for component in self.components]
+        if len(component_ids) != len(set(component_ids)):
+            raise ValueError("DerivationProvenance component IDs must be unique")
+        declared_refs = {(ref.turn_index, ref.speaker) for ref in self.turn_refs}
+        component_refs = {
+            (component.span_ref.turn_index, component.span_ref.speaker)
+            for component in self.components
+        }
+        if self.turn_refs and not component_refs.issubset(declared_refs):
+            raise ValueError(
+                "DerivationProvenance components must reference declared turn_refs"
+            )
+
+    @property
+    def evidence_status(self) -> str:
+        """Mechanical custody status, never a semantic-quality judgment."""
+
+        if not self.components:
+            return "legacy_incomplete_provenance"
+        if len(self.components) < 2 or self.rejection_reasons:
+            return "component_evidence_incomplete"
+        return "component_evidence_complete"
+
+    @property
+    def routing_eligible(self) -> bool:
+        return self.evidence_status == "component_evidence_complete"
 
     def to_dict(self) -> dict[str, Any]:
         payload: dict[str, Any] = {
@@ -190,6 +258,14 @@ class DerivationProvenance:
         }
         if self.note:
             payload["note"] = self.note
+        if self.derivation_id:
+            payload["derivation_id"] = self.derivation_id
+        if self.components:
+            payload["components"] = [
+                component.to_dict() for component in self.components
+            ]
+        if self.rejection_reasons:
+            payload["rejection_reasons"] = list(self.rejection_reasons)
         return payload
 
     @classmethod
@@ -198,10 +274,18 @@ class DerivationProvenance:
             turn_refs=tuple(TurnRef.from_dict(r) for r in raw.get("turn_refs", ())),
             source_object_ids=tuple(raw.get("source_object_ids", ())),
             note=raw.get("note", ""),
+            derivation_id=raw.get("derivation_id", ""),
+            components=tuple(
+                DerivationComponent.from_dict(component)
+                for component in raw.get("components", ())
+            ),
+            rejection_reasons=tuple(raw.get("rejection_reasons", ())),
         )
 
 
-Provenance = SpanProvenance | TurnRefProvenance | DerivationProvenance
+# This alias is evaluated at import time even with postponed annotations.
+# ``typing.Union`` keeps archive/finalization compatible with Python 3.9.
+Provenance = Union[SpanProvenance, TurnRefProvenance, DerivationProvenance]
 
 
 def provenance_from_dict(raw: dict[str, Any]) -> Provenance:

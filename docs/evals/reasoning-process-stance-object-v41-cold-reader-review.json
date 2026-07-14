@@ -1,0 +1,89 @@
+{
+  "schema_version": "lolla.reasoning_process_stance_object_v41_cold_reader_review.v1",
+  "status": "provider_free_cold_reader_pass_one_fresh_career_transition_probe_may_be_frozen",
+  "date": "2026-07-12",
+  "review_scope": "atomic_stance_semantics_wire_compatibility_new_corpus_source_custody_regression_and_product_boundary",
+  "findings": [
+    {
+      "dimension": "semantic_continuity",
+      "status": "pass",
+      "finding": "V4.1 preserves v4's object-specific semantics. The provider wire changes from nested rows to index-aligned columns, while the compiler reconstructs the same component objects for review and custody."
+    },
+    {
+      "dimension": "provider_compatibility",
+      "status": "pass_as_provider_free_precondition_not_provider_proof",
+      "finding": "The position schema is 3,654 bytes at depth 9, matching the depth class of the previously served v3 schema. New fields add no oneOf, conditional, reference, pattern, uniqueItems, or nested object/array keywords."
+    },
+    {
+      "dimension": "parallel_column_risk",
+      "status": "pass_with_mandatory_semantic_review_limit",
+      "finding": "Code proves equal lengths and source-role membership but cannot prove semantic alignment across columns. An enum-valid expression permutation remains structurally admissible by design and must be caught source-first."
+    },
+    {
+      "dimension": "probabilistic_responsibility",
+      "status": "pass_with_source_review_limit",
+      "finding": "Gemini identifies objects, expressions, and semantic index alignment. The prompt keeps belief intensity, proposal action, outcome acceptance, and reported positions distinct."
+    },
+    {
+      "dimension": "deterministic_responsibility",
+      "status": "pass",
+      "finding": "Code validates fields, enums, equal bounded lengths, one alias per index, parent-role membership, duplicates, hashes, and terminal custody, then reconstructs components without semantic repair."
+    },
+    {
+      "dimension": "legacy_and_fresh_corpus",
+      "status": "pass",
+      "finding": "All 20 legacy reviewed fixtures and all three new reviewed endpoint fixtures compile with zero quarantine. All 60 legacy prompts plus three new prompts build; non-position interfaces remain byte-identical."
+    },
+    {
+      "dimension": "fresh_case_quality",
+      "status": "pass_as_synthetic_development_not_independent_gold",
+      "finding": "Each new case contains seven user-assistant pairs, reported positions, evolving user stance, mixed action-versus-acceptance objects, and a qualification capable of changing interpretation. Packets contain neither targets nor fixtures."
+    },
+    {
+      "dimension": "prospective_selection",
+      "status": "pass",
+      "finding": "Career transition was selected from three frozen cases by ascending SHA-256 of case_id before any provider call. Selection did not use protected semantics."
+    },
+    {
+      "dimension": "regression_and_custody",
+      "status": "pass",
+      "finding": "The full reasoning-process suite passes and the shared historical runner remains at its v3 frozen hash."
+    },
+    {
+      "dimension": "product_boundary",
+      "status": "pass",
+      "finding": "No evaluator, embedding, graph, global synthesis, runtime behavior, response healing, fallback, semantic retry, or closed-case repair is introduced."
+    }
+  ],
+  "decision": {
+    "provider_free_stance_object_v41_gate": "pass",
+    "documented_subset_compatibility_gate": "pass",
+    "adversarial_gate": "pass",
+    "reasoning_process_regression_test_count_before_review": 199,
+    "smallest_probe_case_id": "amb2-case01-career-transition",
+    "smallest_probe_view_kind": "position_and_decision_trajectory",
+    "smallest_probe_shard_kind": "position_endpoint_comparison",
+    "smallest_probe_focal_turn_indices": [1, 7],
+    "selection_rule": "ascending_sha256_of_case_id_take_first_after_all_cases_are_frozen",
+    "maximum_provider_calls": 1,
+    "same_case_repair_authorized": false,
+    "other_fresh_case_calls_authorized": false,
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false
+  },
+  "required_source_review_after_probe": [
+    "starting components preserve the two competing assessments without inventing a decision",
+    "current components separate leaning toward the trial action from conditional willingness to resign and join",
+    "qualification preserves both the untested post-fundraising pressure and the directional signal others may infer",
+    "all five columns are semantically aligned at every index",
+    "each source alias belongs to the stated temporal role and supports its reconstructed object and expression",
+    "trajectory does not promote the trial into a decision to leave or commitment to join",
+    "protected e061 meaning is present without the model seeing the protected fixture"
+  ],
+  "nonclaims": [
+    "Provider-free compatibility is not proof that Google will accept or serve the schema.",
+    "One probe cannot establish stability, transfer, product value, receipt quality, or trust.",
+    "Parallel columns improve schema compatibility but do not prove semantic alignment.",
+    "The three new cases are synthetic development evidence, not independent human gold."
+  ]
+}

@@ -1,0 +1,469 @@
+{
+  "artifact_root": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10",
+  "case_count": 3,
+  "contract_path": "/Users/izabela/Documents/Lolla/research/core-semantic-observation-contract-v1-2026-07-10/semantic-observation-contract.json",
+  "contract_status": "prospective_scaffold_not_ready_for_promotion",
+  "metrics": {
+    "audit_first_introduction": {
+      "ever_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "never_observation_ids": [],
+      "observation_count": 3,
+      "stable_observation_ids": [
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "weighted_recall": 0.7777777777777778
+    },
+    "audit_later_strengthening": {
+      "ever_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "never_observation_ids": [
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+      ],
+      "observation_count": 3,
+      "stable_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "weighted_recall": 0.6666666666666666
+    },
+    "audit_temporal_complete": {
+      "ever_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "never_observation_ids": [
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+      ],
+      "observation_count": 3,
+      "stable_observation_ids": [
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "weighted_recall": 0.4444444444444444
+    },
+    "reasoning_concept_acceptable_role": {
+      "ever_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "never_observation_ids": [],
+      "observation_count": 3,
+      "stable_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "weighted_recall": 1.0
+    },
+    "reasoning_concept_anywhere": {
+      "ever_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "never_observation_ids": [],
+      "observation_count": 3,
+      "stable_observation_ids": [
+        "case-02-multi-offer-career:pressure.family_joint_decision",
+        "case-08-oncologist-career-family:pressure.husband_conversation_not_real",
+        "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+      ],
+      "weighted_recall": 1.0
+    }
+  },
+  "non_claims": [
+    "reviewed_subset_is_not_full_corpus_quality",
+    "concept_anywhere_does_not_prove_acceptable_role",
+    "acceptable_role_does_not_prove_temporal_completeness",
+    "contract_scoring_does_not_change_prior_results"
+  ],
+  "observation_count": 3,
+  "per_case": [
+    {
+      "case_id": "case-02-multi-offer-career",
+      "observation_count": 1,
+      "runs": [
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-02-multi-offer-career/shadow-01.json",
+          "audit_complete_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "concept_acceptable_role_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "evidence_matches": {
+            "case-02-multi-offer-career:pressure.family_joint_decision": [
+              {
+                "acceptable_matching_families": [
+                  "user_pressure_events"
+                ],
+                "evidence_id": "first_joint_decision_frame_correction",
+                "matching_families": [
+                  "live_constraint_events",
+                  "user_pressure_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [
+                  "option_events"
+                ],
+                "evidence_id": "later_spouse_answer_conditions_option",
+                "matching_families": [
+                  "option_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "later_strengthening_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "run": 1
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-02-multi-offer-career/shadow-02.json",
+          "audit_complete_observation_ids": [],
+          "concept_acceptable_role_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "evidence_matches": {
+            "case-02-multi-offer-career:pressure.family_joint_decision": [
+              {
+                "acceptable_matching_families": [],
+                "evidence_id": "first_joint_decision_frame_correction",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [
+                  "option_events"
+                ],
+                "evidence_id": "later_spouse_answer_conditions_option",
+                "matching_families": [
+                  "option_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [],
+          "later_strengthening_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "run": 2
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-02-multi-offer-career/shadow-03.json",
+          "audit_complete_observation_ids": [],
+          "concept_acceptable_role_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "evidence_matches": {
+            "case-02-multi-offer-career:pressure.family_joint_decision": [
+              {
+                "acceptable_matching_families": [],
+                "evidence_id": "first_joint_decision_frame_correction",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [
+                  "option_events"
+                ],
+                "evidence_id": "later_spouse_answer_conditions_option",
+                "matching_families": [
+                  "live_constraint_events",
+                  "option_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [],
+          "later_strengthening_observation_ids": [
+            "case-02-multi-offer-career:pressure.family_joint_decision"
+          ],
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "observation_count": 1,
+      "runs": [
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-01.json",
+          "audit_complete_observation_ids": [],
+          "concept_acceptable_role_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "evidence_matches": {
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real": [
+              {
+                "acceptable_matching_families": [
+                  "live_constraint_events"
+                ],
+                "evidence_id": "first_household_alignment_unknown",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [],
+                "evidence_id": "later_permission_not_alignment",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "later_strengthening_observation_ids": [],
+          "run": 1
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-02.json",
+          "audit_complete_observation_ids": [],
+          "concept_acceptable_role_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "evidence_matches": {
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real": [
+              {
+                "acceptable_matching_families": [
+                  "evidence_boundary_events",
+                  "live_constraint_events"
+                ],
+                "evidence_id": "first_household_alignment_unknown",
+                "matching_families": [
+                  "evidence_boundary_events",
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [],
+                "evidence_id": "later_permission_not_alignment",
+                "matching_families": [],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "later_strengthening_observation_ids": [],
+          "run": 2
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-08-oncologist-career-family/shadow-03.json",
+          "audit_complete_observation_ids": [],
+          "concept_acceptable_role_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "evidence_matches": {
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real": [
+              {
+                "acceptable_matching_families": [
+                  "live_constraint_events"
+                ],
+                "evidence_id": "first_household_alignment_unknown",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [],
+                "evidence_id": "later_permission_not_alignment",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-08-oncologist-career-family:pressure.husband_conversation_not_real"
+          ],
+          "later_strengthening_observation_ids": [],
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "observation_count": 1,
+      "runs": [
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-11-user-has-consulting-plan/shadow-01.json",
+          "audit_complete_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "concept_acceptable_role_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "evidence_matches": {
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments": [
+              {
+                "acceptable_matching_families": [
+                  "live_constraint_events"
+                ],
+                "evidence_id": "first_no_committed_engagements",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [
+                  "user_pressure_events"
+                ],
+                "evidence_id": "later_pipeline_self_correction",
+                "matching_families": [
+                  "user_pressure_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "later_strengthening_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "run": 1
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-11-user-has-consulting-plan/shadow-02.json",
+          "audit_complete_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "concept_acceptable_role_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "evidence_matches": {
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments": [
+              {
+                "acceptable_matching_families": [
+                  "live_constraint_events"
+                ],
+                "evidence_id": "first_no_committed_engagements",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [
+                  "user_pressure_events"
+                ],
+                "evidence_id": "later_pipeline_self_correction",
+                "matching_families": [
+                  "user_pressure_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "later_strengthening_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "run": 2
+        },
+        {
+          "artifact_path": "/Users/izabela/Documents/Lolla/research/core-semantic-sk3-repair-2026-07-10/case-11-user-has-consulting-plan/shadow-03.json",
+          "audit_complete_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "concept_acceptable_role_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "concept_anywhere_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "evidence_matches": {
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments": [
+              {
+                "acceptable_matching_families": [
+                  "live_constraint_events"
+                ],
+                "evidence_id": "first_no_committed_engagements",
+                "matching_families": [
+                  "live_constraint_events"
+                ],
+                "temporal_role": "first_introduction"
+              },
+              {
+                "acceptable_matching_families": [
+                  "user_pressure_events"
+                ],
+                "evidence_id": "later_pipeline_self_correction",
+                "matching_families": [
+                  "user_pressure_events"
+                ],
+                "temporal_role": "later_strengthening"
+              }
+            ]
+          },
+          "first_introduction_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "later_strengthening_observation_ids": [
+            "case-11-user-has-consulting-plan:pressure.no_actual_commitments"
+          ],
+          "run": 3
+        }
+      ]
+    }
+  ],
+  "reviewed_only": true,
+  "schema_version": "lolla.semantic_observation_contract_result.v0"
+}

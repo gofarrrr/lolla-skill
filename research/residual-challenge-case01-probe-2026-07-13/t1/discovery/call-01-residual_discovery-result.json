@@ -1,0 +1,67 @@
+{
+  "automatic_retries": 0,
+  "base_user_prompt_sha256": "766da935ac692698f267ec269e0f474e9bbeb36c3ca61420d70335bec9a48abd",
+  "candidate": null,
+  "case_id": "v1-case01-flood-infrastructure",
+  "compiled": null,
+  "data_collection": "deny",
+  "duration_seconds": 16.976,
+  "effective_user_prompt_sha256": "766da935ac692698f267ec269e0f474e9bbeb36c3ca61420d70335bec9a48abd",
+  "fallback_models": 0,
+  "finish_reason": "length",
+  "generation_id": "gen-1783927683-2X2PLGj9v81YjBwUiKRq",
+  "max_output_tokens": 1600,
+  "operational_status": "local_validation_failed",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex"
+  ],
+  "provider_payload_sha256": "4907009f34a24985f02bd54b90bfdfb7ce797f3118fc409e6dd3c5a838076c15",
+  "provider_reported_cost_usd": 0.0032975,
+  "raw_content": "{\n  \"candidates\": [\n    {\n      \"candidate_id\": \"rc1\",\n      \"candidate_kind\": \"second_order_effect\",\n      \"challenge_question\": \"Does the exclusion of deployment-related delays from the vendor's warranty create a systemic uninsurable risk where the city implicitly assumes liability for any catastrophic failure arising from 'operator delay' rather than equipment defects?\",\n      \"structural_pressure\": \"The project relies on human-led deployment with a tight 40-minute window, yet the contract expressly carves out human performance (the 'operating delay') from the vendor guarantee.\",\n      \"applicability_condition\": \"If the city proceeds with the current contract draft that protects the vendor from risks associated with city-run deployment timings.\",\n      \"risk_if_ignored\": \"The city may face significant unbudgeted liability or political fallout when the barrier fails to deploy in time; if all failures are labeled 'operator error,' there is no mechanism to diagnose true systemic weaknesses in the deployment protocol.\",\n      \"force_boundary\": \"The city cannot guarantee human performance at the same reliability level as a modular system; the risk is the gap between the two.\",\n      \"source_evidence_ids\": [\n        \"e068\",\n        \"e071\",\n        \"e094\",\n        \"e096\"\n      ],\n      \"claim_status\": \"question_not_external_fact\"\n    },\n    {\n      \"candidate_id\": \"rc2\",\n      \"candidate_kind\": \"stakeholder_or_distribution\",\n      \"challenge_question\": \"How does the city ensure that the investment in high-visibility 'resilience' flood infrastructure does not inadvertently cannibalize the political capital and funding streams necessary to resolve the non-resilient, yet essential, local access routes (e.g., the grocery path)?\",\n      \"structural_pressure\": \"The transit system currently frames industrial route closure as 'resilience' but residential grocery access as an 'inconvenience,' creating a structural hierarchy that the barrier reinforces.\",\n      \"applicability_condition\": \"If the city establishes the barrier as the primary solution for the six-block area without a symmetrical, committed budget for transit alternatives for the disconnected residential block.\",\n      \"risk_if_ignored\": \"The project may solidify a two-tier transportation system where the barriers 'solve' the problem for industrial stakeholders while leaving a segment of the low-income population structurally isolated during floods.\",\n      \"force_boundary\": \"The barrier project is an engineering addition to the road, not a replacement for the transportation network, yet it shifts the policy focus.\",\n      \"source_evidence_ids\": [\n        \"e076\",\n        \"e078\",\n        \"e079\"\n      ],\n      \"claim_status\": \"question_not_external_fact\"\n    },\n    {\n      \"candidate_id\": \"rc3\",\n      \"candidate_kind\": \"external_break_condition\",\n      \"challenge_question\": \"What objective, non-modeled benchmarks (such as specific failure-to-open events or unpredicted logistical impacts) would trigger a forced removal of the embedded physical infrastructure,",
+  "raw_content_sha256": "e4abdacc39213517ab23e1e49497e0266966bfc7d02271a0005932885b66c38a",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": false,
+  "reasoning_effort": "low",
+  "repeat_id": "residual_discovery",
+  "request_body_sha256": "8edac3e56b0e777392e6707dd08da73b899ba87aef45a99ec4edfddd2d6c9908",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_healing": false,
+  "response_schema_sha256": "320a11c3ed5d643f5dc22ed520da07bd65f49d46c81572bdea7110436f26a43d",
+  "seed": 1701,
+  "served_model": "google/gemini-3.1-flash-lite",
+  "served_provider": "Google",
+  "system_prompt_sha256": "6ef742044527c15533b7b62df667d7ed5829f4d83c4fe2ccaa1bfbcf58419063",
+  "task_id": "residual_discovery",
+  "temperature_supplied": false,
+  "top_p_supplied": false,
+  "usage": {
+    "completion_tokens": 1584,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 891
+    },
+    "cost": 0.0032975,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.002376,
+      "upstream_inference_cost": 0.0032975,
+      "upstream_inference_prompt_cost": 0.0009215
+    },
+    "is_byok": false,
+    "prompt_tokens": 3686,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 5270
+  },
+  "validation_error": "V1RunError: provider content is not strict JSON",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

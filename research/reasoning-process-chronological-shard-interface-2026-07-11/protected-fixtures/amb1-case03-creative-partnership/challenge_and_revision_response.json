@@ -1,0 +1,139 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case03-creative-partnership",
+        "family": "challenge_and_revision_response",
+        "graph_routing_eligible": false,
+        "interpretation": "The user challenges the assistant for moving too quickly to one side; the assistant accepts the correction and replaces automatic participant contact with an internal comparison-first sequence.",
+        "observation_id": "rpshard-amb1-case03-creative-partnership-challenge_and_revision_response-01-3a2b1e09f0",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "chronological-shard-same-session-nonblind",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "challenge_evidence_ids": [
+              "e021"
+            ],
+            "challenge_type": "correction",
+            "interpretation": "The user challenges the assistant for moving too quickly to one side; the assistant accepts the correction and replaces automatic participant contact with an internal comparison-first sequence.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "prior_claim_or_frame_evidence_ids": [
+              "e017",
+              "e018"
+            ],
+            "response_evidence_ids": [
+              "e026",
+              "e028"
+            ],
+            "response_type": "revise",
+            "revision_evidence_ids": [
+              "e028"
+            ],
+            "status": "supported"
+          },
+          "record_identity": "case03-challenge-revision",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:3a2b1e09f0564800627ed8b7f320c96f5f9ec3baba7dde8ae3154132993e684b",
+        "role_source_span_ids": {
+          "challenge_evidence_ids": [
+            "span-327529b5735be803"
+          ],
+          "prior_claim_or_frame_evidence_ids": [
+            "span-3b61ac5f9c3945f8",
+            "span-6c1117967c250b4d"
+          ],
+          "response_evidence_ids": [
+            "span-94cf235f710f34d5",
+            "span-a1ec53e047c7109b"
+          ],
+          "revision_evidence_ids": [
+            "span-a1ec53e047c7109b"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case03-creative-partnership-challenge_and_revision_response-shard-01",
+        "source_span_ids": [
+          "span-3b61ac5f9c3945f8",
+          "span-6c1117967c250b4d",
+          "span-327529b5735be803",
+          "span-94cf235f710f34d5",
+          "span-a1ec53e047c7109b"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case03-creative-partnership-challenge_and_revision_response-01-3a2b1e09f0",
+        "raw_record_sha256": "sha256:3a2b1e09f0564800627ed8b7f320c96f5f9ec3baba7dde8ae3154132993e684b",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "challenge_evidence_ids": [
+          "e021"
+        ],
+        "challenge_type": "correction",
+        "interpretation": "The user challenges the assistant for moving too quickly to one side; the assistant accepts the correction and replaces automatic participant contact with an internal comparison-first sequence.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "prior_claim_or_frame_evidence_ids": [
+          "e017",
+          "e018"
+        ],
+        "response_evidence_ids": [
+          "e026",
+          "e028"
+        ],
+        "response_type": "revise",
+        "revision_evidence_ids": [
+          "e028"
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case03-creative-partnership/challenge_and_revision_response.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case03-creative-partnership/challenge_and_revision_response/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-3b61ac5f9c3945f8",
+      "span-6c1117967c250b4d",
+      "span-327529b5735be803",
+      "span-94cf235f710f34d5",
+      "span-a1ec53e047c7109b"
+    ],
+    "target_id": "case03-challenge-revision",
+    "view_kind": "challenge_and_revision_response"
+  }
+}

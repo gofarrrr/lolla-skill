@@ -1,0 +1,448 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_v60_snapshot.v0",
+  "status": "review_safe_snapshot",
+  "source_pipeline_sha256": "3277abaf367fed678ca48c4cd4a8ffd264e52b715177fa6d96292ba7766ee5d2",
+  "v60_schema_version": "v60_runtime_enrichment.v1",
+  "v60_status": "active",
+  "selected_cards": [
+    {
+      "card_id": "v60-card-001-optionality",
+      "model_id": "optionality",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant evaluates the dissertation choice based on its ability to keep multiple career paths (academic and industry) open simultaneously, rather than optimizing for a single, narrow outcome. | binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::optionality.preserve-reversible-learning"
+      ],
+      "absence_chunk_ids": [
+        "abs::optionality::disjunctive-failsafe-as-optionality"
+      ]
+    },
+    {
+      "card_id": "v60-card-002-sunk-cost-fallacy",
+      "model_id": "sunk-cost-fallacy",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant explicitly defines a temporal checkpoint to force a decision to abandon a project if it fails to produce results, directly guarding against the tendency to persist in a failing project due to time already invested.",
+      "affordance_chunk_ids": [
+        "aff::sunk-cost-fallacy.future-value-recommitment"
+      ],
+      "absence_chunk_ids": [
+        "abs::sunk-cost-fallacy::reckless-abandonment-as-anti-sunk-cost-discipline"
+      ]
+    },
+    {
+      "card_id": "v60-card-003-comparative-advantage",
+      "model_id": "comparative-advantage",
+      "selection_source": "lane_preserved",
+      "selection_reason": "The assistant identifies that the student's computational skills are a specific asset that can be traded for access to a partner lab's infrastructure, leveraging comparative advantage rather than attempting to build redundant capabilities.",
+      "affordance_chunk_ids": [
+        "aff::comparative-advantage.relative-productivity-role-map"
+      ],
+      "absence_chunk_ids": [
+        "abs::comparative-advantage::standalone-specialist-frame-or-communication-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-004-brainstorming",
+      "model_id": "brainstorming",
+      "selection_source": "lane_preserved",
+      "selection_reason": "binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::brainstorming.bounded-divergence-before-selection"
+      ],
+      "absence_chunk_ids": [
+        "abs::brainstorming::divergence-as-decision-avoidance"
+      ]
+    },
+    {
+      "card_id": "v60-card-005-inversion",
+      "model_id": "inversion",
+      "selection_source": "frame_opportunity_reserved",
+      "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::inversion.anti-goal-failure-mechanism-map"
+      ],
+      "absence_chunk_ids": [
+        "abs::inversion::generic-hidden-denominator-without-reversed-target"
+      ]
+    },
+    {
+      "card_id": "v60-card-006-problem-framing-and-reframing",
+      "model_id": "problem-framing-and-reframing",
+      "selection_source": "frame_opportunity_reserved",
+      "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+      "affordance_chunk_ids": [
+        "aff::problem-framing-and-reframing.test-alternative-frames"
+      ],
+      "absence_chunk_ids": [
+        "abs::problem-framing-and-reframing::persona-configuration-affordance"
+      ]
+    },
+    {
+      "card_id": "v60-card-007-calculated-risk-taking",
+      "model_id": "calculated-risk-taking",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::calculated-risk-taking.pressure-tested-bounded-wager"
+      ],
+      "absence_chunk_ids": [
+        "abs::calculated-risk-taking::calculated-label-with-unbounded-downside"
+      ]
+    },
+    {
+      "card_id": "v60-card-008-regret-theory",
+      "model_id": "regret-theory",
+      "selection_source": "embedding_model_recall",
+      "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+      "affordance_chunk_ids": [
+        "aff::regret-theory.long-run-regret-with-risk-check"
+      ],
+      "absence_chunk_ids": [
+        "abs::regret-theory::regret-as-decision-rule"
+      ]
+    }
+  ],
+  "consideration_ledger_skeleton": {
+    "schema_version": "v60_skill_consideration_ledger.v2",
+    "transactions": [
+      {
+        "card_id": "v60-card-001-optionality",
+        "model_id": "optionality",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant evaluates the dissertation choice based on its ability to keep multiple career paths (academic and industry) open simultaneously, rather than optimizing for a single, narrow outcome. | binary_collapse",
+        "source_file": "Optionality_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::optionality.preserve-reversible-learning",
+        "chunk_kind": "affordance",
+        "affordance_id": "optionality.preserve-reversible-learning",
+        "chunk_status": "supported",
+        "chunk_source_file": "Optionality_rag.md"
+      },
+      {
+        "card_id": "v60-card-001-optionality",
+        "model_id": "optionality",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant evaluates the dissertation choice based on its ability to keep multiple career paths (academic and industry) open simultaneously, rather than optimizing for a single, narrow outcome. | binary_collapse",
+        "source_file": "Optionality_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::optionality::disjunctive-failsafe-as-optionality",
+        "chunk_kind": "absence",
+        "attempted_field": "disjunctive-failsafe-as-optionality",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Optionality_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-002-sunk-cost-fallacy",
+        "model_id": "sunk-cost-fallacy",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant explicitly defines a temporal checkpoint to force a decision to abandon a project if it fails to produce results, directly guarding against the tendency to persist in a failing project due to time already invested.",
+        "source_file": "Sunk_Cost_Fallacy_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::sunk-cost-fallacy.future-value-recommitment",
+        "chunk_kind": "affordance",
+        "affordance_id": "sunk-cost-fallacy.future-value-recommitment",
+        "chunk_status": "supported",
+        "chunk_source_file": "Sunk_Cost_Fallacy_rag.md"
+      },
+      {
+        "card_id": "v60-card-002-sunk-cost-fallacy",
+        "model_id": "sunk-cost-fallacy",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant explicitly defines a temporal checkpoint to force a decision to abandon a project if it fails to produce results, directly guarding against the tendency to persist in a failing project due to time already invested.",
+        "source_file": "Sunk_Cost_Fallacy_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::sunk-cost-fallacy::reckless-abandonment-as-anti-sunk-cost-discipline",
+        "chunk_kind": "absence",
+        "attempted_field": "reckless-abandonment-as-anti-sunk-cost-discipline",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Sunk_Cost_Fallacy_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-003-comparative-advantage",
+        "model_id": "comparative-advantage",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant identifies that the student's computational skills are a specific asset that can be traded for access to a partner lab's infrastructure, leveraging comparative advantage rather than attempting to build redundant capabilities.",
+        "source_file": "Comparative_Advantage_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::comparative-advantage.relative-productivity-role-map",
+        "chunk_kind": "affordance",
+        "affordance_id": "comparative-advantage.relative-productivity-role-map",
+        "chunk_status": "supported",
+        "chunk_source_file": "Comparative_Advantage_rag.md"
+      },
+      {
+        "card_id": "v60-card-003-comparative-advantage",
+        "model_id": "comparative-advantage",
+        "selection_source": "lane_preserved",
+        "selection_reason": "The assistant identifies that the student's computational skills are a specific asset that can be traded for access to a partner lab's infrastructure, leveraging comparative advantage rather than attempting to build redundant capabilities.",
+        "source_file": "Comparative_Advantage_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::comparative-advantage::standalone-specialist-frame-or-communication-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "standalone-specialist-frame-or-communication-affordance",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Comparative_Advantage_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-004-brainstorming",
+        "model_id": "brainstorming",
+        "selection_source": "lane_preserved",
+        "selection_reason": "binary_collapse",
+        "source_file": "Brainstorming_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::brainstorming.bounded-divergence-before-selection",
+        "chunk_kind": "affordance",
+        "affordance_id": "brainstorming.bounded-divergence-before-selection",
+        "chunk_status": "supported",
+        "chunk_source_file": "Brainstorming_rag.md"
+      },
+      {
+        "card_id": "v60-card-004-brainstorming",
+        "model_id": "brainstorming",
+        "selection_source": "lane_preserved",
+        "selection_reason": "binary_collapse",
+        "source_file": "Brainstorming_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::brainstorming::divergence-as-decision-avoidance",
+        "chunk_kind": "absence",
+        "attempted_field": "divergence-as-decision-avoidance",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Brainstorming_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-005-inversion",
+        "model_id": "inversion",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Inversion_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::inversion.anti-goal-failure-mechanism-map",
+        "chunk_kind": "affordance",
+        "affordance_id": "inversion.anti-goal-failure-mechanism-map",
+        "chunk_status": "supported",
+        "chunk_source_file": "Inversion_rag.md"
+      },
+      {
+        "card_id": "v60-card-005-inversion",
+        "model_id": "inversion",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Inversion_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::inversion::generic-hidden-denominator-without-reversed-target",
+        "chunk_kind": "absence",
+        "attempted_field": "generic-hidden-denominator-without-reversed-target",
+        "chunk_status": "duplicate_of_existing_field",
+        "chunk_source_file": "Inversion_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-006-problem-framing-and-reframing",
+        "model_id": "problem-framing-and-reframing",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Problem_Framing_and_Reframing_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::problem-framing-and-reframing.test-alternative-frames",
+        "chunk_kind": "affordance",
+        "affordance_id": "problem-framing-and-reframing.test-alternative-frames",
+        "chunk_status": "supported",
+        "chunk_source_file": "Problem_Framing_and_Reframing_rag.md"
+      },
+      {
+        "card_id": "v60-card-006-problem-framing-and-reframing",
+        "model_id": "problem-framing-and-reframing",
+        "selection_source": "frame_opportunity_reserved",
+        "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+        "source_file": "Problem_Framing_and_Reframing_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::problem-framing-and-reframing::persona-configuration-affordance",
+        "chunk_kind": "absence",
+        "attempted_field": "persona-configuration-affordance",
+        "chunk_status": "source_too_thin",
+        "chunk_source_file": "Problem_Framing_and_Reframing_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-007-calculated-risk-taking",
+        "model_id": "calculated-risk-taking",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Calculated_Risk_Taking_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+        "chunk_kind": "affordance",
+        "affordance_id": "calculated-risk-taking.pressure-tested-bounded-wager",
+        "chunk_status": "supported",
+        "chunk_source_file": "Calculated_Risk_Taking_rag.md"
+      },
+      {
+        "card_id": "v60-card-007-calculated-risk-taking",
+        "model_id": "calculated-risk-taking",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Calculated_Risk_Taking_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::calculated-risk-taking::calculated-label-with-unbounded-downside",
+        "chunk_kind": "absence",
+        "attempted_field": "calculated-label-with-unbounded-downside",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Calculated_Risk_Taking_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      },
+      {
+        "card_id": "v60-card-008-regret-theory",
+        "model_id": "regret-theory",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Regret_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "aff::regret-theory.long-run-regret-with-risk-check",
+        "chunk_kind": "affordance",
+        "affordance_id": "regret-theory.long-run-regret-with-risk-check",
+        "chunk_status": "supported",
+        "chunk_source_file": "Regret_Theory_rag.md"
+      },
+      {
+        "card_id": "v60-card-008-regret-theory",
+        "model_id": "regret-theory",
+        "selection_source": "embedding_model_recall",
+        "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+        "source_file": "Regret_Theory_rag.md",
+        "disposition": "",
+        "route": "",
+        "strongest_plausible_application": "",
+        "why": "",
+        "visible_effect": "",
+        "private_guardrail": "",
+        "risk_if_forced": "",
+        "technical_blocker": "",
+        "chunk_id": "abs::regret-theory::regret-as-decision-rule",
+        "chunk_kind": "absence",
+        "attempted_field": "regret-as-decision-rule",
+        "chunk_status": "not_supported_by_source",
+        "chunk_source_file": "Regret_Theory_rag.md",
+        "blocked_or_guarded_claim": "",
+        "uncertainty_boundary": ""
+      }
+    ]
+  },
+  "raw_chunk_text_included": false,
+  "absolute_paths_included": false
+}

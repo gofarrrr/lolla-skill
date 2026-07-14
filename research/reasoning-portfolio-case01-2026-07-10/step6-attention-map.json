@@ -1,0 +1,176 @@
+{
+  "schema_version": "step6_attention_map.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "five-person-saas-company",
+  "source_refs": [
+    "active-handoff@sha256:b85059a1705c65436841f606d3fa6ec4686e27276de96761a8a2eae4173ca040",
+    "graph-survival-report@sha256:6b88bd73e613bd55b5958833e4dba2bb810956e2193bab76f6baca82d849f48a"
+  ],
+  "problem_read": {
+    "user_goal": "Test an enterprise opportunity without mistaking reputation or interest for commitment.",
+    "problem_type": "decision",
+    "suggested_next_move": "answer_now"
+  },
+  "active_working_set": [
+    {
+      "artifact_id": "active.prestige_evidence",
+      "why_available": "The active handoff identified reputation being allowed to carry evidentiary weight.",
+      "step6_use": "Remove the company name; ask what still supports launch.",
+      "boundary": "Set aside if commitment and capacity support the same action.",
+      "risk_if_ignored": "Prestige may carry hidden evidentiary weight.",
+      "expansion_ref": "research/reasoning-pressure-handoff-v0-2026-07-10/lineage-backed-handoff.json#/pressure_items/0"
+    },
+    {
+      "artifact_id": "active.public_private",
+      "why_available": "The active handoff separated public reputation spending from private learning.",
+      "step6_use": "Separate public commitment, private learning, and engineering allocation.",
+      "boundary": "Set aside if private validation is equally irreversible.",
+      "risk_if_ignored": "Learning may become public commitment.",
+      "expansion_ref": "research/reasoning-pressure-handoff-v0-2026-07-10/lineage-backed-handoff.json#/pressure_items/1"
+    },
+    {
+      "artifact_id": "active.precommit",
+      "why_available": "The active handoff found success criteria deferred until after commitment.",
+      "step6_use": "Set observable stop and continue conditions before committing capacity.",
+      "boundary": "Set aside if criteria and capacity are protected.",
+      "risk_if_ignored": "The beta may lack a falsifiable boundary.",
+      "expansion_ref": "research/reasoning-pressure-handoff-v0-2026-07-10/lineage-backed-handoff.json#/pressure_items/2"
+    },
+    {
+      "artifact_id": "active.preserve_urgency",
+      "why_available": "The user explicitly fears losing the opportunity through delay.",
+      "step6_use": "Keep validation short; predefine the next branch.",
+      "boundary": "Urgency is not commitment or capacity evidence.",
+      "risk_if_ignored": "Rigor may become indefinite delay.",
+      "expansion_ref": "research/reasoning-pressure-handoff-v0-2026-07-10/lineage-backed-handoff.json#/preservation_items/0"
+    },
+    {
+      "artifact_id": "active.preserve_beta",
+      "why_available": "The original answer contains a potentially useful bounded learning vehicle.",
+      "step6_use": "Keep a beta after commitment and capacity gates pass.",
+      "boundary": "Do not preserve public launch merely to keep it.",
+      "risk_if_ignored": "Do not discard useful learning.",
+      "expansion_ref": "research/reasoning-pressure-handoff-v0-2026-07-10/lineage-backed-handoff.json#/preservation_items/1"
+    }
+  ],
+  "edge_latticework_reserve": [
+    {
+      "artifact_id": "edge.premortem",
+      "protected_slot": "inversion",
+      "why_available": "The graph recalled Premortem but packet caps suppressed it.",
+      "cheap_test": "Assume harm and no sale; name the first preventable cause.",
+      "risk_if_forced": "Generic disasters may manufacture fear.",
+      "risk_if_ignored": "Failure may stay hidden.",
+      "expansion_ref": "graph_survival.model.premortem"
+    },
+    {
+      "artifact_id": "edge.opportunity_cost",
+      "protected_slot": "cost",
+      "why_available": "The graph recalled Opportunity Cost from the coverage-gap route.",
+      "cheap_test": "Name displaced work and short-delay cost.",
+      "risk_if_forced": "Guesses create false precision.",
+      "risk_if_ignored": "The beta may displace obligations.",
+      "expansion_ref": "graph_survival.model.opportunity-cost"
+    },
+    {
+      "artifact_id": "edge.prospect_unknowns",
+      "protected_slot": "unknowns",
+      "why_available": "Embedding recall preserved a prospect-side information gap.",
+      "cheap_test": "List prospect unknowns: authority, budget, procurement, and logo permission.",
+      "risk_if_forced": "Could invent motives.",
+      "risk_if_ignored": "Emails may substitute for commitment.",
+      "expansion_ref": "graph_survival.model.information-asymmetry"
+    },
+    {
+      "artifact_id": "edge.internal_pressure",
+      "protected_slot": "incentive",
+      "why_available": "The coverage route recalled power and stakeholder pressure.",
+      "cheap_test": "Separate board-name desire from buyer evidence.",
+      "risk_if_forced": "Could invent board motives.",
+      "risk_if_ignored": "Enthusiasm may look like demand.",
+      "expansion_ref": "graph_survival.model.power-dynamics"
+    },
+    {
+      "artifact_id": "edge.base_rate",
+      "protected_slot": "denominator",
+      "why_available": "The lane route recalled Base Rates but packet caps suppressed it.",
+      "cheap_test": "Ask what comparable pilots make emails predictive; invent no rate.",
+      "risk_if_forced": "Fabricated rates create false authority.",
+      "risk_if_ignored": "The anecdote lacks a denominator.",
+      "expansion_ref": "graph_survival.model.base-rates"
+    },
+    {
+      "artifact_id": "edge.compound",
+      "protected_slot": "lollapalooza",
+      "why_available": "The frame route recalled a compound-lens check.",
+      "cheap_test": "Remove prestige, urgency, and upside; retest.",
+      "risk_if_forced": "Post-hoc stories fit anything.",
+      "risk_if_ignored": "Weak pressures may compound.",
+      "expansion_ref": "graph_survival.model.latticework-of-mental-models"
+    },
+    {
+      "artifact_id": "edge.preserve_signaling",
+      "protected_slot": "counterpressure",
+      "why_available": "The graph preserved Signaling as an answer-delta candidate outside V60 selection.",
+      "cheap_test": "When is signaling legitimate, and what commitment precedes it?",
+      "risk_if_forced": "Could rationalize prestige as evidence.",
+      "risk_if_ignored": "May erase real distribution upside.",
+      "expansion_ref": "graph_survival.model.signaling"
+    }
+  ],
+  "weak_or_negative_space_receipts": [
+    {
+      "artifact_id": "weak.logo_permission",
+      "why_preserved": "Logo permission is unknown; absence blocks use but proves no refusal.",
+      "reactivate_if": "Public logo use remains.",
+      "expansion_ref": "tests/fixtures/core_semantic_validation/case_01_enterprise_logo_beta/conversation.txt"
+    },
+    {
+      "artifact_id": "weak.delay_loss",
+      "why_preserved": "The delay-loss mechanism and window are unknown.",
+      "reactivate_if": "Validation exceeds the shortest credible test window.",
+      "expansion_ref": "research/core-semantic-sk3-2026-07-10/case-01-enterprise-logo-beta/shadow-01.json"
+    },
+    {
+      "artifact_id": "weak.beta_readiness",
+      "why_preserved": "Readiness and support load are unknown.",
+      "reactivate_if": "A private beta remains.",
+      "expansion_ref": "research/core-semantic-sk3-2026-07-10/case-01-enterprise-logo-beta/shadow-01.json"
+    }
+  ],
+  "parked_but_preserved": [
+    {
+      "artifact_id": "parked.relationship",
+      "park_reason": "Relationship effects are not load-bearing.",
+      "reactivate_if": "Trust, adoption, or relationship damage matters.",
+      "expansion_ref": "graph_survival.model.empathy"
+    },
+    {
+      "artifact_id": "parked.user_research",
+      "park_reason": "Research method is not the current bottleneck.",
+      "reactivate_if": "The beta becomes mainly a learning exercise.",
+      "expansion_ref": "graph_survival.model.user-experience-research-methods"
+    },
+    {
+      "artifact_id": "parked.endowment_effect",
+      "park_reason": "No sunk asset or path is driving the choice.",
+      "reactivate_if": "Past investment becomes a reason to continue.",
+      "expansion_ref": "graph_survival.model.endowment-effect"
+    },
+    {
+      "artifact_id": "parked.extreme_scale",
+      "park_reason": "Extreme scale is not load-bearing.",
+      "reactivate_if": "Pilot results support broad scale claims.",
+      "expansion_ref": "graph_survival.model.extreme-performance-evaluation"
+    }
+  ],
+  "ask_user_if_any": [],
+  "review_admission": "manual_only",
+  "full_archive_refs": [
+    "research/reasoning-pressure-handoff-v0-2026-07-10/lineage-backed-handoff.json",
+    "research/core-semantic-sk3-2026-07-10/case-01-enterprise-logo-beta/shadow-01.json",
+    "research/end-to-end-evidence-bridge-2026-07-10/five-person-saas-company.json"
+  ],
+  "step6_instruction": "Treat this as pressure, not a verdict. Work active items; scan every edge; recover parked detail only on reactivation. Give noisy candidates their strongest plausible use, then use, reject, defer, or guard. Do not hedge or invent facts."
+}

@@ -1,0 +1,127 @@
+{
+  "budget": {
+    "automatic_retries": 0,
+    "conservative_estimated_total_cost_usd": 0.0181615,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "graph_calls": 0,
+    "maximum_calls_per_case": 2,
+    "maximum_provider_calls": 4,
+    "maximum_provider_reported_cost_per_case_usd": 0.015,
+    "maximum_provider_reported_cost_total_usd": 0.03,
+    "pipeline_calls": 0,
+    "response_healing": false,
+    "runtime_calls": 0,
+    "semantic_retries": 0,
+    "total_cost_preflight_pass": true
+  },
+  "cases": [
+    {
+      "case_cost_ceiling_usd": 0.015,
+      "case_cost_preflight_pass": true,
+      "case_id": "v1-case02-discharge-transport",
+      "changed_json_paths": [
+        "/max_tokens",
+        "/reasoning/effort"
+      ],
+      "conservative_case_cost_usd": 0.00909475,
+      "corrected_request_body_sha256": "d432643c8c0fed6a6e4c4203b43810dfc2f4c461fdf74beefbb2eba5666167ac",
+      "corrected_request_preview_path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/cases/v1-case02-discharge-transport/uncertainty-request-preview.json",
+      "corrected_uncertainty_conservative_cost_usd": 0.006255,
+      "model_and_provider_unchanged": true,
+      "original_request_body_sha256": "c2f84114df306127139d64b1629118ba4d710e1ae9591175e079b6f3577ed676",
+      "original_request_preview_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case02-discharge-transport/uncertainty-request-preview.json",
+      "seed_unchanged": true,
+      "selection_role": "exposed_false_stand_down_target",
+      "strict_schema_unchanged": true,
+      "structural_response_is_provider_evidence": false,
+      "structural_response_utf8_bytes": 1158,
+      "system_prompt_unchanged": true,
+      "unchanged_relationship_conservative_cost_usd": 0.00283975,
+      "user_prompt_unchanged": true
+    },
+    {
+      "case_cost_ceiling_usd": 0.015,
+      "case_cost_preflight_pass": true,
+      "case_id": "v1-case03-executive-hire",
+      "changed_json_paths": [
+        "/max_tokens",
+        "/reasoning/effort"
+      ],
+      "conservative_case_cost_usd": 0.00906675,
+      "corrected_request_body_sha256": "a3d85785c98b730b5c5261ce7711a7a83739c8e70ee9fc7262dd1ad52c678e59",
+      "corrected_request_preview_path": "research/lolla-r4-complementary-reader-token-correction-2026-07-14/cases/v1-case03-executive-hire/uncertainty-request-preview.json",
+      "corrected_uncertainty_conservative_cost_usd": 0.00653225,
+      "model_and_provider_unchanged": true,
+      "original_request_body_sha256": "1bc8f83c6e4b886536a92c2bb906b4a7c7623926b6f28fbc5c50da257d591df7",
+      "original_request_preview_path": "research/lolla-r4-complementary-reader-preflight-2026-07-13/cases/v1-case03-executive-hire/uncertainty-request-preview.json",
+      "seed_unchanged": true,
+      "selection_role": "matched_restraint_control",
+      "strict_schema_unchanged": true,
+      "structural_response_is_provider_evidence": false,
+      "structural_response_utf8_bytes": 378,
+      "system_prompt_unchanged": true,
+      "unchanged_relationship_conservative_cost_usd": 0.0025345,
+      "user_prompt_unchanged": true
+    }
+  ],
+  "change_contract": {
+    "prompt_schema_source_model_provider_seed_unchanged": true,
+    "relationship_unchanged": {
+      "max_tokens": 700,
+      "reasoning_effort": "minimal"
+    },
+    "uncertainty_after": {
+      "max_tokens": 1600,
+      "reasoning_effort": "minimal"
+    },
+    "uncertainty_before": {
+      "max_tokens": 900,
+      "reasoning_effort": "low"
+    },
+    "uncertainty_changed_json_paths": [
+      "/max_tokens",
+      "/reasoning/effort"
+    ]
+  },
+  "date": "2026-07-14",
+  "decision": {
+    "model_comparison_authorized": false,
+    "new_authorization_required": true,
+    "provider_calls_authorized": false,
+    "runtime_or_graph_integration_authorized": false
+  },
+  "historical_execution_closeout": {
+    "historical_provider_calls": 2,
+    "historical_provider_cost_usd": 0.009036,
+    "historical_result_reclassified": false,
+    "path": "research/lolla-r4-complementary-reader-execution-2026-07-14-a1/execution-closeout.json",
+    "sha256": "946474b77fab8a095e284e39c9bb4acf08673fbbe2625ae5079ddbddc8ff4af5",
+    "status": "attempt_closed_token_allocation_failure_semantic_question_unresolved"
+  },
+  "local_gates": {
+    "cost_ceiling": "pass",
+    "exact_two_path_request_diff": "pass",
+    "historical_failure_preserved": "pass",
+    "provider_calls": 0,
+    "thinking_level_uncertainty_disclosed": "pass",
+    "unchanged_semantic_contract": "pass"
+  },
+  "non_claims": [
+    "Minimal thinking does not guarantee a specific reasoning-token count.",
+    "A larger completion boundary does not guarantee schema or semantic success.",
+    "This correction does not reclassify or retry the historical attempt.",
+    "No provider call is made by this package."
+  ],
+  "original_contract": {
+    "path": "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
+    "sha256": "3305f8797cab0513036d752a09440212c392dde8cff5499905db932e61543a53"
+  },
+  "practice_check": {
+    "path": "docs/conversation-understanding/lolla-r4-token-allocation-current-practice-2026-07-14.md",
+    "sha256": "925b4ac626e249c6b84cb916d15412edb1f94841ec54de0d9f9809de29035a05"
+  },
+  "schema_version": "lolla.r4_complementary_reader_token_correction_preflight.v1",
+  "status": "provider_free_token_correction_ready_call_authorization_required"
+}

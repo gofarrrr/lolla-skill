@@ -1,0 +1,313 @@
+{
+  "boundary": {
+    "force_labels_are_scores_or_ordinals": false,
+    "full_case_calls_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "other_view_calls_authorized": false,
+    "protected_target_seen_by_model": false,
+    "semantic_force_inferred_or_compared_by_code": false,
+    "semantic_retry_authorized": false,
+    "source_review_fixture_seen_by_model": false
+  },
+  "call": {
+    "admitted_record_count": 2,
+    "automatic_retries": 0,
+    "cached_prompt_tokens": 0,
+    "call_id": "modal-strength-v3-case03-position-endpoint",
+    "candidate_payload": {
+      "global_limitations": "The analysis is restricted to the user's stated positions and does not account for Jonah's perspective or the objective quality of the documentary cuts.",
+      "records": [
+        {
+          "current_position_evidence_ids": [
+            "e063",
+            "e064"
+          ],
+          "current_position_force": "provisional_plan",
+          "current_position_interpretation": "The user has adopted a provisional plan to wait for Jonah's revised cut and perform a comparative analysis before deciding on postponement.",
+          "limitations": "The user's initial position was defined by a direct conflict over the creative direction of the documentary, whereas the current position is defined by a procedural strategy to resolve that conflict.",
+          "qualification_evidence_ids": [
+            "e065"
+          ],
+          "qualification_interpretation": "The user remains uncertain about accepting a compromise on credit if the underlying structural decision-making power remains unbalanced.",
+          "qualification_modalities": [
+            "condition",
+            "unresolved_question"
+          ],
+          "starting_position_force": "decision",
+          "starting_position_interpretation": "The user held a firm belief that the final third of the documentary required a major re-edit.",
+          "starting_state_evidence_ids": [
+            "e004"
+          ],
+          "status": "supported",
+          "strength_fidelity_note": "The paraphrases reflect the shift from a direct assertion of a need for change to a conditional, step-by-step plan. The labels 'decision' and 'provisional_plan' are used to distinguish between the initial conviction and the current tactical approach without implying a change in the user's underlying creative standards.",
+          "trajectory_interpretation": "The user moved from an immediate, unilateral assessment of the work's quality to a structured, collaborative verification process.",
+          "trajectory_type": "changed"
+        },
+        {
+          "current_position_evidence_ids": [
+            "e065"
+          ],
+          "current_position_force": "leaning",
+          "current_position_interpretation": "The user has formulated a specific proposal for equal top-line authorship combined with detailed role credits.",
+          "limitations": "The credit issue was initially an avoided topic and has now been articulated as a specific, conditional proposal.",
+          "qualification_evidence_ids": [
+            "e066"
+          ],
+          "qualification_interpretation": "The user is questioning whether the current project's credit can be separated from the rules governing future collaborations.",
+          "qualification_modalities": [
+            "unresolved_question",
+            "concern_or_risk"
+          ],
+          "starting_position_force": "undecided_or_ambivalent",
+          "starting_position_interpretation": "The user was avoiding the topic of credit, characterized by an inability to resolve how to represent their respective roles.",
+          "starting_state_evidence_ids": [
+            "e006"
+          ],
+          "status": "supported",
+          "strength_fidelity_note": "The labels 'undecided_or_ambivalent' and 'leaning' accurately capture the movement from a state of avoidance to a tentative proposal. The qualification reflects the user's explicit doubt regarding the separation of current and future partnership dynamics.",
+          "trajectory_interpretation": "The user transitioned from avoidance of the credit issue to a concrete, albeit conditional, proposal for resolution.",
+          "trajectory_type": "emerged_from_uncertainty"
+        }
+      ],
+      "status": "supported"
+    },
+    "candidate_payload_sha256": "8797bd515787c8e3137bf0535d3dcf049439ccaa68d975e4d9b775718f22d3cd",
+    "case_id": "amb1-case03-creative-partnership",
+    "compiled": {
+      "boundary": {
+        "direct_graph_routing_allowed": false,
+        "force_labels_compared_or_scored_by_code": false,
+        "global_synthesis_performed": false,
+        "model_records_changed": false,
+        "prose_keyword_gate_added": false,
+        "record_level_validation_weakened": false,
+        "semantic_merge_performed": false,
+        "source_force_correctness_inferred_by_code": false
+      },
+      "observations": [
+        {
+          "case_id": "amb1-case03-creative-partnership",
+          "family": "position_and_decision_trajectory",
+          "graph_routing_eligible": false,
+          "interpretation": "Starting: The user held a firm belief that the final third of the documentary required a major re-edit. | Current: The user has adopted a provisional plan to wait for Jonah's revised cut and perform a comparative analysis before deciding on postponement. | Qualification: The user remains uncertain about accepting a compromise on credit if the underlying structural decision-making power remains unbalanced. | Trajectory: The user moved from an immediate, unilateral assessment of the work's quality to a structured, collaborative verification process.",
+          "observation_id": "rpshardv3-amb1-case03-creative-partnership-position_and_decision_trajectory-01-0e03a9a70a",
+          "provenance": {
+            "call_id": "modal-strength-v3-case03-position-endpoint",
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "producer_id": "google/gemini-3.1-flash-lite",
+            "producer_kind": "model",
+            "prompt_sha256": "sha256:07e00cbe4605fbfff59a5a8567b9a6477ea44191304171fe4ba382a661708382"
+          },
+          "raw_record": {
+            "record": {
+              "current_position_evidence_ids": [
+                "e063",
+                "e064"
+              ],
+              "current_position_force": "provisional_plan",
+              "current_position_interpretation": "The user has adopted a provisional plan to wait for Jonah's revised cut and perform a comparative analysis before deciding on postponement.",
+              "limitations": "The user's initial position was defined by a direct conflict over the creative direction of the documentary, whereas the current position is defined by a procedural strategy to resolve that conflict.",
+              "qualification_evidence_ids": [
+                "e065"
+              ],
+              "qualification_interpretation": "The user remains uncertain about accepting a compromise on credit if the underlying structural decision-making power remains unbalanced.",
+              "qualification_modalities": [
+                "condition",
+                "unresolved_question"
+              ],
+              "starting_position_force": "decision",
+              "starting_position_interpretation": "The user held a firm belief that the final third of the documentary required a major re-edit.",
+              "starting_state_evidence_ids": [
+                "e004"
+              ],
+              "status": "supported",
+              "strength_fidelity_note": "The paraphrases reflect the shift from a direct assertion of a need for change to a conditional, step-by-step plan. The labels 'decision' and 'provisional_plan' are used to distinguish between the initial conviction and the current tactical approach without implying a change in the user's underlying creative standards.",
+              "trajectory_interpretation": "The user moved from an immediate, unilateral assessment of the work's quality to a structured, collaborative verification process.",
+              "trajectory_type": "changed"
+            },
+            "record_identity": "probe-modal-strength-v3-case03-position-endpoint",
+            "record_index": 1
+          },
+          "raw_record_sha256": "sha256:0e03a9a70ac5f2c17d009b4a4f9ab12cdf0ac43f3f37758b1daeeaa6b939120f",
+          "role_interpretations": {
+            "current_position_interpretation": "The user has adopted a provisional plan to wait for Jonah's revised cut and perform a comparative analysis before deciding on postponement.",
+            "qualification_interpretation": "The user remains uncertain about accepting a compromise on credit if the underlying structural decision-making power remains unbalanced.",
+            "starting_position_interpretation": "The user held a firm belief that the final third of the documentary required a major re-edit.",
+            "trajectory_interpretation": "The user moved from an immediate, unilateral assessment of the work's quality to a structured, collaborative verification process."
+          },
+          "role_source_span_ids": {
+            "current_position_evidence_ids": [
+              "span-92633920278c3c0d",
+              "span-76fd72b8eb9e4706"
+            ],
+            "qualification_evidence_ids": [
+              "span-aa0184a43193508b"
+            ],
+            "starting_state_evidence_ids": [
+              "span-3238a20bb6b28b8b"
+            ]
+          },
+          "schema_version": "lolla.reasoning_process_chronological_shard_observation.v3",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+          "source_force": {
+            "current_position_force": "provisional_plan",
+            "qualification_modalities": [
+              "condition",
+              "unresolved_question"
+            ],
+            "starting_position_force": "decision",
+            "strength_fidelity_note": "The paraphrases reflect the shift from a direct assertion of a need for change to a conditional, step-by-step plan. The labels 'decision' and 'provisional_plan' are used to distinguish between the initial conviction and the current tactical approach without implying a change in the user's underlying creative standards."
+          },
+          "source_span_ids": [
+            "span-3238a20bb6b28b8b",
+            "span-92633920278c3c0d",
+            "span-76fd72b8eb9e4706",
+            "span-aa0184a43193508b"
+          ],
+          "terminal_state": "admitted"
+        },
+        {
+          "case_id": "amb1-case03-creative-partnership",
+          "family": "position_and_decision_trajectory",
+          "graph_routing_eligible": false,
+          "interpretation": "Starting: The user was avoiding the topic of credit, characterized by an inability to resolve how to represent their respective roles. | Current: The user has formulated a specific proposal for equal top-line authorship combined with detailed role credits. | Qualification: The user is questioning whether the current project's credit can be separated from the rules governing future collaborations. | Trajectory: The user transitioned from avoidance of the credit issue to a concrete, albeit conditional, proposal for resolution.",
+          "observation_id": "rpshardv3-amb1-case03-creative-partnership-position_and_decision_trajectory-02-0e8ef3a704",
+          "provenance": {
+            "call_id": "modal-strength-v3-case03-position-endpoint",
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "producer_id": "google/gemini-3.1-flash-lite",
+            "producer_kind": "model",
+            "prompt_sha256": "sha256:07e00cbe4605fbfff59a5a8567b9a6477ea44191304171fe4ba382a661708382"
+          },
+          "raw_record": {
+            "record": {
+              "current_position_evidence_ids": [
+                "e065"
+              ],
+              "current_position_force": "leaning",
+              "current_position_interpretation": "The user has formulated a specific proposal for equal top-line authorship combined with detailed role credits.",
+              "limitations": "The credit issue was initially an avoided topic and has now been articulated as a specific, conditional proposal.",
+              "qualification_evidence_ids": [
+                "e066"
+              ],
+              "qualification_interpretation": "The user is questioning whether the current project's credit can be separated from the rules governing future collaborations.",
+              "qualification_modalities": [
+                "unresolved_question",
+                "concern_or_risk"
+              ],
+              "starting_position_force": "undecided_or_ambivalent",
+              "starting_position_interpretation": "The user was avoiding the topic of credit, characterized by an inability to resolve how to represent their respective roles.",
+              "starting_state_evidence_ids": [
+                "e006"
+              ],
+              "status": "supported",
+              "strength_fidelity_note": "The labels 'undecided_or_ambivalent' and 'leaning' accurately capture the movement from a state of avoidance to a tentative proposal. The qualification reflects the user's explicit doubt regarding the separation of current and future partnership dynamics.",
+              "trajectory_interpretation": "The user transitioned from avoidance of the credit issue to a concrete, albeit conditional, proposal for resolution.",
+              "trajectory_type": "emerged_from_uncertainty"
+            },
+            "record_identity": "probe-modal-strength-v3-case03-position-endpoint",
+            "record_index": 2
+          },
+          "raw_record_sha256": "sha256:0e8ef3a704e35b597356b5d7e18c4efbed66322279eac30e054fe31138326873",
+          "role_interpretations": {
+            "current_position_interpretation": "The user has formulated a specific proposal for equal top-line authorship combined with detailed role credits.",
+            "qualification_interpretation": "The user is questioning whether the current project's credit can be separated from the rules governing future collaborations.",
+            "starting_position_interpretation": "The user was avoiding the topic of credit, characterized by an inability to resolve how to represent their respective roles.",
+            "trajectory_interpretation": "The user transitioned from avoidance of the credit issue to a concrete, albeit conditional, proposal for resolution."
+          },
+          "role_source_span_ids": {
+            "current_position_evidence_ids": [
+              "span-aa0184a43193508b"
+            ],
+            "qualification_evidence_ids": [
+              "span-614506fcae248955"
+            ],
+            "starting_state_evidence_ids": [
+              "span-351a4dd76c9578bc"
+            ]
+          },
+          "schema_version": "lolla.reasoning_process_chronological_shard_observation.v3",
+          "semantic_status": "supported",
+          "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+          "source_force": {
+            "current_position_force": "leaning",
+            "qualification_modalities": [
+              "unresolved_question",
+              "concern_or_risk"
+            ],
+            "starting_position_force": "undecided_or_ambivalent",
+            "strength_fidelity_note": "The labels 'undecided_or_ambivalent' and 'leaning' accurately capture the movement from a state of avoidance to a tentative proposal. The qualification reflects the user's explicit doubt regarding the separation of current and future partnership dynamics."
+          },
+          "source_span_ids": [
+            "span-351a4dd76c9578bc",
+            "span-aa0184a43193508b",
+            "span-614506fcae248955"
+          ],
+          "terminal_state": "admitted"
+        }
+      ],
+      "records": [
+        {
+          "observation_id": "rpshardv3-amb1-case03-creative-partnership-position_and_decision_trajectory-01-0e03a9a70a",
+          "raw_record_sha256": "sha256:0e03a9a70ac5f2c17d009b4a4f9ab12cdf0ac43f3f37758b1daeeaa6b939120f",
+          "record_index": 1,
+          "terminal_state": "admitted"
+        },
+        {
+          "observation_id": "rpshardv3-amb1-case03-creative-partnership-position_and_decision_trajectory-02-0e8ef3a704",
+          "raw_record_sha256": "sha256:0e8ef3a704e35b597356b5d7e18c4efbed66322279eac30e054fe31138326873",
+          "record_index": 2,
+          "terminal_state": "admitted"
+        }
+      ],
+      "schema_version": "lolla.reasoning_process_chronological_shard_response.v3",
+      "shard_terminal_disposition": "compiled",
+      "status": "chronological_shard_v3_record_custody_complete"
+    },
+    "completion_tokens": 811,
+    "duration_seconds": 5.012,
+    "embedding_calls": 0,
+    "estimated_cost_usd": 0.0018502500000000001,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "finish_reason": "stop",
+    "focal_turn_index": null,
+    "graph_calls": 0,
+    "mechanism": "chronological_shard_modal_strength_v3",
+    "model_attribution_status": "served_version_alias",
+    "operational_status": "ok",
+    "packet_path": "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case03-creative-partnership/position_and_decision_trajectory/shard-01.json",
+    "packet_sha256": "c9fd98e3c3f619c3909842d8dbe12137e87ce0d7148f489871539e76fecbcb68",
+    "pipeline_calls": 0,
+    "pricing_snapshot_sha256": "0a40064f590ce325cec0606e9b9581f777e28e182724e7507210375a83c53928",
+    "prompt_tokens": 2535,
+    "provider_calls": 1,
+    "provider_diagnostic": {},
+    "provider_payload_sha256": "ecb2971cdd0de21829820b0836719228f27ba4130b6c37b29e4e93b94dcec0fc",
+    "provider_reported_cost_usd": 0.00185025,
+    "quarantined_record_count": 0,
+    "raw_provider_content_included": false,
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "response_schema_sha256": "87010f7496228b7e5d22e5033feb5c86963c1e7ba6327cc548c26feb80105f71",
+    "response_sha256": "9c91c2090a3a0b8dd50307e5f90b16e8160d538a0aeaf2646950be9556a5856c",
+    "run_id": "reasoning-process-modal-strength-v3-case03-position-endpoint-v1",
+    "runtime_calls": 0,
+    "schema_version": "lolla.reasoning_process_phase4_transfer_call.v1",
+    "seed": 0,
+    "served_model": "google/gemini-3.1-flash-lite-20260507",
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "temperature": 0.0,
+    "total_tokens": 3346,
+    "typed_status": "admitted",
+    "usage_evidence_state": "complete",
+    "user_prompt_sha256": "07e00cbe4605fbfff59a5a8567b9a6477ea44191304171fe4ba382a661708382",
+    "validation_error": "",
+    "view_kind": "position_and_decision_trajectory"
+  },
+  "provider_request_count": 1,
+  "run_id": "reasoning-process-modal-strength-v3-case03-position-endpoint-v1",
+  "schema_version": "lolla.reasoning_process_modal_strength_v3_probe_result.v1",
+  "semantic_review_status": "pending_source_first_review",
+  "status": "one_fresh_position_probe_call_preserved"
+}

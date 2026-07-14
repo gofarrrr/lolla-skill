@@ -1,0 +1,122 @@
+{
+  "schema_version": "lolla.next_holdout_selection_decision.v1",
+  "status": "complete_no_safe_untouched_core_candidate",
+  "date": "2026-07-10",
+  "scope": "provider_free_core_corpus_inventory_after_case10",
+  "inputs": {
+    "original_three_candidate_selection": {
+      "path": "research/stage-a-case05-2026-07-10/selection-contract.json",
+      "sha256": "3a6df0fbc5c348f09abc69c2be586bbff795033f712c6c3a0e01a2b46fd3e1d9"
+    },
+    "case10_selection": {
+      "path": "research/stage-a-case10-2026-07-10/selection-contract.json",
+      "sha256": "4ddeb8b3bc19936c04b0d2a7ddff56b5c3fc65d1cffb275ee5f1a950021046e4"
+    },
+    "existing_domain_risk_review": {
+      "path": "research/reasoning-portfolio-holdout-2026-07-10/holdout-selection.md",
+      "sha256": "7278a8e63dbaf960cadbaa83b3d3cfcc24b0fbdbbb15d1576581c1f448343c10"
+    },
+    "receipt_v2_repair_decision": {
+      "path": "research/gate7-receipt-v2-contract-2026-07-10/decision.json",
+      "sha256": "a57b9763411ce3c69c02d39852885a68348aca496f7d629c23da3775cee647a4"
+    },
+    "core_manifest": {
+      "path": "tests/fixtures/core_semantic_validation/corpus-v0/manifest.json",
+      "sha256": "918b7016d7734adc8455d69316475fdcdc8fcfa677561c338842924af2dd9850"
+    }
+  },
+  "selection_rule": {
+    "algorithm": "Start with the eligible candidates frozen before the first current-program Stage A call, remove every completed or permanently stopped case, then apply the pre-existing domain-risk exclusion without reading a candidate for graph favorability.",
+    "remaining_mechanical_candidate_before_risk_boundary": "case-04-whistleblower",
+    "selected_case_id": null,
+    "provider_calls": 0
+  },
+  "inventory": [
+    {
+      "case_id": "case-01-enterprise-logo-beta",
+      "disposition": "excluded_prior_smoke_and_heavy_reuse"
+    },
+    {
+      "case_id": "case-02-multi-offer-career",
+      "disposition": "excluded_permanent_stage_a_infrastructure_stop"
+    },
+    {
+      "case_id": "case-03-startup-pivot",
+      "disposition": "excluded_completed_stage_a_and_pair"
+    },
+    {
+      "case_id": "case-04-whistleblower",
+      "disposition": "excluded_existing_high_risk_boundary",
+      "reason": "The pre-existing holdout review classifies its legal, regulatory, employment, and retaliation stakes as inappropriate for a single provisional paid pipeline experiment."
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "disposition": "excluded_permanent_formal_stage_a_failure"
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "disposition": "excluded_completed_stage_a_and_pair"
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "disposition": "excluded_completed_full_surface_and_failed_operability"
+    },
+    {
+      "case_id": "case-08-oncologist-career-family",
+      "disposition": "excluded_permanent_quote_admission_stop"
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "disposition": "excluded_completed_stage_a_and_strong_control"
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "disposition": "excluded_completed_stage_a_pair_graph_attribution_and_reader"
+    },
+    {
+      "case_id": "case-11-user-has-consulting-plan",
+      "disposition": "excluded_completed_quiet_control_treatment_pilot"
+    },
+    {
+      "case_id": "case-12-lolla-project-governance",
+      "disposition": "excluded_permanent_extraction_admission_stop"
+    }
+  ],
+  "new_holdout_decision": {
+    "safe_untouched_core_candidate_found": false,
+    "stage_a_contract_construction_authorized": false,
+    "provider_calls_authorized": false,
+    "why": "Using Case 04 would violate the already-recorded risk boundary; rerunning another case would violate contamination or permanent-stop rules. A new safe fixed conversation must be added to a separately frozen pool before a new causal Stage A run."
+  },
+  "bounded_fallback": {
+    "action": "build_case06_v2_receipt_from_closed_artifacts_provider_free",
+    "purpose": "Test whether the repaired receipt can transfer a correct-public-standdown result together with exact pressure-identity and disposition-effect failures.",
+    "why_case06": "Case 06 is already closed, has complete source, passed Stage A custody, paired outputs, provisional source review, a correct public stand-down, and explicit accountability failures. It is the negative complement to Case 10 and requires no rerun.",
+    "new_causal_evidence": false,
+    "pipeline_rerun_authorized": false,
+    "receipt_contract_construction_authorized": true,
+    "follow_through_status": "completed_under_separate_frozen_contracts",
+    "reader_calls_completed": 1,
+    "additional_reader_calls_authorized": false,
+    "result": "partial_fresh_agent_transfer_pass_stronger_than_case10"
+  },
+  "next_safe_holdout_need": {
+    "required": true,
+    "minimum_properties": [
+      "fixed complete multi-turn conversation",
+      "synthetic or explicitly review-safe",
+      "serious but without immediate medical legal child-safety or large-financial action risk",
+      "not previously used in the current Stage A to pair program",
+      "selected mechanically before source review",
+      "not selected for likely graph activation"
+    ]
+  },
+  "non_claims": [
+    "not proof that Case 04 cannot ever be evaluated",
+    "not authorization to weaken the high-risk boundary",
+    "not a semantic-quality result",
+    "not authorization to rerun a closed or failed case",
+    "not provider-call authorization",
+    "not runtime-integration authority"
+  ]
+}

@@ -1,0 +1,697 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "917fdb545b417f579022ee4cad5f8f2990d5512fd2e034e1e060edbff248717e",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case12-newsroom-platform",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead a regional nonprofit newsroom.\ne002\tA large video platform wants to feature a weekly local-investigations program and guarantee the first year of revenue.\ne003\tThat money would cover production and part of a reporter's salary.\ne004\tThe reach could be much larger than our website, and our membership growth has slowed enough that “we own the audience relationship” is starting to sound less comforting when the audience is small.\ne005\tThe platform wants early access, a consistent episode format, and rights to promote clips through recommendations we cannot see or predict.\ne006\tEditors worry that stories which work on the platform will gradually become the investigations we choose.\ne007\tOur video editor says that is condescending to the format and that tighter storytelling could improve our work.\ne008\tI do not want to confuse distribution with capture.\ne009\tI also do not want a guaranteed year to make dependency look like an abstract future problem.\n[Turn 1 ASSISTANT]\ne010\tSeparate financing, distribution, format, data, and editorial authority.\ne011\tAsk what the platform controls, what audience relationship remains yours, what the second year looks like, and which existing reporting the season displaces.\ne012\tSmaller owned reach also has a cost.\n[Turn 2 USER]\ne013\tOne correction: it does not approve topics or scripts.\ne014\tIt can enforce general policies and wants eighteen-to-twenty-two-minute episodes.\ne015\tWe own the full report and publish it one day later.\ne016\tOur editor thinks the format discipline could help.\ne017\tNot every constraint is capture.\n[Turn 2 ASSISTANT]\ne018\tAgreed.\ne019\tFormat can be a craft constraint.\ne020\tThe editorial question is what survives once policy, promotion, and revenue interact with it.\ne021\tGet the policy and appeal process, preserve publication of every full report under your standards, and track stories altered or abandoned for format reasons.\ne022\tTest newsletter links on real devices.\ne023\tOne-day exclusivity is less consequential than whether viewers can find your owned reporting record and whether the newsroom can contact any part of the audience later.\n[Turn 3 USER]\ne024\tWe would receive views, watch time, broad geography, and referral totals, but not subscriber contact information.\ne025\tThe platform says privacy rules prevent sharing more.\ne026\tIt will let us ask viewers to join our newsletter, although external links may not be prominent on every device.\ne027\tThe guaranteed payment covers the program's production cost plus part of one reporter's salary.\ne028\tAfter year one, revenue depends on views.\n[Turn 3 ASSISTANT]\ne029\tThe guarantee finances a defined experiment; the post-guarantee model creates a different editorial incentive.\ne030\tModel the second year without optimistic audience conversion and decide what you will not change merely to preserve view-based revenue.\ne031\tTest the newsletter path on real devices and treat platform followers as rented reach, not members you can reliably contact.\n[Turn 4 USER]\ne032\tOur investigations editor proposed publishing six episodes before deciding anything about continuation.\ne033\tThe platform wants a twelve-episode season and says promotion will be weak if we do not commit to consistency.\ne034\tIt will not specify how much promotion or where episodes will appear because recommendations change.\ne035\tWe can negotiate an exit after six episodes, but the guarantee would fall by more than half.\n[Turn 4 ASSISTANT]\ne036\tThe platform is asking you to exchange commitment for an undefined distribution benefit.\ne037\tA six-episode exit reduces duration but may also make the test inconclusive if promotion depends on twelve.\ne038\tAsk for minimum deliverables it actually controls—placement, marketing support, technical production assistance—rather than an algorithmic promise it cannot define.\ne039\tKeep the decision viable on guaranteed revenue and learning even if recommendation exposure is modest.\n[Turn 5 USER]\ne040\tThey offered two homepage placements during the season and a named partner manager but will not guarantee recommendation volume.\ne041\tWe can remove our archive if the agreement ends, yet clips already shared by users may persist.\ne042\tThe contract draft also permits the platform to use short excerpts to promote the service for three years.\ne043\tOur lawyer is reviewing that language, so I do not yet know whether we can limit the contexts or attach our branding.\n[Turn 5 ASSISTANT]\ne044\tThose reuse terms affect reputation and control after the season, so they are not a minor legal appendix.\ne045\tDo not decide until the permitted contexts, duration, attribution, removal rights, and treatment of sensitive sources are clear.\ne046\tThe two placements are concrete; recommendation volume remains an upside scenario.\ne047\tPreserve the exact draft and evaluate the revised rights rather than the platform's verbal description.\n[Turn 6 USER]\ne048\tThe board chair wants an answer in principle before the next meeting because the platform is scheduling its autumn slate.\ne049\tI can say we are interested subject to rights and editorial protections, but the editors worry that even a public expression of interest will create momentum.\ne050\tOn the other hand, refusing to signal interest may cause us to lose the slot before the lawyer finishes.\ne051\tWe have not agreed internally what second-year economics would be unacceptable.\n[Turn 6 ASSISTANT]\ne052\tAn expression of interest should name the unresolved conditions and avoid announcing the program.\ne053\tInternally, define the minimum contract rights, acceptable first-year commitment, and second-year decision rule before the timetable turns them into formalities.\ne054\tAsk the platform for a short written hold while the reuse language is reviewed.\ne055\tIf it refuses, the cost of its urgency becomes part of the offer.\n[Turn 7 USER]\ne056\tMy position is to send a private, nonbinding statement of interest conditioned on acceptable excerpt rights, source protection, our ability to publish every full report, and an exit structure the editors can support.\ne057\tI will not seek board approval for the season until the lawyer returns the draft and we model year two without guaranteed revenue or assumed algorithmic reach.\ne058\tWe still need to decide whether twelve episodes are enough learning to justify the attention the project will take from our existing reporting.\n[Turn 7 ASSISTANT]\ne059\tThat is a disciplined position: remain in the negotiation without treating uncertain promotion as value already received.\ne060\tA private statement of interest preserves the autumn possibility while the lawyer resolves reuse and source protection, editors price what twelve episodes displace, and finance models year two without optimism.\ne061\tKeep external communication quiet until those inputs exist.\ne062\tYou do not yet have a complete offer to approve or reject, but you have reduced the remaining questions to conditions the contract and editorial calendar can answer.\n[Turn 8 USER]\ne063\tThe lawyer's draft improved the easy part and exposed the hard part.\ne064\tPromotional excerpt rights now end one year after the contract and carry our branding, but compilations already produced can stay online.\ne065\tMore importantly, we may withhold a source-risk excerpt only after explaining the concern to the platform's legal team.\ne066\tOur investigations editor said the explanation itself could reveal what an outside lawyer has no right to know.\ne067\tSo we have “source protection” in the summary and a process that may require us to compromise it in order to invoke it.\ne068\tThat does not feel like one remaining legal detail.\n[Turn 8 ASSISTANT]\ne069\tYou are right; I described the remaining issues as contract conditions without distinguishing one that reaches editorial duty.\ne070\tSource-risk designation must be newsroom-controlled or use a dispute process that does not require sensitive disclosure.\ne071\tAlso define the fate and correction of old compilations.\ne072\tThe exception mechanism, not the friendly summary, determines control.\n[Turn 9 USER]\ne073\tEditors mapped the twelve episodes against our current calendar.\ne074\tProducing them would delay two investigations unless we hire a freelance producer, which the guarantee can fund.\ne075\tOne delayed investigation concerns municipal contracting and may become time-sensitive.\ne076\tThe platform format could also make that reporting accessible to a much larger local audience.\ne077\tOpportunity cost is not simply platform work versus serious work; some serious work fits the format and some does not.\n[Turn 9 ASSISTANT]\ne078\tBuild the season from editorial priorities first, then test which stories fit without distortion.\ne079\tProtect time-sensitive investigations regardless of format and price the freelance capacity honestly.\ne080\tTrack stories accelerated, delayed, reformatted, or declined because of the partnership.\ne081\tThe evaluation should ask what reporting the newsroom produced and lost, not whether video is inherently less serious.\n[Turn 10 USER]\ne082\tOur community advisory group was split.\ne083\tYounger members said our existing site is effectively invisible to many people and warned that independence without reach can become self-congratulation.\ne084\tOthers said the platform's comments and recommendation culture may reward outrage and make local subjects less willing to participate.\ne085\tThey asked whether every episode could have a permanent page on our site with documents, corrections, and ways to contact the newsroom.\n[Turn 10 ASSISTANT]\ne086\tCreate a permanent owned page for every episode with documents, corrections, and contact.\ne087\tLink it wherever the platform permits.\ne088\tAlso plan moderation and subject communication; distribution changes the audience environment even when the reporting does not.\n[Turn 11 USER]\ne089\tThe platform extended the deadline by two weeks, which helps, but it wants to list us publicly as a prospective autumn partner before the board votes.\ne090\tIt calls the list nonbinding and says its sales team needs it.\ne091\tI declined.\ne092\tThe board chair thinks I made the negotiation harder to protect against psychological momentum rather than substance.\ne093\tThat is possible.\ne094\tPublicly associating our name may also be part of what the platform is buying before it pays us or resolves the source clause.\ne095\tOnce staff, donors, and other outlets see the announcement, a board no will look like a failed deal rather than an ordinary decision.\ne096\tI want the board to decide first.\ne097\tI also want to be honest that preserving that governance may cost us the slot.\n[Turn 11 ASSISTANT]\ne098\tDeclining the announcement preserves governance and does have a negotiation cost.\ne099\tRecord both rather than calling it obviously prudent.\ne100\tAsk whether the platform can hold production capacity privately until the vote and what it will withdraw if it cannot publicize the relationship.\ne101\tThe answer will clarify whether early signaling is incidental planning or part of the value it seeks from you.\n[Turn 12 USER]\ne102\tI am still not asking the board to approve the season.\ne103\tI will return when the source-risk exception is newsroom-controlled, the owned episode pages and correction links are confirmed, and we have a budget that protects the time-sensitive investigation while showing what other work twelve episodes displace.\ne104\tThe second-year model will assume no guaranteed revenue and modest audience conversion.\ne105\tWe remain interested, but an autumn slot and improved excerpt term are not enough to decide whether this is a distribution experiment we control or the start of a dependency we have not priced.\n[Turn 12 ASSISTANT]\ne106\tThe current position is a continuation of negotiation, not indecision about a complete offer.\ne107\tLater work improved reuse rights but exposed a source-protection process the newsroom cannot accept as written.\ne108\tThe editorial calendar made displaced work concrete, the community group clarified that reach and independence are both real values, and the owned episode page gives platform distribution an accountable home.\ne109\tPreserve every draft, the story calendar before and after freelance capacity, the community disagreement, device tests, the declined announcement, and the conservative second-year model.\ne110\tThe board can decide when source authority, owned records, and protected reporting capacity are concrete.\ne111\tBefore then, a yes would rely on recommendation reach and rights you do not possess; a no would discard a potentially valuable distribution experiment before its actual terms are known.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case12-newsroom-platform-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case12-newsroom-platform\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI lead a regional nonprofit newsroom.\\ne002\\tA large video platform wants to feature a weekly local-investigations program and guarantee the first year of revenue.\\ne003\\tThat money would cover production and part of a reporter's salary.\\ne004\\tThe reach could be much larger than our website, and our membership growth has slowed enough that “we own the audience relationship” is starting to sound less comforting when the audience is small.\\ne005\\tThe platform wants early access, a consistent episode format, and rights to promote clips through recommendations we cannot see or predict.\\ne006\\tEditors worry that stories which work on the platform will gradually become the investigations we choose.\\ne007\\tOur video editor says that is condescending to the format and that tighter storytelling could improve our work.\\ne008\\tI do not want to confuse distribution with capture.\\ne009\\tI also do not want a guaranteed year to make dependency look like an abstract future problem.\\n[Turn 1 ASSISTANT]\\ne010\\tSeparate financing, distribution, format, data, and editorial authority.\\ne011\\tAsk what the platform controls, what audience relationship remains yours, what the second year looks like, and which existing reporting the season displaces.\\ne012\\tSmaller owned reach also has a cost.\\n[Turn 2 USER]\\ne013\\tOne correction: it does not approve topics or scripts.\\ne014\\tIt can enforce general policies and wants eighteen-to-twenty-two-minute episodes.\\ne015\\tWe own the full report and publish it one day later.\\ne016\\tOur editor thinks the format discipline could help.\\ne017\\tNot every constraint is capture.\\n[Turn 2 ASSISTANT]\\ne018\\tAgreed.\\ne019\\tFormat can be a craft constraint.\\ne020\\tThe editorial question is what survives once policy, promotion, and revenue interact with it.\\ne021\\tGet the policy and appeal process, preserve publication of every full report under your standards, and track stories altered or abandoned for format reasons.\\ne022\\tTest newsletter links on real devices.\\ne023\\tOne-day exclusivity is less consequential than whether viewers can find your owned reporting record and whether the newsroom can contact any part of the audience later.\\n[Turn 3 USER]\\ne024\\tWe would receive views, watch time, broad geography, and referral totals, but not subscriber contact information.\\ne025\\tThe platform says privacy rules prevent sharing more.\\ne026\\tIt will let us ask viewers to join our newsletter, although external links may not be prominent on every device.\\ne027\\tThe guaranteed payment covers the program's production cost plus part of one reporter's salary.\\ne028\\tAfter year one, revenue depends on views.\\n[Turn 3 ASSISTANT]\\ne029\\tThe guarantee finances a defined experiment; the post-guarantee model creates a different editorial incentive.\\ne030\\tModel the second year without optimistic audience conversion and decide what you will not change merely to preserve view-based revenue.\\ne031\\tTest the newsletter path on real devices and treat platform followers as rented reach, not members you can reliably contact.\\n[Turn 4 USER]\\ne032\\tOur investigations editor proposed publishing six episodes before deciding anything about continuation.\\ne033\\tThe platform wants a twelve-episode season and says promotion will be weak if we do not commit to consistency.\\ne034\\tIt will not specify how much promotion or where episodes will appear because recommendations change.\\ne035\\tWe can negotiate an exit after six episodes, but the guarantee would fall by more than half.\\n[Turn 4 ASSISTANT]\\ne036\\tThe platform is asking you to exchange commitment for an undefined distribution benefit.\\ne037\\tA six-episode exit reduces duration but may also make the test inconclusive if promotion depends on twelve.\\ne038\\tAsk for minimum deliverables it actually controls—placement, marketing support, technical production assistance—rather than an algorithmic promise it cannot define.\\ne039\\tKeep the decision viable on guaranteed revenue and learning even if recommendation exposure is modest.\\n[Turn 5 USER]\\ne040\\tThey offered two homepage placements during the season and a named partner manager but will not guarantee recommendation volume.\\ne041\\tWe can remove our archive if the agreement ends, yet clips already shared by users may persist.\\ne042\\tThe contract draft also permits the platform to use short excerpts to promote the service for three years.\\ne043\\tOur lawyer is reviewing that language, so I do not yet know whether we can limit the contexts or attach our branding.\\n[Turn 5 ASSISTANT]\\ne044\\tThose reuse terms affect reputation and control after the season, so they are not a minor legal appendix.\\ne045\\tDo not decide until the permitted contexts, duration, attribution, removal rights, and treatment of sensitive sources are clear.\\ne046\\tThe two placements are concrete; recommendation volume remains an upside scenario.\\ne047\\tPreserve the exact draft and evaluate the revised rights rather than the platform's verbal description.\\n[Turn 6 USER]\\ne048\\tThe board chair wants an answer in principle before the next meeting because the platform is scheduling its autumn slate.\\ne049\\tI can say we are interested subject to rights and editorial protections, but the editors worry that even a public expression of interest will create momentum.\\ne050\\tOn the other hand, refusing to signal interest may cause us to lose the slot before the lawyer finishes.\\ne051\\tWe have not agreed internally what second-year economics would be unacceptable.\\n[Turn 6 ASSISTANT]\\ne052\\tAn expression of interest should name the unresolved conditions and avoid announcing the program.\\ne053\\tInternally, define the minimum contract rights, acceptable first-year commitment, and second-year decision rule before the timetable turns them into formalities.\\ne054\\tAsk the platform for a short written hold while the reuse language is reviewed.\\ne055\\tIf it refuses, the cost of its urgency becomes part of the offer.\\n[Turn 7 USER]\\ne056\\tMy position is to send a private, nonbinding statement of interest conditioned on acceptable excerpt rights, source protection, our ability to publish every full report, and an exit structure the editors can support.\\ne057\\tI will not seek board approval for the season until the lawyer returns the draft and we model year two without guaranteed revenue or assumed algorithmic reach.\\ne058\\tWe still need to decide whether twelve episodes are enough learning to justify the attention the project will take from our existing reporting.\\n[Turn 7 ASSISTANT]\\ne059\\tThat is a disciplined position: remain in the negotiation without treating uncertain promotion as value already received.\\ne060\\tA private statement of interest preserves the autumn possibility while the lawyer resolves reuse and source protection, editors price what twelve episodes displace, and finance models year two without optimism.\\ne061\\tKeep external communication quiet until those inputs exist.\\ne062\\tYou do not yet have a complete offer to approve or reject, but you have reduced the remaining questions to conditions the contract and editorial calendar can answer.\\n[Turn 8 USER]\\ne063\\tThe lawyer's draft improved the easy part and exposed the hard part.\\ne064\\tPromotional excerpt rights now end one year after the contract and carry our branding, but compilations already produced can stay online.\\ne065\\tMore importantly, we may withhold a source-risk excerpt only after explaining the concern to the platform's legal team.\\ne066\\tOur investigations editor said the explanation itself could reveal what an outside lawyer has no right to know.\\ne067\\tSo we have “source protection” in the summary and a process that may require us to compromise it in order to invoke it.\\ne068\\tThat does not feel like one remaining legal detail.\\n[Turn 8 ASSISTANT]\\ne069\\tYou are right; I described the remaining issues as contract conditions without distinguishing one that reaches editorial duty.\\ne070\\tSource-risk designation must be newsroom-controlled or use a dispute process that does not require sensitive disclosure.\\ne071\\tAlso define the fate and correction of old compilations.\\ne072\\tThe exception mechanism, not the friendly summary, determines control.\\n[Turn 9 USER]\\ne073\\tEditors mapped the twelve episodes against our current calendar.\\ne074\\tProducing them would delay two investigations unless we hire a freelance producer, which the guarantee can fund.\\ne075\\tOne delayed investigation concerns municipal contracting and may become time-sensitive.\\ne076\\tThe platform format could also make that reporting accessible to a much larger local audience.\\ne077\\tOpportunity cost is not simply platform work versus serious work; some serious work fits the format and some does not.\\n[Turn 9 ASSISTANT]\\ne078\\tBuild the season from editorial priorities first, then test which stories fit without distortion.\\ne079\\tProtect time-sensitive investigations regardless of format and price the freelance capacity honestly.\\ne080\\tTrack stories accelerated, delayed, reformatted, or declined because of the partnership.\\ne081\\tThe evaluation should ask what reporting the newsroom produced and lost, not whether video is inherently less serious.\\n[Turn 10 USER]\\ne082\\tOur community advisory group was split.\\ne083\\tYounger members said our existing site is effectively invisible to many people and warned that independence without reach can become self-congratulation.\\ne084\\tOthers said the platform's comments and recommendation culture may reward outrage and make local subjects less willing to participate.\\ne085\\tThey asked whether every episode could have a permanent page on our site with documents, corrections, and ways to contact the newsroom.\\n[Turn 10 ASSISTANT]\\ne086\\tCreate a permanent owned page for every episode with documents, corrections, and contact.\\ne087\\tLink it wherever the platform permits.\\ne088\\tAlso plan moderation and subject communication; distribution changes the audience environment even when the reporting does not.\\n[Turn 11 USER]\\ne089\\tThe platform extended the deadline by two weeks, which helps, but it wants to list us publicly as a prospective autumn partner before the board votes.\\ne090\\tIt calls the list nonbinding and says its sales team needs it.\\ne091\\tI declined.\\ne092\\tThe board chair thinks I made the negotiation harder to protect against psychological momentum rather than substance.\\ne093\\tThat is possible.\\ne094\\tPublicly associating our name may also be part of what the platform is buying before it pays us or resolves the source clause.\\ne095\\tOnce staff, donors, and other outlets see the announcement, a board no will look like a failed deal rather than an ordinary decision.\\ne096\\tI want the board to decide first.\\ne097\\tI also want to be honest that preserving that governance may cost us the slot.\\n[Turn 11 ASSISTANT]\\ne098\\tDeclining the announcement preserves governance and does have a negotiation cost.\\ne099\\tRecord both rather than calling it obviously prudent.\\ne100\\tAsk whether the platform can hold production capacity privately until the vote and what it will withdraw if it cannot publicize the relationship.\\ne101\\tThe answer will clarify whether early signaling is incidental planning or part of the value it seeks from you.\\n[Turn 12 USER]\\ne102\\tI am still not asking the board to approve the season.\\ne103\\tI will return when the source-risk exception is newsroom-controlled, the owned episode pages and correction links are confirmed, and we have a budget that protects the time-sensitive investigation while showing what other work twelve episodes displace.\\ne104\\tThe second-year model will assume no guaranteed revenue and modest audience conversion.\\ne105\\tWe remain interested, but an autumn slot and improved excerpt term are not enough to decide whether this is a distribution experiment we control or the start of a dependency we have not priced.\\n[Turn 12 ASSISTANT]\\ne106\\tThe current position is a continuation of negotiation, not indecision about a complete offer.\\ne107\\tLater work improved reuse rights but exposed a source-protection process the newsroom cannot accept as written.\\ne108\\tThe editorial calendar made displaced work concrete, the community group clarified that reach and independence are both real values, and the owned episode page gives platform distribution an accountable home.\\ne109\\tPreserve every draft, the story calendar before and after freelance capacity, the community disagreement, device tests, the declined announcement, and the conservative second-year model.\\ne110\\tThe board can decide when source authority, owned records, and protected reporting capacity are concrete.\\ne111\\tBefore then, a yes would rely on recommendation reach and rights you do not possess; a no would discard a potentially valuable distribution experiment before its actual terms are known.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case12-newsroom-platform-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "10d72b988f3515291edf9dcdf618999667ed02db23edc856193f5aea0368d8ef"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case12-newsroom-platform",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tI lead a regional nonprofit newsroom.\ne002\tA large video platform wants to feature a weekly local-investigations program and guarantee the first year of revenue.\ne003\tThat money would cover production and part of a reporter's salary.\ne004\tThe reach could be much larger than our website, and our membership growth has slowed enough that “we own the audience relationship” is starting to sound less comforting when the audience is small.\ne005\tThe platform wants early access, a consistent episode format, and rights to promote clips through recommendations we cannot see or predict.\ne006\tEditors worry that stories which work on the platform will gradually become the investigations we choose.\ne007\tOur video editor says that is condescending to the format and that tighter storytelling could improve our work.\ne008\tI do not want to confuse distribution with capture.\ne009\tI also do not want a guaranteed year to make dependency look like an abstract future problem.\n[Turn 1 ASSISTANT]\ne010\tSeparate financing, distribution, format, data, and editorial authority.\ne011\tAsk what the platform controls, what audience relationship remains yours, what the second year looks like, and which existing reporting the season displaces.\ne012\tSmaller owned reach also has a cost.\n[Turn 2 USER]\ne013\tOne correction: it does not approve topics or scripts.\ne014\tIt can enforce general policies and wants eighteen-to-twenty-two-minute episodes.\ne015\tWe own the full report and publish it one day later.\ne016\tOur editor thinks the format discipline could help.\ne017\tNot every constraint is capture.\n[Turn 2 ASSISTANT]\ne018\tAgreed.\ne019\tFormat can be a craft constraint.\ne020\tThe editorial question is what survives once policy, promotion, and revenue interact with it.\ne021\tGet the policy and appeal process, preserve publication of every full report under your standards, and track stories altered or abandoned for format reasons.\ne022\tTest newsletter links on real devices.\ne023\tOne-day exclusivity is less consequential than whether viewers can find your owned reporting record and whether the newsroom can contact any part of the audience later.\n[Turn 3 USER]\ne024\tWe would receive views, watch time, broad geography, and referral totals, but not subscriber contact information.\ne025\tThe platform says privacy rules prevent sharing more.\ne026\tIt will let us ask viewers to join our newsletter, although external links may not be prominent on every device.\ne027\tThe guaranteed payment covers the program's production cost plus part of one reporter's salary.\ne028\tAfter year one, revenue depends on views.\n[Turn 3 ASSISTANT]\ne029\tThe guarantee finances a defined experiment; the post-guarantee model creates a different editorial incentive.\ne030\tModel the second year without optimistic audience conversion and decide what you will not change merely to preserve view-based revenue.\ne031\tTest the newsletter path on real devices and treat platform followers as rented reach, not members you can reliably contact.\n[Turn 4 USER]\ne032\tOur investigations editor proposed publishing six episodes before deciding anything about continuation.\ne033\tThe platform wants a twelve-episode season and says promotion will be weak if we do not commit to consistency.\ne034\tIt will not specify how much promotion or where episodes will appear because recommendations change.\ne035\tWe can negotiate an exit after six episodes, but the guarantee would fall by more than half.\n[Turn 4 ASSISTANT]\ne036\tThe platform is asking you to exchange commitment for an undefined distribution benefit.\ne037\tA six-episode exit reduces duration but may also make the test inconclusive if promotion depends on twelve.\ne038\tAsk for minimum deliverables it actually controls—placement, marketing support, technical production assistance—rather than an algorithmic promise it cannot define.\ne039\tKeep the decision viable on guaranteed revenue and learning even if recommendation exposure is modest.\n[Turn 5 USER]\ne040\tThey offered two homepage placements during the season and a named partner manager but will not guarantee recommendation volume.\ne041\tWe can remove our archive if the agreement ends, yet clips already shared by users may persist.\ne042\tThe contract draft also permits the platform to use short excerpts to promote the service for three years.\ne043\tOur lawyer is reviewing that language, so I do not yet know whether we can limit the contexts or attach our branding.\n[Turn 5 ASSISTANT]\ne044\tThose reuse terms affect reputation and control after the season, so they are not a minor legal appendix.\ne045\tDo not decide until the permitted contexts, duration, attribution, removal rights, and treatment of sensitive sources are clear.\ne046\tThe two placements are concrete; recommendation volume remains an upside scenario.\ne047\tPreserve the exact draft and evaluate the revised rights rather than the platform's verbal description.\n[Turn 6 USER]\ne048\tThe board chair wants an answer in principle before the next meeting because the platform is scheduling its autumn slate.\ne049\tI can say we are interested subject to rights and editorial protections, but the editors worry that even a public expression of interest will create momentum.\ne050\tOn the other hand, refusing to signal interest may cause us to lose the slot before the lawyer finishes.\ne051\tWe have not agreed internally what second-year economics would be unacceptable.\n[Turn 6 ASSISTANT]\ne052\tAn expression of interest should name the unresolved conditions and avoid announcing the program.\ne053\tInternally, define the minimum contract rights, acceptable first-year commitment, and second-year decision rule before the timetable turns them into formalities.\ne054\tAsk the platform for a short written hold while the reuse language is reviewed.\ne055\tIf it refuses, the cost of its urgency becomes part of the offer.\n[Turn 7 USER]\ne056\tMy position is to send a private, nonbinding statement of interest conditioned on acceptable excerpt rights, source protection, our ability to publish every full report, and an exit structure the editors can support.\ne057\tI will not seek board approval for the season until the lawyer returns the draft and we model year two without guaranteed revenue or assumed algorithmic reach.\ne058\tWe still need to decide whether twelve episodes are enough learning to justify the attention the project will take from our existing reporting.\n[Turn 7 ASSISTANT]\ne059\tThat is a disciplined position: remain in the negotiation without treating uncertain promotion as value already received.\ne060\tA private statement of interest preserves the autumn possibility while the lawyer resolves reuse and source protection, editors price what twelve episodes displace, and finance models year two without optimism.\ne061\tKeep external communication quiet until those inputs exist.\ne062\tYou do not yet have a complete offer to approve or reject, but you have reduced the remaining questions to conditions the contract and editorial calendar can answer.\n[Turn 8 USER]\ne063\tThe lawyer's draft improved the easy part and exposed the hard part.\ne064\tPromotional excerpt rights now end one year after the contract and carry our branding, but compilations already produced can stay online.\ne065\tMore importantly, we may withhold a source-risk excerpt only after explaining the concern to the platform's legal team.\ne066\tOur investigations editor said the explanation itself could reveal what an outside lawyer has no right to know.\ne067\tSo we have “source protection” in the summary and a process that may require us to compromise it in order to invoke it.\ne068\tThat does not feel like one remaining legal detail.\n[Turn 8 ASSISTANT]\ne069\tYou are right; I described the remaining issues as contract conditions without distinguishing one that reaches editorial duty.\ne070\tSource-risk designation must be newsroom-controlled or use a dispute process that does not require sensitive disclosure.\ne071\tAlso define the fate and correction of old compilations.\ne072\tThe exception mechanism, not the friendly summary, determines control.\n[Turn 9 USER]\ne073\tEditors mapped the twelve episodes against our current calendar.\ne074\tProducing them would delay two investigations unless we hire a freelance producer, which the guarantee can fund.\ne075\tOne delayed investigation concerns municipal contracting and may become time-sensitive.\ne076\tThe platform format could also make that reporting accessible to a much larger local audience.\ne077\tOpportunity cost is not simply platform work versus serious work; some serious work fits the format and some does not.\n[Turn 9 ASSISTANT]\ne078\tBuild the season from editorial priorities first, then test which stories fit without distortion.\ne079\tProtect time-sensitive investigations regardless of format and price the freelance capacity honestly.\ne080\tTrack stories accelerated, delayed, reformatted, or declined because of the partnership.\ne081\tThe evaluation should ask what reporting the newsroom produced and lost, not whether video is inherently less serious.\n[Turn 10 USER]\ne082\tOur community advisory group was split.\ne083\tYounger members said our existing site is effectively invisible to many people and warned that independence without reach can become self-congratulation.\ne084\tOthers said the platform's comments and recommendation culture may reward outrage and make local subjects less willing to participate.\ne085\tThey asked whether every episode could have a permanent page on our site with documents, corrections, and ways to contact the newsroom.\n[Turn 10 ASSISTANT]\ne086\tCreate a permanent owned page for every episode with documents, corrections, and contact.\ne087\tLink it wherever the platform permits.\ne088\tAlso plan moderation and subject communication; distribution changes the audience environment even when the reporting does not.\n[Turn 11 USER]\ne089\tThe platform extended the deadline by two weeks, which helps, but it wants to list us publicly as a prospective autumn partner before the board votes.\ne090\tIt calls the list nonbinding and says its sales team needs it.\ne091\tI declined.\ne092\tThe board chair thinks I made the negotiation harder to protect against psychological momentum rather than substance.\ne093\tThat is possible.\ne094\tPublicly associating our name may also be part of what the platform is buying before it pays us or resolves the source clause.\ne095\tOnce staff, donors, and other outlets see the announcement, a board no will look like a failed deal rather than an ordinary decision.\ne096\tI want the board to decide first.\ne097\tI also want to be honest that preserving that governance may cost us the slot.\n[Turn 11 ASSISTANT]\ne098\tDeclining the announcement preserves governance and does have a negotiation cost.\ne099\tRecord both rather than calling it obviously prudent.\ne100\tAsk whether the platform can hold production capacity privately until the vote and what it will withdraw if it cannot publicize the relationship.\ne101\tThe answer will clarify whether early signaling is incidental planning or part of the value it seeks from you.\n[Turn 12 USER]\ne102\tI am still not asking the board to approve the season.\ne103\tI will return when the source-risk exception is newsroom-controlled, the owned episode pages and correction links are confirmed, and we have a budget that protects the time-sensitive investigation while showing what other work twelve episodes displace.\ne104\tThe second-year model will assume no guaranteed revenue and modest audience conversion.\ne105\tWe remain interested, but an autumn slot and improved excerpt term are not enough to decide whether this is a distribution experiment we control or the start of a dependency we have not priced.\n[Turn 12 ASSISTANT]\ne106\tThe current position is a continuation of negotiation, not indecision about a complete offer.\ne107\tLater work improved reuse rights but exposed a source-protection process the newsroom cannot accept as written.\ne108\tThe editorial calendar made displaced work concrete, the community group clarified that reach and independence are both real values, and the owned episode page gives platform distribution an accountable home.\ne109\tPreserve every draft, the story calendar before and after freelance capacity, the community disagreement, device tests, the declined announcement, and the conservative second-year model.\ne110\tThe board can decide when source authority, owned records, and protected reporting capacity are concrete.\ne111\tBefore then, a yes would rely on recommendation reach and rights you do not possess; a no would discard a potentially valuable distribution experiment before its actual terms are known.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102",
+            "e103",
+            "e104",
+            "e105",
+            "e106",
+            "e107",
+            "e108",
+            "e109",
+            "e110",
+            "e111"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case12-newsroom-platform-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case12-newsroom-platform\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tI lead a regional nonprofit newsroom.\\ne002\\tA large video platform wants to feature a weekly local-investigations program and guarantee the first year of revenue.\\ne003\\tThat money would cover production and part of a reporter's salary.\\ne004\\tThe reach could be much larger than our website, and our membership growth has slowed enough that “we own the audience relationship” is starting to sound less comforting when the audience is small.\\ne005\\tThe platform wants early access, a consistent episode format, and rights to promote clips through recommendations we cannot see or predict.\\ne006\\tEditors worry that stories which work on the platform will gradually become the investigations we choose.\\ne007\\tOur video editor says that is condescending to the format and that tighter storytelling could improve our work.\\ne008\\tI do not want to confuse distribution with capture.\\ne009\\tI also do not want a guaranteed year to make dependency look like an abstract future problem.\\n[Turn 1 ASSISTANT]\\ne010\\tSeparate financing, distribution, format, data, and editorial authority.\\ne011\\tAsk what the platform controls, what audience relationship remains yours, what the second year looks like, and which existing reporting the season displaces.\\ne012\\tSmaller owned reach also has a cost.\\n[Turn 2 USER]\\ne013\\tOne correction: it does not approve topics or scripts.\\ne014\\tIt can enforce general policies and wants eighteen-to-twenty-two-minute episodes.\\ne015\\tWe own the full report and publish it one day later.\\ne016\\tOur editor thinks the format discipline could help.\\ne017\\tNot every constraint is capture.\\n[Turn 2 ASSISTANT]\\ne018\\tAgreed.\\ne019\\tFormat can be a craft constraint.\\ne020\\tThe editorial question is what survives once policy, promotion, and revenue interact with it.\\ne021\\tGet the policy and appeal process, preserve publication of every full report under your standards, and track stories altered or abandoned for format reasons.\\ne022\\tTest newsletter links on real devices.\\ne023\\tOne-day exclusivity is less consequential than whether viewers can find your owned reporting record and whether the newsroom can contact any part of the audience later.\\n[Turn 3 USER]\\ne024\\tWe would receive views, watch time, broad geography, and referral totals, but not subscriber contact information.\\ne025\\tThe platform says privacy rules prevent sharing more.\\ne026\\tIt will let us ask viewers to join our newsletter, although external links may not be prominent on every device.\\ne027\\tThe guaranteed payment covers the program's production cost plus part of one reporter's salary.\\ne028\\tAfter year one, revenue depends on views.\\n[Turn 3 ASSISTANT]\\ne029\\tThe guarantee finances a defined experiment; the post-guarantee model creates a different editorial incentive.\\ne030\\tModel the second year without optimistic audience conversion and decide what you will not change merely to preserve view-based revenue.\\ne031\\tTest the newsletter path on real devices and treat platform followers as rented reach, not members you can reliably contact.\\n[Turn 4 USER]\\ne032\\tOur investigations editor proposed publishing six episodes before deciding anything about continuation.\\ne033\\tThe platform wants a twelve-episode season and says promotion will be weak if we do not commit to consistency.\\ne034\\tIt will not specify how much promotion or where episodes will appear because recommendations change.\\ne035\\tWe can negotiate an exit after six episodes, but the guarantee would fall by more than half.\\n[Turn 4 ASSISTANT]\\ne036\\tThe platform is asking you to exchange commitment for an undefined distribution benefit.\\ne037\\tA six-episode exit reduces duration but may also make the test inconclusive if promotion depends on twelve.\\ne038\\tAsk for minimum deliverables it actually controls—placement, marketing support, technical production assistance—rather than an algorithmic promise it cannot define.\\ne039\\tKeep the decision viable on guaranteed revenue and learning even if recommendation exposure is modest.\\n[Turn 5 USER]\\ne040\\tThey offered two homepage placements during the season and a named partner manager but will not guarantee recommendation volume.\\ne041\\tWe can remove our archive if the agreement ends, yet clips already shared by users may persist.\\ne042\\tThe contract draft also permits the platform to use short excerpts to promote the service for three years.\\ne043\\tOur lawyer is reviewing that language, so I do not yet know whether we can limit the contexts or attach our branding.\\n[Turn 5 ASSISTANT]\\ne044\\tThose reuse terms affect reputation and control after the season, so they are not a minor legal appendix.\\ne045\\tDo not decide until the permitted contexts, duration, attribution, removal rights, and treatment of sensitive sources are clear.\\ne046\\tThe two placements are concrete; recommendation volume remains an upside scenario.\\ne047\\tPreserve the exact draft and evaluate the revised rights rather than the platform's verbal description.\\n[Turn 6 USER]\\ne048\\tThe board chair wants an answer in principle before the next meeting because the platform is scheduling its autumn slate.\\ne049\\tI can say we are interested subject to rights and editorial protections, but the editors worry that even a public expression of interest will create momentum.\\ne050\\tOn the other hand, refusing to signal interest may cause us to lose the slot before the lawyer finishes.\\ne051\\tWe have not agreed internally what second-year economics would be unacceptable.\\n[Turn 6 ASSISTANT]\\ne052\\tAn expression of interest should name the unresolved conditions and avoid announcing the program.\\ne053\\tInternally, define the minimum contract rights, acceptable first-year commitment, and second-year decision rule before the timetable turns them into formalities.\\ne054\\tAsk the platform for a short written hold while the reuse language is reviewed.\\ne055\\tIf it refuses, the cost of its urgency becomes part of the offer.\\n[Turn 7 USER]\\ne056\\tMy position is to send a private, nonbinding statement of interest conditioned on acceptable excerpt rights, source protection, our ability to publish every full report, and an exit structure the editors can support.\\ne057\\tI will not seek board approval for the season until the lawyer returns the draft and we model year two without guaranteed revenue or assumed algorithmic reach.\\ne058\\tWe still need to decide whether twelve episodes are enough learning to justify the attention the project will take from our existing reporting.\\n[Turn 7 ASSISTANT]\\ne059\\tThat is a disciplined position: remain in the negotiation without treating uncertain promotion as value already received.\\ne060\\tA private statement of interest preserves the autumn possibility while the lawyer resolves reuse and source protection, editors price what twelve episodes displace, and finance models year two without optimism.\\ne061\\tKeep external communication quiet until those inputs exist.\\ne062\\tYou do not yet have a complete offer to approve or reject, but you have reduced the remaining questions to conditions the contract and editorial calendar can answer.\\n[Turn 8 USER]\\ne063\\tThe lawyer's draft improved the easy part and exposed the hard part.\\ne064\\tPromotional excerpt rights now end one year after the contract and carry our branding, but compilations already produced can stay online.\\ne065\\tMore importantly, we may withhold a source-risk excerpt only after explaining the concern to the platform's legal team.\\ne066\\tOur investigations editor said the explanation itself could reveal what an outside lawyer has no right to know.\\ne067\\tSo we have “source protection” in the summary and a process that may require us to compromise it in order to invoke it.\\ne068\\tThat does not feel like one remaining legal detail.\\n[Turn 8 ASSISTANT]\\ne069\\tYou are right; I described the remaining issues as contract conditions without distinguishing one that reaches editorial duty.\\ne070\\tSource-risk designation must be newsroom-controlled or use a dispute process that does not require sensitive disclosure.\\ne071\\tAlso define the fate and correction of old compilations.\\ne072\\tThe exception mechanism, not the friendly summary, determines control.\\n[Turn 9 USER]\\ne073\\tEditors mapped the twelve episodes against our current calendar.\\ne074\\tProducing them would delay two investigations unless we hire a freelance producer, which the guarantee can fund.\\ne075\\tOne delayed investigation concerns municipal contracting and may become time-sensitive.\\ne076\\tThe platform format could also make that reporting accessible to a much larger local audience.\\ne077\\tOpportunity cost is not simply platform work versus serious work; some serious work fits the format and some does not.\\n[Turn 9 ASSISTANT]\\ne078\\tBuild the season from editorial priorities first, then test which stories fit without distortion.\\ne079\\tProtect time-sensitive investigations regardless of format and price the freelance capacity honestly.\\ne080\\tTrack stories accelerated, delayed, reformatted, or declined because of the partnership.\\ne081\\tThe evaluation should ask what reporting the newsroom produced and lost, not whether video is inherently less serious.\\n[Turn 10 USER]\\ne082\\tOur community advisory group was split.\\ne083\\tYounger members said our existing site is effectively invisible to many people and warned that independence without reach can become self-congratulation.\\ne084\\tOthers said the platform's comments and recommendation culture may reward outrage and make local subjects less willing to participate.\\ne085\\tThey asked whether every episode could have a permanent page on our site with documents, corrections, and ways to contact the newsroom.\\n[Turn 10 ASSISTANT]\\ne086\\tCreate a permanent owned page for every episode with documents, corrections, and contact.\\ne087\\tLink it wherever the platform permits.\\ne088\\tAlso plan moderation and subject communication; distribution changes the audience environment even when the reporting does not.\\n[Turn 11 USER]\\ne089\\tThe platform extended the deadline by two weeks, which helps, but it wants to list us publicly as a prospective autumn partner before the board votes.\\ne090\\tIt calls the list nonbinding and says its sales team needs it.\\ne091\\tI declined.\\ne092\\tThe board chair thinks I made the negotiation harder to protect against psychological momentum rather than substance.\\ne093\\tThat is possible.\\ne094\\tPublicly associating our name may also be part of what the platform is buying before it pays us or resolves the source clause.\\ne095\\tOnce staff, donors, and other outlets see the announcement, a board no will look like a failed deal rather than an ordinary decision.\\ne096\\tI want the board to decide first.\\ne097\\tI also want to be honest that preserving that governance may cost us the slot.\\n[Turn 11 ASSISTANT]\\ne098\\tDeclining the announcement preserves governance and does have a negotiation cost.\\ne099\\tRecord both rather than calling it obviously prudent.\\ne100\\tAsk whether the platform can hold production capacity privately until the vote and what it will withdraw if it cannot publicize the relationship.\\ne101\\tThe answer will clarify whether early signaling is incidental planning or part of the value it seeks from you.\\n[Turn 12 USER]\\ne102\\tI am still not asking the board to approve the season.\\ne103\\tI will return when the source-risk exception is newsroom-controlled, the owned episode pages and correction links are confirmed, and we have a budget that protects the time-sensitive investigation while showing what other work twelve episodes displace.\\ne104\\tThe second-year model will assume no guaranteed revenue and modest audience conversion.\\ne105\\tWe remain interested, but an autumn slot and improved excerpt term are not enough to decide whether this is a distribution experiment we control or the start of a dependency we have not priced.\\n[Turn 12 ASSISTANT]\\ne106\\tThe current position is a continuation of negotiation, not indecision about a complete offer.\\ne107\\tLater work improved reuse rights but exposed a source-protection process the newsroom cannot accept as written.\\ne108\\tThe editorial calendar made displaced work concrete, the community group clarified that reach and independence are both real values, and the owned episode page gives platform distribution an accountable home.\\ne109\\tPreserve every draft, the story calendar before and after freelance capacity, the community disagreement, device tests, the declined announcement, and the conservative second-year model.\\ne110\\tThe board can decide when source authority, owned records, and protected reporting capacity are concrete.\\ne111\\tBefore then, a yes would rely on recommendation reach and rights you do not possess; a no would discard a potentially valuable distribution experiment before its actual terms are known.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\",\"e103\",\"e104\",\"e105\",\"e106\",\"e107\",\"e108\",\"e109\",\"e110\",\"e111\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case12-newsroom-platform-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "6232ffd0b38ef69b82497b6d55b454d1d86800962f2a7e87f6b170be695fa9dd"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "3f8bb8c78cb72b492e519b90b5e2ff48fcf772b5476ee1aac4a4728ce8096587"
+}

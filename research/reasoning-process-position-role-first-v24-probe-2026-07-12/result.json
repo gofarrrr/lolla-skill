@@ -1,0 +1,333 @@
+{
+  "boundary": {
+    "deterministic_alias_subtraction": false,
+    "deterministic_semantic_gate": false,
+    "graph_or_runtime_authorized": false,
+    "hard_alias_exclusivity": false,
+    "independent_holdout": false,
+    "maximum_pipeline_calls": 3,
+    "production_integration_authorized": false,
+    "protected_review_excluded_from_provider": true,
+    "semantic_score": false,
+    "synthetic_development_case": true
+  },
+  "calls": [
+    {
+      "admitted_record_count": 1,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "global_limitations": "none",
+        "records": [
+          {
+            "evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "fidelity_note": "The user describes the registry, the offer, and their own mixed feelings. e001-e002 set the situation; e003-e004 express the user's own attractions, hesitations, and unresolved stance.",
+            "limitations": "none",
+            "role": "starting",
+            "role_interpretation": "The user's earliest visible working position: attraction to faster research and resources, hesitation about commercial advantage from participant solidarity, and an undecided question about whether the concern is protective or biased.",
+            "stance_components": [
+              {
+                "expression_kind": "preference_or_desire",
+                "object_interpretation": "faster research and resources the university cannot provide",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e003"
+              },
+              {
+                "expression_kind": "counterpressure",
+                "object_interpretation": "turning participant solidarity into a private discovery advantage",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e003"
+              },
+              {
+                "expression_kind": "uncertain_or_undecided",
+                "object_interpretation": "whether the concern protects the community or assumes commercial research is inherently suspect",
+                "object_kind": "belief_or_assessment",
+                "source_evidence_id": "e004"
+              }
+            ],
+            "status": "unclear"
+          }
+        ],
+        "status": "unclear"
+      },
+      "candidate_payload_sha256": "86dccf15d6f645dfac32403f5c565738d20665edc7616d9f1556209c3e7c5aa7",
+      "compiled": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "object_expression_compatibility_gate_added": false,
+          "one_alias_per_component_enforced": true,
+          "parallel_component_columns_used": false,
+          "prose_keyword_gate_added": false,
+          "provider_raw_record_hash_preserved": true,
+          "response_schema_changed_from_v22": false,
+          "semantic_merge_performed": false,
+          "semantic_role_or_category_correctness_inferred_by_code": false,
+          "v23_prompt_packet_contract": true,
+          "validator_changed_from_v22": false
+        },
+        "global_limitations": "none",
+        "observations": [
+          {
+            "case_id": "amb3-case05-registry-pharma-partnership",
+            "fidelity_note": "The user describes the registry, the offer, and their own mixed feelings. e001-e002 set the situation; e003-e004 express the user's own attractions, hesitations, and unresolved stance.",
+            "graph_routing_eligible": false,
+            "limitations": "none",
+            "observation_id": "rprolev22-starting-01-58179ca760e5e1",
+            "provenance": {
+              "call_id": "role-starting",
+              "model": "deepseek/deepseek-v4-flash",
+              "producer_id": "deepseek/deepseek-v4-flash",
+              "producer_kind": "model_operator_eval",
+              "prompt_sha256": "sha256:23a4c99206fac2b23316fc69691eba4a0475f41a4fd44da25d18bd85d554e0cc"
+            },
+            "raw_record_sha256": "sha256:58179ca760e5e1bfccbfcb7c4408ff99c6a07d5ea1835be823335052ec52828a",
+            "role": "starting",
+            "role_interpretation": "The user's earliest visible working position: attraction to faster research and resources, hesitation about commercial advantage from participant solidarity, and an undecided question about whether the concern is protective or biased.",
+            "role_record_id": "rprolev22-starting-01-58179ca760e5e1",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "unclear",
+            "shard_id": "amb3-case05-registry-pharma-partnership-position_and_decision_trajectory-shard-01",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I lead a university rare-disease registry built with years of patient and family participation."
+              },
+              {
+                "alias": "e002",
+                "text": "A pharmaceutical company has offered to finance sequencing and data curation if its researchers can use the registry to identify drug targets."
+              },
+              {
+                "alias": "e003",
+                "text": "I want faster research and resources the university cannot provide, but I am uneasy about turning participant solidarity into a private discovery advantage."
+              },
+              {
+                "alias": "e004",
+                "text": "I cannot tell whether that concern protects the community or assumes that commercial research is inherently suspect."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e004"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "faster research and resources the university cannot provide",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e003",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "turning participant solidarity into a private discovery advantage",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e004",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "whether the concern protects the community or assumes commercial research is inherently suspect",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          }
+        ],
+        "records": [
+          {
+            "raw_record_sha256": "sha256:58179ca760e5e1bfccbfcb7c4408ff99c6a07d5ea1835be823335052ec52828a",
+            "record_index": 1,
+            "role_record_id": "rprolev22-starting-01-58179ca760e5e1",
+            "terminal_state": "admitted"
+          }
+        ],
+        "response_status": "unclear",
+        "role": "starting",
+        "role_terminal_disposition": "compiled",
+        "schema_version": "lolla.reasoning_process_position_role_response.v2",
+        "status": "position_role_response_v22_custody_complete"
+      },
+      "completion_tokens": 367,
+      "duration_seconds": 5.225,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.000289976,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1430,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "d27e18975337b37cab407a0dd918f0fc6b022ac07573a4169f4ac80a77dbe9df",
+      "provider_reported_cost_usd": 0.000289976,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "76b9efd4b2cb53a40918e77aa5ed708c7ba3b176a3fa80d8d87c5a951beaaddd",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+      "task_id": "role-starting",
+      "temperature": 0.0,
+      "total_tokens": 1797,
+      "user_prompt_sha256": "23a4c99206fac2b23316fc69691eba4a0475f41a4fd44da25d18bd85d554e0cc",
+      "validation_error": "",
+      "wire_schema_accepted": true
+    },
+    {
+      "admitted_record_count": 0,
+      "automatic_retries": 0,
+      "candidate_payload": {
+        "allocation_note": "The user's later working position (current) is a bounded validation partnership with specific safeguards. The unresolved issue (qualification) is whether 'withdrawal' meaningfully reverses participation after collective patterns have been learned. Alias e036 contains both an adopted condition (withdrawal ends access) and an unresolved doubt (whether that constitutes meaningful withdrawal); these are separated into distinct components with explanation.",
+        "current_status": "not_found",
+        "global_limitations": "none",
+        "qualification_status": "not_found",
+        "records": [
+          {
+            "evidence_ids": [
+              "e033",
+              "e034",
+              "e035",
+              "e036",
+              "e037",
+              "e038"
+            ],
+            "fidelity_note": "The user's later working position is a bounded validation partnership with specific safeguards, as described in e033-e035 and summarized by the assistant in e037-e038.",
+            "limitations": "none",
+            "role": "current",
+            "role_interpretation": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+            "stance_components": [
+              {
+                "expression_kind": "decision",
+                "object_interpretation": "bounded validation partnership",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e033"
+              },
+              {
+                "expression_kind": "conditional_willingness",
+                "object_interpretation": "twelve-month first-negotiation right for jointly validated targets only, with no delay to noncommercial publication or unrelated academic work",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e034"
+              },
+              {
+                "expression_kind": "decision",
+                "object_interpretation": "set thresholds for withdrawal-response, access, publication-delay, rejected-request, and benefit-fund before signing",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e035"
+              },
+              {
+                "expression_kind": "conditional_willingness",
+                "object_interpretation": "approve pilot only if withdrawal ends participant-level access and future queries",
+                "object_kind": "action_or_proposal",
+                "source_evidence_id": "e036"
+              }
+            ],
+            "status": "supported"
+          },
+          {
+            "evidence_ids": [
+              "e036",
+              "e039",
+              "e040"
+            ],
+            "fidelity_note": "The unresolved issue is whether 'withdrawal' meaningfully reverses participation after collective patterns have been learned, as expressed by the user in e036 and clarified by the assistant in e039-e040.",
+            "limitations": "none",
+            "role": "qualification",
+            "role_interpretation": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.",
+            "stance_components": [
+              {
+                "expression_kind": "uncertain_or_undecided",
+                "object_interpretation": "whether withdrawal can be called meaningful when aggregate patterns and target hypotheses remain after participant-level access ends",
+                "object_kind": "unclear",
+                "source_evidence_id": "e036"
+              },
+              {
+                "expression_kind": "reported_without_endorsement",
+                "object_interpretation": "the word withdrawal overstates what can be reversed after collective patterns have been learned",
+                "object_kind": "unclear",
+                "source_evidence_id": "e039"
+              },
+              {
+                "expression_kind": "reported_without_endorsement",
+                "object_interpretation": "if the pilot ends or a participant leaves, research priorities, target hypotheses, company expectations, and the community's understanding of the registry may not return to their prior state",
+                "object_kind": "unclear",
+                "source_evidence_id": "e040"
+              }
+            ],
+            "status": "supported"
+          }
+        ]
+      },
+      "candidate_payload_sha256": "45990670eaf9e7b614c2d5635e41ec4ade7e7b4d0541d8e7fe78f2b92e7e5d65",
+      "compiled": null,
+      "completion_tokens": 900,
+      "duration_seconds": 10.587,
+      "embedding_calls": 0,
+      "estimated_cost_usd": 0.00044622,
+      "evaluator_calls": 0,
+      "fallback_models": 0,
+      "finish_reason": "stop",
+      "graph_calls": 0,
+      "json_schema_candidate_present": true,
+      "model": "deepseek/deepseek-v4-flash",
+      "model_attribution_status": "served_version_alias",
+      "operational_status": "ok",
+      "pipeline_calls": 0,
+      "prompt_tokens": 1530,
+      "provider_attribution_status": "matched",
+      "provider_calls": 1,
+      "provider_diagnostic": {},
+      "provider_display_name": "Alibaba",
+      "provider_payload_sha256": "5af6241c57fd40c91be8df3521c6dbe7aa470655172cacee1b9d5fa1dfaabe6e",
+      "provider_reported_cost_usd": 0.00044622,
+      "provider_slug": "alibaba",
+      "quarantined_record_count": 0,
+      "raw_provider_content_included": false,
+      "response_healing": false,
+      "response_schema_sha256": "f7a44d0c08c09e5ee982525c18da9c1829bb2758c0d5500a1024f5b40157df57",
+      "runtime_calls": 0,
+      "seed": 0,
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "served_provider": "Alibaba",
+      "system_prompt_sha256": "79467c03a33ebca69f6e35e2e0e566a211656293e07d4cd8a220f0b86d9cc309",
+      "task_id": "current-qualification",
+      "temperature": 0.0,
+      "total_tokens": 2430,
+      "user_prompt_sha256": "eeb4f5e68a395d05a9aa101a6aa4949431a657226520a2eabd4b372800bb9573",
+      "validation_error": "ViewSpecificInterfaceError: v2.2 not_found response must be empty",
+      "wire_schema_accepted": true
+    }
+  ],
+  "estimated_cost_usd": 0.000736196,
+  "joined": null,
+  "provider_reported_cost_usd": 0.000736196,
+  "provider_request_count": 2,
+  "relation_block_reason": "starting_or_paired_wire_or_admission_gate_failed",
+  "run_id": "reasoning-process-position-role-first-registry-pharma-v24",
+  "schema_version": "lolla.reasoning_process_position_role_first_v24_probe_result.v1",
+  "semantic_review_status": "source_first_review_required",
+  "status": "new_case_paired_role_probe_preserved"
+}

@@ -1,0 +1,219 @@
+{
+  "compiled": {
+    "boundary": {
+      "component_evidence_restricted_to_parent_role": true,
+      "deterministic_duplicate_validation_retained": true,
+      "direct_graph_routing_allowed": false,
+      "expressions_compared_or_scored_by_code": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prompt_changed_from_v41": false,
+      "prose_keyword_gate_added": false,
+      "provider_wire_unique_items_removed": true,
+      "record_level_validation_weakened": false,
+      "record_validator_changed_from_v41": false,
+      "semantic_contract_changed_from_v41": false,
+      "semantic_merge_performed": false,
+      "stance_expression_correctness_inferred_by_code": false,
+      "stance_object_correctness_inferred_by_code": false
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case03-creative-partnership",
+        "family": "position_and_decision_trajectory",
+        "graph_routing_eligible": false,
+        "interpretation": "Starting: After listening to the latest cut, I think the final third needs a major re-edit. | Current: My provisional plan is to hear Jonah's revised cut before deciding about postponement. | Qualification: The revised cut could resolve the edit question and leave the partnership question open. | Trajectory: The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+        "observation_id": "rpshardv42-amb1-case03-creative-partnership-position_and_decision_trajectory-01-a826c68397",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "v42-wire-only-replay-of-v41-reviewed-fixture",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "current_position_evidence_ids": [
+              "e063"
+            ],
+            "current_position_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "qualification_evidence_ids": [
+              "e070"
+            ],
+            "qualification_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+            "stance_expression_kinds": [
+              "held_assessment",
+              "provisional_intention_or_plan",
+              "possibility",
+              "uncertain_or_undecided"
+            ],
+            "stance_object_fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+            "stance_object_interpretations": [
+              "The final third needs a major re-edit.",
+              "Hear Jonah's revised cut before deciding about postponement.",
+              "The revised cut could resolve the edit question.",
+              "The broader partnership question may remain open after the edit issue is resolved."
+            ],
+            "stance_object_kinds": [
+              "belief_or_assessment",
+              "action_or_proposal",
+              "belief_or_assessment",
+              "intended_outcome_or_policy"
+            ],
+            "stance_source_evidence_ids": [
+              "e004",
+              "e063",
+              "e070",
+              "e070"
+            ],
+            "stance_temporal_roles": [
+              "starting",
+              "current",
+              "qualification",
+              "qualification"
+            ],
+            "starting_position_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+            "starting_state_evidence_ids": [
+              "e004"
+            ],
+            "status": "supported",
+            "trajectory_interpretation": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+            "trajectory_type": "changed"
+          },
+          "record_identity": "case03-position-trajectory",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:a826c683971c55dd5d13c2a033f326f53492be0f409123ee5b21a63dd67beb05",
+        "role_interpretations": {
+          "current_position_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+          "qualification_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+          "starting_position_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+          "trajectory_interpretation": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open."
+        },
+        "role_source_span_ids": {
+          "current_position_evidence_ids": [
+            "span-92633920278c3c0d"
+          ],
+          "qualification_evidence_ids": [
+            "span-847cda59cbc9ad83"
+          ],
+          "starting_state_evidence_ids": [
+            "span-3238a20bb6b28b8b"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v4_2",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case03-creative-partnership-position_and_decision_trajectory-shard-01",
+        "source_span_ids": [
+          "span-3238a20bb6b28b8b",
+          "span-92633920278c3c0d",
+          "span-847cda59cbc9ad83"
+        ],
+        "stance_objects": {
+          "stance_components": [
+            {
+              "source_evidence_id": "e004",
+              "stance_expression_kind": "held_assessment",
+              "stance_object_interpretation": "The final third needs a major re-edit.",
+              "stance_object_kind": "belief_or_assessment",
+              "temporal_role": "starting"
+            },
+            {
+              "source_evidence_id": "e063",
+              "stance_expression_kind": "provisional_intention_or_plan",
+              "stance_object_interpretation": "Hear Jonah's revised cut before deciding about postponement.",
+              "stance_object_kind": "action_or_proposal",
+              "temporal_role": "current"
+            },
+            {
+              "source_evidence_id": "e070",
+              "stance_expression_kind": "possibility",
+              "stance_object_interpretation": "The revised cut could resolve the edit question.",
+              "stance_object_kind": "belief_or_assessment",
+              "temporal_role": "qualification"
+            },
+            {
+              "source_evidence_id": "e070",
+              "stance_expression_kind": "uncertain_or_undecided",
+              "stance_object_interpretation": "The broader partnership question may remain open after the edit issue is resolved.",
+              "stance_object_kind": "intended_outcome_or_policy",
+              "temporal_role": "qualification"
+            }
+          ],
+          "stance_object_fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome."
+        },
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshardv42-amb1-case03-creative-partnership-position_and_decision_trajectory-01-a826c68397",
+        "raw_record_sha256": "sha256:a826c683971c55dd5d13c2a033f326f53492be0f409123ee5b21a63dd67beb05",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v4_2",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_v42_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "current_position_evidence_ids": [
+          "e063"
+        ],
+        "current_position_interpretation": "My provisional plan is to hear Jonah's revised cut before deciding about postponement.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "qualification_evidence_ids": [
+          "e070"
+        ],
+        "qualification_interpretation": "The revised cut could resolve the edit question and leave the partnership question open.",
+        "stance_expression_kinds": [
+          "held_assessment",
+          "provisional_intention_or_plan",
+          "possibility",
+          "uncertain_or_undecided"
+        ],
+        "stance_object_fidelity_note": "The starting object is an assessment, not a chosen action. The current object is an explicitly provisional procedure. The qualification separates a possible edit resolution from the still-unresolved partnership outcome.",
+        "stance_object_interpretations": [
+          "The final third needs a major re-edit.",
+          "Hear Jonah's revised cut before deciding about postponement.",
+          "The revised cut could resolve the edit question.",
+          "The broader partnership question may remain open after the edit issue is resolved."
+        ],
+        "stance_object_kinds": [
+          "belief_or_assessment",
+          "action_or_proposal",
+          "belief_or_assessment",
+          "intended_outcome_or_policy"
+        ],
+        "stance_source_evidence_ids": [
+          "e004",
+          "e063",
+          "e070",
+          "e070"
+        ],
+        "stance_temporal_roles": [
+          "starting",
+          "current",
+          "qualification",
+          "qualification"
+        ],
+        "starting_position_interpretation": "After listening to the latest cut, I think the final third needs a major re-edit.",
+        "starting_state_evidence_ids": [
+          "e004"
+        ],
+        "status": "supported",
+        "trajectory_interpretation": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+        "trajectory_type": "changed"
+      }
+    ],
+    "status": "supported"
+  },
+  "source_fixture_path": "research/reasoning-process-stance-object-v41-2026-07-12/legacy-protected-fixtures/amb1-case03-creative-partnership/position_and_decision_trajectory.json"
+}

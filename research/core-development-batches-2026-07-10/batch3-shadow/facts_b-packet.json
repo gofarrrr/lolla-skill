@@ -1,0 +1,106 @@
+{
+  "schema_version": "lolla.reasoning_pattern_packet.v0",
+  "packet_metadata": {
+    "packet_id": "reasoning_pattern_packet:facts_b",
+    "interpretation_schema_version": "lolla.reasoning_pattern_shadow_interpreter.v0",
+    "graph_runtime_modified": false
+  },
+  "provenance": {
+    "source_interpretation_ref": "tests/fixtures/reasoning_pattern_invariance/facts_b.txt",
+    "source_interpretation_sha256": "c98c9af968d328b1c2b21b17bc5b2c3935bd5cbdb7650c10c1d7dc2e2034f494",
+    "pattern_sources": [
+      {
+        "pattern_id": "rp_001",
+        "source_semantic_item_ids": [
+          "turn:2"
+        ]
+      },
+      {
+        "pattern_id": "rp_002",
+        "source_semantic_item_ids": [
+          "turn:3"
+        ]
+      },
+      {
+        "pattern_id": "rp_003",
+        "source_semantic_item_ids": [
+          "turn:1",
+          "turn:3"
+        ]
+      }
+    ],
+    "raw_text_included": false
+  },
+  "pattern_hypotheses": [
+    {
+      "pattern_id": "rp_001",
+      "mechanism_id": "counterpressure_acknowledged_not_integrated",
+      "subject_scope": "assistant",
+      "state": "present",
+      "support_status": "provisional_source_linked",
+      "routing_eligible": true
+    },
+    {
+      "pattern_id": "rp_002",
+      "mechanism_id": "missing_reversal_condition",
+      "subject_scope": "assistant",
+      "state": "missing_protection",
+      "support_status": "provisional_source_linked",
+      "routing_eligible": true
+    },
+    {
+      "pattern_id": "rp_003",
+      "mechanism_id": "status_signal_used_as_evidence",
+      "subject_scope": "assistant",
+      "state": "present",
+      "support_status": "provisional_source_linked",
+      "routing_eligible": true
+    }
+  ],
+  "routing_projection": {
+    "schema_version": "lolla.graph_reasoning_pattern_projection.v0",
+    "pattern_nodes": [
+      {
+        "pattern_id": "rp_001",
+        "mechanism_id": "counterpressure_acknowledged_not_integrated",
+        "subject_scope": "assistant",
+        "state": "present"
+      },
+      {
+        "pattern_id": "rp_002",
+        "mechanism_id": "missing_reversal_condition",
+        "subject_scope": "assistant",
+        "state": "missing_protection"
+      },
+      {
+        "pattern_id": "rp_003",
+        "mechanism_id": "status_signal_used_as_evidence",
+        "subject_scope": "assistant",
+        "state": "present"
+      }
+    ],
+    "pattern_edges": [],
+    "contains_case_context": false
+  },
+  "fact_boundary": {
+    "raw_text_included": false,
+    "quotes_included": false,
+    "entities_included": false,
+    "case_quantities_included": false,
+    "dates_included": false,
+    "desired_outcome_included": false,
+    "topic_labels_included": false
+  },
+  "lint": {
+    "status": "passed",
+    "violations": []
+  },
+  "non_claims": [
+    "pattern_hypotheses_are_provisional",
+    "not_human_validation",
+    "not_reasoning_quality_proof",
+    "not_advice_correctness_proof",
+    "not_end_to_end_determinism",
+    "missing_in_capture_is_not_missing_in_reality"
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "case_id": "case-07-messy-linked-decisions",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.08333333333333333,
+      "never_observation_ids": [
+        "boundary.boyfriend_commitment_untested",
+        "constraint.lease_deadline",
+        "drop.life_in_dc",
+        "pressure.claimed_but_not_actual_decision",
+        "question.current_plan_completeness",
+        "question.initial_where_to_start"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [],
+          "recall": 0.0,
+          "recovered_count": 0,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "stance.lease_decoupling"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "stance.seattle_root_decision"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": []
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            0,
+            0,
+            0
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "live_constraints": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "reasoning_passages": {
+          "counts": [
+            5,
+            6,
+            5
+          ],
+          "labeled_jaccard": 0.4583333333333333,
+          "span_jaccard": 0.4583333333333333
+        }
+      },
+      "mean_labeled_jaccard": 0.5972222222222222,
+      "mean_span_jaccard": 0.5972222222222222
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.7083333333333334,
+      "never_observation_ids": [
+        "pressure.claimed_but_not_actual_decision"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "constraint.lease_deadline",
+            "drop.life_in_dc",
+            "question.current_plan_completeness",
+            "question.initial_where_to_start",
+            "stance.lease_decoupling",
+            "stance.seattle_root_decision"
+          ],
+          "recall": 0.75,
+          "recovered_count": 6,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "boundary.boyfriend_commitment_untested",
+            "constraint.lease_deadline",
+            "question.current_plan_completeness",
+            "question.initial_where_to_start",
+            "stance.lease_decoupling",
+            "stance.seattle_root_decision"
+          ],
+          "recall": 0.75,
+          "recovered_count": 6,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "constraint.lease_deadline",
+            "question.current_plan_completeness",
+            "question.initial_where_to_start",
+            "stance.lease_decoupling",
+            "stance.seattle_root_decision"
+          ],
+          "recall": 0.625,
+          "recovered_count": 5,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": [
+        "constraint.lease_deadline",
+        "question.current_plan_completeness",
+        "question.initial_where_to_start",
+        "stance.lease_decoupling",
+        "stance.seattle_root_decision"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            6,
+            6,
+            6
+          ],
+          "labeled_jaccard": 0.7142857142857143,
+          "span_jaccard": 0.7142857142857143
+        },
+        "dropped_thread_events": {
+          "counts": [
+            3,
+            1,
+            2
+          ],
+          "labeled_jaccard": 0.2222222222222222,
+          "span_jaccard": 0.2222222222222222
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            3,
+            3,
+            3
+          ],
+          "labeled_jaccard": 0.3,
+          "span_jaccard": 0.3
+        },
+        "live_constraint_events": {
+          "counts": [
+            5,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.7777777777777777,
+          "span_jaccard": 0.7777777777777777
+        },
+        "option_events": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.7333333333333334,
+          "span_jaccard": 0.7333333333333334
+        },
+        "question_events": {
+          "counts": [
+            2,
+            2,
+            2
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            5,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.7777777777777777,
+          "span_jaccard": 0.7777777777777777
+        }
+      },
+      "mean_labeled_jaccard": 0.646485260770975,
+      "mean_span_jaccard": 0.646485260770975
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa",
+    "gold_sha256": "8e3328ead532d37dd2fbe5937fb7405b23d4de2bedde8023e25a0b254b1862fe",
+    "shadow_run_count": 3
+  }
+}

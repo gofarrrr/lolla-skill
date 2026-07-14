@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.reasoning_pressure_disposition_ledger.v0",
+  "title": "Lolla Reasoning Pressure Disposition Ledger v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "handoff_sha256",
+    "items",
+    "semantic_effect_review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.reasoning_pressure_disposition_ledger.v0"
+    },
+    "status": {
+      "const": "completed"
+    },
+    "handoff_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/disposition_item"
+      }
+    },
+    "semantic_effect_review": {
+      "$ref": "#/$defs/semantic_effect_review"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "nonempty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "disposition_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pressure_id",
+        "disposition",
+        "strongest_plausible_application",
+        "why",
+        "visible_effect",
+        "private_guardrail",
+        "risk_if_forced",
+        "risk_if_ignored"
+      ],
+      "properties": {
+        "pressure_id": {
+          "$ref": "#/$defs/id"
+        },
+        "disposition": {
+          "enum": [
+            "used",
+            "rejected",
+            "deferred",
+            "private_guardrail"
+          ]
+        },
+        "strongest_plausible_application": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "why": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "visible_effect": {
+          "type": "string"
+        },
+        "private_guardrail": {
+          "type": "string"
+        },
+        "risk_if_forced": {
+          "$ref": "#/$defs/nonempty_string"
+        },
+        "risk_if_ignored": {
+          "$ref": "#/$defs/nonempty_string"
+        }
+      }
+    },
+    "semantic_effect_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reviewer",
+        "reviewed_output_sha256",
+        "findings"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewed_output_sha256": {
+          "type": "string"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonempty_string"
+          }
+        }
+      }
+    }
+  }
+}

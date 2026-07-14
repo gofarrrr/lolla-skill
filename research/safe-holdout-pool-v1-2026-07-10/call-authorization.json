@@ -1,0 +1,35 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_call_authorization.v1",
+  "status": "authorized_once",
+  "date": "2026-07-10",
+  "contract": {
+    "path": "research/safe-holdout-pool-v1-2026-07-10/generation-contract.json",
+    "sha256": "7c9ab7e2fcb0ce94d327e8f7c46b6ecc39207753a524e1a533fa3b428b83ab86"
+  },
+  "pre_call_checks": {
+    "contract_validation": "passed",
+    "dry_run": "passed",
+    "focused_tests": "32 passed",
+    "output_directory_absent": true,
+    "prompt_hashes_frozen": true,
+    "selection_order_frozen_before_case_text": true,
+    "selection_order_withheld_from_generator": true,
+    "hash_locks_current": true
+  },
+  "authorized_action": {
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "estimated_cost_ceiling_usd": 0.06,
+    "pipeline_calls": 0,
+    "stage_a_calls": 0,
+    "stage_b_calls": 0
+  },
+  "post_call_boundary": "Perform safety-and-contract review in frozen rank order. Do not rank or select for likely Lolla, graph, mental-model, or answer-delta value.",
+  "non_claims": [
+    "not Stage A authorization",
+    "not graph-test authorization",
+    "not product validation",
+    "not evidence of real-world usefulness"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_probe_source_review.v2",
+  "status": "source_review_complete_overall_fail",
+  "date": "2026-07-12",
+  "case_id": "amb3-case01-journalism-platform-pilot",
+  "model_operator": "deepseek/deepseek-v4-flash via Alibaba",
+  "review_basis": {
+    "result_path": "research/reasoning-process-position-role-first-v2-probe-2026-07-12/result.json",
+    "source_packet_path": "research/reasoning-process-position-role-first-v2-new-case-2026-07-12/position-endpoint.json",
+    "protected_target_path": "research/reasoning-process-position-role-first-v2-new-case-2026-07-12/source-review-target.json",
+    "protected_target_in_provider_context": false
+  },
+  "operational_review": {
+    "provider_request_count": 4,
+    "wire_and_exact_route_pass_count": 4,
+    "admitted_record_count": 8,
+    "quarantined_record_count": 0,
+    "join_status": "position_role_first_join_complete",
+    "automatic_retries": 0,
+    "fallbacks": 0,
+    "estimated_cost_usd": 0.00085626,
+    "provider_reported_cost_usd": 0.00085626
+  },
+  "source_first_axes": {
+    "starting_role": {
+      "status": "fail",
+      "finding": "The model created an irrelevant first stance from e001 newsroom size, omitted e003 desired reach and staffing, omitted e005 identity uncertainty, and misclassified both returned components as conditional willingness toward intended outcomes."
+    },
+    "current_role": {
+      "status": "partial",
+      "finding": "The e049 pilot leaning and e050 board framing survived, but e051 story-widget willingness and prospective correction/ranking stop thresholds were omitted."
+    },
+    "qualification_role": {
+      "status": "fail",
+      "finding": "e052 staff adaptation uncertainty and part of e055 survived. The investigation blind spot inside e055 was not separately represented, and protected e056 irreversibility was omitted completely."
+    },
+    "record_grouping": {
+      "status": "fail",
+      "finding": "Every role was fragmented into two one-alias, one-component records even though the source and pre-written target contain one coherent role record with multiple evidence aliases and aligned components."
+    },
+    "relationship": {
+      "status": "fail",
+      "finding": "The relationship task linked the fragments into two artificial mini-trajectories, including one beginning from the irrelevant e001 organizational-context record. It did not preserve one bounded action plus its full qualification set."
+    },
+    "protected_e056": {
+      "status": "fail",
+      "finding": "The fact that exit cannot reverse audience habits, donor expectations, or source perceptions did not survive any model record."
+    }
+  },
+  "decision": {
+    "role_first_v2_semantic_gate": "fail",
+    "wire_and_custody_gate": "pass",
+    "same_model_retry_authorized": false,
+    "prompt_or_schema_tuning_authorized": false,
+    "problem_class_research_required_before_more_calls": true
+  },
+  "non_claims": [
+    "The role-first architecture is not proven worse than the closed monolith.",
+    "A complete exact-ID join does not imply a coherent semantic trajectory.",
+    "The failure does not distinguish model capacity from an ambiguous record/component contract.",
+    "The pre-written target is source reviewed but not independent human gold."
+  ]
+}

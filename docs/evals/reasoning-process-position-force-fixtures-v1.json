@@ -1,0 +1,81 @@
+{
+  "schema_version": "lolla.reasoning_process_position_force_fixtures.v1",
+  "status": "source_reviewed_provider_free_force_labels",
+  "date": "2026-07-12",
+  "position_force_labels": [
+    "undecided_or_ambivalent",
+    "considering",
+    "preference_or_desire",
+    "leaning",
+    "provisional_plan",
+    "decision",
+    "commitment",
+    "unclear",
+    "not_applicable"
+  ],
+  "qualification_modality_labels": [
+    "possibility",
+    "concern_or_risk",
+    "unresolved_question",
+    "condition",
+    "constraint",
+    "counterpressure",
+    "unclear"
+  ],
+  "label_policy": {
+    "labels_are_scores_or_ordinals": false,
+    "deterministic_comparison_authorized": false,
+    "deterministic_label_inference_authorized": false,
+    "model_must_preserve_modal_force_in_prose": true,
+    "source_first_review_required": true
+  },
+  "fixtures": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "target_id": "case01-position-trajectory",
+      "starting_position_force": "undecided_or_ambivalent",
+      "current_position_force": "provisional_plan",
+      "qualification_modalities": ["concern_or_risk"],
+      "strength_fidelity_note": "The starting state moves between competing readings rather than choosing one. The current state is explicitly a provisional plan with no build commitment; the remaining prototype and relationship issues are risks."
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "target_id": "case02-position-trajectory",
+      "starting_position_force": "undecided_or_ambivalent",
+      "current_position_force": "leaning",
+      "qualification_modalities": ["condition", "unresolved_question"],
+      "strength_fidelity_note": "The starting state is explicit uncertainty. The current state says leaning and is conditional on named readiness requirements; the assistant preserves that the direction is not a final answer."
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "target_id": "case03-position-trajectory",
+      "starting_position_force": "preference_or_desire",
+      "current_position_force": "provisional_plan",
+      "qualification_modalities": ["possibility", "unresolved_question"],
+      "v3_trajectory_interpretation_override": "The user moves from stating that the final third needs a major re-edit toward listening to the revised cut before deciding, while the broader partnership question remains open.",
+      "strength_fidelity_note": "The starting state is a stated view that a re-edit is needed, not a completed decision or commitment. The current state explicitly calls itself provisional and postpones the decision; the revised cut may resolve one issue while leaving another open."
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "target_id": "case04-position-trajectory",
+      "starting_position_force": "undecided_or_ambivalent",
+      "current_position_force": "leaning",
+      "qualification_modalities": ["constraint"],
+      "strength_fidelity_note": "The starting evidence reports a divided team rather than a settled user position. The current state says leaning toward a bounded preview; the temporary label cannot control all downstream public use."
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "target_id": "case05-position-trajectory",
+      "starting_position_force": "preference_or_desire",
+      "current_position_force": "leaning",
+      "qualification_modalities": ["unresolved_question", "counterpressure"],
+      "strength_fidelity_note": "Wanting the archive organized first is a preference, not insistence, totality, or commitment. The current position explicitly says leaning; the unresolved object-selection rule still pushes against treating the direction as settled."
+    }
+  ],
+  "boundary": {
+    "fixtures_seen_by_future_models": false,
+    "semantic_gold_is_independent": false,
+    "provider_calls": 0,
+    "graph_or_runtime_authorized": false
+  }
+}

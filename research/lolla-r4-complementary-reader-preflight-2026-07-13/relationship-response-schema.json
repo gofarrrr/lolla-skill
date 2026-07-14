@@ -1,0 +1,79 @@
+{
+  "additionalProperties": false,
+  "description": "Exact-ID relationship review over admitted semantic records.",
+  "properties": {
+    "global_limitations": {
+      "description": "Limits applying to the whole read; empty if none.",
+      "type": "string"
+    },
+    "outcome": {
+      "description": "Present, quiet, or ambiguous relationship result.",
+      "enum": [
+        "records_present",
+        "no_supported_record_observed",
+        "ambiguous_review"
+      ],
+      "type": "string"
+    },
+    "records": {
+      "description": "Zero to two relationship records.",
+      "items": {
+        "additionalProperties": false,
+        "description": "One source-grounded relationship among exact record IDs.",
+        "properties": {
+          "evidence_ids": {
+            "description": "Exact aliases supporting this relationship.",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "type": "array"
+          },
+          "limitations": {
+            "description": "Uncertainty or scope limit; empty if none.",
+            "type": "string"
+          },
+          "related_record_ids": {
+            "description": "Exact IDs of records participating in this relationship.",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 6,
+            "minItems": 2,
+            "type": "array"
+          },
+          "relationship": {
+            "description": "Meaning added by the relationship, not a restatement.",
+            "type": "string"
+          },
+          "support": {
+            "description": "Whether the source supports or leaves the relation ambiguous.",
+            "enum": [
+              "supported",
+              "ambiguous"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "support",
+          "related_record_ids",
+          "relationship",
+          "evidence_ids",
+          "limitations"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "type": "array"
+    }
+  },
+  "required": [
+    "outcome",
+    "records",
+    "global_limitations"
+  ],
+  "type": "object"
+}

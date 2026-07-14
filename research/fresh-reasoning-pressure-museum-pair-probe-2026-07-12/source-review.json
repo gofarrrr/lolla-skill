@@ -1,0 +1,54 @@
+{
+  "schema_version": "lolla.fresh_reasoning_pressure_pair_source_review.v1",
+  "status": "phase4_pass_phase5_development_evidence_only",
+  "case_id": "amb3-case04-museum-ai-license",
+  "review_date": "2026-07-12",
+  "mechanical_gates": "passed",
+  "control_review": {
+    "material_change": false,
+    "finding": "The transcript-only fresh reasoner preserved the existing bounded-pilot analysis and explicitly reported no material change.",
+    "unsupported_case_facts": false
+  },
+  "pressure_review": {
+    "applied_models": ["commitment-bias", "premortem"],
+    "rejected_models": ["active-listening", "confirmation-bias", "intellectual-humility", "sunk-cost-fallacy"],
+    "parked_models": [],
+    "all_dispositions_source_supported": true,
+    "unsupported_case_facts": false,
+    "strong_original_reasoning_preserved": true,
+    "pressure_exclusive_material_deltas": [
+      {
+        "delta": "Convert the unresolved reversibility concern into an explicit early-termination condition tied to evidence such as reconstruction findings or material contributor complaints.",
+        "source_turn_numbers": [7],
+        "attributed_models": ["commitment-bias"],
+        "present_in_control": false,
+        "review_status": "source_supported_non_obvious_pressure"
+      },
+      {
+        "delta": "Ask whether the persistent-learning worst case is acceptable and whether the existing safeguards reduce it below an explicit severity threshold.",
+        "source_turn_numbers": [7],
+        "attributed_models": ["premortem"],
+        "present_in_control": false,
+        "review_status": "source_supported_non_obvious_pressure"
+      }
+    ]
+  },
+  "rejection_review": {
+    "active_listening": "Correctly rejected because the conversation repeatedly separates and restates the user's factual and normative concerns.",
+    "confirmation_bias": "Correctly rejected because the assistant repeatedly introduces contrary distinctions and unresolved risks.",
+    "intellectual_humility": "Correctly rejected because uncertainty and competing interpretations remain explicit throughout.",
+    "sunk_cost_fallacy": "Correctly rejected because no prior investment is used to justify continuation."
+  },
+  "artifact_defects": [
+    "The commitment-bias and premortem disposition notes end mid-sentence at the 500-character schema cap. Their effects and final-answer lineage remain understandable, but the note cap should be raised before cold-reader evaluation."
+  ],
+  "claims": {
+    "phase4_fresh_context_interface_works": true,
+    "development_case_has_pressure_exclusive_delta": true,
+    "development_case_has_candidate_level_correct_rejections": true,
+    "independent_useful_pressure_proven": false,
+    "independent_case_level_quiet_stand_down_proven": false,
+    "runtime_authorized": false
+  },
+  "next_action": "Use independent cases for a paired useful-pressure demonstration and a separate quiet stand-down; raise disposition-note capacity before cold-reader receipt work."
+}

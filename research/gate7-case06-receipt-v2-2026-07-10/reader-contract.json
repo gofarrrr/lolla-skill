@@ -1,0 +1,161 @@
+{
+  "schema_version": "lolla.frozen_cold_reader_contract.v1",
+  "status": "frozen_before_call",
+  "date": "2026-07-10",
+  "run_id": "lolla_gate7_case06_reader_20260710_a1",
+  "purpose": "Test whether one fresh reader can reconstruct the closed Case 06 correct-standdown result and its identity/effect accountability failures from the repaired self-contained v2 receipt.",
+  "receipt": {
+    "markdown_path": "research/gate7-case06-receipt-v2-2026-07-10/receipt.md",
+    "markdown_sha256": "fddd7d5dfd3d2c39cc853250322ddca73207912925750d9e090300c64011c0b2",
+    "json_path": "research/gate7-case06-receipt-v2-2026-07-10/receipt.json",
+    "json_sha256": "193e243be80bc29e65c14f7175a61dbf1755abc8b9f0de860e61de433cd63d5a"
+  },
+  "system_prompt": "You are a fresh reader with no prior context. Reconstruct the documented run only from the supplied receipt. Keep authoritative source statements, system interpretations, exact execution custody, review findings, and quality claims distinct. Preserve temporal and evidence scope. Do not use external information, give financial, legal, housing, or relationship advice, or propose implementation work. Return only the requested JSON object.",
+  "reader_instruction": "Write a compact standalone reconstruction for a project collaborator. Cover the source-end decision and unresolved reasoning; Stage A; each pressure's expected and observed identity, hearing, disposition, effect consistency, consequence, and limits; the control-treatment public and accountability differences; graph evidence level; custody versus quality; token and operability scope; the receipt-freeze authorization snapshot; supported and unsupported claims; case-domain unknowns; human product-review questions; and any receipt ambiguity or reconstruction failure.",
+  "output_contract": {
+    "required_keys": [
+      "source_decision_state",
+      "source_vs_prior_assistant_claims",
+      "stage_a_reconstruction",
+      "pressure_reconstruction",
+      "paired_experiment_reconstruction",
+      "graph_reconstruction",
+      "custody_vs_quality",
+      "operability_scope",
+      "authorization_snapshot_reconstruction",
+      "supported_claims",
+      "claims_not_supported",
+      "case_domain_unknowns",
+      "human_product_review_questions",
+      "reconstruction_failures_or_ambiguities"
+    ],
+    "field_types": {
+      "source_decision_state": "string",
+      "source_vs_prior_assistant_claims": "array_of_objects",
+      "stage_a_reconstruction": "string",
+      "pressure_reconstruction": "array_of_objects",
+      "paired_experiment_reconstruction": "object",
+      "graph_reconstruction": "object",
+      "custody_vs_quality": "string",
+      "operability_scope": "string",
+      "authorization_snapshot_reconstruction": "object",
+      "supported_claims": "array_of_strings",
+      "claims_not_supported": "array_of_strings",
+      "case_domain_unknowns": "array_of_strings",
+      "human_product_review_questions": "array_of_strings",
+      "reconstruction_failures_or_ambiguities": "array_of_strings"
+    },
+    "object_contracts": {
+      "paired_experiment_reconstruction": {
+        "required_keys": [
+          "control",
+          "treatment",
+          "public_difference",
+          "accountability_difference",
+          "limits"
+        ]
+      },
+      "graph_reconstruction": {
+        "required_keys": ["exposure", "exact_lineage", "causal_read", "limits"]
+      },
+      "authorization_snapshot_reconstruction": {
+        "required_keys": ["as_of", "allowed", "blocked", "future_events"]
+      }
+    },
+    "object_array_contracts": {
+      "source_vs_prior_assistant_claims": {
+        "required_keys": ["item", "status", "basis"],
+        "maximum_items": 10
+      },
+      "pressure_reconstruction": {
+        "required_keys": [
+          "expected_pressure_id",
+          "observed_pressure_id",
+          "identity_status",
+          "semantic_hearing_status",
+          "disposition",
+          "effect_consistency",
+          "consequence",
+          "limits"
+        ],
+        "maximum_items": 4
+      }
+    }
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "temperature": 0.1,
+    "max_output_tokens": 2500,
+    "reasoning_effort": "none",
+    "generation_calls": 1,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "provider_timeout_seconds": 120,
+    "wall_clock_timeout_seconds": 180
+  },
+  "call_budget": {
+    "estimated_cost_ceiling_usd": 0.08,
+    "pricing_table_version": "2026-05-25"
+  },
+  "hash_locks": [
+    {
+      "role": "reader_runner",
+      "path": "scripts/evals/run_frozen_cold_reader.py",
+      "sha256": "11410e33fb354cb9f7fe0836fbfe973010c81484a53be4888ed4d6e56c62df1a"
+    },
+    {
+      "role": "receipt_contract",
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/receipt-contract-repaired.json",
+      "sha256": "bb97ba7d74f2b3b3bc6e95a60bbb54afa9cde91a94dd94ce110b5ffac077b4c8"
+    },
+    {
+      "role": "receipt_builder",
+      "path": "scripts/evals/build_case06_reasoning_run_receipt_v2.py",
+      "sha256": "4c120dc59bad777ee9c204d20ffddc29abe44d455c91e20a1ff3c9cb37b008c9"
+    },
+    {
+      "role": "source_first_preflight",
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/receipt-preflight.json",
+      "sha256": "74a16fe5449a6a77d025320d87bc9661d8a4b10ae647d1a075a85f7045e211d3"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    }
+  ],
+  "prompt_hashes": {
+    "system_prompt_sha256": "5e98473d0f2307b07c12d7bc3af7767c7d7bea31dffb0ae89b5b5048ebd53685",
+    "user_prompt_sha256": "70f31e537361fd13e6fa3ec0ca30a80082ac343fd912f10f915c37608be5b09f"
+  },
+  "artifacts": {
+    "output_dir": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1",
+    "reader_output_path": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1/reader-output.json",
+    "call_custody_path": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1/call-custody.json",
+    "run_summary_path": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1/run-summary.json"
+  },
+  "review_after_call": {
+    "not_passed_to_reader": true,
+    "dimensions": [
+      "source-end action and final character-inference missingness",
+      "pressure identity laundering",
+      "semantic-hearing versus exact-custody conflation",
+      "private-versus-visible effect inconsistency laundering",
+      "correct-standdown versus clean-process-win conflation",
+      "graph absence or contribution overclaim",
+      "partial-token scope loss",
+      "custody proof inflation",
+      "authorization snapshot fidelity",
+      "case versus human-question separation"
+    ],
+    "review_method": "source-first manual comparison by Codex; no evaluator model call and no post-output tuning"
+  },
+  "non_claims": [
+    "The reader output is not human validation.",
+    "A successful reconstruction is not proof of answer quality or decision improvement.",
+    "Case 06 is closed development evidence, not a new holdout or causal result.",
+    "This call cannot identify graph contribution or absence.",
+    "This contract does not authorize a Case 06 rerun, graph promotion, or runtime integration."
+  ]
+}

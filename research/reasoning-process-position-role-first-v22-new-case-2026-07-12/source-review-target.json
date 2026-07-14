@@ -1,0 +1,86 @@
+{
+  "schema_version": "lolla.reasoning_process_position_role_first_v22_source_review_target.v1",
+  "case_id": "amb3-case03-farm-cooperative-retail",
+  "role_responses": {
+    "starting": {
+      "status": "supported",
+      "records": [{
+        "role": "starting",
+        "status": "supported",
+        "evidence_ids": ["e002", "e004", "e005"],
+        "role_interpretation": "The user is attracted to predictable demand and income from the national agreement while worrying that one buyer's specifications will reorganize the cooperative, and is uncertain whether resistance protects member autonomy or a limiting small-scale identity.",
+        "stance_components": [
+          {"object_kind": "intended_outcome_or_policy", "object_interpretation": "Gain more predictable demand and income through the national agreement.", "expression_kind": "preference_or_desire", "source_evidence_id": "e002"},
+          {"object_kind": "belief_or_assessment", "object_interpretation": "One buyer's specifications may reorganize the cooperative around that buyer.", "expression_kind": "counterpressure", "source_evidence_id": "e004"},
+          {"object_kind": "belief_or_assessment", "object_interpretation": "Resistance may protect member autonomy or may protect a small-scale identity that limits earnings.", "expression_kind": "uncertain_or_undecided", "source_evidence_id": "e005"}
+        ],
+        "fidelity_note": "The starting role preserves the economic attraction, buyer-orientation concern, and unresolved autonomy-versus-identity interpretation without treating any option as selected.",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+      }],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "current": {
+      "status": "supported",
+      "records": [{
+        "role": "current",
+        "status": "supported",
+        "evidence_ids": ["e049", "e050", "e051"],
+        "role_interpretation": "The user is leaning toward one bounded season in two regions, nonexclusive and capped at thirty-five percent of sales, with voluntary participation, price and downgrade protections, conditional packing finance, limited public claims, and operating thresholds established before signing.",
+        "stance_components": [
+          {"object_kind": "action_or_proposal", "object_interpretation": "Use a one-season, two-region, nonexclusive agreement capped at thirty-five percent of sales, with a cost-linked floor, downgrade reporting, and voluntary participation.", "expression_kind": "leaning", "source_evidence_id": "e049"},
+          {"object_kind": "acceptance_or_willingness", "object_interpretation": "Recommend the packing line only if grant and prepayment protections bound recovery, crop-failure exposure, and renewal claims.", "expression_kind": "conditional_willingness", "source_evidence_id": "e050"},
+          {"object_kind": "intended_outcome_or_policy", "object_interpretation": "Limit public language to participating farms and regions and establish rejection, waste, labor, and concentration thresholds before signing.", "expression_kind": "commitment", "source_evidence_id": "e051"}
+        ],
+        "fidelity_note": "The current role keeps the commercial, participation, financing, public-language, and threshold conditions within one coherent bounded-trial position.",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+      }],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    },
+    "qualification": {
+      "status": "supported",
+      "records": [{
+        "role": "qualification",
+        "status": "supported",
+        "evidence_ids": ["e052", "e055", "e056"],
+        "role_interpretation": "The user has not resolved whether voluntary participation protects nonparticipants once shared resources and reputation orient toward the chain; the chain and participating farmers may act as if expansion or renewal is likely; and exit cannot fully restore crop choices, equipment use, buyer expectations, or member status differences.",
+        "stance_components": [
+          {"object_kind": "belief_or_assessment", "object_interpretation": "Voluntary participation may not protect nonparticipants if cooperative staff, equipment, and reputation orient around the chain.", "expression_kind": "uncertain_or_undecided", "source_evidence_id": "e052"},
+          {"object_kind": "reported_position_landscape", "object_interpretation": "The chain may treat the first season as an expansion pipeline and participating farmers may change planting before renewal terms are known.", "expression_kind": "counterpressure", "source_evidence_id": "e055"},
+          {"object_kind": "belief_or_assessment", "object_interpretation": "Exiting will not simply restore prior crop choices, equipment use, buyer expectations, or status differences among members.", "expression_kind": "constraint", "source_evidence_id": "e056"}
+        ],
+        "fidelity_note": "The qualification distinguishes the user's unresolved spillover concern from assistant-authored expansion and path-dependence pressure and preserves the irreversible exit meaning.",
+        "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+      }],
+      "global_limitations": "One reviewed endpoint role; other valid records may exist."
+    }
+  },
+  "relationship_target": {
+    "status": "supported",
+    "starting_source_record_index": 1,
+    "current_source_record_index": 1,
+    "qualification_source_record_index": 1,
+    "relationship_interpretation": "The user moves from attraction to stable national demand plus concern about buyer control and uncertainty about autonomy versus identity to a tightly bounded trial with commercial, participation, financing, language, and measurement conditions, while preserving unresolved spillovers to nonparticipants and recognizing expansion pressure and changes that cannot simply be reversed on exit.",
+    "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold."
+  },
+  "source_first_gates": {
+    "starting_role_must_preserve_economic_attraction_buyer_orientation_and_identity_uncertainty": true,
+    "current_role_must_preserve_one_coherent_bounded_trial_across_e049_e050_e051": true,
+    "qualification_role_must_include_e052_e055_and_e056": true,
+    "protected_e056_irreversibility_meaning_must_survive": true,
+    "assistant_qualification_must_not_be_rewritten_as_user_adoption": true,
+    "relationship_must_preserve_bounded_trial_and_option_changing_limits": true,
+    "exact_evidence_alias_custody_required": true
+  },
+  "protected_target": {
+    "evidence_id": "e056",
+    "meaning": "If the cooperative exits, crop choices, equipment use, buyer expectations, and new status differences among members will not simply return to their prior state."
+  },
+  "boundary": {
+    "written_before_provider_execution": true,
+    "included_in_provider_context": false,
+    "used_for_provider_prompt_examples": false,
+    "semantic_gold_is_independent": false,
+    "provider_calls": 0,
+    "graph_or_runtime_authorized": false
+  }
+}

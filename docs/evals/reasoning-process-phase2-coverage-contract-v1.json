@@ -1,0 +1,327 @@
+{
+  "schema_version": "lolla.reasoning_process_phase2_coverage_contract.v1",
+  "status": "frozen_provider_free_before_view_construction",
+  "date": "2026-07-11",
+  "purpose": "Test whether the frozen Phase-1 ledgers contain source-linked evidence adequate for five bounded reasoning-process views before any view is constructed or model is called.",
+  "base_phase1_contract": {
+    "path": "docs/evals/reasoning-process-phase1-ledger-contract-v1.json",
+    "sha256": "27805cc1410ebf9de43bec6fce54c2546f0d59d56ebf17380dcb475d2922ea8d"
+  },
+  "review_boundary": {
+    "source_first": true,
+    "reviewer_independence": "same_project_session_not_blind",
+    "protected_targets_are_exhaustive_gold": false,
+    "exact_source_resolution_is_deterministic": true,
+    "semantic_coverage_is_inferred_by_code": false,
+    "missing_targets_may_be_filled_silently": false,
+    "phase1_ledgers_may_be_modified_in_place": false
+  },
+  "coverage_states": [
+    "ready",
+    "partial",
+    "blocked"
+  ],
+  "view_kinds": [
+    "position_and_decision_trajectory",
+    "exploration_and_alternatives",
+    "evidence_and_assumption_discipline",
+    "uncertainty_and_unresolved_state",
+    "challenge_and_revision_response"
+  ],
+  "cases": [
+    {
+      "case_id": "amb1-case01-product-scope",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case01-product-scope.txt",
+      "source_sha256": "243826eff78e1350c7dac57ef0e8cfe193fa6f77471fcbb4e898da591c475ae7",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case01-product-scope/ledger.json",
+      "phase1_ledger_sha256": "c7a900bd07dc5c400f3caa6f7c9d614f0380520080c78f7ca9e09fb18323e2af",
+      "targets": [
+        {
+          "target_id": "case01-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "description": "The user moves from considering an immediate build to a bounded no-build discovery plan, while the assistant preserves unresolved prototype and trust risks.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "current_position", "quote": "My provisional plan is to offer Northline three focused sessions over the next two weeks, document the workflow, and explicitly make no build commitment."},
+            {"speaker": "assistant", "turn_index": 7, "role": "qualification", "quote": "The two risks you named remain real: restricting prototypes may make discovery artificial, while careful language may still feel like distance to Northline."}
+          ]
+        },
+        {
+          "target_id": "case01-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "description": "A time-boxed investigation with separate reliability ownership is considered, along with the failure condition that both paths cannot actually be staffed.",
+          "source_evidence": [
+            {"speaker": "assistant", "turn_index": 5, "role": "alternative", "quote": "One possible design is to time-box her investigation while another owner defines the minimum reliability work that cannot slip, then reconvene with actual effort and ownership."},
+            {"speaker": "assistant", "turn_index": 5, "role": "limit", "quote": "But if the team cannot staff both without wishful allocation, the experiment will not solve the conflict; it will merely postpone naming it."}
+          ]
+        },
+        {
+          "target_id": "case01-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "description": "Lina's reuse estimate and motivation are treated as useful reported evidence without being promoted into market validation or contained support cost.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 2, "role": "bounded_claim", "quote": "That matters, even if it is not a market study."},
+            {"speaker": "assistant", "turn_index": 2, "role": "qualification", "quote": "Lina's judgment and motivation are evidence, but not yet evidence that the remaining thirty percent—or the support expectations around it—will stay contained."}
+          ]
+        },
+        {
+          "target_id": "case01-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "description": "The no-production-code boundary and the possibility that Northline hears a polite refusal remain unresolved inside the provisional plan.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "unresolved", "quote": "I still worry that “no production code” wastes Lina's best way of learning and that Northline will hear a polite no."},
+            {"speaker": "assistant", "turn_index": 7, "role": "preserved_uncertainty", "quote": "Neither step guarantees trust or a good product decision, but both make misunderstanding easier to notice before momentum chooses for you."}
+          ]
+        },
+        {
+          "target_id": "case01-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "description": "The user challenges the assistant's loud-customer framing; the assistant accepts the correction and broadens the frame to relationship obligation plus product learning.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 2, "role": "challenge", "quote": "I think you are making them sound louder and more demanding than they are."},
+            {"speaker": "assistant", "turn_index": 2, "role": "response", "quote": "Fair correction."},
+            {"speaker": "assistant", "turn_index": 2, "role": "revision", "quote": "Their request may be both a relationship obligation and a legitimate product lead."}
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case02-nonprofit-scale",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+      "source_sha256": "f4ba5f8c1cbc986b4270cce2073cb192ac6f28160cf5d34ac263660d8b8295e6",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json",
+      "phase1_ledger_sha256": "8c4b9a419d781d76d493eb859a02a6510735a74ae3606872f5af58aff653ca23",
+      "targets": [
+        {
+          "target_id": "case02-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "description": "The user reaches a conditional four-month program direction with coordinator, curriculum, and review conditions, while readiness remains unresolved.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "current_position", "quote": "I am leaning toward accepting a four-month, twice-monthly program at Willow Hub, but only if we recruit one named site coordinator and finish the first version of the drop-in curriculum before launch."},
+            {"speaker": "assistant", "turn_index": 7, "role": "qualification", "quote": "That is a conditional direction, not a disguised final answer, and the unresolved point matters."}
+          ]
+        },
+        {
+          "target_id": "case02-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "description": "Recruiting volunteers into named roles before launch is considered as a test of capacity without assuming all required ownership will appear.",
+          "source_evidence": [
+            {"speaker": "assistant", "turn_index": 3, "role": "alternative", "quote": "You could test that assumption directly: recruit for named roles at the second site before announcing a launch."},
+            {"speaker": "assistant", "turn_index": 3, "role": "limit", "quote": "If the energy is real, it should translate into some concrete ownership, though not necessarily all the ownership you need."}
+          ]
+        },
+        {
+          "target_id": "case02-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "description": "An informal foundation comment is retained as weak reported evidence rather than financing or a likely grant.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 5, "role": "bounded_claim", "quote": "A foundation officer told me informally that geographic reach would make our next application easier to explain."},
+            {"speaker": "user", "turn_index": 5, "role": "qualification", "quote": "She did not promise anything, and the current grant pays for curriculum improvement, not expansion."},
+            {"speaker": "assistant", "turn_index": 5, "role": "evidence_boundary", "quote": "Treat the foundation comment as one input, not financing."}
+          ]
+        },
+        {
+          "target_id": "case02-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "description": "The program direction remains conditional because partly ready materials have no agreed treatment.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "unresolved", "quote": "I have not decided what happens if we find the coordinator but the materials are only partly ready."},
+            {"speaker": "assistant", "turn_index": 7, "role": "preserved_uncertainty", "quote": "But setting that threshold will still involve judgment, and your colleague may reasonably challenge it."}
+          ]
+        },
+        {
+          "target_id": "case02-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "description": "The user challenges stable attendance as an exclusionary standard; the assistant accepts the correction and redefines consistency around availability and learning quality.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 2, "role": "challenge", "quote": "You are treating the current variation as a warning sign, but some of it is normal."},
+            {"speaker": "assistant", "turn_index": 2, "role": "response", "quote": "That is an important correction."},
+            {"speaker": "assistant", "turn_index": 2, "role": "revision", "quote": "Consistency in this setting may need to describe the program's availability and learning quality, not the same people attending every week."}
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case03-creative-partnership",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case03-creative-partnership.txt",
+      "source_sha256": "9788de101dee7661bcc9f76240874f088f9e97579a90deff1ee8c91462004f0f",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case03-creative-partnership/ledger.json",
+      "phase1_ledger_sha256": "f8a75fd40b8dc01e682eb7d1b46318b2590aaad7a27746b29d6baa04ee8172cf",
+      "targets": [
+        {
+          "target_id": "case03-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "description": "The user moves from demanding a major re-edit toward listening to the revised cut before deciding and proposes equal top-line credit with unresolved authority concerns.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "current_position", "quote": "My provisional plan is to hear Jonah's revised cut before deciding about postponement."},
+            {"speaker": "assistant", "turn_index": 7, "role": "qualification", "quote": "The revised cut could resolve the edit question and leave the partnership question open."}
+          ]
+        },
+        {
+          "target_id": "case03-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "description": "The pair considers comparing approved and current cuts before asking the participant, with a limited consent question only if they remain split.",
+          "source_evidence": [
+            {"speaker": "assistant", "turn_index": 3, "role": "alternative", "quote": "You could first compare the approved cut and current ending yourselves, describe the interpretive change without arguing motives, and decide whether it crosses the scope of what she approved."},
+            {"speaker": "assistant", "turn_index": 3, "role": "conditional_alternative", "quote": "If you cannot agree, a limited factual or consent question may be better than asking her to adjudicate your artistic conflict."}
+          ]
+        },
+        {
+          "target_id": "case03-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "description": "The curator's reaction is kept as evidence of dramatic force but not evidence that the representation is fair.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 5, "role": "evidence", "quote": "A curator from the showcase listened yesterday."},
+            {"speaker": "assistant", "turn_index": 5, "role": "evidence_boundary", "quote": "The curator's response is useful evidence about the ending's force, not evidence that its interpretation is fair."}
+          ]
+        },
+        {
+          "target_id": "case03-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "description": "Credit may acknowledge the completed work while authority conflict remains unresolved for the partnership and future collaboration.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "unresolved", "quote": "I want to separate the current film from the rules for our next collaboration, and I am not sure they can really be separated."},
+            {"speaker": "assistant", "turn_index": 7, "role": "preserved_uncertainty", "quote": "You do not need to solve the next project before the showcase, but you may need to avoid using a harmonious credit line as evidence that the underlying process felt mutual."}
+          ]
+        },
+        {
+          "target_id": "case03-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "description": "The user challenges the assistant for moving too quickly to one side; the assistant accepts the correction and replaces automatic participant contact with an internal comparison-first sequence.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 3, "role": "challenge", "quote": "You moved very quickly to my side."},
+            {"speaker": "assistant", "turn_index": 3, "role": "response", "quote": "That is fair."},
+            {"speaker": "assistant", "turn_index": 3, "role": "revision", "quote": "Contacting her is not automatically the respectful option."}
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case04-research-tool-release",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case04-research-tool-release.txt",
+      "source_sha256": "94277cc5c32aa5530a2ea083bbe0a1c2fc89b9aded97a47eddab0ab9d99d32bb",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case04-research-tool-release/ledger.json",
+      "phase1_ledger_sha256": "91796f8ca640905c7e15fee811ee1922e9d945532cfb2eade79f3302ab4bd02f",
+      "targets": [
+        {
+          "target_id": "case04-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "description": "The user reaches a fixed-window workshop-preview direction instead of an immediate public beta, while accepting that the temporary label cannot control all downstream use.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "current_position", "quote": "I am leaning toward releasing an openly downloadable “workshop preview” with a fixed end date, office hours, and no compatibility promise, then deciding on the public beta after we review installation failures and the maintainer returns."},
+            {"speaker": "assistant", "turn_index": 7, "role": "qualification", "quote": "The plan can bound your promise; it cannot make public use temporary in every practical sense."}
+          ]
+        },
+        {
+          "target_id": "case04-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "description": "A bounded installation test is considered as an alternative to both full beta and internal polishing, while repeated studies risk recreating endless preview.",
+          "source_evidence": [
+            {"speaker": "assistant", "turn_index": 5, "role": "alternative", "quote": "A bounded installation test with people who lack staff engineering might answer that question faster than either a full beta or more internal polishing."},
+            {"speaker": "assistant", "turn_index": 5, "role": "limit", "quote": "Still, if every uncertainty becomes a separate pre-release study, you recreate the endless preview problem you already identified."}
+          ]
+        },
+        {
+          "target_id": "case04-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "description": "Private-lab smoothness is downgraded after discovering hidden staff-engineer support and is not treated as representative release evidence.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 5, "role": "confound", "quote": "Their researchers reported a smooth experience because they never saw the setup work."},
+            {"speaker": "assistant", "turn_index": 5, "role": "evidence_boundary", "quote": "It argues against treating the private labs as representative, but it does not choose the next step by itself."}
+          ]
+        },
+        {
+          "target_id": "case04-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "description": "Citation remains an unresolved durability commitment that a temporary preview label cannot fully contain.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "unresolved", "quote": "I have not resolved whether citations should be allowed to reference the preview."},
+            {"speaker": "assistant", "turn_index": 7, "role": "preserved_uncertainty", "quote": "Citation is the unresolved commitment because it can turn a temporary preview into a durable scholarly object."}
+          ]
+        },
+        {
+          "target_id": "case04-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "description": "The user challenges indefinite structured preview; the assistant accepts that non-release is itself a product choice and reframes the issue around support promises.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 2, "role": "challenge", "quote": "That is close to what the maintainers say, but the structured preview has been “one more cohort” for six months."},
+            {"speaker": "assistant", "turn_index": 2, "role": "response", "quote": "Agreed—indefinite preview is itself a product choice, and it can narrow both the community and the evidence you receive."},
+            {"speaker": "assistant", "turn_index": 2, "role": "revision", "quote": "The question may be less “is it ready?” than “what support promise accompanies the release, and can the team sustain that promise?”"}
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "amb1-case05-family-archive",
+      "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case05-family-archive.txt",
+      "source_sha256": "9bc3ab580622e30d676e30def217ba410afce99d47abfed21920b130651a935d",
+      "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case05-family-archive/ledger.json",
+      "phase1_ledger_sha256": "2a0927a543782e0e1db781b76c072b1e99bbd37811d9743543b6913ac8fc2042",
+      "targets": [
+        {
+          "target_id": "case05-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "description": "The user moves toward accepting a narrow exhibition with joint display support and participatory captions while preserving the unresolved object-selection rule.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "current_position", "quote": "I am leaning toward accepting the slot, choosing a narrow theme about the family's first ten years in the neighborhood, and limiting the exhibition to material that Tomas and I both support displaying."},
+            {"speaker": "assistant", "turn_index": 7, "role": "qualification", "quote": "The direction is narrower and more participatory, but the decision rule is still the heart of it."}
+          ]
+        },
+        {
+          "target_id": "case05-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "description": "A narrow exhibition about how memory is assembled is considered but may displace the family lives and migration story Tomas values.",
+          "source_evidence": [
+            {"speaker": "assistant", "turn_index": 5, "role": "alternative", "quote": "You could define the exhibition more narrowly—as twenty objects about how family memory is assembled—rather than as a representative family history."},
+            {"speaker": "assistant", "turn_index": 5, "role": "limit", "quote": "That may be honest, though it risks making the process the subject when Tomas wants the lives and migration stories to remain central."}
+          ]
+        },
+        {
+          "target_id": "case05-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "description": "The user distinguishes Tomas's general argument from a threatened action; the assistant preserves that principle/action boundary.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 3, "role": "bounded_claim", "quote": "Tomas says one person's discomfort should not control a shared history, but he has not said he would use it without permission."},
+            {"speaker": "assistant", "turn_index": 3, "role": "evidence_boundary", "quote": "It is useful to separate the principle he is testing from the action he intends."}
+          ]
+        },
+        {
+          "target_id": "case05-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "description": "The meaning of mutual support for a disputed essential object remains unresolved and may be prematurely hardened by the deadline.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 7, "role": "unresolved", "quote": "I have not decided what “both support” means if Tomas thinks a disputed object is essential and I think the dispute itself makes it unsuitable."},
+            {"speaker": "user", "turn_index": 7, "role": "deadline_risk", "quote": "I also worry a one-month commitment will make that unresolved rule feel settled."}
+          ]
+        },
+        {
+          "target_id": "case05-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "description": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+          "source_evidence": [
+            {"speaker": "user", "turn_index": 2, "role": "challenge", "quote": "I do not think Tomas wants to resolve it cosmetically."},
+            {"speaker": "assistant", "turn_index": 2, "role": "revision", "quote": "Then the difference may be less honesty versus polish and more tolerance for incomplete evidence."}
+          ]
+        }
+      ]
+    }
+  ],
+  "required_totals": {
+    "case_count": 5,
+    "view_kind_count": 5,
+    "protected_target_count": 25,
+    "target_count_per_view_kind": 5,
+    "provider_calls": 0,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "non_claims": [
+    "protected_targets_are_not_exhaustive_gold",
+    "exact_span_availability_is_not_semantic_coverage",
+    "same_session_source_review_is_not_independent_validation",
+    "coverage_adequacy_is_not_reasoning_quality",
+    "no_provider_or_runtime_authority"
+  ]
+}

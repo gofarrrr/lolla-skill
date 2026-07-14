@@ -1,0 +1,679 @@
+{
+  "boundary": {
+    "deterministic_role_inference": false,
+    "maximum_provider_calls": 2,
+    "provider_calls": 0,
+    "relation_call_omission_reason": "V1 downstream mechanism interpretation consumes starting, current, qualification, and explicit qualification review; a separate relation classification is not required.",
+    "relation_call_omitted": true,
+    "semantic_prefilter": false
+  },
+  "bundle_sha256": "f5e966a7aeb67b74a071b5d5a4cbb678a3fb994aa8fe5367302a2f03b152a079",
+  "requests": {
+    "current_qualification": {
+      "packet": {
+        "boundary": {
+          "current_and_qualification_allocated_in_one_probabilistic_task": true,
+          "deterministic_absence_inference": false,
+          "deterministic_alias_subtraction_added": false,
+          "deterministic_semantic_role_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "envelope_status_derived_mechanically": true,
+          "hard_alias_exclusivity_required": false,
+          "keyword_or_chronology_gate_added": false,
+          "maximum_pipeline_calls": 3,
+          "negative_qualification_semantics_provider_authored": true,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "record_semantic_status_retained": true,
+          "redundant_envelope_status_removed_from_v24": true,
+          "response_schema_changed_from_v2": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_prefilter_performed": false,
+          "semantic_repair_performed": false,
+          "semantic_score_added": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "starting_role_included": false,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false
+        },
+        "case_id": "v1-case08-museum-entry",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Compare the later working answer with what still limits or could reopen it.",
+        "expression_interpretation_contract": "Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur city museum is free, and a popular exhibition has made weekend entry miserable.\ne002\tPeople stand outside for an hour, galleries become crowded, and sometimes staff close a room without warning because the safe limit has been reached.\ne003\tThe obvious operational answer is timed entry.\ne004\tThe problem is that our public includes tourists who decide at the door, older residents who do not book online, families whose bus or child does not respect a fifteen-minute slot, and people who cannot wait outside even under the current system.\ne005\tStaff want predictability.\ne006\tSome trustees want photographs without queues.\ne007\tI want fewer unsafe closures and less wasted time, but I do not want a free museum to become technically free and practically available only to people who plan, have a device, and arrive exactly when instructed.\n[Turn 1 ASSISTANT]\ne008\tTreat predictable flow and spontaneous access as separate service goals.\ne009\tPreserve walk-in capacity, non-online booking, flexible arrival, and help at the door.\ne010\tMeasure waiting, closures, unused slots, turn-aways, workload, and who can actually use each path.\n[Turn 2 USER]\ne011\tAnd please do not treat the current queue as open access.\ne012\tIt favors people who can stand outside.\ne013\tSchool groups leave.\ne014\tGalleries close without warning.\ne015\tTimed entry can exclude people, but the status quo already does.\n[Turn 2 ASSISTANT]\ne016\tAgreed.\ne017\tRecord current waits, turn-aways, abandoned visits, and closures by time and visitor type before the change.\ne018\tThe goal is not to preserve an unmeasured queue.\ne019\tA pilot can test whether reservations reduce those burdens while ensuring that people without advance plans retain a workable route into the exhibition.\n[Turn 3 USER]\ne020\tStaff designed a ten-week weekend trial.\ne021\tForty percent of each hour remains for walk-ins.\ne022\tReservations can be made online, by phone, or at the admissions desk up to a week ahead.\ne023\tTickets are free, no account is required, and a reservation remains valid for a thirty-minute arrival window.\ne024\tUnused reserved spaces return to the walk-in pool after that window.\n[Turn 3 ASSISTANT]\ne025\tThat protects several access modes and limits the penalty for imperfect timing.\ne026\tTest the phone and desk paths under real demand, make the walk-in allocation visible, and avoid releasing all returned capacity through the online channel.\ne027\tDecide how school and community groups fit without allowing block bookings to consume the public allotment.\n[Turn 4 USER]\ne028\tSchools keep their existing group process and do not draw from public slots.\ne029\tNeighborhood organizations asked for a small weekly block they can book by phone for residents who need assistance.\ne030\tWe agreed, but one trustee called that preferential treatment.\ne031\tI see it as making the channel usable, not giving people better access than everyone else.\n[Turn 4 ASSISTANT]\ne032\tAssisted booking can correct a channel barrier if the admission opportunity remains comparable.\ne033\tPublish the size and purpose of the block, review whether it is used, and release unused places.\ne034\tThe relevant question is whether people can exercise the same public entitlement, not whether every route has identical mechanics.\n[Turn 5 USER]\ne035\tThe ticketing provider needs a name and contact method to send the reservation.\ne036\tIt will delete identifiable records after fourteen days and provide only aggregate attendance data to the museum.\ne037\tStaff will offer anonymous paper walk-in tickets.\ne038\tWe are not connecting reservation history to memberships or donations, and the provider cannot market to visitors.\n[Turn 5 ASSISTANT]\ne039\tThe data use is proportionate to the booking task.\ne040\tVerify deletion, minimize what appears on staff screens, and explain the distinction between a reservation record and anonymous walk-in entry.\ne041\tKeep donor and membership systems technically separate, not merely governed by a promise that the data will not be interesting later.\n[Turn 6 USER]\ne042\tWe set review conditions before launch: fewer unplanned gallery closures, shorter waits for both reserved and walk-in visitors, no increase in total turn-aways, acceptable staff workload, and no material access or privacy problem.\ne043\tWeekly results will be published.\ne044\tIf walk-in turn-aways increase for two weekends, we raise the walk-in share immediately while the trial continues.\ne045\tThe provider contract ends automatically after ten weeks unless the board approves another term.\n[Turn 6 ASSISTANT]\ne046\tThose conditions let the operation adapt without converting every adjustment into failure.\ne047\tPredefine how waits and turn-aways are counted, including people who leave before reaching the desk.\ne048\tThe automatic contract end prevents passive continuation, and public weekly results make it harder to redefine success after seeing which channel performs best.\n[Turn 7 USER]\ne049\tI will recommend the ten-week weekend trial with the forty-percent walk-in floor, phone and desk booking, assisted community access, flexible arrival window, anonymous walk-in tickets, published results, and the early adjustment rule.\ne050\tWe will not change weekday entry or other galleries.\ne051\tThe board review will decide whether timed entry solved more access problems than it created, rather than whether the exhibition looked orderly in photographs.\n[Turn 7 ASSISTANT]\ne052\tThe proposal is ready as a narrow, observable trial.\ne053\tIt compares the booking system with the actual unequal queue, not an idealized open door.\ne054\tWalk-in space remains throughout; phone, desk, and assisted booking reduce channel dependence; privacy is limited; and access failures can change the allocation before the final board review.\ne055\tExecute the counting method as written, especially abandoned visits and walk-in turn-aways, and record any protocol change.\ne056\tThe board should see the complete access pattern rather than reservation volume or photographs of orderly galleries.\n[Turn 8 USER]\ne057\tThe baseline broke our categories.\ne058\tMany “walk-ins” had checked social media that morning and travelled specifically for the exhibition; they just had not made a reservation.\ne059\tSome tourists were perfectly willing to return later if the time was reliable.\ne060\tOthers could enter only now.\ne061\tWe had built the plan as if reservation meant planned and walk-in meant spontaneous.\ne062\tThat is administratively convenient and behaviorally wrong.\ne063\tIt matters because the forty-percent floor might protect a ticket type without protecting the people we meant it for.\n[Turn 8 ASSISTANT]\ne064\tYou are right; I treated the channels as visitor types.\ne065\tMeasure the path used and practical flexibility separately.\ne066\tOffer reliable same-day return times without eliminating immediate entry for people who cannot return.\ne067\tA short voluntary question can reveal the difference, but entry must not become a survey exercise.\n[Turn 9 USER]\ne068\tThe provider demonstrated the booking page.\ne069\tIt allows one person to reserve ten free tickets, which staff fear will create empty blocks or informal resale.\ne070\tRequiring an account would reduce repeated reservations but conflicts with our no-account principle.\ne071\tThe provider can cap each contact method at four tickets and send a simple confirmation request the day before.\ne072\tFamilies and small groups say four may be too low.\n[Turn 9 ASSISTANT]\ne073\tUse a household-sized cap and a separate assisted path for larger groups rather than introducing an account solely to police scarcity.\ne074\tMake cancellation easy, release unconfirmed capacity gradually, and watch whether the confirmation step disproportionately removes people with limited connectivity.\ne075\tFree access can still require fair-use rules, but the enforcement mechanism should not create a larger barrier than the behavior it prevents.\n[Turn 10 USER]\ne076\tThe tourism office offered to place reservation links in hotel newsletters and at the airport.\ne077\tThat could distribute demand across the day, but neighborhood organizations worry visitors will capture advance slots before residents hear about them.\ne078\tWe do not have a resident category and do not want one.\ne079\tI am tempted to reject the tourism offer simply because it will make the reservation channel more successful than the assisted community block.\n[Turn 10 ASSISTANT]\ne080\tDo not suppress tourism promotion just to balance the channels.\ne081\tStagger releases, preserve walk-in and same-day capacity, and publish the same information through libraries, community partners, and the entrance.\ne082\tReview distribution without creating a residency test.\n[Turn 11 USER]\ne083\tThe fire marshal has now reduced safe occupancy after observing how people actually move through the exhibition.\ne084\tStaff say that proves timed entry is necessary.\ne085\tA trustee says it proves the forty-percent walk-in floor is too generous because unused reservations can always be released later.\ne086\tI think the second conclusion uses the safety change to protect the reservation system before it has produced evidence.\ne087\tReturned slots are uncertain; a walk-in floor is dependable.\ne088\tBut I also understand that a fixed percentage means fewer total reservations now, and the outside queue could itself become a safety and weather problem.\ne089\tI do not want to defend forty percent because it is the number we already wrote down.\ne090\tI want to know whether the reason for it still holds under the new capacity.\n[Turn 11 ASSISTANT]\ne091\tRecalculate all channel counts using the new safety limit while preserving the agreed proportion unless evidence shows it is unworkable.\ne092\tReturned reservations are not equivalent to dependable walk-in capacity because their timing is uncertain.\ne093\tIf crowding creates unsafe queues outside, use same-day timed walk-in tickets and the early adjustment rule rather than quietly reallocating access before observation.\n[Turn 12 USER]\ne094\tWe will keep the forty-percent walk-in share under the revised occupancy, add same-day return times at the desk and by phone, use staggered reservation releases, and set a household-sized cap with assisted booking for larger groups.\ne095\tPromotion will go through tourism and neighborhood channels at the same time.\ne096\tWe will count immediate entry, offered return times, abandoned visits, confirmations, and released capacity separately.\ne097\tThe ten-week contract, privacy limits, weekly publication, and early walk-in adjustment remain unchanged.\n[Turn 12 ASSISTANT]\ne098\tThe final design now responds to visitor behavior rather than forcing people into “planner” and “walk-in” categories.\ne099\tIt protects immediate access, offers reliable same-day returns, staggers advance release, and handles larger groups without requiring accounts or residency tests.\ne100\tIt also keeps the fire marshal's safety adjustment from silently rewriting the access promise before observation.\ne101\tPreserve the baseline finding that many walk-ins had planned their visit, the booking-page test, confirmation losses, promotion channels, revised occupancy, outside-queue conditions, and every allocation change.\ne102\tThe board should see who waited, who returned, who abandoned the visit, and which channel actually worked for whom—not merely whether galleries looked calmer or the reservation system filled its slots.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102"
+          ]
+        },
+        "maximum_components_per_record": 5,
+        "maximum_records": 2,
+        "paired_roles": [
+          "current",
+          "qualification"
+        ],
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "response_contract": {
+          "explicit_qualification_review_required": true,
+          "explicit_role_label_required": true,
+          "global_synthesis_requested": false,
+          "maximum_records_per_role": 2,
+          "maximum_records_total": 4,
+          "per_role_envelope_status_requested": false,
+          "record_omission_alone_does_not_mean_no_qualification": true,
+          "valid_empty_role_allowed": true
+        },
+        "role": "current_and_qualification",
+        "role_boundary_contract": {
+          "allocation": "Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.",
+          "current": "The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.",
+          "qualification": "What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership."
+        },
+        "schema_version": "lolla.reasoning_process_position_current_qualification_packet.v2_4_2",
+        "shard_id": "v1-case08-museum-entry-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You jointly interpret current position and whether any unresolved qualification remains after the complete endpoint. Compare roles before allocating meanings. An adopted condition, safeguard, stop rule, or reopen rule belongs to current; it is not itself unresolved. Return a qualification record only for a matter that remains unresolved and can change or reopen current. Always return a source-linked qualification_review outcome.",
+        "system_prompt_sha256": "741a393f7f2fa4b95d18a82c1c3db2ec3383944ae91d99b7b0cbfb9003dad315",
+        "user_prompt": "PAIRED QUIET-CAPABLE PACKET\n{\"boundary\":{\"current_and_qualification_allocated_in_one_probabilistic_task\":true,\"deterministic_absence_inference\":false,\"deterministic_alias_subtraction_added\":false,\"deterministic_semantic_role_gate_added\":false,\"direct_graph_routing_allowed\":false,\"envelope_status_derived_mechanically\":true,\"hard_alias_exclusivity_required\":false,\"keyword_or_chronology_gate_added\":false,\"maximum_pipeline_calls\":3,\"negative_qualification_semantics_provider_authored\":true,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"record_semantic_status_retained\":true,\"redundant_envelope_status_removed_from_v24\":true,\"response_schema_changed_from_v2\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_prefilter_performed\":false,\"semantic_repair_performed\":false,\"semantic_score_added\":false,\"speaker_ownership_semantics_made_explicit\":true,\"starting_role_included\":false,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false},\"case_id\":\"v1-case08-museum-entry\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Compare the later working answer with what still limits or could reopen it.\",\"expression_interpretation_contract\":\"Classify force from the source speaker's relation to the component. Reserve reported_without_endorsement for attributing a stance to someone else. Preserve the speaker's own desire, counterpressure, uncertainty, leaning, commitment, and conditional willingness without flattening or upgrading them.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur city museum is free, and a popular exhibition has made weekend entry miserable.\\ne002\\tPeople stand outside for an hour, galleries become crowded, and sometimes staff close a room without warning because the safe limit has been reached.\\ne003\\tThe obvious operational answer is timed entry.\\ne004\\tThe problem is that our public includes tourists who decide at the door, older residents who do not book online, families whose bus or child does not respect a fifteen-minute slot, and people who cannot wait outside even under the current system.\\ne005\\tStaff want predictability.\\ne006\\tSome trustees want photographs without queues.\\ne007\\tI want fewer unsafe closures and less wasted time, but I do not want a free museum to become technically free and practically available only to people who plan, have a device, and arrive exactly when instructed.\\n[Turn 1 ASSISTANT]\\ne008\\tTreat predictable flow and spontaneous access as separate service goals.\\ne009\\tPreserve walk-in capacity, non-online booking, flexible arrival, and help at the door.\\ne010\\tMeasure waiting, closures, unused slots, turn-aways, workload, and who can actually use each path.\\n[Turn 2 USER]\\ne011\\tAnd please do not treat the current queue as open access.\\ne012\\tIt favors people who can stand outside.\\ne013\\tSchool groups leave.\\ne014\\tGalleries close without warning.\\ne015\\tTimed entry can exclude people, but the status quo already does.\\n[Turn 2 ASSISTANT]\\ne016\\tAgreed.\\ne017\\tRecord current waits, turn-aways, abandoned visits, and closures by time and visitor type before the change.\\ne018\\tThe goal is not to preserve an unmeasured queue.\\ne019\\tA pilot can test whether reservations reduce those burdens while ensuring that people without advance plans retain a workable route into the exhibition.\\n[Turn 3 USER]\\ne020\\tStaff designed a ten-week weekend trial.\\ne021\\tForty percent of each hour remains for walk-ins.\\ne022\\tReservations can be made online, by phone, or at the admissions desk up to a week ahead.\\ne023\\tTickets are free, no account is required, and a reservation remains valid for a thirty-minute arrival window.\\ne024\\tUnused reserved spaces return to the walk-in pool after that window.\\n[Turn 3 ASSISTANT]\\ne025\\tThat protects several access modes and limits the penalty for imperfect timing.\\ne026\\tTest the phone and desk paths under real demand, make the walk-in allocation visible, and avoid releasing all returned capacity through the online channel.\\ne027\\tDecide how school and community groups fit without allowing block bookings to consume the public allotment.\\n[Turn 4 USER]\\ne028\\tSchools keep their existing group process and do not draw from public slots.\\ne029\\tNeighborhood organizations asked for a small weekly block they can book by phone for residents who need assistance.\\ne030\\tWe agreed, but one trustee called that preferential treatment.\\ne031\\tI see it as making the channel usable, not giving people better access than everyone else.\\n[Turn 4 ASSISTANT]\\ne032\\tAssisted booking can correct a channel barrier if the admission opportunity remains comparable.\\ne033\\tPublish the size and purpose of the block, review whether it is used, and release unused places.\\ne034\\tThe relevant question is whether people can exercise the same public entitlement, not whether every route has identical mechanics.\\n[Turn 5 USER]\\ne035\\tThe ticketing provider needs a name and contact method to send the reservation.\\ne036\\tIt will delete identifiable records after fourteen days and provide only aggregate attendance data to the museum.\\ne037\\tStaff will offer anonymous paper walk-in tickets.\\ne038\\tWe are not connecting reservation history to memberships or donations, and the provider cannot market to visitors.\\n[Turn 5 ASSISTANT]\\ne039\\tThe data use is proportionate to the booking task.\\ne040\\tVerify deletion, minimize what appears on staff screens, and explain the distinction between a reservation record and anonymous walk-in entry.\\ne041\\tKeep donor and membership systems technically separate, not merely governed by a promise that the data will not be interesting later.\\n[Turn 6 USER]\\ne042\\tWe set review conditions before launch: fewer unplanned gallery closures, shorter waits for both reserved and walk-in visitors, no increase in total turn-aways, acceptable staff workload, and no material access or privacy problem.\\ne043\\tWeekly results will be published.\\ne044\\tIf walk-in turn-aways increase for two weekends, we raise the walk-in share immediately while the trial continues.\\ne045\\tThe provider contract ends automatically after ten weeks unless the board approves another term.\\n[Turn 6 ASSISTANT]\\ne046\\tThose conditions let the operation adapt without converting every adjustment into failure.\\ne047\\tPredefine how waits and turn-aways are counted, including people who leave before reaching the desk.\\ne048\\tThe automatic contract end prevents passive continuation, and public weekly results make it harder to redefine success after seeing which channel performs best.\\n[Turn 7 USER]\\ne049\\tI will recommend the ten-week weekend trial with the forty-percent walk-in floor, phone and desk booking, assisted community access, flexible arrival window, anonymous walk-in tickets, published results, and the early adjustment rule.\\ne050\\tWe will not change weekday entry or other galleries.\\ne051\\tThe board review will decide whether timed entry solved more access problems than it created, rather than whether the exhibition looked orderly in photographs.\\n[Turn 7 ASSISTANT]\\ne052\\tThe proposal is ready as a narrow, observable trial.\\ne053\\tIt compares the booking system with the actual unequal queue, not an idealized open door.\\ne054\\tWalk-in space remains throughout; phone, desk, and assisted booking reduce channel dependence; privacy is limited; and access failures can change the allocation before the final board review.\\ne055\\tExecute the counting method as written, especially abandoned visits and walk-in turn-aways, and record any protocol change.\\ne056\\tThe board should see the complete access pattern rather than reservation volume or photographs of orderly galleries.\\n[Turn 8 USER]\\ne057\\tThe baseline broke our categories.\\ne058\\tMany “walk-ins” had checked social media that morning and travelled specifically for the exhibition; they just had not made a reservation.\\ne059\\tSome tourists were perfectly willing to return later if the time was reliable.\\ne060\\tOthers could enter only now.\\ne061\\tWe had built the plan as if reservation meant planned and walk-in meant spontaneous.\\ne062\\tThat is administratively convenient and behaviorally wrong.\\ne063\\tIt matters because the forty-percent floor might protect a ticket type without protecting the people we meant it for.\\n[Turn 8 ASSISTANT]\\ne064\\tYou are right; I treated the channels as visitor types.\\ne065\\tMeasure the path used and practical flexibility separately.\\ne066\\tOffer reliable same-day return times without eliminating immediate entry for people who cannot return.\\ne067\\tA short voluntary question can reveal the difference, but entry must not become a survey exercise.\\n[Turn 9 USER]\\ne068\\tThe provider demonstrated the booking page.\\ne069\\tIt allows one person to reserve ten free tickets, which staff fear will create empty blocks or informal resale.\\ne070\\tRequiring an account would reduce repeated reservations but conflicts with our no-account principle.\\ne071\\tThe provider can cap each contact method at four tickets and send a simple confirmation request the day before.\\ne072\\tFamilies and small groups say four may be too low.\\n[Turn 9 ASSISTANT]\\ne073\\tUse a household-sized cap and a separate assisted path for larger groups rather than introducing an account solely to police scarcity.\\ne074\\tMake cancellation easy, release unconfirmed capacity gradually, and watch whether the confirmation step disproportionately removes people with limited connectivity.\\ne075\\tFree access can still require fair-use rules, but the enforcement mechanism should not create a larger barrier than the behavior it prevents.\\n[Turn 10 USER]\\ne076\\tThe tourism office offered to place reservation links in hotel newsletters and at the airport.\\ne077\\tThat could distribute demand across the day, but neighborhood organizations worry visitors will capture advance slots before residents hear about them.\\ne078\\tWe do not have a resident category and do not want one.\\ne079\\tI am tempted to reject the tourism offer simply because it will make the reservation channel more successful than the assisted community block.\\n[Turn 10 ASSISTANT]\\ne080\\tDo not suppress tourism promotion just to balance the channels.\\ne081\\tStagger releases, preserve walk-in and same-day capacity, and publish the same information through libraries, community partners, and the entrance.\\ne082\\tReview distribution without creating a residency test.\\n[Turn 11 USER]\\ne083\\tThe fire marshal has now reduced safe occupancy after observing how people actually move through the exhibition.\\ne084\\tStaff say that proves timed entry is necessary.\\ne085\\tA trustee says it proves the forty-percent walk-in floor is too generous because unused reservations can always be released later.\\ne086\\tI think the second conclusion uses the safety change to protect the reservation system before it has produced evidence.\\ne087\\tReturned slots are uncertain; a walk-in floor is dependable.\\ne088\\tBut I also understand that a fixed percentage means fewer total reservations now, and the outside queue could itself become a safety and weather problem.\\ne089\\tI do not want to defend forty percent because it is the number we already wrote down.\\ne090\\tI want to know whether the reason for it still holds under the new capacity.\\n[Turn 11 ASSISTANT]\\ne091\\tRecalculate all channel counts using the new safety limit while preserving the agreed proportion unless evidence shows it is unworkable.\\ne092\\tReturned reservations are not equivalent to dependable walk-in capacity because their timing is uncertain.\\ne093\\tIf crowding creates unsafe queues outside, use same-day timed walk-in tickets and the early adjustment rule rather than quietly reallocating access before observation.\\n[Turn 12 USER]\\ne094\\tWe will keep the forty-percent walk-in share under the revised occupancy, add same-day return times at the desk and by phone, use staggered reservation releases, and set a household-sized cap with assisted booking for larger groups.\\ne095\\tPromotion will go through tourism and neighborhood channels at the same time.\\ne096\\tWe will count immediate entry, offered return times, abandoned visits, confirmations, and released capacity separately.\\ne097\\tThe ten-week contract, privacy limits, weekly publication, and early walk-in adjustment remain unchanged.\\n[Turn 12 ASSISTANT]\\ne098\\tThe final design now responds to visitor behavior rather than forcing people into “planner” and “walk-in” categories.\\ne099\\tIt protects immediate access, offers reliable same-day returns, staggers advance release, and handles larger groups without requiring accounts or residency tests.\\ne100\\tIt also keeps the fire marshal's safety adjustment from silently rewriting the access promise before observation.\\ne101\\tPreserve the baseline finding that many walk-ins had planned their visit, the booking-page test, confirmation losses, promotion channels, revised occupancy, outside-queue conditions, and every allocation change.\\ne102\\tThe board should see who waited, who returned, who abandoned the visit, and which channel actually worked for whom—not merely whether galleries looked calmer or the reservation system filled its slots.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\"]},\"maximum_components_per_record\":5,\"maximum_records\":2,\"paired_roles\":[\"current\",\"qualification\"],\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What is the user's later working position, and what distinct unresolved condition, counterpressure, blind spot, or reopen reason still limits it?\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"response_contract\":{\"explicit_qualification_review_required\":true,\"explicit_role_label_required\":true,\"global_synthesis_requested\":false,\"maximum_records_per_role\":2,\"maximum_records_total\":4,\"per_role_envelope_status_requested\":false,\"record_omission_alone_does_not_mean_no_qualification\":true,\"valid_empty_role_allowed\":true},\"role\":\"current_and_qualification\",\"role_boundary_contract\":{\"allocation\":\"Interpret current and qualification comparatively before writing records. Allocate each meaning to the role it performs. The same source alias may support both roles only when it contains two genuinely distinct meanings; create separate role-specific components and explain the distinction. Do not duplicate one unresolved meaning into current merely because the user acknowledges it alongside the working answer.\",\"current\":\"The user's later working answer: what they lean toward, propose, plan, decide, commit to, refuse, or conditionally accept, including concerns converted into adopted safeguards.\",\"qualification\":\"What still limits or could reopen that answer: unresolved questions, unmet conditions, counterpressure, blind spots, side effects, or path dependence, with speaker ownership.\"},\"schema_version\":\"lolla.reasoning_process_position_current_qualification_packet.v2_4_2\",\"shard_id\":\"v1-case08-museum-entry-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nReturn current records and, only when supported, qualification records. qualification_review must state unresolved_qualification_present, no_unresolved_qualification_observed, or ambiguous_qualification_review and cite exact aliases. Explicit user stand-down evidence supports review but does not automatically decide it. Omission alone is never interpreted as semantic absence. Preserve speaker and modal force. Return schema-valid JSON only.",
+        "user_prompt_sha256": "fb66c4ada6f0f377807593d4c82f82b4152205e6c962708b98f51034388b3f07"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "Joint semantic allocation of current and qualification records.",
+        "properties": {
+          "allocation_note": {
+            "maxLength": 800,
+            "minLength": 1,
+            "type": "string"
+          },
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "qualification_review": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ids": {
+                "items": {
+                  "pattern": "^e[0-9]{3}$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "type": "array"
+              },
+              "interpretation": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "limitations": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "unresolved_qualification_present",
+                  "no_unresolved_qualification_observed",
+                  "ambiguous_qualification_review"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "outcome",
+              "evidence_ids",
+              "interpretation",
+              "limitations"
+            ],
+            "type": "object"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "current",
+                    "qualification"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 5,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "records",
+          "qualification_review",
+          "allocation_note",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    },
+    "starting": {
+      "packet": {
+        "boundary": {
+          "chronological_gate_added": false,
+          "deterministic_expression_gate_added": false,
+          "deterministic_role_exclusivity_gate_added": false,
+          "direct_graph_routing_allowed": false,
+          "keyword_gate_added": false,
+          "one_semantic_role_only": true,
+          "other_role_labels_requested": false,
+          "parallel_component_columns_used": false,
+          "record_identity_semantics_made_explicit": true,
+          "response_schema_changed_from_v2": false,
+          "response_schema_changed_from_v22": false,
+          "role_response_wire_changed_from_v21": true,
+          "semantic_contract_changed_from_v21": false,
+          "semantic_contract_changed_from_v22": true,
+          "semantic_prefilter_performed": false,
+          "speaker_ownership_semantics_made_explicit": true,
+          "trajectory_relation_requested": false,
+          "validator_changed_from_v2": false,
+          "validator_changed_from_v22": false
+        },
+        "case_id": "v1-case08-museum-entry",
+        "component_identity_contract": "Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.",
+        "endpoint_definition": "Apply role_boundary_contract to the visible early or later endpoint.",
+        "expression_interpretation_contract": "Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.",
+        "focal_region": {
+          "annotated_sentence_text": "[Turn 1 USER]\ne001\tOur city museum is free, and a popular exhibition has made weekend entry miserable.\ne002\tPeople stand outside for an hour, galleries become crowded, and sometimes staff close a room without warning because the safe limit has been reached.\ne003\tThe obvious operational answer is timed entry.\ne004\tThe problem is that our public includes tourists who decide at the door, older residents who do not book online, families whose bus or child does not respect a fifteen-minute slot, and people who cannot wait outside even under the current system.\ne005\tStaff want predictability.\ne006\tSome trustees want photographs without queues.\ne007\tI want fewer unsafe closures and less wasted time, but I do not want a free museum to become technically free and practically available only to people who plan, have a device, and arrive exactly when instructed.\n[Turn 1 ASSISTANT]\ne008\tTreat predictable flow and spontaneous access as separate service goals.\ne009\tPreserve walk-in capacity, non-online booking, flexible arrival, and help at the door.\ne010\tMeasure waiting, closures, unused slots, turn-aways, workload, and who can actually use each path.\n[Turn 2 USER]\ne011\tAnd please do not treat the current queue as open access.\ne012\tIt favors people who can stand outside.\ne013\tSchool groups leave.\ne014\tGalleries close without warning.\ne015\tTimed entry can exclude people, but the status quo already does.\n[Turn 2 ASSISTANT]\ne016\tAgreed.\ne017\tRecord current waits, turn-aways, abandoned visits, and closures by time and visitor type before the change.\ne018\tThe goal is not to preserve an unmeasured queue.\ne019\tA pilot can test whether reservations reduce those burdens while ensuring that people without advance plans retain a workable route into the exhibition.\n[Turn 3 USER]\ne020\tStaff designed a ten-week weekend trial.\ne021\tForty percent of each hour remains for walk-ins.\ne022\tReservations can be made online, by phone, or at the admissions desk up to a week ahead.\ne023\tTickets are free, no account is required, and a reservation remains valid for a thirty-minute arrival window.\ne024\tUnused reserved spaces return to the walk-in pool after that window.\n[Turn 3 ASSISTANT]\ne025\tThat protects several access modes and limits the penalty for imperfect timing.\ne026\tTest the phone and desk paths under real demand, make the walk-in allocation visible, and avoid releasing all returned capacity through the online channel.\ne027\tDecide how school and community groups fit without allowing block bookings to consume the public allotment.\n[Turn 4 USER]\ne028\tSchools keep their existing group process and do not draw from public slots.\ne029\tNeighborhood organizations asked for a small weekly block they can book by phone for residents who need assistance.\ne030\tWe agreed, but one trustee called that preferential treatment.\ne031\tI see it as making the channel usable, not giving people better access than everyone else.\n[Turn 4 ASSISTANT]\ne032\tAssisted booking can correct a channel barrier if the admission opportunity remains comparable.\ne033\tPublish the size and purpose of the block, review whether it is used, and release unused places.\ne034\tThe relevant question is whether people can exercise the same public entitlement, not whether every route has identical mechanics.\n[Turn 5 USER]\ne035\tThe ticketing provider needs a name and contact method to send the reservation.\ne036\tIt will delete identifiable records after fourteen days and provide only aggregate attendance data to the museum.\ne037\tStaff will offer anonymous paper walk-in tickets.\ne038\tWe are not connecting reservation history to memberships or donations, and the provider cannot market to visitors.\n[Turn 5 ASSISTANT]\ne039\tThe data use is proportionate to the booking task.\ne040\tVerify deletion, minimize what appears on staff screens, and explain the distinction between a reservation record and anonymous walk-in entry.\ne041\tKeep donor and membership systems technically separate, not merely governed by a promise that the data will not be interesting later.\n[Turn 6 USER]\ne042\tWe set review conditions before launch: fewer unplanned gallery closures, shorter waits for both reserved and walk-in visitors, no increase in total turn-aways, acceptable staff workload, and no material access or privacy problem.\ne043\tWeekly results will be published.\ne044\tIf walk-in turn-aways increase for two weekends, we raise the walk-in share immediately while the trial continues.\ne045\tThe provider contract ends automatically after ten weeks unless the board approves another term.\n[Turn 6 ASSISTANT]\ne046\tThose conditions let the operation adapt without converting every adjustment into failure.\ne047\tPredefine how waits and turn-aways are counted, including people who leave before reaching the desk.\ne048\tThe automatic contract end prevents passive continuation, and public weekly results make it harder to redefine success after seeing which channel performs best.\n[Turn 7 USER]\ne049\tI will recommend the ten-week weekend trial with the forty-percent walk-in floor, phone and desk booking, assisted community access, flexible arrival window, anonymous walk-in tickets, published results, and the early adjustment rule.\ne050\tWe will not change weekday entry or other galleries.\ne051\tThe board review will decide whether timed entry solved more access problems than it created, rather than whether the exhibition looked orderly in photographs.\n[Turn 7 ASSISTANT]\ne052\tThe proposal is ready as a narrow, observable trial.\ne053\tIt compares the booking system with the actual unequal queue, not an idealized open door.\ne054\tWalk-in space remains throughout; phone, desk, and assisted booking reduce channel dependence; privacy is limited; and access failures can change the allocation before the final board review.\ne055\tExecute the counting method as written, especially abandoned visits and walk-in turn-aways, and record any protocol change.\ne056\tThe board should see the complete access pattern rather than reservation volume or photographs of orderly galleries.\n[Turn 8 USER]\ne057\tThe baseline broke our categories.\ne058\tMany “walk-ins” had checked social media that morning and travelled specifically for the exhibition; they just had not made a reservation.\ne059\tSome tourists were perfectly willing to return later if the time was reliable.\ne060\tOthers could enter only now.\ne061\tWe had built the plan as if reservation meant planned and walk-in meant spontaneous.\ne062\tThat is administratively convenient and behaviorally wrong.\ne063\tIt matters because the forty-percent floor might protect a ticket type without protecting the people we meant it for.\n[Turn 8 ASSISTANT]\ne064\tYou are right; I treated the channels as visitor types.\ne065\tMeasure the path used and practical flexibility separately.\ne066\tOffer reliable same-day return times without eliminating immediate entry for people who cannot return.\ne067\tA short voluntary question can reveal the difference, but entry must not become a survey exercise.\n[Turn 9 USER]\ne068\tThe provider demonstrated the booking page.\ne069\tIt allows one person to reserve ten free tickets, which staff fear will create empty blocks or informal resale.\ne070\tRequiring an account would reduce repeated reservations but conflicts with our no-account principle.\ne071\tThe provider can cap each contact method at four tickets and send a simple confirmation request the day before.\ne072\tFamilies and small groups say four may be too low.\n[Turn 9 ASSISTANT]\ne073\tUse a household-sized cap and a separate assisted path for larger groups rather than introducing an account solely to police scarcity.\ne074\tMake cancellation easy, release unconfirmed capacity gradually, and watch whether the confirmation step disproportionately removes people with limited connectivity.\ne075\tFree access can still require fair-use rules, but the enforcement mechanism should not create a larger barrier than the behavior it prevents.\n[Turn 10 USER]\ne076\tThe tourism office offered to place reservation links in hotel newsletters and at the airport.\ne077\tThat could distribute demand across the day, but neighborhood organizations worry visitors will capture advance slots before residents hear about them.\ne078\tWe do not have a resident category and do not want one.\ne079\tI am tempted to reject the tourism offer simply because it will make the reservation channel more successful than the assisted community block.\n[Turn 10 ASSISTANT]\ne080\tDo not suppress tourism promotion just to balance the channels.\ne081\tStagger releases, preserve walk-in and same-day capacity, and publish the same information through libraries, community partners, and the entrance.\ne082\tReview distribution without creating a residency test.\n[Turn 11 USER]\ne083\tThe fire marshal has now reduced safe occupancy after observing how people actually move through the exhibition.\ne084\tStaff say that proves timed entry is necessary.\ne085\tA trustee says it proves the forty-percent walk-in floor is too generous because unused reservations can always be released later.\ne086\tI think the second conclusion uses the safety change to protect the reservation system before it has produced evidence.\ne087\tReturned slots are uncertain; a walk-in floor is dependable.\ne088\tBut I also understand that a fixed percentage means fewer total reservations now, and the outside queue could itself become a safety and weather problem.\ne089\tI do not want to defend forty percent because it is the number we already wrote down.\ne090\tI want to know whether the reason for it still holds under the new capacity.\n[Turn 11 ASSISTANT]\ne091\tRecalculate all channel counts using the new safety limit while preserving the agreed proportion unless evidence shows it is unworkable.\ne092\tReturned reservations are not equivalent to dependable walk-in capacity because their timing is uncertain.\ne093\tIf crowding creates unsafe queues outside, use same-day timed walk-in tickets and the early adjustment rule rather than quietly reallocating access before observation.\n[Turn 12 USER]\ne094\tWe will keep the forty-percent walk-in share under the revised occupancy, add same-day return times at the desk and by phone, use staggered reservation releases, and set a household-sized cap with assisted booking for larger groups.\ne095\tPromotion will go through tourism and neighborhood channels at the same time.\ne096\tWe will count immediate entry, offered return times, abandoned visits, confirmations, and released capacity separately.\ne097\tThe ten-week contract, privacy limits, weekly publication, and early walk-in adjustment remain unchanged.\n[Turn 12 ASSISTANT]\ne098\tThe final design now responds to visitor behavior rather than forcing people into “planner” and “walk-in” categories.\ne099\tIt protects immediate access, offers reliable same-day returns, staggers advance release, and handles larger groups without requiring accounts or residency tests.\ne100\tIt also keeps the fire marshal's safety adjustment from silently rewriting the access promise before observation.\ne101\tPreserve the baseline finding that many walk-ins had planned their visit, the booking-page test, confirmation losses, promotion channels, revised occupancy, outside-queue conditions, and every allocation change.\ne102\tThe board should see who waited, who returned, who abandoned the visit, and which channel actually worked for whom—not merely whether galleries looked calmer or the reservation system filled its slots.",
+          "citation_allowed": true,
+          "evidence_aliases": [
+            "e001",
+            "e002",
+            "e003",
+            "e004",
+            "e005",
+            "e006",
+            "e007",
+            "e008",
+            "e009",
+            "e010",
+            "e011",
+            "e012",
+            "e013",
+            "e014",
+            "e015",
+            "e016",
+            "e017",
+            "e018",
+            "e019",
+            "e020",
+            "e021",
+            "e022",
+            "e023",
+            "e024",
+            "e025",
+            "e026",
+            "e027",
+            "e028",
+            "e029",
+            "e030",
+            "e031",
+            "e032",
+            "e033",
+            "e034",
+            "e035",
+            "e036",
+            "e037",
+            "e038",
+            "e039",
+            "e040",
+            "e041",
+            "e042",
+            "e043",
+            "e044",
+            "e045",
+            "e046",
+            "e047",
+            "e048",
+            "e049",
+            "e050",
+            "e051",
+            "e052",
+            "e053",
+            "e054",
+            "e055",
+            "e056",
+            "e057",
+            "e058",
+            "e059",
+            "e060",
+            "e061",
+            "e062",
+            "e063",
+            "e064",
+            "e065",
+            "e066",
+            "e067",
+            "e068",
+            "e069",
+            "e070",
+            "e071",
+            "e072",
+            "e073",
+            "e074",
+            "e075",
+            "e076",
+            "e077",
+            "e078",
+            "e079",
+            "e080",
+            "e081",
+            "e082",
+            "e083",
+            "e084",
+            "e085",
+            "e086",
+            "e087",
+            "e088",
+            "e089",
+            "e090",
+            "e091",
+            "e092",
+            "e093",
+            "e094",
+            "e095",
+            "e096",
+            "e097",
+            "e098",
+            "e099",
+            "e100",
+            "e101",
+            "e102"
+          ]
+        },
+        "maximum_components_per_record": 4,
+        "maximum_records": 2,
+        "prior_context": {
+          "annotated_sentence_text": "",
+          "citation_allowed": false,
+          "evidence_aliases": [],
+          "included": false,
+          "role_limited_citation_policy": "none"
+        },
+        "question": "What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "record_identity_contract": "One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.",
+        "role": "starting",
+        "role_boundary_contract": "Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.",
+        "schema_version": "lolla.reasoning_process_position_role_packet.v2_3",
+        "shard_id": "v1-case08-museum-entry-position_and_decision_trajectory-full-source",
+        "source_coverage_contract": "Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.",
+        "valid_empty_output_allowed": true
+      },
+      "prompts": {
+        "system_prompt": "You interpret one assigned semantic role from a chronological endpoint-comparison shard. Use only visible evidence aliases and preserve speaker ownership and modal force. One record is one coherent position thread; each stance component is one atomic object-expression-source unit. Apply the packet's role boundary and expression contract. Return schema-valid JSON.",
+        "system_prompt_sha256": "0cf765fe81c8123aff245d9fd927537b014ce69991b21acf38752c3d80ca1982",
+        "user_prompt": "Single-role packet:\n{\"boundary\":{\"chronological_gate_added\":false,\"deterministic_expression_gate_added\":false,\"deterministic_role_exclusivity_gate_added\":false,\"direct_graph_routing_allowed\":false,\"keyword_gate_added\":false,\"one_semantic_role_only\":true,\"other_role_labels_requested\":false,\"parallel_component_columns_used\":false,\"record_identity_semantics_made_explicit\":true,\"response_schema_changed_from_v2\":false,\"response_schema_changed_from_v22\":false,\"role_response_wire_changed_from_v21\":true,\"semantic_contract_changed_from_v21\":false,\"semantic_contract_changed_from_v22\":true,\"semantic_prefilter_performed\":false,\"speaker_ownership_semantics_made_explicit\":true,\"trajectory_relation_requested\":false,\"validator_changed_from_v2\":false,\"validator_changed_from_v22\":false},\"case_id\":\"v1-case08-museum-entry\",\"component_identity_contract\":\"Return stance_components as one array. Each array item is one atomic component object whose object kind, object interpretation, expression kind, and one source alias belong together. Never return parallel component columns and never combine two source aliases in one component.\",\"endpoint_definition\":\"Apply role_boundary_contract to the visible early or later endpoint.\",\"expression_interpretation_contract\":\"Classify expression from the source speaker's relationship to that component, not from the role name or the fact that a situation was mentioned. Use reported_without_endorsement only when the speaker attributes a position, proposal, or assessment to someone else without adopting it. The speaker's own excitement or desire is preference_or_desire; own worry that pushes against an option is counterpressure; 'cannot tell', 'not resolved', or equivalent open judgment is uncertain_or_undecided; leaning, proposals, commitments, and conditional willingness retain their specific force. Do not upgrade or flatten modal strength.\",\"focal_region\":{\"annotated_sentence_text\":\"[Turn 1 USER]\\ne001\\tOur city museum is free, and a popular exhibition has made weekend entry miserable.\\ne002\\tPeople stand outside for an hour, galleries become crowded, and sometimes staff close a room without warning because the safe limit has been reached.\\ne003\\tThe obvious operational answer is timed entry.\\ne004\\tThe problem is that our public includes tourists who decide at the door, older residents who do not book online, families whose bus or child does not respect a fifteen-minute slot, and people who cannot wait outside even under the current system.\\ne005\\tStaff want predictability.\\ne006\\tSome trustees want photographs without queues.\\ne007\\tI want fewer unsafe closures and less wasted time, but I do not want a free museum to become technically free and practically available only to people who plan, have a device, and arrive exactly when instructed.\\n[Turn 1 ASSISTANT]\\ne008\\tTreat predictable flow and spontaneous access as separate service goals.\\ne009\\tPreserve walk-in capacity, non-online booking, flexible arrival, and help at the door.\\ne010\\tMeasure waiting, closures, unused slots, turn-aways, workload, and who can actually use each path.\\n[Turn 2 USER]\\ne011\\tAnd please do not treat the current queue as open access.\\ne012\\tIt favors people who can stand outside.\\ne013\\tSchool groups leave.\\ne014\\tGalleries close without warning.\\ne015\\tTimed entry can exclude people, but the status quo already does.\\n[Turn 2 ASSISTANT]\\ne016\\tAgreed.\\ne017\\tRecord current waits, turn-aways, abandoned visits, and closures by time and visitor type before the change.\\ne018\\tThe goal is not to preserve an unmeasured queue.\\ne019\\tA pilot can test whether reservations reduce those burdens while ensuring that people without advance plans retain a workable route into the exhibition.\\n[Turn 3 USER]\\ne020\\tStaff designed a ten-week weekend trial.\\ne021\\tForty percent of each hour remains for walk-ins.\\ne022\\tReservations can be made online, by phone, or at the admissions desk up to a week ahead.\\ne023\\tTickets are free, no account is required, and a reservation remains valid for a thirty-minute arrival window.\\ne024\\tUnused reserved spaces return to the walk-in pool after that window.\\n[Turn 3 ASSISTANT]\\ne025\\tThat protects several access modes and limits the penalty for imperfect timing.\\ne026\\tTest the phone and desk paths under real demand, make the walk-in allocation visible, and avoid releasing all returned capacity through the online channel.\\ne027\\tDecide how school and community groups fit without allowing block bookings to consume the public allotment.\\n[Turn 4 USER]\\ne028\\tSchools keep their existing group process and do not draw from public slots.\\ne029\\tNeighborhood organizations asked for a small weekly block they can book by phone for residents who need assistance.\\ne030\\tWe agreed, but one trustee called that preferential treatment.\\ne031\\tI see it as making the channel usable, not giving people better access than everyone else.\\n[Turn 4 ASSISTANT]\\ne032\\tAssisted booking can correct a channel barrier if the admission opportunity remains comparable.\\ne033\\tPublish the size and purpose of the block, review whether it is used, and release unused places.\\ne034\\tThe relevant question is whether people can exercise the same public entitlement, not whether every route has identical mechanics.\\n[Turn 5 USER]\\ne035\\tThe ticketing provider needs a name and contact method to send the reservation.\\ne036\\tIt will delete identifiable records after fourteen days and provide only aggregate attendance data to the museum.\\ne037\\tStaff will offer anonymous paper walk-in tickets.\\ne038\\tWe are not connecting reservation history to memberships or donations, and the provider cannot market to visitors.\\n[Turn 5 ASSISTANT]\\ne039\\tThe data use is proportionate to the booking task.\\ne040\\tVerify deletion, minimize what appears on staff screens, and explain the distinction between a reservation record and anonymous walk-in entry.\\ne041\\tKeep donor and membership systems technically separate, not merely governed by a promise that the data will not be interesting later.\\n[Turn 6 USER]\\ne042\\tWe set review conditions before launch: fewer unplanned gallery closures, shorter waits for both reserved and walk-in visitors, no increase in total turn-aways, acceptable staff workload, and no material access or privacy problem.\\ne043\\tWeekly results will be published.\\ne044\\tIf walk-in turn-aways increase for two weekends, we raise the walk-in share immediately while the trial continues.\\ne045\\tThe provider contract ends automatically after ten weeks unless the board approves another term.\\n[Turn 6 ASSISTANT]\\ne046\\tThose conditions let the operation adapt without converting every adjustment into failure.\\ne047\\tPredefine how waits and turn-aways are counted, including people who leave before reaching the desk.\\ne048\\tThe automatic contract end prevents passive continuation, and public weekly results make it harder to redefine success after seeing which channel performs best.\\n[Turn 7 USER]\\ne049\\tI will recommend the ten-week weekend trial with the forty-percent walk-in floor, phone and desk booking, assisted community access, flexible arrival window, anonymous walk-in tickets, published results, and the early adjustment rule.\\ne050\\tWe will not change weekday entry or other galleries.\\ne051\\tThe board review will decide whether timed entry solved more access problems than it created, rather than whether the exhibition looked orderly in photographs.\\n[Turn 7 ASSISTANT]\\ne052\\tThe proposal is ready as a narrow, observable trial.\\ne053\\tIt compares the booking system with the actual unequal queue, not an idealized open door.\\ne054\\tWalk-in space remains throughout; phone, desk, and assisted booking reduce channel dependence; privacy is limited; and access failures can change the allocation before the final board review.\\ne055\\tExecute the counting method as written, especially abandoned visits and walk-in turn-aways, and record any protocol change.\\ne056\\tThe board should see the complete access pattern rather than reservation volume or photographs of orderly galleries.\\n[Turn 8 USER]\\ne057\\tThe baseline broke our categories.\\ne058\\tMany “walk-ins” had checked social media that morning and travelled specifically for the exhibition; they just had not made a reservation.\\ne059\\tSome tourists were perfectly willing to return later if the time was reliable.\\ne060\\tOthers could enter only now.\\ne061\\tWe had built the plan as if reservation meant planned and walk-in meant spontaneous.\\ne062\\tThat is administratively convenient and behaviorally wrong.\\ne063\\tIt matters because the forty-percent floor might protect a ticket type without protecting the people we meant it for.\\n[Turn 8 ASSISTANT]\\ne064\\tYou are right; I treated the channels as visitor types.\\ne065\\tMeasure the path used and practical flexibility separately.\\ne066\\tOffer reliable same-day return times without eliminating immediate entry for people who cannot return.\\ne067\\tA short voluntary question can reveal the difference, but entry must not become a survey exercise.\\n[Turn 9 USER]\\ne068\\tThe provider demonstrated the booking page.\\ne069\\tIt allows one person to reserve ten free tickets, which staff fear will create empty blocks or informal resale.\\ne070\\tRequiring an account would reduce repeated reservations but conflicts with our no-account principle.\\ne071\\tThe provider can cap each contact method at four tickets and send a simple confirmation request the day before.\\ne072\\tFamilies and small groups say four may be too low.\\n[Turn 9 ASSISTANT]\\ne073\\tUse a household-sized cap and a separate assisted path for larger groups rather than introducing an account solely to police scarcity.\\ne074\\tMake cancellation easy, release unconfirmed capacity gradually, and watch whether the confirmation step disproportionately removes people with limited connectivity.\\ne075\\tFree access can still require fair-use rules, but the enforcement mechanism should not create a larger barrier than the behavior it prevents.\\n[Turn 10 USER]\\ne076\\tThe tourism office offered to place reservation links in hotel newsletters and at the airport.\\ne077\\tThat could distribute demand across the day, but neighborhood organizations worry visitors will capture advance slots before residents hear about them.\\ne078\\tWe do not have a resident category and do not want one.\\ne079\\tI am tempted to reject the tourism offer simply because it will make the reservation channel more successful than the assisted community block.\\n[Turn 10 ASSISTANT]\\ne080\\tDo not suppress tourism promotion just to balance the channels.\\ne081\\tStagger releases, preserve walk-in and same-day capacity, and publish the same information through libraries, community partners, and the entrance.\\ne082\\tReview distribution without creating a residency test.\\n[Turn 11 USER]\\ne083\\tThe fire marshal has now reduced safe occupancy after observing how people actually move through the exhibition.\\ne084\\tStaff say that proves timed entry is necessary.\\ne085\\tA trustee says it proves the forty-percent walk-in floor is too generous because unused reservations can always be released later.\\ne086\\tI think the second conclusion uses the safety change to protect the reservation system before it has produced evidence.\\ne087\\tReturned slots are uncertain; a walk-in floor is dependable.\\ne088\\tBut I also understand that a fixed percentage means fewer total reservations now, and the outside queue could itself become a safety and weather problem.\\ne089\\tI do not want to defend forty percent because it is the number we already wrote down.\\ne090\\tI want to know whether the reason for it still holds under the new capacity.\\n[Turn 11 ASSISTANT]\\ne091\\tRecalculate all channel counts using the new safety limit while preserving the agreed proportion unless evidence shows it is unworkable.\\ne092\\tReturned reservations are not equivalent to dependable walk-in capacity because their timing is uncertain.\\ne093\\tIf crowding creates unsafe queues outside, use same-day timed walk-in tickets and the early adjustment rule rather than quietly reallocating access before observation.\\n[Turn 12 USER]\\ne094\\tWe will keep the forty-percent walk-in share under the revised occupancy, add same-day return times at the desk and by phone, use staggered reservation releases, and set a household-sized cap with assisted booking for larger groups.\\ne095\\tPromotion will go through tourism and neighborhood channels at the same time.\\ne096\\tWe will count immediate entry, offered return times, abandoned visits, confirmations, and released capacity separately.\\ne097\\tThe ten-week contract, privacy limits, weekly publication, and early walk-in adjustment remain unchanged.\\n[Turn 12 ASSISTANT]\\ne098\\tThe final design now responds to visitor behavior rather than forcing people into “planner” and “walk-in” categories.\\ne099\\tIt protects immediate access, offers reliable same-day returns, staggers advance release, and handles larger groups without requiring accounts or residency tests.\\ne100\\tIt also keeps the fire marshal's safety adjustment from silently rewriting the access promise before observation.\\ne101\\tPreserve the baseline finding that many walk-ins had planned their visit, the booking-page test, confirmation losses, promotion channels, revised occupancy, outside-queue conditions, and every allocation change.\\ne102\\tThe board should see who waited, who returned, who abandoned the visit, and which channel actually worked for whom—not merely whether galleries looked calmer or the reservation system filled its slots.\",\"citation_allowed\":true,\"evidence_aliases\":[\"e001\",\"e002\",\"e003\",\"e004\",\"e005\",\"e006\",\"e007\",\"e008\",\"e009\",\"e010\",\"e011\",\"e012\",\"e013\",\"e014\",\"e015\",\"e016\",\"e017\",\"e018\",\"e019\",\"e020\",\"e021\",\"e022\",\"e023\",\"e024\",\"e025\",\"e026\",\"e027\",\"e028\",\"e029\",\"e030\",\"e031\",\"e032\",\"e033\",\"e034\",\"e035\",\"e036\",\"e037\",\"e038\",\"e039\",\"e040\",\"e041\",\"e042\",\"e043\",\"e044\",\"e045\",\"e046\",\"e047\",\"e048\",\"e049\",\"e050\",\"e051\",\"e052\",\"e053\",\"e054\",\"e055\",\"e056\",\"e057\",\"e058\",\"e059\",\"e060\",\"e061\",\"e062\",\"e063\",\"e064\",\"e065\",\"e066\",\"e067\",\"e068\",\"e069\",\"e070\",\"e071\",\"e072\",\"e073\",\"e074\",\"e075\",\"e076\",\"e077\",\"e078\",\"e079\",\"e080\",\"e081\",\"e082\",\"e083\",\"e084\",\"e085\",\"e086\",\"e087\",\"e088\",\"e089\",\"e090\",\"e091\",\"e092\",\"e093\",\"e094\",\"e095\",\"e096\",\"e097\",\"e098\",\"e099\",\"e100\",\"e101\",\"e102\"]},\"maximum_components_per_record\":4,\"maximum_records\":2,\"prior_context\":{\"annotated_sentence_text\":\"\",\"citation_allowed\":false,\"evidence_aliases\":[],\"included\":false,\"role_limited_citation_policy\":\"none\"},\"question\":\"What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.\",\"record_identity_contract\":\"One record is one coherent position thread within the assigned role. Gather every material visible alias for that thread into evidence_ids. Put each distinct object or expression into a separate aligned component index inside that same record. Do not create one record per alias, sentence, object, or component. Use a second record only for a genuinely separate concurrent position thread about a different subject.\",\"role\":\"starting\",\"role_boundary_contract\":\"Extract the earliest visible working position: the user's own attractions, preferences, hesitations, assessments, and unresolved stance at the first endpoint. Context about an external offer or another person's position is evidence only when it helps express the user's own starting stance; do not mistake mere situation description for endorsement.\",\"schema_version\":\"lolla.reasoning_process_position_role_packet.v2_3\",\"shard_id\":\"v1-case08-museum-entry-position_and_decision_trajectory-full-source\",\"source_coverage_contract\":\"Review every focal alias before returning. A valid empty response is allowed only after checking both user and assistant evidence for the assigned role. Preserve later minority qualifications and counterpressure even when the current action is already clear.\",\"valid_empty_output_allowed\":true}\n\nInterpret semantics, not keywords, surface position, or chronology alone. Keep unresolved qualification out of current and preserve the speaker's own attitude. Follow every packet contract.\nQuestion: What starting position, attraction, hesitation, or undecided stance is visible before the current position? Do not infer a start that the source does not show.",
+        "user_prompt_sha256": "2a54a5d2029e4342a3a5f947603a653fa866233210d02c083a95c14907a37499"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "description": "At most two coherent starting role records with nested atomic components.",
+        "properties": {
+          "global_limitations": {
+            "maxLength": 700,
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence_ids": {
+                  "items": {
+                    "pattern": "^e[0-9]{3}$",
+                    "type": "string"
+                  },
+                  "maxItems": 6,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "fidelity_note": {
+                  "maxLength": 800,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "maxLength": 500,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "starting"
+                  ],
+                  "type": "string"
+                },
+                "role_interpretation": {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "stance_components": {
+                  "description": "Atomic source-linked components; all attributes in one item belong together.",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "expression_kind": {
+                        "enum": [
+                          "reported_without_endorsement",
+                          "uncertain_or_undecided",
+                          "considering",
+                          "held_assessment",
+                          "preference_or_desire",
+                          "leaning",
+                          "proposal",
+                          "provisional_intention_or_plan",
+                          "decision",
+                          "commitment",
+                          "willing",
+                          "unwilling",
+                          "conditional_willingness",
+                          "possibility",
+                          "constraint",
+                          "counterpressure",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "object_interpretation": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "object_kind": {
+                        "enum": [
+                          "belief_or_assessment",
+                          "action_or_proposal",
+                          "intended_outcome_or_policy",
+                          "acceptance_or_willingness",
+                          "reported_position_landscape",
+                          "unclear"
+                        ],
+                        "type": "string"
+                      },
+                      "source_evidence_id": {
+                        "pattern": "^e[0-9]{3}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "object_kind",
+                      "object_interpretation",
+                      "expression_kind",
+                      "source_evidence_id"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "status": {
+                  "enum": [
+                    "supported",
+                    "mixed",
+                    "unclear"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "status",
+                "evidence_ids",
+                "role_interpretation",
+                "stance_components",
+                "fidelity_note",
+                "limitations"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 0,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "mixed",
+              "unclear",
+              "not_found"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "records",
+          "global_limitations"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "schema_version": "lolla.simulated_reliability_role_request_bundle.v1",
+  "source_wrapper_sha256": "b9fa1d9fcc33199d042174ff611e6175b67c8df38adbd54748c10fcf526aa72a"
+}

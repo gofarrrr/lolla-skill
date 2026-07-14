@@ -1,0 +1,130 @@
+{
+  "schema_version": "lolla.frozen_cold_reader_contract.v1",
+  "status": "frozen_before_call",
+  "date": "2026-07-10",
+  "run_id": "lolla_gate7_case10_reader_20260710_a1",
+  "purpose": "Test whether one fresh reader can reconstruct the complete Case 10 reasoning run from the frozen receipt without prior session context.",
+  "receipt": {
+    "markdown_path": "research/gate7-case10-cold-reader-2026-07-10/receipt.md",
+    "markdown_sha256": "c907c29969024d478244057f7c306c2192473ee348d298a8ec0c8209a3e2a931",
+    "json_path": "research/gate7-case10-cold-reader-2026-07-10/receipt.json",
+    "json_sha256": "27f72cd9fb9dc26f59e8e3eaedb6ea1e163bac0958cf3a66f1b94317c91df2ce"
+  },
+  "system_prompt": "You are a fresh reader with no prior context. Reconstruct the documented run only from the supplied receipt. Keep source statements, system interpretations, execution custody, and conclusions distinct. Label uncertainty and provenance. Do not use external information or propose new implementation work. Return only the requested JSON object.",
+  "reader_instruction": "Write a compact, standalone reconstruction for a project collaborator who has not seen the prior session. Cover the source decision state; which earlier assistant claims were supported, corrected, or unresolved; what Stage A did; which pressures were admitted or rejected and their consequences; what the paired experiment did and did not establish; what happened in graph attribution; what custody establishes versus what remains unknown about quality; current authorizations and blocks; uncertainties; questions requiring human review; and any failures or ambiguities in the receipt.",
+  "output_contract": {
+    "required_keys": [
+      "source_decision_state",
+      "source_vs_prior_assistant_claims",
+      "stage_a_reconstruction",
+      "pressure_reconstruction",
+      "paired_experiment_reconstruction",
+      "graph_reconstruction",
+      "custody_vs_quality",
+      "supported_claims",
+      "claims_not_supported",
+      "current_authorizations",
+      "uncertainties",
+      "human_questions",
+      "reconstruction_failures_or_ambiguities"
+    ],
+    "field_types": {
+      "source_decision_state": "string",
+      "source_vs_prior_assistant_claims": "array_of_objects",
+      "stage_a_reconstruction": "string",
+      "pressure_reconstruction": "array_of_objects",
+      "paired_experiment_reconstruction": "object",
+      "graph_reconstruction": "object",
+      "custody_vs_quality": "string",
+      "supported_claims": "array_of_strings",
+      "claims_not_supported": "array_of_strings",
+      "current_authorizations": "object",
+      "uncertainties": "array_of_strings",
+      "human_questions": "array_of_strings",
+      "reconstruction_failures_or_ambiguities": "array_of_strings"
+    },
+    "object_contracts": {
+      "paired_experiment_reconstruction": {
+        "required_keys": ["control", "treatment", "difference", "limits"]
+      },
+      "graph_reconstruction": {
+        "required_keys": ["v1_issue", "v2_repair", "current_read", "limits"]
+      },
+      "current_authorizations": {
+        "required_keys": ["allowed", "blocked", "human_status", "next_gate"]
+      }
+    },
+    "object_array_contracts": {
+      "source_vs_prior_assistant_claims": {
+        "required_keys": ["item", "status", "basis"],
+        "maximum_items": 10
+      },
+      "pressure_reconstruction": {
+        "required_keys": ["pressure", "origin", "status", "consequence", "limits"],
+        "maximum_items": 8
+      }
+    }
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "temperature": 0.1,
+    "max_output_tokens": 2500,
+    "reasoning_effort": "none",
+    "generation_calls": 1,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "provider_timeout_seconds": 120,
+    "wall_clock_timeout_seconds": 180
+  },
+  "call_budget": {
+    "estimated_cost_ceiling_usd": 0.08,
+    "pricing_table_version": "2026-05-25"
+  },
+  "hash_locks": [
+    {
+      "role": "reader_runner",
+      "path": "scripts/evals/run_frozen_cold_reader.py",
+      "sha256": "11410e33fb354cb9f7fe0836fbfe973010c81484a53be4888ed4d6e56c62df1a"
+    },
+    {
+      "role": "receipt_contract",
+      "path": "research/gate7-case10-cold-reader-2026-07-10/receipt-contract.json",
+      "sha256": "ea5a3dc43b3c34c32e1a11058af7130326c7fe37066fb2ce9fcd25f82fad5c0a"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    }
+  ],
+  "prompt_hashes": {
+    "system_prompt_sha256": "bcc359c2ad7288daf66e670cb9052dfa4f5f86cde8dc54bd69d52df28bf3f92f",
+    "user_prompt_sha256": "973f4de3d78b9667356501cb7d7d2da5a9448b2fea218f43f8cbbcc453f07aa0"
+  },
+  "artifacts": {
+    "output_dir": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1",
+    "reader_output_path": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1/reader-output.json",
+    "call_custody_path": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1/call-custody.json",
+    "run_summary_path": "research/gate7-case10-cold-reader-2026-07-10/run/lolla_gate7_case10_reader_20260710_a1/run-summary.json"
+  },
+  "review_after_call": {
+    "not_passed_to_reader": true,
+    "dimensions": [
+      "source-state missingness",
+      "false certainty",
+      "proof-of-work inflation",
+      "answer-quality overclaim",
+      "graph overclaim",
+      "next-action fidelity"
+    ],
+    "review_method": "source-first manual comparison by Codex; no evaluator model call and no post-output tuning"
+  },
+  "non_claims": [
+    "The reader output is not human validation.",
+    "A successful reconstruction is not proof that Lolla improves answer quality or decisions.",
+    "This one synthetic case is not product-level validation.",
+    "This call cannot identify a causal graph contribution.",
+    "This contract does not authorize runtime or graph integration."
+  ]
+}

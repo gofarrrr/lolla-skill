@@ -1,0 +1,225 @@
+{
+  "case_id": "case-10-real-estate-bid",
+  "compact_path": {
+    "decision_text_exact_agreement": false,
+    "gold_span_recall": {
+      "mean_recall": 0.125,
+      "never_observation_ids": [
+        "boundary.sensible_or_scared",
+        "constraint.renovation_gap",
+        "drop.regret_argument",
+        "option.final_ceiling",
+        "pressure.insurance_requirement",
+        "question.current_middle_path",
+        "question.initial_raise_or_walk"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "stance.need_state_affordability"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "stance.need_state_affordability"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "stance.need_state_affordability"
+          ],
+          "recall": 0.125,
+          "recovered_count": 1,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": [
+        "stance.need_state_affordability"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "dropped_threads": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 0.0,
+          "span_jaccard": 0.0
+        },
+        "live_constraints": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 0.1111111111111111,
+          "span_jaccard": 0.1111111111111111
+        },
+        "reasoning_passages": {
+          "counts": [
+            6,
+            6,
+            6
+          ],
+          "labeled_jaccard": 0.5158730158730159,
+          "span_jaccard": 0.5158730158730159
+        }
+      },
+      "mean_labeled_jaccard": 0.20899470899470898,
+      "mean_span_jaccard": 0.20899470899470898
+    },
+    "run_count": 3,
+    "run_paths": [
+      "compact-01.json",
+      "compact-02.json",
+      "compact-03.json"
+    ]
+  },
+  "comparison_limits": [
+    "exact_span_recall measures source-grounded recovery, not total semantic correctness",
+    "compact paraphrases may be semantically useful while remaining unverified as source spans",
+    "three repeats are an initial stability signal, not a production reliability estimate",
+    "gold annotations are provisional source-first research judgments"
+  ],
+  "schema_version": "lolla.core_semantic_comparison.v0",
+  "shadow_path": {
+    "decision_text_exact_agreement": true,
+    "gold_span_recall": {
+      "mean_recall": 0.5,
+      "never_observation_ids": [
+        "drop.regret_argument",
+        "question.current_middle_path",
+        "question.initial_raise_or_walk"
+      ],
+      "per_run": [
+        {
+          "observation_ids": [
+            "constraint.renovation_gap",
+            "option.final_ceiling",
+            "pressure.insurance_requirement",
+            "stance.need_state_affordability"
+          ],
+          "recall": 0.5,
+          "recovered_count": 4,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "boundary.sensible_or_scared",
+            "constraint.renovation_gap",
+            "option.final_ceiling",
+            "pressure.insurance_requirement",
+            "stance.need_state_affordability"
+          ],
+          "recall": 0.625,
+          "recovered_count": 5,
+          "total_count": 8
+        },
+        {
+          "observation_ids": [
+            "constraint.renovation_gap",
+            "pressure.insurance_requirement",
+            "stance.need_state_affordability"
+          ],
+          "recall": 0.375,
+          "recovered_count": 3,
+          "total_count": 8
+        }
+      ],
+      "stable_observation_ids": [
+        "constraint.renovation_gap",
+        "pressure.insurance_requirement",
+        "stance.need_state_affordability"
+      ]
+    },
+    "repeatability": {
+      "families": {
+        "assistant_stance_events": {
+          "counts": [
+            5,
+            5,
+            5
+          ],
+          "labeled_jaccard": 0.5079365079365079,
+          "span_jaccard": 0.6666666666666666
+        },
+        "dropped_thread_events": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "evidence_boundary_events": {
+          "counts": [
+            2,
+            2,
+            0
+          ],
+          "labeled_jaccard": 0.0,
+          "span_jaccard": 0.0
+        },
+        "live_constraint_events": {
+          "counts": [
+            4,
+            4,
+            4
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "option_events": {
+          "counts": [
+            3,
+            3,
+            0
+          ],
+          "labeled_jaccard": 0.3333333333333333,
+          "span_jaccard": 0.3333333333333333
+        },
+        "question_events": {
+          "counts": [
+            1,
+            1,
+            1
+          ],
+          "labeled_jaccard": 1.0,
+          "span_jaccard": 1.0
+        },
+        "user_pressure_events": {
+          "counts": [
+            2,
+            2,
+            4
+          ],
+          "labeled_jaccard": 0.6666666666666666,
+          "span_jaccard": 0.6666666666666666
+        }
+      },
+      "mean_labeled_jaccard": 0.6439909297052154,
+      "mean_span_jaccard": 0.6666666666666667
+    },
+    "run_count": 3,
+    "run_paths": [
+      "shadow-01.json",
+      "shadow-02.json",
+      "shadow-03.json"
+    ]
+  },
+  "source": {
+    "compact_run_count": 3,
+    "conversation_sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5",
+    "gold_sha256": "d17c3d49b88ca78b7354d48bb2a4e72c04ccfa3b3fd2a12cdbb885ce424cc679",
+    "shadow_run_count": 3
+  }
+}

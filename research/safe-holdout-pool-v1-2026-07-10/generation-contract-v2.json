@@ -1,0 +1,167 @@
+{
+  "schema_version": "lolla.fixed_safe_holdout_pool_generation_contract.v2",
+  "status": "frozen_before_call",
+  "date": "2026-07-10",
+  "run_id": "lolla_holdout_pool_v1_20260710_a2",
+  "pool_id": "safe-holdout-pool-v1",
+  "purpose": "Prospectively rerun the unchanged safe synthetic-pool design after the v1 provider-configuration failure, using a supported reasoning effort and stronger error custody.",
+  "system_prompt": "You author realistic synthetic conversation fixtures for a reasoning-system evaluation. Follow the supplied domains and exact JSON shape. Write plausible, nuanced conversations rather than ideal answers, cautionary caricatures, or hidden answer keys. Do not mention this evaluation, mental models, reasoning audits, Lolla, graphs, biases, or expected findings inside any conversation.",
+  "authoring_instruction": "Generate exactly the five fictional conversations specified below. Each must contain exactly 12 messages, alternating user then assistant, beginning with user and ending with assistant. The user must reveal or revise material context across turns, challenge or qualify at least one assistant frame, and end with either a stated plan or an explicitly unresolved decision. The assistant should be genuinely useful but naturally imperfect: do not make it consistently correct, deliberately foolish, or obviously optimized for a later critique. Do not insert intentional misinformation, external statistics, fabricated expert authority, an obvious right answer, or extreme advice. Use invented organizations and people only; include no real personal data. Keep every scenario inside its declared low-risk domain: no medical diagnosis or treatment, legal or regulatory action, child safety, self-harm, violence, housing emergency, employment retaliation, political persuasion, major personal finance, or real-world instructions that require professional verification. User-reported numbers are allowed when local to the fictional scenario, but the assistant must not invent new factual numbers. Each message should be substantive and conversational, normally 40 to 180 words. Do not provide summaries, reasoning labels, gold answers, expected deltas, quality scores, or case-selection recommendations.",
+  "case_specs": [
+    {
+      "case_id": "pool1-case01-product-scope",
+      "title": "Small product team and custom customer request",
+      "stratum": "small_team_product_scope",
+      "scenario_brief": "A small software team must decide whether to accept a demanding custom analytics request from an important existing customer or protect a reliability and core-roadmap commitment. The customer relationship, team energy, technical debt, learning value, and reversibility all matter; do not make the customer obviously good or bad.",
+      "required_message_count": 12
+    },
+    {
+      "case_id": "pool1-case02-creative-collaboration",
+      "title": "Creative partnership, edit scope, and public deadline",
+      "stratum": "creative_collaboration_credit",
+      "scenario_brief": "Two fictional co-creators are preparing an audio documentary for a public showcase. They disagree about whether to make a substantial re-edit, how to divide credit and final say, and whether protecting the deadline will damage the work or partnership. Both have contributed real value.",
+      "required_message_count": 12
+    },
+    {
+      "case_id": "pool1-case03-nonprofit-program-scale",
+      "title": "Adult digital-literacy program expansion",
+      "stratum": "nonprofit_program_scale",
+      "scenario_brief": "A small nonprofit running adult digital-literacy workshops must choose between adding a second neighborhood site and improving attendance, volunteer consistency, and evidence at its current site. A partner has expressed interest but made no binding commitment. Mission reach and operational quality are both legitimate.",
+      "required_message_count": 12
+    },
+    {
+      "case_id": "pool1-case04-research-tool-release",
+      "title": "Open research tool release and validation scope",
+      "stratum": "research_tool_release",
+      "scenario_brief": "A fictional open research-tool team must decide whether to release a public beta for feedback or delay for more validation, documentation, and maintenance preparation. The tool is not medical, safety-critical, or used for consequential individual decisions. Speed, credibility, contributor energy, and support burden matter.",
+      "required_message_count": 12
+    },
+    {
+      "case_id": "pool1-case05-community-arts-portfolio",
+      "title": "Community arts collective program portfolio",
+      "stratum": "community_arts_portfolio",
+      "scenario_brief": "A fictional community arts collective must choose between one ambitious flagship exhibition and several smaller experiments. Venue relationships, volunteer capacity, artistic identity, audience learning, sunk preparation, and a modest fixed annual budget matter without creating personal financial risk.",
+      "required_message_count": 12
+    }
+  ],
+  "selection_contract": {
+    "algorithm": "sha256_seed_colon_case_id_ascending",
+    "public_seed": "lolla-safe-holdout-pool-v1:2026-07-10:selection-order",
+    "ranked_case_ids": [
+      "pool1-case03-nonprofit-program-scale",
+      "pool1-case05-community-arts-portfolio",
+      "pool1-case02-creative-collaboration",
+      "pool1-case04-research-tool-release",
+      "pool1-case01-product-scope"
+    ],
+    "generator_receives_selection_order": false,
+    "selection_rule_after_call": "Review the ranked cases in order for safety and contract fitness only. Select the first passing case. Do not inspect or rank for likely mental-model, graph, pressure, or answer-delta value."
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0.5,
+    "max_output_tokens": 10000,
+    "reasoning_effort": "minimal",
+    "generation_calls": 1,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "provider_timeout_seconds": 120,
+    "wall_clock_timeout_seconds": 180
+  },
+  "call_budget": {
+    "estimated_cost_ceiling_usd": 0.06,
+    "pricing_table_version": "2026-05-25"
+  },
+  "operational_repair": {
+    "supersedes_failed_run_id": "lolla_holdout_pool_v1_20260710_a1",
+    "failure_decision_path": "research/safe-holdout-pool-v1-2026-07-10/v1-failure.json",
+    "reasoning_effort_changed_from": "none",
+    "reasoning_effort_changed_to": "minimal",
+    "provider_error_diagnostic_added": true,
+    "provider_payload_hash_added": true,
+    "semantic_prompt_changed": false,
+    "case_specs_changed": false,
+    "selection_contract_changed": false,
+    "automatic_retry_of_v1": false
+  },
+  "hash_locks": [
+    {
+      "role": "pool_runner",
+      "path": "scripts/evals/run_fixed_safe_holdout_pool_v2.py",
+      "sha256": "01725b2253139666085e84f15ad9f52a560fc0e1ec53cd906a223df2bb1c3e7a"
+    },
+    {
+      "role": "v1_pool_runner",
+      "path": "scripts/evals/run_fixed_safe_holdout_pool.py",
+      "sha256": "a14854379c0a162c963e9ae6562f913a460e0a9867bc20053f7632b1bc551710"
+    },
+    {
+      "role": "v1_failure_decision",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/v1-failure.json",
+      "sha256": "a9d6f24bfd7b471b628092fa0bb4fc6ba07743f3798ef381d6d8495c4462b83b"
+    },
+    {
+      "role": "v1_call_custody",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a1/call-custody.json",
+      "sha256": "cb2354b1fb198d4dba1453eee3ba5270f9a7f28aee993a4d0ec9db6a90ea79bb"
+    },
+    {
+      "role": "v1_run_summary",
+      "path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a1/run-summary.json",
+      "sha256": "f41e7d0fe6c739d8a9e468863c35ba275b40734fb85ea952f05fe3ed0a851588"
+    },
+    {
+      "role": "pricing",
+      "path": "engine/system_b/pricing.py",
+      "sha256": "4167b1affa72a3e13a54b2d614daff4a97b1fc97ad59df34a2f6dc92daa76161"
+    },
+    {
+      "role": "evaluation_doctrine",
+      "path": "docs/conversation-understanding/lolla-evaluation-doctrine-v0.md",
+      "sha256": "a236fea812b8edf593aa9f0c1e063acedb13896592bce4187bc6cee8c149f04e"
+    },
+    {
+      "role": "holdout_protocol",
+      "path": "docs/evals/reasoning-portfolio-two-stage-holdout-protocol-v0.md",
+      "sha256": "99910c12b501fa7358be5ed1eb039b47f6ad3bf897e6f569be7e65c424215020"
+    },
+    {
+      "role": "product_constitution",
+      "path": "docs/conversation-understanding/lolla-product-constitution-v0.md",
+      "sha256": "952a7d8fb47640d7eccfc1aa815d784c96da77c7ab07f47b3f8c256b6032524f"
+    }
+  ],
+  "prompt_hashes": {
+    "system_prompt_sha256": "206fd88d1fdd0db331feceba56ce9703f2c531e43f6c9cccae98fcdd1769c992",
+    "user_prompt_sha256": "5ce89e49b94eb33a8ebafd4e1d0474a332d1394ba91a1ec593880ddc58947d69"
+  },
+  "artifacts": {
+    "output_dir": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2",
+    "pool_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/pool.json",
+    "call_custody_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/call-custody.json",
+    "run_summary_path": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/run-summary.json",
+    "case_dir": "research/safe-holdout-pool-v1-2026-07-10/run/lolla_holdout_pool_v1_20260710_a2/cases"
+  },
+  "post_call_review": {
+    "selection_review_scope": "safety_and_contract_only_not_likely_lolla_or_graph_value",
+    "reviewer_must_not_change_rank_order": true,
+    "rejection_requires_named_safety_or_contract_reason": true,
+    "no_case_text_may_be_rewritten_after_generation": true
+  },
+  "stop_rules": [
+    "do not retry or repair a malformed v2 generation response",
+    "stop if any hash or prompt lock drifts",
+    "stop if output shape, case identity, order, role alternation, message count, or bounded length fails",
+    "stop if usage, served-model attribution, cost, or call custody is incomplete",
+    "do not select a case for likely Lolla, mental-model, graph, or answer-delta value",
+    "do not run Stage A until the first ranked safety-passing case has a separately frozen Stage A contract"
+  ],
+  "non_claims": [
+    "Synthetic conversations are not evidence of real-world product usefulness.",
+    "The generation model does not provide gold reasoning or expected answers.",
+    "Mechanical selection does not prove case representativeness.",
+    "A safety-passing case is not a favorable Lolla or graph case.",
+    "This contract does not authorize Stage A, Stage B, graph ablation, runtime integration, or product claims."
+  ]
+}

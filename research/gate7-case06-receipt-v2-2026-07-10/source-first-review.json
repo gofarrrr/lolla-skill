@@ -1,0 +1,162 @@
+{
+  "schema_version": "lolla.gate7_case06_receipt_v2_source_first_review.v1",
+  "status": "complete_partial_transfer_pass",
+  "date": "2026-07-10",
+  "method": "Codex source-first comparison after the single frozen reader call; no evaluator model call and no change to the frozen receipt, reader contract, prompts, or response.",
+  "sources": {
+    "source_conversation": {
+      "path": "research/test-cases/case_friendship_money_conversation.txt",
+      "sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"
+    },
+    "receipt_json": {
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/receipt.json",
+      "sha256": "193e243be80bc29e65c14f7175a61dbf1755abc8b9f0de860e61de433cd63d5a"
+    },
+    "receipt_markdown": {
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/receipt.md",
+      "sha256": "fddd7d5dfd3d2c39cc853250322ddca73207912925750d9e090300c64011c0b2"
+    },
+    "reader_contract": {
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/reader-contract.json",
+      "sha256": "5aba8a85b4bcce86e6a76b4b4f8a3c2c614477ad35f9d299fcb123eb914c571c"
+    },
+    "reader_output": {
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1/reader-output.json",
+      "sha256": "d2f838ae4aa639e8348dfda88723dc067be87ad7629747d5c8fc27213cba38d8"
+    },
+    "call_custody": {
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1/call-custody.json",
+      "sha256": "416680c90a0721a47201f25a98daa22a2e132123cca4ded21c201e510e4399d4"
+    },
+    "run_summary": {
+      "path": "research/gate7-case06-receipt-v2-2026-07-10/run/lolla_gate7_case06_reader_20260710_a1/run-summary.json",
+      "sha256": "5e0cbae0af7b0d9ab46088db96b2c68b7ca9e5e86d35b96730864657e150f0ad"
+    }
+  },
+  "mechanical_execution": {
+    "status": "passed",
+    "generation_calls": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "prompt_tokens": 9534,
+    "completion_tokens": 694,
+    "total_tokens": 10228,
+    "estimated_cost_usd": 0.0188575,
+    "wall_time_seconds": 8.416,
+    "typed_output_valid": true,
+    "human_validated": false
+  },
+  "reconstructed_well": [
+    "The reader recovered the stated decline-10000, offer-2000, and resource-help plan without treating affordability, resource availability, friend response, or outcome as established.",
+    "It reconstructed the Stage A mechanical pass without converting it into answer-quality evidence.",
+    "It preserved the expected pressure ID, renamed observed pressure ID, exact identity mismatch, substantive semantic hearing, private-guardrail disposition, and inconsistent visible effect as separate facts.",
+    "It kept correct public stand-down separate from the failed pressure-accountability result and did not invent a unique public treatment benefit.",
+    "It preserved graph exposure as unknown, causal contribution as untested, and graph absence as unsupported.",
+    "It distinguished artifact custody from correctness, improvement, and validation.",
+    "It reconstructed the authorization snapshot with an explicit as-of time and correctly separated case unknowns from a human product-review question."
+  ],
+  "dimension_review": [
+    {
+      "dimension": "source-end action and deadline",
+      "status": "partial",
+      "observed": "The reader recovered the full stated action and its pending status but did not explicitly say that the source states no deadline or time constraint.",
+      "source_first_correction": "The plan is stated but pending execution, and no deadline is stated in the source.",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "source-end reasoning and prior-assistant claims",
+      "status": "partial",
+      "observed": "The reader correctly set aside intent, resource, and outcome claims, but it compressed the end of the conversation into a friendship-survival prediction. It did not surface the user's conditional inference that rejection of the smaller offer would reveal that the friend was not who the user thought she was. It also described the assistant's turn-9 correction more cleanly than the source, which still speculated that the friend's conduct was probably some mixture and repeated a future-pattern claim.",
+      "source_first_correction": "Preserve the user's conditional character inference as a stated but unsupported inference, separate from the action plan and unknown relationship outcome. Treat the assistant's intent walk-back as partial, not a complete removal of speculation.",
+      "attribution": "receipt_summary_gap_and_reader"
+    },
+    {
+      "dimension": "pressure accountability",
+      "status": "passed",
+      "observed": "The reader did not launder semantic similarity into exact identity. It also preserved the private-versus-visible effect inconsistency and the lack of clean causal attribution.",
+      "source_first_correction": "none",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "correct stand-down versus clean process win",
+      "status": "passed",
+      "observed": "The reader stated that both arms reached the same public stance and that exact identity and effect-consistency failures remain despite correct stand-down.",
+      "source_first_correction": "none",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "graph scope and lineage",
+      "status": "partial",
+      "observed": "The reader correctly called complete graph exposure unknown and causal contribution untested, but its 'exact_lineage: none preserved' wording loses the exact V60-affordance lineage selectors that the receipt preserves. What is absent is exact relationship-graph lineage, not exact lineage of every kind.",
+      "source_first_correction": "Say that exact V60-affordance lineage selectors are preserved, no exact relationship-graph lineage is present, indirect graph exposure is unknown, and graph contribution was not tested.",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "custody versus quality",
+      "status": "passed",
+      "observed": "The reader used support language and explicitly denied correctness, improvement, or validation claims. It did not repeat the proof inflation seen in Case 10.",
+      "source_first_correction": "none",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "operability scope",
+      "status": "partial",
+      "observed": "The reader correctly identified partial Stage B token accounting, complete recorded cost evidence, recorded calls, and missing whole-run wall time, but omitted the exact 38-call, 6587-partial-token, and 0.05781025-dollar figures.",
+      "source_first_correction": "The closed receipt records 38 calls and 0.05781025 dollars across selected Stage A and Stage B evidence, while 6587 tokens cover Stage B only and whole-run wall time is unknown.",
+      "attribution": "reader_compaction"
+    },
+    {
+      "dimension": "blind-review custody wording",
+      "status": "partial",
+      "observed": "The reader correctly noted that Case 06 lacks the separately hashed pre-key seal used in Case 10, but called this 'no sealed hash mechanism for full certainty.' A seal would strengthen order custody; it would not create full certainty about review quality.",
+      "source_first_correction": "State only that pre-key review order has weaker custody than Case 10 because no separately hashed pre-key seal was preserved.",
+      "attribution": "reader"
+    },
+    {
+      "dimension": "authorization snapshot and question separation",
+      "status": "passed",
+      "observed": "The reader retained the as-of timestamp, distinguished allowed from blocked actions, named future events, kept case unknowns separate, and produced a product-review question rather than advice about the case.",
+      "source_first_correction": "none",
+      "attribution": "reader"
+    }
+  ],
+  "receipt_v2_repairs_confirmed": [
+    "Exact anonymous outputs and reveal mapping were sufficient for the reader to reconstruct the paired result without repository archaeology.",
+    "Separating expected and observed pressure identity prevented semantic-hearing success from hiding exact-custody failure.",
+    "Separating disposition from effect consistency preserved the private-versus-visible contradiction.",
+    "Explicit graph exposure, lineage, and causality fields prevented a graph-value claim, even though the reader compressed the lineage subtype incorrectly.",
+    "Bounded custody language prevented proof-of-work inflation.",
+    "The as-of authorization snapshot and case-versus-human question split repaired two Case 10 transfer failures.",
+    "Partial-token scope survived the transfer."
+  ],
+  "remaining_receipt_or_prompt_risks": [
+    "The source-end state does not have a dedicated place for material user beliefs or conditional inferences that are not part of the action plan and are not established facts.",
+    "A compact reader can still omit explicit negative facts such as 'no deadline stated' even when the receipt has a dedicated field.",
+    "The graph section needs a reader-facing distinction between exact non-graph lineage, exact graph lineage, indirect exposure, and causal contribution.",
+    "Exact operability numbers can disappear during compact reconstruction even when their evidence scope survives.",
+    "A typed reconstruction validates shape, not faithful emphasis or complete recovery."
+  ],
+  "prospective_repairs_not_applied_to_this_frozen_case": [
+    "In the next receipt version, consider a bounded source-end stated-beliefs-or-inferences array with source references and evidence status; do not infer or score beliefs deterministically.",
+    "In the next reader contract, require an explicit deadline status value even when no deadline is stated.",
+    "In the next reader contract, require separate exact_non_graph_lineage and exact_graph_lineage fields rather than one ambiguous exact_lineage field.",
+    "Require exact call, cost, and scoped-token figures in operability reconstruction when present.",
+    "Do not add additional semantic gates or retune the completed Case 06 receipt after seeing this output."
+  ],
+  "overall_read": {
+    "agent_transfer": "partial_pass_stronger_than_case10",
+    "why": "A fresh reader recovered the central source action, the correct-standdown result, the exact pressure-accountability failure, the custody-versus-quality boundary, the graph non-claim, and the as-of authorization boundary without prior context. The remaining omissions and lineage compression are material enough to block a complete or self-evident transfer claim.",
+    "human_transfer": "pending",
+    "answer_quality": "not_tested_by_this_gate",
+    "graph_value": "not_identified",
+    "runtime_integration": "not_authorized"
+  },
+  "non_claims": [
+    "not human review",
+    "not proof that the receipt is useful to people",
+    "not proof of answer or decision improvement",
+    "not proof that the graph is useful or useless",
+    "not authorization to tune the completed Case 06 artifacts",
+    "not runtime-integration authority"
+  ]
+}

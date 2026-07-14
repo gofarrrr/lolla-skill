@@ -1,0 +1,430 @@
+{
+  "schema_version": "lolla.r4_semantic_distinction_fixture_catalog.v1",
+  "status": "human_authored_development_fixtures_not_provider_evidence",
+  "date": "2026-07-14",
+  "partition": "exposed_development_only",
+  "provider_output": false,
+  "semantic_reliability_claim": false,
+  "uncertainty_cases": [
+    {
+      "case_id": "sd-unresolved-transfer",
+      "category": "genuine_unresolved_matter",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "The pilot covers two branches in the only city where the specialist vehicles are available."
+        },
+        {
+          "alias": "e002",
+          "speaker": "user",
+          "turn_index": 2,
+          "text": "I still do not know what these results would justify in our other cities or branches."
+        },
+        {
+          "alias": "e003",
+          "speaker": "assistant",
+          "turn_index": 3,
+          "text": "The current position is to run the bounded pilot and make no wider rollout commitment."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "records_present",
+            "records": [
+              {
+                "support": "supported",
+                "interpretation": "The bounded pilot does not establish what its results can justify across unsupported cities or branches.",
+                "evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003"
+                ],
+                "limitations": "The source supplies no evidence from the other settings."
+              }
+            ]
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          }
+        ],
+        "global_limitations": "Development gold for the semantic distinction contract; not provider output."
+      }
+    },
+    {
+      "case_id": "sd-reopen-assumption-break",
+      "category": "genuine_reopen_condition",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "We chose the supplier because the certified component failure rate is below one percent."
+        },
+        {
+          "alias": "e002",
+          "speaker": "user",
+          "turn_index": 2,
+          "text": "If an independent audit finds that the certified failure rate is materially higher, the supplier decision no longer rests on the premise we approved."
+        },
+        {
+          "alias": "e003",
+          "speaker": "assistant",
+          "turn_index": 3,
+          "text": "The current position is to contract with that supplier on the stated certification evidence."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "records_present",
+            "records": [
+              {
+                "support": "supported",
+                "interpretation": "Independent evidence that the certified failure rate is materially higher would invalidate a premise of the current supplier position.",
+                "evidence_ids": [
+                  "e001",
+                  "e002",
+                  "e003"
+                ],
+                "limitations": "The source does not define the exact materiality threshold."
+              }
+            ]
+          }
+        ],
+        "global_limitations": "Development gold for the semantic distinction contract; not provider output."
+      }
+    },
+    {
+      "case_id": "sd-later-resolution",
+      "category": "earlier_gap_resolved_in_final_state",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "We still need to write how disputed customer promises are classified."
+        },
+        {
+          "alias": "e002",
+          "speaker": "user",
+          "turn_index": 4,
+          "text": "The final authority charter now says disputed customer promises follow the written boundary process."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          }
+        ],
+        "global_limitations": "The final state operationalizes the earlier writing gap."
+      }
+    },
+    {
+      "case_id": "sd-adopted-condition-precedent",
+      "category": "adopted_condition_precedent",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "The pilot will proceed only after the subcontractor retention amendment is signed."
+        },
+        {
+          "alias": "e002",
+          "speaker": "assistant",
+          "turn_index": 2,
+          "text": "The signed amendment is an explicit condition of commencement in the current proposal."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          }
+        ],
+        "global_limitations": "Execution of an adopted precondition is not by itself remaining reasoning uncertainty."
+      }
+    },
+    {
+      "case_id": "sd-existing-safeguard",
+      "category": "existing_pause_and_no_renew_safeguard",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "The current proposal pauses new requests after a serious privacy failure and does not renew automatically."
+        },
+        {
+          "alias": "e002",
+          "speaker": "assistant",
+          "turn_index": 2,
+          "text": "Privacy and renewal are already explicit safeguards in the bounded position."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          }
+        ],
+        "global_limitations": "An already adopted pause and no-renew rule is not a newly recovered reopen condition."
+      }
+    },
+    {
+      "case_id": "sd-scheduled-review",
+      "category": "scheduled_review_with_benchmarks",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "The offer includes a six-month review of company results and how decisions travel through the leadership team."
+        },
+        {
+          "alias": "e002",
+          "speaker": "assistant",
+          "turn_index": 2,
+          "text": "At that review, ask whether unwelcome information still travels upward and separate mandate, ability, interference, resistance, and changed conditions."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          }
+        ],
+        "global_limitations": "The review and its benchmarks are already part of the current position."
+      }
+    },
+    {
+      "case_id": "sd-ambiguous-resolution",
+      "category": "ambiguous_endpoint_state",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "Ownership of complaints was not assigned in the first proposal."
+        },
+        {
+          "alias": "e002",
+          "speaker": "user",
+          "turn_index": 3,
+          "text": "Legal may have placed complaint ownership in the revised agreement, but I have not seen the final clause."
+        }
+      ],
+      "expected_response": {
+        "reviews": [
+          {
+            "surface": "unresolved_matter",
+            "outcome": "ambiguous_review",
+            "records": [
+              {
+                "support": "ambiguous",
+                "interpretation": "Complaint ownership may remain unassigned, but the source does not establish whether the revised agreement resolved it.",
+                "evidence_ids": [
+                  "e001",
+                  "e002"
+                ],
+                "limitations": "The final agreement clause is not available in the source."
+              }
+            ]
+          },
+          {
+            "surface": "reopen_condition",
+            "outcome": "no_supported_record_observed",
+            "records": []
+          }
+        ],
+        "global_limitations": "The endpoint state is genuinely ambiguous in the supplied source."
+      }
+    }
+  ],
+  "relationship_cases": [
+    {
+      "case_id": "sd-useful-limiting-relationship",
+      "category": "material_exact_id_relationship",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "The current position authorizes only a two-branch pilot in the supported city."
+        },
+        {
+          "alias": "e002",
+          "speaker": "user",
+          "turn_index": 2,
+          "text": "The pilot cannot establish transfer to branches without the same vehicle supply."
+        },
+        {
+          "alias": "e003",
+          "speaker": "assistant",
+          "turn_index": 3,
+          "text": "Continuation or wider rollout must separately reconsider setting validity and transport supply."
+        }
+      ],
+      "record_catalog": [
+        {
+          "record_id": "sd-current-01",
+          "surface": "current_position",
+          "semantic_payload": {
+            "interpretation": "Authorize only the bounded two-branch pilot."
+          },
+          "source_evidence": [
+            {
+              "alias": "e001",
+              "text": "The current position authorizes only a two-branch pilot in the supported city."
+            }
+          ]
+        },
+        {
+          "record_id": "sd-unresolved-01",
+          "surface": "unresolved_matter",
+          "semantic_payload": {
+            "interpretation": "Transfer to unsupported branches is not established."
+          },
+          "source_evidence": [
+            {
+              "alias": "e002",
+              "text": "The pilot cannot establish transfer to branches without the same vehicle supply."
+            }
+          ]
+        },
+        {
+          "record_id": "sd-reopen-01",
+          "surface": "reopen_condition",
+          "semantic_payload": {
+            "interpretation": "Wider rollout reopens setting validity and supply."
+          },
+          "source_evidence": [
+            {
+              "alias": "e003",
+              "text": "Continuation or wider rollout must separately reconsider setting validity and transport supply."
+            }
+          ]
+        }
+      ],
+      "expected_response": {
+        "outcome": "records_present",
+        "records": [
+          {
+            "support": "supported",
+            "related_record_ids": [
+              "sd-current-01",
+              "sd-unresolved-01",
+              "sd-reopen-01"
+            ],
+            "relationship": "The unresolved transfer limit constrains what the bounded current position can justify, and wider rollout is the point at which that limit must be reconsidered.",
+            "evidence_ids": [
+              "e001",
+              "e002",
+              "e003"
+            ],
+            "limitations": "The relationship does not predict whether wider rollout will succeed."
+          }
+        ],
+        "global_limitations": "Development gold for an additive exact-ID relationship."
+      }
+    },
+    {
+      "case_id": "sd-zero-restatement",
+      "category": "zero_relationship_endpoint_restatement_only",
+      "source_evidence": [
+        {
+          "alias": "e001",
+          "speaker": "user",
+          "turn_index": 1,
+          "text": "The current position proceeds only after the retention amendment is signed."
+        },
+        {
+          "alias": "e002",
+          "speaker": "assistant",
+          "turn_index": 2,
+          "text": "The amendment is already an explicit condition precedent in that position."
+        }
+      ],
+      "record_catalog": [
+        {
+          "record_id": "sd-current-01",
+          "surface": "current_position",
+          "semantic_payload": {
+            "interpretation": "Proceed only after the amendment is signed."
+          },
+          "source_evidence": [
+            {
+              "alias": "e001",
+              "text": "The current position proceeds only after the retention amendment is signed."
+            }
+          ]
+        },
+        {
+          "record_id": "sd-unresolved-01",
+          "surface": "unresolved_matter",
+          "semantic_payload": {
+            "interpretation": "The amendment must be signed before proceeding."
+          },
+          "source_evidence": [
+            {
+              "alias": "e002",
+              "text": "The amendment is already an explicit condition precedent in that position."
+            }
+          ]
+        }
+      ],
+      "expected_response": {
+        "outcome": "no_supported_record_observed",
+        "records": [],
+        "global_limitations": "The only apparent relationship would restate a precondition already contained in the current position."
+      }
+    }
+  ],
+  "non_claims": [
+    "These fixtures express the intended contract; they do not prove that a provider will follow it.",
+    "The fixtures are exposed development material, not a future validation holdout.",
+    "Compiler admission proves schema and custody only, not semantic correctness.",
+    "No fixture creates a scalar quality score or authorizes a provider call."
+  ]
+}

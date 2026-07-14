@@ -345,15 +345,23 @@ def test_extract_parses_valid_derivation_output() -> None:
     assert len(event.provenance.turn_refs) == 2
     assert event.provenance.turn_refs[0].turn_index == 1
     assert event.provenance.turn_refs[1].turn_index == 2
+    assert event.provenance.derivation_id == event.issue_id
+    assert len(event.provenance.components) == 2
+    assert event.provenance.components[0].quote == (
+        "Plan is to go independent starting in 6 weeks."
+    )
+    assert event.provenance.components[1].quote == (
+        "Our Q3 planning cycle ends mid-July."
+    )
+    assert event.provenance.evidence_status == "component_evidence_complete"
+    assert event.provenance.routing_eligible is True
     assert event.kind == "constraint"
     assert event.text.startswith("Launch timeline")
     assert stats.derivation_mode_count == 1
 
 
-def test_extract_derivation_drops_ref_with_bad_excerpt() -> None:
-    """Refs where span_excerpt doesn't substring-validate are silently
-    removed. If that leaves only 1 valid ref, the event auto-downgrades
-    to span mode."""
+def test_extract_derivation_with_missing_component_is_retained_but_ineligible() -> None:
+    """A partially supported derivation remains inspectable but cannot route."""
     ctx = _ctx(turns=[
         (1, "user", "Plan is to go independent starting in 6 weeks."),
         (2, "user", "Completely unrelated turn text."),
@@ -373,11 +381,19 @@ def test_extract_derivation_drops_ref_with_bad_excerpt() -> None:
         ]
     })
     events, stats = extract_live_constraints(context=ctx, boundary=boundary)
-    # Downgraded to span mode with 1 valid ref
     assert len(events) == 1
-    assert isinstance(events[0].provenance, SpanProvenance)
-    assert stats.span_mode_count == 1
-    assert stats.derivation_mode_count == 0
+    assert isinstance(events[0].provenance, DerivationProvenance)
+    assert len(events[0].provenance.components) == 1
+    assert events[0].provenance.evidence_status == "component_evidence_incomplete"
+    assert events[0].provenance.routing_eligible is False
+    assert events[0].provenance.rejection_reasons == (
+        "component_2:excerpt_not_found",
+        "derivation_requires_two_distinct_user_turns",
+    )
+    assert stats.span_mode_count == 0
+    assert stats.derivation_mode_count == 1
+    assert stats.incomplete_derivation_count == 1
+    assert stats.rejected_derivations[0]["routing_eligible"] is False
 
 
 def test_extract_derivation_with_zero_valid_excerpts_is_dropped() -> None:
@@ -399,6 +415,10 @@ def test_extract_derivation_with_zero_valid_excerpts_is_dropped() -> None:
     events, stats = extract_live_constraints(context=ctx, boundary=boundary)
     assert events == []
     assert stats.dropped_derivation_no_valid_excerpt == 1
+    assert stats.rejected_derivations[0]["reasons"] == (
+        "component_1:excerpt_not_found",
+        "component_2:invalid_user_turn",
+    )
 
 
 def test_extract_derivation_single_valid_turn_downgrades_to_span() -> None:

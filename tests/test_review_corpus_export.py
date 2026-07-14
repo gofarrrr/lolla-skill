@@ -319,7 +319,7 @@ def test_review_corpus_exports_modern_archive_without_sensitive_control_args(
     assert record["archive_path"].endswith("case-a/20260625T120000Z_abcd12")
     assert record["archive_relpath"] == "case-a/20260625T120000Z_abcd12"
     assert record["valid_archive"] is True
-    assert record["agent_result"]["caller_action"] == "use_revised_answer"
+    assert record["agent_result"]["caller_action"] == "review_revised_answer"
     assert record["run_health"]["overall"] == "healthy"
     assert record["capture_adequacy"]["status"] == "good"
     assert record["evaluation"]["overall"] == "pass"
@@ -416,7 +416,7 @@ def test_review_corpus_standard_clean_has_no_high_stakes_reliance_caveat(
     record = build_review_corpus_records(archive_root)[0]
 
     assert record["risk_mode"] == "standard"
-    assert record["agent_result"]["caller_action"] == "use_revised_answer"
+    assert record["agent_result"]["caller_action"] == "review_revised_answer"
     assert record["evaluation"]["caller_readiness"] == "ready"
     assert record["risk_mode_reliance"] == {
         "present": False,

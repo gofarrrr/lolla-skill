@@ -1,0 +1,112 @@
+{
+  "schema_version": "lolla.core_semantic_field_reassessment.v0",
+  "reassessed_contract_path": "research/core-semantic-validation-2026-07-09/field-decisions.json",
+  "reassessed_contract_sha256": "f52585e12e2f37c5d4ab90806052bf4d604f00a92170a1028cfe17ccd89371e4",
+  "corpus_comparison_path": "research/core-semantic-corpus-2026-07-09/corpus-comparison.json",
+  "corpus_comparison_sha256": "08f3c734abb304b21b7fbccaecc081208f4d5203621b054b001c5e29c3503c7a",
+  "field_count": 46,
+  "prior_decision_counts": {"keep": 17, "merge": 17, "defer": 10, "remove": 2},
+  "reassessed_decision_counts": {"keep": 17, "merge": 17, "defer": 10, "remove": 2},
+  "changed_decisions": [],
+  "audited_field_names": [
+    "decision_question",
+    "likely_starting_direction",
+    "revised_direction_or_action_consequence",
+    "live_options",
+    "abandoned_or_rejected_options",
+    "option_status",
+    "decision_thresholds",
+    "stop_rules",
+    "evidence_gates",
+    "conversation_turn_depth",
+    "assistant_influence_on_user_framing",
+    "user_changed_mind_during_conversation",
+    "assistant_sycophancy_or_over-accommodation_risk",
+    "unresolved_threads",
+    "dropped_threads",
+    "premortem_or_counterfactual_pressure",
+    "alternative_frames_considered",
+    "user_provided_context",
+    "pasted_documents_or_external_context",
+    "user_values_or_priorities",
+    "stakeholder_obligations",
+    "relationship_or_political_constraints",
+    "timing_or_runway_constraints",
+    "operational_capacity_constraints",
+    "legal_compliance_or_safety_constraints",
+    "real_world_unknowns",
+    "unknown_unknowns_or_context_not_available_to_model",
+    "what_lolla_pressed_on",
+    "what_changed",
+    "useful_friction",
+    "noisy_friction",
+    "lost_value",
+    "overcorrection_risk",
+    "false_precision_risk",
+    "generic_caution_risk",
+    "momentum_or_ambition_loss",
+    "source_refs",
+    "private_context_available",
+    "redacted_or_not_checked_in",
+    "what_the_final_answer_does_not_prove",
+    "safe_to_show_user",
+    "safe_for_agent_inspection_only",
+    "requires_human_review",
+    "requires_llm_interpretation",
+    "deterministic_only_metadata",
+    "local_private_only"
+  ],
+  "reassessment_conclusion": {
+    "structural_contract": "unchanged",
+    "implementation_readiness": "blocked_before_graph_integration",
+    "reason": "The corpus supports the two-projection field structure but shows insufficient stable coverage in every pre-audit semantic family except no family reaches both complete coverage and production-level repeatability."
+  },
+  "readiness_findings": [
+    {
+      "target": "question_events",
+      "status": "promising_not_ready",
+      "evidence": "Weighted exact-span recall 0.697 and the strongest family repeatability, but later operative questions were missed or replaced by earlier decision-choice questions in several cases."
+    },
+    {
+      "target": "constraint_events",
+      "status": "promising_not_ready",
+      "evidence": "Weighted exact-span recall 0.614, but derivation-mode serialization preserves turn references without the exact excerpts that justified the derivation."
+    },
+    {
+      "target": "assistant_stance_trajectory",
+      "status": "not_ready",
+      "evidence": "Weighted recall 0.545; 10 of 22 gold stance observations were never recovered and relation labels were less repeatable than their spans."
+    },
+    {
+      "target": "user_pressure_and_priority_events",
+      "status": "not_ready",
+      "evidence": "Weighted recall 0.479; material later corrections and joint-decision pressure were often captured under a neighboring family or missed as pressure."
+    },
+    {
+      "target": "evidence_boundary_events",
+      "status": "not_ready",
+      "evidence": "Weighted recall 0.472 and family span repeatability 0.384; 24 of 92 non-Case-01 raw candidates named an invalid source and one used an invalid quote."
+    },
+    {
+      "target": "thread_status_events",
+      "status": "not_ready",
+      "evidence": "Dropped-thread weighted recall 0.273 with only 2 of 11 gold observations stable, even though selected thread spans were often repeatable."
+    },
+    {
+      "target": "option_and_condition_events",
+      "status": "not_ready",
+      "evidence": "Option-family repeatability was moderate, but explicit options, thresholds, and stop or delay conditions were repeatedly omitted."
+    },
+    {
+      "target": "source_refs",
+      "status": "contract_strengthened",
+      "evidence": "A source reference must preserve the exact excerpt or offsets for every derivation component; turn-only derivation references cannot receive exact-span grounding credit."
+    },
+    {
+      "target": "post_audit_accountability_and_distribution_fields",
+      "status": "not_tested_by_this_corpus",
+      "evidence": "This experiment evaluates pre-audit conversation understanding. Defer, release, privacy, and review-status decisions remain timing and policy boundaries, not corpus-validated quality claims."
+    }
+  ],
+  "graph_runtime_modified": false
+}

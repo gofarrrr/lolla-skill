@@ -1,0 +1,1017 @@
+{
+  "schema_version": "lolla.graph_attribution_preflight_result.v2",
+  "status": "complete_provider_free",
+  "case_id": "case-10-real-estate-bid",
+  "contract_sha256": "4f021d28838af92a5d7e12332a2e97e4765c52beefd0fe83805ef7dbd3b10208",
+  "provider_calls": 0,
+  "runtime_mutated": false,
+  "source_artifacts": [
+    {
+      "role": "source_conversation",
+      "path": "research/test-cases/case_real_estate_conversation.txt",
+      "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"
+    },
+    {
+      "role": "stage_a_pipeline_result",
+      "path": "research/stage-a-case10-2026-07-10/run/lolla_stage_a_case10_20260710_a1/pipeline-result.json",
+      "sha256": "c81c305309188f8faffb577be4eb7a09aec803d50fa1600a0080377aa8abac41"
+    },
+    {
+      "role": "stage_a_private_table_snapshot",
+      "path": "research/stage-a-case10-2026-07-10/private-table-snapshot.json",
+      "sha256": "ad141fc5889b6e6beab8488888eae542939d238b4528fd251ea05b433c09a4c9"
+    },
+    {
+      "role": "stage_a_v60_snapshot",
+      "path": "research/stage-a-case10-2026-07-10/v60-snapshot.json",
+      "sha256": "0e899606cb05319c05a11a24ba3e4e472ac724f2915e3e6a8cad5c5ef7d7dc59"
+    },
+    {
+      "role": "stage_a_preliminary_pressure_review",
+      "path": "research/stage-a-case10-2026-07-10/preliminary-pressure-review.json",
+      "sha256": "969a7768a594577bb3eec1483105d385b7a0cd97f15eae58875ced6ccd6fe848"
+    },
+    {
+      "role": "stage_a_pressure_packet",
+      "path": "research/stage-a-case10-2026-07-10/pressure-packet.json",
+      "sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"
+    },
+    {
+      "role": "stage_b_revealed_comparison",
+      "path": "research/stage-b-case10-2026-07-10/revealed-comparison.json",
+      "sha256": "8c0b9677fe03646af4e9e2d478107e21012d0b4802226f49906e3580b4b372a6"
+    },
+    {
+      "role": "stage_b_decision",
+      "path": "research/stage-b-case10-2026-07-10/decision.json",
+      "sha256": "6c24442dc3084ed51f6c80e16970dfe6259812844814645e43a197bec346847e"
+    },
+    {
+      "role": "case10_evidence_manifest",
+      "path": "research/gate6-case10-graph-attribution-2026-07-10/evidence-manifest.json",
+      "sha256": "ee9552b7014173bad9c854cb84cfc439bab1c682ac2e489b121eda6ec244acb6"
+    },
+    {
+      "role": "attribution_builder",
+      "path": "scripts/evals/build_graph_attribution_preflight_v2.py",
+      "sha256": "7732ee1bf48c2ea5aa812e8fff2dce6c81be3f4dcfc6b4984818a1de3d6bf1a4"
+    },
+    {
+      "role": "v1_attribution_builder",
+      "path": "scripts/evals/build_graph_attribution_preflight.py",
+      "sha256": "a66fd4df26115d776d3dc1c291a000f8928a5350950f986b7323e54d94547f2b"
+    },
+    {
+      "role": "v1_contract",
+      "path": "research/gate6-case10-graph-attribution-2026-07-10/contract.json",
+      "sha256": "2e346f7838ec1c5764faa1f597cc3ec849aa92c9832b3a6835866796c36f258e"
+    },
+    {
+      "role": "v1_result",
+      "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result.json",
+      "sha256": "c9679bb13b15a575c398f48b2b7c246cadc7bc5c284e70289e222448ef48b80c"
+    },
+    {
+      "role": "v1_completion_audit",
+      "path": "research/gate6-case10-graph-attribution-2026-07-10/v1-completion-audit.json",
+      "sha256": "45d6a030cc29f9cadbf5eef0b018b7d45b93798fb07ec2121b7abcb7f6fd2a8e"
+    },
+    {
+      "role": "v60_enrichment_code",
+      "path": "engine/system_b/v60_enrichment.py",
+      "sha256": "e16026bdddb9f5bc281af39b7a3158805ecdc8f4b3ef501347f072405477b249"
+    },
+    {
+      "role": "private_table_code",
+      "path": "engine/system_b/pre_step6_private_table.py",
+      "sha256": "ae5e3c34837d8db33d69aba61e88de53925a53b4b56a273340ad59ebf6ae7d6d"
+    },
+    {
+      "role": "companion_routing_code",
+      "path": "engine/system_b/companion_routing.py",
+      "sha256": "03b434a8243a35c3cfa4dfc521aad9218c733153d383e0212ef7a096abd5d437"
+    },
+    {
+      "role": "pipeline_code",
+      "path": "engine/system_b/pipeline.py",
+      "sha256": "763a9e7be813b28159667e4b43dee318be6c8a18e267190392b58be27d2fe8d6"
+    },
+    {
+      "role": "relationship_graph",
+      "path": "data/relationship_graph.json",
+      "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"
+    },
+    {
+      "role": "knowledge_graph",
+      "path": "data/knowledge_graph.json",
+      "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+    },
+    {
+      "role": "affordances_v60",
+      "path": "data/compiled/model_affordances/affordances_v60.json",
+      "sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8"
+    },
+    {
+      "role": "embeddings_database",
+      "path": "data/embeddings.db",
+      "sha256": "cc9b81315060b32cd62fa69db7d025fdb83559c6e53496d9b5504153a84e5b8d"
+    }
+  ],
+  "recorded_pipeline": {
+    "main_delta_finding_count": 0,
+    "companion_direct_anchor_model_ids": [
+      "calculated-risk-taking",
+      "margin-of-safety",
+      "regret-theory"
+    ],
+    "companion_graph_expansions": [
+      {
+        "source_model_id": "margin-of-safety",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "substrate_chunk": "Confirmation-bias undermines margin-of-safety by selecting a safety estimate that confirms the current exposure is acceptable."
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "substrate_chunk": "Margin-of-safety conflicts with confirmation-bias when safety estimates are chosen to validate the current plan rather than stress-test it honestly."
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "relation_type": "tension",
+        "model_id": "feedback-loops",
+        "substrate_chunk": "Margin-of-safety conflicts with feedback-loops when delayed signals create false confidence in thin buffers."
+      },
+      {
+        "source_model_id": "regret-theory",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "substrate_chunk": "Confirmation-bias is countered by regret-theory when the framework forces the decision maker to consider the regretted path of inaction instead of only the comfortable default story."
+      },
+      {
+        "source_model_id": "regret-theory",
+        "relation_type": "tension",
+        "model_id": "probabilistic-thinking",
+        "substrate_chunk": "Regret-theory conflicts with probabilistic-thinking when anticipated regret distorts probability weighting toward vivid worst-case scenarios."
+      },
+      {
+        "source_model_id": "regret-theory",
+        "relation_type": "ally",
+        "model_id": "optionality",
+        "substrate_chunk": "Optionality strengthens regret-theory by checking whether action can be made more reversible before anticipated regret hardens the choice."
+      },
+      {
+        "source_model_id": "calculated-risk-taking",
+        "relation_type": "tension",
+        "model_id": "black-swan-events",
+        "substrate_chunk": "Calculated-risk-taking conflicts with black-swan-events when systematic risk estimation creates false precision around outcomes whose probability distributions have fat tails."
+      },
+      {
+        "source_model_id": "calculated-risk-taking",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "substrate_chunk": "Calculated-risk-taking conflicts with confirmation-bias when risk estimates are calibrated to justify a preferred course of action rather than derived from independent evidence."
+      },
+      {
+        "source_model_id": "calculated-risk-taking",
+        "relation_type": "antagonist",
+        "model_id": "optimism-bias-and-planning-fallacy",
+        "substrate_chunk": "Optimism-bias-and-planning-fallacy undermines calculated-risk-taking by overweighting upside scenarios and underestimating the real downside exposure."
+      }
+    ],
+    "frame_route_model_ids": [
+      "brainstorming",
+      "decision-trees",
+      "decomposition",
+      "dialectical-reasoning",
+      "inversion",
+      "lateral-thinking",
+      "multi-criteria-decision-analysis",
+      "optionality",
+      "peer-review-your-perspectives",
+      "problem-framing-and-reframing",
+      "prospect-theory",
+      "reframing-perspective",
+      "six-thinking-hats",
+      "user-centered-design"
+    ],
+    "structural_gap_model_ids": [],
+    "embedding_model_hits": [
+      {
+        "rank": 1,
+        "model_id": "calculated-risk-taking",
+        "score": 0.047245564892623715,
+        "signal_type": ""
+      },
+      {
+        "rank": 2,
+        "model_id": "endowment-effect",
+        "score": 0.04715356328259554,
+        "signal_type": ""
+      },
+      {
+        "rank": 3,
+        "model_id": "prospect-theory",
+        "score": 0.04494989451476793,
+        "signal_type": ""
+      },
+      {
+        "rank": 4,
+        "model_id": "regret-theory",
+        "score": 0.04419267042217862,
+        "signal_type": ""
+      },
+      {
+        "rank": 5,
+        "model_id": "information-asymmetry",
+        "score": 0.04369138959931799,
+        "signal_type": ""
+      },
+      {
+        "rank": 6,
+        "model_id": "status-quo-bias",
+        "score": 0.039407265601719324,
+        "signal_type": ""
+      },
+      {
+        "rank": 7,
+        "model_id": "power-dynamics",
+        "score": 0.03159203980099502,
+        "signal_type": ""
+      },
+      {
+        "rank": 8,
+        "model_id": "intellectual-humility",
+        "score": 0.03007688828584351,
+        "signal_type": ""
+      },
+      {
+        "rank": 9,
+        "model_id": "margin-of-safety",
+        "score": 0.028629032258064516,
+        "signal_type": ""
+      },
+      {
+        "rank": 10,
+        "model_id": "reciprocity-principle",
+        "score": 0.028371628371628373,
+        "signal_type": ""
+      },
+      {
+        "rank": 11,
+        "model_id": "optionality",
+        "score": 0.028309409888357256,
+        "signal_type": ""
+      },
+      {
+        "rank": 12,
+        "model_id": "statistical-discipline",
+        "score": 0.027783137179239824,
+        "signal_type": ""
+      },
+      {
+        "rank": 13,
+        "model_id": "inversion",
+        "score": 0.027650648360030512,
+        "signal_type": ""
+      },
+      {
+        "rank": 14,
+        "model_id": "risk-vs-uncertainty",
+        "score": 0.02758751902587519,
+        "signal_type": ""
+      },
+      {
+        "rank": 15,
+        "model_id": "opportunity-cost",
+        "score": 0.027402402402402402,
+        "signal_type": ""
+      },
+      {
+        "rank": 16,
+        "model_id": "sunk-cost-fallacy",
+        "score": 0.027271052146674038,
+        "signal_type": ""
+      },
+      {
+        "rank": 17,
+        "model_id": "probabilistic-thinking",
+        "score": 0.026785714285714288,
+        "signal_type": ""
+      },
+      {
+        "rank": 18,
+        "model_id": "aleatory-epistemic-uncertainty-recognition",
+        "score": 0.026631393298059962,
+        "signal_type": ""
+      },
+      {
+        "rank": 19,
+        "model_id": "optimism-bias-and-planning-fallacy",
+        "score": 0.026279628993473032,
+        "signal_type": ""
+      },
+      {
+        "rank": 20,
+        "model_id": "base-rates",
+        "score": 0.026132699813337858,
+        "signal_type": ""
+      },
+      {
+        "rank": 21,
+        "model_id": "commitment-bias",
+        "score": 0.025807525807525808,
+        "signal_type": ""
+      },
+      {
+        "rank": 22,
+        "model_id": "supply-and-demand",
+        "score": 0.01639344262295082,
+        "signal_type": ""
+      },
+      {
+        "rank": 23,
+        "model_id": "risk-assessment",
+        "score": 0.01639344262295082,
+        "signal_type": ""
+      },
+      {
+        "rank": 24,
+        "model_id": "expected-value",
+        "score": 0.016129032258064516,
+        "signal_type": ""
+      }
+    ],
+    "v60_selected_model_ids": [
+      "calculated-risk-taking",
+      "endowment-effect",
+      "inversion",
+      "margin-of-safety",
+      "optionality",
+      "problem-framing-and-reframing",
+      "prospect-theory",
+      "regret-theory"
+    ],
+    "v60_selected_sources": [
+      "embedding_model_recall",
+      "frame_opportunity_reserved",
+      "lane_preserved"
+    ],
+    "v60_candidate_sources": [
+      "lane2_companion_anchor",
+      "lane3_frame_route_candidate",
+      "lane3_frame_route_candidate+lane3_reframing_grounding"
+    ],
+    "private_table_source_kind_counts": {
+      "lane2_anchor": 3,
+      "lane3_frame_element": 1,
+      "lane3_reframing": 2,
+      "lane4_dimension": 5,
+      "v60_selected_card": 5
+    },
+    "private_table_graph_or_expansion_source_items": []
+  },
+  "pressure_attribution": [
+    {
+      "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+      "challenge": "Check whether the proposed ceiling and buffer rely on user-reported estimates or on the assistant's invented repair ranges. What written repair, insurance, financing, and complete-household-liquidity facts would have to be verified before any all-in ceiling is treated as supported? Preserve uncertainty and do not supply replacement numbers.",
+      "lineage_chunk_ids": [
+        "aff::margin-of-safety.evidence-sized-operating-buffer",
+        "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+        "abs::calculated-risk-taking::calculated-label-with-unbounded-downside"
+      ],
+      "lineage_model_ids": [
+        "margin-of-safety",
+        "calculated-risk-taking"
+      ],
+      "chunks": [
+        {
+          "chunk_id": "aff::margin-of-safety.evidence-sized-operating-buffer",
+          "model_id": "margin-of-safety",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-002-margin-of-safety",
+            "model_id": "margin-of-safety",
+            "selection_source": "lane_preserved",
+            "selection_reason": "The assistant explicitly identifies the lack of a financial buffer as a critical risk factor, defining the 'liquid margin' as the necessary protection against the volatility of old-house repairs.",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        },
+        {
+          "chunk_id": "aff::calculated-risk-taking.pressure-tested-bounded-wager",
+          "model_id": "calculated-risk-taking",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-003-calculated-risk-taking",
+            "model_id": "calculated-risk-taking",
+            "selection_source": "lane_preserved",
+            "selection_reason": "The assistant performs a quantitative sensitivity analysis by mapping mandatory repair costs against available liquid savings to size the downside risk of the purchase.",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        },
+        {
+          "chunk_id": "abs::calculated-risk-taking::calculated-label-with-unbounded-downside",
+          "model_id": "calculated-risk-taking",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-003-calculated-risk-taking",
+            "model_id": "calculated-risk-taking",
+            "selection_source": "lane_preserved",
+            "selection_reason": "The assistant performs a quantitative sensitivity analysis by mapping mandatory repair costs against available liquid savings to size the downside risk of the purchase.",
+            "chunk_kind": "absence",
+            "chunk_status": "not_supported_by_source"
+          }
+        }
+      ],
+      "all_lineage_chunks_present_in_v60": true,
+      "pathway_availability": {
+        "direct_companion_anchor_model_ids": [
+          "calculated-risk-taking",
+          "margin-of-safety"
+        ],
+        "frame_route_model_ids": [],
+        "structural_gap_model_ids": [],
+        "embedding_recalled_model_ids": [
+          "calculated-risk-taking",
+          "margin-of-safety"
+        ],
+        "graph_expansion_target_model_ids": [],
+        "current_selected_model_ids": [
+          "calculated-risk-taking",
+          "margin-of-safety"
+        ]
+      },
+      "graph_exclusive_model_ids": [],
+      "selected_via_graph_model_ids": [],
+      "graph_specific_at_recorded_handoff": false
+    },
+    {
+      "pressure_id": "regret_frame_not_probability_or_economics",
+      "challenge": "Treat regret in both directions as a values signal, not as evidence. Check whether asking price, current bid, spouse preference, winning or losing language, and vivid imagined futures are setting the reference point without changing the underlying economics. Do not dismiss genuine neighborhood value merely because it is emotional.",
+      "lineage_chunk_ids": [
+        "aff::regret-theory.long-run-regret-with-risk-check",
+        "abs::regret-theory::anticipated-regret-without-probability",
+        "aff::prospect-theory.loss-frame-decision-quality-check"
+      ],
+      "lineage_model_ids": [
+        "regret-theory",
+        "prospect-theory"
+      ],
+      "chunks": [
+        {
+          "chunk_id": "aff::regret-theory.long-run-regret-with-risk-check",
+          "model_id": "regret-theory",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-001-regret-theory",
+            "model_id": "regret-theory",
+            "selection_source": "lane_preserved",
+            "selection_reason": "The assistant contrasts the immediate, vivid regret of losing a bid with the long-term, lived regret of financial overextension to reframe the user's decision-making process.",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        },
+        {
+          "chunk_id": "abs::regret-theory::anticipated-regret-without-probability",
+          "model_id": "regret-theory",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-001-regret-theory",
+            "model_id": "regret-theory",
+            "selection_source": "lane_preserved",
+            "selection_reason": "The assistant contrasts the immediate, vivid regret of losing a bid with the long-term, lived regret of financial overextension to reframe the user's decision-making process.",
+            "chunk_kind": "absence",
+            "chunk_status": "not_supported_by_source"
+          }
+        },
+        {
+          "chunk_id": "aff::prospect-theory.loss-frame-decision-quality-check",
+          "model_id": "prospect-theory",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-008-prospect-theory",
+            "model_id": "prospect-theory",
+            "selection_source": "embedding_model_recall",
+            "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        }
+      ],
+      "all_lineage_chunks_present_in_v60": true,
+      "pathway_availability": {
+        "direct_companion_anchor_model_ids": [
+          "regret-theory"
+        ],
+        "frame_route_model_ids": [
+          "prospect-theory"
+        ],
+        "structural_gap_model_ids": [],
+        "embedding_recalled_model_ids": [
+          "prospect-theory",
+          "regret-theory"
+        ],
+        "graph_expansion_target_model_ids": [],
+        "current_selected_model_ids": [
+          "prospect-theory",
+          "regret-theory"
+        ]
+      },
+      "graph_exclusive_model_ids": [],
+      "selected_via_graph_model_ids": [],
+      "graph_specific_at_recorded_handoff": false
+    },
+    {
+      "pressure_id": "zero_base_all_in_acquisition_test",
+      "challenge": "Ask whether the couple would choose this same house at its verified all-in need-state cost if there were no prior offer, asking-price anchor, or winning/losing frame. Preserve real deadline, scarcity, switching-cost, and neighborhood constraints; do not invent alternative houses or diagnose endowment.",
+      "lineage_chunk_ids": [
+        "aff::inversion.zero-base-continuation-test",
+        "aff::endowment-effect.reprice-owned-option-from-outside-view",
+        "aff::problem-framing-and-reframing.test-alternative-frames"
+      ],
+      "lineage_model_ids": [
+        "inversion",
+        "endowment-effect",
+        "problem-framing-and-reframing"
+      ],
+      "chunks": [
+        {
+          "chunk_id": "aff::inversion.zero-base-continuation-test",
+          "model_id": "inversion",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-005-inversion",
+            "model_id": "inversion",
+            "selection_source": "frame_opportunity_reserved",
+            "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        },
+        {
+          "chunk_id": "aff::endowment-effect.reprice-owned-option-from-outside-view",
+          "model_id": "endowment-effect",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-007-endowment-effect",
+            "model_id": "endowment-effect",
+            "selection_source": "embedding_model_recall",
+            "selection_reason": "Add embedding-recalled model as low-trust semantic recall.",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        },
+        {
+          "chunk_id": "aff::problem-framing-and-reframing.test-alternative-frames",
+          "model_id": "problem-framing-and-reframing",
+          "present_in_v60_selected_chunks": true,
+          "selected_card": {
+            "card_id": "v60-card-006-problem-framing-and-reframing",
+            "model_id": "problem-framing-and-reframing",
+            "selection_source": "frame_opportunity_reserved",
+            "selection_reason": "Reserve Lane 3 frame-pressure opportunity before packet cap. binary_collapse",
+            "chunk_kind": "affordance",
+            "chunk_status": "supported"
+          }
+        }
+      ],
+      "all_lineage_chunks_present_in_v60": true,
+      "pathway_availability": {
+        "direct_companion_anchor_model_ids": [],
+        "frame_route_model_ids": [
+          "inversion",
+          "problem-framing-and-reframing"
+        ],
+        "structural_gap_model_ids": [],
+        "embedding_recalled_model_ids": [
+          "endowment-effect",
+          "inversion"
+        ],
+        "graph_expansion_target_model_ids": [],
+        "current_selected_model_ids": [
+          "endowment-effect",
+          "inversion",
+          "problem-framing-and-reframing"
+        ]
+      },
+      "graph_exclusive_model_ids": [],
+      "selected_via_graph_model_ids": [],
+      "graph_specific_at_recorded_handoff": false
+    }
+  ],
+  "provider_free_baselines": {
+    "direct_labels_only": {
+      "available_model_ids": [
+        "calculated-risk-taking",
+        "margin-of-safety",
+        "regret-theory"
+      ],
+      "coverage": {
+        "method": "recorded_model_availability_not_answer_simulation",
+        "fully_covered_pressure_count": 1,
+        "pressure_count": 3,
+        "pressures": [
+          {
+            "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+            "coverage": "full_model_coverage",
+            "present_model_ids": [
+              "calculated-risk-taking",
+              "margin-of-safety"
+            ],
+            "missing_model_ids": []
+          },
+          {
+            "pressure_id": "regret_frame_not_probability_or_economics",
+            "coverage": "partial_model_coverage",
+            "present_model_ids": [
+              "regret-theory"
+            ],
+            "missing_model_ids": [
+              "prospect-theory"
+            ]
+          },
+          {
+            "pressure_id": "zero_base_all_in_acquisition_test",
+            "coverage": "no_model_coverage",
+            "present_model_ids": [],
+            "missing_model_ids": [
+              "endowment-effect",
+              "inversion",
+              "problem-framing-and-reframing"
+            ]
+          }
+        ]
+      }
+    },
+    "frame_routes_only": {
+      "available_model_ids": [
+        "brainstorming",
+        "decision-trees",
+        "decomposition",
+        "dialectical-reasoning",
+        "inversion",
+        "lateral-thinking",
+        "multi-criteria-decision-analysis",
+        "optionality",
+        "peer-review-your-perspectives",
+        "problem-framing-and-reframing",
+        "prospect-theory",
+        "reframing-perspective",
+        "six-thinking-hats",
+        "user-centered-design"
+      ],
+      "coverage": {
+        "method": "recorded_model_availability_not_answer_simulation",
+        "fully_covered_pressure_count": 0,
+        "pressure_count": 3,
+        "pressures": [
+          {
+            "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+            "coverage": "no_model_coverage",
+            "present_model_ids": [],
+            "missing_model_ids": [
+              "calculated-risk-taking",
+              "margin-of-safety"
+            ]
+          },
+          {
+            "pressure_id": "regret_frame_not_probability_or_economics",
+            "coverage": "partial_model_coverage",
+            "present_model_ids": [
+              "prospect-theory"
+            ],
+            "missing_model_ids": [
+              "regret-theory"
+            ]
+          },
+          {
+            "pressure_id": "zero_base_all_in_acquisition_test",
+            "coverage": "partial_model_coverage",
+            "present_model_ids": [
+              "inversion",
+              "problem-framing-and-reframing"
+            ],
+            "missing_model_ids": [
+              "endowment-effect"
+            ]
+          }
+        ]
+      }
+    },
+    "embedding_only_full_recorded_recall": {
+      "available_model_ids": [
+        "calculated-risk-taking",
+        "endowment-effect",
+        "prospect-theory",
+        "regret-theory",
+        "information-asymmetry",
+        "status-quo-bias",
+        "power-dynamics",
+        "intellectual-humility",
+        "margin-of-safety",
+        "reciprocity-principle",
+        "optionality",
+        "statistical-discipline",
+        "inversion",
+        "risk-vs-uncertainty",
+        "opportunity-cost",
+        "sunk-cost-fallacy",
+        "probabilistic-thinking",
+        "aleatory-epistemic-uncertainty-recognition",
+        "optimism-bias-and-planning-fallacy",
+        "base-rates",
+        "commitment-bias",
+        "supply-and-demand",
+        "risk-assessment",
+        "expected-value"
+      ],
+      "coverage": {
+        "method": "recorded_model_availability_not_answer_simulation",
+        "fully_covered_pressure_count": 2,
+        "pressure_count": 3,
+        "pressures": [
+          {
+            "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+            "coverage": "full_model_coverage",
+            "present_model_ids": [
+              "calculated-risk-taking",
+              "margin-of-safety"
+            ],
+            "missing_model_ids": []
+          },
+          {
+            "pressure_id": "regret_frame_not_probability_or_economics",
+            "coverage": "full_model_coverage",
+            "present_model_ids": [
+              "prospect-theory",
+              "regret-theory"
+            ],
+            "missing_model_ids": []
+          },
+          {
+            "pressure_id": "zero_base_all_in_acquisition_test",
+            "coverage": "partial_model_coverage",
+            "present_model_ids": [
+              "endowment-effect",
+              "inversion"
+            ],
+            "missing_model_ids": [
+              "problem-framing-and-reframing"
+            ]
+          }
+        ]
+      },
+      "warning": "This is pool availability, not a fair capped packet."
+    },
+    "embedding_only_same_card_cap": {
+      "card_cap": 8,
+      "available_model_ids": [
+        "calculated-risk-taking",
+        "endowment-effect",
+        "prospect-theory",
+        "regret-theory",
+        "information-asymmetry",
+        "status-quo-bias",
+        "power-dynamics",
+        "intellectual-humility"
+      ],
+      "coverage": {
+        "method": "recorded_model_availability_not_answer_simulation",
+        "fully_covered_pressure_count": 1,
+        "pressure_count": 3,
+        "pressures": [
+          {
+            "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+            "coverage": "partial_model_coverage",
+            "present_model_ids": [
+              "calculated-risk-taking"
+            ],
+            "missing_model_ids": [
+              "margin-of-safety"
+            ]
+          },
+          {
+            "pressure_id": "regret_frame_not_probability_or_economics",
+            "coverage": "full_model_coverage",
+            "present_model_ids": [
+              "prospect-theory",
+              "regret-theory"
+            ],
+            "missing_model_ids": []
+          },
+          {
+            "pressure_id": "zero_base_all_in_acquisition_test",
+            "coverage": "partial_model_coverage",
+            "present_model_ids": [
+              "endowment-effect"
+            ],
+            "missing_model_ids": [
+              "inversion",
+              "problem-framing-and-reframing"
+            ]
+          }
+        ]
+      }
+    },
+    "graph_expansion_targets_only": {
+      "available_model_ids": [
+        "black-swan-events",
+        "confirmation-bias",
+        "feedback-loops",
+        "optimism-bias-and-planning-fallacy",
+        "optionality",
+        "probabilistic-thinking"
+      ],
+      "coverage": {
+        "method": "recorded_model_availability_not_answer_simulation",
+        "fully_covered_pressure_count": 0,
+        "pressure_count": 3,
+        "pressures": [
+          {
+            "pressure_id": "evidence_sized_buffer_over_invented_ranges",
+            "coverage": "no_model_coverage",
+            "present_model_ids": [],
+            "missing_model_ids": [
+              "calculated-risk-taking",
+              "margin-of-safety"
+            ]
+          },
+          {
+            "pressure_id": "regret_frame_not_probability_or_economics",
+            "coverage": "no_model_coverage",
+            "present_model_ids": [],
+            "missing_model_ids": [
+              "prospect-theory",
+              "regret-theory"
+            ]
+          },
+          {
+            "pressure_id": "zero_base_all_in_acquisition_test",
+            "coverage": "no_model_coverage",
+            "present_model_ids": [],
+            "missing_model_ids": [
+              "endowment-effect",
+              "inversion",
+              "problem-framing-and-reframing"
+            ]
+          }
+        ]
+      }
+    },
+    "transcript_only_strong_control": {
+      "source": "completed Stage B blind pair",
+      "immediate_action_difference": "not_material",
+      "unique_answer_improvement": "not_demonstrated",
+      "gate_5_decision": "accountable_consideration_signal_without_unique_answer_improvement"
+    },
+    "graph_disabled_v60_packet": {
+      "status": "exact_noop_at_recorded_handoff",
+      "selected_models_unchanged": true,
+      "selected_chunks_unchanged": true,
+      "basis": "No graph or expansion source appears in the V60 candidate pool, selected-card sources, or private-table source items."
+    },
+    "shuffled_edges_v60_packet": {
+      "status": "non_identifying_noop",
+      "basis": "Shuffling unconsumed graph expansions cannot change this packet."
+    },
+    "graph_disabled_complete_step6_context": {
+      "status": "requires_frozen_replay",
+      "recorded_companion_chunks_removed": 3,
+      "basis": "Disabling graph relationships would remove recorded relationship chunks from the companion cheat sheet even though V60 cards remain unchanged."
+    },
+    "shuffled_edges_complete_step6_context": {
+      "status": "requires_frozen_replay",
+      "basis": "A shuffle could change which relationship chunks appear inside companion anchors; the current frozen artifacts cannot simulate the resulting card selection or prose."
+    }
+  },
+  "decision_evidence": {
+    "admitted_pressure_count": 3,
+    "graph_specific_admitted_pressure_count": 0,
+    "graph_specific_admitted_pressure_ids": [],
+    "all_admitted_chunks_present_in_v60": true,
+    "graph_expansion_count": 9,
+    "graph_expansions_entered_v60_candidate_pool": false,
+    "graph_expansions_entered_v60_selected_cards": false,
+    "graph_expansions_entered_private_table": false,
+    "case10_can_identify_graph_contribution": false,
+    "paid_graph_ablation_candidate": false,
+    "companion_graph_chunks_entered_complete_step6_context": true,
+    "companion_graph_chunk_count": 3,
+    "individual_graph_chunk_disposition_custody": false,
+    "stage_b_pressure_with_graph_target_lineage_count": 0,
+    "stage_b_pressure_with_graph_target_lineage_ids": [],
+    "case10_stage_b_can_identify_graph_contribution": false
+  },
+  "interpretation_boundary": {
+    "mechanical_conclusion": "Graph relationships reached the normal Step 6 consumer indirectly inside three companion-anchor chunks, but none had exact lineage in the frozen Case 10 Stage B pressure packet and none had individual disposition custody. The completed pair therefore cannot identify graph contribution.",
+    "does_not_prove": [
+      "that the three graph chunks changed or did not change an ordinary live Step 6 answer",
+      "that graph expansion is generally useful or useless",
+      "that a parent-anchor disposition is semantic proof about every embedded relation",
+      "that another case cannot support a graph-specific ablation"
+    ],
+    "required_before_paid_ablation": [
+      "one source-reviewed graph relationship chunk absent from simpler baselines",
+      "exact graph-chunk identity in the treatment contract",
+      "separate individual disposition custody",
+      "a graph-disabled or shuffled-edge arm frozen before generation",
+      "public-revision and private-receipt fields measured separately"
+    ]
+  },
+  "repairs": {
+    "v1_contract_sha256": "2e346f7838ec1c5764faa1f597cc3ec849aa92c9832b3a6835866796c36f258e",
+    "v1_result_sha256": "c9679bb13b15a575c398f48b2b7c246cadc7bc5c284e70289e222448ef48b80c",
+    "repair_reason": "v1 inspected V60 and private-table graph sources but omitted graph-derived chunks embedded inside companion_cheat_sheet anchor cards."
+  },
+  "complete_step6_consumer_surface": {
+    "companion_graph_chunk_count": 3,
+    "companion_graph_chunks": [
+      {
+        "anchor_model_id": "regret-theory",
+        "relation_target_id": "confirmation-bias",
+        "chunk_type": "antagonist",
+        "text": "Confirmation Bias: Confirmation-bias is countered by regret-theory when the framework forces the decision maker to consider the regretted path of inaction instead of only the comfortable default story.",
+        "source_layer": "wave3",
+        "extraction_type": "explicit",
+        "confidence": "high",
+        "raw_expansion_match_count": 1,
+        "raw_expansion_matches": [
+          {
+            "source_model_id": "regret-theory",
+            "relation_type": "antagonist",
+            "target_model_id": "confirmation-bias",
+            "substrate_chunk": "Confirmation-bias is countered by regret-theory when the framework forces the decision maker to consider the regretted path of inaction instead of only the comfortable default story."
+          }
+        ],
+        "exact_raw_expansion_match": true
+      },
+      {
+        "anchor_model_id": "regret-theory",
+        "relation_target_id": "optionality",
+        "chunk_type": "ally",
+        "text": "Optionality: Optionality strengthens regret-theory by checking whether action can be made more reversible before anticipated regret hardens the choice.",
+        "source_layer": "wave3",
+        "extraction_type": "explicit",
+        "confidence": "high",
+        "raw_expansion_match_count": 1,
+        "raw_expansion_matches": [
+          {
+            "source_model_id": "regret-theory",
+            "relation_type": "ally",
+            "target_model_id": "optionality",
+            "substrate_chunk": "Optionality strengthens regret-theory by checking whether action can be made more reversible before anticipated regret hardens the choice."
+          }
+        ],
+        "exact_raw_expansion_match": true
+      },
+      {
+        "anchor_model_id": "calculated-risk-taking",
+        "relation_target_id": "black-swan-events",
+        "chunk_type": "antagonist",
+        "text": "Black Swan Events: Calculated-risk-taking conflicts with black-swan-events when systematic risk estimation creates false precision around outcomes whose probability distributions have fat tails.",
+        "source_layer": "wave3",
+        "extraction_type": "explicit",
+        "confidence": "high",
+        "raw_expansion_match_count": 1,
+        "raw_expansion_matches": [
+          {
+            "source_model_id": "calculated-risk-taking",
+            "relation_type": "tension",
+            "target_model_id": "black-swan-events",
+            "substrate_chunk": "Calculated-risk-taking conflicts with black-swan-events when systematic risk estimation creates false precision around outcomes whose probability distributions have fat tails."
+          }
+        ],
+        "exact_raw_expansion_match": true
+      }
+    ],
+    "graph_relation_target_model_ids": [
+      "black-swan-events",
+      "confirmation-bias",
+      "optionality"
+    ],
+    "parent_anchor_source_items": [
+      "lane2::calculated-risk-taking",
+      "lane2::regret-theory"
+    ],
+    "parent_anchor_ledger_items": [
+      {
+        "source_id": "lane2::regret-theory",
+        "source_kind": "lane2_anchor",
+        "disposition": "",
+        "why": ""
+      },
+      {
+        "source_id": "lane2::calculated-risk-taking",
+        "source_kind": "lane2_anchor",
+        "disposition": "",
+        "why": ""
+      }
+    ],
+    "individual_graph_chunk_ledger_ids": [],
+    "individual_graph_chunk_disposition_custody": false,
+    "custody_read": "Graph relationship chunks reach Step 6 inside companion anchors, but the recorded private-table ledger dispositions the parent anchor rather than each relationship chunk."
+  }
+}

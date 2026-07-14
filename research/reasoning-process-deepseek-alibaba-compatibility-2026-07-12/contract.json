@@ -1,0 +1,122 @@
+{
+  "schema_version": "lolla.reasoning_process_model_operator_single_compatibility_contract.v1",
+  "status": "frozen_before_one_new_model_provider_pair_call",
+  "date": "2026-07-12",
+  "run_id": "reasoning-process-deepseek-v4-flash-alibaba-compatibility-v1",
+  "purpose": "Test DeepSeek V4 Flash through a new Alibaba structured-output route after DeepInfra returned a pre-inference rate limit; do not retry DeepInfra or spend a semantic case.",
+  "packet": {
+    "case_id": "synthetic-wire-compatibility-color-choice",
+    "path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-packet.json",
+    "sha256": "75dd94d4c2a7c5d827b6abd9d044e91ffc6042a1e2870e61d808b0e38a386d40",
+    "semantic_holdout": false,
+    "safe_synthetic": true
+  },
+  "request_contract": {
+    "mechanism": "chronological_shard_stance_object_v42",
+    "view_kind": "position_and_decision_trajectory",
+    "system_prompt_sha256": "989e1b4b9ee1467e9d697ecdc0e5635c7a11d3234d79d37854bb6f6643d10ec6",
+    "user_prompt_sha256": "ed931f9943f4ad41a3625c597191c2036d4e739bdc50c904dccede9cd92ba6ef",
+    "response_schema_sha256": "c1976c1e299ed8ff0877e2354b9f7cdc533fd512d1b4fe36f70004d72022d213",
+    "response_schema_bytes": 3597,
+    "response_schema_depth": 9,
+    "semantic_contract_changed_from_v42": false
+  },
+  "job": {
+    "job_id": "deepseek-v4-flash-alibaba-v42-compatibility",
+    "selection_role": "cost_performance_candidate_new_operator",
+    "model": "deepseek/deepseek-v4-flash",
+    "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+    "provider_slug": "alibaba",
+    "provider_display_name": "Alibaba",
+    "pricing_per_token": {
+      "prompt": 0.000000134,
+      "completion": 0.000000268
+    }
+  },
+  "frozen_inputs": [
+    {
+      "path": "research/reasoning-process-model-operator-selection-2026-07-12/deepseek-provider-addendum.json",
+      "sha256": "0e8fdfc5f293556fc243e05b6d89533966647f6a53d1e6e011870fbaf5f8db43"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-selection-2026-07-12/synthetic-compatibility-packet.json",
+      "sha256": "75dd94d4c2a7c5d827b6abd9d044e91ffc6042a1e2870e61d808b0e38a386d40"
+    },
+    {
+      "path": "research/reasoning-process-model-operator-compatibility-recovery-2026-07-12/call-01-result.json",
+      "sha256": "eacd10541f06508e32cb614553f107cf627d24685ff86152b4fabad90c0fae80"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_model_operator_compatibility.py",
+      "sha256": "a1e2a08a6188713c57ec70e602a56378f9640e623d9e8d82e67d120d90bd6daa"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_model_operator_single_compatibility.py",
+      "sha256": "b8621d179841ba9b2aca46fd8748ad415938a63576887bf01a1b952d6a7a8a60"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_chronological_shard_reader_v42.py",
+      "sha256": "e2f69a49e68469dc444947107485639626871ef1090465bbf5694f39bf6c5bfd"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "wire_mode": "strict_json_schema",
+    "temperature": 0.0,
+    "seed": 0,
+    "reasoning_enabled": false,
+    "max_output_tokens": 1600,
+    "provider_timeout_seconds": 90,
+    "require_supported_parameters": true,
+    "allow_provider_fallbacks": false,
+    "automatic_retries": 0,
+    "response_healing": false,
+    "parallel_calls": false
+  },
+  "custody": {
+    "write_started_marker_before_call": true,
+    "never_rerun_if_started_marker_exists": true,
+    "write_result_after_call": true
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.003,
+    "automatic_retries": 0,
+    "semantic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "success_requirements": {
+    "provider_route_exactly_attributed": true,
+    "http_success": true,
+    "unchanged_v42_schema_accepted": true,
+    "strict_schema_candidate_present": true,
+    "deterministic_record_custody_complete": true,
+    "semantic_accuracy_required": false
+  },
+  "stop_rules": {
+    "one_new_model_provider_pair_call_only": true,
+    "no_alibaba_retry": true,
+    "no_deepinfra_retry": true,
+    "no_fallback_response_healing_or_prompt_change": true,
+    "no_reserved_semantic_case_call": true
+  },
+  "boundary": {
+    "synthetic_compatibility_only": true,
+    "new_model_provider_pair": true,
+    "deepinfra_retry": false,
+    "semantic_case_seen_by_model": false,
+    "protected_target_seen_by_model": false,
+    "v42_schema_changed": false,
+    "v42_prompt_changed": false,
+    "semantic_accuracy_measured": false,
+    "model_intelligence_inferred_from_wire_acceptance": false,
+    "agency_acquisition_call_authorized": false,
+    "graph_or_runtime_authorized": false
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_full_factored_mechanisms_contract.v2",
+  "status": "frozen_before_one_dual_effort_full_factored_case",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-full-factored-case01-t1",
+  "case_id": "v1-case01-flood-infrastructure",
+  "purpose": "Test affordable pressure activation on one prospectively pressure-expected case after the full-nine stand-down case passed.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "inputs": {
+    "parent_mechanism_request_path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/mechanism-request.json",
+    "parent_mechanism_request_sha256": "d118573a561d86ff64e8642544454b7c6725a108532ed0876e66217d85779a29",
+    "source_review_path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json",
+    "source_review_sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486",
+    "source_review_supplied_to_model": false,
+    "upstream_role_operator": "google/gemini-3.5-flash"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {"prompt": 0.25, "completion": 1.5}
+  },
+  "task_limits": {
+    "user_factor": {"max_output_tokens": 1000, "reasoning_effort": "low"},
+    "assistant_coverage": {"max_output_tokens": 1000, "reasoning_effort": "minimal"}
+  },
+  "seed_base": 1400,
+  "orchestration_contract": {
+    "user_factor_calls": 9,
+    "assistant_coverage_calls": "zero to nine, only after all nine user-factor tasks compile, and only for explicit model-authored statuses other than not_observed",
+    "not_applicable_coverage": "materialized by policy only for explicit not_observed user status",
+    "routing": "derived from explicit user status and assistant coverage after the full join",
+    "conversation_prose_read_by_deterministic_code": false,
+    "keyword_or_chronology_gate_added": false
+  },
+  "request_attestation": {
+    "acknowledged_constraint_not_gated": {"packet_sha256": "8244e551093936479a1270c4b658f8dcf0c3b575c0070776f8419c3a05ab5392", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "6ff2065633a32addf9841505c8bb253b6b0372dcfc545aed371697a3da185922", "response_schema_sha256": "f132a7b17ffee7c3b2b238c6e4507375be9d1ed4cafafaebea195b7f2a4b66ab", "coverage_response_schema_sha256": "1fcdded6a0552166cef7c7b76bd8876859f3f69f1f846c26c2816c57048eebe9"},
+    "ambiguous_signal_treated_as_commitment": {"packet_sha256": "0a3ddd6a1eed587d178d367ac83ecaa0c0f737f220872f14f88c4710da2477ab", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "73afcdf78e8db0afd98b62246b5844a1518e6b340da87897777ed650706ad1bf", "response_schema_sha256": "889eee31ac9b97d2bf13ff600430207e296283ac27ef9a34f64ab95cb2a2b75d", "coverage_response_schema_sha256": "229eb553294a934465334a3aa1de9361d63000aac064cec4788a1dba1bbfe59d"},
+    "counterpressure_acknowledged_not_integrated": {"packet_sha256": "eca86a71469c58b3efedae02e67cbd77ff67342d6293e20af6a278e1a6d3d14c", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "948dfd40f85bfe06ed951dde4a80c4918d134cc62e27e8ba48b29bd3aa3528e3", "response_schema_sha256": "6f2a1c92c7c06233006d51d74fb2c44bb04c6bbce3dfb72811726afbe80a7f71", "coverage_response_schema_sha256": "037346754a4c4bcb9ef73abed60702dc16c624636258dd6a41b976ba3f7e70ec"},
+    "criteria_defined_after_commitment": {"packet_sha256": "c9551665fed0c784547b5b2e872f7372745dd89bf03dc7d915c78b40ce6051fb", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "6b507af9c77650f3b8a72491294bc36263c5c1105bc2d53a59e001015861cb42", "response_schema_sha256": "0967d4100a45874216618d2f7c2842db6909f00ed7ddaebcbe060b2530fff0ac", "coverage_response_schema_sha256": "fca0d80c0c849b2b424b42819b97e1d47fc6ba91bb2e36d09bbf5e75a7fd5286"},
+    "initial_frame_persists_after_question_change": {"packet_sha256": "caf6c0c4ca4409e94d74fefd66f49da79d50fe135921a44fdf4c8f1e1caa8fce", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "8b5b76091b0e846901205960f8fc732a8b6d74188752928e151870f9beea6be5", "response_schema_sha256": "c53a34d28f90b7cbf701bb337cb6a822d043b4531682786963c8771d22daafbd", "coverage_response_schema_sha256": "4fb39694606ae79f380fb7310dba1d6b673630d7ec86b094d480fc41e6b183e8"},
+    "missing_reversal_condition": {"packet_sha256": "54f33c60032a9d190e4c38dad97072d4da91698e377a70428bf2c8422b4f1fb5", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "cae94be179c7c4c13990b7da593ce6da1c5448c3444a4ddbdffb00481e84d8b8", "response_schema_sha256": "100742e484d96df9870d853426e8058ec4348544daedd66223e634af786c635b", "coverage_response_schema_sha256": "7721d1a0883c5c3d8c75969fcab4c965acdad0c28013b6ebec5ebbccd4b47e0e"},
+    "reversible_path_not_considered": {"packet_sha256": "e0c2ee9cd227603dbdec5597a538ead69c14125d7a6561754f3ba2e0c83ff247", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "68dee574f08477e9b9bca2499dcb0aebdec2cffb320c93bb7c19f2f9244a3ed3", "response_schema_sha256": "0c43762580bf5db9143ed269322759085557bb2d0d04a252af9f89d43510b525", "coverage_response_schema_sha256": "3be7812605370c45a918e3e2cea6bb72ce25dca297d0750672f1bad03e8ea664"},
+    "status_signal_used_as_evidence": {"packet_sha256": "43c849a408ed2866d7172bf07319af08cf57ae7c26c5639d9ab8143210ff4401", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "aa52653c476cfe04d8bab08046488d23730e78e04b2b2d0805b868469684df5f", "response_schema_sha256": "10265bc571bcc28c561df1a213eb571f3d645d2202ab7661feeeb5d13a1a7b3f", "coverage_response_schema_sha256": "dc7a19eb0a9e6fe8de6bed1609b15d81eabf9b0afecf78ad7c9f2b0a91528a3b"},
+    "upside_downside_evidence_asymmetry": {"packet_sha256": "b008b0bbdf24b0c22509487952bd7b76b04f3027baf4e89c533dd67f00f3b1c1", "role_record_count": 3, "system_prompt_sha256": "5dac451d5a4696688281ac49bb7b3da8135c7707dec56845693542ca398abeea", "user_prompt_sha256": "58c5d615db4f4a24db349f1cb54339504f7befb20f31eef6d8aa77a3c4de66cf", "response_schema_sha256": "893344174c7a1226b001d5bda2e488505641eb9aa03084f606ed9dde06c7212f", "coverage_response_schema_sha256": "6a1d0b762d3c57704efce18c728ce9e1fa5d2369918ca62c474d2a1a6062548d"}
+  },
+  "budget": {"maximum_provider_calls": 18, "maximum_provider_reported_cost_usd": 0.03, "automatic_retries": 0, "fallback_models": 0, "response_healing": false},
+  "failure_policy": {
+    "run_all_nine_user_tasks_even_if_one_fails": true,
+    "coverage_calls_require_all_nine_user_tasks_to_compile": true,
+    "retry_failed_task": false,
+    "substitute_model": false,
+    "raise_token_ceiling": false,
+    "stop_after_source_review_if_pressure_is_not_activated": true
+  },
+  "review_contract": {
+    "prospective_public_behavior": "pressure_expected",
+    "behavior_source_supplied_to_model": false,
+    "material_opportunities": [
+      "recurring deployment, storage, shuttle, training, and incident-review capacity after capital funding and political attention end",
+      "land-use or service expectations created by protecting one corridor"
+    ],
+    "required": ["per-mechanism source fidelity", "observed-versus-integrated accuracy", "assistant coverage accuracy", "false stand-down review", "evidence custody", "call and cost custody"],
+    "scalar_quality_score": null
+  },
+  "decision_boundary": {
+    "park_case_authorized": false,
+    "pressure_generation_authorized": false,
+    "runtime_effect": "none",
+    "production_model_selection_authorized": false,
+    "gemini_3_5_call_authorized": false
+  },
+  "frozen_inputs": [
+    {"path": "scripts/evals/run_simulated_reliability_lite_full_factored_mechanisms_v2.py", "sha256": "f1079d37bca302285b3a987370709698cd43f8bd63c33177327b7ae0448ceddb"},
+    {"path": "scripts/evals/run_simulated_reliability_lite_full_factored_mechanisms_v1.py", "sha256": "023f1727732fb3d353b0f9bdc912730a44ac88b4c437850f04b64bb181601bb2"},
+    {"path": "scripts/evals/run_simulated_reliability_lite_coverage_recovery_v1.py", "sha256": "f7fc4e3b6a36f64fe69a16b55b7099c0d0998b111219d9b7863fcd342c4c1cd9"},
+    {"path": "engine/system_b/reasoning_mechanism_factored_portfolio_v1.py", "sha256": "e64765a07b7a66ba19ada07ec7e651d42e2b0ec214e2c79222ad159050c577ed"},
+    {"path": "engine/system_b/reasoning_mechanism_user_factor_v1.py", "sha256": "ddce0d694e656ad2af4eb127c0a317e0bf352baf48e2a66bfb7940488aaf0dd3"},
+    {"path": "engine/system_b/reasoning_mechanism_submicrotask_v1.py", "sha256": "9732323b976b3b59f1c57f9efe8d8671c2532408db617377042a2269ebe18e2d"},
+    {"path": "scripts/evals/run_simulated_reliability_case_v1.py", "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"},
+    {"path": "engine/system_b/simulated_reliability_v1.py", "sha256": "f00479b47763ac6f9cca544bad91b72813891716cec6a384ec3f00f66b8128c4"},
+    {"path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json", "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"},
+    {"path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case01-flood-infrastructure-primary/mechanism-request.json", "sha256": "d118573a561d86ff64e8642544454b7c6725a108532ed0876e66217d85779a29"},
+    {"path": "research/simulated-reliability-corpus-v1-2026-07-12/source-review.json", "sha256": "58bb611fbc682c383e19b4b007bd8f281368073a494b6934b225066dd49d1486"},
+    {"path": "research/simulated-reliability-v1-lite-coverage-recovery-case07-2026-07-13/r2/source-review.json", "sha256": "456ef537a872256e2ea3fed99d67ebdbb7b88b21c267a9dadbe0e07eb7d555aa"}
+  ]
+}

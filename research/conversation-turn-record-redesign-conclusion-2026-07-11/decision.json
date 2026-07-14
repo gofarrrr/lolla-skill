@@ -1,0 +1,92 @@
+{
+  "schema_version": "lolla.conversation_turn_record_redesign_decision.v1",
+  "date": "2026-07-11",
+  "status": "material_product_decision_required",
+  "terminal_decision": "Reject both normalized turn-record architectures for transfer or integration.",
+  "provider_free": {
+    "status": "pass",
+    "reviewed_cases": 5,
+    "case_architecture_replays": 10,
+    "passing_replays": 10,
+    "reviewed_source_and_mode_survival": 1.0,
+    "item_count_range": [15, 16],
+    "synthesis_payload_within_budget": true,
+    "handoff_violations": 0,
+    "direct_graph_seeds": 0,
+    "provider_calls": 0
+  },
+  "model_probe_baseline": {
+    "status": "fail",
+    "case_id": "amb1-case05-family-archive",
+    "provider_calls": 14,
+    "estimated_cost_usd": 0.0276705,
+    "automatic_retries": 0,
+    "single_reader": {
+      "operational_rate": 1.0,
+      "typed_rate": 1.0,
+      "item_count": 54,
+      "reviewed_move_survival_exact": 0.6667,
+      "reviewed_thread_survival_exact": 0.3333,
+      "reviewed_claim_mode_survival_exact": 0.3
+    },
+    "three_lens_consolidation": {
+      "operational_rate": 1.0,
+      "typed_rate": 0.7143,
+      "item_count": 39,
+      "invalid_custody_windows": 2
+    }
+  },
+  "model_probe_one_generic_repair": {
+    "status": "fail",
+    "case_id": "amb1-case05-family-archive",
+    "provider_calls": 14,
+    "estimated_cost_usd": 0.02546175,
+    "automatic_retries": 0,
+    "measurement_corrections": [
+      "sentence and complete-turn source IDs match by same-speaker same-turn text containment",
+      "fan-in bytes measure the compact synthesis payload rather than the full custody ledger"
+    ],
+    "single_reader": {
+      "operational_rate": 1.0,
+      "typed_rate": 1.0,
+      "item_count": 38,
+      "synthesis_payload_bytes": 19510,
+      "reviewed_move_survival": 0.3333,
+      "reviewed_thread_survival": 0.3333,
+      "reviewed_claim_mode_survival": 0.2,
+      "passed": false
+    },
+    "three_lens_consolidation": {
+      "operational_rate": 1.0,
+      "typed_rate": 0.8571,
+      "item_count": 43,
+      "synthesis_payload_bytes": 24289,
+      "invalid_custody_windows": 1,
+      "reviewed_move_survival": 0.6667,
+      "reviewed_thread_survival": 0.3333,
+      "reviewed_claim_mode_survival": 0.2,
+      "passed": false
+    }
+  },
+  "program_totals": {
+    "provider_calls": 28,
+    "estimated_cost_usd": 0.05313225,
+    "automatic_retries": 0,
+    "transfer_calls": 0,
+    "global_synthesis_calls": 0,
+    "graph_calls": 0,
+    "runtime_modified": false
+  },
+  "finding": "A single artifact cannot yet satisfy both broad audit capture and compact reasoning fan-in. Compression that meets the budget loses reviewed minority signals; high-recall capture saturates the budget. The three-lens consolidator also adds operational fragility.",
+  "founder_decision": {
+    "question": "Should Lolla explicitly split broad conversation audit capture from the compact reasoning handoff, or continue requiring one artifact to serve both purposes?",
+    "recommended_option": "Split them: keep an append-only broad audit ledger for accountability, and derive a separately evaluated compact reasoning handoff through probabilistic selection with full lineage back to the ledger.",
+    "why_material": "This changes the product contract and evaluation target, not merely the implementation."
+  },
+  "non_claims": [
+    "provider_free_representation_pass_is_not_model_quality",
+    "failed_compression_is_not_failure_of_broad_audit_capture",
+    "different_artifacts_do_not_imply_deterministic_semantic_gating",
+    "no_transfer_graph_runtime_or_integration_authority"
+  ]
+}

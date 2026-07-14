@@ -1,0 +1,34 @@
+{
+  "schema_version": "lolla.designed_ambiguous_pool_generation_failure.v1",
+  "status": "failed_outer_timeout_and_pre_call_custody_gap",
+  "date": "2026-07-10",
+  "run_id": "lolla_designed_ambiguous_pool_v1_20260710_a1",
+  "finding": "The single request entered chunked provider-response reading and remained there beyond the frozen 180-second outer wall ceiling. It was externally interrupted. The runner created the output directory before the call but wrote custody only after return, so the attempted-call artifact had to be reconstructed from the frozen contract and process trace.",
+  "evidence": {
+    "generation_contract_sha256": "cb345901bb59dd03f18b9d060297daa93460d1ca6aa3028a2d71ca2e16044e27",
+    "runner_sha256": "204d9062682bcdc759e997fcf7a8ee464932649a6ec8b8930c95b8f8fdb5255d",
+    "call_custody_path": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/call-custody.json",
+    "pool_path": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/pool.json",
+    "run_summary_path": "research/designed-ambiguous-pool-v1-2026-07-10/run/lolla_designed_ambiguous_pool_v1_20260710_a1/run-summary.json"
+  },
+  "classification": "F11_provider_or_transport_failure_plus_custody_persistence_gap",
+  "prospective_runner_repair": [
+    "persist an attempted-call sidecar atomically before network I/O",
+    "enforce the outer wall ceiling in the process rather than only scoring it after return",
+    "update the sidecar on every provider, parser, interrupt, and success terminal path",
+    "never infer unknown usage, cost, or served model as zero"
+  ],
+  "authorizations": {
+    "retry_provider_call": false,
+    "provider_free_founder_directed_development_fixtures": true,
+    "call_generated_pool_admitted": false,
+    "stage_a": false,
+    "stage_b": false,
+    "graph_ablation": false
+  },
+  "non_claims": [
+    "No provider-generated conversation was received or selected.",
+    "This failure says nothing about Lolla reasoning quality.",
+    "Provider-free designed fixtures are development cases, not clean holdouts."
+  ]
+}

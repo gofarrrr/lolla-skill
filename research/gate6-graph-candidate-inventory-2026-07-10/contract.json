@@ -1,0 +1,137 @@
+{
+  "schema_version": "lolla.graph_ablation_candidate_inventory_contract.v1",
+  "status": "frozen_before_inventory",
+  "date": "2026-07-10",
+  "purpose": "Find or rule out a fair graph-specific paid-ablation candidate inside the comparable July evidence chain without provider calls or post-hoc pipeline reruns.",
+  "provider_call_budget": 0,
+  "runtime_change_authorized": false,
+  "scope": {
+    "name": "current_july_frozen_evidence_chain",
+    "included_case_ids": [
+      "case-03-startup-pivot",
+      "case-05-parenting-teen",
+      "case-06-friendship-money",
+      "case-07-messy-linked-decisions",
+      "case-09-phd-dissertation",
+      "case-10-real-estate-bid"
+    ],
+    "historical_scratch_runs_excluded": true,
+    "historical_exclusion_reason": "April and May scratch/replay artifacts use different architecture, prompts, custody, and review contracts and cannot authorize a modern causal ablation."
+  },
+  "hash_locks": [
+    {"role": "candidate_inventory_builder", "path": "scripts/evals/build_graph_ablation_candidate_inventory.py", "sha256": "f9a9c3e0957d4455f6e4fe638ba02c357dc50c48b30b3bb695860095d29a5af0"},
+    {"role": "complete_consumer_attribution_builder", "path": "scripts/evals/build_graph_attribution_preflight_v2.py", "sha256": "7732ee1bf48c2ea5aa812e8fff2dce6c81be3f4dcfc6b4984818a1de3d6bf1a4"}
+  ],
+  "eligibility_rule": {
+    "all_required": [
+      "formal Stage A pass",
+      "complete companion graph surface preserved",
+      "at least one graph relationship chunk reached the consumer",
+      "strong transcript-only control preserved",
+      "treatment packet frozen before generation",
+      "exact graph lineage in that treatment",
+      "source-first graph review admits at least one chunk",
+      "individual graph-chunk disposition contract",
+      "case not excluded by the frozen risk scope"
+    ],
+    "paid_authorization_from_inventory_alone": false
+  },
+  "cases": [
+    {
+      "case_id": "case-03-startup-pivot",
+      "case_role": "passed_stage_a_and_paired_downstream_but_raw_complete_companion_surface_not_preserved",
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "artifacts": [
+        {"role": "source", "path": "research/test-cases/case_startup_pivot_conversation.txt", "sha256": "9ac3be2e8b80361439b05e73c001af991325a566e987a86aca769f288a76901e"},
+        {"role": "stage_a_gate", "path": "research/core-development-batches-2026-07-10/batch1-stage-a/pipeline-gate-result.json", "sha256": "de047fe81fa3843cf03fb59d5f184ff55cab20496d9596de3ed9a01b1a72ee2a"},
+        {"role": "v60_snapshot", "path": "research/core-development-batches-2026-07-10/batch1-stage-a/v60-snapshot.json", "sha256": "86273712317a437b71ed654d83c17b0ff7715c05b94de8c0a98fac535899f9e9"},
+        {"role": "private_table", "path": "research/core-development-batches-2026-07-10/batch1-stage-a/private-table-snapshot.json", "sha256": "cf9dda879c79e7565558b05fabb37306d3559dda332365084a142f4374192773"},
+        {"role": "treatment_packet", "path": "research/core-development-batches-2026-07-10/batch1-pressure-packet.json", "sha256": "89c70846b9f31b1a58967fb429568d374e17bb2ac7a5984639d31cdb76ffecc8"},
+        {"role": "blind_pair", "path": "research/core-development-batches-2026-07-10/batch1-stage-b/blind-outputs.json", "sha256": "0f1aebd969b55e849353c7f60348b507944e2d8852f429a34d42883a3f4ad600"},
+        {"role": "downstream_review", "path": "research/core-development-batches-2026-07-10/batch1-review.json", "sha256": "8615eba61380aca46c0b632e16e182a129764f8773d268ee5d097ac371971140"}
+      ]
+    },
+    {
+      "case_id": "case-05-parenting-teen",
+      "case_role": "complete_pipeline_graph_surface_but_formal_stage_a_failure_and_sensitive_minor_safety_case",
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": true,
+      "artifacts": [
+        {"role": "source", "path": "research/test-cases/case_parenting_teen_conversation.txt", "sha256": "c8a8cfa4280cd2d359cdf89736c4c54e415c6a23ed24ac4ab01442b41edae3b4"},
+        {"role": "stage_a_gate", "path": "research/stage-a-case05-2026-07-10/pipeline-gate-result.json", "sha256": "d76344d51deb65c0eaa0359b8629198195f2a3bd9d225421b6e36f436f919751"},
+        {"role": "pipeline_result", "path": "research/stage-a-case05-2026-07-10/run/lolla_stage_a_case05_20260710_a1/pipeline-result.json", "sha256": "89b0d72819c75e1f179931a991cdc7cdee6bb23934f38665fddc137bc57ee64e"}
+      ]
+    },
+    {
+      "case_id": "case-06-friendship-money",
+      "case_role": "passed_stage_a_and_paired_quiet_case_but_raw_complete_companion_surface_not_preserved",
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "artifacts": [
+        {"role": "source", "path": "research/test-cases/case_friendship_money_conversation.txt", "sha256": "a6afc475f56147a258a72d957491fc130af61c071ec2c4b293265993dd6dc5c5"},
+        {"role": "stage_a_gate", "path": "research/core-development-batches-2026-07-10/batch2-stage-a/pipeline-gate-result.json", "sha256": "cc5dd7d6847fc6ab73e9cffe4476e6b377ef19801e806d057d464727efd1db26"},
+        {"role": "v60_snapshot", "path": "research/core-development-batches-2026-07-10/batch2-stage-a/v60-snapshot.json", "sha256": "d91de11fdb78186df875c0157b587b091a4f615cc9fb4e1dfff3422784ed1677"},
+        {"role": "private_table", "path": "research/core-development-batches-2026-07-10/batch2-stage-a/private-table-snapshot.json", "sha256": "2e293314842605adb46f1dd581f698dbd601ff4e4aab606e7714d970e2488089"},
+        {"role": "treatment_packet", "path": "research/core-development-batches-2026-07-10/batch2-edge-packet.json", "sha256": "a0247ac52fb2745b58c7d615498af6add40375ac9d6b77f131932cc952303742"},
+        {"role": "blind_pair", "path": "research/core-development-batches-2026-07-10/batch2-stage-b/blind-outputs.json", "sha256": "0c297c234a925210b7df3b7ca121999d9dcb251f51f1381d6cb81bc0c99d8c7d"},
+        {"role": "downstream_review", "path": "research/core-development-batches-2026-07-10/batch2-review.json", "sha256": "f765a510167d118055162e756fda7abdbd96e3365c9e88cff5dea2d12e32507c"}
+      ]
+    },
+    {
+      "case_id": "case-07-messy-linked-decisions",
+      "case_role": "failed_operability_gate_with_transcript_control_but_no_complete_companion_surface_or_frozen_graph_treatment",
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "artifacts": [
+        {"role": "source", "path": "research/test-cases/case_messy_three_problems_conversation.txt", "sha256": "9e0114716d93227ede47be173afc78431f0d044b41252d1e06a90d741fe49cfa"},
+        {"role": "stage_a_gate", "path": "research/reasoning-portfolio-case07-2026-07-10/pipeline-gate-result.json", "sha256": "fba6fa2dd00bd7fc8c7420d5031958bd1d21ca9a84182b8a56cae90f61075a05"},
+        {"role": "v60_snapshot", "path": "research/reasoning-portfolio-case07-2026-07-10/v60-snapshot.json", "sha256": "11382c5e90fb2a32893a4ae0d94f136e325a43706bd7694ddc43c435328d2c77"},
+        {"role": "private_table", "path": "research/reasoning-portfolio-case07-2026-07-10/private-table-snapshot.json", "sha256": "f28a01aaa2ece66f7ae693daeb8db83eb683090ee1d0df0122239f62cdb30588"},
+        {"role": "strong_control", "path": "research/semantic-overlay-counterfactual-case07-2026-07-10/run/blind-outputs.json", "sha256": "a2eaa8213de56ae28d38b8567c734f61a63d1a833e11fd6067100c57fe2dc05f"}
+      ]
+    },
+    {
+      "case_id": "case-09-phd-dissertation",
+      "case_role": "passed_stage_a_with_strong_control_but_no_complete_companion_surface_or_frozen_treatment",
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "artifacts": [
+        {"role": "source", "path": "research/test-cases/case_phd_research_conversation.txt", "sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33"},
+        {"role": "stage_a_gate", "path": "research/reasoning-portfolio-holdout-2026-07-10/pipeline-gate-result.json", "sha256": "619698416c3f9d134bacfeddec23272e5986a4d1d0936de1f81f70a7ef8b24a8"},
+        {"role": "v60_snapshot", "path": "research/reasoning-portfolio-holdout-2026-07-10/v60-snapshot.json", "sha256": "e06a3061ecdc954230b5570c966584fa1a1b04f65da48e56b50548af626fc914"},
+        {"role": "private_table", "path": "research/reasoning-portfolio-holdout-2026-07-10/private-table-snapshot.json", "sha256": "cb198771608c52a1eb4683d964933597f30ef73bf353492adccbab77759ee6f2"},
+        {"role": "preliminary_review", "path": "research/reasoning-portfolio-holdout-2026-07-10/preliminary-novelty-review.json", "sha256": "11e84f1f0c72c88f41e2a394e9f446dbd2b6d9774b1005e0c1aa2feffa9fb09f"},
+        {"role": "strong_control", "path": "research/reasoning-portfolio-holdout-2026-07-10/strong-control-result.json", "sha256": "05eda1b8e2ee85e7094a588b15141a4bbe0b60244f2940d65ae5e80ba274edd0"},
+        {"role": "control_review", "path": "research/reasoning-portfolio-holdout-2026-07-10/control-comparison.json", "sha256": "d96c23bc3e4f7f6f8cbca768ffde679a51c5c7479594ff6b89b900a28fc13f13"}
+      ]
+    },
+    {
+      "case_id": "case-10-real-estate-bid",
+      "case_role": "complete_passed_pair_and_complete_graph_attribution_with_zero_admitted_graph_candidate",
+      "individual_graph_disposition_contract": false,
+      "risk_excluded": false,
+      "artifacts": [
+        {"role": "source", "path": "research/test-cases/case_real_estate_conversation.txt", "sha256": "61f93615edbf79660972b8b44c58cd900c3617f721f92c1f76e9b3a8b1cf95a5"},
+        {"role": "stage_a_gate", "path": "research/stage-a-case10-2026-07-10/pipeline-gate-result.json", "sha256": "2aaf18e06c1996511cbb8f26ca66288e48ca89cf4f7bfffe6e15eea852ba1aa2"},
+        {"role": "pipeline_result", "path": "research/stage-a-case10-2026-07-10/run/lolla_stage_a_case10_20260710_a1/pipeline-result.json", "sha256": "c81c305309188f8faffb577be4eb7a09aec803d50fa1600a0080377aa8abac41"},
+        {"role": "treatment_packet", "path": "research/stage-a-case10-2026-07-10/pressure-packet.json", "sha256": "25aa14c55ecd63a44b5ca821be994e3bf3b65638b151213809f1580739131a9d"},
+        {"role": "blind_pair", "path": "research/stage-b-case10-2026-07-10/run/lolla_stage_b_case10_20260710_a1/blind-outputs.json", "sha256": "56e782ef6cbd00134769f91318ca4134ce6ce5852b288a7af88cd01a429d25a2"},
+        {"role": "treatment_contract", "path": "research/stage-b-case10-2026-07-10/contract.json", "sha256": "5d42822fe552d4577bf3199876314bb2d1a4a09a65904e792af447108bfcb865"},
+        {"role": "graph_attribution", "path": "research/gate6-case10-graph-attribution-2026-07-10/preflight-result-v2.json", "sha256": "f010a1fe0eb569fa4d7d4aed4d4d76a661a25aec9e104a4341402cc8958899d0"},
+        {"role": "graph_source_review", "path": "research/gate6-case10-graph-attribution-2026-07-10/source-first-graph-chunk-review.json", "sha256": "5d269b35823cf1acab206859ecd8f3131f364b7e35f7036a476bf481401225fd"}
+      ]
+    }
+  ],
+  "output": {
+    "path": "research/gate6-graph-candidate-inventory-2026-07-10/inventory-result.json"
+  },
+  "non_claims": [
+    "not proof that the graph is useful or useless",
+    "not human review",
+    "not answer-quality scoring",
+    "not authorization to rerun completed cases",
+    "not paid-ablation authorization",
+    "not runtime-integration authority"
+  ]
+}

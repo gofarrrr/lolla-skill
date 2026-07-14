@@ -1,0 +1,110 @@
+{
+  "authorization_sha256": "74e281fe489aadc31d22d69d86aec2394216e503ce222659fd077f6662cf6093",
+  "bundle_sha256": "14fde06974c4129d3c6bcdc30335754b20935666aaac8987954b5ae2706ccd0f",
+  "call_result_sha256": "712ec7d88bf429b8f260f734042169b8b8b2074eccba3bacb9051e29c4d7fa61",
+  "case_id": "v1-case01-flood-infrastructure",
+  "closeout_sha256": "a9d5f6243a59ade49f73b52290cbf41761fb4574bce214336d7670270c44fae3",
+  "contract_sha256": "65ac41a1a6bf6996c062e82e8700721e6e7cb9ff04253f8530c20a42a5f60de1",
+  "decision": {
+    "additional_provider_call_authorized": false,
+    "next_boundary": "No retry or model shopping. Reassess the final-consumer task shape provider-free before deciding whether R3 should be redesigned, deferred, or stopped.",
+    "quiet_control_authorized": false,
+    "quiet_control_calls": 0,
+    "r3_semantic_exit_condition_met": false,
+    "r3_status": "closed_after_repaired_attempt_mechanical_failure"
+  },
+  "execution_result": {
+    "automatic_retries": 0,
+    "exact_cost_usd": 0.0062705,
+    "fallback_models": 0,
+    "generation_id": "gen-1783967608-mhDySM8VmeAlzxjiyVFG",
+    "operator_identity_valid": true,
+    "provider_calls_attempted": 1,
+    "provider_calls_succeeded": 1,
+    "response_healing": false,
+    "served_model": "google/gemini-3.1-flash-lite",
+    "served_provider": "Google",
+    "within_one_cent": true
+  },
+  "mechanical_result": {
+    "candidate_modified_or_healed": false,
+    "canonical_compiler_accepted": false,
+    "finding_count": 1,
+    "findings": [
+      {
+        "code": "park_contract_violation",
+        "expected": "no material effect, empty effects, and reopen condition",
+        "observed": {
+          "effect": "uncertainty_change",
+          "private_guardrail": "",
+          "visible_effect": ""
+        },
+        "path": "/candidate_dispositions/2"
+      }
+    ],
+    "first_compiler_error": "R3GoogleProjectionError: candidate_dispositions[2] park cannot claim a material effect",
+    "schema_transport_accepted": true,
+    "strict_json_object_returned": true
+  },
+  "privacy_custody": {
+    "checked_in_redacted_payload_sha256": "7a9767b64b2903b9548bfe1743eb296a9b135a6f6f1cd53101b2b988759770af",
+    "opaque_reasoning_signature_redacted_from_git": true,
+    "private_raw_payload_file_sha256": "3b31b05db0b38c5ceaee302e671c3b8a68965fb5b5b3dcafeb5641bd27390d8a"
+  },
+  "reasoning_metadata": {
+    "interpretation": "The provider returned opaque reasoning-continuation signature metadata but no reasoning text. The frozen runner conservatively flagged any reasoning_details presence; this closeout does not rewrite that result.",
+    "opaque_signature_count": 1,
+    "reasoning_text_returned": false,
+    "runner_conservative_reasoning_details_flag": true
+  },
+  "run_id": "lolla-r3-fresh-consumer-case01-pressure-r2-repaired",
+  "schema_version": "lolla.r3_repaired_pressure_failure_closeout.v1",
+  "source_review": {
+    "dimensions": [
+      {
+        "dimension": "source_grounding",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "disposition_quality",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "non_forced_graph_contribution",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "original_advice_preservation",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "unsupported_claim_leakage",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "private_over_absorption",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "public_bloat_and_hedging",
+        "verdict": "not_evaluable_mechanical_contract_failed",
+        "why": "Source-first semantic review was prohibited after mechanical failure."
+      },
+      {
+        "dimension": "exact_cost_and_failure_custody",
+        "verdict": "pass",
+        "why": "Exact provider cost, response identity, raw payload hash, candidate, budget, and failure custody are complete."
+      }
+    ],
+    "scalar_quality_score": null,
+    "status": "not_run_mechanical_contract_failed",
+    "value_signal": "not_evaluable"
+  },
+  "status": "repaired_transport_passed_response_contract_failed_preserved"
+}

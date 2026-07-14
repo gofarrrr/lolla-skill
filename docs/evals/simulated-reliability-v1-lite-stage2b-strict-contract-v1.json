@@ -1,0 +1,105 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_stage2b_strict_contract.v1",
+  "status": "frozen_before_one_strict_wire_call",
+  "date": "2026-07-13",
+  "run_id": "lolla-simulated-reliability-v1-lite-current-qualification-strict-a1",
+  "purpose": "Determine whether strict wire-level schema enforcement cures the sole observed record-interface defect without changing the semantic task.",
+  "base_runtime_contract": {
+    "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+    "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+  },
+  "microtask": {
+    "case_id": "v1-case06-industry-funded-lab",
+    "task_id": "current_qualification",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+    "role_request_bundle_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/role-request-bundle.json",
+    "position_wrapper_path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json"
+  },
+  "operator": {
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_slug": "google-vertex",
+    "expected_served_provider": "Google",
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    },
+    "reasoning_effort": "medium"
+  },
+  "repeat_id": "lite_stage2b",
+  "seed": 717,
+  "only_runtime_change": {
+    "task": "current_qualification",
+    "field": "wire_mode",
+    "from": "json_object_schema_in_prompt",
+    "to": "strict_json_schema"
+  },
+  "invariants": [
+    "same source bytes",
+    "same role packet",
+    "same system prompt",
+    "same base user prompt",
+    "same response schema",
+    "same model",
+    "same provider",
+    "same seed",
+    "same reasoning effort",
+    "same maximum output tokens",
+    "no retry",
+    "no fallback",
+    "no response healing"
+  ],
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.02,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "success_contract": {
+    "operational": "The request returns through the pinned ZDR provider and compiles.",
+    "interface": "There is one admitted current observation and one admitted qualification observation, plus a valid unresolved_qualification_present review.",
+    "semantic": "Source review preserves conditional willingness, explicit safeguards, and the distinct e097 structural qualification without material strengthening or invention.",
+    "scalar_quality_score": null
+  },
+  "stop_rules": [
+    "Any HTTP or transport failure is preserved without retry.",
+    "Any strict-schema incompatibility ends this branch.",
+    "Any record quarantine fails the interface contract.",
+    "No mechanism or full-case call is authorized here.",
+    "No Gemini 3.5 call is authorized here."
+  ],
+  "frozen_inputs": [
+    {
+      "path": "scripts/evals/run_simulated_reliability_lite_stage2b_strict_probe_v1.py",
+      "sha256": "54e6513acc2855936356ce5cd2cdba9c74e3195ec1c2a2f0dba6d9a65e83a40f"
+    },
+    {
+      "path": "scripts/evals/run_simulated_reliability_case_v1.py",
+      "sha256": "27e4436afb695a4ef256124e001d7a24cca0c13f7e0c51083448b84e95c1cee5"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_position_role_first_v242.py",
+      "sha256": "2bad044e19ca09a61de6cee1e71fc676758e4997ff3c43718eeb7d44a9391a8b"
+    },
+    {
+      "path": "docs/evals/simulated-reliability-v1-runtime-contract-v14-transfer.json",
+      "sha256": "6c897f6f0fcdedb60e35420d86812d566011e0cc0dc68ca1754d1ab62715b225"
+    },
+    {
+      "path": "research/simulated-reliability-v1-lite-stage2-2026-07-13/a1/source-review.json",
+      "sha256": "1963e175f1148216b148bbfd101b364fd88edd65b1f2610a79242bcf7c8a050d"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case06-industry-funded-lab.txt",
+      "sha256": "3c6c0bc8937f06a639f3356b1009a754b7239e8cb510d1389a9174bbf52b0f22"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/role-request-bundle.json",
+      "sha256": "a922b1e54658fb7b03653ab6d8a612d0e072431e8f0be68725e4ca64eb1c14f5"
+    },
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/provider-free-role-input-preflight/transfer/v1-case06-industry-funded-lab/position-wrapper.json",
+      "sha256": "d8eca045cf50c1fc0e8def96913fe806a9780a47da21837183861ee3f3f547a9"
+    }
+  ]
+}

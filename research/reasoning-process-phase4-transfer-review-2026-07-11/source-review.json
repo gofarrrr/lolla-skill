@@ -1,0 +1,145 @@
+{
+  "schema_version": "lolla.reasoning_process_phase4_transfer_source_review.v1",
+  "status": "source_first_review_complete_transfer_gate_fail",
+  "date": "2026-07-11",
+  "review_method": {
+    "order": "authoritative conversation and protected source spans before output polish",
+    "provider_or_evaluator_calls": 0,
+    "protected_targets_seen_by_models": false,
+    "exact_visibility_decided_mechanically": true,
+    "semantic_status_decided_by_source_review": true,
+    "independent_gold": false
+  },
+  "cases": [
+    {
+      "case_id": "amb1-case05-family-archive",
+      "dimension_floor": "pass_5_of_5_have_admitted_records",
+      "protected_exact_visibility": "1_of_5",
+      "targets": [
+        {
+          "target_id": "case05-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "semantic_status": "partial",
+          "exact_target_visible": false,
+          "finding": "The reader captured the move from catalog-first delay to a narrow exhibition and cited the final direction, but it did not cite or preserve the user's load-bearing warning that the one-month commitment could make the unresolved joint-selection rule feel settled."
+        },
+        {
+          "target_id": "case05-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "semantic_status": "supported",
+          "exact_target_visible": true,
+          "finding": "The local Turn-5 reader recovered the narrow memory-assembly alternative and its attached tradeoff that process could displace the relatives and migration stories."
+        },
+        {
+          "target_id": "case05-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "semantic_status": "not_observed",
+          "exact_target_visible": false,
+          "finding": "The reader produced four other source-supported evidence boundaries but omitted the user's explicit distinction between Tomas testing a principle and threatening an action, together with the assistant's principle-action boundary."
+        },
+        {
+          "target_id": "case05-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "semantic_status": "partial",
+          "exact_target_visible": false,
+          "finding": "The reader preserved that the disputed-object decision rule remains unresolved, but it omitted the deadline's specific capacity to harden that unresolved rule prematurely."
+        },
+        {
+          "target_id": "case05-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "semantic_status": "not_observed",
+          "exact_target_visible": false,
+          "finding": "The reader selected three other pressures but missed the direct early correction that Tomas did not seek cosmetic resolution and the assistant's resulting reframe toward different tolerances for incomplete evidence."
+        }
+      ],
+      "additional_review": {
+        "source_strength_inflation_count": 0,
+        "context_invisible_label_count": 0,
+        "invalid_admitted_record_count": 0,
+        "note": "Some challenge records concern reported family objections or the user's self-challenge rather than a direct user-assistant correction. They remain source-supported pressures, but they do not substitute for the protected direct correction."
+      }
+    },
+    {
+      "case_id": "amb1-case01-product-scope",
+      "dimension_floor": "pass_5_of_5_have_admitted_records",
+      "protected_exact_visibility": "4_of_5",
+      "targets": [
+        {
+          "target_id": "case01-position-trajectory",
+          "view_kind": "position_and_decision_trajectory",
+          "semantic_status": "supported",
+          "exact_target_visible": true,
+          "finding": "The reader captured the shift from uncertainty about building to bounded discovery and preserved the prototype and trust qualifications."
+        },
+        {
+          "target_id": "case01-exploration-alternative",
+          "view_kind": "exploration_and_alternatives",
+          "semantic_status": "supported",
+          "exact_target_visible": true,
+          "finding": "The local Turn-5 reader recovered the time-boxed investigation with separate reliability ownership and the staffing failure condition."
+        },
+        {
+          "target_id": "case01-evidence-discipline",
+          "view_kind": "evidence_and_assumption_discipline",
+          "semantic_status": "partial",
+          "exact_target_visible": false,
+          "finding": "After the preserved 429 and cooled operational completion, the reader correctly warned that motivation is not market validation and that the remaining work may not be contained, but it did not cite Lina's specific seventy-percent reuse estimate that the protected boundary was meant to qualify."
+        },
+        {
+          "target_id": "case01-unresolved-state",
+          "view_kind": "uncertainty_and_unresolved_state",
+          "semantic_status": "supported",
+          "exact_target_visible": true,
+          "finding": "The reader preserved the no-production-code boundary, the risk of unofficial momentum, and the possibility that the engagement is heard as a polite refusal."
+        },
+        {
+          "target_id": "case01-challenge-revision",
+          "view_kind": "challenge_and_revision_response",
+          "semantic_status": "supported",
+          "exact_target_visible": true,
+          "finding": "The reader captured the user's correction of the loud-customer frame and the assistant's broader relationship-obligation and product-learning response."
+        }
+      ],
+      "additional_review": {
+        "source_strength_inflation_count": 0,
+        "context_invisible_label_count": 0,
+        "invalid_admitted_record_count": 0
+      }
+    }
+  ],
+  "aggregate": {
+    "eventual_completed_jobs": "22_of_22",
+    "first_attempt_operational_success": "21_of_22",
+    "provider_requests_including_operational_completion": 23,
+    "admitted_records": 52,
+    "quarantined_records": 0,
+    "critical_dimensions_with_zero_records": 0,
+    "protected_exact_visibility": "5_of_10",
+    "protected_semantic_status_counts": {
+      "supported": 5,
+      "partial": 3,
+      "not_observed": 2
+    },
+    "same_load_bearing_failure_on_both_cases": "evidence reader omitted part or all of the protected claim-boundary pair",
+    "source_strength_inflation_count": 0,
+    "context_invisible_label_count": 0,
+    "invalid_admitted_record_count": 0,
+    "exact_source_signature_duplicate_excess_count": 0,
+    "estimated_cost_usd": 0.03333325
+  },
+  "decision": {
+    "phase4_transfer_gate": "fail",
+    "stability_repeat_calls_authorized": false,
+    "completed_case_prompt_tuning_authorized": false,
+    "generic_semantic_retry_authorized": false,
+    "graph_or_runtime_authorized": false,
+    "next_step": "provider_free_failure_analysis_and_bounded_chronological_shard_design_for_the_four_full_conversation_readers"
+  },
+  "interpretation": "The mechanisms produce useful, source-linked process material in every dimension, but the four whole-conversation readers still select salient themes at the expense of protected minority relationships. This is a transfer failure of recall and semantic selection, not a source-ID, schema, custody, or empty-output failure.",
+  "nonclaims": [
+    "Protected-target failure does not make the other admitted records useless.",
+    "Record volume and complete dimensions do not prove reasoning quality or trust.",
+    "The protected fixtures are same-session development targets rather than independent gold.",
+    "No claim about final-answer correctness, graph value, or runtime readiness follows."
+  ]
+}

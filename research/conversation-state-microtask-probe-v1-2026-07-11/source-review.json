@@ -1,0 +1,112 @@
+{
+  "schema_version": "lolla.conversation_state_microtask_source_review.v1",
+  "status": "completed_source_first_review",
+  "run_id": "conversation_state_microtask_probe_v1_20260711_a1",
+  "case_id": "amb1-case02-nonprofit-scale",
+  "review_order": "source_then_reviewed_packet_then_observed_family",
+  "review_sequence_attestation": {
+    "source_opened_first": true,
+    "reviewed_packet_opened_second": true,
+    "observed_positions_opened_third": true,
+    "review_completed_without_evaluator_call": true
+  },
+  "family_results": {
+    "positions": {
+      "status": "failed",
+      "operational_status": "ok",
+      "semantic_status": "candidate_quarantined",
+      "axes": {
+        "decision_summary_supported": {
+          "passed": true,
+          "reason": "The response recovered the conditional four-month twice-monthly Willow Hub direction and its coordinator and curriculum conditions."
+        },
+        "focal_position_present": {
+          "passed": false,
+          "reason": "The plan was present but fragmented: the assistant's ready-enough qualification was emitted as a separate position instead of part of the focal developed position."
+        },
+        "ownership_joint": {
+          "passed": false,
+          "expected": "joint",
+          "observed": [
+            "user",
+            "assistant"
+          ],
+          "reason": "The source-reviewed position was jointly developed across assistant Turn 6, user Turn 7, and assistant Turn 7. The response split these into separately owned records."
+        },
+        "user_turn_7_contribution_present": {
+          "passed": true,
+          "reason": "The user's conditional Turn 7 plan was quoted."
+        },
+        "assistant_turn_7_contribution_present_in_focal_trajectory": {
+          "passed": false,
+          "reason": "Assistant Turn 7 appeared only as a separately originated position, not as a qualification to the focal joint plan."
+        },
+        "zero_material_source_custody_violations": {
+          "passed": false,
+          "violation_count": 5,
+          "reason": "Every returned evidence identifier omitted the required literal span- prefix. Exact excerpts were present, but no candidate could resolve to the catalog and all event snapshots remained null."
+        }
+      },
+      "candidate_count": 3,
+      "invalid_candidate_count": 3,
+      "accepted_current_view_count": 0
+    },
+    "threads": {
+      "status": "not_observed_operational_failure",
+      "operational_status": "http_error_400",
+      "semantic_status": "not_observed",
+      "provider": "Google AI Studio via OpenRouter",
+      "reason": "The provider rejected the exact frozen thread schema as INVALID_ARGUMENT before inference. No thread extraction quality can be inferred."
+    },
+    "constraints": {
+      "status": "not_run_stop_rule",
+      "reason": "The operational thread failure triggered the prospectively frozen stop rule. The third call was not made."
+    }
+  },
+  "composition": {
+    "attempted": false,
+    "accepted_observed_path_allowed": false,
+    "graph_routing_allowed": false,
+    "reason": "The positions family was quarantined, the threads family was not observed, and the constraints family was not run."
+  },
+  "calls": {
+    "authorized_maximum": 3,
+    "attempted": 2,
+    "successful_provider_inference": 1,
+    "operational_failures": 1,
+    "not_run": 1,
+    "automatic_retries": 0,
+    "evaluator_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0
+  },
+  "usage": {
+    "complete_usage_call_count": 1,
+    "prompt_tokens": 3915,
+    "completion_tokens": 368,
+    "total_tokens": 4283,
+    "observed_estimated_cost_usd": 0.00153075,
+    "cost_ceiling_usd": 0.02,
+    "http_error_call_cost": "not_observed"
+  },
+  "aggregate": {
+    "probe_passed": false,
+    "result_kind": "informative_failure",
+    "failed_or_unobserved_families": [
+      "positions",
+      "threads",
+      "constraints"
+    ],
+    "full_pipeline_authorized": false,
+    "graph_calls_authorized": false,
+    "runtime_integration_authorized": false
+  },
+  "evaluator_calls": 0,
+  "non_claims": [
+    "source_review_is_not_independent_gold",
+    "provider_rejection_is_not_thread_quality",
+    "exact_excerpts_do_not_repair_invalid_span_ids",
+    "no_composite_quality_score",
+    "not_full_pipeline_authority"
+  ]
+}

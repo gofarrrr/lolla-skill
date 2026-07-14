@@ -1,0 +1,129 @@
+{
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "global_synthesis_performed": false,
+      "model_records_changed": false,
+      "record_level_validation_weakened": false,
+      "semantic_merge_performed": false
+    },
+    "envelope": {
+      "record_count": 1,
+      "semantic_records_validated": false,
+      "status": "shard_response_envelope_valid"
+    },
+    "observations": [
+      {
+        "case_id": "amb1-case05-family-archive",
+        "family": "challenge_and_revision_response",
+        "graph_routing_eligible": false,
+        "interpretation": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+        "observation_id": "rpshard-amb1-case05-family-archive-challenge_and_revision_response-01-425e7b7d66",
+        "provenance": {
+          "call_id": "",
+          "model": "",
+          "producer_id": "chronological-shard-same-session-nonblind",
+          "producer_kind": "source_reviewer",
+          "prompt_sha256": ""
+        },
+        "raw_record": {
+          "record": {
+            "challenge_evidence_ids": [
+              "e010"
+            ],
+            "challenge_type": "correction",
+            "interpretation": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+            "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+            "prior_claim_or_frame_evidence_ids": [
+              "e009"
+            ],
+            "response_evidence_ids": [
+              "e016"
+            ],
+            "response_type": "revise",
+            "revision_evidence_ids": [
+              "e016"
+            ],
+            "status": "supported"
+          },
+          "record_identity": "case05-challenge-revision",
+          "record_index": 1
+        },
+        "raw_record_sha256": "sha256:425e7b7d6602b4b32f7252edfec2c71ed94a911f37dfe5a92aec0ffe55982a33",
+        "role_source_span_ids": {
+          "challenge_evidence_ids": [
+            "span-a17d62622004772a"
+          ],
+          "prior_claim_or_frame_evidence_ids": [
+            "span-a2cbc172339e18c5"
+          ],
+          "response_evidence_ids": [
+            "span-d0fc0d48fdbe520b"
+          ],
+          "revision_evidence_ids": [
+            "span-d0fc0d48fdbe520b"
+          ]
+        },
+        "schema_version": "lolla.reasoning_process_chronological_shard_observation.v1",
+        "semantic_status": "supported",
+        "shard_id": "amb1-case05-family-archive-challenge_and_revision_response-shard-01",
+        "source_span_ids": [
+          "span-a2cbc172339e18c5",
+          "span-a17d62622004772a",
+          "span-d0fc0d48fdbe520b"
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "observation_id": "rpshard-amb1-case05-family-archive-challenge_and_revision_response-01-425e7b7d66",
+        "raw_record_sha256": "sha256:425e7b7d6602b4b32f7252edfec2c71ed94a911f37dfe5a92aec0ffe55982a33",
+        "record_index": 1,
+        "terminal_state": "admitted"
+      }
+    ],
+    "schema_version": "lolla.reasoning_process_chronological_shard_response.v1",
+    "shard_terminal_disposition": "compiled",
+    "status": "chronological_shard_record_custody_complete"
+  },
+  "response": {
+    "global_limitations": "One protected development relationship; no quality or final-answer judgment.",
+    "records": [
+      {
+        "challenge_evidence_ids": [
+          "e010"
+        ],
+        "challenge_type": "correction",
+        "interpretation": "The user challenges the assistant's implication that Tomas wants cosmetic resolution; the assistant reframes the conflict as different tolerances for incomplete evidence.",
+        "limitations": "Same-session source-reviewed development fixture; not independent or exhaustive gold.",
+        "prior_claim_or_frame_evidence_ids": [
+          "e009"
+        ],
+        "response_evidence_ids": [
+          "e016"
+        ],
+        "response_type": "revise",
+        "revision_evidence_ids": [
+          "e016"
+        ],
+        "status": "supported"
+      }
+    ],
+    "status": "supported"
+  },
+  "target": {
+    "co_located_in_exactly_one_focal_shard": true,
+    "fixture_path": "research/reasoning-process-view-specific-v2-2026-07-11/fixtures/amb1-case05-family-archive/challenge_and_revision_response.json",
+    "matching_shard_paths": [
+      "research/reasoning-process-chronological-shards-2026-07-11/cases/amb1-case05-family-archive/challenge_and_revision_response/shard-01.json"
+    ],
+    "source_span_ids": [
+      "span-a2cbc172339e18c5",
+      "span-a17d62622004772a",
+      "span-d0fc0d48fdbe520b"
+    ],
+    "target_id": "case05-challenge-revision",
+    "view_kind": "challenge_and_revision_response"
+  }
+}

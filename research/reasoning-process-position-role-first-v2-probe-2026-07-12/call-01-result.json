@@ -1,0 +1,205 @@
+{
+  "admitted_record_count": 2,
+  "automatic_retries": 0,
+  "candidate_payload": {
+    "global_limitations": "none",
+    "records": [
+      {
+        "evidence_ids": [
+          "e001"
+        ],
+        "expression_kinds": [
+          "conditional_willingness"
+        ],
+        "fidelity_note": "The user states they run a local nonprofit newsroom with eleven full-time staff, establishing the starting organizational context.",
+        "limitations": "none",
+        "object_interpretations": [
+          "The user's role as executive of a small nonprofit newsroom"
+        ],
+        "object_kinds": [
+          "intended_outcome_or_policy"
+        ],
+        "role": "starting",
+        "role_interpretation": "The user's starting position is that of a leader of a small nonprofit newsroom, which is the baseline from which the platform offer is evaluated.",
+        "source_evidence_ids": [
+          "e001"
+        ],
+        "status": "unclear"
+      },
+      {
+        "evidence_ids": [
+          "e004"
+        ],
+        "expression_kinds": [
+          "conditional_willingness"
+        ],
+        "fidelity_note": "The user expresses excitement about the platform's potential but also worry about shaping coverage for feed performance, showing an undecided stance.",
+        "limitations": "none",
+        "object_interpretations": [
+          "The user's internal conflict between excitement and worry about editorial independence"
+        ],
+        "object_kinds": [
+          "intended_outcome_or_policy"
+        ],
+        "role": "starting",
+        "role_interpretation": "The user's starting hesitation is a visible undecided stance: excitement about reach and revenue versus worry about editorial independence.",
+        "source_evidence_ids": [
+          "e004"
+        ],
+        "status": "unclear"
+      }
+    ],
+    "status": "unclear"
+  },
+  "candidate_payload_sha256": "6a7d26c926af7daec13b457e6cbec496304f8c5c2329cd3dfc5db6928fd17416",
+  "compiled": {
+    "boundary": {
+      "direct_graph_routing_allowed": false,
+      "object_expression_compatibility_gate_added": false,
+      "one_alias_per_component_enforced": true,
+      "prose_keyword_gate_added": false,
+      "semantic_merge_performed": false,
+      "semantic_role_or_category_correctness_inferred_by_code": false
+    },
+    "global_limitations": "none",
+    "observations": [
+      {
+        "case_id": "amb3-case01-journalism-platform-pilot",
+        "fidelity_note": "The user states they run a local nonprofit newsroom with eleven full-time staff, establishing the starting organizational context.",
+        "graph_routing_eligible": false,
+        "limitations": "none",
+        "observation_id": "rprolev2-starting-01-714591a439270e",
+        "provenance": {
+          "call_id": "role-starting",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9"
+        },
+        "raw_record_sha256": "sha256:714591a439270e97f7c39b840e4bf3160749d0d0a8783b9e6c848b2f1ed05a04",
+        "role": "starting",
+        "role_interpretation": "The user's starting position is that of a leader of a small nonprofit newsroom, which is the baseline from which the platform offer is evaluated.",
+        "role_record_id": "rprolev2-starting-01-714591a439270e",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e001",
+            "text": "I run a local nonprofit newsroom with eleven full-time staff."
+          }
+        ],
+        "source_evidence_ids": [
+          "e001"
+        ],
+        "source_record_index": 1,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e001",
+            "stance_expression_kind": "conditional_willingness",
+            "stance_object_interpretation": "The user's role as executive of a small nonprofit newsroom",
+            "stance_object_kind": "intended_outcome_or_policy"
+          }
+        ],
+        "terminal_state": "admitted"
+      },
+      {
+        "case_id": "amb3-case01-journalism-platform-pilot",
+        "fidelity_note": "The user expresses excitement about the platform's potential but also worry about shaping coverage for feed performance, showing an undecided stance.",
+        "graph_routing_eligible": false,
+        "limitations": "none",
+        "observation_id": "rprolev2-starting-02-d38345ff346a7b",
+        "provenance": {
+          "call_id": "role-starting",
+          "model": "deepseek/deepseek-v4-flash",
+          "producer_id": "deepseek/deepseek-v4-flash",
+          "producer_kind": "model_operator_eval",
+          "prompt_sha256": "sha256:3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9"
+        },
+        "raw_record_sha256": "sha256:d38345ff346a7bfa9adb2d3a3444f575dd1c12c55143046a6394416e811995cb",
+        "role": "starting",
+        "role_interpretation": "The user's starting hesitation is a visible undecided stance: excitement about reach and revenue versus worry about editorial independence.",
+        "role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+        "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+        "semantic_status": "unclear",
+        "shard_id": "amb3-case01-journalism-platform-pilot-position_and_decision_trajectory-shard-01",
+        "source_evidence": [
+          {
+            "alias": "e004",
+            "text": "I am excited by that possibility but worried that we will start shaping coverage around what performs inside their feed."
+          }
+        ],
+        "source_evidence_ids": [
+          "e004"
+        ],
+        "source_record_index": 2,
+        "stance_components": [
+          {
+            "role": "starting",
+            "source_evidence_id": "e004",
+            "stance_expression_kind": "conditional_willingness",
+            "stance_object_interpretation": "The user's internal conflict between excitement and worry about editorial independence",
+            "stance_object_kind": "intended_outcome_or_policy"
+          }
+        ],
+        "terminal_state": "admitted"
+      }
+    ],
+    "records": [
+      {
+        "raw_record_sha256": "sha256:714591a439270e97f7c39b840e4bf3160749d0d0a8783b9e6c848b2f1ed05a04",
+        "record_index": 1,
+        "role_record_id": "rprolev2-starting-01-714591a439270e",
+        "terminal_state": "admitted"
+      },
+      {
+        "raw_record_sha256": "sha256:d38345ff346a7bfa9adb2d3a3444f575dd1c12c55143046a6394416e811995cb",
+        "record_index": 2,
+        "role_record_id": "rprolev2-starting-02-d38345ff346a7b",
+        "terminal_state": "admitted"
+      }
+    ],
+    "response_status": "unclear",
+    "role": "starting",
+    "role_terminal_disposition": "compiled",
+    "schema_version": "lolla.reasoning_process_position_role_response.v2",
+    "status": "position_role_response_custody_complete"
+  },
+  "completion_tokens": 401,
+  "duration_seconds": 8.69,
+  "embedding_calls": 0,
+  "estimated_cost_usd": 0.00022914,
+  "evaluator_calls": 0,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "graph_calls": 0,
+  "json_schema_candidate_present": true,
+  "model": "deepseek/deepseek-v4-flash",
+  "model_attribution_status": "served_version_alias",
+  "operational_status": "ok",
+  "pipeline_calls": 0,
+  "prompt_tokens": 908,
+  "provider_attribution_status": "matched",
+  "provider_calls": 1,
+  "provider_diagnostic": {},
+  "provider_display_name": "Alibaba",
+  "provider_payload_sha256": "1a82d87c8fb53551d01ad3cea48493705b63ba0f7038579191f72dbcf47faad4",
+  "provider_reported_cost_usd": 0.00022914,
+  "provider_slug": "alibaba",
+  "quarantined_record_count": 0,
+  "raw_provider_content_included": false,
+  "response_healing": false,
+  "response_schema_sha256": "56c500e6f44597dfdbf7c52674023bc30c1bda0157cdfced268fd8ebf0671f9e",
+  "runtime_calls": 0,
+  "seed": 0,
+  "served_model": "deepseek/deepseek-v4-flash-20260423",
+  "served_provider": "Alibaba",
+  "system_prompt_sha256": "b7cd267d161cb76630f6df15114bb6454b36a22970098cdc6f22bbd0962b6937",
+  "task_id": "role-starting",
+  "temperature": 0.0,
+  "total_tokens": 1309,
+  "user_prompt_sha256": "3da48e0c8630aac6072148555f9040234cbd59a58593504d80fa86f6602c5cb9",
+  "validation_error": "",
+  "wire_schema_accepted": true
+}

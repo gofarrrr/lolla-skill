@@ -1,0 +1,51 @@
+{
+  "schema_version": "lolla.joint_process_reasoning_target.v0",
+  "status": "research_only_runtime_dormant",
+  "audited_object": "complete_joint_conversation_trajectory",
+  "routing_target": "reasoning_weakness_unresolved_after_complete_conversation",
+  "semantic_owner": "llm_or_human",
+  "structural_owner": "deterministic_harness",
+  "complete_conversation_required": true,
+  "controlled_mechanism_coverage": "exactly_once_each",
+  "joint_statuses": [
+    "unresolved",
+    "resolved_in_conversation",
+    "ambiguous",
+    "not_observed"
+  ],
+  "status_effects": {
+    "unresolved": "active_seed_routing",
+    "ambiguous": "edge_reserve_no_active_seed",
+    "resolved_in_conversation": "audit_only_no_seed",
+    "not_observed": "audit_only_no_seed"
+  },
+  "other_review_required_effect": "manual_review_reserve_no_seed",
+  "actor_observation_policy": {
+    "actor_specific_evidence_preserved": true,
+    "actor_specific_presence_automatically_routes": false,
+    "temporary_pattern_repaired_later_routes": false,
+    "unresolved_joint_trajectory_judgment_is_probabilistic": true
+  },
+  "evidence_policy": {
+    "source_turns_required_for_unresolved_resolved_and_ambiguous": true,
+    "resolution_turns_required_for_resolved": true,
+    "not_observed_requires_empty_source_and_resolution_turns": true,
+    "facts_removed_only_from_sealed_routing_projection": true,
+    "full_conversation_retained_outside_projection": true
+  },
+  "deterministic_forbidden": [
+    "infer_resolution_from_keywords",
+    "prefer_assistant_or_user_by_rule",
+    "route_actor_local_presence_without_joint_status",
+    "rewrite_semantic_status_for_stability",
+    "treat_ambiguous_as_not_observed",
+    "treat_resolved_as_never_present"
+  ],
+  "non_claims": [
+    "not_a_complete_reasoning_ontology",
+    "not_semantic_accuracy_proof",
+    "not_graph_applicability",
+    "not_reasoning_quality_proof",
+    "not_runtime_integration_authority"
+  ]
+}

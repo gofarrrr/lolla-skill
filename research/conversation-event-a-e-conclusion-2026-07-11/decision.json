@@ -1,0 +1,108 @@
+{
+  "schema_version": "lolla.conversation_event_a_e_decision.v1",
+  "date": "2026-07-11",
+  "status": "material_redesign_required",
+  "terminal_decision": "Do not integrate the decomposed conversation-event path into the live skill, reasoning abstraction, or graph.",
+  "phase_outcomes": {
+    "A_provider_free_representation": {
+      "status": "pass",
+      "cases": 5,
+      "turn_pair_windows": 35,
+      "harvest_contracts": 105,
+      "reviewed_events_preserved": 79,
+      "synthesis_candidates_preserved": 55,
+      "atomic_constraints_preserved": 45,
+      "invalid_events": 0,
+      "invalid_syntheses": 0,
+      "handoff_violations": 0,
+      "direct_graph_seeds": 0,
+      "provider_calls": 0
+    },
+    "B_small_window_harvesting": {
+      "status": "diagnostic_fail_exact_gate",
+      "provider_calls": 84,
+      "estimated_cost_usd": 0.05368,
+      "operational_success_rate": 1.0,
+      "typed_admission_rate": 1.0,
+      "invalid_source_events": 0,
+      "development_cross_lens_coverage": "16/16",
+      "transfer_cross_lens_coverage": "30/32",
+      "transfer_coverage": 0.9375,
+      "frozen_transfer_threshold": 0.95,
+      "finding": "The three harvesters were source-reliable and high-recall but produced 88-95 overlapping events per case. Complementary lenses recovered evidence across families, while exact per-family scoring mischaracterized useful cross-lens coverage."
+    },
+    "C_fresh_context_synthesis": {
+      "status": "fail_after_one_generic_repair",
+      "provider_calls": 18,
+      "estimated_cost_usd": 0.07867,
+      "repair_typed_admission_rate": 0.7778,
+      "repair_quarantined_thread_outputs": 2,
+      "current_custody_compiled_cases": 1,
+      "current_custody_quarantined_cases": 2,
+      "position_focal_direction_present_cases": 3,
+      "position_exact_minimal_composition_cases": 0,
+      "position_focal_state_correct_cases": 2,
+      "reviewed_focal_thread_explicit_cases": 1,
+      "constraint_source_and_mode_matches": 8,
+      "constraint_predictions": 26,
+      "reviewed_atomic_constraints": 28,
+      "constraint_strict_precision": 0.3077,
+      "constraint_strict_recall": 0.2857,
+      "conservative_source_strength_inflation_count_min": 7
+    },
+    "D_end_to_end_gate": {
+      "status": "fail",
+      "provider_calls": 0,
+      "semantically_passing_cases": 0,
+      "integration_ready": false,
+      "reason": "Two of three cases fail closed mechanically and the one compilable case fails the frozen semantic constraint requirements."
+    },
+    "E_reasoning_abstraction_and_graph": {
+      "status": "not_executed_by_design",
+      "provider_calls": 0,
+      "graph_calls": 0,
+      "direct_graph_seeds": 0,
+      "reason": "Phase D did not pass."
+    }
+  },
+  "program_totals": {
+    "provider_calls": 102,
+    "automatic_retries": 0,
+    "estimated_cost_usd": 0.13235,
+    "graph_calls": 0,
+    "runtime_modified": false
+  },
+  "what_worked": [
+    "Turn-pair windows made local extraction operationally reliable.",
+    "Stable span IDs and deterministic exact-text resolution eliminated source-custody failures.",
+    "Every harvested and synthesized proposal received terminal custody.",
+    "Complementary probabilistic lenses recovered reviewed evidence that individual families missed.",
+    "Fail-closed composition and the graph boundary prevented invalid state from leaking downstream."
+  ],
+  "what_failed": [
+    "Three overlapping harvest lenses expanded each 14-message conversation into 88-95 events, moving overload from the transcript into fan-in.",
+    "Fresh synthesis fragmented compatible plan elements and sometimes mislabeled provisional joint plans as accepted.",
+    "Thread synthesis repeatedly cited nearly every related event instead of minimal trajectory evidence and omitted the narrow reviewed concern in two cases.",
+    "Explicit source-strength definitions did not prevent inflation or recover enough earlier load-bearing constraints.",
+    "The first compiler version allowed incomplete synthesis families to compile; current custody now quarantines them."
+  ],
+  "next_redesign": [
+    "Design a bounded per-window semantic consolidation step that merges overlapping lens proposals probabilistically while preserving every input and disposition; deterministic code must not decide relevance.",
+    "Cap the normalized fan-in by contract and test representation provider-free before calls.",
+    "Move claim-strength classification to the local window where attribution language is visible, then prohibit global synthesis from silently relabeling it.",
+    "Feed global position and thread synthesis consolidated turn records rather than 88-95 raw overlapping events.",
+    "Reopen provider calls only after a new provider-free representation and evaluation contract pass."
+  ],
+  "unknowns": [
+    "The reviewed handoffs are useful but not exhaustive semantic gold; exact-source metrics under-credit some faithful alternative evidence.",
+    "The experiment tested one low-cost model and one sample per case, not cross-model or repeat stability.",
+    "All cases contain fourteen messages; longer real conversations may amplify fan-in overload.",
+    "No end-user utility or downstream reasoning-pressure improvement was tested because state quality did not clear the gate."
+  ],
+  "non_claims": [
+    "failure_of_this_architecture_is_not_failure_of_the_hybrid_product_thesis",
+    "different_outputs_are_not_automatically_better_outputs",
+    "source_grounding_is_not_semantic_correctness",
+    "no_runtime_or_graph_integration_authority"
+  ]
+}

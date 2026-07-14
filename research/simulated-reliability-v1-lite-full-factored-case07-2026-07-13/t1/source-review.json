@@ -1,0 +1,63 @@
+{
+  "schema_version": "lolla.simulated_reliability_lite_full_factored_case_source_review.v1",
+  "status": "all_user_factors_pass_one_of_two_coverage_calls_truncated",
+  "case_id": "v1-case07-cooperative-scheduling",
+  "expected_public_behavior": "stand_down_expected",
+  "model": "google/gemini-3.1-flash-lite",
+  "provider": "Google",
+  "source_first": true,
+  "scalar_quality_score": null,
+  "user_factor_review": {
+    "operational_passes": 9,
+    "semantic_passes": 9,
+    "resolved_mechanisms": [
+      "acknowledged_constraint_not_gated",
+      "counterpressure_acknowledged_not_integrated"
+    ],
+    "not_observed_mechanisms": [
+      "ambiguous_signal_treated_as_commitment",
+      "criteria_defined_after_commitment",
+      "initial_frame_persists_after_question_change",
+      "missing_reversal_condition",
+      "reversible_path_not_considered",
+      "status_signal_used_as_evidence",
+      "upside_downside_evidence_asymmetry"
+    ],
+    "assessment": "The initial scheduling, channel, privacy, and voluntariness constraints changed the final operating rules, audit, staffing threshold, pause vote, and final member decision. The broader counterpressure and the narrower ungated-constraint pattern were therefore historically observed but repaired. The other controlled mechanisms are not supported by the bounded starting/current records."
+  },
+  "coverage_review": {
+    "planned_calls": 2,
+    "counterpressure": {
+      "operational": "pass",
+      "coverage": "operationalized",
+      "semantic_review": "pass",
+      "reason": "The assistant supplied concrete scheduling, privacy, allocation, audit, and governance protections."
+    },
+    "acknowledged_constraint_not_gated": {
+      "operational": "fail_length",
+      "coverage": null,
+      "completion_tokens": 985,
+      "reasoning_tokens": 957,
+      "reasoning_effort": "low",
+      "reason": "The strict JSON was truncated after Google consumed nearly the full completion budget as reasoning tokens. No semantic result was admitted."
+    }
+  },
+  "custody_and_cost": {
+    "provider_calls": 11,
+    "provider_reported_cost_usd": 0.01012275,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false,
+    "cost_ceiling_usd": 0.03,
+    "cost_ceiling_met": true
+  },
+  "decision": {
+    "case_joined": false,
+    "false_route_observed": false,
+    "move_to_pressure_case": false,
+    "retry_same_contract": false,
+    "increase_model_price": false,
+    "increase_output_ceiling": false,
+    "next": "Run only the failed assistant-coverage task under a separately frozen minimal-reasoning contract. OpenRouter's current model catalog lists minimal as supported and as the model's default effort. If it compiles, join it with the nine preserved user results and the successful counterpressure coverage provider-free."
+  }
+}

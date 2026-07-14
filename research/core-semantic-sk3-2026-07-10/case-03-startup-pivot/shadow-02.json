@@ -1,0 +1,2921 @@
+{
+  "current_view_manifest": {
+    "ambiguous_candidate_ids_by_family": {
+      "assistant_stance_events": [],
+      "dropped_thread_events": [],
+      "evidence_boundary_events": [],
+      "live_constraint_events": [],
+      "option_events": [],
+      "question_events": [],
+      "user_pressure_events": []
+    },
+    "event_count": 26,
+    "invalid_candidates_excluded": true,
+    "reconstructible_from_candidate_ledger": true,
+    "schema_version": "lolla.current_semantic_view.v0",
+    "selected_candidate_ids_by_family": {
+      "assistant_stance_events": [
+        "candidate_assistant_stance_events_000_07889117905d",
+        "candidate_assistant_stance_events_001_8e1db5761f64",
+        "candidate_assistant_stance_events_002_816a797782f7",
+        "candidate_assistant_stance_events_003_d543367b0405",
+        "candidate_assistant_stance_events_004_8ff5df59442b",
+        "candidate_assistant_stance_events_005_c85867bb8544"
+      ],
+      "dropped_thread_events": [
+        "candidate_dropped_thread_events_000_630d94f6cee7"
+      ],
+      "evidence_boundary_events": [
+        "candidate_evidence_boundary_events_000_592aacb90663",
+        "candidate_evidence_boundary_events_001_d259c84c3eda",
+        "candidate_evidence_boundary_events_002_cc7590557cc7"
+      ],
+      "live_constraint_events": [
+        "candidate_live_constraint_events_000_4967473c9b2a",
+        "candidate_live_constraint_events_001_f61327c2ed9e",
+        "candidate_live_constraint_events_002_a4262ecb7dd5",
+        "candidate_live_constraint_events_003_893216ee87ee",
+        "candidate_live_constraint_events_004_bcf429f71981"
+      ],
+      "option_events": [
+        "candidate_option_events_000_a94606933574",
+        "candidate_option_events_001_f4d66a6484d2"
+      ],
+      "question_events": [
+        "candidate_question_events_000_91ed6479f548",
+        "candidate_question_events_001_105cc60bd86c",
+        "candidate_question_events_002_db8f83409da1",
+        "candidate_question_events_003_84734b2e8079",
+        "candidate_question_events_004_74a61c204d08"
+      ],
+      "user_pressure_events": [
+        "candidate_user_pressure_events_000_fe8e0a1d0b88",
+        "candidate_user_pressure_events_001_ec9c2c43ea20",
+        "candidate_user_pressure_events_002_6fa383140a28",
+        "candidate_user_pressure_events_003_5866de9696b3"
+      ]
+    },
+    "view_sha256": "b2d6b15c0faf1ecb51307f275af6ab53bdb564436c77716acde2a51de259a019"
+  },
+  "decision_work_projection": [
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "question_initial_t1_1f38b8d2f8dc",
+        "question_intermediate_t3_a7f57f11905c",
+        "question_intermediate_t4_f427be0f6d63",
+        "question_intermediate_t5_34b21681aaba",
+        "question_current_t6_e88379943e01"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 5,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "stance_t2_condition_00"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "option_option_t1_a1f5560265d5"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "option_evidence_gate_t2_9df944ec8ddc"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "user_pressure_correction_t2_3f95a6425d67",
+        "user_pressure_concern_t3_d4c0dcbdf484",
+        "user_pressure_concern_t4_4219902349c4",
+        "user_pressure_concern_t5_bc248e35ea0a"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "grounding": "span",
+      "item_count": 1,
+      "item_ids": [
+        "dropped_thread_t3_user_63c49c48f2f5"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 1,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "grounding": "span",
+      "item_count": 5,
+      "item_ids": [
+        "live_constraint_t1_constraint_4d40eed372df",
+        "live_constraint_t1_constraint_dfdb7474813f",
+        "live_constraint_t3_concern_828e5d546df3",
+        "live_constraint_t5_constraint_6c451f3c17a7",
+        "live_constraint_t7_constraint_176e595a08b4"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 5,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "grounding": "none",
+      "item_count": 0,
+      "item_ids": [],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 0,
+      "status": "not_observed"
+    },
+    {
+      "contract_field": true,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "grounding": "span",
+      "item_count": 3,
+      "item_ids": [
+        "evidence_boundary_weak_evidence_t2_f1d91fd814ac",
+        "evidence_boundary_deferred_criterion_t6_a04a70361dc6",
+        "evidence_boundary_deferred_criterion_t6_264edf10a249"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 3,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "assistant_stance_trajectory",
+      "grounding": "span",
+      "item_count": 6,
+      "item_ids": [
+        "stance_t2_condition_00",
+        "stance_t3_revision_01",
+        "stance_t4_commitment_02",
+        "stance_t5_commitment_03",
+        "stance_t6_commitment_04",
+        "stance_t6_qualification_05"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 6,
+      "status": "present_provisional"
+    },
+    {
+      "contract_field": false,
+      "excluded_item_count": 0,
+      "excluded_item_ids": [],
+      "field_group": "conversation_process",
+      "field_name": "user_corrections_and_counter_pressure",
+      "grounding": "span",
+      "item_count": 4,
+      "item_ids": [
+        "user_pressure_correction_t2_3f95a6425d67",
+        "user_pressure_concern_t3_d4c0dcbdf484",
+        "user_pressure_concern_t4_4219902349c4",
+        "user_pressure_concern_t5_bc248e35ea0a"
+      ],
+      "must_not_be_used_as_quality_label": true,
+      "observed_item_count": 4,
+      "status": "present_provisional"
+    }
+  ],
+  "model_usage": {
+    "calls": [
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 494,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3333,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.live_constraints",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3827
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 635,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3314,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.assistant_stances",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3949
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 117,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3326,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.dropped_threads",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 3443
+      },
+      {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "completion_tokens": 1423,
+        "finish_reason": "stop",
+        "model": "google/gemini-3.1-flash-lite-20260507",
+        "model_attribution_status": "served_version_alias",
+        "prompt_tokens": 3090,
+        "provider_name": "openrouter",
+        "reasoning_details_present": false,
+        "reasoning_disabled": true,
+        "reasoning_tokens": 0,
+        "requested_model": "google/gemini-3.1-flash-lite",
+        "served_model": "google/gemini-3.1-flash-lite-20260507",
+        "stage": "core_semantic_shadow.joint_process",
+        "status": "ok",
+        "temperature": 0.2,
+        "tendency_id": "",
+        "total_tokens": 4513
+      }
+    ]
+  },
+  "non_claims": [
+    "shadow_is_not_live_lane_input",
+    "shadow_does_not_modify_graph_routing",
+    "shadow_is_not_decision_quality_proof",
+    "shadow_is_not_human_validation",
+    "question_change_is_not_user_mind_change",
+    "missing_event_is_not_proof_of_real_world_absence",
+    "candidate_state_is_not_semantic_truth",
+    "reader_agreement_is_not_correctness"
+  ],
+  "schema_version": "lolla.core_semantic_shadow.v0",
+  "semantic_candidate_ledger": {
+    "authoritative_source": {
+      "contains_raw_conversation": false,
+      "contains_source_excerpts": true,
+      "conversation_sha256": "a78b19d4427aca87b6cc7d8eb1d43cbf74ed55c98249d654f057e6be50290371",
+      "turn_count": 14
+    },
+    "candidates": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_4967473c9b2a",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 1,
+          "issue_id": "live_constraint_t1_constraint_4d40eed372df",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 136,
+              "speaker": "user",
+              "start_char": 96,
+              "turn_index": 1
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "14 months of runway left at current burn"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Hard resource limit on the business.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "14 months of runway left at current burn",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "34d2f800896b44ad4031384bb7ddd1120a0cd560daf09bd7f0bfcaebb620218f",
+        "reader_call_id": "semantic_reader_call_01_9b628440b53e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Hard resource limit on the business.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Hard resource limit on the business.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_f61327c2ed9e",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 1,
+          "issue_id": "live_constraint_t1_constraint_dfdb7474813f",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 168,
+              "speaker": "user",
+              "start_char": 138,
+              "turn_index": 1
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I have two full-time employees"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Resource/capacity constraint affecting pivot feasibility.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I have two full-time employees",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "cb8f825f7031499c463ff1794927043a5bade18cc6c362285d3016ed9827f9f6",
+        "reader_call_id": "semantic_reader_call_01_9b628440b53e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Resource/capacity constraint affecting pivot feasibility.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Resource/capacity constraint affecting pivot feasibility.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_a4262ecb7dd5",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "live_constraint_t3_concern_828e5d546df3",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 128,
+              "speaker": "user",
+              "start_char": 50,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "I'm afraid they'll all say no and then I lose the one thing keeping me hopeful"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Explicit emotional stake/worry regarding the pivot signal.",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "I'm afraid they'll all say no and then I lose the one thing keeping me hopeful",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "34c6f8220805ee4eb3286a0c093a531a4086f26ca6bed643c1d1867ff54184a6",
+        "reader_call_id": "semantic_reader_call_01_9b628440b53e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Explicit emotional stake/worry regarding the pivot signal.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Explicit emotional stake/worry regarding the pivot signal.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_893216ee87ee",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 5,
+          "issue_id": "live_constraint_t5_constraint_6c451f3c17a7",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 182,
+              "speaker": "user",
+              "start_char": 113,
+              "turn_index": 5
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "she left 8 months ago for health reasons but she still has 15% equity"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Relational/equity constraint regarding a former co-founder.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "she left 8 months ago for health reasons but she still has 15% equity",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "3f12058690c26b2338f135b319a9a568e1866f90c3325affe27367a8ae4f824c",
+        "reader_call_id": "semantic_reader_call_01_9b628440b53e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Relational/equity constraint regarding a former co-founder.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Relational/equity constraint regarding a former co-founder.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_bcf429f71981",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 7,
+          "issue_id": "live_constraint_t7_constraint_176e595a08b4",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 7,
+              "speaker": "user",
+              "start_char": 0,
+              "turn_index": 7
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "active",
+          "superseded_by": null,
+          "text": "14 days"
+        },
+        "family": "live_constraint_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Hard deadline established by the user for the decision.",
+          "kind": "constraint",
+          "kind_ambiguity": false,
+          "mode": "span",
+          "text": "14 days",
+          "turn_index": 7
+        },
+        "raw_proposal_sha256": "eb2b4431d01c34ab5e01d46089ae26ecfd8cd5f230b77964faab7efc632b33df",
+        "reader_call_id": "semantic_reader_call_01_9b628440b53e",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Hard deadline established by the user for the decision.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Hard deadline established by the user for the decision.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_07889117905d",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 251,
+              "speaker": "assistant",
+              "start_char": 84,
+              "turn_index": 2
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "condition",
+          "stance_id": "stance_t2_condition_00",
+          "text": "Before you pivot, you need two or three customers to commit to pre-buying the new product at a specific price point, ideally with a deposit or at minimum a signed LOI.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "condition",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 2
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Sets a clear, actionable gate for the pivot decision.",
+          "relation": "condition",
+          "relation_ambiguity": false,
+          "text": "Before you pivot, you need two or three customers to commit to pre-buying the new product at a specific price point, ideally with a deposit or at minimum a signed LOI.",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "41ca5a9a208437b867677c029eb9f0a223c85eca2b2094627a3c7e8b5ee028cd",
+        "reader_call_id": "semantic_reader_call_02_6db285a8a76d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Sets a clear, actionable gate for the pivot decision.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Sets a clear, actionable gate for the pivot decision.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_8e1db5761f64",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 30,
+              "speaker": "assistant",
+              "start_char": 0,
+              "turn_index": 3
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "revision",
+          "stance_id": "stance_t3_revision_01",
+          "text": "Don't kill it — transition it.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "unknown",
+            "declared_target": {
+              "quote": "Do I just kill it?",
+              "speaker": "assistant",
+              "turn_index": 3
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "revision",
+            "reference_status": "unresolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 3
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Reframes the user's binary choice of 'kill' vs 'push' into a transition strategy.",
+          "related_stance_quote": "Do I just kill it?",
+          "related_stance_turn_index": 3,
+          "relation": "revision",
+          "relation_ambiguity": false,
+          "text": "Don't kill it — transition it.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "bc945b9cf8b13ba15cd14cb2ed1bbd08257c7d50eb25d2bc032bb585365edcd5",
+        "reader_call_id": "semantic_reader_call_02_6db285a8a76d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Reframes the user's binary choice of 'kill' vs 'push' into a transition strategy.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Reframes the user's binary choice of 'kill' vs 'push' into a transition strategy.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_816a797782f7",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 1138,
+              "speaker": "assistant",
+              "start_char": 1070,
+              "turn_index": 4
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t4_commitment_02",
+          "text": "My honest read: option three, then option one if the pivot confirms.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 4
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Direct recommendation on how to handle the employee situation.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "My honest read: option three, then option one if the pivot confirms.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "6c13fb1b256fbcebab2669220aba424d93afcba24db6176a5ee828a3688a0db4",
+        "reader_call_id": "semantic_reader_call_02_6db285a8a76d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Direct recommendation on how to handle the employee situation.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Direct recommendation on how to handle the employee situation.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_d543367b0405",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 103,
+              "speaker": "assistant",
+              "start_char": 0,
+              "turn_index": 5
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t5_commitment_03",
+          "text": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 5
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Defines the boundary of the co-founder's influence.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "89308f4239dccf8e0b22ea55a8271a541e1081909ea63f66a5cd03e1a09b14f8",
+        "reader_call_id": "semantic_reader_call_02_6db285a8a76d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Defines the boundary of the co-founder's influence.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Defines the boundary of the co-founder's influence.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_004_8ff5df59442b",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 346,
+              "speaker": "assistant",
+              "start_char": 253,
+              "turn_index": 6
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "commitment",
+          "stance_id": "stance_t6_commitment_04",
+          "text": "Give yourself 14 days. After the pre-buy test and the three conversations, you make the call.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "commitment",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 6
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Imposes a firm timeline on the decision process.",
+          "relation": "commitment",
+          "relation_ambiguity": false,
+          "text": "Give yourself 14 days. After the pre-buy test and the three conversations, you make the call.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "e31b6f14c850ab023daa464e71914064eaf8acc680a912ba0d349b47db962772",
+        "reader_call_id": "semantic_reader_call_02_6db285a8a76d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Imposes a firm timeline on the decision process.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Imposes a firm timeline on the decision process.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_005_c85867bb8544",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 764,
+              "speaker": "assistant",
+              "start_char": 741,
+              "turn_index": 6
+            }
+          },
+          "relation_ambiguity": false,
+          "routing_eligible": true,
+          "speaker": "assistant",
+          "stance": "qualification",
+          "stance_id": "stance_t6_qualification_05",
+          "text": "Bar first, data second.",
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "assistant",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "qualification",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": []
+          },
+          "turn_index": 6
+        },
+        "family": "assistant_stance_events",
+        "proposal_index": 5,
+        "raw_proposal": {
+          "candidate_disposition": "selected_for_current_view",
+          "disposition_reason": "Adds a necessary boundary to the data collection process to prevent bias.",
+          "relation": "qualification",
+          "relation_ambiguity": false,
+          "text": "Bar first, data second.",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "6457e115905580bc3b3189da45ddabaeb492e3e2f17130a399fc3003507ee53b",
+        "reader_call_id": "semantic_reader_call_02_6db285a8a76d",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "Adds a necessary boundary to the data collection process to prevent bias.",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "Adds a necessary boundary to the data collection process to prevent bias.",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_630d94f6cee7",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "introduced_at_turn": 3,
+          "issue_id": "dropped_thread_t3_user_63c49c48f2f5",
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "provenance": {
+            "kind": "span",
+            "span_ref": {
+              "end_char": 129,
+              "speaker": "user",
+              "start_char": 20,
+              "turn_index": 3
+            }
+          },
+          "resolved_at_turn": null,
+          "routing_eligible": true,
+          "status": "acknowledged_then_dropped",
+          "superseded_by": "The assistant reframed the fear as a standard founder bottleneck rather than addressing the emotional loss.",
+          "text": "I've been avoiding it because I'm afraid they'll all say no and then I lose the one thing keeping me hopeful."
+        },
+        "family": "dropped_thread_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "concern",
+          "kind_ambiguity": false,
+          "speaker": "user",
+          "superseded_by": "The assistant reframed the fear as a standard founder bottleneck rather than addressing the emotional loss.",
+          "text": "I've been avoiding it because I'm afraid they'll all say no and then I lose the one thing keeping me hopeful.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "44061b3903366139bcba1c6edace63729ac6848c45d7ad9ca4f22afa53fdff1f",
+        "reader_call_id": "semantic_reader_call_03_6c687fe78850",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_000_91ed6479f548",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": false,
+          "event_id": "question_initial_t1_1f38b8d2f8dc",
+          "family": "question",
+          "grounding": "span",
+          "kind": "initial",
+          "provisional": true,
+          "question_function": "decision_choice",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 516,
+            "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+            "speaker": "user",
+            "start_char": 406,
+            "turn_index": 1
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "not_applicable",
+            "declared_target": {
+              "quote": "",
+              "speaker": "user",
+              "turn_index": 0
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "",
+            "reference_status": "not_declared",
+            "relation_ambiguity": false,
+            "relation_status": "not_declared",
+            "target_candidate_ids": []
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "changes_prior_question": false,
+          "question_function": "decision_choice",
+          "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "related_question_quote": null,
+          "related_question_turn_index": null,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": null,
+          "stage": "initial",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "f8863500a203e10dc5e3b0889d64af40988ab0d4e9190d011a5c50adadaf3c95",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_001_105cc60bd86c",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t3_a7f57f11905c",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 181,
+            "quote": "What about the current product? Do I just kill it?",
+            "speaker": "user",
+            "start_char": 131,
+            "turn_index": 3
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "coexists",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_91ed6479f548"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "What about the current product? Do I just kill it?",
+          "related_question_quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "coexists",
+          "stage": "intermediate",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "acd3bf9a953a95a079dc994fc98e7ce6ff130b28704b7ee2a3f95729e93e6403",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_002_db8f83409da1",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t4_f427be0f6d63",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 316,
+            "quote": "What do I do with her.",
+            "speaker": "user",
+            "start_char": 294,
+            "turn_index": 4
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "coexists",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_91ed6479f548"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "What do I do with her.",
+          "related_question_quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "coexists",
+          "stage": "intermediate",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "a3e2b7291a10346ebe17f1e3123a7b305e3f368e2c7ba93b2781cc7edf843e77",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_003_84734b2e8079",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_intermediate_t5_34b21681aaba",
+          "family": "question",
+          "grounding": "span",
+          "kind": "intermediate",
+          "provisional": true,
+          "question_function": "other",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 313,
+            "quote": "Does she get a say in this decision?",
+            "speaker": "user",
+            "start_char": 277,
+            "turn_index": 5
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "coexists",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_91ed6479f548"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "other",
+          "quote": "Does she get a say in this decision?",
+          "related_question_quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "coexists",
+          "stage": "intermediate",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "a4382d48fc0e2f98aeffb6f299f63644aa8d7d0fe9ad36f0c33dd96c5a077787",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_question_events_004_74a61c204d08",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "changes_prior_question": true,
+          "event_id": "question_current_t6_e88379943e01",
+          "family": "question",
+          "grounding": "span",
+          "kind": "current",
+          "provisional": true,
+          "question_function": "implementation",
+          "relation_ambiguity": false,
+          "source": {
+            "end_char": 276,
+            "quote": "Am I missing anything?",
+            "speaker": "user",
+            "start_char": 254,
+            "turn_index": 6
+          },
+          "trajectory": {
+            "alternative_relations": [],
+            "chronology_status": "prior_or_same_position",
+            "declared_target": {
+              "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+              "speaker": "user",
+              "turn_index": 1
+            },
+            "invalid_alternative_relations": [],
+            "primary_relation": "narrows",
+            "reference_status": "resolved",
+            "relation_ambiguity": false,
+            "relation_status": "declared",
+            "target_candidate_ids": [
+              "candidate_question_events_000_91ed6479f548"
+            ]
+          }
+        },
+        "family": "question_events",
+        "proposal_index": 4,
+        "raw_proposal": {
+          "changes_prior_question": true,
+          "question_function": "implementation",
+          "quote": "Am I missing anything?",
+          "related_question_quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "related_question_turn_index": 1,
+          "relation_ambiguity": false,
+          "relation_to_prior_question": "narrows",
+          "stage": "current",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "4b4e7763d59de73d87f62ce07c7e8254802564a0b65bfd3f95c6e941760728db",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_000_fe8e0a1d0b88",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_correction_t2_3f95a6425d67",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "correction",
+          "provisional": true,
+          "source": {
+            "end_char": 153,
+            "quote": "Two of them are existing customers. One is a prospect who didn't convert to the current product. None of them have given me a specific price or timeline.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 2
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "correction",
+          "quote": "Two of them are existing customers. One is a prospect who didn't convert to the current product. None of them have given me a specific price or timeline.",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "01db0be2816c69164f9240da0df926224b5bf3d1f658dff77a25924607734f51",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_ec9c2c43ea20",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t3_d4c0dcbdf484",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 129,
+            "quote": "I've been avoiding it because I'm afraid they'll all say no and then I lose the one thing keeping me hopeful.",
+            "speaker": "user",
+            "start_char": 20,
+            "turn_index": 3
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "I've been avoiding it because I'm afraid they'll all say no and then I lose the one thing keeping me hopeful.",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "9dbc7b369f0c2c01bde6a02f238c0ca1e5cc0adf82083ff67e508b5f68531c13",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_6fa383140a28",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t4_4219902349c4",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 67,
+            "quote": "The two employees are something I've barely let myself think about.",
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 4
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "The two employees are something I've barely let myself think about.",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "fde79bbe8aa41db23f78c022aea4a9cc6d75c9fff71ff78a387c4d2f8e61cb92",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_003_5866de9696b3",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "user_pressure_concern_t5_bc248e35ea0a",
+          "family": "user_pressure",
+          "grounding": "span",
+          "kind": "concern",
+          "provisional": true,
+          "source": {
+            "end_char": 370,
+            "quote": "She's my friend but she's also no longer doing any work.",
+            "speaker": "user",
+            "start_char": 314,
+            "turn_index": 5
+          }
+        },
+        "family": "user_pressure_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "kind": "concern",
+          "quote": "She's my friend but she's also no longer doing any work.",
+          "turn_index": 5
+        },
+        "raw_proposal_sha256": "87a9a6d57f065e3c720365f24eea255e0c9ea77b382adbd8070ab50a3feedde6",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_000_a94606933574",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_option_t1_a1f5560265d5",
+          "family": "option",
+          "grounding": "span",
+          "kind": "option",
+          "provisional": true,
+          "source": {
+            "end_char": 516,
+            "quote": "pivot now while we have runway and a real signal, or push harder on the current product.",
+            "speaker": "user",
+            "start_char": 428,
+            "turn_index": 1
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "pivot now while we have runway and a real signal, or push harder on the current product.",
+          "speaker": "USER",
+          "status": "proposed",
+          "turn_index": 1
+        },
+        "raw_proposal_sha256": "0906268a8e6f2509c338834ac3b3797a9ff013bc853c991428fe561f93ce5e08",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_f4d66a6484d2",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "event_id": "option_evidence_gate_t2_9df944ec8ddc",
+          "family": "option",
+          "grounding": "span",
+          "kind": "evidence_gate",
+          "provisional": true,
+          "source": {
+            "end_char": 199,
+            "quote": "you need two or three customers to commit to pre-buying the new product at a specific price point",
+            "speaker": "assistant",
+            "start_char": 102,
+            "turn_index": 2
+          },
+          "status": "proposed"
+        },
+        "family": "option_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "kind": "evidence_gate",
+          "quote": "you need two or three customers to commit to pre-buying the new product at a specific price point",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "efa33b2a864b5130da265ca4e807e8796ec6adf66415a47c2d1263f9e853eeff",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_option_events_002_9266e4cd65c5",
+        "current_view_eligible": false,
+        "event_snapshot": null,
+        "family": "option_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "freeze the product... or sunset it with 6-month notice... or sell the customer list to a competitor",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 3
+        },
+        "raw_proposal_sha256": "8dac7a775c0a006316b32d856e8d8127dbc0bb6dd3976040346cc435107bde33",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "candidate_quote_not_found_in_source_turn",
+            "state": "not_supported_by_source"
+          }
+        ],
+        "terminal_reason": "candidate_quote_not_found_in_source_turn",
+        "terminal_state": "not_supported_by_source"
+      },
+      {
+        "candidate_id": "candidate_option_events_003_ce3de72cb5a6",
+        "current_view_eligible": false,
+        "event_snapshot": null,
+        "family": "option_events",
+        "proposal_index": 3,
+        "raw_proposal": {
+          "kind": "option",
+          "quote": "lay her off cleanly... pivot her role... be honest with her now about the uncertainty.",
+          "speaker": "ASSISTANT",
+          "status": "proposed",
+          "turn_index": 4
+        },
+        "raw_proposal_sha256": "c187fe26fe65a4767cee55b6633615b3d47bcfa9f3c417fb9dd06ffe8ec75b04",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "candidate_quote_not_found_in_source_turn",
+            "state": "not_supported_by_source"
+          }
+        ],
+        "terminal_reason": "candidate_quote_not_found_in_source_turn",
+        "terminal_state": "not_supported_by_source"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_592aacb90663",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Customer interest is conversational rather than commercial.",
+          "event_id": "evidence_boundary_weak_evidence_t2_f1d91fd814ac",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "weak_evidence",
+          "provisional": true,
+          "source": {
+            "end_char": 226,
+            "quote": "None of them have given me a specific price or timeline. They've said things like \"our office would kill for something like that\"",
+            "speaker": "user",
+            "start_char": 97,
+            "turn_index": 2
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 0,
+        "raw_proposal": {
+          "claim": "Customer interest is conversational rather than commercial.",
+          "kind": "weak_evidence",
+          "quote": "None of them have given me a specific price or timeline. They've said things like \"our office would kill for something like that\"",
+          "speaker": "USER",
+          "turn_index": 2
+        },
+        "raw_proposal_sha256": "b975161b6b3811e07db3401e24b294d4b03bc2cc83289a3729dbdc253ded4d99",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_d259c84c3eda",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Lack of a specific decision deadline.",
+          "event_id": "evidence_boundary_deferred_criterion_t6_a04a70361dc6",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "deferred_criterion",
+          "provisional": true,
+          "source": {
+            "end_char": 103,
+            "quote": "Right now your list ends with \"commit or walk\" but doesn't have a when.",
+            "speaker": "assistant",
+            "start_char": 32,
+            "turn_index": 6
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 1,
+        "raw_proposal": {
+          "claim": "Lack of a specific decision deadline.",
+          "kind": "deferred_criterion",
+          "quote": "Right now your list ends with \"commit or walk\" but doesn't have a when.",
+          "speaker": "ASSISTANT",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "e7eb1c6293181d3783b54ed16f751d74789a8d60767b7200feae334b898d336f",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_002_cc7590557cc7",
+        "current_view_eligible": true,
+        "event_snapshot": {
+          "claim": "Lack of pre-defined success criteria for the pivot test.",
+          "event_id": "evidence_boundary_deferred_criterion_t6_264edf10a249",
+          "family": "evidence_boundary",
+          "grounding": "span",
+          "kind": "deferred_criterion",
+          "provisional": true,
+          "source": {
+            "end_char": 578,
+            "quote": "before you run the pre-buy test, write down what \"pass\" looks like.",
+            "speaker": "assistant",
+            "start_char": 511,
+            "turn_index": 6
+          }
+        },
+        "family": "evidence_boundary_events",
+        "proposal_index": 2,
+        "raw_proposal": {
+          "claim": "Lack of pre-defined success criteria for the pivot test.",
+          "kind": "deferred_criterion",
+          "quote": "before you run the pre-buy test, write down what \"pass\" looks like.",
+          "speaker": "ASSISTANT",
+          "turn_index": 6
+        },
+        "raw_proposal_sha256": "bee9ea92cd28b2e28df645e692b6c56de8a139c3039c0f4c8ef88d7bc1c14d79",
+        "reader_call_id": "semantic_reader_call_04_ec4186c7884a",
+        "state_history": [
+          {
+            "actor": "semantic_reader",
+            "reason": "recorded_from_semantic_reader_output",
+            "state": "proposed"
+          },
+          {
+            "actor": "deterministic_harness",
+            "reason": "exact_source_and_contract_validation_passed",
+            "state": "validated"
+          },
+          {
+            "actor": "semantic_reader",
+            "reason": "legacy_reader_output_contract_selected_validated_item",
+            "state": "selected_for_current_view"
+          }
+        ],
+        "terminal_reason": "legacy_reader_output_contract_selected_validated_item",
+        "terminal_state": "selected_for_current_view"
+      }
+    ],
+    "metrics": {
+      "ambiguous_candidate_count": 0,
+      "candidate_custody_complete": true,
+      "counts_by_family": {
+        "assistant_stance_events": 6,
+        "dropped_thread_events": 1,
+        "evidence_boundary_events": 3,
+        "live_constraint_events": 5,
+        "option_events": 4,
+        "question_events": 5,
+        "user_pressure_events": 4
+      },
+      "counts_by_terminal_state": {
+        "not_supported_by_source": 2,
+        "selected_for_current_view": 26
+      },
+      "current_view_candidate_count": 26,
+      "expected_proposal_count": 28,
+      "proposal_count": 28,
+      "referenced_source_turns": [
+        {
+          "speaker": "user",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 2
+        },
+        {
+          "speaker": "user",
+          "turn_index": 2
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 3
+        },
+        {
+          "speaker": "user",
+          "turn_index": 3
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 4
+        },
+        {
+          "speaker": "user",
+          "turn_index": 4
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 5
+        },
+        {
+          "speaker": "user",
+          "turn_index": 5
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 6
+        },
+        {
+          "speaker": "user",
+          "turn_index": 6
+        },
+        {
+          "speaker": "user",
+          "turn_index": 7
+        }
+      ],
+      "source_turn_reference_coverage": 0.8571428571428571,
+      "terminal_record_count": 28,
+      "trajectory_references": {
+        "ambiguous_relation_count": 0,
+        "counts_by_chronology_status": {
+          "not_applicable": 6,
+          "prior_or_same_position": 4,
+          "unknown": 1
+        },
+        "counts_by_reference_status": {
+          "not_declared": 6,
+          "resolved": 4,
+          "unresolved": 1
+        },
+        "counts_by_relation_status": {
+          "declared": 10,
+          "not_declared": 1
+        },
+        "must_not_be_used_as_quality_label": true,
+        "trajectory_event_count": 11
+      },
+      "unreferenced_source_turns": [
+        {
+          "speaker": "assistant",
+          "turn_index": 1
+        },
+        {
+          "speaker": "assistant",
+          "turn_index": 7
+        }
+      ],
+      "unterminated_record_count": 0
+    },
+    "non_claims": [
+      "candidate_state_is_not_semantic_truth",
+      "validation_is_not_reasoning_quality_proof",
+      "source_turn_coverage_is_not_semantic_completeness",
+      "reader_agreement_is_not_correctness"
+    ],
+    "reader_calls": [
+      {
+        "call_id": "semantic_reader_call_01_9b628440b53e",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 1,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "live_constraints": 5
+        },
+        "reader_role": "live_constraints",
+        "system_prompt_sha256": "a5797f98c1a42179422a81b7911be765d692fb44d8df9cffe04c896d6b4707b5",
+        "user_prompt_sha256": "fe9bf0e6c6602b9930c6ea34ea8969e0093c2f3bc70c93868912332dbdeaf97b"
+      },
+      {
+        "call_id": "semantic_reader_call_02_6db285a8a76d",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 2,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "stance_events": 6
+        },
+        "reader_role": "assistant_stances",
+        "system_prompt_sha256": "b87650e55752dac8ffff1911c89ead8f38447af20f110ef0aabd7c14b26ee232",
+        "user_prompt_sha256": "dd5366ef998db408918110b3bde6a356e1bf2ece2f1d7d742394b87f96eddc96"
+      },
+      {
+        "call_id": "semantic_reader_call_03_6c687fe78850",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 3,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "dropped_threads": 1
+        },
+        "reader_role": "dropped_threads",
+        "system_prompt_sha256": "2b3ba325694c3827bba00e0aa361a27aeafe4e39985cb00d3632a54f3f9b8bda",
+        "user_prompt_sha256": "c198ce63ee7747f8743ddb542c18db03b3c4c48bcd3d48dc821deed01da10755"
+      },
+      {
+        "call_id": "semantic_reader_call_04_ec4186c7884a",
+        "client_type": "__main__._StageBoundary",
+        "model": "google/gemini-3.1-flash-lite",
+        "ordinal": 4,
+        "prompt_text_persisted": false,
+        "provider_client_type": "engine.system_b.boundary_provider.OpenAICompatibleBoundaryClient",
+        "provider_name": "openrouter",
+        "raw_candidate_counts": {
+          "evidence_boundary_events": 3,
+          "option_events": 4,
+          "question_events": 5,
+          "user_pressure_events": 4
+        },
+        "reader_role": "joint_process",
+        "system_prompt_sha256": "2959b1918c87f20d1fec683524d9151aee1e3230d3288003f2d025af682ac91a",
+        "user_prompt_sha256": "a846df8d75e9e9bdb9dfa28eb93596365c507fbda29c22bdc2bcc8d679d3e22e"
+      }
+    ],
+    "schema_version": "lolla.semantic_candidate_ledger.v0",
+    "supported_candidate_states": [
+      "proposed",
+      "validated",
+      "invalid_evidence",
+      "set_aside_semantically",
+      "selected_for_current_view",
+      "ambiguous_competing_read",
+      "not_supported_by_source",
+      "not_evaluated_budget"
+    ]
+  },
+  "semantic_events": {
+    "assistant_stance_events": [
+      {
+        "candidate_id": "candidate_assistant_stance_events_000_07889117905d",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 251,
+            "speaker": "assistant",
+            "start_char": 84,
+            "turn_index": 2
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "condition",
+        "stance_id": "stance_t2_condition_00",
+        "text": "Before you pivot, you need two or three customers to commit to pre-buying the new product at a specific price point, ideally with a deposit or at minimum a signed LOI.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "condition",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 2
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_001_8e1db5761f64",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 30,
+            "speaker": "assistant",
+            "start_char": 0,
+            "turn_index": 3
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "revision",
+        "stance_id": "stance_t3_revision_01",
+        "text": "Don't kill it — transition it.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "unknown",
+          "declared_target": {
+            "quote": "Do I just kill it?",
+            "speaker": "assistant",
+            "turn_index": 3
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "revision",
+          "reference_status": "unresolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 3
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_002_816a797782f7",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 1138,
+            "speaker": "assistant",
+            "start_char": 1070,
+            "turn_index": 4
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t4_commitment_02",
+        "text": "My honest read: option three, then option one if the pivot confirms.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 4
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_003_d543367b0405",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 103,
+            "speaker": "assistant",
+            "start_char": 0,
+            "turn_index": 5
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t5_commitment_03",
+        "text": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 5
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_004_8ff5df59442b",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 346,
+            "speaker": "assistant",
+            "start_char": 253,
+            "turn_index": 6
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "commitment",
+        "stance_id": "stance_t6_commitment_04",
+        "text": "Give yourself 14 days. After the pre-buy test and the three conversations, you make the call.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "commitment",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 6
+      },
+      {
+        "candidate_id": "candidate_assistant_stance_events_005_c85867bb8544",
+        "candidate_state": "selected_for_current_view",
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 764,
+            "speaker": "assistant",
+            "start_char": 741,
+            "turn_index": 6
+          }
+        },
+        "relation_ambiguity": false,
+        "routing_eligible": true,
+        "speaker": "assistant",
+        "stance": "qualification",
+        "stance_id": "stance_t6_qualification_05",
+        "text": "Bar first, data second.",
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "assistant",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "qualification",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": []
+        },
+        "turn_index": 6
+      }
+    ],
+    "dropped_thread_events": [
+      {
+        "candidate_id": "candidate_dropped_thread_events_000_630d94f6cee7",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "dropped_thread_t3_user_63c49c48f2f5",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 129,
+            "speaker": "user",
+            "start_char": 20,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "The assistant reframed the fear as a standard founder bottleneck rather than addressing the emotional loss.",
+        "text": "I've been avoiding it because I'm afraid they'll all say no and then I lose the one thing keeping me hopeful."
+      }
+    ],
+    "evidence_boundary_events": [
+      {
+        "candidate_id": "candidate_evidence_boundary_events_000_592aacb90663",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Customer interest is conversational rather than commercial.",
+        "event_id": "evidence_boundary_weak_evidence_t2_f1d91fd814ac",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "weak_evidence",
+        "provisional": true,
+        "source": {
+          "end_char": 226,
+          "quote": "None of them have given me a specific price or timeline. They've said things like \"our office would kill for something like that\"",
+          "speaker": "user",
+          "start_char": 97,
+          "turn_index": 2
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_001_d259c84c3eda",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Lack of a specific decision deadline.",
+        "event_id": "evidence_boundary_deferred_criterion_t6_a04a70361dc6",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "deferred_criterion",
+        "provisional": true,
+        "source": {
+          "end_char": 103,
+          "quote": "Right now your list ends with \"commit or walk\" but doesn't have a when.",
+          "speaker": "assistant",
+          "start_char": 32,
+          "turn_index": 6
+        }
+      },
+      {
+        "candidate_id": "candidate_evidence_boundary_events_002_cc7590557cc7",
+        "candidate_state": "selected_for_current_view",
+        "claim": "Lack of pre-defined success criteria for the pivot test.",
+        "event_id": "evidence_boundary_deferred_criterion_t6_264edf10a249",
+        "family": "evidence_boundary",
+        "grounding": "span",
+        "kind": "deferred_criterion",
+        "provisional": true,
+        "source": {
+          "end_char": 578,
+          "quote": "before you run the pre-buy test, write down what \"pass\" looks like.",
+          "speaker": "assistant",
+          "start_char": 511,
+          "turn_index": 6
+        }
+      }
+    ],
+    "live_constraint_events": [
+      {
+        "candidate_id": "candidate_live_constraint_events_000_4967473c9b2a",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_4d40eed372df",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 136,
+            "speaker": "user",
+            "start_char": 96,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "14 months of runway left at current burn"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_001_f61327c2ed9e",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 1,
+        "issue_id": "live_constraint_t1_constraint_dfdb7474813f",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 168,
+            "speaker": "user",
+            "start_char": 138,
+            "turn_index": 1
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I have two full-time employees"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_002_a4262ecb7dd5",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 3,
+        "issue_id": "live_constraint_t3_concern_828e5d546df3",
+        "kind": "concern",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 128,
+            "speaker": "user",
+            "start_char": 50,
+            "turn_index": 3
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "I'm afraid they'll all say no and then I lose the one thing keeping me hopeful"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_003_893216ee87ee",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 5,
+        "issue_id": "live_constraint_t5_constraint_6c451f3c17a7",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 182,
+            "speaker": "user",
+            "start_char": 113,
+            "turn_index": 5
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "she left 8 months ago for health reasons but she still has 15% equity"
+      },
+      {
+        "candidate_id": "candidate_live_constraint_events_004_bcf429f71981",
+        "candidate_state": "selected_for_current_view",
+        "introduced_at_turn": 7,
+        "issue_id": "live_constraint_t7_constraint_176e595a08b4",
+        "kind": "constraint",
+        "kind_ambiguity": false,
+        "provenance": {
+          "kind": "span",
+          "span_ref": {
+            "end_char": 7,
+            "speaker": "user",
+            "start_char": 0,
+            "turn_index": 7
+          }
+        },
+        "resolved_at_turn": null,
+        "routing_eligible": true,
+        "status": "active",
+        "superseded_by": null,
+        "text": "14 days"
+      }
+    ],
+    "option_events": [
+      {
+        "candidate_id": "candidate_option_events_000_a94606933574",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_option_t1_a1f5560265d5",
+        "family": "option",
+        "grounding": "span",
+        "kind": "option",
+        "provisional": true,
+        "source": {
+          "end_char": 516,
+          "quote": "pivot now while we have runway and a real signal, or push harder on the current product.",
+          "speaker": "user",
+          "start_char": 428,
+          "turn_index": 1
+        },
+        "status": "proposed"
+      },
+      {
+        "candidate_id": "candidate_option_events_001_f4d66a6484d2",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "option_evidence_gate_t2_9df944ec8ddc",
+        "family": "option",
+        "grounding": "span",
+        "kind": "evidence_gate",
+        "provisional": true,
+        "source": {
+          "end_char": 199,
+          "quote": "you need two or three customers to commit to pre-buying the new product at a specific price point",
+          "speaker": "assistant",
+          "start_char": 102,
+          "turn_index": 2
+        },
+        "status": "proposed"
+      }
+    ],
+    "question_events": [
+      {
+        "candidate_id": "candidate_question_events_000_91ed6479f548",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": false,
+        "event_id": "question_initial_t1_1f38b8d2f8dc",
+        "family": "question",
+        "grounding": "span",
+        "kind": "initial",
+        "provisional": true,
+        "question_function": "decision_choice",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 516,
+          "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+          "speaker": "user",
+          "start_char": 406,
+          "turn_index": 1
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "not_applicable",
+          "declared_target": {
+            "quote": "",
+            "speaker": "user",
+            "turn_index": 0
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "",
+          "reference_status": "not_declared",
+          "relation_ambiguity": false,
+          "relation_status": "not_declared",
+          "target_candidate_ids": []
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_001_105cc60bd86c",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t3_a7f57f11905c",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 181,
+          "quote": "What about the current product? Do I just kill it?",
+          "speaker": "user",
+          "start_char": 131,
+          "turn_index": 3
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "coexists",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_91ed6479f548"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_002_db8f83409da1",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t4_f427be0f6d63",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 316,
+          "quote": "What do I do with her.",
+          "speaker": "user",
+          "start_char": 294,
+          "turn_index": 4
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "coexists",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_91ed6479f548"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_003_84734b2e8079",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_intermediate_t5_34b21681aaba",
+        "family": "question",
+        "grounding": "span",
+        "kind": "intermediate",
+        "provisional": true,
+        "question_function": "other",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 313,
+          "quote": "Does she get a say in this decision?",
+          "speaker": "user",
+          "start_char": 277,
+          "turn_index": 5
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "coexists",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_91ed6479f548"
+          ]
+        }
+      },
+      {
+        "candidate_id": "candidate_question_events_004_74a61c204d08",
+        "candidate_state": "selected_for_current_view",
+        "changes_prior_question": true,
+        "event_id": "question_current_t6_e88379943e01",
+        "family": "question",
+        "grounding": "span",
+        "kind": "current",
+        "provisional": true,
+        "question_function": "implementation",
+        "relation_ambiguity": false,
+        "source": {
+          "end_char": 276,
+          "quote": "Am I missing anything?",
+          "speaker": "user",
+          "start_char": 254,
+          "turn_index": 6
+        },
+        "trajectory": {
+          "alternative_relations": [],
+          "chronology_status": "prior_or_same_position",
+          "declared_target": {
+            "quote": "I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.",
+            "speaker": "user",
+            "turn_index": 1
+          },
+          "invalid_alternative_relations": [],
+          "primary_relation": "narrows",
+          "reference_status": "resolved",
+          "relation_ambiguity": false,
+          "relation_status": "declared",
+          "target_candidate_ids": [
+            "candidate_question_events_000_91ed6479f548"
+          ]
+        }
+      }
+    ],
+    "user_pressure_events": [
+      {
+        "candidate_id": "candidate_user_pressure_events_000_fe8e0a1d0b88",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_correction_t2_3f95a6425d67",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "correction",
+        "provisional": true,
+        "source": {
+          "end_char": 153,
+          "quote": "Two of them are existing customers. One is a prospect who didn't convert to the current product. None of them have given me a specific price or timeline.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 2
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_001_ec9c2c43ea20",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t3_d4c0dcbdf484",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 129,
+          "quote": "I've been avoiding it because I'm afraid they'll all say no and then I lose the one thing keeping me hopeful.",
+          "speaker": "user",
+          "start_char": 20,
+          "turn_index": 3
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_002_6fa383140a28",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t4_4219902349c4",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 67,
+          "quote": "The two employees are something I've barely let myself think about.",
+          "speaker": "user",
+          "start_char": 0,
+          "turn_index": 4
+        }
+      },
+      {
+        "candidate_id": "candidate_user_pressure_events_003_5866de9696b3",
+        "candidate_state": "selected_for_current_view",
+        "event_id": "user_pressure_concern_t5_bc248e35ea0a",
+        "family": "user_pressure",
+        "grounding": "span",
+        "kind": "concern",
+        "provisional": true,
+        "source": {
+          "end_char": 370,
+          "quote": "She's my friend but she's also no longer doing any work.",
+          "speaker": "user",
+          "start_char": 314,
+          "turn_index": 5
+        }
+      }
+    ]
+  },
+  "source": {
+    "contains_raw_conversation": false,
+    "conversation_sha256": "a78b19d4427aca87b6cc7d8eb1d43cbf74ed55c98249d654f057e6be50290371",
+    "source_refs_are_local_turn_spans": true,
+    "turn_count": 14
+  },
+  "validation": {
+    "joint_process": {
+      "evidence_boundary_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 3,
+        "truncated_count": 0,
+        "validated_count": 3
+      },
+      "option_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 2,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 2
+      },
+      "question_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 5,
+        "truncated_count": 0,
+        "validated_count": 5
+      },
+      "user_pressure_events": {
+        "invalid_kind": 0,
+        "invalid_quote": 0,
+        "invalid_shape": 0,
+        "invalid_source": 0,
+        "invalid_status": 0,
+        "raw_count": 4,
+        "truncated_count": 0,
+        "validated_count": 4
+      }
+    },
+    "specialists": {
+      "assistant_stances": {
+        "dropped_invalid_relation": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "raw_count": 6,
+        "validated_count": 6
+      },
+      "dropped_threads": {
+        "assistant_raised_count": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_speaker": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "dropped_speaker_mismatch": 0,
+        "raw_count": 1,
+        "user_raised_count": 1,
+        "validated_count": 1
+      },
+      "live_constraints": {
+        "derivation_mode_count": 0,
+        "dropped_derivation_no_valid_excerpt": 0,
+        "dropped_invalid_kind": 0,
+        "dropped_invalid_mode": 0,
+        "dropped_invalid_turn": 0,
+        "dropped_not_substring": 0,
+        "incomplete_derivation_count": 0,
+        "raw_count": 5,
+        "rejected_derivations": [],
+        "span_mode_count": 5,
+        "validated_count": 5
+      }
+    }
+  }
+}

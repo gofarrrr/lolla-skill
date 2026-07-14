@@ -1,0 +1,157 @@
+{
+  "schema_version": "lolla.reasoning_portfolio_holdout_contract.v0",
+  "status": "frozen_before_calls",
+  "case": {
+    "case_id": "case-09-phd-dissertation",
+    "source_path": "research/test-cases/case_phd_research_conversation.txt",
+    "source_sha256": "28a740a727dcca215d6088724b7b01e06e3485166067b304ee6284c358bb4f33",
+    "turn_pairs": 22,
+    "case_role": "non_obvious_mixed_quality_holdout_and_long_context_operability_probe"
+  },
+  "rejected_historical_extraction": {
+    "path": "research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/phd_research_extraction.json",
+    "sha256": "f7680f3ad7137f167c1b10f3866e7d176a7a3528151afdfa6202c667f45e2639",
+    "reason": "The artifact reports one fabricated reasoning passage and cannot satisfy current source-custody admission."
+  },
+  "fresh_extraction": {
+    "script_path": "scripts/run_extract.py",
+    "script_sha256": "52360fbc7814a10ed18e5c4b79c3185f0e592e97fc06862cba74170e701cb13a",
+    "initial_calls": 1,
+    "allowed_quote_repair_calls": 1,
+    "experiment_retries": 0,
+    "required_status": "ok",
+    "required_capture_health": "good",
+    "required_fabricated_quote_count": 0,
+    "required_captured_turn_count": 44,
+    "truncation_allowed": false
+  },
+  "pipeline": {
+    "script_path": "scripts/run_pipeline.py",
+    "script_sha256": "7710f55800d32bb5d54315c353244edd30dcefed123357ee14f6a847aa46de9f",
+    "bullshit_index_path": "engine/system_b/bullshit_index.py",
+    "bullshit_index_sha256": "dc08aff6899eb5859e89c61cd4bc035967a4fdd3e4d1afcb3ca44a8e9ae4860e",
+    "v60_contract_path": "engine/system_b/v60_enrichment.py",
+    "v60_contract_sha256": "e16026bdddb9f5bc281af39b7a3158805ecdc8f4b3ef501347f072405477b249",
+    "affordances_path": "data/compiled/model_affordances/affordances_v60.json",
+    "affordances_sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8",
+    "provider": "openrouter",
+    "runtime_model_from_existing_environment": true,
+    "embeddings": "auto",
+    "skip_revision": true,
+    "pre_step6_portfolio": "step6_private",
+    "v60_enrichment": "auto",
+    "companion_candidate_cap": 60,
+    "cached_portfolio_required": false
+  },
+  "pipeline_call_budget": {
+    "extraction_openrouter_call_ceiling": 2,
+    "core_pressure_openrouter_call_ceiling": 22,
+    "bullshit_index_openrouter_call_ceiling": 12,
+    "total_openrouter_call_ceiling": 36,
+    "openai_embedding_and_expansion_call_ceiling": 8,
+    "automatic_experiment_retries": 0,
+    "estimated_total_cost_ceiling_usd": 0.15
+  },
+  "strong_control": {
+    "authorized_only_after_pipeline_admission": true,
+    "call_configuration": {
+      "provider": "openrouter",
+      "model": "openai/gpt-5.1-chat",
+      "temperature": 0.2,
+      "max_output_tokens": 1800,
+      "reasoning_effort": "none",
+      "generation_calls": 1,
+      "evaluator_calls": 0,
+      "automatic_retries": 0,
+      "timeout_seconds": 120
+    },
+    "system_prompt": "You are independently reassessing a prior assistant's reasoning in a serious conversation. Use the complete conversation as the authority. Preserve valid advice, correct unsupported reasoning, and do not decide the user's values or career choice for them. Do not mention experiments, controls, audits, packets, mental-model machinery, or internal labels. Return only the requested JSON object.",
+    "neutral_reconsideration_instruction": "Reassess the prior reasoning from scratch. Identify the actual decision state; what remains valid; unsupported factual, numerical, causal, or psychological claims; dependencies that may fail together; evidence gates; reversibility; fallback timing; stakeholder incentives; and the smallest useful next actions. Do not optimize for caution or ambition as styles. Avoid invented field statistics, career probabilities, advisor or collaborator motives, dataset availability, publication outcomes, and false precision.",
+    "output_contract": {
+      "required_keys": [
+        "decision_state_read",
+        "updated_position",
+        "what_survived",
+        "take_backs_or_set_aside",
+        "material_shifts",
+        "next_actions",
+        "uncertainties"
+      ],
+      "material_shift_required_keys": [
+        "shift",
+        "source_basis",
+        "action_consequence"
+      ],
+      "maximum_material_shifts": 4
+    }
+  },
+  "source_red_lines": {
+    "must_preserve": [
+      "The user has not formally chosen a dissertation direction.",
+      "Option 2 lacks a specific competitive advantage and local infrastructure unless a real collaboration changes that.",
+      "Option 3 is conditional on literature novelty, suitable data, advisor support, collaborator and PI support, funding, governance, and method transfer.",
+      "Option 1 remains a legitimate fallback rather than a failure of courage.",
+      "Advisor retirement creates a real continuity and advocacy risk.",
+      "The user wants ambition but retains responsibility for the choice.",
+      "The 18-month checkpoint is an assistant proposal, not an established optimal threshold."
+    ],
+    "must_not_invent": [
+      "faculty-job counts or probabilities",
+      "project success probabilities",
+      "career or publication timelines presented as established facts",
+      "advisor, collaborator, PI, reviewer, employer, or committee motives",
+      "dataset suitability or access",
+      "funding or authorship terms",
+      "the user's true preference among the options"
+    ]
+  },
+  "pipeline_admission_gates": [
+    "all_frozen_hashes_match",
+    "fresh_extraction_status_ok",
+    "capture_health_good_and_44_of_44_turns_preserved",
+    "zero_fabricated_reasoning_passages_after_at_most_one_quote_repair",
+    "pipeline_result_status_ok",
+    "capture_not_truncated",
+    "pre_step6_private_table_status_ready",
+    "v60_enrichment_status_active",
+    "v60_ledger_skeleton_schema_is_v60_skill_consideration_ledger_v2",
+    "core_pressure_calls_do_not_exceed_22",
+    "bullshit_index_calls_do_not_exceed_12",
+    "total_openrouter_calls_do_not_exceed_36",
+    "openai_embedding_and_expansion_calls_do_not_exceed_8",
+    "estimated_total_cost_does_not_exceed_0_15_usd",
+    "no_experiment_retry_occurred"
+  ],
+  "preliminary_novelty_gate_before_control": {
+    "minimum_trace_supported_candidate_pressures_not_obviously_present_in_original_final_answer": 2,
+    "minimum_with_plausible_decision_or_private_guardrail_consequence": 1,
+    "candidate_or_model_count_alone_can_pass": false,
+    "longer_private_table_alone_can_pass": false
+  },
+  "portfolio_consumer_gate_after_control": {
+    "minimum_trace_supported_pressures_absent_from_strong_control": 2,
+    "minimum_with_plausible_action_gate_sequence_stop_question_or_private_guardrail_consequence": 1,
+    "control_equivalence_blocks_consumer_call": true,
+    "noisy_or_forcing_pressure_blocks_consumer_call": true
+  },
+  "stop_rules": [
+    "no_source_prompt_model_cap_or_contract_change_after_first_call",
+    "no_automatic_experiment_retry",
+    "one_built_in_quote_repair_is_the_only_allowed_extraction_retry",
+    "stop_before_pipeline_if_extraction_admission_fails",
+    "stop_before_strong_control_if_pipeline_or_preliminary_novelty_admission_fails",
+    "stop_before_portfolio_consumer_if_control_comparison_fails",
+    "stop_if_any_stage_or_cost_ceiling_is_exceeded",
+    "no_runtime_promotion_from_one_holdout",
+    "no_retroactive_change_to_case09_semantic_scores"
+  ],
+  "non_claims": [
+    "not_human_review",
+    "not_product_proof",
+    "not_career_advice_for_a_real_user",
+    "not_an_outcome_quality_test",
+    "not_semantic_kernel_integration_authority",
+    "not_graph_runtime_promotion_authority",
+    "not_evidence_that_more_private_context_is_better"
+  ]
+}

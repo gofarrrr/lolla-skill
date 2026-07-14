@@ -1,0 +1,73 @@
+{
+  "schema_version": "lolla.reasoning_process_exploration_v3_probe_contract.v1",
+  "status": "frozen_before_provider_call",
+  "date": "2026-07-11",
+  "run_id": "reasoning-process-exploration-v4-conversation-only-case02-v1",
+  "purpose": "Distinguish auxiliary-ledger anchoring from reader-selection failure using the same target-blind chronological exploration job with the optional ledger omitted whole.",
+  "frozen_inputs": [
+    {
+      "path": "research/reasoning-process-exploration-v3-probe-2026-07-11/source-review.json",
+      "sha256": "ac20784d756e78d715a505f627764042ba25e2470e1fc2746bc771cccf31818a"
+    },
+    {
+      "path": "research/reasoning-process-exploration-v4-conversation-only-2026-07-11/reader-packet.json",
+      "sha256": "2cf4b86c41f199f118982d00eebbdc0a8c4b7f5096ed2f25e52e03c8f00c4daf"
+    },
+    {
+      "path": "engine/system_b/reasoning_process_exploration_v3.py",
+      "sha256": "2662ddf5f4722fb389041bb534d97c5849366a7b0d3614287ad1f6381c861ee9"
+    },
+    {
+      "path": "scripts/evals/run_reasoning_process_exploration_v3_probe.py",
+      "sha256": "a3a2f2c2db84d06cd52757c775c67eb6a1eb1829b34978a9af7bd7b35177eb7b"
+    }
+  ],
+  "model_snapshot": {
+    "path": "docs/evals/reasoning-process-phase3-model-snapshot-v1.json"
+  },
+  "case": {
+    "case_id": "amb1-case02-nonprofit-scale",
+    "source_path": "research/designed-ambiguous-pool-v1-2026-07-10/capture-ready-cases/amb1-case02-nonprofit-scale.txt",
+    "phase1_ledger_path": "research/reasoning-process-phase1-ledger-2026-07-11/cases/amb1-case02-nonprofit-scale/ledger.json"
+  },
+  "view_order": ["exploration_and_alternatives"],
+  "jobs": [
+    {
+      "job_id": "exploration-v4-conversation-only-amb1-case02",
+      "view_kind": "exploration_and_alternatives",
+      "packet_path": "research/reasoning-process-exploration-v4-conversation-only-2026-07-11/reader-packet.json",
+      "packet_sha256": "2cf4b86c41f199f118982d00eebbdc0a8c4b7f5096ed2f25e52e03c8f00c4daf",
+      "input_utf8_bytes": 8849,
+      "system_prompt_sha256": "47c6d295e4917273e5340d81d3d62684df56d5c406d1e5d2d214ea8a5b89d875",
+      "user_prompt_sha256": "f38aead94032fd290bf7e0eac1e038c97705e8fe0ac1bb28aa83c04a5423d88a",
+      "response_schema_sha256": "0b84417c4e7c3eee237a2af1edcae91ebb5b1c1e8346a290eb6cea5e0d10274b"
+    }
+  ],
+  "call_configuration": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0.0,
+    "seed": 0,
+    "max_output_tokens": 2400,
+    "provider_timeout_seconds": 90
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_estimated_cost_usd": 0.015,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "evaluator_calls": 0,
+    "embedding_calls": 0,
+    "graph_calls": 0,
+    "pipeline_calls": 0,
+    "runtime_calls": 0
+  },
+  "ablation": {
+    "authoritative_conversation_complete": true,
+    "auxiliary_phase1_ledger_included": false,
+    "auxiliary_phase1_ledger_omitted_whole": true,
+    "semantic_subset_selected_by_code": false,
+    "all_other_prompt_schema_model_and_call_settings_unchanged": true
+  }
+}

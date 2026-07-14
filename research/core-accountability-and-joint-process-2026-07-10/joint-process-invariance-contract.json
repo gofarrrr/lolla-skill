@@ -1,0 +1,131 @@
+{
+  "schema_version": "lolla.joint_process_reasoning_invariance_contract.v0",
+  "status": "frozen_before_calls",
+  "experiment_id": "joint-process-reasoning-invariance-2026-07-10",
+  "purpose": "Test whether an exhaustive joint-trajectory interpretation is invariant to changed facts and treats later repairs as resolved audit history rather than active graph seeds.",
+  "fixtures": [
+    {
+      "fixture_id": "facts_c",
+      "path": "tests/fixtures/joint_process_reasoning_invariance/facts_c.txt",
+      "sha256": "edac30f6c67142a038670482c1fdbb6b527eed3d3ba8377a74f6255de1868d67",
+      "role": "base_unresolved_reasoning_base_facts"
+    },
+    {
+      "fixture_id": "facts_d",
+      "path": "tests/fixtures/joint_process_reasoning_invariance/facts_d.txt",
+      "sha256": "49f787f978dfb90af2baddee8578844ebdbf0d26fd79471dbb1e1083c02aff7d",
+      "role": "same_unresolved_reasoning_changed_facts"
+    },
+    {
+      "fixture_id": "reasoning_repaired",
+      "path": "tests/fixtures/joint_process_reasoning_invariance/reasoning_repaired.txt",
+      "sha256": "df441eb1d6655d4554a36a25460d44a3a47319cdc2352f14849b1860a80b231f",
+      "role": "same_facts_later_reasoning_repairs_weaknesses"
+    }
+  ],
+  "target_contract": {
+    "path": "docs/conversation-understanding/joint-process-reasoning-target-v0.json",
+    "sha256": "c8cef02ddc0d71eeee1e82619bac07e73f355867f4b1cd00b29c2324dbd47bba"
+  },
+  "routing_contract": {
+    "path": "docs/conversation-understanding/reasoning-pattern-shadow-routing-v0.json",
+    "sha256": "ab5bb347a4f0fc272dfb61b2ff82a8285f5e17b4297587253d286f947a3055ef"
+  },
+  "affordances_artifact": {
+    "path": "data/compiled/model_affordances/affordances_v60.json",
+    "sha256": "4dea740ecf71894a8b56146502983c4d3e448f24a6628a8430a445b3c47bedc8"
+  },
+  "engine_module": {
+    "path": "engine/system_b/joint_process_reasoning_shadow.py",
+    "sha256": "9383ef614a7aff703b57955a8e596923c371520d6914e73820f072c44c6af279"
+  },
+  "runner": {
+    "path": "scripts/evals/run_joint_process_reasoning_invariance.py",
+    "sha256": "9c08ba58322bdbe2c93db784aaf3b752bb12477c1a27c91d9a1cc77e35c3fe65"
+  },
+  "call_configuration": {
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "temperature": 0,
+    "max_output_tokens": 1500,
+    "reasoning_effort": "none",
+    "timeout_seconds": 120,
+    "total_generation_calls": 3,
+    "evaluator_calls": 0,
+    "automatic_retries": 0,
+    "estimated_cost_ceiling_usd": 0.03
+  },
+  "comparisons": [
+    {
+      "comparison_id": "fact_invariance",
+      "comparison_type": "same_unresolved_reasoning_different_facts",
+      "fixture_ids": [
+        "facts_c",
+        "facts_d"
+      ],
+      "expect_projection_equal": true,
+      "expect_active_candidates_equal": true,
+      "expect_edge_candidates_equal": true,
+      "required_left_statuses": {
+        "ambiguous_signal_treated_as_commitment": "unresolved",
+        "acknowledged_constraint_not_gated": "unresolved",
+        "missing_reversal_condition": "unresolved",
+        "reversible_path_not_considered": "unresolved"
+      },
+      "required_right_statuses": {
+        "ambiguous_signal_treated_as_commitment": "unresolved",
+        "acknowledged_constraint_not_gated": "unresolved",
+        "missing_reversal_condition": "unresolved",
+        "reversible_path_not_considered": "unresolved"
+      }
+    },
+    {
+      "comparison_id": "joint_repair_sensitivity",
+      "comparison_type": "same_facts_reasoning_repaired",
+      "fixture_ids": [
+        "facts_c",
+        "reasoning_repaired"
+      ],
+      "expect_projection_equal": false,
+      "expect_active_candidates_equal": false,
+      "expect_edge_candidates_equal": true,
+      "required_left_statuses": {
+        "ambiguous_signal_treated_as_commitment": "unresolved",
+        "acknowledged_constraint_not_gated": "unresolved",
+        "missing_reversal_condition": "unresolved",
+        "reversible_path_not_considered": "unresolved"
+      },
+      "required_right_statuses": {
+        "ambiguous_signal_treated_as_commitment": "resolved_in_conversation",
+        "acknowledged_constraint_not_gated": "resolved_in_conversation",
+        "missing_reversal_condition": "resolved_in_conversation",
+        "reversible_path_not_considered": "resolved_in_conversation"
+      }
+    }
+  ],
+  "pass_conditions": [
+    "all_three_responses_cover_every_controlled_mechanism_exactly_once",
+    "same_unresolved_reasoning_different_facts_yields_identical_sealed_projection_and_candidate_sets",
+    "same_facts_with_later_reasoning_repairs_changes_the_active_projection_and_candidates",
+    "the_four_predeclared_base_weaknesses_are_unresolved_in_both_fact_variants",
+    "the_same_four_weaknesses_are_resolved_in_conversation_after_the_repair",
+    "facts_remain_outside_the_sealed_projection",
+    "no_retry_or_evaluator_call_occurs",
+    "live_runtime_remains_unchanged"
+  ],
+  "stop_rules": [
+    "do_not_retry_a_failed_or_invalid_fixture",
+    "do_not_change_target_vocabulary_prompt_fixture_or_scorer_after_observing_results",
+    "preserve_ambiguous_and_resolved_rows_as_audit_evidence",
+    "record_failure_without_deterministic_semantic_repair",
+    "do_not_authorize_runtime_integration_from_this_fixture_test"
+  ],
+  "non_claims": [
+    "not_open_domain_semantic_stability",
+    "not_graph_applicability_validation",
+    "not_downstream_answer_value",
+    "not_reasoning_quality_or_correctness_proof",
+    "not_permission_to_remove_actor_specific_audit_evidence",
+    "not_runtime_integration_authority"
+  ]
+}

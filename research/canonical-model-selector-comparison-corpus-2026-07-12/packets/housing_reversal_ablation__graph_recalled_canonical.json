@@ -1,0 +1,169 @@
+{
+  "arm_id": "housing_reversal_ablation__graph_recalled_canonical",
+  "boundary": {
+    "all_candidates_may_be_rejected": true,
+    "canonical_ids_only": true,
+    "expected_selection_included": false,
+    "graph_model_names_in_role_records": false,
+    "invented_ids_allowed": false,
+    "maximum_selected": 6,
+    "raw_conversation_included": false
+  },
+  "candidate_cards": [
+    {
+      "avoid_when": "The conversation has already produced enough evidence for a decision or reversible experiment, and more listening would mainly postpone commitment.",
+      "display_name": "Active Listening",
+      "input_type": "understanding-and-alignment problem",
+      "model_id": "active-listening",
+      "output_type": "validated perspective and tension read",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Commitment, alignment, or conflict repair depends on understanding both the factual and emotional content of what another person is saying."
+    },
+    {
+      "avoid_when": "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge.",
+      "display_name": "Confirmation Bias",
+      "input_type": "claim-under-review",
+      "model_id": "confirmation-bias",
+      "output_type": "disconfirming-evidence challenge",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team is converging on a favored answer before the evidence has been fully tested."
+    },
+    {
+      "avoid_when": "Humility is being performed as self-minimization or soft language while real updating, accountable claims, and clear judgment are still being avoided.",
+      "display_name": "Intellectual Humility",
+      "input_type": "overconfidence and updating problem",
+      "model_id": "intellectual-humility",
+      "output_type": "updated stance under uncertainty",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "The main risk is overconfidence in the current frame, and better judgment depends on admitting what may not be known yet."
+    },
+    {
+      "avoid_when": "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function.",
+      "display_name": "Opportunity Cost",
+      "input_type": "resource allocation choice",
+      "model_id": "opportunity-cost",
+      "output_type": "trade-off pricing check",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move."
+    },
+    {
+      "avoid_when": "Trade-off talk has become performance without allocation, so priorities are being acknowledged rhetorically but no resources, options, or rankings ac\u2026",
+      "display_name": "Trade Offs",
+      "input_type": "competing-objectives decision",
+      "model_id": "trade-offs",
+      "output_type": "priority trade-off framing",
+      "schema_version": "lolla.canonical_model_card.v1",
+      "use_when": "Pursuing one objective necessarily weakens another, so the real decision is what good thing must be sacrificed, delayed, or downweighted."
+    }
+  ],
+  "candidate_count": 5,
+  "packet_sha256": "304fb7ca7a2f46c6bac8ca9addfaadbbde9bc0dffff01120f5a52a910866711d",
+  "role_records": [
+    {
+      "evidence_ids": [
+        "e002",
+        "e003",
+        "e004"
+      ],
+      "fidelity_note": "The starting role separates the reported offer from the user's desired outcome, vendor-control concern, and unresolved motive.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "starting",
+      "role_interpretation": "The user wants lower bills and healthier buildings from the financed retrofit while worrying that a long performance contract transfers practical control of residents' homes to a vendor, and is uncertain whether resistance protects tenants or a failing maintenance culture.",
+      "role_record_id": "rprolev22-starting-01-b0dbc0fe87a8ae",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e002",
+          "stance_expression_kind": "reported_without_endorsement",
+          "stance_object_interpretation": "The company offers retrofit financing for a fifteen-year share of measured savings.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "preference_or_desire",
+          "stance_object_interpretation": "Achieve lower bills and healthier buildings.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e003",
+          "stance_expression_kind": "counterpressure",
+          "stance_object_interpretation": "A long performance contract may transfer practical control of residents' homes to the vendor.",
+          "stance_object_kind": "belief_or_assessment"
+        },
+        {
+          "source_evidence_id": "e004",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "Resistance may protect tenants or preserve a maintenance culture that has failed them.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e031",
+        "e032",
+        "e033",
+        "e034"
+      ],
+      "fidelity_note": "Current includes the adopted equipment-ownership and exit condition within e034 but not its distinct unresolved sensor-opt-out meaning.",
+      "limitations": "Synthetic prospective development target; source reviewed before execution but not independent human gold.",
+      "role": "current",
+      "role_interpretation": "The user leans toward a bounded two-building retrofit pilot with manual and data protections, conditionally accepts collective optimization with contractual resident safeguards, commits to thresholds, and will approve only with a capped path to city equipment ownership and exit.",
+      "role_record_id": "rprolev22-current-01-82e982d064cd74",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e031",
+          "stance_expression_kind": "leaning",
+          "stance_object_interpretation": "Run the scoped retrofit pilot with manual controls, opt-in sensing, data deletion, tenant notices, housing-use limits, independent verification, complaints, and reporting.",
+          "stance_object_kind": "action_or_proposal"
+        },
+        {
+          "source_evidence_id": "e032",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Accept building-wide optimization only with contractual comfort, override, outage, and resident appeal protections.",
+          "stance_object_kind": "acceptance_or_willingness"
+        },
+        {
+          "source_evidence_id": "e033",
+          "stance_expression_kind": "commitment",
+          "stance_object_interpretation": "Set bill, comfort, complaint, override, outage, deletion, and intervention thresholds before signing.",
+          "stance_object_kind": "intended_outcome_or_policy"
+        },
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "conditional_willingness",
+          "stance_object_interpretation": "Approve only if the city has a capped path to equipment ownership and exit.",
+          "stance_object_kind": "acceptance_or_willingness"
+        }
+      ]
+    },
+    {
+      "evidence_ids": [
+        "e034"
+      ],
+      "fidelity_note": "Synthetic sensitivity control retaining unresolved counterpressure while removing reversal and path-dependence meaning.",
+      "limitations": "Counterfactual semantic ablation; not a source claim.",
+      "role": "qualification",
+      "role_interpretation": "A material unresolved counterpressure remains outside the adopted current safeguards.",
+      "role_record_id": "rprolev22-qualification-01-57ec9924789fab-housing-ablation",
+      "semantic_status": "supported",
+      "stance_components": [
+        {
+          "source_evidence_id": "e034",
+          "stance_expression_kind": "uncertain_or_undecided",
+          "stance_object_interpretation": "A material unresolved counterpressure remains outside the adopted safeguards.",
+          "stance_object_kind": "belief_or_assessment"
+        }
+      ]
+    }
+  ],
+  "schema_version": "lolla.canonical_model_selection_input.v1",
+  "selection_mode": "graph_recalled_canonical",
+  "source_refs": [
+    {
+      "path": "research/role-record-pattern-invariance-corpus-2026-07-12/packets/housing_reversal_ablation.json",
+      "sha256": "a2634b885e654b4c1b1a9c59efcb20c84d8bc8dd42fd51033bac4b575d467705"
+    }
+  ]
+}
