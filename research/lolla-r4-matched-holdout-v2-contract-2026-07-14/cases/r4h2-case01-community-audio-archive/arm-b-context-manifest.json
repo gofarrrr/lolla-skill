@@ -1,0 +1,125 @@
+{
+  "arm": "B_frozen_residual_task",
+  "case_id": "r4h2-case01-community-audio-archive",
+  "changed_provider_visible_semantic_fields": [
+    "system role",
+    "task operation",
+    "surface vocabulary",
+    "schema name",
+    "schema enum labels and semantic descriptions",
+    "minimal examples",
+    "evidence wording",
+    "output rules"
+  ],
+  "complete_source_inclusion": true,
+  "context_components": [
+    {
+      "estimated_tokens": 1473,
+      "name": "system_instruction",
+      "sha256": "cc768aade0dd8938afcf41fba09cf07ce2e8ac3ff7eaf567705debb773448917",
+      "utf8_bytes": 2946
+    },
+    {
+      "estimated_tokens": 7375,
+      "name": "authoritative_source",
+      "sha256": "adc000f28ce97e4cbca347166ee4d4944316e0b0a49b82855e233332f8971697",
+      "utf8_bytes": 14749
+    },
+    {
+      "estimated_tokens": 993,
+      "name": "fallible_prior_interpretation_context",
+      "sha256": "18e3f173695c8680e23a2885b11251f0a9e7d3356cf23d558cd979d06fef54ab",
+      "utf8_bytes": 1986
+    },
+    {
+      "estimated_tokens": 169,
+      "name": "task",
+      "sha256": "1a1049d835e9a701a9438645b0071ff53e176cfbd3ef1f795db6bccca7995f49",
+      "utf8_bytes": 338
+    },
+    {
+      "estimated_tokens": 888,
+      "name": "schema",
+      "sha256": "70e62d8faa27fcff6517ebaf54433ecd8f534690d86cfc6d219a1e8420b42087",
+      "utf8_bytes": 1775
+    }
+  ],
+  "declared_omissions": [
+    "protected review evidence",
+    "provider output and provider authorization",
+    "relationship, evaluator, embedding, graph, pipeline, and runtime calls",
+    "retries, semantic retries, fallbacks, healing, and model substitution",
+    "summaries, chunks, relevance filters, and deterministic semantic gates",
+    "governed-pending output surface and task split"
+  ],
+  "fallible_prior_declaration": true,
+  "matched_equal_request_fields": [
+    "/max_tokens",
+    "/model",
+    "/provider",
+    "/reasoning",
+    "/seed",
+    "/stream"
+  ],
+  "no_summary_chunking_filter_or_semantic_gate": true,
+  "prior": {
+    "artifact_path": "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/priors/r4h2-case01-community-audio-archive.json",
+    "artifact_sha256": "e77baaf2378d8cfc3cc29371b4dc5e472b585a09f29b29d8725ff49d99ae7095",
+    "artifact_utf8_bytes": 2256,
+    "canonical_context_sha256": "18e3f173695c8680e23a2885b11251f0a9e7d3356cf23d558cd979d06fef54ab",
+    "canonical_context_utf8_bytes": 1986,
+    "estimated_tokens": 993,
+    "fallible_authority": "fallible_prior_interpretation_not_source_truth",
+    "included_exactly_once": true,
+    "record_count": 3,
+    "summarized_or_reordered": false
+  },
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "request_estimate": {
+    "canonical_body_sha256": "3abee0961c37f6adb3193c810baf0049fe437fed2faba3f2d77e642ced068803",
+    "canonical_body_utf8_bytes": 23126,
+    "estimated_input_tokens": 10971,
+    "estimator": "ceil((message_utf8_bytes+schema_utf8_bytes)/2); deterministic conservative estimate, not provider tokenization",
+    "maximum_output_tokens": 1600,
+    "message_utf8_bytes": 20166,
+    "schema_utf8_bytes": 1775,
+    "total_context_utf8_bytes": 21941
+  },
+  "schema_labels_and_descriptions_are_model_context": true,
+  "schema_version": "lolla.r4_matched_residual_context_manifest.v2",
+  "section_order": [
+    "system_instruction",
+    "authoritative_source",
+    "fallible_prior_interpretation_context",
+    "task"
+  ],
+  "source": {
+    "alias_count": 28,
+    "artifact_path": "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/sources/r4h2-case01-community-audio-archive.json",
+    "artifact_sha256": "4af8f39ce9cc8e4b7edbb80111c2cfabac09037e176895ae380392308a4ac3c1",
+    "artifact_utf8_bytes": 13155,
+    "canonical_context_sha256": "adc000f28ce97e4cbca347166ee4d4944316e0b0a49b82855e233332f8971697",
+    "canonical_context_utf8_bytes": 14749,
+    "estimated_tokens": 7375,
+    "included_exactly_once": true,
+    "message_count": 28,
+    "summarized_or_chunked": false
+  },
+  "source_then_prior_order": true,
+  "task_at_end_invariant": true,
+  "unchanged_dimensions": [
+    "authoritative source bytes and canonical context",
+    "fallible prior bytes, records, and canonical context",
+    "source then prior then task order",
+    "paired two-surface task shape",
+    "record fields and bounds",
+    "model and pinned provider route",
+    "seed within each matched pair",
+    "1600-token output allocation",
+    "minimal excluded-reasoning envelope",
+    "nonstreaming strict-JSON policy",
+    "privacy and routing controls",
+    "relationship, graph, runtime, and operator"
+  ]
+}

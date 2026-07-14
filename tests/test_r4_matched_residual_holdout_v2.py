@@ -12,6 +12,8 @@ from scripts.evals.build_r4_matched_holdout_v2_contract import (
     FORBIDDEN_ANSWER_LANGUAGE,
     HUMAN_LEAKAGE_DECLARATION,
     R4MatchedHoldoutV2Error,
+    REQUEST_OUTPUT_ROOT,
+    build_request_preview_files,
     build_human_review_freeze_files,
     build_human_review_record,
     build_pre_target_audit,
@@ -20,6 +22,7 @@ from scripts.evals.build_r4_matched_holdout_v2_contract import (
     load_v2_source_prior,
     validate_human_review_freeze,
     validate_human_review_record,
+    validate_request_preview_files,
     validate_source_first_target_freeze,
 )
 
@@ -367,7 +370,7 @@ def test_protected_source_first_target_is_hash_bound_and_predates_requests() -> 
     assert target["evaluation_limitations"][0]["kind"] == (
         "recent_summary_assistance"
     )
-    assert not (
+    assert (
         ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14"
     ).exists()
     assert not (
@@ -393,3 +396,66 @@ def test_target_review_metadata_freezes_target_before_request_generation() -> No
     assert review["runner_may_load_review_metadata"] is False
     assert review["provider_calls"] == 0
     assert review["provider_cost_usd"] == 0.0
+
+
+def test_exact_matched_provider_blind_request_previews_preserve_full_context() -> None:
+    expected = build_request_preview_files()
+    result = validate_request_preview_files()
+    inputs = load_v2_source_prior()
+
+    assert len(expected) == 32
+    assert result == {
+        "status": "provider_blind_request_previews_valid",
+        "case_count": 4,
+        "request_count": 8,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+    protected_terms = (
+        "lolla-r4-matched-holdout-v2-target",
+        "target-review",
+        "leakage-audit",
+        "human leakage review passes",
+        "target_role",
+    )
+    for relative, raw in expected.items():
+        assert (ROOT / relative).read_bytes() == raw
+        lowered = raw.decode("utf-8").lower()
+        assert not any(term in lowered for term in protected_terms)
+
+    for case_id in CASE_IDS:
+        case_root = REQUEST_OUTPUT_ROOT / "cases" / case_id
+        packet = json.loads((case_root / "uncertainty-packet.json").read_text())
+        arm_a = json.loads((case_root / "arm-a-request-preview.json").read_text())
+        arm_b = json.loads((case_root / "arm-b-request-preview.json").read_text())
+        manifest_a = json.loads((case_root / "arm-a-context-manifest.json").read_text())
+        manifest_b = json.loads((case_root / "arm-b-context-manifest.json").read_text())
+        source_text = json.dumps(
+            packet["source"], ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        )
+        prior_text = json.dumps(
+            packet["prior_interpretation_context"],
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        for preview, manifest in ((arm_a, manifest_a), (arm_b, manifest_b)):
+            user = preview["body"]["messages"][1]["content"]
+            assert user.count(source_text) == 1
+            assert user.count(prior_text) == 1
+            assert user.index(source_text) < user.index(prior_text) < user.index("<task>")
+            assert user.rstrip().endswith("</task>")
+            assert manifest["complete_source_inclusion"] is True
+            assert manifest["source"]["artifact_sha256"] == inputs[case_id][
+                "source_sha256"
+            ]
+            assert manifest["prior"]["artifact_sha256"] == inputs[case_id][
+                "prior_sha256"
+            ]
+            assert manifest["no_summary_chunking_filter_or_semantic_gate"] is True
+        for field in ("max_tokens", "model", "provider", "reasoning", "seed", "stream"):
+            assert arm_a["body"][field] == arm_b["body"][field]
+        assert arm_a["body"]["max_tokens"] == 1600
+        assert arm_a["body"]["model"] == "google/gemini-3.1-flash-lite"
+        assert arm_a["body"]["provider"]["only"] == ["google-vertex"]
+        assert arm_a["body"]["provider"]["allow_fallbacks"] is False

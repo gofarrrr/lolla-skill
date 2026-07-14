@@ -4,11 +4,25 @@
 from __future__ import annotations
 
 import hashlib
+import copy
 import json
 import re
 from collections.abc import Iterator, Mapping
 from pathlib import Path
 from typing import Any
+
+from engine.system_b.conversation_state_fan_in import build_source_registry
+from engine.system_b.r4_complementary_readers import (
+    UNCERTAINTY_PACKET_SCHEMA,
+    canonical_json_bytes,
+    uncertainty_response_schema_v1,
+    value_sha256,
+)
+from engine.system_b.r4_residual_task import (
+    build_residual_prompts_v1,
+    residual_response_schema_v1,
+)
+from engine.system_b.r4_semantic_distinction import build_uncertainty_prompts_v2
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +39,9 @@ TARGET_REVIEW_PATH = (
     ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target-review.json"
 )
 CONTRACT_PATH = ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
+REQUEST_OUTPUT_ROOT = (
+    ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14"
+)
 CASE_IDS = (
     "r4h2-case01-community-audio-archive",
     "r4h2-case02-serialized-essay-pilot",
@@ -50,6 +67,21 @@ REVIEWED_HASHES = {
         "source_sha256": "ce8f1652612467e83589b9073b6a8c83273044fb4c5ab611852e1d916cdb0783",
         "prior_sha256": "9e0ec28e5094b7c68560db1af1e231c6859972317a0dd2204cfa3914ad202ac5",
     },
+}
+SEEDS = {
+    "r4h2-case01-community-audio-archive": 10101,
+    "r4h2-case02-serialized-essay-pilot": 10201,
+    "r4h2-case03-research-workspace-service": 10301,
+    "r4h2-case04-shared-language-course": 10401,
+}
+PROVIDER = {
+    "allow_fallbacks": False,
+    "data_collection": "deny",
+    "max_price": {"completion": 1.5, "prompt": 0.25},
+    "only": ["google-vertex"],
+    "order": ["google-vertex"],
+    "require_parameters": True,
+    "zdr": True,
 }
 FORBIDDEN_ANSWER_LANGUAGE = (
     "residual",
@@ -600,3 +632,363 @@ def validate_source_first_target_freeze() -> dict[str, Any]:
     if not TARGET_REVIEW_PATH.is_file() or _load(TARGET_REVIEW_PATH) != expected:
         raise R4MatchedHoldoutV2Error("protected target review metadata drifted")
     return expected
+
+
+def _packet(case: Mapping[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    source = case["source"]
+    prior = case["prior"]
+    aliases: list[dict[str, Any]] = []
+    registry_aliases: list[dict[str, Any]] = []
+    for row in source["messages"]:
+        message_index = int(row["message_index"])
+        alias = f"e{message_index:03d}"
+        text_value = str(row["text"])
+        text_sha = hashlib.sha256(text_value.encode("utf-8")).hexdigest()
+        turn_index = (message_index + 1) // 2
+        aliases.append(
+            {
+                "alias": alias,
+                "speaker": row["speaker"],
+                "text": text_value,
+                "text_sha256": text_sha,
+                "turn_index": turn_index,
+            }
+        )
+        registry_aliases.append(
+            {
+                "alias": alias,
+                "span_id": f"span-{source['case_id']}-{message_index:03d}",
+                "speaker": row["speaker"],
+                "text_sha256": text_sha,
+                "turn_index": turn_index,
+            }
+        )
+    source_path = str(case["source_path"])
+    source_bytes = (ROOT / source_path).read_bytes()
+    registry = build_source_registry(
+        case_id=str(source["case_id"]),
+        source_path=source_path,
+        source_bytes=source_bytes,
+        message_count=int(source["message_count"]),
+        aliases=registry_aliases,
+    )
+    packet_body = {
+        "schema_version": UNCERTAINTY_PACKET_SCHEMA,
+        "status": "provider_free_matched_holdout_v2_input_frozen",
+        "case_id": source["case_id"],
+        "source": {
+            "path": source_path,
+            "sha256": case["source_sha256"],
+            "message_count": source["message_count"],
+            "aliases": aliases,
+        },
+        "prior_interpretation_context": {
+            "artifact_path": case["prior_path"],
+            "artifact_sha256": case["prior_sha256"],
+            "records": copy.deepcopy(prior["records"]),
+            "qualification_review": copy.deepcopy(prior["qualification_review"]),
+            "authority": prior["authority"],
+        },
+        "task_contract": {
+            "surfaces": ["unresolved_matter", "reopen_condition"],
+            "maximum_records_per_surface": 2,
+            "valid_zero_output": True,
+            "valid_ambiguous_output": True,
+            "source_supported_inference_allowed": True,
+            "external_fact_invention_allowed": False,
+        },
+        "boundary": {
+            "authoritative_source_precedes_prior_interpretation_in_prompt": True,
+            "semantic_meaning_decided_by_model": True,
+            "prior_interpretations_may_be_incomplete": True,
+            "deterministic_semantic_absence_inference": False,
+            "keyword_or_chronology_gate": False,
+            "quality_or_pressure_decision": False,
+        },
+    }
+    return {**packet_body, "packet_sha256": value_sha256(packet_body)}, registry
+
+
+def _request_preview(
+    *,
+    case_id: str,
+    arm: str,
+    prompts: Mapping[str, str],
+    schema: Mapping[str, Any],
+    schema_name: str,
+) -> dict[str, Any]:
+    body = {
+        "max_tokens": 1600,
+        "messages": [
+            {"role": "system", "content": prompts["system_prompt"]},
+            {"role": "user", "content": prompts["user_prompt"]},
+        ],
+        "model": "google/gemini-3.1-flash-lite",
+        "provider": copy.deepcopy(PROVIDER),
+        "reasoning": {"effort": "minimal", "exclude": True},
+        "response_format": {
+            "type": "json_schema",
+            "json_schema": {
+                "name": schema_name,
+                "strict": True,
+                "schema": copy.deepcopy(schema),
+            },
+        },
+        "seed": SEEDS[case_id],
+        "stream": False,
+    }
+    return {
+        "schema_version": "lolla.r4_matched_residual_request_preview.v2",
+        "status": "provider_free_preview_not_authorized_for_transport",
+        "case_id": case_id,
+        "arm": arm,
+        "body": body,
+        "body_sha256": value_sha256(body),
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+        "authorization_present": False,
+    }
+
+
+def _estimated_tokens(utf8_bytes: int) -> int:
+    return (utf8_bytes + 1) // 2
+
+
+def _component(name: str, raw: bytes) -> dict[str, Any]:
+    return {
+        "name": name,
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "utf8_bytes": len(raw),
+        "estimated_tokens": _estimated_tokens(len(raw)),
+    }
+
+
+def _context_manifest(
+    *,
+    case: Mapping[str, Any],
+    packet: Mapping[str, Any],
+    preview: Mapping[str, Any],
+    prompts: Mapping[str, str],
+    schema: Mapping[str, Any],
+) -> dict[str, Any]:
+    body = preview["body"]
+    user = prompts["user_prompt"]
+    source_text = canonical_json_bytes(packet["source"]).decode("utf-8")
+    prior_text = canonical_json_bytes(
+        packet["prior_interpretation_context"]
+    ).decode("utf-8")
+    task_start = user.index("<task>\n") + len("<task>\n")
+    task_end = user.index("\n</task>", task_start)
+    task = user[task_start:task_end]
+    source_raw = source_text.encode("utf-8")
+    prior_raw = prior_text.encode("utf-8")
+    system_raw = prompts["system_prompt"].encode("utf-8")
+    task_raw = task.encode("utf-8")
+    schema_raw = canonical_json_bytes(schema)
+    message_bytes = sum(
+        len(row["content"].encode("utf-8")) for row in body["messages"]
+    )
+    complete = (
+        user.count(source_text) == 1
+        and len(packet["source"]["aliases"])
+        == len(case["source"]["messages"])
+        and [row["text"] for row in packet["source"]["aliases"]]
+        == [row["text"] for row in case["source"]["messages"]]
+    )
+    return {
+        "schema_version": "lolla.r4_matched_residual_context_manifest.v2",
+        "case_id": packet["case_id"],
+        "arm": preview["arm"],
+        "section_order": [
+            "system_instruction",
+            "authoritative_source",
+            "fallible_prior_interpretation_context",
+            "task",
+        ],
+        "context_components": [
+            _component("system_instruction", system_raw),
+            _component("authoritative_source", source_raw),
+            _component("fallible_prior_interpretation_context", prior_raw),
+            _component("task", task_raw),
+            _component("schema", schema_raw),
+        ],
+        "source": {
+            "artifact_path": case["source_path"],
+            "artifact_sha256": case["source_sha256"],
+            "artifact_utf8_bytes": len((ROOT / case["source_path"]).read_bytes()),
+            "canonical_context_sha256": hashlib.sha256(source_raw).hexdigest(),
+            "canonical_context_utf8_bytes": len(source_raw),
+            "estimated_tokens": _estimated_tokens(len(source_raw)),
+            "message_count": packet["source"]["message_count"],
+            "alias_count": len(packet["source"]["aliases"]),
+            "included_exactly_once": user.count(source_text) == 1,
+            "summarized_or_chunked": False,
+        },
+        "prior": {
+            "artifact_path": case["prior_path"],
+            "artifact_sha256": case["prior_sha256"],
+            "artifact_utf8_bytes": len((ROOT / case["prior_path"]).read_bytes()),
+            "canonical_context_sha256": hashlib.sha256(prior_raw).hexdigest(),
+            "canonical_context_utf8_bytes": len(prior_raw),
+            "estimated_tokens": _estimated_tokens(len(prior_raw)),
+            "record_count": len(packet["prior_interpretation_context"]["records"]),
+            "included_exactly_once": user.count(prior_text) == 1,
+            "summarized_or_reordered": False,
+            "fallible_authority": packet["prior_interpretation_context"]["authority"],
+        },
+        "complete_source_inclusion": complete,
+        "source_then_prior_order": user.index(source_text) < user.index(prior_text),
+        "task_at_end_invariant": user.rstrip().endswith("</task>"),
+        "fallible_prior_declaration": "fallible" in prompts["system_prompt"].lower(),
+        "schema_labels_and_descriptions_are_model_context": True,
+        "request_estimate": {
+            "message_utf8_bytes": message_bytes,
+            "schema_utf8_bytes": len(schema_raw),
+            "total_context_utf8_bytes": message_bytes + len(schema_raw),
+            "estimated_input_tokens": _estimated_tokens(
+                message_bytes + len(schema_raw)
+            ),
+            "estimator": "ceil((message_utf8_bytes+schema_utf8_bytes)/2); deterministic conservative estimate, not provider tokenization",
+            "maximum_output_tokens": body["max_tokens"],
+            "canonical_body_utf8_bytes": len(canonical_json_bytes(body)),
+            "canonical_body_sha256": value_sha256(body),
+        },
+        "matched_equal_request_fields": [
+            "/max_tokens",
+            "/model",
+            "/provider",
+            "/reasoning",
+            "/seed",
+            "/stream",
+        ],
+        "changed_provider_visible_semantic_fields": [
+            "system role",
+            "task operation",
+            "surface vocabulary",
+            "schema name",
+            "schema enum labels and semantic descriptions",
+            "minimal examples",
+            "evidence wording",
+            "output rules",
+        ],
+        "unchanged_dimensions": [
+            "authoritative source bytes and canonical context",
+            "fallible prior bytes, records, and canonical context",
+            "source then prior then task order",
+            "paired two-surface task shape",
+            "record fields and bounds",
+            "model and pinned provider route",
+            "seed within each matched pair",
+            "1600-token output allocation",
+            "minimal excluded-reasoning envelope",
+            "nonstreaming strict-JSON policy",
+            "privacy and routing controls",
+            "relationship, graph, runtime, and operator",
+        ],
+        "no_summary_chunking_filter_or_semantic_gate": True,
+        "declared_omissions": [
+            "protected review evidence",
+            "provider output and provider authorization",
+            "relationship, evaluator, embedding, graph, pipeline, and runtime calls",
+            "retries, semantic retries, fallbacks, healing, and model substitution",
+            "summaries, chunks, relevance filters, and deterministic semantic gates",
+            "governed-pending output surface and task split",
+        ],
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }
+
+
+def build_request_preview_files() -> dict[str, bytes]:
+    """Build provider-blind matched previews after protected review freeze."""
+
+    validate_source_first_target_freeze()
+    inputs = load_v2_source_prior()
+    v2_schema = uncertainty_response_schema_v1()
+    residual_schema = residual_response_schema_v1()
+    files: dict[str, bytes] = {}
+    for case_id in CASE_IDS:
+        packet, registry = _packet(inputs[case_id])
+        prompts_a = build_uncertainty_prompts_v2(packet)
+        prompts_b = build_residual_prompts_v1(packet)
+        arm_a = _request_preview(
+            case_id=case_id,
+            arm="A_frozen_v2_semantic_distinction",
+            prompts=prompts_a,
+            schema=v2_schema,
+            schema_name="lolla_r4_uncertainty_v1",
+        )
+        arm_b = _request_preview(
+            case_id=case_id,
+            arm="B_frozen_residual_task",
+            prompts=prompts_b,
+            schema=residual_schema,
+            schema_name="lolla_r4_residual_task_v1",
+        )
+        case_root = REQUEST_OUTPUT_ROOT / "cases" / case_id
+        values = {
+            "source-registry.json": registry,
+            "uncertainty-packet.json": packet,
+            "arm-a-prompts.json": prompts_a,
+            "arm-a-request-preview.json": arm_a,
+            "arm-b-prompts.json": prompts_b,
+            "arm-b-request-preview.json": arm_b,
+            "arm-a-context-manifest.json": _context_manifest(
+                case=inputs[case_id],
+                packet=packet,
+                preview=arm_a,
+                prompts=prompts_a,
+                schema=v2_schema,
+            ),
+            "arm-b-context-manifest.json": _context_manifest(
+                case=inputs[case_id],
+                packet=packet,
+                preview=arm_b,
+                prompts=prompts_b,
+                schema=residual_schema,
+            ),
+        }
+        for name, value in values.items():
+            files[_relative(case_root / name)] = _render(value)
+    protected_terms = (
+        "lolla-r4-matched-holdout-v2-target",
+        "target-review",
+        "leakage-audit",
+        HUMAN_LEAKAGE_DECLARATION,
+        '"target_role"',
+    )
+    for relative, raw in files.items():
+        text_value = raw.decode("utf-8").lower()
+        if any(term in text_value for term in protected_terms):
+            raise R4MatchedHoldoutV2Error(
+                f"protected review evidence leaked into preview: {relative}"
+            )
+    return files
+
+
+def write_request_preview_files() -> dict[str, Any]:
+    """Write request previews after protected review and before delta artifacts."""
+
+    files = build_request_preview_files()
+    for relative, raw in files.items():
+        path = ROOT / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(raw)
+    return validate_request_preview_files()
+
+
+def validate_request_preview_files() -> dict[str, Any]:
+    """Validate exact preview bytes without provider transport."""
+
+    expected = build_request_preview_files()
+    for relative, raw in expected.items():
+        path = ROOT / relative
+        if not path.is_file() or path.read_bytes() != raw:
+            raise R4MatchedHoldoutV2Error(f"request preview drifted: {relative}")
+    return {
+        "status": "provider_blind_request_previews_valid",
+        "case_count": len(CASE_IDS),
+        "request_count": len(CASE_IDS) * 2,
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+    }

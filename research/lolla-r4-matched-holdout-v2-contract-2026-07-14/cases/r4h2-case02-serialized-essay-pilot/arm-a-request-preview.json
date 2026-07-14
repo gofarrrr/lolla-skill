@@ -1,0 +1,147 @@
+{
+  "arm": "A_frozen_v2_semantic_distinction",
+  "authorization_present": false,
+  "body": {
+    "max_tokens": 1600,
+    "messages": [
+      {
+        "content": "<role>\nYou are a narrow complementary conversation-state reader. Interpret messy meaning across the complete conversation. Do not recommend action, select mental models, activate pressure, or score reasoning.\n</role>\n\n<authority>\nThe authoritative source outranks the fallible prior interpretations. Read the whole source and preserve speaker ownership and modal force. Source-supported inference is allowed; outside facts are forbidden. Do not infer resolution merely from turn order: compare the meanings of earlier and later evidence.\n</authority>\n\n<semantic_contract>\nReview exactly two different surfaces.\n\nUNRESOLVED MATTER: a material question, assumption, dependency, ownership gap, or tension that remains unanswered or unowned in the conversation's final state. It is not unresolved merely because an adopted action must still be executed, a signed condition must be satisfied, a written process exists, a safeguard remains active, or a risk was discussed earlier.\n\nREOPEN CONDITION: specific later evidence, an event, or a dependency failure that would materially require reconsidering an otherwise current position. It is not a reopen condition merely because the current position already schedules a review, defines a benchmark, says pause or stop after a failure, prevents automatic renewal, or contains an operating requirement.\n\nBefore admitting a supported record, compare it with the current position and the complete source. Ask whether the same matter has already been resolved, assigned, operationalized, or deliberately converted into a precondition, process, safeguard, benchmark, or scheduled review. If yes and no distinct matter remains, return no record. If the source cannot establish whether the matter remains open, use ambiguous_review rather than forcing support.\n</semantic_contract>\n\n<contrastive_examples>\n- \"Proceed only after the amendment is signed\" is normally an adopted condition precedent, not an unresolved matter.\n- \"Pause after a privacy failure and decide separately before renewal\" is normally an existing safeguard, not a newly discovered reopen condition.\n- \"At six months, review results and whether unwelcome information travels upward\" is normally an operationalized review, not a separate reopen condition.\n- \"We still need a boundary process\" may be unresolved earlier, but is not still unresolved if the final position states that disputed cases follow the written boundary process.\n- A pilot limited to one supported setting can still leave a distinct transfer or generalization question when the current position does not establish what wider settings justify.\n- Temporary support can create a distinct reopen condition when continuation would otherwise hide an unresolved steady-state burden.\n</contrastive_examples>\n\n<output_rules>\nIt is correct to return no_supported_record_observed with an empty array. Use records_present only for at least one supported record. Use ambiguous_review only for one or more ambiguous records and no supported record. Cite exact source aliases. Return schema-valid JSON only.\n</output_rules>",
+        "role": "system"
+      },
+      {
+        "content": "<authoritative_source>\n{\"aliases\":[{\"alias\":\"e001\",\"speaker\":\"user\",\"text\":\"I run a small independent press. One of our essay collections has sold steadily but not enough to justify a full audiobook. The author proposed releasing six essays as a weekly narrated series, with a print-and-audio bundle at the end. I like the experiment, but our editor, production manager, and board are worried that an open-ended audio project will consume the autumn list.\",\"text_sha256\":\"257d50c48362d2d7a14e7164c32d881bf5ac02923423523e34e9824e3f61b2ac\",\"turn_index\":1},{\"alias\":\"e002\",\"speaker\":\"assistant\",\"text\":\"Frame it as one bounded season with its own authority, cost, release, and evidence rules. Separate editorial approval from recording production, accessibility, distribution, audience measurement, and any later format decision. The pilot should state what the press is committing to now and who decides what follows after the evidence window.\",\"text_sha256\":\"0a81a7d1bbd0587476ed0a671761303d2cf6fd8941540cc4e482ee14bc6b36fd\",\"turn_index\":1},{\"alias\":\"e003\",\"speaker\":\"user\",\"text\":\"The author will approve every script and can reject an edit that changes meaning. Our senior editor will prepare the scripts and sign the final text. A local actor is available for four recording days in August, enough for all six essays if we keep each episode under twenty-two minutes. The actor has not promised any dates after September.\",\"text_sha256\":\"8af638d7ca0cd8d7386908ac633e304ddf73547bd964395a500ac139f05dc7a2\",\"turn_index\":2},{\"alias\":\"e004\",\"speaker\":\"assistant\",\"text\":\"Write the author veto, editor sign-off, narrator dates, episode limit, and season size into the charter. Keep the text version paired with each recording so listeners and reviewers can see which script was approved. Later narrator availability need not be decided for a six-episode commitment, but the season needs a production response if an August session is lost.\",\"text_sha256\":\"fcb32aa80f0438f5e8b7ed60f9f6422c6dbf7f01ea05818f580e6979cb9090eb\",\"turn_index\":2},{\"alias\":\"e005\",\"speaker\":\"user\",\"text\":\"We can spend $8,400 including narration, studio, mixing, transcript cleanup, cover art, and distribution. The production manager estimates $1,250 per finished episode before marketing. The board will permit up to $9,000 but wants a stop if the first three episodes project above that cap. Marketing has only twelve staff hours a week in September.\",\"text_sha256\":\"fa8c6fb31b0e45ebae7b8d396fed00a754a5a7fe072b7fe38cce1ab82b407319\",\"turn_index\":3},{\"alias\":\"e006\",\"speaker\":\"assistant\",\"text\":\"Use the $9,000 as a season ceiling and require a forecast after episode three. Assign the production manager to calculate committed and projected cost, and require the publisher to approve any reallocation before work continues. Cap marketing hours in the same tracker so production does not succeed by quietly displacing another book campaign.\",\"text_sha256\":\"92bec3cabce922dbfd519a0ead933932b5363560a3c172bd1b72b72246a61b7c\",\"turn_index\":3},{\"alias\":\"e007\",\"speaker\":\"user\",\"text\":\"Accessibility is non-negotiable. The web producer can publish a corrected transcript with each episode, but needs the locked script four business days before release and the mixed audio two days before. If either arrives late, she wants authority to delay the episode. The author accepts delay but does not want an automated transcript posted as a placeholder.\",\"text_sha256\":\"4facc1fc2bb49b0778d9735ec243a0b4b11d8c91db542ddb82767525ca5a30ac\",\"turn_index\":4},{\"alias\":\"e008\",\"speaker\":\"assistant\",\"text\":\"Make transcript completion a release condition. The web producer should verify the final transcript against the mixed audio and hold publication if the approved text, audio, and transcript do not align. Record the version hashes and sign-offs in the episode checklist. A weekly date can move; the accessibility requirement does not.\",\"text_sha256\":\"07af742ec8e62060e8ed08f4b70a7a573093568500f0c89535282b7e6cb01547\",\"turn_index\":4},{\"alias\":\"e009\",\"speaker\":\"user\",\"text\":\"For audience evidence, the distributor can give us completed plays, drop-off by minute, referrals to the book page, bundle purchases, and newsletter signups. It also offers listener-level advertising profiles, which I do not want. The author cares about completion and thoughtful responses, while the board cares about conversion and whether the series reaches readers outside our existing list.\",\"text_sha256\":\"d2edaa3da7deb4a0b22a4c84a6c212de5961cb9d88a831ed8a089dab4b6a1cae\",\"turn_index\":5},{\"alias\":\"e010\",\"speaker\":\"assistant\",\"text\":\"Limit collection to aggregate episode completion, drop-off bands, referral source, bundle purchases, and voluntary newsletter signup. Reject listener-level advertising profiles in the distributor settings. Add a small qualitative channel, such as one optional question on the episode page, and decide in advance which measures inform production adjustments and which wait for the board review.\",\"text_sha256\":\"513ed5d54b6696cba88ab50bd883652a166b426838829e4d36a9e016aba2f8d0\",\"turn_index\":5},{\"alias\":\"e011\",\"speaker\":\"user\",\"text\":\"The sales director worries that releasing six essays will cannibalize the hardcover. The author thinks samples will attract new readers. We cannot settle that in advance. The board asked for checkpoints after episodes two and four, but it does not want a weak first week to cancel a season we have already recorded.\",\"text_sha256\":\"5f3cd5089d429bb1ca49ef6382ba70946eead0aa4a6d3c6e4d3c80835787cb6c\",\"turn_index\":6},{\"alias\":\"e012\",\"speaker\":\"assistant\",\"text\":\"Define the checkpoints by purpose. After episode two, review release operations, transcript timing, listener drop-off, and production forecast; adjust promotion or episode packaging but do not cancel solely on early sales. After episode four, review the same measures plus bundle referrals and remaining cost. Reserve the season-level format decision for a dated board meeting after the evidence window.\",\"text_sha256\":\"8850d3c913059355e4e07b33e3a8805182badebeb60a6e4993258a53ad7ac0db\",\"turn_index\":6},{\"alias\":\"e013\",\"speaker\":\"user\",\"text\":\"The board meeting is October 22, three weeks after the final episode. It will choose among stopping, repeating another bounded season, licensing a full audiobook, or returning to print-only promotion. There will be no automatic continuation. The author and editor can submit their interpretation of the evidence, but the board retains the business-format decision.\",\"text_sha256\":\"3063bfe76d57bb2aef7872cbda0d2ec056580b5dc34c4c70bad65418bd044f47\",\"turn_index\":7},{\"alias\":\"e014\",\"speaker\":\"assistant\",\"text\":\"Put those four choices, the evidence window, submission date, and board authority into the calendar now. The current charter should end after the six releases and closeout work. That allows the board to select a later format without making the pilot team guess whether silence means continuation.\",\"text_sha256\":\"558c99b636aae156c574abf98fdb419b26e374eb394d23424b4685384810dd9c\",\"turn_index\":7},{\"alias\":\"e015\",\"speaker\":\"user\",\"text\":\"The actor has warned us that a touring offer could take one August date. The studio can hold a backup day, but only at extra cost. The author is willing to record a short introduction but not whole essays. The editor says that if we bank four episodes before launch, a lost date would be manageable.\",\"text_sha256\":\"1cea01ac658381cec11a5e385c8e93278b12bbf1735bff7ddbc07aa355090ff2\",\"turn_index\":8},{\"alias\":\"e016\",\"speaker\":\"assistant\",\"text\":\"Set a minimum bank before the first release and name the response to a shortfall. The production manager can use the backup studio day within the season cap; if fewer than two unreleased episodes remain ready, the publisher can insert a one-week gap and use an approved text excerpt rather than substitute an unapproved narrator. Record who may choose each response.\",\"text_sha256\":\"055347e402d4a185ba695dd536be3799994e2052957be3e268e4779e07d1e9ee\",\"turn_index\":8},{\"alias\":\"e017\",\"speaker\":\"user\",\"text\":\"We also need version control. The author sometimes improves a sentence after hearing it aloud. The editor can accept punctuation or a correction, but any substantive change must return to the author and then to transcript production. The web producer wants a cutoff because a late revised script can invalidate both the transcript and the mix.\",\"text_sha256\":\"50978f00e082dc4ec8369832ac0af3a88cc04095b2a981901dce2df0912261f8\",\"turn_index\":9},{\"alias\":\"e018\",\"speaker\":\"assistant\",\"text\":\"Use one locked-script identifier per episode. Substantive changes after lock require author and editor approval, a new identifier, and a refreshed transcript and mix check. The web producer can delay release when the approved identifier does not match the delivered files. Keep the earlier version in the production record rather than overwriting it.\",\"text_sha256\":\"537e65dbba68d650497344e90b1a5dcc92de79a958a7a36f2047ee40ca6af4cb\",\"turn_index\":9},{\"alias\":\"e019\",\"speaker\":\"user\",\"text\":\"Here is the operating table: at least four finished episodes before launch; pause scheduling if the ready bank falls below two; transcript and mixed audio due two business days before publication; no episode above twenty-two minutes without editor approval; forecast at episode three must remain within $9,000; no listener profiles; and any substantive text change resets the accessibility checks.\",\"text_sha256\":\"9d4882216096b4fd911b2a8159e8da481d291d3e091ef351beb990696bc4fb72\",\"turn_index\":10},{\"alias\":\"e020\",\"speaker\":\"assistant\",\"text\":\"Assign each line to a role and evidence source. Production owns the bank and cost forecast, editorial owns length and text approval, the web producer owns transcript release, the publisher owns pauses and budget changes, and the distributor settings document the privacy limit. Put the checkpoint dates beside those controls.\",\"text_sha256\":\"cc9d385ded3981672830a4c77e62625038b857586c1b09887dd3b9774d58b523\",\"turn_index\":10},{\"alias\":\"e021\",\"speaker\":\"user\",\"text\":\"The distributor just told us one podcast platform may take five days to update an episode. Our own site and the two main platforms update within hours. Marketing wants to promise one universal Friday release. The production manager would rather publish on our site Friday and let the slower platform follow when its feed refreshes.\",\"text_sha256\":\"e6bbae743bb14ed221000c6ff5496b2d0ff0d222c8d067a0d07d5135c3fd25ed\",\"turn_index\":11},{\"alias\":\"e022\",\"speaker\":\"assistant\",\"text\":\"Define the official release on channels the press controls and disclose that secondary feeds may lag. The web producer can verify the primary channels Friday morning and record the slower platform's eventual appearance. A distribution delay should not trigger a new mix or transcript cycle unless the delivered file itself is wrong.\",\"text_sha256\":\"4aab0a0e79dc24a5a43cf1bc61343109e2d4a49359665a98ec7256f1c7e4a712\",\"turn_index\":11},{\"alias\":\"e023\",\"speaker\":\"user\",\"text\":\"The production calendar is now fixed: recording August 6, 7, 13, and 14, with August 20 held as backup; first release September 4; checkpoints September 11 and 25; final release October 2; evidence closes October 16; author and editor comments are due October 19; board decision October 22. Finance will close the pilot account October 30.\",\"text_sha256\":\"b3e6ab578b8a1b6a5f6850c5ec8dec73a52439d311fdbe902784c1078cb0fe12\",\"turn_index\":12},{\"alias\":\"e024\",\"speaker\":\"assistant\",\"text\":\"Attach the calendar to the role table and episode checklist. The evidence close allows completion and conversion measures to mature before comments are due. Finance can report committed, paid, and projected amounts separately at both checkpoints and the account close.\",\"text_sha256\":\"61bce6cc0d4669ad5e883ab2f00ba195217fb6e3d1e369bed381800c25be2a16\",\"turn_index\":12},{\"alias\":\"e025\",\"speaker\":\"user\",\"text\":\"I signed the six-episode charter with the author, editor, production manager, and web producer. The board recorded the $9,000 ceiling and October 22 authority. The distributor settings now exclude listener profiles. We paid the studio deposit and the actor confirmed the four recording dates plus the conditional backup day.\",\"text_sha256\":\"2c2ea21409304652887ef70d22352b4d0abff9214c0136854e6d0e38ef6c2565\",\"turn_index\":13},{\"alias\":\"e026\",\"speaker\":\"assistant\",\"text\":\"The production file can now be assembled from the signed charter, locked-script register, episode checklist, bank tracker, cost forecast, privacy settings, channel list, checkpoint forms, and dated board agenda. Those records give each owner the same operating reference during the season.\",\"text_sha256\":\"f8ab4c152bd9f55e3d0ac12f7952dcaf986d99e7da758623ffd7124ad7e740be\",\"turn_index\":13},{\"alias\":\"e027\",\"speaker\":\"user\",\"text\":\"The board secretary has added the four format choices to the October agenda and noted that no later season or audiobook is approved by the pilot charter. The production manager will report bank and budget every Monday. The web producer has the authority to move a release that misses transcript or version checks, and I hold the pause decision after any bank or budget trigger.\",\"text_sha256\":\"a31c04de0cbd72f93a1a5b30b2cd43dff72004881edc85c1035b529e30d7dbf8\",\"turn_index\":14},{\"alias\":\"e028\",\"speaker\":\"assistant\",\"text\":\"The August kickoff record now contains the first four script identifiers, studio schedule, transcript handoffs, distributor privacy setting, Monday reporting template, and the October agenda filed with the closeout definitions.\",\"text_sha256\":\"b53e53e6d7bc8cb13fe0c3862025c498bf4acca19f12cef4666ba9839bb9ccf8\",\"turn_index\":14}],\"message_count\":28,\"path\":\"research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/sources/r4h2-case02-serialized-essay-pilot.json\",\"sha256\":\"922228b8371d9536464adc402390f6e50d894927e0b9a7f9c60518d9a68bdb80\"}\n</authoritative_source>\n\n<fallible_prior_interpretation_context>\n{\"artifact_path\":\"research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/priors/r4h2-case02-serialized-essay-pilot.json\",\"artifact_sha256\":\"b5706dc359957e92fb25ee9535d3981835f7496fc4f138eae12885f18f3a3543\",\"authority\":\"fallible_prior_interpretation_not_source_truth\",\"qualification_review\":{\"evidence_ids\":[\"e009\",\"e011\",\"e013\"],\"interpretation\":\"The press will learn about completion, conversion, audience reach, and the relationship between audio sampling and book sales during one season.\",\"limitations\":\"The pilot measurements cannot establish the economics or audience response of a full audiobook.\",\"outcome\":\"bounded_evidence_qualification_present\"},\"records\":[{\"interpretation\":\"The publisher begins interested in an audio experiment while protecting the autumn list from an open-ended production commitment.\",\"limitations\":\"This describes the starting business tension before the season charter is signed.\",\"record_id\":\"r4h2-prior-case02-starting-01\",\"source_aliases\":[\"e001\",\"e003\",\"e005\"],\"surface\":\"starting_position\"},{\"interpretation\":\"The press adopts a six-episode season with a fixed budget, authority table, production bank, transcript and version controls, privacy limits, checkpoints, channel rules, and a dated board decision.\",\"limitations\":\"The charter approves one season and does not select a later publishing format.\",\"record_id\":\"r4h2-prior-case02-current-01\",\"source_aliases\":[\"e019\",\"e023\",\"e025\"],\"surface\":\"current_position\"},{\"interpretation\":\"The audience measures are deliberately limited to aggregate behavior, voluntary feedback, and book-page or bundle activity during the pilot window.\",\"limitations\":\"Those measures may inform the October board choice but do not predict a different production scale.\",\"record_id\":\"r4h2-prior-case02-qualification-01\",\"source_aliases\":[\"e009\",\"e013\",\"e023\"],\"surface\":\"qualification\"}]}\n</fallible_prior_interpretation_context>\n\n<task>\nBased on the information above, return exactly one review for unresolved_matter and one for reopen_condition, in either order. Return at most two records per review. Apply the semantic contract against the complete conversation endpoint, not isolated sentences. Preserve exact aliases, speaker ownership, and modal force. Do not judge advice quality or whether a human should trust an answer.\n</task>",
+        "role": "user"
+      }
+    ],
+    "model": "google/gemini-3.1-flash-lite",
+    "provider": {
+      "allow_fallbacks": false,
+      "data_collection": "deny",
+      "max_price": {
+        "completion": 1.5,
+        "prompt": 0.25
+      },
+      "only": [
+        "google-vertex"
+      ],
+      "order": [
+        "google-vertex"
+      ],
+      "require_parameters": true,
+      "zdr": true
+    },
+    "reasoning": {
+      "effort": "minimal",
+      "exclude": true
+    },
+    "response_format": {
+      "json_schema": {
+        "name": "lolla_r4_uncertainty_v1",
+        "schema": {
+          "additionalProperties": false,
+          "description": "Paired unresolved-matter and reopen-condition review.",
+          "properties": {
+            "global_limitations": {
+              "description": "Limits applying to the whole read; empty if none.",
+              "type": "string"
+            },
+            "reviews": {
+              "description": "Exactly one review for each declared surface.",
+              "items": {
+                "additionalProperties": false,
+                "description": "One explicit semantic-surface review.",
+                "properties": {
+                  "outcome": {
+                    "description": "Present, quiet, or ambiguous result of this review.",
+                    "enum": [
+                      "records_present",
+                      "no_supported_record_observed",
+                      "ambiguous_review"
+                    ],
+                    "type": "string"
+                  },
+                  "records": {
+                    "description": "Zero to two candidates for this surface.",
+                    "items": {
+                      "additionalProperties": false,
+                      "description": "One source-linked semantic candidate.",
+                      "properties": {
+                        "evidence_ids": {
+                          "description": "Exact source aliases supporting this candidate.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "maxItems": 8,
+                          "minItems": 1,
+                          "type": "array"
+                        },
+                        "interpretation": {
+                          "description": "Concise meaning of this candidate without advice.",
+                          "type": "string"
+                        },
+                        "limitations": {
+                          "description": "Uncertainty or scope limit; use an empty string if none.",
+                          "type": "string"
+                        },
+                        "support": {
+                          "description": "Whether the source supports the read or leaves it ambiguous.",
+                          "enum": [
+                            "supported",
+                            "ambiguous"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "support",
+                        "interpretation",
+                        "evidence_ids",
+                        "limitations"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 2,
+                    "minItems": 0,
+                    "type": "array"
+                  },
+                  "surface": {
+                    "description": "The semantic surface reviewed.",
+                    "enum": [
+                      "unresolved_matter",
+                      "reopen_condition"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "surface",
+                  "outcome",
+                  "records"
+                ],
+                "type": "object"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "reviews",
+            "global_limitations"
+          ],
+          "type": "object"
+        },
+        "strict": true
+      },
+      "type": "json_schema"
+    },
+    "seed": 10201,
+    "stream": false
+  },
+  "body_sha256": "38ca6bf653c4a6c028876220a64fa153481fede8506874bd6343609f849f6309",
+  "case_id": "r4h2-case02-serialized-essay-pilot",
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "schema_version": "lolla.r4_matched_residual_request_preview.v2",
+  "status": "provider_free_preview_not_authorized_for_transport"
+}
