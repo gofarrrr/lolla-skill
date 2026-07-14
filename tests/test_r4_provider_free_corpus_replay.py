@@ -262,16 +262,22 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
     assert builder.DOWNSTREAM_OUTPUT_ROOTS == (
         ROOT / "research/lolla-r4-conversation-state-fan-in-2026-07-13",
         ROOT / "research/lolla-r4-complementary-reader-preflight-2026-07-13",
+        ROOT / "research/lolla-r4-complementary-reader-execution-2026-07-14-a1",
+        ROOT / "research/lolla-r4-complementary-reader-token-correction-2026-07-14",
     )
     assert builder.DOWNSTREAM_INPUT_PATHS == (
         ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
         ROOT / "docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json",
+        ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-authorization-a1.json",
+        ROOT / "docs/evals/lolla-r4-complementary-reader-token-correction-contract-v1.json",
     )
     assert not any(
         path.startswith(
             (
                 "research/lolla-r4-conversation-state-fan-in-2026-07-13/",
                 "research/lolla-r4-complementary-reader-preflight-2026-07-13/",
+                "research/lolla-r4-complementary-reader-execution-2026-07-14-a1/",
+                "research/lolla-r4-complementary-reader-token-correction-2026-07-14/",
             )
         )
         for path in recorded
@@ -280,6 +286,8 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
         {
             "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
             "docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json",
+            "docs/evals/lolla-r4-complementary-reader-experiment-authorization-a1.json",
+            "docs/evals/lolla-r4-complementary-reader-token-correction-contract-v1.json",
         }
     )
 

@@ -379,9 +379,10 @@ See
 
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
-Status: provider-free inventory/replay, missingness-aware fan-in, and bounded
-complementary-reader experiment preparation complete; explicit call
-authorization is the next decision
+Status: provider-free inventory/replay and missingness-aware fan-in complete;
+first complementary-reader attempt closed on token-allocation failure; narrow
+prospective correction prepared; new explicit call authorization is the next
+decision
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -485,6 +486,39 @@ Every provider-free gate now passes. The preparation does not authorize a
 call. The next founder-owned decision is whether to authorize this exact
 four-call maximum causal diagnostic. See
 `docs/conversation-understanding/lolla-r4-complementary-reader-preparation-result-2026-07-13.md`.
+
+First execution and token-correction result:
+
+- the founder authorized the exact prepared diagnostic, and the runner made
+  two uncertainty calls before the dependency stop rule closed both
+  relationship paths;
+- both calls reached Gemini 3.1 Flash Lite through the pinned Google provider,
+  but ended at `finish_reason: length` with unterminated JSON;
+- the target used 865 of 885 completion tokens for reasoning and the control
+  used 861 of 886, leaving only 20 and 25 non-reasoning tokens;
+- no candidate was parsed or admitted, so material recovery, restraint,
+  evidence precision, role placement, and relationship fidelity remain not
+  evaluable; partial prefixes are not semantic evidence;
+- two exact calls cost `$0.009036`; there was no retry, fallback, healing,
+  evaluator, embedding, graph, pipeline, runtime, or relationship call;
+- the historical attempt is hash-locked and closed without reclassification;
+- current OpenRouter and Google guidance confirms that reasoning consumes the
+  output allowance and Gemini thinking levels are relative rather than strict
+  budgets;
+- a prospective provider-free correction changes only uncertainty
+  `/reasoning/effort` from `low` to `minimal` and `/max_tokens` from `900` to
+  `1600`; every semantic input and the relationship allocation remain
+  unchanged;
+- the corrected four-call conservative estimate is `$0.0181615`, still inside
+  the original `$0.015` per-case and `$0.03` total ceilings;
+- closeout, exact request-diff, fake four-call, global-restoration,
+  authorization, custody, and zero-network tests pass locally.
+
+The first authorization is consumed. The new prospective contract authorizes
+zero calls. The next founder-owned decision is whether to authorize the newly
+frozen correction diagnostic. Runtime integration, model comparison, wider
+corpus work, and semantic deterministic gating remain unauthorized. See
+`docs/conversation-understanding/lolla-r4-complementary-reader-execution-result-2026-07-14.md`.
 
 ## R5 — Product evidence and receipt reconstruction
 

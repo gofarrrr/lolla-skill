@@ -1104,3 +1104,30 @@ Continuation entrypoints:
 - `docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json`;
 - `docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json`;
 - `research/lolla-r4-complementary-reader-preflight-2026-07-13/preflight-result.json`.
+
+## R4 complementary-reader execution and token correction — 2026-07-14
+
+The first frozen diagnostic made two attributable Gemini 3.1 Flash-Lite calls
+and stopped before either relationship call. Both uncertainty responses ended
+with `finish_reason: length`: reasoning used 865/885 and 861/886 completion
+tokens, leaving unterminated JSON. No candidate was admitted and no semantic
+dimension was scored. Exact total cost was `$0.009036`; there was no retry,
+fallback, healing, evaluator, embedding, graph, pipeline, or runtime call.
+
+The attempt is preserved as an operational negative, not a semantic result. A
+provider-free prospective package changes only uncertainty `max_tokens` from
+900 to 1600 and reasoning effort from `low` to `minimal`. Prompt, schema,
+source, model, provider, seeds, relationship allocation, stop rules, and the
+`$0.03` hard ceiling remain unchanged. Its conservative four-call estimate is
+`$0.0181615`.
+
+The prospective contract has no authorization file and makes no call by
+itself. A new explicit founder authorization is required.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-complementary-reader-execution-result-2026-07-14.md`;
+- `research/lolla-r4-complementary-reader-execution-2026-07-14-a1/execution-closeout.json`;
+- `docs/conversation-understanding/lolla-r4-token-allocation-current-practice-2026-07-14.md`;
+- `research/lolla-r4-complementary-reader-token-correction-2026-07-14/preflight-result.json`;
+- `docs/evals/lolla-r4-complementary-reader-token-correction-contract-v1.json`.
