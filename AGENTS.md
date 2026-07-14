@@ -160,9 +160,11 @@ PYTHONPATH=. pytest -q tests/test_r4_semantic_distinction.py tests/test_r4_seman
 PYTHONPATH=. pytest -q
 ```
 
-Also run `git diff --check` and validate changed JSON. At the 2026-07-14
-handoff, the full suite passes 4,868 tests with 1 skipped and all 93 subtests
-passing. A changed count is not automatically a regression; unexplained
+Also run `git diff --check` on the current change and validate changed JSON.
+Do not rewrite frozen historical evidence merely to clean legacy whitespace.
+At the 2026-07-14 post-consolidation handoff, the full suite passes 4,869 tests
+with all 93 subtests passing and one existing `datetime.utcnow()` deprecation
+warning. A changed count is not automatically a regression; unexplained
 failures or historical hash drift are.
 
 ## Current handoff — 2026-07-14
@@ -174,8 +176,10 @@ failures or historical hash drift are.
 - R4 inventory, fan-in, first complementary-reader attempt, token correction,
   corrected diagnostic, and provider-free semantic-distinction repair:
   complete and documented.
-- Latest branch: `codex/r4-semantic-distinction-contract`.
-- Latest stacked draft: GitHub PR #359, based on draft PR #358.
+- Canonical branch: `main` at consolidation merge `8708319` (GitHub PR #360).
+- PR #347 was recognized as merged through the consolidation. PRs #348-#359
+  are closed as superseded after verifying every exact head commit is reachable
+  from `main`; their historical branches and discussions remain intact.
 - Provider calls currently authorized: zero.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
@@ -198,10 +202,12 @@ With GitHub CLI authentication available:
 ```bash
 gh repo clone gofarrrr/lolla-skill
 cd lolla-skill
-gh pr checkout 359
+git switch main
+git pull --ff-only
 git status -sb
 ```
 
-If the repository already exists, fetch first and then run `gh pr checkout
-359`. Read this file and the ordered entrypoints above before continuing. Do
-not infer provider authorization from the existence of the remote branch.
+If the repository already exists, fetch first, switch to `main`, and pull with
+`--ff-only`. Read this file and the ordered entrypoints above before continuing.
+Do not infer provider authorization from the runner, historical authorization
+artifacts, merged preparation work, or any remote branch.
