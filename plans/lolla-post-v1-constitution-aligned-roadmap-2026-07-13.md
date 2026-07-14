@@ -793,17 +793,23 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The leakage-corrected provider-free matched residual holdout v2 is complete.
-The only next eligible action is a separate founder decision on whether to
-authorize the exact frozen eight-call experiment with its exact request hashes,
-operator, counterbalanced order, `$0.03` per-case ceiling, and `$0.12` total
-ceiling. The package itself neither requests nor grants that authorization.
+The leakage-corrected matched residual holdout v2 has now executed exactly once.
+All eight calls completed for `$0.01408165`. The residual arm preserved both
+genuine targets and removed some broad inventory, but it failed both quiet
+controls by repeating governed capacity and scheduled-decision errors and by
+adding duplicate or assistant-proposal records. The frozen decision is
+`residual_task_repair_insufficient`; the one-use authorization is consumed.
 
-Until such an explicit decision, make no provider call, create no authorization
-artifact, execute the rejected v1 package, retry any consumed A3 attempt, or
-change any v2 source, prior, protected target, matched request arm, seed,
-reasoning envelope, output allocation, route, or evaluation matrix. Do not
-integrate the runtime, reopen R3, change the graph, add governed-pending as an
-output surface, split the task, change prior authority, compare models, infer
-operationalization in Python, merge interpretations, optimize a composite
-score, prepare R5, or claim product usefulness.
+Do not retry or integrate the reader. The next eligible unit is a separate
+provider-free causal decision: determine whether the remaining false positives
+are primarily paired two-surface completion pressure, or whether the R4 reader
+architecture should stop. If that question cannot be isolated without changing
+source/prior authority, model/context, relationship behavior, runtime, graph,
+or adding a new provider surface, stop rather than bundle changes.
+
+Until a new founder goal exists, make no provider call, create no execution
+authorization, execute rejected v1, retry the consumed A1 or A3 attempts, or
+change frozen sources, priors, targets, requests, operators, seeds, reasoning,
+or evaluation evidence. Runtime/graph integration, governed-pending output,
+model comparison, scalar scoring, R5, and product-usefulness claims remain
+unauthorized.

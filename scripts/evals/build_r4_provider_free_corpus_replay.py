@@ -57,6 +57,7 @@ DOWNSTREAM_OUTPUT_ROOTS = (
     ROOT / "research/lolla-r4-matched-residual-holdout-contract-2026-07-14",
     ROOT / "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14",
     ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14",
+    ROOT / "research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1",
 )
 DOWNSTREAM_INPUT_PATHS = (
     ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",

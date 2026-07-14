@@ -1336,3 +1336,42 @@ Continuation entrypoints:
 - `docs/evals/lolla-r4-matched-holdout-v2-target.json`;
 - `docs/evals/lolla-r4-matched-holdout-v2-contract.json`;
 - `research/lolla-r4-matched-holdout-v2-contract-2026-07-14/manifest.json`.
+
+## R4 matched-holdout v2 execution A1 — 2026-07-14
+
+The founder authorized exactly one execution of the canonically published
+eight-call matched plan. All eight Gemini 3.1 Flash-Lite calls completed in the
+frozen counterbalanced order through Google. Exact provider-reported cost was
+`$0.01408165`, below every `$0.03` matched-case ceiling and the `$0.12` total
+ceiling. No retry, fallback, healing, substitution, relationship, evaluator,
+embedding, graph, pipeline, or runtime call occurred.
+
+Raw terminal response bytes, request and response hashes, generation IDs,
+usage, cost, provider attribution, and authorization consumption were sealed
+in local commit `e2f83561686172538c8ac8876a53da2a804dc503` before the
+protected target was opened. The temporary authorization is not committed and
+is consumed; it cannot authorize a second execution.
+
+Source-first review found that both arms recovered the genuine Case 03
+post-June ownership/funding/capacity gap and Case 04 Board-designation
+dependency. The residual arm reduced false-positive record count from seven to
+five and suppressed Case 01's broad unresolved inventory, but it failed both
+quiet controls. It repeated two predefined capacity triggers, converted the
+Case 02 scheduled board decision into a dependency, duplicated the Case 03
+current gap on the reopen surface, and elevated assistant suggestions into a
+Case 04 present gap. It completed only two of six expected-quiet canonical
+surfaces at zero.
+
+The frozen non-scalar decision is
+`residual_task_repair_insufficient`. This is simulated reliability evidence,
+not runtime readiness, model reliability, or real-user usefulness. No retry,
+additional provider call, integration, R5 work, model comparison, or
+publication is authorized by the result.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`;
+- `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`;
+- `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/source-first-review.json`;
+- `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/evidence-manifest.json`;
+- `research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/execution-closeout.json`.

@@ -273,6 +273,7 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
         ROOT / "research/lolla-r4-matched-residual-holdout-contract-2026-07-14",
         ROOT / "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14",
         ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14",
+        ROOT / "research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1",
     )
     assert builder.DOWNSTREAM_INPUT_PATHS == (
         ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
@@ -306,6 +307,7 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
                 "research/lolla-r4-matched-residual-holdout-contract-2026-07-14/",
                 "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/",
                 "research/lolla-r4-matched-holdout-v2-contract-2026-07-14/",
+                "research/lolla-r4-matched-holdout-v2-execution-2026-07-14-a1/",
             )
         )
         for path in recorded
