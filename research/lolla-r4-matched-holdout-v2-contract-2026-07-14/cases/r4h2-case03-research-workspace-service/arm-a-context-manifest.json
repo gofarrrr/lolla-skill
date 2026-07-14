@@ -1,0 +1,125 @@
+{
+  "arm": "A_frozen_v2_semantic_distinction",
+  "case_id": "r4h2-case03-research-workspace-service",
+  "changed_provider_visible_semantic_fields": [
+    "system role",
+    "task operation",
+    "surface vocabulary",
+    "schema name",
+    "schema enum labels and semantic descriptions",
+    "minimal examples",
+    "evidence wording",
+    "output rules"
+  ],
+  "complete_source_inclusion": true,
+  "context_components": [
+    {
+      "estimated_tokens": 1542,
+      "name": "system_instruction",
+      "sha256": "db8d8fa00405fb42a706b1533bcf5482044d4a482fd2d8451ac00d55e77edf13",
+      "utf8_bytes": 3083
+    },
+    {
+      "estimated_tokens": 6990,
+      "name": "authoritative_source",
+      "sha256": "65975f18f14fdc10aaaf7577f63fb152c1ff96ebd322610a1331fcb971a062e2",
+      "utf8_bytes": 13980
+    },
+    {
+      "estimated_tokens": 922,
+      "name": "fallible_prior_interpretation_context",
+      "sha256": "0e8b88701de1faad04d575a6d3308f961a9c946c586ae4a710be7ed25f6e507f",
+      "utf8_bytes": 1844
+    },
+    {
+      "estimated_tokens": 196,
+      "name": "task",
+      "sha256": "cd79a11c4f34d43042a69714ff2f812870ea893b5be5f5a08ce7c19645420c92",
+      "utf8_bytes": 392
+    },
+    {
+      "estimated_tokens": 827,
+      "name": "schema",
+      "sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+      "utf8_bytes": 1653
+    }
+  ],
+  "declared_omissions": [
+    "protected review evidence",
+    "provider output and provider authorization",
+    "relationship, evaluator, embedding, graph, pipeline, and runtime calls",
+    "retries, semantic retries, fallbacks, healing, and model substitution",
+    "summaries, chunks, relevance filters, and deterministic semantic gates",
+    "governed-pending output surface and task split"
+  ],
+  "fallible_prior_declaration": true,
+  "matched_equal_request_fields": [
+    "/max_tokens",
+    "/model",
+    "/provider",
+    "/reasoning",
+    "/seed",
+    "/stream"
+  ],
+  "no_summary_chunking_filter_or_semantic_gate": true,
+  "prior": {
+    "artifact_path": "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/priors/r4h2-case03-research-workspace-service.json",
+    "artifact_sha256": "53aff0c8c41fd7c1504718f4190a736addad67d0f150ddbaa6482cfb71c95e52",
+    "artifact_utf8_bytes": 2114,
+    "canonical_context_sha256": "0e8b88701de1faad04d575a6d3308f961a9c946c586ae4a710be7ed25f6e507f",
+    "canonical_context_utf8_bytes": 1844,
+    "estimated_tokens": 922,
+    "fallible_authority": "fallible_prior_interpretation_not_source_truth",
+    "included_exactly_once": true,
+    "record_count": 3,
+    "summarized_or_reordered": false
+  },
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "request_estimate": {
+    "canonical_body_sha256": "916d04ea1301589ee13f3763beffd0275119d4ac72aec8177f73e9ed46ab11e9",
+    "canonical_body_utf8_bytes": 22286,
+    "estimated_input_tokens": 10550,
+    "estimator": "ceil((message_utf8_bytes+schema_utf8_bytes)/2); deterministic conservative estimate, not provider tokenization",
+    "maximum_output_tokens": 1600,
+    "message_utf8_bytes": 19446,
+    "schema_utf8_bytes": 1653,
+    "total_context_utf8_bytes": 21099
+  },
+  "schema_labels_and_descriptions_are_model_context": true,
+  "schema_version": "lolla.r4_matched_residual_context_manifest.v2",
+  "section_order": [
+    "system_instruction",
+    "authoritative_source",
+    "fallible_prior_interpretation_context",
+    "task"
+  ],
+  "source": {
+    "alias_count": 28,
+    "artifact_path": "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/sources/r4h2-case03-research-workspace-service.json",
+    "artifact_sha256": "9c3c979fbe79e6a573f9dc316e1e03c7a1ffc29dc0b5abd7c139825ef2a652ad",
+    "artifact_utf8_bytes": 12384,
+    "canonical_context_sha256": "65975f18f14fdc10aaaf7577f63fb152c1ff96ebd322610a1331fcb971a062e2",
+    "canonical_context_utf8_bytes": 13980,
+    "estimated_tokens": 6990,
+    "included_exactly_once": true,
+    "message_count": 28,
+    "summarized_or_chunked": false
+  },
+  "source_then_prior_order": true,
+  "task_at_end_invariant": true,
+  "unchanged_dimensions": [
+    "authoritative source bytes and canonical context",
+    "fallible prior bytes, records, and canonical context",
+    "source then prior then task order",
+    "paired two-surface task shape",
+    "record fields and bounds",
+    "model and pinned provider route",
+    "seed within each matched pair",
+    "1600-token output allocation",
+    "minimal excluded-reasoning envelope",
+    "nonstreaming strict-JSON policy",
+    "privacy and routing controls",
+    "relationship, graph, runtime, and operator"
+  ]
+}

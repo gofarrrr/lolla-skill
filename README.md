@@ -32,8 +32,11 @@ telemetry and cannot delete this portfolio.
 > **Development status (2026-07-14):** The end-to-end skill and custody harness
 > work, but V1 did not establish product reliability, real-user usefulness,
 > stability, or receipt reconstruction. R4 now has a provider-free
-> residual-discovery contract with exact Case 01/04 context custody, but no
-> model has been tested against it and it is not integrated into the runtime.
+> residual-discovery contract and a frozen leakage-corrected matched
+> four-case/eight-request holdout v2. The earlier v1 holdout is rejected because
+> its evidence leaked expected classifications. No model has been tested against
+> the residual contract, and it is not integrated into the runtime. The v2
+> package makes and authorizes zero provider calls.
 > Lolla does not certify that a revised answer is better or safe to act on. See
 > the
 > [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
@@ -48,6 +51,8 @@ telemetry and cannot delete this portfolio.
 > [R4 semantic-distinction execution](docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md),
 > [R4 causal diagnosis](docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md),
 > [R4 residual-task identity repair](docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md),
+> [R4 matched residual holdout design](docs/conversation-understanding/lolla-r4-matched-residual-holdout-design-result-2026-07-14.md),
+> [R4 matched-holdout v2 leakage correction](docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md),
 > and the [current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md).
 
 ## Why This Exists
@@ -1309,6 +1314,35 @@ historical evidence, runtime, graph, model, route, or holdout. The next
 boundary is one separately scoped provider-free semantic-task repair, with
 Case 04 primary and Case 01 only as a regression constraint. See the completed
 **[R4 semantic-distinction plan](plans/lolla-r4-semantic-distinction-plan-2026-07-14.md)**.
+The subsequent
+**[R4 residual-task identity repair](docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md)**
+makes residual discovery the complete provider-visible job, maps two new
+provider labels deterministically to the existing canonical uncertainty roles,
+and preserves source/prior order, paired task shape, relationship behavior,
+model, route, runtime, and graph. It passes exposed Case 04 restraint and
+preserves the Case 01 recurring funding/ownership regression locally, but it
+made no provider call and is not model semantic validation.
+The new
+**[provider-free matched residual holdout design](docs/conversation-understanding/lolla-r4-matched-residual-holdout-design-result-2026-07-14.md)**
+freezes four genuinely new 28-message simulated cases, protected source-first
+targets, exact frozen-v2 and residual arms, eight context manifests, a
+counterbalanced eight-call maximum, and a non-scalar decision matrix. Source,
+prior, order, model, Google Vertex route, seeds, output cap, reasoning,
+streaming, strict JSON, and privacy controls are matched. The conservative
+future estimate is `$0.0424625`, with proposed `$0.015` per-case and `$0.06`
+total ceilings. The package makes and authorizes zero calls; execution requires
+a separate exact founder authorization and R5 remains gated.
+That v1 package is now preserved as a rejected checkpoint because its sources
+and priors leaked expected classifications. The additive
+**[matched-holdout v2 leakage correction](docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md)**
+freezes new source/prior evidence under exact hashes, records the human
+declaration `human leakage review passes`, authors the protected target before
+requests, and preserves only the declared residual-task intervention between
+arms. Its runner is target-blind, requires a separate exact authorization, and
+constructs no transport on dry run. The conservative estimate is `$0.040521`,
+with proposed anti-runaway ceilings of `$0.03` per matched case and `$0.12`
+total. No authorization artifact exists, no provider call was made, and model
+semantics and real-user usefulness remain unknown.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

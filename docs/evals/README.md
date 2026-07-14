@@ -1227,3 +1227,112 @@ Continuation entrypoints:
 - `research/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14/causal-diagnosis.json`;
 - `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`;
 - `AGENTS.md`.
+
+## R4 residual-task identity repair — 2026-07-14
+
+The provider-free repair is complete. A new additive contract makes residual
+discovery—not broad inventory—the complete provider-visible role, operation,
+surface vocabulary, examples, schema descriptions, evidence rule, and output
+rule. Provider-facing `residual_decision_gap` and
+`residual_reconsideration_dependency` map deterministically to canonical
+`unresolved_matter` and `reopen_condition` without reading free text.
+
+The paired response shape, record bounds, evidence aliases, zero and ambiguity
+states, complete source/prior context, context order, relationship behavior,
+model, provider route, runtime, and graph remain unchanged. Case 04 locally
+expects two quiet residual surfaces; Case 01 preserves only the recurring
+operations funding/ownership residual. Provider-free contract validity is not
+model semantic validation.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`;
+- `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md`;
+- `docs/evals/lolla-r4-residual-task-contract-v1.json`;
+- `research/lolla-r4-residual-task-contract-2026-07-14/manifest.json`.
+
+## R4 matched residual holdout design — 2026-07-14
+
+The provider-free matched experiment is frozen but not executed. Four new
+28-message simulated cases cover two governed-pending controls, one genuine
+residual decision gap, and one genuine residual reconsideration dependency in
+domains distinct from exposed development examples. Complete sources and
+fallible priors were hash-frozen before source-first protected targets and
+before request previews.
+
+Every case has the exact frozen v2 arm and the exact published residual-task
+arm. Source, prior, order, paired shape, model, Google Vertex route, seed,
+1,600-token cap, minimal excluded-reasoning envelope, streaming, strict JSON,
+and privacy controls are equal. Eight manifests account for exact context and
+schema custody. The runner cannot load the protected target and is exercised
+provider-free through fake transports and a zero-call dry run.
+
+The call plan is counterbalanced at eight calls maximum. The conservative
+estimate is `$0.0424625`; proposed future ceilings are `$0.015` per matched
+case and `$0.06` total. These values do not authorize or request execution.
+Historical v1/v2/residual hashes reproduce, and corpus replay remains 12 cases,
+543 links, and 400 artifacts. No provider call, relationship call, evaluator,
+embedding, graph, pipeline, runtime integration, R5 preparation, or usefulness
+claim is part of the package.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-matched-residual-holdout-design-result-2026-07-14.md`;
+- `docs/conversation-understanding/lolla-r4-matched-residual-holdout-current-practice-2026-07-14.md`;
+- `plans/lolla-r4-matched-residual-holdout-design-plan-2026-07-14.md`;
+- `docs/evals/lolla-r4-matched-residual-holdout-contract-v1.json`;
+- `docs/evals/lolla-r4-matched-residual-holdout-target-v1.json`;
+- `research/lolla-r4-matched-residual-holdout-contract-2026-07-14/manifest.json`.
+
+## R4 matched-holdout v2 leakage correction — 2026-07-14
+
+The preceding v1 matched design is preserved but rejected for source/target
+semantic leakage. Commit `b46464278e86f4c5d6c53e154bc272d93f09b116` and all
+v1 evidence remain byte-frozen. V1 had no authorization, made no provider call,
+produced no provider output, and must never receive founder execution
+authorization.
+
+The additive v2 correction freezes four new 28-message source/prior pairs under
+new hashes before target authorship. The exact human declaration `human leakage
+review passes` is bound to every reviewed source/prior pair. All four human
+reviews pass, the deterministic prohibited-language scan is zero, and the last
+four messages are recorded as insufficient to determine both surfaces in every
+case. Cases 01 and 02 retain an explicit limitation that their closing summaries
+provide some recency assistance without disclosing or independently determining
+the complete classification.
+
+The protected source-first target was frozen before any request preview. It
+honestly preserves two quiet controls, one supported continuing ownership/
+funding/capacity matter, and one supported premise-breaking designation
+dependency. It is absent from every request, runner source, and execution-
+visible manifest.
+
+Each case then freezes an exact Arm A frozen-v2 request and Arm B residual-task
+request. Complete source/prior bytes, order, paired task shape, model, Google
+Vertex route, seed, 1,600-token cap, minimal excluded reasoning, streaming,
+strict JSON, and privacy controls are matched. Only the declared residual-task
+identity intervention may differ. Exact delta manifests reject every
+undeclared change.
+
+The non-authorizing runner is limited to a counterbalanced eight-call plan,
+requires an exact separate authorization, constructs no network transport on
+dry run, stops on the first failure, and preserves terminal response bytes.
+Retries, semantic retries, fallbacks, healing, relationship calls, evaluators,
+embeddings, graph, pipeline, runtime, and model substitutions are all zero. The
+conservative estimate is `$0.040521`; proposed future anti-runaway ceilings are
+`$0.03` per matched case and `$0.12` total. These values do not authorize or
+request execution.
+
+Frozen replay remains 12 cases, 543 links, and 400 artifacts. Provider calls
+and cost remain zero. Provider-free validity does not establish model semantic
+behavior or real-user usefulness.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`;
+- `docs/conversation-understanding/lolla-r4-matched-holdout-v2-current-practice-2026-07-14.md`;
+- `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`;
+- `docs/evals/lolla-r4-matched-residual-holdout-v1-rejection.json`;
+- `docs/evals/lolla-r4-matched-holdout-v2-target.json`;
+- `docs/evals/lolla-r4-matched-holdout-v2-contract.json`;
+- `research/lolla-r4-matched-holdout-v2-contract-2026-07-14/manifest.json`.

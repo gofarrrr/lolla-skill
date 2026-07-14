@@ -25,22 +25,26 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
-   and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` —
-   latest completed work, the additive residual-discovery contract, exact
-   context manifests, frozen boundaries, and next decision.
-5. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+4. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
+   and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
+   — latest completed work, the rejected v1 evidence, leakage-corrected v2
+   sources and priors, hash-bound human review, protected target, matched
+   requests, non-authorizing contract, and next founder decision.
+5. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+   and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
+   published additive residual-discovery contract and frozen boundaries.
+6. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
    — the record-level Case 01/04 map, competing causal explanations,
    falsifiers, and the single repair class that earned the latest work.
-6. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-7. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+8. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-8. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+9. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -165,19 +169,24 @@ handoff or PR update. For the current R4 package:
 
 ```bash
 PYTHONPATH=. python3 scripts/evals/build_r4_residual_task_contract.py --validate-only
+PYTHONPATH=. python3 scripts/evals/build_r4_matched_holdout_v2_contract.py --validate-only
+PYTHONPATH=. python3 scripts/evals/run_r4_matched_holdout_v2_experiment.py --dry-run
+PYTHONPATH=. python3 scripts/evals/build_r4_matched_residual_holdout_contract.py --validate-only
+PYTHONPATH=. python3 scripts/evals/run_r4_matched_residual_holdout_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. pytest -q tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
 PYTHONPATH=. pytest -q
 ```
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 residual-task closeout, the full suite passes 4,887 tests
-with all 93 subtests passing and one existing `datetime.utcnow()` deprecation
-warning. A changed count is not automatically a regression; unexplained
-failures or historical hash drift are.
+At the 2026-07-14 leakage-correction closeout, the full suite passes 4,928
+tests with all 93 subtests passing and one existing `datetime.utcnow()`
+deprecation warning. The focused R4 slice passes 100 tests. A changed count is
+not automatically a regression; unexplained failures or historical hash drift
+are.
 
 ## Current handoff — 2026-07-14
 
@@ -188,16 +197,23 @@ failures or historical hash drift are.
 - R4 inventory, fan-in, first complementary-reader attempt, token correction,
   corrected diagnostic, provider-free semantic-distinction repair, exact
   holdout execution, provider-free causal diagnosis, and provider-free
-  residual-task identity repair: complete and documented. The residual
+  residual-task identity repair, rejected v1 matched holdout, and provider-free
+  leakage-corrected v2 matched holdout: complete and documented. The residual
   contract makes residual discovery the complete provider-visible job,
   deterministically maps its two enum values to the existing canonical roles,
   and preserves source/prior order, paired shape, relationship behavior,
   model, provider route, runtime, and graph. Case 04 locally expects two quiet
   surfaces; Case 01 preserves only the recurring operating-capability
-  funding/ownership residual.
-- Canonical integration target: `main`. This goal began from clean merge
-  `0165cbbb`, which includes GitHub PR #363 for the completed causal diagnosis.
-  GitHub PR #362 remains the consumed R4 execution handoff.
+  funding/ownership residual. The v1 matched design at `b464642` is permanently
+  rejected because its evidence leaked classifications. The additive v2
+  package freezes four new 28-message sources and priors, a human leakage pass
+  bound to exact hashes, a protected source-first target, and eight exact
+  v2/residual requests; it has not been executed.
+- Canonical integration target: `main`. The founder-authorized residual commit
+  `b513686d` was published through GitHub PR #364 and is contained by canonical
+  merge `06422338`. The matched holdout goal began from that clean canonical
+  state. GitHub PR #362 remains the consumed R4 execution handoff and PR #363
+  the completed causal-diagnosis publication.
 - PR #347 was recognized as merged through the consolidation. PRs #348-#359
   are closed as superseded after verifying every exact head commit is reachable
   from `main`; their historical branches and discussions remain intact.
@@ -206,23 +222,33 @@ failures or historical hash drift are.
 - The residual-task goal made zero provider calls at `$0.00`, prepared no new
   holdout, and did not request authorization. Its exact decision is
   `residual_contract_ready_for_new_holdout_design`.
+- The matched holdout v2 leakage-correction goal made zero provider calls at
+  `$0.00`. Its four simulated source/prior pairs, exact human review, protected
+  source-first target, eight request previews, context/delta manifests,
+  counterbalanced call plan, exact-authorization shape, non-scalar evaluation
+  vector, and stop-on-first-failure runner are frozen. The conservative future
+  estimate is `$0.040521`, with proposed anti-runaway ceilings of `$0.03` per
+  matched case and `$0.12` total. Those values do not authorize or request
+  execution. Its exact decision is
+  `matched_residual_holdout_v2_ready_for_founder_authorization`.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The semantic-task repair is complete. A separately started future goal may
-design a genuinely new hidden holdout around this exact single-variable
-contract. Do not infer that goal, prepare it opportunistically, or request
-provider authorization from this handoff. Preserve Case 04 restraint as the
-primary defect and Case 01 recurring funding/ownership as the regression
-constraint; do not combine future validation with a context-authority change,
-task split, relationship-reader change, governed-pending output surface, or
-model/context change.
+The leakage-corrected matched residual holdout v2 is complete, but no execution
+is authorized. A future founder decision may authorize only the exact frozen
+eight-call plan and `$0.12` ceiling, or decline it. Do not create an
+authorization artifact, make a provider call, reveal protected targets to the
+runner, or modify the frozen sources, priors, arms, operator, order, seeds,
+reasoning, or output allocation without a new goal. Do not combine any future
+validation with a context-authority change, task split, relationship-reader
+change, governed-pending output surface, or model/context change.
 
-Do not retry A3 or make another provider call. Any future provider validation
-requires a genuinely new holdout, a new frozen contract, and separate founder
-authorization. R5 product usefulness and receipt reconstruction, runtime/graph
-integration, wider-corpus execution, model comparison, and production-model
-selection remain gated and unauthorized.
+Do not retry A3, execute rejected v1, or make an unapproved provider call. The
+leakage-corrected v2 holdout and frozen contract now exist, but execution still
+requires separate exact founder authorization. R5 product usefulness and
+receipt reconstruction, runtime/graph integration, wider-corpus execution,
+model comparison, and production-model selection remain gated and
+unauthorized.
 
 ## Resume on another machine
 

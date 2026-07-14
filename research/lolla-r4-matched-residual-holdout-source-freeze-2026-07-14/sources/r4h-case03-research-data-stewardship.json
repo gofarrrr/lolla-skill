@@ -1,0 +1,149 @@
+{
+  "case_id": "r4h-case03-research-data-stewardship",
+  "domain": "university_research_data_workspace_stewardship",
+  "evidence_kind": "simulated_reliability_not_real_user_evidence",
+  "message_count": 28,
+  "messages": [
+    {
+      "message_index": 1,
+      "speaker": "user",
+      "text": "I chair a consortium of six university labs that want a shared reproducibility workspace for code, datasets, analysis environments, and study documentation. Everyone agrees that the current mix of personal drives and abandoned repositories is fragile. The disagreement is whether to launch a common service now or spend another year negotiating perfect standards. We have two semesters of modernization money and a platform team that can build the workspace. I do not want urgency to produce another repository that becomes nobody's job once the launch project ends."
+    },
+    {
+      "message_index": 2,
+      "speaker": "assistant",
+      "text": "Separate launch readiness from long-term stewardship. The service needs intake rules, access boundaries, migration support, preservation expectations, compute limits, incident handling, and an operating owner after the platform project. A bounded launch can proceed without universal standards, but only if the consortium is explicit about which responsibilities are temporary and which institution accepts the continuing service."
+    },
+    {
+      "message_index": 3,
+      "speaker": "user",
+      "text": "The labs are very different. One publishes almost everything. Two handle participant data under controlled agreements. A microscopy lab produces huge files but rarely reruns old pipelines. A computational lab changes environments weekly. The social-science team has careful documentation but little engineering support. The platform team proposes project templates rather than one mandatory workflow."
+    },
+    {
+      "message_index": 4,
+      "speaker": "assistant",
+      "text": "Templates can preserve heterogeneity if they require a small common custody core: accountable project owner, data classification, permitted users, environment description, retention basis, source location, and a named point for access questions. Keep field-specific metadata additive. Do not let the easiest open-data lab define readiness for controlled or high-volume work."
+    },
+    {
+      "message_index": 5,
+      "speaker": "user",
+      "text": "Information security will approve the service if controlled datasets stay in the existing secure enclave and the workspace stores only code, metadata, and access pointers for those projects. Some researchers call that incomplete because the data are not all in one place. Security says duplicating controlled data would create a new review burden and more copies to govern."
+    },
+    {
+      "message_index": 6,
+      "speaker": "assistant",
+      "text": "A reproducibility workspace does not require one physical store. Make the enclave boundary explicit and test whether authorized users can resolve the pointer, identify the governed dataset version, and rerun the environment without copying data out. The common service can own provenance and execution context while the enclave retains data custody."
+    },
+    {
+      "message_index": 7,
+      "speaker": "user",
+      "text": "The platform team can support thirty pilot projects. It wants each lab to nominate five, with at least one awkward project rather than only polished examples. Migration support would include two office-hour blocks, a checklist, and one engineering session. If a project cannot meet the minimum custody fields, it stays in its current location with a documented reason rather than being forced into the workspace."
+    },
+    {
+      "message_index": 8,
+      "speaker": "assistant",
+      "text": "That creates a credible intake process and a visible nonmigration state. Predefine who approves exceptions and what evidence permits a later retry. The awkward projects are useful because they test the service boundary, but failure to migrate one project should not be interpreted as failure of every shared practice."
+    },
+    {
+      "message_index": 9,
+      "speaker": "user",
+      "text": "Storage is another argument. The modernization budget covers the first 300 terabytes and initial environment registry. The microscopy lab could consume half that by itself. Finance wants quotas. Researchers worry quotas will encourage them to delete raw material or hide copies elsewhere. The platform lead proposes tiered storage, with hot workspace data, referenced institutional storage, and an exception request for preservation-critical material."
+    },
+    {
+      "message_index": 10,
+      "speaker": "assistant",
+      "text": "Use quotas as routing signals, not claims about scientific value. Require the project owner to identify the authoritative copy and retention basis before moving anything. An exception can record why size, access frequency, or preservation need justifies a tier. Keep cost visible by lab without allowing finance alone to classify research significance."
+    },
+    {
+      "message_index": 11,
+      "speaker": "user",
+      "text": "We can measure migration completion, successful environment rebuilds, pointer resolution for enclave projects, recovery from a deleted working copy, storage by tier, access-request turnaround, and support hours. The labs also want a qualitative record of where the templates distort their work. I would rather preserve those disagreements than publish a percentage that says the service is ninety percent reproducible."
+    },
+    {
+      "message_index": 12,
+      "speaker": "assistant",
+      "text": "Keep the measures separate and state their limits. A successful rebuild proves one environment can be reconstructed under the test, not that the study is scientifically reproducible. A resolved pointer proves access custody, not permission for every user. The distortion log can inform template changes without becoming a hidden score."
+    },
+    {
+      "message_index": 13,
+      "speaker": "user",
+      "text": "The steering committee proposes a two-semester launch. Semester one migrates fifteen projects and tests recovery. Semester two adds fifteen and retests the revised templates. A monthly operating meeting would handle incidents and exceptions during launch. If a critical access-control failure occurs, controlled projects pause while open projects can continue. Template changes require the platform lead and one affected lab to sign off."
+    },
+    {
+      "message_index": 14,
+      "speaker": "assistant",
+      "text": "That is a workable launch mechanism. Define critical failure, preserve the first terminal incident, and ensure the pause cannot be lifted solely by the team that introduced the change. The monthly meeting can govern launch exceptions, but its charter should say whether it survives beyond the project period rather than leaving that implied."
+    },
+    {
+      "message_index": 15,
+      "speaker": "user",
+      "text": "The platform lead says her team is funded only through the second semester. She assumed the library would absorb preservation and access questions afterward. The library representative says they agreed to advise on metadata and persistent identifiers, not operate a research computing service. Central IT will host the machines and backups but says application support and project curation are outside its service catalog."
+    },
+    {
+      "message_index": 16,
+      "speaker": "assistant",
+      "text": "That exposes a distinction the launch plan has not yet settled. Hosting, backup, preservation advice, application support, project curation, access requests, and incident response are different responsibilities. Do not let a memorandum about infrastructure be read as acceptance of the whole operating service. Ask each unit to state the continuing role it actually owns, the capacity attached to it, and the point at which it refuses work."
+    },
+    {
+      "message_index": 17,
+      "speaker": "user",
+      "text": "We held that meeting. Central IT accepts server operations, security patching, backup, and restoration under its normal service. The library accepts identifier registration and an annual preservation consultation, but not daily curation or access tickets. The research office will maintain policy documents and convene the consortium, but it has no technical staff. Each lab accepts responsibility for the scientific meaning of its own project. Nobody accepted cross-lab intake, user support, environment registry maintenance, or triage of access and reproducibility questions."
+    },
+    {
+      "message_index": 18,
+      "speaker": "assistant",
+      "text": "Those unaccepted functions are the operating service that sits between infrastructure and lab science. The consortium can still decide to launch, but it should not describe the post-launch service as assigned. Estimate the recurring queue and name the decision owner for funding or narrowing it. A plan to convene later is not yet an operating commitment unless it specifies authority, resources, and a service boundary."
+    },
+    {
+      "message_index": 19,
+      "speaker": "user",
+      "text": "The platform team estimated steady-state work from the first migrations: roughly one full-time equivalent for intake and user support, a quarter-time engineer for environment updates, plus variable help for controlled-access questions. The six labs say they cannot each contribute fractional staff reliably. The dean suggested charging projects, but no rate, billing owner, hardship rule, or base subsidy exists. The modernization money cannot be used after the launch period."
+    },
+    {
+      "message_index": 20,
+      "speaker": "assistant",
+      "text": "That is direct capacity and funding evidence. A future fee idea does not assign the work now. Keep it separate from the already governed launch thresholds. The remaining decision is whether the consortium funds a shared operating team, narrows the service to self-supported projects, rotates staff under enforceable commitments, or ends the common application after launch. Meaning should remain a human decision; the ledger should preserve that no owner is currently committed."
+    },
+    {
+      "message_index": 21,
+      "speaker": "user",
+      "text": "Some members want to postpone launch until the operating model is solved. Others argue that actual pilot volume is needed to price the service. We agreed not to fake certainty. We can proceed with thirty projects because the platform team is funded through the two semesters, while marking every post-launch support promise as temporary. But the committee has not chosen who decides the continuing service or by what funded mechanism."
+    },
+    {
+      "message_index": 22,
+      "speaker": "assistant",
+      "text": "Then state both truths. The launch is operationalized for two semesters, and the continuing service remains a material residual outside that machinery. Do not mislabel migration checklists, storage tiers, access pauses, or recovery tests as the gap. The gap is the unassigned recurring intake, support, registry, and triage capacity after temporary project staffing ends."
+    },
+    {
+      "message_index": 23,
+      "speaker": "user",
+      "text": "A second issue surfaced but appears handled. One lab worries a new container version could break old environments. The platform team added quarterly compatibility tests during launch, pins published environments, and keeps an export path to standard files. Central IT's restoration service covers storage loss, not scientific compatibility. The launch incident procedure now distinguishes those cases and pauses affected migrations if a pinned environment cannot rebuild."
+    },
+    {
+      "message_index": 24,
+      "speaker": "assistant",
+      "text": "That is governed technical work inside the launch. Compatibility tests, pinning, export, and a pause rule do not solve the recurring service owner, but they should not be emitted as separate residuals either. Preserve the distinction so a reader does not inventory every future failure simply because the operating gap is real."
+    },
+    {
+      "message_index": 25,
+      "speaker": "user",
+      "text": "The final launch decision is to proceed with thirty projects over two semesters. The platform team owns migration, office hours, environment registry, and incident triage only through that period. Central IT owns servers, patching, backup, and restoration continuously. The library owns identifiers and annual preservation consultation. Labs own scientific content. Storage tiers, exception review, controlled-project pauses, compatibility tests, recovery exercises, and template revisions all have named launch procedures."
+    },
+    {
+      "message_index": 26,
+      "speaker": "assistant",
+      "text": "That endpoint is substantial and bounded. It is important not to turn the unassigned future service into a claim that nothing is governed. The launch machinery is real, and its pending migrations and tests are owned. The separate question is what happens to intake, user support, environment maintenance, and cross-lab triage after the temporary platform team ends."
+    },
+    {
+      "message_index": 27,
+      "speaker": "user",
+      "text": "For the record, no unit has accepted that continuing work, no recurring budget line exists, and no adopted fee or rotation mechanism assigns it. The research office agreed only to bring a proposal back before the second semester ends; it did not receive authority or money to operate the service. If we never settle that, projects could remain hosted and backed up while requests, registry updates, and reproducibility support simply queue without an owner."
+    },
+    {
+      "message_index": 28,
+      "speaker": "assistant",
+      "text": "The source therefore supports one materially distinct residual decision gap: recurring stewardship capacity, funding, and responsibility outside the adopted two-semester launch machinery. The compatibility pause, storage exceptions, recovery tests, and temporary staffing remain governed and should stay quiet as separate surfaces. A later proposal meeting does not operationalize the continuing service because it currently assigns neither resources nor accountable delivery."
+    }
+  ],
+  "structural_distinction": "Cross-lab research data and environment stewardship with temporary project staffing and recurring service ownership; not infrastructure installation, grant-funded physical procurement, supplier sourcing, component redesign, or a twelve-month decision."
+}

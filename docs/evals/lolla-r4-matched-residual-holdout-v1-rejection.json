@@ -1,0 +1,57 @@
+{
+  "authorization_existed": false,
+  "blocking_defect": "source_and_prior_text_leak_expected_semantic_classifications",
+  "checkpoint_commit": "b46464278e86f4c5d6c53e154bc272d93f09b116",
+  "contract": {
+    "path": "docs/evals/lolla-r4-matched-residual-holdout-contract-v1.json",
+    "sha256": "508153a3a3f32121c17783797946dfe484d2bf901d29e0cea51090b453946044"
+  },
+  "date": "2026-07-14",
+  "defect_classification": {
+    "budget": false,
+    "evidentiary_design": true,
+    "schema": false,
+    "target_isolation": false,
+    "transport": false
+  },
+  "exact_leakage_findings": [
+    {
+      "artifact": "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/priors/r4h-case01-oral-history-release.json",
+      "finding": "The prior critiques its own broad framing and tells the reader it may overstate what remains outside adopted machinery.",
+      "location": "records[2].limitations"
+    },
+    {
+      "artifact": "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/sources/r4h-case01-oral-history-release.json",
+      "finding": "The assistant tells a future source-first review not to relabel governed pending work as newly discovered gaps.",
+      "location": "message 28"
+    },
+    {
+      "artifact": "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/sources/r4h-case02-serialized-audio-pilot.json",
+      "finding": "The assistant states that continuation creates no separate gap and that pause execution does not independently reopen the decision.",
+      "location": "message 28"
+    },
+    {
+      "artifact": "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/sources/r4h-case03-research-data-stewardship.json",
+      "finding": "The assistant names the material residual, says which facts must not be emitted, and states the complete expected decision-gap result.",
+      "location": "messages 22, 24, and 28"
+    },
+    {
+      "artifact": "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/sources/r4h-case04-cross-campus-language-program.json",
+      "finding": "The assistant names the expected reconsideration surface, the quiet matters, and the premise-breaking dependency.",
+      "location": "message 28"
+    }
+  ],
+  "execution_authorization_eligible": false,
+  "founder_execution_authorization_must_never_be_granted": true,
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "provider_output_existed": false,
+  "runner_and_custody_mechanics_passed": true,
+  "schema_version": "lolla.r4_matched_residual_holdout_rejection.v1",
+  "status": "rejected_before_authorization_for_source_target_semantic_leakage",
+  "supersession": {
+    "v1_evidence_may_be_executed": false,
+    "v1_mechanical_harness_may_inform_v2": true,
+    "v2_requires_new_case_ids_sources_priors_targets_hashes_and_requests": true
+  }
+}

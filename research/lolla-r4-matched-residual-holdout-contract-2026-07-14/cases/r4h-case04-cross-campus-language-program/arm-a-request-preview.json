@@ -1,0 +1,147 @@
+{
+  "arm": "A_frozen_v2_semantic_distinction",
+  "authorization_present": false,
+  "body": {
+    "max_tokens": 1600,
+    "messages": [
+      {
+        "content": "<role>\nYou are a narrow complementary conversation-state reader. Interpret messy meaning across the complete conversation. Do not recommend action, select mental models, activate pressure, or score reasoning.\n</role>\n\n<authority>\nThe authoritative source outranks the fallible prior interpretations. Read the whole source and preserve speaker ownership and modal force. Source-supported inference is allowed; outside facts are forbidden. Do not infer resolution merely from turn order: compare the meanings of earlier and later evidence.\n</authority>\n\n<semantic_contract>\nReview exactly two different surfaces.\n\nUNRESOLVED MATTER: a material question, assumption, dependency, ownership gap, or tension that remains unanswered or unowned in the conversation's final state. It is not unresolved merely because an adopted action must still be executed, a signed condition must be satisfied, a written process exists, a safeguard remains active, or a risk was discussed earlier.\n\nREOPEN CONDITION: specific later evidence, an event, or a dependency failure that would materially require reconsidering an otherwise current position. It is not a reopen condition merely because the current position already schedules a review, defines a benchmark, says pause or stop after a failure, prevents automatic renewal, or contains an operating requirement.\n\nBefore admitting a supported record, compare it with the current position and the complete source. Ask whether the same matter has already been resolved, assigned, operationalized, or deliberately converted into a precondition, process, safeguard, benchmark, or scheduled review. If yes and no distinct matter remains, return no record. If the source cannot establish whether the matter remains open, use ambiguous_review rather than forcing support.\n</semantic_contract>\n\n<contrastive_examples>\n- \"Proceed only after the amendment is signed\" is normally an adopted condition precedent, not an unresolved matter.\n- \"Pause after a privacy failure and decide separately before renewal\" is normally an existing safeguard, not a newly discovered reopen condition.\n- \"At six months, review results and whether unwelcome information travels upward\" is normally an operationalized review, not a separate reopen condition.\n- \"We still need a boundary process\" may be unresolved earlier, but is not still unresolved if the final position states that disputed cases follow the written boundary process.\n- A pilot limited to one supported setting can still leave a distinct transfer or generalization question when the current position does not establish what wider settings justify.\n- Temporary support can create a distinct reopen condition when continuation would otherwise hide an unresolved steady-state burden.\n</contrastive_examples>\n\n<output_rules>\nIt is correct to return no_supported_record_observed with an empty array. Use records_present only for at least one supported record. Use ambiguous_review only for one or more ambiguous records and no supported record. Cite exact source aliases. Return schema-valid JSON only.\n</output_rules>",
+        "role": "system"
+      },
+      {
+        "content": "<authoritative_source>\n{\"aliases\":[{\"alias\":\"e001\",\"speaker\":\"user\",\"text\":\"I coordinate adult language courses across four community colleges. Three less commonly taught languages are in danger of cancellation because each campus has too few students for a separate section. We could combine enrollments into synchronous cross-campus classes, with one instructor teaching learners in several rooms and online. Local directors like preserving the languages but fear that consolidation will produce a technically connected class with no local belonging. I need a plan that is educationally serious rather than a budget trick.\",\"text_sha256\":\"c4411830478f9af5ae059b37142be5842027f7b16aeb2fa3f8b9661e866425c2\",\"turn_index\":1},{\"alias\":\"e002\",\"speaker\":\"assistant\",\"text\":\"Treat the combined section as a new teaching design, not a video feed replacing local instruction. Separate instructor authority, local facilitation, scheduling, accessibility, technology recovery, assessment, and the conditions under which a language should return to a local section. Preserve the educational purpose and make the financial constraint visible without letting it define success alone.\",\"text_sha256\":\"4d425e37fa7d24be7c216714d0ef3b8b91b852c258c97fdd347933a4dd26b2ee\",\"turn_index\":1},{\"alias\":\"e003\",\"speaker\":\"user\",\"text\":\"The strongest instructor is employed by North Campus. She already teaches hybrid courses and is willing to lead two combined sections. East and Harbor can provide rooms, but their evening staff cannot answer language questions. South has a part-time tutor who could facilitate conversation groups. The campuses use compatible learning systems but different attendance and disability-service procedures.\",\"text_sha256\":\"6094e14ff76aca823e052e313e579ec1b74327f2fc809a381c9234c5ece45751\",\"turn_index\":2},{\"alias\":\"e004\",\"speaker\":\"assistant\",\"text\":\"Define a common instructional core and preserve campus-specific support responsibilities. The lead instructor can own curriculum, live teaching, and assessment. Each campus can own room access, attendance custody, disability coordination, and a named contact. A local tutor can add practice without becoming an unacknowledged second instructor. Reconcile procedure differences before enrollment rather than asking students to navigate them midcourse.\",\"text_sha256\":\"67e68ed5540f652b55e785ed050e5d54b813b2ccab6989aff9d06a0ef8c5fee1\",\"turn_index\":2},{\"alias\":\"e005\",\"speaker\":\"user\",\"text\":\"Students told us that camera placement matters more than administrators expected. In a trial room they could hear the instructor but not see classmates at other campuses, and small-group discussion felt like speaking into a wall. The technology office can equip each room with a second display and boundary microphones. It cannot guarantee that every student has reliable broadband when joining from home.\",\"text_sha256\":\"02d8df43f2394af43a39eb712ae35c2477a73f857bca03d0b740cae721fab929\",\"turn_index\":3},{\"alias\":\"e006\",\"speaker\":\"assistant\",\"text\":\"Make campus rooms the guaranteed access path and home participation an additional option. Test sightlines, captioning, turn-taking, and group transitions with actual learners before launch. For a home connection failure, provide a dial-in plus posted material, but do not claim that asynchronous catch-up replaces the live practice objective. Record whether the room design changes participation across sites.\",\"text_sha256\":\"bedb1472ad1cfa275b6d21bff46e5205d0f15e218723db008a2a37bc6e5a8224\",\"turn_index\":3},{\"alias\":\"e007\",\"speaker\":\"user\",\"text\":\"The registrar can create one shared course code with campus-specific enrollment sections. Tuition stays with the student's home campus. North would pay the lead instructor, and the others would transfer a fixed teaching share after census. Directors worry that late enrollment changes will cause arguments about payment. Finance can use the census count and will not reopen transfers for ordinary withdrawals.\",\"text_sha256\":\"c6e4d627ca305624ebe18dba137c84f97e1d3e6f2a485c6b9e247d11f9c53014\",\"turn_index\":4},{\"alias\":\"e008\",\"speaker\":\"assistant\",\"text\":\"That assigns the ordinary allocation rule. Document census timing, the transfer formula, and who resolves data mismatches. Do not make the instructor wait for campus reconciliation. If the class is cancelled before census, use the existing cancellation rule rather than inventing a special loss allocation after the fact.\",\"text_sha256\":\"10ae41390eb6fc5dbc0201c514a9d56071732102ae19dd2ec44671a9edb752b4\",\"turn_index\":4},{\"alias\":\"e009\",\"speaker\":\"user\",\"text\":\"Faculty representatives want workload protection. The lead instructor would have up to twenty-eight students, which is normal in total, but feedback arrives from four campus systems and local facilitators. They propose one common learning site, a shared weekly office hour, and no expectation that the instructor troubleshoot rooms. Each campus contact would triage administrative questions.\",\"text_sha256\":\"fa7fe5ca915ac530f5b3c4970e20e01af877744444c1d1c0435fd710dec27f54\",\"turn_index\":5},{\"alias\":\"e010\",\"speaker\":\"assistant\",\"text\":\"Those boundaries address hidden coordination work. Add response-time expectations, one route for disability adjustments to reach the instructor, and a rule that technology failures go to the campus contact. Track instructor hours during the first six weeks so the network can see whether nominal class size hides cross-campus overhead.\",\"text_sha256\":\"ce394acdbddf32b1ff548f0b4f12c280074f74b559ad5766079688a39c5dd9d3\",\"turn_index\":5},{\"alias\":\"e011\",\"speaker\":\"user\",\"text\":\"The academic deans propose a six-week pulse review and an end-of-term decision. The pulse would examine attendance by site, participation, caption failures, unresolved support tickets, instructor hours, and whether local conversation groups are operating. A site with repeated room failure could move its students to another campus room or home access while repairs occur. The end-of-term decision would continue, revise, return a language to local teaching, or stop.\",\"text_sha256\":\"5db4b0b8b324d68f0950659f6323473d9818ca3a86c89c30664dd98d63f8a01a\",\"turn_index\":6},{\"alias\":\"e012\",\"speaker\":\"assistant\",\"text\":\"Keep the pulse review diagnostic rather than a popularity vote. Predefine serious failures: inaccessible sessions, repeated lost instructional time, unstaffed rooms, or instructor load beyond the agreed range. The room-transfer and home-access options are recovery paths, while a return to local teaching remains a program decision based on educational and enrollment evidence.\",\"text_sha256\":\"1d4b69add4ccf8e4b00d2f7801aa9c0f64d4a2c175c8e532c11b914347fc4886\",\"turn_index\":6},{\"alias\":\"e013\",\"speaker\":\"user\",\"text\":\"One director wants a minimum of five students at each campus. The instructor opposes that because two committed learners at Harbor could contribute well in a combined class. We agreed on a network minimum of fourteen and no campus minimum, provided every enrolled student has a staffed access route. If one site has fewer than three, its contact must arrange an orientation so those students are not anonymous boxes on a screen.\",\"text_sha256\":\"c00a7db10f0a105d34213e15fb4fb90c870fa213455437fdb26c2f4fff9cc2b2\",\"turn_index\":7},{\"alias\":\"e014\",\"speaker\":\"assistant\",\"text\":\"That aligns the threshold with the shared-course design while adding a belonging safeguard for very small local cohorts. Measure whether the orientation and conversation groups actually work, but do not treat the presence of a threshold as a later discovery. It is part of the adopted enrollment machinery.\",\"text_sha256\":\"5145d9e18aeaad2ed2018fd16653efc8129135e86a2d5015987a3490e49c08f5\",\"turn_index\":7},{\"alias\":\"e015\",\"speaker\":\"user\",\"text\":\"Disability services found another issue. Captions from the platform are poor for the three languages, and an English transcript would not substitute for language practice. The network can fund a trained captioner for requested accommodations and use the platform captions as a navigation aid otherwise. Students can request materials in advance through their home campus, which then coordinates with North's disability office.\",\"text_sha256\":\"b95d417b3e41fcab8ff5109bf63e23af7496dab1acb1753066423a250e1e7c2e\",\"turn_index\":8},{\"alias\":\"e016\",\"speaker\":\"assistant\",\"text\":\"Name the handoff and test it before enrollment closes. The home office owns the student relationship; North's office coordinates the teaching accommodation; the instructor supplies materials and pronunciation guidance; the captioner provides the agreed service. A failed handoff should trigger the existing accessibility escalation and a pause for the affected student, not become an unowned program question.\",\"text_sha256\":\"42933642f79758b9e9fd64b4b8e7ea18f153b10d10797202cc2595d98cb54ed8\",\"turn_index\":8},{\"alias\":\"e017\",\"speaker\":\"user\",\"text\":\"We ran a second trial. Discussion improved with the room equipment, but East's firewall blocked one breakout feature. The instructor completed the same activity using fixed cross-campus pairs in the main room. Technology can whitelist the feature before term, and the teaching plan now includes the fixed-pair version as the fallback. The instructor prefers the fallback for novice students anyway.\",\"text_sha256\":\"415ac927984520f094323c086df77a037fe744c87f5cc6aa4b74543c02cdd890\",\"turn_index\":9},{\"alias\":\"e018\",\"speaker\":\"assistant\",\"text\":\"Preserve both the technical repair and the pedagogical fallback. The class should not depend on one platform feature, and a fallback that may be better for novices is not a degraded secret. Include it in the course plan and let the instructor choose based on level, not only outage.\",\"text_sha256\":\"6fb3286c070eccd0cbddfe5918ec983192cc5f40a09dd4187550af33fb272e50\",\"turn_index\":9},{\"alias\":\"e019\",\"speaker\":\"user\",\"text\":\"The working agreement now says North employs and evaluates the lead instructor. Home campuses own enrollment, rooms, local contacts, attendance records, and student-service intake. North owns the common learning site, curriculum, assessment, and cross-campus disability coordination. Finance uses census transfers. The instructor does not troubleshoot technology. The six-week pulse and end-of-term decision use the declared vector, with no automatic continuation based on enrollment alone.\",\"text_sha256\":\"bd819781cff93f7d8d4a2aed658980d9239f9c09a603b228696aafe7dcc84c1d\",\"turn_index\":10},{\"alias\":\"e020\",\"speaker\":\"assistant\",\"text\":\"That is a coherent operating position. Before signing, verify that the lead instructor's appointment authorizes instruction credited by the other campuses and that each registrar will recognize the shared course hours. Administrative compatibility is different from platform compatibility. Put the evidence in the record rather than assuming a shared code solves faculty authority.\",\"text_sha256\":\"f36cf3aa23e484141de35d3d874c1ece3e1c6f43fc99ae31761e5e6f7f6f62f9\",\"turn_index\":10},{\"alias\":\"e021\",\"speaker\":\"user\",\"text\":\"All four registrars confirmed that the shared course code and credits are valid. They initially said faculty authority follows the North appointment. Today, however, Harbor's accreditation liaison found a board circular: cross-campus contact hours count only while the teaching institution's inter-campus faculty designation remains active. North has such a designation now, but it can be withdrawn by the state board independently of course approval.\",\"text_sha256\":\"1613009187320c7db8dcf9e44c1fbbfea52423bb2d0719d32bfb7de04dce6f46\",\"turn_index\":11},{\"alias\":\"e022\",\"speaker\":\"assistant\",\"text\":\"That is a specific external dependency, not merely another operating metric. Confirm its current status, duration, and the effect of withdrawal. Then ask whether any adopted part of the program governs a loss of recognized teaching authority. Attendance thresholds, room recovery, and workload review would not by themselves preserve credit if the designation failed.\",\"text_sha256\":\"f6cbac1c7457e6f525f09389d2747bff6cc0f54d1f0287f9503ddb623d8a8c0c\",\"turn_index\":11},{\"alias\":\"e023\",\"speaker\":\"user\",\"text\":\"North's provost produced the current designation letter. It is active for the coming academic year and expressly covers synchronous instruction delivered to the partner campuses. There is no routine renewal during the term. The state board may rescind it for an institutional compliance finding, and the letter says contact hours after rescission would not be recognized unless another authorized institution becomes the instructor of record.\",\"text_sha256\":\"74a2bc6bd89e24e153d306c86c54699fc275bb211024946041bae05913c3211a\",\"turn_index\":12},{\"alias\":\"e024\",\"speaker\":\"assistant\",\"text\":\"The current authority is established, so the launch need not be treated as awaiting approval. But rescission would defeat a premise of the shared-credit model. If the program has no adopted transfer of instructor-of-record authority, that future dependency failure remains outside the attendance, technology, accessibility, and end-of-term review machinery.\",\"text_sha256\":\"802b0b05fc5374fd05dcdfd52d7a116f016125f0ea270bd729e9522b8dac5826\",\"turn_index\":12},{\"alias\":\"e025\",\"speaker\":\"user\",\"text\":\"The deans considered adding a contingency now. East cannot become instructor of record under its current faculty agreement, South lacks an instructor for these languages, and Harbor would need a separate approval process that cannot be promised in advance. They decided not to claim a fallback they do not have. The course can operate under the active North designation, but if the board rescinds it, the shared credited section cannot continue under the current plan.\",\"text_sha256\":\"d24ff88df9a24ada0fa143be8357949c1e859bd7d541f9e0a220f697a81cf4a7\",\"turn_index\":13},{\"alias\":\"e026\",\"speaker\":\"assistant\",\"text\":\"That preserves the modal force accurately. Rescission is not expected or scheduled, and it is not evidence that the designation is currently absent. It is nevertheless a material reconsideration dependency because the adopted program contains no mechanism that would preserve recognized instruction after that event. Do not confuse it with the already governed pulse review or platform fallback.\",\"text_sha256\":\"bb3a6aa25ca6cf6a1b6f463c3f3b0492e0e2d28939214cc1b6cba1ab96f5b7dc\",\"turn_index\":13},{\"alias\":\"e027\",\"speaker\":\"user\",\"text\":\"Final decision: open the combined sections for the coming academic year under North's active designation and the signed cross-campus operating agreement. Use the network enrollment rule, local orientation, common learning site, accessibility handoff, fixed-pair technology fallback, six-week pulse, and end-of-term vector. The designation is verified, so there is no current approval gap. Separately, a state-board rescission would defeat recognized contact hours and reopen the consolidation decision immediately because none of those adopted safeguards supplies another instructor of record.\",\"text_sha256\":\"e15f9b1f899d6a94833aa04793ba6b6db29120b2e4b077b448ae284de439a471\",\"turn_index\":14},{\"alias\":\"e028\",\"speaker\":\"assistant\",\"text\":\"The endpoint supports one narrow residual reconsideration dependency and otherwise a governed program. Routine attendance, workload, captioning, room failure, breakout features, enrollment thresholds, and the end-of-term choice remain inside named machinery. The possible rescission is different: later authoritative evidence would invalidate the credential premise on which the current shared-credit position depends, and the plan deliberately records that it has no substitute authority.\",\"text_sha256\":\"61eaffa8f7458cd4e0234af762f15434fcc93b0a1af15b5bbe7209ef931ba23b\",\"turn_index\":14}],\"message_count\":28,\"path\":\"research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/sources/r4h-case04-cross-campus-language-program.json\",\"sha256\":\"097fc190ca5ea26809970747b6ecf2e48cbefd0b238d18dad3b6824e04b1ddc1\"}\n</authoritative_source>\n\n<fallible_prior_interpretation_context>\n{\"artifact_path\":\"research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/priors/r4h-case04-cross-campus-language-program.json\",\"artifact_sha256\":\"fc608f55a303838dcc1ab862665bf137122244fbf4a371a1edaf44a769690793\",\"authority\":\"fallible_prior_interpretation_not_source_truth\",\"qualification_review\":{\"evidence_ids\":[\"e005\",\"e013\",\"e015\"],\"interpretation\":\"The consolidated sections remain qualified by unequal local cohort size, imperfect home connectivity, and the need to preserve accessible participation and campus belonging.\",\"limitations\":\"This prior reflects program-experience constraints and does not mention the late inter-campus designation dependency.\",\"outcome\":\"qualification_present\"},\"records\":[{\"interpretation\":\"The coordinator begins trying to preserve low-enrollment languages without reducing teaching to a remote budget substitute or erasing local belonging.\",\"limitations\":\"This is the starting tension before the later operating agreement and accreditation evidence.\",\"record_id\":\"r4h-prior-case04-starting-01\",\"source_aliases\":[\"e001\",\"e003\",\"e005\"],\"surface\":\"starting_position\"},{\"interpretation\":\"The current position opens combined sections with a network enrollment rule, local contacts and orientation, common learning site, workload boundaries, accessibility handoff, technology fallback, pulse review, and end-of-term decision.\",\"limitations\":\"The prior was formed before the final accreditation-designation evidence and may not capture every dependency of recognized credit.\",\"record_id\":\"r4h-prior-case04-current-01\",\"source_aliases\":[\"e017\",\"e019\",\"e020\"],\"surface\":\"current_position\"},{\"interpretation\":\"The program must monitor whether very small cohorts participate meaningfully and whether accessibility and home-connection limits create unequal learning conditions.\",\"limitations\":\"These are important qualifications but do not assert an unowned approval or accreditation gap.\",\"record_id\":\"r4h-prior-case04-qualification-01\",\"source_aliases\":[\"e005\",\"e013\",\"e015\"],\"surface\":\"qualification\"}]}\n</fallible_prior_interpretation_context>\n\n<task>\nBased on the information above, return exactly one review for unresolved_matter and one for reopen_condition, in either order. Return at most two records per review. Apply the semantic contract against the complete conversation endpoint, not isolated sentences. Preserve exact aliases, speaker ownership, and modal force. Do not judge advice quality or whether a human should trust an answer.\n</task>",
+        "role": "user"
+      }
+    ],
+    "model": "google/gemini-3.1-flash-lite",
+    "provider": {
+      "allow_fallbacks": false,
+      "data_collection": "deny",
+      "max_price": {
+        "completion": 1.5,
+        "prompt": 0.25
+      },
+      "only": [
+        "google-vertex"
+      ],
+      "order": [
+        "google-vertex"
+      ],
+      "require_parameters": true,
+      "zdr": true
+    },
+    "reasoning": {
+      "effort": "minimal",
+      "exclude": true
+    },
+    "response_format": {
+      "json_schema": {
+        "name": "lolla_r4_uncertainty_v1",
+        "schema": {
+          "additionalProperties": false,
+          "description": "Paired unresolved-matter and reopen-condition review.",
+          "properties": {
+            "global_limitations": {
+              "description": "Limits applying to the whole read; empty if none.",
+              "type": "string"
+            },
+            "reviews": {
+              "description": "Exactly one review for each declared surface.",
+              "items": {
+                "additionalProperties": false,
+                "description": "One explicit semantic-surface review.",
+                "properties": {
+                  "outcome": {
+                    "description": "Present, quiet, or ambiguous result of this review.",
+                    "enum": [
+                      "records_present",
+                      "no_supported_record_observed",
+                      "ambiguous_review"
+                    ],
+                    "type": "string"
+                  },
+                  "records": {
+                    "description": "Zero to two candidates for this surface.",
+                    "items": {
+                      "additionalProperties": false,
+                      "description": "One source-linked semantic candidate.",
+                      "properties": {
+                        "evidence_ids": {
+                          "description": "Exact source aliases supporting this candidate.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "maxItems": 8,
+                          "minItems": 1,
+                          "type": "array"
+                        },
+                        "interpretation": {
+                          "description": "Concise meaning of this candidate without advice.",
+                          "type": "string"
+                        },
+                        "limitations": {
+                          "description": "Uncertainty or scope limit; use an empty string if none.",
+                          "type": "string"
+                        },
+                        "support": {
+                          "description": "Whether the source supports the read or leaves it ambiguous.",
+                          "enum": [
+                            "supported",
+                            "ambiguous"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "support",
+                        "interpretation",
+                        "evidence_ids",
+                        "limitations"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 2,
+                    "minItems": 0,
+                    "type": "array"
+                  },
+                  "surface": {
+                    "description": "The semantic surface reviewed.",
+                    "enum": [
+                      "unresolved_matter",
+                      "reopen_condition"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "surface",
+                  "outcome",
+                  "records"
+                ],
+                "type": "object"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "reviews",
+            "global_limitations"
+          ],
+          "type": "object"
+        },
+        "strict": true
+      },
+      "type": "json_schema"
+    },
+    "seed": 9401,
+    "stream": false
+  },
+  "body_sha256": "4c241d1b06cb52355a89d412ac8470591cda700e1127df2bf23cff02d973b29c",
+  "case_id": "r4h-case04-cross-campus-language-program",
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "schema_version": "lolla.r4_matched_residual_request_preview.v1",
+  "status": "provider_free_preview_not_authorized_for_transport"
+}

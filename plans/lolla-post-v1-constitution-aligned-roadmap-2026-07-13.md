@@ -383,7 +383,9 @@ Status: provider-free inventory/replay and missingness-aware fan-in complete;
 corrected complementary-reader diagnostic closed; token allocation repaired;
 semantic-distinction holdout closed mechanically complete but semantically
 unsupported; provider-free causal diagnosis and residual-task identity repair
-complete; no holdout or provider validation authorized
+complete; v1 matched design rejected for evidence leakage; provider-free
+leakage-corrected v2 matched holdout complete; no holdout execution or provider
+call authorized
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -667,6 +669,85 @@ must be started separately and must preserve this single-variable contract.
 See
 `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`.
 
+Provider-free matched residual holdout-design result:
+
+- four genuinely new 28-message simulated conversations and four fallible
+  prior artifacts are frozen before request previews across oral-history
+  release, serialized audio, research-data stewardship, and cross-campus
+  language-program domains;
+- two cases are governed-pending restraint controls, one with a broad prior
+  gap anchor and one without; one case contains a genuine recurring
+  ownership/funding/capacity residual; one contains a genuine distinct future
+  dependency failure outside adopted machinery;
+- protected source-first targets freeze both canonical surface dispositions,
+  strongest aliases, machinery reasoning, speaker/modal ownership, predicted
+  false positives, limitations, and ontology assumptions before any provider
+  output;
+- each case has an exact frozen-v2 arm and exact residual-task arm with source,
+  prior, order, model, route, seed, 1,600-token cap, minimal reasoning,
+  streaming, strict JSON, and privacy controls held equal;
+- eight context manifests account for artifact/canonical hashes, component
+  sizes and estimates, exact order, task-at-end, complete inclusion, all
+  declared deltas, unchanged dimensions, and omissions;
+- a counterbalanced eight-call maximum, ten-dimension non-scalar evaluation
+  vector, categorical decision matrix, exact-authorization shape, raw terminal
+  result custody, and stop-on-first-failure runner are frozen;
+- official Google and OpenRouter practice and pricing were rechecked; the
+  conservative estimate is `$0.0424625`, with proposed future ceilings of
+  `$0.015` per matched case and `$0.06` total;
+- historical v1/v2/residual hashes reproduce and replay remains 12 cases, 543
+  links, and 400 unique artifacts after explicit exclusion of the new roots;
+- the package makes and authorizes zero provider calls at `$0.00` and does not
+  establish model semantic success or product usefulness.
+
+The provider-free design decision is
+`matched_residual_holdout_ready_for_founder_authorization`. This is eligibility
+for a separate founder decision, not an authorization request or execution
+instruction. See
+`docs/conversation-understanding/lolla-r4-matched-residual-holdout-design-result-2026-07-14.md`.
+
+Matched-holdout v2 leakage-correction result:
+
+- commit `b46464278e86f4c5d6c53e154bc272d93f09b116` and all v1 artifacts remain
+  immutable, but v1 is rejected permanently because its sources and priors
+  disclosed expected classifications; it had no authorization, output, call,
+  or cost;
+- four additive v2 sources and priors use new case IDs and distributed
+  operational evidence; each source has 28 messages, the prohibited-language
+  scan is zero, and the exact human declaration `human leakage review passes`
+  is bound to every source/prior hash;
+- the human review records that no assistant states the expected category, the
+  broad Case 01 prior does not self-discount, no conversation instructs a
+  provider what to return, and the last four messages are insufficient to
+  determine both surfaces in every case;
+- Cases 01 and 02 retain the honest limitation that their final summaries give
+  some recency assistance without revealing or independently determining the
+  complete target;
+- the protected source-first target was frozen before request previews and
+  honestly supports two quiet controls, one continuing ownership/funding/
+  capacity matter, and one premise-breaking designation dependency;
+- complete source/prior bytes and source → prior → task order are identical
+  between arms; model, Google Vertex route, seed, 1,600-token cap, minimal
+  excluded reasoning, streaming, strict JSON, privacy, and paired response
+  shape are equal;
+- only the declared residual-task identity intervention may differ; exact
+  delta manifests reject any undeclared change;
+- the runner and execution-visible manifest have no target or review path,
+  require an exact separate authorization, construct no transport on dry run,
+  stop on the first failure, and permit no retry, fallback, healing,
+  relationship, evaluator, embedding, graph, pipeline, runtime, or model
+  substitution;
+- official pricing was rechecked; the conservative estimate is `$0.040521`,
+  with proposed anti-runaway ceilings of `$0.03` per matched case and `$0.12`
+  total;
+- frozen replay remains exactly 12 cases, 543 links, and 400 unique artifacts;
+  zero provider calls were made and no authorization artifact exists.
+
+The corrected provider-free decision is
+`matched_residual_holdout_v2_ready_for_founder_authorization`. This is only
+eligibility for a separate founder decision. See
+`docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -712,21 +793,17 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The provider-free residual-task identity repair is complete. Its contract is
-coherent without changing context authority, paired task shape, relationship
-behavior, state representation, model, provider route, runtime, or graph. The
-completion decision is
-`residual_contract_ready_for_new_holdout_design`.
+The leakage-corrected provider-free matched residual holdout v2 is complete.
+The only next eligible action is a separate founder decision on whether to
+authorize the exact frozen eight-call experiment with its exact request hashes,
+operator, counterbalanced order, `$0.03` per-case ceiling, and `$0.12` total
+ceiling. The package itself neither requests nor grants that authorization.
 
-Do not infer or begin the next experiment from this status alone. If the
-founder explicitly starts a new goal, the next eligible unit is provider-free
-design of a genuinely new hidden holdout that keeps this exact residual
-contract fixed, keeps Case 04-style restraint primary, and uses Case 01-style
-recurring ownership/funding only as a regression constraint. Holdout design,
-provider authorization, and execution remain separate decisions.
-
-Make no provider call, retry the consumed A3 attempt, integrate the runtime,
-reopen R3, change the graph, add governed-pending as an output surface, split
-the task, change prior authority, compare models, infer operationalization in
-Python, merge interpretations, optimize a composite score, or claim product
-usefulness. R5 remains gated.
+Until such an explicit decision, make no provider call, create no authorization
+artifact, execute the rejected v1 package, retry any consumed A3 attempt, or
+change any v2 source, prior, protected target, matched request arm, seed,
+reasoning envelope, output allocation, route, or evaluation matrix. Do not
+integrate the runtime, reopen R3, change the graph, add governed-pending as an
+output surface, split the task, change prior authority, compare models, infer
+operationalization in Python, merge interpretations, optimize a composite
+score, prepare R5, or claim product usefulness.

@@ -269,6 +269,10 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
         ROOT / "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3",
         ROOT / "research/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14",
         ROOT / "research/lolla-r4-residual-task-contract-2026-07-14",
+        ROOT / "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14",
+        ROOT / "research/lolla-r4-matched-residual-holdout-contract-2026-07-14",
+        ROOT / "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14",
+        ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14",
     )
     assert builder.DOWNSTREAM_INPUT_PATHS == (
         ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
@@ -279,6 +283,12 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
         ROOT / "docs/evals/lolla-r4-semantic-distinction-contract-v1.json",
         ROOT / "docs/evals/lolla-r4-semantic-distinction-holdout-target-v1.json",
         ROOT / "docs/evals/lolla-r4-semantic-distinction-holdout-authorization-a3.json",
+        ROOT / "docs/evals/lolla-r4-matched-residual-holdout-contract-v1.json",
+        ROOT / "docs/evals/lolla-r4-matched-residual-holdout-target-v1.json",
+        ROOT / "docs/evals/lolla-r4-matched-residual-holdout-v1-rejection.json",
+        ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json",
+        ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target-review.json",
+        ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json",
     )
     assert not any(
         path.startswith(
@@ -292,6 +302,10 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
                 "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/",
                 "research/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14/",
                 "research/lolla-r4-residual-task-contract-2026-07-14/",
+                "research/lolla-r4-matched-residual-holdout-source-freeze-2026-07-14/",
+                "research/lolla-r4-matched-residual-holdout-contract-2026-07-14/",
+                "research/lolla-r4-matched-holdout-v2-source-freeze-2026-07-14/",
+                "research/lolla-r4-matched-holdout-v2-contract-2026-07-14/",
             )
         )
         for path in recorded
@@ -306,6 +320,12 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
             "docs/evals/lolla-r4-semantic-distinction-contract-v1.json",
             "docs/evals/lolla-r4-semantic-distinction-holdout-target-v1.json",
             "docs/evals/lolla-r4-semantic-distinction-holdout-authorization-a3.json",
+            "docs/evals/lolla-r4-matched-residual-holdout-contract-v1.json",
+            "docs/evals/lolla-r4-matched-residual-holdout-target-v1.json",
+            "docs/evals/lolla-r4-matched-residual-holdout-v1-rejection.json",
+            "docs/evals/lolla-r4-matched-holdout-v2-target.json",
+            "docs/evals/lolla-r4-matched-holdout-v2-target-review.json",
+            "docs/evals/lolla-r4-matched-holdout-v2-contract.json",
         }
     )
 
