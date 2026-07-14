@@ -381,7 +381,8 @@ See
 
 Status: provider-free inventory/replay and missingness-aware fan-in complete;
 corrected complementary-reader diagnostic closed; token allocation repaired;
-semantic restraint failed; provider-free semantic distinction is next
+semantic restraint failed; provider-free semantic-distinction repair complete;
+exact holdout authorization or deferral is the next decision
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -552,6 +553,28 @@ remaining uncertainty from adopted preconditions, safeguards, written
 processes, and scheduled reviews. Current cases become development evidence;
 any later provider validation requires a newly frozen holdout.
 
+Provider-free semantic-distinction result:
+
+- nine exposed development fixtures now distinguish genuine unresolved and
+  reopen records from later resolution, adopted preconditions, existing
+  safeguards, scheduled reviews, ambiguity, and endpoint-restating
+  relationships;
+- the probabilistic v2 prompt contract carries those semantic distinctions;
+  deterministic code remains limited to schema, identity, evidence, endpoint,
+  bound, budget, and custody checks;
+- an additive runner reuses the strict R3 reasoning-envelope inspector and
+  leaves the historical v1 prompt and runner byte-frozen;
+- one untouched false-stand-down target and one untouched restraint control
+  were frozen source-first before request previews;
+- the exact maximum is four Gemini 3.1 Flash-Lite calls through the pinned
+  Google Vertex OpenRouter route, with a conservative `$0.0280125` estimate and
+  a `$0.03` hard ceiling;
+- all local gates and the full repository suite pass; provider calls made and
+  currently authorized remain zero.
+
+See
+`docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -597,15 +620,15 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Complete the provider-free semantic-distinction goal in
-`plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`. Build positive,
-quiet, later-resolution, adopted-precondition, existing-safeguard, scheduled-
-review, ambiguous, relationship, and zero-relationship fixtures. Refine the
-probabilistic prompt contract while deterministic code remains limited to
-schema, identity, evidence, endpoint, bound, and custody validation. Reuse the
-corrected R3 reasoning-detail validator in any future runner.
+The provider-free R4 semantic-distinction goal is complete. The immediate
+boundary is a founder decision: authorize or defer the exact
+`lolla-r4-semantic-distinction-holdout-a3` diagnostic.
 
-Stop before a provider call. Do not integrate the runtime, reopen R3, change
-the graph, compare models, infer semantic roles in Python, merge overlapping
-records, optimize a composite score, or claim that the reader is useful. A
-later call requires a new frozen holdout and separate founder authorization.
+Until explicit authorization, make no provider call and do not create an
+authorization file. If authorized, run only the frozen two-case, four-call
+maximum package, preserve the first terminal outcome without retry or healing,
+and review the hidden source-first dimensions separately. Do not integrate the
+runtime, reopen R3, change the graph, compare models, infer semantic roles in
+Python, merge overlapping records, optimize a composite score, or claim that
+the reader is useful. R5 remains gated on the resulting evidence rather than
+on mechanical success alone.

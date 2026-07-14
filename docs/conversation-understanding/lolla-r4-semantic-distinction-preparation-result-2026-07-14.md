@@ -130,6 +130,8 @@ decision.
 
 ## Continuation entrypoints
 
+- Cold-start repository guidance:
+  `AGENTS.md`
 - Plan:
   `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`
 - Current practice:
