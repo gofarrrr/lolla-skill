@@ -16,9 +16,11 @@ from scripts.evals.build_r4_matched_holdout_v2_contract import (
     build_human_review_record,
     build_pre_target_audit,
     lint_v2_source_prior,
+    load_source_first_target,
     load_v2_source_prior,
     validate_human_review_freeze,
     validate_human_review_record,
+    validate_source_first_target_freeze,
 )
 
 
@@ -184,7 +186,7 @@ def test_v2_sources_and_priors_are_new_long_form_and_pass_vocabulary_lint() -> N
     assert "discount" not in broad_prior
 
 
-def test_pre_target_audit_records_custody_and_keeps_semantic_gate_human() -> None:
+def test_human_gate_audit_records_pass_without_automating_semantic_judgment() -> None:
     cases = load_v2_source_prior()
     audit = build_pre_target_audit(cases)
 
@@ -200,11 +202,13 @@ def test_pre_target_audit_records_custody_and_keeps_semantic_gate_human() -> Non
         "structured answer",
         "reopen the decision",
     }.issubset(FORBIDDEN_ANSWER_LANGUAGE)
-    assert audit["status"] == "awaiting_founder_pm_human_semantic_review"
+    assert audit["status"] == "human_review_passed_target_authorship_unlocked"
     assert audit["deterministic_vocabulary_lint"]["exact_match_count"] == 0
-    assert audit["human_review_required_before_target"] is True
+    assert audit["human_review_required_before_target"] == "satisfied"
     assert audit["deterministic_semantic_sufficiency_decided"] is False
-    assert audit["target_authored"] is False
+    assert audit["human_semantic_sufficiency_decided"] is True
+    assert audit["human_declaration"] == HUMAN_LEAKAGE_DECLARATION
+    assert audit["target_authored"] is True
     assert audit["request_preview_authored"] is False
     assert audit["provider_calls"] == 0
     assert audit["provider_cost_usd"] == 0.0
@@ -216,13 +220,13 @@ def test_pre_target_audit_records_custody_and_keeps_semantic_gate_human() -> Non
         assert row["prior_sha256"] == case["prior_sha256"]
         assert row["last_four_message_indices"] == [25, 26, 27, 28]
         assert len(row["last_four_canonical_sha256"]) == 64
-        assert row["human_semantic_leakage_review"] == "pending"
-        assert row["last_four_sufficient_for_both_surfaces"] is None
-        assert row["assistant_states_expected_category"] is None
-        assert row["prior_self_discounting"] is None
-        assert row["source_instructs_emit_or_suppress"] is None
+        assert row["human_semantic_leakage_review"] == "passed"
+        assert row["last_four_sufficient_for_both_surfaces"] is False
+        assert row["assistant_states_expected_category"] is False
+        assert row["prior_self_discounting"] is False
+        assert row["source_instructs_emit_or_suppress"] is False
 
-    assert not (
+    assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
     ).exists()
     assert not (
@@ -293,9 +297,99 @@ def test_human_review_and_source_prior_freeze_are_exact_before_target() -> None:
     assert freeze["request_preview_existed_when_frozen"] is False
     assert freeze["provider_output_existed_when_frozen"] is False
     assert len(freeze["cases"]) == 4
-    assert not (
+    assert (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
     ).exists()
     assert not (
         ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
     ).exists()
+
+
+def test_protected_source_first_target_is_hash_bound_and_predates_requests() -> None:
+    target = load_source_first_target()
+    cases = {row["case_id"]: row for row in target["cases"]}
+
+    assert target["status"] == "frozen_after_human_review_before_request_previews"
+    assert target["review_method"] == (
+        "human_source_first_product_ontology_before_any_provider_output"
+    )
+    assert target["provider_outputs_existed_when_authored"] is False
+    assert target["target_visible_to_provider"] is False
+    assert target["runner_may_load_target"] is False
+    assert target["provider_calls"] == 0
+    assert target["provider_cost_usd"] == 0.0
+    assert target["valid_reader_states"] == [
+        "supported",
+        "quiet",
+        "ambiguous",
+        "partial",
+        "failed",
+        "missing",
+    ]
+    assert set(cases) == set(CASE_IDS)
+
+    expected = {
+        CASE_IDS[0]: {"unresolved_matter": "quiet", "reopen_condition": "quiet"},
+        CASE_IDS[1]: {"unresolved_matter": "quiet", "reopen_condition": "quiet"},
+        CASE_IDS[2]: {
+            "unresolved_matter": "supported",
+            "reopen_condition": "quiet",
+        },
+        CASE_IDS[3]: {
+            "unresolved_matter": "quiet",
+            "reopen_condition": "supported",
+        },
+    }
+    source_inputs = load_v2_source_prior()
+    for case_id, surfaces in expected.items():
+        row = cases[case_id]
+        assert row["source_sha256"] == source_inputs[case_id]["source_sha256"]
+        assert row["prior_sha256"] == source_inputs[case_id]["prior_sha256"]
+        assert {
+            surface: value["disposition"]
+            for surface, value in row["canonical_surface_targets"].items()
+        } == surfaces
+        for surface, disposition in surfaces.items():
+            review = row["canonical_surface_targets"][surface]
+            assert len(review["strongest_source_aliases"]) >= 3
+            assert review["expected_speaker_ownership"]
+            assert review["expected_modal_force"]
+            assert review["outside_adopted_machinery_reason"]
+            if disposition == "supported":
+                assert review["expected_result"]["outcome"] == "records_present"
+                assert len(review["expected_result"]["records"]) == 1
+            else:
+                assert review["expected_result"] == {
+                    "outcome": "no_supported_record_observed",
+                    "records": [],
+                }
+
+    assert target["evaluation_limitations"][0]["kind"] == (
+        "recent_summary_assistance"
+    )
+    assert not (
+        ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14"
+    ).exists()
+    assert not (
+        ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
+    ).exists()
+
+
+def test_target_review_metadata_freezes_target_before_request_generation() -> None:
+    review = validate_source_first_target_freeze()
+
+    assert review["status"] == "protected_target_frozen_before_requests"
+    assert review["target"]["path"] == (
+        "docs/evals/lolla-r4-matched-holdout-v2-target.json"
+    )
+    assert review["target"]["sha256"] == _sha(
+        ROOT / review["target"]["path"]
+    )
+    assert review["human_review_checkpoint_commit"] == (
+        "04706f67620b2548754454178a594d30228925ac"
+    )
+    assert review["request_previews_existed_when_target_frozen"] is False
+    assert review["provider_outputs_existed_when_target_frozen"] is False
+    assert review["runner_may_load_review_metadata"] is False
+    assert review["provider_calls"] == 0
+    assert review["provider_cost_usd"] == 0.0

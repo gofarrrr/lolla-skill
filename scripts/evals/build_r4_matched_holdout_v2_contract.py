@@ -21,6 +21,9 @@ HUMAN_REVIEW_PATH = (
 LEAKAGE_AUDIT_PATH = INPUT_ROOT / "leakage-audit.json"
 FREEZE_MANIFEST_PATH = INPUT_ROOT / "freeze-manifest.json"
 TARGET_PATH = ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
+TARGET_REVIEW_PATH = (
+    ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target-review.json"
+)
 CONTRACT_PATH = ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
 CASE_IDS = (
     "r4h2-case01-community-audio-archive",
@@ -177,35 +180,23 @@ def _relative(path: Path) -> str:
 def build_pre_target_audit(
     cases: Mapping[str, Mapping[str, Any]],
 ) -> dict[str, Any]:
-    """Record text custody and pending declarations before any target exists."""
+    """Report the current human-gate state without deciding semantic meaning."""
 
-    target_path = ROOT / "docs/evals/lolla-r4-matched-holdout-v2-target.json"
-    contract_path = ROOT / "docs/evals/lolla-r4-matched-holdout-v2-contract.json"
+    review = build_human_review_record(
+        cases,
+        declaration=HUMAN_LEAKAGE_DECLARATION,
+    )
     return {
         "schema_version": "lolla.r4_matched_holdout_pre_target_audit.v2",
-        "status": "awaiting_founder_pm_human_semantic_review",
+        "status": "human_review_passed_target_authorship_unlocked",
         "deterministic_vocabulary_lint": lint_v2_source_prior(cases),
-        "human_review_required_before_target": True,
+        "human_review_required_before_target": "satisfied",
         "deterministic_semantic_sufficiency_decided": False,
-        "target_authored": target_path.exists(),
-        "request_preview_authored": contract_path.exists(),
-        "cases": [
-            {
-                "case_id": case_id,
-                "source_sha256": case["source_sha256"],
-                "prior_sha256": case["prior_sha256"],
-                "last_four_message_indices": [25, 26, 27, 28],
-                "last_four_canonical_sha256": hashlib.sha256(
-                    _canonical_bytes(case["source"]["messages"][-4:])
-                ).hexdigest(),
-                "human_semantic_leakage_review": "pending",
-                "last_four_sufficient_for_both_surfaces": None,
-                "assistant_states_expected_category": None,
-                "prior_self_discounting": None,
-                "source_instructs_emit_or_suppress": None,
-            }
-            for case_id, case in cases.items()
-        ],
+        "human_semantic_sufficiency_decided": True,
+        "human_declaration": HUMAN_LEAKAGE_DECLARATION,
+        "target_authored": TARGET_PATH.exists(),
+        "request_preview_authored": CONTRACT_PATH.exists(),
+        "cases": review["cases"],
         "provider_calls": 0,
         "provider_cost_usd": 0.0,
     }
@@ -425,3 +416,187 @@ def validate_human_review_freeze() -> dict[str, Any]:
             )
     review = json.loads(LEAKAGE_AUDIT_PATH.read_text(encoding="utf-8"))
     return validate_human_review_record(review, cases=load_v2_source_prior())
+
+
+def load_source_first_target() -> dict[str, Any]:
+    """Load protected human targets after exact pre-target custody validation."""
+
+    validate_human_review_freeze()
+    target = _load(TARGET_PATH)
+    if target.get("status") != "frozen_after_human_review_before_request_previews":
+        raise R4MatchedHoldoutV2Error("source-first target status drifted")
+    if target.get("human_leakage_review", {}).get("declaration") != (
+        HUMAN_LEAKAGE_DECLARATION
+    ):
+        raise R4MatchedHoldoutV2Error("source-first target human declaration drifted")
+    freeze = target.get("source_prior_freeze_manifest", {})
+    if (
+        freeze.get("path") != _relative(FREEZE_MANIFEST_PATH)
+        or freeze.get("sha256") != _sha(FREEZE_MANIFEST_PATH)
+    ):
+        raise R4MatchedHoldoutV2Error("source-first target freeze reference drifted")
+    review = target.get("human_leakage_review", {})
+    if (
+        review.get("path") != _relative(LEAKAGE_AUDIT_PATH)
+        or review.get("sha256") != _sha(LEAKAGE_AUDIT_PATH)
+    ):
+        raise R4MatchedHoldoutV2Error("source-first target review reference drifted")
+
+    cases = load_v2_source_prior()
+    rows = target.get("cases")
+    if not isinstance(rows, list) or [row.get("case_id") for row in rows] != list(
+        CASE_IDS
+    ):
+        raise R4MatchedHoldoutV2Error("source-first target case identity drifted")
+    for row in rows:
+        case_id = str(row["case_id"])
+        case = cases[case_id]
+        if (
+            row.get("source_sha256") != case["source_sha256"]
+            or row.get("prior_sha256") != case["prior_sha256"]
+        ):
+            raise R4MatchedHoldoutV2Error(
+                f"source-first target input drifted: {case_id}"
+            )
+        aliases = {
+            f"e{int(message['message_index']):03d}"
+            for message in case["source"]["messages"]
+        }
+        surfaces = row.get("canonical_surface_targets")
+        if not isinstance(surfaces, Mapping) or set(surfaces) != {
+            "unresolved_matter",
+            "reopen_condition",
+        }:
+            raise R4MatchedHoldoutV2Error(
+                f"source-first target surfaces drifted: {case_id}"
+            )
+        for surface, surface_target in surfaces.items():
+            if not isinstance(surface_target, Mapping):
+                raise R4MatchedHoldoutV2Error(
+                    f"source-first target surface is invalid: {case_id}/{surface}"
+                )
+            required = {
+                "disposition",
+                "expected_modal_force",
+                "expected_result",
+                "expected_speaker_ownership",
+                "outside_adopted_machinery_reason",
+                "strongest_source_aliases",
+            }
+            if set(surface_target) != required:
+                raise R4MatchedHoldoutV2Error(
+                    f"source-first target fields drifted: {case_id}/{surface}"
+                )
+            strongest = surface_target["strongest_source_aliases"]
+            if (
+                not isinstance(strongest, list)
+                or len(strongest) < 3
+                or len(strongest) != len(set(strongest))
+                or not set(strongest).issubset(aliases)
+            ):
+                raise R4MatchedHoldoutV2Error(
+                    f"source-first target aliases drifted: {case_id}/{surface}"
+                )
+            result = surface_target["expected_result"]
+            disposition = surface_target["disposition"]
+            if disposition == "supported":
+                indices = [int(alias[1:]) for alias in strongest]
+                if len(indices) < 3 or any(
+                    right - left <= 1
+                    for left, right in zip(indices, indices[1:])
+                ):
+                    raise R4MatchedHoldoutV2Error(
+                        f"supported target evidence is not distributed: {case_id}/{surface}"
+                    )
+                if (
+                    not isinstance(result, Mapping)
+                    or result.get("outcome") != "records_present"
+                    or not isinstance(result.get("records"), list)
+                    or len(result["records"]) != 1
+                    or set(result["records"][0].get("evidence_ids", []))
+                    != set(strongest)
+                ):
+                    raise R4MatchedHoldoutV2Error(
+                        f"supported target result drifted: {case_id}/{surface}"
+                    )
+            elif disposition == "quiet":
+                if result != {
+                    "outcome": "no_supported_record_observed",
+                    "records": [],
+                }:
+                    raise R4MatchedHoldoutV2Error(
+                        f"quiet target result drifted: {case_id}/{surface}"
+                    )
+            else:
+                raise R4MatchedHoldoutV2Error(
+                    f"unexpected target disposition: {case_id}/{surface}"
+                )
+    return target
+
+
+def build_source_first_target_review() -> dict[str, Any]:
+    """Hash-bind the protected target after review and before request previews."""
+
+    load_source_first_target()
+    return {
+        "schema_version": "lolla.r4_matched_holdout_target_review.v2",
+        "status": "protected_target_frozen_before_requests",
+        "date": "2026-07-14",
+        "human_review_checkpoint_commit": (
+            "04706f67620b2548754454178a594d30228925ac"
+        ),
+        "target": {
+            "path": _relative(TARGET_PATH),
+            "sha256": _sha(TARGET_PATH),
+            "utf8_bytes": len(TARGET_PATH.read_bytes()),
+            "review_method": (
+                "human_source_first_product_ontology_before_any_provider_output"
+            ),
+        },
+        "source_prior_freeze_manifest": {
+            "path": _relative(FREEZE_MANIFEST_PATH),
+            "sha256": _sha(FREEZE_MANIFEST_PATH),
+        },
+        "human_leakage_review": {
+            "path": _relative(LEAKAGE_AUDIT_PATH),
+            "sha256": _sha(LEAKAGE_AUDIT_PATH),
+            "declaration": HUMAN_LEAKAGE_DECLARATION,
+        },
+        "request_previews_existed_when_target_frozen": False,
+        "provider_outputs_existed_when_target_frozen": False,
+        "provider_visible": False,
+        "runner_may_load_review_metadata": False,
+        "semantic_judgment_owner": "human_source_first_review",
+        "deterministic_code_owns_only": [
+            "artifact_identity",
+            "exact_hashes",
+            "source_alias_admission",
+            "freeze_order",
+        ],
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+        "authorization_existed": False,
+    }
+
+
+def write_source_first_target_review() -> dict[str, Any]:
+    """Write protected review metadata only before request artifacts exist."""
+
+    request_root = (
+        ROOT / "research/lolla-r4-matched-holdout-v2-contract-2026-07-14"
+    )
+    if request_root.exists() or CONTRACT_PATH.exists():
+        raise R4MatchedHoldoutV2Error(
+            "protected target review must predate request artifacts"
+        )
+    TARGET_REVIEW_PATH.write_bytes(_render(build_source_first_target_review()))
+    return validate_source_first_target_freeze()
+
+
+def validate_source_first_target_freeze() -> dict[str, Any]:
+    """Validate protected target and review metadata without exposing either."""
+
+    expected = build_source_first_target_review()
+    if not TARGET_REVIEW_PATH.is_file() or _load(TARGET_REVIEW_PATH) != expected:
+        raise R4MatchedHoldoutV2Error("protected target review metadata drifted")
+    return expected
