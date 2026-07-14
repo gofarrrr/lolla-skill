@@ -1,0 +1,1474 @@
+{
+  "boundary": {
+    "completed_zero_treated_as_semantic_absence": false,
+    "graph_pressure_or_relevance_decided": false,
+    "missing_reader_output_filled": false,
+    "overlapping_reader_records_preserved": true,
+    "prose_keywords_or_chronology_used_for_meaning": false,
+    "provider_authored_semantic_payloads_preserved": true,
+    "provider_calls": 0,
+    "quality_score": null,
+    "reader_or_record_array_order_used_for_meaning": false,
+    "relationship_meaning_inferred_by_code": false,
+    "runtime_or_graph_integration_performed": false,
+    "semantic_merge_or_deduplication_performed": false,
+    "semantic_role_inferred_by_code": false
+  },
+  "case_id": "v1-case02-discharge-transport",
+  "fan_in": {
+    "exact_semantic_payload_overlap_pair_count": 0,
+    "handoff_payload_utf8_bytes": 38152,
+    "interpretation": "mechanical load vector only; no direction of quality is inferred",
+    "limits": {
+      "maximum_handoff_payload_utf8_bytes": 1000000,
+      "maximum_readers": 12,
+      "maximum_records_per_reader": 8,
+      "maximum_related_record_ids": 16,
+      "maximum_semantic_payload_utf8_bytes_per_record": 32768,
+      "maximum_source_aliases": 512,
+      "maximum_source_locators_per_record": 24,
+      "maximum_total_records": 48,
+      "maximum_total_semantic_payload_utf8_bytes": 262144
+    },
+    "planned_reader_count": 6,
+    "reader_artifact_reference_count": 6,
+    "reader_state_counts": {
+      "complete": 5,
+      "completed_zero": 1,
+      "failed": 0,
+      "missing": 0,
+      "partial": 0
+    },
+    "source_alias_overlap_pair_count": 7,
+    "total_record_count": 7,
+    "total_semantic_payload_utf8_bytes": 9232,
+    "total_source_locator_count": 22,
+    "unique_reader_artifact_count": 3,
+    "unique_reader_artifact_utf8_bytes": 13268,
+    "unique_source_alias_count": 16,
+    "within_bounds": true
+  },
+  "planned_readers": [
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "r4-v1-case02-discharge-transport-01-starting",
+      "surface": "starting_position"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "r4-v1-case02-discharge-transport-02-current",
+      "surface": "current_position"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "r4-v1-case02-discharge-transport-03-qualification",
+      "surface": "qualification"
+    },
+    {
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "producer_kind": "r4_complementary_reader_v1",
+      "reader_id": "r4-v1-case02-discharge-transport-04-unresolved",
+      "surface": "unresolved_matter"
+    },
+    {
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "producer_kind": "r4_complementary_reader_v1",
+      "reader_id": "r4-v1-case02-discharge-transport-05-reopen",
+      "surface": "reopen_condition"
+    },
+    {
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "producer_kind": "r4_exact_id_relationship_reader_v1",
+      "reader_id": "r4-v1-case02-discharge-transport-06-relationship",
+      "surface": "cross_thread_relationship"
+    }
+  ],
+  "reader_results": [
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/joined-role-records.json",
+        "sha256": "e656a579afc096e99a845ebfd6d8987748138a23791f0b9c708946740e9ec0ec",
+        "utf8_bytes": 10214
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "r4-v1-case02-discharge-transport-01-starting",
+      "records": [
+        {
+          "record_id": "rprolev22-starting-01-8c1417539bfa62",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case02-discharge-transport",
+            "fidelity_note": "The user's starting stance displays dual forces: open evaluation/indecision regarding the new platform's utility versus risks (e007), coupled with a firm rejection of holding the current taxi-voucher setup as a safe benchmark due to its constant failures (e013).",
+            "graph_routing_eligible": false,
+            "limitations": "This starting stance captures the user's mindset before specific operational safeguards (such as nursing overrides, dedicated coordination, and contractor privacy rules) were structured in later turns.",
+            "observation_id": "rprolev22-starting-01-8c1417539bfa62",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:8c1417539bfa627f3178d742140884dbac6f1706eef119d061f247a5d624d8e7",
+            "role": "starting",
+            "role_interpretation": "The user is initially unresolved about the proposed on-demand transportation service, needing to evaluate if it constitutes a real improvement over current processes, while simultaneously resisting any attempt to treat the failing status quo as a safe default option.",
+            "role_record_id": "rprolev22-starting-01-8c1417539bfa62",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "mixed",
+            "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e001",
+                "text": "I oversee operations for a hospital network, and transport after discharge has become one of those problems everyone describes differently depending on where they sit."
+              },
+              {
+                "alias": "e002",
+                "text": "Patients who are ready to leave can wait hours for a ride."
+              },
+              {
+                "alias": "e003",
+                "text": "They are tired, families are calling, nurses are trying to free space, and the emergency department sees a bed that technically exists but is not available."
+              },
+              {
+                "alias": "e007",
+                "text": "I need to know whether this is a real improvement or a faster way to lose sight of the difficult cases."
+              },
+              {
+                "alias": "e013",
+                "text": "Our current taxi vouchers also fail regularly, so I do not want “keep the existing process” treated as the safe neutral option."
+              }
+            ],
+            "source_evidence_ids": [
+              "e001",
+              "e002",
+              "e003",
+              "e007",
+              "e013"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e007",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "Whether the proposed transportation platform is a real improvement or a faster way to lose sight of difficult patient cases.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e013",
+                "stance_expression_kind": "unwilling",
+                "stance_object_interpretation": "Treating the existing discharge transportation process as a safe, neutral default.",
+                "stance_object_kind": "action_or_proposal"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "6daafd67546254393ec4bfd7d807df219f5bf54db33bda1d4f32926a27bcae11",
+          "source_locators": [
+            {
+              "alias": "e001",
+              "span_id": "span-4b6854d4a05c3321",
+              "speaker": "user",
+              "text_sha256": "ec3251f2910c02b4512d1f95c50a12bd848533513a9e8b5fc0db0dc62734e046",
+              "turn_index": 1
+            },
+            {
+              "alias": "e002",
+              "span_id": "span-57e7c186a3a22098",
+              "speaker": "user",
+              "text_sha256": "4571a8aed8d9f9ad841f8208aad84d4c8a79d771db4a786d108b5f7274b594e2",
+              "turn_index": 1
+            },
+            {
+              "alias": "e003",
+              "span_id": "span-3fbf2ab714079e00",
+              "speaker": "user",
+              "text_sha256": "b8996aa4720a5ee1f796b7c10a963050add4162a65251e4418f041b1d9d78552",
+              "turn_index": 1
+            },
+            {
+              "alias": "e007",
+              "span_id": "span-b459744954a5740d",
+              "speaker": "user",
+              "text_sha256": "2ee51c989eba94646dbfb1220b93a655573522287b8b259cd9d1a69cfe53460f",
+              "turn_index": 1
+            },
+            {
+              "alias": "e013",
+              "span_id": "span-afb82908a9045c06",
+              "speaker": "user",
+              "text_sha256": "b7395b10ed8380e95fabb9e572918ab7394af48444dc93cf57a0ff2a4ec1169e",
+              "turn_index": 2
+            }
+          ],
+          "surface": "starting_position"
+        }
+      ],
+      "state": "complete",
+      "surface": "starting_position"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/joined-role-records.json",
+        "sha256": "e656a579afc096e99a845ebfd6d8987748138a23791f0b9c708946740e9ec0ec",
+        "utf8_bytes": 10214
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "r4-v1-case02-discharge-transport-02-current",
+      "records": [
+        {
+          "record_id": "rprolev22-current-01-eca54071a91d6a",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case02-discharge-transport",
+            "fidelity_note": "This record captures the user's finalized plans for a highly controlled six-month pilot, incorporating every safety baseline and administrative boundary developed during the preceding tabletop exercise and discussions.",
+            "graph_routing_eligible": false,
+            "limitations": "These commitments depend on the signing of the subcontractor data retention amendment as an absolute gatekeeping condition.",
+            "observation_id": "rprolev22-current-01-eca54071a91d6a",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:eca54071a91d6a476734f51277196f5bcbb92d9733bd64faa89b569d21771be1",
+            "role": "current",
+            "role_interpretation": "The user's final working plan to authorize and conduct a bounded six-month transport pilot on two wards under strict privacy, staffing, consent, and reporting conditions.",
+            "role_record_id": "rprolev22-current-01-eca54071a91d6a",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case02-discharge-transport-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e095",
+                "text": "I will bring forward the pilot only after the subcontractor amendment is signed."
+              },
+              {
+                "alias": "e096",
+                "text": "It will include a half-time coordinator for six months, a limited transport-readiness checklist that does not replace clinical judgment, arrival confirmation, patient and staff refusal, immediate fallback, and reporting that places capacity beside—not above—the complete journey."
+              },
+              {
+                "alias": "e097",
+                "text": "We will review who never reaches the request stage as well as failed rides."
+              },
+              {
+                "alias": "e098",
+                "text": "Any continuation will need a separate staffing and privacy decision; the contract will not renew automatically."
+              }
+            ],
+            "source_evidence_ids": [
+              "e095",
+              "e096",
+              "e097",
+              "e098"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e095",
+                "stance_expression_kind": "conditional_willingness",
+                "stance_object_interpretation": "Bringing forward the pilot only after the subcontractor data amendment is signed",
+                "stance_object_kind": "acceptance_or_willingness"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Including a half-time coordinator for the full six months, arrival confirmation, patient/staff refusal rights, and an immediate fallback mechanism",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Using a restricted transport-readiness checklist that does not try to substitute for clinical or social judgment",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e097",
+                "stance_expression_kind": "commitment",
+                "stance_object_interpretation": "Evaluating pre-request exclusions/non-requests and failed rides in reports where capacity sits alongside rather than above the journey metrics",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e098",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "Preventing the contract from renewing automatically, requiring discrete staffing and privacy approvals for any continuation",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "82386a4c903829a9b6bb470b1d1d91b840ab00f34e0cc10ec7d00747755bd146",
+          "source_locators": [
+            {
+              "alias": "e095",
+              "span_id": "span-0ef4979473e7cefa",
+              "speaker": "user",
+              "text_sha256": "f3f536b874d28a477a2f752e84c2411ee25c66e62b49741565aadb1992d99c36",
+              "turn_index": 12
+            },
+            {
+              "alias": "e096",
+              "span_id": "span-c7467d1e3ae11830",
+              "speaker": "user",
+              "text_sha256": "89b97b0fb631495b1291d861c3d9174636e58041ded1f2cbd5c4f01f20779fd0",
+              "turn_index": 12
+            },
+            {
+              "alias": "e097",
+              "span_id": "span-eba0d5ca105b02c3",
+              "speaker": "user",
+              "text_sha256": "98226386e963607a3c5f4fc3b26a0f303a75cf35fb93bc5baf72c03525c27964",
+              "turn_index": 12
+            },
+            {
+              "alias": "e098",
+              "span_id": "span-e92c9aec7d3a82e9",
+              "speaker": "user",
+              "text_sha256": "995591b2fd0dde4fa2fa67d093b2e4ba0832f87d11fabad798defcb28024f666",
+              "turn_index": 12
+            }
+          ],
+          "surface": "current_position"
+        }
+      ],
+      "state": "complete",
+      "surface": "current_position"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case02-discharge-transport-primary/joined-role-records.json",
+        "sha256": "e656a579afc096e99a845ebfd6d8987748138a23791f0b9c708946740e9ec0ec",
+        "utf8_bytes": 10214
+      },
+      "declared_record_count": 0,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "r4-v1-case02-discharge-transport-03-qualification",
+      "records": [],
+      "state": "completed_zero",
+      "surface": "qualification"
+    },
+    {
+      "artifact": {
+        "path": "research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2/v1-case02-discharge-transport/uncertainty-candidate.json",
+        "sha256": "d52625fc5187461a7b30baeb3c2a88109c56a36747682e327bb69667071a0e2a",
+        "utf8_bytes": 1668
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.1-flash-lite",
+        "kind": "r4_complementary_reader_v1"
+      },
+      "reader_id": "r4-v1-case02-discharge-transport-04-unresolved",
+      "records": [
+        {
+          "record_id": "r4u-v1-case02-discharge-transport-unresolved_matter-01-9d45dc6b2204",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+            "record": {
+              "evidence_ids": [
+                "e068",
+                "e071",
+                "e095"
+              ],
+              "interpretation": "The final contract must be amended to ensure subcontractor data retention terms match the primary vendor's requirements before the pilot proceeds.",
+              "limitations": "This is a mandatory condition precedent for the pilot's commencement.",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "9d45dc6b220457cbb31355ea8a9eed962c7617b280857e39a634a85cef723b9a",
+          "source_locators": [
+            {
+              "alias": "e068",
+              "span_id": "span-1b9aef482670d596",
+              "speaker": "user",
+              "text_sha256": "def2dc050f6df10b3c1571fa22fcb343f5846b1ba3bc3732abc184169dba68eb",
+              "turn_index": 9
+            },
+            {
+              "alias": "e071",
+              "span_id": "span-7be0160ba40b01dd",
+              "speaker": "assistant",
+              "text_sha256": "8583e42dc20e94384647e3ac626cd86c12634e8c05416baa9711e4b2180ab7a2",
+              "turn_index": 9
+            },
+            {
+              "alias": "e095",
+              "span_id": "span-0ef4979473e7cefa",
+              "speaker": "user",
+              "text_sha256": "f3f536b874d28a477a2f752e84c2411ee25c66e62b49741565aadb1992d99c36",
+              "turn_index": 12
+            }
+          ],
+          "surface": "unresolved_matter"
+        }
+      ],
+      "state": "complete",
+      "surface": "unresolved_matter"
+    },
+    {
+      "artifact": {
+        "path": "research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2/v1-case02-discharge-transport/uncertainty-candidate.json",
+        "sha256": "d52625fc5187461a7b30baeb3c2a88109c56a36747682e327bb69667071a0e2a",
+        "utf8_bytes": 1668
+      },
+      "declared_record_count": 2,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.1-flash-lite",
+        "kind": "r4_complementary_reader_v1"
+      },
+      "reader_id": "r4-v1-case02-discharge-transport-05-reopen",
+      "records": [
+        {
+          "record_id": "r4u-v1-case02-discharge-transport-reopen_condition-01-dea75ee8962a",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+            "record": {
+              "evidence_ids": [
+                "e085",
+                "e086",
+                "e092",
+                "e093"
+              ],
+              "interpretation": "Any failure to maintain the dedicated half-time coordinator for the full six-month duration, or the discovery that the pilot is being used to hide the steady-state labor burden, would necessitate a reconsideration of the model.",
+              "limitations": "",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "dea75ee8962affcc7c3b576faefae72041bd7e20b16879b94502c67158f15a66",
+          "source_locators": [
+            {
+              "alias": "e085",
+              "span_id": "span-dfa32f412b61900a",
+              "speaker": "user",
+              "text_sha256": "277c3f85f7d414c88123a057f16778681e0e8183be2a4eef5d57d919e642657d",
+              "turn_index": 11
+            },
+            {
+              "alias": "e086",
+              "span_id": "span-7071c2d7fdaa71e7",
+              "speaker": "user",
+              "text_sha256": "eae2c28b65006139f8bdfd0bfc893271f5cfc2ad9c34d1f964c4fa43c630d904",
+              "turn_index": 11
+            },
+            {
+              "alias": "e092",
+              "span_id": "span-4357b5686cc9bb62",
+              "speaker": "assistant",
+              "text_sha256": "29c18e2b29e9dd207f0479288271e494b2f3ebef7eccca0ee65f8ccbfff8da61",
+              "turn_index": 11
+            },
+            {
+              "alias": "e093",
+              "span_id": "span-5e47447f82572d40",
+              "speaker": "assistant",
+              "text_sha256": "4db0908391ab0a4c013ed134b30f3a0a36c0f6217a031766014c5f065b849c8c",
+              "turn_index": 11
+            }
+          ],
+          "surface": "reopen_condition"
+        },
+        {
+          "record_id": "r4u-v1-case02-discharge-transport-reopen_condition-02-5f7cb38ebde9",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+            "record": {
+              "evidence_ids": [
+                "e049",
+                "e071",
+                "e098"
+              ],
+              "interpretation": "Disruption to the 'no auto-renewal' policy or failure of the defined privacy safeguards (including subcontractor oversight) requires halting the pilot.",
+              "limitations": "",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "5f7cb38ebde9da50b052e0391a6a42928ccb221245b6a77c6262fbc59d971b05",
+          "source_locators": [
+            {
+              "alias": "e049",
+              "span_id": "span-f930ad26f7232554",
+              "speaker": "user",
+              "text_sha256": "2c206f35669b4138e530eec05eabaf95d593c7a951f0e0a1643e05275a0905a2",
+              "turn_index": 7
+            },
+            {
+              "alias": "e071",
+              "span_id": "span-7be0160ba40b01dd",
+              "speaker": "assistant",
+              "text_sha256": "8583e42dc20e94384647e3ac626cd86c12634e8c05416baa9711e4b2180ab7a2",
+              "turn_index": 9
+            },
+            {
+              "alias": "e098",
+              "span_id": "span-e92c9aec7d3a82e9",
+              "speaker": "user",
+              "text_sha256": "995591b2fd0dde4fa2fa67d093b2e4ba0832f87d11fabad798defcb28024f666",
+              "turn_index": 12
+            }
+          ],
+          "surface": "reopen_condition"
+        }
+      ],
+      "state": "complete",
+      "surface": "reopen_condition"
+    },
+    {
+      "artifact": {
+        "path": "research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2/v1-case02-discharge-transport/relationship-candidate.json",
+        "sha256": "6250f50d03fab3785aca4e82cebc56ce7a3eee581dd5448186946ec46c58fb9f",
+        "utf8_bytes": 1386
+      },
+      "declared_record_count": 2,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.1-flash-lite",
+        "kind": "r4_exact_id_relationship_reader_v1"
+      },
+      "reader_id": "r4-v1-case02-discharge-transport-06-relationship",
+      "records": [
+        {
+          "record_id": "r4x-v1-case02-discharge-transport-01-ce6968b05151",
+          "related_record_ids": [
+            "r4u-v1-case02-discharge-transport-unresolved_matter-01-9d45dc6b2204",
+            "rprolev22-current-01-eca54071a91d6a"
+          ],
+          "semantic_payload": {
+            "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+            "record": {
+              "evidence_ids": [
+                "e095"
+              ],
+              "limitations": "The contractual amendment status is the formal bridge between the condition in the record and the commitment in the position.",
+              "related_record_ids": [
+                "r4u-v1-case02-discharge-transport-unresolved_matter-01-9d45dc6b2204",
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "relationship": "The unresolved matter acts as a condition precedent that the current position commits to fulfilling before the pilot commences.",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "ce6968b05151dad4ab26bcbb8388d4386ff625edb87d4f80cf196efa0ee50a87",
+          "source_locators": [
+            {
+              "alias": "e095",
+              "span_id": "span-0ef4979473e7cefa",
+              "speaker": "user",
+              "text_sha256": "f3f536b874d28a477a2f752e84c2411ee25c66e62b49741565aadb1992d99c36",
+              "turn_index": 12
+            }
+          ],
+          "surface": "cross_thread_relationship"
+        },
+        {
+          "record_id": "r4x-v1-case02-discharge-transport-02-ace9d1ab4ef9",
+          "related_record_ids": [
+            "r4u-v1-case02-discharge-transport-reopen_condition-01-dea75ee8962a",
+            "rprolev22-current-01-eca54071a91d6a"
+          ],
+          "semantic_payload": {
+            "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+            "record": {
+              "evidence_ids": [
+                "e086",
+                "e096"
+              ],
+              "limitations": "The relationship assumes the half-time coordinator requirement identified as a condition is precisely what is planned in the final position.",
+              "related_record_ids": [
+                "r4u-v1-case02-discharge-transport-reopen_condition-01-dea75ee8962a",
+                "rprolev22-current-01-eca54071a91d6a"
+              ],
+              "relationship": "The reopen condition defines the specific operational requirements for the coordinator role and duration that the current pilot model explicitly adopts.",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "ace9d1ab4ef90293b40181ab62e5a809c5acf4924b36600e7191276004ec9b3f",
+          "source_locators": [
+            {
+              "alias": "e086",
+              "span_id": "span-7071c2d7fdaa71e7",
+              "speaker": "user",
+              "text_sha256": "eae2c28b65006139f8bdfd0bfc893271f5cfc2ad9c34d1f964c4fa43c630d904",
+              "turn_index": 11
+            },
+            {
+              "alias": "e096",
+              "span_id": "span-c7467d1e3ae11830",
+              "speaker": "user",
+              "text_sha256": "89b97b0fb631495b1291d861c3d9174636e58041ded1f2cbd5c4f01f20779fd0",
+              "turn_index": 12
+            }
+          ],
+          "surface": "cross_thread_relationship"
+        }
+      ],
+      "state": "complete",
+      "surface": "cross_thread_relationship"
+    }
+  ],
+  "result_sha256": "5c375b9920fe007ef5791898a40b58bb04dc8414745faad771405b537f2508be",
+  "schema_version": "lolla.conversation_state_fan_in.v1",
+  "source_registry": {
+    "aliases": [
+      {
+        "alias": "e001",
+        "span_id": "span-4b6854d4a05c3321",
+        "speaker": "user",
+        "text_sha256": "ec3251f2910c02b4512d1f95c50a12bd848533513a9e8b5fc0db0dc62734e046",
+        "turn_index": 1
+      },
+      {
+        "alias": "e002",
+        "span_id": "span-57e7c186a3a22098",
+        "speaker": "user",
+        "text_sha256": "4571a8aed8d9f9ad841f8208aad84d4c8a79d771db4a786d108b5f7274b594e2",
+        "turn_index": 1
+      },
+      {
+        "alias": "e003",
+        "span_id": "span-3fbf2ab714079e00",
+        "speaker": "user",
+        "text_sha256": "b8996aa4720a5ee1f796b7c10a963050add4162a65251e4418f041b1d9d78552",
+        "turn_index": 1
+      },
+      {
+        "alias": "e004",
+        "span_id": "span-489c0e1e68568139",
+        "speaker": "user",
+        "text_sha256": "0163c5939ef515fe1465941100dba9c9bc0b13f732c25b21c4569a7c7200208c",
+        "turn_index": 1
+      },
+      {
+        "alias": "e005",
+        "span_id": "span-c5b81167396f199b",
+        "speaker": "user",
+        "text_sha256": "3df6c94f4af14177fea14a79e41737b44f86f34ce7467a1b8654ac2553d8d9dc",
+        "turn_index": 1
+      },
+      {
+        "alias": "e006",
+        "span_id": "span-d6bef3f064632462",
+        "speaker": "user",
+        "text_sha256": "47bd796aa225c7bc5d4044334b6a2c0e4cc249ead563365d90fb4167d3c3dc06",
+        "turn_index": 1
+      },
+      {
+        "alias": "e007",
+        "span_id": "span-b459744954a5740d",
+        "speaker": "user",
+        "text_sha256": "2ee51c989eba94646dbfb1220b93a655573522287b8b259cd9d1a69cfe53460f",
+        "turn_index": 1
+      },
+      {
+        "alias": "e008",
+        "span_id": "span-b3a0442e8e5d395c",
+        "speaker": "assistant",
+        "text_sha256": "02a921be3334df22b844889ee320c3e82aca81078a9f3f171ec7af2a8291c9d6",
+        "turn_index": 1
+      },
+      {
+        "alias": "e009",
+        "span_id": "span-3f018a09ebfa6b91",
+        "speaker": "assistant",
+        "text_sha256": "30b0c1b52884097f101dfe066969c87143fac247823d98916727c9c4c8396d5f",
+        "turn_index": 1
+      },
+      {
+        "alias": "e010",
+        "span_id": "span-20f927a9c3a8f85f",
+        "speaker": "user",
+        "text_sha256": "ab9588ec85aa0df0b9d64a27953e7a88db9e6941e177c8190711d83119ee3cd0",
+        "turn_index": 2
+      },
+      {
+        "alias": "e011",
+        "span_id": "span-ab0d55fce0bb4ec7",
+        "speaker": "user",
+        "text_sha256": "2d802631ba866d08b54d15dbaaa7a1397994f81e828ddeb1d372f37bcc5bcca2",
+        "turn_index": 2
+      },
+      {
+        "alias": "e012",
+        "span_id": "span-8aad49707d260f0b",
+        "speaker": "user",
+        "text_sha256": "54550a4148b31355286184c40fd8c9e8c3232a5d1f46b8dfa186a16e7a53456f",
+        "turn_index": 2
+      },
+      {
+        "alias": "e013",
+        "span_id": "span-afb82908a9045c06",
+        "speaker": "user",
+        "text_sha256": "b7395b10ed8380e95fabb9e572918ab7394af48444dc93cf57a0ff2a4ec1169e",
+        "turn_index": 2
+      },
+      {
+        "alias": "e014",
+        "span_id": "span-5ffda64ecb4b82c6",
+        "speaker": "user",
+        "text_sha256": "043616282ab82f8e5d1f1fdd8c79e68b0f418ddd4eb73c7951e2427a6194a6ea",
+        "turn_index": 2
+      },
+      {
+        "alias": "e015",
+        "span_id": "span-5fac81f970155581",
+        "speaker": "assistant",
+        "text_sha256": "d36c76f336a573a5eaa9ffba9e6196e6a5c9f39fb14bb970ea4ffcb6c466ee92",
+        "turn_index": 2
+      },
+      {
+        "alias": "e016",
+        "span_id": "span-613bd13de7864fc8",
+        "speaker": "assistant",
+        "text_sha256": "1be6e0e41c8bc8f2fd3b5be12c323e4078c60b90e294d1ae33c98f40e5bdd00c",
+        "turn_index": 2
+      },
+      {
+        "alias": "e017",
+        "span_id": "span-2192c7ae9db45008",
+        "speaker": "assistant",
+        "text_sha256": "a5ab9220982434a8f9d55806e89c2e323d419d8cb1bc6945a13256b37699f5ec",
+        "turn_index": 2
+      },
+      {
+        "alias": "e018",
+        "span_id": "span-c78bbd031562ce75",
+        "speaker": "assistant",
+        "text_sha256": "5f3559f616db81d8cc1578afbb7a0ae96128483c1c8ff9e5f20006063f1268e1",
+        "turn_index": 2
+      },
+      {
+        "alias": "e019",
+        "span_id": "span-04ad019e4d1c3c70",
+        "speaker": "user",
+        "text_sha256": "d99448c4f81faedc8849ba4754a963b8541305731d3a2f2519a4e1f416fe136c",
+        "turn_index": 3
+      },
+      {
+        "alias": "e020",
+        "span_id": "span-538f95da1441461e",
+        "speaker": "user",
+        "text_sha256": "86e8da357a4488dc30752fb6af0ecee563e63d87a161b13c628d7d5e3d0ca6ac",
+        "turn_index": 3
+      },
+      {
+        "alias": "e021",
+        "span_id": "span-be5351d7078ac9a5",
+        "speaker": "user",
+        "text_sha256": "8ad2322bb6e9125cb15dba94a4df433d87d79ca7a34e5161187bffb1828cd159",
+        "turn_index": 3
+      },
+      {
+        "alias": "e022",
+        "span_id": "span-41a33fa644d456a0",
+        "speaker": "user",
+        "text_sha256": "606b3c3ca28f9d0fc1223e521e59b7b7f8e4924280555d96bf682f2d9d7f777b",
+        "turn_index": 3
+      },
+      {
+        "alias": "e023",
+        "span_id": "span-1926631d28ab2d9d",
+        "speaker": "assistant",
+        "text_sha256": "2d794b61c73f92b1de1eb676d0f523814442d26ec68d90f2309b94b1b93ae076",
+        "turn_index": 3
+      },
+      {
+        "alias": "e024",
+        "span_id": "span-21a4957ed9c42c36",
+        "speaker": "assistant",
+        "text_sha256": "850c3f98e865261d6628d583c529bcca51e98620436bb4ac0181dd8502b74488",
+        "turn_index": 3
+      },
+      {
+        "alias": "e025",
+        "span_id": "span-0b7afe9297d4b056",
+        "speaker": "assistant",
+        "text_sha256": "6fb95cbed946979951876b3067b76de1ef759c0909947cf8decf4869f23cd4f9",
+        "turn_index": 3
+      },
+      {
+        "alias": "e026",
+        "span_id": "span-47d25c54873815ea",
+        "speaker": "user",
+        "text_sha256": "696f419683c09e9488f3f34e8f53b983f1f4dd4dc42f5131b9e959237628eae1",
+        "turn_index": 4
+      },
+      {
+        "alias": "e027",
+        "span_id": "span-4f4a6540602b1c09",
+        "speaker": "user",
+        "text_sha256": "fba7d9491719ea6b6c329244d00ef1eaf22bf5c9179ebbbe7cf7a3a540f692de",
+        "turn_index": 4
+      },
+      {
+        "alias": "e028",
+        "span_id": "span-1205f4d0b6eaae82",
+        "speaker": "user",
+        "text_sha256": "773a2beaf227ec580b8a6ad57a5033044b1f18dbda1f7cabf00206111924a6f8",
+        "turn_index": 4
+      },
+      {
+        "alias": "e029",
+        "span_id": "span-ca6191866ab0f064",
+        "speaker": "assistant",
+        "text_sha256": "05a3571142dfd2420428bd08426d3d56bdd8fc4c703a3312abfdb661d5d54d23",
+        "turn_index": 4
+      },
+      {
+        "alias": "e030",
+        "span_id": "span-f35c6d82b6cc188b",
+        "speaker": "assistant",
+        "text_sha256": "0ad148e7c087df2d71ae27ad980bc2d0cc396568cdd816fe096fb5d50a220d01",
+        "turn_index": 4
+      },
+      {
+        "alias": "e031",
+        "span_id": "span-d97f348d4972dcd1",
+        "speaker": "assistant",
+        "text_sha256": "f623f460e3905f8ed09470bcb7b41a6a9900bbd58f6bd5f6b364f4585078df31",
+        "turn_index": 4
+      },
+      {
+        "alias": "e032",
+        "span_id": "span-910412acddfe418c",
+        "speaker": "user",
+        "text_sha256": "58a5b62b1c50030decf285b61c6d2c78a6dace53b2245c050beb84f031c676f6",
+        "turn_index": 5
+      },
+      {
+        "alias": "e033",
+        "span_id": "span-79015a8d3e9613c2",
+        "speaker": "user",
+        "text_sha256": "68a352a92910e8ac87f01a84ea23357d34827e0a62dc03ab9db2fa56fb5bfc08",
+        "turn_index": 5
+      },
+      {
+        "alias": "e034",
+        "span_id": "span-37e3e71179135ada",
+        "speaker": "user",
+        "text_sha256": "7dceafca4ae38fc6bdd9a5ad8a50c230ac6276c071a541923a9d5ee2c11de275",
+        "turn_index": 5
+      },
+      {
+        "alias": "e035",
+        "span_id": "span-8888eaa52fd13610",
+        "speaker": "user",
+        "text_sha256": "f4feeb2f417542a1e719ea46dc430bd127fcfb7c1f256a1b64cc9b6f313d61e9",
+        "turn_index": 5
+      },
+      {
+        "alias": "e036",
+        "span_id": "span-62c89025157b3d89",
+        "speaker": "user",
+        "text_sha256": "3540e2297154e0b294b9c73bc41bae55f4e975b7b6ef922cf0ab6366cdcbe0c8",
+        "turn_index": 5
+      },
+      {
+        "alias": "e037",
+        "span_id": "span-91353595114a85b5",
+        "speaker": "assistant",
+        "text_sha256": "f6e270170194857b93390c2306b99446ec68b44e05b44faae18e39c79200288b",
+        "turn_index": 5
+      },
+      {
+        "alias": "e038",
+        "span_id": "span-305054b2641900db",
+        "speaker": "assistant",
+        "text_sha256": "c321009bde7e3fa9d67a3fee051f6989b12c884ab3698bf0ab272ac7851190e5",
+        "turn_index": 5
+      },
+      {
+        "alias": "e039",
+        "span_id": "span-c88d4f1dfbfc798a",
+        "speaker": "assistant",
+        "text_sha256": "5180ded5312dc7ff3335f745ac97fc8c7f0904a8e4d530bd8ca64237aee6658d",
+        "turn_index": 5
+      },
+      {
+        "alias": "e040",
+        "span_id": "span-4797359bb41d43be",
+        "speaker": "user",
+        "text_sha256": "25a16d118db372a23dbc66f402e5ceb6bf3f9926bc466ab6a01588d37a3b18ac",
+        "turn_index": 6
+      },
+      {
+        "alias": "e041",
+        "span_id": "span-4db16cc45deaa17f",
+        "speaker": "user",
+        "text_sha256": "047e60797dfde98c267bbc2eb54a90351b328c2197c70935126e0d42b249a6a8",
+        "turn_index": 6
+      },
+      {
+        "alias": "e042",
+        "span_id": "span-ceae6d7dad15b04f",
+        "speaker": "user",
+        "text_sha256": "9910b056643b07c588dc39df2991d5fdc5adcba4f19942d15a23bbcf1471fca1",
+        "turn_index": 6
+      },
+      {
+        "alias": "e043",
+        "span_id": "span-db7fff05b8e95418",
+        "speaker": "user",
+        "text_sha256": "5239dc8e295a19a863248d555dbafe46f4992c1515d91e90fa9ebb536d76b9b3",
+        "turn_index": 6
+      },
+      {
+        "alias": "e044",
+        "span_id": "span-28db8e45fbbe2fd9",
+        "speaker": "user",
+        "text_sha256": "733540801d9e73b424f9735132c8373cb6d51950631258d086429f6949e39e51",
+        "turn_index": 6
+      },
+      {
+        "alias": "e045",
+        "span_id": "span-943b7805925bb0e9",
+        "speaker": "assistant",
+        "text_sha256": "5330d5550287b52453642b196b8acf9cfe1f0e02ebcdfa39e65da5de6c379a12",
+        "turn_index": 6
+      },
+      {
+        "alias": "e046",
+        "span_id": "span-88bac97c6a491bbf",
+        "speaker": "assistant",
+        "text_sha256": "17330f0537ed7d79173c5f448766e8c0d2fcefc2c7099b4073f9ecc3f7301b67",
+        "turn_index": 6
+      },
+      {
+        "alias": "e047",
+        "span_id": "span-8efccd1c718c1dbf",
+        "speaker": "assistant",
+        "text_sha256": "609709334a03eaad3a74b5de6fc0cf156360e7017bf2cb467d212184a5e5aeb6",
+        "turn_index": 6
+      },
+      {
+        "alias": "e048",
+        "span_id": "span-a04f4f5ba4fa375c",
+        "speaker": "user",
+        "text_sha256": "263c299cf789aae4cb1a663568f87f37d8835889ed08991c5773864c00ceb13f",
+        "turn_index": 7
+      },
+      {
+        "alias": "e049",
+        "span_id": "span-f930ad26f7232554",
+        "speaker": "user",
+        "text_sha256": "2c206f35669b4138e530eec05eabaf95d593c7a951f0e0a1643e05275a0905a2",
+        "turn_index": 7
+      },
+      {
+        "alias": "e050",
+        "span_id": "span-4fffe486832e076d",
+        "speaker": "user",
+        "text_sha256": "5fbcbde8897ee7b793471667af3a77eb6743555784c448b1bcfd8b09171f50f6",
+        "turn_index": 7
+      },
+      {
+        "alias": "e051",
+        "span_id": "span-447232f66af47895",
+        "speaker": "user",
+        "text_sha256": "4948b6ad0e86bff04ebcf562b8bfd4361b9f6811c077b15bb452951ff5c6139d",
+        "turn_index": 7
+      },
+      {
+        "alias": "e052",
+        "span_id": "span-20fde92f22d22900",
+        "speaker": "assistant",
+        "text_sha256": "e02834bf55ecc16b9f1ee5bbdc7a55e69c73687de0b825fce8c374f8e28225d3",
+        "turn_index": 7
+      },
+      {
+        "alias": "e053",
+        "span_id": "span-0612f17582e1ee70",
+        "speaker": "assistant",
+        "text_sha256": "89687c202d922c4a741ed7e804f378bb6217c7dab9ddf5738238a0cf6cbfa57b",
+        "turn_index": 7
+      },
+      {
+        "alias": "e054",
+        "span_id": "span-6bb513a02efdc266",
+        "speaker": "assistant",
+        "text_sha256": "ae30b7ac4d5b37052c07b7441b4b4801f55e9b029407467070e2cca75b4f9cc4",
+        "turn_index": 7
+      },
+      {
+        "alias": "e055",
+        "span_id": "span-d9d5680b06248ad1",
+        "speaker": "assistant",
+        "text_sha256": "2d761d5be388aeffe36e168a74136afd63f987b6e6620e8e36e30d56efb5dfe3",
+        "turn_index": 7
+      },
+      {
+        "alias": "e056",
+        "span_id": "span-5cf493e758c206e4",
+        "speaker": "assistant",
+        "text_sha256": "015925cc4e2f98300d234f280da0874083427f969777587d0a4a367783e27617",
+        "turn_index": 7
+      },
+      {
+        "alias": "e057",
+        "span_id": "span-9b1943a6b806915e",
+        "speaker": "user",
+        "text_sha256": "7207171c965167f650af3c831e6066c2df0fd5a6786224738b5f92a8687ecacf",
+        "turn_index": 8
+      },
+      {
+        "alias": "e058",
+        "span_id": "span-7ce61a6a56fe1d4a",
+        "speaker": "user",
+        "text_sha256": "4b223540ca9d8b82c2f30a015ade015acea8f2b718e2c4cd63ff66032621319f",
+        "turn_index": 8
+      },
+      {
+        "alias": "e059",
+        "span_id": "span-f53197fc9310d3d5",
+        "speaker": "user",
+        "text_sha256": "4749fe9244a4ba808e27f4273d7d37334c16dcf8932ad0261cd05692e33a1b9a",
+        "turn_index": 8
+      },
+      {
+        "alias": "e060",
+        "span_id": "span-fc289a47bfafc298",
+        "speaker": "user",
+        "text_sha256": "2620d607462ca1e0c384c7601db7174dc2a8c6b115d63c582e715becad14f022",
+        "turn_index": 8
+      },
+      {
+        "alias": "e061",
+        "span_id": "span-e29522ae7ae63b6c",
+        "speaker": "user",
+        "text_sha256": "fdd05ed9e4084271d9dbf2bddd551f04c79de7e3090332687bb12709274f5adf",
+        "turn_index": 8
+      },
+      {
+        "alias": "e062",
+        "span_id": "span-57bd67bc279df2d3",
+        "speaker": "assistant",
+        "text_sha256": "8d0544c5c8246d6fd9a77efeded46482e1681ec01f299d9a3c07e717cd1d278b",
+        "turn_index": 8
+      },
+      {
+        "alias": "e063",
+        "span_id": "span-c82c0dbd1e0c0320",
+        "speaker": "assistant",
+        "text_sha256": "6016d0851ff7aacaebc830b3e4cc337bb7ae95fbb29b8b6c2aacebd3f9b5f54e",
+        "turn_index": 8
+      },
+      {
+        "alias": "e064",
+        "span_id": "span-8dad2509d31299f6",
+        "speaker": "assistant",
+        "text_sha256": "b1693016bcee38358c7eb42b231d8386a5986a9d6d6bd5eac0a7bf7359da685c",
+        "turn_index": 8
+      },
+      {
+        "alias": "e065",
+        "span_id": "span-d3e82c09b2c2cd6a",
+        "speaker": "assistant",
+        "text_sha256": "a3343987cfe9b15f20c5f6bbd6e59db815803bf4ef7aa494e98beb6da2aae21b",
+        "turn_index": 8
+      },
+      {
+        "alias": "e066",
+        "span_id": "span-2a0ab70703a80b16",
+        "speaker": "user",
+        "text_sha256": "578011a2c22eeabbbf34b763fee07dbb8b2249a391a3e54097c0af5b883e4903",
+        "turn_index": 9
+      },
+      {
+        "alias": "e067",
+        "span_id": "span-1fefb5f2a4a63687",
+        "speaker": "user",
+        "text_sha256": "11c61c9973f2eb1a96c0f7b8ffd509798907bbcde7b8508b3a24e88ffb8860ba",
+        "turn_index": 9
+      },
+      {
+        "alias": "e068",
+        "span_id": "span-1b9aef482670d596",
+        "speaker": "user",
+        "text_sha256": "def2dc050f6df10b3c1571fa22fcb343f5846b1ba3bc3732abc184169dba68eb",
+        "turn_index": 9
+      },
+      {
+        "alias": "e069",
+        "span_id": "span-8d1c07df6989100e",
+        "speaker": "user",
+        "text_sha256": "18db6e9caa0d6616d534fc075704e1b1b93f9c374549a99b97438d44249ede6b",
+        "turn_index": 9
+      },
+      {
+        "alias": "e070",
+        "span_id": "span-64cbba498e05689f",
+        "speaker": "user",
+        "text_sha256": "64134e62c41be6137bbe589be6d5b82201ce9e9cb2964bb0a2402ebc1326ae20",
+        "turn_index": 9
+      },
+      {
+        "alias": "e071",
+        "span_id": "span-7be0160ba40b01dd",
+        "speaker": "assistant",
+        "text_sha256": "8583e42dc20e94384647e3ac626cd86c12634e8c05416baa9711e4b2180ab7a2",
+        "turn_index": 9
+      },
+      {
+        "alias": "e072",
+        "span_id": "span-a62de869fb45ed18",
+        "speaker": "assistant",
+        "text_sha256": "d6ea4a7136558a54accd8a53aa01a1b9b862d0979675421be0e4dba018679258",
+        "turn_index": 9
+      },
+      {
+        "alias": "e073",
+        "span_id": "span-b400472807a9307b",
+        "speaker": "assistant",
+        "text_sha256": "6de62d8121aeba2458946084ac2d72d95215ced37cb8d69a1e84698d97c8655e",
+        "turn_index": 9
+      },
+      {
+        "alias": "e074",
+        "span_id": "span-5a22f2796846c8ba",
+        "speaker": "assistant",
+        "text_sha256": "a1d54d731746522ac6348eca365f3776bdd2731d9272ab535fb34386f4842c7d",
+        "turn_index": 9
+      },
+      {
+        "alias": "e075",
+        "span_id": "span-58f8123e98384f56",
+        "speaker": "user",
+        "text_sha256": "bb424063b8391bc4b8586c35fb092eca983796b248b822912b19eb7f2a106f43",
+        "turn_index": 10
+      },
+      {
+        "alias": "e076",
+        "span_id": "span-106195cc7e8018e0",
+        "speaker": "user",
+        "text_sha256": "926a9757450cc773731380fbd70507dadf4c899292d466053d3995bc0034d04e",
+        "turn_index": 10
+      },
+      {
+        "alias": "e077",
+        "span_id": "span-554f7eed8647ebda",
+        "speaker": "user",
+        "text_sha256": "214f05d479797a779eff72638052f4828cdb7d9302e303fc5c6bc7feb42b9d20",
+        "turn_index": 10
+      },
+      {
+        "alias": "e078",
+        "span_id": "span-4e81299f10cf266a",
+        "speaker": "user",
+        "text_sha256": "b421f37198566ccb8f1d7766461bb3fa9785727323094c1fa5c2e4647295e30c",
+        "turn_index": 10
+      },
+      {
+        "alias": "e079",
+        "span_id": "span-07d0852c6252a901",
+        "speaker": "user",
+        "text_sha256": "c08275134c34d88ffc413f39c85e4ffbbac8f7494685264d278384c5b6edb742",
+        "turn_index": 10
+      },
+      {
+        "alias": "e080",
+        "span_id": "span-46709de1fdb07d73",
+        "speaker": "assistant",
+        "text_sha256": "63d6386443965127c05af4e0811f729e0b21cb625c02c466481898b7fa87aa59",
+        "turn_index": 10
+      },
+      {
+        "alias": "e081",
+        "span_id": "span-76971a88825e310c",
+        "speaker": "assistant",
+        "text_sha256": "58cde944219ae87797e26536129360df25913cf25440c24c2602204b973bfd89",
+        "turn_index": 10
+      },
+      {
+        "alias": "e082",
+        "span_id": "span-e4f4dd65b66a6947",
+        "speaker": "assistant",
+        "text_sha256": "bc8e49d739abb4cc53f8548b289194107e9a0a93aad839e4a972bf556a23be6f",
+        "turn_index": 10
+      },
+      {
+        "alias": "e083",
+        "span_id": "span-0845249be4779709",
+        "speaker": "user",
+        "text_sha256": "68005f1345abe73020a9a3d82ce007af67690037214b8c8d8092aaa77d052e80",
+        "turn_index": 11
+      },
+      {
+        "alias": "e084",
+        "span_id": "span-1ff9dfa7b26733f2",
+        "speaker": "user",
+        "text_sha256": "25f5f107f2c65eeab2156649fc5166bffab5f0d6127bc1d670128d70d1fc69f8",
+        "turn_index": 11
+      },
+      {
+        "alias": "e085",
+        "span_id": "span-dfa32f412b61900a",
+        "speaker": "user",
+        "text_sha256": "277c3f85f7d414c88123a057f16778681e0e8183be2a4eef5d57d919e642657d",
+        "turn_index": 11
+      },
+      {
+        "alias": "e086",
+        "span_id": "span-7071c2d7fdaa71e7",
+        "speaker": "user",
+        "text_sha256": "eae2c28b65006139f8bdfd0bfc893271f5cfc2ad9c34d1f964c4fa43c630d904",
+        "turn_index": 11
+      },
+      {
+        "alias": "e087",
+        "span_id": "span-8957f8b68af2c0e2",
+        "speaker": "user",
+        "text_sha256": "9dfc8a5c959c5b4cb6353e0610fbc40121230061073a6473103d554ca68c6faa",
+        "turn_index": 11
+      },
+      {
+        "alias": "e088",
+        "span_id": "span-11f353fc7e6dae14",
+        "speaker": "user",
+        "text_sha256": "1b2c305c4806c73fbb092439a4e2d36aff180cd5bea9bd793887f96b5c98ff9b",
+        "turn_index": 11
+      },
+      {
+        "alias": "e089",
+        "span_id": "span-de3469072da55c5e",
+        "speaker": "user",
+        "text_sha256": "f31fab92ee6b2ad584d5634f8085e4eaba61c15bd456295e5816a56a8be8d01f",
+        "turn_index": 11
+      },
+      {
+        "alias": "e090",
+        "span_id": "span-99e0a428981cf8f9",
+        "speaker": "user",
+        "text_sha256": "cfeb7552e660f2dfd0879d251fbc6ff9b75240c708a5055e31195fdf7aabc634",
+        "turn_index": 11
+      },
+      {
+        "alias": "e091",
+        "span_id": "span-22f70fcc9d7639b3",
+        "speaker": "assistant",
+        "text_sha256": "24d89388f80ec74799b089ab3dec434ca58546efcd1c18911f88aa838ba4451d",
+        "turn_index": 11
+      },
+      {
+        "alias": "e092",
+        "span_id": "span-4357b5686cc9bb62",
+        "speaker": "assistant",
+        "text_sha256": "29c18e2b29e9dd207f0479288271e494b2f3ebef7eccca0ee65f8ccbfff8da61",
+        "turn_index": 11
+      },
+      {
+        "alias": "e093",
+        "span_id": "span-5e47447f82572d40",
+        "speaker": "assistant",
+        "text_sha256": "4db0908391ab0a4c013ed134b30f3a0a36c0f6217a031766014c5f065b849c8c",
+        "turn_index": 11
+      },
+      {
+        "alias": "e094",
+        "span_id": "span-99275598cb20952b",
+        "speaker": "assistant",
+        "text_sha256": "44ee8f9ef35abdb0d36e1e0ef2884ac037e1f3194b42574d3e79191d254e6da6",
+        "turn_index": 11
+      },
+      {
+        "alias": "e095",
+        "span_id": "span-0ef4979473e7cefa",
+        "speaker": "user",
+        "text_sha256": "f3f536b874d28a477a2f752e84c2411ee25c66e62b49741565aadb1992d99c36",
+        "turn_index": 12
+      },
+      {
+        "alias": "e096",
+        "span_id": "span-c7467d1e3ae11830",
+        "speaker": "user",
+        "text_sha256": "89b97b0fb631495b1291d861c3d9174636e58041ded1f2cbd5c4f01f20779fd0",
+        "turn_index": 12
+      },
+      {
+        "alias": "e097",
+        "span_id": "span-eba0d5ca105b02c3",
+        "speaker": "user",
+        "text_sha256": "98226386e963607a3c5f4fc3b26a0f303a75cf35fb93bc5baf72c03525c27964",
+        "turn_index": 12
+      },
+      {
+        "alias": "e098",
+        "span_id": "span-e92c9aec7d3a82e9",
+        "speaker": "user",
+        "text_sha256": "995591b2fd0dde4fa2fa67d093b2e4ba0832f87d11fabad798defcb28024f666",
+        "turn_index": 12
+      },
+      {
+        "alias": "e099",
+        "span_id": "span-8b5139afa2edd777",
+        "speaker": "assistant",
+        "text_sha256": "b26d0fc48a725927e5640f36d9b69fa8e02f02f5b1fefdf11cfc298a72a2efb1",
+        "turn_index": 12
+      },
+      {
+        "alias": "e100",
+        "span_id": "span-bd1c5174f45a5cf9",
+        "speaker": "assistant",
+        "text_sha256": "9ab67e2632aaff4ff22046eea01df296b381c0a3a87e2cb922ff5ec2f366d4e7",
+        "turn_index": 12
+      },
+      {
+        "alias": "e101",
+        "span_id": "span-03fb7e3168d1cc19",
+        "speaker": "assistant",
+        "text_sha256": "5c0b571f6952abd26ce108500516f426c797901261c0b74d0d9b498d5577d662",
+        "turn_index": 12
+      },
+      {
+        "alias": "e102",
+        "span_id": "span-366cf9008c265cc8",
+        "speaker": "assistant",
+        "text_sha256": "dee08ab5750e94df80c7c4bd86a8ff3ef963ea8992473b585240624050156afc",
+        "turn_index": 12
+      }
+    ],
+    "case_id": "v1-case02-discharge-transport",
+    "message_count": 24,
+    "registry_sha256": "68a5478f45b275ea055885cf9b9f33db3b9e90a7707896b0b018172746a47b0e",
+    "schema_version": "lolla.conversation_state_source_registry.v1",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case02-discharge-transport.txt",
+    "source_sha256": "7b7586f0c0ce92f35b4c6bf836e0752182727b4520c4e30356bd7e94158786b3",
+    "source_utf8_bytes": 11918
+  },
+  "status": "conversation_state_fan_in_complete",
+  "surface_summaries": [
+    {
+      "reader_ids": [
+        "r4-v1-case02-discharge-transport-01-starting"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-starting-01-8c1417539bfa62"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "starting_position"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case02-discharge-transport-02-current"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-current-01-eca54071a91d6a"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "current_position"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case02-discharge-transport-03-qualification"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 1,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "qualification"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case02-discharge-transport-04-unresolved"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "r4u-v1-case02-discharge-transport-unresolved_matter-01-9d45dc6b2204"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "unresolved_matter"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case02-discharge-transport-05-reopen"
+      ],
+      "record_count": 2,
+      "record_ids": [
+        "r4u-v1-case02-discharge-transport-reopen_condition-01-dea75ee8962a",
+        "r4u-v1-case02-discharge-transport-reopen_condition-02-5f7cb38ebde9"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "reopen_condition"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case02-discharge-transport-06-relationship"
+      ],
+      "record_count": 2,
+      "record_ids": [
+        "r4x-v1-case02-discharge-transport-01-ce6968b05151",
+        "r4x-v1-case02-discharge-transport-02-ace9d1ab4ef9"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "cross_thread_relationship"
+    }
+  ]
+}

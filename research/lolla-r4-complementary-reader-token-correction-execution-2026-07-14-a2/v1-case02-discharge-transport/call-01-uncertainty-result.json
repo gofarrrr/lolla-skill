@@ -1,0 +1,111 @@
+{
+  "automatic_retries": 0,
+  "candidate": {
+    "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+    "reviews": [
+      {
+        "outcome": "records_present",
+        "records": [
+          {
+            "evidence_ids": [
+              "e068",
+              "e071",
+              "e095"
+            ],
+            "interpretation": "The final contract must be amended to ensure subcontractor data retention terms match the primary vendor's requirements before the pilot proceeds.",
+            "limitations": "This is a mandatory condition precedent for the pilot's commencement.",
+            "support": "supported"
+          }
+        ],
+        "surface": "unresolved_matter"
+      },
+      {
+        "outcome": "records_present",
+        "records": [
+          {
+            "evidence_ids": [
+              "e085",
+              "e086",
+              "e092",
+              "e093"
+            ],
+            "interpretation": "Any failure to maintain the dedicated half-time coordinator for the full six-month duration, or the discovery that the pilot is being used to hide the steady-state labor burden, would necessitate a reconsideration of the model.",
+            "limitations": "",
+            "support": "supported"
+          },
+          {
+            "evidence_ids": [
+              "e049",
+              "e071",
+              "e098"
+            ],
+            "interpretation": "Disruption to the 'no auto-renewal' policy or failure of the defined privacy safeguards (including subcontractor oversight) requires halting the pilot.",
+            "limitations": "",
+            "support": "supported"
+          }
+        ],
+        "surface": "reopen_condition"
+      }
+    ]
+  },
+  "case_id": "v1-case02-discharge-transport",
+  "data_collection": "deny",
+  "duration_seconds": 3.435,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1784008744-mVbdlMSe3O7Dk7s2FdKJ",
+  "max_output_tokens": 1600,
+  "operational_status": "candidate_parsed",
+  "operator_attribution_ok": true,
+  "parse_error": "",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex"
+  ],
+  "provider_payload_sha256": "5c96effc15adc8a8c50b8f12827a4a5741a8381b976a38e684cb8e31c9ae99c9",
+  "provider_reported_cost_usd": 0.0036835,
+  "raw_content": "{\n  \"reviews\": [\n    {\n      \"surface\": \"unresolved_matter\",\n      \"outcome\": \"records_present\",\n      \"records\": [\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"The final contract must be amended to ensure subcontractor data retention terms match the primary vendor's requirements before the pilot proceeds.\",\n          \"evidence_ids\": [\n            \"e068\",\n            \"e071\",\n            \"e095\"\n          ],\n          \"limitations\": \"This is a mandatory condition precedent for the pilot's commencement.\"\n        }\n      ]\n    },\n    {\n      \"surface\": \"reopen_condition\",\n      \"outcome\": \"records_present\",\n      \"records\": [\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"Any failure to maintain the dedicated half-time coordinator for the full six-month duration, or the discovery that the pilot is being used to hide the steady-state labor burden, would necessitate a reconsideration of the model.\",\n          \"evidence_ids\": [\n            \"e085\",\n            \"e086\",\n            \"e092\",\n            \"e093\"\n          ],\n          \"limitations\": \"\"\n        },\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"Disruption to the 'no auto-renewal' policy or failure of the defined privacy safeguards (including subcontractor oversight) requires halting the pilot.\",\n          \"evidence_ids\": [\n            \"e049\",\n            \"e071\",\n            \"e098\"\n          ],\n          \"limitations\": \"\"\n        }\n      ]\n    }\n  ],\n  \"global_limitations\": \"Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.\"\n}",
+  "raw_content_sha256": "68f0db1abb884280fb3d8c93e6d73d9dd2a8b2677013b25d4b4bd736dcccf904",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": true,
+  "reasoning_effort": "minimal",
+  "request_body_sha256": "d432643c8c0fed6a6e4c4203b43810dfc2f4c461fdf74beefbb2eba5666167ac",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_healing": false,
+  "response_schema_sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+  "seed": 8202,
+  "semantic_retries": 0,
+  "served_model": "google/gemini-3.1-flash-lite",
+  "served_provider": "Google",
+  "system_prompt_sha256": "fba477dc7ac8be4ed964c4ea7fd50eb08ce348fc15fd0284badff437b8fbb958",
+  "task": "uncertainty",
+  "usage": {
+    "completion_tokens": 416,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "cost": 0.0036835,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.000624,
+      "upstream_inference_cost": 0.0036835,
+      "upstream_inference_prompt_cost": 0.0030595
+    },
+    "is_byok": false,
+    "prompt_tokens": 12238,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 12654
+  },
+  "user_prompt_sha256": "75ec44d961ab0b5eab9c4d07ee9039ff73745cd73af494947d1027182a5826a3",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

@@ -380,9 +380,8 @@ See
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
 Status: provider-free inventory/replay and missingness-aware fan-in complete;
-first complementary-reader attempt closed on token-allocation failure; narrow
-prospective correction prepared; new explicit call authorization is the next
-decision
+corrected complementary-reader diagnostic closed; token allocation repaired;
+semantic restraint failed; provider-free semantic distinction is next
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -514,11 +513,44 @@ First execution and token-correction result:
 - closeout, exact request-diff, fake four-call, global-restoration,
   authorization, custody, and zero-network tests pass locally.
 
-The first authorization is consumed. The new prospective contract authorizes
-zero calls. The next founder-owned decision is whether to authorize the newly
-frozen correction diagnostic. Runtime integration, model comparison, wider
-corpus work, and semantic deterministic gating remain unauthorized. See
+The first authorization was consumed. At that boundary the new prospective
+contract authorized zero calls and made the corrected diagnostic the next
+founder-owned decision. That decision was subsequently authorized and closed
+as recorded below. Runtime integration, model comparison, wider corpus work,
+and semantic deterministic gating remained unauthorized. See
 `docs/conversation-understanding/lolla-r4-complementary-reader-execution-result-2026-07-14.md`.
+
+Corrected diagnostic and source-first review:
+
+- the founder authorized the separate token correction, changing only the
+  uncertainty allocation from `900/low` to `1600/minimal`;
+- all four calls completed with strict parseable JSON and exact intended-model
+  attribution; both relationship dependencies and both final fan-ins opened;
+- exact corrected-run cost was `$0.010835`, with no retry, fallback, healing,
+  evaluator, embedding, graph, pipeline, runtime, or model comparison;
+- the target narrowly passed material recovery by preserving the temporary-
+  support and hidden steady-state labor pressure, while missing the wider
+  cross-setting and accessible-supply parts of the frozen target;
+- the restraint control failed: the reader converted an earlier gap and
+  already operationalized boundary/review criteria into three uncertainty
+  records and two relationships;
+- exact aliases, separate role surfaces, and exact relationship endpoint IDs
+  worked mechanically, but evidence precision and relationship restraint did
+  not;
+- all four usage records report zero reasoning tokens while the frozen runner's
+  broad reasoning-field flag is true; field values were not preserved, so the
+  calls are not reclassified and future runners must reuse R3's stricter
+  content-shape validator;
+- there is no scalar score, production-model selection, runtime/graph
+  integration, wider-corpus authorization, or additional call authorization.
+
+The semantic hypothesis is not supported. The next goal is the provider-free
+semantic-distinction contract in
+`plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`. It must teach the
+probabilistic reader—not deterministic Python—to distinguish genuinely
+remaining uncertainty from adopted preconditions, safeguards, written
+processes, and scheduled reviews. Current cases become development evidence;
+any later provider validation requires a newly frozen holdout.
 
 ## R5 — Product evidence and receipt reconstruction
 
@@ -565,16 +597,15 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-If the founder authorizes the frozen R4 complementary-reader diagnostic, create
-the exact hash-locked authorization and run no more than four Gemini 3.1 Flash-
-Lite calls under the `$0.03` total ceiling. Preserve first failures, exact cost,
-provider attribution, candidates, local admission, fan-in states, and dynamic
-relationship packets. Then perform the already frozen source-first vector
-review of recovery, restraint, evidence precision, role placement,
-relationship fidelity, and load.
+Complete the provider-free semantic-distinction goal in
+`plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`. Build positive,
+quiet, later-resolution, adopted-precondition, existing-safeguard, scheduled-
+review, ambiguous, relationship, and zero-relationship fixtures. Refine the
+probabilistic prompt contract while deterministic code remains limited to
+schema, identity, evidence, endpoint, bound, and custody validation. Reuse the
+corrected R3 reasoning-detail validator in any future runner.
 
-If authorization is deferred, make no further R4 semantic or provider change.
-Do not integrate the runtime, reopen R3, change the graph, compare models,
-infer semantic roles in Python, merge overlapping records, optimize a composite
-score, or claim that the prepared readers are useful. The diagnostic may be
-negative; only its source-reviewed evidence can select the next R4 action.
+Stop before a provider call. Do not integrate the runtime, reopen R3, change
+the graph, compare models, infer semantic roles in Python, merge overlapping
+records, optimize a composite score, or claim that the reader is useful. A
+later call requires a new frozen holdout and separate founder authorization.

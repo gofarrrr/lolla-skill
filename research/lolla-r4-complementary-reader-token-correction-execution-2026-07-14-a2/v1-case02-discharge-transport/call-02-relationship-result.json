@@ -1,0 +1,94 @@
+{
+  "automatic_retries": 0,
+  "candidate": {
+    "global_limitations": "Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.",
+    "outcome": "records_present",
+    "records": [
+      {
+        "evidence_ids": [
+          "e095"
+        ],
+        "limitations": "The contractual amendment status is the formal bridge between the condition in the record and the commitment in the position.",
+        "related_record_ids": [
+          "r4u-v1-case02-discharge-transport-unresolved_matter-01-9d45dc6b2204",
+          "rprolev22-current-01-eca54071a91d6a"
+        ],
+        "relationship": "The unresolved matter acts as a condition precedent that the current position commits to fulfilling before the pilot commences.",
+        "support": "supported"
+      },
+      {
+        "evidence_ids": [
+          "e086",
+          "e096"
+        ],
+        "limitations": "The relationship assumes the half-time coordinator requirement identified as a condition is precisely what is planned in the final position.",
+        "related_record_ids": [
+          "r4u-v1-case02-discharge-transport-reopen_condition-01-dea75ee8962a",
+          "rprolev22-current-01-eca54071a91d6a"
+        ],
+        "relationship": "The reopen condition defines the specific operational requirements for the coordinator role and duration that the current pilot model explicitly adopts.",
+        "support": "supported"
+      }
+    ]
+  },
+  "case_id": "v1-case02-discharge-transport",
+  "data_collection": "deny",
+  "duration_seconds": 2.828,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1784008747-6WI1xYHkatIiX8c5T6Wa",
+  "max_output_tokens": 700,
+  "operational_status": "candidate_parsed",
+  "operator_attribution_ok": true,
+  "parse_error": "",
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex"
+  ],
+  "provider_payload_sha256": "fd7b8f13b97e31fb18d9770d14c4f08e1b0dbcfd082bf3afb0befcc1d6b85a9c",
+  "provider_reported_cost_usd": 0.001651,
+  "raw_content": "{\n  \"outcome\": \"records_present\",\n  \"records\": [\n    {\n      \"support\": \"supported\",\n      \"related_record_ids\": [\n        \"r4u-v1-case02-discharge-transport-unresolved_matter-01-9d45dc6b2204\",\n        \"rprolev22-current-01-eca54071a91d6a\"\n      ],\n      \"relationship\": \"The unresolved matter acts as a condition precedent that the current position commits to fulfilling before the pilot commences.\",\n      \"evidence_ids\": [\n        \"e095\"\n      ],\n      \"limitations\": \"The contractual amendment status is the formal bridge between the condition in the record and the commitment in the position.\"\n    },\n    {\n      \"support\": \"supported\",\n      \"related_record_ids\": [\n        \"r4u-v1-case02-discharge-transport-reopen_condition-01-dea75ee8962a\",\n        \"rprolev22-current-01-eca54071a91d6a\"\n      ],\n      \"relationship\": \"The reopen condition defines the specific operational requirements for the coordinator role and duration that the current pilot model explicitly adopts.\",\n      \"evidence_ids\": [\n        \"e086\",\n        \"e096\"\n      ],\n      \"limitations\": \"The relationship assumes the half-time coordinator requirement identified as a condition is precisely what is planned in the final position.\"\n    }\n  ],\n  \"global_limitations\": \"Review is limited to source-defined operational constraints and conditions for initiating and maintaining the proposed transport pilot.\"\n}",
+  "raw_content_sha256": "f9ac50576be21a29967907e1f5065ad474acd7cff06753b8a531c2d7ec31daee",
+  "reasoning_content_excluded": true,
+  "reasoning_content_returned": true,
+  "reasoning_effort": "minimal",
+  "request_body_sha256": "7b15f13523b0a7dbca96899584de46cf8331e7cd5f990fee8a7e6e74363389c2",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_healing": false,
+  "response_schema_sha256": "6e23a52fe2693e2b3864ae29a433d6334df2ef7f1f617821fd7cdaa1bcb9e690",
+  "seed": 8203,
+  "semantic_retries": 0,
+  "served_model": "google/gemini-3.1-flash-lite",
+  "served_provider": "Google",
+  "system_prompt_sha256": "ba0684c7b2aac645b7c8dffa6da0ad537e0469374df9fe338d8b785f05166fcd",
+  "task": "relationship",
+  "usage": {
+    "completion_tokens": 391,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "cost": 0.001651,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0005865,
+      "upstream_inference_cost": 0.001651,
+      "upstream_inference_prompt_cost": 0.0010645
+    },
+    "is_byok": false,
+    "prompt_tokens": 4258,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 4649
+  },
+  "user_prompt_sha256": "663d6924885d793115fe000ed70d67f110b0c0333739fcf06188a61d19241450",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

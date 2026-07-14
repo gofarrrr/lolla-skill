@@ -1263,6 +1263,16 @@ completed-zero, partial, failed, and missing outcomes distinct. This repairs
 the assembly boundary but does not claim better semantic coverage. The next
 goal is provider-free preparation of one bounded unresolved/reopen plus exact-
 ID relationship experiment; no call or runtime integration is authorized.
+The subsequent
+**[R4 complementary-reader execution result](docs/conversation-understanding/lolla-r4-complementary-reader-execution-result-2026-07-14.md)**
+now closes both the first token-allocation failure and its separately authorized
+correction. Four corrected Gemini 3.1 Flash-Lite calls completed for an exact
+`$0.010835`: representation and fan-in worked, and one missing steady-state
+labor pressure was recovered, but the restraint control converted existing
+preconditions, safeguards, and review criteria into new uncertainty. The
+semantic hypothesis is therefore not supported and no integration or further
+call is authorized. The next goal is the
+**[provider-free R4 semantic-distinction plan](plans/lolla-r4-semantic-distinction-plan-2026-07-14.md)**.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

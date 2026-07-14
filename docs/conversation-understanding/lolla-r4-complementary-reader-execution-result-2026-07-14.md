@@ -1,18 +1,91 @@
 # Lolla R4 complementary-reader execution and token-correction result
 
-Status: first attempt closed on token-allocation failure; semantic question
-unresolved; prospective correction prepared provider-free; new authorization
-required
+Status: first attempt closed on token-allocation failure; corrected diagnostic
+closed after operational success and semantic restraint failure; semantic
+hypothesis not supported
 
 Date: 2026-07-14
 
-Provider calls: 2
+Provider calls: 2 in the historical attempt; 4 in the corrected diagnostic; 6
+cumulative
 
-Exact provider-reported cost: `$0.009036`
+Exact provider-reported cost: `$0.009036` historical + `$0.010835` corrected =
+`$0.019871` cumulative
 
 Additional calls currently authorized: 0
 
-## Plain-language result
+## Corrected diagnostic result
+
+The founder authorized the separately frozen token correction. It changed only
+the uncertainty reader's output allocation from `900/low` to
+`1600/minimal`. The model, provider, sources, prior records, prompts, schemas,
+seeds, relationship contract, source-first targets, and budget boundaries did
+not change.
+
+The correction worked operationally:
+
+- all four calls reached Gemini 3.1 Flash-Lite through the pinned Google route;
+- all four ended with `finish_reason: stop` and parseable strict JSON;
+- the uncertainty records compiled, both relationship dependencies opened, and
+  both six-reader fan-ins completed;
+- each final fan-in contains five complete readers, one completed-zero reader,
+  seven total records, and no missing, partial, or failed reader;
+- exact corrected-run cost was `$0.010835`, below the `$0.03` ceiling;
+- there was no retry, fallback, healing, evaluator, embedding, graph, pipeline,
+  runtime, or model comparison.
+
+This closes the token-allocation question. It does not validate the semantic
+reader.
+
+### Source-first semantic verdict
+
+| dimension | verdict | plain meaning |
+| --- | --- | --- |
+| material pressure recovered | narrow pass | Case 02 recovered the temporary-support and hidden steady-state labor problem, but missed the wider cross-setting and accessible-vehicle generalization gaps. |
+| false-positive restraint | fail | The quiet Case 03 produced three uncertainty records and two relationships from an earlier gap and review criteria already incorporated into the current position. |
+| evidence precision | fail | Alias identity was exact, but one control record relied on earlier `e061` while failing to integrate the final `e105` written-boundary-process statement. |
+| role placement | structural pass | Unresolved, reopen, and relationship records remained separately inspectable; this says nothing about whether their meanings were right. |
+| relationship fidelity | fail | Endpoint IDs were exact, but the target limiting relationship was missed and the control manufactured relationships from false-positive or already operationalized records. |
+| load and cost | pass | Four attributable calls completed for `$0.010835` inside the frozen envelope. |
+
+There is deliberately no scalar score. The corrected reader demonstrates that
+a cheap model can recover one missing pressure from a long conversation. It
+also demonstrates that the current prompt contract over-generates: it treats a
+precondition, safeguard, written process, or scheduled review as if it were a
+distinct unresolved matter or reopen condition.
+
+The corrected semantic hypothesis is therefore **not supported**. Runtime or
+graph integration, wider-corpus execution, production-model selection, and a
+further provider call remain unauthorized.
+
+### Additional custody observation
+
+All four usage records report zero reasoning tokens, while the frozen runner's
+broad `reasoning_content_returned` field-presence flag is true. The runner did
+not preserve those field values, so this result does not infer whether they
+were signatures, format metadata, or content and does not reclassify the
+historical calls. Future experiment runners should reuse the stricter
+provider-free reasoning-detail validator already built in R3 rather than the
+broad truthiness check.
+
+### Earned next goal
+
+The next work is provider-free. Refine the probabilistic reader contract so the
+LLM—not Python—distinguishes:
+
+- a genuinely unresolved matter from a precondition or process already adopted
+  by the current position;
+- a genuine reason to reopen from a safeguard, benchmark, or scheduled review
+  already built into that position;
+- a material cross-record relationship from a paraphrase of its endpoints.
+
+Deterministic code should continue to validate only schema, identity, exact
+aliases, exact endpoints, bounds, and custody. The current two cases may become
+development fixtures, but any later provider validation needs a newly frozen
+holdout so that the next result is not merely tuning to this diagnostic. See
+`plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`.
+
+## Historical first-attempt result
 
 The frozen R4 experiment reached the intended Gemini 3.1 Flash-Lite model and
 Google provider twice, once for the known false-stand-down target and once for
@@ -127,22 +200,18 @@ Local tests prove:
 - authorization cannot expand calls or budget;
 - no provider transport is reachable without a new exact authorization file.
 
-The combined R4 closeout/correction slice passes 47 tests. Full repository
-verification passes 4,834 tests with 1 skipped and all 93 subtests passing.
+The corrected execution and adjacent R4 slice passes 44 tests. Full repository
+verification passes 4,842 tests with 1 skipped and all 93 subtests passing.
 
 ## Decision and next boundary
 
 The first authorization is consumed and the historical attempt may not be
 retried or reclassified.
 
-The new prospective contract is ready, but it authorizes zero calls. The next
-founder decision is whether to authorize one new bounded diagnostic with the
-same two cases, a four-call maximum, no retries, and the unchanged `$0.03`
-ceiling.
-
-If authorized and mechanically successful, perform the original source-first
-vector review. If uncertainty truncates or fails again, stop. Do not change the
-schema, split the task, or switch model inside that run.
+That historical decision was subsequently authorized and completed as the
+corrected diagnostic documented at the top of this file. Its authorization is
+now consumed. The next boundary is the provider-free semantic-distinction
+plan; no additional call is authorized.
 
 ## Evidence map
 
@@ -162,9 +231,16 @@ schema, split the task, or switch model inside that run.
   `research/lolla-r4-complementary-reader-token-correction-2026-07-14/preflight-result.json`
 - New frozen contract:
   `docs/evals/lolla-r4-complementary-reader-token-correction-contract-v1.json`
+- Consumed correction authorization:
+  `docs/evals/lolla-r4-complementary-reader-token-correction-authorization-a2.json`
+- Exact corrected-run artifacts and source-first closeout:
+  `research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2/`
+- Corrected-run finalizer:
+  `scripts/evals/finalize_r4_complementary_reader_token_correction_execution.py`
 - Closeout and prospective runners:
   `scripts/evals/finalize_r4_complementary_reader_execution.py` and
   `scripts/evals/run_r4_complementary_reader_token_correction.py`
 - Tests:
   `tests/test_r4_complementary_reader_execution_closeout.py` and
-  `tests/test_r4_complementary_reader_token_correction.py`
+  `tests/test_r4_complementary_reader_token_correction.py` and
+  `tests/test_r4_complementary_reader_token_correction_execution.py`
