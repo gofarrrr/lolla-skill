@@ -266,6 +266,7 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
         ROOT / "research/lolla-r4-complementary-reader-token-correction-2026-07-14",
         ROOT / "research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2",
         ROOT / "research/lolla-r4-semantic-distinction-contract-2026-07-14",
+        ROOT / "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3",
     )
     assert builder.DOWNSTREAM_INPUT_PATHS == (
         ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
@@ -275,6 +276,7 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
         ROOT / "docs/evals/lolla-r4-complementary-reader-token-correction-authorization-a2.json",
         ROOT / "docs/evals/lolla-r4-semantic-distinction-contract-v1.json",
         ROOT / "docs/evals/lolla-r4-semantic-distinction-holdout-target-v1.json",
+        ROOT / "docs/evals/lolla-r4-semantic-distinction-holdout-authorization-a3.json",
     )
     assert not any(
         path.startswith(
@@ -285,6 +287,7 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
                 "research/lolla-r4-complementary-reader-token-correction-2026-07-14/",
                 "research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2/",
                 "research/lolla-r4-semantic-distinction-contract-2026-07-14/",
+                "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/",
             )
         )
         for path in recorded
@@ -298,6 +301,7 @@ def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
             "docs/evals/lolla-r4-complementary-reader-token-correction-authorization-a2.json",
             "docs/evals/lolla-r4-semantic-distinction-contract-v1.json",
             "docs/evals/lolla-r4-semantic-distinction-holdout-target-v1.json",
+            "docs/evals/lolla-r4-semantic-distinction-holdout-authorization-a3.json",
         }
     )
 

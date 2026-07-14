@@ -1,0 +1,121 @@
+{
+  "automatic_retries": 0,
+  "candidate": {
+    "global_limitations": "This review treats the final recommendation as an operationalized steady state, where the user's acknowledged pressure remains a feature of the decision environment rather than an unresolved matter.",
+    "reviews": [
+      {
+        "outcome": "records_present",
+        "records": [
+          {
+            "evidence_ids": [
+              "e104",
+              "e106",
+              "e110",
+              "e113"
+            ],
+            "interpretation": "The long-term performance and accountability of the installation depend on future city execution, specifically regarding staffing thresholds for deployment, after-action reviews of operating deviations, and the maintenance of the drainage study's independence from the barrier's performance.",
+            "limitations": "",
+            "support": "supported"
+          }
+        ],
+        "surface": "unresolved_matter"
+      },
+      {
+        "outcome": "records_present",
+        "records": [
+          {
+            "evidence_ids": [
+              "e041",
+              "e045",
+              "e073"
+            ],
+            "interpretation": "A material failure of the hydraulic peer review findings or the disclosure of significant disparities between the modeled protection range and actual flood events would require the city to reconsider the scope or viability of the barrier installation.",
+            "limitations": "The decision to decline extra anchors based on lack of review suggests that any future desire to expand will trigger a re-assessment of these same conditions.",
+            "support": "supported"
+          }
+        ],
+        "surface": "reopen_condition"
+      }
+    ]
+  },
+  "case_id": "v1-case01-flood-infrastructure",
+  "data_collection": "deny",
+  "duration_seconds": 2.747,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1784022885-ytqVvCj255MlJsROVQ4S",
+  "max_output_tokens": 1600,
+  "operational_status": "candidate_parsed",
+  "operator_attribution_ok": true,
+  "parse_error": "",
+  "prompt_utf8_bytes": 33751,
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex"
+  ],
+  "provider_payload_sha256": "b20a2cb351908f467167096c8def86ed1614860a242373e742745083de4996a0",
+  "provider_reported_cost_usd": 0.00394925,
+  "raw_content": "{\n  \"reviews\": [\n    {\n      \"surface\": \"unresolved_matter\",\n      \"outcome\": \"records_present\",\n      \"records\": [\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"The long-term performance and accountability of the installation depend on future city execution, specifically regarding staffing thresholds for deployment, after-action reviews of operating deviations, and the maintenance of the drainage study's independence from the barrier's performance.\",\n          \"evidence_ids\": [\"e104\", \"e106\", \"e110\", \"e113\"],\n          \"limitations\": \"\"\n        }\n      ]\n    },\n    {\n      \"surface\": \"reopen_condition\",\n      \"outcome\": \"records_present\",\n      \"records\": [\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"A material failure of the hydraulic peer review findings or the disclosure of significant disparities between the modeled protection range and actual flood events would require the city to reconsider the scope or viability of the barrier installation.\",\n          \"evidence_ids\": [\"e041\", \"e045\", \"e073\"],\n          \"limitations\": \"The decision to decline extra anchors based on lack of review suggests that any future desire to expand will trigger a re-assessment of these same conditions.\"\n        }\n      ]\n    }\n  ],\n  \"global_limitations\": \"This review treats the final recommendation as an operationalized steady state, where the user's acknowledged pressure remains a feature of the decision environment rather than an unresolved matter.\"\n}",
+  "raw_content_sha256": "3615c5abb9abf6d82c1bbb1aa606e80a74d451d69e66800858f429070215fb25",
+  "reasoning_content_excluded": true,
+  "reasoning_custody": {
+    "content_locations": [],
+    "content_present": false,
+    "detail_count": 1,
+    "exclusion_satisfied": true,
+    "historical_r4_result_reclassified": false,
+    "malformed": false,
+    "malformed_locations": [],
+    "metadata_locations": [
+      "/message/reasoning_details/0/format",
+      "/message/reasoning_details/0/index",
+      "/message/reasoning_details/0/signature",
+      "/message/reasoning_details/0/type"
+    ],
+    "metadata_only": true,
+    "provider_values_included": false,
+    "schema_version": "lolla.r4_reasoning_exclusion_inspection.v1",
+    "status": "reasoning_metadata_only"
+  },
+  "reasoning_effort": "minimal",
+  "reasoning_values_preserved": false,
+  "request_body_sha256": "08b80a4bb6c7d67a5becea7109837694cac0866c6edc5932365efaf65fa9b9c9",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_healing": false,
+  "response_schema_sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+  "seed": 8102,
+  "semantic_retries": 0,
+  "served_model": "google/gemini-3.1-flash-lite",
+  "served_provider": "Google",
+  "system_prompt_sha256": "db8d8fa00405fb42a706b1533bcf5482044d4a482fd2d8451ac00d55e77edf13",
+  "task": "uncertainty",
+  "usage": {
+    "completion_tokens": 352,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "cost": 0.00394925,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.000528,
+      "upstream_inference_cost": 0.00394925,
+      "upstream_inference_prompt_cost": 0.00342125
+    },
+    "is_byok": false,
+    "prompt_tokens": 13685,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 14037
+  },
+  "user_prompt_sha256": "34be4c0ca72bfcac4d20b08a89057c90a79f4ad525e41356fe397c81dd753348",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}

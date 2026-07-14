@@ -1,7 +1,7 @@
 # Lolla R4 semantic-distinction plan
 
-Status: provider-free goal complete; exact two-case holdout contract and runner
-ready; no provider call or runtime integration authorized
+Status: exact two-case holdout executed and closed; mechanics passed, semantic
+restraint failed; no further provider call or runtime integration authorized
 
 Date: 2026-07-14
 
@@ -139,3 +139,37 @@ The only next decision is whether to authorize or defer that exact diagnostic.
 It cannot select a production model, authorize wider-corpus work, or authorize
 runtime or graph integration. See
 `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`.
+
+## Execution completion — 2026-07-14
+
+The founder authorized the exact frozen `lolla-r4-semantic-distinction-holdout-a3`
+diagnostic. The runner made all four permitted calls for an exact
+provider-reported `$0.01107025`, with strict JSON, intended model/provider
+attribution, metadata-only reasoning envelopes, local admission, both
+relationship dependencies, both final fan-ins, and no retry, fallback,
+healing, evaluator, embedding, graph, pipeline, runtime, or model change.
+
+The semantic hypothesis is not supported:
+
+- Case 01 narrowly recovered a durable city operating-capability dependency,
+  but missed recurring funding/ownership and cited mostly adopted safeguards;
+- Case 01 also recast an earlier precondition and adopted process as a reopen
+  condition;
+- Case 04 failed the restraint control by converting deferred redesign work,
+  predefined thresholds, fallback provisions, and the fixed twelve-month
+  review into three uncertainty records and two relationships;
+- exact aliases, role surfaces, and relationship endpoint IDs worked
+  mechanically but did not supply semantic correctness.
+
+The authorization is consumed. Case 01 and Case 04 are now exposed development
+evidence. No retry, further call, runtime/graph integration, R5 promotion,
+wider-corpus work, model comparison, production-model selection, or scalar
+score is authorized.
+
+The next earned goal is provider-free causal diagnosis of why the prompt's
+zero, resolution, safeguard, fallback, and scheduled-review distinctions did
+not survive the Case 04 endpoint. That work must decide whether a task-shape
+redesign or an R4 stop is earned. Any later provider validation requires a
+genuinely new holdout, new frozen contract, and separate founder authorization.
+See
+`docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`.

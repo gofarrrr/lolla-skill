@@ -1160,3 +1160,37 @@ Continuation entrypoints:
 - `docs/evals/lolla-r4-semantic-distinction-holdout-target-v1.json`;
 - `docs/evals/lolla-r4-semantic-distinction-contract-v1.json`;
 - `research/lolla-r4-semantic-distinction-contract-2026-07-14/preflight-result.json`.
+
+## R4 semantic-distinction execution — 2026-07-14
+
+The founder authorized the exact frozen
+`lolla-r4-semantic-distinction-holdout-a3` package. All four permitted Gemini
+3.1 Flash-Lite calls completed for an exact provider-reported `$0.01107025`.
+Strict JSON, intended Google attribution, metadata-only reasoning custody,
+local admission, both relationship dependencies, and both final fan-ins passed
+without retry, fallback, healing, evaluator, embedding, graph, pipeline,
+runtime, or model-change work.
+
+The semantic hypothesis is not supported. Case 01 narrowly recovered a durable
+city operating-capability dependency but missed recurring funding/ownership
+and used imprecise evidence. Case 04 failed the restraint control by converting
+deferred redesign work, predefined thresholds, fallback provisions, and the
+fixed twelve-month review into three uncertainty records and two
+relationships. Exact aliases and endpoint IDs therefore demonstrate custody,
+not semantic correctness.
+
+The one-use authorization is consumed. Case 01 and Case 04 are now exposed
+development evidence. No retry, further provider call, runtime/graph
+integration, wider-corpus work, R5 promotion, model comparison, production-
+model selection, or scalar score is authorized. The next boundary is
+provider-free causal diagnosis or an R4 stop; any later paid validation needs a
+genuinely new holdout and separate founder authorization.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`;
+- `docs/evals/lolla-r4-semantic-distinction-holdout-authorization-a3.json`;
+- `research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/evidence-manifest.json`;
+- `research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/source-first-review.json`;
+- `research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/execution-closeout.json`;
+- `scripts/evals/finalize_r4_semantic_distinction_execution.py`.

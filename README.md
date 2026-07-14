@@ -1277,8 +1277,18 @@ is now complete: nine exposed fixtures pass, one untouched target and one
 untouched restraint control are frozen, the strict R3 reasoning-envelope
 inspector is reused in an additive runner, and the exact four-call maximum
 package has a conservative `$0.0280125` estimate. It contains no authorization
-and makes no call by itself. The only next decision is authorization or deferral
-of that exact diagnostic; integration remains unauthorized. See the completed
+and made no call by itself. The subsequent
+**[R4 semantic-distinction execution result](docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md)**
+records the exact authorized holdout. Four attributable calls completed for
+`$0.01107025` with strict JSON, local admission, exact provider attribution,
+metadata-only reasoning envelopes, and complete fan-in. Case 01 recovered only
+a narrow operating-capability dependency, while Case 04 converted deferred or
+already operationalized thresholds, fallbacks, and fixed review criteria into
+three uncertainty records and two relationships. The semantic hypothesis is
+not supported, the authorization is consumed, and no further call, R5
+promotion, runtime/graph integration, or production-model selection is
+authorized. The next boundary is provider-free causal diagnosis or an R4 stop.
+See the completed
 **[R4 semantic-distinction plan](plans/lolla-r4-semantic-distinction-plan-2026-07-14.md)**.
 
 For the offline Product Delta evidence lane, including what to run, what to

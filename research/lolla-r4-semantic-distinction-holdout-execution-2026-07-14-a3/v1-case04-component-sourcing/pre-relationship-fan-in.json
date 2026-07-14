@@ -1,0 +1,1456 @@
+{
+  "boundary": {
+    "completed_zero_treated_as_semantic_absence": false,
+    "graph_pressure_or_relevance_decided": false,
+    "missing_reader_output_filled": false,
+    "overlapping_reader_records_preserved": true,
+    "prose_keywords_or_chronology_used_for_meaning": false,
+    "provider_authored_semantic_payloads_preserved": true,
+    "provider_calls": 0,
+    "quality_score": null,
+    "reader_or_record_array_order_used_for_meaning": false,
+    "relationship_meaning_inferred_by_code": false,
+    "runtime_or_graph_integration_performed": false,
+    "semantic_merge_or_deduplication_performed": false,
+    "semantic_role_inferred_by_code": false
+  },
+  "case_id": "v1-case04-component-sourcing",
+  "fan_in": {
+    "exact_semantic_payload_overlap_pair_count": 0,
+    "handoff_payload_utf8_bytes": 38609,
+    "interpretation": "mechanical load vector only; no direction of quality is inferred",
+    "limits": {
+      "maximum_handoff_payload_utf8_bytes": 1000000,
+      "maximum_readers": 12,
+      "maximum_records_per_reader": 8,
+      "maximum_related_record_ids": 16,
+      "maximum_semantic_payload_utf8_bytes_per_record": 32768,
+      "maximum_source_aliases": 512,
+      "maximum_source_locators_per_record": 24,
+      "maximum_total_records": 48,
+      "maximum_total_semantic_payload_utf8_bytes": 262144
+    },
+    "planned_reader_count": 6,
+    "reader_artifact_reference_count": 5,
+    "reader_state_counts": {
+      "complete": 5,
+      "completed_zero": 0,
+      "failed": 0,
+      "missing": 1,
+      "partial": 0
+    },
+    "source_alias_overlap_pair_count": 3,
+    "total_record_count": 6,
+    "total_semantic_payload_utf8_bytes": 10996,
+    "total_source_locator_count": 18,
+    "unique_reader_artifact_count": 2,
+    "unique_reader_artifact_utf8_bytes": 15350,
+    "unique_source_alias_count": 15,
+    "within_bounds": true
+  },
+  "planned_readers": [
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "r4-v1-case04-component-sourcing-01-starting",
+      "surface": "starting_position"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "r4-v1-case04-component-sourcing-02-current",
+      "surface": "current_position"
+    },
+    {
+      "producer_id": "google/gemini-3.5-flash-20260519",
+      "producer_kind": "simulated_reliability_v1",
+      "reader_id": "r4-v1-case04-component-sourcing-03-qualification",
+      "surface": "qualification"
+    },
+    {
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "producer_kind": "r4_complementary_reader_v1",
+      "reader_id": "r4-v1-case04-component-sourcing-04-unresolved",
+      "surface": "unresolved_matter"
+    },
+    {
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "producer_kind": "r4_complementary_reader_v1",
+      "reader_id": "r4-v1-case04-component-sourcing-05-reopen",
+      "surface": "reopen_condition"
+    },
+    {
+      "producer_id": "google/gemini-3.1-flash-lite",
+      "producer_kind": "r4_exact_id_relationship_reader_v1",
+      "reader_id": "r4-v1-case04-component-sourcing-06-relationship",
+      "surface": "cross_thread_relationship"
+    }
+  ],
+  "reader_results": [
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case04-component-sourcing-primary/joined-role-records.json",
+        "sha256": "8a519bccda2c74351744ddd02105f61556a4d4aa95378876d72696c48ff02316",
+        "utf8_bytes": 13397
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "r4-v1-case04-component-sourcing-01-starting",
+      "records": [
+        {
+          "record_id": "rprolev22-starting-01-3b198c89a6a0c6",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case04-component-sourcing",
+            "fidelity_note": "The starting position captures the user's initial conflict: they are wary of a single point of failure (e007) but also recognize that paying a premium for a second source with a higher defect rate is not true resilience (e008, e009). This culminates in a strong preference for an objective, slogan-free framework to evaluate risks (e010).",
+            "graph_routing_eligible": false,
+            "limitations": "The early turn shows structural tension in the sourcing strategy, but it contains no final volumetric allocation split or specific terms, which are only introduced in subsequent turns.",
+            "observation_id": "rprolev22-starting-01-3b198c89a6a0c6",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:3b198c89a6a0c646e1bebcc4f4db669485f594b466f13daaac07bb01d9a3b093",
+            "role": "starting",
+            "role_interpretation": "The user starts with an unresolved, cautious assessment of single-sourcing versus dual-sourcing, balancing the physical risk of a single point of failure against the high defect rates and financial premium of a weaker secondary source. Rather than adopting slogans, they desire an objective risk assessment method.",
+            "role_record_id": "rprolev22-starting-01-3b198c89a6a0c6",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case04-component-sourcing-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e007",
+                "text": "I hear “single point of failure” and become uneasy, but then quality shows me the defects created by maintaining two versions and finance shows me what the second source costs."
+              },
+              {
+                "alias": "e008",
+                "text": "Paying more for worse present performance is not automatically resilience."
+              },
+              {
+                "alias": "e009",
+                "text": "Concentrating a critical board is not automatically reckless."
+              },
+              {
+                "alias": "e010",
+                "text": "I need a way to compare the risks we actually have, not the slogans attached to them."
+              }
+            ],
+            "source_evidence_ids": [
+              "e007",
+              "e008",
+              "e009",
+              "e010"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "starting",
+                "source_evidence_id": "e007",
+                "stance_expression_kind": "uncertain_or_undecided",
+                "stance_object_interpretation": "feeling uneasy about single points of failure but conflicted because quality and finance show the high defects and costs of maintaining two supplier versions",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e008",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "paying a premium for worse performance from a weaker supplier does not automatically provide resilient operations",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e009",
+                "stance_expression_kind": "held_assessment",
+                "stance_object_interpretation": "concentrating procurement on a single highly preforming control board is not automatically a reckless business decision",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "starting",
+                "source_evidence_id": "e010",
+                "stance_expression_kind": "preference_or_desire",
+                "stance_object_interpretation": "establishing a concrete methodology to compare the actual operational risks rather than relying on abstract resilience slogans",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "001459d132021252b5e67d7e25e20f2be1687b2074269d1102d3745503e9e063",
+          "source_locators": [
+            {
+              "alias": "e007",
+              "span_id": "span-e8bc4ebfc8cd81a1",
+              "speaker": "user",
+              "text_sha256": "7ce607bfc3778661a7bdf4595c225d0143bbe9a0bf5b1b4a1e2a34c4a02af49c",
+              "turn_index": 1
+            },
+            {
+              "alias": "e008",
+              "span_id": "span-200f9180a2a49e28",
+              "speaker": "user",
+              "text_sha256": "c5a575f5d1ba912eba92b8762e966e1c23b923a514e280b2bcdf90a4272817b4",
+              "turn_index": 1
+            },
+            {
+              "alias": "e009",
+              "span_id": "span-265c46294df72a21",
+              "speaker": "user",
+              "text_sha256": "69f2c8fe236ceb19c4b145f7fca0b4cecc8999e62430566997898e8b32a9cb37",
+              "turn_index": 1
+            },
+            {
+              "alias": "e010",
+              "span_id": "span-30673b7284c7b184",
+              "speaker": "user",
+              "text_sha256": "8a5b17c17d7db539f802eedebb38a6946ed0f6b305dbcdbbab26c54e0880886b",
+              "turn_index": 1
+            }
+          ],
+          "surface": "starting_position"
+        }
+      ],
+      "state": "complete",
+      "surface": "starting_position"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case04-component-sourcing-primary/joined-role-records.json",
+        "sha256": "8a519bccda2c74351744ddd02105f61556a4d4aa95378876d72696c48ff02316",
+        "utf8_bytes": 13397
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "r4-v1-case04-component-sourcing-02-current",
+      "records": [
+        {
+          "record_id": "rprolev22-current-01-1d9ca7e606de24",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case04-component-sourcing",
+            "fidelity_note": "Captures the user's final working plan as of Turn 12, documenting the active choices and adopted safeguards designed to monitor supplier costs and enforce a clear decision-making path at the end of the year.",
+            "graph_routing_eligible": false,
+            "limitations": "The plan is structurally limited to a one-year trial and assumes that performance and engineering support costs can be meaningfully counted.",
+            "observation_id": "rprolev22-current-01-1d9ca7e606de24",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:1d9ca7e606de24ec8fd558ce738661fb1c9a3c349cbcd7248ce26ff7b97dfb4e",
+            "role": "current",
+            "role_interpretation": "The user's final proposed strategy: maintaining a structured 75/25 split with adopted protections, funding a shared interface spec for the replacement design, limiting supplier exclusivity clauses, and deferring the definitive sourcing decision to the 12-month review.",
+            "role_record_id": "rprolev22-current-01-1d9ca7e606de24",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case04-component-sourcing-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e095",
+                "text": "We will keep the seventy-five/twenty-five allocation through the twelve-month review, update and test the owned buffer, and count engineering support explicitly."
+              },
+              {
+                "alias": "e096",
+                "text": "For the replacement, we will fund a shared interface and validation specification while asking both suppliers to propose implementations; we will not give either an automatic design award."
+              },
+              {
+                "alias": "e097",
+                "text": "The first-opportunity clause will have a short deadline and no restriction on parallel work."
+              },
+              {
+                "alias": "e098",
+                "text": "At twelve months we will decide using quality, total support cost, redesign progress, and demonstrated recovery—not the original eighteen-percent headline."
+              }
+            ],
+            "source_evidence_ids": [
+              "e095",
+              "e096",
+              "e097",
+              "e098"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "current",
+                "source_evidence_id": "e095",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Maintain the 75/25 volume split for a year while actively testing the buffer stock and tracking engineering support hours.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e096",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Fund a shared interface and validation specification for the replacement design instead of granting an automatic design award.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e097",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Impose a tight deadline on the primary supplier's first-opportunity clause without restricting parallel engineering work.",
+                "stance_object_kind": "action_or_proposal"
+              },
+              {
+                "role": "current",
+                "source_evidence_id": "e098",
+                "stance_expression_kind": "decision",
+                "stance_object_interpretation": "Use the twelve-month review to make a concrete decision based on total cost, quality, redesign progress, and demonstrated recovery.",
+                "stance_object_kind": "intended_outcome_or_policy"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "76e1ad4c9d07bf141e668b98d819156e2dca80feff2d4e9d0c0c2f34cd910038",
+          "source_locators": [
+            {
+              "alias": "e095",
+              "span_id": "span-29b6c9e8fa7ed111",
+              "speaker": "user",
+              "text_sha256": "f8e85b61b34608d956466ccd7a7ead7a361bb1bfb34c93974f42d2e4864064e7",
+              "turn_index": 12
+            },
+            {
+              "alias": "e096",
+              "span_id": "span-53029cf184fd9666",
+              "speaker": "user",
+              "text_sha256": "b34d3703c28c656f6d4328a5daf5797b60a99a2bfeffee5584b9a387c1bf09c2",
+              "turn_index": 12
+            },
+            {
+              "alias": "e097",
+              "span_id": "span-239bfed0354a94b5",
+              "speaker": "user",
+              "text_sha256": "d8844399d29272ad8c1136e5f2e826e0c5c717ebad596143781c8823c4c4a239",
+              "turn_index": 12
+            },
+            {
+              "alias": "e098",
+              "span_id": "span-52bec3ac60cc1512",
+              "speaker": "user",
+              "text_sha256": "fef7e2a1002cf6d105dfa35932cf62bb407d6870fa4c0381e8e710e4f3c5dea7",
+              "turn_index": 12
+            }
+          ],
+          "surface": "current_position"
+        }
+      ],
+      "state": "complete",
+      "surface": "current_position"
+    },
+    {
+      "artifact": {
+        "path": "research/simulated-reliability-v1-transfer-2026-07-12/t1/v1-case04-component-sourcing-primary/joined-role-records.json",
+        "sha256": "8a519bccda2c74351744ddd02105f61556a4d4aa95378876d72696c48ff02316",
+        "utf8_bytes": 13397
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.5-flash-20260519",
+        "kind": "simulated_reliability_v1"
+      },
+      "reader_id": "r4-v1-case04-component-sourcing-03-qualification",
+      "records": [
+        {
+          "record_id": "rprolev22-qualification-01-e8ec0899945b8b",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "case_id": "v1-case04-component-sourcing",
+            "fidelity_note": "Integrates the user's explicit struggle over the component transition, which remains unresolved by the temporary funding of a shared specification at Turn 12.",
+            "graph_routing_eligible": false,
+            "limitations": "The user is forced to choose between doubling verification workload and creating a single technical failure path, representing a high-stakes trade-off.",
+            "observation_id": "rprolev22-qualification-01-e8ec0899945b8b",
+            "provenance": {
+              "call_id": "",
+              "model": "",
+              "producer_id": "google/gemini-3.5-flash-20260519",
+              "producer_kind": "simulated_reliability_v1",
+              "prompt_sha256": ""
+            },
+            "raw_record_sha256": "sha256:e8ec0899945b8b534b19876ecf622cce8b40b9af4fc63dbc6ec445559ca6e1ff",
+            "role": "qualification",
+            "role_interpretation": "The unresolved external constraint and technical dilemma resulting from the impending discontinuation of the shared semiconductor component.",
+            "role_record_id": "rprolev22-qualification-01-e8ec0899945b8b",
+            "schema_version": "lolla.reasoning_process_position_role_observation.v2",
+            "semantic_status": "supported",
+            "shard_id": "v1-case04-component-sourcing-position_and_decision_trajectory-full-source",
+            "source_evidence": [
+              {
+                "alias": "e083",
+                "text": "And now the part that makes the original debate feel almost quaint: the shared semiconductor package will be discontinued in eighteen months."
+              },
+              {
+                "alias": "e087",
+                "text": "If we choose two designs, we double validation and firmware work—the exact complexity quality has been warning about."
+              },
+              {
+                "alias": "e088",
+                "text": "If we choose one, we may preserve two factories but one technical failure path."
+              }
+            ],
+            "source_evidence_ids": [
+              "e083",
+              "e087",
+              "e088"
+            ],
+            "source_record_index": 1,
+            "stance_components": [
+              {
+                "role": "qualification",
+                "source_evidence_id": "e083",
+                "stance_expression_kind": "constraint",
+                "stance_object_interpretation": "The shared semiconductor package will be discontinued in eighteen months, necessitating a full redesign that both suppliers must navigate.",
+                "stance_object_kind": "belief_or_assessment"
+              },
+              {
+                "role": "qualification",
+                "source_evidence_id": "e087",
+                "stance_expression_kind": "counterpressure",
+                "stance_object_interpretation": "Choosing two separate redesigns doubles validation and firmware work, while a single technical design concentrates failure risks.",
+                "stance_object_kind": "belief_or_assessment"
+              }
+            ],
+            "terminal_state": "admitted"
+          },
+          "semantic_payload_sha256": "51bd2bc74b6a88525a0669644ee909b1e455e92fa2b515aba90592122dc75ef2",
+          "source_locators": [
+            {
+              "alias": "e083",
+              "span_id": "span-6453121465c522e4",
+              "speaker": "user",
+              "text_sha256": "5d3543ba335851f0d6f892f3398ab707599fa93d6bdaf1236918353040363818",
+              "turn_index": 11
+            },
+            {
+              "alias": "e087",
+              "span_id": "span-4125c04b0c28af4d",
+              "speaker": "user",
+              "text_sha256": "9626222489d7a5c0dac93680fdae986e93dfc45670fbce7eef64ad815a823233",
+              "turn_index": 11
+            },
+            {
+              "alias": "e088",
+              "span_id": "span-adbd941c83a6056e",
+              "speaker": "user",
+              "text_sha256": "16f33d767ee40cbfe8476c404a48cdce7b03f985edef2e9acd38de73f8a3baa1",
+              "turn_index": 11
+            }
+          ],
+          "surface": "qualification"
+        }
+      ],
+      "state": "complete",
+      "surface": "qualification"
+    },
+    {
+      "artifact": {
+        "path": "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/v1-case04-component-sourcing/uncertainty-candidate.json",
+        "sha256": "34ffd3d226e9d3f74bcdddf2e7c89bf0e0e7eb9647b534b08914606e2da29eec",
+        "utf8_bytes": 1953
+      },
+      "declared_record_count": 1,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.1-flash-lite",
+        "kind": "r4_complementary_reader_v1"
+      },
+      "reader_id": "r4-v1-case04-component-sourcing-04-unresolved",
+      "records": [
+        {
+          "record_id": "r4u-v1-case04-component-sourcing-unresolved_matter-01-4f838513f370",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "global_limitations": "The final state transitions from evaluating supplier redundancy to managing a forced technical migration; therefore, records focus on the decision gates established by the user for that transition.",
+            "record": {
+              "evidence_ids": [
+                "e096",
+                "e094"
+              ],
+              "interpretation": "The outcome of the component transition remains dependent on milestones that have not yet been defined for the proposed, unawarded replacement design.",
+              "limitations": "The choice between a shared design or dual paths remains open pending supplier proposals and the upcoming twelve-month decision review.",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "4f838513f370eee1e81a5a69792359b9dab0029f7239aff50fb78944f8a74cfe",
+          "source_locators": [
+            {
+              "alias": "e094",
+              "span_id": "span-ff9b91845db2bf86",
+              "speaker": "assistant",
+              "text_sha256": "64d1148df698765385aee07f03823e96364f0b64bd7d39cc4c8c0223f413022b",
+              "turn_index": 11
+            },
+            {
+              "alias": "e096",
+              "span_id": "span-53029cf184fd9666",
+              "speaker": "user",
+              "text_sha256": "b34d3703c28c656f6d4328a5daf5797b60a99a2bfeffee5584b9a387c1bf09c2",
+              "turn_index": 12
+            }
+          ],
+          "surface": "unresolved_matter"
+        }
+      ],
+      "state": "complete",
+      "surface": "unresolved_matter"
+    },
+    {
+      "artifact": {
+        "path": "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/v1-case04-component-sourcing/uncertainty-candidate.json",
+        "sha256": "34ffd3d226e9d3f74bcdddf2e7c89bf0e0e7eb9647b534b08914606e2da29eec",
+        "utf8_bytes": 1953
+      },
+      "declared_record_count": 2,
+      "issue": null,
+      "producer": {
+        "id": "google/gemini-3.1-flash-lite",
+        "kind": "r4_complementary_reader_v1"
+      },
+      "reader_id": "r4-v1-case04-component-sourcing-05-reopen",
+      "records": [
+        {
+          "record_id": "r4u-v1-case04-component-sourcing-reopen_condition-01-232f866a85e6",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "global_limitations": "The final state transitions from evaluating supplier redundancy to managing a forced technical migration; therefore, records focus on the decision gates established by the user for that transition.",
+            "record": {
+              "evidence_ids": [
+                "e047",
+                "e054",
+                "e036"
+              ],
+              "interpretation": "A deviation from the predefined thresholds for quality, delivery, or engineering support for either supplier would trigger an exit review before the current annual strategy concludes.",
+              "limitations": "The conditions are specific to performance failures of the secondary source and the effectiveness of the joint quality plan.",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "232f866a85e61229a99b48f3f84a97d869c3e7a1774494bc455737c433ac1a54",
+          "source_locators": [
+            {
+              "alias": "e036",
+              "span_id": "span-7149cc12c3a9f031",
+              "speaker": "assistant",
+              "text_sha256": "f63538a9e8fb6d89a9dc706b03adfbc8c2cc211a4b99b2644214a55966fc9c69",
+              "turn_index": 4
+            },
+            {
+              "alias": "e047",
+              "span_id": "span-af50e1e04c1b7392",
+              "speaker": "user",
+              "text_sha256": "05200cb4fa631ea7a5124c06fbb44e687b6cfe18697ed601b4e08bcb4dbc9a41",
+              "turn_index": 6
+            },
+            {
+              "alias": "e054",
+              "span_id": "span-788271359d3115cc",
+              "speaker": "user",
+              "text_sha256": "cf19c7740879dfd4e88b467d801e2841dc463108e5b35209902c13dc09aa3b7e",
+              "turn_index": 7
+            }
+          ],
+          "surface": "reopen_condition"
+        },
+        {
+          "record_id": "r4u-v1-case04-component-sourcing-reopen_condition-02-98ccf8ae047a",
+          "related_record_ids": [],
+          "semantic_payload": {
+            "global_limitations": "The final state transitions from evaluating supplier redundancy to managing a forced technical migration; therefore, records focus on the decision gates established by the user for that transition.",
+            "record": {
+              "evidence_ids": [
+                "e094",
+                "e098"
+              ],
+              "interpretation": "A failure in the redesign path (such as slippage in validation milestones or inability to secure component alternatives) would necessitate reconsidering the chosen replacement strategy.",
+              "limitations": "The deadline for this decision is twelve months, but slippage could force an earlier re-assessment.",
+              "support": "supported"
+            },
+            "review_outcome": "records_present"
+          },
+          "semantic_payload_sha256": "98ccf8ae047aa064a452b0217c05f3d423fad611232859599b7f5befe47495c8",
+          "source_locators": [
+            {
+              "alias": "e094",
+              "span_id": "span-ff9b91845db2bf86",
+              "speaker": "assistant",
+              "text_sha256": "64d1148df698765385aee07f03823e96364f0b64bd7d39cc4c8c0223f413022b",
+              "turn_index": 11
+            },
+            {
+              "alias": "e098",
+              "span_id": "span-52bec3ac60cc1512",
+              "speaker": "user",
+              "text_sha256": "fef7e2a1002cf6d105dfa35932cf62bb407d6870fa4c0381e8e710e4f3c5dea7",
+              "turn_index": 12
+            }
+          ],
+          "surface": "reopen_condition"
+        }
+      ],
+      "state": "complete",
+      "surface": "reopen_condition"
+    },
+    {
+      "artifact": null,
+      "declared_record_count": 0,
+      "issue": {
+        "code": "upstream_dependency_unavailable",
+        "kind": "missingness",
+        "safe_detail": "The relationship call was not made because uncertainty records were unavailable.",
+        "stage": "uncertainty_reader_dependency"
+      },
+      "producer": {
+        "id": "google/gemini-3.1-flash-lite",
+        "kind": "r4_exact_id_relationship_reader_v1"
+      },
+      "reader_id": "r4-v1-case04-component-sourcing-06-relationship",
+      "records": [],
+      "state": "missing",
+      "surface": "cross_thread_relationship"
+    }
+  ],
+  "result_sha256": "f9f7f9816d56c4ae75c9c34f1f7673283233e547242df94bc275ca3df674bffc",
+  "schema_version": "lolla.conversation_state_fan_in.v1",
+  "source_registry": {
+    "aliases": [
+      {
+        "alias": "e001",
+        "span_id": "span-12d87c1993f28196",
+        "speaker": "user",
+        "text_sha256": "478c92b2f60cb7214c4ed2e2d9e9b5d37c9a93ba2e75dfdacaa07750cbf8da52",
+        "turn_index": 1
+      },
+      {
+        "alias": "e002",
+        "span_id": "span-2a7a0299ac5f9abb",
+        "speaker": "user",
+        "text_sha256": "8552acf4c0058e3599fe422db28a034a37d5c04b330482c456caaee26d662ed7",
+        "turn_index": 1
+      },
+      {
+        "alias": "e003",
+        "span_id": "span-d8ecffa5532cfa52",
+        "speaker": "user",
+        "text_sha256": "067bd1a09be62253973e7c030bc64c80df3ae4db997f6a960a61ef1fd5b720e9",
+        "turn_index": 1
+      },
+      {
+        "alias": "e004",
+        "span_id": "span-714d6c07f2448f75",
+        "speaker": "user",
+        "text_sha256": "53c21766768f4ec95f2acd03d3371c0563f302c28126f09bae4bfee705da5a1a",
+        "turn_index": 1
+      },
+      {
+        "alias": "e005",
+        "span_id": "span-f3d6db52792c69ec",
+        "speaker": "user",
+        "text_sha256": "cef9f13af7d9c8fc61c16ce127fe0a5a7dad4272c3e2494c8c2a871c55c766fd",
+        "turn_index": 1
+      },
+      {
+        "alias": "e006",
+        "span_id": "span-a5c158604f5b6b36",
+        "speaker": "user",
+        "text_sha256": "134eb6a81644fa8eed60a9cc9ac08497318bc3857a5475425ea79231690021e9",
+        "turn_index": 1
+      },
+      {
+        "alias": "e007",
+        "span_id": "span-e8bc4ebfc8cd81a1",
+        "speaker": "user",
+        "text_sha256": "7ce607bfc3778661a7bdf4595c225d0143bbe9a0bf5b1b4a1e2a34c4a02af49c",
+        "turn_index": 1
+      },
+      {
+        "alias": "e008",
+        "span_id": "span-200f9180a2a49e28",
+        "speaker": "user",
+        "text_sha256": "c5a575f5d1ba912eba92b8762e966e1c23b923a514e280b2bcdf90a4272817b4",
+        "turn_index": 1
+      },
+      {
+        "alias": "e009",
+        "span_id": "span-265c46294df72a21",
+        "speaker": "user",
+        "text_sha256": "69f2c8fe236ceb19c4b145f7fca0b4cecc8999e62430566997898e8b32a9cb37",
+        "turn_index": 1
+      },
+      {
+        "alias": "e010",
+        "span_id": "span-30673b7284c7b184",
+        "speaker": "user",
+        "text_sha256": "8a5b17c17d7db539f802eedebb38a6946ed0f6b305dbcdbbab26c54e0880886b",
+        "turn_index": 1
+      },
+      {
+        "alias": "e011",
+        "span_id": "span-7d49b8cf89920b53",
+        "speaker": "assistant",
+        "text_sha256": "d1fbe3eb82cd475979c9b599533d974d02180e886a24aabf4bc7f1e92caf37b6",
+        "turn_index": 1
+      },
+      {
+        "alias": "e012",
+        "span_id": "span-dbe753a5892a35d7",
+        "speaker": "assistant",
+        "text_sha256": "1d8c4b20a23c65392cba3ce8284af04dd1f8fed98263441c786f40f3700fa2b9",
+        "turn_index": 1
+      },
+      {
+        "alias": "e013",
+        "span_id": "span-161a626db11d70a0",
+        "speaker": "assistant",
+        "text_sha256": "37785e48df39fdde4b5cf431a2370345d0312ae1b8866e34f50e558b20b2639f",
+        "turn_index": 1
+      },
+      {
+        "alias": "e014",
+        "span_id": "span-ad2b20cd296dd34c",
+        "speaker": "user",
+        "text_sha256": "445ea76e0fecc22edfb57a2ca2be09cca64ca11a356ce23a5287505de22c9fc0",
+        "turn_index": 2
+      },
+      {
+        "alias": "e015",
+        "span_id": "span-0e0eddfff6947e40",
+        "speaker": "user",
+        "text_sha256": "d2f852969bd24d31f6c97e5344763baa8274b9cb01fa9738e7e6dd14d4e170f9",
+        "turn_index": 2
+      },
+      {
+        "alias": "e016",
+        "span_id": "span-43d0555b37a89f55",
+        "speaker": "user",
+        "text_sha256": "db6e62ff86e52e28f577aee2e8c87d57e02d674f9e5cd7ecdcee143c3fd8264a",
+        "turn_index": 2
+      },
+      {
+        "alias": "e017",
+        "span_id": "span-987ac39880effa0c",
+        "speaker": "user",
+        "text_sha256": "885bc145065b9bd8994428dccd19671ca6dfdd4810a7008b0fbcf4f5424c160a",
+        "turn_index": 2
+      },
+      {
+        "alias": "e018",
+        "span_id": "span-9db7a6c1f0f7de83",
+        "speaker": "assistant",
+        "text_sha256": "be21a76c8a38c60738b7da8ac89c54b745d8b4835af648c8a82bdd27ab2c0efd",
+        "turn_index": 2
+      },
+      {
+        "alias": "e019",
+        "span_id": "span-6beacacde426b10f",
+        "speaker": "assistant",
+        "text_sha256": "283a16efe91f9fdf0833021f7a2b66e17735d74d88e185eeadb3d46a332a428b",
+        "turn_index": 2
+      },
+      {
+        "alias": "e020",
+        "span_id": "span-2721a2a90de0423f",
+        "speaker": "assistant",
+        "text_sha256": "616a11aeaf1d7cb1f5eb5f2c34ef174a2260727125bcc19afc0b9681b96ded09",
+        "turn_index": 2
+      },
+      {
+        "alias": "e021",
+        "span_id": "span-0dea2a521b8bbc0b",
+        "speaker": "assistant",
+        "text_sha256": "8d328230b6a3e70bcb9dd6ce1f7457a2c70b0ee31ad41844c69c9f259556a359",
+        "turn_index": 2
+      },
+      {
+        "alias": "e022",
+        "span_id": "span-07a12d91c575cdfb",
+        "speaker": "assistant",
+        "text_sha256": "cee57d2427322278ee1c3a58684e9e19961c77e7ebd393a319ba4eae3c0ed778",
+        "turn_index": 2
+      },
+      {
+        "alias": "e023",
+        "span_id": "span-c104a77e48450aa1",
+        "speaker": "user",
+        "text_sha256": "7cfbe0f38c89874277d5cb21ec8d7a5e3698ebc86d010dd598643a1d39645c04",
+        "turn_index": 3
+      },
+      {
+        "alias": "e024",
+        "span_id": "span-e07dccb53a68da40",
+        "speaker": "user",
+        "text_sha256": "15b9085c9e9bf7ea341b395c1a28d128675bc12f48375a5c65fcfabf02e8e896",
+        "turn_index": 3
+      },
+      {
+        "alias": "e025",
+        "span_id": "span-67ba8be7c63bf4d9",
+        "speaker": "user",
+        "text_sha256": "195fa2a84409850c82aea3ee96f298d82cfc16d0a0ac2dd39f11ffb2ec6fc1dd",
+        "turn_index": 3
+      },
+      {
+        "alias": "e026",
+        "span_id": "span-940bbbed57f0094a",
+        "speaker": "user",
+        "text_sha256": "e7e7948a4f85af1381a02634b2d476acd1e4ccf1be0f7d7bf940cf0bc9e769eb",
+        "turn_index": 3
+      },
+      {
+        "alias": "e027",
+        "span_id": "span-937b17ae357636c7",
+        "speaker": "assistant",
+        "text_sha256": "0d123dfd5b59a5b048b2c2ab85b29324cc6b3fcd1f06ac7c2d13f11d2f87263e",
+        "turn_index": 3
+      },
+      {
+        "alias": "e028",
+        "span_id": "span-040d1b641ff195c5",
+        "speaker": "assistant",
+        "text_sha256": "7fdc776afe9b5d0de47accff810b89ae08be1767120c5b7f128ed892fc240873",
+        "turn_index": 3
+      },
+      {
+        "alias": "e029",
+        "span_id": "span-0b786152b4bb458d",
+        "speaker": "assistant",
+        "text_sha256": "8fc993e232d09f7888c00cf3f25c4b6934073eb6c9d896fbcb3ddcdfcea51a4c",
+        "turn_index": 3
+      },
+      {
+        "alias": "e030",
+        "span_id": "span-dd7b416db4d7386a",
+        "speaker": "user",
+        "text_sha256": "6b4807bc48bffca01832e484503ecb1b261f70f444c3ca8ecda532f41e3e0478",
+        "turn_index": 4
+      },
+      {
+        "alias": "e031",
+        "span_id": "span-1c021538bb94f3ad",
+        "speaker": "user",
+        "text_sha256": "d0f7635a57d5831b3398f2d557aa50c0f4906af459c2d093b773b2532bbaca74",
+        "turn_index": 4
+      },
+      {
+        "alias": "e032",
+        "span_id": "span-27ec5f0e224bd030",
+        "speaker": "user",
+        "text_sha256": "413772355c3a876862505b8924355c0dd6b4d9d22702350d7a2b5ae4c44bdd5d",
+        "turn_index": 4
+      },
+      {
+        "alias": "e033",
+        "span_id": "span-82e5808bf1723dad",
+        "speaker": "user",
+        "text_sha256": "e063cff2608c1c561f95c20ba8e8e0741b97c85cfcdc30a89686447547361559",
+        "turn_index": 4
+      },
+      {
+        "alias": "e034",
+        "span_id": "span-5a536bfa5dec1c06",
+        "speaker": "assistant",
+        "text_sha256": "bef110a5e8c670fa97cc2886e6498a797901e394fe63fa28258f2a6b5573bdb8",
+        "turn_index": 4
+      },
+      {
+        "alias": "e035",
+        "span_id": "span-f84c95cdd795a3a7",
+        "speaker": "assistant",
+        "text_sha256": "48087f50dfc76c5ed0d633ebb94ebae5ac4e1eb751f58b5b68540833d24534b3",
+        "turn_index": 4
+      },
+      {
+        "alias": "e036",
+        "span_id": "span-7149cc12c3a9f031",
+        "speaker": "assistant",
+        "text_sha256": "f63538a9e8fb6d89a9dc706b03adfbc8c2cc211a4b99b2644214a55966fc9c69",
+        "turn_index": 4
+      },
+      {
+        "alias": "e037",
+        "span_id": "span-8f714d813aa2bc3c",
+        "speaker": "assistant",
+        "text_sha256": "13a69e23de9e9be94d7035bcf677f8b616a9a7488ad960f3c37d795c966be932",
+        "turn_index": 4
+      },
+      {
+        "alias": "e038",
+        "span_id": "span-4d3f31c08bd534b5",
+        "speaker": "user",
+        "text_sha256": "a7e10eeb2b1a0c3250e2291a0b279f38adae71693537bc5ed88564cfcdbe4ae8",
+        "turn_index": 5
+      },
+      {
+        "alias": "e039",
+        "span_id": "span-5642b62cc691d98a",
+        "speaker": "user",
+        "text_sha256": "bef040dcffa370d2f2f37768d9f147655f5c01c4bdd968dd048cd03c8bc13cbf",
+        "turn_index": 5
+      },
+      {
+        "alias": "e040",
+        "span_id": "span-d727a39c60f0d339",
+        "speaker": "user",
+        "text_sha256": "c5299920e04f8be309f20d9769a8e40d8424dbb7cd366f18b3d31dd4f658d865",
+        "turn_index": 5
+      },
+      {
+        "alias": "e041",
+        "span_id": "span-1f314b200a86da36",
+        "speaker": "user",
+        "text_sha256": "e056faec8ad78bd0d0d36cd11639fd70871280e1ae916afc3e8a2d6a13658657",
+        "turn_index": 5
+      },
+      {
+        "alias": "e042",
+        "span_id": "span-06e0e1b339e8b37e",
+        "speaker": "user",
+        "text_sha256": "e21a946471bbf1746558dd14c7efafd00b7509e42bd2adf9348b286dbd845926",
+        "turn_index": 5
+      },
+      {
+        "alias": "e043",
+        "span_id": "span-22361785c8ba4468",
+        "speaker": "assistant",
+        "text_sha256": "be6378c58ca88e8ea869563147116567b77d6feb6de64f8a81ed127f4c850481",
+        "turn_index": 5
+      },
+      {
+        "alias": "e044",
+        "span_id": "span-035d8a9f885967b8",
+        "speaker": "assistant",
+        "text_sha256": "b4472e2438249b52dd6eb0c465905ce3b5ad8d8963361c09e3ddc7bcf718f30f",
+        "turn_index": 5
+      },
+      {
+        "alias": "e045",
+        "span_id": "span-e5d8965f2b73092c",
+        "speaker": "assistant",
+        "text_sha256": "b43c7ca69eaec5048e3bfed7bf77af73a452fb5c7b4daeebaf0e42ba6419bfd5",
+        "turn_index": 5
+      },
+      {
+        "alias": "e046",
+        "span_id": "span-bb8f50a316f2bd41",
+        "speaker": "user",
+        "text_sha256": "8528a9b49e8bd5a5a034698146e2cd272db662a6f77b84586e1ad94472e4d0c5",
+        "turn_index": 6
+      },
+      {
+        "alias": "e047",
+        "span_id": "span-af50e1e04c1b7392",
+        "speaker": "user",
+        "text_sha256": "05200cb4fa631ea7a5124c06fbb44e687b6cfe18697ed601b4e08bcb4dbc9a41",
+        "turn_index": 6
+      },
+      {
+        "alias": "e048",
+        "span_id": "span-82e132df9d52053e",
+        "speaker": "assistant",
+        "text_sha256": "176341bde4969f3fda05f068e17c208f9ad540b66bcdfad2ecb2222c68285ab5",
+        "turn_index": 6
+      },
+      {
+        "alias": "e049",
+        "span_id": "span-61b6c9c6e3e7db62",
+        "speaker": "assistant",
+        "text_sha256": "a8f555bdb025733fe5629954045baab3e4e3506ac7fa0e9d3143993aa18da57c",
+        "turn_index": 6
+      },
+      {
+        "alias": "e050",
+        "span_id": "span-468bc0ee23e20b15",
+        "speaker": "assistant",
+        "text_sha256": "18742be14e15c7e687ed9994128b19cc3d28892e0b60fd66d46b6ababa7f7e01",
+        "turn_index": 6
+      },
+      {
+        "alias": "e051",
+        "span_id": "span-3dd6e055fbba1f64",
+        "speaker": "assistant",
+        "text_sha256": "183764a21db2d713ae1fc433cd1de682d057ef1faa34c0be0b0490e83de0aa47",
+        "turn_index": 6
+      },
+      {
+        "alias": "e052",
+        "span_id": "span-bcc656fc3127e55c",
+        "speaker": "user",
+        "text_sha256": "9564463c1ac64724641334a432ee01c1b90d0926a86b309bbf6e45f719f19332",
+        "turn_index": 7
+      },
+      {
+        "alias": "e053",
+        "span_id": "span-b844733d1a522eca",
+        "speaker": "user",
+        "text_sha256": "299bef3b011d98bccfa33a67ef58b446b56c908c8b822073353ef5da00ae1d4f",
+        "turn_index": 7
+      },
+      {
+        "alias": "e054",
+        "span_id": "span-788271359d3115cc",
+        "speaker": "user",
+        "text_sha256": "cf19c7740879dfd4e88b467d801e2841dc463108e5b35209902c13dc09aa3b7e",
+        "turn_index": 7
+      },
+      {
+        "alias": "e055",
+        "span_id": "span-801f00cee3c77d10",
+        "speaker": "user",
+        "text_sha256": "52be27d5055f126a54ea779abefc018eefbcd53d355a9f69798a2ff548373a38",
+        "turn_index": 7
+      },
+      {
+        "alias": "e056",
+        "span_id": "span-132b954b442d5eb6",
+        "speaker": "assistant",
+        "text_sha256": "df8bfab68d7c84903b057b4b1a49288063825460f77996a744f20b16e139618d",
+        "turn_index": 7
+      },
+      {
+        "alias": "e057",
+        "span_id": "span-b35910d5306c7a06",
+        "speaker": "assistant",
+        "text_sha256": "636349c67dd6a7f2e82f412f0d44460b62c8fca26a289b1453762b6a241158aa",
+        "turn_index": 7
+      },
+      {
+        "alias": "e058",
+        "span_id": "span-7f92863d4ef6ed03",
+        "speaker": "assistant",
+        "text_sha256": "f3711ec1ab5f4c3e785cff5b0a1a1c8aecef94206fc879f70a1e5124d80edf2a",
+        "turn_index": 7
+      },
+      {
+        "alias": "e059",
+        "span_id": "span-5cf40fdc733a0af1",
+        "speaker": "assistant",
+        "text_sha256": "3dfacc5e707ce3202c538f0d4f1d2a598a5c92050155e608a28879471d911b28",
+        "turn_index": 7
+      },
+      {
+        "alias": "e060",
+        "span_id": "span-73221fbf9490c5f9",
+        "speaker": "user",
+        "text_sha256": "2d591b2048b6779b94401c258d7455380d93b1cd2468f994ee51bafcb38720b7",
+        "turn_index": 8
+      },
+      {
+        "alias": "e061",
+        "span_id": "span-4055ec7b91e71095",
+        "speaker": "user",
+        "text_sha256": "b2b22b6a01d9165a4bc6d2a3a129b9664ca080e71561e9a3f754312b54f272f3",
+        "turn_index": 8
+      },
+      {
+        "alias": "e062",
+        "span_id": "span-09bc18b68d1d9882",
+        "speaker": "user",
+        "text_sha256": "a512ca16849780e71ccde6d2f0e6d7a79328ab18b84b12765b6aa68d7374acfa",
+        "turn_index": 8
+      },
+      {
+        "alias": "e063",
+        "span_id": "span-bede6547b36b0b80",
+        "speaker": "user",
+        "text_sha256": "30e48631f202b7d1998b8ac2ca84fb510afeaa5e96446db86ef8742a2b8427c1",
+        "turn_index": 8
+      },
+      {
+        "alias": "e064",
+        "span_id": "span-d8e5f2edf1ce783f",
+        "speaker": "user",
+        "text_sha256": "20e9478f74d5082afea783de31ec710a8ad54f42ec6c7f74f52de0eb4e728bea",
+        "turn_index": 8
+      },
+      {
+        "alias": "e065",
+        "span_id": "span-7667d8dff5d8371c",
+        "speaker": "assistant",
+        "text_sha256": "208bfb09b3ef31b641e7ccae825bbd834870c884d4b63ed71bfc460447178eb3",
+        "turn_index": 8
+      },
+      {
+        "alias": "e066",
+        "span_id": "span-9a966ee612cc1c24",
+        "speaker": "assistant",
+        "text_sha256": "3daca8aceb42c668bfab82c21c9deddcf27c6b562a87ef08ae70501a6d50000a",
+        "turn_index": 8
+      },
+      {
+        "alias": "e067",
+        "span_id": "span-0326d0553afbbd1f",
+        "speaker": "assistant",
+        "text_sha256": "b089bcc6b7bf4dad5934a5f0f095f0b078f3094da1de07b797d7ed85636dc6dc",
+        "turn_index": 8
+      },
+      {
+        "alias": "e068",
+        "span_id": "span-41540481ccda3e2b",
+        "speaker": "assistant",
+        "text_sha256": "f9cbb8ec144a874f0ac5bbccde776c02db87fa2c8806cca2545668582e27b7ff",
+        "turn_index": 8
+      },
+      {
+        "alias": "e069",
+        "span_id": "span-fed5b469210f74ac",
+        "speaker": "user",
+        "text_sha256": "b850066af23787083379d58e7d4ddaf2fca8b67b3a1502a8316ceb90aaa6ea5c",
+        "turn_index": 9
+      },
+      {
+        "alias": "e070",
+        "span_id": "span-e9356671bc9be4db",
+        "speaker": "user",
+        "text_sha256": "fc566b54b004f918fe521c038bd97dbbc9287717d60142280de198a662e4d31e",
+        "turn_index": 9
+      },
+      {
+        "alias": "e071",
+        "span_id": "span-26ba6383e067d5a0",
+        "speaker": "user",
+        "text_sha256": "79471d0195582d60d43c3f58970afb3a134c26214c8b1bd48dac00c46eb6a8b9",
+        "turn_index": 9
+      },
+      {
+        "alias": "e072",
+        "span_id": "span-36cedfbf718581a9",
+        "speaker": "user",
+        "text_sha256": "e558a9f928f3b3154e0272a36cac688f0f2df892b35f85fb0dfa733c98fe0c1b",
+        "turn_index": 9
+      },
+      {
+        "alias": "e073",
+        "span_id": "span-8807bbe1a551aca1",
+        "speaker": "assistant",
+        "text_sha256": "50d174dfc412344bd7e576608df185704b328dc2248baad2ebf7ac727616e5c4",
+        "turn_index": 9
+      },
+      {
+        "alias": "e074",
+        "span_id": "span-cb9c917a506f2fd7",
+        "speaker": "assistant",
+        "text_sha256": "8bcba98a59606ea86633c3bb6f7591e5ca7d4f6a0cc68c9b0504cfe55b9eaa4f",
+        "turn_index": 9
+      },
+      {
+        "alias": "e075",
+        "span_id": "span-04b8d420a29c4301",
+        "speaker": "assistant",
+        "text_sha256": "b039ad5383ab3a03b971569eaeccbb806e3032bb20f81284995933efa603a437",
+        "turn_index": 9
+      },
+      {
+        "alias": "e076",
+        "span_id": "span-a30c4856ba948ffc",
+        "speaker": "assistant",
+        "text_sha256": "6f5b405568dece41fa58519ad9527a5f3c22fa829f845ceec45bddcf47adc3d7",
+        "turn_index": 9
+      },
+      {
+        "alias": "e077",
+        "span_id": "span-07266fbc0c47abc7",
+        "speaker": "user",
+        "text_sha256": "ecb59b8a7920e587b7772c590e4fb8d665f8b23ccd727db32e3cec45ed744b1f",
+        "turn_index": 10
+      },
+      {
+        "alias": "e078",
+        "span_id": "span-fe1fb52f4582d05c",
+        "speaker": "user",
+        "text_sha256": "02793cf3994f1723b9511141d3d4b7309ae5d4fcd7ae13838cd5fe1e5af1df4c",
+        "turn_index": 10
+      },
+      {
+        "alias": "e079",
+        "span_id": "span-f2b520f54876ce41",
+        "speaker": "user",
+        "text_sha256": "53c3f9d4b17dfda9827e24da34843b1a2084def82585d3a433fb05a8f44ccf4a",
+        "turn_index": 10
+      },
+      {
+        "alias": "e080",
+        "span_id": "span-daf38e9269711e21",
+        "speaker": "user",
+        "text_sha256": "d18d5688dcda68b6e3c1f7e643e560b2771c3597707f2e16a4f9d111667dfc55",
+        "turn_index": 10
+      },
+      {
+        "alias": "e081",
+        "span_id": "span-35a41409c79690e0",
+        "speaker": "assistant",
+        "text_sha256": "0471c14b9dac9db91c4bacb669506de9465fcbc4a596983650d1a27bd07e78b5",
+        "turn_index": 10
+      },
+      {
+        "alias": "e082",
+        "span_id": "span-179966205e60bd97",
+        "speaker": "assistant",
+        "text_sha256": "fa77cd40fa4ab04956938e4bf6b848a3d81a5a260d1f264cf752a7b3f836fb84",
+        "turn_index": 10
+      },
+      {
+        "alias": "e083",
+        "span_id": "span-6453121465c522e4",
+        "speaker": "user",
+        "text_sha256": "5d3543ba335851f0d6f892f3398ab707599fa93d6bdaf1236918353040363818",
+        "turn_index": 11
+      },
+      {
+        "alias": "e084",
+        "span_id": "span-a28928da068848e7",
+        "speaker": "user",
+        "text_sha256": "3cd36e23b82dac8c5c45d5d38864f17bb39b46c3b2ee62862e2b6a39711e18bd",
+        "turn_index": 11
+      },
+      {
+        "alias": "e085",
+        "span_id": "span-76aaa343d8a1b8f6",
+        "speaker": "user",
+        "text_sha256": "c8bdc8d0950b0b04d6d2d785413961eaa33fd0b385df61dd98bf6e67d7f7d2b6",
+        "turn_index": 11
+      },
+      {
+        "alias": "e086",
+        "span_id": "span-36eac9b0ced4e4dc",
+        "speaker": "user",
+        "text_sha256": "fc05d04334b166b0b8246ac00e3ec439be055b08401876fad316de8db43f4c55",
+        "turn_index": 11
+      },
+      {
+        "alias": "e087",
+        "span_id": "span-4125c04b0c28af4d",
+        "speaker": "user",
+        "text_sha256": "9626222489d7a5c0dac93680fdae986e93dfc45670fbce7eef64ad815a823233",
+        "turn_index": 11
+      },
+      {
+        "alias": "e088",
+        "span_id": "span-adbd941c83a6056e",
+        "speaker": "user",
+        "text_sha256": "16f33d767ee40cbfe8476c404a48cdce7b03f985edef2e9acd38de73f8a3baa1",
+        "turn_index": 11
+      },
+      {
+        "alias": "e089",
+        "span_id": "span-f714e22b73820f06",
+        "speaker": "user",
+        "text_sha256": "12cb4033c75634fc639ae0ea06d1a4dce77118a226364fca2dddbec778925ef5",
+        "turn_index": 11
+      },
+      {
+        "alias": "e090",
+        "span_id": "span-96521d95c6f7d77d",
+        "speaker": "user",
+        "text_sha256": "d8e4c5a1427f7531af88f7b6dfc14ad053f0e0afd5c403f7a24c32d9d9e6a28d",
+        "turn_index": 11
+      },
+      {
+        "alias": "e091",
+        "span_id": "span-f1ed77e7585819f2",
+        "speaker": "assistant",
+        "text_sha256": "3c01364023b93e73feefe0bd2c5b7cf43a76ac6ac26bd27ddda76ff476d2c01b",
+        "turn_index": 11
+      },
+      {
+        "alias": "e092",
+        "span_id": "span-7585cb12ae6953cf",
+        "speaker": "assistant",
+        "text_sha256": "1ee00784384c319c13854ac7430b046ec1785247d583ac7c63171f43b9f03c78",
+        "turn_index": 11
+      },
+      {
+        "alias": "e093",
+        "span_id": "span-3ef12bc8fc2739c0",
+        "speaker": "assistant",
+        "text_sha256": "464a6cc47bb46ae53f1005268d55c390df9ea993adf7a0e8a0bbce8cf7d39528",
+        "turn_index": 11
+      },
+      {
+        "alias": "e094",
+        "span_id": "span-ff9b91845db2bf86",
+        "speaker": "assistant",
+        "text_sha256": "64d1148df698765385aee07f03823e96364f0b64bd7d39cc4c8c0223f413022b",
+        "turn_index": 11
+      },
+      {
+        "alias": "e095",
+        "span_id": "span-29b6c9e8fa7ed111",
+        "speaker": "user",
+        "text_sha256": "f8e85b61b34608d956466ccd7a7ead7a361bb1bfb34c93974f42d2e4864064e7",
+        "turn_index": 12
+      },
+      {
+        "alias": "e096",
+        "span_id": "span-53029cf184fd9666",
+        "speaker": "user",
+        "text_sha256": "b34d3703c28c656f6d4328a5daf5797b60a99a2bfeffee5584b9a387c1bf09c2",
+        "turn_index": 12
+      },
+      {
+        "alias": "e097",
+        "span_id": "span-239bfed0354a94b5",
+        "speaker": "user",
+        "text_sha256": "d8844399d29272ad8c1136e5f2e826e0c5c717ebad596143781c8823c4c4a239",
+        "turn_index": 12
+      },
+      {
+        "alias": "e098",
+        "span_id": "span-52bec3ac60cc1512",
+        "speaker": "user",
+        "text_sha256": "fef7e2a1002cf6d105dfa35932cf62bb407d6870fa4c0381e8e710e4f3c5dea7",
+        "turn_index": 12
+      },
+      {
+        "alias": "e099",
+        "span_id": "span-2757df5adbc4f9d8",
+        "speaker": "assistant",
+        "text_sha256": "f4ea5f50352eebf586a7d0c589b6f66079a207d32f1ba1e9587b68773e26ba0a",
+        "turn_index": 12
+      },
+      {
+        "alias": "e100",
+        "span_id": "span-5c402cce8d8c68c1",
+        "speaker": "assistant",
+        "text_sha256": "564f0facdf0c977ad801060695dc328c1e1314172f9238c543dc2febcee8614c",
+        "turn_index": 12
+      },
+      {
+        "alias": "e101",
+        "span_id": "span-2efac3869e6329f9",
+        "speaker": "assistant",
+        "text_sha256": "3432aedcd3cca30c417ff936b7ae5455557c9b9a0875587908c7e4781e9cc290",
+        "turn_index": 12
+      },
+      {
+        "alias": "e102",
+        "span_id": "span-429db0f7719599ef",
+        "speaker": "assistant",
+        "text_sha256": "318fed957f0080b6fe2dbcc1fd7f8cbd59f016ad635a401214552d77aa515728",
+        "turn_index": 12
+      }
+    ],
+    "case_id": "v1-case04-component-sourcing",
+    "message_count": 24,
+    "registry_sha256": "9edef39a962ead30cd8ec222bdddc32a0dd8133051a206ec7305d46a6f25020d",
+    "schema_version": "lolla.conversation_state_source_registry.v1",
+    "source_path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case04-component-sourcing.txt",
+    "source_sha256": "a5efa7240acc79742044ba3549c7963f4b4280be66294282cd4e855b0dedaa87",
+    "source_utf8_bytes": 11674
+  },
+  "status": "conversation_state_fan_in_partial",
+  "surface_summaries": [
+    {
+      "reader_ids": [
+        "r4-v1-case04-component-sourcing-01-starting"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-starting-01-3b198c89a6a0c6"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "starting_position"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case04-component-sourcing-02-current"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-current-01-1d9ca7e606de24"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "current_position"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case04-component-sourcing-03-qualification"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "rprolev22-qualification-01-e8ec0899945b8b"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "qualification"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case04-component-sourcing-04-unresolved"
+      ],
+      "record_count": 1,
+      "record_ids": [
+        "r4u-v1-case04-component-sourcing-unresolved_matter-01-4f838513f370"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "unresolved_matter"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case04-component-sourcing-05-reopen"
+      ],
+      "record_count": 2,
+      "record_ids": [
+        "r4u-v1-case04-component-sourcing-reopen_condition-01-232f866a85e6",
+        "r4u-v1-case04-component-sourcing-reopen_condition-02-98ccf8ae047a"
+      ],
+      "state_counts": {
+        "complete": 1,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "surface": "reopen_condition"
+    },
+    {
+      "reader_ids": [
+        "r4-v1-case04-component-sourcing-06-relationship"
+      ],
+      "record_count": 0,
+      "record_ids": [],
+      "state_counts": {
+        "complete": 0,
+        "completed_zero": 0,
+        "failed": 0,
+        "missing": 1,
+        "partial": 0
+      },
+      "surface": "cross_thread_relationship"
+    }
+  ]
+}
