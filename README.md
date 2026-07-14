@@ -1271,8 +1271,15 @@ correction. Four corrected Gemini 3.1 Flash-Lite calls completed for an exact
 labor pressure was recovered, but the restraint control converted existing
 preconditions, safeguards, and review criteria into new uncertainty. The
 semantic hypothesis is therefore not supported and no integration or further
-call is authorized. The next goal is the
-**[provider-free R4 semantic-distinction plan](plans/lolla-r4-semantic-distinction-plan-2026-07-14.md)**.
+call was authorized by that result. The subsequent
+**[provider-free R4 semantic-distinction preparation](docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md)**
+is now complete: nine exposed fixtures pass, one untouched target and one
+untouched restraint control are frozen, the strict R3 reasoning-envelope
+inspector is reused in an additive runner, and the exact four-call maximum
+package has a conservative `$0.0280125` estimate. It contains no authorization
+and makes no call by itself. The only next decision is authorization or deferral
+of that exact diagnostic; integration remains unauthorized. See the completed
+**[R4 semantic-distinction plan](plans/lolla-r4-semantic-distinction-plan-2026-07-14.md)**.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

@@ -1,7 +1,7 @@
 # Lolla R4 semantic-distinction plan
 
-Status: next provider-free goal selected; no provider call or runtime
-integration authorized
+Status: provider-free goal complete; exact two-case holdout contract and runner
+ready; no provider call or runtime integration authorized
 
 Date: 2026-07-14
 
@@ -115,3 +115,27 @@ with a separate costed authorization proposal.
 
 This goal does not authorize integration even if all local fixtures pass. Its
 purpose is to make the next causal experiment sharper and cheaper.
+
+## Completion — 2026-07-14
+
+The provider-free goal is complete:
+
+- nine exposed development fixtures cover the seven uncertainty distinctions
+  and two relationship behaviors above;
+- the additive v2 prompt contract puts the full source before the final task,
+  names positive and negative distinctions, and preserves zero and ambiguity;
+- the v1 prompt and runner remain byte-frozen historical evidence;
+- a new additive runner reuses deterministic assembly while applying v2
+  relationship prompts, a 50 KB pre-transport relationship ceiling, and the
+  strict R3 reasoning-envelope inspector;
+- one unused false-stand-down target and one unused restraint control were
+  frozen before request previews;
+- the exact package rebuilds byte-for-byte and dry-runs without authorization
+  or network access;
+- the conservative maximum estimate is `$0.0280125` for at most four calls,
+  below `$0.015` per case and `$0.03` total.
+
+The only next decision is whether to authorize or defer that exact diagnostic.
+It cannot select a production model, authorize wider-corpus work, or authorize
+runtime or graph integration. See
+`docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`.

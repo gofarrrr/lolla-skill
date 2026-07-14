@@ -1131,3 +1131,32 @@ Continuation entrypoints:
 - `docs/conversation-understanding/lolla-r4-token-allocation-current-practice-2026-07-14.md`;
 - `research/lolla-r4-complementary-reader-token-correction-2026-07-14/preflight-result.json`;
 - `docs/evals/lolla-r4-complementary-reader-token-correction-contract-v1.json`.
+
+## R4 semantic-distinction preparation — 2026-07-14
+
+The next provider-free R4 goal is complete. An additive v2 prompt contract now
+distinguishes a genuinely remaining unresolved matter from an adopted
+precondition or process, and a genuine reopen condition from an existing
+safeguard, benchmark, or scheduled review. Relationship output must add meaning
+beyond exact endpoints and may correctly complete with zero. Python continues
+to own only schema, IDs, aliases, hashes, bounds, budget, and custody.
+
+Nine exposed development fixtures compile locally. A new source-first holdout
+freezes Case 01 flood infrastructure as an unseen false-stand-down target and
+Case 04 component sourcing as an unseen restraint control. Neither detailed
+target enters the request. The additive runner reuses the strict R3 reasoning-
+envelope inspector, stops an oversized relationship prompt before transport,
+and leaves historical v1 prompt and runner files unchanged.
+
+The exact route remains Gemini 3.1 Flash-Lite through Google Vertex on
+OpenRouter. At most four calls are possible. The conservative estimate is
+`$0.0280125`, inside `$0.015` per case and `$0.03` total. There is no
+authorization file, no provider call, and no runtime or graph integration.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`;
+- `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`;
+- `docs/evals/lolla-r4-semantic-distinction-holdout-target-v1.json`;
+- `docs/evals/lolla-r4-semantic-distinction-contract-v1.json`;
+- `research/lolla-r4-semantic-distinction-contract-2026-07-14/preflight-result.json`.
