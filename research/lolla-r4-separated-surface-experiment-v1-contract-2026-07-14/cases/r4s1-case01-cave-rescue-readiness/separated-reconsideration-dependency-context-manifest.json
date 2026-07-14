@@ -1,0 +1,84 @@
+{
+  "arm": "separated_reconsideration_dependency",
+  "case_id": "r4s1-case01-cave-rescue-readiness",
+  "complete_source_inclusion": true,
+  "context_components": [
+    {
+      "estimated_tokens": 1473,
+      "name": "system_instruction",
+      "sha256": "cc768aade0dd8938afcf41fba09cf07ce2e8ac3ff7eaf567705debb773448917",
+      "utf8_bytes": 2946
+    },
+    {
+      "estimated_tokens": 6366,
+      "name": "authoritative_source",
+      "sha256": "0030f15ea46bba9b074803c50b89ce106305f132ac3225529b888fb24161992a",
+      "utf8_bytes": 12732
+    },
+    {
+      "estimated_tokens": 931,
+      "name": "fallible_prior_interpretation_context",
+      "sha256": "fa358860460797cc108b4f86e941ac6bd72c7988b4db47e04a75c36d4c706d90",
+      "utf8_bytes": 1861
+    },
+    {
+      "estimated_tokens": 138,
+      "name": "task",
+      "sha256": "62d9cec4e75175ee6255219975ee54b60a6659a5cfb3c01ae9e2435dbfa58380",
+      "utf8_bytes": 276
+    },
+    {
+      "estimated_tokens": 903,
+      "name": "schema",
+      "sha256": "45c7e4a126d4f9cd9deb9c5cc7f3addcbeca71af67232a4d8a7cf7b2bae7b003",
+      "utf8_bytes": 1805
+    }
+  ],
+  "declared_omissions": [
+    "protected evaluation evidence",
+    "provider output",
+    "execution authorization",
+    "relationship, evaluator, embedding, graph, pipeline, and runtime calls"
+  ],
+  "no_summary_chunking_filter_or_semantic_gate": true,
+  "prior": {
+    "artifact_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/priors/r4s1-case01-cave-rescue-readiness.json",
+    "artifact_sha256": "a79427a8168210f4ca2a8e3fdb7bec506110d835453d28de55ae44214331ceae",
+    "authority": "fallible_prior_interpretation_not_source_truth",
+    "canonical_context_sha256": "fa358860460797cc108b4f86e941ac6bd72c7988b4db47e04a75c36d4c706d90",
+    "canonical_context_utf8_bytes": 1861,
+    "included_exactly_once": true,
+    "summarized_or_reordered": false
+  },
+  "provider_calls": 0,
+  "provider_cost_usd": 0.0,
+  "request_estimate": {
+    "canonical_body_sha256": "e0eed2349ac5a22ce92c96642433b03a0e5ca722efe76d1ef32ab88b4c103bd7",
+    "canonical_body_utf8_bytes": 20982,
+    "estimated_input_tokens": 9884,
+    "estimator": "ceil(utf8_bytes/2); conservative deterministic estimate, not provider tokenization",
+    "maximum_output_tokens": 800,
+    "message_utf8_bytes": 17962,
+    "schema_utf8_bytes": 1805,
+    "total_context_utf8_bytes": 19767
+  },
+  "schema_is_provider_context": true,
+  "schema_version": "lolla.r4_separated_surface_context_manifest.v1",
+  "section_order": [
+    "system_instruction",
+    "authoritative_source",
+    "fallible_prior_interpretation_context",
+    "task",
+    "schema"
+  ],
+  "source": {
+    "artifact_path": "research/lolla-r4-separated-surface-experiment-v1-source-freeze-2026-07-14/sources/r4s1-case01-cave-rescue-readiness.json",
+    "artifact_sha256": "8d4cc3673788a445f4e5525d8d188d73ed4b42bd02c0e8987c39e75deffd59d0",
+    "canonical_context_sha256": "0030f15ea46bba9b074803c50b89ce106305f132ac3225529b888fb24161992a",
+    "canonical_context_utf8_bytes": 12732,
+    "included_exactly_once": true,
+    "summarized_or_chunked": false
+  },
+  "source_then_prior_then_task": true,
+  "task_at_end": true
+}

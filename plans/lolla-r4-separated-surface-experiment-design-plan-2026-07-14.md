@@ -1,6 +1,6 @@
 # Lolla R4 separated-surface experiment pre-target design plan
 
-Status: source/prior freeze complete; human semantic-leakage review pending before target authorship
+Status: complete provider-free design; ready for a separate publication decision
 
 Date: 2026-07-14
 
@@ -18,9 +18,10 @@ Does asking for the two existing residual surfaces in separate provider calls
 reduce unsupported opposite-surface companion records relative to asking for
 both surfaces together, while preserving genuine findings?
 
-This phase does not answer that question. It freezes only four authoritative
-simulated conversations, four fallible priors, deterministic custody, and a
-pending human semantic-leakage review packet.
+This design does not answer that question. It freezes four authoritative
+simulated conversations, four fallible priors, hash-bound human review, a
+protected source-first target, exact paired and separated requests, a
+target-blind future runner, and a non-authorizing experiment contract.
 
 ## Evidence boundary
 
@@ -78,19 +79,34 @@ separate human judgment and may reject an intended role.
 3. Freeze exact source/prior paths, hashes, bytes, counts, order, and zero-call
    custody in one manifest.
 4. Prepare a complete human-review packet with every decision pending.
-5. Run focused validation, historical replay, and one complete repository
-   suite. Complete.
-6. Create one local checkpoint and stop. Pending final commit.
+5. Record the founder's exact human pass declaration in commit `69d3026`.
+6. Author and freeze the protected source-first target in later commit
+   `740a525`, before any provider request existed.
+7. Freeze the paired-versus-separated prompts, schemas, twelve requests,
+   context and delta manifests, contract, target-blind runner, categorical
+   evaluation matrix, current-practice record, and tests in a final local
+   checkpoint.
 
-No target, target review, prompt, schema, request preview, context manifest,
-matched delta, execution contract, authorization, runner, response, scoring,
-runtime integration, graph change, relationship change, or R5 artifact may
-exist at this checkpoint.
+No execution authorization, provider output, runtime integration, graph
+change, relationship change, scalar score, or R5 artifact exists.
 
-## Human stop gate
+## Completed human gate
 
-Deterministic text scanning can report exact matches only. It cannot decide
-whether ordinary language leaks the intended treatment. Target authorship
-remains blocked until the founder reviews the exact frozen bytes and supplies
-the separately declared pass phrase. This plan does not record that phrase and
-does not mark the review passed.
+The founder supplied `human leakage review passes for R4 separated-surface
+source freeze v1`. The declaration is bound to all eight source/prior hashes
+and freeze-manifest hash in the additive custody record. Any change to those
+bytes invalidates that review.
+
+## Completion boundary
+
+The paired arm makes one two-surface request per case at 1,600 output tokens.
+The separated arm makes two single-surface requests per case at 800 tokens
+each. All twelve request bodies and every allowed JSON-path delta are frozen.
+The exact input duplication in the separated arm is declared. The future
+runner requires a separate exact one-use authorization, never loads protected
+evaluation evidence, preserves the first terminal bytes, and stops on the
+first failure without retry, fallback, healing, substitution, or auxiliary
+model calls.
+
+Current authorization remains zero calls and `$0.00`. Publication and a later
+one-use execution authorization are separate founder decisions.

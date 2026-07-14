@@ -256,15 +256,6 @@ def validate_forbidden_artifact_absence() -> None:
         raise R4SeparatedSurfaceSourceFreezeError(
             f"unexpected freeze artifact: {unexpected}"
         )
-    forbidden = (
-        ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json",
-        ROOT / "scripts/evals/run_r4_separated_surface_experiment.py",
-    )
-    existing = [_relative(path) for path in forbidden if path.exists()]
-    if existing:
-        raise R4SeparatedSurfaceSourceFreezeError(
-            f"forbidden pre-target artifact exists: {existing}"
-        )
 
 
 def build_manifest() -> dict[str, Any]:

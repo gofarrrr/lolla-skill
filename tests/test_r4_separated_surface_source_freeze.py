@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import json
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,13 +76,25 @@ def test_source_freeze_manifest_reproduces_after_human_review_completion() -> No
         assert row["prior"]["sha256"] in packet
 
 
-def test_post_review_boundary_contains_no_provider_package() -> None:
+def test_source_checkpoint_predates_target_and_provider_package() -> None:
     from scripts.evals import build_r4_separated_surface_source_freeze as builder
 
     builder.validate_forbidden_artifact_absence()
 
-    assert not (ROOT / "docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json").exists()
-    assert not (ROOT / "scripts/evals/run_r4_separated_surface_experiment.py").exists()
+    source_checkpoint = "f57829246fc4b2925ce56fd0fbb61bbde311234a"
+    forbidden = (
+        "docs/evals/lolla-r4-separated-surface-experiment-v1-target.json",
+        "docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json",
+        "scripts/evals/run_r4_separated_surface_experiment.py",
+    )
+    for path in forbidden:
+        result = subprocess.run(
+            ["git", "cat-file", "-e", f"{source_checkpoint}:{path}"],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+        )
+        assert result.returncode != 0
 
 
 def test_human_declaration_is_hash_bound_and_complete_before_target() -> None:
