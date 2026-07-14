@@ -1440,3 +1440,31 @@ Continuation entrypoints:
 - `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`;
 - `docs/evals/lolla-r4-separated-surface-experiment-v1-contract.json`;
 - `research/lolla-r4-separated-surface-experiment-v1-contract-2026-07-14/package-manifest.json`.
+
+## R4 separated-surface execution A1 — 2026-07-14
+
+The exact one-use twelve-call execution began from the canonical frozen design
+and stopped on the first terminal failure at ordinal 7. Calls 1–6 completed;
+ordinal 7 returned an allowed model and provider identity but a terminal
+`finish_reason: error` without usable usage or cost. Calls 8–12 were not made,
+and no retry, fallback, healing, substitution, evaluator, relationship,
+embedding, graph, pipeline, or runtime call occurred.
+
+The six completed calls used 35,218 prompt tokens and 1,178 completion tokens
+and had exact provider-reported cost `$0.0105715`. The failed call's cost is
+unknown, not assumed zero. Raw evidence and mechanical custody were committed
+before the protected target was opened.
+
+The partial controls produced nine false-positive records: five from paired
+calls and four from separated calls. Both separated decision-gap control calls
+returned correct zero results, but both separated dependency calls repeated
+governed-machinery errors. Because the positive cases lack complete matched
+comparisons, the frozen decision is `semantic_result_not_evaluable`; the run
+does not answer the companion-pressure question.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`;
+- `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`;
+- `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a1/evidence-manifest.json`;
+- `research/lolla-r4-separated-surface-experiment-v1-execution-2026-07-14-a1/execution-closeout.json`.

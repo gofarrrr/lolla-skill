@@ -25,40 +25,45 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
+4. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+   and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
+   — latest local evidence: first-failure execution custody, raw-before-target
+   checkpoint, record-level source-first review, consumed authorization, and
+   frozen `semantic_result_not_evaluable` decision.
+5. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`
-   — latest local provider-free work: hash-bound human review, protected target,
+   — canonical provider-free design: hash-bound human review, protected target,
    twelve exact paired/separated requests, target-blind runner, categorical
-   decision matrix, cost custody, and separate publication/execution gates.
-5. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
+   decision matrix, and cost custody.
+6. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
    and `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`
    — latest completed work, the five-record causal map, evidence against a
    general paired-completion explanation, competing falsifiers, and the one
    bounded diagnostic experiment earned without implementing or designing it.
-6. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`
    — exact eight-call execution custody, record-level
    source-first review, frozen decision, and next provider-free causal gate.
-7. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
    — frozen design evidence, the rejected v1 evidence, leakage-corrected v2
    sources and priors, hash-bound human review, protected target, matched
    requests, and the now-consumed non-authorizing contract.
-8. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
    and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
    published additive residual-discovery contract and frozen boundaries.
-9. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
    — the record-level Case 01/04 map, competing causal explanations,
    falsifiers, and the single repair class that earned the latest work.
-10. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+11. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-11. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+12. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-12. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+13. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
@@ -187,22 +192,24 @@ PYTHONPATH=. python3 scripts/evals/build_r4_matched_holdout_v2_contract.py --val
 PYTHONPATH=. python3 scripts/evals/run_r4_matched_holdout_v2_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/seal_r4_matched_holdout_v2_execution_a1.py --validate-only
 PYTHONPATH=. python3 scripts/evals/finalize_r4_matched_holdout_v2_execution_a1.py --validate-only
+PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a1.py --validate-only
+PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a1.py --validate-only
 PYTHONPATH=. python3 scripts/evals/build_r4_matched_residual_holdout_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_matched_residual_holdout_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
 PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. pytest -q tests/test_r4_separated_surface_execution_a1.py tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
 PYTHONPATH=. pytest -q
 ```
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 separated-surface design closeout, the focused R4 slice
-passes 123 tests. The complete suite passes 4,961 tests and all 93 subtests,
-with one existing
-`datetime.utcnow()` deprecation warning. A changed count is not automatically
-a regression; unexplained failures or historical hash drift are.
+At the 2026-07-14 separated-surface execution A1 closeout, the focused R4 slice
+passes 127 tests. The complete suite passes 4,964 tests and all 93 subtests,
+with one existing `datetime.utcnow()` deprecation warning. A changed count is
+not automatically a regression; unexplained failures or historical hash drift
+are.
 
 ## Current handoff — 2026-07-14
 
@@ -235,10 +242,12 @@ a regression; unexplained failures or historical hash drift are.
   mechanism for Cases 03 and 04 and ends with
   `r4_separated_surface_experiment_earned`; that means a provider-free design
   goal may be considered separately, not that a split is a repair. That design
-  is now complete locally: four new source/prior pairs, hash-bound human review,
+  was published canonically: four new source/prior pairs, hash-bound human review,
   a protected target committed before twelve matched requests, exact task-shape
-  deltas, and a target-blind runner. It made zero calls and creates no execution
-  authorization.
+  deltas, and a target-blind runner. Its one-use A1 execution then stopped at
+  ordinal 7 after six completed calls. No retry or later call occurred. The
+  positive matched comparisons are incomplete, so the frozen decision is
+  `semantic_result_not_evaluable`.
 - Canonical integration target: `main`. The provider-free v2 package was
   published through GitHub PR #365 in canonical merge
   `b7d1d62c05bdf05f91401c25ceb0a2cc73ffe307`. The completed A1 execution was
@@ -252,7 +261,11 @@ a regression; unexplained failures or historical hash drift are.
 - PR #347 was recognized as merged through the consolidation. PRs #348-#359
   are closed as superseded after verifying every exact head commit is reachable
   from `main`; their historical branches and discussions remain intact.
-- Provider calls currently authorized: zero. The one-use A3 authorization was
+- Provider calls currently authorized: zero. The separated-surface A1
+  authorization is consumed; six calls completed and ordinal 7 was attempted
+  before the required stop. Completed-call provider-reported cost is
+  `$0.0105715`; the failed call had no usable cost and is not assumed free. The
+  one-use A3 authorization was
   consumed by exactly four calls at an exact provider-reported `$0.01107025`.
   The one-use matched-holdout A1 authorization was consumed by exactly eight
   calls at an exact provider-reported `$0.01408165`; no second execution is
@@ -270,29 +283,30 @@ a regression; unexplained failures or historical hash drift are.
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
 The next eligible unit is a separate publication decision for the completed
-provider-free separated-surface design. Execution is not eligible until the
-design is canonical and the founder issues a separate exact one-use
-authorization. Do not treat separation as an earned repair, execute from the
-local branch, retry A1 or A3, execute rejected v1, create an authorization, or
-make an unapproved provider call. Do not reveal protected targets to a runner
+separated-surface A1 execution evidence. The consumed authorization cannot be
+reused, and no rerun or replacement call is authorized. Do not treat partial
+control evidence as an answer to companion pressure, retry A1 or A3, execute
+rejected v1, create an authorization, or make an unapproved provider call. Do
+not reveal protected targets to a runner
 or modify frozen sources, priors, requests, operators, or outputs. R5,
 runtime/graph integration, relationship work, wider-corpus execution, model
 comparison, production-model selection, and product-usefulness claims remain
 gated and unauthorized.
 
-## Resume the local separated-surface design
+## Resume the local separated-surface execution closeout
 
-The diagnosis is canonical. The completed provider-free experiment design is
-intentionally local and unpublished in its isolated worktree:
+The design is canonical. The first execution is terminal, locally preserved,
+and intentionally unpublished in its isolated worktree:
 
 ```bash
 cd /private/tmp/lolla-r4-separated-surface-design
 git status -sb
-PYTHONPATH=. python3 scripts/evals/build_r4_separated_surface_experiment.py
-PYTHONPATH=. python3 scripts/evals/run_r4_separated_surface_experiment.py --dry-run
-PYTHONPATH=. pytest -q tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py
+PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a1.py --validate-only
+PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a1.py --validate-only
+PYTHONPATH=. pytest -q tests/test_r4_separated_surface_execution_a1.py tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py
 ```
 
-Do not infer publication or provider authorization from this local branch,
-historical authorizations, or the completed provider-free package. Publication
-and one-use execution each require their own founder decision.
+Do not infer publication or provider authorization from this local branch or
+historical authorizations. Publication requires its own founder decision; any
+new execution would require a new causal decision and a separate one-use
+authorization. The failed run may not be retried under the consumed A1 grant.

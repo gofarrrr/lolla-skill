@@ -175,8 +175,26 @@ def validate() -> dict[str, Any]:
     manifest = _load(OUTPUT / "raw-evidence-manifest.json")
     if consumption != _expected_consumption(result) or closeout != _expected_closeout(result):
         raise R4SeparatedSurfaceSealError("raw closeout drifted")
-    if manifest != _build_manifest(result):
-        raise R4SeparatedSurfaceSealError("raw evidence manifest drifted")
+    expected_manifest_fields = {
+        "schema_version": "lolla.r4_separated_surface_raw_evidence_manifest.v1",
+        "status": "raw_evidence_frozen_before_protected_review",
+        "run_id": result["run_id"],
+        "provider_calls": 7,
+        "completed_calls": 6,
+        "failed_ordinal": 7,
+        "unattempted_ordinals": [8, 9, 10, 11, 12],
+        "provider_reported_cost_usd": result["provider_reported_cost_usd"],
+        "authorization_sha256": AUTHORIZATION_SHA256,
+        "protected_semantic_evidence_included": False,
+    }
+    if any(manifest.get(key) != value for key, value in expected_manifest_fields.items()):
+        raise R4SeparatedSurfaceSealError("raw evidence manifest custody drifted")
+    if manifest.get("file_count") != len(manifest.get("files", [])):
+        raise R4SeparatedSurfaceSealError("raw evidence manifest count drifted")
+    for row in manifest["files"]:
+        artifact = OUTPUT / row["path"]
+        if not artifact.is_file() or _sha(artifact) != row["sha256"] or len(artifact.read_bytes()) != row["bytes"]:
+            raise R4SeparatedSurfaceSealError("raw evidence artifact drifted")
     return {
         "status": "raw_execution_sealed_before_protected_review",
         "provider_calls": 7,
