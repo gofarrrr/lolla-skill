@@ -381,8 +381,8 @@ See
 
 Status: provider-free inventory/replay and missingness-aware fan-in complete;
 corrected complementary-reader diagnostic closed; token allocation repaired;
-semantic restraint failed; provider-free semantic-distinction repair complete;
-exact holdout authorization or deferral is the next decision
+semantic-distinction holdout closed mechanically complete but semantically
+unsupported; provider-free causal diagnosis or an R4 stop is the next boundary
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -575,6 +575,34 @@ Provider-free semantic-distinction result:
 See
 `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`.
 
+Semantic-distinction holdout execution result:
+
+- the founder authorized the exact two-case, four-call maximum
+  `lolla-r4-semantic-distinction-holdout-a3` package;
+- all four Gemini 3.1 Flash-Lite calls completed with strict JSON, intended
+  Google attribution, metadata-only reasoning envelopes, local admission,
+  both relationship dependencies, and both final fan-ins;
+- exact provider-reported cost was `$0.01107025`, with no retry, fallback,
+  healing, evaluator, embedding, graph, pipeline, runtime, or model change;
+- Case 01 narrowly recovered a durable city operating-capability dependency
+  but missed its central recurring funding/ownership structure and used
+  imprecise evidence;
+- Case 01 also recast a precondition and adopted process as a reopen condition;
+- Case 04 failed restraint by converting deferred redesign work, predefined
+  thresholds, fallbacks, and a fixed twelve-month review into three
+  uncertainty records and two relationships;
+- exact aliases, role separation, and exact relationship IDs passed
+  mechanically, while false-positive restraint, evidence precision, and
+  semantic relationship fidelity failed;
+- the semantic hypothesis is not supported, the authorization is consumed,
+  and Case 01/04 are now exposed development evidence;
+- no retry, further call, runtime/graph integration, wider-corpus work, R5
+  promotion, production-model selection, model comparison, or scalar score is
+  authorized.
+
+See
+`docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -620,15 +648,19 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The provider-free R4 semantic-distinction goal is complete. The immediate
-boundary is a founder decision: authorize or defer the exact
-`lolla-r4-semantic-distinction-holdout-a3` diagnostic.
+The exact R4 semantic-distinction holdout is complete and its one-use
+authorization is consumed. The semantic exit condition is not met because the
+v2 reader failed restraint and evidence precision despite clean mechanics.
 
-Until explicit authorization, make no provider call and do not create an
-authorization file. If authorized, run only the frozen two-case, four-call
-maximum package, preserve the first terminal outcome without retry or healing,
-and review the hidden source-first dimensions separately. Do not integrate the
-runtime, reopen R3, change the graph, compare models, infer semantic roles in
-Python, merge overlapping records, optimize a composite score, or claim that
-the reader is useful. R5 remains gated on the resulting evidence rather than
-on mechanical success alone.
+The immediate next goal is provider-free causal diagnosis of why the explicit
+zero, later-resolution, safeguard, fallback, and scheduled-review contrasts
+did not survive the Case 04 endpoint. Use the consumed Case 01/04 holdout only
+as exposed development evidence. Decide whether one causal task-shape repair or
+an R4 stop is earned before preparing any new experiment.
+
+Make no provider call. Do not retry the consumed attempt, integrate the runtime,
+reopen R3, change the graph, compare models, infer semantic roles in Python,
+merge overlapping records, optimize a composite score, or claim that the
+reader is useful. Any later provider validation requires a genuinely new
+holdout, a newly frozen contract, and separate founder authorization. R5
+remains gated.

@@ -25,11 +25,14 @@ Read these in order before proposing architecture or the next experiment:
    and R2 repaired.
 3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`
-   — latest completed work, exact evidence, costs, unknowns, and next decision.
-5. `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md` and
+4. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+   — latest completed work, exact evidence, costs, semantic result, and next
+   provider-free boundary.
+5. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+   `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
-   — the completed R4 causal plan and the official-practice check behind it.
+   — the consumed frozen contract, completed R4 causal plan, and official-
+   practice check behind it.
 6. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
@@ -156,13 +159,14 @@ handoff or PR update. For the current R4 package:
 ```bash
 PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
-PYTHONPATH=. pytest -q tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py
+PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
+PYTHONPATH=. pytest -q tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
 PYTHONPATH=. pytest -q
 ```
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 post-consolidation handoff, the full suite passes 4,869 tests
+At the 2026-07-14 R4 semantic-distinction closeout, the full suite passes 4,876 tests
 with all 93 subtests passing and one existing `datetime.utcnow()` deprecation
 warning. A changed count is not automatically a regression; unexplained
 failures or historical hash drift are.
@@ -174,26 +178,32 @@ failures or historical hash drift are.
 - R3 fresh-consumer work: honestly closed/deferred without meeting its semantic
   exit condition; do not reopen it casually.
 - R4 inventory, fan-in, first complementary-reader attempt, token correction,
-  corrected diagnostic, and provider-free semantic-distinction repair:
-  complete and documented.
-- Canonical branch: `main` at consolidation merge `8708319` (GitHub PR #360).
+  corrected diagnostic, provider-free semantic-distinction repair, and exact
+  holdout execution: complete and documented. The holdout passed mechanics but
+  did not support the semantic hypothesis because restraint and evidence
+  precision failed.
+- Canonical integration target: `main`. This execution began from
+  post-consolidation handoff `035ae637` (GitHub PR #361), and GitHub PR #362
+  carries the completed R4 execution and this restart-safe handoff.
 - PR #347 was recognized as merged through the consolidation. PRs #348-#359
   are closed as superseded after verifying every exact head commit is reachable
   from `main`; their historical branches and discussions remain intact.
-- Provider calls currently authorized: zero.
+- Provider calls currently authorized: zero. The one-use A3 authorization was
+  consumed by exactly four calls at an exact provider-reported `$0.01107025`.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The exact next decision is founder-owned: authorize or defer
-`lolla-r4-semantic-distinction-holdout-a3`. The frozen package contains Case 01
-as an unseen false-stand-down target and Case 04 as an unseen restraint control,
-allows no more than four calls, has a conservative `$0.0280125` estimate, and a
-hard `$0.03` ceiling. The package itself does not authorize transport, and the
-live runner must never load the hidden source-first answer key.
+The exact next goal is provider-free causal diagnosis of why the v2 prompt's
+zero, later-resolution, safeguard, fallback, and scheduled-review distinctions
+did not survive the Case 04 endpoint. Case 01 and Case 04 are now exposed
+development evidence. Decide whether one causal task-shape repair or an R4 stop
+is earned before preparing any new experiment.
 
-If no explicit authorization is present, stop at the provider-free boundary.
-R5 product usefulness and receipt reconstruction remain gated on evidence from
-the R4 decision; they are not the automatic next implementation task.
+Do not retry A3 or make another provider call. Any future provider validation
+requires a genuinely new holdout, a new frozen contract, and separate founder
+authorization. R5 product usefulness and receipt reconstruction, runtime/graph
+integration, wider-corpus execution, model comparison, and production-model
+selection remain gated and unauthorized.
 
 ## Resume on another machine
 

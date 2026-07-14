@@ -1,0 +1,128 @@
+{
+  "automatic_retries": 0,
+  "candidate": {
+    "global_limitations": "The final state transitions from evaluating supplier redundancy to managing a forced technical migration; therefore, records focus on the decision gates established by the user for that transition.",
+    "reviews": [
+      {
+        "outcome": "records_present",
+        "records": [
+          {
+            "evidence_ids": [
+              "e096",
+              "e094"
+            ],
+            "interpretation": "The outcome of the component transition remains dependent on milestones that have not yet been defined for the proposed, unawarded replacement design.",
+            "limitations": "The choice between a shared design or dual paths remains open pending supplier proposals and the upcoming twelve-month decision review.",
+            "support": "supported"
+          }
+        ],
+        "surface": "unresolved_matter"
+      },
+      {
+        "outcome": "records_present",
+        "records": [
+          {
+            "evidence_ids": [
+              "e047",
+              "e054",
+              "e036"
+            ],
+            "interpretation": "A deviation from the predefined thresholds for quality, delivery, or engineering support for either supplier would trigger an exit review before the current annual strategy concludes.",
+            "limitations": "The conditions are specific to performance failures of the secondary source and the effectiveness of the joint quality plan.",
+            "support": "supported"
+          },
+          {
+            "evidence_ids": [
+              "e094",
+              "e098"
+            ],
+            "interpretation": "A failure in the redesign path (such as slippage in validation milestones or inability to secure component alternatives) would necessitate reconsidering the chosen replacement strategy.",
+            "limitations": "The deadline for this decision is twelve months, but slippage could force an earlier re-assessment.",
+            "support": "supported"
+          }
+        ],
+        "surface": "reopen_condition"
+      }
+    ]
+  },
+  "case_id": "v1-case04-component-sourcing",
+  "data_collection": "deny",
+  "duration_seconds": 3.488,
+  "fallback_models": 0,
+  "finish_reason": "stop",
+  "generation_id": "gen-1784022890-fhvd6TWdwenKtCrC6036",
+  "max_output_tokens": 1600,
+  "operational_status": "candidate_parsed",
+  "operator_attribution_ok": true,
+  "parse_error": "",
+  "prompt_utf8_bytes": 31843,
+  "provider_calls": 1,
+  "provider_only": [
+    "google-vertex"
+  ],
+  "provider_order": [
+    "google-vertex"
+  ],
+  "provider_payload_sha256": "1b679989c64b9e36b3adebc5e13d375b7dd8f584ec85fb8a37f04e0f77484a11",
+  "provider_reported_cost_usd": 0.003794,
+  "raw_content": "{\n  \"reviews\": [\n    {\n      \"surface\": \"unresolved_matter\",\n      \"outcome\": \"records_present\",\n      \"records\": [\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"The outcome of the component transition remains dependent on milestones that have not yet been defined for the proposed, unawarded replacement design.\",\n          \"evidence_ids\": [\"e096\", \"e094\"],\n          \"limitations\": \"The choice between a shared design or dual paths remains open pending supplier proposals and the upcoming twelve-month decision review.\"\n        }\n      ]\n    },\n    {\n      \"surface\": \"reopen_condition\",\n      \"outcome\": \"records_present\",\n      \"records\": [\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"A deviation from the predefined thresholds for quality, delivery, or engineering support for either supplier would trigger an exit review before the current annual strategy concludes.\",\n          \"evidence_ids\": [\"e047\", \"e054\", \"e036\"],\n          \"limitations\": \"The conditions are specific to performance failures of the secondary source and the effectiveness of the joint quality plan.\"\n        },\n        {\n          \"support\": \"supported\",\n          \"interpretation\": \"A failure in the redesign path (such as slippage in validation milestones or inability to secure component alternatives) would necessitate reconsidering the chosen replacement strategy.\",\n          \"evidence_ids\": [\"e094\", \"e098\"],\n          \"limitations\": \"The deadline for this decision is twelve months, but slippage could force an earlier re-assessment.\"\n        }\n      ]\n    }\n  ],\n  \"global_limitations\": \"The final state transitions from evaluating supplier redundancy to managing a forced technical migration; therefore, records focus on the decision gates established by the user for that transition.\"\n}",
+  "raw_content_sha256": "4311c8c19c6d0e22cd586dd763240a3f117c901bd15549dab3e9cf0967d708ee",
+  "reasoning_content_excluded": true,
+  "reasoning_custody": {
+    "content_locations": [],
+    "content_present": false,
+    "detail_count": 1,
+    "exclusion_satisfied": true,
+    "historical_r4_result_reclassified": false,
+    "malformed": false,
+    "malformed_locations": [],
+    "metadata_locations": [
+      "/message/reasoning_details/0/format",
+      "/message/reasoning_details/0/index",
+      "/message/reasoning_details/0/signature",
+      "/message/reasoning_details/0/type"
+    ],
+    "metadata_only": true,
+    "provider_values_included": false,
+    "schema_version": "lolla.r4_reasoning_exclusion_inspection.v1",
+    "status": "reasoning_metadata_only"
+  },
+  "reasoning_effort": "minimal",
+  "reasoning_values_preserved": false,
+  "request_body_sha256": "03b6c910d044c3ad1868d67db4785fb445bbdc741fce95f081575a3e814cd00b",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "response_healing": false,
+  "response_schema_sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65",
+  "seed": 8402,
+  "semantic_retries": 0,
+  "served_model": "google/gemini-3.1-flash-lite",
+  "served_provider": "Google",
+  "system_prompt_sha256": "db8d8fa00405fb42a706b1533bcf5482044d4a482fd2d8451ac00d55e77edf13",
+  "task": "uncertainty",
+  "usage": {
+    "completion_tokens": 416,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "cost": 0.003794,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.000624,
+      "upstream_inference_cost": 0.003794,
+      "upstream_inference_prompt_cost": 0.00317
+    },
+    "is_byok": false,
+    "prompt_tokens": 12680,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 13096
+  },
+  "user_prompt_sha256": "a763b171b1340ad3cf74fc2b33a796306cdce9b9a04c02a68745ea6a421cede3",
+  "wire_mode": "strict_json_schema",
+  "zdr": true
+}
