@@ -382,7 +382,8 @@ See
 Status: provider-free inventory/replay and missingness-aware fan-in complete;
 corrected complementary-reader diagnostic closed; token allocation repaired;
 semantic-distinction holdout closed mechanically complete but semantically
-unsupported; provider-free causal diagnosis or an R4 stop is the next boundary
+unsupported; provider-free causal diagnosis complete; one semantic-task repair
+is the next boundary
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -603,6 +604,34 @@ Semantic-distinction holdout execution result:
 See
 `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`.
 
+Provider-free causal diagnosis result:
+
+- all eight admitted Case 01/04 records are mapped to exact authoritative
+  aliases, current-position treatment, all supplied prior role records,
+  applicable frozen prompt clauses, and source-first verdicts;
+- disconfirming evidence leads the diagnosis: the v2 prompt already contains
+  the intended exclusions, no same-case causal ablation exists, and Case 04's
+  pending design is broadly "unresolved" in ordinary language;
+- semantic ontology/task mismatch is nevertheless the best-supported primary
+  explanation because the output consistently inventories broad unresolved
+  and reopen surfaces instead of subtracting work already operationalized by
+  the current position;
+- fallible-prior anchoring is a supported amplifier, but it cannot explain the
+  threshold and hydraulic/process false positives that have no matching prior
+  gap;
+- paired generative completion pressure remains plausible but unisolated, and
+  model/context limitation is not supported as primary because late endpoint
+  evidence was retrieved and used coherently;
+- the frozen target already selects the product ontology, so no new founder
+  ontology decision is required for this holdout;
+- the diagnosis made zero provider calls and changed no prompt, relationship
+  reader, historical evidence, runtime, graph, model, route, or holdout.
+
+The one earned next unit is a separately scoped provider-free semantic-task
+repair. Do not bundle it with context authority, task shape, relationship
+reading, or model/context changes. See
+`docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -648,19 +677,21 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The exact R4 semantic-distinction holdout is complete and its one-use
-authorization is consumed. The semantic exit condition is not met because the
-v2 reader failed restraint and evidence precision despite clean mechanics.
+The exact R4 semantic-distinction holdout and its provider-free causal
+diagnosis are complete. The one-use authorization is consumed. The semantic
+exit condition remains unmet because the v2 reader failed Case 04 restraint
+and evidence precision despite clean mechanics.
 
-The immediate next goal is provider-free causal diagnosis of why the explicit
-zero, later-resolution, safeguard, fallback, and scheduled-review contrasts
-did not survive the Case 04 endpoint. Use the consumed Case 01/04 holdout only
-as exposed development evidence. Decide whether one causal task-shape repair or
-an R4 stop is earned before preparing any new experiment.
+The immediate next goal is one provider-free semantic-task repair that makes
+the residual product object—not broad unresolved/reopen inventory—the sole
+causal variable. Keep Case 04 primary and Case 01 as a regression constraint.
+Do not change context authority, pair versus split the task, change the
+relationship reader, or change model/context in the same goal. Stop or split
+if the repair cannot be isolated.
 
-Make no provider call. Do not retry the consumed attempt, integrate the runtime,
-reopen R3, change the graph, compare models, infer semantic roles in Python,
-merge overlapping records, optimize a composite score, or claim that the
-reader is useful. Any later provider validation requires a genuinely new
-holdout, a newly frozen contract, and separate founder authorization. R5
-remains gated.
+Make no provider call. Do not retry the consumed attempt, prepare a new
+holdout, integrate the runtime, reopen R3, change the graph, compare models,
+infer semantic roles in Python, merge overlapping records, optimize a
+composite score, or claim that the reader is useful. Any later provider
+validation requires a genuinely new holdout, a newly frozen contract, and
+separate founder authorization. R5 remains gated.

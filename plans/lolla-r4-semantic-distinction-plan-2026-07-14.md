@@ -173,3 +173,31 @@ redesign or an R4 stop is earned. Any later provider validation requires a
 genuinely new holdout, new frozen contract, and separate founder authorization.
 See
 `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`.
+
+## Provider-free causal diagnosis completion — 2026-07-14
+
+The requested diagnosis is complete without implementing another prompt
+repair:
+
+- all eight admitted Case 01/04 records are mapped source-first to their exact
+  aliases, current-position treatment, prior interpretation, applicable frozen
+  clauses, and review verdict;
+- Case 04 remains the primary defect, while Case 01 is used only to preserve
+  the real recurring city-capability residual as a regression constraint;
+- the semantic ontology/task mismatch is the best-supported primary cause:
+  the reader inventories broadly named unresolved and reopen surfaces while
+  the frozen product target requires a distinct residual after operationalized
+  decision work is subtracted;
+- fallible-prior anchoring is a supported amplifier but cannot explain false
+  positives with no matching prior gap;
+- paired generative completion pressure is plausible but not isolated, and
+  model/context limitation is not supported as primary;
+- the frozen target already settles the relevant product ontology for this
+  consumed holdout;
+- zero provider calls were made, and no relationship reader, historical
+  evidence, runtime, graph, model, route, or holdout changed.
+
+The next work must remain a separate provider-free semantic-task repair with
+no simultaneous context-authority, task-shape, relationship-reader, or
+model/context change. Stop before a new holdout or provider validation. See
+`docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`.

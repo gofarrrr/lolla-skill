@@ -1288,7 +1288,19 @@ three uncertainty records and two relationships. The semantic hypothesis is
 not supported, the authorization is consumed, and no further call, R5
 promotion, runtime/graph integration, or production-model selection is
 authorized. The next boundary is provider-free causal diagnosis or an R4 stop.
-See the completed
+That
+**[provider-free causal diagnosis](docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md)**
+is now complete. It maps every admitted Case 01/04 record source-first and
+finds semantic ontology/task mismatch to be the best-supported primary cause:
+the reader inventories broad unresolved/reopen surfaces while the product
+expects only distinct gaps left after operationalized decision work is
+subtracted. Fallible-prior anchoring amplifies the mismatch but does not
+explain all false positives; paired completion remains plausible but
+unisolated, and endpoint/context loss is not supported as primary. The
+diagnosis made zero provider calls and changed no prompt, relationship reader,
+historical evidence, runtime, graph, model, route, or holdout. The next
+boundary is one separately scoped provider-free semantic-task repair, with
+Case 04 primary and Case 01 only as a regression constraint. See the completed
 **[R4 semantic-distinction plan](plans/lolla-r4-semantic-distinction-plan-2026-07-14.md)**.
 
 For the offline Product Delta evidence lane, including what to run, what to

@@ -51,6 +51,7 @@ DOWNSTREAM_OUTPUT_ROOTS = (
     ROOT / "research/lolla-r4-complementary-reader-token-correction-execution-2026-07-14-a2",
     ROOT / "research/lolla-r4-semantic-distinction-contract-2026-07-14",
     ROOT / "research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3",
+    ROOT / "research/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14",
 )
 DOWNSTREAM_INPUT_PATHS = (
     ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",

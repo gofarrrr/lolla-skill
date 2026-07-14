@@ -1194,3 +1194,36 @@ Continuation entrypoints:
 - `research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/source-first-review.json`;
 - `research/lolla-r4-semantic-distinction-holdout-execution-2026-07-14-a3/execution-closeout.json`;
 - `scripts/evals/finalize_r4_semantic_distinction_execution.py`.
+
+## R4 semantic-distinction causal diagnosis — 2026-07-14
+
+The provider-free causal diagnosis is complete. It leads with evidence against
+the proposed explanation, maps all eight admitted Case 01/04 records to exact
+source, current-position treatment, all six supplied prior role records,
+applicable frozen prompt clauses, and source-first verdicts, and compares four
+causal explanations without a scalar score.
+
+Semantic ontology/task mismatch is the best-supported primary explanation:
+the reader treats unresolved and reopen as broad inventory surfaces, while the
+frozen product target requires only a materially distinct residual after
+assigned and operationalized decision work is subtracted. Fallible-prior
+anchoring is a supported amplifier but cannot explain false positives with no
+matching prior gap. Paired generative completion pressure remains plausible
+but lacks a same-case counterfactual. Model/context limitation is not supported
+as primary because the reader retrieved and used late endpoint evidence
+coherently.
+
+The frozen target already settles the product ontology for this consumed
+holdout. The diagnosis made zero provider calls and changed no prompt,
+relationship reader, historical evidence, runtime, graph, model, provider
+route, or holdout. Its downstream JSON root is explicitly excluded from the
+frozen 400-artifact replay. The next boundary is one separately scoped
+provider-free semantic-task repair, with Case 04 primary and Case 01 used only
+as a regression constraint. Stop before a new holdout or provider validation.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`;
+- `research/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14/causal-diagnosis.json`;
+- `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`;
+- `AGENTS.md`.
