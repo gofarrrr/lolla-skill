@@ -57,6 +57,7 @@ telemetry and cannot delete this portfolio.
 > [R4 matched-holdout v2 execution A1](docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md),
 > [R4 separated-surface experiment design](docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md),
 > [R4 separated-surface execution A1](docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md),
+> [R4 separated-surface execution A2](docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md),
 > and the [current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md).
 
 ## Why This Exists
@@ -1383,6 +1384,18 @@ separated dependency calls still emitted governed-machinery false positives,
 but the positive matched comparisons were incomplete. The frozen decision is
 `semantic_result_not_evaluable`; the one-use authorization is consumed and no
 rerun or integration is authorized.
+
+The final, separately authorized
+**[R4 separated-surface execution A2](docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md)**
+completed all twelve frozen calls exactly once for `$0.02148425`. Both genuine
+positive findings were preserved, but the opposite-surface companion appeared
+in each paired positive call and persisted in the corresponding separated
+call. The quiet controls again showed correct separated decision-gap zeros and
+unsafe separated dependency records. The frozen decision is
+`separated_tasks_ineffective_companions_persist`. A2 is the final provider run
+for the incremental R4 reader program; no A3, integration, or further prompt
+experiment is authorized. The next possible goal is provider-free
+product/architecture closeout.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

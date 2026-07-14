@@ -822,19 +822,20 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-The canonically published paired-versus-separated diagnostic was authorized
-once and stopped correctly on the first terminal failure at ordinal 7. Six
-calls completed, the seventh returned a terminal provider error, and ordinals
-8–12 were not attempted. No retry or replacement call occurred. The completed
-calls cost `$0.0105715`; the failed call had no usable provider-reported usage
-or cost and must not be treated as free.
+The separately authorized final A2 paired-versus-separated execution completed
+all twelve calls exactly once for `$0.02148425`. Both genuine findings were
+preserved, but separation did not suppress either positive-case companion:
+Case 03's separated dependency call repeated the false future companion, and
+Case 04's separated decision-gap call repeated the false present companion.
+The quiet controls again showed that separated decision-gap calls can remain
+quiet while separated dependency calls misclassify governed machinery.
 
-Because neither positive case has a complete matched comparison, the frozen
-decision is `semantic_result_not_evaluable`. Partial control evidence is not a
-causal result: separated decision-gap calls were quiet, while separated
-dependency calls still emitted governed-threshold and scheduled-decision false
-positives. The one-use authorization is consumed and current authorization is
-zero calls and `$0.00`.
+The frozen decision is `separated_tasks_ineffective_companions_persist`. No
+A3, replacement call, prompt tweak, task variant, new holdout, model
+comparison, integration, or R5 work is authorized. The only next goal that may
+be considered is a provider-free product/architecture closeout choosing among
+preserving a narrower component as research evidence, materially redesigning
+the reader, deferring the feature, or stopping the current R4 architecture.
 
 The next decision is publication of the completed local raw evidence and
 source-first closeout. Do not rerun, replace ordinal 7, infer a new execution
