@@ -1,12 +1,14 @@
 # Board Product Briefs
 
-Status: board-facing reading index
-Date: 2026-06-30
+Status: board-facing reading index with historical briefs
+Current boundary date: 2026-07-15
 
 These documents explain Lolla's current product direction in simple language.
 They are meant for board/customer-style discussion, not implementation handoff.
 
-> **Current architecture boundary (2026-07-14):** The final R4 experiment did
+> **Current architecture boundary (2026-07-15):** The
+> [Constitution Stage 0 addendum audit](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+> is the controlling system map. The final R4 experiment did
 > not validate the residual/separated conversation reader, so that incremental
 > reader is stopped and remains research evidence. This does not stop the
 > product direction described here: Lolla still preserves the complete
@@ -17,6 +19,8 @@ They are meant for board/customer-style discussion, not implementation handoff.
 > conversations is not implemented or product-validated. Read the
 > [R4 product and architecture closeout](../conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md)
 > before treating any older proposed next phase as current authorization.
+> The briefs below contain historical product hypotheses; they are not current
+> proof of usefulness or automatic integration.
 
 Recommended reading order:
 

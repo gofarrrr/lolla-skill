@@ -4,6 +4,18 @@ This directory holds product-shape PRDs and design notes for future user-facing
 surfaces. These files are planning artifacts, not runtime documentation and not
 proof that a feature is product-complete.
 
+## Current lifecycle boundary — 2026-07-15
+
+- [Constitution Stage 0 addendum audit](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+- [Post-Stage-0 restart roadmap](../../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
+
+This historical index mixes implemented read-only surfaces, bounded adapters,
+prototypes, reviews, and proposals. Listing is not proof of runtime integration.
+Observatory is read-only. Mental Model Teacher and general arbitrary-run
+Decision Work semantic generation are parked. The current live product path is
+the four-lane pressure system described by the Stage 0 audit; real-user
+usefulness remains unknown.
+
 Current planning docs:
 
 - [Mental Model Teacher Product Surface and Visual Library PRD](mental-model-teacher-product-surface-and-visual-library-prd-v0.md)

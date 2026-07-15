@@ -17,40 +17,38 @@ better answer, certify reasoning quality, or remove human decision authority.
 
 Read these in order before proposing architecture or the next experiment:
 
-1. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
+1. `docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md`
+   and `docs/evals/lolla-constitution-stage0-addendum-register-v1.json` — the
+   current reachability, evidence, disposition, and Decision Trail coverage
+   map. This is the controlling cold-start status.
+2. `plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md` — the
+   current gated sequence. Stage 1 begins with checked-in-safe truthfulness;
+   later real-run, live-pressure, and architecture decisions require separate
+   founder authorization.
+3. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-2. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
-   and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
-   current product boundary. The incremental R4 reader is stopped; complete
-   conversation custody, live mental-model pressure, the optional Decision Work
-   sidecar, and Observatory remain distinct preserved layers. The next product
-   question is a provider-free artifact-to-Decision-Trail coverage audit.
-3. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+4. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
+   public orientation and ordinary live-skill behavior.
+5. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-4. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
-   ordered development sequence and decision gates.
-5. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+6. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+   and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
+   decision that stopped the incremental R4 reader while preserving the live
+   pressure path, bounded sidecars, and research evidence.
+7. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
-   — canonical final R4 evidence: the complete twelve-call run, raw-before-target
-   checkpoint, record-level source-first review, consumed authorization, and
-   frozen `separated_tasks_ineffective_companions_persist` decision.
-6. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+   — immutable final R4 evidence and the frozen
+   `separated_tasks_ineffective_companions_persist` decision.
+8. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
    — immutable A1 first-failure evidence and frozen
    `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-7. `docs/conversation-understanding/lolla-r4-separated-surface-experiment-design-result-2026-07-14.md`
-   and `plans/lolla-r4-separated-surface-experiment-design-plan-2026-07-14.md`
-   — canonical provider-free design: hash-bound human review, protected target,
-   twelve exact paired/separated requests, target-blind runner, categorical
-   decision matrix, and cost custody.
-8. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
+9. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
    `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
    — the implemented sidecar boundary and the richer, still-provisional
    interpretation target.
-9. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
-   changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,
 but do not treat their proposals as current runtime behavior. Follow the newest
@@ -170,9 +168,11 @@ Consequences:
 ## Verification discipline
 
 Run the smallest relevant checks while iterating, then the full suite before a
-handoff or PR update. For the current R4 package:
+handoff or PR update. For the current Stage 0 addendum and frozen R4 custody:
 
 ```bash
+PYTHONPATH=. python3 scripts/evals/validate_constitution_stage0_addendum_register.py --register docs/evals/lolla-constitution-stage0-addendum-register-v1.json
+PYTHONPATH=. pytest -q tests/test_constitution_stage0_addendum_register.py
 PYTHONPATH=. python3 scripts/evals/build_r4_residual_task_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/build_r4_matched_holdout_v2_contract.py --validate-only
 PYTHONPATH=. python3 scripts/evals/run_r4_matched_holdout_v2_experiment.py --dry-run
@@ -200,7 +200,7 @@ with one existing `datetime.utcnow()` deprecation warning. A changed count is
 not automatically a regression; unexplained failures or historical hash drift
 are.
 
-## Current handoff — 2026-07-14
+## Current handoff — 2026-07-15
 
 - R1 trust/capture/cost/privacy/custody hardening: complete provider-free.
 - R2 constitutional graph survival: complete provider-free.
@@ -228,10 +228,11 @@ are.
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
   generator.
-- Canonical `main` is `34d0e1a8f6e80d72622deb59b10a81262344fc85`, the
-  merge of PR #370. A2's exact reviewed head is
-  `a525e375f7c8b5076de5fd5fafac5f9e4d8da001`; raw evidence precedes protected
-  review at `407109cd64be31c92efa31a76362091b2c5943a9`.
+- The Stage 0 addendum audits canonical `main` at
+  `f4493e20634544addd6633d8e92a836c6488f61e`, the merge of PR #371. Its
+  machine register assigns every canonical implementation file to an explicit
+  lifecycle disposition and distinguishes live calls from artifact handoffs,
+  optional hooks, offline paths, read-only projections, and absent links.
 - Provider calls currently authorized: zero. A1 and A2 authorizations are
   consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
   completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
@@ -239,12 +240,12 @@ are.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The immediate operational decision is publication of the provider-free
-architecture closeout without altering its decision. After canonical
-publication, the next eligible product goal is a provider-free completed-run
-artifact-to-Decision-Trail coverage audit. That audit may map existing
-artifacts, sidecar fields, missingness, privacy, and human-review needs; it may
-not generate a new semantic read, inspect private archives without explicit
-scope, write a real sidecar, call a provider, change runtime, or claim product
-usefulness. R5 and any materially different reader remain separate founder
-decisions.
+The immediate operational decision is publication of this provider-free Stage
+0 addendum as the canonical system map. After publication, the next eligible
+product goal is Stage 1: a provider-free, checked-in-safe Decision Trail
+truthfulness review. It may test whether a cold reviewer can distinguish
+source custody, provisional interpretation, missingness, human-review needs,
+and action prohibition. It may not inspect private archives, generate a new
+semantic read, call a provider, automate the sidecar, change runtime, reopen
+R4/R5, or claim product usefulness. Real-run review and live-pressure
+usefulness remain later, separately authorized stages.
