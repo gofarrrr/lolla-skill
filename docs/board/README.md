@@ -1000,3 +1000,11 @@ The core board-level message is:
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
 > challenge, and inspect the path to the answer so serious AI-assisted decisions
 > are less likely to hide weak assumptions inside fluent prose.
+
+## Stage 0 architecture status — 2026-07-15
+
+The [Constitution Stage 0 addendum audit](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+is the current system map. Decision Work remains optional, derivative, and
+operator-directed. Its sidecar packages supplied meaning; a trustworthy
+arbitrary-run semantic supplier is not implemented. No queue, resolver,
+sidecar, brief, or Observatory adapter authorizes action or proves usefulness.

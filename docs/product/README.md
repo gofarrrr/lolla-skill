@@ -115,3 +115,12 @@ Current planning docs:
 - [Observatory Workspace Human Review Launch Checklist JSON](observatory-workspace-human-review-launch-checklist-v0.json)
 - [Observatory Workspace Human Review Preflight](observatory-workspace-human-review-preflight-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
+
+## Current architecture status
+
+- [Constitution Stage 0 addendum audit](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+- [Post-Stage-0 restart roadmap](../../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
+
+This index mixes implemented read-only surfaces, bounded adapters, prototypes,
+reviews, and proposals. Listing is not proof of runtime integration.
+Observatory is read-only; Teacher expansion is parked; usefulness is unproven.

@@ -1476,6 +1476,15 @@ What I discovered along the way is that I genuinely love building things. The pr
 
 If you're building something where structured reasoning, knowledge engineering, or AI audit systems matter — and you're looking for someone who thinks about these problems obsessively — I'd love to talk.
 
+## Current constitutional status
+
+The repository contains one ordinary live pressure path, bounded
+offline/operator/read-only paths, and a large research history. See the
+[Constitution Stage 0 addendum audit](docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md).
+R4 is not live, Decision Work lacks a trustworthy arbitrary-run semantic
+supplier, and mechanical operation does not establish usefulness. The items
+below are historical or prospective directions, not authorization.
+
 ## What's Next
 
 The system works — but more data from real runs will let us tune the deterministic routing, understand detection patterns better, and calibrate where the system is strong and where it's still rough.

@@ -868,3 +868,11 @@ remain separate later founder decisions.
 See
 `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
 and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md`.
+
+## Historical handoff to the Stage 0 addendum — 2026-07-15
+
+This roadmap remains the R1–R4 chronology but no longer defines next work. The
+current map is
+`docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md`;
+the bounded restart sequence is
+`plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md`.

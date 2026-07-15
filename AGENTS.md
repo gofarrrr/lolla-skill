@@ -248,3 +248,27 @@ not generate a new semantic read, inspect private archives without explicit
 scope, write a real sidecar, call a provider, change runtime, or claim product
 usefulness. R5 and any materially different reader remain separate founder
 decisions.
+
+## Constitution Stage 0 addendum cold start — 2026-07-15
+
+The current ground-up system map is
+`docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md`;
+its machine register is
+`docs/evals/lolla-constitution-stage0-addendum-register-v1.json`. The audit base
+is canonical commit `f4493e20634544addd6633d8e92a836c6488f61e`. This section
+supersedes older commit and next-goal statements above without rewriting their
+historical custody.
+
+The live system is a four-lane reasoning-pressure path with constitutional
+graph survival, reconsideration/disposition custody, archive, receipts, and
+read-only Observatory. Decision Trail, Product Delta, portable views, and
+Decision Work are bounded offline, operator, or default-off paths. Teacher and
+general Decision Work semantic generation are parked. R3/R4 are research-only;
+the incremental R4 reader is retired and has no live or automatic Decision Work
+supply path. Real-user usefulness remains unknown.
+
+The only next founder decision is whether to publish the addendum and
+separately authorize its provider-free checked-in-safe Decision Trail
+truthfulness gate. Provider calls, private-archive inspection, a new reader,
+runtime change, R4/R5, model comparison, automation, and integration remain
+unauthorized.

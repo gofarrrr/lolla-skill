@@ -809,6 +809,7 @@ already look justified from inside the current reasoning.
 
 Graph output is therefore a bounded pressure portfolio, not a certified
 selection. Canonical candidates and their fact-free recall provenance should
+selection. Canonical candidates and their fact-free recall provenance should
 reach the fresh-context reasoner, which may apply, reject, or park each lens
 against the authoritative conversation. Those dispositions belong in the
 audit trail; they must not silently erase candidates before reconsideration.
@@ -838,3 +839,13 @@ representation: the pipeline cannot yet preserve an auditable probabilistic
 conclusion that no unresolved qualification was observed. Quiet-case
 downstream work is blocked until that outcome is first-class rather than
 inferred from omission or keywords.
+
+## Current architecture boundary — Stage 0 addendum
+
+The canonical reachability and artifact-flow map is the
+[Constitution Stage 0 addendum audit](docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md).
+The ordinary path ends in pressure, reconsideration, archive, receipt, and
+read-only Observatory. Decision Trail, Product Delta, Decision Work, portable
+views, and Teacher are offline, explicit, default-off, or projection paths.
+R4 and legacy readers do not supply live semantics. This status controls over
+historical wording that implies a broader integrated product.
