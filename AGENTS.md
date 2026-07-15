@@ -30,27 +30,32 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
+5. `docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md` and
+   `plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md` — the
+   prospective founder-selected public Atlas/Teacher job and its provider-free
+   gated implementation plan. This does not unpark Teacher or authorize the
+   first tracer bullet.
+6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-6. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
+7. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
    public orientation and ordinary live-skill behavior.
-7. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+8. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-8. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
    and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
    decision that stopped the incremental R4 reader while preserving the live
    pressure path, bounded sidecars, and research evidence.
-9. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
    — immutable final R4 evidence and the frozen
    `separated_tasks_ineffective_companions_persist` decision.
-10. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+11. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
    — immutable A1 first-failure evidence and frozen
    `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-11. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
+12. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
    `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
    — the implemented sidecar boundary and the richer, still-provisional
    interpretation target.
@@ -219,6 +224,13 @@ automatically a regression; unexplained failures or historical hash drift are.
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
   generator.
+- The prospective Mental Model Atlas and Teacher v1 PRD now defines the
+  previously missing founder-selected user job and a real-user evidence plan:
+  a public 222-model Atlas, full model and exact directed relation pages, and
+  curated learning journeys at the founder's visual-quality bar. Teacher
+  remains `park` at this baseline. The PRD does not authorize its first local
+  tracer bullet, full-corpus build, public deployment, provider call, runtime
+  connection, or product-usefulness claim.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit

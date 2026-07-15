@@ -16,6 +16,25 @@ Decision Work semantic generation are parked. The current live product path is
 the four-lane pressure system described by the Stage 0 audit; real-user
 usefulness remains unknown.
 
+## Current prospective Mental Model Atlas direction
+
+The founder has now selected a prospective Mental Model Teacher user job:
+present the complete mental-model landscape as a high-quality explorable Atlas,
+full model and relation pages, and curated Teacher journeys. The current
+codebase-grounded design is:
+
+- [Lolla Mental Model Atlas and Teacher PRD v1](lolla-mental-model-atlas-and-teacher-prd-v1.md)
+- [Marble reference study](lolla-mental-model-atlas-marble-reference-2026-07-15.md)
+- [Machine-readable prospective PRD contract](../evals/lolla-mental-model-atlas-prd-v1.json)
+- [Tracer-bullet implementation plan](../../plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md)
+
+These files supersede the v0 Teacher PRD and its historical recommended-next-PR
+labels for prospective product direction. They do not rewrite historical
+Teacher artifacts or change the Stage 0 `park` disposition. The first local,
+provider-free visual truth tracer bullet still requires a separate founder
+authorization; no full-corpus build, deployment, runtime connection, provider
+call, or product-usefulness claim is implied.
+
 ## Historical planning, prototype, and review inventory
 
 The list below is preserved for discovery and custody. Its entries do not share
