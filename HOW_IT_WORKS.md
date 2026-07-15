@@ -234,9 +234,11 @@ authorize action.
 ### Mental Model Teacher
 
 Teacher has substantial contracts, renderers, lesson graphs, packets, and
-Observatory projections. It is parked because no current user job and real-user
-usefulness gate have been selected. It does not participate in the ordinary
-pressure runtime.
+Observatory projections. The founder-selected Atlas job now also has a local,
+source-bound Phase 1 visual tracer bullet with exact graph/page identity and
+non-canvas equivalents. It remains parked because founder visual acceptance,
+native screen-reader review, publication rights, and real-user usefulness are
+open. It does not participate in the ordinary pressure runtime.
 
 ## 10. Retired R4 readers
 
@@ -301,6 +303,10 @@ eligible decision is whether to authorize a provider-free review of
 checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
+
+The separate Atlas Phase 1 local implementation is complete. Its checked-in
+visual truth packet awaits founder review; later Atlas phases, deployment,
+Teacher journeys, and runtime or Observatory links remain unauthorized.
 
 ## 14. Verification entrypoints
 

@@ -25,15 +25,22 @@ codebase-grounded design is:
 
 - [Lolla Mental Model Atlas and Teacher PRD v1](lolla-mental-model-atlas-and-teacher-prd-v1.md)
 - [Marble reference study](lolla-mental-model-atlas-marble-reference-2026-07-15.md)
-- [Machine-readable prospective PRD contract](../evals/lolla-mental-model-atlas-prd-v1.json)
+- [Machine-readable PRD and current Phase 1 lifecycle contract](../evals/lolla-mental-model-atlas-prd-v1.json)
 - [Tracer-bullet implementation plan](../../plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md)
 
 These files supersede the v0 Teacher PRD and its historical recommended-next-PR
-labels for prospective product direction. They do not rewrite historical
-Teacher artifacts or change the Stage 0 `park` disposition. The first local,
-provider-free visual truth tracer bullet still requires a separate founder
-authorization; no full-corpus build, deployment, runtime connection, provider
-call, or product-usefulness claim is implied.
+labels for prospective product direction. The provider-free Phase 1 visual
+truth tracer bullet is now implemented locally:
+
+- [Phase 1 result](lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
+- [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
+- [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
+- [Local application](../../apps/mental-model-atlas/README.md)
+
+This does not rewrite historical Teacher artifacts or change the Stage 0
+`park` disposition. Founder visual acceptance, native screen-reader review,
+publication rights, and real-user usefulness remain open. No full-corpus build,
+deployment, runtime connection, provider call, or Phase 2 work is implied.
 
 ## Historical planning, prototype, and review inventory
 

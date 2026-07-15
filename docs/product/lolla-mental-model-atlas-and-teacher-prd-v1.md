@@ -1,6 +1,7 @@
 # Lolla Mental Model Atlas and Teacher PRD v1
 
-Status: prospective product PRD; implementation not authorized
+Status: Phase 1 implemented locally; founder visual, native screen-reader, and
+rights gates pending; later phases unauthorized
 
 Date: 2026-07-15
 
@@ -11,6 +12,8 @@ Machine contract: [Mental Model Atlas PRD contract v1](../evals/lolla-mental-mod
 Reference study: [Marble reference study](lolla-mental-model-atlas-marble-reference-2026-07-15.md)
 
 Implementation plan: [Mental Model Atlas tracer-bullet plan](../../plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md)
+
+Phase 1 result: [Visual Truth Tracer Bullet result](lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 
 ## Executive Decision
 
@@ -33,11 +36,12 @@ Model Teacher parked: help a person see the whole landscape of mental models,
 understand one model and its interactions deeply, and learn transferable
 reasoning moves through deliberate traversal and practice.
 
-This PRD defines that job and a real-user evidence plan. It does not, by itself,
-change the Stage 0 register disposition from `park`, authorize implementation,
-complete human review, prove product value, or connect Teacher to the ordinary
-Lolla runtime. A separate founder decision must authorize the first tracer
-bullet.
+This PRD defined that job and a real-user evidence plan. The founder separately
+authorized the provider-free Phase 1 tracer bullet, which is now implemented
+locally. That implementation does not, by itself, change the Stage 0 register
+disposition from `park`, complete founder or native screen-reader review, clear
+publication rights, prove product value, authorize Phase 2, or connect Teacher
+to the ordinary Lolla runtime.
 
 ## Why This Is A New Product Start, Not A Revival Of R4
 
@@ -744,7 +748,15 @@ than a third accidental definition of the same object.
 
 ### Renderer selection gate
 
-The first tracer bullet compares Sigma.js, Cytoscape.js, and—only if necessary
+Phase 1 implementation note: the bounded local spike selected a source-
+controlled SVG editorial renderer and retained Canvas 2D as a same-data control.
+It did not install Sigma.js or Cytoscape.js because the 16-node slice did not
+require a graph engine. That is a documented narrowing, not proof that SVG is
+the complete-corpus choice; Phase 2 must revisit the comparison. See the
+[renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md).
+
+The prospective renderer gate originally asked the first tracer bullet to
+compare Sigma.js, Cytoscape.js, and—only if necessary
 for the target depth and motion—a custom Three.js/WebGL treatment on the same
 frozen 12-to-20-model projection.
 

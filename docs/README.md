@@ -32,6 +32,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT REGISTER:** [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
 - **CURRENT ROADMAP:** [Post-Stage-0 restart roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
 - **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
+- **LOCAL PRODUCT REVIEW:** [Mental Model Atlas Phase 1 result](product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
+- **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.
@@ -63,8 +65,10 @@ source authority or action permission.
 
 ## Parked families
 
-- **PARKED:** Mental Model Teacher contracts, renderers, packets, and
-  Observatory projections in [the product index](product/README.md)
+- **PARKED / LOCAL PHASE 1 REVIEW:** Mental Model Teacher contracts,
+  renderers, packets, Observatory projections, and the new source-bound Atlas
+  tracer bullet in [the product index](product/README.md). Founder visual,
+  native screen-reader, rights, and real-user gates remain open.
 - **PARKED:** general arbitrary-run Decision Work semantic generation in the
   board and conversation-understanding families
 

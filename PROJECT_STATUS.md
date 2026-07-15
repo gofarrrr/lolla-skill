@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-15 (Stage 0.6 source-coverage correction)
+Status date: 2026-07-15 (Mental Model Atlas Phase 1 local tracer bullet)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -24,6 +24,13 @@ Stage 0.6 repaired one deterministic long-conversation custody defect. Above
 semantic extraction uses a first-3-plus-last-15 message view. New health and
 archive artifacts now report that partial coverage and its exact omitted
 window; this does not establish long-context semantic adequacy.
+
+In a separate product lane, the provider-free Mental Model Atlas Phase 1 local
+tracer bullet is implemented with real hash-bound source data, a polished
+interactive graph, one complete model page, one complete relation page, and
+non-canvas/reduced-motion equivalents. Teacher remains parked pending founder
+visual acceptance, native screen-reader review, publication rights, and
+real-user evidence.
 
 ## Status vocabulary
 
@@ -97,8 +104,10 @@ and Observatory does not create meaning.
 
 ### Parked
 
-- **Mental Model Teacher:** substantial prototype and projection family without
-  a selected current user job or real-user usefulness gate.
+- **Mental Model Teacher:** the founder-selected Atlas job now has a local,
+  source-bound Phase 1 visual tracer bullet. It remains parked because founder
+  visual acceptance, native screen-reader review, publication rights, and
+  real-user usefulness are still open.
 - **General Decision Work semantic generation:** desired contracts and intake
   exist, but no reliable arbitrary-run semantic supplier does.
 
@@ -126,6 +135,13 @@ Mechanical evidence is strong for:
 - completed-run archives, manifests, receipts, replay, and read-only views;
 - repository validators and a large automated test suite.
 
+The local Mental Model Atlas additionally demonstrates, within a frozen Phase
+1 slice, exact model/relation identity, stable spatial navigation, deterministic
+233-record paging, one complete model page, one complete relation page,
+keyboard/list/table equivalence, reduced motion, and fail-closed projection and
+renderer states. This is local product-mechanics evidence, not learner-value or
+publication evidence.
+
 The final R4 A2 experiment also established one narrow semantic result:
 splitting two existing residual surfaces into separate provider calls did not
 remove the observed opposite-surface companion errors. Both genuine findings
@@ -146,6 +162,8 @@ The repository does not currently establish:
 - that the four pressure lanes expose unique missed angles for real users;
 - independent validation of same-context reconsideration;
 - product-market fit, willingness to pay, or production readiness;
+- source-rights clearance, native screen-reader acceptance, or real-user
+  learning value for the Mental Model Atlas;
 - automatic action authority from any receipt, trail, sidecar, queue, resolver,
   or interface.
 
@@ -184,12 +202,18 @@ made that map findable from a fresh clone. Stage 0.6 then corrected
 long-conversation source-coverage reporting without changing semantic prompts,
 the 80,000-character policy, provider behavior, or pressure architecture.
 
-The next eligible founder decision is whether to authorize **Stage 1:
+The separate Mental Model Atlas Phase 1 local implementation is complete. Its
+exact next decision is founder review of the checked-in composition, camera,
+relation readability, panel continuity, and non-canvas equivalence. Passing
+that gate would still leave native screen-reader and source-rights review before
+any Phase 2 authorization.
+
+The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human
 reviewer can distinguish source custody, provisional interpretation,
 missingness, human-review needs, and action prohibition.
 
-Stage 1 is currently unauthorized and unstarted. It permits no provider call,
+Stage 1 remains unauthorized and unstarted. It permits no provider call,
 private archive inspection, new semantic reader, new fixture, automatic
 sidecar supply, runtime change, R4/R5, model comparison, or product-usefulness
 claim.

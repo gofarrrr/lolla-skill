@@ -11,12 +11,16 @@ from scripts.product.build_mental_model_atlas_phase1_projection import (
     AtlasProjectionError,
     build_phase1_package,
     canonical_json_bytes,
+    sha256_bytes,
     validate_projection,
 )
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "apps/mental-model-atlas/public/data/phase1"
+EVIDENCE_PATH = (
+    ROOT / "docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json"
+)
 
 
 def _load(path: Path) -> dict:
@@ -382,3 +386,31 @@ def test_projection_validation_rejects_count_and_coordinate_drift() -> None:
     coordinate_drift["layout"]["coordinates"][0]["x"] += 1
     with pytest.raises(AtlasProjectionError, match="coordinate hash"):
         validate_projection(coordinate_drift)
+
+
+def test_phase1_evidence_receipt_binds_screenshots_and_open_human_gates() -> None:
+    evidence = _load(EVIDENCE_PATH)
+
+    assert evidence["status"] == (
+        "local_implementation_complete_founder_gate_pending"
+    )
+    assert evidence["projection_manifest"]["provider_calls"] == 0
+    assert evidence["projection_manifest"]["provider_cost_usd"] == 0.0
+    assert evidence["scope_boundaries"]["teacher_disposition"] == "park"
+    assert evidence["scope_boundaries"]["phase_2"] == "not_authorized"
+    assert evidence["interaction_evidence"][
+        "manual_native_screen_reader_review"
+    ] == "pending_human"
+    assert evidence["interaction_evidence"][
+        "founder_composition_and_motion_review"
+    ] == "pending_founder"
+    assert len(evidence["screenshots"]) == 20
+    for screenshot in evidence["screenshots"]:
+        path = ROOT / screenshot["path"]
+        assert path.is_file()
+        assert sha256_bytes(path.read_bytes()) == screenshot["sha256"]
+
+    manifest = ROOT / evidence["projection_manifest"]["path"]
+    assert sha256_bytes(manifest.read_bytes()) == evidence[
+        "projection_manifest"
+    ]["sha256"]

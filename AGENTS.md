@@ -30,11 +30,12 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md` and
-   `plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md` — the
-   prospective founder-selected public Atlas/Teacher job and its provider-free
-   gated implementation plan. This does not unpark Teacher or authorize the
-   first tracer bullet.
+5. `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
+   `apps/mental-model-atlas/README.md`, and
+   `docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json` — the local
+   provider-free Atlas Phase 1 implementation, evidence, and still-open founder,
+   screen-reader, rights, and usefulness gates. Read the PRD and plan linked
+   there before proposing any next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -193,6 +194,22 @@ The Stage 0 addendum publication passed 4,968 tests and all 93 subtests with one
 existing `datetime.utcnow()` deprecation warning. A changed count is not
 automatically a regression; unexplained failures or historical hash drift are.
 
+For Mental Model Atlas Phase 1 work, also run:
+
+```bash
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_phase1_projection.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_phase1_projection.py
+cd apps/mental-model-atlas
+npm ci
+npm run check
+npm test
+npm run build
+npm audit --audit-level=moderate
+```
+
+Do not regenerate source meaning in the browser, normalize exact relations,
+infer missing pages, or treat the local visual gate as deployment clearance.
+
 ## Current handoff — 2026-07-15
 
 - R1 trust/capture/cost/privacy/custody hardening: complete provider-free.
@@ -224,13 +241,14 @@ automatically a regression; unexplained failures or historical hash drift are.
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
   generator.
-- The prospective Mental Model Atlas and Teacher v1 PRD now defines the
-  previously missing founder-selected user job and a real-user evidence plan:
-  a public 222-model Atlas, full model and exact directed relation pages, and
-  curated learning journeys at the founder's visual-quality bar. Teacher
-  remains `park` at this baseline. The PRD does not authorize its first local
-  tracer bullet, full-corpus build, public deployment, provider call, runtime
-  connection, or product-usefulness claim.
+- The Mental Model Atlas and Teacher v1 PRD defines the founder-selected user
+  job. Its provider-free Phase 1 local tracer bullet is implemented with a
+  hash-bound real-data projection, SVG/Canvas renderer boundary, stable
+  selection camera, deterministic hub paging, one complete model page, one
+  complete relation page, and non-canvas/reduced-motion equivalents. Teacher
+  remains `park`: founder visual acceptance, native screen-reader review,
+  publication rights, and real-user usefulness are open. No Phase 2,
+  deployment, runtime/Observatory connection, or Teacher journey is authorized.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -246,7 +264,9 @@ automatically a regression; unexplained failures or historical hash drift are.
 The Stage 0.5 public-handoff gardening pass made the canonical map legible from
 a fresh clone. Stage 0.6 then corrected deterministic long-conversation
 source-coverage custody without changing prompts, providers, graph behavior,
-or the semantic architecture. The next eligible product goal remains Stage 1:
+or the semantic architecture. The current Atlas decision is founder review of
+the checked-in Phase 1 visual truth packet; passing it does not authorize the
+next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
 a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
 is not authorized by these prerequisites. It may not inspect private archives,
 generate a new semantic read, call a provider, automate the sidecar, change

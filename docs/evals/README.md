@@ -12,6 +12,11 @@ builders; R3/R4 are immutable research evidence; the incremental R4 reader is
 retired. Eval files, fixtures, tests, and successful schemas do not prove
 ordinary runtime reachability or product usefulness.
 
+The separate provider-free Mental Model Atlas Phase 1 review is recorded in
+[`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
+It is local product-mechanics evidence for a parked component, not a runtime
+evaluation, publication clearance, or product-usefulness result.
+
 This directory contains the evidence and evaluation layer around Lolla. The
 main thing to understand is the split between the live skill and the offline
 eval lane.

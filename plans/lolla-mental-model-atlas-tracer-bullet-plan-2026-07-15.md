@@ -2,7 +2,8 @@
 
 > Source PRD: [Lolla Mental Model Atlas and Teacher PRD v1](../docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md)
 
-Status: prospective plan; no implementation phase is authorized
+Status: Phase 1 implemented locally; founder visual, native screen-reader, and
+rights gates pending; later phases unauthorized
 
 Date: 2026-07-15
 
@@ -16,9 +17,10 @@ accessibility, tests, and a human gate. A phase that only adds schemas, only
 generates data, or only paints an attractive graph does not qualify as
 complete.
 
-No phase automatically authorizes the next. The Mental Model Teacher remains
-parked until a separate founder authorization starts Phase 1 and that phase
-passes its gate.
+No phase automatically authorizes the next. The founder authorized the local,
+provider-free Phase 1 tracer bullet. Mental Model Teacher remains parked until
+the founder visual gate, native screen-reader review, and source-rights gate
+pass.
 
 ## Architectural Decisions
 
@@ -48,9 +50,10 @@ passes its gate.
   authority.
 - **Layout:** precomputed, versioned, hash-bound coordinates. Browser visits do
   not re-run a semantic layout.
-- **Renderer:** selected by the Phase 1 same-data visual spike. Sigma.js stable
-  is the recommended baseline; Cytoscape.js is the semantic-interaction
-  control; custom WebGL is considered only if necessary.
+- **Renderer:** the Phase 1 same-data spike selected source-controlled SVG as
+  the bounded default and retained Canvas 2D as the comparison/failure control.
+  Sigma.js and Cytoscape.js remain candidates that must be reconsidered before
+  the complete 222-model phase; the local result is not proof of scale.
 - **Deployment:** local only until source rights, attribution, privacy, and
   public projection review pass.
 - **Runtime:** no ordinary live-pipeline, R4, Decision Trail, Decision Work,
@@ -81,33 +84,35 @@ a full-corpus build, or an invitation to tune generated copy.
 
 ### Acceptance criteria
 
-- [ ] Every displayed node and relation resolves to canonical IDs, source
+- [x] Every displayed node and relation resolves to canonical IDs, source
   hashes, and product-safe source references.
-- [ ] `abstraction -> first-principles-thinking` preserves separate ally and
+- [x] `abstraction -> first-principles-thinking` preserves separate ally and
   tension records.
-- [ ] `active-listening` and `prisoners-dilemma` preserve explicit records in
+- [x] `active-listening` and `prisoners-dilemma` preserve explicit records in
   both directions.
-- [ ] The `confirmation-bias` fixture reports 233 incident records, uses a
+- [x] The `confirmation-bias` fixture reports 233 incident records, uses a
   maximum 40-record canvas page, and discloses omitted counts without calling
   them irrelevant.
-- [ ] Selected state persists while hover previews another model.
-- [ ] Selection dims unrelated context rather than rebuilding or erasing the
+- [x] Selected state persists while hover previews another model.
+- [x] Selection dims unrelated context rather than rebuilding or erasing the
   map.
-- [ ] Browser Back/Forward restores durable selection; hover never enters
+- [x] Browser Back/Forward restores durable selection; hover never enters
   history.
-- [ ] One model page and one relation page are understandable without the
+- [x] One model page and one relation page are understandable without the
   graph and expose source, review, missingness, and non-claims.
-- [ ] A synchronized semantic list and directed relation table provide the same
+- [x] A synchronized semantic list and directed relation table provide the same
   durable information without canvas interaction.
 - [ ] Keyboard navigation, visible focus, reduced motion, and WebGL/canvas
-  failure fallback pass manual review.
-- [ ] The recorded 1920 x 1200 scenarios meet the founder's composition,
-  motion, panel, and continuity bar.
-- [ ] Input acknowledgement and hover begin within 100 ms; selection settles
+  failure fallback pass automated and headless-browser review; native
+  VoiceOver/NVDA review remains pending.
+- [ ] The recorded 1920 x 1200 scenarios are checked in and internally
+  inspected; the founder's composition, motion, panel, and continuity decision
+  remains pending.
+- [x] Input acknowledgement and hover begin within 100 ms; selection settles
   within 450 ms; the recorded performance profile meets the PRD frame budget.
-- [ ] The renderer decision records evidence for the selected and rejected
+- [x] The renderer decision records evidence for the selected and rejected
   candidates.
-- [ ] No provider, runtime, Observatory, R4, archive, private conversation, or
+- [x] No provider, runtime, Observatory, R4, archive, private conversation, or
   public deployment path is constructed.
 
 ### Stop gate
