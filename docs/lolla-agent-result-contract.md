@@ -1,7 +1,7 @@
 # Lolla Agent Result Contract
 
 Status: Implemented
-Last updated: 2026-06-25
+Last updated: 2026-07-15
 
 ## Purpose
 
@@ -93,6 +93,15 @@ Core fields:
     "capture_strategy": "full",
     "omitted_turn_count": 0,
     "risk_flags": []
+  },
+  "source_coverage": {
+    "schema_version": "lolla.source_coverage.v1",
+    "authoritative_conversation_preserved": true,
+    "extraction_processing_view_status": "full",
+    "extraction_processing_strategy": "full",
+    "authoritative_turn_count": 4,
+    "extraction_processing_turn_count": 4,
+    "extraction_omitted_turn_count": 0
   },
   "risk_mode": "standard",
   "caller_action": "review_revised_answer",
@@ -187,6 +196,13 @@ it does not expose raw provider reasoning details.
 records whether capture was full, warning-level, or critical, including omitted
 turn counts and risk flags. It does not include raw transcript text and does
 not semantically reconstruct omitted turns.
+
+`source_coverage` makes one distinction explicit for long conversations:
+authoritative source preservation is not the same claim as full initial
+extraction coverage. Above the current 80,000-character threshold, new runs
+preserve `conversation.txt`, mark the extraction processing view `partial`, and
+report exact authoritative, processed, and omitted message counts. Unknown
+historical metadata remains `null` or `unknown`; it is not upgraded by guess.
 
 ## Caller Action
 

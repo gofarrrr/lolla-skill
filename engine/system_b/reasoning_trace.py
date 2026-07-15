@@ -16,6 +16,7 @@ from typing import Any
 
 from .audit_mode import risk_mode_from_result
 from .capture_adequacy import capture_adequacy_from_artifacts
+from .source_coverage import build_source_coverage
 from .control_plane import control_input_summary
 from .provider_boundary_health import build_provider_boundary_health
 
@@ -307,12 +308,17 @@ def _capture_summary(
     capture_health = str(extraction.get("capture_health") or "").strip()
     if not capture_health:
         capture_health = str(_mapping(result.get("run_health")).get("capture") or "").strip()
+    capture_adequacy = capture_adequacy_from_artifacts(
+        extraction=extraction,
+        result=result,
+    )
     return {
         "capture_health": capture_health or "unknown",
         "capture_manifest": dict(capture_manifest),
-        "capture_adequacy": capture_adequacy_from_artifacts(
-            extraction=extraction,
-            result=result,
+        "capture_adequacy": capture_adequacy,
+        "source_coverage": build_source_coverage(
+            processing_view=_mapping(extraction.get("conversation_processing_view")),
+            capture_adequacy=capture_adequacy,
         ),
         "decision_structure": _decision_structure_summary(extraction),
     }

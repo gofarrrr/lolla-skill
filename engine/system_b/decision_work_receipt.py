@@ -687,7 +687,7 @@ def _conversation_process_map(
             "PR107 reads structured turn and capture metadata only; raw conversation text is not read in checked-in safe mode.",
             "Turn count and process depth are process-shape evidence, not evidence of good thinking or good advice.",
             "Semantic process events such as new context, options explored, pushback, and abandoned paths still require LLM or human interpretation.",
-            "If capture was truncated, counts may describe the captured window while omitted middle turns remain uninterpreted.",
+            "If the initial extraction view was partial, counts may describe that bounded view while the preserved middle turns remain uninterpreted by extraction.",
         ],
     }
 

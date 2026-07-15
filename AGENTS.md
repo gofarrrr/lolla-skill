@@ -27,27 +27,30 @@ Read these in order before proposing architecture or the next experiment:
    current gated sequence. Stage 1 begins with checked-in-safe truthfulness;
    later real-run, live-pressure, and architecture decisions require separate
    founder authorization.
-4. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
+4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
+   — the current source-coverage correction: complete source custody is
+   distinct from the partial initial extraction view above 80,000 characters.
+5. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-5. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
+6. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
    public orientation and ordinary live-skill behavior.
-6. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+7. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-7. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
    and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
    decision that stopped the incremental R4 reader while preserving the live
    pressure path, bounded sidecars, and research evidence.
-8. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
    — immutable final R4 evidence and the frozen
    `separated_tasks_ineffective_companions_persist` decision.
-9. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
    — immutable A1 first-failure evidence and frozen
    `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-10. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
+11. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
    `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
    — the implemented sidecar boundary and the richer, still-provisional
    interpretation target.
@@ -175,7 +178,7 @@ handoff or PR update. For the current Stage 0 public handoff:
 ```bash
 PYTHONPATH=. python3 scripts/evals/validate_constitution_stage0_addendum_register.py --register docs/evals/lolla-constitution-stage0-addendum-register-v1.json
 PYTHONPATH=. python3 scripts/evals/validate_stage0_public_handoff.py
-PYTHONPATH=. pytest -q tests/test_constitution_stage0_addendum_register.py tests/test_stage0_public_handoff.py tests/test_r4_separated_surface_execution_a2.py
+PYTHONPATH=. pytest -q tests/test_run_extract.py tests/test_run_pipeline_contract_default.py tests/test_agent_result.py tests/test_constitution_stage0_addendum_register.py tests/test_stage0_public_handoff.py tests/test_r4_separated_surface_execution_a2.py
 PYTHONPATH=. pytest -q
 ```
 
@@ -203,8 +206,11 @@ automatically a regression; unexplained failures or historical hash drift are.
   Observatory.
 - Complete available user/assistant prose remains authoritative in
   `conversation.txt`. Processing views and semantic reads are derivative and
-  must disclose omissions. The current live extraction is implemented but is not a
-  complete long-conversation representation.
+  must disclose omissions. Stage 0.6 repaired exact message accounting and
+  propagation: above 80,000 characters, the initial extraction view is marked
+  partial, health degrades as `extraction_processing_view_partial`, and
+  `agent_result.source_coverage` preserves the exact window. The threshold and
+  first-3-plus-last-15 policy remain unchanged; semantic adequacy is unproven.
 - The live four-lane pressure engine, mental-model graph recall,
   constitutional graph-survival portfolio, and apply/reject/park custody remain
   the experimental core. They operate mechanically but have not established
@@ -225,11 +231,12 @@ automatically a regression; unexplained failures or historical hash drift are.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The Stage 0.5 public-handoff gardening pass makes the canonical map legible from
-a fresh clone. It changes current documentation, validation, and navigation
-only. The next eligible product goal remains Stage 1: a provider-free,
-checked-in-safe Decision Trail truthfulness review. Stage 1 is
-not authorized by gardening. It may not inspect private archives, generate a
-new semantic read, call a provider, automate the sidecar, change runtime,
-reopen R4/R5, or claim product usefulness. Real-run review and live-pressure
-usefulness remain later, separately authorized stages.
+The Stage 0.5 public-handoff gardening pass made the canonical map legible from
+a fresh clone. Stage 0.6 then corrected deterministic long-conversation
+source-coverage custody without changing prompts, providers, graph behavior,
+or the semantic architecture. The next eligible product goal remains Stage 1:
+a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
+is not authorized by these prerequisites. It may not inspect private archives,
+generate a new semantic read, call a provider, automate the sidecar, change
+runtime, reopen R4/R5, or claim product usefulness. Real-run review and
+live-pressure usefulness remain later, separately authorized stages.

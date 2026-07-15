@@ -6,14 +6,22 @@ TDD scaffolding for PR #1 of the extraction contract roadmap.
 from __future__ import annotations
 
 import json
+import shutil
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 import run_extract  # noqa: E402
+import scripts.run_pipeline as run_pipeline  # noqa: E402
+from engine.system_b.agent_result import build_agent_result  # noqa: E402
+from engine.system_b.extraction_adequacy_report import (  # noqa: E402
+    build_extraction_adequacy_report,
+)
+from engine.system_b.reasoning_trace import build_reasoning_trace  # noqa: E402
 from run_extract import (  # noqa: E402
     _apply_canonical_key_validation,
     _build_audit_seed,
@@ -34,6 +42,22 @@ def _write_conversation(path: Path) -> None:
         "Accept only if the downside is bounded.\n",
         encoding="utf-8",
     )
+
+
+def _write_long_conversation(path: Path) -> str:
+    parts = [
+        "CONVERSATION: 140 turns, 70 user messages, 70 assistant responses\n"
+    ]
+    for index in range(1, 71):
+        parts.append(
+            f"[Turn {index}] USER:\nQuestion {index} " + ("u" * 600) + "\n\n"
+        )
+        parts.append(
+            f"[Turn {index}] ASSISTANT:\nAnswer {index} " + ("a" * 600) + "\n\n"
+        )
+    text = "".join(parts)
+    path.write_text(text, encoding="utf-8")
+    return text
 
 
 class _FakeClient:
@@ -84,6 +108,213 @@ class _RecordedFakeClient:
         if self.error is not None:
             raise self.error
         return payload
+
+
+def _install_provider_free_pipeline_fakes(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    import system_b.boundary_provider as boundary_provider
+    import system_b.bullshit_index as bullshit_index
+    import system_b.pipeline as pipeline_mod
+
+    class _FakeSubstrate:
+        def all_chunks(self) -> tuple[object, ...]:
+            return (object(),)
+
+    class _FakeBundleSelector:
+        _substrate = _FakeSubstrate()
+
+    class _FakePipeline:
+        _embedding_retriever = None
+        _bundle_selector = _FakeBundleSelector()
+
+        def run(self, pipeline_input: object) -> object:  # noqa: ARG002
+            return SimpleNamespace(
+                delta_card=SimpleNamespace(findings=[]),
+                frame_pressure_card=None,
+                audit=SimpleNamespace(
+                    warnings=[],
+                    companion_fingerprint_validated=[object()],
+                ),
+                prompt_versions={},
+            )
+
+    class _FakeBullshitProfile:
+        def to_payload(self) -> dict:
+            return {"status": "skipped-test-double"}
+
+    def _load_live(cls, *, root, provider_name, config):  # noqa: ANN001, ARG001
+        return _FakePipeline()
+
+    monkeypatch.setattr(run_pipeline, "_resolve_data_root", lambda: tmp_path)
+    monkeypatch.setattr(run_pipeline, "_serialize_result", lambda result, **kwargs: {})
+    monkeypatch.setattr(pipeline_mod.SystemBPipeline, "load_live", classmethod(_load_live))
+    monkeypatch.setattr(
+        boundary_provider,
+        "load_boundary_client_from_env",
+        lambda provider_name: object(),
+    )
+    monkeypatch.setattr(
+        bullshit_index,
+        "evaluate_text",
+        lambda text, client, *, context_summary: _FakeBullshitProfile(),
+    )
+
+
+def test_long_extraction_declares_exact_bounded_source_coverage(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_long_source_coverage"
+    conversation_path = tmp_path / f"lolla_{run_id}_conversation.txt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
+    authoritative = _write_long_conversation(conversation_path)
+    assert len(authoritative) > run_extract.MAX_CONVERSATION_CHARS
+
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _RecordedFakeClient(  # noqa: ARG005
+            {
+                "is_strategic": True,
+                "decision_situation": "Whether to continue the long-running project.",
+                "synthesized_position": "Continue only with an explicit review gate.",
+                "reasoning_passages": ["Answer 70"],
+            }
+        ),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    try:
+        assert run_extract.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        manifest = payload["capture_manifest"]
+        adequacy = payload["capture_adequacy"]
+        processing_view = payload["conversation_processing_view"]
+
+        assert conversation_path.read_text(encoding="utf-8") == authoritative
+        assert manifest["truncation_applied"] is True
+        assert manifest["total_turns"] == 140
+        assert manifest["kept_turns"] == 18
+        assert manifest["omitted_turns"] == 122
+        assert adequacy["status"] == "warn"
+        assert adequacy["capture_strategy"] == "first_n_plus_last_n"
+        assert adequacy["declared_turn_count"] == 140
+        assert adequacy["captured_turn_count"] == 18
+        assert adequacy["omitted_turn_count"] == 122
+        assert adequacy["captured_windows"] == [
+            {"label": "opening", "start_turn": 1, "end_turn": 3, "turn_count": 3},
+            {"label": "recent", "start_turn": 126, "end_turn": 140, "turn_count": 15},
+        ]
+        assert adequacy["omitted_windows"] == [
+            {"start_turn": 4, "end_turn": 125, "turn_count": 122}
+        ]
+        assert processing_view["status"] == "partial"
+        assert processing_view["omitted_turn_count"] == 122
+        assert processing_view["authoritative_conversation_preserved"] is True
+
+        pipeline_output = tmp_path / f"lolla_{run_id}_result.json"
+        _install_provider_free_pipeline_fakes(monkeypatch, tmp_path)
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "run_pipeline.py",
+                "--extraction-file",
+                str(output_path),
+                "--conversation-file",
+                str(conversation_path),
+                "--output-file",
+                str(pipeline_output),
+                "--skip-revision",
+                "--embeddings",
+                "off",
+                "--v60-enrichment",
+                "off",
+            ],
+        )
+        assert run_pipeline.main() == 0
+        result = json.loads(pipeline_output.read_text(encoding="utf-8"))
+        health = result["run_health"]
+        assert health["overall"] == "degraded"
+        assert health["capture_adequacy"] == adequacy
+        assert health["authoritative_conversation_preserved"] is True
+        assert health["extraction_processing_view_status"] == "partial"
+        assert health["processing_view_omitted_turns"] == 122
+        assert "extraction_processing_view_partial" in health["issues"]
+        assert "capture_truncated" not in health["issues"]
+        capture_issue = next(
+            item
+            for item in health["issue_details"]
+            if item["code"] == "extraction_processing_view_partial"
+        )
+        assert capture_issue["axis"] == "extraction"
+        assert capture_issue["omitted_turns"] == 122
+
+        run_dir = tmp_path / "archive" / run_id
+        run_dir.mkdir(parents=True)
+        shutil.copy2(conversation_path, run_dir / "conversation.txt")
+        shutil.copy2(output_path, run_dir / "extraction.json")
+        shutil.copy2(pipeline_output, run_dir / "result.json")
+        for source_name, archive_name in (
+            (f"lolla_{run_id}_conversation_processing_view.txt", "conversation_processing_view.txt"),
+            (f"lolla_{run_id}_conversation_processing_view.json", "conversation_processing_view.json"),
+        ):
+            shutil.copy2(tmp_path / source_name, run_dir / archive_name)
+
+        agent_result = build_agent_result(
+            run_dir,
+            run_id=run_id,
+            case_id="long-source-coverage",
+            created_at="2026-07-15T00:00:00Z",
+        )
+        adequacy_report = build_extraction_adequacy_report(
+            run_dir,
+            run_id=run_id,
+            case_id="long-source-coverage",
+            created_at="2026-07-15T00:00:00Z",
+        )
+        trace = build_reasoning_trace(
+            run_dir,
+            run_id=run_id,
+            case_id="long-source-coverage",
+            fingerprint="long-source-coverage",
+            how_matched="new",
+            files_copied=[path.name for path in run_dir.iterdir()],
+            files_missing=[],
+            manifest={"run_count": 1},
+            created_at="2026-07-15T00:00:00Z",
+        )
+
+        assert agent_result["capture_adequacy"]["status"] == "warn"
+        assert agent_result["capture_adequacy"]["omitted_turn_count"] == 122
+        assert agent_result["source_coverage"]["authoritative_conversation_preserved"] is True
+        assert agent_result["source_coverage"]["extraction_processing_view_status"] == "partial"
+        assert agent_result["source_coverage"]["authoritative_turn_count"] == 140
+        assert agent_result["source_coverage"]["extraction_processing_turn_count"] == 18
+        assert agent_result["source_coverage"]["extraction_omitted_turn_count"] == 122
+        assert adequacy_report["capture_summary"]["truncation_applied"] is True
+        assert adequacy_report["capture_summary"]["omitted_turn_count"] == 122
+        assert adequacy_report["capture_summary"]["authoritative_conversation_preserved"] is True
+        assert adequacy_report["capture_summary"]["extraction_processing_view_status"] == "partial"
+        assert trace["capture"]["capture_adequacy"]["omitted_turn_count"] == 122
+        assert trace["capture"]["source_coverage"] == agent_result["source_coverage"]
+    finally:
+        sidecar_path.unlink(missing_ok=True)
 
 
 def test_valid_four_token_slug():

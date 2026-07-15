@@ -30,7 +30,7 @@ ORDINARY LIVE PATH
 
 available user/assistant prose
   -> capture and authoritative conversation.txt
-  -> bounded processing view when needed
+  -> bounded initial-extraction view when needed
   -> model extraction
   -> ConversationContext / ConversationIR
   -> four pressure lanes
@@ -89,10 +89,17 @@ user and assistant turns. The declared source boundary excludes system
 instructions, tool calls/results, file contents, and other non-prose host
 context unless separately supplied.
 
-For long material, `scripts/run_extract.py` may create a bounded processing
-view. That view is derivative. The original source remains available and
-omissions are recorded. Compactness is not proof that the omitted material was
-irrelevant.
+For material above 80,000 characters, `scripts/run_extract.py` creates a
+bounded initial-extraction view containing the first 3 and last 15 parsed
+message blocks. That view is derivative. The original source remains
+available, exact omitted windows are recorded, and later conversation-native
+pressure input is loaded from the full authoritative transcript. Compactness
+is not proof that omitted material was irrelevant, and full later input does
+not prove that a partial initial scaffold caused no semantic loss.
+
+Run health calls this condition `extraction_processing_view_partial` and
+degrades the run. `capture_truncated` remains only as a deprecated boolean
+compatibility alias; it does not mean `conversation.txt` was truncated.
 
 The honest claim is “complete available user/assistant prose,” not “everything
 the host agent saw” and not “complete semantic comprehension.”
@@ -171,6 +178,8 @@ context rationalization remains a known risk.
 A complete ordinary run persists a revised answer, memo, disposition records,
 pressure-check state, health, usage, provider and privacy metadata, archive
 manifest, `agent_result.json`, `evaluation.json`, and `reasoning_trace.json`.
+`agent_result.json` separately reports authoritative source preservation and
+initial extraction coverage under `source_coverage`.
 
 State semantics are explicit:
 
@@ -287,7 +296,8 @@ insufficient real-user and market evidence.
 The canonical restart roadmap is
 [plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).
 
-The next eligible decision is whether to authorize a provider-free review of
+The Stage 0.6 long-conversation source-coverage repair is complete. The next
+eligible decision is whether to authorize a provider-free review of
 checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.

@@ -137,6 +137,7 @@ A completed run leaves a durable artifact chain:
 
 - captured conversation
 - extraction JSON with capture-adequacy metadata
+- explicit authoritative-source versus initial-extraction coverage
 - pipeline result JSON with run-health and capture-adequacy custody
 - revised answer
 - pre-Step-6 private-table ledger when required
@@ -212,6 +213,11 @@ Capture the current conversation to `/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt
 ### Step 2: Extract Decision Structure
 
 Invoke `scripts/skill/run_extract_step.sh`; do not reconstruct the `run_extract.py` command yourself. Then branch on `EXTRACTION_STATUS`: decline for `not_strategic`, stop cleanly for `capture_critical`, and continue for `ok`. See [Step 2 in STEPS.md](docs/skill/STEPS.md#step-2-extract-decision-structure) for the helper and status handling.
+
+For source material above 80,000 characters, the helper preserves the full
+authoritative conversation but gives initial extraction a first-3-plus-last-15
+message view. Treat `extraction_processing_view_partial` as degraded health;
+do not tell the user that the source conversation itself was truncated.
 
 ### Step 2.5: Readback + Audit Promise (Beat 1 — internal name)
 

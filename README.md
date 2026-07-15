@@ -25,7 +25,7 @@ evidence audit is the
 | Area | Lifecycle | What that means |
 |---|---|---|
 | Four-lane pressure skill | **LIVE / EXPERIMENTAL** | Implemented ordinary path; semantic and human value remain under evaluation. |
-| Conversation source custody | **LIVE / BOUNDED** | Preserves complete available user/assistant prose, not system messages, tool payloads, or every file/context item seen by the host. |
+| Conversation source custody | **LIVE / BOUNDED** | Preserves complete available user/assistant prose. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
 | Deterministic custody and graph survival | **LIVE** | Owns identity, bounds, provenance, replay, budgets, ledgers, and pressure survival—not semantic truth. |
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
 | Decision Trail and Product Delta | **BOUNDED / OFFLINE** | Read completed artifacts later; they do not influence the live answer. |
@@ -43,7 +43,7 @@ provider credentials and can incur cost.
 ```text
 available user/assistant prose
   -> authoritative conversation.txt
-  -> bounded processing view when needed (omissions recorded)
+  -> bounded initial-extraction view when needed (exact omissions recorded)
   -> provisional ConversationContext / ConversationIR
   -> four pressure lanes
        tendency pressure
@@ -139,6 +139,11 @@ score. `reasoning_trace.json` is custody metadata, not a hidden chain-of-thought
 claim. Missing, completed-zero, partial, failed, and complete states remain
 different.
 
+For long runs, `conversation.txt` remains authoritative. A partial initial
+extraction view is reported as degraded source coverage rather than being
+misdescribed as truncation of the conversation itself. See the
+[Stage 0.6 result](docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md).
+
 ## What the evidence established
 
 Implemented and extensively mechanically tested:
@@ -169,8 +174,9 @@ for its place in the wider system.
 
 ## Current development gate
 
-The next eligible product decision is whether to authorize Stage 1: a
-provider-free truthfulness review of checked-in-safe Decision Trail material.
+The provider-free Stage 0.6 source-coverage prerequisite is complete. The next
+eligible product decision is whether to authorize Stage 1: a provider-free
+truthfulness review of checked-in-safe Decision Trail material.
 Stage 1 is not started by this README or by cloning the repository. It must not
 inspect private archives, create a new semantic reader, call a provider,
 automate Decision Work, reopen R4/R5, or change runtime behavior.

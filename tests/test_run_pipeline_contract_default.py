@@ -940,13 +940,14 @@ def test_capture_adequacy_warning_propagates_to_run_health(
     assert result["run_health"]["capture_adequacy"]["omitted_windows"] == [
         {"start_turn": 4, "end_turn": 15, "turn_count": 12}
     ]
-    assert "capture_truncated" in result["run_health"]["issues"]
+    assert "extraction_processing_view_partial" in result["run_health"]["issues"]
+    assert "capture_truncated" not in result["run_health"]["issues"]
     capture_detail = next(
         detail
         for detail in result["run_health"]["issue_details"]
-        if detail["code"] == "capture_truncated"
+        if detail["code"] == "extraction_processing_view_partial"
     )
-    assert capture_detail["axis"] == "capture"
+    assert capture_detail["axis"] == "extraction"
     assert capture_detail["omitted_turns"] == 12
 
 

@@ -184,7 +184,7 @@ Claude reads the pipeline output JSON and renders one focused counterargument le
 
 **Counterargument lead structure:**
 
-1. **Run-health line, conditional.** If `run_health.overall` is not `"healthy"` and the issue affects trust in the run, open with one plain note. Material issues include `capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, and `bullshit_index_partial`. Clean runs say nothing about health.
+1. **Run-health line, conditional.** If `run_health.overall` is not `"healthy"` and the issue affects trust in the run, open with one plain note. Material issues include `capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `extraction_processing_view_partial`, `lane3_all_dropped`, and `bullshit_index_partial`. For the processing-view issue, say that the full source is preserved and initial extraction omitted declared middle turns; do not say the conversation itself was truncated. Clean runs say nothing about health.
 
 2. **One exact quote anchored to a turn.** The quote can come from the user or assistant, depending on where the case-against lives. Turn numbers are light source attribution, not headings.
 

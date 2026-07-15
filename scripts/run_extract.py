@@ -180,6 +180,28 @@ KEEP_FIRST_TURNS = 3
 KEEP_LAST_TURNS = 15
 
 
+def _split_conversation_turns(text: str) -> tuple[str, list[str]]:
+    """Return the transcript preamble and exact turn-marker blocks.
+
+    The preamble (normally the ``CONVERSATION:`` header) is source metadata,
+    not a conversational turn. Keeping it separate prevents bounded-view
+    accounting from claiming that one more turn was retained than the model
+    actually received.
+    """
+
+    markers = list(re.finditer(r"(?m)^\[Turn \d+\] (?:USER|ASSISTANT):\s*$", text))
+    if not markers:
+        return text, []
+    preamble = text[: markers[0].start()]
+    turns = [
+        text[marker.start() : markers[index + 1].start()]
+        if index + 1 < len(markers)
+        else text[marker.start() :]
+        for index, marker in enumerate(markers)
+    ]
+    return preamble, turns
+
+
 def _truncate_conversation(text: str) -> tuple[str, dict]:
     """Truncate long conversations, keeping early + late turns.
 
@@ -191,10 +213,7 @@ def _truncate_conversation(text: str) -> tuple[str, dict]:
     if len(text) <= MAX_CONVERSATION_CHARS:
         return text, {"truncation_applied": False}
 
-    # Split by turn markers
-    import re
-    turns = re.split(r"(?=\[Turn \d+\])", text)
-    turns = [t for t in turns if t.strip()]
+    preamble, turns = _split_conversation_turns(text)
 
     if len(turns) <= KEEP_FIRST_TURNS + KEEP_LAST_TURNS:
         return text, {"truncation_applied": False}
@@ -204,7 +223,8 @@ def _truncate_conversation(text: str) -> tuple[str, dict]:
     omitted = len(turns) - KEEP_FIRST_TURNS - KEEP_LAST_TURNS
 
     truncated = (
-        "".join(first)
+        preamble
+        + "".join(first)
         + f"\n[... {omitted} turns omitted for brevity ...]\n\n"
         + "".join(last)
     )
@@ -900,6 +920,7 @@ def main() -> int:
     )
     capture_result["conversation_processing_view"] = processing_view
     if truncation_info.get("truncation_applied"):
+        capture_result["capture_manifest"].update(truncation_info)
         capture_result["capture_warnings"].append(
             f"Extraction processing view is partial: {truncation_info['omitted_turns']} middle "
             f"turns omitted from the bounded extraction call "

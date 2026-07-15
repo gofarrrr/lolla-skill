@@ -28,6 +28,7 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **LIVE / CURRENT:** [How it works](../HOW_IT_WORKS.md)
 - **BINDING:** [Product Constitution v5](conversation-understanding/lolla-product-constitution-v5.md)
 - **CURRENT AUDIT:** [Constitution Stage 0 addendum](conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+- **CURRENT CORRECTION:** [Stage 0.6 long-conversation truthfulness result](conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md)
 - **CURRENT REGISTER:** [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
 - **CURRENT ROADMAP:** [Post-Stage-0 restart roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
 - **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
