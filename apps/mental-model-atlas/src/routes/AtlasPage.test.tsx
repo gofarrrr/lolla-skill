@@ -43,6 +43,11 @@ describe("Atlas interaction state", () => {
     });
     expect(within(selectedPanel).getByRole("heading", { name: "Abstraction" })).toBeTruthy();
     expect(new URL(window.location.href).searchParams.get("model")).toBe("abstraction");
+    expect(
+      document
+        .querySelector("svg[data-renderer='svg']")
+        ?.getAttribute("data-camera-transform"),
+    ).toContain("translate(500px, 350px)");
 
     const criticalThinking = screen.getByRole("button", {
       name: "Select Critical Thinking",
@@ -52,6 +57,13 @@ describe("Atlas interaction state", () => {
     expect(await screen.findByText("Preview — selection unchanged")).toBeTruthy();
     expect(within(selectedPanel).getByRole("heading", { name: "Abstraction" })).toBeTruthy();
     expect(new URL(window.location.href).searchParams.get("model")).toBe("abstraction");
+
+    fireEvent.click(within(selectedPanel).getByRole("button", { name: "Clear" }));
+    await waitFor(() => {
+      expect(document.activeElement?.getAttribute("data-model-id")).toBe(
+        "abstraction",
+      );
+    });
   });
 
   it("distinguishes a valid zero-result filter from load failure", async () => {

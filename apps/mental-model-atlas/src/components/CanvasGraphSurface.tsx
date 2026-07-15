@@ -69,8 +69,8 @@ export default function CanvasGraphSurface(props: GraphRendererProps) {
     };
     const camera = cameraFor(models, relations, props);
     return {
-      x: camera.x + (screenPoint.x - camera.x) / camera.scale,
-      y: camera.y + (screenPoint.y - camera.y) / camera.scale,
+      x: camera.x + (screenPoint.x - camera.targetX) / camera.scale,
+      y: camera.y + (screenPoint.y - camera.targetY) / camera.scale,
     };
   }
 
@@ -117,7 +117,7 @@ function draw(
   context.lineCap = "round";
   const camera = cameraFor(models, relations, props);
   if (camera.scale !== 1) {
-    context.translate(camera.x, camera.y);
+    context.translate(camera.targetX, camera.targetY);
     context.scale(camera.scale, camera.scale);
     context.translate(-camera.x, -camera.y);
   }
@@ -168,7 +168,7 @@ function cameraFor(
   models: PositionedModel[],
   relations: PositionedRelation[],
   props: GraphRendererProps,
-): { x: number; y: number; scale: number } {
+): { x: number; y: number; targetX: number; targetY: number; scale: number } {
   const selectedModel = models.find(
     ({ model }) => model.model_id === props.selectedModelId,
   );
@@ -186,6 +186,8 @@ function cameraFor(
       ((selectedRelation?.source.y ?? GRAPH_HEIGHT / 2) +
         (selectedRelation?.target.y ?? GRAPH_HEIGHT / 2)) /
         2,
+    targetX: GRAPH_WIDTH / 2,
+    targetY: GRAPH_HEIGHT / 2,
     scale: selectedModel || selectedRelation ? 1.055 : 1,
   };
 }

@@ -300,7 +300,7 @@ function PageNavigation({
   const pageCount = Math.ceil(
     projection.page.eligible_count / projection.page.page_size,
   );
-  if (pageCount <= 1) {
+  if (projection.fixture_id !== "confirmation_bias_hub" || pageCount <= 1) {
     return null;
   }
   const currentPage = projection.page.page_number;

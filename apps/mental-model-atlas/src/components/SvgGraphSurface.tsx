@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import {
   curveGeometry,
+  GRAPH_HEIGHT,
   GRAPH_VIEWBOX,
   GRAPH_WIDTH,
   positionModels,
@@ -37,7 +38,9 @@ export default function SvgGraphSurface(props: GraphRendererProps) {
       ? (selectedRelation.source.y + selectedRelation.target.y) / 2
       : 350);
   const cameraScale = hasSelection ? 1.055 : 1;
-  const cameraTransform = `translate(${cameraX}px, ${cameraY}px) scale(${cameraScale}) translate(${-cameraX}px, ${-cameraY}px)`;
+  const cameraTransform = hasSelection
+    ? `translate(${GRAPH_WIDTH / 2}px, ${GRAPH_HEIGHT / 2}px) scale(${cameraScale}) translate(${-cameraX}px, ${-cameraY}px)`
+    : "translate(0px, 0px) scale(1)";
 
   return (
     <svg
