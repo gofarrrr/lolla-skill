@@ -37,10 +37,11 @@ later. The eval lane does not run `$lolla`, invoke the skill, call providers,
 mutate archives, change prompts, change runtime behavior, score answer
 quality, create automatic labels, or authorize agent action.
 
-## Current reasoning-audit controls
+## Historical reasoning-audit and evaluation chronology
 
-The newer core reasoning-audit program has a separate, narrower reader path
-from the historical Product Delta lane above:
+The list below preserves the evaluation chronology. It contains current
+mechanical controls alongside superseded proposals and retired reader research;
+it is not a current implementation sequence:
 
 1. [Product constitution v3](../conversation-understanding/lolla-product-constitution-v3.md)
 2. [Evaluation doctrine](../conversation-understanding/lolla-evaluation-doctrine-v0.md)
@@ -1523,10 +1524,12 @@ pressure engine, Decision Work as an optional derivative sidecar, and
 Observatory as a read-only inspection surface. It explicitly distinguishes
 mechanical operation from real-user usefulness.
 
-After closeout publication, the next eligible goal is a provider-free
-completed-run artifact-to-Decision-Trail coverage audit. No provider call,
-semantic reader design, archive mutation, integration, model comparison, or R5
-work is authorized.
+That provider-free coverage audit was later completed as part of the canonical
+Stage 0 addendum. The current next-stage boundary is maintained in
+[`PROJECT_STATUS.md`](../../PROJECT_STATUS.md) and the
+[post-Stage-0 roadmap](../../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).
+This historical closeout still authorizes no provider call, semantic reader
+design, archive mutation, integration, model comparison, or R5 work.
 
 Continuation entrypoints:
 

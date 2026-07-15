@@ -46,8 +46,7 @@ SCRIPT_PATH = (
     REPO_ROOT
     / "scripts/evals/validate_decision_work_generated_interpretation_read.py"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 
@@ -216,8 +215,8 @@ def test_pilot_doc_records_decision_gate_and_non_claims() -> None:
 
 def test_discoverability_docs_reference_pr184() -> None:
     docs = {
-        "README": README_PATH.read_text(),
-        "HOW_IT_WORKS": HOW_IT_WORKS_PATH.read_text(),
+        "README": HISTORICAL_DISCOVERY_PATH.read_text(),
+        "HOW_IT_WORKS": HISTORICAL_DISCOVERY_PATH.read_text(),
         "PROGRESS": PROGRESS_PATH.read_text(),
         "board": BOARD_README_PATH.read_text(),
         "prd": PRD_PATH.read_text(),
@@ -240,8 +239,7 @@ def test_product_delta_boundary_lint_accepts_pr184_docs() -> None:
             INTAKE_REVIEW_DOC_PATH,
             INTAKE_DOC_PATH,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -259,8 +257,7 @@ def test_pilot_artifacts_contain_no_forbidden_markers() -> None:
         INTAKE_REVIEW_DOC_PATH,
         INTAKE_DOC_PATH,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

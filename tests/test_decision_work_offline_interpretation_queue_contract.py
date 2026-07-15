@@ -35,8 +35,7 @@ RUNTIME_PRD_PATH = (
     REPO_ROOT
     / "docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 
@@ -292,8 +291,7 @@ def test_front_door_docs_link_the_queue_contract() -> None:
     assert conversation_rel in PR178_PRD_PATH.read_text(encoding="utf-8")
     assert conversation_rel in BRIEF_PRD_PATH.read_text(encoding="utf-8")
     assert conversation_rel in RUNTIME_PRD_PATH.read_text(encoding="utf-8")
-    assert rel in README_PATH.read_text(encoding="utf-8")
-    assert rel in HOW_IT_WORKS_PATH.read_text(encoding="utf-8")
+    assert rel in HISTORICAL_DISCOVERY_PATH.read_text(encoding="utf-8")
     assert board_rel in BOARD_README_PATH.read_text(encoding="utf-8")
     assert rel in PROGRESS_PATH.read_text(encoding="utf-8")
 
@@ -306,8 +304,7 @@ def test_contract_docs_pass_product_delta_boundary_lint() -> None:
             PR178_PRD_PATH,
             BRIEF_PRD_PATH,
             RUNTIME_PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             BOARD_README_PATH,
             PROGRESS_PATH,
         ]

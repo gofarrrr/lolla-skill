@@ -17,35 +17,37 @@ better answer, certify reasoning quality, or remove human decision authority.
 
 Read these in order before proposing architecture or the next experiment:
 
-1. `docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md`
+1. `PROJECT_STATUS.md` and `docs/README.md` — the concise current product,
+   lifecycle, authorization, and documentation map.
+2. `docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md`
    and `docs/evals/lolla-constitution-stage0-addendum-register-v1.json` — the
    current reachability, evidence, disposition, and Decision Trail coverage
    map. This is the controlling cold-start status.
-2. `plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md` — the
+3. `plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md` — the
    current gated sequence. Stage 1 begins with checked-in-safe truthfulness;
    later real-run, live-pressure, and architecture decisions require separate
    founder authorization.
-3. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
+4. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-4. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
+5. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
    public orientation and ordinary live-skill behavior.
-5. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+6. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-6. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
    and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
    decision that stopped the incremental R4 reader while preserving the live
    pressure path, bounded sidecars, and research evidence.
-7. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
    — immutable final R4 evidence and the frozen
    `separated_tasks_ineffective_companions_persist` decision.
-8. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
    — immutable A1 first-failure evidence and frozen
    `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-9. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
+10. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
    `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
    — the implemented sidecar boundary and the richer, still-provisional
    interpretation target.
@@ -133,10 +135,10 @@ Consequences:
   response healing, premium-model substitution, evaluator call, or scope
   expansion unless the same exact authorization permits it. Preserve the first
   terminal result honestly.
-- LLM judgment calls use Gemini through OpenRouter for the current R4 contract.
-  The pinned operator is `google/gemini-3.1-flash-lite` through
-  `google-vertex`, with fallbacks off, required parameters, data collection
-  denied, and ZDR requested. Do not use Gemini 3.5 Flash for routine testing.
+- The retired R4 evidence preserves its historical Gemini/OpenRouter operator
+  exactly. It is not a current experiment default or authorization. Any future
+  provider-facing goal must recheck official model, route, price, privacy, and
+  structured-output guidance and freeze a new exact operator contract.
 - Embeddings use the direct OpenAI key (`OPENAI_API_KEY` or the explicitly
   supported Lolla alias), not the OpenRouter key. If the OpenAI key is absent,
   follow the documented provider-free/degraded path; do not silently redirect
@@ -168,37 +170,20 @@ Consequences:
 ## Verification discipline
 
 Run the smallest relevant checks while iterating, then the full suite before a
-handoff or PR update. For the current Stage 0 addendum and frozen R4 custody:
+handoff or PR update. For the current Stage 0 public handoff:
 
 ```bash
 PYTHONPATH=. python3 scripts/evals/validate_constitution_stage0_addendum_register.py --register docs/evals/lolla-constitution-stage0-addendum-register-v1.json
-PYTHONPATH=. pytest -q tests/test_constitution_stage0_addendum_register.py
-PYTHONPATH=. python3 scripts/evals/build_r4_residual_task_contract.py --validate-only
-PYTHONPATH=. python3 scripts/evals/build_r4_matched_holdout_v2_contract.py --validate-only
-PYTHONPATH=. python3 scripts/evals/run_r4_matched_holdout_v2_experiment.py --dry-run
-PYTHONPATH=. python3 scripts/evals/seal_r4_matched_holdout_v2_execution_a1.py --validate-only
-PYTHONPATH=. python3 scripts/evals/finalize_r4_matched_holdout_v2_execution_a1.py --validate-only
-PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a1.py --validate-only
-PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a1.py --validate-only
-PYTHONPATH=. python3 scripts/evals/seal_r4_separated_surface_execution_a2.py --validate-only
-PYTHONPATH=. python3 scripts/evals/finalize_r4_separated_surface_execution_a2.py --validate-only
-PYTHONPATH=. python3 scripts/evals/build_r4_matched_residual_holdout_contract.py --validate-only
-PYTHONPATH=. python3 scripts/evals/run_r4_matched_residual_holdout_experiment.py --dry-run
-PYTHONPATH=. python3 scripts/evals/build_r4_semantic_distinction_contract.py --validate-only
-PYTHONPATH=. python3 scripts/evals/run_r4_semantic_distinction_experiment.py --dry-run
-PYTHONPATH=. python3 scripts/evals/finalize_r4_semantic_distinction_execution.py --validate-only
-PYTHONPATH=. pytest -q tests/test_r4_separated_surface_execution_a2.py tests/test_r4_separated_surface_execution_a1.py tests/test_r4_separated_surface_experiment.py tests/test_r4_separated_surface_target.py tests/test_r4_separated_surface_source_freeze.py tests/test_r4_matched_holdout_v2_execution_a1.py tests/test_r4_matched_residual_holdout.py tests/test_r4_matched_residual_holdout_v2.py tests/test_r4_residual_task.py tests/test_r4_residual_task_contract.py tests/test_r4_semantic_distinction.py tests/test_r4_semantic_distinction_contract.py tests/test_r4_semantic_distinction_execution.py tests/test_r4_provider_free_corpus_replay.py
+PYTHONPATH=. python3 scripts/evals/validate_stage0_public_handoff.py
+PYTHONPATH=. pytest -q tests/test_constitution_stage0_addendum_register.py tests/test_stage0_public_handoff.py tests/test_r4_separated_surface_execution_a2.py
 PYTHONPATH=. pytest -q
 ```
 
 Also run `git diff --check` on the current change and validate changed JSON.
 Do not rewrite frozen historical evidence merely to clean legacy whitespace.
-At the 2026-07-14 separated-surface execution A2 publication, the focused
-canonical verification passes 42 tests. The complete suite passes 4,966 tests
-and all 93 subtests,
-with one existing `datetime.utcnow()` deprecation warning. A changed count is
-not automatically a regression; unexplained failures or historical hash drift
-are.
+The Stage 0 addendum publication passed 4,968 tests and all 93 subtests with one
+existing `datetime.utcnow()` deprecation warning. A changed count is not
+automatically a regression; unexplained failures or historical hash drift are.
 
 ## Current handoff — 2026-07-15
 
@@ -218,7 +203,7 @@ are.
   Observatory.
 - Complete available user/assistant prose remains authoritative in
   `conversation.txt`. Processing views and semantic reads are derivative and
-  must disclose omissions. The current live extraction is useful but is not a
+  must disclose omissions. The current live extraction is implemented but is not a
   complete long-conversation representation.
 - The live four-lane pressure engine, mental-model graph recall,
   constitutional graph-survival portfolio, and apply/reject/park custody remain
@@ -228,24 +213,23 @@ are.
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
   generator.
-- The Stage 0 addendum audits canonical `main` at
-  `f4493e20634544addd6633d8e92a836c6488f61e`, the merge of PR #371. Its
+- The Stage 0 addendum was canonically published through PR #372 at merge
+  `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
   lifecycle disposition and distinguishes live calls from artifact handoffs,
   optional hooks, offline paths, read-only projections, and absent links.
-- Provider calls currently authorized: zero. A1 and A2 authorizations are
+- Provider calls authorized for repository development: zero. A1 and A2 authorizations are
   consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
   completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
   tweak, model comparison, or integration is authorized.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The immediate operational decision is publication of this provider-free Stage
-0 addendum as the canonical system map. After publication, the next eligible
-product goal is Stage 1: a provider-free, checked-in-safe Decision Trail
-truthfulness review. It may test whether a cold reviewer can distinguish
-source custody, provisional interpretation, missingness, human-review needs,
-and action prohibition. It may not inspect private archives, generate a new
-semantic read, call a provider, automate the sidecar, change runtime, reopen
-R4/R5, or claim product usefulness. Real-run review and live-pressure
+The Stage 0.5 public-handoff gardening pass makes the canonical map legible from
+a fresh clone. It changes current documentation, validation, and navigation
+only. The next eligible product goal remains Stage 1: a provider-free,
+checked-in-safe Decision Trail truthfulness review. Stage 1 is
+not authorized by gardening. It may not inspect private archives, generate a
+new semantic read, call a provider, automate the sidecar, change runtime,
+reopen R4/R5, or claim product usefulness. Real-run review and live-pressure
 usefulness remain later, separately authorized stages.

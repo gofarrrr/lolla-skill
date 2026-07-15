@@ -42,8 +42,7 @@ PRD_PATH = (
     / "docs/conversation-understanding/"
     "decision-work-automatic-semantic-supply-prd-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 FORBIDDEN_STRINGS = (
@@ -168,8 +167,7 @@ def test_review_doc_records_the_comparison_and_gate() -> None:
 def test_discoverability_docs_reference_pr188() -> None:
     expected = "Decision Work Generated Read Brief vs Existing Brief Review"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,
@@ -189,8 +187,7 @@ def test_pr188_docs_pass_product_delta_lint() -> None:
             ENRICHED_BRIEF,
             PR187_DOC,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -207,8 +204,7 @@ def test_pr188_artifacts_contain_no_forbidden_markers() -> None:
         GENERATED_BRIEF,
         PR187_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

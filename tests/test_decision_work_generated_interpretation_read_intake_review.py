@@ -36,8 +36,7 @@ PROMPT_PACKET_DOC = (
     REPO_ROOT
     / "docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 
@@ -252,8 +251,7 @@ def test_docs_and_review_pass_product_delta_lint() -> None:
             PRD_PATH,
             QUEUE_CONTRACT_DOC,
             PROMPT_PACKET_DOC,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]

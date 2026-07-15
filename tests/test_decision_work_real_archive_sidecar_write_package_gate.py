@@ -44,8 +44,7 @@ PLAN_DOC = (
     REPO_ROOT
     / "docs/conversation-understanding/decision-work-real-archive-sidecar-write-plan-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 EXPECTED_SCHEMA = "lolla.decision_work_real_archive_sidecar_write_package_manifest.v0"
@@ -257,8 +256,7 @@ def test_package_doc_and_discoverability_references() -> None:
         PR220_DOC,
         INTERNAL_V1_PRD,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -276,8 +274,7 @@ def test_pr221_docs_pass_product_delta_lint() -> None:
             PLAN_DOC,
             INTERNAL_V1_PRD,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -298,8 +295,7 @@ def test_manifest_and_docs_contain_no_forbidden_markers() -> None:
         PLAN_DOC,
         INTERNAL_V1_PRD,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

@@ -6,7 +6,8 @@ Canonical base: `f4493e20634544addd6633d8e92a836c6488f61e`
 
 Canonical tree: `83ba656bb41a8c3d6073d4967e8535db181ce3d5`
 
-Status: complete provider-free architecture audit; local and unpublished
+Status: complete provider-free architecture audit; canonically published by
+PR #372 at merge `fc30bd944bfb91fbff0cc09190487997f3fe3185`
 
 Selected conclusion: `preserve_live_pressure_and_custody_bound_optional_interpretation_retire_incremental_r4_restart_from_human_truthfulness_gate`
 
@@ -396,9 +397,10 @@ projection boundary. It asks whether a cold human reviewer can distinguish
 source fact, provisional interpretation, missingness, and non-authorization
 from existing completed-run fixtures. It must not build another reader.
 
-The sole immediate founder decision is whether to publish this addendum and
-authorize that first provider-free gate. Publication and the gate remain
-separate mutations; this local audit authorizes neither automatically.
+The addendum is now canonical. The sole next product decision is whether to
+authorize the first provider-free gate. Publication, repository gardening, and
+the gate remain separate mutations; this audit does not authorize Stage 1
+automatically.
 
 ## Machine custody
 
@@ -409,7 +411,9 @@ records are in
 `scripts/evals/validate_constitution_stage0_addendum_register.py` checks the
 register without inferring semantics. It accounts for all 634 canonical Python
 implementation files under `engine/system_b/`, `scripts/`, and `observatory/`
-through explicit ordered assignments and excludes only the new audit validator
-from the canonical-base inventory.
+through explicit ordered assignments. The audited canonical base contained 634
+implementation files after excluding this audit validator. The later public-
+handoff validator is assigned to the evaluation-harness family and raises the
+current validated inventory to 635 without changing a runtime component.
 
 This addendum is an evaluation of Constitution v5. It is not Constitution v6.

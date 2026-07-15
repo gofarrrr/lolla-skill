@@ -22,7 +22,10 @@ They are meant for board/customer-style discussion, not implementation handoff.
 > The briefs below contain historical product hypotheses; they are not current
 > proof of usefulness or automatic integration.
 
-Recommended reading order:
+## Historical brief reading order
+
+The briefs below preserve product hypotheses and bounded implementation
+stories. Read them after the current lifecycle boundary above.
 
 1. [Lolla Board Product Understanding](lolla-board-product-understanding-v0.md)
 

@@ -26,8 +26,7 @@ INTERNAL_V1_PRD = (
     / "docs/conversation-understanding/"
     "decision-work-sidecar-internal-v1-completion-prd-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 FORBIDDEN_STRINGS = (
@@ -119,8 +118,7 @@ def test_current_state_doc_and_discoverability_references() -> None:
         CURRENT_STATE_DOC,
         RUNBOOK_DOC,
         INTERNAL_V1_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -134,8 +132,7 @@ def test_pr223_docs_pass_product_delta_lint() -> None:
             REVIEW_PATH,
             RUNBOOK_DOC,
             INTERNAL_V1_PRD,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -152,8 +149,7 @@ def test_pr223_artifacts_contain_no_forbidden_markers() -> None:
         REVIEW_PATH,
         RUNBOOK_DOC,
         INTERNAL_V1_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

@@ -53,8 +53,7 @@ PR231_DOC = (
     / "docs/conversation-understanding/"
     "decision-work-second-non-curated-completed-run-pilot-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 EXPECTED_SCHEMA = (
@@ -360,8 +359,7 @@ def test_discoverability_docs_reference_pr233() -> None:
         READINESS_PRD,
         PR232_DOC,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -380,8 +378,7 @@ def test_pr233_docs_pass_product_delta_lint() -> None:
             RUNNER_DOC,
             PR229_DOC,
             PR231_DOC,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -403,8 +400,7 @@ def test_pr233_artifacts_contain_no_forbidden_markers() -> None:
         RUNNER_DOC,
         PR229_DOC,
         PR231_DOC,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

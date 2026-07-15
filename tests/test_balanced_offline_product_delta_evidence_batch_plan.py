@@ -14,8 +14,7 @@ REVIEW_PATH = (
     / "reviews/codex-assisted/balanced-offline-product-delta-evidence-batch-plan-v0/review.json"
 )
 READINESS_PRD_PATH = REPO_ROOT / "docs/evals/product-delta-evaluation-readiness-prd-v0.md"
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 EVALS_README_PATH = REPO_ROOT / "docs/evals/README.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
@@ -208,8 +207,7 @@ def test_discoverability_docs_reference_balanced_batch_plan() -> None:
     expected = "Balanced Offline Product Delta Evidence Batch Plan"
 
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         EVALS_README_PATH,
         BOARD_README_PATH,
@@ -224,8 +222,7 @@ def test_product_delta_boundary_lint_passes_new_artifacts() -> None:
             PLAN_PATH,
             REVIEW_PATH,
             READINESS_PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             EVALS_README_PATH,
             BOARD_README_PATH,

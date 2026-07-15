@@ -17,8 +17,7 @@ RUNTIME_PRD_PATH = (
     REPO_ROOT
     / "docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 
@@ -135,8 +134,7 @@ def test_front_door_docs_link_the_prd() -> None:
 
     assert conversation_rel in _text(BRIEF_PRD_PATH)
     assert conversation_rel in _text(RUNTIME_PRD_PATH)
-    assert rel in _text(README_PATH)
-    assert rel in _text(HOW_IT_WORKS_PATH)
+    assert rel in _text(HISTORICAL_DISCOVERY_PATH)
     assert board_rel in _text(BOARD_README_PATH)
     assert rel in _text(PROGRESS_PATH)
 
@@ -147,8 +145,7 @@ def test_prd_and_touched_docs_pass_boundary_lint() -> None:
             PRD_PATH,
             BRIEF_PRD_PATH,
             RUNTIME_PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             BOARD_README_PATH,
             PROGRESS_PATH,
         ]

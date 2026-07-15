@@ -16,7 +16,10 @@ Decision Work semantic generation are parked. The current live product path is
 the four-lane pressure system described by the Stage 0 audit; real-user
 usefulness remains unknown.
 
-Current planning docs:
+## Historical planning, prototype, and review inventory
+
+The list below is preserved for discovery and custody. Its entries do not share
+one lifecycle state; consult the individual document and the Stage 0 register.
 
 - [Mental Model Teacher Product Surface and Visual Library PRD](mental-model-teacher-product-surface-and-visual-library-prd-v0.md)
 - [Mental Model Teacher Current Substrate Inventory](mental-model-teacher-current-substrate-inventory-v0.md)
