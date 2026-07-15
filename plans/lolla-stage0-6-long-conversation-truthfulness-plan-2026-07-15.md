@@ -86,4 +86,3 @@ omitted material was irrelevant.
 Stop after truthful deterministic custody is restored. A materially different
 long-conversation interpretation architecture requires a new founder decision,
 its own falsifier, and—if provider-facing—a separately frozen authorization.
-

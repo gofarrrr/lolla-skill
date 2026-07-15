@@ -159,12 +159,39 @@ a material user problem. That decision should compare bounded alternatives
 from first principles; it should not begin by silently increasing the
 threshold.
 
-## Verification contract
+## Verification
 
 The end-to-end regression invokes the real extraction and pipeline entrypoints
 with local fake provider boundaries, then builds archive-facing agent result,
 extraction adequacy, and reasoning trace objects. It requires all surfaces to
 agree on `140 / 18 / 122` and requires zero network transport.
 
-Repository-wide and frozen-evidence verification is recorded at final handoff.
+Final results:
 
+- Stage 0.6 and current-handoff focused slice: 93 passed.
+- Frozen R4 separated-surface and replay slice: 37 passed.
+- Complete repository suite: 4,974 passed.
+- Additional subtests: 93 passed.
+- Failures: 0.
+- Warning: one pre-existing `datetime.utcnow()` deprecation warning in
+  `scripts/stability_check.py`.
+- Stage 0 register: valid; 25 components, 24 connections, 17 Constitution
+  rules, 26 Decision Trail field groups, and 636 assigned implementation
+  files.
+- Public cold-start handoff: valid; ten orientation questions and 78 checked
+  current-entrypoint links.
+- Changed Markdown links: 87 checked, zero missing.
+- Changed Python compilation: passed.
+- Changed register JSON parsing: passed.
+- Frozen A2 custody tests: passed; no frozen evidence changed.
+- Added-material secret-pattern scan: zero matches.
+- Git object integrity: passed; three harmless dangling blobs were reported.
+- Provider calls: 0.
+- Provider cost: `$0.00`.
+
+The first repository-wide invocation ran before the implementation checkpoint
+and reported 20 failures. Every failure was the same historical Decision Work
+guard checking that `git status -- SKILL.md scripts/skill` was empty; the
+intentionally edited `SKILL.md` was still uncommitted. After the exact change
+was committed, the full suite passed. This was a worktree-state assertion, not
+a semantic, runtime, frozen-evidence, or test regression.

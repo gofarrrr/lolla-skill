@@ -40,4 +40,3 @@ def build_source_coverage(
 
 def _text(value: Any) -> str:
     return str(value or "").strip()
-
