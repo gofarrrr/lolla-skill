@@ -31,16 +31,19 @@ telemetry and cannot delete this portfolio.
 
 > **Development status (2026-07-14):** The end-to-end skill and custody harness
 > work, but V1 did not establish product reliability, real-user usefulness,
-> stability, or receipt reconstruction. R4's leakage-corrected matched holdout
-> has now executed exactly once: all eight Gemini 3.1 Flash-Lite calls completed
-> for `$0.01408165`. The residual arm preserved both genuine targets and removed
-> some broad inventory, but it failed both quiet controls, so the frozen result
-> is `residual_task_repair_insufficient`. The earlier v1 holdout remains rejected
-> for semantic leakage. The residual reader is not integrated into the runtime,
-> its one-use authorization is consumed, and no further call is authorized.
+> stability, or receipt reconstruction. The final R4 A2 experiment completed all
+> twelve paired/separated calls for `$0.02148425`. Both genuine findings
+> survived, but separation did not remove either unsupported companion and the
+> separated dependency calls still misclassified governed machinery. The frozen
+> result is `separated_tasks_ineffective_companions_persist`. The provider-free
+> architecture closeout therefore stops the current incremental R4 reader while
+> preserving full-conversation custody, the live four-lane mental-model pressure
+> path, the optional Decision Work sidecar, and Observatory as separate layers.
+> No further R4 call or integration is authorized.
 > Lolla does not certify that a revised answer is better or safe to act on. See
 > the
 > [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
+> [R4 product and architecture closeout](docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md),
 > [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md),
 > [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md),
 > [R3 provider-schema repair](docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md),
@@ -1395,7 +1398,21 @@ unsafe separated dependency records. The frozen decision is
 `separated_tasks_ineffective_companions_persist`. A2 is the final provider run
 for the incremental R4 reader program; no A3, integration, or further prompt
 experiment is authorized. The next possible goal is provider-free
-product/architecture closeout.
+product/architecture closeout. That closeout is now documented below and
+replaces this historical next-step boundary.
+
+The provider-free
+**[R4 product and architecture closeout](docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md)**
+selects `stop_current_r4_reader_preserve_core_pressure_and_decision_trail`.
+The current residual and separated-surface readers remain immutable research
+evidence and must not feed runtime, graph selection, Decision Work semantic
+supply, or Observatory interpretation. Complete available prose-conversation
+custody, the live four-lane pressure engine and mental-model graph, the optional
+operator-directed Decision Work sidecar, and the read-only Observatory remain
+distinct preserved layers. Mechanical operation is not a product-usefulness
+claim. After publication of the closeout, the next eligible goal is only a
+provider-free artifact-to-Decision-Trail coverage audit over explicitly scoped
+completed-run evidence.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

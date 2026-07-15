@@ -6,6 +6,18 @@ Date: 2026-06-30
 These documents explain Lolla's current product direction in simple language.
 They are meant for board/customer-style discussion, not implementation handoff.
 
+> **Current architecture boundary (2026-07-14):** The final R4 experiment did
+> not validate the residual/separated conversation reader, so that incremental
+> reader is stopped and remains research evidence. This does not stop the
+> product direction described here: Lolla still preserves the complete
+> available prose conversation, introduces provenance-bearing mental-model
+> pressure, records apply/reject/park dispositions, and can package an optional
+> Decision Work sidecar for later inspection. The sidecar machinery is
+> functional, but trustworthy automatic semantic interpretation of arbitrary
+> conversations is not implemented or product-validated. Read the
+> [R4 product and architecture closeout](../conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md)
+> before treating any older proposed next phase as current authorization.
+
 Recommended reading order:
 
 1. [Lolla Board Product Understanding](lolla-board-product-understanding-v0.md)
