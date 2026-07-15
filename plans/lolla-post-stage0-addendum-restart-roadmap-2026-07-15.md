@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 
-Status: proposed provider-gated restart sequence; no stage authorized
+Status: canonical provider-gated restart sequence; no evidence stage authorized
 
 Canonical audit base: `f4493e20634544addd6633d8e92a836c6488f61e`
 
@@ -120,5 +120,6 @@ market hypotheses kept as separate dimensions.
 
 ## Immediate decision
 
-Decide only whether to publish the Stage 0 addendum and then separately
-authorize Stage 1. No work beyond Stage 1 is implied.
+The Stage 0 addendum is published. Decide only whether to authorize Stage 1.
+The public-handoff gardening pass does not start Stage 1, and no work beyond
+Stage 1 is implied.

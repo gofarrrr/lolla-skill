@@ -27,8 +27,7 @@ PR216_PACKAGE_DOC = (
     / "docs/conversation-understanding/"
     "decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 EXPECTED_SCHEMA = (
@@ -174,8 +173,7 @@ def test_review_json_names_acceptance_risks_and_stop_conditions() -> None:
 def test_discoverability_docs_reference_pr217() -> None:
     expected = "Decision Work Sidecar Internal v1 Completion PRD"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         AUTOMATIC_SUPPLY_PRD,
@@ -189,8 +187,7 @@ def test_pr217_docs_pass_product_delta_lint() -> None:
         [
             PRD_PATH,
             REVIEW_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
             AUTOMATIC_SUPPLY_PRD,
@@ -206,8 +203,7 @@ def test_pr217_artifacts_contain_no_forbidden_markers() -> None:
     for path in (
         PRD_PATH,
         REVIEW_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         AUTOMATIC_SUPPLY_PRD,

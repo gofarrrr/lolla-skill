@@ -35,8 +35,7 @@ ADAPTER_DOC = (
     / "docs/conversation-understanding/"
     "decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 EXPECTED_SCHEMA = (
@@ -237,8 +236,7 @@ def test_discoverability_docs_reference_pr204() -> None:
         PACKAGE_DOC,
         PR203_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -254,8 +252,7 @@ def test_pr204_docs_pass_product_delta_lint() -> None:
             PR203_REVIEW,
             ADAPTER_DOC,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -273,8 +270,7 @@ def test_manifest_and_docs_contain_no_forbidden_markers() -> None:
         PR203_REVIEW,
         ADAPTER_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

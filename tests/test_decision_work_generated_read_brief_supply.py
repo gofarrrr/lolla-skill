@@ -47,8 +47,7 @@ PRD_PATH = (
     REPO_ROOT
     / "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 
@@ -262,8 +261,7 @@ def test_doc_records_statuses_cli_and_decision_gate() -> None:
 def test_discoverability_docs_reference_pr186() -> None:
     expected = "Decision Work Generated Read Brief Supply Adapter"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,
@@ -282,8 +280,7 @@ def test_pr186_docs_pass_product_delta_lint() -> None:
             READ_PATH,
             INTAKE_PATH,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -304,8 +301,7 @@ def test_pr186_artifacts_contain_no_forbidden_markers() -> None:
         READ_PATH,
         INTAKE_PATH,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

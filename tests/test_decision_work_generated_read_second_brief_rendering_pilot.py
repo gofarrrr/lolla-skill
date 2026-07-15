@@ -66,8 +66,7 @@ PR188_DOC = (
     / "docs/conversation-understanding/"
     "decision-work-generated-read-brief-vs-existing-brief-review-v0.md"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 FORBIDDEN_STRINGS = (
@@ -227,8 +226,7 @@ def test_second_pilot_docs_and_discoverability_are_linked() -> None:
         PRD_PATH,
         PR187_DOC,
         PR188_DOC,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -249,8 +247,7 @@ def test_second_pilot_docs_pass_product_delta_lint() -> None:
             PRD_PATH,
             PR187_DOC,
             PR188_DOC,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -269,8 +266,7 @@ def test_second_pilot_artifacts_contain_no_forbidden_markers() -> None:
         INTAKE_PATH,
         PRD_PATH,
         PR188_DOC,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

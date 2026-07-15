@@ -13,8 +13,7 @@ REVIEW_PATH = (
     REPO_ROOT
     / "reviews/codex-assisted/product-delta-evaluation-readiness-prd-v0/review.json"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 EVALS_README_PATH = REPO_ROOT / "docs/evals/README.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
@@ -204,8 +203,7 @@ def test_discoverability_docs_reference_new_eval_prd() -> None:
     expected = "Product Delta Evaluation Readiness PRD"
 
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         EVALS_README_PATH,
         BOARD_README_PATH,
@@ -218,8 +216,7 @@ def test_product_delta_boundary_lint_passes_new_artifacts() -> None:
         [
             PRD_PATH,
             REVIEW_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             EVALS_README_PATH,
             BOARD_README_PATH,

@@ -31,8 +31,7 @@ PR199_REVIEW = (
     / "reviews/codex-assisted/"
     "decision-work-generated-read-resolver-supply-review-v0/review.json"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 EXPECTED_SCHEMA = (
@@ -258,8 +257,7 @@ def test_discoverability_docs_reference_pr200() -> None:
         PACKAGE_DOC,
         PR199_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -286,8 +284,7 @@ def test_pr200_docs_pass_product_delta_boundary_lint() -> None:
             PR199_DOC,
             PR199_REVIEW,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]

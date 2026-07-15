@@ -82,8 +82,7 @@ DEPLOY_TRIAGE = (
     REPO_ROOT
     / "reviews/codex-assisted/decision-work-generated-read-second-triage-pilot-v0/triage.json"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 FORBIDDEN_STRINGS = (
@@ -404,8 +403,7 @@ def test_adapter_doc_and_discoverability_docs_reference_pr206() -> None:
         DOC_PATH,
         PLAN_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -418,8 +416,7 @@ def test_pr206_docs_pass_product_delta_lint() -> None:
             DOC_PATH,
             PLAN_DOC,
             PRD_PATH,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -436,8 +433,7 @@ def test_pr206_artifacts_contain_no_forbidden_markers() -> None:
         DOC_PATH,
         PLAN_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

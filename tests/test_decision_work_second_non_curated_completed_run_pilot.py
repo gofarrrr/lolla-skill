@@ -53,8 +53,7 @@ LAUNCH_TRIAGE = (
     / "reviews/codex-assisted/"
     "decision-work-generated-read-triage-generation-pilot-v0/triage.json"
 )
-README_PATH = REPO_ROOT / "README.md"
-HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+HISTORICAL_DISCOVERY_PATH = REPO_ROOT / "docs/history/decision-work-product-delta-discoverability.md"
 PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
 BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
 CASE_ID = "second-non-curated-existing-semantic-input-fixture"
@@ -272,8 +271,7 @@ def test_pilot_discoverability_references() -> None:
         PR229_PILOT_DOC,
         READINESS_PRD,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
@@ -289,8 +287,7 @@ def test_pr231_docs_pass_product_delta_lint() -> None:
             PR229_PILOT_DOC,
             READINESS_PRD,
             AUTOMATIC_SUPPLY_PRD,
-            README_PATH,
-            HOW_IT_WORKS_PATH,
+            HISTORICAL_DISCOVERY_PATH,
             PROGRESS_PATH,
             BOARD_README_PATH,
         ]
@@ -309,8 +306,7 @@ def test_pr231_artifacts_contain_no_forbidden_markers() -> None:
         PR229_PILOT_DOC,
         READINESS_PRD,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
+        HISTORICAL_DISCOVERY_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):
