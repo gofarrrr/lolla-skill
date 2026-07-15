@@ -78,7 +78,10 @@ def test_140_turn_authoritative_conversation_survives_bounded_processing_view(
     assert metadata["status"] == "partial"
     assert metadata["authoritative_conversation_preserved"] is True
     assert metadata["processing_view_is_authoritative"] is False
-    assert metadata["omitted_turn_count"] > 0
+    assert metadata["omitted_turn_count"] == 122
+    assert truncation["total_turns"] == 140
+    assert truncation["kept_turns"] == 18
+    assert truncation["omitted_turns"] == 122
     assert metadata["authoritative_sha256"] == hashlib.sha256(
         authoritative.encode("utf-8")
     ).hexdigest()

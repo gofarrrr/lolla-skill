@@ -365,7 +365,16 @@ _HEALTH_ISSUE_DEFAULTS = {
     "capture_truncated": {
         "severity": "degraded",
         "axis": "capture",
-        "trust_impact": "Conversation was truncated before audit, so omitted turns may contain missing context.",
+        "trust_impact": "Legacy compatibility code for a partial bounded extraction view.",
+    },
+    "extraction_processing_view_partial": {
+        "severity": "degraded",
+        "axis": "extraction",
+        "trust_impact": (
+            "The authoritative conversation is preserved, but initial semantic extraction used "
+            "a bounded view that omitted middle turns; extracted scaffolding may therefore miss "
+            "constraints or changes introduced there."
+        ),
     },
     "lane3_all_dropped": {
         "severity": "partial",
@@ -902,6 +911,7 @@ def main() -> int:
     _capture_warnings = extraction.get("capture_warnings", [])
     _capture_manifest = extraction.get("capture_manifest")
     _capture_adequacy = extraction.get("capture_adequacy") or {}
+    _processing_view = extraction.get("conversation_processing_view") or {}
     if not isinstance(_capture_adequacy, dict) or not _capture_adequacy:
         _capture_adequacy = build_capture_adequacy(
             conversation_text=Path(args.conversation_file).read_text(encoding="utf-8")
@@ -919,6 +929,16 @@ def main() -> int:
         (_capture_manifest or {}).get("truncation_applied", False)
     )
     _omitted_turns = int((_capture_manifest or {}).get("omitted_turns", 0) or 0)
+    _processing_view_status = str(
+        (_processing_view or {}).get("status")
+        or ("partial" if _truncation_applied else "full")
+    )
+    _preservation_value = (_processing_view or {}).get(
+        "authoritative_conversation_preserved"
+    )
+    _authoritative_conversation_preserved = (
+        bool(_preservation_value) if _preservation_value is not None else None
+    )
 
     # Resolve data root and load pipeline
     data_root = _resolve_data_root()
@@ -1397,10 +1417,15 @@ def main() -> int:
             _health_issue_detail("quote_fabrication", fabricated_count=_quote_fabricated_count)
         )
     if _truncation_applied:
-        # Conversation was truncated to fit the 80K char cap. Middle turns
-        # dropped; audit ran on first-N + last-N slices.
+        # The authoritative conversation remains intact. Only the initial
+        # semantic extraction call used the bounded first-N + last-N view;
+        # later conversation-native lanes still receive the full source.
         _health_issue_details.append(
-            _health_issue_detail("capture_truncated", omitted_turns=_omitted_turns)
+            _health_issue_detail(
+                "extraction_processing_view_partial",
+                omitted_turns=_omitted_turns,
+                authoritative_conversation_preserved=_authoritative_conversation_preserved,
+            )
         )
     if _lane3_all_dropped:
         # Every frame element failed validation — Lane 3 produced no reframings
@@ -1450,8 +1475,13 @@ def main() -> int:
         "findings_produced": _has_findings,
         "quote_fabrication_count": _quote_fabricated_count,
         "quote_retry_attempted": _quote_retry_attempted,
+        # Deprecated compatibility alias. This means the bounded extraction
+        # view was partial; it does not mean conversation.txt was truncated.
         "capture_truncated": _truncation_applied,
         "omitted_turns": _omitted_turns,
+        "authoritative_conversation_preserved": _authoritative_conversation_preserved,
+        "extraction_processing_view_status": _processing_view_status,
+        "processing_view_omitted_turns": _omitted_turns,
         "lane3_frame_drops_count": _lane3_drops_count,
         "lane3_frame_kept_count": _lane3_kept_count,
         "bullshit_index_evaluation_failures": _bi_evaluation_failures,

@@ -18,6 +18,8 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
+from .source_coverage import build_source_coverage
+
 from .conversation_loader import load_conversation_context
 from .ir import ConversationIR
 from .ir_constructor import construct_conversation_ir
@@ -159,6 +161,10 @@ def extraction_adequacy_report_from_artifacts(run_dir: Path) -> dict[str, Any]:
 def _capture_summary(extraction: Mapping[str, Any]) -> dict[str, Any]:
     capture_manifest = _mapping(extraction.get("capture_manifest"))
     capture_adequacy = _mapping(extraction.get("capture_adequacy"))
+    source_coverage = build_source_coverage(
+        processing_view=_mapping(extraction.get("conversation_processing_view")),
+        capture_adequacy=capture_adequacy,
+    )
     return {
         "capture_health": _text(extraction.get("capture_health")) or "unknown",
         "capture_strategy": _text(capture_adequacy.get("capture_strategy")) or "unknown",
@@ -170,6 +176,12 @@ def _capture_summary(extraction: Mapping[str, Any]) -> dict[str, Any]:
         "capture_adequacy_status": _text(capture_adequacy.get("status")) or "unknown",
         "truncation_applied": bool(capture_manifest.get("truncation_applied")),
         "truncation_reason_present": bool(_text(capture_manifest.get("truncation_reason"))),
+        "authoritative_conversation_preserved": source_coverage[
+            "authoritative_conversation_preserved"
+        ],
+        "extraction_processing_view_status": source_coverage[
+            "extraction_processing_view_status"
+        ],
     }
 
 

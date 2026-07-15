@@ -15,6 +15,20 @@ Provider calls: `0`
 
 Provider cost: `$0.00`
 
+## Post-publication Stage 0.6 correction
+
+The audit correctly distinguished authoritative source custody from bounded
+processing, but a later provider-free regression found that the live code did
+not propagate the bounded initial-extraction omission metadata into the
+manifest trusted by run health and archive-facing reports. The source remained
+intact; the reporting path could nevertheless claim full extraction coverage.
+
+Stage 0.6 repairs that deterministic defect and supersedes this audit only on
+that narrow implementation detail. See the
+[long-conversation truthfulness result](lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md).
+The audit's architecture dispositions, R4 retirement, product nonclaims, and
+human truthfulness restart gate remain unchanged.
+
 ## Executive conclusion
 
 Lolla currently is a working, experimental reasoning-pressure skill with strong
@@ -46,9 +60,10 @@ The trustworthy Stage 0 baseline is therefore:
 - treat usefulness, semantic completeness, and market value as unknown until a
   named human evidence gate is passed.
 
-This addendum does not change Constitution v5 or runtime behavior. It changes
-the cold-start map: a file, schema, fixture, import, or test no longer counts as
-proof that a product capability is live.
+At publication, this addendum did not change Constitution v5 or runtime
+behavior. It changed the cold-start map: a file, schema, fixture, import, or
+test no longer counted as proof that a product capability was live. The later
+Stage 0.6 correction above changes only deterministic source-coverage custody.
 
 ## One canonical system map
 
@@ -277,11 +292,12 @@ bounded projections/workflows, and a large research estate.
 17. **Constitutional graph survival — conforms.** The R2 repair is active and
     tested.
 
-There is no newly discovered runtime violation requiring an emergency code
-change. Immediate responses are documentary: publish the actual map, keep R4
-isolated, preserve missingness, and stop presenting optional/research surfaces
-as one integrated product. Later evidence gates address same-context review,
-semantic completeness, and human usefulness.
+At audit publication, no runtime violation requiring an emergency code change
+had been identified. Stage 0.6 later found and repaired the narrow processing-
+view reporting defect recorded above. The remaining responses are documentary
+and evidentiary: keep R4 isolated, preserve missingness, and stop presenting
+optional/research surfaces as one integrated product. Later evidence gates
+address same-context review, semantic completeness, and human usefulness.
 
 The still-relevant product evils are premature relevance pruning in bounded
 views, context dumping as a substitute for interpretation, compactness

@@ -50,6 +50,7 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 - Omit system reminders and meta-conversation about the skill itself
 - Preserve the complete available prose conversation even when it exceeds 100 turns. Do not pre-truncate the authoritative transcript.
 - Long-conversation compaction belongs to a separately named processing view. `run_extract.py` may create `conversation_processing_view.txt` plus exact omission metadata, while the original `conversation.txt` remains authoritative and is archived unchanged.
+- The current initial-extraction threshold is 80,000 characters, not words or provider tokens. Above it, the bounded view contains exactly the first 3 and last 15 parsed user/assistant message blocks. Later conversation-native pipeline input still loads the full authoritative transcript.
 
 <a id="step-2-extract-decision-structure"></a>
 
@@ -66,6 +67,14 @@ bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"
 The helper verifies the captured conversation file, calls OpenRouter to extract the decision situation, constraints, synthesized position, reasoning passages, framing, and dropped threads, writes `/tmp/lolla_${LOLLA_RUN_ID}_extraction.json`, writes verbose diagnostics to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints `EXTRACTION_STATUS`. If the helper prints `FATAL`, stop. Tell the user the capture failed and ask them to re-run `/lolla`.
 
 The helper also rejects unparseable Step 1 captures before any paid extraction call. If the conversation file uses `USER:` / `ASSISTANT:` without `[Turn N] USER:` / `[Turn N] ASSISTANT:` markers, or if it lacks a parseable `CONVERSATION:` header, fix Step 1 and rerun this helper before proceeding.
+
+When `conversation_processing_view.status == "partial"`, inspect
+`capture_adequacy` before Step 3. The result must distinguish complete source
+custody from partial initial-extraction coverage, report the exact omitted
+window, and later degrade run health as
+`extraction_processing_view_partial`. The legacy
+`run_health.capture_truncated` boolean is a compatibility alias for that
+processing-view state; it is not evidence that `conversation.txt` was cut.
 
 Read `EXTRACTION_STATUS` or the output file's `status` field:
 
@@ -749,7 +758,7 @@ When overriding the receipt and using a complete captured transcript, include th
 
 Keep the functional receipt, but add one plain warning sentence before it. Name the issue in user language, not status codes. Example:
 
-> *Run completed with degraded health: the captured conversation was truncated, so middle turns were omitted. Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Cost estimate: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
+> *Run completed with degraded health: the full conversation was preserved, but the initial extraction view omitted declared middle turns. Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Cost estimate: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
 
 Do not call a degraded run clean. If the issue is capture-related, say the user should rerun if they need a decision-grade audit.
 

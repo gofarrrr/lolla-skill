@@ -486,6 +486,11 @@ def test_agent_result_exposes_capture_adequacy_warning_note(tmp_path: Path) -> N
         {
             "status": "ok",
             "capture_adequacy": capture_adequacy,
+            "conversation_processing_view": {
+                "status": "partial",
+                "authoritative_conversation_preserved": True,
+                "omitted_turn_count": 12,
+            },
             "extraction": {"decision_situation": "Long strategy conversation"},
         },
     )
@@ -497,12 +502,12 @@ def test_agent_result_exposes_capture_adequacy_warning_note(tmp_path: Path) -> N
                 "overall": "degraded",
                 "capture": "good",
                 "capture_adequacy": capture_adequacy,
-                "issues": ["capture_truncated"],
+                "issues": ["extraction_processing_view_partial"],
                 "issue_details": [
                     {
-                        "code": "capture_truncated",
+                        "code": "extraction_processing_view_partial",
                         "severity": "degraded",
-                        "axis": "capture",
+                        "axis": "extraction",
                     }
                 ],
             },
@@ -518,7 +523,20 @@ def test_agent_result_exposes_capture_adequacy_warning_note(tmp_path: Path) -> N
     assert payload["caller_action"] == "do_not_use_run_degraded"
     assert payload["capture_adequacy"]["status"] == "warn"
     assert payload["capture_adequacy"]["omitted_turn_count"] == 12
-    assert "Capture adequacy is warning-level" in payload["notes"][0]
+    assert payload["source_coverage"] == {
+        "schema_version": "lolla.source_coverage.v1",
+        "authoritative_conversation_preserved": True,
+        "extraction_processing_view_status": "partial",
+        "extraction_processing_strategy": "unknown",
+        "authoritative_turn_count": 30,
+        "extraction_processing_turn_count": 18,
+        "extraction_omitted_turn_count": 12,
+    }
+    assert payload["notes"] == [
+        "The authoritative conversation is preserved, but the bounded initial "
+        "extraction view omitted 12 middle turns; inspect source-coverage metadata "
+        "before relying on extracted decision structure."
+    ]
 
 
 def test_agent_result_handles_capture_critical_without_result(tmp_path: Path) -> None:

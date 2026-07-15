@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-15
+Status date: 2026-07-15 (Stage 0.6 source-coverage correction)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -18,6 +18,12 @@ attempt to build a general conversation-state reader produced unsafe false
 positives and has been retired rather than integrated. Lolla's real-user
 usefulness, market value, and ability to improve decisions remain open
 questions that require explicit human evidence gates.
+
+Stage 0.6 repaired one deterministic long-conversation custody defect. Above
+80,000 characters, the authoritative transcript remains complete, but initial
+semantic extraction uses a first-3-plus-last-15 message view. New health and
+archive artifacts now report that partial coverage and its exact omitted
+window; this does not establish long-context semantic adequacy.
 
 ## Status vocabulary
 
@@ -152,6 +158,10 @@ Lolla keeps the complete user/assistant prose available to the orchestrator as
 the authoritative conversational source. It does not automatically capture
 system instructions, tool payloads, file contents, or every non-prose context
 item. Bounded processing views remain derivative and must record omissions.
+For new runs, `agent_result.source_coverage` separates preservation of the
+authoritative conversation from coverage of the initial extraction view. A
+partial view degrades health as `extraction_processing_view_partial`; the
+legacy `capture_truncated` boolean must not be read as source-file truncation.
 
 Decision Trail coverage currently falls into five authority classes:
 
@@ -169,9 +179,10 @@ Missing, partial, failed, complete, and completed-zero remain distinct.
 
 ## Current stage
 
-Stage 0 established the architecture, lifecycle, and evidence map. This public
-handoff gardening pass makes that map findable from a fresh clone; it does not
-start the next evidence stage.
+Stage 0 established the architecture, lifecycle, and evidence map. Stage 0.5
+made that map findable from a fresh clone. Stage 0.6 then corrected
+long-conversation source-coverage reporting without changing semantic prompts,
+the 80,000-character policy, provider behavior, or pressure architecture.
 
 The next eligible founder decision is whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human

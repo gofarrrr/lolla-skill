@@ -14,6 +14,19 @@ prompt tuning, Teacher expansion, Observatory expansion, model comparison,
 sidecar automation, and runtime integration remain outside the sequence unless
 a later founder decision explicitly admits them.
 
+## Completed prerequisite — Stage 0.6 source-coverage truthfulness
+
+The provider-free Stage 0.6 correction is complete. It repaired exact
+long-conversation turn accounting and propagated partial initial-extraction
+coverage through run health and archive-facing artifacts. It did not raise the
+80,000-character threshold, change semantic behavior, or prove long-context
+adequacy. See the
+[Stage 0.6 result](../docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md).
+
+Stage 1 must include this source-coverage distinction in its cold-reviewer
+truthfulness rubric. It must not turn that interface review into a new
+long-context reader or provider experiment.
+
 ## Stage 1 — Decision Trail truthfulness on checked-in-safe artifacts
 
 **Product question:** Can a cold human reviewer use the existing completed-run
@@ -120,6 +133,7 @@ market hypotheses kept as separate dimensions.
 
 ## Immediate decision
 
-The Stage 0 addendum is published. Decide only whether to authorize Stage 1.
-The public-handoff gardening pass does not start Stage 1, and no work beyond
-Stage 1 is implied.
+The Stage 0 addendum and public handoff are published, and the Stage 0.6
+source-coverage prerequisite is complete locally. Decide only whether to
+publish the exact correction and then authorize Stage 1. Publication does not
+start Stage 1, and no work beyond Stage 1 is implied.

@@ -17,6 +17,7 @@ from typing import Any
 
 from .audit_mode import risk_mode_from_result
 from .capture_adequacy import capture_adequacy_from_artifacts
+from .source_coverage import build_source_coverage
 from .control_plane import control_input_summary
 from .provider_boundary_health import build_provider_boundary_health
 
@@ -60,6 +61,7 @@ def build_agent_result(
         extraction=extraction,
         result=result,
     )
+    processing_view = _mapping(extraction.get("conversation_processing_view"))
     artifact_status = _artifact_status(run_dir=run_dir, result=result)
     risk_mode = _risk_mode(result)
     status, status_reason = _status(
@@ -99,6 +101,10 @@ def build_agent_result(
         "live_output_health": _text(run_health.get("live_output_health")) or "unknown",
         "provider_boundary_health": provider_boundary_health,
         "capture_adequacy": _capture_adequacy_compact(capture_adequacy),
+        "source_coverage": build_source_coverage(
+            processing_view=processing_view,
+            capture_adequacy=capture_adequacy,
+        ),
         "risk_mode": risk_mode,
         "caller_action": caller_action,
         **({"control_context": control_context} if control_context else {}),
@@ -128,6 +134,7 @@ def build_agent_result(
             ),
             provider_boundary_health=provider_boundary_health,
             capture_adequacy=capture_adequacy,
+            processing_view=processing_view,
         ),
     }
 
@@ -469,6 +476,7 @@ def _notes(
     contained_provider_boundary_warning_only: bool,
     provider_boundary_health: Mapping[str, Any],
     capture_adequacy: Mapping[str, Any],
+    processing_view: Mapping[str, Any],
 ) -> list[str]:
     capture_status = _text(capture_adequacy.get("status"))
     if capture_status == "critical":
@@ -477,6 +485,15 @@ def _notes(
         ]
     if capture_status == "warn":
         omitted = _text(capture_adequacy.get("omitted_turn_count")) or "some"
+        if (
+            _text(processing_view.get("status")) == "partial"
+            and processing_view.get("authoritative_conversation_preserved") is True
+        ):
+            return [
+                "The authoritative conversation is preserved, but the bounded initial "
+                f"extraction view omitted {omitted} middle turns; inspect source-coverage "
+                "metadata before relying on extracted decision structure."
+            ]
         return [
             f"Capture adequacy is warning-level; {omitted} middle turns may be omitted, so inspect capture metadata before relying on this audit."
         ]
