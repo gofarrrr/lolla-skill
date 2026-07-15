@@ -8,14 +8,16 @@ Lolla surfaces candidate structural weaknesses in LLM-generated strategic advice
 
 When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or restructure your engineering org, the answer can sound more settled than its assumptions warrant. Lolla introduces specific structural pressure and asks the reasoner to apply, reject, or preserve it for later inspection.
 
-Lolla is not in the business of finding better answers. It is in the business of **being less wrong** — reintroducing the friction that LLM fluency removes, so that inconvenient tensions, missing reversal conditions, and embedded assumptions don't get smoothed out of the narrative.
+Lolla's product aim is to help people be less wrong by reintroducing friction
+that LLM fluency can remove. Whether it improves real decisions remains an open
+human-evidence question.
 
-Four independent audit lanes:
+Four distinct pressure lanes:
 
 | Lane | What it asks | Output |
 |------|-------------|--------|
 | **Structural Pressure** | Which cognitive tendencies are distorting this reasoning? | DeltaCard — tendency detections with corrective models, challenge statements, reversal triggers |
-| **Model Companion** | Which mental models are already active in this reasoning? | CompanionCheatSheet — verified model presence with failure modes, premortem questions, antagonists |
+| **Model Companion** | Which mental models may already be active in this reasoning? | CompanionCheatSheet — model hypotheses with failure modes, premortem questions, antagonists |
 | **Frame Pressure** | What assumptions are embedded in the question itself? | FramePressureCard — suppressed counterfactuals, mutable constraints, reframed alternative questions |
 | **Structural Coverage** | What structural territory did the answer never enter? | CoverageCard — gap dimensions with discovery questions only the decision-maker can answer |
 
@@ -29,20 +31,19 @@ final reasoner must apply, reject, or park every active item, but never has to
 force it into the public answer. The existing verifier remains interpretation
 telemetry and cannot delete this portfolio.
 
-> **Development status (2026-07-14):** The end-to-end skill and custody harness
-> work, but V1 did not establish product reliability, real-user usefulness,
-> stability, or receipt reconstruction. The final R4 A2 experiment completed all
-> twelve paired/separated calls for `$0.02148425`. Both genuine findings
-> survived, but separation did not remove either unsupported companion and the
-> separated dependency calls still misclassified governed machinery. The frozen
-> result is `separated_tasks_ineffective_companions_persist`. The provider-free
-> architecture closeout therefore stops the current incremental R4 reader while
-> preserving full-conversation custody, the live four-lane mental-model pressure
-> path, the optional Decision Work sidecar, and Observatory as separate layers.
-> No further R4 call or integration is authorized.
-> Lolla does not certify that a revised answer is better or safe to act on. See
-> the
-> [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
+> **Development status (2026-07-15):** The
+> [Constitution Stage 0 addendum audit](docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+> maps one ordinary live pressure path, bounded offline/operator/read-only
+> paths, and a large research estate. The skill and deterministic custody
+> machinery operate, but real-user usefulness and semantic reliability remain
+> unproven. The incremental R4 conversation reader is retired after its final
+> paired/separated experiment preserved genuine findings but repeated unsafe
+> false positives. Decision Work remains optional and derivative, Observatory
+> remains read-only, and Mental Model Teacher is parked. No provider call,
+> automatic conversation-state supply, integration, or R4/R5 continuation is
+> authorized. Lolla does not certify that a revised answer is better or safe to
+> act on. See the
+> [post-Stage-0 restart roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md),
 > [R4 product and architecture closeout](docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md),
 > [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md),
 > [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md),
@@ -1487,26 +1488,38 @@ below are historical or prospective directions, not authorization.
 
 ## What's Next
 
-The system works — but more data from real runs will let us tune the deterministic routing, understand detection patterns better, and calibrate where the system is strong and where it's still rough.
+The current restart sequence is evidence-gated, not a feature backlog:
 
-- **More mental models.** Domain-specific model packs — legal reasoning, medical decision-making, engineering tradeoffs — each following the same curation methodology, would make the system sharper in specialized contexts.
-- **New lanes.** The four-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
-- **Better detection calibration.** More runs against more cases means better understanding of where each tendency's detection boundary should sit.
-- **Deeper conversation interpretation.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped. The current Decision Trail lane is approaching this carefully: deterministic code prepares custody-safe packets, while messy interpretation remains future bounded LLM specialist work rather than deterministic guessing.
-- **Beyond the skill.** The curated knowledge substrate and the audit architecture are not limited to a Claude Code skill. The same engine could power API-level reasoning checks, editorial review workflows, decision journaling tools, or structured training environments where people practice spotting reasoning weaknesses. We see directions we haven't built yet — and probably directions we haven't thought of.
+1. Publish the Stage 0 system map and make the repository's lifecycle labels
+   unambiguous.
+2. Test whether checked-in-safe Decision Trail material truthfully exposes
+   custody, provisional meaning, missingness, review requirements, and action
+   limits to a cold reviewer.
+3. Only with separate consent and authorization, test whether a bounded record
+   helps a real user understand a completed serious conversation.
+4. Only after that, evaluate live pressure usefulness and choose which subset
+   of preserve, pressure, reconsider, and record deserves further investment.
 
-If you see an application we're missing or have ideas about where this kind of system would be valuable, open an issue. The most interesting next steps often come from people with different problems than ours.
+More models, more lanes, automatic conversation interpretation, Teacher
+expansion, and another R4/R5 reader are not current next steps.
 
 ## Contributing
 
 The most valuable contributions don't require deep knowledge of the codebase:
 
-- **Run the system and share findings.** Every real-world audit helps us understand detection patterns and calibration gaps.
-- **Add mental models.** Write a canonical article from primary sources, curate its activation and intervention semantics, and it enters the substrate.
-- **Write eval cases.** Professional-grade strategic scenarios with known reasoning weaknesses help us measure whether the system catches what it should.
-- **Challenge the architecture.** Read [HOW_IT_WORKS.md](HOW_IT_WORKS.md) and tell us where the design doesn't hold.
+- **Review the stated boundaries.** Can you distinguish implemented mechanics,
+  bounded tools, research evidence, parked work, and unknown product value?
+- **Inspect a completed run.** Does the evidence make it clear what happened
+  without implying that the output is correct or safe?
+- **Challenge the product job.** Tell us which serious conversation, if any,
+  would benefit from this kind of preserved and inspectable pressure.
+- **Challenge the architecture.** Read [HOW_IT_WORKS.md](HOW_IT_WORKS.md) and
+  identify where implementation, evidence, and claims diverge.
 
-This is an early-stage project built by someone who learned as he went. The architecture is sound, the knowledge substrate is real, and the system produces genuine structural pressure. But there are rough edges, unexplored directions, and decisions that deserve scrutiny from people with different expertise. That's the point of making it public.
+This is an early-stage experimental system with implemented pressure and
+custody machinery, a curated knowledge substrate, and unresolved questions
+about semantic reliability and real-user value. Making those distinctions
+inspectable is part of the reason for making the repository public.
 
 ## License
 

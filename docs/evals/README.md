@@ -2,6 +2,16 @@
 
 Status: GitHub-facing eval navigation
 
+## Current lifecycle boundary — 2026-07-15
+
+The [Constitution Stage 0 addendum audit](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+and its [machine register](lolla-constitution-stage0-addendum-register-v1.json)
+control over older proposed next steps. The live product is the four-lane
+pressure path. Product Delta and Decision Trail are offline completed-run
+builders; R3/R4 are immutable research evidence; the incremental R4 reader is
+retired. Eval files, fixtures, tests, and successful schemas do not prove
+ordinary runtime reachability or product usefulness.
+
 This directory contains the evidence and evaluation layer around Lolla. The
 main thing to understand is the split between the live skill and the offline
 eval lane.
@@ -1522,12 +1532,3 @@ Continuation entrypoints:
 
 - `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`;
 - `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md`.
-
-## Constitution Stage 0 addendum audit — 2026-07-15
-
-The current cross-system audit is
-[`lolla-constitution-stage0-addendum-audit-2026-07-15.md`](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md).
-Its machine register is
-[`lolla-constitution-stage0-addendum-register-v1.json`](lolla-constitution-stage0-addendum-register-v1.json).
-It classifies evaluation machinery as offline/research evidence and preserves
-the R4 stop boundary.

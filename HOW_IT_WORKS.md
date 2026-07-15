@@ -809,7 +809,6 @@ already look justified from inside the current reasoning.
 
 Graph output is therefore a bounded pressure portfolio, not a certified
 selection. Canonical candidates and their fact-free recall provenance should
-selection. Canonical candidates and their fact-free recall provenance should
 reach the fresh-context reasoner, which may apply, reject, or park each lens
 against the authoritative conversation. Those dispositions belong in the
 audit trail; they must not silently erase candidates before reconsideration.
