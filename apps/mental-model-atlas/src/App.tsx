@@ -66,6 +66,14 @@ export function App() {
   const prefersReducedMotion = useReducedMotionPreference();
   const [motionPaused, setMotionPaused] = useState(false);
   const effectiveMotionPaused = prefersReducedMotion || motionPaused;
+  const motionControlLabel = prefersReducedMotion
+    ? "Motion paused by system preference"
+    : motionPaused
+      ? "Resume motion"
+      : "Pause motion";
+  const motionControlVisibleLabel = prefersReducedMotion
+    ? "Motion paused"
+    : motionControlLabel;
 
   return (
     <div
@@ -110,7 +118,7 @@ export function App() {
         <button
           className="motion-control"
           type="button"
-          aria-pressed={effectiveMotionPaused}
+          aria-label={motionControlLabel}
           onClick={() => setMotionPaused((value) => !value)}
           disabled={prefersReducedMotion}
           title={
@@ -119,10 +127,12 @@ export function App() {
               : undefined
           }
         >
-          <span className="motion-icon" aria-hidden="true" />
-          <span className="motion-label">
-            {effectiveMotionPaused ? "Motion paused" : "Pause motion"}
-          </span>
+          <span
+            className="motion-icon"
+            data-motion-state={effectiveMotionPaused ? "paused" : "running"}
+            aria-hidden="true"
+          />
+          <span className="motion-label">{motionControlVisibleLabel}</span>
         </button>
       </header>
 

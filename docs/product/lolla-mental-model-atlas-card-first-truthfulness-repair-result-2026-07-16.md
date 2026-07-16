@@ -1,12 +1,19 @@
 # Mental Model Atlas Card-First and Guided-Reader Repair Result
 
-Status: local founder review ready; unpublished
+Status: semantic/guided-reader foundation current; former visual checkpoint
+superseded by the vibrant-editorial refinement; unpublished
 
 Date: 2026-07-16
 
 Decision:
 
 `relational_editorial_abstraction_tracer_ready_for_founder_validation`
+
+Visual update: the current founder-review surface is the
+[vibrant-editorial refinement](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md).
+This document still controls the source, guided-reader, graph, and coverage
+result; its former brown/orange/segmented-color description is preserved only as
+the preceding visual checkpoint.
 
 ## Executive result
 
@@ -17,12 +24,12 @@ chapters with a persistent sense of place, continues into practical guidance,
 and groups the exact graph neighborhood by the kind of intellectual relationship
 it offers.
 
-The latest founder follow-up also gives that journey a coherent visual language:
-a light editorial field, thin lines and rounded boxes, bold human headings,
-mono provenance labels, and sparse segmented color. Relationships now read as
-explicit source → typed line → target paths rather than as a stack of technical
-cards. The route remains source- and graph-bound; the aesthetic does not invent
-new model meaning.
+The latest founder follow-up gives that journey a coherent vibrant-editorial
+language: cool-gray instrument paper, dark-blue structural ink, locally bundled
+Familjen Grotesk and IBM Plex type, and lime/teal/purple signals with fixed
+functional jobs. Relationships still read as explicit source → typed line →
+target paths rather than as a stack of technical cards. The route remains
+source- and graph-bound; the aesthetic does not invent new model meaning.
 
 The founder's follow-up identified two separate defects in the first card-first
 repair:
@@ -114,17 +121,14 @@ story. Source indices, confidence, and authored-direction custody are available
 in a disclosure. The graph is a route to comparison and further learning, not
 a ranking or proof of relevance.
 
-## Relational editorial aesthetic
+## Relational editorial aesthetic — current vibrant refinement
 
-The visual synthesis deliberately assigns different jobs to the two reference
-directions supplied by the founder:
-
-- the light editorial reference supplies the paper-like field, thin black
-  structure, rounded boxes, and line-led spatial reasoning;
-- the information-system reference supplies the bold sans hierarchy, mono
-  metadata, faint grid, and restrained segmented accent rail;
-- Lolla's own exact relationship graph supplies the content, identity,
-  direction, and semantic labels.
+The current visual synthesis uses a cool-gray field, dark-blue structure, bold
+human headings, mono custody labels, and a functional four-stop signal path.
+Lime marks the authoritative-source entry and current selection, teal marks
+action and practical use, and purple marks the transition into derived graph
+material. Lolla's exact relationship graph still supplies content, identity,
+direction, and semantic labels.
 
 The page H1 is now the stable model name, **Abstraction**. The exact source title,
 **Comprehensive Briefing Document on Abstraction**, remains visible at the
@@ -133,11 +137,11 @@ The hero exposes the exact 12-record neighborhood, 5 outward and 7 inward
 directions, and the 7 ally / 4 tension / 1 antagonist breakdown before the reader
 enters the graph material.
 
-The relationship explorer uses redundant, non-color-only grammar:
-
-- **Ally · Works with** — solid teal line;
-- **Tension · Compare the tradeoff** — dotted violet line;
-- **Antagonist · Pushes against** — dashed orange line with a cross.
+The relationship explorer uses redundant, non-color-only grammar. All graph
+lines use dark-blue structural ink: **Ally · Works with** is solid, **Tension ·
+Compare the tradeoff** is dotted, and **Antagonist · Pushes against** is dashed
+with a cross. Bright colors mark page layers and current selection—not graph
+meaning, rank, confidence, relevance, or truth.
 
 Each selected relationship shows the exact source model, arrow direction,
 canonical relationship type, target model, and checked-in summary. A compact
@@ -245,8 +249,10 @@ The relational-aesthetic follow-up was then checked in a real browser at
 - zero document-level horizontal overflow at 390 and 320 pixels; and
 - working tab switching for ally, tension, and antagonist views.
 
-That evidence packet is
+That evidence packet remains the earlier relational-aesthetic checkpoint at
 `docs/product/evidence/lolla-mental-model-atlas-relational-aesthetic-2026-07-16/`.
+The current packet is
+`docs/product/evidence/lolla-mental-model-atlas-vibrant-editorial-refinement-2026-07-16/`.
 
 Two independent final re-audits returned `ACCEPT` with no blockers after catching
 and rechecking four issues before commit: settled mobile navigation initially

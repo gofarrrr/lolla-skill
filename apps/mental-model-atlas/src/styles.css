@@ -208,11 +208,42 @@ a {
 }
 
 .motion-icon {
+  position: relative;
   width: 0.65rem;
   height: 0.65rem;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  box-shadow: 0.35rem 0 0 -0.18rem currentColor;
+  flex: 0 0 0.65rem;
+}
+
+.motion-icon::before,
+.motion-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 0.2rem;
+  height: 100%;
+  background: currentColor;
+}
+
+.motion-icon::before {
+  left: 0;
+}
+
+.motion-icon::after {
+  right: 0;
+}
+
+.motion-icon[data-motion-state="paused"]::before {
+  inset: 0;
+  width: 0;
+  height: 0;
+  border-top: 0.325rem solid transparent;
+  border-bottom: 0.325rem solid transparent;
+  border-left: 0.58rem solid currentColor;
+  background: transparent;
+}
+
+.motion-icon[data-motion-state="paused"]::after {
+  content: none;
 }
 
 .eyebrow {
@@ -2764,14 +2795,18 @@ code {
 }
 
 @media (max-width: 580px) {
-  .brand small,
-  .motion-control .motion-label {
+  .brand small {
     display: none;
   }
 
   .motion-control {
-    width: 2.75rem;
-    padding: 0;
+    width: auto;
+    max-width: 10.5rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .motion-control .motion-label {
+    display: inline;
   }
 
   .atlas-controls {
@@ -3106,6 +3141,13 @@ code {
   min-height: 2.75rem;
 }
 
+.app-shell[data-route-kind="model"] .skip-link,
+.app-shell[data-route-kind="model"] .connection-reading .text-link {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
 .app-shell[data-route-kind="model"] .brand,
 .app-shell[data-route-kind="model"] .breadcrumb a {
   display: inline-flex;
@@ -3128,7 +3170,7 @@ code {
 
 .app-shell[data-route-kind="model"] details > summary:active {
   color: var(--color-ink);
-  background: rgba(186, 140, 255, 0.42);
+  background: color-mix(in srgb, var(--color-teal) 55%, white);
 }
 
 .app-shell[data-route-kind="model"] .brand strong,
@@ -3149,7 +3191,7 @@ code {
 
 .app-shell[data-route-kind="model"] .brand strong {
   color: #fff;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
@@ -3198,7 +3240,7 @@ code {
 
 .app-shell[data-route-kind="model"] .site-header nav a[aria-current="page"] {
   color: var(--color-ink);
-  background: var(--color-teal);
+  background: var(--color-lime);
   box-shadow: inset 0 0 0 1px var(--color-ink);
 }
 
@@ -3211,7 +3253,7 @@ code {
 
 .app-shell[data-route-kind="model"] .motion-control:hover:not(:disabled) {
   color: var(--color-ink);
-  background: var(--color-purple);
+  background: var(--color-teal);
 }
 
 .app-shell[data-route-kind="model"] button,
@@ -3254,9 +3296,29 @@ code {
   opacity: 1;
 }
 
+.app-shell[data-route-kind="model"] button.secondary:disabled,
+.app-shell[data-route-kind="model"] .button.secondary[aria-disabled="true"] {
+  border-color: rgba(6, 7, 97, 0.3);
+  color: #6d6e83;
+  background: #dfe0dc;
+  opacity: 1;
+}
+
 .app-shell[data-route-kind="model"] :focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
+}
+
+.app-shell[data-route-kind="model"] .site-header a:focus-visible,
+.app-shell[data-route-kind="model"] .site-header button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -4px;
+  box-shadow: inset 0 0 0 2px var(--color-lime);
+}
+
+.app-shell[data-route-kind="model"] .site-header .brand:focus-visible {
+  outline-offset: 3px;
+  box-shadow: none;
 }
 
 .app-shell[data-route-kind="model"] .skip-link {
@@ -3328,7 +3390,7 @@ code {
   margin-bottom: 1.7rem;
   color: #fff;
   font-size: var(--text-2xl);
-  font-weight: 790;
+  font-weight: 700;
   letter-spacing: -0.075em;
   line-height: var(--leading-2xl);
 }
@@ -3477,7 +3539,7 @@ code {
 .app-shell[data-route-kind="model"] .model-signal-path strong {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  font-weight: 720;
+  font-weight: 700;
 }
 
 .app-shell[data-route-kind="model"] .signal-source {
@@ -3536,7 +3598,7 @@ code {
 .app-shell[data-route-kind="model"] .derived-layer-heading h2 {
   color: var(--color-ink);
   font-size: var(--text-xl);
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: var(--leading-xl);
 }
@@ -3647,7 +3709,7 @@ code {
 
 .app-shell[data-route-kind="model"] .reader-journey-nav .reader-source-mode[aria-pressed="true"] {
   color: var(--color-ink);
-  background: var(--color-purple);
+  background: var(--color-lime);
 }
 
 .app-shell[data-route-kind="model"] .source-card h3,
@@ -3738,7 +3800,7 @@ code {
 
 .app-shell[data-route-kind="model"] .connection-overview dd {
   font-size: 1.3rem;
-  font-weight: 760;
+  font-weight: 700;
 }
 
 .app-shell[data-route-kind="model"] .relationship-grammar {
@@ -3790,7 +3852,7 @@ code {
 .app-shell[data-route-kind="model"] .connection-group-tabs strong {
   color: var(--color-ink);
   font-size: 1.15rem;
-  font-weight: 760;
+  font-weight: 700;
 }
 
 .app-shell[data-route-kind="model"] .connection-group-tabs button[aria-selected="true"] {
@@ -3845,6 +3907,8 @@ code {
 .app-shell[data-route-kind="model"] .relationship-key-line,
 .app-shell[data-route-kind="model"] .connection-tab-line,
 .app-shell[data-route-kind="model"] .relation-row-mark {
+  position: relative;
+  display: block;
   height: 3px;
   border: 0;
   background: var(--relationship-stroke);
@@ -3869,7 +3933,10 @@ code {
 .app-shell[data-route-kind="model"] .relation-antagonist .relationship-key-line::after,
 .app-shell[data-route-kind="model"] .relation-antagonist .connection-tab-line::after,
 .app-shell[data-route-kind="model"] .relation-antagonist .relation-row-mark::after {
+  content: "";
+  position: absolute;
   top: -3px;
+  left: 50%;
   height: 11px;
   border-left: 3px solid var(--relationship-direction);
 }
@@ -4006,6 +4073,7 @@ code {
 }
 
 .app-shell[data-route-kind="model"] .relationship-line::before {
+  content: "";
   position: absolute;
   top: 50%;
   right: 0.4rem;
@@ -4043,6 +4111,10 @@ code {
 }
 
 .app-shell[data-route-kind="model"] .relation-antagonist .relationship-line::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 0.35rem);
+  left: 50%;
   height: 0.85rem;
   border-left: 3px solid var(--relationship-direction);
 }
@@ -4094,7 +4166,7 @@ code {
 
 .app-shell[data-route-kind="model"] .learning-boundary-note::before {
   width: 0.7rem;
-  background: var(--color-lime);
+  background: var(--color-ink);
 }
 
 .app-shell[data-route-kind="model"] .learning-boundary-note {
@@ -4214,11 +4286,11 @@ code {
   }
 
   .app-shell[data-route-kind="model"] .reader-journey-nav {
-    top: 8rem;
+    top: 9rem;
   }
 
   .app-shell[data-route-kind="model"] .reader-stage {
-    scroll-margin-top: 18rem;
+    scroll-margin-top: 19rem;
   }
 
   .app-shell[data-route-kind="model"] #guided-reader-start,
@@ -4331,9 +4403,9 @@ code {
   .app-shell[data-route-kind="model"] .connection-tab-line,
   .app-shell[data-route-kind="model"] .relation-row-mark,
   .app-shell[data-route-kind="model"] .relationship-line::before {
-    border: 0;
-    border-top: 3px solid CanvasText;
-    background: none;
+    border: 0 !important;
+    border-top: 3px solid CanvasText !important;
+    background: none !important;
     forced-color-adjust: auto;
   }
 
@@ -4341,14 +4413,14 @@ code {
   .app-shell[data-route-kind="model"] .relation-tension .connection-tab-line,
   .app-shell[data-route-kind="model"] .relation-tension .relation-row-mark,
   .app-shell[data-route-kind="model"] .relation-tension .relationship-line::before {
-    border-top-style: dotted;
+    border-top: 3px dotted CanvasText !important;
   }
 
   .app-shell[data-route-kind="model"] .relation-antagonist .relationship-key-line,
   .app-shell[data-route-kind="model"] .relation-antagonist .connection-tab-line,
   .app-shell[data-route-kind="model"] .relation-antagonist .relation-row-mark,
   .app-shell[data-route-kind="model"] .relation-antagonist .relationship-line::before {
-    border-top-style: dashed;
+    border-top: 3px dashed CanvasText !important;
   }
 
   .app-shell[data-route-kind="model"] .relationship-line i {
@@ -4360,6 +4432,31 @@ code {
   .app-shell[data-route-kind="model"] .relation-antagonist .relation-row-mark::after,
   .app-shell[data-route-kind="model"] .relation-antagonist .relationship-line::after {
     border-color: CanvasText;
+  }
+
+  .app-shell[data-route-kind="model"] .site-header a:focus-visible,
+  .app-shell[data-route-kind="model"] .site-header button:focus-visible {
+    outline: 3px solid Highlight;
+    outline-offset: -4px;
+    box-shadow: none;
+    forced-color-adjust: auto;
+  }
+}
+
+@media (forced-colors: active) and (max-width: 700px) {
+  .app-shell[data-route-kind="model"] .relationship-line::before {
+    border-top: 0 !important;
+    border-left: 3px solid CanvasText !important;
+  }
+
+  .app-shell[data-route-kind="model"] .relation-tension .relationship-line::before {
+    border-top: 0 !important;
+    border-left: 3px dotted CanvasText !important;
+  }
+
+  .app-shell[data-route-kind="model"] .relation-antagonist .relationship-line::before {
+    border-top: 0 !important;
+    border-left: 3px dashed CanvasText !important;
   }
 }
 

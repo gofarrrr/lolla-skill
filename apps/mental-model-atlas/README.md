@@ -108,7 +108,8 @@ mastery certification.
 ## Current lifecycle
 
 The card-first guided-reader repair is ready for founder visual and product
-review. Its light editorial and segmented-color visual language is currently a
+review. Its current vibrant-editorial language uses cool-gray instrument paper,
+dark-blue structure, and fixed lime/teal/purple interface roles. It remains a
 route-scoped Abstraction tracer, not a completed redesign of the global SVG or
 Canvas graph. The Mental Model Teacher component remains `park` because four gates
 are still open: founder learning-journey acceptance, native screen-reader review,
@@ -120,7 +121,9 @@ See:
 
 - [Phase 1 result](../../docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - [Card-first truthfulness repair](../../docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+- [Vibrant-editorial refinement](../../docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Card-first evidence](../../docs/evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+- [Vibrant-editorial evidence](../../docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Renderer decision](../../docs/product/lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Evidence receipt](../../docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - [Product PRD](../../docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md)

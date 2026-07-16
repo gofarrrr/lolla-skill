@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import struct
 from collections import Counter
 from pathlib import Path
 
@@ -11,6 +12,15 @@ CONTRACT_PATH = ROOT / "docs/evals/lolla-mental-model-atlas-prd-v1.json"
 PRD_PATH = ROOT / "docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md"
 REFERENCE_PATH = ROOT / "docs/product/lolla-mental-model-atlas-marble-reference-2026-07-15.md"
 PLAN_PATH = ROOT / "plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md"
+VIBRANT_EVIDENCE_PATH = (
+    ROOT / "docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json"
+)
+VIBRANT_RESULT_PATH = (
+    ROOT / "docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md"
+)
+VIBRANT_PLAN_PATH = (
+    ROOT / "plans/lolla-mental-model-atlas-vibrant-editorial-refinement-plan-2026-07-16.md"
+)
 
 
 def _json(path: Path):
@@ -19,6 +29,12 @@ def _json(path: Path):
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _png_size(path: Path) -> tuple[int, int]:
+    payload = path.read_bytes()[:24]
+    assert payload[:8] == b"\x89PNG\r\n\x1a\n"
+    return struct.unpack(">II", payload[16:24])
 
 
 def test_atlas_prd_contract_is_grounded_in_the_canonical_substrate() -> None:
@@ -268,3 +284,109 @@ def test_atlas_prd_and_handoffs_are_present_and_label_the_reference_honestly() -
     assert "Teacher guides a journey" in prd
     assert "Mental Model Teacher remains" in plan
     assert "No Marble code, data, taxonomy, text, screenshots" in reference_doc
+
+
+def test_vibrant_editorial_refinement_is_token_bound_truthful_and_reproducible() -> None:
+    evidence = _json(VIBRANT_EVIDENCE_PATH)
+    assert evidence["status"] == "local_founder_validation_ready_unpublished"
+    assert evidence["decision"] == (
+        "vibrant_editorial_abstraction_tracer_ready_for_founder_validation"
+    )
+    assert evidence["implementation_parent"] == (
+        "b9caec54ee444e306c6383fef78fa1d0347e514a"
+    )
+    assert evidence["provider_calls"] == 0
+    assert evidence["provider_cost_usd"] == 0.0
+    assert evidence["publication_authorized"] is False
+
+    scope = evidence["scope"]
+    assert scope == {
+        "route": "/models/abstraction",
+        "route_scoped": True,
+        "other_model_pages_changed": False,
+        "global_svg_canvas_changed": False,
+        "source_or_graph_artifacts_changed": False,
+    }
+
+    art = evidence["art_direction"]
+    assert art["name"] == "vibrant_editorial_field_guide"
+    assert art["signature_element"] == "four_stop_functional_page_signal_path"
+    assert art["palette_roles"] == {
+        "structural_ink": "#060761",
+        "primary_action": "#41FFA7",
+        "source_and_current_selection": "#C4FF4D",
+        "derived_relationship_layer": "#BA8CFF",
+        "quiet_field": "#E7E8E4",
+        "surface": "#F7F7F2",
+        "error_only": "#A5163A",
+    }
+    assert art["color_encodes_relationship_type"] is False
+    assert art["color_encodes_rank_confidence_relevance_or_truth"] is False
+
+    relationship = evidence["relationship_contract"]
+    assert relationship["exact_records"] == 12
+    assert relationship["authored_outward"] == 5
+    assert relationship["authored_inward"] == 7
+    assert relationship["relation_type_counts"] == {
+        "ally": 7,
+        "tension": 4,
+        "antagonist": 1,
+    }
+    assert relationship["parallel_records_preserved"] is True
+    assert relationship["authored_direction_preserved"] is True
+    assert relationship["grayscale_distinction_checked"] is True
+
+    screenshots = evidence["screenshots"]
+    assert len(screenshots) == 12
+    assert len({item["path"] for item in screenshots}) == 12
+    for item in screenshots:
+        path = ROOT / item["path"]
+        assert path.is_file()
+        assert _sha256(path) == item["sha256"]
+        assert _png_size(path) == (item["width"], item["height"])
+
+    css = (ROOT / "apps/mental-model-atlas/src/styles.css").read_text(encoding="utf-8")
+    marker = "/* Founder-palette refinement for the Abstraction tracer."
+    assert css.count(marker) == 1
+    active_route_layer = css[css.index(marker):].lower()
+    for token in ("#060761", "#41ffa7", "#c4ff4d", "#ba8cff"):
+        assert token in active_route_layer
+    for superseded in ("#a4471e", "#1d6f67", "#6e56cf", "#c65a1e"):
+        assert superseded not in active_route_layer
+    assert '"inter"' not in active_route_layer
+    assert "@media (forced-colors: active)" in active_route_layer
+    assert '.relation-antagonist .connection-tab-line::after' in active_route_layer
+    assert 'content: "";' in active_route_layer
+    assert '.motion-control .motion-label' in css
+    assert "display: inline;" in css
+
+    app = (ROOT / "apps/mental-model-atlas/src/App.tsx").read_text(encoding="utf-8")
+    assert 'aria-label={motionControlLabel}' in app
+    assert 'aria-pressed={effectiveMotionPaused}' not in app
+    assert '"Resume motion"' in app
+    assert 'data-motion-state={effectiveMotionPaused ? "paused" : "running"}' in app
+
+    model_page = (ROOT / "apps/mental-model-atlas/src/routes/ModelPage.tsx").read_text(
+        encoding="utf-8"
+    )
+    for label in (
+        "Learn the source",
+        "Put it to work",
+        "Read the relations",
+        "Keep judging",
+        "Reload the source page",
+        "Browse the model library",
+    ):
+        assert label in model_page
+
+    connections = (
+        ROOT / "apps/mental-model-atlas/src/components/ModelConnections.tsx"
+    ).read_text(encoding="utf-8")
+    for label in ("Solid line", "Dotted line", "Dashed line with a cross"):
+        assert label in connections
+    assert "color marks page layers" in connections.lower()
+    assert "selection—not importance" in connections.lower()
+
+    for path in (VIBRANT_RESULT_PATH, VIBRANT_PLAN_PATH):
+        assert path.is_file()
+        assert "vibrant editorial" in path.read_text(encoding="utf-8").lower()

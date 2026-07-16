@@ -31,13 +31,14 @@ Read these in order before proposing architecture or the next experiment:
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
 5. `docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md`,
+   `docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md`,
    `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
-   `apps/mental-model-atlas/README.md`, and
-   `docs/evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json` —
-   the local provider-free Atlas Phase 1 implementation, its additive
-   card-first/guided-reader correction, and still-open founder, screen-reader,
-   rights, and usefulness gates. Read the PRD and plan linked there before
-   proposing any next phase.
+   `apps/mental-model-atlas/README.md`, and the current machine evidence in
+   `docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json`
+   — the local provider-free Atlas Phase 1 implementation, its additive
+   card-first/guided-reader correction, current visual system, and still-open
+   founder, screen-reader, rights, and usefulness gates. Read the linked PRD and
+   plan before proposing any next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -266,14 +267,14 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   separately labelled layers, and keeps the aggregate page `partial` because
   runtime affordance presentation, practice prompts, and Teacher journeys
   remain unavailable or out of scope.
-- The latest local, unpublished founder follow-up applies a light editorial
-  line-and-box system and sparse segmented color to `/models/abstraction`. The
-  product H1 is the model identity; the exact Markdown title remains at the
-  source boundary. Connections render as a compact exact-record index plus one
-  source → typed line → target detail, with written direction and redundant
-  solid/dotted/dashed-with-cross semantics. This is route-scoped: do not claim
-  the global `/atlas` SVG/Canvas renderers share the complete grammar until a
-  separate renderer-unification and reverse-edge-geometry gate passes.
+- The latest local founder follow-up applies a vibrant-editorial system to
+  `/models/abstraction`: cool-gray paper, dark-blue structure, fixed
+  lime/teal/purple roles, and local Familjen Grotesk/IBM Plex type. A four-stop
+  signal path gives color a functional job. Connections remain an exact index
+  plus one source → typed line → target detail. Relationship type is written and
+  shape-redundant in dark-blue ink; color does not encode graph meaning. This is
+  route-scoped: do not claim the global `/atlas` SVG/Canvas renderers share the
+  complete grammar until a separate renderer-unification gate passes.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -290,8 +291,8 @@ The Stage 0.5 public-handoff gardening pass made the canonical map legible from
 a fresh clone. Stage 0.6 then corrected deterministic long-conversation
 source-coverage custody without changing prompts, providers, graph behavior,
 or the semantic architecture. The current Atlas decision is founder review of
-the checked-in guided-reader truthfulness packet; passing it does not authorize
-the next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
+the checked-in vibrant-editorial Abstraction tracer; passing it does not
+authorize the next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
 a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
 is not authorized by these prerequisites. It may not inspect private archives,
 generate a new semantic read, call a provider, automate the sidecar, change

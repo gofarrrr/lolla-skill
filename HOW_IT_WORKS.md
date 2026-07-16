@@ -312,9 +312,10 @@ automation, Teacher expansion, or integration.
 
 The separate Atlas Phase 1 local implementation and its additive card-first
 truthfulness repair are complete locally. The Abstraction route now also has a
-route-scoped relational-editorial visual pass: human-facing light boxes, sparse
-semantic color, written line grammar, and one exact relationship detail at a
-time. It is not yet the global SVG/Canvas graph language. The current review
+route-scoped vibrant-editorial pass: cool-gray paper, dark-blue structure,
+fixed lime/teal/purple layer roles, written dark-blue line grammar, and one
+exact relationship detail at a time. It is not yet the global SVG/Canvas graph
+language. The current review
 packet awaits founder validation; later Atlas phases, deployment, Teacher
 journeys, and runtime or Observatory links remain unauthorized.
 

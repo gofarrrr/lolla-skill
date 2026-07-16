@@ -1,8 +1,8 @@
 # Plan: Mental Model Atlas Card-First Truthfulness Repair
 
-Status: implemented locally; guided reading, human-content, and relational
-editorial-aesthetic follow-ups implemented; founder validation pending;
-unpublished
+Status: implemented locally; guided reading, human-content, relational
+exploration, and vibrant-editorial follow-ups implemented; founder validation
+pending; unpublished
 
 Date: 2026-07-16
 
@@ -104,3 +104,19 @@ This is intentionally a model-page visual tracer. It does not claim that the
 global `/atlas` SVG and Canvas renderers have adopted the same presentation
 grammar. A renderer-wide line/geometry unification remains a separate bounded
 follow-up rather than a hidden expansion of this repair.
+
+## Founder follow-up — vibrant editorial refinement
+
+The subsequent palette refinement replaces the active route's muddy brown and
+mixed semantic accents with a token-bound system: dark blue for structure,
+teal for action/practice, lime for source/current selection, purple for the
+derived relationship layer, and cool gray for the page field. Relationship
+types now share dark-blue graph ink and remain distinguished through written
+labels plus solid/dotted/dashed-with-cross form.
+
+The functional signature is a four-stop source → practice → relations → human
+judgment signal path. Anchor offsets, 44-pixel mobile targets, source-failure
+recovery, forced-colors behavior, and locally packaged typography are part of
+the gate. See
+`plans/lolla-mental-model-atlas-vibrant-editorial-refinement-plan-2026-07-16.md`
+for the exact scope and failure conditions.
