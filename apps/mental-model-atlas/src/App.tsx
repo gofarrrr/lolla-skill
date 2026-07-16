@@ -70,6 +70,7 @@ export function App() {
   return (
     <div
       className="app-shell"
+      data-route-kind={route.kind}
       data-reduced-motion={effectiveMotionPaused ? "true" : "false"}
     >
       <a className="skip-link" href="#main">

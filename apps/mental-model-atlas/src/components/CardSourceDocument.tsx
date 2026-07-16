@@ -23,7 +23,10 @@ export function CardSourceDocument({ sourceCard }: { sourceCard: SourceCard }) {
   useEffect(() => {
     if (!shouldOrientRef.current) return;
     shouldOrientRef.current = false;
-    chapterStartRef.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    const frame = requestAnimationFrame(() => {
+      chapterStartRef.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    });
+    return () => cancelAnimationFrame(frame);
   }, [activeChapterId]);
 
   function selectChapter(chapterId: string) {

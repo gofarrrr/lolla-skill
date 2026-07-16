@@ -20,10 +20,14 @@ describe("card-first Abstraction model page", () => {
       CARD_FIRST_SUBSTANTIVE_LINES,
     );
     const sourceHeadings = sourceNodes.filter((node) => /^H[1-3]$/.test(node.tagName));
-    expect(sourceHeadings).toHaveLength(15);
+    expect(sourceHeadings).toHaveLength(14);
     expect(sourceHeadings.map((node) => node.tagName)).toEqual([
-      "H1", "H2", "H3", "H2", "H3", "H3", "H2", "H3", "H3", "H2", "H3", "H3", "H2", "H3", "H3",
+      "H2", "H3", "H2", "H3", "H3", "H2", "H3", "H3", "H2", "H3", "H3", "H2", "H3", "H3",
     ]);
+    expect(container.querySelector(".source-document-title")?.textContent).toContain(
+      "Comprehensive Briefing Document on Abstraction",
+    );
+    expect(screen.getByRole("heading", { level: 1, name: "Abstraction" })).toBeTruthy();
   });
 
   it("guides one chapter at a time while keeping the exact source available", () => {
@@ -49,11 +53,11 @@ describe("card-first Abstraction model page", () => {
     );
     expect(screen.getByRole("heading", { name: /learn abstraction/i })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /put abstraction to work/i })).toBeTruthy();
-    expect(screen.getByRole("heading", { name: /what abstraction connects to/i })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: /read the lines around abstraction/i })).toBeTruthy();
     expect(container.querySelectorAll(".model-connection")).toHaveLength(12);
-    expect(screen.getByRole("button", { name: /7 works with/i })).toBeTruthy();
-    expect(screen.getByRole("button", { name: /4 productive tensions/i })).toBeTruthy();
-    expect(screen.getByRole("button", { name: /1 direct conflicts/i })).toBeTruthy();
+    expect(screen.getByRole("tab", { name: /7 ally.*works with/i })).toBeTruthy();
+    expect(screen.getByRole("tab", { name: /4 tension.*compare the tradeoff/i })).toBeTruthy();
+    expect(screen.getByRole("tab", { name: /1 antagonist.*pushes against/i })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /use the model; keep judging the situation/i })).toBeTruthy();
     expect(screen.getByText(/what remains outside this local learning preview/i)).toBeTruthy();
     expect(screen.getByRole("heading", { name: /a local learning preview/i })).toBeTruthy();
@@ -69,6 +73,39 @@ describe("card-first Abstraction model page", () => {
       node.textContent?.toLowerCase().includes("first principles thinking"),
     );
     expect(matching).toHaveLength(2);
+  });
+
+  it("makes relationship type and direction legible without depending on color", () => {
+    const { container } = render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
+    expect(screen.getByText(/how to read the line styles/i)).toBeTruthy();
+    expect(screen.getByText(/solid teal line/i)).toBeTruthy();
+    expect(screen.getByText(/dotted violet line/i)).toBeTruthy();
+    expect(screen.getByText(/dashed orange line with a cross/i)).toBeTruthy();
+
+    const paths = [...container.querySelectorAll(".relationship-path")];
+    expect(paths).toHaveLength(3);
+    expect(paths[0].getAttribute("aria-label")).toMatch(
+      /authored relationship: abstraction works with systems thinking/i,
+    );
+    expect(container.querySelectorAll("[data-focus-direction='outgoing']")).toHaveLength(5);
+    expect(container.querySelectorAll("[data-focus-direction='incoming']")).toHaveLength(7);
+    expect(container.querySelectorAll(".relationship-nonclaim")).toHaveLength(1);
+    expect(screen.getByText(/not scores, recommendations, or proof/i)).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("tab", { name: /4 tension.*compare the tradeoff/i }));
+    expect(screen.getByLabelText(/abstraction stays in productive tension with first principles thinking/i)).toBeTruthy();
+  });
+
+  it("uses keyboard-operable tabs for relationship types", () => {
+    render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
+    const allyTab = screen.getByRole("tab", { name: /7 ally.*works with/i });
+    const tensionTab = screen.getByRole("tab", { name: /4 tension.*compare the tradeoff/i });
+    expect(allyTab.getAttribute("aria-selected")).toBe("true");
+    expect(tensionTab.getAttribute("tabindex")).toBe("-1");
+
+    fireEvent.keyDown(allyTab, { key: "ArrowRight" });
+    expect(tensionTab.getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByRole("tabpanel", { name: /tension.*compare the tradeoff/i })).toBeTruthy();
   });
 
   it("keeps technical source residue outside the primary journey and offers full-source inspection", () => {

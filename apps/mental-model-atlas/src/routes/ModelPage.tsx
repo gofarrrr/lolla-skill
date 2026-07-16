@@ -89,7 +89,7 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
       <article className="learning-page card-first-page">
         <header className="learning-hero card-first-hero">
           <p className="eyebrow">Mental model · guided source reading · local review</p>
-          <h1 data-source-line="1">{title}</h1>
+          <h1>{model.display_name}</h1>
           <p className="definition-lede">
             Learn the idea in five focused steps, then explore how to use it and
             how it connects to other ways of thinking.
@@ -102,11 +102,18 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
               </blockquote>
             ))}
           </div>
+          <dl className="model-relationship-synopsis" aria-label="Relationship orientation">
+            <div><dt>Authored connections</dt><dd>{connections.shown_record_count}</dd></div>
+            <div><dt>Direction</dt><dd>{connections.outgoing_count} outward · {connections.incoming_count} inward</dd></div>
+            <div>
+              <dt>Relationship types</dt>
+              <dd>{connections.relation_type_counts.ally} allies · {connections.relation_type_counts.tension} tensions · {connections.relation_type_counts.antagonist} conflict</dd>
+            </div>
+            <div><dt>Reading rule</dt><dd>Relations, not ranking</dd></div>
+          </dl>
           <div className="button-row">
             <a className="button" href="#guided-reader-start">Start guided reading</a>
-            <AppLink className="button secondary" href="/atlas?model=abstraction">
-              See it in the graph
-            </AppLink>
+            <a className="button secondary" href="#connections-title">Browse connections</a>
           </div>
         </header>
 
@@ -115,6 +122,10 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
             <div>
               <p className="eyebrow">Layer 1 · authoritative source</p>
               <h2 id="source-card-title">Learn {model.display_name}</h2>
+              <p className="source-document-title" data-source-line="1">
+                <span>Exact source title</span>
+                {title}
+              </p>
             </div>
             <p>
               Work through one chapter at a time. Your place stays visible, the next

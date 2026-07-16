@@ -6,9 +6,27 @@ import { humanize } from "./StatusDisclosure";
 
 const COMPLETE_RELATION_ID = "abstraction__first-principles-thinking__ally";
 const GROUPS = [
-  { id: "ally", label: "Works with", explanation: "Models that can strengthen or extend abstraction." },
-  { id: "tension", label: "Productive tensions", explanation: "Models that challenge abstraction and keep it honest." },
-  { id: "antagonist", label: "Direct conflicts", explanation: "Models whose default logic pushes in the opposite direction." },
+  {
+    id: "ally",
+    canonicalLabel: "Ally",
+    label: "Works with",
+    lineLabel: "Solid teal line",
+    explanation: "Authored as complementary or mutually supporting in the described respect.",
+  },
+  {
+    id: "tension",
+    canonicalLabel: "Tension",
+    label: "Compare the tradeoff",
+    lineLabel: "Dotted violet line",
+    explanation: "Authored as a tradeoff, boundary, disagreement, or conflict worth comparing.",
+  },
+  {
+    id: "antagonist",
+    canonicalLabel: "Antagonist",
+    label: "Pushes against",
+    lineLabel: "Dashed orange line with a cross",
+    explanation: "Authored as opposing or counteracting in the described respect.",
+  },
 ] as const;
 
 export function ModelConnections({
@@ -17,54 +35,125 @@ export function ModelConnections({
   connections: CardFirstModelPage["connections"];
 }) {
   const [activeGroup, setActiveGroup] = useState<(typeof GROUPS)[number]["id"]>("ally");
+  const [selectedRelationId, setSelectedRelationId] = useState(
+    () => connections.records.find((record) => record.relation_type === "ally")?.relation_id ?? "",
+  );
+
+  function selectGroup(groupId: (typeof GROUPS)[number]["id"]) {
+    const firstRecord = connections.records.find((record) => record.relation_type === groupId);
+    setActiveGroup(groupId);
+    if (firstRecord) setSelectedRelationId(firstRecord.relation_id);
+  }
+
+  function moveBetweenGroups(currentIndex: number, key: string) {
+    const delta = key === "ArrowRight" || key === "ArrowDown"
+      ? 1
+      : key === "ArrowLeft" || key === "ArrowUp"
+        ? -1
+        : 0;
+    if (!delta) return;
+    const nextIndex = (currentIndex + delta + GROUPS.length) % GROUPS.length;
+    const nextGroup = GROUPS[nextIndex];
+    selectGroup(nextGroup.id);
+    requestAnimationFrame(() => document.getElementById(`connection-tab-${nextGroup.id}`)?.focus());
+  }
 
   return (
     <section className="derived-layer connections-layer" aria-labelledby="connections-title">
       <header className="derived-layer-heading">
         <div>
-          <p className="eyebrow">Continue learning · exact graph neighborhood</p>
-          <h2 id="connections-title">See what Abstraction connects to</h2>
+          <p className="eyebrow">Continue learning · relationship map</p>
+          <h2 id="connections-title">Read the lines around Abstraction</h2>
         </div>
         <p>
-          Connections are different kinds of intellectual relationships—not a
-          ranking of which models matter most.
+          Each line says how two models interact and which direction the authored
+          relationship travels. Color and line form repeat the written label; they
+          never rank importance or certify relevance.
         </p>
       </header>
 
       <div className="connection-explorer">
-        <div className="connection-group-tabs" aria-label="Connection types">
-          {GROUPS.map((group) => (
+        <dl className="connection-overview" aria-label="Exact relationship set summary">
+          <div><dt>Exact records</dt><dd>{connections.shown_record_count}</dd></div>
+          <div><dt>Authored outward</dt><dd>{connections.outgoing_count}</dd></div>
+          <div><dt>Authored inward</dt><dd>{connections.incoming_count}</dd></div>
+          <div><dt>Importance ranking</dt><dd>None</dd></div>
+        </dl>
+
+        <details className="relationship-grammar">
+          <summary>How to read the line styles</summary>
+          <ul>
+            {GROUPS.map((group) => (
+              <li key={group.id}>
+                <strong>{group.canonicalLabel} · {group.label}</strong> — {group.lineLabel}
+              </li>
+            ))}
+          </ul>
+        </details>
+
+        <div className="connection-group-tabs" role="tablist" aria-label="Connection types">
+          {GROUPS.map((group, groupIndex) => (
             <button
               type="button"
-              aria-pressed={activeGroup === group.id}
+              role="tab"
+              className={`relation-${group.id}`}
+              data-relation-type={group.id}
+              aria-selected={activeGroup === group.id}
               aria-controls={`connection-panel-${group.id}`}
               id={`connection-tab-${group.id}`}
               key={group.id}
-              onClick={() => setActiveGroup(group.id)}
+              onClick={() => selectGroup(group.id)}
+              onKeyDown={(event) => {
+                if (event.key.startsWith("Arrow")) {
+                  event.preventDefault();
+                  moveBetweenGroups(groupIndex, event.key);
+                }
+              }}
+              tabIndex={activeGroup === group.id ? 0 : -1}
             >
+              <span className="connection-tab-line" aria-hidden="true" />
               <strong>{connections.relation_type_counts[group.id]}</strong>
-              <span>{group.label}</span>
+              <span>{group.canonicalLabel} · {group.label}</span>
             </button>
           ))}
         </div>
 
+        <p className="relationship-nonclaim">
+          These authored relations are not scores, recommendations, or proof that a model applies here.
+        </p>
+
         {GROUPS.map((group) => {
           const records = connections.records.filter((record) => record.relation_type === group.id);
+          const selectedRelation = records.find((record) => record.relation_id === selectedRelationId) ?? records[0];
           return (
             <section
               id={`connection-panel-${group.id}`}
               aria-labelledby={`connection-tab-${group.id}`}
+              data-relation-type={group.id}
               hidden={activeGroup !== group.id}
               className="connection-group-panel"
               key={group.id}
+              role="tabpanel"
+              tabIndex={0}
             >
               <header>
-                <h3>{group.label}</h3>
-                <p>{group.explanation}</p>
+                <h3>{group.canonicalLabel} · {group.label}</h3>
+                <p>{group.explanation} Choose one row to inspect its meaning and authored direction.</p>
               </header>
-              <ul className="model-connections-list">
-                {records.map((relation) => <ConnectionCard relation={relation} key={relation.relation_id} />)}
-              </ul>
+              <div className="relationship-workspace">
+                <ul className="model-connections-list" aria-label={`${group.label} relationship records`}>
+                  {records.map((relation) => (
+                    <ConnectionRow
+                      isSelected={relation.relation_id === selectedRelation.relation_id}
+                      key={relation.relation_id}
+                      onSelect={() => setSelectedRelationId(relation.relation_id)}
+                      relation={relation}
+                      targetId={`connection-detail-${group.id}`}
+                    />
+                  ))}
+                </ul>
+                <ConnectionDetail id={`connection-detail-${group.id}`} relation={selectedRelation} />
+              </div>
             </section>
           );
         })}
@@ -72,9 +161,9 @@ export function ModelConnections({
 
       <div className="connections-footer">
         <p>
-          All {connections.shown_record_count} exact connections remain available across
-          the three views. Parallel relationships stay separate and graph order does not
-          imply importance.
+          All {connections.shown_record_count} exact records remain available across the
+          three views. Parallel relationships stay separate: the same pair may cooperate
+          in one respect and remain in tension in another.
         </p>
         <AppLink className="button" href="/atlas?model=abstraction">
           Explore the full graph
@@ -94,38 +183,100 @@ export function ModelConnections({
   );
 }
 
-function ConnectionCard({ relation }: { relation: CardFirstRelation }) {
+function ConnectionRow({
+  isSelected,
+  onSelect,
+  relation,
+  targetId,
+}: {
+  isSelected: boolean;
+  onSelect: () => void;
+  relation: CardFirstRelation;
+  targetId: string;
+}) {
   const otherModel = relation.focus_direction === "outgoing"
-    ? relation.target_model_id
-    : relation.source_model_id;
+    ? humanize(relation.target_model_id)
+    : humanize(relation.source_model_id);
+  const directionCopy = relation.focus_direction === "outgoing"
+    ? "Abstraction → model"
+    : "Model → Abstraction";
+  return (
+    <li
+      className={`model-connection relation-${relation.relation_type}`}
+      data-focus-direction={relation.focus_direction}
+      data-relation-type={relation.relation_type}
+    >
+      <button
+        type="button"
+        aria-controls={targetId}
+        aria-expanded={isSelected}
+        aria-pressed={isSelected}
+        onClick={onSelect}
+      >
+        <span className="relation-row-mark" aria-hidden="true" />
+        <span><strong>{otherModel}</strong><small>{directionCopy}</small></span>
+        <span>{humanize(relation.relation_type)}</span>
+      </button>
+    </li>
+  );
+}
+
+function ConnectionDetail({ id, relation }: { id: string; relation: CardFirstRelation }) {
+  const sourceModel = humanize(relation.source_model_id);
+  const targetModel = humanize(relation.target_model_id);
+  const otherModel = relation.focus_direction === "outgoing" ? targetModel : sourceModel;
   const directionCopy = relation.focus_direction === "outgoing"
     ? "Abstraction points to"
     : "Points to Abstraction";
+  const relationCopy = relation.relation_type === "ally"
+    ? "works with"
+    : relation.relation_type === "tension"
+      ? "stays in productive tension with"
+      : "pushes against";
   return (
-    <li className={`model-connection relation-${relation.relation_type}`}>
-      <div className="connection-title-row">
-        <span className="relation-mark" aria-hidden="true" />
-        <div>
-          <span className="connection-direction">{directionCopy}</span>
-          <h4>{humanize(otherModel)}</h4>
+    <article className={`relationship-detail relation-${relation.relation_type}`} id={id}>
+      <p className="eyebrow">Selected exact relationship</p>
+      <div
+        className="relationship-path"
+        aria-label={`Authored relationship: ${sourceModel} ${relationCopy} ${targetModel}`}
+      >
+        <div className={`relationship-node ${relation.source_model_id === "abstraction" ? "is-focus-model" : ""}`}>
+          <span>Source model</span>
+          <strong>{sourceModel}</strong>
         </div>
-        <span>{relation.relation_type}</span>
+        <div className="relationship-connector">
+          <span className="relationship-line" aria-hidden="true"><i /></span>
+          <span>{relation.relation_type === "ally" ? "ally" : relation.relation_type}</span>
+        </div>
+        <div className={`relationship-node ${relation.target_model_id === "abstraction" ? "is-focus-model" : ""}`}>
+          <span>Target model</span>
+          <strong>{targetModel}</strong>
+        </div>
       </div>
-      <p>{relation.summary}</p>
-      {relation.relation_id === COMPLETE_RELATION_ID ? (
-        <AppLink className="text-link" href={`/relations/${relation.relation_id}`}>
-          Read this relationship in depth
-        </AppLink>
-      ) : null}
-      <details className="compiled-source-detail">
-        <summary>Direction and record details</summary>
-        <dl className="connection-custody">
-          <div><dt>Relative to Abstraction</dt><dd>{humanize(relation.focus_direction)}</dd></div>
-          <div><dt>Authored direction</dt><dd>{humanize(relation.direction)}</dd></div>
-          <div><dt>Confidence</dt><dd>{humanize(relation.confidence)} — not certification</dd></div>
-          <div><dt>Source record</dt><dd><code>/{relation.source_record_index}</code></dd></div>
-        </dl>
-      </details>
-    </li>
+      <div className="connection-reading">
+        <div className="connection-title-row">
+          <div>
+            <span className="connection-direction">{directionCopy}</span>
+            <h4>{otherModel}</h4>
+          </div>
+          <span>{relation.relation_type}</span>
+        </div>
+        <p>{relation.summary}</p>
+        {relation.relation_id === COMPLETE_RELATION_ID ? (
+          <AppLink className="text-link" href={`/relations/${relation.relation_id}`}>
+            Read this relationship in depth
+          </AppLink>
+        ) : null}
+        <details className="compiled-source-detail">
+          <summary>Direction and record details</summary>
+          <dl className="connection-custody">
+            <div><dt>Relative to Abstraction</dt><dd>{humanize(relation.focus_direction)}</dd></div>
+            <div><dt>Authored direction</dt><dd>{humanize(relation.direction)}</dd></div>
+            <div><dt>Confidence</dt><dd>{humanize(relation.confidence)} — not certification</dd></div>
+            <div><dt>Source record</dt><dd><code>/{relation.source_record_index}</code></dd></div>
+          </dl>
+        </details>
+      </div>
+    </article>
   );
 }
