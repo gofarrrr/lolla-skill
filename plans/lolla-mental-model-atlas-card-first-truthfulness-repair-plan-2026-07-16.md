@@ -1,7 +1,7 @@
 # Plan: Mental Model Atlas Card-First Truthfulness Repair
 
-Status: implemented locally; founder follow-up navigation and human-content
-repair implemented; independent review and founder validation pending;
+Status: implemented locally; guided reading, human-content, and relational
+editorial-aesthetic follow-ups implemented; founder validation pending;
 unpublished
 
 Date: 2026-07-16
@@ -68,3 +68,39 @@ contents. The authorized follow-up keeps the same source/graph custody and adds:
 The follow-up fails if any substantive source line becomes unaccounted for, if
 technical residue becomes ordinary teaching copy, if parallel graph records are
 merged, or if the sticky chapter state obscures the active content on mobile.
+
+## Founder follow-up — relational editorial aesthetic
+
+The founder supplied two complementary visual references: a light, line-led
+editorial workspace with rounded boxes and a warm information system using
+segmented color, mono labels, and grid structure. The local model-page tracer
+adapts those qualities without copying either product or changing Lolla's
+semantic sources.
+
+The implementation:
+
+- uses a light paper/grid field, black hairlines, rounded frames, bold human
+  headings, and mono provenance labels;
+- uses teal, violet, orange, and blue as sparse locators rather than broad
+  decorative surfaces;
+- makes the product H1 the canonical model name while preserving the exact
+  source-document title at the source boundary;
+- exposes exact relationship counts and authored in/out direction near the top;
+- replaces repeated full connection cards with a compact relationship index and
+  one selected source → typed line → target detail;
+- uses solid, dotted, and dashed-with-cross grammar in addition to written ally,
+  tension, and antagonist labels;
+- uses actual keyboard-operable tabs for relationship types;
+- preserves all 12 exact records, including parallel relations, without ranking;
+- keeps technical record fields and relationship-set custody collapsed; and
+- keeps the global navigation available on mobile.
+
+The route fails this follow-up if color is required to understand relation type,
+if a record or direction disappears, if selecting a chapter leaves its new
+orientation outside the viewport, if mobile creates document-level overflow, or
+if source title and product title are conflated.
+
+This is intentionally a model-page visual tracer. It does not claim that the
+global `/atlas` SVG and Canvas renderers have adopted the same presentation
+grammar. A renderer-wide line/geometry unification remains a separate bounded
+follow-up rather than a hidden expansion of this repair.

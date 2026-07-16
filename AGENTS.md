@@ -266,6 +266,14 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   separately labelled layers, and keeps the aggregate page `partial` because
   runtime affordance presentation, practice prompts, and Teacher journeys
   remain unavailable or out of scope.
+- The latest local, unpublished founder follow-up applies a light editorial
+  line-and-box system and sparse segmented color to `/models/abstraction`. The
+  product H1 is the model identity; the exact Markdown title remains at the
+  source boundary. Connections render as a compact exact-record index plus one
+  source → typed line → target detail, with written direction and redundant
+  solid/dotted/dashed-with-cross semantics. This is route-scoped: do not claim
+  the global `/atlas` SVG/Canvas renderers share the complete grammar until a
+  separate renderer-unification and reverse-edge-geometry gate passes.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit

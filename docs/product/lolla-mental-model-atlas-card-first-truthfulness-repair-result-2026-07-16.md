@@ -6,7 +6,7 @@ Date: 2026-07-16
 
 Decision:
 
-`guided_reader_abstraction_repair_ready_for_founder_validation`
+`relational_editorial_abstraction_tracer_ready_for_founder_validation`
 
 ## Executive result
 
@@ -16,6 +16,13 @@ source-derived orientation cues, presents the canonical article in five focused
 chapters with a persistent sense of place, continues into practical guidance,
 and groups the exact graph neighborhood by the kind of intellectual relationship
 it offers.
+
+The latest founder follow-up also gives that journey a coherent visual language:
+a light editorial field, thin lines and rounded boxes, bold human headings,
+mono provenance labels, and sparse segmented color. Relationships now read as
+explicit source → typed line → target paths rather than as a stack of technical
+cards. The route remains source- and graph-bound; the aesthetic does not invent
+new model meaning.
 
 The founder's follow-up identified two separate defects in the first card-first
 repair:
@@ -96,9 +103,9 @@ All 12 exact Abstraction-incident relationship records remain available, with
 parallel records preserved. The default presentation no longer asks a human to
 scan 12 structurally similar cards in one run. It offers three deliberate views:
 
-- **Works with** — seven ally records;
-- **Productive tensions** — four tension records;
-- **Direct conflicts** — one antagonist record.
+- **Ally · Works with** — seven ally records;
+- **Tension · Compare the tradeoff** — four tension records;
+- **Antagonist · Pushes against** — one antagonist record.
 
 Each visible relationship tells the reader which other model is involved, what
 kind of relationship it is, whether Abstraction points to that model or that
@@ -106,6 +113,49 @@ model points to Abstraction, and the checked-in plain-language relationship
 story. Source indices, confidence, and authored-direction custody are available
 in a disclosure. The graph is a route to comparison and further learning, not
 a ranking or proof of relevance.
+
+## Relational editorial aesthetic
+
+The visual synthesis deliberately assigns different jobs to the two reference
+directions supplied by the founder:
+
+- the light editorial reference supplies the paper-like field, thin black
+  structure, rounded boxes, and line-led spatial reasoning;
+- the information-system reference supplies the bold sans hierarchy, mono
+  metadata, faint grid, and restrained segmented accent rail;
+- Lolla's own exact relationship graph supplies the content, identity,
+  direction, and semantic labels.
+
+The page H1 is now the stable model name, **Abstraction**. The exact source title,
+**Comprehensive Briefing Document on Abstraction**, remains visible at the
+authoritative source boundary instead of masquerading as the product page title.
+The hero exposes the exact 12-record neighborhood, 5 outward and 7 inward
+directions, and the 7 ally / 4 tension / 1 antagonist breakdown before the reader
+enters the graph material.
+
+The relationship explorer uses redundant, non-color-only grammar:
+
+- **Ally · Works with** — solid teal line;
+- **Tension · Compare the tradeoff** — dotted violet line;
+- **Antagonist · Pushes against** — dashed orange line with a cross.
+
+Each selected relationship shows the exact source model, arrow direction,
+canonical relationship type, target model, and checked-in summary. A compact
+index preserves every exact record and allows a person to switch the selected
+detail without rendering 12 large cards. Tabs use `aria-selected`, roving
+keyboard focus, and arrow-key movement. Color only repeats the written label;
+it never means good/bad, importance, confidence, or applicability.
+
+Technical direction, confidence, source-record index, connection-set custody,
+and page coverage remain available in collapsed disclosures. The ordinary
+learning flow carries the human relationship story, not graph-maintenance
+residue.
+
+This aesthetic is scoped to the Abstraction model-page tracer. The global
+`/atlas` SVG and Canvas surfaces remain the earlier Phase 1 implementation and
+must not yet be described as using this complete line/box system. A focused
+renderer-unification pass—including a regression test for geometrically distinct
+reverse-direction edges—is an identified follow-on, not part of this result.
 
 ## Source-bound interaction contract
 
@@ -179,6 +229,35 @@ The earlier card-first screenshot packet remains historical evidence of the
 superseded long-scroll composition; it was not deleted or relabelled as the
 current experience.
 
+The relational-aesthetic follow-up was then checked in a real browser at
+1440×900, 390×844, and 320×780. It found:
+
+- one canonical H1: `Abstraction`;
+- a 688-pixel desktop hero and 6,222-pixel complete desktop page;
+- one visible relationship type and one selected detail at a time;
+- all 12 exact relations in the DOM, with 5 outward and 7 inward records;
+- written type and direction labels plus solid/dotted/dashed-with-cross line
+  grammar;
+- direct chapter selection re-oriented the desktop stage to 205 pixels from the
+  viewport top after layout settled;
+- the mobile chapter navigation stayed available below the site header and the
+  new orientation remained visible;
+- zero document-level horizontal overflow at 390 and 320 pixels; and
+- working tab switching for ally, tension, and antagonist views.
+
+That evidence packet is
+`docs/product/evidence/lolla-mental-model-atlas-relational-aesthetic-2026-07-16/`.
+
+Two independent final re-audits returned `ACCEPT` with no blockers after catching
+and rechecking four issues before commit: settled mobile navigation initially
+sat under the global header, the 320-pixel title wrapped mid-word, early relation
+screenshots were captured before scrolling settled, and one result paragraph
+still used superseded relationship labels. The final 390-pixel state places the
+header at 0–125 pixels, the complete chapter rail at 128–270 pixels, and the new
+chapter orientation at 296 pixels. At 320 pixels, `Abstraction` remains one line
+at 41.6 pixels with zero document overflow. All eight final screenshot hashes
+reproduce from the machine receipt.
+
 ## Architecture trade-off
 
 One independent architecture audit preferred a continuous source document with
@@ -200,18 +279,21 @@ Final checks:
 
 - card-first plus frozen Phase 1 Python tests: 31 passed;
 - PRD contract and the two initially timed-out Observatory tests: 6 passed;
-- Atlas Vitest in the ordinary parallel configuration: 33 passed;
+- Atlas Vitest in the ordinary parallel configuration: 35 passed;
 - Atlas Vitest in a single-worker diagnostic configuration: 33 passed;
 - TypeScript check: passed;
-- production build: passed; model-page route chunk 32.75 kB raw and 9.99 kB
+- production build: passed; model-page route chunk 37.70 kB raw and 11.20 kB
   gzip;
 - dependency audit: zero known vulnerabilities;
 - complete repository suite: 5,009 passed and 93 subtests passed;
 - warning: one existing `datetime.utcnow()` deprecation;
 - Stage 0 register: valid with 25 components, 24 connections, 17 Constitution
   findings, 26 Decision Trail groups, and 639 accounted implementation files;
-- follow-up changed Markdown links: 32 checked, zero missing;
+- current relational-aesthetic changed Markdown links: 153 checked across nine
+  files, zero missing;
 - four changed JSON artifacts parsed;
+- the two current Atlas lifecycle/evidence JSON files parsed after the
+  relational-aesthetic additions;
 - changed Python compiled;
 - `git diff --check`, added-material secret scan, and Git object integrity:
   passed.
@@ -234,8 +316,9 @@ VoiceOver/NVDA/JAWS review remains open. The app remains local and disconnected
 from Lolla's live pressure runtime and Observatory.
 
 The next decision is founder validation at `/models/abstraction`: does the
-five-step source journey now feel understandable, navigable, and human; do the
-practical and connection continuations add context without turning the page
-back into a technical artifact; and is the optional full-source mode the right
-custody escape hatch? A positive answer still does not authorize publication,
-Phase 2, Teacher journeys, the other model pages, or runtime integration.
+light line-and-box language feel like Lolla; does the compact relation index plus
+one source → relation → target detail make allies, tensions, antagonists, and
+direction immediately understandable; and does direct chapter selection now
+keep a person oriented? A positive answer still does not authorize publication,
+Phase 2, a global graph-renderer redesign, Teacher journeys, the other model
+pages, or runtime integration.

@@ -187,10 +187,13 @@ card-first/guided-reader truthfulness repair are implemented locally. The
 Abstraction source is complete and is presented as five source-bound human
 chapters with persistent orientation; dated curation residue is in a collapsed
 source appendix, practical guidance is progressively disclosed, and all exact
-connections are grouped by their human learning role. The wider Teacher product
-remains partial. Its next decision is founder review of the checked-in local
-packet. It does not authorize public deployment, Phase 2, Teacher journeys,
-runtime links, or provider use.
+connections are grouped by their human learning role. A local relational-
+editorial follow-up adds the light line-and-box language, canonical model title,
+and compact source → relation → target explorer without changing the sources.
+That visual language is scoped to the Abstraction route, not yet to the global
+SVG/Canvas graph. The wider Teacher product remains partial. Its next decision
+is founder review of the checked-in local packet. It does not authorize public
+deployment, Phase 2, Teacher journeys, runtime links, or provider use.
 See the [card-first result](docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md).
 
 See the

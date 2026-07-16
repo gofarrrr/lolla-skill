@@ -15,8 +15,9 @@ publication.
 - `/models/abstraction` — one card-first guided page with the complete canonical
   Markdown source divided into five reviewed human chapters, persistent
   orientation, an optional full-source inspection mode, the complete Abstraction
-  knowledge-graph record, all 12 exact incident relations grouped by learning
-  role, and an explicit partial-page coverage vector;
+  knowledge-graph record, all 12 exact incident relations grouped in a compact
+  accessible master/detail explorer, redundant line-and-text relationship
+  semantics, and an explicit partial-page coverage vector;
 - `/relations/abstraction__first-principles-thinking__ally` — one complete
   exact directed relation page;
 - `/learn` — an honest boundary page; no Teacher journey is requested in Phase
@@ -107,7 +108,9 @@ mastery certification.
 ## Current lifecycle
 
 The card-first guided-reader repair is ready for founder visual and product
-review. The Mental Model Teacher component remains `park` because four gates
+review. Its light editorial and segmented-color visual language is currently a
+route-scoped Abstraction tracer, not a completed redesign of the global SVG or
+Canvas graph. The Mental Model Teacher component remains `park` because four gates
 are still open: founder learning-journey acceptance, native screen-reader review,
 source-rights/publication review, and a separately authorized real-user
 usefulness study. Phase 2, Teacher journeys, deployment, live-runtime links,

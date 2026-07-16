@@ -36,7 +36,7 @@ def test_atlas_prd_contract_is_grounded_in_the_canonical_substrate() -> None:
     affordances = _json(affordance_path)
 
     assert contract["canonical_planning_base"] == "2f05fd1ca7081f602317d670faad8d1293d5b0ff"
-    assert contract["status"] == "phase1_guided_reader_repaired_founder_gate_pending"
+    assert contract["status"] == "phase1_relational_editorial_tracer_founder_gate_pending"
 
     assert _sha256(manifest_path) == baseline["model_source_manifest"]["sha256"]
     assert _sha256(knowledge_path) == baseline["knowledge_graph"]["sha256"]
@@ -168,7 +168,7 @@ def test_atlas_prd_defines_a_complete_but_unauthed_product_lane() -> None:
     phases = contract["tracer_bullet_phases"]
     assert [phase["phase"] for phase in phases] == [1, 2, 3, 4, 5, 6]
     assert phases[0]["status"] == (
-        "implemented_local_guided_reader_repaired_founder_gate_pending"
+        "implemented_local_relational_editorial_tracer_founder_gate_pending"
     )
     assert all(phase["status"] == "not_authorized" for phase in phases[1:])
 
@@ -181,7 +181,9 @@ def test_atlas_prd_defines_a_complete_but_unauthed_product_lane() -> None:
     assert lifecycle["implementation_authorized"] is False
     assert lifecycle["phase1_implementation_completed"] is True
     assert lifecycle["phase1_authorization_consumed"] is True
-    assert lifecycle["founder_visual_acceptance"] == "pending_guided_reader_review"
+    assert lifecycle["founder_visual_acceptance"] == (
+        "pending_relational_editorial_tracer_review"
+    )
     correction = contract["phase1_card_first_correction"]
     assert correction["historical_v1_modified"] is False
     assert correction["human_reader_projection"] == (
@@ -189,7 +191,13 @@ def test_atlas_prd_defines_a_complete_but_unauthed_product_lane() -> None:
     )
     assert correction["source_curator_appendix_default"] == "collapsed"
     assert correction["connection_presentation"] == (
-        "grouped_by_ally_tension_antagonist_with_exact_records_preserved"
+        "compact_group_index_plus_one_selected_source_typed_line_target_detail_with_exact_records_preserved"
+    )
+    assert correction["relationship_visual_grammar"] == (
+        "written_labels_plus_solid_ally_dotted_tension_dashed_cross_antagonist"
+    )
+    assert correction["visual_scope"] == (
+        "abstraction_model_route_only_not_global_svg_or_canvas"
     )
     assert correction["authoritative_source_card_coverage"] == "complete"
     assert correction["operational_knowledge_graph_record_coverage"] == (

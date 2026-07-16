@@ -42,8 +42,11 @@ truth tracer bullet is now implemented locally:
 The July 16 additive repair corrects one Phase 1 truthfulness defect: the former
 page had complete source custody but projected only one substantive card line.
 The current Abstraction page renders the complete source card first and labels
-compiled graph material separately. The source card is complete; the learning
-page is partial. Frozen Phase 1 artifacts remain unchanged.
+compiled graph material separately. Its founder follow-up adds a guided reading
+journey and a route-scoped light line-and-box relationship explorer while
+preserving all exact records and directions. The source card is complete; the
+learning page is partial; the global graph renderer has not yet adopted this
+complete aesthetic grammar. Frozen Phase 1 artifacts remain unchanged.
 
 This does not rewrite historical Teacher artifacts or change the Stage 0
 `park` disposition. Founder card-first acceptance, native screen-reader review,

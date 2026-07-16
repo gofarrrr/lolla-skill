@@ -2,9 +2,9 @@
 
 > Source PRD: [Lolla Mental Model Atlas and Teacher PRD v1](../docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md)
 
-Status: Phase 1 implemented locally; additive card-first and guided-reader
-truthfulness repairs implemented; founder visual, native screen-reader, and
-rights gates pending; later phases unauthorized
+Status: Phase 1 implemented locally; additive card-first, guided-reader, and
+relational-editorial tracer repairs implemented; founder visual, native
+screen-reader, and rights gates pending; later phases unauthorized
 
 Date: 2026-07-15
 
@@ -39,6 +39,14 @@ dated source-curation maintenance lines to a collapsed appendix, and groups all
 exact connections by their human learning role. A full-source inspection mode
 preserves search, copy, print, and custody. This is a reviewed Abstraction
 projection, not a deterministic rule for the remaining corpus.
+
+The latest founder follow-up adapts a light editorial line-and-box system and
+sparse segmented color to the Abstraction route. It preserves one exact model
+identity, all 12 relation records, authored direction, parallel records, and
+written type labels while reducing the ordinary relationship view to a compact
+index plus one selected detail. This is a route-scoped visual tracer. The global
+SVG/Canvas renderer still requires a separately authorized grammar and reverse-
+edge geometry unification before this language can be called Atlas-wide.
 
 ## Architectural Decisions
 
