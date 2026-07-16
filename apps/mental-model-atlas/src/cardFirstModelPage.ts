@@ -28,6 +28,13 @@ export const CARD_FIRST_SUBSTANTIVE_LINES = [
   ...TABLE_LINES,
 ].sort((left, right) => left - right);
 export const CARD_FIRST_RELATION_INDICES = [0, 1, 2, 3, 4, 51, 456, 534, 810, 1115, 1151, 1283];
+export const CARD_FIRST_READER_CHAPTERS = [
+  ["understand", 1, 3, 23, 7],
+  ["use", 2, 25, 45, 25],
+  ["judge", 3, 47, 75, 47],
+  ["connect", 4, 77, 99, 77],
+  ["apply-safely", 5, 109, 126, 109],
+] as const;
 
 export type CardLineKind =
   | "title"
@@ -71,6 +78,51 @@ export interface CardSourceRef extends AtlasSourceRef {
   line_ending: "LF";
   terminal_newline: true;
   line_count: number;
+}
+
+export interface ReaderOrientationCue {
+  label: string;
+  text: string;
+  source_line: number;
+}
+
+export interface ReaderChapter {
+  chapter_id: string;
+  step: number;
+  navigation_label: string;
+  orientation: string;
+  start_line: number;
+  end_line: number;
+  heading_line: number;
+  after_chapter_action?: string;
+}
+
+export interface HumanReaderProjection {
+  schema_version: "lolla.atlas_human_reader_projection.v1";
+  status: "reviewed_for_abstraction_local_founder_validation";
+  interaction_mode: "single_open_chapter_with_persistent_orientation";
+  default_chapter_id: "understand";
+  orientation_cues: ReaderOrientationCue[];
+  chapters: ReaderChapter[];
+  source_appendix: {
+    appendix_id: "source-curation-notes";
+    label: string;
+    start_line: 101;
+    end_line: 107;
+    heading_line: 101;
+    default_state: "collapsed";
+    reason: string;
+    review_authority: "founder_product_feedback_2026-07-16";
+  };
+  substantive_line_accounting: {
+    total: 60;
+    hero: number[];
+    primary_learning_sequence: number[];
+    source_appendix: number[];
+    unassigned: number[];
+    duplicated: number[];
+  };
+  non_claims: string[];
 }
 
 export interface OperationalMetadataRecord {
@@ -123,6 +175,7 @@ export interface CardFirstModelPage {
     source_ref: CardSourceRef;
     source_text: string;
     line_map: CardLineMapEntry[];
+    reader_projection: HumanReaderProjection;
     coverage: CardSourceCoverage;
   };
   operational_curation: {
@@ -242,6 +295,7 @@ export function validateCardFirstModelPage(value: unknown): CardFirstModelPage {
     validateFrozenLineRole(entry, sourceLines[index]);
   });
   validateSourceCoverage(card.coverage, lineMap);
+  validateReaderProjection(card.reader_projection, sourceLines);
 
   const operational = object(root.operational_curation, "operational_curation");
   if (
@@ -278,6 +332,65 @@ export function validateCardFirstModelPage(value: unknown): CardFirstModelPage {
   object(root.status, "status");
   object(root.predecessor, "predecessor");
   return root as unknown as CardFirstModelPage;
+}
+
+function validateReaderProjection(value: unknown, sourceLines: string[]): void {
+  const projection = object(value, "source_card.reader_projection");
+  if (
+    projection.schema_version !== "lolla.atlas_human_reader_projection.v1" ||
+    projection.status !== "reviewed_for_abstraction_local_founder_validation" ||
+    projection.interaction_mode !== "single_open_chapter_with_persistent_orientation" ||
+    projection.default_chapter_id !== "understand"
+  ) fail("human reader projection identity drift");
+
+  const chapters = array(projection.chapters, "source_card.reader_projection.chapters");
+  if (chapters.length !== CARD_FIRST_READER_CHAPTERS.length) fail("reader chapter count drift");
+  chapters.forEach((value, index) => {
+    const chapter = object(value, `source_card.reader_projection.chapters[${index}]`);
+    strings(chapter, ["chapter_id", "navigation_label", "orientation"], `source_card.reader_projection.chapters[${index}]`);
+    const expected = CARD_FIRST_READER_CHAPTERS[index];
+    if (
+      chapter.chapter_id !== expected[0] || chapter.step !== expected[1] ||
+      chapter.start_line !== expected[2] || chapter.end_line !== expected[3] ||
+      chapter.heading_line !== expected[4]
+    ) fail(`reader chapter ${index} identity or line range drift`);
+  });
+
+  const appendix = object(projection.source_appendix, "source_card.reader_projection.source_appendix");
+  if (
+    appendix.appendix_id !== "source-curation-notes" || appendix.start_line !== 101 ||
+    appendix.end_line !== 107 || appendix.heading_line !== 101 ||
+    appendix.default_state !== "collapsed" ||
+    appendix.review_authority !== "founder_product_feedback_2026-07-16"
+  ) fail("reader source appendix boundary drift");
+  strings(appendix, ["label", "reason"], "source_card.reader_projection.source_appendix");
+
+  const cues = array(projection.orientation_cues, "source_card.reader_projection.orientation_cues");
+  if (cues.length !== 3) fail("reader orientation cue count drift");
+  cues.forEach((value, index) => {
+    const cue = object(value, `source_card.reader_projection.orientation_cues[${index}]`);
+    strings(cue, ["label", "text"], `source_card.reader_projection.orientation_cues[${index}]`);
+    positiveInteger(cue.source_line, `source_card.reader_projection.orientation_cues[${index}].source_line`);
+    if (!sourceLines[(cue.source_line as number) - 1]?.includes(cue.text as string)) {
+      fail(`reader orientation cue ${index} no longer matches its source line`);
+    }
+  });
+
+  const accounting = object(
+    projection.substantive_line_accounting,
+    "source_card.reader_projection.substantive_line_accounting",
+  );
+  if (accounting.total !== 60) fail("reader substantive total drift");
+  const hero = numberArray(accounting.hero, "reader accounting hero");
+  const primary = numberArray(accounting.primary_learning_sequence, "reader accounting primary");
+  const sourceAppendix = numberArray(accounting.source_appendix, "reader accounting appendix");
+  if (array(accounting.unassigned, "reader accounting unassigned").length) fail("reader projection has unassigned lines");
+  if (array(accounting.duplicated, "reader accounting duplicated").length) fail("reader projection duplicates lines");
+  const combined = [...hero, ...primary, ...sourceAppendix].sort((left, right) => left - right);
+  if (!sameNumbers(combined, CARD_FIRST_SUBSTANTIVE_LINES) || new Set(combined).size !== 60) {
+    fail("reader projection substantive line partition drift");
+  }
+  stringArray(projection.non_claims, "source_card.reader_projection.non_claims");
 }
 
 function validateLineMapEntry(value: unknown, index: number): CardLineMapEntry {
@@ -460,6 +573,14 @@ function stringArray(value: unknown, path: string): string[] {
   const values = array(value, path);
   if (values.some((item) => typeof item !== "string")) fail(`${path} must contain strings`);
   return values as string[];
+}
+
+function numberArray(value: unknown, path: string): number[] {
+  const values = array(value, path);
+  if (values.some((item) => typeof item !== "number" || !Number.isSafeInteger(item))) {
+    fail(`${path} must contain safe integers`);
+  }
+  return values as number[];
 }
 
 function strings(value: Record<string, unknown>, keys: string[], path: string): void {

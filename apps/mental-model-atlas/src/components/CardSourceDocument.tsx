@@ -1,56 +1,200 @@
-import { Fragment, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 
 import type {
   CardFirstModelPage,
   CardLineMapEntry,
+  ReaderChapter,
 } from "../cardFirstModelPage";
 
 type SourceCard = CardFirstModelPage["source_card"];
 
 export function CardSourceDocument({ sourceCard }: { sourceCard: SourceCard }) {
   const lines = sourceCard.source_text.slice(0, -1).split("\n");
-  const headings = sourceCard.line_map.filter(
-    (entry) => entry.kind === "heading",
+  const projection = sourceCard.reader_projection;
+  const [activeChapterId, setActiveChapterId] = useState<string>(projection.default_chapter_id);
+  const [readerMode, setReaderMode] = useState<"guided" | "full">("guided");
+  const chapterStartRef = useRef<HTMLDivElement>(null);
+  const shouldOrientRef = useRef(false);
+  const activeIndex = projection.chapters.findIndex(
+    (chapter) => chapter.chapter_id === activeChapterId,
   );
+  const activeChapter = projection.chapters[activeIndex];
+
+  useEffect(() => {
+    if (!shouldOrientRef.current) return;
+    shouldOrientRef.current = false;
+    chapterStartRef.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+  }, [activeChapterId]);
+
+  function selectChapter(chapterId: string) {
+    if (chapterId === activeChapterId && readerMode === "guided") return;
+    shouldOrientRef.current = true;
+    setReaderMode("guided");
+    setActiveChapterId(chapterId);
+  }
 
   return (
-    <div className="card-document-layout">
-      <nav className="card-contents" aria-label="Model card contents">
-        <p className="eyebrow">In this source card</p>
+    <div className="guided-reader" id="guided-reader-start">
+      <nav className="reader-journey-nav" aria-label="Guided model chapters">
+        <div className="reader-progress-copy" aria-live="polite">
+          <p className="eyebrow">Your place in the model</p>
+          <strong>{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Complete source view"}</strong>
+          <span>{readerMode === "guided" ? activeChapter.navigation_label : "All five chapters"}</span>
+        </div>
         <ol>
-          {headings.map((entry) => (
-            <li className={`toc-level-${entry.heading_level}`} key={entry.line_number}>
-              <a href={`#source-line-${entry.line_number}`}>
-                {trimHeading(lines[entry.line_number - 1])}
-              </a>
-            </li>
-          ))}
+          {projection.chapters.map((chapter) => {
+            const isActive = chapter.chapter_id === activeChapterId;
+            return (
+              <li key={chapter.chapter_id}>
+                <button
+                  type="button"
+                  className={isActive ? "is-active" : undefined}
+                  aria-current={isActive ? "step" : undefined}
+                  aria-controls={`reader-chapter-${chapter.chapter_id}`}
+                  onClick={() => selectChapter(chapter.chapter_id)}
+                >
+                  <span>{chapter.step}</span>
+                  {chapter.navigation_label}
+                </button>
+              </li>
+            );
+          })}
         </ol>
-        <dl className="coverage-mini-facts">
-          <div><dt>Source words</dt><dd>{sourceCard.coverage.word_count.toLocaleString()}</dd></div>
-          <div><dt>Physical lines</dt><dd>{sourceCard.coverage.physical_line_count}</dd></div>
-          <div><dt>Substantive omissions</dt><dd>{sourceCard.coverage.omitted_substantive_line_count}</dd></div>
-        </dl>
+        <button
+          type="button"
+          className="reader-source-mode"
+          aria-pressed={readerMode === "full"}
+          onClick={() => setReaderMode(readerMode === "guided" ? "full" : "guided")}
+        >
+          {readerMode === "guided" ? "View exact source as one document" : "Return to guided reading"}
+        </button>
       </nav>
 
-      <article className="source-card" aria-label="Complete canonical Abstraction card">
-        <SourceCardNodes lineMap={sourceCard.line_map} lines={lines} />
-      </article>
+      <div className={`reader-stage ${readerMode === "full" ? "is-full-source" : ""}`} ref={chapterStartRef}>
+        <div className="reader-stage-orientation">
+          <p className="eyebrow">{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Source inspection mode"}</p>
+          <p>{readerMode === "guided" ? activeChapter.orientation : "All original learning chapters are open in source order for search, copy, print, and audit."}</p>
+        </div>
+
+        {projection.chapters.slice(0, 4).map((chapter) => (
+          <ReaderChapterPanel
+            key={chapter.chapter_id}
+            chapter={chapter}
+            isActive={readerMode === "full" || chapter.chapter_id === activeChapterId}
+            lineMap={sourceCard.line_map}
+            lines={lines}
+          />
+        ))}
+
+        <details
+          className="source-curation-appendix"
+          hidden={readerMode !== "full" && activeChapterId !== "connect"}
+          open={readerMode === "full" ? true : undefined}
+        >
+          <summary>{projection.source_appendix.label}</summary>
+          <p>{projection.source_appendix.reason}</p>
+          <div className="source-card source-card-technical">
+            <SourceCardNodes
+              lineMap={sourceCard.line_map}
+              lines={lines}
+              startLine={projection.source_appendix.start_line}
+              endLine={projection.source_appendix.end_line}
+            />
+          </div>
+        </details>
+
+        {projection.chapters.slice(4).map((chapter) => (
+          <ReaderChapterPanel
+            key={chapter.chapter_id}
+            chapter={chapter}
+            isActive={readerMode === "full" || chapter.chapter_id === activeChapterId}
+            lineMap={sourceCard.line_map}
+            lines={lines}
+          />
+        ))}
+
+        {readerMode === "guided" ? <div className="reader-chapter-actions">
+          <button
+            type="button"
+            className="button secondary"
+            disabled={activeIndex === 0}
+            onClick={() => selectChapter(projection.chapters[activeIndex - 1].chapter_id)}
+          >
+            Previous step
+          </button>
+          <p>{chapterBridge(activeChapter)}</p>
+          <button
+            type="button"
+            className="button"
+            disabled={activeIndex === projection.chapters.length - 1}
+            onClick={() => selectChapter(projection.chapters[activeIndex + 1].chapter_id)}
+          >
+            Next step
+          </button>
+        </div> : null}
+      </div>
     </div>
+  );
+}
+
+function chapterBridge(chapter: ReaderChapter): string {
+  if (chapter.chapter_id === "connect") {
+    return "After the source journey, explore the exact connection neighborhood below.";
+  }
+  if (chapter.chapter_id === "apply-safely") {
+    return "You have completed the source journey. Continue into practical guidance when ready.";
+  }
+  return "Continue when this chapter feels clear.";
+}
+
+function ReaderChapterPanel({
+  chapter,
+  isActive,
+  lineMap,
+  lines,
+}: {
+  chapter: ReaderChapter;
+  isActive: boolean;
+  lineMap: CardLineMapEntry[];
+  lines: string[];
+}) {
+  return (
+    <section
+      className="reader-chapter"
+      id={`reader-chapter-${chapter.chapter_id}`}
+      aria-labelledby={`source-line-${chapter.heading_line}`}
+      hidden={!isActive}
+    >
+      <article className="source-card" aria-label={`${chapter.navigation_label} source chapter`}>
+        <SourceCardNodes
+          lineMap={lineMap}
+          lines={lines}
+          startLine={chapter.start_line}
+          endLine={chapter.end_line}
+        />
+      </article>
+    </section>
   );
 }
 
 function SourceCardNodes({
   lineMap,
   lines,
+  startLine,
+  endLine,
 }: {
   lineMap: CardLineMapEntry[];
   lines: string[];
+  startLine: number;
+  endLine: number;
 }) {
+  const boundedLineMap = lineMap.filter(
+    (entry) => entry.line_number >= startLine && entry.line_number <= endLine,
+  );
   const nodes: ReactNode[] = [];
   let index = 0;
-  while (index < lineMap.length) {
-    const entry = lineMap[index];
+  while (index < boundedLineMap.length) {
+    const entry = boundedLineMap[index];
     const line = lines[entry.line_number - 1];
     if (entry.kind === "title" || entry.kind === "blank" || entry.kind === "table_delimiter") {
       index += 1;
@@ -82,8 +226,8 @@ function SourceCardNodes({
       const kind = entry.kind;
       const items: Array<{ entry: CardLineMapEntry; line: string }> = [];
       let scan = index;
-      while (scan < lineMap.length) {
-        const candidate = lineMap[scan];
+      while (scan < boundedLineMap.length) {
+        const candidate = boundedLineMap[scan];
         if (candidate.kind === "blank") {
           scan += 1;
           continue;
@@ -110,17 +254,14 @@ function SourceCardNodes({
     if (entry.kind === "table_text_row") {
       const rows: Array<{ entry: CardLineMapEntry; cells: string[] }> = [];
       let scan = index;
-      while (scan < lineMap.length) {
-        const candidate = lineMap[scan];
+      while (scan < boundedLineMap.length) {
+        const candidate = boundedLineMap[scan];
         if (candidate.kind === "table_delimiter") {
           scan += 1;
           continue;
         }
         if (candidate.kind !== "table_text_row") break;
-        rows.push({
-          entry: candidate,
-          cells: splitTableLine(lines[candidate.line_number - 1]),
-        });
+        rows.push({ entry: candidate, cells: splitTableLine(lines[candidate.line_number - 1]) });
         scan += 1;
       }
       const [header, ...body] = rows;
@@ -168,8 +309,4 @@ function stripListMarker(line: string, kind: CardLineMapEntry["kind"]): string {
 
 function splitTableLine(line: string): string[] {
   return line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((cell) => cell.trim());
-}
-
-function trimHeading(value: string): string {
-  return value.replace(/:$/, "");
 }

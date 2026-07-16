@@ -102,6 +102,45 @@ def test_exact_line_map_accounts_for_every_physical_and_substantive_line() -> No
     assert card["coverage"]["title_and_heading_count"] == 15
 
 
+def test_human_reader_projection_partitions_source_into_five_chapters_and_one_appendix() -> None:
+    projection = _page()["source_card"]["reader_projection"]
+    assert projection["interaction_mode"] == "single_open_chapter_with_persistent_orientation"
+    assert [
+        (item["chapter_id"], item["step"], item["start_line"], item["end_line"], item["heading_line"])
+        for item in projection["chapters"]
+    ] == [
+        ("understand", 1, 3, 23, 7),
+        ("use", 2, 25, 45, 25),
+        ("judge", 3, 47, 75, 47),
+        ("connect", 4, 77, 99, 77),
+        ("apply-safely", 5, 109, 126, 109),
+    ]
+    assert projection["source_appendix"] == {
+        "appendix_id": "source-curation-notes",
+        "label": "Original relationship curation notes",
+        "start_line": 101,
+        "end_line": 107,
+        "heading_line": 101,
+        "default_state": "collapsed",
+        "reason": (
+            "Dated slug-form relationship maintenance text is preserved exactly for source custody but is not "
+            "part of the primary human learning sequence. The separately rendered relationship layer provides "
+            "the current readable connection view."
+        ),
+        "review_authority": "founder_product_feedback_2026-07-16",
+    }
+    accounting = projection["substantive_line_accounting"]
+    assert accounting["total"] == 60
+    assert accounting["hero"] == [1]
+    assert len(accounting["primary_learning_sequence"]) == 55
+    assert accounting["source_appendix"] == [101, 103, 105, 107]
+    assert accounting["unassigned"] == accounting["duplicated"] == []
+    assert set(accounting["hero"] + accounting["primary_learning_sequence"] + accounting["source_appendix"]) == SUBSTANTIVE_LINES
+    source_lines = _page()["source_card"]["source_text"].splitlines()
+    for cue in projection["orientation_cues"]:
+        assert cue["text"] in source_lines[cue["source_line"] - 1]
+
+
 @pytest.mark.parametrize(
     "mutation",
     [
@@ -112,6 +151,10 @@ def test_exact_line_map_accounts_for_every_physical_and_substantive_line() -> No
         lambda page: page["source_card"].__setitem__("source_text", page["source_card"]["source_text"].replace("Abstraction", "AbstraXtion", 1)),
         lambda page: page["source_card"]["line_map"][8].__setitem__("render_disposition", "omitted"),
         lambda page: page["source_card"]["coverage"].__setitem__("rendered_substantive_line_count", 59),
+        lambda page: page["source_card"]["reader_projection"]["chapters"][2].__setitem__("end_line", 73),
+        lambda page: page["source_card"]["reader_projection"]["source_appendix"].__setitem__("start_line", 99),
+        lambda page: page["source_card"]["reader_projection"]["orientation_cues"][0].__setitem__("text", "invented"),
+        lambda page: page["source_card"]["reader_projection"]["substantive_line_accounting"]["primary_learning_sequence"].pop(),
     ],
 )
 def test_source_line_or_coverage_mutations_fail_closed(mutation) -> None:

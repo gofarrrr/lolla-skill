@@ -73,7 +73,6 @@ export default function ModelPage({ slug }: { slug: string }) {
 
 export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
   const { model, source_card: sourceCard, operational_curation, connections } = page;
-  const coverage = sourceCard.coverage;
   const title = sourceCard.source_text.slice(0, sourceCard.source_text.indexOf("\n"));
   useEffect(() => {
     document.title = `${model.display_name} · Lolla Atlas`;
@@ -89,24 +88,24 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
 
       <article className="learning-page card-first-page">
         <header className="learning-hero card-first-hero">
-          <p className="eyebrow">Source card complete · learning page partial · local review</p>
-          <p className="canonical-id">{model.model_id}</p>
+          <p className="eyebrow">Mental model · guided source reading · local review</p>
           <h1 data-source-line="1">{title}</h1>
           <p className="definition-lede">
-            The Markdown card is the primary educational layer. Lolla's compiled
-            operational fields and exact graph connections appear afterward as
-            separately labelled projections.
+            Learn the idea in five focused steps, then explore how to use it and
+            how it connects to other ways of thinking.
           </p>
-          <div className="coverage-banner" role="status">
-            <div><strong>{coverage.word_count.toLocaleString()}</strong><span>source words</span></div>
-            <div><strong>{coverage.physical_line_count}</strong><span>physical lines accounted</span></div>
-            <div><strong>{coverage.rendered_substantive_line_count}</strong><span>substantive lines rendered</span></div>
-            <div><strong>{coverage.omitted_substantive_line_count}</strong><span>substantive omissions</span></div>
+          <div className="model-orientation-cues" aria-label="Quick orientation">
+            {sourceCard.reader_projection.orientation_cues.map((cue) => (
+              <blockquote key={cue.label}>
+                <p>{cue.label}</p>
+                <q>{cue.text}</q>
+              </blockquote>
+            ))}
           </div>
           <div className="button-row">
-            <a className="button" href="#source-card">Read the complete card</a>
+            <a className="button" href="#guided-reader-start">Start guided reading</a>
             <AppLink className="button secondary" href="/atlas?model=abstraction">
-              Show in Atlas
+              See it in the graph
             </AppLink>
           </div>
         </header>
@@ -115,12 +114,11 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
           <header className="source-layer-heading">
             <div>
               <p className="eyebrow">Layer 1 · authoritative source</p>
-              <h2 id="source-card-title">The full model card</h2>
+              <h2 id="source-card-title">Learn {model.display_name}</h2>
             </div>
             <p>
-              Every substantive source line is represented once. Blank lines and
-              dashed separators become spacing; Markdown emphasis and the source
-              table receive semantic HTML without changing the wording.
+              Work through one chapter at a time. Your place stays visible, the next
+              step is always clear, and the original learning material remains intact.
             </p>
           </header>
           <CardSourceDocument sourceCard={sourceCard} />
@@ -132,6 +130,7 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
       </article>
 
       <StatusDisclosure
+        collapseTechnical
         status={page.status}
         missingness={page.missingness}
         sourceRefs={[
@@ -147,27 +146,26 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
 
 function PageCoverageDisclosure({ page }: { page: CardFirstModelPage }) {
   return (
-    <section className="derived-layer page-coverage-layer" aria-labelledby="page-coverage-title">
-      <header className="derived-layer-heading">
-        <div>
-          <p className="eyebrow">Truthfulness boundary</p>
-          <h2 id="page-coverage-title">This source card is complete; this learning page is partial</h2>
-        </div>
-        <p>
-          Complete source custody does not silently stand in for the Teacher journeys,
-          reviewed practice, or runtime-affordance projection that this repair did not add.
-        </p>
-      </header>
-      <ul className="coverage-component-list">
-        {page.coverage.components.map((component) => (
-          <li key={component.component}>
-            <strong>{component.component.replaceAll("_", " ")}</strong>
-            <span>{component.status.replaceAll("_", " ")}</span>
-            {component.render_disposition ? <small>{component.render_disposition.replaceAll("_", " ")}</small> : null}
-          </li>
-        ))}
-      </ul>
-    </section>
+    <aside className="learning-boundary-note" aria-labelledby="page-coverage-title">
+      <p className="eyebrow">A human learning guide—not a verdict</p>
+      <h2 id="page-coverage-title">Use the model; keep judging the situation.</h2>
+      <p>
+        This page can help you understand and inspect Abstraction. It cannot prove
+        that the model is correct or suitable for your particular decision.
+      </p>
+      <details className="technical-review-disclosure">
+        <summary>What remains outside this local learning preview</summary>
+        <ul className="coverage-component-list">
+          {page.coverage.components.map((component) => (
+            <li key={component.component}>
+              <strong>{component.component.replaceAll("_", " ")}</strong>
+              <span>{component.status.replaceAll("_", " ")}</span>
+              {component.render_disposition ? <small>{component.render_disposition.replaceAll("_", " ")}</small> : null}
+            </li>
+          ))}
+        </ul>
+      </details>
+    </aside>
   );
 }
 

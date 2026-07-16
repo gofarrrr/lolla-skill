@@ -1298,9 +1298,530 @@ td button {
 .learning-page {
   border: 1px solid var(--line);
   border-radius: 1.8rem;
-  overflow: hidden;
+  overflow: clip;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+/* Guided, human-first model reader. Source custody remains complete while the
+   default learning surface reveals one coherent chapter at a time. */
+.model-orientation-cues {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  max-width: 68rem;
+  margin: 0 0 2rem;
+}
+
+.model-orientation-cues blockquote {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: rgba(7, 9, 13, 0.48);
+}
+
+.model-orientation-cues p {
+  margin: 0 0 0.55rem;
+  color: var(--gold);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.model-orientation-cues q {
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.guided-reader {
+  display: grid;
+  grid-template-columns: minmax(14rem, 18rem) minmax(0, var(--reading-width));
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 7rem);
+  padding: clamp(2rem, 6vw, 5rem);
+  scroll-margin-top: 5rem;
+}
+
+.reader-journey-nav {
+  position: sticky;
+  top: 5.5rem;
+  align-self: start;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(20, 22, 29, 0.96);
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.22);
+}
+
+.reader-progress-copy {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.reader-progress-copy p {
+  margin: 0;
+}
+
+.reader-progress-copy strong {
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.reader-progress-copy span {
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.reader-journey-nav ol {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reader-journey-nav li + li {
+  border-top: 1px solid var(--line);
+}
+
+.reader-journey-nav button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.7rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+  border: 0;
+  padding: 0.78rem 1rem;
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.76rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reader-journey-nav button span {
+  display: grid;
+  width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--quiet);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.65rem;
+}
+
+.reader-journey-nav button:hover,
+.reader-journey-nav button:focus-visible,
+.reader-journey-nav button.is-active {
+  color: var(--text);
+  background: rgba(241, 207, 130, 0.07);
+}
+
+.reader-journey-nav button.is-active {
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.reader-journey-nav button.is-active span {
+  border-color: var(--gold);
+  color: #17120a;
+  background: var(--gold);
+}
+
+.reader-journey-nav .reader-source-mode {
+  display: block;
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding: 0.9rem 1rem;
+  color: var(--quiet);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.reader-journey-nav .reader-source-mode[aria-pressed="true"] {
+  color: var(--gold);
+}
+
+.reader-stage {
+  min-width: 0;
+  scroll-margin-top: 6.5rem;
+}
+
+.reader-stage.is-full-source .reader-chapter + .reader-chapter,
+.reader-stage.is-full-source .source-curation-appendix + .reader-chapter {
+  margin-top: clamp(3.5rem, 8vw, 7rem);
+  border-top: 1px solid var(--line);
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.reader-stage-orientation {
+  margin: 0 0 clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1.5rem;
+}
+
+.reader-stage-orientation p {
+  margin: 0;
+}
+
+.reader-stage-orientation p:last-child {
+  max-width: 42rem;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.6;
+}
+
+.reader-chapter[hidden],
+.connection-group-panel[hidden] {
+  display: none;
+}
+
+.reader-chapter-actions {
+  display: grid;
+  grid-template-columns: auto minmax(8rem, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.reader-chapter-actions p {
+  margin: 0;
+  color: var(--quiet);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.reader-chapter-actions .button:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.source-curation-appendix,
+.technical-review-disclosure,
+.operational-toolkit > details {
+  border-top: 1px solid var(--line);
+  color: var(--quiet);
+}
+
+.source-curation-appendix {
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.source-curation-appendix summary,
+.technical-review-disclosure summary,
+.operational-toolkit > details > summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.source-curation-appendix > p,
+.technical-review-disclosure > p {
+  color: var(--quiet);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.source-card-technical {
+  margin-top: 1rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: 0.8rem;
+  padding: 1rem;
+}
+
+.source-card-technical h2 {
+  font-size: 1.3rem;
+}
+
+.source-card-technical li {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+}
+
+.operational-toolkit {
+  border-top: 1px solid var(--line);
+}
+
+.operational-toolkit > details {
+  padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
+}
+
+.operational-toolkit > details[open] > summary {
+  margin-bottom: 1.5rem;
+  color: var(--gold);
+}
+
+.operational-toolkit .operational-grid {
+  margin: 0 calc(clamp(1.5rem, 4vw, 3rem) * -1) -1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.operational-toolkit .compact-facts {
+  margin-top: 1rem;
+}
+
+.connection-explorer {
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.connection-group-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.connection-group-tabs button {
+  display: grid;
+  gap: 0.2rem;
+  border: 0;
+  padding: 1rem;
+  color: var(--quiet);
+  background: rgba(7, 9, 13, 0.36);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.connection-group-tabs button + button {
+  border-left: 1px solid var(--line);
+}
+
+.connection-group-tabs button[aria-pressed="true"] {
+  color: var(--text);
+  background: rgba(126, 93, 150, 0.16);
+  box-shadow: inset 0 -3px 0 var(--tension);
+}
+
+.connection-group-tabs strong {
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.connection-group-tabs span {
+  font-size: 0.75rem;
+}
+
+.connection-group-panel > header {
+  padding: 2rem 0 1rem;
+}
+
+.connection-group-panel > header h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.connection-group-panel > header p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.connection-group-panel .model-connections-list {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.connection-group-panel .model-connection:last-child,
+.connection-group-panel .model-connection:nth-last-child(2):nth-child(odd) {
+  border-bottom: 0;
+}
+
+.connection-title-row h4 {
+  margin: 0.15rem 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.connection-direction {
+  color: var(--quiet);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.connection-set-custody {
+  padding: 1rem clamp(1.5rem, 4vw, 3rem) 1.5rem;
+}
+
+.learning-boundary-note {
+  margin: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(241, 207, 130, 0.32);
+  border-radius: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: rgba(241, 207, 130, 0.035);
+}
+
+.learning-boundary-note h2 {
+  margin: 0.45rem 0 0;
+  max-width: 32ch;
+  font-size: clamp(1.65rem, 3.3vw, 2.65rem);
+}
+
+.learning-boundary-note > p:not(.eyebrow) {
+  max-width: 62rem;
+  color: var(--muted);
+}
+
+.learning-boundary-note .technical-review-disclosure {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+@media (max-width: 880px) {
+  .model-orientation-cues {
+    grid-template-columns: 1fr;
+  }
+
+  .guided-reader {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .reader-journey-nav {
+    z-index: 5;
+    top: 0;
+  }
+
+  .reader-stage {
+    scroll-margin-top: 10rem;
+  }
+
+  .reader-progress-copy {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .reader-progress-copy .eyebrow {
+    display: none;
+  }
+
+  .reader-progress-copy span {
+    text-align: right;
+  }
+
+  .reader-journey-nav ol {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .reader-journey-nav li {
+    min-width: max-content;
+  }
+
+  .reader-journey-nav li + li {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+
+  .reader-journey-nav button {
+    min-width: 11rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .model-orientation-cues {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.45rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .model-orientation-cues blockquote {
+    min-width: 84%;
+    scroll-snap-align: start;
+  }
+
+  .guided-reader {
+    padding: 1rem;
+  }
+
+  .reader-journey-nav {
+    top: 0;
+    border-radius: 0.8rem;
+  }
+
+  .reader-progress-copy {
+    padding: 0.75rem;
+  }
+
+  .reader-journey-nav button {
+    min-width: 9.5rem;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.68rem;
+  }
+
+  .reader-stage-orientation {
+    margin-top: 0.5rem;
+  }
+
+  .reader-chapter-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reader-chapter-actions p {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .connection-group-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .connection-group-tabs button {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .connection-group-tabs button + button {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .connection-explorer {
+    padding: 1rem;
+  }
+}
+
+@media print {
+  .reader-journey-nav,
+  .reader-chapter-actions {
+    display: none !important;
+  }
+
+  .guided-reader {
+    display: block;
+  }
+
+  .reader-chapter[hidden],
+  .connection-group-panel[hidden] {
+    display: block !important;
+  }
 }
 
 .card-first-page {
@@ -1784,10 +2305,6 @@ td button {
   padding: clamp(1.5rem, 4vw, 3rem);
 }
 
-.page-coverage-layer {
-  border-top-color: rgba(241, 207, 130, 0.45);
-}
-
 .coverage-component-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1998,6 +2515,11 @@ td button {
   border-radius: 1.25rem;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   background: var(--surface);
+}
+
+.custody-human-summary {
+  max-width: 58rem;
+  color: var(--muted);
 }
 
 .status-pill {

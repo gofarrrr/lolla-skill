@@ -55,6 +55,86 @@ SUBSTANTIVE_LINES = (
 RULE_LINES = {5, 23, 45, 75, 99}
 TABLE_DELIMITER_LINE = 114
 INCIDENT_RELATION_INDICES = [0, 1, 2, 3, 4, 51, 456, 534, 810, 1115, 1151, 1283]
+READER_CHAPTERS = [
+    {
+        "chapter_id": "understand",
+        "step": 1,
+        "navigation_label": "Understand the idea",
+        "orientation": "What abstraction is, why it works, and the analogies that make it memorable.",
+        "start_line": 3,
+        "end_line": 23,
+        "heading_line": 7,
+    },
+    {
+        "chapter_id": "use",
+        "step": 2,
+        "navigation_label": "Use it in practice",
+        "orientation": "Move from the definition to concrete frameworks, decisions, and communication.",
+        "start_line": 25,
+        "end_line": 45,
+        "heading_line": 25,
+    },
+    {
+        "chapter_id": "judge",
+        "step": 3,
+        "navigation_label": "Know its limits",
+        "orientation": "Recognize where abstraction creates leverage and where it detaches from reality.",
+        "start_line": 47,
+        "end_line": 75,
+        "heading_line": 47,
+    },
+    {
+        "chapter_id": "connect",
+        "step": 4,
+        "navigation_label": "See the connections",
+        "orientation": "Understand the models that strengthen, challenge, or correct abstraction.",
+        "start_line": 77,
+        "end_line": 99,
+        "heading_line": 77,
+        "after_chapter_action": "open_exact_relationship_neighborhood",
+    },
+    {
+        "chapter_id": "apply-safely",
+        "step": 5,
+        "navigation_label": "Apply it safely",
+        "orientation": "Use risks, mitigations, and premortem questions to re-ground the model.",
+        "start_line": 109,
+        "end_line": 126,
+        "heading_line": 109,
+        "after_chapter_action": "open_operational_guidance",
+    },
+]
+READER_APPENDIX = {
+    "appendix_id": "source-curation-notes",
+    "label": "Original relationship curation notes",
+    "start_line": 101,
+    "end_line": 107,
+    "heading_line": 101,
+    "default_state": "collapsed",
+    "reason": (
+        "Dated slug-form relationship maintenance text is preserved exactly for source "
+        "custody but is not part of the primary human learning sequence. The separately "
+        "rendered relationship layer provides the current readable connection view."
+    ),
+    "review_authority": "founder_product_feedback_2026-07-16",
+}
+READER_ORIENTATION_CUES = [
+    {
+        "label": "What it does",
+        "text": "simplify reality, extract patterns, and move efficiently between the conceptual and the concrete",
+        "source_line": 3,
+    },
+    {
+        "label": "Best used when",
+        "text": "reality is too noisy to reason about directly",
+        "source_line": 59,
+    },
+    {
+        "label": "Watch for",
+        "text": "the model is elegant enough to feel complete but no longer stays anchored to concrete evidence",
+        "source_line": 73,
+    },
+]
 RELATION_SOURCE_FIELDS = {
     "source_model_id",
     "target_model_id",
@@ -140,7 +220,7 @@ def build_card_first_package(root: Path) -> dict[str, Any]:
         "status": {
             "source": "verified_hash_bound",
             "curation": "source_card_plus_separate_checked_in_curated_layers",
-            "human_review": "pending_founder_card_first_review",
+            "human_review": "pending_founder_guided_reader_review",
             "licensing": "unknown",
             "publication": "blocked_pending_rights_review",
             "missingness": "partial",
@@ -214,6 +294,7 @@ def _source_card(source_text: str, source_bytes: bytes) -> dict[str, Any]:
         },
         "source_text": source_text,
         "line_map": line_map,
+        "reader_projection": _reader_projection(source_text, line_map),
         "coverage": {
             "status": "complete",
             "physical_line_count": len(line_map),
@@ -232,6 +313,57 @@ def _source_card(source_text: str, source_bytes: bytes) -> dict[str, Any]:
                 "The Markdown table delimiter becomes HTML table structure.",
             ],
         },
+    }
+
+
+def _reader_projection(source_text: str, line_map: list[dict[str, Any]]) -> dict[str, Any]:
+    lines = source_text.splitlines()
+    substantive = {
+        item["line_number"]
+        for item in line_map
+        if item["render_disposition"] == "rendered_verbatim"
+    }
+    hero_lines = {TITLE_LINE}
+    primary_lines = {
+        number
+        for chapter in READER_CHAPTERS
+        for number in range(chapter["start_line"], chapter["end_line"] + 1)
+        if number in substantive
+    }
+    appendix_lines = {
+        number
+        for number in range(READER_APPENDIX["start_line"], READER_APPENDIX["end_line"] + 1)
+        if number in substantive
+    }
+    if hero_lines | primary_lines | appendix_lines != substantive:
+        raise AtlasProjectionError("reader projection does not account for every substantive line")
+    if hero_lines & primary_lines or hero_lines & appendix_lines or primary_lines & appendix_lines:
+        raise AtlasProjectionError("reader projection assigns one substantive line twice")
+    for cue in READER_ORIENTATION_CUES:
+        if cue["text"] not in lines[cue["source_line"] - 1]:
+            raise AtlasProjectionError(f"reader orientation cue drift: {cue['label']}")
+    return {
+        "schema_version": "lolla.atlas_human_reader_projection.v1",
+        "status": "reviewed_for_abstraction_local_founder_validation",
+        "interaction_mode": "single_open_chapter_with_persistent_orientation",
+        "default_chapter_id": "understand",
+        "orientation_cues": copy.deepcopy(READER_ORIENTATION_CUES),
+        "chapters": copy.deepcopy(READER_CHAPTERS),
+        "source_appendix": copy.deepcopy(READER_APPENDIX),
+        "substantive_line_accounting": {
+            "total": len(substantive),
+            "hero": sorted(hero_lines),
+            "primary_learning_sequence": sorted(primary_lines),
+            "source_appendix": sorted(appendix_lines),
+            "unassigned": [],
+            "duplicated": [],
+        },
+        "non_claims": [
+            "not_a_rewrite_of_the_source_card",
+            "not_a_corpus_wide_heading_classifier",
+            "not_permission_to_delete_appendix_source_lines",
+            "not_teacher_journey_completion",
+        ],
     }
 
 
@@ -412,6 +544,8 @@ def validate_card_first_page(page: dict[str, Any]) -> None:
     for key, expected in expected_coverage.items():
         if coverage.get(key) != expected:
             raise AtlasProjectionError(f"card-first source coverage drift: {key}")
+    if card.get("reader_projection") != _reader_projection(card["source_text"], expected_map):
+        raise AtlasProjectionError("card-first human reader projection drift")
 
     operational = page.get("operational_curation", {})
     if sha256_bytes(canonical_json_bytes(operational.get("record"))) != KG_RECORD_SHA256:
