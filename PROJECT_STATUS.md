@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-16 (Mental Model Atlas monochrome structure study)
+Status date: 2026-07-16 (Mental Model Atlas guided-entry founder repair)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -215,8 +215,9 @@ the 80,000-character policy, provider behavior, or pressure architecture.
 
 The separate Mental Model Atlas Phase 1 local implementation and additive
 card-first truthfulness repair are complete locally. Its exact next decision is
-founder review of the monochrome hierarchy, line grammar, camera, relationship
-readability, and mobile continuity. Passing that gate would only permit a
+founder review of the monochrome hierarchy, aligned breadcrumb, direct guided
+entry, line grammar, camera, relationship readability, and mobile continuity.
+Passing that gate would only permit a
 separate color study and would still leave native screen-reader and source-
 rights review before any Phase 2 authorization.
 

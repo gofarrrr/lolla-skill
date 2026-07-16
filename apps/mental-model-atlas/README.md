@@ -112,6 +112,10 @@ review. The current candidate is an intentionally achromatic structural study
 shared by the Abstraction page, Library, and global SVG/Canvas Atlas. It uses
 typography, spacing, hairlines, strong rules, line form, direction, and
 structural motion so those fundamentals can be judged before color returns.
+The latest founder-feedback repair keeps `Model Library / Abstraction` on one
+aligned line and removes the repeated source-title introduction: `Understand`
+now enters the chapter reader directly, while the exact title returns in the
+explicit full-source mode.
 The previous vibrant-editorial pass is superseded historical evidence; no
 future palette has been selected. The Mental Model Teacher component remains `park` because four gates
 are still open: founder learning-journey acceptance, native screen-reader review,
@@ -124,9 +128,11 @@ See:
 - [Phase 1 result](../../docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - [Card-first truthfulness repair](../../docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
 - [Current monochrome structure study](../../docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
+- [Current guided-entry founder-feedback repair](../../docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
 - [Vibrant-editorial refinement](../../docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Card-first evidence](../../docs/evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
 - [Current monochrome structure evidence](../../docs/evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
+- [Current guided-entry evidence](../../docs/evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
 - [Vibrant-editorial evidence](../../docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Renderer decision](../../docs/product/lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Evidence receipt](../../docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json)

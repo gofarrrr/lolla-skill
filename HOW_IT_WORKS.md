@@ -241,6 +241,8 @@ presented through five reviewed human chapters with persistent orientation and
 an optional full-source mode. Dated relationship-curation residue is kept in a
 collapsed appendix; compiled operational guidance and all exact incident
 connections remain separately labelled, progressively disclosed layers. The
+default guided entry omits repeated document-title and reading-instruction
+residue; the exact source title appears when full-source mode is requested. The
 source is complete, while the wider Teacher product remains partial.
 Teacher remains parked because founder visual acceptance, native screen-reader
 review, publication rights, and real-user usefulness are open. It does not
@@ -317,7 +319,8 @@ Atlas so hierarchy can be judged through typography, spacing, rule weight,
 line form, direction, and structural movement alone. Solid, dotted, and
 dashed-cross relationship forms preserve meaning without hue. The former
 vibrant-editorial pass is superseded historical evidence; no future palette is
-selected. The current review packet awaits founder validation; later Atlas phases, deployment, Teacher
+selected. Founder screenshot feedback also aligned the breadcrumb and removed
+the redundant source introduction. The current review packet awaits founder validation; later Atlas phases, deployment, Teacher
 journeys, and runtime or Observatory links remain unauthorized.
 
 ## 14. Verification entrypoints

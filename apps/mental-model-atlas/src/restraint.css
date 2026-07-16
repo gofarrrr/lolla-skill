@@ -509,7 +509,22 @@ tbody tr.is-selected {
 }
 
 .app-shell[data-route-kind="model"] .breadcrumb {
+  align-items: center;
+  min-width: 0;
   margin-bottom: 1rem;
+}
+
+.app-shell[data-route-kind="model"] .breadcrumb > * {
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+.app-shell[data-route-kind="model"] .breadcrumb > [aria-current="page"] {
+  min-width: 0;
+  overflow: hidden;
+  flex: 0 1 auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .app-shell[data-route-kind="model"] .learning-page {
@@ -631,7 +646,6 @@ tbody tr.is-selected {
   transform: scaleX(1);
 }
 
-.app-shell[data-route-kind="model"] .source-layer-heading,
 .app-shell[data-route-kind="model"] .derived-layer-heading {
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: center;
@@ -640,21 +654,28 @@ tbody tr.is-selected {
   background: #f7f7f7;
 }
 
-.app-shell[data-route-kind="model"] .source-layer-heading::before,
 .app-shell[data-route-kind="model"] .derived-layer-heading::before {
   display: none;
 }
 
-.app-shell[data-route-kind="model"] .source-layer-heading h2,
 .app-shell[data-route-kind="model"] .derived-layer-heading h2 {
   font-size: clamp(2.3rem, 4.5vw, 3.8rem);
 }
 
-.app-shell[data-route-kind="model"] .source-document-title {
-  border: 1px solid #171717;
-  border-left: 1px solid #171717;
-  border-radius: 0;
-  background: #ffffff;
+.app-shell[data-route-kind="model"] .full-source-heading {
+  margin: 0 0 2rem;
+  border-bottom: 1px solid #171717;
+  padding-bottom: 1rem;
+}
+
+.app-shell[data-route-kind="model"] .full-source-heading p {
+  margin: 0;
+}
+
+.app-shell[data-route-kind="model"] .full-source-title {
+  margin-top: 0.45rem !important;
+  color: var(--color-ink-muted);
+  font-size: 0.85rem;
 }
 
 .app-shell[data-route-kind="model"] button,
@@ -955,7 +976,6 @@ tbody tr.is-selected {
     min-height: 3.5rem;
   }
 
-  .app-shell[data-route-kind="model"] .source-layer-heading,
   .app-shell[data-route-kind="model"] .derived-layer-heading {
     grid-template-columns: 1fr;
     gap: 1rem;

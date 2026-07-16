@@ -31,6 +31,12 @@ MONOCHROME_RESULT_PATH = (
 MONOCHROME_PLAN_PATH = (
     ROOT / "plans/lolla-mental-model-atlas-monochrome-structure-study-plan-2026-07-16.md"
 )
+GUIDED_ENTRY_EVIDENCE_PATH = (
+    ROOT / "docs/evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json"
+)
+GUIDED_ENTRY_RESULT_PATH = (
+    ROOT / "docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md"
+)
 
 
 def _json(path: Path):
@@ -483,3 +489,45 @@ def test_monochrome_structure_study_is_achromatic_additive_and_reproducible() ->
     for path in (MONOCHROME_RESULT_PATH, MONOCHROME_PLAN_PATH):
         assert path.is_file()
         assert "monochrome" in path.read_text(encoding="utf-8").lower()
+
+
+def test_guided_entry_repair_removes_redundancy_without_losing_source_custody() -> None:
+    evidence = _json(GUIDED_ENTRY_EVIDENCE_PATH)
+    assert evidence["status"] == "local_founder_validation_ready_unpublished"
+    assert evidence["decision"] == (
+        "breadcrumb_aligned_redundant_source_intro_removed"
+    )
+    assert evidence["implementation_parent"] == (
+        "5dab11434dc49d84326f05bc41f34bb7b117c157"
+    )
+    assert evidence["provider_calls"] == 0
+    assert evidence["provider_cost_usd"] == 0.0
+    assert evidence["publication_authorized"] is False
+
+    layout = evidence["layout_contract"]
+    assert layout["breadcrumb_text_y_desktop"] == [110.578125] * 3
+    assert layout["breadcrumb_text_y_mobile"] == [172.96875] * 3
+    assert layout["mobile_document_width_px"] == 390
+    assert layout["redundant_source_heading_count"] == 0
+    assert layout["redundant_source_title_box_count"] == 0
+
+    custody = evidence["source_custody"]
+    assert custody["guided_mode_source_title_visible"] is False
+    assert custody["full_source_mode_source_title_visible"] is True
+    assert custody["full_source_mode_visible_chapters"] == 5
+    assert custody["source_line_one_preserved"] is True
+    assert custody["source_or_graph_artifacts_changed"] is False
+
+    screenshots = evidence["screenshots"]
+    assert len(screenshots) == 4
+    for item in screenshots:
+        path = ROOT / item["path"]
+        assert path.is_file()
+        assert _sha256(path) == item["sha256"]
+        assert _png_size(path) == (item["width"], item["height"])
+        assert item["chromatic_pixels"] == 0
+
+    assert GUIDED_ENTRY_RESULT_PATH.is_file()
+    result = GUIDED_ENTRY_RESULT_PATH.read_text(encoding="utf-8")
+    assert "No product reason justified keeping it" in result
+    assert "complete-source mode" in result

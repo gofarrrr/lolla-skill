@@ -73,7 +73,6 @@ export default function ModelPage({ slug }: { slug: string }) {
 
 export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
   const { model, source_card: sourceCard, operational_curation, connections } = page;
-  const title = sourceCard.source_text.slice(0, sourceCard.source_text.indexOf("\n"));
   useEffect(() => {
     document.title = `${model.display_name} · Lolla Atlas`;
   }, [model.display_name]);
@@ -113,21 +112,11 @@ export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
           </nav>
         </header>
 
-        <section className="source-layer" id="source-card" aria-labelledby="source-card-title">
-          <header className="source-layer-heading">
-            <div>
-              <p className="eyebrow">Original article</p>
-              <h2 id="source-card-title">Learn {model.display_name}</h2>
-              <p className="source-document-title" data-source-line="1">
-                <span>Article</span>
-                {title}
-              </p>
-            </div>
-            <p>
-              Read one chapter at a time, or open the full article whenever you need
-              the complete context.
-            </p>
-          </header>
+        <section
+          className="source-layer"
+          id="source-card"
+          aria-label={`Understand ${model.display_name}`}
+        >
           <CardSourceDocument sourceCard={sourceCard} />
         </section>
 

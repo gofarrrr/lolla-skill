@@ -192,11 +192,15 @@ rejected both large color fields and decorative colored edge accents. The
 current candidate is intentionally monochrome across the Abstraction page,
 global Atlas, and Library. Hierarchy comes from type, space, rule weight, line
 form, direction, and structural motion; no future palette has been selected.
+The latest screenshot review also aligned the model breadcrumb and removed the
+repeated source title page, so `Understand` now opens directly into the chapter
+navigator; the source title remains available in explicit full-article mode.
 The wider Teacher product remains partial. Its next decision
 is founder review of the checked-in local packet. It does not authorize public
 deployment, Phase 2, Teacher journeys, runtime links, or provider use.
 See the [card-first result](docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md).
 See the [current monochrome structure study](docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md).
+See the [guided-entry founder-feedback repair](docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md).
 The [vibrant-editorial refinement](docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 is preserved as superseded historical evidence.
 

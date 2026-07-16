@@ -10,6 +10,7 @@ type SourceCard = CardFirstModelPage["source_card"];
 
 export function CardSourceDocument({ sourceCard }: { sourceCard: SourceCard }) {
   const lines = sourceCard.source_text.slice(0, -1).split("\n");
+  const sourceTitle = lines[0];
   const projection = sourceCard.reader_projection;
   const [activeChapterId, setActiveChapterId] = useState<string>(projection.default_chapter_id);
   const [readerMode, setReaderMode] = useState<"guided" | "full">("guided");
@@ -74,6 +75,12 @@ export function CardSourceDocument({ sourceCard }: { sourceCard: SourceCard }) {
       </nav>
 
       <div className={`reader-stage ${readerMode === "full" ? "is-full-source" : ""}`} ref={chapterStartRef}>
+        {readerMode === "full" ? (
+          <header className="full-source-heading">
+            <p className="eyebrow">Complete source</p>
+            <p className="full-source-title" data-source-line="1">{sourceTitle}</p>
+          </header>
+        ) : null}
         <div className="reader-stage-orientation">
           <p className="eyebrow">{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Full article"}</p>
           <p>{readerMode === "guided" ? activeChapter.orientation : "All five chapters in their original order."}</p>

@@ -30,13 +30,13 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md`,
-   `docs/evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json`,
+5. `docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md`,
+   `docs/evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json`,
+   `docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md`,
    `docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md`,
    `docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md`,
    `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
-   `apps/mental-model-atlas/README.md`, and the current machine evidence in
-   `docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json`
+   and `apps/mental-model-atlas/README.md`
    — the local provider-free Atlas Phase 1 implementation, its additive
    card-first/guided-reader correction, current monochrome structural candidate,
    superseded color study, and open founder, screen-reader, rights, and
@@ -261,14 +261,13 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   Teacher remains `park`: founder visual acceptance, native screen-reader review,
   publication rights, and real-user usefulness are open. No Phase 2,
   deployment, runtime/Observatory connection, or Teacher journey is authorized.
-- The additive Atlas guided-reader repair is ready for founder validation. It
-  freezes the Phase 1 v1 hashes, accounts for all 60 substantive Abstraction
-  source lines, presents 55 through five human chapters, uses one as the hero,
-  preserves four dated curation-ledger lines in a collapsed source appendix,
-  keeps the full 12-field KG record and all 12 exact incident relationships in
-  separately labelled layers, and keeps the aggregate page `partial` because
-  runtime affordance presentation, practice prompts, and Teacher journeys
-  remain unavailable or out of scope.
+- The additive Atlas guided-reader repair freezes Phase 1 v1 hashes, accounts
+  for all 60 substantive Abstraction source lines, presents 55 through five
+  human chapters, preserves four dated curation lines in a collapsed appendix,
+  and keeps all 12 exact incident relationships separately labelled. Founder
+  screenshot feedback now aligns `Model Library / Abstraction` and removes the
+  repeated source-title entry block from guided mode; exact title custody moves
+  to explicit full-source mode. The aggregate page remains `partial`.
 - The latest local founder follow-up rejects large flat palette fields and
   decorative colored edge rules. Atlas, Library, and the Abstraction page now
   share an intentionally achromatic structural study:
@@ -292,8 +291,8 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 Stage 0.5 made the canonical map legible from a fresh clone. Stage 0.6 corrected
 deterministic long-conversation source custody without changing prompts,
 providers, graph behavior, or semantic architecture. The current Atlas decision
-is founder review of the monochrome line grammar across Atlas, Library, and the
-Abstraction tracer; passing it permits only a separate color study. The next
+is founder review of its monochrome line grammar and repaired guided entry
+across Atlas, Library, and Abstraction; passing permits only a color study. The next
 eligible product goal remains the provider-free, checked-in-safe Stage 1
 Decision Trail truthfulness review. It is not authorized and may not inspect private archives, generate semantics, call a provider,
 automate the sidecar, change runtime, reopen R4/R5, or claim product usefulness.

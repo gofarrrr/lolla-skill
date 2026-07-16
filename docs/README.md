@@ -38,6 +38,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **LOCAL CARD-FIRST EVIDENCE:** [Atlas card-first evidence](evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
 - **CURRENT LOCAL VISUAL STUDY:** [Atlas monochrome structure result](product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
 - **CURRENT LOCAL VISUAL EVIDENCE:** [Atlas monochrome structure evidence](evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
+- **CURRENT LOCAL GUIDED-ENTRY REPAIR:** [Atlas guided-entry result](product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
+- **CURRENT LOCAL GUIDED-ENTRY EVIDENCE:** [Atlas guided-entry evidence](evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.

@@ -15,6 +15,8 @@ describe("card-first Abstraction model page", () => {
     const { container } = render(
       <RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />,
     );
+    expect(screen.queryByText("Comprehensive Briefing Document on Abstraction")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /read the full article/i }));
     const sourceNodes = [...container.querySelectorAll("[data-source-line]")];
     expect(sourceNodes.map((node) => Number(node.getAttribute("data-source-line")))).toEqual(
       CARD_FIRST_SUBSTANTIVE_LINES,
@@ -24,7 +26,7 @@ describe("card-first Abstraction model page", () => {
     expect(sourceHeadings.map((node) => node.tagName)).toEqual([
       "H2", "H3", "H2", "H3", "H3", "H2", "H3", "H3", "H2", "H3", "H3", "H2", "H3", "H3",
     ]);
-    expect(container.querySelector(".source-document-title")?.textContent).toContain(
+    expect(container.querySelector(".full-source-title")?.textContent).toContain(
       "Comprehensive Briefing Document on Abstraction",
     );
     expect(screen.getByRole("heading", { level: 1, name: "Abstraction" })).toBeTruthy();
@@ -51,7 +53,7 @@ describe("card-first Abstraction model page", () => {
     expect(table.closest("[role='region']")?.getAttribute("aria-describedby")).toBe(
       "source-table-scroll-cue",
     );
-    expect(screen.getByRole("heading", { name: /learn abstraction/i })).toBeTruthy();
+    expect(screen.getByRole("region", { name: /understand abstraction/i })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /put abstraction to work/i })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /read the lines around abstraction/i })).toBeTruthy();
     expect(container.querySelectorAll(".model-connection")).toHaveLength(12);
@@ -112,6 +114,9 @@ describe("card-first Abstraction model page", () => {
     expect(screen.getAllByText(/reality is too noisy to reason about directly/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/no longer stays anchored to concrete evidence/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("button", { name: /read the full article/i })).toBeTruthy();
+    expect(screen.queryByRole("heading", { name: /learn abstraction/i })).toBeNull();
+    expect(screen.queryByText(/comprehensive briefing document on abstraction/i)).toBeNull();
+    expect(screen.queryByText(/read one chapter at a time/i)).toBeNull();
     expect(screen.queryByText(/compiled curation/i)).toBeNull();
     expect(screen.queryByText(/normalized · high confidence/i)).toBeNull();
     expect(screen.queryByText(/source-file locator/i)).toBeNull();

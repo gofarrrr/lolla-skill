@@ -44,7 +44,8 @@ describe("monochrome structural study", () => {
 
   it("removes the former decorative section accents", () => {
     expect(restraintCss).toMatch(
-      /\.source-layer-heading::before,[\s\S]*?\.derived-layer-heading::before\s*\{\s*display:\s*none;/,
+      /\.derived-layer-heading::before\s*\{\s*display:\s*none;/,
     );
+    expect(restraintCss).not.toContain(".source-layer-heading::before");
   });
 });
