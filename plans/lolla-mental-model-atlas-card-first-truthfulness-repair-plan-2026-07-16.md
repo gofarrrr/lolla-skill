@@ -1,6 +1,7 @@
 # Plan: Mental Model Atlas Card-First Truthfulness Repair
 
-Status: implemented locally; independent review and founder validation pending;
+Status: implemented locally; founder follow-up navigation and human-content
+repair implemented; independent review and founder validation pending;
 unpublished
 
 Date: 2026-07-16
@@ -48,3 +49,22 @@ The founder receives a reviewable local page and evidence packet. Acceptance of
 the card-first composition is a separate human judgment. Even acceptance does
 not authorize publication, public deployment, source redistribution, the other
 221 pages, Teacher journeys, runtime integration, or provider use.
+
+## Founder follow-up — guided human reading
+
+The first card-first implementation proved full source projection but still
+presented the article as a flat long scroll with a non-persistent table of
+contents. The authorized follow-up keeps the same source/graph custody and adds:
+
+- five reviewed source-bound learning chapters with one visible at a time;
+- persistent current-step orientation and previous/next actions;
+- an explicit full-source inspection mode for search, copy, print, and audit;
+- a collapsed source appendix for dated relationship-curation maintenance text;
+- practical guidance that leads with human use/avoid decisions and discloses
+  record metadata only on request;
+- exact relationship records grouped as works-with, productive-tension, or
+  direct-conflict learning paths.
+
+The follow-up fails if any substantive source line becomes unaccounted for, if
+technical residue becomes ordinary teaching copy, if parallel graph records are
+merged, or if the sticky chapter state obscures the active content on mobile.

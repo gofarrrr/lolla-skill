@@ -1,4 +1,4 @@
-# Mental Model Atlas Card-First Truthfulness Repair Result
+# Mental Model Atlas Card-First and Guided-Reader Repair Result
 
 Status: local founder review ready; unpublished
 
@@ -6,88 +6,125 @@ Date: 2026-07-16
 
 Decision:
 
-`card_first_abstraction_truthfulness_repair_ready_for_founder_validation`
+`guided_reader_abstraction_repair_ready_for_founder_validation`
 
 ## Executive result
 
-The local Abstraction page now behaves the way the product description implies:
-the complete canonical Markdown card is the primary learning document. The
-compiled knowledge-graph record and the exact relationship neighborhood remain
-useful, but they appear afterward as separately named layers rather than being
-presented as if they were the source card.
+The local Abstraction page is now a guided human learning page rather than a
+source dump followed by technical cards. It begins with three exact
+source-derived orientation cues, presents the canonical article in five focused
+chapters with a persistent sense of place, continues into practical guidance,
+and groups the exact graph neighborhood by the kind of intellectual relationship
+it offers.
 
-The previous Phase 1 page had strong hash custody but directly projected only
-one of the card's 60 substantive lines. Its blanket “complete model page” label
-therefore described artifact availability, not full source-card coverage. This
-repair corrects that claim prospectively with an additive v2 artifact. It does
-not change the frozen v1 page, manifest, result, source, graph, or relation
-evidence.
+The founder's follow-up identified two separate defects in the first card-first
+repair:
+
+1. the complete source was truthful but still behaved as one very long scroll;
+2. technical and curation material appeared in the same reading flow as material
+   intended to teach a person.
+
+The repair keeps the exact source, graph, and knowledge-graph custody while
+changing their presentation boundary. The ordinary reader sees 55 substantive
+source lines in the five-step learning sequence, the source title in the hero,
+and four dated relationship-curation lines only in a collapsed source appendix.
+No substantive source line is deleted or silently reclassified as irrelevant.
 
 The truthful current statement is:
 
-> The Abstraction source card is complete; the broader learning page is
+> The Abstraction source is complete and its default presentation is a reviewed
+> five-step human reading projection. The broader Teacher product remains
 > partial.
 
 Provider calls: 0.
 
 Provider cost: `$0.00`.
 
-## What the page contains
+## Human journey now implemented
 
-### Layer 1 — authoritative source card
+The default path is:
 
-The exact `abstraction_rag.md` bytes are embedded once in the v2 artifact. An
-explicit reviewed line map accounts for all 126 physical lines and renders:
+1. **Understand the idea** — definition, purpose, and memorable analogies.
+2. **Use it in practice** — frameworks, examples, decisions, and communication.
+3. **Know its limits** — strengths, weaknesses, and the risk of detaching from
+   reality.
+4. **See the connections** — the source's explanation of models that reinforce
+   or challenge abstraction.
+5. **Apply it safely** — risks, mitigations, and premortem questions.
 
-- all 60 substantive lines;
-- the source title as the page H1;
-- five H2 and nine H3 headings;
-- paragraphs, ordered lists, unordered lists, five rules, and the complete
-  five-row source table;
-- zero omitted substantive or title/heading lines.
+Only one source chapter is shown at a time in guided mode. The chapter rail
+stays visible, marks the current step, and supplies explicit previous/next
+actions. Selecting another chapter returns the reader to a stable reading
+position rather than leaving them at an unexplained page offset.
 
-The browser derives the document from `source_text + line_map`; it does not keep
-a second copied prose tree that could drift.
+An optional **View exact source as one document** control opens all five chapters
+and the source appendix in source order. That mode preserves browser search,
+copy, print, and audit use without making the complete document the default
+learning experience. Print CSS exposes the complete source even when the screen
+is in guided mode.
 
-### Layer 2 — compiled operational curation
+## Human versus technical material
 
-The complete 12-field canonical Abstraction record from
-`data/knowledge_graph.json` remains available. The page labels this material
-“compiled knowledge graph,” identifies it as not the source card, and exposes
-its source pointer and record hash. It includes selection and danger guidance,
-reasoning profile, failure modes, premortems, heuristics, source quotes, and
-curation metadata.
+The exact 126-line, 14,518-byte source partitions into:
 
-### Layer 3 — exact relationship neighborhood
+- one source title used by the hero;
+- 55 substantive lines in the primary five-chapter learning sequence;
+- four substantive lines in the collapsed source-curation appendix;
+- structural blank lines, headings, table delimiters, and horizontal rules that
+  remain accounted for by the exact line map.
 
-All 12 Abstraction-incident source records survive in source order:
+The four appendix lines are the dated, slug-form **Structured Tension Curation**
+record. They are still authoritative source bytes, but they function as a
+maintenance/curation ledger rather than as the next step in a person's learning
+journey. Weaknesses, risks, mitigations, relationship explanations, and
+premortem questions remain primary human material; the cleaner layout does not
+hide the restraints that keep the model honest.
 
-- five outgoing and seven incoming;
-- seven ally, one antagonist, and four tension records;
-- both parallel Abstraction → First Principles Thinking ally and tension
-  records remain distinct;
-- each record keeps exact direction, relation identity, source index, and
-  source-authored text;
-- affinity, rank, score, and weight are not used to imply importance.
+Derived technical fields follow the same rule:
 
-The page explicitly says these connections support navigation and comparison;
-they do not certify relevance or truth.
+- use and avoid guidance is immediately visible;
+- premortems, heuristics, and failure modes are available as an optional
+  practical toolkit;
+- record names, slugs, source locators, extraction labels, and evidence custody
+  are behind explicit review disclosures;
+- page coverage, hashes, and nonclaims remain inspectable but do not interrupt
+  the lesson.
 
-## Coverage and remaining loss
+## Graph and connection meaning
 
-Three component claims are complete: the authoritative source card, the full
-Abstraction knowledge-graph record, and membership of the incident relationship
-set. The aggregate page remains `partial` because:
+All 12 exact Abstraction-incident relationship records remain available, with
+parallel records preserved. The default presentation no longer asks a human to
+scan 12 structurally similar cards in one run. It offers three deliberate views:
 
-- the product-safe relation records omit raw source fields such as
-  `composition_affinity` and record that omission;
-- reviewed runtime-affordance cards exist but are not projected by this repair;
-- distinct reviewed practice prompts have not been authored;
-- curated Teacher journeys have not been authored.
+- **Works with** — seven ally records;
+- **Productive tensions** — four tension records;
+- **Direct conflicts** — one antagonist record.
 
-That boundary matters. The repair prevents the graph from replacing the card,
-but it does not claim that one complete card plus compiled metadata equals a
-complete teaching product.
+Each visible relationship tells the reader which other model is involved, what
+kind of relationship it is, whether Abstraction points to that model or that
+model points to Abstraction, and the checked-in plain-language relationship
+story. Source indices, confidence, and authored-direction custody are available
+in a disclosure. The graph is a route to comparison and further learning, not
+a ranking or proof of relevance.
+
+## Source-bound interaction contract
+
+The additive v2 page now includes
+`lolla.atlas_human_reader_projection.v1`. It fixes, for this reviewed source:
+
+- the five chapter IDs, labels, order, source line ranges, and orientation copy;
+- the default chapter and single-open guided interaction;
+- the exact source appendix range and collapsed default;
+- three orientation cues copied from exact source lines;
+- a lossless substantive-line partition with no unassigned or duplicated lines;
+- explicit nonclaims that this projection is not a source rewrite, corpus-wide
+  heading classifier, permission to delete appendix lines, or a completed
+  Teacher journey.
+
+The Python builder and TypeScript loader both reject chapter gaps, overlaps,
+wrong heading boundaries, orientation-copy drift, appendix drift, or false line
+accounting. The renderer does not infer this hierarchy from headings at runtime;
+the reviewed projection is checked in and hash-bound.
 
 ## Frozen and additive custody
 
@@ -96,54 +133,64 @@ Frozen Phase 1 v1 anchors remain byte-identical:
 - v1 manifest: `203999a61dbe9c2e943bbcb9f5b4dd87779d4557ea9fcfbd50b3e9d59e816c52`;
 - v1 model page: `8cc07cbbf68f399dcd5787df9067bd3a3646068b59ed691ca043ffc9e9ce406f`.
 
-Additive v2 anchors:
+Current additive v2 anchors:
 
 - canonical source: `6d689abd7ae1f8022e2450b045b0f03ffc57700f8298ff858018d808845f5650`;
 - canonical KG record: `ec28ee731944e7760dd574a401593d4dac1373ad69d3d080f9e58a4ebd19daef`;
-- v2 model page: `6cd0ea5990fe9a871597f1d1c14e1d119e254b183be9d7ff0dd95fd38d309eea`;
-- v2 manifest: `36223e0056c40e535470235b869b887fa3ac64584aa0338c670c78290cdf68a4`.
+- v2 model page: `46a666bb276c1ebdcb6ecd4045cbb440fcb0538b5a0ca7d2abc813f113f4512d`;
+- v2 manifest: `41f4f19d98d94335993b28b734fae4100ad0dc5b622bd4f7bf93f037640dabdd`.
 
-The additive package is under
+The additive package remains under
 `apps/mental-model-atlas/public/data/card-first-v1/`.
 
-## Implementation and failure behavior
+## Browser review
 
-The provider-free builder rejects source-hash drift, line gaps, duplication,
-reordering, incorrect heading roles, false coverage counts, KG-record drift,
-connection drift, and any aggregate completeness claim that hides partial or
-missing components. The TypeScript loader repeats the structural checks and
-verifies exact source and KG-record hashes with Web Crypto before rendering.
+The first card-first page was source-complete but visually blocked as a human
+journey by an independent browser review: the full page occupied roughly 20
+desktop viewports and 29 mobile viewports, and its flat chapter rail did not
+preserve location after a jump.
 
-The page preserves failure as `failed`. A corrupt or unavailable v2 artifact is
-not rendered as a complete card, `missing`, `partial`, or `completed_zero`.
-Other model slugs retain their honest unavailable-page boundary; the repair
-does not synthesize 221 missing articles from graph fields.
+The current real-browser review at 1440×900 and 390×844 found:
 
-The complete card payload is fetched only on the model route, and the browser
-does not load the roughly 6 MB full V60 affordance registry. The current app
-shell still loads its ordinary local Phase 1 navigation projection on a direct
-model-page visit because `ProjectionProvider` remains global. Removing that
-redundant local fetch is a later performance cleanup, not part of the source-
-loss repair and not evidence of a missing model-card field.
+- default full page after the final technical-footer collapse: approximately
+  7.9 desktop or 9.5 mobile viewports;
+- default source-reading area: approximately 2.6 desktop or 3.3 mobile
+  viewports;
+- one visible source chapter in guided mode;
+- one visible connection group rather than all 12 records at once;
+- sticky current-step orientation on desktop and mobile;
+- active chapter beginning below the sticky mobile navigation with no overlap;
+- zero page-level horizontal overflow at 390 px;
+- exact-source full-document mode still available.
 
-## Browser review packet
+The independent follow-up returned `ACCEPT` with no blockers at 1440×900,
+390×844, or 320×780. It also verified previous/next behavior, keyboard entry,
+sticky orientation during deep scrolling, full-source mode with all 60 unique
+source lines, the collapsed source appendix, operational-toolkit disclosure,
+connection-group switching, and controlled table overflow. It identified only
+non-blocking polish: the desktop start action sits slightly below the first
+viewport, later mobile chapter buttons can be outside the horizontally scrolled
+button strip even though the textual current-step label remains visible, and
+terminal Next briefly returns focus to the document body.
 
-The local review packet at
-`docs/product/evidence/lolla-mental-model-atlas-card-first-repair-2026-07-16/`
-contains desktop and mobile views of:
+The current review packet is
+`docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/`.
+The earlier card-first screenshot packet remains historical evidence of the
+superseded long-scroll composition; it was not deleted or relabelled as the
+current experience.
 
-- the card-first hero;
-- the long-form source reading view;
-- the source table;
-- compiled operational guidance;
-- all exact relationship records;
-- the component-level coverage boundary;
-- the fail-closed corrupt-artifact state.
+## Architecture trade-off
 
-The reviewed page contains 60 rendered substantive source nodes and 12
-relationship cards. At 320, 340, and 390 px widths it produces no page-level or
-card-layer horizontal overflow. The wide source table remains in its own
-horizontally scrollable region and shows a visible small-screen scroll cue.
+One independent architecture audit preferred a continuous source document with
+passive scroll-spy navigation because it maximizes always-visible source custody.
+The founder feedback and independent visual audit instead established that the
+default continuous document was not a usable learning journey. The implemented
+compromise makes one chapter visible at a time for ordinary reading while
+retaining an explicit full-source mode and print expansion for inspection.
+
+This is a local product judgment for the Abstraction tracer, not a corpus-wide
+rule. Founder validation must still decide whether the guided progression feels
+natural and whether the full-source escape hatch is sufficient.
 
 ## Verification
 
@@ -151,38 +198,44 @@ The machine-readable receipt is
 [`lolla-mental-model-atlas-card-first-repair-evidence-v1.json`](../evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json).
 Final checks:
 
-- card-first plus frozen Phase 1 Python tests: 26 passed;
-- focused handoff tests: 37 passed;
-- Atlas Vitest: 28 passed;
+- card-first plus frozen Phase 1 Python tests: 31 passed;
+- PRD contract and the two initially timed-out Observatory tests: 6 passed;
+- Atlas Vitest in the ordinary parallel configuration: 33 passed;
+- Atlas Vitest in a single-worker diagnostic configuration: 33 passed;
 - TypeScript check: passed;
-- production build: passed; card-first model route chunk 26.38 kB raw and
-  7.98 kB gzip;
+- production build: passed; model-page route chunk 32.75 kB raw and 9.99 kB
+  gzip;
 - dependency audit: zero known vulnerabilities;
-- complete repository suite: 5,004 passed and 93 subtests passed;
+- complete repository suite: 5,009 passed and 93 subtests passed;
 - warning: one existing `datetime.utcnow()` deprecation;
 - Stage 0 register: valid with 25 components, 24 connections, 17 Constitution
-  findings, 26 Decision Trail groups, and 639 accounted Python files;
-- changed Markdown links: 260 checked, zero missing;
-- changed JSON, Python compilation, `git diff --check`, added-material secret
-  scan, and Git object integrity: passed.
+  findings, 26 Decision Trail groups, and 639 accounted implementation files;
+- follow-up changed Markdown links: 32 checked, zero missing;
+- four changed JSON artifacts parsed;
+- changed Python compiled;
+- `git diff --check`, added-material secret scan, and Git object integrity:
+  passed.
 
-An independent, source-blind browser sub-agent initially blocked the page for
-real mobile clipping in the lower layers and then found a narrower hero crop.
-Both defects were repaired. Its final verdict is `accept for founder visual
-validation`, with zero remaining blockers at 320, 340, and 390 px. Native
-VoiceOver/NVDA/JAWS behavior remains untested and is not inferred from the
-semantic HTML or accessibility-tree inspection.
+The first repository-wide run exposed two stale PRD status assertions, which
+were updated to the explicit guided-reader state, plus two Observatory HTTP
+timeouts. Both Observatory tests passed immediately in a focused six-test run.
+The final repository-wide rerun passed all 5,009 tests. A Vitest AtlasPage load
+test also timed out only while the Python full suite was saturating the machine;
+it passed alone, in the serial diagnostic run, and in the final ordinary
+parallel run after that load ended. No product code was changed to hide either
+environmental timing event.
 
 ## Nonclaims and next decision
 
-This is not proof of teaching usefulness, mastery, graph relevance, relation
-truth, content rights, deployment readiness, runtime behavior, or Teacher
-journey quality. The full V60 registry is not shipped to the browser and no
-later Atlas phase has started.
+This page does not prove teaching usefulness, comprehension, mastery, graph
+relevance, relationship truth, content rights, public-deployment readiness,
+Teacher journey quality, or behavior across the other 221 models. Native
+VoiceOver/NVDA/JAWS review remains open. The app remains local and disconnected
+from Lolla's live pressure runtime and Observatory.
 
-The next founder decision is visual and product-facing: does this card-first
-page correctly express the intended relationship between the full mental-model
-article, Lolla's operational curation, and the graph? If yes, the composition
-may become the accepted local pattern after a separate publication decision.
-It still cannot be made public until source rights and the remaining human gates
-are cleared.
+The next decision is founder validation at `/models/abstraction`: does the
+five-step source journey now feel understandable, navigable, and human; do the
+practical and connection continuations add context without turning the page
+back into a technical artifact; and is the optional full-source mode the right
+custody escape hatch? A positive answer still does not authorize publication,
+Phase 2, Teacher journeys, the other model pages, or runtime integration.

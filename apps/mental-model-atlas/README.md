@@ -12,9 +12,11 @@ publication.
   relation-type filters, truthful deterministic search, and explicit data and
   renderer failure states;
 - `/models` — the equivalent non-canvas Library for the frozen slice;
-- `/models/abstraction` — one card-first page with the complete canonical
-  Markdown card, the complete Abstraction knowledge-graph record, all 12 exact
-  incident relations, and an explicit partial-page coverage vector;
+- `/models/abstraction` — one card-first guided page with the complete canonical
+  Markdown source divided into five reviewed human chapters, persistent
+  orientation, an optional full-source inspection mode, the complete Abstraction
+  knowledge-graph record, all 12 exact incident relations grouped by learning
+  role, and an explicit partial-page coverage vector;
 - `/relations/abstraction__first-principles-thinking__ally` — one complete
   exact directed relation page;
 - `/learn` — an honest boundary page; no Teacher journey is requested in Phase
@@ -28,9 +30,10 @@ publication.
 - keyboard/list/table equivalents, reduced motion, explicit motion pause, and a
   mobile list-first route.
 
-Only Abstraction has a complete source-card projection. The broader Abstraction
-learning page remains partial because reviewed runtime-affordance presentation,
-distinct practice prompts, and Teacher journeys are not part of this repair.
+Only Abstraction has a complete source-card projection and a reviewed human
+reading projection. The broader Abstraction learning page remains partial
+because reviewed runtime-affordance presentation, distinct practice prompts,
+and Teacher journeys are not part of this repair.
 Other Library records are valid index records with explicit unavailable page
 status. Only the named ally relation has a complete relation-page artifact.
 Missing pages are not generated or repaired.
@@ -103,9 +106,9 @@ mastery certification.
 
 ## Current lifecycle
 
-The card-first repair is ready for founder visual and product review. The Mental
-Model Teacher component remains `park` because four gates are still open:
-founder card-first composition acceptance, native screen-reader review,
+The card-first guided-reader repair is ready for founder visual and product
+review. The Mental Model Teacher component remains `park` because four gates
+are still open: founder learning-journey acceptance, native screen-reader review,
 source-rights/publication review, and a separately authorized real-user
 usefulness study. Phase 2, Teacher journeys, deployment, live-runtime links,
 and Observatory links are not authorized.

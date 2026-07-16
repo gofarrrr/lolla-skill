@@ -35,9 +35,9 @@ Read these in order before proposing architecture or the next experiment:
    `apps/mental-model-atlas/README.md`, and
    `docs/evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json` —
    the local provider-free Atlas Phase 1 implementation, its additive
-   card-first correction, and still-open founder, screen-reader, rights, and
-   usefulness gates. Read the PRD and plan linked there before proposing any
-   next phase.
+   card-first/guided-reader correction, and still-open founder, screen-reader,
+   rights, and usefulness gates. Read the PRD and plan linked there before
+   proposing any next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -251,17 +251,21 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   selection camera, deterministic hub paging, one model route whose complete
   Markdown card is primary and whose wider page is explicitly partial, one
   complete relation page, and non-canvas/reduced-motion equivalents. The
-  additive v2 card-first repair leaves frozen v1 evidence unchanged and labels
-  compiled KG guidance plus all 12 exact incident relations as separate layers.
+  additive v2 card-first/guided-reader repair leaves frozen v1 evidence
+  unchanged, presents the exact source through five reviewed human chapters,
+  and labels compiled KG guidance plus all 12 exact incident relations as
+  separate, progressively disclosed layers.
   Teacher remains `park`: founder visual acceptance, native screen-reader review,
   publication rights, and real-user usefulness are open. No Phase 2,
   deployment, runtime/Observatory connection, or Teacher journey is authorized.
-- The additive Atlas card-first repair is ready for founder validation. It
-  freezes the Phase 1 v1 hashes, renders all 60 substantive Abstraction source
-  lines and all 15 title/heading lines, keeps the full 12-field KG record and
-  all 12 exact incident relationships in separately labelled layers, and keeps
-  the aggregate page `partial` because runtime affordance presentation,
-  practice prompts, and Teacher journeys remain unavailable or out of scope.
+- The additive Atlas guided-reader repair is ready for founder validation. It
+  freezes the Phase 1 v1 hashes, accounts for all 60 substantive Abstraction
+  source lines, presents 55 through five human chapters, uses one as the hero,
+  preserves four dated curation-ledger lines in a collapsed source appendix,
+  keeps the full 12-field KG record and all 12 exact incident relationships in
+  separately labelled layers, and keeps the aggregate page `partial` because
+  runtime affordance presentation, practice prompts, and Teacher journeys
+  remain unavailable or out of scope.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -278,8 +282,8 @@ The Stage 0.5 public-handoff gardening pass made the canonical map legible from
 a fresh clone. Stage 0.6 then corrected deterministic long-conversation
 source-coverage custody without changing prompts, providers, graph behavior,
 or the semantic architecture. The current Atlas decision is founder review of
-the checked-in card-first truthfulness packet; passing it does not authorize the
-next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
+the checked-in guided-reader truthfulness packet; passing it does not authorize
+the next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
 a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
 is not authorized by these prerequisites. It may not inspect private archives,
 generate a new semantic read, call a provider, automate the sidecar, change

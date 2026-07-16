@@ -2,9 +2,9 @@
 
 > Source PRD: [Lolla Mental Model Atlas and Teacher PRD v1](../docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md)
 
-Status: Phase 1 implemented locally; additive card-first truthfulness repair
-implemented; founder visual, native screen-reader, and rights gates pending;
-later phases unauthorized
+Status: Phase 1 implemented locally; additive card-first and guided-reader
+truthfulness repairs implemented; founder visual, native screen-reader, and
+rights gates pending; later phases unauthorized
 
 Date: 2026-07-15
 
@@ -31,6 +31,14 @@ repair leaves v1 frozen, makes the full source card primary, labels the full KG
 record and all exact incident relations as separate layers, and reports the
 aggregate learning page as partial. Current acceptance language must use
 “complete source card,” not blanket “complete model page.”
+
+The founder follow-up then rejected the truthful-but-flat long-scroll reading
+experience. The current local page divides the exact source into five reviewed
+human chapters, keeps one chapter visible with persistent orientation, moves
+dated source-curation maintenance lines to a collapsed appendix, and groups all
+exact connections by their human learning role. A full-source inspection mode
+preserves search, copy, print, and custody. This is a reviewed Abstraction
+projection, not a deterministic rule for the remaining corpus.
 
 ## Architectural Decisions
 

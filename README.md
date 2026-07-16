@@ -183,11 +183,14 @@ inspect private archives, create a new semantic reader, call a provider,
 automate Decision Work, reopen R4/R5, or change runtime behavior.
 
 Separately, the Mental Model Atlas Phase 1 tracer bullet and its additive
-card-first truthfulness repair are implemented locally. The Abstraction source
-card is complete; its wider learning page remains partial and keeps compiled
-graph guidance and exact connections as separately labelled layers. Its next
-decision is founder review of the checked-in local packet. It does not authorize
-public deployment, Phase 2, Teacher journeys, runtime links, or provider use.
+card-first/guided-reader truthfulness repair are implemented locally. The
+Abstraction source is complete and is presented as five source-bound human
+chapters with persistent orientation; dated curation residue is in a collapsed
+source appendix, practical guidance is progressively disclosed, and all exact
+connections are grouped by their human learning role. The wider Teacher product
+remains partial. Its next decision is founder review of the checked-in local
+packet. It does not authorize public deployment, Phase 2, Teacher journeys,
+runtime links, or provider use.
 See the [card-first result](docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md).
 
 See the

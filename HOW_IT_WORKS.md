@@ -235,10 +235,13 @@ authorize action.
 
 Teacher has substantial contracts, renderers, lesson graphs, packets, and
 Observatory projections. The founder-selected Atlas job now also has a local,
-source-bound Phase 1 visual tracer bullet and an additive card-first repair. On
-the Abstraction page, the exact Markdown card is primary; compiled operational
-guidance and all exact incident connections are separately labelled additive
-layers. The source card is complete, while the learning page remains partial.
+source-bound Phase 1 visual tracer bullet and additive card-first/guided-reader
+repairs. On the Abstraction page, the exact Markdown source is primary and is
+presented through five reviewed human chapters with persistent orientation and
+an optional full-source mode. Dated relationship-curation residue is kept in a
+collapsed appendix; compiled operational guidance and all exact incident
+connections remain separately labelled, progressively disclosed layers. The
+source is complete, while the wider Teacher product remains partial.
 Teacher remains parked because founder visual acceptance, native screen-reader
 review, publication rights, and real-user usefulness are open. It does not
 participate in the ordinary pressure runtime.

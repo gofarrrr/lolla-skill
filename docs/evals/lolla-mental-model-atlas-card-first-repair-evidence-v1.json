@@ -2,7 +2,7 @@
   "schema_version": "lolla.mental_model_atlas_card_first_repair_evidence.v1",
   "status": "local_founder_review_ready_unpublished",
   "date": "2026-07-16",
-  "decision": "card_first_abstraction_truthfulness_repair_ready_for_founder_validation",
+  "decision": "guided_reader_abstraction_repair_ready_for_founder_validation",
   "canonical_parent": "0eec520dc0937cdeeb4ae89195b6f38a035303a4",
   "legacy_phase1_boundary": {
     "manifest_sha256": "203999a61dbe9c2e943bbcb9f5b4dd87779d4557ea9fcfbd50b3e9d59e816c52",
@@ -11,9 +11,9 @@
   },
   "card_first_package": {
     "manifest_path": "apps/mental-model-atlas/public/data/card-first-v1/manifest.json",
-    "manifest_sha256": "36223e0056c40e535470235b869b887fa3ac64584aa0338c670c78290cdf68a4",
+    "manifest_sha256": "41f4f19d98d94335993b28b734fae4100ad0dc5b622bd4f7bf93f037640dabdd",
     "page_path": "apps/mental-model-atlas/public/data/card-first-v1/pages/model-abstraction.json",
-    "page_sha256": "6cd0ea5990fe9a871597f1d1c14e1d119e254b183be9d7ff0dd95fd38d309eea",
+    "page_sha256": "46a666bb276c1ebdcb6ecd4045cbb440fcb0538b5a0ca7d2abc813f113f4512d",
     "schema_version": "lolla.atlas_model_page.v2"
   },
   "source_card": {
@@ -28,6 +28,25 @@
     "omitted_substantive_lines": 0,
     "source_text_copies_in_artifact": 1,
     "coverage": "complete"
+  },
+  "human_reader_projection": {
+    "schema_version": "lolla.atlas_human_reader_projection.v1",
+    "review_authority": "founder_product_feedback_2026-07-16",
+    "interaction_mode": "single_open_chapter_with_persistent_orientation",
+    "default_chapter_id": "understand",
+    "chapter_ids_in_order": ["understand", "use", "judge", "connect", "apply-safely"],
+    "chapter_line_ranges": [[3, 23], [25, 45], [47, 75], [77, 99], [109, 126]],
+    "primary_learning_substantive_lines": 55,
+    "hero_substantive_lines": 1,
+    "source_appendix_substantive_lines": 4,
+    "source_appendix_line_range": [101, 107],
+    "source_appendix_default_state": "collapsed",
+    "orientation_cue_source_lines": [3, 59, 73],
+    "unassigned_substantive_lines": 0,
+    "duplicated_substantive_lines": 0,
+    "full_source_inspection_mode": true,
+    "print_expands_complete_source": true,
+    "corpus_wide_inference_claimed": false
   },
   "operational_curation": {
     "source_path": "data/knowledge_graph.json",
@@ -56,7 +75,7 @@
     "available_not_projected": ["reviewed_runtime_affordance_projection"],
     "missing": ["distinct_reviewed_practice_prompts", "curated_teacher_journeys"]
   },
-  "browser_review": {
+  "superseded_initial_browser_review": {
     "url": "http://127.0.0.1:5182/models/abstraction",
     "desktop_viewport": "1440x1000",
     "mobile_viewports": ["320x844", "340x844", "390x844"],
@@ -77,33 +96,82 @@
       {"path": "docs/product/evidence/lolla-mental-model-atlas-card-first-repair-2026-07-16/09-mobile-connections-layer.png", "sha256": "2069457526f48aef053e74546330d118a222171dfdd393cf5c2fd102dbb22b79"},
       {"path": "docs/product/evidence/lolla-mental-model-atlas-card-first-repair-2026-07-16/10-narrow-mobile-320.png", "sha256": "f03d8e928dbf6cdc1d717307bcbf5f755942fdae88152f3a86f7c546dd390b77"},
       {"path": "docs/product/evidence/lolla-mental-model-atlas-card-first-repair-2026-07-16/11-mobile-table-scroll-cue.png", "sha256": "4164199cb2a3edbd8c8e5b7a33916c170d1205a7aedf0f8eace764397d06d150"}
+    ],
+    "superseded_reason": "source_complete_but_flat_long_scroll_without_persistent_orientation"
+  },
+  "guided_reader_browser_review": {
+    "url": "http://127.0.0.1:5182/models/abstraction",
+    "desktop_viewport": "1440x900",
+    "mobile_viewport": "390x844",
+    "prior_full_page_viewports": {"desktop": 20.1, "mobile": 29.2},
+    "current_default_full_page_viewports": {"desktop": 7.85, "mobile": 9.49},
+    "prior_source_viewports": {"desktop": 9.75, "mobile": 14.3},
+    "current_default_source_viewports": {"desktop": 2.58, "mobile": 3.28},
+    "visible_source_chapters_in_guided_mode": 1,
+    "sticky_orientation_desktop": true,
+    "sticky_orientation_mobile": true,
+    "mobile_navigation_top_px_after_step_change": 0,
+    "mobile_navigation_bottom_px_after_step_change": 141.515625,
+    "mobile_active_chapter_top_px_after_step_change": 160.140625,
+    "mobile_chapter_overlap": false,
+    "mobile_page_horizontal_overflow": false,
+    "visible_connection_groups": 1,
+    "exact_connections_in_dom": 12,
+    "screenshots": [
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/desktop-hero.png", "sha256": "4f914eb736809da2ffbb6c51aa5b867bbaba6a085b44a6e55fea84ad75dbcaef"},
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/desktop-step-3.png", "sha256": "3f929fca8172984d5ca33f77c5ecc853c89e6ba3e422d463f3d141d8f7293253"},
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/desktop-practical-guidance.png", "sha256": "4002e8ff00bc18860dfa13250e357678a674f2db7e7896ad930c717752b920ca"},
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/desktop-connection-groups.png", "sha256": "aa266d4610abe44069485e76169fbb99b2908f3e692fdb32340dc717c1db4a99"},
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/mobile-hero.png", "sha256": "dd020c65907ccca52c64c846247188670c2d62ca161b45eca7216121493ce2e0"},
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/mobile-step-4.png", "sha256": "2f099bba89cb70b1142c91de9399f1fd68a49ccecfe3368c68f2d85555a877e1"},
+      {"path": "docs/product/evidence/lolla-mental-model-atlas-guided-reader-2026-07-16/desktop-human-boundary.png", "sha256": "4f01989adb848d3b2cfe16f8cb20e9586a347101719c47564cd1dd79558a63d5"}
     ]
   },
   "independent_subagent_review": {
-    "verdict": "accept_for_founder_visual_validation",
+    "verdict": "accept_guided_reader_for_founder_visual_validation",
     "blockers_remaining": 0,
     "source_byte_and_dom_coverage": "passed",
     "exact_incident_connection_comparison": "passed",
     "corrupt_load_failure_separation": "passed",
-    "mobile_containment_320_340_390": "passed_after_blocker_repair",
+    "desktop_1440x900": "passed",
+    "mobile_390x844": "passed",
+    "narrow_mobile_320x780": "passed",
+    "sticky_chapter_orientation": "passed_desktop_and_mobile",
+    "previous_next_and_direct_chapter_selection": "passed",
+    "full_source_mode": "passed_60_visible_unique_source_lines",
+    "technical_source_appendix": "collapsed_in_human_flow_open_in_full_source_mode",
+    "operational_and_connection_disclosures": "passed",
+    "mobile_containment_320_390": "passed",
+    "non_blocking_polish": [
+      "desktop_start_action_slightly_below_first_viewport",
+      "later_mobile_chapter_button_may_be_offscreen_while_textual_step_label_remains_visible",
+      "terminal_next_focus_briefly_returns_to_body"
+    ],
     "native_screen_reader": "untested",
     "publication_or_usefulness_approval": false
   },
   "verification": {
-    "python_card_first_and_frozen_phase1_tests": "26_passed",
-    "focused_handoff_tests": "37_passed",
-    "atlas_vitest": "28_passed",
+    "python_card_first_and_frozen_phase1_tests": "31_passed",
+    "focused_prd_and_observatory_timeout_reruns": "6_passed",
+    "atlas_vitest_parallel": "33_passed",
+    "atlas_vitest_single_worker_diagnostic": "33_passed",
     "atlas_typescript": "passed",
-    "atlas_production_build": "passed_model_page_chunk_26_38_kb_raw_7_98_kb_gzip",
+    "atlas_production_build": "passed_model_page_chunk_32_75_kb_raw_9_99_kb_gzip",
     "atlas_dependency_audit": "zero_known_vulnerabilities",
-    "repository_pytest": "5004_passed_93_subtests",
+    "repository_pytest": "5009_passed_93_subtests",
     "repository_warning": "one_existing_datetime_utcnow_deprecation",
+    "stage0_register": "valid_25_components_24_connections_17_rules_26_decision_trail_groups_639_files",
     "git_diff_check": "passed",
-    "changed_json_parse": "passed",
-    "changed_python_compile": "passed",
-    "changed_markdown_local_links": "260_checked_zero_missing",
+    "changed_json_parse": "4_parsed",
+    "changed_python_compile": "passed_3_files",
+    "followup_changed_markdown_local_links": "32_checked_zero_missing",
     "added_material_secret_scan": "zero_secret_shaped_matches",
-    "git_object_integrity": "passed_with_preexisting_unreachable_objects"
+    "git_object_integrity": "passed_with_dangling_unreachable_blobs",
+    "initial_full_suite_failures_resolved": [
+      "two_stale_prd_guided_reader_status_assertions_updated",
+      "two_observatory_http_timeouts_passed_in_focused_rerun"
+    ],
+    "vitest_load_flake_resolution": "atlas_page_passed_alone_serial_and_final_parallel_after_python_suite_load_ended"
   },
   "provider_calls": 0,
   "provider_cost_usd": 0.0,
