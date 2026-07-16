@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-15 (Mental Model Atlas Phase 1 local tracer bullet)
+Status date: 2026-07-16 (Mental Model Atlas card-first truthfulness repair)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -27,10 +27,12 @@ window; this does not establish long-context semantic adequacy.
 
 In a separate product lane, the provider-free Mental Model Atlas Phase 1 local
 tracer bullet is implemented with real hash-bound source data, a polished
-interactive graph, one complete model page, one complete relation page, and
-non-canvas/reduced-motion equivalents. Teacher remains parked pending founder
-visual acceptance, native screen-reader review, publication rights, and
-real-user evidence.
+interactive graph, one model route with a complete primary Markdown card and
+explicit partial-page coverage, one complete relation page, and
+non-canvas/reduced-motion equivalents. Compiled KG guidance and all exact
+incident relationships are separately labelled additive layers. Teacher
+remains parked pending founder visual acceptance, native screen-reader review,
+publication rights, and real-user evidence.
 
 ## Status vocabulary
 
@@ -137,7 +139,8 @@ Mechanical evidence is strong for:
 
 The local Mental Model Atlas additionally demonstrates, within a frozen Phase
 1 slice, exact model/relation identity, stable spatial navigation, deterministic
-233-record paging, one complete model page, one complete relation page,
+233-record paging, one complete source card on an explicitly partial model page,
+one complete relation page,
 keyboard/list/table equivalence, reduced motion, and fail-closed projection and
 renderer states. This is local product-mechanics evidence, not learner-value or
 publication evidence.
@@ -202,11 +205,12 @@ made that map findable from a fresh clone. Stage 0.6 then corrected
 long-conversation source-coverage reporting without changing semantic prompts,
 the 80,000-character policy, provider behavior, or pressure architecture.
 
-The separate Mental Model Atlas Phase 1 local implementation is complete. Its
-exact next decision is founder review of the checked-in composition, camera,
-relation readability, panel continuity, and non-canvas equivalence. Passing
-that gate would still leave native screen-reader and source-rights review before
-any Phase 2 authorization.
+The separate Mental Model Atlas Phase 1 local implementation and additive
+card-first truthfulness repair are complete locally. Its exact next decision is
+founder review of the checked-in card-first composition, camera, relation
+readability, panel continuity, and non-canvas equivalence. Passing that gate
+would still leave native screen-reader and source-rights review before any
+Phase 2 authorization.
 
 The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human

@@ -33,12 +33,20 @@ labels for prospective product direction. The provider-free Phase 1 visual
 truth tracer bullet is now implemented locally:
 
 - [Phase 1 result](lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
+- [Card-first truthfulness repair result](lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
 - [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
+- [Card-first machine-readable evidence](../evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
 - [Local application](../../apps/mental-model-atlas/README.md)
 
+The July 16 additive repair corrects one Phase 1 truthfulness defect: the former
+page had complete source custody but projected only one substantive card line.
+The current Abstraction page renders the complete source card first and labels
+compiled graph material separately. The source card is complete; the learning
+page is partial. Frozen Phase 1 artifacts remain unchanged.
+
 This does not rewrite historical Teacher artifacts or change the Stage 0
-`park` disposition. Founder visual acceptance, native screen-reader review,
+`park` disposition. Founder card-first acceptance, native screen-reader review,
 publication rights, and real-user usefulness remain open. No full-corpus build,
 deployment, runtime connection, provider call, or Phase 2 work is implied.
 

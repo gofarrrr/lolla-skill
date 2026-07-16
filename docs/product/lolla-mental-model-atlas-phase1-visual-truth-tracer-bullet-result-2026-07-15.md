@@ -8,6 +8,20 @@ Decision:
 
 `phase1_local_visual_truth_tracer_bullet_complete_founder_gate_pending`
 
+## Prospective correction — 2026-07-16
+
+The “complete model page” wording below recorded the July 15 tracer-bullet
+conclusion, but a later source-coverage audit found that the frozen v1 page
+directly projected only one of the canonical Abstraction card's 60 substantive
+lines. Its hash proved full source custody, not full card projection.
+
+The frozen v1 page, manifest, evidence, and historical conclusion remain
+unchanged. The additive
+[card-first truthfulness repair](lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+supersedes that wording for current product claims: the Abstraction source card
+is now complete, compiled graph layers are separately labelled, and the broader
+learning page is explicitly partial.
+
 ## Executive result
 
 Lolla now has a source-controlled, provider-free local Atlas slice that shows

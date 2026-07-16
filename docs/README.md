@@ -34,6 +34,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
 - **LOCAL PRODUCT REVIEW:** [Mental Model Atlas Phase 1 result](product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
+- **LOCAL CARD-FIRST CORRECTION:** [Atlas card-first truthfulness result](product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+- **LOCAL CARD-FIRST EVIDENCE:** [Atlas card-first evidence](evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.

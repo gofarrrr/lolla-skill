@@ -235,10 +235,13 @@ authorize action.
 
 Teacher has substantial contracts, renderers, lesson graphs, packets, and
 Observatory projections. The founder-selected Atlas job now also has a local,
-source-bound Phase 1 visual tracer bullet with exact graph/page identity and
-non-canvas equivalents. It remains parked because founder visual acceptance,
-native screen-reader review, publication rights, and real-user usefulness are
-open. It does not participate in the ordinary pressure runtime.
+source-bound Phase 1 visual tracer bullet and an additive card-first repair. On
+the Abstraction page, the exact Markdown card is primary; compiled operational
+guidance and all exact incident connections are separately labelled additive
+layers. The source card is complete, while the learning page remains partial.
+Teacher remains parked because founder visual acceptance, native screen-reader
+review, publication rights, and real-user usefulness are open. It does not
+participate in the ordinary pressure runtime.
 
 ## 10. Retired R4 readers
 
@@ -304,9 +307,10 @@ checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
 
-The separate Atlas Phase 1 local implementation is complete. Its checked-in
-visual truth packet awaits founder review; later Atlas phases, deployment,
-Teacher journeys, and runtime or Observatory links remain unauthorized.
+The separate Atlas Phase 1 local implementation and its additive card-first
+truthfulness repair are complete locally. The current review packet awaits
+founder validation; later Atlas phases, deployment, Teacher journeys, and
+runtime or Observatory links remain unauthorized.
 
 ## 14. Verification entrypoints
 

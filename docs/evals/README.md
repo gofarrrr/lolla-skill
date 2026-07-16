@@ -14,8 +14,12 @@ ordinary runtime reachability or product usefulness.
 
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
-It is local product-mechanics evidence for a parked component, not a runtime
-evaluation, publication clearance, or product-usefulness result.
+Its additive
+[`card-first repair evidence`](lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+corrects the current Abstraction-page coverage claim without changing the
+frozen v1 package: the source card is complete and the wider learning page is
+partial. These are local product-mechanics artifacts for a parked component,
+not runtime evaluations, publication clearance, or product-usefulness results.
 
 This directory contains the evidence and evaluation layer around Lolla. The
 main thing to understand is the split between the live skill and the offline

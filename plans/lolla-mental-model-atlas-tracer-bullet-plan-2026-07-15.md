@@ -2,8 +2,9 @@
 
 > Source PRD: [Lolla Mental Model Atlas and Teacher PRD v1](../docs/product/lolla-mental-model-atlas-and-teacher-prd-v1.md)
 
-Status: Phase 1 implemented locally; founder visual, native screen-reader, and
-rights gates pending; later phases unauthorized
+Status: Phase 1 implemented locally; additive card-first truthfulness repair
+implemented; founder visual, native screen-reader, and rights gates pending;
+later phases unauthorized
 
 Date: 2026-07-15
 
@@ -21,6 +22,15 @@ No phase automatically authorizes the next. The founder authorized the local,
 provider-free Phase 1 tracer bullet. Mental Model Teacher remains parked until
 the founder visual gate, native screen-reader review, and source-rights gate
 pass.
+
+### July 16 card-first correction
+
+The initial v1 model-page artifact proved source custody but projected only one
+substantive line from the complete Abstraction Markdown card. The additive v2
+repair leaves v1 frozen, makes the full source card primary, labels the full KG
+record and all exact incident relations as separate layers, and reports the
+aggregate learning page as partial. Current acceptance language must use
+“complete source card,” not blanket “complete model page.”
 
 ## Architectural Decisions
 
@@ -76,8 +86,9 @@ relations to a polished Atlas interaction. Use a frozen 12-to-20-model ordinary
 neighborhood plus the real mixed-relation, bidirectional, and hub-pagination
 fixtures. Produce a deterministic projection and stable layout, render the
 same projection through bounded renderer candidates, support durable selection
-and independent hover, open one complete model page and one complete relation
-page, and provide the synchronized keyboard/list alternative.
+and independent hover, open one model route with a complete source card and
+explicit partial-page accounting, open one complete relation page, and provide
+the synchronized keyboard/list alternative.
 
 The slice is a visual and semantic truth test. It is not an SVG-only data demo,
 a full-corpus build, or an invitation to tune generated copy.

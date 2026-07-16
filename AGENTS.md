@@ -30,12 +30,14 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
+5. `docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md`,
+   `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
    `apps/mental-model-atlas/README.md`, and
-   `docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json` — the local
-   provider-free Atlas Phase 1 implementation, evidence, and still-open founder,
-   screen-reader, rights, and usefulness gates. Read the PRD and plan linked
-   there before proposing any next phase.
+   `docs/evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json` —
+   the local provider-free Atlas Phase 1 implementation, its additive
+   card-first correction, and still-open founder, screen-reader, rights, and
+   usefulness gates. Read the PRD and plan linked there before proposing any
+   next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -199,6 +201,8 @@ For Mental Model Atlas Phase 1 work, also run:
 ```bash
 PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_phase1_projection.py --validate-only
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_phase1_projection.py
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_card_first_repair.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_card_first_repair.py
 cd apps/mental-model-atlas
 npm ci
 npm run check
@@ -210,7 +214,7 @@ npm audit --audit-level=moderate
 Do not regenerate source meaning in the browser, normalize exact relations,
 infer missing pages, or treat the local visual gate as deployment clearance.
 
-## Current handoff — 2026-07-15
+## Current handoff — 2026-07-16
 
 - R1 trust/capture/cost/privacy/custody hardening: complete provider-free.
 - R2 constitutional graph survival: complete provider-free.
@@ -244,11 +248,20 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 - The Mental Model Atlas and Teacher v1 PRD defines the founder-selected user
   job. Its provider-free Phase 1 local tracer bullet is implemented with a
   hash-bound real-data projection, SVG/Canvas renderer boundary, stable
-  selection camera, deterministic hub paging, one complete model page, one
-  complete relation page, and non-canvas/reduced-motion equivalents. Teacher
-  remains `park`: founder visual acceptance, native screen-reader review,
+  selection camera, deterministic hub paging, one model route whose complete
+  Markdown card is primary and whose wider page is explicitly partial, one
+  complete relation page, and non-canvas/reduced-motion equivalents. The
+  additive v2 card-first repair leaves frozen v1 evidence unchanged and labels
+  compiled KG guidance plus all 12 exact incident relations as separate layers.
+  Teacher remains `park`: founder visual acceptance, native screen-reader review,
   publication rights, and real-user usefulness are open. No Phase 2,
   deployment, runtime/Observatory connection, or Teacher journey is authorized.
+- The additive Atlas card-first repair is ready for founder validation. It
+  freezes the Phase 1 v1 hashes, renders all 60 substantive Abstraction source
+  lines and all 15 title/heading lines, keeps the full 12-field KG record and
+  all 12 exact incident relationships in separately labelled layers, and keeps
+  the aggregate page `partial` because runtime affordance presentation,
+  practice prompts, and Teacher journeys remain unavailable or out of scope.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -265,7 +278,7 @@ The Stage 0.5 public-handoff gardening pass made the canonical map legible from
 a fresh clone. Stage 0.6 then corrected deterministic long-conversation
 source-coverage custody without changing prompts, providers, graph behavior,
 or the semantic architecture. The current Atlas decision is founder review of
-the checked-in Phase 1 visual truth packet; passing it does not authorize the
+the checked-in card-first truthfulness packet; passing it does not authorize the
 next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
 a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
 is not authorized by these prerequisites. It may not inspect private archives,
