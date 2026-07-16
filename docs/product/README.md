@@ -34,10 +34,12 @@ truth tracer bullet is now implemented locally:
 
 - [Phase 1 result](lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - [Card-first truthfulness repair result](lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+- [Current monochrome structure study result](lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
 - [Vibrant-editorial visual refinement result](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - [Card-first machine-readable evidence](../evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+- [Current monochrome structure evidence](../evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
 - [Vibrant-editorial machine-readable evidence](../evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Local application](../../apps/mental-model-atlas/README.md)
 
@@ -45,12 +47,13 @@ The July 16 additive repair corrects one Phase 1 truthfulness defect: the former
 page had complete source custody but projected only one substantive card line.
 The current Abstraction page renders the complete source card first and labels
 compiled graph material separately. Its founder follow-up adds a guided reading
-journey and a route-scoped relationship explorer while preserving all exact
-records and directions. Its latest visual gate uses cool-gray paper,
-dark-blue structure, and fixed lime/teal/purple interface roles rather than the
-superseded brown and mixed accents. The source card is complete; the learning
-page is partial; the global graph renderer has not yet adopted this complete
-aesthetic grammar. Frozen Phase 1 artifacts remain unchanged.
+journey and a relationship explorer while preserving all exact records and
+directions. The latest visual gate deliberately removes chromatic color across
+the model page, Library, and global Atlas. It evaluates one shared hierarchy
+through typography, spacing, rule weight, line form, direction, and structural
+motion before any palette is reconsidered. The prior vibrant-editorial packet
+is superseded historical evidence. The source card is complete; the learning
+page is partial. Frozen Phase 1 artifacts remain unchanged.
 
 This does not rewrite historical Teacher artifacts or change the Stage 0
 `park` disposition. Founder card-first acceptance, native screen-reader review,

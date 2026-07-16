@@ -41,8 +41,8 @@ export function CardSourceDocument({ sourceCard }: { sourceCard: SourceCard }) {
       <nav className="reader-journey-nav" aria-label="Guided model chapters">
         <div className="reader-progress-copy" aria-live="polite">
           <p className="eyebrow">Your place in the model</p>
-          <strong>{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Complete source view"}</strong>
-          <span>{readerMode === "guided" ? activeChapter.navigation_label : "All five chapters"}</span>
+          <strong>{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Full article"}</strong>
+          <span>{readerMode === "guided" ? activeChapter.navigation_label : "All five chapters in their original order"}</span>
         </div>
         <ol>
           {projection.chapters.map((chapter) => {
@@ -69,14 +69,14 @@ export function CardSourceDocument({ sourceCard }: { sourceCard: SourceCard }) {
           aria-pressed={readerMode === "full"}
           onClick={() => setReaderMode(readerMode === "guided" ? "full" : "guided")}
         >
-          {readerMode === "guided" ? "View exact source as one document" : "Return to guided reading"}
+          {readerMode === "guided" ? "Read the full article" : "Return to guided reading"}
         </button>
       </nav>
 
       <div className={`reader-stage ${readerMode === "full" ? "is-full-source" : ""}`} ref={chapterStartRef}>
         <div className="reader-stage-orientation">
-          <p className="eyebrow">{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Source inspection mode"}</p>
-          <p>{readerMode === "guided" ? activeChapter.orientation : "All original learning chapters are open in source order for search, copy, print, and audit."}</p>
+          <p className="eyebrow">{readerMode === "guided" ? `Step ${activeChapter.step} of ${projection.chapters.length}` : "Full article"}</p>
+          <p>{readerMode === "guided" ? activeChapter.orientation : "All five chapters in their original order."}</p>
         </div>
 
         {projection.chapters.slice(0, 4).map((chapter) => (

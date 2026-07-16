@@ -99,11 +99,23 @@ describe("card-first Abstraction model page", () => {
   it("offers a functional four-stop page path without changing source or relation identity", () => {
     const { container } = render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
     const pagePath = screen.getByRole("navigation", { name: /on this model page/i });
-    expect(within(pagePath).getByRole("link", { name: /01 learn the source/i }).getAttribute("href")).toBe("#guided-reader-start");
-    expect(within(pagePath).getByRole("link", { name: /02 put it to work/i }).getAttribute("href")).toBe("#model-practice");
-    expect(within(pagePath).getByRole("link", { name: /03 read the relations/i }).getAttribute("href")).toBe("#model-relations");
-    expect(within(pagePath).getByRole("link", { name: /04 keep judging/i }).getAttribute("href")).toBe("#model-boundary");
+    expect(within(pagePath).getByRole("link", { name: /01 understand/i }).getAttribute("href")).toBe("#guided-reader-start");
+    expect(within(pagePath).getByRole("link", { name: /02 use it/i }).getAttribute("href")).toBe("#model-practice");
+    expect(within(pagePath).getByRole("link", { name: /03 connections/i }).getAttribute("href")).toBe("#model-relations");
+    expect(within(pagePath).getByRole("link", { name: /04 perspective/i }).getAttribute("href")).toBe("#model-boundary");
     expect(container.querySelectorAll(".model-connection")).toHaveLength(12);
+  });
+
+  it("keeps the primary learning journey human-facing", () => {
+    render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
+    expect(screen.getAllByText(/simplify reality, extract patterns/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/reality is too noisy to reason about directly/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/no longer stays anchored to concrete evidence/i).length).toBeGreaterThan(0);
+    expect(screen.getByRole("button", { name: /read the full article/i })).toBeTruthy();
+    expect(screen.queryByText(/compiled curation/i)).toBeNull();
+    expect(screen.queryByText(/normalized · high confidence/i)).toBeNull();
+    expect(screen.queryByText(/source-file locator/i)).toBeNull();
+    expect(screen.queryByText(/record name/i)).toBeNull();
   });
 
   it("uses keyboard-operable tabs for relationship types", () => {
@@ -129,8 +141,8 @@ describe("card-first Abstraction model page", () => {
     expect(appendix?.hasAttribute("hidden")).toBe(false);
     expect(appendix?.hasAttribute("open")).toBe(false);
 
-    fireEvent.click(screen.getByRole("button", { name: /view exact source as one document/i }));
-    expect(screen.getByText(/complete source view/i)).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /read the full article/i }));
+    expect(screen.getAllByText(/full article/i).length).toBeGreaterThan(0);
     expect(appendix?.hasAttribute("open")).toBe(true);
     expect(screen.queryByRole("button", { name: /next step/i })).toBeNull();
   });

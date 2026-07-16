@@ -187,17 +187,18 @@ card-first/guided-reader truthfulness repair are implemented locally. The
 Abstraction source is complete and is presented as five source-bound human
 chapters with persistent orientation; dated curation residue is in a collapsed
 source appendix, practical guidance is progressively disclosed, and all exact
-connections are grouped by their human learning role. A local relational-
-editorial follow-up now uses a cool-gray field, dark-blue structure, disciplined
-lime/teal/purple interface roles, a four-stop page signal path, the canonical
-model title, and a compact source → relation → target explorer without changing
-the sources.
-That visual language is scoped to the Abstraction route, not yet to the global
-SVG/Canvas graph. The wider Teacher product remains partial. Its next decision
+connections are grouped by their human learning role. A local founder follow-up
+rejected both large color fields and decorative colored edge accents. The
+current candidate is intentionally monochrome across the Abstraction page,
+global Atlas, and Library. Hierarchy comes from type, space, rule weight, line
+form, direction, and structural motion; no future palette has been selected.
+The wider Teacher product remains partial. Its next decision
 is founder review of the checked-in local packet. It does not authorize public
 deployment, Phase 2, Teacher journeys, runtime links, or provider use.
 See the [card-first result](docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md).
-See the [current visual refinement](docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md).
+See the [current monochrome structure study](docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md).
+The [vibrant-editorial refinement](docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
+is preserved as superseded historical evidence.
 
 See the
 [post-Stage-0 restart roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).

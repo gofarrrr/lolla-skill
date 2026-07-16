@@ -30,15 +30,17 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md`,
+5. `docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md`,
+   `docs/evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json`,
+   `docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md`,
    `docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md`,
    `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
    `apps/mental-model-atlas/README.md`, and the current machine evidence in
    `docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json`
    — the local provider-free Atlas Phase 1 implementation, its additive
-   card-first/guided-reader correction, current visual system, and still-open
-   founder, screen-reader, rights, and usefulness gates. Read the linked PRD and
-   plan before proposing any next phase.
+   card-first/guided-reader correction, current monochrome structural candidate,
+   superseded color study, and open founder, screen-reader, rights, and
+   usefulness gates. Read the linked PRD and plan before any next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -267,14 +269,14 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   separately labelled layers, and keeps the aggregate page `partial` because
   runtime affordance presentation, practice prompts, and Teacher journeys
   remain unavailable or out of scope.
-- The latest local founder follow-up applies a vibrant-editorial system to
-  `/models/abstraction`: cool-gray paper, dark-blue structure, fixed
-  lime/teal/purple roles, and local Familjen Grotesk/IBM Plex type. A four-stop
-  signal path gives color a functional job. Connections remain an exact index
-  plus one source → typed line → target detail. Relationship type is written and
-  shape-redundant in dark-blue ink; color does not encode graph meaning. This is
-  route-scoped: do not claim the global `/atlas` SVG/Canvas renderers share the
-  complete grammar until a separate renderer-unification gate passes.
+- The latest local founder follow-up rejects large flat palette fields and
+  decorative colored edge rules. Atlas, Library, and the Abstraction page now
+  share an intentionally achromatic structural study:
+  typography, spacing, hairlines, strong boundaries, solid/dotted/dashed-cross
+  relationship forms, direction, monochrome selection, and structural motion.
+  Browser and screenshot review found zero rendered chromatic pixels. The
+  earlier vibrant-editorial evidence remains historical and must not be
+  relabeled as current. No future palette has been selected.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -287,14 +289,12 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The Stage 0.5 public-handoff gardening pass made the canonical map legible from
-a fresh clone. Stage 0.6 then corrected deterministic long-conversation
-source-coverage custody without changing prompts, providers, graph behavior,
-or the semantic architecture. The current Atlas decision is founder review of
-the checked-in vibrant-editorial Abstraction tracer; passing it does not
-authorize the next phase. The Constitution roadmap's next eligible product goal remains Stage 1:
-a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
-is not authorized by these prerequisites. It may not inspect private archives,
-generate a new semantic read, call a provider, automate the sidecar, change
-runtime, reopen R4/R5, or claim product usefulness. Real-run review and
-live-pressure usefulness remain later, separately authorized stages.
+Stage 0.5 made the canonical map legible from a fresh clone. Stage 0.6 corrected
+deterministic long-conversation source custody without changing prompts,
+providers, graph behavior, or semantic architecture. The current Atlas decision
+is founder review of the monochrome line grammar across Atlas, Library, and the
+Abstraction tracer; passing it permits only a separate color study. The next
+eligible product goal remains the provider-free, checked-in-safe Stage 1
+Decision Trail truthfulness review. It is not authorized and may not inspect private archives, generate semantics, call a provider,
+automate the sidecar, change runtime, reopen R4/R5, or claim product usefulness.
+Real-run review and live-pressure usefulness remain separately authorized stages.

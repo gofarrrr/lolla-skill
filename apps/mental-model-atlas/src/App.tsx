@@ -106,34 +106,28 @@ export function App() {
           >
             Library
           </AppLink>
-          <AppLink
-            href="/learn"
-            aria-current={
-              route.kind === "learn" || route.kind === "journey" ? "page" : undefined
+        </nav>
+        {route.kind === "atlas" ? (
+          <button
+            className="motion-control"
+            type="button"
+            aria-label={motionControlLabel}
+            onClick={() => setMotionPaused((value) => !value)}
+            disabled={prefersReducedMotion}
+            title={
+              prefersReducedMotion
+                ? "Motion is reduced by your system preference"
+                : undefined
             }
           >
-            Learn
-          </AppLink>
-        </nav>
-        <button
-          className="motion-control"
-          type="button"
-          aria-label={motionControlLabel}
-          onClick={() => setMotionPaused((value) => !value)}
-          disabled={prefersReducedMotion}
-          title={
-            prefersReducedMotion
-              ? "Motion is reduced by your system preference"
-              : undefined
-          }
-        >
-          <span
-            className="motion-icon"
-            data-motion-state={effectiveMotionPaused ? "paused" : "running"}
-            aria-hidden="true"
-          />
-          <span className="motion-label">{motionControlVisibleLabel}</span>
-        </button>
+            <span
+              className="motion-icon"
+              data-motion-state={effectiveMotionPaused ? "paused" : "running"}
+              aria-hidden="true"
+            />
+            <span className="motion-label">{motionControlVisibleLabel}</span>
+          </button>
+        ) : <span className="header-balance" aria-hidden="true" />}
       </header>
 
       <RenderFailureBoundary resetKey={`${location.pathname}${location.search}`}>

@@ -1,4 +1,4 @@
-import { relationCoverageText, type AtlasSelection } from "../atlasSelectors";
+import type { AtlasSelection } from "../atlasSelectors";
 import { modelPageUrl, type AtlasProjection } from "../projection";
 import { AppLink } from "../router";
 
@@ -20,8 +20,8 @@ export function AccessibleAtlas({
     <section id="accessible-atlas" className="accessible-atlas" aria-labelledby="text-atlas-title">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Equivalent non-canvas navigation</p>
-          <h2 id="text-atlas-title">Models and exact directed relations</h2>
+          <p className="eyebrow">Browse by name</p>
+          <h2 id="text-atlas-title">Models and their connections</h2>
         </div>
         <p>
           {selection.visibleModels.length} of {projection.models.length} models match
@@ -33,8 +33,7 @@ export function AccessibleAtlas({
         <div className="zero-state" role="status">
           <strong>Completed zero</strong>
           <p>
-            The projection loaded successfully; the current deterministic text
-            filter matches no model.
+            No model matches this search. Try a shorter name or clear the filter.
           </p>
         </div>
       ) : (
@@ -47,17 +46,16 @@ export function AccessibleAtlas({
                 onClick={() => onSelectModel(model.model_id)}
               >
                 <strong>{model.display_name}</strong>
-                <span>{model.model_id}</span>
               </button>
               <AppLink
                 href={`/models/${model.slug}`}
                 aria-label={
                   modelPageUrl(model.slug)
                     ? `Open complete ${model.display_name} page`
-                    : `Inspect unavailable page status for ${model.display_name}`
+                    : `${model.display_name} currently has a summary only`
                 }
               >
-                {modelPageUrl(model.slug) ? "Read" : "Unavailable"}
+                {modelPageUrl(model.slug) ? "Read" : "Summary only"}
               </AppLink>
             </li>
           ))}
@@ -67,8 +65,10 @@ export function AccessibleAtlas({
       <div className="relation-table-wrap" tabIndex={0}>
         <table>
           <caption>
-            {relationCoverageText(selection)} Omission is a presentation bound, not a
-            relevance judgment.
+            {selection.focusedRelations.length
+              ? `${selection.focusedRelations.length} connections shown. `
+              : "No connections shown yet. "}
+            This table follows the authored direction of each connection.
           </caption>
           <thead>
             <tr>
@@ -83,8 +83,7 @@ export function AccessibleAtlas({
             {selection.focusedRelations.length === 0 ? (
               <tr>
                 <td colSpan={5}>
-                  Select a model or exact relation to reveal its focused records.
-                  Idle view intentionally contains zero edges.
+                  Select a model to reveal its connections.
                 </td>
               </tr>
             ) : (

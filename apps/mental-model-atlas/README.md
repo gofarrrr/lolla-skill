@@ -108,10 +108,12 @@ mastery certification.
 ## Current lifecycle
 
 The card-first guided-reader repair is ready for founder visual and product
-review. Its current vibrant-editorial language uses cool-gray instrument paper,
-dark-blue structure, and fixed lime/teal/purple interface roles. It remains a
-route-scoped Abstraction tracer, not a completed redesign of the global SVG or
-Canvas graph. The Mental Model Teacher component remains `park` because four gates
+review. The current candidate is an intentionally achromatic structural study
+shared by the Abstraction page, Library, and global SVG/Canvas Atlas. It uses
+typography, spacing, hairlines, strong rules, line form, direction, and
+structural motion so those fundamentals can be judged before color returns.
+The previous vibrant-editorial pass is superseded historical evidence; no
+future palette has been selected. The Mental Model Teacher component remains `park` because four gates
 are still open: founder learning-journey acceptance, native screen-reader review,
 source-rights/publication review, and a separately authorized real-user
 usefulness study. Phase 2, Teacher journeys, deployment, live-runtime links,
@@ -121,8 +123,10 @@ See:
 
 - [Phase 1 result](../../docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - [Card-first truthfulness repair](../../docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+- [Current monochrome structure study](../../docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
 - [Vibrant-editorial refinement](../../docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Card-first evidence](../../docs/evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+- [Current monochrome structure evidence](../../docs/evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
 - [Vibrant-editorial evidence](../../docs/evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Renderer decision](../../docs/product/lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Evidence receipt](../../docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json)

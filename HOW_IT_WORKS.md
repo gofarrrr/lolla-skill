@@ -311,12 +311,13 @@ reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
 
 The separate Atlas Phase 1 local implementation and its additive card-first
-truthfulness repair are complete locally. The Abstraction route now also has a
-route-scoped vibrant-editorial pass: cool-gray paper, dark-blue structure,
-fixed lime/teal/purple layer roles, written dark-blue line grammar, and one
-exact relationship detail at a time. It is not yet the global SVG/Canvas graph
-language. The current review
-packet awaits founder validation; later Atlas phases, deployment, Teacher
+truthfulness repair are complete locally. The current visual candidate removes
+chromatic color across the Abstraction route, Library, and global SVG/Canvas
+Atlas so hierarchy can be judged through typography, spacing, rule weight,
+line form, direction, and structural movement alone. Solid, dotted, and
+dashed-cross relationship forms preserve meaning without hue. The former
+vibrant-editorial pass is superseded historical evidence; no future palette is
+selected. The current review packet awaits founder validation; later Atlas phases, deployment, Teacher
 journeys, and runtime or Observatory links remain unauthorized.
 
 ## 14. Verification entrypoints

@@ -5,7 +5,7 @@ import {
   parseAtlasState,
   updateAtlasState,
 } from "../atlasState";
-import { relationCoverageText, selectAtlasView } from "../atlasSelectors";
+import { selectAtlasView } from "../atlasSelectors";
 import { AccessibleAtlas } from "../components/AccessibleAtlas";
 import { AtlasControls } from "../components/AtlasControls";
 import {
@@ -138,12 +138,11 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
     navigate(`/atlas${params.size ? `?${params.toString()}` : ""}`);
   }
 
-  const focusActive = Boolean(
-    selection.selectedModel || selection.selectedRelation,
-  );
-  const scopeText = focusActive
-    ? relationCoverageText(selection)
-    : `${selection.visibleModels.length} of ${projection.models.length} canonical models in this frozen slice; no relation focus selected.`;
+  const scopeText = selection.selectedModel
+    ? `${selection.selectedModel.display_name} · ${selection.focusedRelations.length} connections shown.`
+    : selection.selectedRelation
+      ? "One relationship selected."
+      : `${selection.visibleModels.length} mental models · choose one to see its connections.`;
 
   return (
     <main id="main" className="atlas-route">
@@ -155,6 +154,7 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
         onStateChange={changeState}
         onFixtureChange={switchFixture}
         onRendererChange={switchRenderer}
+        showPrototypeControls={location.searchParams.get("review") === "1"}
       />
       <PageNavigation
         projection={projection}
@@ -176,19 +176,20 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
             <p id="atlas-scope" role="status">
               {scopeText}
             </p>
-            <span>
-              {renderer === "canvas" ? "Canvas 2D comparison" : "SVG editorial"}
-            </span>
+            {location.searchParams.get("review") === "1" ? (
+              <span>
+                {renderer === "canvas" ? "Canvas 2D comparison" : "SVG editorial"}
+              </span>
+            ) : null}
           </div>
 
           {durableState.view === "graph" ? (
             <div className="mobile-atlas-entry">
-              <p className="eyebrow">Compact-screen entry</p>
-              <h2>Start with the source-backed list.</h2>
+              <p className="eyebrow">Small-screen view</p>
+              <h2>Start with the model list.</h2>
               <p>
-                The dense visual neighborhood is held back on narrow screens. The
-                same model identities, exact directed relations, selection state,
-                and full pages remain available below.
+                The visual map needs more room. The same models, connections, and
+                full pages are available below in a touch-friendly list.
               </p>
               <a className="button" href="#accessible-atlas">
                 Browse models and relations
@@ -199,10 +200,9 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
           {selection.visibleModels.length === 0 ? (
             <div className="graph-zero-state" role="status">
               <span aria-hidden="true">0</span>
-              <h2>Completed zero</h2>
+              <h2>No models found</h2>
               <p>
-                The source projection loaded. This text filter matches no model;
-                the map has not failed and no source object was deleted.
+                Nothing matches this search. Try a shorter name or clear the filter.
               </p>
               <button
                 type="button"
@@ -213,14 +213,13 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
             </div>
           ) : durableState.view === "list" ? (
             <div className="text-view-intro">
-              <p className="eyebrow">Text Atlas selected</p>
-              <h2>The semantic list is the primary navigation view.</h2>
+              <p className="eyebrow">List view</p>
+              <h2>Browse without the map.</h2>
               <p>
-                The same durable selection, filters, records, counts, and routes are
-                available below without a visual renderer.
+                The same models and connections appear below in a simple list.
               </p>
               <a className="button" href="#accessible-atlas">
-                Jump to models and relations
+                Browse the list
               </a>
             </div>
           ) : (
@@ -281,10 +280,6 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
           Stable position and visual salience support navigation. They do not prove
           importance, relevance, correctness, usefulness, or mastery.
         </p>
-        <p>
-          Projection <code>{projection.projection_id}</code> · layout{" "}
-          <code>{projection.layout.coordinate_sha256.slice(0, 12)}…</code>
-        </p>
       </footer>
     </main>
   );
@@ -340,14 +335,11 @@ function PageNavigation({
 function AtlasHero() {
   return (
     <header className="atlas-hero">
-      <p className="eyebrow">A source-backed territory of thinking tools</p>
-      <h1>
-        See the landscape.
-        <span>Follow one exact relation.</span>
-      </h1>
+      <p className="eyebrow">Mental Model Atlas</p>
+      <h1>Explore how ideas connect.</h1>
       <p>
-        Explore canonical mental models without turning graph position, connection
-        count, or confidence into authority.
+        Choose a model, follow a relationship, and open the full idea when you want
+        to understand it in depth.
       </p>
     </header>
   );

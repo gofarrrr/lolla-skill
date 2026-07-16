@@ -10,6 +10,7 @@ export function AtlasControls({
   onStateChange,
   onFixtureChange,
   onRendererChange,
+  showPrototypeControls = false,
 }: {
   state: DurableAtlasState;
   fixtureId: FixtureId;
@@ -17,6 +18,7 @@ export function AtlasControls({
   onStateChange: (patch: Partial<DurableAtlasState>, replace?: boolean) => void;
   onFixtureChange: (fixture: FixtureId) => void;
   onRendererChange: (renderer: RendererKind) => void;
+  showPrototypeControls?: boolean;
 }) {
   function toggleRelationType(type: RelationType): void {
     const relationTypes = state.relationTypes.includes(type)
@@ -32,7 +34,7 @@ export function AtlasControls({
         <input
           type="search"
           value={state.query}
-          placeholder="Name or canonical ID"
+          placeholder="Name or idea"
           onChange={(event) =>
             onStateChange({ query: event.target.value, relationPage: 1 }, true)
           }
@@ -54,32 +56,36 @@ export function AtlasControls({
         ))}
       </fieldset>
 
-      <label className="select-field">
-        <span>Review fixture</span>
-        <select
-          value={fixtureId}
-          onChange={(event) => onFixtureChange(event.target.value as FixtureId)}
-        >
-          {FIXTURES.map((fixture) => (
-            <option key={fixture.id} value={fixture.id}>
-              {fixture.label}
-            </option>
-          ))}
-        </select>
-      </label>
+      {showPrototypeControls ? (
+        <div className="prototype-controls">
+          <label className="select-field">
+            <span>Review fixture</span>
+            <select
+              value={fixtureId}
+              onChange={(event) => onFixtureChange(event.target.value as FixtureId)}
+            >
+              {FIXTURES.map((fixture) => (
+                <option key={fixture.id} value={fixture.id}>
+                  {fixture.label}
+                </option>
+              ))}
+            </select>
+          </label>
 
-      <label className="select-field">
-        <span>Visual renderer</span>
-        <select
-          value={renderer}
-          onChange={(event) =>
-            onRendererChange(event.target.value === "canvas" ? "canvas" : "svg")
-          }
-        >
-          <option value="svg">SVG editorial (default)</option>
-          <option value="canvas">Canvas 2D comparison</option>
-        </select>
-      </label>
+          <label className="select-field">
+            <span>Visual renderer</span>
+            <select
+              value={renderer}
+              onChange={(event) =>
+                onRendererChange(event.target.value === "canvas" ? "canvas" : "svg")
+              }
+            >
+              <option value="svg">SVG editorial (default)</option>
+              <option value="canvas">Canvas 2D comparison</option>
+            </select>
+          </label>
+        </div>
+      ) : null}
 
       <div className="segmented-control" aria-label="Atlas presentation">
         <button

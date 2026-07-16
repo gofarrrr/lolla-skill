@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-16 (Mental Model Atlas card-first truthfulness repair)
+Status date: 2026-07-16 (Mental Model Atlas monochrome structure study)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -33,6 +33,12 @@ non-canvas/reduced-motion equivalents. Compiled KG guidance and all exact
 incident relationships are separately labelled additive layers. Teacher
 remains parked pending founder visual acceptance, native screen-reader review,
 publication rights, and real-user evidence.
+
+The current local visual candidate is deliberately achromatic across Atlas,
+Library, and the Abstraction page. It preserves the visitor-first hierarchy
+while testing typography, spacing, rule weight, line form, direction, and
+structural motion before any palette is reconsidered. The earlier vibrant-
+editorial packet is superseded historical evidence, not the current direction.
 
 ## Status vocabulary
 
@@ -142,8 +148,10 @@ The local Mental Model Atlas additionally demonstrates, within a frozen Phase
 233-record paging, one complete source card on an explicitly partial model page,
 one complete relation page,
 keyboard/list/table equivalence, reduced motion, and fail-closed projection and
-renderer states. This is local product-mechanics evidence, not learner-value or
-publication evidence.
+renderer states. The local monochrome study also demonstrates a shared
+visitor-facing hierarchy and hue-independent relationship grammar across
+Atlas, Library, and the complete Abstraction page. This is local product-
+mechanics evidence, not learner-value or publication evidence.
 
 The final R4 A2 experiment also established one narrow semantic result:
 splitting two existing residual surfaces into separate provider calls did not
@@ -207,10 +215,10 @@ the 80,000-character policy, provider behavior, or pressure architecture.
 
 The separate Mental Model Atlas Phase 1 local implementation and additive
 card-first truthfulness repair are complete locally. Its exact next decision is
-founder review of the checked-in card-first composition, camera, relation
-readability, panel continuity, and non-canvas equivalence. Passing that gate
-would still leave native screen-reader and source-rights review before any
-Phase 2 authorization.
+founder review of the monochrome hierarchy, line grammar, camera, relationship
+readability, and mobile continuity. Passing that gate would only permit a
+separate color study and would still leave native screen-reader and source-
+rights review before any Phase 2 authorization.
 
 The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human

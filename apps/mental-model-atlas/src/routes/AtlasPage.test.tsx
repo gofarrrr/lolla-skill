@@ -54,7 +54,7 @@ describe("Atlas interaction state", () => {
     });
     fireEvent.pointerEnter(criticalThinking);
 
-    expect(await screen.findByText("Preview — selection unchanged")).toBeTruthy();
+    expect(await screen.findByText("Preview")).toBeTruthy();
     expect(within(selectedPanel).getByRole("heading", { name: "Abstraction" })).toBeTruthy();
     expect(new URL(window.location.href).searchParams.get("model")).toBe("abstraction");
 
@@ -64,6 +64,19 @@ describe("Atlas interaction state", () => {
         "abstraction",
       );
     });
+  });
+
+  it("keeps local fixture and renderer plumbing out of the ordinary visitor controls", async () => {
+    render(
+      <ProjectionProvider>
+        <AtlasPage motionPaused />
+      </ProjectionProvider>,
+    );
+
+    expect(await screen.findByRole("heading", { name: /explore how ideas connect/i })).toBeTruthy();
+    expect(screen.queryByRole("combobox", { name: /review fixture/i })).toBeNull();
+    expect(screen.queryByRole("combobox", { name: /visual renderer/i })).toBeNull();
+    expect(screen.getByRole("searchbox", { name: /find a model/i })).toBeTruthy();
   });
 
   it("distinguishes a valid zero-result filter from load failure", async () => {
@@ -76,7 +89,7 @@ describe("Atlas interaction state", () => {
     fireEvent.change(search, { target: { value: "no-such-canonical-model" } });
 
     await waitFor(() => {
-      expect(screen.getAllByText("Completed zero").length).toBeGreaterThan(0);
+      expect(screen.getAllByText("No models found").length).toBeGreaterThan(0);
     });
     expect(screen.queryByText("Projection failed")).toBeNull();
   });

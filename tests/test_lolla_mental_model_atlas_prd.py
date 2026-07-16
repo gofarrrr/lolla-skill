@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import struct
 from collections import Counter
 from pathlib import Path
@@ -20,6 +21,15 @@ VIBRANT_RESULT_PATH = (
 )
 VIBRANT_PLAN_PATH = (
     ROOT / "plans/lolla-mental-model-atlas-vibrant-editorial-refinement-plan-2026-07-16.md"
+)
+MONOCHROME_EVIDENCE_PATH = (
+    ROOT / "docs/evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json"
+)
+MONOCHROME_RESULT_PATH = (
+    ROOT / "docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md"
+)
+MONOCHROME_PLAN_PATH = (
+    ROOT / "plans/lolla-mental-model-atlas-monochrome-structure-study-plan-2026-07-16.md"
 )
 
 
@@ -366,27 +376,110 @@ def test_vibrant_editorial_refinement_is_token_bound_truthful_and_reproducible()
     assert '"Resume motion"' in app
     assert 'data-motion-state={effectiveMotionPaused ? "paused" : "running"}' in app
 
-    model_page = (ROOT / "apps/mental-model-atlas/src/routes/ModelPage.tsx").read_text(
-        encoding="utf-8"
-    )
+    historical_result = VIBRANT_RESULT_PATH.read_text(encoding="utf-8")
     for label in (
         "Learn the source",
         "Put it to work",
         "Read the relations",
         "Keep judging",
-        "Reload the source page",
-        "Browse the model library",
     ):
-        assert label in model_page
+        assert label in historical_result
 
     connections = (
         ROOT / "apps/mental-model-atlas/src/components/ModelConnections.tsx"
     ).read_text(encoding="utf-8")
     for label in ("Solid line", "Dotted line", "Dashed line with a cross"):
         assert label in connections
-    assert "color marks page layers" in connections.lower()
-    assert "selection—not importance" in connections.lower()
 
     for path in (VIBRANT_RESULT_PATH, VIBRANT_PLAN_PATH):
         assert path.is_file()
         assert "vibrant editorial" in path.read_text(encoding="utf-8").lower()
+
+
+def test_monochrome_structure_study_is_achromatic_additive_and_reproducible() -> None:
+    evidence = _json(MONOCHROME_EVIDENCE_PATH)
+    assert evidence["status"] == "local_founder_validation_ready_unpublished"
+    assert evidence["decision"] == (
+        "monochrome_structure_study_ready_for_founder_validation"
+    )
+    assert evidence["implementation_parent"] == (
+        "82313ff2c571503a13ab6a719e8f29450bec654f"
+    )
+    assert evidence["provider_calls"] == 0
+    assert evidence["provider_cost_usd"] == 0.0
+    assert evidence["publication_authorized"] is False
+
+    scope = evidence["scope"]
+    assert scope["routes"] == ["/atlas", "/models", "/models/abstraction"]
+    assert scope["source_or_graph_artifacts_changed"] is False
+    assert scope["graph_geometry_or_relationship_semantics_changed"] is False
+    assert scope["future_color_system_selected"] is False
+
+    art = evidence["art_direction"]
+    assert art["name"] == "monochrome_structural_field_guide"
+    assert art["color_mode"] == "achromatic_only"
+    assert art["rendered_chromatic_pixels_per_screenshot"] == 0
+    assert art["relationship_type_uses_hue"] is False
+    assert art["selection_uses_hue"] is False
+
+    relationship = evidence["relationship_contract"]
+    assert relationship["exact_model_page_records"] == 12
+    assert relationship["authored_outward"] == 5
+    assert relationship["authored_inward"] == 7
+    assert relationship["relation_type_counts"] == {
+        "ally": 7,
+        "tension": 4,
+        "antagonist": 1,
+    }
+    assert relationship["parallel_records_preserved"] is True
+    assert relationship["authored_direction_preserved"] is True
+
+    screenshots = evidence["screenshots"]
+    assert len(screenshots) == 8
+    assert len({item["path"] for item in screenshots}) == 8
+    for item in screenshots:
+        path = ROOT / item["path"]
+        assert path.is_file()
+        assert _sha256(path) == item["sha256"]
+        assert _png_size(path) == (item["width"], item["height"])
+        assert item["chromatic_pixels"] == 0
+
+    css = (ROOT / "apps/mental-model-atlas/src/restraint.css").read_text(
+        encoding="utf-8"
+    )
+    literals = re.findall(r"#[0-9a-fA-F]{3,8}\b", css)
+    assert literals
+    for literal in literals:
+        value = literal[1:]
+        if len(value) == 3:
+            value = "".join(character * 2 for character in value)
+        red, green, blue = (
+            int(value[0:2], 16),
+            int(value[2:4], 16),
+            int(value[4:6], 16),
+        )
+        assert red == green == blue, literal
+    assert "--ally: #171717" in css
+    assert "--antagonist: #171717" in css
+    assert "--tension: #171717" in css
+
+    main = (ROOT / "apps/mental-model-atlas/src/main.tsx").read_text(
+        encoding="utf-8"
+    )
+    assert main.index('import "./styles.css"') < main.index('import "./restraint.css"')
+
+    model_page = (ROOT / "apps/mental-model-atlas/src/routes/ModelPage.tsx").read_text(
+        encoding="utf-8"
+    )
+    for label in ("Understand", "Use it", "Connections", "Perspective"):
+        assert label in model_page
+
+    connections = (
+        ROOT / "apps/mental-model-atlas/src/components/ModelConnections.tsx"
+    ).read_text(encoding="utf-8")
+    assert "Line form and direction carry the meaning." in connections
+    assert "color is only a cue" not in connections.lower()
+
+    for path in (MONOCHROME_RESULT_PATH, MONOCHROME_PLAN_PATH):
+        assert path.is_file()
+        assert "monochrome" in path.read_text(encoding="utf-8").lower()

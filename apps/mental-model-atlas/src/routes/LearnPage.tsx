@@ -9,30 +9,29 @@ export default function LearnPage({ journeyId }: { journeyId?: string }) {
   return (
     <main id="main" className="content-route learn-route">
       <header className="content-hero">
-        <p className="eyebrow">Teacher journeys · deliberately gated</p>
-        <h1>{journeyId ? "Journey unavailable" : "Learn through relationships"}</h1>
+        <p className="eyebrow">Guided learning</p>
+        <h1>{journeyId ? "This learning path is not available." : "Guided learning is being prepared."}</h1>
         <p>
-          Teacher is a curated sequence, not automatic tutoring over a private
-          conversation. Phase 1 proves Atlas identity, relation semantics, pages,
-          navigation, and accessibility before adding a journey.
+          For now, explore the Atlas or read the complete model pages. Guided paths
+          will appear here only when they are ready to help people learn.
         </p>
       </header>
       <section className="unavailable-page" role="status">
-        <p className="eyebrow">Not requested in this projection</p>
+        <p className="eyebrow">Not available yet</p>
         {journeyId ? (
           <>
             <h2>No reviewed journey has ID “{journeyId}”.</h2>
             <p>
-              The route remains stable, but an unknown journey is not repaired into a
-              lesson or generated from graph centrality.
+              No reviewed learning path has this address. You can still explore the
+              models and their relationships directly.
             </p>
           </>
         ) : (
           <>
-            <h2>Curated journeys begin only after the Atlas truth gate.</h2>
+            <h2>Start with the models that are ready.</h2>
             <p>
-              A future journey requires source-cleared pages, an editorial sequence,
-              human review, practice, and a do-not-overlearn boundary.
+              Read a full model page for context and practice, or use the Atlas to
+              discover related ideas.
             </p>
           </>
         )}

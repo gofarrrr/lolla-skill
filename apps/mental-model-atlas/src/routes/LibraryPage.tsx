@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 import { ProjectionFailure, ProjectionLoading } from "../components/ProjectionFailure";
-import { humanize } from "../components/StatusDisclosure";
 import { modelPageUrl } from "../projection";
 import { useProjection } from "../projectionContext";
 import { AppLink, navigate, useLocation } from "../router";
@@ -36,7 +35,6 @@ export default function LibraryPage() {
       : true,
   );
   const completePageCount = models.filter((model) => modelPageUrl(model.slug)).length;
-  const unavailablePageCount = models.length - completePageCount;
 
   function updateQuery(value: string): void {
     const params = new URLSearchParams(location.searchParams);
@@ -54,17 +52,17 @@ export default function LibraryPage() {
     <LibraryFrame>
       <section className="library-toolbar">
         <label className="search-field">
-          <span>Search this frozen slice</span>
+          <span>Search models</span>
           <input
             type="search"
             value={query}
             onChange={(event) => updateQuery(event.target.value)}
-            placeholder="Model name or canonical ID"
+            placeholder="Try ‘abstraction’ or ‘systems’"
           />
         </label>
         <p role="status">
-          {filteredModels.length} of {models.length} model records · {completePageCount}{" "}
-          complete page · {unavailablePageCount} page artifacts unavailable in Phase 1
+          {filteredModels.length} of {models.length} models · {completePageCount}{" "}
+          available to read in depth
         </p>
       </section>
 
@@ -84,19 +82,14 @@ export default function LibraryPage() {
                 <div className="card-index" aria-hidden="true">
                   {model.display_name.slice(0, 1)}
                 </div>
-                <p className="canonical-id">{model.model_id}</p>
                 <h2>{model.display_name}</h2>
                 <p className="model-summary">{model.summary.text}</p>
-                <p className="card-status">
-                  {humanize(model.status.human_review)} ·{" "}
-                  {humanize(model.status.publication)}
-                </p>
                 <div className="card-actions">
                   {modelPageUrl(model.slug) ? (
                     <AppLink href={`/models/${model.slug}`}>Read complete model</AppLink>
                   ) : (
                     <AppLink href={`/models/${model.slug}`}>
-                      Page unavailable — inspect status
+                      Full page coming later
                     </AppLink>
                   )}
                   <AppLink href={`/atlas?model=${encodeURIComponent(model.model_id)}`}>
@@ -116,11 +109,11 @@ function LibraryFrame({ children }: { children: React.ReactNode }) {
   return (
     <main id="main" className="content-route library-route">
       <header className="content-hero">
-        <p className="eyebrow">The non-canvas entrance</p>
-        <h1>Model Library</h1>
+        <p className="eyebrow">Model Library</p>
+        <h1>Browse mental models.</h1>
         <p>
-          Browse the same stable identities without relying on spatial navigation.
-          Search is deterministic text matching, not an opaque relevance score.
+          Find an idea by name, read its summary, then open the full page or see how
+          it connects to the wider landscape.
         </p>
       </header>
       {children}

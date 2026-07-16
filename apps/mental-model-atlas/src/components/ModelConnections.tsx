@@ -62,23 +62,19 @@ export function ModelConnections({
     <section className="derived-layer connections-layer" id="model-relations" aria-labelledby="connections-title">
       <header className="derived-layer-heading">
         <div>
-          <p className="eyebrow">Continue learning · relationship map</p>
+          <p className="eyebrow">Relationship map</p>
           <h2 id="connections-title">Read the lines around Abstraction</h2>
         </div>
         <p>
-          Line form repeats the written relationship type; arrows and source/target
-          labels preserve authored direction. Color marks page layers and current
-          selection—not importance, confidence, or relevance.
+          See which ideas reinforce Abstraction, expose a tradeoff, or push against it.
+          Line form and direction carry the meaning.
         </p>
       </header>
 
       <div className="connection-explorer">
-        <dl className="connection-overview" aria-label="Exact relationship set summary">
-          <div><dt>Exact records</dt><dd>{connections.shown_record_count}</dd></div>
-          <div><dt>Authored outward</dt><dd>{connections.outgoing_count}</dd></div>
-          <div><dt>Authored inward</dt><dd>{connections.incoming_count}</dd></div>
-          <div><dt>Importance ranking</dt><dd>None</dd></div>
-        </dl>
+        <p className="connection-summary">
+          {connections.shown_record_count} authored connections · {connections.outgoing_count} from Abstraction · {connections.incoming_count} toward it
+        </p>
 
         <details className="relationship-grammar">
           <summary>How to read the line styles</summary>
@@ -169,16 +165,6 @@ export function ModelConnections({
           Explore the full graph
         </AppLink>
       </div>
-      <details className="technical-review-disclosure connection-set-custody">
-        <summary>Connection-set custody and technical fields</summary>
-        <p>{connections.description}</p>
-        <dl className="connection-custody">
-          <div><dt>Outgoing</dt><dd>{connections.outgoing_count}</dd></div>
-          <div><dt>Incoming</dt><dd>{connections.incoming_count}</dd></div>
-          <div><dt>Exact records</dt><dd>{connections.shown_record_count} of {connections.eligible_record_count}</dd></div>
-          <div><dt>Omitted records</dt><dd>{connections.omitted_record_count}</dd></div>
-        </dl>
-      </details>
     </section>
   );
 }
@@ -235,13 +221,13 @@ function ConnectionDetail({ id, relation }: { id: string; relation: CardFirstRel
       : "pushes against";
   return (
     <article className={`relationship-detail relation-${relation.relation_type}`} id={id}>
-      <p className="eyebrow">Selected exact relationship</p>
+      <p className="eyebrow">Selected relationship</p>
       <div
         className="relationship-path"
         aria-label={`Authored relationship: ${sourceModel} ${relationCopy} ${targetModel}`}
       >
         <div className={`relationship-node ${relation.source_model_id === "abstraction" ? "is-focus-model" : ""}`}>
-          <span>Source model</span>
+          <span>From</span>
           <strong>{sourceModel}</strong>
         </div>
         <div className="relationship-connector">
@@ -249,7 +235,7 @@ function ConnectionDetail({ id, relation }: { id: string; relation: CardFirstRel
           <span>{relation.relation_type === "ally" ? "ally" : relation.relation_type}</span>
         </div>
         <div className={`relationship-node ${relation.target_model_id === "abstraction" ? "is-focus-model" : ""}`}>
-          <span>Target model</span>
+          <span>To</span>
           <strong>{targetModel}</strong>
         </div>
       </div>
@@ -267,15 +253,6 @@ function ConnectionDetail({ id, relation }: { id: string; relation: CardFirstRel
             Read this relationship in depth
           </AppLink>
         ) : null}
-        <details className="compiled-source-detail">
-          <summary>Direction and record details</summary>
-          <dl className="connection-custody">
-            <div><dt>Relative to Abstraction</dt><dd>{humanize(relation.focus_direction)}</dd></div>
-            <div><dt>Authored direction</dt><dd>{humanize(relation.direction)}</dd></div>
-            <div><dt>Confidence</dt><dd>{humanize(relation.confidence)} — not certification</dd></div>
-            <div><dt>Source record</dt><dd><code>/{relation.source_record_index}</code></dd></div>
-          </dl>
-        </details>
       </div>
     </article>
   );

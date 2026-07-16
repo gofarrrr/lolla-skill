@@ -49,24 +49,12 @@ export function SelectionPanel({
         <p className="panel-summary">{relation.summary}</p>
         <dl className="compact-facts">
           <div>
-            <dt>Direction</dt>
+            <dt>Relationship direction</dt>
             <dd>{humanize(relation.direction)}</dd>
           </div>
           <div>
-            <dt>Reciprocal</dt>
+            <dt>Two-way</dt>
             <dd>{relation.is_reciprocal ? "Explicitly yes" : "No"}</dd>
-          </div>
-          <div>
-            <dt>Confidence</dt>
-            <dd>
-              {relation.confidence === "medium"
-                ? "Medium — stronger caution: inspect the source; this is not certification"
-                : "High — still not certification"}
-            </dd>
-          </div>
-          <div>
-            <dt>Curation</dt>
-            <dd>{humanize(relation.curation_status)}</dd>
           </div>
         </dl>
         <AppLink
@@ -85,15 +73,14 @@ export function SelectionPanel({
     return (
       <aside className="selection-panel" aria-label="Selected model">
         <PanelHeader label="Selected model" onClear={onClear} />
-        <p className="canonical-id">{model.model_id}</p>
         <h2>{model.display_name}</h2>
         <p className="panel-summary">{model.summary.text}</p>
         <p className="helps-notice">
           <strong>Helps you notice</strong>
           {model.helps_notice.text}
         </p>
-        <p className="count-scope">Loaded relation records on this page</p>
-        <div className="count-cluster" aria-label="Loaded incident relation counts on this page">
+        <p className="count-scope">Connections in this view</p>
+        <div className="count-cluster" aria-label="Connection counts in this view">
           <span>
             <strong>{counts.ally}</strong> allies
           </span>
@@ -104,20 +91,6 @@ export function SelectionPanel({
             <strong>{counts.tension}</strong> tensions
           </span>
         </div>
-        <dl className="compact-facts">
-          <div>
-            <dt>Source</dt>
-            <dd>{humanize(model.status.source)}</dd>
-          </div>
-          <div>
-            <dt>Human review</dt>
-            <dd>{humanize(model.status.human_review)}</dd>
-          </div>
-          <div>
-            <dt>Publication</dt>
-            <dd>{humanize(model.status.publication)}</dd>
-          </div>
-        </dl>
         <AppLink className="button panel-action" href={`/models/${model.slug}`}>
           Open full model page
         </AppLink>
@@ -127,11 +100,11 @@ export function SelectionPanel({
 
   return (
     <aside className="selection-panel idle-panel" aria-label="Atlas orientation">
-      <p className="eyebrow">No semantic focus selected</p>
-      <h2>See the territory, then choose one exact object.</h2>
+      <p className="eyebrow">Start anywhere</p>
+      <h2>Choose one model to reveal its neighborhood.</h2>
       <p>
-        Node position is a stable navigation layout. It does not mean importance,
-        relevance, correctness, or mastery. Idle view draws no relation edges.
+        Position helps you navigate; it is not a ranking. Select a model to see the
+        ideas that support it, challenge it, or create a useful tradeoff.
       </p>
       <ul className="legend-list">
         <li className="relation-ally">Ally — supportive or complementary</li>
@@ -149,10 +122,9 @@ export function HoverPreview({ selection }: { selection: AtlasSelection }) {
   }
   return (
     <div className="hover-preview" aria-live="polite">
-      <p>Preview — selection unchanged</p>
+      <p>Preview</p>
       <strong>{model.display_name}</strong>
       <span>{model.summary.text}</span>
-      <span>{model.model_id}</span>
     </div>
   );
 }

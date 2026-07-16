@@ -36,6 +36,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - **LOCAL CARD-FIRST CORRECTION:** [Atlas card-first truthfulness result](product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
 - **LOCAL CARD-FIRST EVIDENCE:** [Atlas card-first evidence](evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+- **CURRENT LOCAL VISUAL STUDY:** [Atlas monochrome structure result](product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
+- **CURRENT LOCAL VISUAL EVIDENCE:** [Atlas monochrome structure evidence](evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.
@@ -69,8 +71,9 @@ source authority or action permission.
 
 - **PARKED / LOCAL PHASE 1 REVIEW:** Mental Model Teacher contracts,
   renderers, packets, Observatory projections, and the new source-bound Atlas
-  tracer bullet in [the product index](product/README.md). Founder visual,
-  native screen-reader, rights, and real-user gates remain open.
+  tracer bullet in [the product index](product/README.md). Its current local
+  candidate is a monochrome structure study; no final palette is selected.
+  Founder visual, native screen-reader, rights, and real-user gates remain open.
 - **PARKED:** general arbitrary-run Decision Work semantic generation in the
   board and conversation-understanding families
 

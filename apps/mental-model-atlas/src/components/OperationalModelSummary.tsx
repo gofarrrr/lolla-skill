@@ -37,29 +37,11 @@ export function OperationalModelSummary({
                     <h4>{item.mode}</h4>
                     <p>{item.description}</p>
                     <p><strong>Mitigation:</strong> {item.mitigation}</p>
-                    <SourceMetadata item={item} />
                   </li>
                 ))}
               </ul>
             </section>
           </div>
-        </details>
-        <details className="technical-review-disclosure">
-          <summary>How Lolla curates this guidance</summary>
-          <p>{operational.description}</p>
-          <p>
-            All {operational.field_coverage.source_field_count} checked-in fields are present.
-            This reviewed curation has different authority from the source article.
-          </p>
-          <dl className="compact-facts">
-            <div><dt>Input</dt><dd>{record.input_type}</dd></div>
-            <div><dt>Output</dt><dd>{record.output_type}</dd></div>
-            <div><dt>Reasoning types</dt><dd>{record.reasoning_types.join(", ")}</dd></div>
-            <div><dt>Record name</dt><dd>{record.name}</dd></div>
-            <div><dt>Display name</dt><dd>{record.display_name}</dd></div>
-            <div><dt>Slug</dt><dd><code>{record.slug}</code></dd></div>
-            <div><dt>Source-file locator</dt><dd><code>{record.source_file}</code></dd></div>
-          </dl>
         </details>
       </div>
     </section>
@@ -79,25 +61,15 @@ function OperationalList({ title, items }: { title: string; items: string[] }) {
 function MetadataList({ title, items }: { title: string; items: OperationalMetadataRecord[] }) {
   return (
     <section className="operational-card">
-      <p className="section-number">Compiled curation</p>
+      <p className="section-number">Practical prompt</p>
       <h3>{title}</h3>
       <ul className="metadata-record-list">
         {items.map((item, index) => (
           <li key={index}>
             <p>{item.description}</p>
-            <SourceMetadata item={item} />
           </li>
         ))}
       </ul>
     </section>
-  );
-}
-
-function SourceMetadata({ item }: { item: OperationalMetadataRecord }) {
-  return (
-    <details className="compiled-source-detail">
-      <summary>{item.extraction_type} · {item.confidence} confidence</summary>
-      <blockquote>{item.source_quote}</blockquote>
-    </details>
   );
 }
