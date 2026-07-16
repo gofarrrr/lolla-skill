@@ -36,9 +36,7 @@ def test_atlas_prd_contract_is_grounded_in_the_canonical_substrate() -> None:
     affordances = _json(affordance_path)
 
     assert contract["canonical_planning_base"] == "2f05fd1ca7081f602317d670faad8d1293d5b0ff"
-    assert contract["status"] == (
-        "phase1_local_implemented_founder_gate_pending"
-    )
+    assert contract["status"] == "phase1_card_first_repaired_founder_gate_pending"
 
     assert _sha256(manifest_path) == baseline["model_source_manifest"]["sha256"]
     assert _sha256(knowledge_path) == baseline["knowledge_graph"]["sha256"]
@@ -169,7 +167,9 @@ def test_atlas_prd_defines_a_complete_but_unauthed_product_lane() -> None:
 
     phases = contract["tracer_bullet_phases"]
     assert [phase["phase"] for phase in phases] == [1, 2, 3, 4, 5, 6]
-    assert phases[0]["status"] == "implemented_local_founder_gate_pending"
+    assert phases[0]["status"] == (
+        "implemented_local_card_first_repaired_founder_gate_pending"
+    )
     assert all(phase["status"] == "not_authorized" for phase in phases[1:])
 
     lifecycle = contract["current_lifecycle"]
@@ -181,7 +181,20 @@ def test_atlas_prd_defines_a_complete_but_unauthed_product_lane() -> None:
     assert lifecycle["implementation_authorized"] is False
     assert lifecycle["phase1_implementation_completed"] is True
     assert lifecycle["phase1_authorization_consumed"] is True
-    assert lifecycle["founder_visual_acceptance"] == "pending"
+    assert lifecycle["founder_visual_acceptance"] == "pending_card_first_review"
+    correction = contract["phase1_card_first_correction"]
+    assert correction["historical_v1_modified"] is False
+    assert correction["authoritative_source_card_coverage"] == "complete"
+    assert correction["operational_knowledge_graph_record_coverage"] == (
+        "complete_separately_labelled"
+    )
+    assert correction["incident_relationship_record_membership"] == (
+        "complete_separately_labelled"
+    )
+    assert correction["aggregate_learning_page_coverage"] == "partial"
+    assert correction["runtime_affordance_projection"] == "available_not_projected"
+    assert correction["distinct_reviewed_practice_prompts"] == "missing"
+    assert correction["curated_teacher_journeys"] == "missing"
     assert boundaries["provider_calls_authorized"] == 0
     assert boundaries["provider_cost_authorized_usd"] == 0.0
     assert boundaries["runtime_integration_authorized"] is False
