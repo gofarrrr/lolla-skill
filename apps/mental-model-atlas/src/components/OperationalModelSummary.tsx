@@ -7,7 +7,7 @@ export function OperationalModelSummary({
 }) {
   const record = operational.record;
   return (
-    <section className="derived-layer operational-layer" aria-labelledby="operational-title">
+    <section className="derived-layer operational-layer" id="model-practice" aria-labelledby="operational-title">
       <header className="derived-layer-heading">
         <div>
           <p className="eyebrow">After the source · reviewed practical guidance</p>

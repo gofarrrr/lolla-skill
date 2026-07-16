@@ -10,21 +10,21 @@ const GROUPS = [
     id: "ally",
     canonicalLabel: "Ally",
     label: "Works with",
-    lineLabel: "Solid teal line",
+    lineLabel: "Solid line",
     explanation: "Authored as complementary or mutually supporting in the described respect.",
   },
   {
     id: "tension",
     canonicalLabel: "Tension",
     label: "Compare the tradeoff",
-    lineLabel: "Dotted violet line",
+    lineLabel: "Dotted line",
     explanation: "Authored as a tradeoff, boundary, disagreement, or conflict worth comparing.",
   },
   {
     id: "antagonist",
     canonicalLabel: "Antagonist",
     label: "Pushes against",
-    lineLabel: "Dashed orange line with a cross",
+    lineLabel: "Dashed line with a cross",
     explanation: "Authored as opposing or counteracting in the described respect.",
   },
 ] as const;
@@ -59,16 +59,16 @@ export function ModelConnections({
   }
 
   return (
-    <section className="derived-layer connections-layer" aria-labelledby="connections-title">
+    <section className="derived-layer connections-layer" id="model-relations" aria-labelledby="connections-title">
       <header className="derived-layer-heading">
         <div>
           <p className="eyebrow">Continue learning · relationship map</p>
           <h2 id="connections-title">Read the lines around Abstraction</h2>
         </div>
         <p>
-          Each line says how two models interact and which direction the authored
-          relationship travels. Color and line form repeat the written label; they
-          never rank importance or certify relevance.
+          Line form repeats the written relationship type; arrows and source/target
+          labels preserve authored direction. Color marks page layers and current
+          selection—not importance, confidence, or relevance.
         </p>
       </header>
 

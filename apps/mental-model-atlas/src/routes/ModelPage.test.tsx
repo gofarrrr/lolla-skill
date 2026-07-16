@@ -78,9 +78,9 @@ describe("card-first Abstraction model page", () => {
   it("makes relationship type and direction legible without depending on color", () => {
     const { container } = render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
     expect(screen.getByText(/how to read the line styles/i)).toBeTruthy();
-    expect(screen.getByText(/solid teal line/i)).toBeTruthy();
-    expect(screen.getByText(/dotted violet line/i)).toBeTruthy();
-    expect(screen.getByText(/dashed orange line with a cross/i)).toBeTruthy();
+    expect(screen.getByText(/solid line/i)).toBeTruthy();
+    expect(screen.getByText(/dotted line/i)).toBeTruthy();
+    expect(screen.getByText(/dashed line with a cross/i)).toBeTruthy();
 
     const paths = [...container.querySelectorAll(".relationship-path")];
     expect(paths).toHaveLength(3);
@@ -94,6 +94,16 @@ describe("card-first Abstraction model page", () => {
 
     fireEvent.click(screen.getByRole("tab", { name: /4 tension.*compare the tradeoff/i }));
     expect(screen.getByLabelText(/abstraction stays in productive tension with first principles thinking/i)).toBeTruthy();
+  });
+
+  it("offers a functional four-stop page path without changing source or relation identity", () => {
+    const { container } = render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
+    const pagePath = screen.getByRole("navigation", { name: /on this model page/i });
+    expect(within(pagePath).getByRole("link", { name: /01 learn the source/i }).getAttribute("href")).toBe("#guided-reader-start");
+    expect(within(pagePath).getByRole("link", { name: /02 put it to work/i }).getAttribute("href")).toBe("#model-practice");
+    expect(within(pagePath).getByRole("link", { name: /03 read the relations/i }).getAttribute("href")).toBe("#model-relations");
+    expect(within(pagePath).getByRole("link", { name: /04 keep judging/i }).getAttribute("href")).toBe("#model-boundary");
+    expect(container.querySelectorAll(".model-connection")).toHaveLength(12);
   });
 
   it("uses keyboard-operable tabs for relationship types", () => {
