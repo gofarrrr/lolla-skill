@@ -32,6 +32,7 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT REGISTER:** [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
 - **CURRENT ROADMAP:** [Post-Stage-0 restart roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
 - **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
+- **OPERATIONS / CUSTODY:** [Founder desktop worktree closeout](operations/lolla-founder-desktop-worktree-custody-closeout-2026-07-17.md)
 - **LOCAL PRODUCT REVIEW:** [Mental Model Atlas Phase 1 result](product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - **LOCAL CARD-FIRST CORRECTION:** [Atlas card-first truthfulness result](product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
