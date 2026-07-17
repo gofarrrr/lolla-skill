@@ -30,8 +30,8 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md`,
-   `docs/evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json`,
+5. `docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md`,
+   `docs/evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json`,
    `apps/mental-model-atlas/DESIGN_SYSTEM.md`,
    `docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md`,
    `docs/evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json`,
@@ -41,9 +41,9 @@ Read these in order before proposing architecture or the next experiment:
    `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
    and `apps/mental-model-atlas/README.md`
    — the local provider-free Atlas Phase 1 implementation, its additive
-   card-first/guided-reader correction, binding consolidated achromatic design
-   system, superseded color study, and open founder, screen-reader, rights, and
-   usefulness gates. Read the linked PRD and plan before any next phase.
+   card-first/guided-reader correction, repaired full-field directional graph,
+   binding achromatic design system, and open founder, screen-reader, rights,
+   and usefulness gates. Read the linked PRD and plan before any next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -269,10 +269,10 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   covers every Phase 1 route and state. Its binding contract is
   `apps/mental-model-atlas/DESIGN_SYSTEM.md`; only
   `src/design-system/index.css` is active. The old monolithic and restraint
-  sheets are historical Git evidence, not live compatibility layers. Future
-  visual work must use the named tokens, geometry, shells, three breakpoints,
-  and route modules. No palette is selected and the aggregate page remains
-  `partial`.
+  sheets are historical Git evidence, not live compatibility layers. The graph
+  keeps all models visible, uses collision-aware labels, one relation key, and
+  source-to-target arrows plus pausable motion. No palette is selected and the
+  aggregate page remains `partial`.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit

@@ -42,6 +42,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT LOCAL GUIDED-ENTRY EVIDENCE:** [Atlas guided-entry evidence](evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
 - **CURRENT LOCAL DESIGN SYSTEM:** [Atlas design-system consolidation](product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
 - **CURRENT LOCAL DESIGN-SYSTEM EVIDENCE:** [Atlas design-system evidence](evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
+- **CURRENT LOCAL GRAPH REPAIR:** [Atlas graph-legibility repair](product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
+- **CURRENT LOCAL GRAPH EVIDENCE:** [Atlas graph-legibility evidence](evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.

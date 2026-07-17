@@ -37,6 +37,7 @@ truth tracer bullet is now implemented locally:
 - [Current monochrome structure study result](lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
 - [Current guided-entry founder-feedback repair](lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
 - [Current design-system consolidation](lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
+- [Current graph-legibility repair](lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
 - [Vibrant-editorial visual refinement result](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
@@ -44,6 +45,7 @@ truth tracer bullet is now implemented locally:
 - [Current monochrome structure evidence](../evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
 - [Current guided-entry evidence](../evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
 - [Current design-system evidence](../evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
+- [Current graph-legibility evidence](../evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
 - [Vibrant-editorial machine-readable evidence](../evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Local application](../../apps/mental-model-atlas/README.md)
 
@@ -66,6 +68,11 @@ The current candidate additionally consolidates every Phase 1 route and state
 under one binding visual contract and one modular stylesheet entrypoint. It
 removes the active monolithic and override cascade while preserving all source,
 projection, relationship, and product-lifecycle boundaries.
+
+The graph-legibility follow-up repairs the map within that system: full-field
+selection, small outlined nodes, collision-aware labels, one relation key,
+distinct line types, and pausable source-to-target direction markers. It does
+not change the frozen coordinates or authored relations.
 
 This does not rewrite historical Teacher artifacts or change the Stage 0
 `park` disposition. Founder card-first acceptance, native screen-reader review,

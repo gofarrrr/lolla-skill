@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-16 (Mental Model Atlas design-system consolidation)
+Status date: 2026-07-17 (Mental Model Atlas graph-legibility repair)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -47,6 +47,12 @@ This consolidation is a local review candidate and publication is not
 authorized. It establishes a maintainable visual baseline, not final visual
 approval, native screen-reader acceptance, publication-rights clearance,
 learning usefulness, deployment, or Phase 2.
+
+The interactive Atlas graph now keeps the complete loaded field visible after
+selection, separates small nodes from collision-aware labels, uses one
+ally/antagonist/tension key, and shows authored direction through arrowheads and
+pausable traveling markers. This repairs a renderer/CSS contract mismatch; it
+does not validate the frozen coordinates as an optimal information layout.
 
 ## Status vocabulary
 

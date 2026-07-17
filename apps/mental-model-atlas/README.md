@@ -8,9 +8,9 @@ publication.
 ## What is implemented
 
 - `/atlas` — a source-hash-bound 16-model visual neighborhood, persistent model
-  or exact-relation selection, independent hover, stable selection camera,
-  relation-type filters, truthful deterministic search, and explicit data and
-  renderer failure states;
+  or exact-relation selection, independent hover, a full-field selection view,
+  collision-aware labels, one relation key, pausable source-to-target motion,
+  truthful deterministic search, and explicit data and renderer failure states;
 - `/models` — the equivalent non-canvas Library for the frozen slice;
 - `/models/abstraction` — one card-first guided page with the complete canonical
   Markdown source divided into five reviewed human chapters, persistent
@@ -121,6 +121,12 @@ modules replace the removed monolithic and restraint override stylesheets.
 New exceptions must be added to the contract rather than hidden in route-local
 overrides.
 
+The latest graph-legibility repair fixes a renderer/CSS naming mismatch that
+had produced opaque label-covering nodes and visually identical edges. All
+loaded models now remain visible after selection. Ally, antagonist, and tension
+use solid, dashed-with-cross, and double lines respectively; arrows and moving
+markers show authored direction; and the global motion control pauses them.
+
 The latest founder-feedback repair keeps `Model Library / Abstraction` on one
 aligned line and removes the repeated source-title introduction: `Understand`
 now enters the chapter reader directly, while the exact title returns in the
@@ -134,6 +140,8 @@ and Observatory links are not authorized.
 
 See:
 
+- [Current graph-legibility repair](../../docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
+- [Current graph-legibility evidence](../../docs/evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
 - [Current design-system consolidation](../../docs/product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
 - [Current design-system evidence](../../docs/evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
 - [Phase 1 result](../../docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
