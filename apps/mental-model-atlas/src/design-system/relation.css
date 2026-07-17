@@ -1,0 +1,192 @@
+.relation-page-route {
+  width: min(var(--shell-standard), calc(100% - var(--space-8)));
+}
+
+.relation-page-route .learning-page {
+  overflow: clip;
+  border: var(--line-structure) solid var(--color-ink);
+  background: var(--color-surface);
+}
+
+.relation-learning-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr);
+  gap: var(--space-12);
+  align-items: end;
+  border-bottom: var(--line-structure) solid var(--color-ink);
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  color: var(--color-ink);
+  background: var(--color-surface-raised);
+}
+
+.relation-learning-hero .relation-kicker,
+.relation-learning-hero h1 {
+  grid-column: 1;
+}
+
+.relation-learning-hero h1 {
+  max-width: 15ch;
+  margin: 0;
+  font-size: clamp(2.75rem, 6vw, 5.75rem);
+  font-weight: 680;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+}
+
+.relation-learning-hero h1 a {
+  text-decoration: none;
+}
+
+.relation-learning-hero .definition-lede,
+.relation-learning-hero .button-row {
+  grid-column: 2;
+  margin: 0;
+}
+
+.relation-learning-hero .definition-lede {
+  color: var(--color-ink-muted);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+}
+
+.relation-learning-hero .button-row {
+  margin-top: var(--space-6);
+}
+
+.relation-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.relation-kicker span,
+.relation-swatch,
+.relation-row-mark,
+.connection-tab-line {
+  display: block;
+  width: 1.75rem;
+  height: var(--line-current);
+  background: currentColor;
+}
+
+.relation-antagonist .relation-swatch,
+.relation-antagonist .relation-row-mark,
+.relation-kicker.relation-antagonist span,
+.relation-antagonist .connection-tab-line {
+  background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 8px);
+}
+
+.relation-tension .relation-swatch,
+.relation-tension .relation-row-mark,
+.relation-kicker.relation-tension span,
+.relation-tension .connection-tab-line {
+  height: 5px;
+  border-top: var(--line-structure) solid currentColor;
+  border-bottom: var(--line-structure) solid currentColor;
+  background: transparent;
+}
+
+.direction-arrow {
+  display: inline-block;
+  margin: 0 0.25em;
+  font-family: var(--font-display);
+  font-size: 0.72em;
+  font-weight: 400;
+}
+
+.relation-facts {
+  border-bottom: var(--line-structure) solid var(--color-line-strong);
+  padding: 0 clamp(var(--space-6), 4vw, var(--space-12));
+  background: var(--color-surface);
+}
+
+.compact-facts {
+  display: grid;
+  margin: var(--space-6) 0;
+}
+
+.compact-facts > div {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: var(--space-3);
+  border-top: var(--line-structure) solid var(--color-line);
+  padding: var(--space-3) 0;
+}
+
+.compact-facts > div:last-child {
+  border-bottom: var(--line-structure) solid var(--color-line);
+}
+
+.compact-facts dt,
+.compact-facts dd {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.compact-facts dt {
+  color: var(--color-ink-quiet);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.page-section {
+  min-width: 0;
+  border-top: var(--line-structure) solid var(--color-line);
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.page-section:nth-child(odd) {
+  border-right: var(--line-structure) solid var(--color-line);
+}
+
+.page-section-wide {
+  grid-column: 1 / -1;
+  border-right: 0 !important;
+}
+
+.page-section h2 {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.page-section p,
+.page-section li {
+  color: var(--color-ink-muted);
+  line-height: var(--leading-body);
+}
+
+.parallel-context {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: var(--line-structure) solid var(--color-line);
+}
+
+.parallel-context > div {
+  padding: var(--space-4) 0;
+}
+
+.parallel-context > div + div {
+  border-left: var(--line-structure) solid var(--color-line);
+  padding-left: var(--space-6);
+}
+
+.parallel-context ul:empty::after {
+  color: var(--color-ink-quiet);
+  content: "No exact records declared";
+  font-size: var(--text-sm);
+}

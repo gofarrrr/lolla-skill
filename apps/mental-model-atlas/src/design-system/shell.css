@@ -1,0 +1,214 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: var(--z-skip);
+  top: var(--space-3);
+  left: var(--space-3);
+  min-height: 2.75rem;
+  transform: translateY(-180%);
+  border-radius: var(--radius-round);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-surface-raised);
+  background: var(--color-ink);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: sticky;
+  z-index: var(--z-header);
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) auto minmax(14rem, 1fr);
+  min-height: var(--header-height);
+  align-items: center;
+  border-bottom: var(--line-structure) solid var(--color-ink);
+  padding: var(--space-3) clamp(var(--space-4), 3vw, var(--space-12));
+  background: var(--color-surface-raised);
+}
+
+.brand {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-self: start;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: var(--line-structure) solid var(--color-ink);
+  border-radius: 50%;
+  color: var(--color-ink);
+  background: var(--color-surface-raised);
+  font-family: var(--font-display);
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.brand small {
+  margin-top: var(--space-1);
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-header nav a {
+  min-height: 2.75rem;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-ink-muted);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.site-header nav a:hover {
+  color: var(--color-ink);
+  background: var(--color-surface-muted);
+}
+
+.site-header nav a[aria-current="page"] {
+  color: var(--color-ink);
+  box-shadow: inset 0 calc(var(--line-current) * -1) 0 var(--color-ink);
+}
+
+.motion-control {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-self: end;
+  gap: var(--space-2);
+  border-color: var(--color-line-strong);
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-ink-muted);
+  background: var(--color-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.motion-icon {
+  position: relative;
+  width: 0.625rem;
+  height: 0.625rem;
+  flex: 0 0 0.625rem;
+}
+
+.motion-icon::before,
+.motion-icon::after {
+  position: absolute;
+  top: 0;
+  width: 0.1875rem;
+  height: 100%;
+  background: currentColor;
+  content: "";
+}
+
+.motion-icon::before {
+  left: 0;
+}
+
+.motion-icon::after {
+  right: 0;
+}
+
+.motion-icon[data-motion-state="paused"]::before {
+  inset: 0;
+  width: 0;
+  height: 0;
+  border-top: 0.3125rem solid transparent;
+  border-bottom: 0.3125rem solid transparent;
+  border-left: 0.55rem solid currentColor;
+  background: transparent;
+}
+
+.motion-icon[data-motion-state="paused"]::after {
+  content: none;
+}
+
+.header-balance {
+  display: block;
+  width: 2.5rem;
+  justify-self: end;
+}
+
+.content-route,
+.failure-page {
+  width: min(var(--shell-standard), calc(100% - var(--space-8)));
+  margin: 0 auto;
+  padding: clamp(var(--space-8), 5vw, var(--space-16)) 0;
+}
+
+.model-page-route {
+  width: min(var(--shell-wide), calc(100% - var(--space-12)));
+}
+
+.breadcrumb {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.content-hero {
+  max-width: 62rem;
+  margin-bottom: var(--space-8);
+  border-bottom: var(--line-structure) solid var(--color-ink);
+  padding-bottom: var(--space-6);
+}
+
+.content-hero h1,
+.failure-page h1,
+.unavailable-page h1 {
+  max-width: 14ch;
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-xl);
+  font-weight: 680;
+  letter-spacing: -0.055em;
+  line-height: var(--leading-tight);
+}
+
+.content-hero > p:last-child,
+.failure-page > p,
+.unavailable-page > p {
+  max-width: var(--reading-measure);
+  color: var(--color-ink-muted);
+  line-height: var(--leading-body);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}

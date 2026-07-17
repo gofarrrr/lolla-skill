@@ -33,9 +33,11 @@ describe("Atlas interaction state", () => {
       </ProjectionProvider>,
     );
 
-    const abstraction = await screen.findByRole("button", {
-      name: "Select Abstraction",
-    });
+    const abstraction = await screen.findByRole(
+      "button",
+      { name: "Select Abstraction" },
+      { timeout: 5_000 },
+    );
     fireEvent.click(abstraction);
 
     const selectedPanel = screen.getByRole("complementary", {

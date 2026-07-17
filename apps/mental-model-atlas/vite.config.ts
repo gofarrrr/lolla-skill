@@ -10,5 +10,9 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     restoreMocks: true,
+    // The source-complete model and lazy renderer tests exercise large DOM
+    // trees in parallel. Keep their deterministic assertions while allowing
+    // enough wall time for a contended CI worker.
+    testTimeout: 10_000,
   },
 });

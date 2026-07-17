@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import struct
 from collections import Counter
 from pathlib import Path
@@ -37,6 +38,8 @@ GUIDED_ENTRY_EVIDENCE_PATH = (
 GUIDED_ENTRY_RESULT_PATH = (
     ROOT / "docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md"
 )
+VIBRANT_REVIEWED_CHECKPOINT = "82313ff2c571503a13ab6a719e8f29450bec654f"
+MONOCHROME_IMPLEMENTATION_CHECKPOINT = "5dab11434dc49d84326f05bc41f34bb7b117c157"
 
 
 def _json(path: Path):
@@ -51,6 +54,17 @@ def _png_size(path: Path) -> tuple[int, int]:
     payload = path.read_bytes()[:24]
     assert payload[:8] == b"\x89PNG\r\n\x1a\n"
     return struct.unpack(">II", payload[16:24])
+
+
+def _historical_text(checkpoint: str, relative: str) -> str:
+    """Read superseded visual evidence without keeping it in the active app."""
+    return subprocess.run(
+        ["git", "show", f"{checkpoint}:{relative}"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout
 
 
 def test_atlas_prd_contract_is_grounded_in_the_canonical_substrate() -> None:
@@ -361,7 +375,10 @@ def test_vibrant_editorial_refinement_is_token_bound_truthful_and_reproducible()
         assert _sha256(path) == item["sha256"]
         assert _png_size(path) == (item["width"], item["height"])
 
-    css = (ROOT / "apps/mental-model-atlas/src/styles.css").read_text(encoding="utf-8")
+    css = _historical_text(
+        VIBRANT_REVIEWED_CHECKPOINT,
+        "apps/mental-model-atlas/src/styles.css",
+    )
     marker = "/* Founder-palette refinement for the Abstraction tracer."
     assert css.count(marker) == 1
     active_route_layer = css[css.index(marker):].lower()
@@ -450,8 +467,9 @@ def test_monochrome_structure_study_is_achromatic_additive_and_reproducible() ->
         assert _png_size(path) == (item["width"], item["height"])
         assert item["chromatic_pixels"] == 0
 
-    css = (ROOT / "apps/mental-model-atlas/src/restraint.css").read_text(
-        encoding="utf-8"
+    css = _historical_text(
+        MONOCHROME_IMPLEMENTATION_CHECKPOINT,
+        "apps/mental-model-atlas/src/restraint.css",
     )
     literals = re.findall(r"#[0-9a-fA-F]{3,8}\b", css)
     assert literals
@@ -469,8 +487,9 @@ def test_monochrome_structure_study_is_achromatic_additive_and_reproducible() ->
     assert "--antagonist: #171717" in css
     assert "--tension: #171717" in css
 
-    main = (ROOT / "apps/mental-model-atlas/src/main.tsx").read_text(
-        encoding="utf-8"
+    main = _historical_text(
+        MONOCHROME_IMPLEMENTATION_CHECKPOINT,
+        "apps/mental-model-atlas/src/main.tsx",
     )
     assert main.index('import "./styles.css"') < main.index('import "./restraint.css"')
 

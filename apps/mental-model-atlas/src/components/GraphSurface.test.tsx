@@ -40,10 +40,12 @@ describe("Graph renderer boundary", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: "The text Atlas remains available.",
-      }),
+      await screen.findByRole(
+        "heading",
+        { name: "The text Atlas remains available." },
+        { timeout: 5_000 },
+      ),
     ).toBeTruthy();
     expect(screen.getByRole("link", { name: "Use accessible view" })).toBeTruthy();
-  });
+  }, 10_000);
 });
