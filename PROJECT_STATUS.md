@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-17 (Mental Model Atlas graph-legibility repair)
+Status date: 2026-07-17 (Mental Model Atlas baseline consolidation)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -229,13 +229,14 @@ made that map findable from a fresh clone. Stage 0.6 then corrected
 long-conversation source-coverage reporting without changing semantic prompts,
 the 80,000-character policy, provider behavior, or pressure architecture.
 
-The separate Mental Model Atlas Phase 1 local implementation and additive
-card-first truthfulness repair are complete locally. Its exact next decision is
-founder review of the monochrome hierarchy, aligned breadcrumb, direct guided
-entry, line grammar, camera, relationship readability, and mobile continuity.
-Passing that gate would only permit a
-separate color study and would still leave native screen-reader and source-
-rights review before any Phase 2 authorization.
+The separate Mental Model Atlas local candidate is consolidated around one
+canonical identity path. The 16-model landing presentation is deterministically
+checked against the 222-model / 1,358-relation navigation index; model and
+relation identities survive route changes; complete teaching-page availability
+has one card-first owner; and fixtures/Canvas are explicit review-only paths.
+Its exact next decision is whether to publish and canonically adopt this local
+baseline. Publication would still leave native screen-reader, source-rights,
+deployment, and real-user usefulness review before any Phase 2 decision.
 
 The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human

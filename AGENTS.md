@@ -30,23 +30,13 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md`,
-   `docs/evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json`,
-   `docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md`,
-   `docs/evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json`,
-   `apps/mental-model-atlas/DESIGN_SYSTEM.md`,
-   `docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md`,
-   `docs/evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json`,
-   `docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md`,
-   `docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md`,
-   `docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md`,
-   `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
-   and `apps/mental-model-atlas/README.md`
-   — the local provider-free Atlas Phase 1 implementation, its additive
-   card-first/guided-reader correction, canonical neighborhood traversal,
-   repaired directional graph,
-   binding achromatic design system, and open founder, screen-reader, rights,
-   and usefulness gates. Read the linked PRD and plan before any next phase.
+5. `docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md`,
+   `docs/evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json`,
+   `apps/mental-model-atlas/DESIGN_SYSTEM.md`, and
+   `apps/mental-model-atlas/README.md` — the controlling local Atlas baseline,
+   its one canonical identity path, review/historical boundaries, exact restart
+   checks, and open founder, screen-reader, rights, and usefulness gates. Read
+   older Atlas results only for their named frozen checkpoint.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
@@ -212,6 +202,8 @@ PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_phase1_projection.
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_phase1_projection.py
 PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_card_first_repair.py --validate-only
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_card_first_repair.py
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_navigation_index.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_navigation_index.py
 cd apps/mental-model-atlas
 npm ci
 npm run check
@@ -223,7 +215,7 @@ npm audit --audit-level=moderate
 Do not regenerate source meaning in the browser, normalize exact relations,
 infer missing pages, or treat the local visual gate as deployment clearance.
 
-## Current handoff — 2026-07-16
+## Current handoff — 2026-07-17
 
 - R1 trust/capture/cost/privacy/custody hardening: complete provider-free.
 - R2 constitutional graph survival: complete provider-free.
@@ -254,16 +246,13 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
   generator.
-- The Mental Model Atlas and Teacher v1 PRD defines the founder-selected user
-  job. Its provider-free Phase 1 local tracer bullet is implemented with a
-  hash-bound real-data projection, SVG/Canvas renderer boundary, stable
-  selection camera, deterministic hub paging, one model route whose complete
-  Markdown card is primary and whose wider page is explicitly partial, one
-  complete relation page, and non-canvas/reduced-motion equivalents. The
-  additive v2 card-first/guided-reader repair leaves frozen v1 evidence
-  unchanged, presents the exact source through five reviewed human chapters,
-  and labels compiled KG guidance plus all 12 exact incident relations as
-  separate, progressively disclosed layers.
+- The Mental Model Atlas provider-free candidate has one ordinary ownership
+  path: a 16-model orientation view opens exact incident neighborhoods from the
+  canonical 222-model / 1,358-relation navigation index; canonical identities
+  survive model and relation routes, while reviewed page availability remains a
+  separate card-first registry. Frozen fixtures and Canvas are `review=1` only.
+  The Abstraction source remains complete through five reviewed human chapters;
+  the broader learning page remains partial.
   Teacher remains `park`: founder visual acceptance, native screen-reader review,
   publication rights, and real-user usefulness are open. No Phase 2,
   deployment, runtime/Observatory connection, or Teacher journey is authorized.
@@ -272,10 +261,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   covers every Phase 1 route and state. Its binding contract is
   `apps/mental-model-atlas/DESIGN_SYSTEM.md`; only
   `src/design-system/index.css` is active. The old monolithic and restraint
-  sheets are historical Git evidence, not live compatibility layers. The graph
-  keeps all models visible, uses collision-aware labels, one relation key, and
-  source-to-target arrows plus pausable motion. No palette is selected and the
-  aggregate page remains `partial`.
+  sheets are historical Git evidence, not live compatibility layers. Shared
+  relationship grammar, collision-aware labels, exact paging, arrows, and
+  pausable motion now have one documented owner. No palette is selected.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -291,9 +279,8 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 Stage 0.5 made the canonical map legible from a fresh clone. Stage 0.6 corrected
 deterministic long-conversation source custody without changing prompts,
 providers, graph behavior, or semantic architecture. The current Atlas decision
-is founder review of its consolidated precise-editorial-cartography baseline
-and repaired guided entry across Atlas, Library, Abstraction, relation, Learn,
-and failure states; passing permits only a token-bound color study. The next
+is whether to publish and canonically adopt the consolidated local baseline;
+publication would not authorize deployment, Phase 2, or product claims. The next
 eligible product goal remains the provider-free, checked-in-safe Stage 1
 Decision Trail truthfulness review. It is not authorized and may not inspect private archives, generate semantics, call a provider,
 automate the sidecar, change runtime, reopen R4/R5, or claim product usefulness.

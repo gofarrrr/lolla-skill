@@ -182,27 +182,18 @@ Stage 1 is not started by this README or by cloning the repository. It must not
 inspect private archives, create a new semantic reader, call a provider,
 automate Decision Work, reopen R4/R5, or change runtime behavior.
 
-Separately, the Mental Model Atlas Phase 1 tracer bullet and its additive
-card-first/guided-reader truthfulness repair are implemented locally. The
-Abstraction source is complete and is presented as five source-bound human
-chapters with persistent orientation; dated curation residue is in a collapsed
-source appendix, practical guidance is progressively disclosed, and all exact
-connections are grouped by their human learning role. A local founder follow-up
-rejected both large color fields and decorative colored edge accents. The
-current candidate is intentionally monochrome across the Abstraction page,
-global Atlas, and Library. Hierarchy comes from type, space, rule weight, line
-form, direction, and structural motion; no future palette has been selected.
-The latest screenshot review also aligned the model breadcrumb and removed the
-repeated source title page, so `Understand` now opens directly into the chapter
-navigator; the source title remains available in explicit full-article mode.
-The wider Teacher product remains partial. Its next decision
-is founder review of the checked-in local packet. It does not authorize public
-deployment, Phase 2, Teacher journeys, runtime links, or provider use.
-See the [card-first result](docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md).
-See the [current monochrome structure study](docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md).
-See the [guided-entry founder-feedback repair](docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md).
-The [vibrant-editorial refinement](docs/product/lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
-is preserved as superseded historical evidence.
+Separately, the provider-free Mental Model Atlas is consolidated locally around
+one canonical identity path. A 16-model orientation view opens exact,
+40-record-paged neighborhoods from all 222 canonical models and 1,358 authored
+relations; model and relation identities survive route changes, while reviewed
+teaching-page availability remains a separate card-first contract. The
+Abstraction source is complete and presented through five source-bound human
+chapters; the wider Teacher product remains partial and parked. The visual
+system is deliberately achromatic precise editorial cartography. Frozen
+fixtures and Canvas are explicit review-only paths, not competing ordinary
+routes. See the [controlling Atlas baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+Its next decision is canonical publication, not deployment, Phase 2, Teacher
+journeys, runtime links, provider use, or a product-usefulness claim.
 
 See the
 [post-Stage-0 restart roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).

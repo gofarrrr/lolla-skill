@@ -38,7 +38,9 @@ truth tracer bullet is now implemented locally:
 - [Current guided-entry founder-feedback repair](lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
 - [Current design-system consolidation](lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
 - [Current graph-legibility repair](lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
-- [Vibrant-editorial visual refinement result](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
+- [Current neighborhood-navigation repair](lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
+- [Controlling Atlas baseline consolidation](lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+- [Vibrant-editorial result — historical / superseded](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - [Card-first machine-readable evidence](../evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
@@ -46,6 +48,8 @@ truth tracer bullet is now implemented locally:
 - [Current guided-entry evidence](../evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
 - [Current design-system evidence](../evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
 - [Current graph-legibility evidence](../evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
+- [Current neighborhood-navigation evidence](../evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
+- [Current Atlas baseline evidence](../evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
 - [Vibrant-editorial machine-readable evidence](../evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Local application](../../apps/mental-model-atlas/README.md)
 
@@ -193,5 +197,3 @@ one lifecycle state; consult the individual document and the Stage 0 register.
 - [Observatory Workspace Human Review Launch Checklist JSON](observatory-workspace-human-review-launch-checklist-v0.json)
 - [Observatory Workspace Human Review Preflight](observatory-workspace-human-review-preflight-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
-- [Mental Model Atlas Neighborhood Navigation Repair](lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md) — replaces prototype-only incident-edge filtering with deterministic navigation across all 222 canonical models and 1,358 exact checked-in relationship records; no relation is inferred.
-- [Mental Model Atlas Neighborhood Navigation Evidence](../evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json) — machine-readable corpus counts, paging, browser traversal, dense-label, custody, and nonclaim evidence for the local unpublished repair.

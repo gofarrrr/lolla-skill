@@ -312,16 +312,18 @@ checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
 
-The separate Atlas Phase 1 local implementation and its additive card-first
-truthfulness repair are complete locally. The current visual candidate removes
-chromatic color across the Abstraction route, Library, and global SVG/Canvas
-Atlas so hierarchy can be judged through typography, spacing, rule weight,
-line form, direction, and structural movement alone. Solid, dotted, and
-dashed-cross relationship forms preserve meaning without hue. The former
-vibrant-editorial pass is superseded historical evidence; no future palette is
-selected. Founder screenshot feedback also aligned the breadcrumb and removed
-the redundant source introduction. The current review packet awaits founder validation; later Atlas phases, deployment, Teacher
-journeys, and runtime or Observatory links remain unauthorized.
+The separate Atlas local implementation is consolidated around one canonical
+identity source. Its 16-model orientation view is a bounded presentation of the
+same records owned by the 222-model / 1,358-relation navigation index; selecting
+a model builds its exact incident neighborhood, and model/relation routes retain
+that identity even when no complete teaching page exists. Card-first artifacts
+alone own complete model-page availability. The ordinary renderer is SVG;
+Canvas and frozen fixtures require explicit review mode. The binding
+achromatic design system uses one shared solid/dashed/double relationship
+grammar and route-scoped styles. See the
+[controlling Atlas baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+Publication, later Atlas phases, deployment, Teacher journeys, and runtime or
+Observatory links remain unauthorized.
 
 ## 14. Verification entrypoints
 

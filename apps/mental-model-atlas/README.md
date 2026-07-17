@@ -5,6 +5,9 @@ the Mental Model Atlas Phase 1 visual truth gate. It is not deployed, connected
 to the ordinary Lolla runtime, connected to Observatory, or cleared for public
 publication.
 
+Requires Node.js `>=20.19.0`. The controlling cold-start status is the
+[Atlas baseline consolidation result](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+
 ## What is implemented
 
 - `/atlas` — a source-hash-bound 16-model visual neighborhood, persistent model
@@ -48,6 +51,8 @@ PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_phase1_projection.
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_phase1_projection.py
 PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_card_first_repair.py --validate-only
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_card_first_repair.py
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_navigation_index.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_navigation_index.py
 ```
 
 Then run the app:
@@ -71,13 +76,15 @@ npm run build
 
 ```text
 /atlas
-/atlas?model=abstraction
+/atlas?model=root-cause-analysis
+/atlas?model=five-whys-method
+/atlas?model=confirmation-bias&page=2
 /atlas?relation=abstraction__first-principles-thinking__ally
-/atlas?fixture=mixed-parallel-relations&model=abstraction
-/atlas?fixture=explicit-bidirectionality&model=active-listening
-/atlas?fixture=confirmation-bias-hub&model=confirmation-bias&page=2
-/atlas?fixture=medium-confidence-relation&relation=authenticity__rationalization__antagonist
-/atlas?model=abstraction&renderer=canvas
+/atlas?review=1&fixture=mixed-parallel-relations&model=abstraction
+/atlas?review=1&fixture=explicit-bidirectionality&model=active-listening
+/atlas?review=1&fixture=confirmation-bias-hub&model=confirmation-bias&page=2
+/atlas?review=1&fixture=medium-confidence-relation&relation=authenticity__rationalization__antagonist
+/atlas?review=1&model=abstraction&renderer=canvas
 /models
 /models/abstraction
 /relations/abstraction__first-principles-thinking__ally
@@ -147,6 +154,8 @@ and Observatory links are not authorized.
 
 See:
 
+- [Controlling Atlas baseline consolidation](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+- [Current Atlas baseline evidence](../../docs/evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
 - [Current graph-legibility repair](../../docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
 - [Current graph-legibility evidence](../../docs/evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
 - [Current neighborhood-navigation repair](../../docs/product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
