@@ -34,7 +34,10 @@ const projectionCache = new Map<string, AtlasProjection>();
 
 export function ProjectionProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const fixtureId = fixtureFromQuery(location.searchParams.get("fixture"));
+  const reviewMode = location.searchParams.get("review") === "1";
+  const fixtureId = reviewMode
+    ? fixtureFromQuery(location.searchParams.get("fixture"))
+    : "ordinary-navigation";
   const selectedModelId =
     fixtureId === "ordinary-navigation"
       ? clean(location.searchParams.get("model"))

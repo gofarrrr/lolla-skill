@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { AppLink, parseRoute, useLocation } from "./router";
+import { ProjectionProvider } from "./projectionContext";
 import { useReducedMotionPreference } from "./useReducedMotion";
 
 const AtlasPage = lazy(() => import("./routes/AtlasPage"));
@@ -133,9 +134,15 @@ export function App() {
       <RenderFailureBoundary resetKey={`${location.pathname}${location.search}`}>
         <Suspense fallback={<RouteLoading />}>
           {route.kind === "atlas" ? (
-            <AtlasPage motionPaused={effectiveMotionPaused} />
+            <ProjectionProvider>
+              <AtlasPage motionPaused={effectiveMotionPaused} />
+            </ProjectionProvider>
           ) : null}
-          {route.kind === "models" ? <LibraryPage /> : null}
+          {route.kind === "models" ? (
+            <ProjectionProvider>
+              <LibraryPage />
+            </ProjectionProvider>
+          ) : null}
           {route.kind === "model" ? <ModelPage slug={route.slug} /> : null}
           {route.kind === "relation" ? (
             <RelationPage relationId={route.relationId} />

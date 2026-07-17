@@ -1,6 +1,7 @@
 import type { DurableAtlasState, RelationType } from "../atlasState";
 import { RELATION_TYPES } from "../atlasState";
 import { FIXTURES, type FixtureId } from "../projection";
+import { RELATION_PRESENTATION } from "../relationPresentation";
 import type { RendererKind } from "./GraphSurface";
 
 export function AtlasControls({
@@ -59,8 +60,11 @@ export function AtlasControls({
           </label>
         ))}
         <p className="relation-grammar" id="relation-grammar">
-          Solid ally · dashed antagonist · double tension. The arrow and moving
-          marker follow the authored source → target direction.
+          {RELATION_TYPES.map(
+            (type) =>
+              `${RELATION_PRESENTATION[type].lineLabel.replace(" line", "")} ${type}`,
+          ).join(" · ")}. The arrow and moving marker follow the authored source
+          → target direction.
         </p>
       </fieldset>
 

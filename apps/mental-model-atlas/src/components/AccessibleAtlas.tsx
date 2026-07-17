@@ -1,5 +1,6 @@
 import type { AtlasSelection } from "../atlasSelectors";
-import { modelPageUrl, type AtlasProjection } from "../projection";
+import { cardFirstModelPageUrl } from "../cardFirstModelPage";
+import type { AtlasProjection } from "../projection";
 import { AppLink } from "../router";
 
 export function AccessibleAtlas({
@@ -50,12 +51,12 @@ export function AccessibleAtlas({
               <AppLink
                 href={`/models/${model.slug}`}
                 aria-label={
-                  modelPageUrl(model.slug)
+                  cardFirstModelPageUrl(model.slug)
                     ? `Open complete ${model.display_name} page`
                     : `${model.display_name} currently has a summary only`
                 }
               >
-                {modelPageUrl(model.slug) ? "Read" : "Summary only"}
+                {cardFirstModelPageUrl(model.slug) ? "Read" : "Summary only"}
               </AppLink>
             </li>
           ))}

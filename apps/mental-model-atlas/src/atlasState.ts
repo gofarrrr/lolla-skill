@@ -7,7 +7,6 @@ export type AtlasView = "graph" | "list";
 export interface DurableAtlasState {
   selectedModelId: string | null;
   selectedRelationId: string | null;
-  familyId: string | null;
   relationTypes: RelationType[];
   query: string;
   relationPage: number;
@@ -16,12 +15,10 @@ export interface DurableAtlasState {
 
 export interface EphemeralAtlasState {
   hoveredModelId: string | null;
-  hoveredRelationId: string | null;
 }
 
 export const EMPTY_EPHEMERAL_STATE: EphemeralAtlasState = {
   hoveredModelId: null,
-  hoveredRelationId: null,
 };
 
 export function parseAtlasState(url: URL): DurableAtlasState {
@@ -31,7 +28,6 @@ export function parseAtlasState(url: URL): DurableAtlasState {
   return {
     selectedModelId: clean(params.get("model")),
     selectedRelationId: clean(params.get("relation")),
-    familyId: clean(params.get("family")),
     relationTypes,
     query: params.get("q")?.trim() ?? "",
     relationPage:
@@ -59,7 +55,6 @@ export function atlasStateHref(
   }
   setOptional(params, "model", state.selectedModelId);
   setOptional(params, "relation", state.selectedRelationId);
-  setOptional(params, "family", state.familyId);
   if (state.relationTypes.length > 0) {
     params.set("relations", state.relationTypes.join(","));
   }

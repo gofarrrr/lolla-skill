@@ -7,7 +7,6 @@ import "@fontsource/ibm-plex-mono/latin-400.css";
 import "@fontsource/ibm-plex-mono/latin-600.css";
 
 import { App } from "./App";
-import { ProjectionProvider } from "./projectionContext";
 import "./design-system/index.css";
 
 const root = document.getElementById("root");
@@ -18,8 +17,6 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <ProjectionProvider>
-      <App />
-    </ProjectionProvider>
+    <App />
   </StrictMode>,
 );

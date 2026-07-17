@@ -115,6 +115,25 @@ describe("Atlas interaction state", () => {
     expect(screen.getByRole("searchbox", { name: /find a model/i })).toBeTruthy();
   });
 
+  it("ignores review-only fixture and renderer parameters outside explicit review mode", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/atlas?fixture=confirmation-bias-hub&renderer=canvas&model=root-cause-analysis",
+    );
+
+    render(
+      <ProjectionProvider>
+        <AtlasPage motionPaused />
+      </ProjectionProvider>,
+    );
+
+    expect(await screen.findByText("Root Cause Analysis · 14 connections shown.")).toBeTruthy();
+    expect(document.querySelector("svg[data-renderer='svg']")).toBeTruthy();
+    expect(document.querySelector("canvas[data-renderer='canvas']")).toBeNull();
+    expect(screen.queryByRole("combobox", { name: /review fixture/i })).toBeNull();
+  });
+
   it("distinguishes a valid zero-result filter from load failure", async () => {
     render(
       <ProjectionProvider>
@@ -134,7 +153,7 @@ describe("Atlas interaction state", () => {
     window.history.replaceState(
       null,
       "",
-      "/atlas?fixture=confirmation-bias-hub&model=confirmation-bias",
+      "/atlas?review=1&fixture=confirmation-bias-hub&model=confirmation-bias",
     );
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
@@ -165,7 +184,7 @@ describe("Atlas interaction state", () => {
     window.history.replaceState(
       null,
       "",
-      "/atlas?fixture=medium-confidence-relation",
+      "/atlas?review=1&fixture=medium-confidence-relation",
     );
     vi.stubGlobal("fetch", vi.fn(async () => {
       throw new Error("frozen projection unavailable");

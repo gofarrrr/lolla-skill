@@ -81,8 +81,8 @@ describe("card-first Abstraction model page", () => {
     const { container } = render(<RenderedModelPage page={validateCardFirstModelPage(cardFirstPage)} />);
     expect(screen.getByText(/how to read the line styles/i)).toBeTruthy();
     expect(screen.getByText(/solid line/i)).toBeTruthy();
-    expect(screen.getByText(/dotted line/i)).toBeTruthy();
-    expect(screen.getByText(/dashed line with a cross/i)).toBeTruthy();
+    expect(screen.getByText(/double line/i)).toBeTruthy();
+    expect(screen.getByText(/dashed line/i)).toBeTruthy();
 
     const paths = [...container.querySelectorAll(".relationship-path")];
     expect(paths).toHaveLength(3);

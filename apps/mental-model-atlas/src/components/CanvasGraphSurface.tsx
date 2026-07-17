@@ -132,7 +132,7 @@ function draw(
     context.translate(-camera.x, -camera.y);
   }
   for (const [index, positioned] of relations.entries()) {
-    const { relation, source, target } = positioned;
+    const { relation } = positioned;
     const curve = curveGeometry(positioned);
     context.globalAlpha = relation.relation_id === props.selectedRelationId ? 1 : 0.68;
     context.strokeStyle = INK;

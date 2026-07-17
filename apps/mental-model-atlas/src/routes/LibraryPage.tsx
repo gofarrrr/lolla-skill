@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
+import { cardFirstModelPageUrl } from "../cardFirstModelPage";
 import { ProjectionFailure, ProjectionLoading } from "../components/ProjectionFailure";
-import { modelPageUrl } from "../projection";
 import { useProjection } from "../projectionContext";
 import { AppLink, navigate, useLocation } from "../router";
 
@@ -34,7 +34,9 @@ export default function LibraryPage() {
           .includes(needle)
       : true,
   );
-  const completePageCount = models.filter((model) => modelPageUrl(model.slug)).length;
+  const completePageCount = models.filter((model) =>
+    cardFirstModelPageUrl(model.slug),
+  ).length;
 
   function updateQuery(value: string): void {
     const params = new URLSearchParams(location.searchParams);
@@ -85,7 +87,7 @@ export default function LibraryPage() {
                 <h2>{model.display_name}</h2>
                 <p className="model-summary">{model.summary.text}</p>
                 <div className="card-actions">
-                  {modelPageUrl(model.slug) ? (
+                  {cardFirstModelPageUrl(model.slug) ? (
                     <AppLink href={`/models/${model.slug}`}>Read complete model</AppLink>
                   ) : (
                     <AppLink href={`/models/${model.slug}`}>

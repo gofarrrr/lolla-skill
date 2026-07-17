@@ -2,16 +2,15 @@ import { useCallback, useEffect } from "react";
 
 import { ProjectionLoading } from "../components/ProjectionFailure";
 import { StatusDisclosure, humanize } from "../components/StatusDisclosure";
+import { loadNavigationIndex } from "../navigation";
 import {
   type AtlasRelationPage,
   loadRelationPage,
 } from "../projection";
-import { useProjection } from "../projectionContext";
 import { AppLink } from "../router";
 import { useAsyncResource } from "../useAsyncResource";
 
 export default function RelationPage({ relationId }: { relationId: string }) {
-  const projectionState = useProjection();
   const loader = useCallback(
     (signal: AbortSignal) => loadRelationPage(relationId, signal),
     [relationId],
@@ -37,42 +36,74 @@ export default function RelationPage({ relationId }: { relationId: string }) {
     );
   }
   if (!pageResource.data) {
-    const relation =
-      projectionState.status === "ready"
-        ? projectionState.projection.relations.find(
-            (item) => item.relation_id === relationId,
-          )
-        : undefined;
+    return <CanonicalRelationFallback relationId={relationId} />;
+  }
+  return <RenderedRelationPage page={pageResource.data} />;
+}
+
+function CanonicalRelationFallback({ relationId }: { relationId: string }) {
+  const loader = useCallback(async () => {
+    const index = await loadNavigationIndex();
+    const relation = index.relations.find(
+      (candidate) => candidate.relation_id === relationId,
+    );
+    if (!relation) return null;
+    const modelNames = new Map(
+      index.models.map((model) => [model.model_id, model.display_name]),
+    );
+    return {
+      relation,
+      sourceName:
+        modelNames.get(relation.source_model_id) ?? relation.source_model_id,
+      targetName:
+        modelNames.get(relation.target_model_id) ?? relation.target_model_id,
+    };
+  }, [relationId]);
+  const resource = useAsyncResource(`canonical-relation:${relationId}`, loader);
+
+  if (resource.status === "loading") {
+    return <RelationFrame><ProjectionLoading /></RelationFrame>;
+  }
+  if (resource.status === "failed") {
     return (
       <RelationFrame>
-        <section className="unavailable-page" role="status">
-          <p className="eyebrow">Page unavailable in Phase 1</p>
-          <h1>{relation ? "Exact relation record" : "Relation not found"}</h1>
-          {relation ? (
-            <>
-              <p>{relation.summary}</p>
-              <p>
-                This directed record exists in the loaded projection, but no complete
-                page artifact is present. Missing teaching copy has not been invented.
-              </p>
-              <AppLink
-                className="button"
-                href={`/atlas?relation=${encodeURIComponent(relation.relation_id)}`}
-              >
-                Show exact record in Atlas
-              </AppLink>
-            </>
-          ) : (
-            <p>
-              The unknown relation ID remains unknown. Parallel or reverse records
-              were not merged to manufacture a match.
-            </p>
-          )}
+        <section className="unavailable-page" role="alert">
+          <p className="eyebrow">Canonical relation lookup failed</p>
+          <h1>The exact relation identity could not be verified.</h1>
+          <p>{resource.message}</p>
         </section>
       </RelationFrame>
     );
   }
-  return <RenderedRelationPage page={pageResource.data} />;
+  const match = resource.data;
+  return (
+    <RelationFrame>
+      <section className="unavailable-page" role="status">
+        <p className="eyebrow">Summary only</p>
+        <h1>{match ? `${match.sourceName} → ${match.targetName}` : "Relation not found"}</h1>
+        {match ? (
+          <>
+            <p>{match.relation.summary}</p>
+            <p>
+              This exact directed record exists, but no complete teaching page is
+              available. Missing teaching copy has not been invented.
+            </p>
+            <AppLink
+              className="button"
+              href={`/atlas?model=${encodeURIComponent(match.relation.source_model_id)}&relation=${encodeURIComponent(match.relation.relation_id)}`}
+            >
+              Show exact record in Atlas
+            </AppLink>
+          </>
+        ) : (
+          <p>
+            The unknown relation ID remains unknown. Parallel or reverse records
+            were not merged to manufacture a match.
+          </p>
+        )}
+      </section>
+    </RelationFrame>
+  );
 }
 
 function RenderedRelationPage({ page }: { page: AtlasRelationPage }) {

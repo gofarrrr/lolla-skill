@@ -255,12 +255,6 @@ export function projectionUrl(
   return assetUrl(`data/phase1/${filename}`);
 }
 
-export function modelPageUrl(slug: string): string | null {
-  return slug === "abstraction"
-    ? assetUrl("data/phase1/pages/model-abstraction.json")
-    : null;
-}
-
 export function relationPageUrl(): string {
   return assetUrl(
     "data/phase1/pages/relation-abstraction-first-principles-thinking-ally.json",
@@ -287,17 +281,6 @@ export async function loadProjection(
     );
   }
   return projection;
-}
-
-export async function loadModelPage(
-  slug: string,
-  signal?: AbortSignal,
-): Promise<AtlasModelPage | null> {
-  const url = modelPageUrl(slug);
-  if (!url) {
-    return null;
-  }
-  return validateModelPage(await fetchJson(url, signal));
 }
 
 export async function loadRelationPage(

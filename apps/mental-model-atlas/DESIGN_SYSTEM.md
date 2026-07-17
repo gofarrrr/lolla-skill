@@ -36,7 +36,8 @@ the structural contract is stable and reviewed.
 - Two pixels identify a current route/section or keyboard focus.
 - A three-pixel inset identifies a selected record.
 - Relationship kind is expressed by line form, not by color or importance
-  weight: solid for ally, dashed for antagonist, double/dotted for tension.
+  weight: solid for ally, dashed for antagonist, double for tension. Public
+  labels are owned by `src/relationPresentation.ts`.
 - Direction remains separate from relationship kind.
 
 ## Atlas graph grammar

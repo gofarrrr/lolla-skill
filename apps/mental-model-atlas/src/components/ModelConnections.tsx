@@ -1,33 +1,21 @@
 import { useState } from "react";
 
 import type { CardFirstModelPage, CardFirstRelation } from "../cardFirstModelPage";
+import {
+  LEARNING_RELATION_ORDER,
+  RELATION_PRESENTATION,
+} from "../relationPresentation";
 import { AppLink } from "../router";
 import { humanize } from "./StatusDisclosure";
 
 const COMPLETE_RELATION_ID = "abstraction__first-principles-thinking__ally";
-const GROUPS = [
-  {
-    id: "ally",
-    canonicalLabel: "Ally",
-    label: "Works with",
-    lineLabel: "Solid line",
-    explanation: "Authored as complementary or mutually supporting in the described respect.",
-  },
-  {
-    id: "tension",
-    canonicalLabel: "Tension",
-    label: "Compare the tradeoff",
-    lineLabel: "Dotted line",
-    explanation: "Authored as a tradeoff, boundary, disagreement, or conflict worth comparing.",
-  },
-  {
-    id: "antagonist",
-    canonicalLabel: "Antagonist",
-    label: "Pushes against",
-    lineLabel: "Dashed line with a cross",
-    explanation: "Authored as opposing or counteracting in the described respect.",
-  },
-] as const;
+const GROUPS = LEARNING_RELATION_ORDER.map((id) => ({
+  id,
+  canonicalLabel: RELATION_PRESENTATION[id].canonicalLabel,
+  label: RELATION_PRESENTATION[id].humanLabel,
+  lineLabel: RELATION_PRESENTATION[id].lineLabel,
+  explanation: RELATION_PRESENTATION[id].explanation,
+}));
 
 export function ModelConnections({
   connections,

@@ -12,7 +12,6 @@ describe("Atlas URL state", () => {
     expect(state).toEqual({
       selectedModelId: "abstraction",
       selectedRelationId: null,
-      familyId: null,
       relationTypes: ["ally", "tension"],
       query: "first",
       relationPage: 2,

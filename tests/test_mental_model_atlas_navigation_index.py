@@ -65,3 +65,28 @@ def test_navigation_index_excludes_visual_scores_and_declares_no_semantic_infere
     assert index["scope"]["relation_record_count"] == 1_358
     assert package["manifest"]["provider_calls"] == 0
     assert package["manifest"]["provider_cost_usd"] == 0.0
+
+
+def test_orientation_slice_uses_exact_canonical_model_and_relation_records() -> None:
+    """The small landing view may differ in layout, never in identity or meaning."""
+    index = build_navigation_package(ROOT)["index"]
+    orientation = json.loads(
+        (
+            ROOT
+            / "apps/mental-model-atlas/public/data/phase1/ordinary-navigation.json"
+        ).read_text(encoding="utf-8")
+    )
+    canonical_models = {item["model_id"]: item for item in index["models"]}
+    canonical_relations = {
+        item["relation_id"]: item for item in index["relations"]
+    }
+
+    assert len(orientation["models"]) == 16
+    assert all(
+        canonical_models[item["model_id"]] == item
+        for item in orientation["models"]
+    )
+    assert all(
+        canonical_relations[item["relation_id"]] == item
+        for item in orientation["relations"]
+    )

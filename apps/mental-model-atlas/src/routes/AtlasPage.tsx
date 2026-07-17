@@ -26,8 +26,11 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
   const projectionState = useProjection();
   const durableState = parseAtlasState(location);
   const [ephemeralState, setEphemeralState] = useState(EMPTY_EPHEMERAL_STATE);
+  const reviewMode = location.searchParams.get("review") === "1";
   const renderer: RendererKind =
-    location.searchParams.get("renderer") === "canvas" ? "canvas" : "svg";
+    reviewMode && location.searchParams.get("renderer") === "canvas"
+      ? "canvas"
+      : "svg";
   const projection =
     projectionState.status === "ready" ? projectionState.projection : null;
   const selection = useMemo(
@@ -45,6 +48,20 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
   useEffect(() => {
     document.title = "Atlas · Lolla Mental Models";
   }, []);
+
+  useEffect(() => {
+    if (reviewMode) return;
+    if (
+      !location.searchParams.has("fixture") &&
+      !location.searchParams.has("renderer")
+    ) return;
+    const params = new URLSearchParams(location.searchParams);
+    params.delete("fixture");
+    params.delete("renderer");
+    navigate(`/atlas${params.size ? `?${params.toString()}` : ""}`, {
+      replace: true,
+    });
+  }, [location, reviewMode]);
 
   useEffect(() => {
     if (projectionState.status !== "ready") {
@@ -154,7 +171,7 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
         onStateChange={changeState}
         onFixtureChange={switchFixture}
         onRendererChange={switchRenderer}
-        showPrototypeControls={location.searchParams.get("review") === "1"}
+        showPrototypeControls={reviewMode}
       />
       <PageNavigation
         projection={projection}
@@ -176,7 +193,7 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
             <p id="atlas-scope" role="status">
               {scopeText}
             </p>
-            {location.searchParams.get("review") === "1" ? (
+            {reviewMode ? (
               <span>
                 {renderer === "canvas" ? "Canvas 2D comparison" : "SVG editorial"}
               </span>

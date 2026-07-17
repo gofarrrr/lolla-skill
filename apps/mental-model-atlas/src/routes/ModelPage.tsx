@@ -9,12 +9,11 @@ import { ModelConnections } from "../components/ModelConnections";
 import { OperationalModelSummary } from "../components/OperationalModelSummary";
 import { ProjectionLoading } from "../components/ProjectionFailure";
 import { StatusDisclosure } from "../components/StatusDisclosure";
-import { useProjection } from "../projectionContext";
+import { loadNavigationIndex } from "../navigation";
 import { AppLink } from "../router";
 import { useAsyncResource } from "../useAsyncResource";
 
 export default function ModelPage({ slug }: { slug: string }) {
-  const projectionState = useProjection();
   const loader = useCallback(
     (signal: AbortSignal) => loadCardFirstModelPage(slug, signal),
     [slug],
@@ -36,39 +35,61 @@ export default function ModelPage({ slug }: { slug: string }) {
     );
   }
   if (!pageResource.data) {
-    const model =
-      projectionState.status === "ready"
-        ? projectionState.projection.models.find((item) => item.slug === slug)
-        : undefined;
-    return (
-      <ModelFrame>
-        <section className="unavailable-page" role="status">
-          <p className="eyebrow">Summary only</p>
-          <h1>{model?.display_name ?? "Model page not found"}</h1>
-          {model ? (
-            <>
-              <p>{model.summary.text}</p>
-              <p>
-                A reviewed full article is not available for this model yet. You can
-                still read its summary and inspect its connections in the Atlas; we
-                will not invent the missing material.
-              </p>
-              <AppLink className="button" href={`/atlas?model=${encodeURIComponent(model.model_id)}`}>
-                See {model.display_name} in the Atlas
-              </AppLink>
-            </>
-          ) : (
-            <p>
-              The unknown slug remains unknown. The Atlas did not repair it into a
-              nearby canonical identity.
-            </p>
-          )}
-        </section>
-      </ModelFrame>
-    );
+    return <CanonicalModelFallback slug={slug} />;
   }
 
   return <RenderedModelPage page={pageResource.data} />;
+}
+
+function CanonicalModelFallback({ slug }: { slug: string }) {
+  const loader = useCallback(
+    async () => (await loadNavigationIndex()).models.find(
+      (model) => model.slug === slug,
+    ) ?? null,
+    [slug],
+  );
+  const resource = useAsyncResource(`canonical-model:${slug}`, loader);
+
+  if (resource.status === "loading") {
+    return <ModelFrame><ProjectionLoading /></ModelFrame>;
+  }
+  if (resource.status === "failed") {
+    return (
+      <ModelFrame>
+        <PageLoadFailure message={resource.message} />
+      </ModelFrame>
+    );
+  }
+  const model = resource.data;
+  return (
+    <ModelFrame>
+      <section className="unavailable-page" role="status">
+        <p className="eyebrow">Summary only</p>
+        <h1>{model?.display_name ?? "Model page not found"}</h1>
+        {model ? (
+          <>
+            <p>{model.summary.text}</p>
+            <p>
+              This canonical model exists, but a reviewed full article is not
+              available yet. You can inspect its exact connections in the Atlas;
+              missing teaching material has not been invented.
+            </p>
+            <AppLink
+              className="button"
+              href={`/atlas?model=${encodeURIComponent(model.model_id)}`}
+            >
+              See {model.display_name} in the Atlas
+            </AppLink>
+          </>
+        ) : (
+          <p>
+            The unknown slug remains unknown. The Atlas did not repair it into a
+            nearby canonical identity.
+          </p>
+        )}
+      </section>
+    </ModelFrame>
+  );
 }
 
 export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
