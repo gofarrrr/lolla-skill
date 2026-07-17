@@ -171,4 +171,3 @@ It should verify `git status -sb`, read `AGENTS.md`, `PROJECT_STATUS.md`, and
 should be consulted only when reviewing founder intent or the July 14 public-
 presentation alternative. Its existence does not authorize implementation,
 publication of its prose, or replacement of current entrypoints.
-
