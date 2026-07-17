@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-16 (Mental Model Atlas guided-entry founder repair)
+Status date: 2026-07-16 (Mental Model Atlas design-system consolidation)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -35,10 +35,18 @@ remains parked pending founder visual acceptance, native screen-reader review,
 publication rights, and real-user evidence.
 
 The current local visual candidate is deliberately achromatic across Atlas,
-Library, and the Abstraction page. It preserves the visitor-first hierarchy
-while testing typography, spacing, rule weight, line form, direction, and
-structural motion before any palette is reconsidered. The earlier vibrant-
-editorial packet is superseded historical evidence, not the current direction.
+Library, Abstraction, the exact relation page, Learn, and all application
+states. One binding precise-editorial-cartography contract and one modular
+stylesheet entrypoint now govern typography, spacing, geometry, rule weight,
+line form, direction, motion, shells, and responsive behavior. The competing
+monolithic and restraint override sheets have been removed. The earlier
+vibrant-editorial packet is superseded historical evidence, not the current
+direction.
+
+This consolidation is a local review candidate and publication is not
+authorized. It establishes a maintainable visual baseline, not final visual
+approval, native screen-reader acceptance, publication-rights clearance,
+learning usefulness, deployment, or Phase 2.
 
 ## Status vocabulary
 

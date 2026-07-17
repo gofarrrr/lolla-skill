@@ -36,12 +36,14 @@ truth tracer bullet is now implemented locally:
 - [Card-first truthfulness repair result](lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
 - [Current monochrome structure study result](lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
 - [Current guided-entry founder-feedback repair](lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
+- [Current design-system consolidation](lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
 - [Vibrant-editorial visual refinement result](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - [Card-first machine-readable evidence](../evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
 - [Current monochrome structure evidence](../evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
 - [Current guided-entry evidence](../evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
+- [Current design-system evidence](../evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
 - [Vibrant-editorial machine-readable evidence](../evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
 - [Local application](../../apps/mental-model-atlas/README.md)
 
@@ -59,6 +61,11 @@ page is partial. The latest screenshot-driven repair aligns the breadcrumb and
 removes the repeated source-title entry block from guided mode; exact title
 custody remains in explicit full-source mode. Frozen Phase 1 artifacts remain
 unchanged.
+
+The current candidate additionally consolidates every Phase 1 route and state
+under one binding visual contract and one modular stylesheet entrypoint. It
+removes the active monolithic and override cascade while preserving all source,
+projection, relationship, and product-lifecycle boundaries.
 
 This does not rewrite historical Teacher artifacts or change the Stage 0
 `park` disposition. Founder card-first acceptance, native screen-reader review,

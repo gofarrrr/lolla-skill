@@ -107,11 +107,20 @@ mastery certification.
 
 ## Current lifecycle
 
-The card-first guided-reader repair is ready for founder visual and product
-review. The current candidate is an intentionally achromatic structural study
-shared by the Abstraction page, Library, and global SVG/Canvas Atlas. It uses
-typography, spacing, hairlines, strong rules, line form, direction, and
-structural motion so those fundamentals can be judged before color returns.
+The card-first guided-reader repair and the cross-route design-system
+consolidation are ready for founder visual and product review. The current
+candidate is an intentionally achromatic **precise editorial cartography**
+system shared by Atlas, Library, Abstraction, the exact relation page, Learn,
+and application states. It uses typography, spacing, hairlines, strong rules,
+line form, direction, and structural motion so those fundamentals can be
+judged before color returns.
+
+[`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) is the binding visual contract. The
+application imports only `src/design-system/index.css`; its ordered route
+modules replace the removed monolithic and restraint override stylesheets.
+New exceptions must be added to the contract rather than hidden in route-local
+overrides.
+
 The latest founder-feedback repair keeps `Model Library / Abstraction` on one
 aligned line and removes the repeated source-title introduction: `Understand`
 now enters the chapter reader directly, while the exact title returns in the
@@ -125,6 +134,8 @@ and Observatory links are not authorized.
 
 See:
 
+- [Current design-system consolidation](../../docs/product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
+- [Current design-system evidence](../../docs/evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
 - [Phase 1 result](../../docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - [Card-first truthfulness repair](../../docs/product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
 - [Current monochrome structure study](../../docs/product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)

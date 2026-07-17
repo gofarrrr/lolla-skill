@@ -40,6 +40,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT LOCAL VISUAL EVIDENCE:** [Atlas monochrome structure evidence](evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
 - **CURRENT LOCAL GUIDED-ENTRY REPAIR:** [Atlas guided-entry result](product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
 - **CURRENT LOCAL GUIDED-ENTRY EVIDENCE:** [Atlas guided-entry evidence](evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
+- **CURRENT LOCAL DESIGN SYSTEM:** [Atlas design-system consolidation](product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
+- **CURRENT LOCAL DESIGN-SYSTEM EVIDENCE:** [Atlas design-system evidence](evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.
@@ -74,7 +76,8 @@ source authority or action permission.
 - **PARKED / LOCAL PHASE 1 REVIEW:** Mental Model Teacher contracts,
   renderers, packets, Observatory projections, and the new source-bound Atlas
   tracer bullet in [the product index](product/README.md). Its current local
-  candidate is a monochrome structure study; no final palette is selected.
+  candidate is a consolidated achromatic precise-editorial-cartography system;
+  no final palette is selected.
   Founder visual, native screen-reader, rights, and real-user gates remain open.
 - **PARKED:** general arbitrary-run Decision Work semantic generation in the
   board and conversation-understanding families
