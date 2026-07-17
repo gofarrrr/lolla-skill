@@ -408,9 +408,10 @@ def test_vibrant_editorial_refinement_is_token_bound_truthful_and_reproducible()
     ):
         assert label in historical_result
 
-    connections = (
-        ROOT / "apps/mental-model-atlas/src/components/ModelConnections.tsx"
-    ).read_text(encoding="utf-8")
+    connections = _historical_text(
+        VIBRANT_REVIEWED_CHECKPOINT,
+        "apps/mental-model-atlas/src/components/ModelConnections.tsx",
+    )
     for label in ("Solid line", "Dotted line", "Dashed line with a cross"):
         assert label in connections
 
