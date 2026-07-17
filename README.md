@@ -182,7 +182,7 @@ Stage 1 is not started by this README or by cloning the repository. It must not
 inspect private archives, create a new semantic reader, call a provider,
 automate Decision Work, reopen R4/R5, or change runtime behavior.
 
-Separately, the provider-free Mental Model Atlas is consolidated locally around
+Separately, the provider-free Mental Model Atlas is canonically consolidated around
 one canonical identity path. A 16-model orientation view opens exact,
 40-record-paged neighborhoods from all 222 canonical models and 1,358 authored
 relations; model and relation identities survive route changes, while reviewed
@@ -191,9 +191,11 @@ Abstraction source is complete and presented through five source-bound human
 chapters; the wider Teacher product remains partial and parked. The visual
 system is deliberately achromatic precise editorial cartography. Frozen
 fixtures and Canvas are explicit review-only paths, not competing ordinary
-routes. See the [controlling Atlas baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
-Its next decision is canonical publication, not deployment, Phase 2, Teacher
-journeys, runtime links, provider use, or a product-usefulness claim.
+routes. See the [canonical Atlas publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
+and its [reviewed predecessor baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+Its next bounded decision is a provider-free canonical human acceptance review,
+not deployment, Phase 2, Teacher journeys, runtime links, provider use, or a
+product-usefulness claim.
 
 See the
 [post-Stage-0 restart roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).

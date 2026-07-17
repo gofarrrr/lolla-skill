@@ -46,7 +46,8 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT LOCAL GRAPH EVIDENCE:** [Atlas graph-legibility evidence](evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
 - **CURRENT LOCAL NEIGHBORHOOD REPAIR:** [Atlas neighborhood-navigation repair](product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
 - **CURRENT LOCAL NEIGHBORHOOD EVIDENCE:** [Atlas neighborhood-navigation evidence](evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
-- **CONTROLLING LOCAL ATLAS BASELINE:** [Atlas baseline consolidation](product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+- **CONTROLLING CANONICAL ATLAS STATUS:** [Atlas baseline publication](product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
+- **REVIEWED PREPUBLICATION ATLAS BASELINE:** [Atlas baseline consolidation](product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
 - **CURRENT LOCAL BASELINE EVIDENCE:** [Atlas baseline consolidation evidence](evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or

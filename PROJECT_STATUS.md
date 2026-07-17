@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-17 (Mental Model Atlas baseline consolidation)
+Status date: 2026-07-17 (Mental Model Atlas canonical baseline publication)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -25,7 +25,7 @@ semantic extraction uses a first-3-plus-last-15 message view. New health and
 archive artifacts now report that partial coverage and its exact omitted
 window; this does not establish long-context semantic adequacy.
 
-In a separate product lane, the provider-free Mental Model Atlas Phase 1 local
+In a separate product lane, the provider-free Mental Model Atlas Phase 1
 tracer bullet is implemented with real hash-bound source data, a polished
 interactive graph, one model route with a complete primary Markdown card and
 explicit partial-page coverage, one complete relation page, and
@@ -43,8 +43,9 @@ monolithic and restraint override sheets have been removed. The earlier
 vibrant-editorial packet is superseded historical evidence, not the current
 direction.
 
-This consolidation is a local review candidate and publication is not
-authorized. It establishes a maintainable visual baseline, not final visual
+This consolidation is canonically published through PR #375 at merge
+`17f3c887915b746b6c34fe6a6a26ae75841d1d6c`. It establishes a maintainable
+visual baseline, not final visual
 approval, native screen-reader acceptance, publication-rights clearance,
 learning usefulness, deployment, or Phase 2.
 
@@ -229,14 +230,16 @@ made that map findable from a fresh clone. Stage 0.6 then corrected
 long-conversation source-coverage reporting without changing semantic prompts,
 the 80,000-character policy, provider behavior, or pressure architecture.
 
-The separate Mental Model Atlas local candidate is consolidated around one
+The separate Mental Model Atlas canonical baseline is consolidated around one
 canonical identity path. The 16-model landing presentation is deterministically
 checked against the 222-model / 1,358-relation navigation index; model and
 relation identities survive route changes; complete teaching-page availability
 has one card-first owner; and fixtures/Canvas are explicit review-only paths.
-Its exact next decision is whether to publish and canonically adopt this local
-baseline. Publication would still leave native screen-reader, source-rights,
-deployment, and real-user usefulness review before any Phase 2 decision.
+Its next bounded decision is whether a provider-free canonical human acceptance
+review finds the ordinary graph and teaching-page journey truthful, navigable,
+and accessible enough to justify a narrowly defined repair or representative
+page expansion. Native screen-reader, source-rights, deployment, and real-user
+usefulness gates remain open before any Phase 2 decision.
 
 The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human
@@ -269,6 +272,7 @@ closure, or storage migration.
 5. [Constitution Stage 0 addendum](docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md) — evidence-backed system audit.
 6. [Post-Stage-0 roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md) — gated next decisions.
 7. [Documentation map](docs/README.md) — lifecycle-organized deeper material.
+8. [Atlas canonical publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md) — published Atlas flow, boundaries, verification, and next review gate.
 
 ## Constitutional nonclaims
 

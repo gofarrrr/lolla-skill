@@ -1,12 +1,14 @@
-# Lolla Mental Model Atlas — Phase 1 local tracer bullet
+# Lolla Mental Model Atlas — canonical Phase 1 experimental baseline
 
 This is a private, source-controlled React/TypeScript review application for
 the Mental Model Atlas Phase 1 visual truth gate. It is not deployed, connected
 to the ordinary Lolla runtime, connected to Observatory, or cleared for public
-publication.
+content distribution.
 
 Requires Node.js `>=20.19.0`. The controlling cold-start status is the
-[Atlas baseline consolidation result](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+[Atlas baseline publication result](../../docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md),
+with the [baseline consolidation result](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+preserved as its reviewed prepublication checkpoint.
 
 ## What is implemented
 
@@ -154,6 +156,7 @@ and Observatory links are not authorized.
 
 See:
 
+- [Canonical Atlas baseline publication](../../docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
 - [Controlling Atlas baseline consolidation](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
 - [Current Atlas baseline evidence](../../docs/evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
 - [Current graph-legibility repair](../../docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)

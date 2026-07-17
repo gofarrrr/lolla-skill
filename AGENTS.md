@@ -30,10 +30,11 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md`,
+5. `docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md`,
+   `docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md`,
    `docs/evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json`,
    `apps/mental-model-atlas/DESIGN_SYSTEM.md`, and
-   `apps/mental-model-atlas/README.md` — the controlling local Atlas baseline,
+   `apps/mental-model-atlas/README.md` — the controlling canonical Atlas baseline,
    its one canonical identity path, review/historical boundaries, exact restart
    checks, and open founder, screen-reader, rights, and usefulness gates. Read
    older Atlas results only for their named frozen checkpoint.
@@ -278,10 +279,12 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 
 Stage 0.5 made the canonical map legible from a fresh clone. Stage 0.6 corrected
 deterministic long-conversation source custody without changing prompts,
-providers, graph behavior, or semantic architecture. The current Atlas decision
-is whether to publish and canonically adopt the consolidated local baseline;
-publication would not authorize deployment, Phase 2, or product claims. The next
-eligible product goal remains the provider-free, checked-in-safe Stage 1
+providers, graph behavior, or semantic architecture. The consolidated Atlas
+baseline was canonically published through PR #375 at merge
+`17f3c887915b746b6c34fe6a6a26ae75841d1d6c`. Its next bounded goal is a
+provider-free canonical human acceptance review; deployment, Phase 2, Teacher
+revival, provider use, and product claims remain unauthorized. The next eligible
+Constitution-roadmap goal remains the provider-free, checked-in-safe Stage 1
 Decision Trail truthfulness review. It is not authorized and may not inspect private archives, generate semantics, call a provider,
 automate the sidecar, change runtime, reopen R4/R5, or claim product usefulness.
 Real-run review and live-pressure usefulness remain separately authorized stages.
