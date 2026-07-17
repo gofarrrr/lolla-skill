@@ -312,7 +312,7 @@ checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
 
-The separate Atlas local implementation is consolidated around one canonical
+The separate Atlas canonical implementation is consolidated around one
 identity source. Its 16-model orientation view is a bounded presentation of the
 same records owned by the 222-model / 1,358-relation navigation index; selecting
 a model builds its exact incident neighborhood, and model/relation routes retain
@@ -321,9 +321,11 @@ alone own complete model-page availability. The ordinary renderer is SVG;
 Canvas and frozen fixtures require explicit review mode. The binding
 achromatic design system uses one shared solid/dashed/double relationship
 grammar and route-scoped styles. See the
-[controlling Atlas baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
-Publication, later Atlas phases, deployment, Teacher journeys, and runtime or
-Observatory links remain unauthorized.
+[canonical Atlas publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
+and the [reviewed predecessor baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+The next bounded step is provider-free human acceptance review. Later Atlas
+phases, deployment, Teacher journeys, provider use, and runtime or Observatory
+links remain unauthorized.
 
 ## 14. Verification entrypoints
 
