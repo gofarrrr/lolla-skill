@@ -48,11 +48,13 @@ authorized. It establishes a maintainable visual baseline, not final visual
 approval, native screen-reader acceptance, publication-rights clearance,
 learning usefulness, deployment, or Phase 2.
 
-The interactive Atlas graph now keeps the complete loaded field visible after
-selection, separates small nodes from collision-aware labels, uses one
-ally/antagonist/tension key, and shows authored direction through arrowheads and
-pausable traveling markers. This repairs a renderer/CSS contract mismatch; it
-does not validate the frozen coordinates as an optimal information layout.
+The interactive Atlas now begins with a bounded 16-model orientation slice and
+rebuilds each selection from a sanitized index of all 222 canonical models and
+1,358 exact checked-in relations. Newly revealed neighbors can become the next
+center; high-fan-in neighborhoods paginate without hidden truncation. Small
+nodes, collision-free labels, one relation key, arrows, and pausable traveling
+markers preserve legibility and direction. This is deterministic traversal of
+existing graph records, not new relationship discovery or semantic proof.
 
 ## Status vocabulary
 

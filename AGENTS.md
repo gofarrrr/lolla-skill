@@ -30,7 +30,9 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md`,
+5. `docs/product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md`,
+   `docs/evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json`,
+   `docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md`,
    `docs/evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json`,
    `apps/mental-model-atlas/DESIGN_SYSTEM.md`,
    `docs/product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md`,
@@ -41,7 +43,8 @@ Read these in order before proposing architecture or the next experiment:
    `docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md`,
    and `apps/mental-model-atlas/README.md`
    — the local provider-free Atlas Phase 1 implementation, its additive
-   card-first/guided-reader correction, repaired full-field directional graph,
+   card-first/guided-reader correction, canonical neighborhood traversal,
+   repaired directional graph,
    binding achromatic design system, and open founder, screen-reader, rights,
    and usefulness gates. Read the linked PRD and plan before any next phase.
 6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding

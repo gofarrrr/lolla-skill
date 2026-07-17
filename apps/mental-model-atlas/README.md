@@ -127,6 +127,13 @@ loaded models now remain visible after selection. Ally, antagonist, and tension
 use solid, dashed-with-cross, and double lines respectively; arrows and moving
 markers show authored direction; and the global motion control pauses them.
 
+The subsequent neighborhood-navigation repair removes the old fixture-page
+ceiling from ordinary clicks. A sanitized, deterministic local index contains
+all 222 canonical model identities and all 1,358 checked-in relationship
+records. Selecting a model derives its exact incoming and outgoing
+neighborhood, paginates above 40 records, and lets any newly revealed neighbor
+become the next center. This is graph traversal, not relationship inference.
+
 The latest founder-feedback repair keeps `Model Library / Abstraction` on one
 aligned line and removes the repeated source-title introduction: `Understand`
 now enters the chapter reader directly, while the exact title returns in the
@@ -142,6 +149,8 @@ See:
 
 - [Current graph-legibility repair](../../docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
 - [Current graph-legibility evidence](../../docs/evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
+- [Current neighborhood-navigation repair](../../docs/product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
+- [Current neighborhood-navigation evidence](../../docs/evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
 - [Current design-system consolidation](../../docs/product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
 - [Current design-system evidence](../../docs/evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
 - [Phase 1 result](../../docs/product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)

@@ -193,3 +193,5 @@ one lifecycle state; consult the individual document and the Stage 0 register.
 - [Observatory Workspace Human Review Launch Checklist JSON](observatory-workspace-human-review-launch-checklist-v0.json)
 - [Observatory Workspace Human Review Preflight](observatory-workspace-human-review-preflight-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
+- [Mental Model Atlas Neighborhood Navigation Repair](lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md) — replaces prototype-only incident-edge filtering with deterministic navigation across all 222 canonical models and 1,358 exact checked-in relationship records; no relation is inferred.
+- [Mental Model Atlas Neighborhood Navigation Evidence](../evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json) — machine-readable corpus counts, paging, browser traversal, dense-label, custody, and nonclaim evidence for the local unpublished repair.
