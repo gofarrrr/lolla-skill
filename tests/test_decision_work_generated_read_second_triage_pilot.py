@@ -296,8 +296,6 @@ def test_second_doc_records_scope_routes_domain_boundary_and_gate() -> None:
 def test_discoverability_docs_reference_pr195() -> None:
     expected = "Decision Work Generated Read Second Triage Pilot"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

@@ -174,8 +174,6 @@ def test_review_json_names_acceptance_risks_and_stop_conditions() -> None:
 def test_discoverability_docs_reference_pr217() -> None:
     expected = "Decision Work Sidecar Internal v1 Completion PRD"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         AUTOMATIC_SUPPLY_PRD,

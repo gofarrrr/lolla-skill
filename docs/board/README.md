@@ -1,32 +1,48 @@
 # Board Product Briefs
 
 Status: board-facing reading index
-Date: 2026-06-30
+Date: 2026-07-14
 
 These documents explain Lolla's current product direction in simple language.
 They are meant for board/customer-style discussion, not implementation handoff.
 
 Recommended reading order:
 
-1. [Lolla Board Product Understanding](lolla-board-product-understanding-v0.md)
+1. [Lolla Founder Product Vision](../conversation-understanding/lolla-founder-product-vision-2026-07-14.md)
+
+   The founder-level reason Lolla exists: slow down premature certainty,
+   preserve the conversation, introduce traceable mental-model pressure, and
+   leave the decision with the human. It also separates today's private
+   Markdown-memory boundary from the later longitudinal and Mental Model
+   Teacher opportunities.
+
+2. [Lolla Strategic Presentation Proposition](../conversation-understanding/lolla-strategic-presentation-proposition-2026-07-14.md)
+
+   The adopted presentation hierarchy: reasoning pressure as the product
+   category, slowing premature certainty as the promise, and preserve →
+   pressure → reconsider → record as the mechanism. It also records the claim
+   boundary and the migration of development chronology out of the public
+   entry points.
+
+3. [Lolla Board Product Understanding](lolla-board-product-understanding-v0.md)
 
    The overall product story: what problem Lolla solves, what users should get,
    where the alpha is, what exists now, and what is still unproven.
 
-2. [Lolla Conversation Interpretation Product Brief](lolla-board-conversation-interpretation-v0.md)
+4. [Lolla Conversation Interpretation Product Brief](lolla-board-conversation-interpretation-v0.md)
 
    The Decision Trail story: how Lolla is learning to explain the process behind
    a revised AI answer, what is interpreted by LLMs, what is preserved by
    deterministic custody, what the pilots found, and what users could eventually
    receive.
 
-3. [Lolla Product Evals Board Brief](lolla-board-evals-product-brief-v0.md)
+5. [Lolla Product Evals Board Brief](lolla-board-evals-product-brief-v0.md)
 
    The Product Delta story: how Lolla compares the original strong-model answer
    with the revised answer without using a naive judge or score, what the current
    non-human evidence suggests, and what still requires human review.
 
-4. [Decision Work Brief Offline v1 Demo Narrative](decision-work-brief-offline-v1-demo-narrative.md)
+6. [Decision Work Brief Offline v1 Demo Narrative](decision-work-brief-offline-v1-demo-narrative.md)
 
    A plain-language walkthrough of the Offline v1 evidence surface: how a
    completed Lolla run becomes a readable Decision Work Brief, what bounded

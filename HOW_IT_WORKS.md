@@ -1,822 +1,703 @@
-# Lolla - How It Works
+# How Lolla Works
 
-Lolla is a Claude Code and Codex skill for pressure-testing AI answers that sound convincing enough to use.
+This document explains the current Lolla skill from product boundary to local
+archive. It describes live behavior as of 2026-07-14. Research-only readers,
+future product surfaces, and historical experiments are labeled rather than
+presented as runtime features.
 
-It is built for the moment after Claude gives you advice, a strategy, a recommendation, or a plan and you think: "This sounds right." Lolla slows that moment down. It asks what the answer assumed, what it skipped, what would make it fail, and what questions should have been asked before the answer sounded so sure.
+For the short product story, start with [README.md](README.md). For binding
+development rules, read
+[Product Constitution v5](docs/conversation-understanding/lolla-product-constitution-v5.md).
 
-The goal is not to produce a longer answer. The goal is to make the answer harder to trust blindly.
+## The System Contract
 
-## What It Does For You
+Lolla combines probabilistic interpretation with deterministic custody. The
+split is about authority, not ideology:
 
-Lolla helps you catch the parts of an AI answer that polished prose can hide:
+```text
+LLMs interpret messy conversational meaning.
+Deterministic code owns identity, custody, exact evidence, bounds, replay,
+budgets, graph traversal, and ledgers.
+The graph introduces pressure; it does not certify relevance.
+The reasoner may apply, reject, or park pressure.
+The receipt proves what process occurred, not that the result is wise.
+The human owns the decision and its consequences.
+```
 
-- Hidden assumptions the answer inherited from your question.
-- Constraints or concerns that were mentioned but not carried into the recommendation.
-- Missing failure conditions, reversal triggers, stop rules, or evidence gates.
-- Weak frames where the answer accepted the wrong shape of the problem.
-- Uncovered decision dimensions that only the decision-maker can answer.
-- Places where the model sounded balanced but did not actually test the hard part.
+Two errors sit on either side of this design.
 
-Use it on answers that matter: strategy, product, hiring, investment, negotiation, architecture, career, family, health, ethics, or any decision where a fluent answer could push you toward action.
+A brittle system tries to decide human meaning with keywords, turn counts, or
+nested rules. A vague system gives an LLM the entire job and cannot prove what
+source, context, pressure, provider action, or omission shaped the result.
 
-The best test is simple:
+Lolla uses LLMs where language remains genuinely messy. It uses deterministic
+machinery where exactness is possible and necessary.
 
-> Run it on the answer you already liked.
+## The Whole System
 
-## What Happens In A Run
+```text
+complete available conversation
+        │
+        ├── authoritative conversation.txt
+        └── declared bounded processing view, if needed
+        ↓
+bounded LLM interpretation
+  position · constraints · passages · dropped threads · frames · gaps
+        ↓
+four pressure lanes
+  structural · companion · frame · coverage
+        ↓
+deterministic identity and graph recall
+  direct candidates · allies · antagonists · tensions · reserve
+        ↓
+constitutional pressure portfolio
+  no silent probabilistic deletion after admission
+        ↓
+reconsidering reasoner
+  apply · reject · park
+        ↓
+updated position · Markdown memo · Observatory
+        ↓
+local archive · usage custody · process receipts
+        ↓
+human decision
+```
 
-At a high level, Lolla does four things.
+The current live skill usually asks the same orchestrator that participated in
+the conversation to reconsider its answer. That preserves rich context but
+also preserves trajectory and self-justification risk. Fresh-context consumers
+are evaluated separately in frozen research experiments; they are not the
+default live runtime.
 
-1. **Captures the conversation.** It takes the current agent conversation and preserves the user turns, assistant answers, and decision context.
-2. **Extracts the decision structure.** It identifies the decision situation, live constraints, current recommendation, original framing, reasoning passages, and dropped threads.
-3. **Runs an external reasoning audit.** The engine sends calibrated audit prompts through OpenRouter and checks the answer through four independent lanes.
-4. **Forces reconsideration.** Claude then uses the audit pressure to revise its own position, persist the revised answer, record the pressure-check state, render a memo, open the Observatory, and archive the run.
+## Who Owns What
 
-The important design choice: Claude does not grade its own original answer during the audit. The detection and routing work happens through the Lolla engine and OpenRouter calls. Claude comes back in later to reconsider the answer using the persisted pressure.
-
-## The Four Audit Lanes
-
-Lolla does not rely on one giant "be more critical" prompt. It splits the audit into four different checks:
-
-| Lane | Question it asks | What it gives you |
+| Question | Owner | What the result proves |
 |---|---|---|
-| Structural Pressure | What reasoning failure pattern is present? | A direct challenge to weak reasoning, with the specific passage and corrective pressure. |
-| Model Companion | What mental models are already being used or violated? | Useful lenses, failure modes, premortem questions, and tensions from the curated substrate. |
-| Frame Pressure | What did the question assume before the answer began? | Alternative ways to frame the problem. |
-| Structural Coverage | What important decision territory was never addressed? | Missing dimensions and user-answerable discovery questions. |
+| What is this conversation about now? | Bounded LLM interpretation | A source-referenced, fallible read |
+| Which constraint is live, weakened, or unresolved? | Bounded LLM interpretation | A candidate semantic judgment, not a fact created by schema |
+| What is the stable identity of a source, model, pressure, or record? | Deterministic code | Exact identity and custody |
+| Which bounded graph neighbors follow from admitted canonical IDs? | Deterministic traversal | Reproducible recall, not relevance |
+| Is a recalled pressure useful in this case? | Reconsidering reasoner | A visible apply, reject, or park judgment |
+| Did the recorded process occur as claimed? | Deterministic receipt | Artifact, request, response, hash, bound, and ledger evidence |
+| Is the revised answer wise enough to act on? | Human judgment | Nothing automatic; the human keeps authority |
 
-After those four lanes, Lolla can also attach private source-backed material from the V60 affordance/absence layer. That material is not public prose. It is private pressure Claude must consider, reject, defer, or keep as a guardrail before writing the updated position.
+A strict response schema proves that the response has the expected shape. It
+does not prove that the model understood the conversation. A clean receipt
+proves that the required process evidence exists. It is not a quality badge.
 
-Lane 2 now has an additional constitutional custody path. Immediately after
-canonical recall—and before the probabilistic verifier—the runtime freezes a
-bounded active graph portfolio plus compact reserve. The active items contain
-complete pressure and exact provenance; Step 6 must apply, reject, or park each
-one in a private hash-locked ledger. The verifier can still help interpret the
-case, but it has no authority to delete this portfolio. Rejection and parking
-are valid outcomes and do not require public answer bloat.
+## The Core Objects
 
-## What You Get Back
+Lolla becomes easier to follow when five objects remain distinct.
 
-A normal run produces:
+### 1. The authoritative conversation
 
-- A short readback confirming what Lolla captured.
-- The strongest case against the answer you were about to trust.
-- An updated position from Claude, structured around what survived, what should be taken back or set aside, and what actually shifted.
-- An intentional pressure-check state. Post-Step-6 isolated reviewers are rested by default to simplify the live skill and reduce cost; they remain available only as an explicit deeper-review mode.
-- A portable memo.
-- A compact `agent_result.json` contract for machine callers, including
-  `caller_action`, artifact status, artifact pointers, run health, cost, and
-  product-level summary fields.
-- Optional control-plane sidecars when external metadata is supplied:
-  `control_input.json` preserves vendor-neutral trace/action/approval
-  references, while `control_result.json` wraps the agent result for approval
-  or observability systems without approving actions itself.
-- A deterministic `evaluation.json` receipt for artifact/schema/custody/health
-  consistency. It includes capture-adequacy checks and does not score advice
-  quality.
-- A metadata-first `risk_mode` recorded from `LOLLA_AUDIT_MODE` (`quick`,
-  `standard`, `deep`, `high_stakes`, or `stability`). The default is
-  `standard`; these modes do not yet change prompts, cost, Step 7 behavior,
-  replay, or high-stakes domain policy. The agent-result contract already
-  keeps clean `high_stakes` runs conservative with `caller_action:
-  ask_user_first`.
-- A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
-- A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, capture adequacy, optional control-plane references, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
+The complete available prose exchange between user and assistant. Tool output,
+system reminders, and skill machinery are excluded from the product source.
+The original prose remains authoritative even when a shorter processing view
+is needed.
 
-Lolla also records run health. If capture was incomplete, embeddings were off, a private ledger was missing, a lane failed, or public prose leaked internal machinery, the run should not pretend to be clean.
+### 2. Semantic interpretations
 
-## What Makes It Different
+Fallible LLM-authored views of the decision situation: current position,
+constraints, reasoning passages, dropped threads, frames, gaps, and other
+roles. Each view should declare its source, scope, uncertainty, and missingness.
 
-Lolla is not a prompt pack. It is a small reasoning-audit system bundled as an agent skill.
+### 3. Pressure
 
-The engine combines:
+A bounded possibility placed in front of the reasoner. Pressure can come from
+a tendency finding, a verified companion model, a frame shift, a coverage gap,
+or the relationship graph. It is a hypothesis to inspect, not an instruction
+to obey.
 
-- A curated substrate of 222 mental models.
-- Munger-style cognitive-tendency detection.
-- A graph of model relationships, allies, antagonists, and tensions.
-- Deterministic routing through curated knowledge.
-- LLM calls only where semantic judgment is needed.
-- Traceable artifacts so findings can be inspected after the run.
+### 4. Disposition
 
-The architecture principle is:
+The reasoner's response to admitted pressure:
 
-> Probabilistic judgment at the edges, curated structure in the middle.
+- `apply` — the pressure earns a test, condition, alternative, reversal rule,
+  private guardrail, or visible change;
+- `reject` — the strongest plausible application fails, with the failed
+  condition and risk of forcing it recorded;
+- `park` — the pressure may matter later, with a specific reopen condition.
 
-LLMs are used to read messy natural language. The deterministic engine handles routing, graph traversal, card assembly, custody, validation, and traceability.
+### 5. Receipt
+
+Evidence about the process: what source existed, which view was used, which
+calls occurred, which model and route served them, what they cost, what failed,
+which pressure reached the reasoner, and whether every required disposition
+was recorded.
+
+The receipt does not decide whether the underlying recommendation is correct.
+
+## How The Knowledge Substrate Was Built
+
+The substrate is not a list of model names generated during a run. It is a
+compiled body of source-shaped material prepared before the user's
+conversation.
+
+```text
+roughly 200 books and related source study
+        ↓
+222 canonical Markdown model articles
+        ↓
+LLM-assisted semantic curation with human review
+        ↓
+activation · intervention · relation · reframing semantics
+        ↓
+compiled graph · runtime cards · affordances · absence records
+        ↓
+optional precomputed embeddings
+```
+
+### Source articles
+
+The research program produced one canonical Markdown article for each of 222
+mental models. LLMs assisted reading and synthesis. Reviewed curation then
+turned those articles into explicit runtime material.
+
+The accurate description is **LLM-assisted, source-shaped, reviewed, and
+compiled**. It is not spontaneous runtime commentary. It is also not purely
+human-authored text.
+
+### Curation layers
+
+The compiled substrate carries several different kinds of meaning:
+
+- **Activation semantics** — when a model helps, when it should not be used,
+  and what input and output shape it expects.
+- **Intervention semantics** — failure modes, mitigations, heuristics, and
+  premortem questions.
+- **Relationship semantics** — allies, antagonists, and structured tensions
+  between models, with activation conditions.
+- **Reframing semantics** — patterns in a question that can route to a model
+  capable of challenging the frame.
+- **Affordances** — source-backed reasoning transactions a model can
+  legitimately support.
+- **Absence records** — tempting interpretations that the source does not
+  support, including ownership boundaries and misuse blocks.
+
+### Current compiled inventory
+
+| Artifact | Current inventory | Status and role |
+|---|---|---|
+| Canonical registry | 222 models | Stable canonical IDs and display names |
+| Cognitive-tendency layer | 25 tendencies | Adapted from Munger for human–LLM reasoning transactions |
+| Model relationship graph | 1,358 edges | 523 allies, 344 antagonists, 491 structured tensions |
+| Tendency bindings | 384 links | 61 core, 82 dynamic, and 241 antidote links |
+| Complete graph | 1,742 edges | Relationships plus tendency links |
+| Prerequisite graph | 15 edges | Learning and dependency order |
+| V60 affordance artifact | 222 model records, 306 affordances, 697 absence records | `draft_review_only`; live private enrichment can use it, but it is not a truth oracle |
+| Embedding store | Source chunks, model signals, tendency guidance, relation activation conditions | Optional query-time redundancy; direct OpenAI key required |
+
+The counts describe compiled material, not product quality. A graph with more
+edges can produce more noise. An affordance can be source-backed and still be
+irrelevant to the current conversation.
+
+### Why relationships matter
+
+Nearest-neighbor similarity is not enough for reasoning pressure.
+
+An ally can strengthen an existing model. An antagonist can expose what it
+suppresses. A structured tension can preserve two models that should not be
+collapsed into one answer. The graph is useful because it can introduce a
+different relationship, not because it mathematically proves that the related
+model belongs in the case.
+
+## Conversation Custody
+
+### Capture
+
+The skill captures the complete available prose conversation into
+`conversation.txt`. It records speaker turns and capture metadata. It excludes
+tool calls, file reads, search output, system reminders, and discussion about
+the skill itself.
+
+The capture is the authority for later inspection. A summary is never allowed
+to replace it silently.
+
+### Long conversations
+
+The authoritative conversation is not pre-truncated at 100 turns.
+
+The extraction boundary has an 80,000-character processing cap. Above that
+cap, `run_extract.py` creates:
+
+- `conversation_processing_view.txt`, containing the first three and last
+  fifteen parsed turn blocks plus an omission marker;
+- `conversation_processing_view.json`, carrying hashes, lengths, turn counts,
+  and exact omission metadata.
+
+The derivative is explicitly partial and non-authoritative. The complete
+available conversation remains archived unchanged.
+
+This is bounded context without lost custody.
+
+### Extraction
+
+The first semantic job reads the conversation and proposes a compact decision
+structure. Current fields include:
+
+- decision situation;
+- current synthesized position;
+- live constraints;
+- reasoning passages tied to source text;
+- original framing;
+- dropped threads;
+- capture and provider metadata.
+
+The extractor is probabilistic. Deterministic validation can reject malformed
+shape, fabricated quotation, broken source custody, or missing required fields.
+It cannot invent the missing interpretation or repair its meaning.
+
+The current extractor centers the most developed or recent strategic thread.
+It is not yet a complete representation of every parallel thread in a long,
+ambiguous conversation.
 
 ## The Runtime Flow
 
-This is the live `/lolla` flow in one page:
+The public product can be understood as eight stages. The live skill contains
+more internal checkpoints, but those exist to preserve custody rather than to
+create eight separate user experiences.
 
-1. Resolve skill path, API keys, bundled engine/data, run id, and live transcript file.
-2. Capture the current conversation into `/tmp/lolla_<run_id>_conversation.txt`.
-3. Invoke the Step 2 helper, which calls `scripts/run_extract.py` and creates `/tmp/lolla_<run_id>_extraction.json`.
-4. Show a short readback and audit promise.
-5. Invoke the Step 3 helper, which calls `scripts/run_pipeline.py --skip-revision` with the extraction and conversation files.
-6. Build `ConversationContext`, construct `ConversationIR`, and run the four audit lanes.
-7. Freeze the pre-verifier constitutional graph-survival portfolio, then attach the Bullshit Index (capped at 12 evaluations by adjacent-passage merging), usage summary, run health, and default-on V60 private enrichment.
-8. Render the strongest counterargument in chat.
-9. Write the updated position.
-10. Persist `revised_answer` and validate the constitutional graph-survival, pre-Step-6 private-table, and V60 consideration ledgers.
-11. Persist the default-off pressure-check state after Step 10 succeeds.
-12. If the user/operator explicitly requested deeper review, run optional pressure-check agents after Step 10 and persist their comparison plus auxiliary token usage.
-13. Persist memo-note fields and render the deterministic memo.
-14. Finalize private ledgers and live-output hygiene, open the Observatory, archive the core/optional artifacts under `~/.local/share/lolla/runs/`, generate `agent_result.json` for the compact machine-readable handoff, optionally generate `control_result.json` when `control_input.json` was supplied, and generate `evaluation.json` plus `reasoning_trace.json` for local custody/replay, deterministic readiness checks, and corpus export.
+### Stage 1: Activation and preflight
 
-`SKILL.md` is the executable instruction source. This page is the readable map.
+The skill activates through `/lolla`, `$lolla`, or a matching audit request.
+The preamble resolves the skill directory, loads environment configuration,
+checks the OpenRouter key, verifies the graph and runtime engine, creates a run
+ID, initializes the live transcript and operator log, and reports the model and
+embedding mode.
 
-## Read More
+A fatal preflight stops before model calls.
 
-The detailed docs are split so agents and humans do not have to load one giant file.
+### Stage 2: Capture and extraction
 
-| File | Read it for |
+The complete conversation is captured. The extractor creates the decision
+structure and source-linked passages. Capture health, provider identity, usage,
+and any bounded processing view are recorded before the four lanes run.
+
+The user receives a short readback in ordinary language. Internal field names
+and audit machinery stay out of the product narration.
+
+### Stage 3: Four pressure lanes
+
+`run_pipeline.py` receives the extraction and authoritative conversation
+together through `ConversationContext`. All four lanes audit the conversation
+transaction, not isolated assistant prose.
+
+The current skill passes `--skip-revision` because the orchestrating Claude or
+Codex writes the updated position later with the full conversational context.
+
+### Stage 4: Bounded private pressure assembly
+
+The pipeline assembles the four public cards, optional V60 private material,
+and the constitutional graph-survival portfolio.
+
+A compact pre-Step-6 private table organizes material already produced by the
+run. It adds no OpenRouter calls and cannot select the visible answer.
+
+### Stage 5: Counterargument and reconsideration
+
+The user first sees the strongest case against the settled answer in plain
+language and tied to a source passage. The orchestrator then reads the complete
+pressure material privately and updates its position.
+
+Every active graph pressure receives an apply, reject, or park disposition.
+The public answer does not need to mention model names or include rejected
+pressure.
+
+### Stage 6: Persistence and ledger finalization
+
+The revised position is persisted into `result.json`. Constitutional graph,
+private-table, and V60 consideration ledgers are finalized against their exact
+skeletons.
+
+A missing or invalid required ledger stops later completion. The system does
+not infer that omitted pressure was semantically rejected.
+
+### Stage 7: Memo and optional deeper review
+
+Optional pressure-check sub-agents are off by default. If a user explicitly
+enables deeper review, only non-empty lanes may be sent and their usage is
+recorded separately. The default path records that the deeper review was
+intentionally skipped.
+
+After the pressure-check state is final, a deterministic renderer creates the
+Markdown memo. No LLM call is needed to render it.
+
+### Stage 8: Observatory and archive
+
+The local Observatory opens only after the updated position, ledgers, and memo
+exist. The archive finalizer runs product-output and live-output hygiene checks,
+copies the run artifacts to the local case folder, creates the agent and
+evaluation receipts, indexes the reasoning trace, and returns a functional
+receipt with URL, memo, cost, and archive location.
+
+## The Four Lanes In Detail
+
+### Lane 1: Structural Pressure
+
+**Purpose:** identify recurring cognitive tendencies that may be distorting the
+human–LLM reasoning transaction.
+
+The first pass uses six family-clustered LLM calls rather than asking one model
+to score all 25 tendencies at once. The optional embedding layer supplies a
+second signal. Confirmed candidates then receive isolated deep checks.
+
+Deterministic routing maps admitted tendencies to canonical corrective models
+and graph neighbors. The result is a DeltaCard with the detected pattern,
+source passage, challenge, corrective model, and possible reversal condition.
+
+The LLM can miss or confuse adjacent tendencies. Embeddings reduce dependence
+on one signal; they do not make detection certain.
+
+### Lane 2: Model Companion
+
+**Purpose:** identify which mental models are already active in the reasoning
+and where their normal strengths can become failure modes.
+
+An LLM fingerprints candidate models from source-linked passages. A separate
+verification call checks candidate presence. Deterministic lookup attaches
+source-shaped failure modes, premortem questions, allies, antagonists, and
+tensions.
+
+This lane is not a recommendation to add more models. It asks what is already
+organizing the answer and what that structure may hide.
+
+### Lane 3: Frame Pressure
+
+**Purpose:** inspect the question before accepting its solution space.
+
+An LLM extracts embedded assumptions, suppressed counterfactuals, mutable
+constraints, and default categories. The compiled reframing layer supplies
+candidate models and alternative questions.
+
+A frame can be challenged without being discarded. The output is an
+invitation to test what changes when one assumption is relaxed.
+
+### Lane 4: Structural Coverage
+
+**Purpose:** identify structural territory the answer did not enter.
+
+The lane classifies the question, checks relevant dimensions, and generates
+discovery questions for material gaps. These questions are not answered by the
+system. They are reserved for information only the decision-maker can supply.
+
+The output can be empty. A grounded zero is different from a failed lane.
+
+### Bullshit Index
+
+The Bullshit Index is a bounded delivery-audit pass, not a fifth pressure lane.
+It inspects passages for patterns adapted from the Machine Bullshit project.
+Long answers are compacted into at most twelve evaluation passages without
+silently selecting source passages away; localization becomes coarser when
+compaction occurs.
+
+Its findings are diagnostic. They do not approve or reject the answer.
+
+## Constitutional Graph Survival
+
+The graph-survival path corrects a subtle product failure.
+
+An earlier architecture allowed a probabilistic applicability pass to remove
+graph candidates before the final reasoner saw them. That made the output
+cleaner, but it also made the graph dependent on another model agreeing that a
+non-obvious pressure already looked relevant. Externally supplied pressure was
+being domesticated by the frame it was meant to challenge.
+
+The current path behaves differently:
+
+1. Controlled canonical IDs enter after deterministic and optional embedding
+   recall.
+2. Direct recall and relationship recall keep separate provenance.
+3. Up to six direct candidates enter the detailed active set. Where available,
+   bounded antagonist, structured-tension, and ally slots add relationship
+   pressure.
+4. Overflow remains in a compact reserve with exact suppression reasons.
+5. A formatter may compact presentation, but no probabilistic applicability
+   judgment can silently delete an admitted active candidate.
+6. Every active item carries its strongest plausible application, a concrete
+   test, force and ignore boundaries, provenance, a stable pressure ID, and a
+   consumer locator.
+7. The reconsidering reasoner applies, rejects, or parks every active item.
+
+The active and reserve envelopes have frozen runtime ceilings of 6,000 and
+12,000 estimated tokens. Bounds prevent “preserve possibility” from turning
+into context dumping.
+
+Reserve is custody, not rejection. The reasoner does not disposition reserve
+items during the current run.
+
+The older verifier and companion cards still provide interpretation telemetry.
+Their applicability fields do not control constitutional survival.
+
+## Reconsideration Without Forced Use
+
+Pressure is successful when it is seriously considered, not when its name
+appears in the final answer.
+
+For each active pressure, the reasoner first attempts the strongest plausible
+application. It then records:
+
+- what concrete condition makes the pressure useful;
+- what condition failed if it is rejected;
+- what future evidence would reopen it if parked;
+- whether it changed the public answer, remained a private guardrail, or had no
+  material effect.
+
+This structure protects two outcomes that a naive audit loses:
+
+1. **Grounded rejection.** A strange or tempting model was inspected and found
+   inapplicable without being forced into prose.
+2. **Public stand-down.** The private process can be substantive even when the
+   correct visible answer remains concise or unchanged.
+
+`not_considered` is not a semantic disposition for an active item. It is a
+technical custody failure.
+
+## Artifacts And Custody
+
+The default archive root is `~/.local/share/lolla/runs/`. Runs are grouped into
+case folders using the exact conversation hash first, then an extraction-based
+fingerprint. Renaming a case folder does not break matching because the
+manifest owns identity.
+
+### Core run artifacts
+
+| Artifact | Purpose | What it does not prove |
+|---|---|---|
+| `conversation.txt` | Complete available authoritative prose source | That the external application exposed text it never supplied |
+| `conversation_processing_view.{txt,json}` | Declared bounded derivative and omissions | Completeness |
+| `extraction.json` | Fallible semantic view and source passages | Semantic correctness |
+| `provider_budget.json` | Run call and cost envelope | Provider billing by itself |
+| `result.json` | Four lanes, health, graph portfolio, revised answer, usage | Wisdom or safety |
+| `constitutional_graph_survival_ledger.json` | Apply/reject/park custody for active pressure | That the dispositions are correct |
+| `revised.txt` | Persisted updated position | That it is better than the original |
+| `memo.md` | Readable Markdown run record | Complete future Decision Trail reconstruction |
+| Private-table and V60 ledgers | What private material was used, rejected, deferred, or guarded | Public answer quality |
+| `live_transcript.txt` | Captured product narration when available | Completeness unless supplied as a trusted full capture |
+
+### Generated archive artifacts
+
+| Artifact | Purpose |
 |---|---|
-| [Lolla Product Constitution](docs/conversation-understanding/lolla-product-constitution-v3.md) | Binding v3 amendment incorporating immutable earlier rules plus dated current-practice checks, context-visible semantic responsibility, bounded fan-in, and mandatory problem-class research when failures persist or become contradictory. |
-| [R1/R2 Constitutional Hardening Result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md) | Current provider-free implementation result: full-source custody, neutral reliance, provider budgets/privacy/cost identity, bounded pre-verifier graph survival, apply/reject/park custody, measured fan-in, nonclaims, and the exact R3 boundary. |
-| [Hybrid Reasoning Boundary](docs/conversation-understanding/hybrid-reasoning-boundary-v0.md) | The binding split: LLMs and humans interpret messy meaning; deterministic code validates evidence, schemas, hashes, caps, graph replay, and custody without semantic keyword gates. |
-| [Lolla Evaluation Doctrine](docs/conversation-understanding/lolla-evaluation-doctrine-v0.md) | The current capability ladder, strong-control evaluation contract, anti-Goodhart rules, evidence, and integration stop conditions. |
-| [Reasoning Pattern Packet](docs/conversation-understanding/reasoning-pattern-packet-v0.md) | The fact-free shadow graph-input contract that separates semantic interpretation from deterministic recall. |
-| [Reasoning Pressure Handoff](docs/conversation-understanding/reasoning-pressure-handoff-v0.md) | The small downstream consumer contract: full conversation plus bounded pressure and preservation items, mechanically validated but not runtime-integrated. |
-| [Reasoning-Process Bounded Views](docs/conversation-understanding/reasoning-process-bounded-views-v1.md) | Phase 2's provider-free result: source-first coverage audit, append-only fixture addenda, 25 bounded views, target-blind probe packets, real fan-in measurements, and the Phase 3 boundary. |
-| [Reasoning-Process Phase 3 Result](docs/conversation-understanding/reasoning-process-phase3-development-result-v1.md) | The five-reader Gemini/OpenRouter development result: one baseline, one generic repair, 4/5 protected-target visibility, preserved source/overclaim failures, no transfer, and the bounded view-specific redesign direction. |
-| [Reasoning-Process View-Specific Development Result](docs/conversation-understanding/reasoning-process-view-specific-development-result-v2.md) | The failure-derived redesign result: stable sentence aliases solve quote custody, explicit relationships repair four Case-02 views, exploration still loses an earlier alternative's attached minority limit, and the next work narrows only that lane. |
-| [Exploration-Local Development Result](docs/conversation-understanding/reasoning-process-exploration-local-development-result-v1.md) | The narrow exploration repair: focal turn-pair readers recover alternative-plus-limit pairs, role-specific prior carry-forward handles next-turn qualifications, record-level custody preserves valid siblings and exact duplicates, and Case 02 passes before transfer. |
-| [Modal-Strength v3 Result](docs/conversation-understanding/reasoning-process-modal-strength-v3-result-2026-07-12.md) | The bounded negative result: explicit force fields improve audit visibility, but one fresh Case-03 probe still confuses belief with decision and misses the protected qualification; next work is provider-free stance-object design. |
-| [Stance-Object v4 Result](docs/conversation-understanding/reasoning-process-stance-object-v4-result-2026-07-12.md) | The provider-free stance-object representation and preserved operational stop: local semantics and custody pass, but Google rejects the frozen depth-11 schema before inference; next work is an atomic one-alias component schema plus new fresh cases. |
-| [Stance-Object v4.1 Result](docs/conversation-understanding/reasoning-process-stance-object-v41-result-2026-07-12.md) | The shallow-wire and fresh-corpus result: local gates pass, the provider still rejects before inference, and current Google SDK validation isolates inherited `uniqueItems` as the probable compatibility fault; next work is a wire-only removal with deterministic uniqueness retained. |
-| [Stance-Object v4.2 Result](docs/conversation-understanding/reasoning-process-stance-object-v42-result-2026-07-12.md) | The wire-only correction result: current Google SDK validation passes after removing `uniqueItems`, but the provider still rejects before inference; next work must isolate wire compatibility separately from valuable semantic cases. |
-| [Model/Operator Selection Result](docs/conversation-understanding/reasoning-process-model-operator-selection-result-2026-07-12.md) | The July 2026 provider/model experiment: non-Google routes accept the unchanged schema, but Flash, stronger, and third-family models all fail the combined contract's source review; next work is smaller LLM semantic jobs joined by deterministic custody. |
-| [Structured-Output Problem-Class Research](docs/conversation-understanding/reasoning-process-structured-output-problem-class-research-2026-07-12.md) | The dated research escalation: provider portability, wrong-valid outputs, format/capacity tax, schema breadth, adopted and rejected practices, and the remaining unknowns governing decomposition. |
-| [Ground-Up Evidence Audit](docs/conversation-understanding/reasoning-process-ground-up-evidence-audit-2026-07-12.md) | What is proven, strongly supported, and still unknown before the provider-free decomposition path. |
-| [Position Decomposition v1 Result](docs/conversation-understanding/reasoning-process-position-decomposition-result-2026-07-12.md) | The local capacity pass and one-call reserved-case failure: the first split still left a role-trajectory bottleneck, omitted protected qualification evidence, and exposed a false-complete join. |
-| [Position Role-First v2 Result](docs/conversation-understanding/reasoning-process-position-role-first-v2-result-2026-07-12.md) | The prospective repair: independent starting/current/qualification jobs, one compact exact-ID relationship job, eight provider-free fixture passes, bounded fan-in, and the new-case stop line. |
-| [Role-First Model-Control Result](docs/conversation-understanding/reasoning-process-role-first-model-control-result-2026-07-12.md) | The DeepSeek and GLM comparison on one unchanged new case: wire reliability improved, but both routes failed coherent record identity and protected qualification recall, making contract ambiguity the leading cause. |
-| [Position Role-First v2.1 Result](docs/conversation-understanding/reasoning-process-position-role-first-v21-result-2026-07-12.md) | The provider-free prompt/packet amendment defining visible endpoints, coherent records versus components, full-alias review, and assistant-pressure ownership without changing schemas, validators, or call ceilings. |
-| [Pitch and Invitation](docs/lolla-pitch-and-invitation.md) | A plain-language shareable explanation of what Lolla is, why it matters for agents, who it is for, and what kind of feedback we want. |
-| [Agent Result Contract](docs/lolla-agent-result-contract.md) | The shipped `lolla_agent_result.v2` archive artifact: neutral reliance status, `caller_action`, product summaries, artifact pointers, and current limitations. |
-| [Reasoning-Audit Harness PRD](docs/lolla-reasoning-audit-harness-prd.md) | The actionable roadmap for turning Lolla into an agent-callable reasoning-audit harness with risk modes, an agent result contract, evaluation artifacts, and archive-corpus workflows. |
-| [Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md) | How Lolla can fit beside CrabTrap-style proxies, guardrails, approvals, sandboxes, identity scopes, and observability/eval systems without pretending to replace them. |
-| [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |
-| [Product Delta / Eval Docs Index](docs/evals/README.md) | GitHub-facing map of the offline Product Delta eval lane: what it evaluates, how to run the safe tools, what to inspect, and what not to infer. |
-| [Product Delta Evaluation Readiness PRD](docs/evals/product-delta-evaluation-readiness-prd-v0.md) | PR235's conservative eval-phase PRD. It summarizes the Product Delta, Human Review, and Review Corpus lanes, preserves the specialist-review downgrade as an anti-flattery signal, rejects a live conversation judge as the immediate move, and recommends a balanced offline Product Delta evidence batch before any live evaluator, product-proof claim, answer scoring, or runtime change. |
-| [Balanced Offline Product Delta Evidence Batch Plan](docs/evals/balanced-offline-product-delta-evidence-batch-plan-v0.md) | PR236's plan-only next eval slice. It defines the balanced batch buckets, candidate source rules, privacy/custody rules, check-in policy, anti-overclaim rules, and the next candidate selector/readiness-builder plan without running Product Delta review, selecting cases, calling models, creating a live judge, scoring answers, or claiming product proof. |
-| [Balanced Batch Candidate Selector / Readiness Builder Plan](docs/evals/balanced-batch-candidate-selector-readiness-builder-plan-v0.md) | PR237's plan-only selector/readiness-builder slice. It defines candidate source rules, readiness criteria, bucket hints, output shape, refusal/defer statuses, and anti-flattery rules for a future deterministic builder without implementing the selector, scanning archives broadly, running Product Delta review, calling models, scoring answers, or claiming product proof. |
-| [Board Product Briefs](docs/board/README.md) | Simple board/customer-facing reading packet for the current product story: what Lolla solves, what Decision Trail adds, how evals work, where the alpha is, and what remains unproven. |
-| [Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md) | Customer-facing explanation of the answer-plus-process value: serious AI decisions need the revised answer, the pressure trail, the audit receipt, and explicit non-claims. |
-| [Decision Work Receipt PRD](docs/conversation-understanding/decision-work-receipt-prd-v0.md) | Actionable PRD for the missing work-trail product layer: source/context inventory, conversation process map, challenge coverage, sparse receipt exporter, fixture review, and decision gate. |
-| [Decision Work Receipt Schema](docs/conversation-understanding/decision-work-receipt-v0.json) | PR105's machine-readable `lolla.decision_work_receipt.v0` contract for the future work-trail receipt, without exporter code or runtime integration. |
-| [Decision Work Receipt Source Inventory](docs/conversation-understanding/decision-work-receipt-source-inventory-v0.md) | PR106's read-only checked-in-safe exporter slice for source/context inventory over completed run directories, leaving process interpretation and challenge coverage sparse. |
-| [Decision Work Receipt Conversation Process Map](docs/conversation-understanding/decision-work-receipt-conversation-process-map-v0.md) | PR107's read-only exporter slice for deterministic turn-count, capture, and one-shot/multi-turn process-shape metadata, while leaving semantic process events to LLM or human interpretation. |
-| [Decision Work Receipt Challenge Coverage Map](docs/conversation-understanding/decision-work-receipt-challenge-coverage-map-v0.md) | PR108's read-only exporter slice for mapping which Lolla challenge surfaces and run-health caveats are visible from completed artifacts, without scoring lane quality or advice quality. |
-| [Decision Work Receipt Exporter](docs/conversation-understanding/decision-work-receipt-exporter-v0.md) | PR109's read-only composed receipt exporter: source inventory, process metadata, challenge coverage, optional Decision Trail/Product Delta references, readiness labels, missingness, non-claims, and boundary flags. |
-| [Decision Work Receipt Fixture Review](docs/conversation-understanding/decision-work-receipt-fixture-review-v0.md) | PR110's checked-in-safe review of the sparse receipt: useful as a work-trail shell, still too thin for the full semantic story, and risky if readiness labels are read as approval. |
-| [Decision Work Receipt Decision Gate](docs/conversation-understanding/decision-work-receipt-decision-gate-v0.md) | PR111's docs-only closure gate: keep the sparse receipt as an internal/workflow wrapper and do not build a parallel Work Receipt interpretation system yet. |
-| [Decision Work Receipt External Report Attachments](docs/conversation-understanding/decision-work-receipt-external-report-attachments-v0.md) | PR112's narrow read-only bridge: let the receipt CLI link externally generated Decision Trail/Product Delta reports by safe metadata, without copying report content, local paths, or semantic conclusions. |
-| [Decision Work Receipt Debug Summary](docs/conversation-understanding/decision-work-receipt-debug-summary-v0.md) | Internal Markdown renderer for turning a Decision Work Receipt plus optional Decision Trail report into a maintainer-readable status/missingness packet. It is not the customer-facing decision story. |
-| [Launch Public Enterprise Beta Receipt Debug Example](docs/conversation-understanding/decision-work-receipt-debug-summary-launch-public-enterprise-beta-v0.md) | A checked-in safe one-case internal example showing what the current receipt/report package can inspect and what it still cannot explain. |
-| [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md) | Product-facing target and PR113-PR158 delivery plan for the missing layer: a plain-language brief explaining the decision, what Lolla pressed on, what changed, what remains unresolved, and what the audit must not claim. |
-| [Decision Work Brief Schema](docs/conversation-understanding/decision-work-brief-v0.json) | PR114's machine-readable `lolla.decision_work_brief.v0` contract for the user-facing brief, with required decision-story sections, source refs, custody flags, uncertainty, human-validation state, and explicit non-claims. |
-| [Decision Work Brief Schema Guide](docs/conversation-understanding/decision-work-brief-schema-v0.md) | Plain-language guide to the PR114 schema boundary: the brief tells the story, the receipt backs the story, and the schema itself adds no generator, renderer, runtime integration, semantic inference, product proof, or agent authorization. |
-| [Decision Work Brief Packet Builder](docs/conversation-understanding/decision-work-brief-packet-builder-v0.md) | PR115's read-only local packet builder for preparing `lolla.decision_work_brief_packets.v0` from completed runs, with metadata-only as the default, explicit local-private include-text marking, source refs, missingness, custody flags, and no generated brief. |
-| [Decision Work Brief Draft Pilot](docs/conversation-understanding/decision-work-brief-draft-pilot-v0.md) | PR116's one-case Codex-assisted provisional draft pilot, using a locally generated PR115 metadata-only packet to embed a checked-in-safe `lolla.decision_work_brief.v0` draft with source refs, uncertainty, human follow-up questions, and non-claims. |
-| [Decision Work Brief Renderer](docs/conversation-understanding/decision-work-brief-renderer-v0.md) | PR117's deterministic Markdown renderer for existing `lolla.decision_work_brief.v0` JSON, patched by PR123 to use plain-language decision headings while preserving section uncertainty, source refs, custody flags, and non-claims without generating or inferring content. |
-| [Decision Work Brief Rendered Example](docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md) | PR117's checked-in-safe rendered Markdown example from the PR116 cofounder draft, kept under conversation-understanding rather than the board because it is still provisional. |
-| [Decision Work Brief Usefulness Review](docs/conversation-understanding/decision-work-brief-usefulness-review-v0.md) | PR118's Codex-assisted delivery gate over the receipt/debug layer, structured draft, and rendered brief; it chooses `proceed_to_tiny_second_case`, not runtime integration or product readiness. |
-| [Decision Work Brief Second Tiny Case Pilot](docs/conversation-understanding/decision-work-brief-second-tiny-case-pilot-v0.md) | PR119's second checked-in-safe Codex-assisted pilot on `launch-public-enterprise-beta`, comparing it to the cofounder case and choosing `proceed_to_small_pattern_review`, not runtime integration or product readiness. |
-| [Decision Work Brief Rendered Launch-Beta Example](docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md) | PR119's rendered second-case Markdown example, generated from an embedded `lolla.decision_work_brief.v0` object without checking in local-private text. |
-| [Decision Work Brief Small Pattern Review](docs/conversation-understanding/decision-work-brief-small-pattern-review-v0.md) | PR120's two-case pattern review over the cofounder and launch-beta briefs; it chooses `proceed_to_third_diversity_case`, not a renderer patch or runtime integration. |
-| [Decision Work Brief Third Diversity Case Pilot](docs/conversation-understanding/decision-work-brief-third-diversity-case-pilot-v0.md) | PR121A's third checked-in-safe pilot on `deploy-assisted-intake-routing`, following PR120's gate and choosing `proceed_to_three_case_pattern_review`. |
-| [Decision Work Brief Rendered Intake-Routing Example](docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md) | PR121A's rendered third-case Markdown example, generated from an embedded `lolla.decision_work_brief.v0` object without checking in local-private text. |
-| [Decision Work Brief Three-Case Pattern Review](docs/conversation-understanding/decision-work-brief-three-case-pattern-review-v0.md) | PR122's three-case pattern review over the cofounder, launch-beta, and intake-routing briefs; it finds consistent action consequence but chooses `proceed_to_plain_language_renderer_patch` because the rendered language is still too internal for a board/customer reader. |
-| [Decision Work Brief Plain-Language Renderer Patch](docs/conversation-understanding/decision-work-brief-plain-language-renderer-patch-v0.md) | PR123's renderer patch that regenerates all three existing examples with plain-language decision headings and moves source refs, section uncertainty, custody flags, and non-claims into a compact Evidence and limits section. |
-| [Decision Work Brief Plain-Language Re-Review](docs/conversation-understanding/decision-work-brief-plain-language-rereview-v0.md) | PR124's rereview of the PR123 examples; it finds the surface readable enough for local-private adequacy comparison and gates to `proceed_to_local_private_adequacy_check`. |
-| [Decision Work Brief Local-Private Adequacy Check](docs/conversation-understanding/decision-work-brief-local-private-adequacy-check-v0.md) | PR125's one-case read-only local-private shadow review on `launch-public-enterprise-beta`; it records `adequate_but_missing_private_nuance` without checking in private text and gates to a decision review. |
-| [Decision Work Brief Expansion / Runtime Attachment Decision Gate](docs/conversation-understanding/decision-work-brief-expansion-runtime-decision-gate-v0.md) | PR126's conservative gate after PR124/PR125; it selects `run_more_local_private_adequacy_checks`, not runtime integration or product readiness. |
-| [Decision Work Brief Conversation Interpretation Gap Map](docs/conversation-understanding/decision-work-brief-conversation-interpretation-gap-map-v0.md) | PR127's three-case map of desired conversation fields, classifying what is clear, partial, local-private-only, LLM-interpretable, human-review-dependent, or not currently captured; it gates to a target contract rather than a runtime extractor. |
-| [Decision Work Conversation Interpretation Contract](docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md) | PR128's docs/schema/test contract for future conversation interpretation fields, ownership, source status, privacy handling, deterministic custody, non-claims, and handoff shape without changing runtime extraction. |
-| [Decision Work Conversation Interpretation Contract Schema](docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json) | Machine-readable `lolla.decision_work_conversation_interpretation_contract.v0` target contract. It defines field groups and vocabularies, not populated case data, model calls, product proof, or agent authorization. |
-| [Decision Work Conversation Interpretation Contract Packet Review](docs/conversation-understanding/decision-work-conversation-interpretation-contract-packet-review-v0.md) | PR129's feasibility review of the PR128 contract against current completed-run artifacts and PR115 packet surfaces; it finds source/status carriage exists but selects `build_offline_interpretation_packet` before any LLM read or runtime extraction. |
-| [Decision Work Conversation Interpretation Offline Packet](docs/conversation-understanding/decision-work-conversation-interpretation-offline-packet-v0.md) | PR130's read-only packet builder for `lolla.decision_work_conversation_interpretation_packets.v0`: a source/status dossier over completed-run artifacts and PR128 field groups for future LLM or human interpretation, with no semantic field filling, raw/private content, model calls, runtime extraction, product proof, or agent authorization. |
-| [Decision Work Conversation Interpretation Tiny Offline Read](docs/conversation-understanding/decision-work-conversation-interpretation-tiny-offline-read-v0.md) | PR131's first one-case provisional read over a generated PR130 packet for launch-beta: a small PR128 field subset with source refs, uncertainty, privacy limits, non-claims, no source-packet fixture, no raw/private content, no model calls, no product proof, and no runtime integration. |
-| [Decision Work Conversation Interpretation Second Tiny Offline Read](docs/conversation-understanding/decision-work-conversation-interpretation-second-tiny-offline-read-v0.md) | PR132's second one-case provisional read over a generated PR130 packet for intake routing: the same tiny field subset works across a healthcare operations/deployment decision and gates to a reusable read schema, while keeping lost value and starting direction source-limited. |
-| [Decision Work Conversation Interpretation Read Schema](docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md) | PR133's `lolla.decision_work_conversation_interpretation_read.v0` schema contract for future offline interpretation reads, requiring source refs, uncertainty, privacy limits, human-review flags, non-claims, and no quality-label use without adding an interpreter or runtime extraction. |
-| [Decision Work Conversation Interpretation Read Comparison](docs/conversation-understanding/decision-work-conversation-interpretation-read-comparison-v0.md) | PR134's comparison gate over the PR131 and PR132 reads; it finds stable action-consequence and non-proof fields, keeps lost value/source-depth limits explicit, and selects one narrow brief-enrichment test rather than another read or runtime integration. |
-| [Decision Work Brief Interpretation Enrichment Test](docs/conversation-understanding/decision-work-brief-interpretation-enrichment-test-v0.md) | PR135's one-case enrichment test: creates a separate launch-beta enriched brief from the PR131 read, using only the PR134 feed-now fields and preserving uncertainty, source limits, and non-claims. |
-| [Decision Work Brief Original vs Enriched Review](docs/conversation-understanding/decision-work-brief-original-vs-enriched-review-v0.md) | PR136's comparison gate over the original and enriched launch-beta briefs; it finds the enrichment useful enough to test on a second case without treating it as product proof. |
-| [Decision Work Brief Second Enrichment Test](docs/conversation-understanding/decision-work-brief-second-enrichment-test-v0.md) | PR137's second enrichment test on the intake-routing brief from the PR132 read, with the same conservative field subset and no new interpretation read. |
-| [Decision Work Brief Enriched Pattern Review](docs/conversation-understanding/decision-work-brief-enriched-pattern-review-v0.md) | PR138's two-enriched-brief pattern review; it recommends a future enrichment-rules contract and explicitly does not implement PR139 or runtime integration. |
-| [Decision Work Brief Enrichment Rules Contract](docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.md) | PR139's contract for which interpreted fields may enter the user-facing brief, which fields stay evidence-only, which concepts are forbidden, and what any offline builder must preserve. |
-| [Decision Work Brief Enrichment Rules Contract JSON](docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json) | Machine-readable `lolla.decision_work_brief_enrichment_rules_contract.v0` rules contract for offline enrichment. |
-| [Decision Work Brief Offline Enriched Builder](docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md) | PR140's deterministic offline builder and CLI for creating separate enriched Markdown from an existing brief, interpretation read, and PR139 rules contract, without model calls or runtime changes. |
-| [Decision Work Brief Builder-Enriched Launch Beta](docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md) | PR140's builder-generated launch-beta enriched output, separate from the hand-built enriched example. |
-| [Decision Work Brief Builder-Enriched Intake Routing](docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md) | PR140's builder-generated intake-routing enriched output, separate from the hand-built enriched example. |
-| [Decision Work Brief Enriched Builder Output Review](docs/conversation-understanding/decision-work-brief-enriched-builder-output-review-v0.md) | PR141's review comparing builder-generated enriched briefs against the hand-built examples; it selects `proceed_to_builder_rule_patch` because the output is safe but still too templated. |
-| [Decision Work Brief Enrichment Builder Rule Patch](docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-v0.md) | PR142's deterministic builder-language patch; it regenerates the two builder-enriched outputs with less repetitive wording while preserving PR139 field rules, uncertainty, source limits, and non-claims. |
-| [Decision Work Brief Builder Patch Review](docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-review-v0.md) | PR143's review of the patched builder outputs; it selects `proceed_to_offline_system_closure_gate`, not another builder case or runtime integration. |
-| [Decision Work Brief Offline System Closure Gate](docs/conversation-understanding/decision-work-brief-offline-system-closure-gate-v0.md) | PR144's closure decision over the PR114-PR143 offline surface; it selects `package_pr114_pr144` while preserving the no-runtime, no-product-proof boundary. |
-| [Decision Work Brief PR114-PR144 Packaging Gate](docs/conversation-understanding/decision-work-brief-pr114-pr144-packaging-gate-v0.md) | PR145's package gate and manifest for the offline Decision Work Brief evidence surface: file groups, staging list, do-not-stage warnings, validation checklist, useful signal, unresolved risk, and explicit non-claims. |
-| [Decision Work Brief Additional Local-Private Adequacy Checks](docs/conversation-understanding/decision-work-brief-additional-local-private-adequacy-checks-v0.md) | PR146's safe-conclusions-only local-private adequacy check on the cofounder and intake-routing cases; it finds no major contradiction, keeps private nuance as the main risk, and recommends a third builder case rather than runtime integration. |
-| [Decision Work Brief Third Builder Case](docs/conversation-understanding/decision-work-brief-third-builder-case-v0.md) | PR147's feasibility gate for the cofounder builder case; it blocks builder output because the case lacks a PR133-shaped interpretation read and recommends creating that read first. |
-| [Decision Work Conversation Interpretation Third Tiny Offline Read](docs/conversation-understanding/decision-work-conversation-interpretation-third-tiny-offline-read-v0.md) | PR147A's builder-compatible cofounder interpretation read using the formal PR133 schema; it fills the small action-consequence field subset while keeping starting direction, option status, and lost value source-limited. |
-| [Decision Work Brief Third Builder Case Output](docs/conversation-understanding/decision-work-brief-third-builder-case-output-v0.md) | PR148's deterministic builder output review for the cofounder case; it creates the third builder-enriched brief, preserves uncertainty and non-claims, notes a mild template weakness, and gates to a three-builder-case pattern review. |
-| [Decision Work Brief Three Builder Case Pattern Review](docs/conversation-understanding/decision-work-brief-three-builder-case-pattern-review-v0.md) | PR149's pattern review across the three builder-generated enriched briefs; it finds the builder stable enough for offline evidence review and selects `proceed_to_human_review_intake_plan`, not runtime integration. |
-| [Decision Work Brief Human Review Intake Plan](docs/conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md) | PR150's intake plan for future human review of the three builder-generated enriched briefs; it defines reviewer questions, stop conditions, allowed outcomes, and source-depth checks while preserving that no human validation, product proof, runtime integration, scoring, or agent authorization has occurred. |
-| [Decision Work Brief Human Review Pilot Scaffold](docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md) | PR151's runnable but blank human-review pilot scaffold for the three builder-generated enriched briefs, with reviewer instructions, a response template, stop conditions, allowed pilot outcomes, and no Codex-filled human answers. |
-| [Decision Work Brief Human Review Response Template](docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json) | Machine-readable blank response template for a future human reviewer; all case answers remain `not_reviewed`, `null`, or empty until a real reviewer fills them. |
-| [Decision Work Brief Human Review Pilot Readiness Gate](docs/conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md) | PR152's readiness gate: the pilot packet and blank template are ready for a real human reviewer, but no human response has been collected and runtime/customer-facing use remains blocked. |
-| [Decision Work Brief Human Review Awaiting Response Gate](docs/conversation-understanding/decision-work-brief-human-review-awaiting-response-gate-v0.md) | PR153's pause gate: no real human response exists yet, so the next unblocked evidence step is a human-filled PR151 response template rather than Codex-substituted review. |
-| [Decision Work Automatic Triage Contract](docs/conversation-understanding/decision-work-automatic-triage-contract-v0.md) | PR154's docs/schema/test contract for the future automatic triage layer: route attention and escalation without scoring answer quality, approving advice, proving product value, claiming human validation, or authorizing action. |
-| [Decision Work Automatic Triage Contract JSON](docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json) | Machine-readable `lolla.decision_work_automatic_triage_contract.v0` contract defining triage categories, fields, route values, custody flags, calibration role, and non-claims. |
-| [Decision Work Automatic Triage Packet Builder](docs/conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md) | PR155's deterministic offline packet builder for future triage: it gathers refs, custody flags, triage field policy, future tasks, and known limits over the three builder-enriched cases without filling semantic triage fields. |
-| [Decision Work Automatic Triage Provisional Read](docs/conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md) | PR156's Codex-assisted provisional read over one PR155 packet shape, routing launch-beta, intake-routing, and cofounder/governance cases toward different source-depth, domain, overtrust, agent-inspection, and runtime-blocker concerns without scoring or approving advice. |
-| [Decision Work Brief Offline v1 Closure Gate](docs/conversation-understanding/decision-work-brief-offline-v1-closure-gate-v0.md) | PR157's closure gate selects `package_offline_v1`, claiming only functional offline v1 with explicit limitations: not runtime integration, not customer readiness, not human validation, not product proof, not answer-quality scoring, and not action authorization. |
-| [Decision Work Brief Offline v1 Package Gate](docs/conversation-understanding/decision-work-brief-offline-v1-package-gate-v0.md) | PR158's package gate and manifest for Offline v1, referencing the PR114-PR144 base package and explicitly adding PR145-PR157 human-calibration, third-case, automatic-triage, closure, and package-gate artifacts. |
-| [Decision Work Brief Runtime Attachment PRD](docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md) | Planning bridge after Offline v1: decides when a future brief should run, what the user sees, what another agent sees, what blocks generation, and why the first runtime-safe slice should be a flagged post-archive attachment path rather than full automation. |
-| [Decision Work Brief Runtime Attachment Contract](docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.md) | PR160's contract for a default-off, post-archive-only Decision Work Brief attachment path, including modes, states, blockers, receipts, handoff refs, privacy policy, custody flags, and non-claims. |
-| [Decision Work Brief Runtime Sidecar Contract](docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.md) | PR161's sidecar/artifact-location contract for `decision_work/` bundle artifacts beside a completed run, with blocked/deferred/failed states and no raw/private default export. |
-| [Decision Work Brief Runtime Bundle Generator](docs/conversation-understanding/decision-work-brief-runtime-bundle-generator-v0.md) | PR162's manual post-archive CLI and module for creating checked-in-safe attachment bundles from completed runs and explicitly supplied safe brief artifacts. |
-| [Decision Work Brief Runtime Eligibility Gate](docs/conversation-understanding/decision-work-brief-runtime-eligibility-gate-v0.md) | PR163's deterministic blocker and routing gate, producing generated, blocked, deferred, and agent-only states from artifact status, custody flags, and explicit triage routes. |
-| [Decision Work Brief Runtime Receipt](docs/conversation-understanding/decision-work-brief-runtime-receipt-v0.md) | PR164's short user receipt renderer for available, caveated, agent-only, blocked, deferred, failed-closed, and disabled attachment states. |
-| [Decision Work Brief Agent Handoff](docs/conversation-understanding/decision-work-brief-agent-handoff-v0.md) | PR165's checked-in-safe agent inspection packet, carrying refs, source status, missingness, uncertainty, route outputs, privacy status, and non-claims without action authorization. |
-| [Decision Work Brief Flagged Post-Archive Runtime Hook](docs/conversation-understanding/decision-work-brief-flagged-post-archive-runtime-hook-v0.md) | PR166's first runtime-attached behavior: `scripts/archive_run.py` can write a `decision_work/` sidecar only when `LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE` is explicitly enabled. |
-| [Decision Work Brief Runtime Attachment Review](docs/conversation-understanding/decision-work-brief-runtime-attachment-review-v0.md) | PR167's review of PR160-PR166, covering available, blocked, caveated/agent-only, default-off, receipt, handoff, and fail-closed behavior. |
-| [Decision Work Brief Runtime-Attached Internal v1 Package Gate](docs/conversation-understanding/decision-work-brief-runtime-attached-v1-package-gate-v0.md) | PR167's package gate and manifest for runtime-attached internal v1: functional behind a flag for completed clean runs, not customer readiness, product proof, human validation, answer-quality scoring, advice correctness, or action authorization. |
-| [Decision Work Brief Runtime-Attached Internal v1 Follow-up Plan](docs/conversation-understanding/decision-work-brief-runtime-attached-v1-followup-plan-v0.md) | PR168's choice gate after runtime-attached internal v1; it finds the hook mechanically attached but input-supply-limited and selects `safe_brief_supply_planning` as the next PR. |
-| [Decision Work Brief Runtime Safe Brief Supply Plan](docs/conversation-understanding/decision-work-brief-runtime-safe-brief-supply-plan-v0.md) | PR169's input-supply gate; it classifies which runtime attachment inputs are safe, manual, checked-in-safe only, future interpretation-dependent, or unavailable, and selects a safe supply resolver contract for PR170. |
-| [Decision Work Brief Runtime Safe Supply Resolver Contract](docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-contract-v0.md) | PR170's contract for the future deterministic supply resolver: modes, statuses, input types, unsafe exclusions, output shape, custody flags, and PR171 implementation boundary without runtime interpretation or hook changes. |
-| [Decision Work Brief Runtime Safe Supply Resolver](docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-v0.md) | PR171's deterministic resolver and CLI for validating safe refs, redacting local paths, excluding unsafe inputs, and emitting feedability status before the manual bundle consumes those refs. |
-| [Decision Work Brief Runtime Bundle Resolver Integration](docs/conversation-understanding/decision-work-brief-runtime-bundle-resolver-integration-v0.md) | PR172's manual-bundle integration: the bundle CLI can consume `--resolver-output`, preserve resolver status in attachment status and handoff, and produce available, agent-only, deferred, queued, local-private-required, or blocked receipts without changing the runtime hook. |
-| [Decision Work Brief Runtime Hook Resolver Wiring](docs/conversation-understanding/decision-work-brief-runtime-hook-resolver-wiring-v0.md) | PR173's default-off hook wiring: when `LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE` is enabled, the post-archive hook builds resolver output, passes it to the resolver-aware bundle, and writes available, agent-only, deferred, blocked, or failed-closed sidecars without model calls or default-on behavior. |
-| [Decision Work Brief Runtime Hook Resolver Fixture Review](docs/conversation-understanding/decision-work-brief-runtime-hook-resolver-fixture-review-v0.md) | PR174's review-only fixture gate over the PR173 hook sidecars; it confirms flag-off, deferred, available, agent-only, blocked, privacy-blocked, and failed-closed states and selects a checked-in-safe case registry next. |
-| [Decision Work Brief Runtime Checked-In Safe Case Registry](docs/conversation-understanding/decision-work-brief-runtime-checked-in-safe-case-registry-v0.md) | PR175's deterministic safe-ref registry for the three known Decision Work Brief examples; registry mode lets the resolver feed the manual bundle without manual env refs, while remaining curated-example-only and not a general live-run solution. |
-| [Decision Work Brief Runtime Hook Registry Fixture Review](docs/conversation-understanding/decision-work-brief-runtime-hook-registry-fixture-review-v0.md) | PR176's review-only registry fixture pass; it confirms the three registry entries can drive generated temp hook sidecars through the resolver-aware bundle seam and selects a runtime-attached internal v1 package refresh next. |
-| [Decision Work Brief Runtime-Attached Internal v1 Package Refresh](docs/conversation-understanding/decision-work-brief-runtime-attached-internal-v1-package-refresh-v0.md) | PR177's package refresh for PR160-PR176: internal default-off post-archive sidecar functionality when safe refs are supplied manually or through registry fixtures, with arbitrary-run semantic supply, customer readiness, validation, scoring, proof, and action authorization explicitly unclaimed. |
-| [Decision Work Automatic Semantic Supply PRD](docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md) | PR178's planning spine after PR216 merged runtime-attached internal v1. It defines how new completed runs should enter an offline interpretation queue, produce validated interpretation/triage artifacts, feed the existing brief/enrichment/rendering path, and update the sidecar without direct runtime interpretation or product-proof claims. |
-| [Decision Work Offline Interpretation Queue Contract](docs/conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md) | PR179's docs/schema/tests-only queue contract for automatic semantic supply. It defines queue item/result shapes, statuses, privacy modes, custody flags, validation requirements, and non-claims without adding a queue runner, model calls, generated reads, runtime behavior, or sidecar updates. |
-| [Decision Work Offline Interpretation Queue Builder](docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md) | PR180's deterministic queue item builder. It prepares checked-in-safe queue items from completed run refs and optional PR130 packet refs, preserving status and non-claims without filling semantic fields, calling models, mutating archives, or updating runtime sidecars. |
-| [Decision Work Operator/Codex Interpretation Prompt Packet](docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md) | PR181's prompt/input packet contract for a future operator or Codex session to fill a bounded PR133 interpretation read. It adds no generated read, generated-read intake, repo-side provider call, runtime behavior, proof claim, scoring, or action authorization. |
-| [Decision Work Generated Interpretation Read Intake](docs/conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md) | PR182's strict intake validator for externally supplied Decision Work interpretation reads. It validates schema compatibility, source refs, uncertainty, privacy limits, custody flags, and non-claims before any later offline brief, enrichment, triage, resolver, or sidecar path can consume the read. |
-| [Decision Work Generated Interpretation Read Intake Review](docs/conversation-understanding/decision-work-generated-interpretation-read-intake-review-v0.md) | PR183's review-only pass over the three existing checked-in reads and temporary synthetic rejection cases. It confirms the intake validator accepts compatible reads, rejects unsafe or overclaiming candidates, preserves the no-sidecar/no-action boundary, and gates to one bounded operator/Codex generated-read pilot. |
-| [Decision Work Operator/Codex Generated Read Pilot](docs/conversation-understanding/decision-work-operator-codex-generated-read-pilot-v0.md) | PR184's one-case launch-beta pilot: a checked-in-safe generated read enters through the PR182 validator and is accepted for later offline planning, while brief rendering, enrichment, triage, resolver updates, sidecar updates, model calls, proof claims, scoring, and action authorization remain out of scope. |
-| [Decision Work Generated Read To Brief Supply Plan](docs/conversation-understanding/decision-work-generated-read-to-brief-supply-plan-v0.md) | PR185's plan/review gate for turning an accepted generated read into future brief-supply input. It defines allowed feed fields, evidence-only fields, blockers, required refs, uncertainty, privacy, non-claims, and deterministic adapter allowances without generating briefs, enrichment, triage, resolver ref use, sidecar updates, proof claims, scoring, or action authorization. |
-| [Decision Work Generated Read Brief Supply Adapter](docs/conversation-understanding/decision-work-generated-read-brief-supply-adapter-v0.md) | PR186's deterministic adapter and CLI for accepted generated reads. It emits `lolla.decision_work_generated_read_brief_supply.v0` packets with allowed fields, source refs, uncertainty, blocker status, custody flags, and non-claims, while still not rendering briefs, generating triage, marking resolver refs usable, updating sidecars, calling models, scoring, proving, or authorizing action. |
-| [Decision Work Generated Read Brief Rendering Pilot](docs/conversation-understanding/decision-work-generated-read-brief-rendering-pilot-v0.md) | PR187's one-case launch-beta Markdown rendering pilot. It consumes a ready PR186 supply packet and writes a reader-facing generated-read brief while preserving refs, uncertainty, privacy limits, custody flags, and non-claims, without enrichment, triage, resolver ref use, sidecar updates, model calls, proof claims, scoring, or action authorization. |
-| [Decision Work Generated Read Brief vs Existing Brief Review](docs/conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md) | PR188's docs/review/tests-only comparison between the generated-read launch-beta brief and existing rendered/enriched launch-beta briefs. It finds the generated-read brief preserves the core decision and action consequence while remaining thinner than the enriched brief, and gates to a second generated-read rendering pilot without enrichment, triage, resolver ref use, sidecar updates, model calls, proof claims, scoring, or action authorization. |
-| [Decision Work Generated Read Second Brief Rendering Pilot](docs/conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md) | PR189's deploy-intake second-case rendering pilot. It validates a checked-in-safe generated read, builds PR186 supply, and renders a second generated-read brief with compliance/workflow caveats, source refs, uncertainty, privacy limits, custody flags, and non-claims intact, while still not enriching, generating triage, marking resolver refs usable, updating sidecars, calling models, scoring, proving, or authorizing action. |
-| [Decision Work Generated Read Brief Two-Case Pattern Review](docs/conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md) | PR190's docs/review/tests-only comparison of the launch-beta and deploy-intake generated-read-rendered briefs. It finds the path stable enough to plan generated-read triage supply, while keeping triage generation, resolver ref use, sidecar updates, model calls, proof claims, scoring, and action authorization out of scope. |
-| [Decision Work Generated Read Triage Supply Plan](docs/conversation-understanding/decision-work-generated-read-triage-supply-plan-v0.md) | PR191's docs/review/tests-only plan for future generated-read triage supply. It defines allowed inputs, routing fields, evidence-only fields, blocked fields, statuses, route categories, custody requirements, and forbidden quality/authority route concepts while still not generating triage, marking resolver refs usable, updating sidecars, calling models, scoring, proving, or authorizing action. |
-| [Decision Work Generated Read Triage Supply Adapter](docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md) | PR192's deterministic adapter and CLI for generated-read triage supply. It emits `lolla.decision_work_generated_read_triage_supply.v0` packets from generated read, intake, brief-supply, and rendered-brief refs, supports ready/deferred/blocked states for launch-beta and deploy-intake, and still does not generate triage, create triage reads, mark resolver refs usable, update sidecars, call models, score, prove, or authorize action. |
-| [Decision Work Generated Read Triage Generation Pilot](docs/conversation-understanding/decision-work-generated-read-triage-generation-pilot-v0.md) | PR193's first checked-in-safe generated triage read for launch beta. It routes attention to caveated offline brief candidacy, source-depth limits, private-context need, overtrust risk, and runtime attachment blocking while still not grading answer quality, marking resolver refs usable, updating sidecars, calling models, proving, or authorizing action. |
-| [Decision Work Generated Read Triage Pilot Review](docs/conversation-understanding/decision-work-generated-read-triage-pilot-review-v0.md) | PR194's docs/review/tests-only review of the first generated triage read. It finds the route vocabulary routes attention rather than grading advice, keeps uncertainty/source-depth/runtime boundaries visible, and gates to a deploy-intake second triage pilot without creating that second case yet. |
-| [Decision Work Generated Read Second Triage Pilot](docs/conversation-understanding/decision-work-generated-read-second-triage-pilot-v0.md) | PR195's checked-in-safe generated triage read for deploy-intake. It routes the healthcare workflow case to source-depth limits, private-context need, high overtrust risk, domain review, legal/compliance review, agent inspection, user-surface blocking, and runtime attachment blocking without grading advice, clearing deployment, marking resolver refs usable, updating sidecars, calling models, proving, or authorizing action. |
-| [Decision Work Generated Read Triage Two-Case Pattern Review](docs/conversation-understanding/decision-work-generated-read-triage-two-case-pattern-review-v0.md) | PR196's docs/review/tests-only comparison of the launch-beta and deploy-intake generated triage reads. It finds the route vocabulary stable enough to plan generated-read resolver supply while keeping route categories separate from answer-quality scoring, resolver approval, sidecar update, runtime wiring, proof claims, and action authorization. |
-| [Decision Work Generated Read Resolver Supply Plan](docs/conversation-understanding/decision-work-generated-read-resolver-supply-plan-v0.md) | PR197's docs/review/tests-only plan for future generated-read resolver supply. It defines resolver-supply candidates, allowed safe ref candidates, evidence-only fields, blocked fields, candidate statuses, route effects, custody requirements, and non-claims while keeping resolver approval, sidecar updates, runtime wiring, scoring, proof claims, and action authorization out of scope. |
-| [Decision Work Generated Read Resolver Supply Adapter](docs/conversation-understanding/decision-work-generated-read-resolver-supply-adapter-v0.md) | PR198's deterministic adapter and CLI for generated-read resolver supply candidates. It emits `lolla.decision_work_generated_read_resolver_supply.v0` packets from generated-read, intake, brief-supply, rendered-brief, triage-supply, and generated-triage refs, preserving runtime/user-surface blockers for deploy-intake while still not approving refs, updating sidecars, wiring runtime, scoring, proving, or authorizing action. |
-| [Decision Work Generated Read Resolver Supply Review](docs/conversation-understanding/decision-work-generated-read-resolver-supply-review-v0.md) | PR199's docs/review/tests-only review of launch-beta and deploy-intake resolver-supply candidate packets. It confirms candidate packets remain candidate summaries, not approved refs, runtime sidecar permission, user-surface readiness, quality labels, proof, or action authorization, and gates to a pre-runtime v1 package. |
-| [Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate](docs/conversation-understanding/decision-work-automatic-semantic-supply-pre-runtime-v1-package-gate-v0.md) | PR200's package gate and manifest for PR178-PR199. It packages the offline pre-runtime chain from generated interpretation reads to resolver-supply candidate packets with validation, rendering, triage, and resolver-boundary safeguards, while still excluding runtime attachment, resolver approval, sidecar updates, runtime wiring, production automation, scoring, proof claims, and action authorization. |
-| [Decision Work Resolver Candidate Sidecar Update Plan](docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-plan-v0.md) | PR201's docs/review/tests-only plan for a future offline sidecar update packet. It defines proposed packet inputs, fields, statuses, and blocked states while keeping the packet distinct from actual `decision_work/` sidecar writes, archive mutation, resolver approval, runtime wiring, scoring, proof claims, and action authorization. |
-| [Decision Work Resolver Candidate Sidecar Update Packet Adapter](docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md) | PR202's deterministic adapter and CLI for offline proposed sidecar update packets. It emits `lolla.decision_work_resolver_candidate_sidecar_update_packet.v0` from PR198 resolver-supply candidate packets, preserving launch/deploy sidecar-readiness distinctions while still not writing sidecars, mutating archives, approving refs, wiring runtime, scoring, proving, or authorizing action. |
-| [Decision Work Sidecar Update Packet Review](docs/conversation-understanding/decision-work-sidecar-update-packet-review-v0.md) | PR203's docs/review/tests-only review of launch/deploy proposed sidecar update packets. It confirms packets remain offline artifacts rather than actual sidecar writes, archive mutation, resolver approval, runtime wiring, user-surface readiness, quality labels, proof claims, or action authorization, and gates to a pre-write package. |
-| [Decision Work Sidecar Update Packet Pre-Write Package Gate](docs/conversation-understanding/decision-work-sidecar-update-packet-prewrite-package-gate-v0.md) | PR204's package gate and manifest for PR201-PR203. It packages the offline proposed sidecar update packet layer as pre-write v1 while still excluding actual sidecar writes, archive mutation, runtime wiring, resolver approval, default-on behavior, proof claims, scoring, and action authorization. |
-| [Decision Work Runtime Sidecar Write Plan](docs/conversation-understanding/decision-work-runtime-sidecar-write-plan-v0.md) | PR205's docs/review/tests-only plan for the first actual sidecar-write implementation. It defines eligible and blocked packet statuses, deploy-intake blocked handling, never-copy rules, resolver-approval prevention, and dry-run requirements while still not implementing writes, mutating archives, wiring runtime, approving refs, scoring, proving, or authorizing action. |
-| [Decision Work Sidecar Write Dry-Run Adapter](docs/conversation-understanding/decision-work-sidecar-write-dry-run-adapter-v0.md) | PR206's deterministic dry-run adapter and CLI. It emits `lolla.decision_work_sidecar_write_dry_run.v0` from PR202 sidecar update packets and can create preview files only under an explicit safe output directory, while still not writing sidecars, mutating archives, approving resolver refs, wiring runtime, scoring, proving, or authorizing action. |
-| [Decision Work Sidecar Write Dry-Run Review](docs/conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md) | PR207's docs/review/tests-only review of launch/deploy dry-run outputs. It confirms preview files stay temp/output-only, deploy preserves runtime blocking, and actual sidecar writes, archive mutation, resolver approval, runtime wiring, scoring, proof claims, and action authorization remain closed before any dry-run package gate. |
-| [Decision Work Sidecar Write Dry-Run Package Gate](docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-gate-v0.md) | PR208's package gate and manifest for PR206-PR207. It packages the offline dry-run preview layer as v1 while still excluding actual sidecar writes, archive mutation, runtime wiring, resolver approval, default-on behavior, proof claims, scoring, and action authorization. |
-| [Decision Work Runtime Sidecar Write Contract](docs/conversation-understanding/decision-work-runtime-sidecar-write-contract-v0.md) | PR209's contract/docs/schema/tests-only gate for a future explicit operator sidecar write adapter. It defines write input schemas, dry-run preconditions, modes, statuses, allowed files, forbidden content, path safety, and receipt requirements while still not writing sidecars, mutating archives, wiring runtime, approving resolver refs, scoring, proving, or authorizing action. |
-| [Decision Work Explicit Operator Sidecar Write Adapter](docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-adapter-v0.md) | PR210's deterministic fixture-only explicit operator write adapter and CLI. It writes sidecar-shaped files only to safe caller-supplied temp/output `decision_work` directories, emits `lolla.decision_work_explicit_operator_sidecar_write_receipt.v0`, and still does not write real archives, wire runtime, approve resolver refs, score, prove, or authorize action. |
-| [Decision Work Explicit Operator Sidecar Write Review](docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-review-v0.md) | PR211's docs/review/tests-only review of launch/deploy fixture writes. It confirms fixture-only status, deploy runtime blocking, path safety, and no real archive mutation, runtime wiring, resolver approval, scoring, proof claims, or action authorization before an explicit-operator write package gate. |
-| [Decision Work Explicit Operator Sidecar Write Package Gate](docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-package-gate-v0.md) | PR212's package gate and manifest for PR210-PR211. It packages controlled explicit operator sidecar write v1 for safe fixture/operator targets while still excluding real historical archive mutation as normal behavior, runtime wiring, resolver approval, default-on behavior, customer readiness, proof claims, scoring, certification, and action authorization. |
-| [Decision Work Controlled Archive Sidecar Write Fixture Plan](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md) | PR213's docs/review/tests-only plan for synthetic archive-shaped fixture writes. It defines how a future adapter may write the PR209 allowed sidecar file set under controlled temp/test/operator archive-like fixtures while still refusing real completed-run archives, existing historical archive paths, repo paths, runtime paths, resolver approval, proof claims, scoring, and action authorization. |
-| [Decision Work Controlled Archive Sidecar Write Fixture Adapter](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md) | PR214's deterministic adapter and CLI for synthetic archive-shaped fixture writes. It emits `lolla.decision_work_controlled_archive_sidecar_write_fixture.v0`, writes only under explicit safe temp/operator archive-like fixture roots, preserves deploy blocked state, and still refuses real archives, existing historical archive paths, repo/runtime paths, resolver approval, proof claims, scoring, and action authorization. |
-| [Decision Work Controlled Archive Sidecar Write Fixture Review](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-review-v0.md) | PR215's docs/review/tests-only review of launch/deploy synthetic archive-shaped fixture writes. It confirms fixture-only archive shape, deploy blocked state, unsafe path/source rejections, and no real archive mutation, archive-hook edit, runtime wiring, resolver approval, proof claims, scoring, or action authorization before a package gate. |
-| [Decision Work Controlled Archive Sidecar Write Fixture Package Gate](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md) | PR216's package gate and manifest for PR213-PR215. It packages synthetic archive-shaped fixture write v1 while still excluding real historical archive mutation, archive-hook integration, runtime wiring, resolver approval, default-on behavior, proof claims, scoring, certification, and action authorization. |
-| [Decision Work Sidecar Internal v1 Completion PRD](docs/conversation-understanding/decision-work-sidecar-internal-v1-completion-prd-v0.md) | PR217's current-state and finish-line PRD for the sidecar write path. It defines Internal v1 as an explicit operator flow from safe generated artifacts through validation, dry-run, and controlled real archive sidecar write with receipts and hard non-claims, records a six-PR ballpark path from PR218-PR223, and still does not implement real archive mutation, runtime wiring, resolver approval, default-on behavior, proof claims, scoring, or action authorization. |
-| [Decision Work Real Archive Sidecar Write Plan](docs/conversation-understanding/decision-work-real-archive-sidecar-write-plan-v0.md) | PR218's docs/review/tests-only plan for the first controlled real archive write boundary. It defines explicit target archive requirements, completed-run markers, matching packet/dry-run preconditions, no-overwrite policy, receipt semantics, blocked-state deploy behavior, and refusal rules before PR219 implements any command-only write adapter. |
-| [Decision Work Real Archive Sidecar Write Adapter](docs/conversation-understanding/decision-work-real-archive-sidecar-write-adapter-v0.md) | PR219's command-only adapter and CLI for explicit operator writes into archive-markered completed-run directories. It emits `lolla.decision_work_real_archive_sidecar_write_receipt.v0`, requires operator confirmation and matching dry-run input, writes only the allowed `decision_work/` file set, preserves deploy blocked state, and still does not wire runtime, edit archive hooks, approve resolver refs, score, prove, or authorize action. |
-| [Decision Work Real Archive Sidecar Write Review](docs/conversation-understanding/decision-work-real-archive-sidecar-write-review-v0.md) | PR220's docs/review/tests-only review of launch/deploy synthetic completed-run archive writes. It confirms allowed files, no-overwrite and unsafe-input refusals, deploy runtime/user-surface blocking, and no runtime wiring, archive-hook edit, resolver approval, default-on behavior, scoring, proof, or action authorization before a package gate. |
-| [Decision Work Real Archive Sidecar Write Package Gate](docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-gate-v0.md) | PR221's package gate and manifest for PR218-PR220. It packages command-only real archive sidecar write v1 for explicit operator-confirmed, no-overwrite writes into archive-markered completed-run directories, validated against synthetic completed-run archive dirs, while still excluding runtime wiring, archive-hook integration, default-on behavior, resolver approval, scoring, proof, certification, and action authorization. |
-| [Decision Work Sidecar Internal v1 Operator Runbook](docs/conversation-understanding/decision-work-sidecar-internal-v1-operator-runbook-v0.md) | PR222's docs/tests-only operator runbook for the Internal v1 flow from generated read intake through brief supply, rendered brief, triage supply, resolver supply, sidecar update packet, dry-run, command-only archive write, and receipt inspection. It uses placeholder paths and preserves blocked/deferred handling and all non-claims. |
-| [Decision Work Sidecar Internal v1 Current State](docs/board/decision-work-sidecar-internal-v1-current-state.md) | PR223's board/product-readable closeout narrative for Internal v1. It explains what the command-only sidecar pipeline now does, why receipts and blocked-state outcomes matter, and why this is still not customer-ready automation, default-on runtime behavior, resolver approval, proof, scoring, or action authorization. |
-| [Decision Work Sidecar Automation Readiness PRD](docs/conversation-understanding/decision-work-sidecar-automation-readiness-prd-v0.md) | PR224's phase PRD after Internal v1. It defines a conservative offline/operator readiness phase for newly completed runs, standardizes sidecar-ready, blocked, deferred, and rejected statuses, and records a 9-12 PR roadmap that starts with an offline operator runner plan while still excluding runner implementation, queue workers, runtime wiring, default-on behavior, resolver approval, provider/model calls, proof claims, scoring, and action authorization. |
-| [Decision Work Offline Operator Runner Plan](docs/conversation-understanding/decision-work-offline-operator-runner-plan-v0.md) | PR225's plan-only first automation-readiness slice. It defines a future one-shot, command-only offline runner that orchestrates existing CLIs from explicit paths, emits `runner_summary.json`, preserves launch/deploy blocked-state differences, and keeps write mode optional/default-off while still excluding implementation, queue workers, runtime wiring, direct semantic interpretation, resolver approval, provider/model calls, scoring, proof claims, and action authorization. |
-| [Decision Work Offline Operator Runner Adapter](docs/conversation-understanding/decision-work-offline-operator-runner-adapter-v0.md) | PR226's one-shot offline runner and CLI. It orchestrates existing deterministic CLIs from explicit inputs through dry-run readiness, emits `lolla.decision_work_offline_operator_runner.v0`, preserves missingness/blockers/deferred state, and deliberately stops before any real archive write even when write flags are supplied. |
-| [Decision Work Offline Operator Runner Fixture Review](docs/conversation-understanding/decision-work-offline-operator-runner-fixture-review-v0.md) | PR227's docs/review/tests-only fixture review of the PR226 runner. It confirms launch reaches `sidecar_ready_for_explicit_write`, deploy reaches `sidecar_ready_blocked_state`, missing inputs defer, unsafe inputs block, write requests stop before explicit write, and no sidecar write, archive mutation, runtime wiring, resolver approval, scoring, proof, or action authorization occurs. |
-| [Decision Work Non-Curated Completed-Run Pilot Plan](docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-plan-v0.md) | PR228's docs/review/tests-only plan for the first non-curated completed-run pilot. It chooses a synthetic or sanitized archive-like fixture by default, requires explicit existing generated-read and generated-triage inputs, keeps outputs temp/operator-local, preserves missingness/blockers/deferred reasons/source-depth limits, and still excludes pilot execution, semantic generation, sidecar writes, archive mutation, runtime wiring, resolver approval, scoring, proof, and action authorization. |
-| [Decision Work Non-Curated Completed-Run Pilot](docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-v0.md) | PR229's first non-curated runner pilot. It uses a synthetic completed-run-like temp fixture outside launch/deploy and reaches `deferred_missing_semantic_read`, proving the runner preserves missing semantic input rather than inventing interpretation. It checks in no runner summaries, sidecar outputs, archive mutations, runtime wiring, resolver approval, scoring, proof, or action authorization. |
-| [Decision Work Non-Curated Pilot Review](docs/conversation-understanding/decision-work-non-curated-pilot-review-v0.md) | PR230's review of the PR229 deferred non-curated pilot. It treats `deferred_missing_semantic_read` as an acceptable first honesty signal, decides it is not enough for package readiness, and selects a second non-curated pilot with existing checked-in-safe generated read and generated triage inputs. |
-| [Decision Work Second Non-Curated Completed-Run Pilot](docs/conversation-understanding/decision-work-second-non-curated-completed-run-pilot-v0.md) | PR231's deeper non-curated runner pilot. It uses a synthetic temp fixture plus existing checked-in-safe semantic inputs, reaches `sidecar_ready_for_explicit_write`, completes the deterministic chain through dry-run, and checks in no runner summaries, sidecar outputs, archive mutations, runtime wiring, resolver approval, scoring, proof, or action authorization. |
-| [Decision Work Second Non-Curated Pilot Review](docs/conversation-understanding/decision-work-second-non-curated-pilot-review-v0.md) | PR232's review of PR229 and PR231 together. It finds the offline runner can stop honestly when semantic input is missing and go deep when existing safe semantic inputs are supplied, but explicitly does not treat PR231 as proof of arbitrary non-curated semantic understanding. It selects an Automation Readiness package gate next. |
-| [Decision Work Sidecar Automation Readiness Package Gate](docs/conversation-understanding/decision-work-sidecar-automation-readiness-package-gate-v0.md) | PR233's package gate and manifest for PR224-PR232. It packages Automation Readiness v1 as an offline, command-only operator-runner layer that can orchestrate deterministic Decision Work artifacts from explicit paths, defer visibly on missing semantic input, and reach dry-run readiness with existing safe semantic inputs while still excluding queue workers, runtime wiring, resolver approval, sidecar writes from the runner, proof claims, scoring, certification, and action authorization. |
-| [Decision Work Receipt / Blocked-State Language Review](docs/conversation-understanding/decision-work-receipt-blocked-state-language-review-v0.md) | PR234's docs/review/tests-only closeout language review for Automation Readiness v1. It accepts `sidecar_ready_for_explicit_write`, `sidecar_ready_blocked_state`, dry-run readiness, automation readiness, `runner_summary.json`, and `operator_attention_items` only with caveats preserved, and selects a separate Product Delta Evaluation Readiness PRD next without changing runner behavior or starting eval implementation. |
-| [Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md) | Internal audit of what Lolla currently captures from conversations, what is merged, what is only designed, and what is still missing before a first-class Decision Trail report. |
-| [Decision Trail PR86-PR89 PRD](docs/conversation-understanding/decision-trail-pr86-pr89-prd-v0.md) | Staged implementation plan for the Decision Trail report: schema, read-only exporter, fixture review, and interpretation-gap decision gate. |
-| [Decision Trail Report PRD](docs/conversation-understanding/decision-trail-report-prd-v0.md) | PR86's report contract: what the Decision Trail report is, field ownership, safe/private modes, redaction versus missingness, trace compatibility, validation, and non-claims. |
-| [Decision Trail Report Schema](docs/conversation-understanding/decision-trail-report-v0.json) | Machine-readable `lolla.decision_trail_report.v0` schema for the future read-only exporter, with shared semantic section shape and custody constraints. |
-| [PR86 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr86-goal-prompt-v0.md) | Ready-to-paste `/goal` handoff for a fresh coder session to implement PR86 only: Decision Trail report PRD and schema, with no exporter or runtime integration. |
-| [PR87 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr87-goal-prompt-v0.md) | Ready-to-paste `/goal` handoff for a fresh coder session to implement PR87 only: a read-only Decision Trail exporter over completed artifacts. |
-| [Decision Trail Read-Only Exporter](docs/conversation-understanding/decision-trail-readonly-exporter-v0.md) | PR87's deterministic exporter for sparse `lolla.decision_trail_report.v0` reports from completed run directories, with checked-in-safe artifact reading and explicit missingness. |
-| [PR88 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr88-goal-prompt-v0.md) | Ready-to-paste `/goal` handoff for a fresh coder session to implement PR88 only: fixture review of exported Decision Trail reports for usefulness, missingness, readability, and overtrust risk. |
-| [Decision Trail Export Fixture Review](docs/conversation-understanding/decision-trail-export-fixture-review-v0.md) | PR88's safe-fixture-only review of exported Decision Trail reports, finding the custody/missingness shell useful but too sparse for the full Decision Trail product without later interpretation. |
-| [Decision Trail Interpretation Gap Decision](docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md) | PR89's docs-only decision gate: keep the custody shell, reject runtime/broad-IR expansion for now, and pursue narrow offline LLM specialist contracts next. |
-| [PR90 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr90-goal-prompt-v0.md) | Ready-to-paste `/goal` handoff for a fresh coder session to implement PR90 only: docs/schema contracts for narrow offline Decision Trail interpretation specialists. |
-| [Decision Trail Specialist Contracts](docs/conversation-understanding/decision-trail-specialist-contracts-v0.md) | PR90's docs/schema contract for four narrow offline Decision Trail interpretation specialists: conversation shape, likely actions, friction/lost value, and conservative fan-in. |
-| [Decision Trail Specialist Packet Builder](docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md) | PR91's read-only packet builder for shaping PR88 fixture-review context into checked-in-safe input packets for the four PR90 specialist contracts. |
-| [Decision Trail Specialist Trap Set](docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md) | PR92's checked-in-safe trap fixtures for testing whether future Decision Trail specialist passes resist over-inference, overtrust, lost-value blindness, and fan-in smoothing. |
-| [Decision Trail Specialist Dry Run](docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md) | PR93's Codex-assisted provisional dry run over PR92 traps and the tiny PR91 packet surface, checking review discipline without creating specialist outputs or product proof. |
-| [Decision Trail Specialist Path Decision](docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md) | PR94's docs-only decision gate selecting local-private Decision Trail packet mode as the next slice, while rejecting broader checked-in-safe batches, runtime integration, and broad IR work for now. |
-| [Decision Trail Local-Private Packet Mode](docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md) | PR95's explicit local-private packet mode for operator-selected completed run directories, with output-path guards, metadata-only/include-text policies, unsafe-for-commit marking, and no specialist-output generation. |
-| [Decision Trail Local-Private Packet Smoke Review](docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md) | PR96's local smoke/review of PR95 packets over real completed runs and synthetic include-text guardrails, recommending only a tiny specialist-output pilot next. |
-| [Decision Trail Local-Private Specialist Output Pilot](docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md) | PR97's one-case local-private specialist-output pilot, filling all four PR90 roles by checked-in summary only while keeping private packet content out of the repo. |
-| [Decision Trail Specialist Output Pilot Review](docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md) | PR98's review/decision gate over PR97, blocking broader specialist batches until contracts and packet metadata are patched. |
-| [Decision Trail Specialist Contract And Packet Patch](docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md) | PR99's additive patch to the specialist contracts and packet metadata, adding source-scope, truncation, vanilla-overlap, severity, assistant-influence, downgrade-trigger, and retention-policy fields before any second one-case pilot. |
-| [Decision Trail Second One-Case Specialist Pilot](docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md) | PR100's second local-private specialist-output pilot using the PR99 fields, finding partial usefulness because material vanilla overlap should downgrade the read before any broad batch. |
-| [Decision Trail Specialist Pilot Comparison Gate](docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md) | PR101's checked-in-summary comparison of PR97 and PR100, deciding broad batches are not ready and allowing at most one diversity-targeted third pilot. |
-| [Decision Trail Third One-Case Diversity Pilot](docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md) | PR102's deployment-controls specialist-output pilot, preserving material vanilla overlap while surfacing noise-reduction and operating-load friction as the new useful signal. |
-| [Decision Trail Specialist Pilot Phase Closure Gate](docs/conversation-understanding/decision-trail-specialist-pilot-phase-closure-gate-v0.md) | PR103's checked-in-summary closure gate over PR97, PR100, and PR102: close one-case pilots, block a fourth pilot and broad batch, and recommend human-review intake or pause. |
-| [Decision Trail Human Review Intake Packet](docs/conversation-understanding/decision-trail-human-review-intake-packet-v0.md) | PR104's future-human-review intake packet over PR97, PR100, and PR102, with blank correction fields and an explicit pause until human review capacity returns. |
-| [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
-| [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
-| [Product Delta Evidence And Interpretation Adequacy](docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md) | The post-PR70 product-readiness bridge: prove decision-useful deltas against actual vanilla strong-model conversations, and treat conversation interpretation quality as load-bearing. |
-| [Product Delta Evidence Thesis](docs/evals/product-delta-evidence-thesis-v0.md) | PR71's docs-only thesis for the lower-claim Product Delta Evidence phase: Codex-assisted provisional review scaffolding, not human validation, product proof, scoring, judging, or agent approval. |
-| [Vanilla-vs-Lolla Provisional Review Protocol](docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md) | PR72's protocol and schema for comparing actual vanilla strong-model advice with Lolla revised answers while keeping all subjective findings provisional. |
-| [Codex-Assisted Paired Review Dry Run](docs/evals/codex-assisted-paired-review-dry-run-v0.md) | PR73's eight-case paraphrase-only dry run of the provisional protocol over existing safe artifacts, including an inconclusive case and human follow-up questions. |
-| [Provisional Product Delta Failure Taxonomy](docs/evals/provisional-product-delta-failure-taxonomy-v0.md) | PR74's provisional taxonomy for product-delta, interpretation, and review-process failures, explicitly not automatic labels, judge calibration data, scoring, or product proof. |
-| [Product Delta Eval Readiness And Provisional Run](docs/evals/product-delta-eval-readiness-and-provisional-run-v0.md) | PR75's read-only generated report over 14 existing cases: 12 ready for Codex provisional review, one private-content-only partial, and one degraded-run block, with PR72-shaped shells and no semantic judgment. |
-| [Codex-Assisted Product Delta Batch](docs/evals/codex-assisted-product-delta-batch-v0.md) | PR76's Codex-assisted provisional semantic fill over the 12 PR75-ready shells, with mixed candidate reads, lost-value notes, interpretation-adequacy caveats, and no human-validation claim. |
-| [Product Delta Provisional Report](docs/evals/product-delta-provisional-report-v0.md) | PR77's state-of-evidence report over PR75 and PR76: 14 readiness cases, 12 provisional semantic reads, recurring structural deltas, lost-value risks, interpretation concerns, and explicit non-proof boundaries. |
-| [Product Delta Evidence Boundary Lint](docs/evals/product-delta-evidence-boundary-lint-v0.md) | PR78's deterministic read-only lint for Product Delta artifacts: blocks metadata, field, taxonomy, privacy, and non-claim drift without judging answer quality or touching runtime. |
-| [Context-Engineered Provisional Review Architecture](docs/evals/context-engineered-provisional-review-architecture-v0.md) | PR79's docs-only architecture for future bounded specialist reads: decompose LLM-assisted interpretation, preserve disagreement, pass PR78 lint, and avoid judges, scores, runtime integration, and agent approval. |
-| [Product Delta Specialist Review Contracts](docs/evals/product-delta-specialist-review-contracts-v0.md) | PR80's docs/schema contracts for the bounded specialist reads named in PR79, with typed lower-claim outputs and no packet builder, review batch, fan-in execution, scoring, judging, or runtime integration. |
-| [Product Delta Specialist Packet Builder](docs/evals/product-delta-specialist-packet-builder-v0.md) | PR81's read-only packet builder for creating checked-in-safe per-specialist input packets from existing Product Delta artifacts, with no specialist answers, model calls, archive mutation, scoring, judging, or runtime integration. |
-| [Provisional Reviewer Trap Set](docs/evals/provisional-reviewer-trap-set-v0.md) | PR82's checked-in-safe trap fixtures for testing whether future specialist review resists thin context, length bias, caution theater, lost value, disagreement smoothing, and overclaim hardening before real specialist batches. |
-| [Codex-Assisted Specialist Review Batch](docs/evals/codex-assisted-specialist-review-batch-v0.md) | PR83's first provisional specialist-review batch: trap discipline plus two checked-in-safe real cases, including one downgrade from PR76 material to partial, with no human-validation or product-proof claim. |
-| [Product Delta Fan-In / Disagreement Report](docs/evals/product-delta-fan-in-disagreement-report-v0.md) | PR84's static provisional report over PR76 and PR83: preserves the one PR83 downgrade, both lost-value and interpretation-adequacy concern surfaces, trap behavior counts, and thinness limits without adding new semantic reads. |
-| [Product Delta PR71-PR84 Packaging Gate](docs/evals/product-delta-pr71-pr84-packaging-gate-v0.md) | PR85's packaging gate for the Product Delta Evidence phase: manifest PR71-PR84 files, verify boundary metadata/source refs/lint coverage, and make the downgrade plus two-case thinness easy to inspect before explicit packaging. |
-| [Current State Anti-Drift Handoff](docs/evals/current-state-anti-drift-handoff-v0.md) | PR45's compact fresh-session map, updated by PR70, of the PR30-PR70 eval/accountability chain, current corpus evidence, non-goals, and the next approval gates. |
-| [Semantica-Inspired Accountability PRD](docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md) | PR55's docs-only plan for borrowing accountability primitives such as decision records, provenance maps, conflict registers, doctor/preflight, and case graph views without building graph DB, embeddings, memory, policy, compliance, judge, or scoring products. |
-| [Lolla Doctor / Preflight Plan](docs/evals/lolla-doctor-preflight-plan-v0.md) | PR56's docs-only plan for a future read-only doctor command that checks local runtime wiring, archive paths, helper scripts, provider/cost readiness, review manifests, high-stakes evidence visibility, output-path safety, and privacy without running `$lolla`, calling models, or mutating archives. |
-| [Lolla Doctor Read-Only CLI](docs/evals/lolla-doctor-readonly-cli-v0.md) | PR57's implementation note for `python3 scripts/lolla_doctor.py`, a local deterministic preflight command that emits `lolla.doctor_report.v0` without running `$lolla`, calling models, reading archive payloads, mutating archives, or judging answer quality. |
-| [Audit Decision Record Design](docs/conversation-understanding/audit-decision-record-v0.md) | PR58's docs/JSON design for `lolla.audit_decision_record.v0`, a paraphrase-only accountability projection over existing artifacts that maps decision deltas to PR31 labels without becoming an exporter, judge, score, memory layer, or conversation-understanding IR. |
-| [Audit Decision Record Fixtures](docs/evals/audit-decision-record-fixtures-v0.md) | PR59's docs/eval-only fixture review of six paraphrase-only audit decision records, confirming the shape is useful before any exporter, runtime integration, labels, scores, or judge. |
-| [Provenance Map Design](docs/conversation-understanding/provenance-map-v0.md) | PR60's docs/JSON design for `lolla.provenance_map.v0`, a local artifact-lineage map that borrows entity/activity/agent vocabulary without RDF, W3C compliance claims, graph DB, memory, runtime integration, or answer-quality scoring. |
-| [Review Conflict Register Design](docs/evals/review-conflict-register-v0.md) | PR61's docs/JSON design for `lolla.review_conflict_register.v0`, a human-review-owned register of unresolved tensions that does not resolve conflicts, score severity into actions, enforce policy, or judge answer quality. |
-| [Case Graph Export Design](docs/conversation-understanding/case-graph-export-v0.md) | PR62's docs/JSON design for `lolla.case_graph.v0`, a future run-local case graph export/view shape that does not implement an exporter, graph DB, memory, GraphRAG, entity resolution, runtime integration, or answer-quality scoring. |
-| [Accountability View Fixtures](docs/evals/accountability-view-fixtures-v0.md) | PR63's paraphrase-only fixture pack showing audit decision record, provenance map, review conflict register, and case graph views together on three reviewed cases before any exporter or runtime feature exists. |
-| [Accountability View Fixture Review](docs/evals/accountability-view-fixture-review-v0.md) | PR64's docs/eval-only review of the PR63 bundles, finding all three useful while recommending only `audit_decision_record` for a later exporter-design decision. |
-| [Accountability Implementation Decision Gate](docs/evals/accountability-implementation-decision-gate-v0.md) | PR65's docs-only decision gate choosing outcome A: recommend a future read-only `audit_decision_record` exporter while holding provenance, conflict-register, and case-graph implementation. |
-| [Audit Decision Record Read-Only Exporter](docs/evals/audit-decision-record-readonly-exporter-v0.md) | PR66's read-only local exporter for `lolla.audit_decision_record.v0`, built from structured/custody-safe artifacts without running `$lolla`, calling models, mutating archives, reading raw transcript/memo/revised-answer content, inferring labels, scoring advice, or changing runtime behavior. |
-| [Audit Decision Record Export Smoke Review](docs/evals/audit-decision-record-export-smoke-review-v0.md) | PR67's docs/review slice over PR66 exporter outputs, finding the records useful and safe while recommending PR68 schema/exporter refinement for clearer empty PR31 bucket semantics before archive integration or automatic generation. |
-| [Audit Decision Record Schema / Exporter Refinement](docs/evals/audit-decision-record-schema-exporter-refinement-v0.md) | PR68's refinement of the same `lolla.audit_decision_record.v0` exporter output, adding PR31 population policy, per-bucket statuses, nested buckets, and semantic-field empty-meaning metadata without inferring labels, scoring advice, mutating archives, or changing runtime behavior. |
-| [Audit Decision Record Export Review Re-Run](docs/evals/audit-decision-record-export-review-rerun-v0.md) | PR69's docs/review rerun over refined PR68 exporter outputs, finding empty PR31 buckets and semantic empty fields clear as non-claims before PR70 closed the machinery lane. |
-| [Audit / Accountability Machinery Closure Gate](docs/evals/audit-accountability-machinery-closure-gate-v0.md) | PR70's docs-only closure gate declaring the audit/accountability machinery done enough for now and shifting the next phase to Product Delta Evidence instead of more artifacts or archive integration. |
-| [Complex Baseline Human Review](docs/evals/complex-baseline-human-review-v0.md) | PR30's six-run human/product review seed: useful friction, action-changing deltas, conservative reliance labels, and the PR31 rubric handoff. |
-| [Actionable Delta Rubric](docs/evals/actionable-delta-rubric-v0.md) | PR31's human-owned rubric for distinguishing real Lolla improvement from smoother no-op prose before adversarial fixtures or judges. |
-| [Adversarial Pair Fixtures](docs/evals/adversarial-pair-fixtures-v0.md) | PR32's seed fixtures for testing smoothness, status, checklist, balance, warmth, market-excitement, and authority-loyalty traps before any judge exists. |
-| [Human Review Corpus Batch](docs/evals/human-review-corpus-batch-v0.md) | PR33's broader human/product review batch: 12 counted positives, one partial boundary record, one degraded exclusion, aggregate actionable-delta counts, and the PR34 handoff. |
-| [User Values / Priorities Signal](docs/conversation-understanding/user-values-priorities-signal-v0.md) | PR34's design-only surface for representing values, priorities, tradeoffs, obligations, and non-negotiables without adding extraction, memory, runtime calls, or judging. |
-| [User Values / Priorities Worksheet Plan](docs/evals/user-values-priorities-worksheet-plan-v0.md) | PR49's docs-only plan for making the PR34 values/priorities surface actionable as human review evidence before extraction, exports, memory, runtime behavior, or judging. |
-| [User Values / Priorities Worksheet Fixtures](docs/evals/user-values-priorities-worksheet-fixtures-v0.md) | PR50's paraphrase-only fixture pack for testing whether the PR49 worksheet shape is understandable before export, extraction, runtime behavior, automatic labels, or judging. |
-| [User Values / Priorities Worksheet Fixture Review](docs/evals/user-values-priorities-worksheet-fixture-review-v0.md) | PR51's docs/eval-only review of the PR50 fixture pack before blank worksheet/export structure, extraction, runtime behavior, automatic labels, or judging. |
-| [User Values / Priorities Blank Worksheet Export](docs/evals/user-values-priorities-blank-worksheet-export-v0.md) | PR52's deterministic helper for creating blank human-owned worksheet JSON without reading archives, extracting values, changing runtime behavior, automatic labels, or judging. |
-| [User Values / Priorities Worksheet Human Pilot](docs/evals/user-values-priorities-worksheet-human-pilot-v0.md) | PR53's docs/local-review pilot of human-filled worksheet JSON over existing reviewed records without raw content, extraction, runtime behavior, automatic labels, or judging. |
-| [User Values / Priorities Pilot Review](docs/evals/user-values-priorities-pilot-review-v0.md) | PR54's docs/local-review decision that marks the values/priorities worksheet v0 complete for human-owned review and paused before extraction, runtime integration, automatic labels, memory, or judging. |
-| [Live Output Hygiene Decision](docs/evals/live-output-hygiene-decision-v0.md) | PR35's design-only policy for `live_output_health`: keep `not_checked` honest by default, define a future trusted-transcript path to `clean`, and keep live hygiene separate from answer quality. |
-| [Risk Mode Behavior Plan](docs/evals/risk-mode-behavior-plan-v0.md) | PR36's design-only policy for `quick`, `standard`, `deep`, `high_stakes`, and `stability`: risk changes review/reliance burden, not answer quality or domain authority. |
-| [Risk Mode Fixture Matrix](docs/evals/risk-mode-fixture-matrix-v0.md) | PR37's paraphrase-only fixtures for testing risk-mode review/reliance expectations before runtime enforcement, caller-action changes, or judges. |
-| [Risk Mode Fixture Review](docs/evals/risk-mode-fixture-review-v0.md) | PR38's human/product review of the risk-mode fixtures, including the added high-stakes values-conflict fixture and implementation-gate read. |
-| [Risk Mode Implementation Plan](docs/evals/risk-mode-implementation-plan-v0.md) | PR39's docs-only plan for high-stakes reliance/readiness tightening, starting with contract-lock tests before enforcement. |
-| [Risk Mode Contract Tests](tests/test_risk_mode_contract.py) | PR40's test-only contract lock for high-stakes conservatism, standard-mode regression, degraded-run dominance, fixture expectations, and review-corpus preservation. |
-| [Evaluation Artifact Tests](tests/test_evaluation_artifact.py) | PR41's deterministic evaluation-artifact clarity tests for high-stakes reliance caveats without caller-action relaxation, domain approval, or answer-quality scoring. |
-| [Review Corpus Evidence Readiness](docs/evals/review-corpus-evidence-readiness-v0.md) | PR48's manifest-only analyzer for deciding whether review-corpus data actually contains high-stakes reliance-present archive evidence before any real-run claim. |
-| [Human Review Workflow](docs/evals/human-review-workflow.md) | The v0 human-review process and failure taxonomy for labeling exported archive-corpus records before any subjective judge is attempted. |
-| [Problem and Thesis](docs/how-it-works/problem-and-thesis.md) | Why Lolla exists: borrowed certainty, sycophancy, structural pressure, and the Munger tendency ontology. |
-| [Knowledge Substrate](docs/how-it-works/knowledge-substrate.md) | The 222 mental models, curation waves, graph, embeddings, V60 records, and bundled data files. |
-| [Architecture and Evolution](docs/how-it-works/architecture-and-evolution.md) | `ConversationContext`, `ConversationIR`, packet builders, migration history, trust boundaries, and observability. |
-| [Live Flow](docs/how-it-works/live-flow.md) | Full chronological `/lolla` flow: capture, extraction, pipeline, reconsideration, default-off pressure-check state, optional deeper review, memo, Observatory, archive. |
-| [Pipeline Lanes](docs/how-it-works/pipeline-lanes.md) | Lane 1-4 mechanics, V60 private enrichment, pre-Step-6 shadow portfolio, `run_health`, and tiebreaker traces. |
-| [Operations and Limits](docs/how-it-works/operations-and-limits.md) | Quality doctrine, environment variables, edge cases, limitations, and cost notes. |
-| [Cost and Telemetry](docs/cost-and-telemetry.md) | Canonical usage-summary and pricing reference. |
+| `agent_result.json` | Compact `lolla_agent_result.v2` handoff with neutral `review_revised_answer` action |
+| `evaluation.json` | Deterministic run-readiness receipt for artifacts, schemas, custody, hygiene, capture, and caller conservatism |
+| `reasoning_trace.json` | Local-only manifest of paths, hashes, health, usage, pressure state, and model-call telemetry |
+| `graph_survival_report.{json,md}` | Operator/research view of candidates, recalls, dispositions, and visible/private survival |
+| `extraction_adequacy_report.json` | What provenance survived or weakened across source, extraction, and runtime representations |
+| `control_result.json` | Optional wrapper when an external control input exists; it does not approve an action |
 
-## Current Notes
+The archive preserves raw artifacts by reference and hash. Compact receipts do
+not duplicate the full conversation.
 
-- Checked against `SKILL.md` and runtime entry points on 2026-06-25.
-- Current Decision Trail state as of PR104: the runtime produces completed run
-  artifacts; the offline Decision Trail lane can export sparse reports and
-  build checked-in-safe or explicit local-private specialist packets; PR97
-  shows one local-private include-text packet can support all four narrow
-  specialist-output shapes by checked-in summary only; PR98 blocked broader use
-  until contracts and packet metadata were patched; PR99 applies that patch;
-  PR100 uses the patched shape on one additional case and records a
-  partial-usefulness read; PR101 compares PR97 and PR100 and keeps broad
-  specialist-output batches blocked; PR102 uses the one allowed
-  diversity-targeted deployment-controls pilot; PR103 closes the one-case
-  pilot phase and blocks a fourth pilot or broad batch; PR104 packages the
-  three pilots into a future-human-review intake packet with blank correction
-  fields. The next conservative move is pause until human review capacity
-  returns. No Product Delta eval, Decision Trail report, specialist output, or
-  fan-in is triggered automatically by `$lolla`.
-- PR95 local-private packets are a source-access step, not a product verdict.
-  `metadata_only` records availability, `include_text` copies capped private
-  text into an unsafe-for-commit local output, and both modes still stop before
-  likely-action, option, stakeholder, value, assistant-influence,
-  useful/noisy-friction, lost-value, and fan-in conclusions.
-- PR96 smoke-reviewed that packet path. Metadata-only packets worked over two
-  real completed runs without copying raw/private content, and include-text
-  worked mechanically with unsafe-for-commit marking.
-- PR97 filled a tiny one-case local-private specialist-output pilot. It made
-  the likely-action delta, lost-value risk, and fan-in tension more concrete
-  than the sparse checked-in-safe shell, but it is still Codex-assisted,
-  unvalidated, local-private, and not product proof.
-- PR98 reviewed that pilot and decided the next Decision Trail step should be a
-  PR99 contract/packet patch before any second one-case pilot, broad batch, or
-  runtime integration.
-- PR99 patched the specialist contracts and packets with source-scope,
-  truncation, vanilla-overlap, lost-value severity, assistant-influence source
-  status, fan-in downgrade triggers, and local-private retention policy
-  metadata.
-- PR100 used that patched shape on the `accept-founding-engineer-role` case.
-  The strongest signal is discipline rather than positivity: `vanilla_overlap_read`
-  is `material_overlap_candidate`, so the net read is partial usefulness.
-  PR101 then compared PR97 and PR100 before any third pilot or broad batch.
-- PR101 compared PR97 and PR100 using checked-in summaries only. It decides
-  broad specialist-output batches are not ready and allows at most one
-  diversity-targeted third one-case pilot before stopping, simplifying, or
-  preparing human-review intake.
-- PR102 used that one diversity-targeted pilot on the
-  `deploy-assisted-intake-routing` case. It records a partial-usefulness read
-  with a new useful signal: reduce noisy gate bloat and make admin operating
-  load part of safety.
-- PR103 closes the specialist-pilot phase. It compares PR97, PR100, and PR102
-  by checked-in summaries only, blocks a fourth one-case pilot and broad batch,
-  and recommends PR104 Human Review Intake Packet v0 or pause if human review
-  capacity is unavailable.
-- PR104 packages PR97, PR100, and PR102 into a future-human-review intake
-  packet. It leaves all human correction fields blank, records
-  `human_fields_filled: false`, and makes pause the correct next state until a
-  reviewer can fill or reject the packet.
-- Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
-- The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
-- The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, optional usefulness/outcome reviews, and optional `control_input.json` when present. It also generates `agent_result.json`, the compact agent-facing handoff; optional `control_result.json`, the control-plane wrapper; `extraction_adequacy_report.json`, the deterministic report for current extraction/provenance preservation across `conversation.txt -> extraction.json -> ConversationContext -> ConversationIR`; `evaluation.json`, the deterministic run-readiness receipt; and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds capture-adequacy, optional control-plane references, reasoning-lens, model-call, private-custody, and trace-adequacy metadata.
-- The June 24 accountability pass added run lifecycle events, operator-log separation for helper diagnostics, final-receipt Observatory liveness verification, trusted live-transcript finalization for merge-readiness checks, and graph-survival joins that preserve Lane 2 ledger uptake correctly.
-- `scripts/export_reasoning_trace_dataset.py` scans archived `reasoning_trace.json` files and writes a JSONL corpus plus aggregate summary so repeated runs can be reviewed with an evals-style error-analysis workflow.
-- `scripts/export_extraction_adequacy_corpus.py` scans archived runs and writes a local-only JSONL/manifest survey of extraction/provenance adequacy. It reuses existing `extraction_adequacy_report.json` files, can build legacy reports in memory without mutating archives, and does not copy raw transcript, memo, revised-answer, model-message, provider-reasoning, fabricated-passage, or control-argument text.
-- `scripts/export_review_corpus.py` scans archived run folders and writes a deterministic JSONL run-envelope corpus plus manifest for human review and stability analysis. It includes blank review fields, compact custody/readiness metadata, and PR42 `risk_mode_reliance` caveats; it does not score advice quality or use an LLM judge.
-- Review-corpus records include deterministic review-readiness tiers so humans and subagents can separate full modern custody runs from partial or legacy content-only archives before labeling.
-- PR30 adds a local six-run human/product review seed for the complex baseline. All six answer-level reviews passed and were labeled improved, but all six remain human-owned agent-readiness `with_human_review`; `evaluation.json` is still run-readiness only, and `caller_action: use_revised_answer` is not human approval.
-- PR31 adds a human-owned actionable-delta rubric. It prepares PR32 adversarial fixtures, but it is not a judge, score, automatic labeler, or runtime integration.
-- PR32 adds paraphrase-only adversarial pair fixtures from the six PR30 cases. They prepare future calibration work, but they are not a judge, score, benchmark claim, automatic labeler, or runtime integration.
-- PR33 adds a broader local human-review corpus batch. Twelve full-modern records count as positive answer-level eval evidence, one older partial record is `needs_followup`, and one degraded record is `exclude_from_eval`; it still does not create a judge, score, automatic labeler, or runtime integration.
-- PR34 designs the first-class user-values/priorities signal. It defines boundaries, schema shape, grounding, confidence, reviewer use, and implementation gates, but does not add extraction, a report builder, runtime behavior, memory, automatic labels, or a judge.
-- PR35 documents live-output hygiene policy. `live_output_health: not_checked` remains the honest default for normal runs; `clean` requires a future trusted complete transcript path, and live-output hygiene does not score answer quality or relax `caller_action`.
-- PR36 documents risk-mode behavior policy. Existing `risk_mode` names remain the vocabulary; risk raises review and reliance strictness, but it does not approve actions, change runtime behavior, make Lolla a domain authority, or relax `caller_action`.
-- PR37 adds a risk-mode fixture matrix. It covers `quick`, `standard`, `deep`, `high_stakes`, `stability`, and excluded/domain-review routing with expected agent-readiness and `caller_action` stances; it does not enforce behavior or add a judge.
-- PR38 reviews the risk-mode fixture matrix. All original PR37 fixtures passed, one high-stakes values/priorities conflict fixture was added, and the matrix is usable as a future implementation gate without approving runtime enforcement or a judge.
-- PR39 plans the risk-mode implementation path. The smallest future behavior change is high-stakes reliance/readiness tightening, starting with contract-lock tests for existing conservative behavior; it does not change runtime, prompts, `SKILL.md`, `caller_action`, or evaluation behavior.
-- PR40 adds risk-mode contract-lock tests. Otherwise clean `high_stakes` stays `ask_user_first`, degraded high-stakes stays `do_not_use_run_degraded`, clean `standard` stays `use_revised_answer`, and review-corpus records preserve the risk/reliance fields; no runtime behavior changed.
-- PR41 adds `risk_mode_reliance_policy` to `evaluation.json` checks for high-stakes runs. It makes reliance caveats explicit while preserving `caller_action`, standard-mode behavior, degraded-run blocking, and the human-owned agent-readiness label.
-- PR42 exposes that caveat as compact `risk_mode_reliance` metadata in review-corpus records and human-review workflow docs. It does not change `caller_action`, runtime behavior, prompts, `SKILL.md`, or the human-owned agent-readiness label.
-- PR43 reviews the PR42 surface with PR37/PR38 fixtures because the local real archive corpus has 80 `standard` records and zero high-stakes `risk_mode_reliance.present: true` examples. Reviewers can read `risk_mode_reliance.status: pass` as conservative reliance-policy expression without treating it as answer-quality pass, domain approval, or an automatic agent-readiness label; no workflow or taxonomy change is recommended.
-- PR44 adds additive review-corpus manifest counts for `risk_mode_reliance.present`, presence by risk mode, and reliance-check status so aggregate absence/presence is visible without changing records, schema name, runtime behavior, caller action, or archive contents.
-- PR45 adds the current-state anti-drift handoff. It summarizes the deterministic-harness/product boundary, the PR30-PR54 eval chain, the current 80-record all-standard corpus evidence, explicit non-goals, and the approval gates before high-stakes runs, values worksheet automation, or trusted live-output implementation.
-- PR46 adds the approved high-stakes evidence seed plan. It defines scenario categories, custody, cost, privacy, and human-review gates, but does not run cases.
-- PR47 adds paraphrase-only high-stakes evidence fixtures so reviewer expectations can be tested before real archive evidence exists.
-- PR48 adds a read-only review-corpus evidence-readiness analyzer. It reads only manifest JSON, reports whether high-stakes reliance-present records actually exist, treats old manifests as insufficient rather than guessing, and does not read archives, call models, judge answer quality, or approve runs.
-- PR49 adds a docs-only user-values/priorities worksheet plan. It makes the missing PR34 surface actionable for human review without extraction, exports, memory, runtime behavior, `conversation_understanding_ir.v0`, automatic labels, or a judge.
-- PR50 adds paraphrase-only user-values/priorities worksheet fixtures. It tests whether the PR49 worksheet is understandable from PR30/PR33 review patterns without raw content, extraction, exports, runtime behavior, automatic labels, or a judge.
-- PR51 reviews the user-values/priorities worksheet fixtures. All six pass as understandable human-review examples, so the next conservative slice is blank worksheet/export structure, not extraction, runtime behavior, automatic labels, or a judge.
-- PR52 adds a deterministic blank user-values/priorities worksheet helper. It creates empty `lolla.user_values_priorities_worksheet.v0` JSON for human review without reading archives, extracting values, populating labels, changing runtime behavior, or adding a judge.
-- PR53 pilots human-filled user-values/priorities worksheets on existing reviewed records. It stores four paraphrase-only local-review worksheets, keeps all raw/private inclusion flags false, and recommends a PR54 pilot review / v0 decision before any extraction, runtime behavior, automatic labels, or judge.
-- PR54 reviews the PR53 pilot and closes the worksheet lane at v0 for human-owned review. It marks all four pilot worksheets pass, preserves the need for user confirmation, and pauses before extraction, runtime integration, automatic labels, memory, or judging.
-- PR55 lands the Semantica-inspired accountability PRD. It is docs-only: it
-  records the selective borrowing rule and the PR56-PR65 accountability queue,
-  but it does not add doctor/preflight, decision records, provenance maps,
-  conflict registers, case graph exports, runtime behavior, graph DBs,
-  embeddings, memory, policy engines, automatic labels, answer-quality scoring,
-  or judges.
-- PR56 lands the Lolla Doctor / Preflight plan. It is docs-only: it defines the
-  future read-only doctor check groups, pass/warn/fail semantics, and
-  `lolla.doctor_report.v0` draft shape, but it does not add a CLI, run
-  `$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
-  or change runtime behavior.
-- PR57 lands the read-only Lolla doctor CLI. It implements
-  `python3 scripts/lolla_doctor.py` and `lolla.doctor_report.v0` for local
-  preflight checks, but it does not run `$lolla`, call models, mutate archives,
-  change prompts, change `SKILL.md`, approve high-stakes use, or judge answer
-  quality.
-- PR58 lands the audit decision record design. It defines
-  `lolla.audit_decision_record.v0` as a paraphrase-only local accountability
-  projection over existing artifacts and PR31 labels, but it does not implement
-  an exporter, run `$lolla`, call models, mutate archives, change prompts,
-  change `SKILL.md`, approve high-stakes use, score answer quality, or create a
-  conversation-understanding IR.
-- PR59 lands audit decision record fixtures and a human-owned fixture review.
-  Six paraphrase-only records pass review as understandable and PR31-mappable,
-  with caveats about preserving conflict detail before any future exporter.
-  PR59 does not implement an exporter, runtime integration, labels, scoring,
-  judging, model calls, archive mutation, or platform work.
-- PR60 lands the provenance map design. It defines
-  `lolla.provenance_map.v0` as a local artifact-lineage map for run and review
-  custody, but it does not implement an exporter, read archives, change runtime
-  behavior, claim PROV-O/W3C compliance, add graph DB, add memory, or judge
-  answer quality.
-- PR61 lands the review conflict register design. It defines
-  `lolla.review_conflict_register.v0` as a human-review-owned surface for
-  unresolved tensions, but it does not resolve conflicts, automate severity,
-  enforce policy, create labels, or score answer quality.
-- PR62 lands the case graph export design. It defines `lolla.case_graph.v0` as
-  a future run-local graph-shaped review view, but it does not implement an
-  exporter, read archives, change runtime behavior, add graph DB, add memory,
-  add GraphRAG, add entity resolution, create labels, or score answer quality.
-- PR63 lands the accountability view fixture pack. It bundles audit decision
-  record, provenance map, review conflict register, and case graph views for
-  three checked-in reviewed cases, but it remains paraphrase-only docs/JSON and
-  does not implement exporters, read archives, change runtime behavior, add
-  labels, or score answer quality.
-- PR64 lands the accountability view fixture review. All three bundles pass as
-  useful inspection evidence, `audit_decision_record` is the only view marked
-  ready for later exporter design, provenance and conflict-register views need
-  more fixtures, and case graph remains on hold before implementation.
-- PR65 lands the accountability implementation decision gate. It chooses outcome
-  A and recommends a future PR66 Audit Decision Record Read-Only Exporter v0,
-  but it does not implement that exporter or start PR66.
-- PR66 lands the audit decision record read-only exporter. It emits
-  `lolla.audit_decision_record.v0` from structured/custody-safe run artifacts
-  to an explicit external output path, refuses archive-internal output, keeps
-  raw transcript/memo/revised-answer/provider/private content out, and does not
-  infer labels, score advice, approve recommendations, call models, run
-  `$lolla`, mutate archives, or change runtime behavior.
-- PR67 reviews PR66 exporter smoke outputs from four existing reviewed archives
-  and two fixture-backed temp runs. The review finds the records useful and
-  raw-content-safe, but recommends PR68 schema/exporter refinement before
-  archive integration or automatic generation because empty PR31 buckets are
-  only partly clear as "not supplied / not inferred" non-claims.
-- PR68 refines the audit decision record exporter output without changing the
-  schema version. It adds PR31 population policy, per-bucket status, nested
-  buckets, and semantic-field empty-meaning metadata so empty fields read as
-  non-claims without adding labels, scoring, judges, archive integration,
-  automatic generation, or runtime behavior.
-- PR69 re-runs the exporter smoke review against refined PR68 output. Seven
-  reviewed records pass, including the optional review-json-supplied bucket
-  case; empty PR31 bucket clarity improves to seven `clear_non_claim`.
-- PR70 closes the audit/accountability machinery phase as done enough for now.
-  It does not add machinery or archive integration. It redirects the next phase
-  to Product Delta Evidence: testing whether Lolla changes actual strong-model
-  conversations in decision-useful ways without confusing caution, structure,
-  or artifact cleanliness for truth.
-- PR71-PR74 add the Codex-assisted provisional scaffold for that phase:
-  thesis, protocol/schema, dry-run packet, and provisional failure taxonomy.
-  These are scaffolding for later human review, not human validation, product
-  proof, judge calibration data, scoring, automatic labels, or agent approval.
-- PR75 turns the scaffold into a runnable read-only eval lane. It checks 14
-  existing cases for Product Delta Evidence readiness and emits PR72-shaped
-  shells without reading raw transcript/memo/revised-answer content, calling
-  models, mutating archives, or making semantic product judgments.
-- PR76 fills the 12 ready shells with Codex-assisted provisional semantic
-  reads. The batch is intentionally mixed: material, partial, no-material, and
-  inconclusive candidate reads all remain non-human, non-ground-truth, and
-  non-product-proof.
-- PR77 summarizes PR75 and PR76 as one provisional state-of-evidence package:
-  the eval lane can run and carry candidate reads, but the package is still not
-  human validation, product proof, judge calibration data, scoring, runtime
-  integration, or agent approval.
-- PR78 adds deterministic Product Delta boundary lint. It checks supplied
-  Product Delta JSON/Markdown artifacts for overclaim drift, unsafe metadata,
-  forbidden authority fields, taxonomy score drift, and privacy markers without
-  running `$lolla`, calling models, mutating archives, or judging answer
-  quality.
-- PR79 defines the context-engineered provisional review architecture for the
-  next eval-lane phase. It rejects a broad LLM judge, keeps future specialist
-  reads downstream/offline, requires PR78 lint, and preserves disagreement,
-  uncertainty, missingness, and non-claims without adding schemas, packet
-  builders, model calls, runtime integration, or scoring.
-- PR80 adds typed Product Delta specialist review contracts as docs/schema
-  only. It defines the future conversation-interpretation, likely-action,
-  structural-delta, friction/lost-value, interpretation-adequacy, overclaim,
-  and conservative fan-in output shapes without creating packets, calling
-  models, running review, mutating archives, or changing runtime.
-- PR81 adds a read-only Product Delta specialist packet builder. It creates
-  checked-in-safe per-specialist input packets for two fixture cases and a CLI
-  for generating more from existing eval artifacts; it does not fill specialist
-  answers, call models, mutate archives, change runtime, score advice, create
-  labels, or authorize agent action.
-- PR82 adds a checked-in-safe provisional reviewer trap set before any real
-  specialist batch. The traps test whether future specialist review resists
-  thin context, length bias, caution without leverage, repeated vanilla gates,
-  lost live options, generic prudence over user ambition, assistant-influence
-  blindness, disagreement smoothing, clean-artifact authority leakage, and
-  hardened provisional language.
-- PR83 runs the first Codex-assisted specialist-review batch. It checks all
-  PR82 trap families, fills specialist reads for the two PR81 packet-fixture
-  cases, downgrades one PR76 material candidate to partial, and keeps the
-  output provisional, checked-in safe, linted, non-human, non-scoring,
-  non-runtime, and non-authoritative.
-- PR84 adds the Fan-In / Disagreement Report v0 as a static checked-in report
-  over PR76 and PR83. It does not create new specialist reads; it preserves
-  the one PR83 downgrade, both lost-value and interpretation-adequacy concern
-  surfaces, and the remaining positive-distribution risk for later human
-  review.
-- PR85 adds the Product Delta PR71-PR84 Packaging Gate v0. It creates a
-  package manifest and tests that the Product Delta phase is internally
-  coherent, source-reference resolvable, PR78-linted, and still lower-claim.
-  It does not expand evidence or add runtime behavior.
-- The GitHub-facing eval index at `docs/evals/README.md` explains the
-  runtime/eval split, Product Delta safe commands, what to inspect, what not
-  to infer, and the current stop line without adding new evidence or runtime
-  behavior.
-- The reasoning-process Phase-4 transfer now has a preserved negative result.
-  Two mechanically selected cases produced 52 admitted source-linked records
-  and no empty semantic dimension, but only 5/10 protected minority targets
-  were exactly visible. The evidence reader lost part or all of its protected
-  claim-boundary target in both cases. This blocks stability repeats, graph and
-  runtime integration, and completed-case prompt tuning. Provider-free
-  chronological sharding then co-located 20/20 protected targets and reduced
-  packets below 6.1 KB. A smallest evidence probe passed, but a four-call family
-  batch recovered only 2/4 protected relationships in one record and exposed
-  two semantic-role mismatches. The full nineteen-call case is blocked. Next
-  work then made position, uncertainty, and challenge meanings role-explicit
-  while leaving evidence unchanged. All provider-free gates passed, and one
-  position probe fixed the missing-current-prose failure, but it promoted a
-  stated preference into “insisted” and “total completion.” That source-strength
-  inflation blocks same-case repair, further family probes, and the full case.
-  Generic modal/commitment-strength v3 then passed all provider-free gates and
-  made force claims explicit, but its one fresh Case-03 probe still confused a
-  strongly stated belief with a decision and missed the protected revised-cut
-  possibility/open-partnership relationship. The representation improved
-  diagnosis, not semantic reliability. Case-03 is closed. Next work is
-  provider-free stance-object design then separated epistemic belief, proposal
-  action, intended outcome, willingness to accept, and reported landscapes.
-  All local gates passed, but Google rejected the frozen Case-04 depth-11 schema
-  before inference with `INVALID_ARGUMENT`, so no semantic result exists.
-  Case-04 is closed. V4.1 then added three new ambiguous cases and reduced the
-  wire to depth 9, but Google again rejected the selected career-transition
-  request before inference. Current `google-genai` validation rejects the
-  inherited `uniqueItems` evidence keywords and accepts the complete schema
-  when only those are removed. Career transition is closed. V4.2 then made
-  exactly that wire correction and passed the current native-SDK preflight,
-  but Google still rejected the single community-space request before
-  inference. `uniqueItems` was therefore a real SDK fault but not the whole
-  provider problem. Community space is closed; agency acquisition remains
-  reserved. A July 2026 model/operator scan then showed that GLM 5.2,
-  DeepSeek V4 Flash and Pro, and MiniMax M3 can all serve the unchanged schema
-  through non-Google operators. None passed the combined contract's source
-  review. DeepSeek V4 Flash/Alibaba was closest and cheapest, while its Pro
-  sibling repeated the defect at higher cost. The next work is provider-free
-  decomposition into a role-trajectory semantic reader and separate per-role
-  stance readers, joined deterministically by exact role/evidence IDs. Local
-  exploration remains the passing reference pattern.
+## State And Missingness
 
-### Current reasoning-process extraction boundary (2026-07-12)
+Absence is not one state.
 
-The current development reference is role-first v2.2. Three small LLM jobs
-interpret starting position, current position, and qualification; a fourth
-relates their exact record IDs. Deterministic code validates structure,
-evidence custody, hashes, budgets, and joins. It does not decide whether a
-semantic role or stance category is correct.
+Semantic readers and evaluation contracts distinguish:
 
-Nested stance-component objects fixed the prior parallel-array alignment
-failure on a fresh cooperative case. All four strict-schema calls and the
-exact-ID join passed, and the protected irreversibility qualification survived.
-The same run also showed why successful JSON is not sufficient: an unresolved
-matter leaked into current position and some expression labels flattened the
-user's attitudes. V2.2 is not integrated into graph or runtime. Provider-free
-role-boundary and expression-contract work is next; another call requires a
-new pre-frozen case and passing local gates.
+| State | Meaning |
+|---|---|
+| `complete` | Required work ran and returned admitted records |
+| `completed_zero` | Required work ran successfully and found no records |
+| `partial` | Some required work or evidence is present, but the view is incomplete |
+| `failed` | The attempted job did not produce an admissible result |
+| `missing` | No result is available or no attempt occurred |
 
-The prompt-only v2.3 test subsequently improved source-speaker expression
-handling but did not solve role overlap. On a fresh museum/AI-license case, the
-same unresolved alias appeared in both current and qualification despite an
-explicit semantic boundary. This is not repaired deterministically and does
-not authorize integration. The next provider-free design question is whether
-the two probabilistic interpretations need bounded coordination or one small
-reconciliation task, without hard alias subtraction or semantic scoring.
+The live run-health envelope uses `healthy`, `partial`, `degraded`, and
+`critical`. The agent handoff uses `healthy`, `partial`, `degraded`, and
+`incomplete`. These describe different layers and should not be collapsed into
+one score.
 
-That bounded coordination now exists as role-first v2.4.1. Starting remains an
-independent interpretation; current and qualification are allocated together;
-and a third call relates exact admitted IDs. The paired call may use the same
-alias in both roles only for distinct meanings. Deterministic code splits model
-labels and validates custody but does not decide the allocation.
+A missing reader result is not evidence that no issue exists. A
+`completed_zero` result is not a failure. A clean schema can coexist with a
+wrong interpretation.
 
-A new housing-retrofit case produced the first fully operational paired
-development pass in three calls: adopted and unresolved meanings inside one
-sentence were separated, protected irreversibility survived, and the exact-ID
-join completed. Residual evidence and category imprecision still blocks graph
-or runtime integration. Corpus-level non-scalar source review is next.
+## Models, Providers, And Bounds
 
-That corpus review now covers four prospectively reviewed cases and seven
-separate dimensions. Paired readers pass the central allocation distinction in
-both paired cases; independent readers fail it in both independent cases.
-Protected qualification survives throughout, while evidence, force, and
-category noise persists. The next experiment is therefore not another model
-call. It is a read-only comparison of source-first versus model-produced graph
-inputs and their downstream selection impact, with no reconsideration or live
-runtime behavior.
+### Current LLM route
 
-The read-only graph-impact shadow now confirms that, after a source-faithful
-fact-free abstraction, source-first and provider role records produce
-identical controlled mechanisms, deterministic seed models, and one-hop
-neighborhoods on both paired cases. Removing the protected reversal mechanism
-removes three seed models and changes the candidate portfolio.
+The default operator is `google/gemini-3.1-flash-lite` through OpenRouter. For
+that model, the default route is pinned to `google-vertex/global`, fallbacks are
+off, required parameters are enforced, and data collection defaults to
+`deny`. ZDR is requested only when `LOLLA_OPENROUTER_REQUIRE_ZDR` is explicitly
+enabled. A request flag is recorded as a request, not claimed as endpoint proof.
 
-One fact-free embedding batch exercised the existing near-tie activation gate.
-No tiebreaker fired and embedding did not change selection. This does not
-authorize integration because the role-record-to-pattern abstraction was
-source-reviewed rather than automatically produced. That abstraction bridge
-was then tested in a frozen six-arm probe. All six strict-schema calls passed
-operational, schema, fact-boundary, and exact-ID custody checks, but none
-matched the prospective semantic target. Source/provider projections differed
-in both cases, the protected reversal mechanism was not preserved, and the
-ablations changed unrelated mechanisms. The bridge is blocked from graph and
-runtime integration. The next provider-free work is to define the reasoning
-mechanism, scope, and state ontology precisely enough for probabilistic
-interpretation without adding deterministic semantic gates.
+`LOLLA_OPENROUTER_MODEL` can override the model. Overrides are useful for
+experiments, but models should not be described as behaviorally interchangeable.
 
-That ontology v1 now defines all nine mechanisms by required evidence,
-exclusions, and near-neighbor distinctions and changes the task to exhaustive
-review of the final joint trajectory. Only model-declared unresolved rows may
-route. In its six-arm probe, broad label saturation disappeared, the protected
-reversal mechanism survived source/provider variation in both cases, and both
-ablations removed it. Exact invariance still failed: richer source records
-triggered an unsupported evidence-asymmetry label, and reversal state labels
-varied. Source review also found that the old prospective
-`acknowledged_constraint_not_gated` target likely double-counted the remaining
-counterpressure. Graph/runtime integration stays blocked. The next bounded
-problem is probabilistic near-neighbor adjudication with an explicit reject-
-both option, not model replacement or deterministic semantic gating.
+The current economical model is an experimental operator, not a production
+selection or quality ceiling. More expensive models may improve semantic work
+while worsening restraint, cost, or apparent false-positive confidence.
 
-The subsequent controlled-vocabulary audit confirmed exactly 222 unique
-canonical mental-model IDs and no display-name collisions. A names-and-IDs
-menu is compact (15.8 KB), but operational selection guidance expands to
-185.5 KB; canonical phrases solve naming variation, not semantic
-applicability. The nine mechanisms directly seed 19 models, while the existing
-nine reasoning-type families are too overlapping to serve as a useful
-hierarchy: every model belongs to at least two. One stale unknown chunk ID was
-also found and is now explicitly quarantined as a curation defect.
+### Embeddings
 
-The preferred boundary is controlled mechanism interpretation, deterministic
-canonical graph recall, then probabilistic selection or rejection from the
-bounded recalled model menu. Direct selection from all 222 models remains a
-future control arm. No comparison call was authorized because compact,
-semantically comparable model cards do not yet exist and the substrate
-integrity gate exposed the stale alias.
+Embeddings use the direct OpenAI key. They support:
 
-The stale alias has now been migrated explicitly at curation time, with
-before/after hashes and no runtime alias repair. Compact cards were generated
-for all 222 canonical models, and a frozen direct-all-222 versus graph-shortlist
-comparison completed in six calls. Both modes rejected every candidate. This
-was canonically stable but semantically inert. Source review found that graph
-candidates had lost their fact-free `recalled_by_mechanism` provenance and
-that naive first-item `select_when`/`danger_when` cards sometimes blurred or
-inverted challenge applicability. The next design is challenge-oriented cards
-plus controlled graph-recall provenance, not forced selection or another
-same-case retry.
+- tendency-signal redundancy;
+- companion recall;
+- model-source chunk retrieval;
+- narrow activation-condition tie-breaking.
 
-Challenge-oriented cards and controlled `recalled_by_mechanism_ids` then
-passed all local custody and prompt-budget gates on the housing transfer case.
-The three-call probe still returned empty selections in source, provider, and
-ablation arms. Canonical mechanism names without their operational definitions
-were not enough, and global abstention remained cheaper than assessing each
-candidate. After two blanket-abstention designs, the constitution's problem-
-class trigger stopped further prompt iteration. The next provider-free
-contract must pair full fact-free mechanism cards with each recalled model and
-require one semantic status per candidate; deterministic code may enforce
-coverage and custody but may not change those statuses.
+If `OPENAI_API_KEY` is absent, embeddings are disabled and recorded as off.
+The pipeline continues through LLM interpretation and deterministic graph
+routing. It does not silently send embedding work to OpenRouter or another
+provider.
 
-That exhaustive contract then ran on a different museum case with full
-operational mechanism cards. Every candidate was assessed exactly once, yet
-source, provider, and ablation arms all classified every model not applicable.
-This ended the canonical-selector line of work. Requiring graph candidates to
-pass another probabilistic applicability gate was product drift: the graph is
-supposed to preserve deliberately non-obvious pressure, not only lenses that
-already look justified from inside the current reasoning.
+### Calls, retries, and ceilings
 
-Graph output is therefore a bounded pressure portfolio, not a certified
-selection. Canonical candidates and their fact-free recall provenance should
-reach the fresh-context reasoner, which may apply, reject, or park each lens
-against the authoritative conversation. Those dispositions belong in the
-audit trail; they must not silently erase candidates before reconsideration.
-The unresolved upstream problem remains automatic role-record-to-mechanism
-interpretation.
+A typical core run makes roughly 18–25 OpenRouter calls. The Bullshit Index may
+add up to twelve calls. Each boundary request has a stage output ceiling and a
+run-level call and estimated-cost envelope.
 
-Under the corrected protected-signal and bounded-noise gates, automatic
-mechanism interpretation now transfers across registry, housing, and museum:
-the reversal mechanism survives source/provider variation in all three and
-disappears under ablation, while counterpressure persists. Deterministic
-no-deletion portfolios contain three to eight canonical candidates.
+Boundary failures are preserved. The provider client does not perform an
+internal automatic retry loop. The one application-level exception is the
+documented extraction retry for quote fabrication; its first result and retry
+custody remain visible.
 
-A fresh-context museum pair then passed the Phase-4 interface. The transcript-
-only control made no material change. The pressure arm applied commitment bias
-and premortem, rejected four unsupported lenses, preserved the strong original
-analysis, and added an early-termination condition plus a worst-case severity
-test absent from the control. This is source-supported development evidence,
-not independent product validation. Independent useful-pressure and quiet-
-stand-down cases remain required before runtime consideration.
+Frozen evaluation contracts can be stricter: exact call maximum, USD ceiling,
+model, provider, schema, seed, output cap, retry policy, and stop rule are fixed
+before execution.
 
-Two untouched Phase-5 role-extraction holdouts then ran through paired v2.4.1.
-The retailer-status useful case preserved its missing independent-demand gate
-and may continue. The quiet meeting case mechanically joined but semantically
-failed: an already-adopted restoration rule was manufactured as an unresolved
-qualification despite the user's explicit stand-down. This exposes a missing
-representation: the pipeline cannot yet preserve an auditable probabilistic
-conclusion that no unresolved qualification was observed. Quiet-case
-downstream work is blocked until that outcome is first-class rather than
-inferred from omission or keywords.
+### Cost custody
+
+Every run maintains a `usage_summary` with vendor and stage attribution. It
+records:
+
+- attempted calls;
+- prompt, completion, cache, and total tokens when supplied;
+- requested and served model identity;
+- provider response ID;
+- exact provider-reported cost when available;
+- versioned local estimate;
+- routing and privacy-policy fields;
+- price-table date and budget state.
+
+The provider dashboard remains the account-level billing source of truth. See
+[Cost and Telemetry](docs/cost-and-telemetry.md).
+
+## Privacy Boundary
+
+The raw conversation is sensitive by default.
+
+The configured OpenRouter model receives conversation-derived material for
+extraction and pressure lanes. When embeddings are on, OpenAI receives
+query-expansion and embedding inputs. Local archives can contain the complete
+conversation, revised answer, memo, provider responses, and detailed traces.
+
+Lolla records the declared request policy, route, fallback state, response
+identity, cost, and ZDR request state. It does not copy API keys into artifacts
+or claim a privacy property solely because it was requested.
+
+Before using sensitive material, review the provider's current policy and the
+local archive location. Changing a provider, route, model, or data policy is a
+real product change, not a cosmetic environment override.
+
+## Failure And Degraded Behavior
+
+| Situation | Current behavior |
+|---|---|
+| Missing OpenRouter key, graph, or engine | Fatal preflight; no model call |
+| Conversation is ordinary code debugging | Extraction returns `not_strategic`; the skill declines politely |
+| Very long conversation | Complete source preserved; declared first-three/last-fifteen processing view used above 80K characters |
+| Multiple strategic threads | Extractor centers the most developed or recent thread; other threads may be underrepresented |
+| Lane returns a grounded zero | Valid empty result, distinct from failure |
+| OpenRouter timeout or HTTP failure | Boundary metadata and partial/failed state preserved; no hidden healing |
+| Extraction is malformed or misses required meaning | Semantic artifact stays error; deterministic code does not invent the missing read |
+| OpenAI key missing | Embeddings off; other paths continue |
+| V60 missing or disabled | Four lanes continue; status becomes disabled or failed visibly |
+| Required active-pressure ledger missing | Completion stops before memo, Observatory, or archive can look clean |
+| Product output leaks internal machinery | Run health degrades and the leak is recorded |
+| Trusted live transcript unavailable | Live-output cleanliness remains missing or `not_checked`, not silently clean |
+
+The system prefers an inspectable failure to an apparently complete artifact
+created by retry, fallback, response healing, or invented meaning.
+
+## What The Current Evidence Supports
+
+The project has substantial mechanical evidence:
+
+- source, model, pressure, request, response, and cost custody;
+- complete-conversation preservation and declared compaction;
+- bounded graph survival and disposition ledgers;
+- provider-free fixtures for strange pressure, rejection, parking, tamper,
+  missingness, and cap behavior;
+- frozen controls, matched requests, protected targets, and source-first review;
+- a full local test suite covering runtime and evaluation contracts.
+
+Development cases show that pressure can produce decision-relevant additions
+and grounded rejections. Other cases show false positives, role confusion,
+schema failures, over-absorption, quiet-case failure, and no unique advantage
+over a fresh control.
+
+The latest leakage-corrected R4 matched holdout recovered genuine residual gaps
+in both arms. The residual repair still failed both quiet controls. The frozen
+decision is `residual_task_repair_insufficient`; the reader is not integrated
+into the runtime.
+
+The supported conclusion is narrow:
+
+> Lolla has a real reasoning-pressure and custody system. Whether it reliably
+> creates useful unique pressure for real users remains an open product and
+> evaluation question.
+
+Lolla does not currently support claims of reasoning-quality certification,
+automatic reliance, scalar scoring, production-model selection, or proven
+decision improvement.
+
+See the
+[current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
+[current roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md),
+and
+[latest matched-holdout result](docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md).
+
+## Design Lineage
+
+Charlie Munger's latticework and Psychology of Human Misjudgment supplied the
+root idea: failures compound, and important judgment needs more than one
+disciplinary frame.
+
+Kahneman and Tversky's fast/slow distinction is used as a design metaphor for
+an external pause. It is not a literal claim about LLM cognition.
+
+The authors of *Framers* informed Lane 3's focus on the question and its
+suppressed alternatives. Balaji Srinivasan's distinction between probabilistic
+AI and deterministic computing helped sharpen the authority split. His warning
+captures the design tension: “0% AI is slow, but 100% AI is slop.”
+
+Andrej Karpathy's
+[knowledge-wiki proposal](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+informed the separation between raw sources and persistent compiled Markdown
+knowledge. The founder's legal background supplied the adversarial reading
+method: preserve the record, test the burden of proof, and distinguish
+persuasive language from supported reasoning.
+
+These influences explain design choices. They do not validate Lolla's results.
+
+## Detailed References
+
+- [Founder Product Vision](docs/conversation-understanding/lolla-founder-product-vision-2026-07-14.md)
+  — the human purpose, Markdown-memory principle, and future Teacher boundary.
+- [Product Constitution v5](docs/conversation-understanding/lolla-product-constitution-v5.md)
+  — binding rules, product evils, and evaluation boundaries.
+- [Live Flow](docs/how-it-works/live-flow.md) — step-by-step skill behavior and
+  operator checkpoints.
+- [Pipeline Lanes](docs/how-it-works/pipeline-lanes.md) — prompts, routing,
+  cards, and diagnostics for the four lanes.
+- [Knowledge Substrate](docs/how-it-works/knowledge-substrate.md) — compiled
+  files, curation history, graph, embeddings, and V60 inventory.
+- [Operations and Limits](docs/how-it-works/operations-and-limits.md) —
+  environment variables, edge cases, cost shape, and known limitations.
+- [Architecture and Evolution](docs/how-it-works/architecture-and-evolution.md)
+  — current modules and the history of major migrations.
+- [Skill Steps](docs/skill/STEPS.md) — exact orchestration procedure.
+- [Agent Result Contract](docs/lolla-agent-result-contract.md) — machine-facing
+  handoff and neutral caller action.
+- [Evaluation Index](docs/evals/README.md) — current evaluation doctrine,
+  frozen experiments, and human-review boundaries.
+- [Board and Product History](docs/board/README.md) — the historical Decision
+  Work and product-development catalog removed from these root entry points.
+- [Cost and Telemetry](docs/cost-and-telemetry.md) — vendor accounting,
+  response identity, and price-table maintenance.
+
+Historical plans and results remain useful evidence. They are not live behavior
+unless the newest current entrypoint says so.

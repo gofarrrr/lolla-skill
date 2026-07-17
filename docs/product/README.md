@@ -4,6 +4,12 @@ This directory holds product-shape PRDs and design notes for future user-facing
 surfaces. These files are planning artifacts, not runtime documentation and not
 proof that a feature is product-complete.
 
+The product lanes in this directory should be read under the
+[Lolla founder product vision](../conversation-understanding/lolla-founder-product-vision-2026-07-14.md).
+That document explains how conversation custody, deterministic graph pressure,
+portable Markdown memory, and the possible Teacher direction fit together. It
+does not promote the planning artifacts below to current capability.
+
 Current planning docs:
 
 - [Mental Model Teacher Product Surface and Visual Library PRD](mental-model-teacher-product-surface-and-visual-library-prd-v0.md)

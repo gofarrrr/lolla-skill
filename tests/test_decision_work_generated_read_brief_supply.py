@@ -262,8 +262,6 @@ def test_doc_records_statuses_cli_and_decision_gate() -> None:
 def test_discoverability_docs_reference_pr186() -> None:
     expected = "Decision Work Generated Read Brief Supply Adapter"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

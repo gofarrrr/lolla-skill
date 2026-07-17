@@ -150,8 +150,6 @@ def test_automation_readiness_discoverability_references() -> None:
         CURRENT_STATE_DOC,
         INTERNAL_V1_PRD,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

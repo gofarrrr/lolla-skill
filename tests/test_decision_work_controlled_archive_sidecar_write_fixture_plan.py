@@ -182,8 +182,6 @@ def test_discoverability_docs_reference_pr213() -> None:
         DOC_PATH,
         PR212_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

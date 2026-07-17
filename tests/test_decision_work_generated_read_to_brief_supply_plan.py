@@ -291,8 +291,6 @@ def test_doc_records_findings_and_next_gate() -> None:
 
 def test_discoverability_docs_reference_pr185() -> None:
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

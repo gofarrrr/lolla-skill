@@ -458,8 +458,6 @@ def test_adapter_doc_and_discoverability_docs_reference_pr210() -> None:
         DOC_PATH,
         CONTRACT_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

@@ -480,8 +480,6 @@ def test_docs_and_discoverability_reference_pr198() -> None:
         DOC_PATH,
         PLAN_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

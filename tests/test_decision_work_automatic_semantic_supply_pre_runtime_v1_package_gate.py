@@ -258,8 +258,6 @@ def test_discoverability_docs_reference_pr200() -> None:
         PACKAGE_DOC,
         PR199_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

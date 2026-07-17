@@ -216,8 +216,6 @@ def test_pilot_doc_records_decision_gate_and_non_claims() -> None:
 
 def test_discoverability_docs_reference_pr184() -> None:
     docs = {
-        "README": README_PATH.read_text(),
-        "HOW_IT_WORKS": HOW_IT_WORKS_PATH.read_text(),
         "PROGRESS": PROGRESS_PATH.read_text(),
         "board": BOARD_README_PATH.read_text(),
         "prd": PRD_PATH.read_text(),

@@ -257,8 +257,6 @@ def test_package_doc_and_discoverability_references() -> None:
         PR220_DOC,
         INTERNAL_V1_PRD,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

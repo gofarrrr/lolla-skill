@@ -192,8 +192,6 @@ def test_runner_plan_discoverability_references() -> None:
         AUTOMATION_PRD,
         RUNBOOK_DOC,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

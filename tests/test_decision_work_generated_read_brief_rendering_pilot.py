@@ -138,8 +138,6 @@ def test_rendered_brief_excludes_unsafe_markers_and_runtime_authority() -> None:
 def test_discoverability_docs_reference_pr187() -> None:
     expected = "Decision Work Generated Read Brief Rendering Pilot"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

@@ -278,7 +278,7 @@ def test_non_claims_exclude_authority_and_runtime_interpretation() -> None:
     assert forbidden.isdisjoint(non_claims)
 
 
-def test_front_door_docs_link_the_queue_contract() -> None:
+def test_historical_indexes_link_the_queue_contract() -> None:
     rel = (
         "docs/conversation-understanding/"
         "decision-work-offline-interpretation-queue-contract-v0.md"
@@ -292,8 +292,6 @@ def test_front_door_docs_link_the_queue_contract() -> None:
     assert conversation_rel in PR178_PRD_PATH.read_text(encoding="utf-8")
     assert conversation_rel in BRIEF_PRD_PATH.read_text(encoding="utf-8")
     assert conversation_rel in RUNTIME_PRD_PATH.read_text(encoding="utf-8")
-    assert rel in README_PATH.read_text(encoding="utf-8")
-    assert rel in HOW_IT_WORKS_PATH.read_text(encoding="utf-8")
     assert board_rel in BOARD_README_PATH.read_text(encoding="utf-8")
     assert rel in PROGRESS_PATH.read_text(encoding="utf-8")
 

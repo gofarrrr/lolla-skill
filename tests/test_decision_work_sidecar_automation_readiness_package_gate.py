@@ -360,8 +360,6 @@ def test_discoverability_docs_reference_pr233() -> None:
         READINESS_PRD,
         PR232_DOC,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

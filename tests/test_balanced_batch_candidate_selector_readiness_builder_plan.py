@@ -234,8 +234,6 @@ def test_plan_doc_records_plan_only_selector_boundary() -> None:
 
 def test_discoverability_docs_reference_candidate_selector_plan() -> None:
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         EVALS_README_PATH,
         BOARD_README_PATH,

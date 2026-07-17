@@ -417,8 +417,6 @@ def test_doc_records_schema_statuses_cli_and_gate() -> None:
 def test_discoverability_docs_reference_pr192() -> None:
     expected = "Decision Work Generated Read Triage Supply Adapter"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

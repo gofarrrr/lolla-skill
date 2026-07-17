@@ -229,7 +229,7 @@ def test_three_checked_in_safe_examples_are_referenced() -> None:
     assert "high_risk_caveats_required" in cofounder["example_status"]
 
 
-def test_front_door_docs_link_prompt_packet() -> None:
+def test_historical_indexes_link_prompt_packet() -> None:
     conversation_rel = (
         "decision-work-operator-codex-interpretation-prompt-packet-v0.md"
     )
@@ -244,8 +244,6 @@ def test_front_door_docs_link_prompt_packet() -> None:
 
     assert conversation_rel in PR180_DOC_PATH.read_text(encoding="utf-8")
     assert conversation_rel in PR178_PRD_PATH.read_text(encoding="utf-8")
-    assert repo_rel in README_PATH.read_text(encoding="utf-8")
-    assert repo_rel in HOW_IT_WORKS_PATH.read_text(encoding="utf-8")
     assert repo_rel in PROGRESS_PATH.read_text(encoding="utf-8")
     assert board_rel in BOARD_README_PATH.read_text(encoding="utf-8")
 

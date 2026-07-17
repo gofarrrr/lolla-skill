@@ -346,7 +346,7 @@ def test_cli_writes_queue_item_without_archive_mutation(tmp_path: Path) -> None:
     assert not (run_dir / "queue_item.json").exists()
 
 
-def test_front_door_docs_link_queue_builder() -> None:
+def test_historical_indexes_link_queue_builder() -> None:
     conversation_rel = "decision-work-offline-interpretation-queue-builder-v0.md"
     repo_rel = (
         "docs/conversation-understanding/"
@@ -359,8 +359,6 @@ def test_front_door_docs_link_queue_builder() -> None:
 
     assert conversation_rel in PR179_DOC_PATH.read_text(encoding="utf-8")
     assert conversation_rel in PR178_PRD_PATH.read_text(encoding="utf-8")
-    assert repo_rel in README_PATH.read_text(encoding="utf-8")
-    assert repo_rel in HOW_IT_WORKS_PATH.read_text(encoding="utf-8")
     assert repo_rel in PROGRESS_PATH.read_text(encoding="utf-8")
     assert board_rel in BOARD_README_PATH.read_text(encoding="utf-8")
 

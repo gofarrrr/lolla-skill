@@ -214,8 +214,6 @@ def test_discoverability_docs_reference_pr234() -> None:
         PACKAGE_DOC,
         READINESS_PRD,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

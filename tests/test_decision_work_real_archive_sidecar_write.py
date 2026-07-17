@@ -486,8 +486,6 @@ def test_adapter_doc_and_discoverability_docs_reference_pr219() -> None:
         PLAN_DOC,
         INTERNAL_V1_PRD,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

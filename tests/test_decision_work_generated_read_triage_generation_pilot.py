@@ -260,8 +260,6 @@ def test_doc_records_scope_routes_and_gate() -> None:
 def test_discoverability_docs_reference_pr193() -> None:
     expected = "Decision Work Generated Read Triage Generation Pilot"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

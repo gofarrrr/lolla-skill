@@ -263,8 +263,6 @@ def test_pilot_discoverability_references() -> None:
         RUNNER_ADAPTER,
         READINESS_PRD,
         AUTOMATIC_SUPPLY_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

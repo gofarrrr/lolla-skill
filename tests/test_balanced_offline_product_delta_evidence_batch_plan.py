@@ -208,8 +208,6 @@ def test_discoverability_docs_reference_balanced_batch_plan() -> None:
     expected = "Balanced Offline Product Delta Evidence Batch Plan"
 
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         EVALS_README_PATH,
         BOARD_README_PATH,

@@ -10,8 +10,10 @@ Lolla is an experimental reasoning-pressure and audit system. It preserves a
 rich conversation, uses LLMs to interpret its messy meaning, uses deterministic
 machinery and a curated mental-model graph to introduce provenance-bearing
 external pressure, asks a reasoner to reconsider that pressure, and records the
-process. Lolla is designed to make another angle inspectable—not to guarantee a
-better answer, certify reasoning quality, or remove human decision authority.
+process. Its product purpose is to slow down the moment when fluent AI advice
+begins to feel like certainty: make another angle inspectable without
+guaranteeing a better answer, certifying reasoning quality, or removing human
+decision authority.
 
 ## Read first
 
@@ -20,40 +22,49 @@ Read these in order before proposing architecture or the next experiment:
 1. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-2. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+2. `docs/conversation-understanding/lolla-founder-product-vision-2026-07-14.md`
+   — founder-level explanation of the human problem, the useful pause, quality
+   noise, conversation custody, Markdown portability, current graph-pressure
+   focus, future Teacher direction, and honest market language. It explains the
+   purpose but does not replace the constitution or authorize implementation.
+3. `docs/conversation-understanding/lolla-strategic-presentation-proposition-2026-07-14.md`
+   — founder-approved public presentation hierarchy, evidence boundary,
+   documentation migration, and local pre-merge implementation status. It is
+   a presentation contract, not runtime or provider authorization.
+4. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-3. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
+5. `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` — current
    ordered development sequence and decision gates.
-4. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
+6. `docs/conversation-understanding/lolla-r4-residual-false-positive-causal-diagnosis-2026-07-14.md`
    and `plans/lolla-r4-residual-false-positive-causal-diagnosis-plan-2026-07-14.md`
    — latest completed work, the five-record causal map, evidence against a
    general paired-completion explanation, competing falsifiers, and the one
    bounded diagnostic experiment earned without implementing or designing it.
-5. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
+7. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-execution-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-execution-a1-plan-2026-07-14.md`
    — exact eight-call execution custody, record-level
    source-first review, frozen decision, and next provider-free causal gate.
-6. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
+8. `docs/conversation-understanding/lolla-r4-matched-holdout-v2-leakage-correction-result-2026-07-14.md`
    and `plans/lolla-r4-matched-holdout-v2-leakage-correction-plan-2026-07-14.md`
    — frozen design evidence, the rejected v1 evidence, leakage-corrected v2
    sources and priors, hash-bound human review, protected target, matched
    requests, and the now-consumed non-authorizing contract.
-7. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-residual-task-identity-repair-result-2026-07-14.md`
    and `plans/lolla-r4-residual-task-identity-repair-plan-2026-07-14.md` — the
    published additive residual-discovery contract and frozen boundaries.
-8. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-semantic-distinction-causal-diagnosis-2026-07-14.md`
    — the record-level Case 01/04 map, competing causal explanations,
    falsifiers, and the single repair class that earned the latest work.
-9. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
+11. `docs/conversation-understanding/lolla-r4-semantic-distinction-execution-result-2026-07-14.md`
    — consumed holdout evidence, exact provider cost, and the semantic failure
    that the causal diagnosis explains.
-10. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
+12. `docs/conversation-understanding/lolla-r4-semantic-distinction-preparation-result-2026-07-14.md`,
    `plans/lolla-r4-semantic-distinction-plan-2026-07-14.md`, and
    `docs/conversation-understanding/lolla-r4-semantic-distinction-current-practice-2026-07-14.md`
    — the consumed frozen contract, completed R4 causal plan, and official-
    practice check behind it.
-11. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
+13. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` when
    changing the live skill or explaining current user-facing behavior.
 
 Older PRDs, research branches, and historical result files remain valuable,

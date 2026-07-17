@@ -227,8 +227,6 @@ def test_second_pilot_docs_and_discoverability_are_linked() -> None:
         PRD_PATH,
         PR187_DOC,
         PR188_DOC,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

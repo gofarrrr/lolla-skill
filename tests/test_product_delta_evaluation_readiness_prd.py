@@ -204,8 +204,6 @@ def test_discoverability_docs_reference_new_eval_prd() -> None:
     expected = "Product Delta Evaluation Readiness PRD"
 
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         EVALS_README_PATH,
         BOARD_README_PATH,

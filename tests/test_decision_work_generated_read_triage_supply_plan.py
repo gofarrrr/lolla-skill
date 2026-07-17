@@ -191,8 +191,6 @@ def test_discoverability_docs_reference_pr191() -> None:
         DOC_PATH,
         PR190_DOC,
         PRD_PATH,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

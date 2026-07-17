@@ -119,8 +119,6 @@ def test_current_state_doc_and_discoverability_references() -> None:
         CURRENT_STATE_DOC,
         RUNBOOK_DOC,
         INTERNAL_V1_PRD,
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
     ):

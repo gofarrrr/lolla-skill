@@ -168,8 +168,6 @@ def test_review_doc_records_the_comparison_and_gate() -> None:
 def test_discoverability_docs_reference_pr188() -> None:
     expected = "Decision Work Generated Read Brief vs Existing Brief Review"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,

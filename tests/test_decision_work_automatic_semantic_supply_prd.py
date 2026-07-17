@@ -125,7 +125,7 @@ def test_prd_keeps_direct_runtime_interpretation_and_authority_out_of_scope() ->
     assert "deterministic validation" in text
 
 
-def test_front_door_docs_link_the_prd() -> None:
+def test_historical_indexes_link_the_prd() -> None:
     rel = "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md"
     conversation_rel = "decision-work-automatic-semantic-supply-prd-v0.md"
     board_rel = (
@@ -135,8 +135,6 @@ def test_front_door_docs_link_the_prd() -> None:
 
     assert conversation_rel in _text(BRIEF_PRD_PATH)
     assert conversation_rel in _text(RUNTIME_PRD_PATH)
-    assert rel in _text(README_PATH)
-    assert rel in _text(HOW_IT_WORKS_PATH)
     assert board_rel in _text(BOARD_README_PATH)
     assert rel in _text(PROGRESS_PATH)
 

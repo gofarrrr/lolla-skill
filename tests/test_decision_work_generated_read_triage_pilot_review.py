@@ -131,8 +131,6 @@ def test_doc_answers_review_questions_and_records_boundary() -> None:
 def test_discoverability_docs_reference_pr194() -> None:
     expected = "Decision Work Generated Read Triage Pilot Review"
     for path in (
-        README_PATH,
-        HOW_IT_WORKS_PATH,
         PROGRESS_PATH,
         BOARD_README_PATH,
         PRD_PATH,
