@@ -32,6 +32,22 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT REGISTER:** [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
 - **CURRENT ROADMAP:** [Post-Stage-0 restart roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
 - **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
+- **LOCAL PRODUCT REVIEW:** [Mental Model Atlas Phase 1 result](product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
+- **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
+- **LOCAL CARD-FIRST CORRECTION:** [Atlas card-first truthfulness result](product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+- **LOCAL CARD-FIRST EVIDENCE:** [Atlas card-first evidence](evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+- **CURRENT LOCAL VISUAL STUDY:** [Atlas monochrome structure result](product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
+- **CURRENT LOCAL VISUAL EVIDENCE:** [Atlas monochrome structure evidence](evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
+- **CURRENT LOCAL GUIDED-ENTRY REPAIR:** [Atlas guided-entry result](product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
+- **CURRENT LOCAL GUIDED-ENTRY EVIDENCE:** [Atlas guided-entry evidence](evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
+- **CURRENT LOCAL DESIGN SYSTEM:** [Atlas design-system consolidation](product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
+- **CURRENT LOCAL DESIGN-SYSTEM EVIDENCE:** [Atlas design-system evidence](evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
+- **CURRENT LOCAL GRAPH REPAIR:** [Atlas graph-legibility repair](product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
+- **CURRENT LOCAL GRAPH EVIDENCE:** [Atlas graph-legibility evidence](evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
+- **CURRENT LOCAL NEIGHBORHOOD REPAIR:** [Atlas neighborhood-navigation repair](product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
+- **CURRENT LOCAL NEIGHBORHOOD EVIDENCE:** [Atlas neighborhood-navigation evidence](evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
+- **CONTROLLING LOCAL ATLAS BASELINE:** [Atlas baseline consolidation](product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+- **CURRENT LOCAL BASELINE EVIDENCE:** [Atlas baseline consolidation evidence](evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.
@@ -63,8 +79,12 @@ source authority or action permission.
 
 ## Parked families
 
-- **PARKED:** Mental Model Teacher contracts, renderers, packets, and
-  Observatory projections in [the product index](product/README.md)
+- **PARKED / LOCAL PHASE 1 REVIEW:** Mental Model Teacher contracts,
+  renderers, packets, Observatory projections, and the new source-bound Atlas
+  tracer bullet in [the product index](product/README.md). Its current local
+  candidate is a consolidated achromatic precise-editorial-cartography system;
+  no final palette is selected.
+  Founder visual, native screen-reader, rights, and real-user gates remain open.
 - **PARKED:** general arbitrary-run Decision Work semantic generation in the
   board and conversation-understanding families
 

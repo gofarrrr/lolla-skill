@@ -234,9 +234,19 @@ authorize action.
 ### Mental Model Teacher
 
 Teacher has substantial contracts, renderers, lesson graphs, packets, and
-Observatory projections. It is parked because no current user job and real-user
-usefulness gate have been selected. It does not participate in the ordinary
-pressure runtime.
+Observatory projections. The founder-selected Atlas job now also has a local,
+source-bound Phase 1 visual tracer bullet and additive card-first/guided-reader
+repairs. On the Abstraction page, the exact Markdown source is primary and is
+presented through five reviewed human chapters with persistent orientation and
+an optional full-source mode. Dated relationship-curation residue is kept in a
+collapsed appendix; compiled operational guidance and all exact incident
+connections remain separately labelled, progressively disclosed layers. The
+default guided entry omits repeated document-title and reading-instruction
+residue; the exact source title appears when full-source mode is requested. The
+source is complete, while the wider Teacher product remains partial.
+Teacher remains parked because founder visual acceptance, native screen-reader
+review, publication rights, and real-user usefulness are open. It does not
+participate in the ordinary pressure runtime.
 
 ## 10. Retired R4 readers
 
@@ -301,6 +311,19 @@ eligible decision is whether to authorize a provider-free review of
 checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
+
+The separate Atlas local implementation is consolidated around one canonical
+identity source. Its 16-model orientation view is a bounded presentation of the
+same records owned by the 222-model / 1,358-relation navigation index; selecting
+a model builds its exact incident neighborhood, and model/relation routes retain
+that identity even when no complete teaching page exists. Card-first artifacts
+alone own complete model-page availability. The ordinary renderer is SVG;
+Canvas and frozen fixtures require explicit review mode. The binding
+achromatic design system uses one shared solid/dashed/double relationship
+grammar and route-scoped styles. See the
+[controlling Atlas baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+Publication, later Atlas phases, deployment, Teacher journeys, and runtime or
+Observatory links remain unauthorized.
 
 ## 14. Verification entrypoints
 

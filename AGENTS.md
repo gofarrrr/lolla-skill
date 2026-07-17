@@ -30,27 +30,34 @@ Read these in order before proposing architecture or the next experiment:
 4. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
    — the current source-coverage correction: complete source custody is
    distinct from the partial initial extraction view above 80,000 characters.
-5. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
+5. `docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md`,
+   `docs/evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json`,
+   `apps/mental-model-atlas/DESIGN_SYSTEM.md`, and
+   `apps/mental-model-atlas/README.md` — the controlling local Atlas baseline,
+   its one canonical identity path, review/historical boundaries, exact restart
+   checks, and open founder, screen-reader, rights, and usefulness gates. Read
+   older Atlas results only for their named frozen checkpoint.
+6. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
    future-development rules. Earlier constitutions are immutable historical
    evidence, not the current contract.
-6. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
+7. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
    public orientation and ordinary live-skill behavior.
-7. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
+8. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
    — ground-up product and architecture assessment, including the defects R1
    and R2 repaired.
-8. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
+9. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
    and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
    decision that stopped the incremental R4 reader while preserving the live
    pressure path, bounded sidecars, and research evidence.
-9. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
+10. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
    — immutable final R4 evidence and the frozen
    `separated_tasks_ineffective_companions_persist` decision.
-10. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
+11. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
    and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
    — immutable A1 first-failure evidence and frozen
    `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-11. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
+12. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
    `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
    — the implemented sidecar boundary and the richer, still-provisional
    interpretation target.
@@ -188,7 +195,27 @@ The Stage 0 addendum publication passed 4,968 tests and all 93 subtests with one
 existing `datetime.utcnow()` deprecation warning. A changed count is not
 automatically a regression; unexplained failures or historical hash drift are.
 
-## Current handoff — 2026-07-15
+For Mental Model Atlas Phase 1 work, also run:
+
+```bash
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_phase1_projection.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_phase1_projection.py
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_card_first_repair.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_card_first_repair.py
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_navigation_index.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_navigation_index.py
+cd apps/mental-model-atlas
+npm ci
+npm run check
+npm test
+npm run build
+npm audit --audit-level=moderate
+```
+
+Do not regenerate source meaning in the browser, normalize exact relations,
+infer missing pages, or treat the local visual gate as deployment clearance.
+
+## Current handoff — 2026-07-17
 
 - R1 trust/capture/cost/privacy/custody hardening: complete provider-free.
 - R2 constitutional graph survival: complete provider-free.
@@ -219,6 +246,24 @@ automatically a regression; unexplained failures or historical hash drift are.
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
   generator.
+- The Mental Model Atlas provider-free candidate has one ordinary ownership
+  path: a 16-model orientation view opens exact incident neighborhoods from the
+  canonical 222-model / 1,358-relation navigation index; canonical identities
+  survive model and relation routes, while reviewed page availability remains a
+  separate card-first registry. Frozen fixtures and Canvas are `review=1` only.
+  The Abstraction source remains complete through five reviewed human chapters;
+  the broader learning page remains partial.
+  Teacher remains `park`: founder visual acceptance, native screen-reader review,
+  publication rights, and real-user usefulness are open. No Phase 2,
+  deployment, runtime/Observatory connection, or Teacher journey is authorized.
+- The guided-entry repair preserves all source and relation custody while
+  removing the redundant source-title entry. The current achromatic system now
+  covers every Phase 1 route and state. Its binding contract is
+  `apps/mental-model-atlas/DESIGN_SYSTEM.md`; only
+  `src/design-system/index.css` is active. The old monolithic and restraint
+  sheets are historical Git evidence, not live compatibility layers. Shared
+  relationship grammar, collision-aware labels, exact paging, arrows, and
+  pausable motion now have one documented owner. No palette is selected.
 - The Stage 0 addendum was canonically published through PR #372 at merge
   `fc30bd944bfb91fbff0cc09190487997f3fe3185`. Its
   machine register assigns every canonical implementation file to an explicit
@@ -231,12 +276,12 @@ automatically a regression; unexplained failures or historical hash drift are.
 - Runtime/graph integration, wider-corpus execution, model comparison,
   production-model selection, receipt claims, and scalar scoring: unauthorized.
 
-The Stage 0.5 public-handoff gardening pass made the canonical map legible from
-a fresh clone. Stage 0.6 then corrected deterministic long-conversation
-source-coverage custody without changing prompts, providers, graph behavior,
-or the semantic architecture. The next eligible product goal remains Stage 1:
-a provider-free, checked-in-safe Decision Trail truthfulness review. Stage 1
-is not authorized by these prerequisites. It may not inspect private archives,
-generate a new semantic read, call a provider, automate the sidecar, change
-runtime, reopen R4/R5, or claim product usefulness. Real-run review and
-live-pressure usefulness remain later, separately authorized stages.
+Stage 0.5 made the canonical map legible from a fresh clone. Stage 0.6 corrected
+deterministic long-conversation source custody without changing prompts,
+providers, graph behavior, or semantic architecture. The current Atlas decision
+is whether to publish and canonically adopt the consolidated local baseline;
+publication would not authorize deployment, Phase 2, or product claims. The next
+eligible product goal remains the provider-free, checked-in-safe Stage 1
+Decision Trail truthfulness review. It is not authorized and may not inspect private archives, generate semantics, call a provider,
+automate the sidecar, change runtime, reopen R4/R5, or claim product usefulness.
+Real-run review and live-pressure usefulness remain separately authorized stages.

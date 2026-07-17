@@ -16,6 +16,73 @@ Decision Work semantic generation are parked. The current live product path is
 the four-lane pressure system described by the Stage 0 audit; real-user
 usefulness remains unknown.
 
+## Current prospective Mental Model Atlas direction
+
+The founder has now selected a prospective Mental Model Teacher user job:
+present the complete mental-model landscape as a high-quality explorable Atlas,
+full model and relation pages, and curated Teacher journeys. The current
+codebase-grounded design is:
+
+- [Lolla Mental Model Atlas and Teacher PRD v1](lolla-mental-model-atlas-and-teacher-prd-v1.md)
+- [Marble reference study](lolla-mental-model-atlas-marble-reference-2026-07-15.md)
+- [Machine-readable PRD and current Phase 1 lifecycle contract](../evals/lolla-mental-model-atlas-prd-v1.json)
+- [Tracer-bullet implementation plan](../../plans/lolla-mental-model-atlas-tracer-bullet-plan-2026-07-15.md)
+
+These files supersede the v0 Teacher PRD and its historical recommended-next-PR
+labels for prospective product direction. The provider-free Phase 1 visual
+truth tracer bullet is now implemented locally:
+
+- [Phase 1 result](lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
+- [Card-first truthfulness repair result](lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
+- [Current monochrome structure study result](lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
+- [Current guided-entry founder-feedback repair](lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
+- [Current design-system consolidation](lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
+- [Current graph-legibility repair](lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
+- [Current neighborhood-navigation repair](lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
+- [Controlling Atlas baseline consolidation](lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+- [Vibrant-editorial result — historical / superseded](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
+- [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
+- [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
+- [Card-first machine-readable evidence](../evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
+- [Current monochrome structure evidence](../evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
+- [Current guided-entry evidence](../evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
+- [Current design-system evidence](../evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
+- [Current graph-legibility evidence](../evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
+- [Current neighborhood-navigation evidence](../evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
+- [Current Atlas baseline evidence](../evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
+- [Vibrant-editorial machine-readable evidence](../evals/lolla-mental-model-atlas-vibrant-editorial-refinement-evidence-v1.json)
+- [Local application](../../apps/mental-model-atlas/README.md)
+
+The July 16 additive repair corrects one Phase 1 truthfulness defect: the former
+page had complete source custody but projected only one substantive card line.
+The current Abstraction page renders the complete source card first and labels
+compiled graph material separately. Its founder follow-up adds a guided reading
+journey and a relationship explorer while preserving all exact records and
+directions. The latest visual gate deliberately removes chromatic color across
+the model page, Library, and global Atlas. It evaluates one shared hierarchy
+through typography, spacing, rule weight, line form, direction, and structural
+motion before any palette is reconsidered. The prior vibrant-editorial packet
+is superseded historical evidence. The source card is complete; the learning
+page is partial. The latest screenshot-driven repair aligns the breadcrumb and
+removes the repeated source-title entry block from guided mode; exact title
+custody remains in explicit full-source mode. Frozen Phase 1 artifacts remain
+unchanged.
+
+The current candidate additionally consolidates every Phase 1 route and state
+under one binding visual contract and one modular stylesheet entrypoint. It
+removes the active monolithic and override cascade while preserving all source,
+projection, relationship, and product-lifecycle boundaries.
+
+The graph-legibility follow-up repairs the map within that system: full-field
+selection, small outlined nodes, collision-aware labels, one relation key,
+distinct line types, and pausable source-to-target direction markers. It does
+not change the frozen coordinates or authored relations.
+
+This does not rewrite historical Teacher artifacts or change the Stage 0
+`park` disposition. Founder card-first acceptance, native screen-reader review,
+publication rights, and real-user usefulness remain open. No full-corpus build,
+deployment, runtime connection, provider call, or Phase 2 work is implied.
+
 ## Historical planning, prototype, and review inventory
 
 The list below is preserved for discovery and custody. Its entries do not share

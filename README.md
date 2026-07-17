@@ -30,7 +30,7 @@ evidence audit is the
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
 | Decision Trail and Product Delta | **BOUNDED / OFFLINE** | Read completed artifacts later; they do not influence the live answer. |
 | Decision Work | **BOUNDED / OPERATOR-DIRECTED** | Validates and packages supplied interpretations; no trustworthy arbitrary-run semantic supplier exists. |
-| Mental Model Teacher | **PARKED** | Substantial prototype family without a selected current user job or usefulness gate. |
+| Mental Model Atlas / Teacher | **PARKED / LOCAL PHASE 1 REVIEW** | The founder-selected Atlas job has a source-bound local tracer bullet; visual, native screen-reader, rights, and real-user gates remain open. |
 | R3/R4 conversation readers | **RESEARCH ONLY / RETIRED** | Evidence is preserved; the incremental R4 architecture must not supply live or Decision Work state. |
 | Real-user usefulness | **UNKNOWN** | Mechanical tests and simulations do not establish customer value or better decisions. |
 
@@ -162,7 +162,8 @@ Not established:
 - that a revised answer is better;
 - that the system understands a full longitudinal conversation reliably;
 - that Decision Work can automatically generate trustworthy semantic state;
-- that the parked Teacher or the retired R4 reader should be productized;
+- that the local Atlas tracer, parked Teacher, or retired R4 reader should be
+  productized;
 - production readiness or market demand.
 
 The final R4 experiment recovered genuine findings but repeated unsafe false
@@ -180,6 +181,19 @@ truthfulness review of checked-in-safe Decision Trail material.
 Stage 1 is not started by this README or by cloning the repository. It must not
 inspect private archives, create a new semantic reader, call a provider,
 automate Decision Work, reopen R4/R5, or change runtime behavior.
+
+Separately, the provider-free Mental Model Atlas is consolidated locally around
+one canonical identity path. A 16-model orientation view opens exact,
+40-record-paged neighborhoods from all 222 canonical models and 1,358 authored
+relations; model and relation identities survive route changes, while reviewed
+teaching-page availability remains a separate card-first contract. The
+Abstraction source is complete and presented through five source-bound human
+chapters; the wider Teacher product remains partial and parked. The visual
+system is deliberately achromatic precise editorial cartography. Frozen
+fixtures and Canvas are explicit review-only paths, not competing ordinary
+routes. See the [controlling Atlas baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+Its next decision is canonical publication, not deployment, Phase 2, Teacher
+journeys, runtime links, provider use, or a product-usefulness claim.
 
 See the
 [post-Stage-0 restart roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).

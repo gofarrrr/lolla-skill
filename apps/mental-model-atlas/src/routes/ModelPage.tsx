@@ -1,0 +1,213 @@
+import { useCallback, useEffect } from "react";
+
+import {
+  type CardFirstModelPage,
+  loadCardFirstModelPage,
+} from "../cardFirstModelPage";
+import { CardSourceDocument } from "../components/CardSourceDocument";
+import { ModelConnections } from "../components/ModelConnections";
+import { OperationalModelSummary } from "../components/OperationalModelSummary";
+import { ProjectionLoading } from "../components/ProjectionFailure";
+import { StatusDisclosure } from "../components/StatusDisclosure";
+import { loadNavigationIndex } from "../navigation";
+import { AppLink } from "../router";
+import { useAsyncResource } from "../useAsyncResource";
+
+export default function ModelPage({ slug }: { slug: string }) {
+  const loader = useCallback(
+    (signal: AbortSignal) => loadCardFirstModelPage(slug, signal),
+    [slug],
+  );
+  const pageResource = useAsyncResource(`card-first-model:${slug}`, loader);
+
+  useEffect(() => {
+    document.title = `${slug || "Unknown model"} · Lolla Atlas`;
+  }, [slug]);
+
+  if (pageResource.status === "loading") {
+    return <ModelFrame><ProjectionLoading /></ModelFrame>;
+  }
+  if (pageResource.status === "failed") {
+    return (
+      <ModelFrame>
+        <PageLoadFailure message={pageResource.message} />
+      </ModelFrame>
+    );
+  }
+  if (!pageResource.data) {
+    return <CanonicalModelFallback slug={slug} />;
+  }
+
+  return <RenderedModelPage page={pageResource.data} />;
+}
+
+function CanonicalModelFallback({ slug }: { slug: string }) {
+  const loader = useCallback(
+    async () => (await loadNavigationIndex()).models.find(
+      (model) => model.slug === slug,
+    ) ?? null,
+    [slug],
+  );
+  const resource = useAsyncResource(`canonical-model:${slug}`, loader);
+
+  if (resource.status === "loading") {
+    return <ModelFrame><ProjectionLoading /></ModelFrame>;
+  }
+  if (resource.status === "failed") {
+    return (
+      <ModelFrame>
+        <PageLoadFailure message={resource.message} />
+      </ModelFrame>
+    );
+  }
+  const model = resource.data;
+  return (
+    <ModelFrame>
+      <section className="unavailable-page" role="status">
+        <p className="eyebrow">Summary only</p>
+        <h1>{model?.display_name ?? "Model page not found"}</h1>
+        {model ? (
+          <>
+            <p>{model.summary.text}</p>
+            <p>
+              This canonical model exists, but a reviewed full article is not
+              available yet. You can inspect its exact connections in the Atlas;
+              missing teaching material has not been invented.
+            </p>
+            <AppLink
+              className="button"
+              href={`/atlas?model=${encodeURIComponent(model.model_id)}`}
+            >
+              See {model.display_name} in the Atlas
+            </AppLink>
+          </>
+        ) : (
+          <p>
+            The unknown slug remains unknown. The Atlas did not repair it into a
+            nearby canonical identity.
+          </p>
+        )}
+      </section>
+    </ModelFrame>
+  );
+}
+
+export function RenderedModelPage({ page }: { page: CardFirstModelPage }) {
+  const { model, source_card: sourceCard, operational_curation, connections } = page;
+  useEffect(() => {
+    document.title = `${model.display_name} · Lolla Atlas`;
+  }, [model.display_name]);
+
+  return (
+    <main id="main" className="content-route model-page-route card-first-model-route">
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <AppLink href="/models">Model Library</AppLink>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{model.display_name}</span>
+      </nav>
+
+      <article className="learning-page card-first-page">
+        <header className="learning-hero card-first-hero">
+          <div className="model-hero-title-panel">
+            <p className="eyebrow">Mental model</p>
+            <h1>{model.display_name}</h1>
+            <p className="definition-lede">
+              Reduce complexity without losing contact with reality.
+            </p>
+          </div>
+          <div className="model-hero-data-panel">
+            <div className="model-orientation-cues" aria-label="Quick orientation">
+              {sourceCard.reader_projection.orientation_cues.map((cue) => (
+                <blockquote key={cue.label}>
+                  <p>{cue.label}</p>
+                  <q>{cue.text}</q>
+                </blockquote>
+              ))}
+            </div>
+          </div>
+          <nav className="model-signal-path" aria-label="On this model page">
+            <a className="signal-source" href="#guided-reader-start"><span>01</span><strong>Understand</strong></a>
+            <a className="signal-practice" href="#model-practice"><span>02</span><strong>Use it</strong></a>
+            <a className="signal-relations" href="#model-relations"><span>03</span><strong>Connections</strong></a>
+            <a className="signal-boundary" href="#model-boundary"><span>04</span><strong>Perspective</strong></a>
+          </nav>
+        </header>
+
+        <section
+          className="source-layer"
+          id="source-card"
+          aria-label={`Understand ${model.display_name}`}
+        >
+          <CardSourceDocument sourceCard={sourceCard} />
+        </section>
+
+        <OperationalModelSummary operational={operational_curation} />
+        <ModelConnections connections={connections} />
+        <PageCoverageDisclosure page={page} />
+      </article>
+
+      <StatusDisclosure
+        collapseTechnical
+        status={page.status}
+        missingness={page.missingness}
+        sourceRefs={[
+          sourceCard.source_ref,
+          operational_curation.source_ref,
+          connections.source_ref,
+        ]}
+        nonClaims={page.non_claims}
+      />
+    </main>
+  );
+}
+
+function PageCoverageDisclosure({ page }: { page: CardFirstModelPage }) {
+  return (
+    <aside className="learning-boundary-note" id="model-boundary" aria-labelledby="page-coverage-title">
+      <p className="eyebrow">A human learning guide—not a verdict</p>
+      <h2 id="page-coverage-title">Use the model; keep judging the situation.</h2>
+      <p>
+        This page can help you understand and inspect Abstraction. It cannot prove
+        that the model is correct or suitable for your particular decision.
+      </p>
+      <details className="technical-review-disclosure">
+        <summary>What remains outside this local learning preview</summary>
+        <ul className="coverage-component-list">
+          {page.coverage.components.map((component) => (
+            <li key={component.component}>
+              <strong>{component.component.replaceAll("_", " ")}</strong>
+              <span>{component.status.replaceAll("_", " ")}</span>
+              {component.render_disposition ? <small>{component.render_disposition.replaceAll("_", " ")}</small> : null}
+            </li>
+          ))}
+        </ul>
+      </details>
+    </aside>
+  );
+}
+
+function PageLoadFailure({ message }: { message: string }) {
+  return (
+    <section className="unavailable-page" role="alert">
+      <p className="eyebrow">Card-first model page failed</p>
+      <h1>The source-bound page artifact could not be verified.</h1>
+      <p>{message}</p>
+      <p>
+        This failure is not rendered as a complete card, an unavailable semantic
+        object, or a valid zero.
+      </p>
+      <div className="button-row">
+        <button type="button" onClick={() => window.location.reload()}>
+          Reload the source page
+        </button>
+        <AppLink className="button secondary" href="/models">
+          Browse the model library
+        </AppLink>
+      </div>
+    </section>
+  );
+}
+
+function ModelFrame({ children }: { children: React.ReactNode }) {
+  return <main id="main" className="content-route model-page-route">{children}</main>;
+}
