@@ -13,6 +13,10 @@ import {
   fixtureFromQuery,
   loadProjection,
 } from "./projection";
+import {
+  buildNeighborhoodProjection,
+  loadNavigationIndex,
+} from "./navigation";
 import { useLocation } from "./router";
 
 type ProjectionState =
@@ -31,14 +35,20 @@ const projectionCache = new Map<string, AtlasProjection>();
 export function ProjectionProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const fixtureId = fixtureFromQuery(location.searchParams.get("fixture"));
+  const selectedModelId =
+    fixtureId === "ordinary-navigation"
+      ? clean(location.searchParams.get("model"))
+      : null;
   const parsedPage = Number(location.searchParams.get("page") ?? "1");
   const pageNumber =
-    fixtureId === "confirmation-bias-hub" &&
+    (fixtureId === "confirmation-bias-hub" || selectedModelId) &&
     Number.isInteger(parsedPage) &&
     parsedPage > 0
       ? parsedPage
       : 1;
-  const cacheKey = `${fixtureId}:${pageNumber}`;
+  const cacheKey = selectedModelId
+    ? `canonical-neighborhood:${selectedModelId}:${pageNumber}`
+    : `${fixtureId}:${pageNumber}`;
   const [attempt, setAttempt] = useState(0);
   const cached = projectionCache.get(cacheKey);
   const [state, setState] = useState<ProjectionState>(() =>
@@ -65,14 +75,23 @@ export function ProjectionProvider({ children }: { children: ReactNode }) {
     }
 
     const controller = new AbortController();
+    let active = true;
     setState({ status: "loading", fixtureId, retry });
-    void loadProjection(fixtureId, pageNumber, controller.signal)
+    const projectionPromise = selectedModelId
+      ? loadNavigationIndex().then((index) =>
+          buildNeighborhoodProjection(index, selectedModelId, pageNumber),
+        )
+      : loadProjection(fixtureId, pageNumber, controller.signal);
+    void projectionPromise
       .then((projection) => {
+        if (!active) {
+          return;
+        }
         projectionCache.set(cacheKey, projection);
         setState({ status: "ready", fixtureId, projection, retry });
       })
       .catch((error: unknown) => {
-        if (controller.signal.aborted) {
+        if (!active || controller.signal.aborted) {
           return;
         }
         setState({
@@ -83,10 +102,13 @@ export function ProjectionProvider({ children }: { children: ReactNode }) {
           retry,
         });
       });
-    return () => controller.abort();
+    return () => {
+      active = false;
+      controller.abort();
+    };
     // The retry function intentionally closes over the current fixture.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cacheKey, fixtureId, pageNumber, attempt]);
+  }, [cacheKey, fixtureId, pageNumber, selectedModelId, attempt]);
 
   const value = useMemo(() => state, [state]);
   return (
@@ -94,6 +116,11 @@ export function ProjectionProvider({ children }: { children: ReactNode }) {
       {children}
     </ProjectionContext.Provider>
   );
+}
+
+function clean(value: string | null): string | null {
+  const normalized = value?.trim();
+  return normalized ? normalized : null;
 }
 
 export function useProjection(): ProjectionState {

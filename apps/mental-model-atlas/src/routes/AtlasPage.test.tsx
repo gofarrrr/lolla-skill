@@ -1,7 +1,9 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import ordinaryProjection from "../../public/data/phase1/ordinary-navigation.json";
+import navigationIndex from "../../public/data/navigation-v1/neighborhood-index.json";
 import hubPage1 from "../../public/data/phase1/confirmation-bias-hub-page-1.json";
 import hubPage2 from "../../public/data/phase1/confirmation-bias-hub-page-2.json";
 import { ProjectionProvider } from "../projectionContext";
@@ -12,8 +14,12 @@ describe("Atlas interaction state", () => {
     window.history.replaceState(null, "", "/atlas");
     vi.stubGlobal(
       "fetch",
-      vi.fn(async () =>
-        new Response(JSON.stringify(ordinaryProjection), {
+      vi.fn(async (input: RequestInfo | URL) =>
+        new Response(JSON.stringify(
+          String(input).includes("navigation-v1")
+            ? navigationIndex
+            : ordinaryProjection,
+        ), {
           status: 200,
           headers: { "Content-Type": "application/json" },
         }),
@@ -28,9 +34,11 @@ describe("Atlas interaction state", () => {
 
   it("keeps committed selection while hover previews another model", async () => {
     render(
-      <ProjectionProvider>
-        <AtlasPage motionPaused />
-      </ProjectionProvider>,
+      <StrictMode>
+        <ProjectionProvider>
+          <AtlasPage motionPaused />
+        </ProjectionProvider>
+      </StrictMode>,
     );
 
     const abstraction = await screen.findByRole(
@@ -40,7 +48,7 @@ describe("Atlas interaction state", () => {
     );
     fireEvent.click(abstraction);
 
-    const selectedPanel = screen.getByRole("complementary", {
+    const selectedPanel = await screen.findByRole("complementary", {
       name: "Selected model",
     });
     expect(within(selectedPanel).getByRole("heading", { name: "Abstraction" })).toBeTruthy();
@@ -51,10 +59,10 @@ describe("Atlas interaction state", () => {
         ?.getAttribute("data-camera-transform"),
     ).toBe("translate(0px, 0px) scale(1)");
 
-    const criticalThinking = screen.getByRole("button", {
-      name: "Select Critical Thinking",
+    const firstPrinciples = await screen.findByRole("button", {
+      name: "Select First Principles Thinking",
     });
-    fireEvent.pointerEnter(criticalThinking);
+    fireEvent.pointerEnter(firstPrinciples);
 
     expect(await screen.findByText("Preview")).toBeTruthy();
     expect(within(selectedPanel).getByRole("heading", { name: "Abstraction" })).toBeTruthy();
@@ -66,6 +74,32 @@ describe("Atlas interaction state", () => {
         "abstraction",
       );
     });
+  });
+
+  it("rebuilds the exact canonical neighborhood when exploration moves to another model", async () => {
+    render(
+      <ProjectionProvider>
+        <AtlasPage motionPaused />
+      </ProjectionProvider>,
+    );
+
+    fireEvent.click(await screen.findByRole("button", {
+      name: "Select Root Cause Analysis",
+    }));
+
+    expect(await screen.findByText("Root Cause Analysis · 14 connections shown.")).toBeTruthy();
+    expect(document.querySelectorAll("[data-relation-id]")).toHaveLength(14);
+    expect(await screen.findByRole("button", {
+      name: "Select Five Whys Method",
+    })).toBeTruthy();
+    expect(document.querySelector("[data-projection-id*='root-cause-analysis']")).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "Select Five Whys Method" }));
+    expect(await screen.findByText(/Five Whys Method · \d+ connections shown\./)).toBeTruthy();
+    expect(new URL(window.location.href).searchParams.get("model")).toBe(
+      "five-whys-method",
+    );
+    expect(document.querySelector("[data-projection-id*='five-whys-method']")).toBeTruthy();
   });
 
   it("keeps local fixture and renderer plumbing out of the ordinary visitor controls", async () => {

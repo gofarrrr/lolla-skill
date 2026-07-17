@@ -55,7 +55,7 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
       performance.mark("lolla-atlas-useful");
     });
     return () => cancelAnimationFrame(frame);
-  }, [projectionState.status, projectionState.fixtureId]);
+  }, [projectionState.status, projection?.projection_id]);
 
   if (projectionState.status === "loading") {
     return (
@@ -296,7 +296,12 @@ function PageNavigation({
   const pageCount = Math.ceil(
     projection.page.eligible_count / projection.page.page_size,
   );
-  if (projection.fixture_id !== "confirmation_bias_hub" || pageCount <= 1) {
+  if (
+    !["confirmation_bias_hub", "canonical_neighborhood"].includes(
+      projection.fixture_id,
+    ) ||
+    pageCount <= 1
+  ) {
     return null;
   }
   const currentPage = projection.page.page_number;
@@ -310,7 +315,7 @@ function PageNavigation({
         <span>
           {projection.page.before_count + 1}–
           {projection.page.before_count + projection.page.shown_count} of{" "}
-          {projection.page.eligible_count} source-authored relation records
+          {projection.page.eligible_count} exact source-authored connections
         </span>
       </div>
       <div className="button-row">

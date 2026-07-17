@@ -43,9 +43,10 @@ export function positionModels(projection: AtlasProjection): PositionedModel[] {
   const xSpan = Math.max(1, maxX - minX);
   const ySpan = Math.max(1, maxY - minY);
 
+  const paddingX = available.length > 20 ? 210 : PADDING_X;
   return available.map(({ model, coordinate }) => ({
     model,
-    x: PADDING_X + ((coordinate.x - minX) / xSpan) * (WIDTH - PADDING_X * 2),
+    x: paddingX + ((coordinate.x - minX) / xSpan) * (WIDTH - paddingX * 2),
     y: PADDING_Y + ((coordinate.y - minY) / ySpan) * (HEIGHT - PADDING_Y * 2),
   }));
 }
@@ -86,6 +87,9 @@ export function positionRelations(
 export function positionModelLabels(
   models: PositionedModel[],
 ): Map<string, PositionedModelLabel> {
+  if (models.length > 20) {
+    return positionDenseModelLabels(models);
+  }
   const labels = new Map<string, PositionedModelLabel>();
   const occupied: PositionedModelLabel[] = [];
   const ordered = [...models].sort(
@@ -149,6 +153,38 @@ export function positionModelLabels(
     occupied.push(selected);
   }
 
+  return labels;
+}
+
+function positionDenseModelLabels(
+  models: PositionedModel[],
+): Map<string, PositionedModelLabel> {
+  const labels = new Map<string, PositionedModelLabel>();
+  const left: PositionedModel[] = [];
+  const right: PositionedModel[] = [];
+  for (const model of [...models].sort((a, b) => a.x - b.x || a.y - b.y)) {
+    const preferred = model.x < WIDTH / 2 ? left : right;
+    const alternate = preferred === left ? right : left;
+    (preferred.length <= alternate.length + 2 ? preferred : alternate).push(model);
+  }
+  for (const [side, lane] of [["left", left], ["right", right]] as const) {
+    lane.sort((a, b) => a.y - b.y || a.x - b.x);
+    const availableHeight = HEIGHT - 16 - 24;
+    const step = lane.length > 1 ? availableHeight / (lane.length - 1) : 0;
+    lane.forEach((positioned, index) => {
+      const width = Math.min(
+        178,
+        Math.max(82, positioned.model.display_name.length * 7.2 + 18),
+      );
+      labels.set(positioned.model.model_id, {
+        modelId: positioned.model.model_id,
+        x: side === "left" ? 8 : WIDTH - width - 8,
+        y: 8 + index * step,
+        width,
+        height: 24,
+      });
+    });
+  }
   return labels;
 }
 

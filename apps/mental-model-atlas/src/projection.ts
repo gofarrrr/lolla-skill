@@ -39,7 +39,8 @@ export const FIXTURES = [
 
 export type FixtureId = (typeof FIXTURES)[number]["id"];
 export type ProjectionFixtureId =
-  (typeof FIXTURES)[number]["projectionFixtureId"];
+  | (typeof FIXTURES)[number]["projectionFixtureId"]
+  | "canonical_neighborhood";
 
 export interface AtlasSourceRef {
   path: string;
@@ -314,8 +315,8 @@ export function validateProjection(value: unknown): AtlasProjection {
   const fixture = FIXTURES.find(
     (candidate) => candidate.projectionFixtureId === root.fixture_id,
   );
-  if (!fixture) {
-    fail(`projection.fixture_id is not a supported Phase 1 fixture`);
+  if (!fixture && root.fixture_id !== "canonical_neighborhood") {
+    fail(`projection.fixture_id is not a supported Atlas fixture`);
   }
   object(root.source_custody, "projection.source_custody");
   object(root.scope, "projection.scope");
@@ -418,7 +419,7 @@ export function validateRelationPage(value: unknown): AtlasRelationPage {
   return root as unknown as AtlasRelationPage;
 }
 
-function validateModelRecord(value: unknown, index = 0): AtlasModelRecord {
+export function validateModelRecord(value: unknown, index = 0): AtlasModelRecord {
   const path = `projection.models[${index}]`;
   const model = object(value, path);
   strings(model, ["model_id", "slug", "display_name"], path);
@@ -571,7 +572,7 @@ function validateSourcedText(value: unknown, path: string): AtlasSourcedText {
   return item as unknown as AtlasSourcedText;
 }
 
-function validateRelationRecord(value: unknown, index = 0): AtlasRelationRecord {
+export function validateRelationRecord(value: unknown, index = 0): AtlasRelationRecord {
   const path = `projection.relations[${index}]`;
   const relation = object(value, path);
   strings(
@@ -645,7 +646,7 @@ function validateSourceRef(value: unknown, path: string): AtlasSourceRef {
   return source as unknown as AtlasSourceRef;
 }
 
-function validateMissingness(value: unknown, path: string): AtlasMissingness {
+export function validateMissingness(value: unknown, path: string): AtlasMissingness {
   const missingness = object(value, path);
   strings(missingness, ["status"], path);
   stringArray(missingness.missing_fields, `${path}.missing_fields`);

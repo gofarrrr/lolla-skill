@@ -41,10 +41,14 @@ the structural contract is stable and reviewed.
 
 ## Atlas graph grammar
 
-- The visual map keeps the complete loaded model field in view after selection;
-  selection may emphasize but must not pan other models outside the viewport.
+- The unselected map is the bounded 16-model orientation slice. Selecting a
+  model replaces that slice with the current exact incident-neighborhood page;
+  selecting any revealed neighbor rebuilds around that model.
+- Every model and edge on the current page remains in view. High-fan-in
+  neighborhoods use exact 40-record pages and disclose all omitted records.
 - Model identity uses a small outlined node and a separately bounded label.
   Labels must remain inside the graph and must not collide with one another.
+  Dense pages reserve two ordered label lanes rather than allowing overlap.
 - The relationship controls are the single visible legend. Do not repeat a
   second key in the selection panel.
 - Every visible edge carries its exact relation type, a source-to-target
