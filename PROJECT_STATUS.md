@@ -6,6 +6,11 @@ Authority: current public handoff derived from the canonical Constitution Stage
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
 
+Workspace restart state: the normal Desktop checkout is clean canonical
+`main`. The former 64-entry July 14 founder-strategy package is preserved
+noncanonically at commit `4162e3efa0cb919e8d4ac4504fedc1ff64950a4f`;
+see the [custody closeout](docs/operations/lolla-founder-desktop-worktree-custody-closeout-2026-07-17.md).
+
 ## Five-sentence status
 
 Lolla is an experimental reasoning-pressure skill for consequential AI
