@@ -6,6 +6,14 @@ const HEIGHT = 700;
 const PADDING_X = 72;
 const PADDING_Y = 64;
 
+export interface PositionedModelLabel {
+  modelId: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export function positionModels(projection: AtlasProjection): PositionedModel[] {
   const coordinates = new Map(
     projection.layout.coordinates.map((coordinate) => [
@@ -75,6 +83,75 @@ export function positionRelations(
   return positioned;
 }
 
+export function positionModelLabels(
+  models: PositionedModel[],
+): Map<string, PositionedModelLabel> {
+  const labels = new Map<string, PositionedModelLabel>();
+  const occupied: PositionedModelLabel[] = [];
+  const ordered = [...models].sort(
+    (left, right) =>
+      right.model.display_name.length - left.model.display_name.length ||
+      left.y - right.y ||
+      left.x - right.x,
+  );
+
+  for (const positioned of ordered) {
+    const width = Math.min(
+      178,
+      Math.max(82, positioned.model.display_name.length * 7.2 + 18),
+    );
+    const height = 24;
+    const preferRight = positioned.x < WIDTH / 2;
+    const candidates = [
+      preferRight
+        ? { x: positioned.x + 16, y: positioned.y - height / 2 }
+        : { x: positioned.x - width - 16, y: positioned.y - height / 2 },
+      { x: positioned.x - width / 2, y: positioned.y - height - 18 },
+      { x: positioned.x - width / 2, y: positioned.y + 18 },
+      preferRight
+        ? { x: positioned.x - width - 16, y: positioned.y - height / 2 }
+        : { x: positioned.x + 16, y: positioned.y - height / 2 },
+    ].map((candidate) => ({
+      modelId: positioned.model.model_id,
+      x: clamp(candidate.x, 8, WIDTH - width - 8),
+      y: clamp(candidate.y, 8, HEIGHT - height - 8),
+      width,
+      height,
+    }));
+
+    const otherNodes = models.filter(
+      ({ model }) => model.model_id !== positioned.model.model_id,
+    );
+    const scored = candidates.map((candidate, index) => {
+      const labelOverlap = occupied.reduce(
+        (total, label) => total + overlapArea(candidate, label),
+        0,
+      );
+      const nodeOverlap = otherNodes.reduce(
+        (total, node) =>
+          total +
+          overlapArea(candidate, {
+            x: node.x - 13,
+            y: node.y - 13,
+            width: 26,
+            height: 26,
+          }),
+        0,
+      );
+      return {
+        candidate,
+        score: labelOverlap * 100 + nodeOverlap * 30 + index,
+      };
+    });
+    scored.sort((left, right) => left.score - right.score);
+    const selected = scored[0].candidate;
+    labels.set(positioned.model.model_id, selected);
+    occupied.push(selected);
+  }
+
+  return labels;
+}
+
 export function curveGeometry(relation: PositionedRelation) {
   const { source, target, curveOffset } = relation;
   const dx = target.x - source.x;
@@ -102,4 +179,25 @@ function pairKey(source: string, target: string): string {
 
 function quadratic(start: number, control: number, end: number, t: number): number {
   return (1 - t) ** 2 * start + 2 * (1 - t) * t * control + t ** 2 * end;
+}
+
+function clamp(value: number, minimum: number, maximum: number): number {
+  return Math.min(maximum, Math.max(minimum, value));
+}
+
+function overlapArea(
+  first: Pick<PositionedModelLabel, "x" | "y" | "width" | "height">,
+  second: Pick<PositionedModelLabel, "x" | "y" | "width" | "height">,
+): number {
+  const width = Math.max(
+    0,
+    Math.min(first.x + first.width, second.x + second.width) -
+      Math.max(first.x, second.x),
+  );
+  const height = Math.max(
+    0,
+    Math.min(first.y + first.height, second.y + second.height) -
+      Math.max(first.y, second.y),
+  );
+  return width * height;
 }

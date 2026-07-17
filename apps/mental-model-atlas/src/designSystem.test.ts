@@ -134,6 +134,10 @@ describe("Mental Model Atlas design-system contract", () => {
 
     expect(shell).toContain("background: var(--color-surface-raised)");
     expect(atlas).toContain("background-size: 2rem 2rem");
+    expect(atlas).toContain('.graph-edge[data-relation="antagonist"] .edge-line');
+    expect(atlas).toContain('.graph-edge[data-relation="tension"] .edge-line');
+    expect(atlas).toContain(".edge-flow-marker");
+    expect(atlas).toContain(".graph-node-label rect");
     expect(atlas).toContain(".semantic-model-list li > a");
     expect(library).toContain("grid-template-rows: auto 1fr auto");
     expect(library).toContain("height: 100%");

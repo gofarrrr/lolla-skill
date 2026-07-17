@@ -27,6 +27,7 @@ describe("Graph renderer boundary", () => {
         hoveredModelId={null}
         relatedModelIds={new Set()}
         visibleModelIds={new Set(projection.models.map((model) => model.model_id))}
+        motionPaused
         onSelectModel={() => undefined}
         onSelectRelation={() => undefined}
         onHoverModel={() => undefined}

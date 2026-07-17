@@ -49,7 +49,7 @@ describe("Atlas interaction state", () => {
       document
         .querySelector("svg[data-renderer='svg']")
         ?.getAttribute("data-camera-transform"),
-    ).toContain("translate(500px, 350px)");
+    ).toBe("translate(0px, 0px) scale(1)");
 
     const criticalThinking = screen.getByRole("button", {
       name: "Select Critical Thinking",

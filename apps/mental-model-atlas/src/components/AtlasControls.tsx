@@ -41,8 +41,8 @@ export function AtlasControls({
         />
       </label>
 
-      <fieldset className="relation-filter">
-        <legend>Relation focus</legend>
+      <fieldset className="relation-filter" aria-describedby="relation-grammar">
+        <legend>Show relationships</legend>
         {RELATION_TYPES.map((type) => (
           <label key={type} className={`relation-choice relation-${type}`}>
             <input
@@ -50,10 +50,18 @@ export function AtlasControls({
               checked={state.relationTypes.includes(type)}
               onChange={() => toggleRelationType(type)}
             />
-            <span className="relation-swatch" aria-hidden="true" />
+            <span
+              className="relation-swatch"
+              data-relation={type}
+              aria-hidden="true"
+            />
             {type}
           </label>
         ))}
+        <p className="relation-grammar" id="relation-grammar">
+          Solid ally · dashed antagonist · double tension. The arrow and moving
+          marker follow the authored source → target direction.
+        </p>
       </fieldset>
 
       {showPrototypeControls ? (

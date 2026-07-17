@@ -106,11 +106,6 @@ export function SelectionPanel({
         Position helps you navigate; it is not a ranking. Select a model to see the
         ideas that support it, challenge it, or create a useful tradeoff.
       </p>
-      <ul className="legend-list">
-        <li className="relation-ally">Ally — supportive or complementary</li>
-        <li className="relation-antagonist">Antagonist — counteracting or opposed</li>
-        <li className="relation-tension">Tension — a productive tradeoff or boundary</li>
-      </ul>
     </aside>
   );
 }

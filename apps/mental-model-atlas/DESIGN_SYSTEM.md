@@ -39,6 +39,20 @@ the structural contract is stable and reviewed.
   weight: solid for ally, dashed for antagonist, double/dotted for tension.
 - Direction remains separate from relationship kind.
 
+## Atlas graph grammar
+
+- The visual map keeps the complete loaded model field in view after selection;
+  selection may emphasize but must not pan other models outside the viewport.
+- Model identity uses a small outlined node and a separately bounded label.
+  Labels must remain inside the graph and must not collide with one another.
+- The relationship controls are the single visible legend. Do not repeat a
+  second key in the selection panel.
+- Every visible edge carries its exact relation type, a source-to-target
+  arrowhead, and a traveling directional marker. Motion pauses through the
+  global control and under reduced-motion preference.
+- SVG and Canvas comparison renderers use the same achromatic node, label,
+  relation-type, direction, selection, and motion grammar.
+
 ## Typography
 
 - Familjen Grotesk: page and section identity.

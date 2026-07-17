@@ -4,16 +4,14 @@ import {
   curveGeometry,
   GRAPH_HEIGHT,
   GRAPH_WIDTH,
+  positionModelLabels,
   positionModels,
   positionRelations,
 } from "./graphGeometry";
 import type { GraphRendererProps, PositionedModel, PositionedRelation } from "./graphTypes";
 
-const COLORS = {
-  ally: "#71d6ae",
-  antagonist: "#ff7f76",
-  tension: "#d7a6ff",
-} as const;
+const INK = "#171717";
+const CANVAS = "#f3f3f3";
 
 export default function CanvasGraphSurface(props: GraphRendererProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,6 +34,7 @@ export default function CanvasGraphSurface(props: GraphRendererProps) {
     if (!context) {
       throw new Error("Canvas 2D is unavailable");
     }
+    let animationFrame = 0;
     const resize = () => {
       const bounds = canvas.getBoundingClientRect();
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -49,12 +48,22 @@ export default function CanvasGraphSurface(props: GraphRendererProps) {
         0,
         0,
       );
-      draw(context, visibleModels, relations, props);
+      draw(context, visibleModels, relations, props, performance.now());
     };
     resize();
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
-    return () => observer.disconnect();
+    if (!props.motionPaused) {
+      const animate = (time: number) => {
+        draw(context, visibleModels, relations, props, time);
+        animationFrame = requestAnimationFrame(animate);
+      };
+      animationFrame = requestAnimationFrame(animate);
+    }
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(animationFrame);
+    };
   }, [visibleModels, relations, props]);
 
   function eventPoint(
@@ -111,6 +120,7 @@ function draw(
   models: PositionedModel[],
   relations: PositionedRelation[],
   props: GraphRendererProps,
+  time: number,
 ): void {
   context.clearRect(0, 0, GRAPH_WIDTH, GRAPH_HEIGHT);
   context.save();
@@ -121,43 +131,69 @@ function draw(
     context.scale(camera.scale, camera.scale);
     context.translate(-camera.x, -camera.y);
   }
-  for (const positioned of relations) {
+  for (const [index, positioned] of relations.entries()) {
     const { relation, source, target } = positioned;
     const curve = curveGeometry(positioned);
-    context.beginPath();
-    context.moveTo(source.x, source.y);
-    context.quadraticCurveTo(curve.controlX, curve.controlY, target.x, target.y);
-    context.strokeStyle = COLORS[relation.relation_type];
     context.globalAlpha = relation.relation_id === props.selectedRelationId ? 1 : 0.68;
-    context.lineWidth = relation.relation_id === props.selectedRelationId ? 3 : 1.5;
-    context.setLineDash(
-      relation.relation_type === "antagonist"
-        ? [8, 5]
-        : relation.relation_type === "tension"
-          ? [2, 5]
-          : [],
-    );
-    context.stroke();
-    drawArrow(context, curve.midpointX, curve.midpointY, target.x, target.y, COLORS[relation.relation_type]);
+    context.strokeStyle = INK;
+    if (relation.relation_type === "tension") {
+      strokeRelation(context, positioned, relation.relation_id === props.selectedRelationId ? 6 : 4, []);
+      context.strokeStyle = CANVAS;
+      strokeRelation(context, positioned, relation.relation_id === props.selectedRelationId ? 2 : 1.5, []);
+      context.strokeStyle = INK;
+    } else {
+      strokeRelation(
+        context,
+        positioned,
+        relation.relation_id === props.selectedRelationId ? 3 : 1.5,
+        relation.relation_type === "antagonist" ? [9, 6] : [],
+      );
+    }
+    drawArrow(context, positioned, 0.82);
+    if (relation.relation_type === "antagonist") {
+      drawCross(context, curve.midpointX, curve.midpointY);
+    }
+    const progress = props.motionPaused
+      ? 0.52
+      : ((time / 3000 + index * 0.17) % 1);
+    const flow = quadraticPoint(positioned, progress);
+    context.beginPath();
+    context.arc(flow.x, flow.y, 3.25, 0, Math.PI * 2);
+    context.fillStyle = INK;
+    context.fill();
   }
   context.setLineDash([]);
   const hasSelection = Boolean(props.selectedModelId || props.selectedRelationId);
+  const labels = positionModelLabels(models);
   for (const positioned of models) {
     const { model, x, y } = positioned;
     const selected = model.model_id === props.selectedModelId;
     const hovered = model.model_id === props.hoveredModelId;
     const dimmed = hasSelection && !props.relatedModelIds.has(model.model_id);
-    context.globalAlpha = dimmed ? 0.2 : 1;
+    context.globalAlpha = dimmed ? 0.5 : 1;
     context.beginPath();
-    context.arc(x, y, selected ? 9 : hovered ? 8 : 6, 0, Math.PI * 2);
-    context.fillStyle = selected ? "#f4d792" : hovered ? "#ffffff" : "#bdc4d3";
+    context.arc(x, y, selected ? 13 : 10, 0, Math.PI * 2);
+    context.fillStyle = CANVAS;
     context.fill();
-    if (!dimmed || selected || hovered) {
-      context.font = selected ? "600 15px system-ui" : "500 12px system-ui";
-      context.fillStyle = selected || hovered ? "#ffffff" : "#a9b0bf";
-      const anchorAtEnd = x > GRAPH_WIDTH - 180;
-      context.textAlign = anchorAtEnd ? "right" : "left";
-      context.fillText(model.display_name, x + (anchorAtEnd ? -13 : 13), y + 4);
+    context.strokeStyle = INK;
+    context.lineWidth = selected || hovered ? 2.5 : 1;
+    context.stroke();
+    context.beginPath();
+    context.arc(x, y, selected ? 5 : hovered ? 4.25 : 3.25, 0, Math.PI * 2);
+    context.fillStyle = INK;
+    context.fill();
+    const label = labels.get(model.model_id);
+    if (label) {
+      context.fillStyle = CANVAS;
+      context.fillRect(label.x, label.y, label.width, label.height);
+      context.strokeStyle = selected || hovered ? INK : "#d4d4d4";
+      context.lineWidth = selected || hovered ? 2 : 1;
+      context.strokeRect(label.x, label.y, label.width, label.height);
+      context.font = "600 12.5px IBM Plex Sans, sans-serif";
+      context.textAlign = "left";
+      context.textBaseline = "middle";
+      context.fillStyle = INK;
+      context.fillText(model.display_name, label.x + 8, label.y + label.height / 2);
     }
   }
   context.globalAlpha = 1;
@@ -165,52 +201,90 @@ function draw(
 }
 
 function cameraFor(
-  models: PositionedModel[],
-  relations: PositionedRelation[],
-  props: GraphRendererProps,
+  _models: PositionedModel[],
+  _relations: PositionedRelation[],
+  _props: GraphRendererProps,
 ): { x: number; y: number; targetX: number; targetY: number; scale: number } {
-  const selectedModel = models.find(
-    ({ model }) => model.model_id === props.selectedModelId,
-  );
-  const selectedRelation = relations.find(
-    ({ relation }) => relation.relation_id === props.selectedRelationId,
-  );
   return {
-    x:
-      selectedModel?.x ??
-      ((selectedRelation?.source.x ?? GRAPH_WIDTH / 2) +
-        (selectedRelation?.target.x ?? GRAPH_WIDTH / 2)) /
-        2,
-    y:
-      selectedModel?.y ??
-      ((selectedRelation?.source.y ?? GRAPH_HEIGHT / 2) +
-        (selectedRelation?.target.y ?? GRAPH_HEIGHT / 2)) /
-        2,
+    x: GRAPH_WIDTH / 2,
+    y: GRAPH_HEIGHT / 2,
     targetX: GRAPH_WIDTH / 2,
     targetY: GRAPH_HEIGHT / 2,
-    scale: selectedModel || selectedRelation ? 1.055 : 1,
+    scale: 1,
   };
 }
 
 function drawArrow(
   context: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  targetX: number,
-  targetY: number,
-  color: string,
+  relation: PositionedRelation,
+  progress: number,
 ): void {
-  const angle = Math.atan2(targetY - y, targetX - x);
+  const point = quadraticPoint(relation, progress);
+  const next = quadraticPoint(relation, Math.min(1, progress + 0.01));
+  const angle = Math.atan2(next.y - point.y, next.x - point.x);
   context.save();
-  context.translate(x, y);
+  context.translate(point.x, point.y);
   context.rotate(angle);
   context.beginPath();
   context.moveTo(7, 0);
   context.lineTo(-5, -4);
   context.lineTo(-5, 4);
   context.closePath();
-  context.fillStyle = color;
+  context.fillStyle = INK;
   context.fill();
+  context.restore();
+}
+
+function strokeRelation(
+  context: CanvasRenderingContext2D,
+  relation: PositionedRelation,
+  width: number,
+  dash: number[],
+): void {
+  const curve = curveGeometry(relation);
+  context.beginPath();
+  context.moveTo(relation.source.x, relation.source.y);
+  context.quadraticCurveTo(
+    curve.controlX,
+    curve.controlY,
+    relation.target.x,
+    relation.target.y,
+  );
+  context.lineWidth = width;
+  context.setLineDash(dash);
+  context.stroke();
+}
+
+function quadraticPoint(relation: PositionedRelation, progress: number) {
+  const curve = curveGeometry(relation);
+  const inverse = 1 - progress;
+  return {
+    x:
+      inverse ** 2 * relation.source.x +
+      2 * inverse * progress * curve.controlX +
+      progress ** 2 * relation.target.x,
+    y:
+      inverse ** 2 * relation.source.y +
+      2 * inverse * progress * curve.controlY +
+      progress ** 2 * relation.target.y,
+  };
+}
+
+function drawCross(
+  context: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+): void {
+  context.save();
+  context.strokeStyle = INK;
+  context.lineWidth = 1.75;
+  context.setLineDash([]);
+  context.beginPath();
+  context.moveTo(x - 4, y - 4);
+  context.lineTo(x + 4, y + 4);
+  context.moveTo(x - 4, y + 4);
+  context.lineTo(x + 4, y - 4);
+  context.stroke();
   context.restore();
 }
 

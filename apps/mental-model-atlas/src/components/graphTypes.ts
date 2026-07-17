@@ -12,6 +12,7 @@ export interface GraphRendererProps {
   hoveredModelId: string | null;
   relatedModelIds: Set<string>;
   visibleModelIds: Set<string>;
+  motionPaused: boolean;
   onSelectModel: (modelId: string) => void;
   onSelectRelation: (relationId: string) => void;
   onHoverModel: (modelId: string | null) => void;

@@ -235,6 +235,7 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
                 visibleModelIds={new Set(
                   selection.visibleModels.map((model) => model.model_id),
                 )}
+                motionPaused={motionPaused}
                 onSelectModel={selectModel}
                 onSelectRelation={selectRelation}
                 onHoverModel={(modelId) =>
