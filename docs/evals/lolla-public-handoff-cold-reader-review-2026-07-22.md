@@ -12,7 +12,7 @@ Provider cost: $0.00
 
 Publication: [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380)
 
-Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381), [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383), and the current provider-free consumer-context v1 correction
+Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381), [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383), and consumer-context v1 correction [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384)
 
 ## Question
 

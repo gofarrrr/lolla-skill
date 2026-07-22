@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 Status: decision-ready PRD; provider-free consumer-context design shape valid; execution not ready
-Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
+Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); v1 correction [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384)
 Current consumer-context boundary: `docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json`; v0 is the preserved predecessor
 Depends on: Constitution v5, PR #381 Decision Trail lineage, the self-contained graph/skill result, the graph audit workbook, PR104, and the minimum viable loop result
 Provider calls and cost authorized by this PRD: 0 and `$0.00`

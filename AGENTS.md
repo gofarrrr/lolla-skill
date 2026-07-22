@@ -278,7 +278,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #382 tracks A/B/C; PR #383 adds its provider-free same-context/fresh-context pressure ablation without changing runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
+custody without semantic change. PR #382 tracks A/B/C; PR #383 adds its provider-free same-context/fresh-context pressure ablation; PR #384 tightens it prospectively in v1 without changing runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
 The current consumer-context contract is v1; v0 is its preserved predecessor. V1 is design-shape-valid and execution-not-ready. Its main estimand is a consumer-context-representation interaction with the complete fixed pressure package, not proof of self-justification; one draw per cell is only a case diagnostic.
 No complete pre-pressure host fork, source-first human target/rubric, request envelopes, provider contract, execution authorization, or runtime promotion exists.
 Atlas baseline PR #375 is historical; the

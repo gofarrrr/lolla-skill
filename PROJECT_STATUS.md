@@ -37,7 +37,7 @@ usefulness, market value, and production readiness remain unknown.
 
 The current A/B/C pressure, understanding, and graph planning package is tracked by
 [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
-The current consumer-context contract is v1; v0 is its preserved prospective predecessor. V1 defines four fresh graph-supply arms plus two isolated trajectory-representation cells and reports `design_shape_valid=true`, `execution_ready=false`, and one output per cell as `single_draw_case_diagnostic`, not causal identification.
+The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. V1 defines four fresh graph-supply arms plus two isolated trajectory-representation cells and reports `design_shape_valid=true`, `execution_ready=false`, and one output per cell as `single_draw_case_diagnostic`, not causal identification.
 The repository has no complete branchable pre-pressure host checkpoint, frozen context implementation, principal-human target/rubric, complete request envelopes, provider contract, or execution authorization. This changes no live context, graph, prompt, provider, or runtime behavior.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222

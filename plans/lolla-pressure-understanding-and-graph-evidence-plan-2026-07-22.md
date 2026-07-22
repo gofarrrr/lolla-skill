@@ -4,7 +4,7 @@
 
 Date: 2026-07-22
 Status: tracer-bullet plan complete; provider-free consumer-context design shape valid; execution not ready or authorized
-Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
+Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); v1 correction [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384)
 Current consumer-context boundary: `docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json`; v0 is the preserved predecessor
 Provider calls authorized by this plan: 0
 Private-source review, runtime, graph-policy, and interface changes authorized by this plan: none

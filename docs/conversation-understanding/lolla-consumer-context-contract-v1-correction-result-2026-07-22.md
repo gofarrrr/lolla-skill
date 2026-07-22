@@ -18,6 +18,8 @@ Private archive inspection: none
 Live runtime, graph policy, prompt, Atlas, Observatory, Decision Work, and
 interface changes: none
 
+Publication: [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384)
+
 ## Outcome
 
 The six-output consumer-context design remains useful, but its claim boundary
