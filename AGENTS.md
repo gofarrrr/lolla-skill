@@ -280,9 +280,8 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #380 tracks the current public handoff and
-live-skill contract; PR #379 is its foundational repository-local graph and
-Atlas V2 checkpoint. Atlas baseline PR #375 is historical; the
+custody without semantic change. PR #382 tracks the A/B/C planning package; PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; and PR #379 is the foundational graph/Atlas V2 checkpoint.
+Atlas baseline PR #375 is historical; the
 checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
 Phase 2, Teacher revival, providers, and product claims are unauthorized. The
 next eligible roadmap goal is the separately authorized, checked-in-safe Stage 1

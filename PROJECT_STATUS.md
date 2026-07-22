@@ -35,11 +35,10 @@ usefulness, market value, and production readiness remain unknown.
 
 ## Latest published checkpoint
 
-The current public cold-start handoff is tracked by
-[PR #380](https://github.com/gofarrrr/lolla-skill/pull/380). Its foundational
-repository-local graph and Atlas-custody package was published through
-[PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
-`1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. A fresh clone contains all 222
+The current A/B/C pressure, understanding, and graph planning package is tracked by
+[PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
+The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
+`1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
 compiler inputs, source anchors, release identities, one published read
 boundary, one declared versioned pressure policy wrapper, and its frozen

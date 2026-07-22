@@ -12,6 +12,8 @@ Provider cost: $0.00
 
 Publication: [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380)
 
+Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381) and [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382)
+
 ## Question
 
 Can a new human or AI coder start from the GitHub repository and correctly

@@ -4,6 +4,7 @@
 
 Date: 2026-07-22
 Status: tracer-bullet plan complete; documentation/skill slice authorized and completed locally; human and experiment slices not automatically authorized
+Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382)
 Provider calls authorized by this plan: 0
 Private-source review, runtime, graph-policy, and interface changes authorized by this plan: none
 
