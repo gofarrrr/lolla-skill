@@ -36,9 +36,10 @@ Candidate survival also cannot prove independent consideration. Constitutional
 graph survival controls an upstream evil: probabilistic deletion before the
 reasoner sees pressure. Ordinary live Step 6 retains a downstream evil: the
 host reasoner revises its own answer inside the same trajectory and may defend
-the smoothness of that frame. Treat the opposite failure equally seriously: a
-fresh consumer may over-absorb selected pressure, add friction theater, or
-mistake graph recall for authority.
+the smoothness of that frame. Treat the opposite failure equally seriously:
+either consumer may over-absorb selected pressure, add friction theater, or
+mistake graph recall for authority. Fresh-context amplification is a
+hypothesis, not the definition of the evil.
 
 ## Current graph boundary
 
@@ -109,11 +110,14 @@ Before changing traversal, test whether the semantic input gives the current
 graph a fair problem. Freeze source-linked reasoning roles or mechanisms,
 retain their uncertainty, remove case facts only for controlled graph recall,
 then reattach the facts before reconsideration. Compare the current outgoing
-one-hop policy with a named control. Use the nested design in
-`docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json`: four
-fresh graph-supply arms plus transcript-only and fair-graph continuations
-cloned from one pre-pressure trajectory. Never run control and treatment
-sequentially inside one session. Measure:
+one-hop policy with a named control. Use the current nested design in
+`docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json`: four
+fresh graph-supply arms plus transcript-only and fair-graph trajectory-
+representation cells. Select either a proved complete pre-pressure host fork
+or a same-endpoint role/attribution experiment; do not call the second an exact
+live trajectory. Never run control and treatment sequentially inside one
+session. One draw per cell is a case diagnostic, not causal identification.
+Measure:
 
 - semantic fidelity;
 - distinct useful pressure;
@@ -121,7 +125,8 @@ sequentially inside one session. Measure:
 - cognitive load;
 - provenance quality;
 - apply/reject/park dispositions;
-- circular same-context rejection and fresh-context forced absorption;
+- circular same-context rejection, semantic non-consideration laundering, and
+  forced absorption in either context;
 - answer-level value and lost value.
 
 A lower application rate does not establish domestication. A higher
@@ -167,11 +172,15 @@ Freeze before execution:
 
 - one question and one causal change;
 - exact source cases and hashes;
-- exact pre-pressure context checkpoint and self-authorship representation;
+- one honest context implementation and its exact claim boundary;
+- complete serialized request envelopes, roles, ordering, wrappers, schemas,
+  pressure injection points, token counts, and hashes;
 - source-first target or human rubric;
 - semantic packet/schema and omission behavior;
 - current-policy identity and one named control;
-- isolated context modes, byte-identical pressure presentation, and cell order;
+- isolated context modes, byte-identical F3/T3 pressure presentation,
+  byte-identical F2/F3 direct content, active-candidate/payload bijection, and
+  randomized or counterbalanced cell order;
 - deterministic candidate ordering and bounds;
 - separate evidence dimensions and nonclaims;
 - provider/model/call/cost ceiling, including zero;

@@ -1,8 +1,9 @@
 # Lolla Pressure, Understanding, and Graph Evidence PRD v0
 
 Date: 2026-07-22
-Status: decision-ready PRD; provider-free planning and consumer-context design complete; execution gates remain separate
-Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
+Status: decision-ready PRD; provider-free consumer-context design shape valid; execution not ready
+Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); v1 correction [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384)
+Current consumer-context boundary: `docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json`; v0 is the preserved predecessor
 Depends on: Constitution v5, PR #381 Decision Trail lineage, the self-contained graph/skill result, the graph audit workbook, PR104, and the minimum viable loop result
 Provider calls and cost authorized by this PRD: 0 and `$0.00`
 Runtime, graph-policy, private-archive, sidecar-automation, Atlas, and interface changes authorized by this PRD: none
@@ -61,10 +62,11 @@ or a new sidecar does not substitute for that evidence.
 
 Before incoming references, two hops, global search, or new ranking, compare
 the current graph under a source-first human-controlled semantic input with the
-current live input and named controls. Run the graph-supply comparison in a
+current live input and named controls. Define the graph-supply comparison in a
 fresh reconstruction, then compare the transcript-only and fair-graph arms
-against isolated continuations of one exact pre-pressure trajectory. This
-separates semantic-supplier, graph-policy, and same-context consumer failures.
+with isolated trajectory-representation cells. These are matched contrasts
+intended to investigate semantic-supplier, graph-policy, and consumer-context
+failures. They have not yet separated those mechanisms in evidence.
 
 ## Falsifiable product questions
 
@@ -94,7 +96,7 @@ If the source is unavailable, the correct result is `unavailable`, not a guess.
 > pressure expose a material source-reviewable angle that direct-only and
 > transcript-only controls miss without unacceptable forced association,
 > cognitive load, invented facts, lost value, same-context self-justification,
-> or fresh-context over-absorption?
+> or mandatory-consideration absorption in either context?
 
 If the answer is no, the graph must be allowed to stand down. If the answer is
 unclear, do not expand traversal.
@@ -228,9 +230,9 @@ complete bounded source case
         +-> F3: fresh consumer + same human-controlled packet
                    -> current outgoing-one-hop planner
         |
-        +-> T0: cloned pre-pressure trajectory + transcript only
+        +-> T0: isolated trajectory representation + transcript only
         |
-        +-> T3: separate clone of the same trajectory
+        +-> T3: separate instance of the same trajectory representation
                    + byte-identical F3 pressure payload
         |
         v
@@ -238,20 +240,41 @@ source-first, non-scalar human comparison
 ```
 
 This is a six-output nested design. F0–F3 retain the four graph-supply arms.
-F0, F3, T0, and T3 form the consumer-context × pressure ablation. T0 and T3
-must be separate continuations cloned before either sees pressure; running a
-control after a treatment in one session is contaminated, not an experiment.
+F0, F3, T0, and T3 form a consumer-context-representation × complete-pressure-
+package contrast. T0 and T3 must be isolated before either sees pressure;
+running a control after a treatment in one session is contaminated, not an
+experiment.
 
-The comparisons isolate different causes:
+The context implementation is intentionally unselected. A future case must
+choose one honest option:
+
+1. a true host-trajectory fork that exports and branches the complete host
+   state before any experimental pressure exposure; or
+2. a prompt-level role/attribution experiment that runs every core cell through
+   the same endpoint and tests assistant-role history versus attributed
+   transcript evidence.
+
+The second option is not an exact live-host clone. The first option does not
+currently exist in the repository. A checkpoint immediately before ordinary
+Step 6 is already pressure-exposed and cannot be used as T0.
+
+The comparisons define different case-specific questions. They do not yet
+identify causes:
 
 | Comparison | Question isolated |
 |---|---|
-| F1 vs F3 | Did the current semantic bridge distort or omit the graph problem? |
-| F2 vs F3 | Did relationship expansion add anything beyond direct recalled models? |
-| F0 vs F3 | Did graph-backed pressure add value beyond strong fresh transcript-only reconsideration? |
-| T0 vs T3 | What pressure-specific delta appears inside the self-authored trajectory? |
-| `(T3−T0)` vs `(F3−F0)` | Did consumer context change the treatment of fixed pressure rather than generic second-pass quality? |
+| F1 vs F3 | Under the fresh representation, did the current semantic bridge omit or distort something present in the source-reviewed reference condition? |
+| F2 vs F3 | With byte-identical direct content, did relationship expansion add anything beyond direct recalled models? |
+| F0 vs F3 | Did the complete fixed pressure package add anything beyond strong fresh transcript-only reconsideration? |
+| T0 vs T3 | What pressure-specific delta appears under the trajectory representation? |
+| `(T3−T0)` vs `(F3−F0)` | Did declared context representation change the treatment of the complete fixed pressure package? |
 | Every output vs source | Did anything invent facts, erase value, or misrepresent the conversation? |
+
+The final contrast is named `consumer_context_representation_interaction`.
+It does not by itself prove self-justification, coherence defense, or graph-
+specific causation. Message roles, attribution, reconstruction, lost tacit
+context, token volume, generic augmentation, and stochastic generation remain
+competing explanations.
 
 “Fresh” means no continuing self-authored trajectory. It does not mean an
 independent truth source: the consumer still sees an attributed reconstruction
@@ -260,12 +283,29 @@ ordinary live Step 6 output is observational same-context product evidence,
 not a matched causal cell unless its complete pre-pressure checkpoint can be
 captured and cloned honestly.
 
-The human-controlled mechanism packet is an evaluation oracle, not a proposed
-runtime truth service. Reuse the existing `ReasoningPatternPacket` fact-free
-boundary and reasoning-mechanism ontology where they fit. Version
-prospectively rather than rewriting frozen research artifacts. Do not pass raw
-role prose, case facts, desired outcomes, topic labels, graph model names, or
-source embeddings into controlled routing.
+The human-controlled mechanism packet is a **source-reviewed reference
+condition**, not an oracle or a proposed runtime truth service. Record who
+authored it, which sources and prior graph/model outputs they saw, when it was
+frozen, and where they were uncertain. If the author already saw the successful
+graph output, label the case retrospective mechanism replay rather than
+prospective evidence of graph value. Reuse the existing
+`ReasoningPatternPacket` fact-free boundary and reasoning-mechanism ontology
+where they fit. Version prospectively rather than rewriting frozen research
+artifacts. Do not pass raw role prose, case facts, desired outcomes, topic
+labels, graph model names, or source embeddings into controlled routing.
+
+F2's direct candidates, wording, order, formatting, and visible labels must be
+byte-identical to the direct component inside F3. F3 may add only the declared
+relationship increment. Every active planner pressure ID must map to exactly
+one presented pressure item, with no missing, extra, merged, or duplicated
+active candidate. Otherwise the evaluation would recreate upstream re-
+domestication while pretending to test downstream behavior.
+
+One output per cell is a `single_draw_case_diagnostic`. It can expose a
+case-specific failure or produce mechanism-consistent evidence; it cannot
+identify an expected causal interaction. A later causal claim requires either
+demonstrated deterministic replay or separately authorized, predeclared
+repeats with randomized or counterbalanced order.
 
 ## Evidence vector
 
@@ -291,7 +331,7 @@ Record each dimension independently:
     make the semantic packet fair?
 11. **Privacy and cost:** what left the machine, what remained local, and what
     did each arm cost?
-12. **Consumer-context interaction:** relative to each context mode's
+12. **Consumer-context-representation interaction:** relative to each context mode's
     transcript-only control, was disruptive pressure seriously tested,
     circularly defended away, or forcibly absorbed?
 
@@ -301,15 +341,16 @@ No scalar score, winner label, or majority vote may replace this vector.
 
 | Result | Meaning | Next move |
 |---|---|---|
-| F3 works, F1 fails | Semantic bridge is the primary defect | Redesign or retain human-supplied bridge; do not expand traversal |
+| F3 works, F1 fails | The semantic bridge is a case-specific defect candidate under the fresh representation | Inspect the exact omission; do not call it the primary general defect or expand traversal |
 | F2 and F3 are equivalent | One-hop relations add no observed value | Preserve direct-only/no-graph possibility; do not force graph use |
 | F3 adds a useful angle without material harm | Current graph can contribute under fair input | Repeat on one diverse case, then test human usefulness |
 | F3 misses one named source-supported lens | A graph-policy/content miss may exist | Freeze one alternative experiment only |
 | Every graph arm creates forced association or burden | Graph contribution is not earned | Stand down or materially redesign; more hops are contraindicated |
 | Human source target cannot be produced fairly | Semantic evidence unavailable | Preserve pause; do not substitute AI agreement |
 | Any arm invents high-stakes facts or causation | Answer-integrity failure | Stop the case; preserve first result; no retry under same authorization |
-| `(T3−T0)` loses a grounded `(F3−F0)` pressure delta | Same-context coherence defense is a candidate mechanism | Repeat prospectively before any runtime decision; do not call rejection alone failure |
-| F3 applies more pressure but loses value or adds unsupported friction | Fresh-context over-absorption | Do not promote a fresh consumer merely because uptake rose |
+| `(T3−T0)` loses a grounded `(F3−F0)` pressure delta | Context representation interacted with the fixed pressure package; coherence defense is one candidate mechanism | Preserve role, reconstruction, lost-context, load, and stochastic alternatives; do not call rejection alone failure |
+| F3 applies more pressure but loses value or adds unsupported friction | Mandatory-consideration absorption may be amplified under the fresh representation | Do not promote a fresh consumer merely because uptake rose |
+| T3 applies pressure without grounded leverage or loses useful value | Mandatory-consideration absorption occurred under the trajectory representation | Treat absorption symmetrically; do not define it as a fresh-only failure |
 | Context interaction is absent or T3 dispositions are equally grounded | Same-context devaluation is not supported on this case | Keep the limitation label but do not redesign runtime from the hypothesis |
 
 ## Graph-opportunity ladder
@@ -319,8 +360,9 @@ Only move downward when the previous gate produces evidence.
 1. **Complete path custody:** decide whether the existing candidate-only
    complete bounded paths improve receipt transparency without changing active
    pressure.
-2. **Fair-input current-policy evaluation:** run the six-output nested
-   comparison above; the underlying graph-supply design still has four arms.
+2. **Fair-input current-policy diagnostic:** freeze and run the six-output
+   nested comparison above only after v1 becomes execution-ready; the
+   underlying graph-supply design still has four arms.
 3. **One alternative traversal:** if a specific miss is established, choose
    exactly one of incoming-reference traversal, direct-reserve expansion, or
    bounded two-edge paths.
@@ -399,11 +441,16 @@ This PRD does not authorize:
 - [x] Current live owners and absent connections are named.
 - [x] Existing `ReasoningPatternPacket`, ontology, graph reader, and planner are
       reused rather than replaced in the proposed evaluation.
-- [x] Controls isolate semantic supply, direct recall, graph expansion, and
-      transcript-only reconsideration.
-- [x] A nested consumer-context ablation distinguishes upstream candidate
-      survival, downstream same-context self-justification, legitimate
-      rejection, and fresh-context mandatory absorption.
+- [x] The design defines source-reviewable contrasts for semantic supply,
+      direct recall, graph expansion, transcript-only reconsideration, and
+      context representation without claiming those causes are already
+      isolated in evidence.
+- [x] The current v1 contract distinguishes the hypotheses and required
+      measuring instruments for upstream candidate survival, downstream same-
+      context self-justification, legitimate rejection, semantic non-
+      consideration laundering, and mandatory absorption in either context.
+- [x] Design-shape validity is separate from execution readiness; v1 is not
+      execution-ready.
 - [x] PR104 remains blank immutable evidence.
 - [x] Provider, private-source, graph-policy, runtime, and interface work remain
       unauthorized.
@@ -416,8 +463,9 @@ action is one of:
 
 1. provide principal-human capacity and appropriate source access for a new
    PR104 completion artifact;
-2. authorize one exact checked-in-safe case freeze against the provider-free
-   six-output contract, without semantic generation or execution;
+2. complete the provider-free prerequisites that would make one exact checked-
+   in-safe case freeze possible against the current v1 six-output contract,
+   without semantic generation or execution;
 3. keep both lanes paused and retain pressure-now plus mechanical receipts as
    the working product boundary.
 

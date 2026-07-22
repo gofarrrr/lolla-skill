@@ -644,9 +644,9 @@ This register records possibilities. It does not authorize implementation.
 | O-08 | Motif/convergence summaries | Repeated relation shapes may help portfolio diversity | A named motif produces stable, reviewable path sets and a consumer can disposition them | Research only |
 | O-09 | Graph-active model to V60 affordance/absence handoff | A graph-only model may need richer source-backed transaction material for fair evaluation | Offline paired packets show better grounded disposition without forced use or context overflow | Separate authorization |
 | O-10 | Atlas/interface exposure | Humans may understand the substrate and paths better visually | Founder and accessibility gates plus real-user usefulness evidence | Parked by current task |
-| O-11 | Source-first conversation-to-graph bridge comparison | A fair controlled semantic input may distinguish a bridge miss from a graph miss | Four fresh graph-supply arms plus two isolated trajectory continuations separate bridge, traversal, and consumer-context effects | Before O-05/O-06/O-07 |
+| O-11 | Source-first conversation-to-graph bridge comparison | A fair controlled semantic input may expose a bridge or graph defect candidate | Four fresh graph-supply arms plus two isolated trajectory representations define nested case-specific contrasts without claiming causal separation | Before O-05/O-06/O-07 |
 | O-12 | PR104 principal-human correction | Rich longitudinal meaning may be useful if a human can correct it without excessive burden | One source-first case is corrected, rejected, simplified, or marked unavailable without altering PR104 | Separate human gate |
-| O-13 | Consumer-context pressure-survival ablation | The self-authored trajectory may defend vanilla coherence, while a fresh consumer may over-absorb selected noise | Compare pressure-specific deltas in cloned trajectory continuations and fresh reconstructions with payload and source-label custody fixed | With O-11; before runtime architecture |
+| O-13 | Consumer-context pressure-survival ablation | Context representation may change treatment of fixed pressure, while either consumer can over-absorb selected noise | Compare pressure-specific deltas under one honest context implementation with complete request-envelope and payload custody fixed | With O-11; before runtime architecture |
 
 ## Decisions made by this audit
 
@@ -789,8 +789,9 @@ that authorizes live replacement.
    blank packet or substitute AI agreement.
 3. **C — Test the bridge before the graph scope.** Compare transcript-only,
    current-live, human-controlled direct-only, and human-controlled current-
-   graph arms on identical source. This isolates semantic supply from direct
-   recall and relationship expansion.
+   graph arms on identical source. This defines nested diagnostics for semantic
+   supply, direct recall, and relationship expansion; it does not yet isolate
+   those causes in evidence.
 
 The detailed contract and sequence are:
 
@@ -825,8 +826,9 @@ The detailed contract and sequence are:
 ## Prospective continuation — consumer context and the smoothness cage
 
 Date: 2026-07-22
-Evidence class: founder-framed product-risk analysis plus provider-free
-contract design; not an executed comparison or usefulness result
+Evidence class: founder-framed product-risk analysis, provider-free contract
+design, and two fresh-context diagnostic AI cold reviews; not an executed
+comparison, principal-human judgment, causal result, or usefulness result
 Provider calls and cost: 0 and `$0.00`
 
 ### The corrected falsifiable question
@@ -887,18 +889,26 @@ Rejected designs:
 - immediate replacement of live Step 6, because a planning contract and one
   diagnostic case cannot earn runtime architecture.
 
-### Three evils, not one
+### Five evils, not one
 
 1. **Upstream probabilistic re-domestication.** A selector deletes strange
    graph pressure before reconsideration. Constitutional graph survival now
    controls this mechanically.
-2. **Downstream same-context self-justification.** The original reasoner sees
+2. **Evaluation-payload re-domestication.** A future evaluation builder omits,
+   merges, duplicates, or silently relabels active candidates while presenting
+   the treatment packet. An active-planner-to-presented-payload bijection must
+   control this before downstream analysis.
+3. **Downstream same-context self-justification.** The original reasoner sees
    the candidate but defends, paraphrases, or circularly restores its prior
    frame. This remains a live risk.
-3. **Opposite mandatory absorption.** A fresh or strongly instructed consumer
+4. **Semantic non-consideration laundering.** A fluent reject, park, or not-
+   considered label hides failure to attempt the strongest plausible
+   application. A ledger proves declared custody, not serious consideration.
+5. **Opposite mandatory absorption.** A fresh or strongly instructed consumer
    applies selected noise because it believes the graph must matter. More
    uptake then creates unsupported claims, answer bloat, caution, paralysis,
-   or friction theater.
+   or friction theater. This can occur in either T3 or F3; fresh-context
+   amplification is only a comparative hypothesis.
 
 A lower application rate does not establish evil 2. A higher application rate
 does not establish that a fresh consumer is better. Serious consideration is
@@ -921,15 +931,18 @@ fresh reconstruction:       F0 transcript only
                             F2 fair direct only
                             F3 fair direct + current graph
 
-cloned trajectory:          T0 transcript only
+trajectory representation: T0 transcript only
                             T3 byte-identical F3 pressure
 ```
 
 F0–F3 preserve the original four-arm graph-supply test. F0/F3/T0/T3 form the
-context × pressure ablation. T0 and T3 are isolated continuations cloned from
-one exact pre-pressure checkpoint; neither sees the other output. The context
-claim comes from comparing `(T3−T0)` with `(F3−F0)`, not from comparing raw
-answer polish, length, confidence, or candidate uptake.
+context-representation × complete-pressure-package contrast. T0 and T3 must be
+isolated before either sees pressure. A future case must select either a proved
+complete pre-pressure host fork or a same-endpoint assistant-role versus
+attributed-transcript representation test. The latter is not an exact live
+trajectory. The descriptive interaction comes from comparing `(T3−T0)` with
+`(F3−F0)`, not from comparing raw answer polish, length, confidence, or
+candidate uptake.
 
 ### Competing explanations that must survive into review
 
@@ -944,19 +957,37 @@ select a production architecture.
 
 ### Exact boundary created
 
-The provider-free contract is
-`../evals/lolla-consumer-context-pressure-ablation-contract-v0.json`. It owns
-the six cell IDs, paired comparisons, context definitions, custody fields,
-interpretation rules, missing prerequisites, stop rules, and zero-authority
-state. The existing PRD and plan own the product sequence. No new runner,
-prompt, graph path, context switch, provider call, or live integration was
-created.
+The current provider-free contract is
+`../evals/lolla-consumer-context-pressure-ablation-contract-v1.json`. V0 is its
+preserved prospective predecessor, not a second current contract. V1 owns the
+six cell IDs, paired comparisons, context definitions, custody fields, human
+rubric requirements, non-scalar comparison operator, missing prerequisites,
+stop rules, and zero-authority state. It reports `design_shape_valid=true` and
+`execution_ready=false`. The existing PRD and plan own the product sequence.
+No new runner, prompt, graph path, context switch, provider call, or live
+integration was created.
+
+Two repository-only fresh-context AI reviews independently agreed that the
+six-cell topology is a useful prospective skeleton but not a causal-
+identification contract. They found that the old language ran ahead of its
+evidence: the context manipulation bundles roles, attribution, reconstruction,
+position, and possible information loss; one stochastic output per cell cannot
+identify an expected interaction; and the repository has no complete,
+branchable pre-pressure host checkpoint. The correction therefore names the
+estimand `consumer_context_representation_interaction`, labels one execution
+`single_draw_case_diagnostic`, requires complete request envelopes, makes F2's
+direct component identical to F3's, requires active-candidate/payload
+bijection, treats absorption symmetrically, and reserves rejection-versus-
+rationalization judgment for a principal human.
 
 ### Next gate
 
-Before execution, one exact case still needs a source-first principal-human
-target, authoritative source hash, clonable pre-pressure checkpoint, fixed
-pressure payload and label visibility, prompts/schemas, matched model route,
-blind-review boundary, call/cost ceiling, and separate founder authorization.
-If the checkpoint cannot be captured honestly, the live same-context result
-remains observational and cannot support a causal context claim.
+Before even freezing a case, the design still needs a source-first principal-
+human target and rejection rubric, authoritative source hash, one honest
+context implementation, complete serialized request envelopes, fixed pressure
+payload and direct-component equality, active-candidate/payload bijection,
+predeclared non-scalar review form, matched model/interface route,
+stochasticity/order policy, blind-review boundary, and separate founder
+authorization. Later execution additionally needs a call/cost/privacy
+contract. If no honest context implementation can be frozen, the live same-
+context result remains observational and cannot support a causal context claim.

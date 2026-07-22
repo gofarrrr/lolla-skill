@@ -2,7 +2,7 @@
   "schema_version": "lolla.pressure_understanding_graph_evidence_package.v1",
   "date": "2026-07-22",
   "status": "planning_package_complete_evidence_execution_unstarted",
-  "publication_tracking": "https://github.com/gofarrrr/lolla-skill/pull/382; consumer-context extension https://github.com/gofarrrr/lolla-skill/pull/383",
+  "publication_tracking": "https://github.com/gofarrrr/lolla-skill/pull/382; consumer-context extension https://github.com/gofarrrr/lolla-skill/pull/383; v1 correction https://github.com/gofarrrr/lolla-skill/pull/384",
   "evidence_class": "maintainer_architecture_audit_and_provider_free_planning_not_human_usefulness",
   "product_lanes": {
     "a_pressure_now": {
@@ -41,13 +41,19 @@
         "human_controlled_fact_free_plus_current_graph"
       ],
       "consumer_context_ablation": {
-        "status": "provider_free_design_complete_case_and_execution_unstarted",
-        "contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+        "status": "provider_free_design_shape_valid_execution_not_ready",
+        "contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json",
+        "predecessor_contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+        "design_shape_valid": true,
+        "execution_ready": false,
+        "single_draw_evidence_class": "single_draw_case_diagnostic",
+        "primary_estimand": "consumer_context_representation_interaction",
         "fresh_graph_supply_output_count": 4,
         "additional_trajectory_continuation_output_count": 2,
         "live_same_context_output_is_causal_evidence": false,
+        "context_interaction_identifies_self_justification": false,
         "fresh_context_is_independent_truth": false,
-        "question": "Does consumer context change the pressure-specific delta without increasing forced absorption or friction theater?"
+        "question": "Does declared consumer-context representation change the pressure-specific delta without increasing forced absorption, lost value, unsupported claims, or friction?"
       },
       "required_order": [
         "human_or_source_first_semantic_target",
@@ -141,7 +147,7 @@
     "scriptbook": "docs/conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md",
     "prd": "docs/conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md",
     "plan": "plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md",
-    "consumer_context_contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+    "consumer_context_contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json",
     "maintainer_skill": ".codex/skills/audit-lolla-boundaries/SKILL.md",
     "skill_reference": ".codex/skills/audit-lolla-boundaries/references/evidence-gates.md"
   },
@@ -166,6 +172,8 @@
     "maintainer_review_is_not_principal_human_review",
     "candidate_survival_is_not_independent_consideration",
     "fresh_context_is_not_independent_truth_or_automatic_improvement",
+    "one_single_draw_case_is_not_causal_identification",
+    "context_interaction_is_not_self_justification_proof",
     "more_paths_are_not_more_useful"
   ]
 }

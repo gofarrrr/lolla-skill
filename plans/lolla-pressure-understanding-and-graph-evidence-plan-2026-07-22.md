@@ -3,8 +3,9 @@
 > Source PRD: `docs/conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md`
 
 Date: 2026-07-22
-Status: tracer-bullet plan complete; documentation, skill, and provider-free consumer-context design completed; human and experiment slices not automatically authorized
-Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
+Status: tracer-bullet plan complete; provider-free consumer-context design shape valid; execution not ready or authorized
+Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); v1 correction [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384)
+Current consumer-context boundary: `docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json`; v0 is the preserved predecessor
 Provider calls authorized by this plan: 0
 Private-source review, runtime, graph-policy, and interface changes authorized by this plan: none
 
@@ -29,9 +30,9 @@ Private-source review, runtime, graph-policy, and interface changes authorized b
 - **Evaluation arms:** transcript-only, current live bridge plus current graph,
   human-controlled direct-only, and the same human-controlled input plus the
   current graph. Run these four graph-supply arms in fresh reconstructions;
-  add two cloned-trajectory outputs for transcript-only and fair graph pressure
-  so the context-by-pressure interaction is observable without an eight-cell
-  bundle.
+  add two isolated trajectory-representation outputs for transcript-only and
+  fair graph pressure so one case-specific context-representation interaction
+  can be described without an eight-cell bundle.
 - **Consumer-context authority:** ordinary live Step 6 is same-context and
   observational. A fresh reconstruction is a control condition, not an
   independent truth source or an automatically better runtime.
@@ -53,9 +54,13 @@ Private-source review, runtime, graph-policy, and interface changes authorized b
       paths without live promotion.
 - [x] PR #381 distinguishes June's paused PR104 lane from July's separate,
       unstarted Stage 1.
-- [x] The provider-free six-output consumer-context contract distinguishes
-      upstream graph survival, downstream same-context self-justification,
-      legitimate rejection, and fresh-context mandatory absorption.
+- [x] The provider-free six-output v1 contract defines separate hypotheses and
+      matched contrasts for upstream graph survival, downstream same-context
+      self-justification, legitimate rejection, semantic non-consideration
+      laundering, and mandatory absorption in either context.
+- [x] The contract reports `design_shape_valid=true` and
+      `execution_ready=false`; it does not claim those mechanisms have already
+      been distinguished in evidence.
 
 ---
 
@@ -123,7 +128,7 @@ and stop the phase.
 **User stories**: An evaluator can take one existing checked-in-safe realistic
 case from authoritative source through a supplied source-reviewed mechanism
 packet and the current graph planner, then inspect the four graph-supply arms,
-the two additional trajectory-continuation outputs, and every missing
+the two additional trajectory-representation outputs, and every missing
 component without a provider call.
 
 ### What to build
@@ -131,12 +136,15 @@ component without a provider call.
 Freeze one existing useful-pressure development case with source, source-first
 target, supplied fact-free mechanism packet, graph release, current policy,
 direct candidates, one-hop paths, active/reserve dispositions, named arm
-contracts, a pre-pressure context-checkpoint manifest, exact context-mode
-representations, expected output locations, and human rubric. Reuse checked-in
+contracts, one honestly selected context implementation, exact serialized
+request-envelope previews, expected output locations, and a principal-human
+rubric. The context implementation must be either a proved complete pre-
+pressure host fork or a same-endpoint role/attribution representation test;
+do not mix them or call the latter an exact live trajectory. Reuse checked-in
 historical outputs where they exactly match; mark every unavailable new output
 as missing instead of simulating it. Produce request previews only for any
 future reasoner/provider work. Use
-`docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json` as the
+`docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json` as the
 machine boundary.
 
 ### Acceptance criteria
@@ -150,12 +158,25 @@ machine boundary.
 - [ ] Transcript-only, current-live, human-direct-only, and human-current-graph
       arms have exact fresh-reconstruction contracts even when an output is
       unavailable.
-- [ ] Transcript-only and human-current-graph also have exact isolated
-      trajectory-continuation contracts cloned from one pre-pressure
-      checkpoint; neither continuation sees the other's output.
+- [ ] Transcript-only and human-current-graph have exact isolated trajectory-
+      representation contracts; a true host fork occurs before every pressure
+      exposure, while a prompt-level test is labeled as representation only.
 - [ ] F3 and T3 use byte-identical pressure content, order, formatting, and
       source-label visibility; any mismatch makes the context comparison
       noncausal.
+- [ ] F2's direct candidate IDs, content, order, formatting, and visible labels
+      are byte-identical to F3's direct component; F3 adds only the declared
+      relationship increment.
+- [ ] Every active planner pressure ID maps to exactly one presented pressure
+      item, with no missing, extra, merged, or duplicated active candidate.
+- [ ] Complete serialized messages, roles, wrappers, schemas, pressure
+      injection points, token counts, fan-in, model/interface envelope, and
+      hashes are frozen for every cell.
+- [ ] The human reference packet records author, source set, authoring order,
+      prior graph/model/output exposure, uncertainty, and corrections; it is
+      not called an oracle.
+- [ ] The source-first rubric distinguishes grounded rejection from circular
+      defense or semantic non-consideration laundering.
 - [ ] The packet distinguishes complete, completed-zero, partial, failed, and
       missing per arm.
 - [ ] No provider or embedding call, runtime import, receipt promotion, or
@@ -171,11 +192,13 @@ recall, relationship expansion, or the reasoner.
 
 ### What to build
 
-After a separate exact provider/human authorization, execute the frozen six
-outputs once with no automatic retries or fallbacks. F0–F3 are the four
-fresh-reconstruction graph-supply arms. T0 and T3 are isolated continuations
-of the same pre-pressure trajectory for transcript-only and fair graph
-pressure. Preserve first terminal results, complete context/provider/cost/
+After the v1 contract becomes execution-ready and a separate exact provider/
+human authorization exists, execute the frozen six outputs once with no
+automatic retries or fallbacks. Label this execution
+`single_draw_case_diagnostic`. F0–F3 are the four fresh-reconstruction graph-
+supply arms. T0 and T3 are isolated instances under the honestly selected
+trajectory representation for transcript-only and fair graph pressure.
+Preserve first terminal results, complete context/provider/cost/
 privacy custody, all pressure dispositions, and a source-first non-scalar
 human comparison. Do not tune prompts or policy after seeing an output.
 
@@ -187,10 +210,17 @@ human comparison. Do not tune prompts or policy after seeing an output.
 - [ ] Every output uses the same authoritative source, declared model envelope,
       and exact context-mode representation; model or payload drift is
       preserved as a confound rather than repaired.
-- [ ] F1 versus F3 isolates semantic supply; F2 versus F3 isolates graph
-      expansion; F0 versus F3 isolates fresh graph-backed pressure.
-- [ ] T0 versus T3 isolates trajectory-continuation pressure; comparing that
-      delta with F0 versus F3 tests context interaction rather than raw uptake.
+- [ ] F1 versus F3 provides a case-specific semantic-supply diagnostic; F2
+      versus F3 provides a graph-increment diagnostic only after direct-
+      component equality passes; F0 versus F3 tests the complete pressure
+      package, not graph content apart from generic augmentation.
+- [ ] T0 versus T3 describes the trajectory-representation pressure delta;
+      comparing it with F0 versus F3 yields the
+      `consumer_context_representation_interaction`, not proof of self-
+      justification.
+- [ ] One draw per cell is not called causal identification or expected model
+      behavior. Replication or deterministic replay requires a separate frozen
+      contract and authorization.
 - [ ] A lower apply rate is not called domestication without circular or
       non-grounded treatment; a higher apply rate is not called success when it
       creates forced absorption, lost value, bloat, or false precision.
@@ -209,12 +239,13 @@ answer.
 
 ### What to build
 
-Freeze one realistic quiet case and execute the same six-output nested contract
-under a new exact authorization. The semantic target must permit completed-zero
+Freeze one realistic quiet case as a `supply_stand_down_negative_control` and
+execute only the cells admitted by the same six-output nested contract under a
+new exact authorization. The semantic target must permit completed-zero
 mechanisms and the planner/evaluator must preserve an honest stand-down. Review
-whether any output invents a weakness, forces graph use, or adds public
-friction, and whether fresh reconstruction increases absorption merely because
-pressure was selected.
+whether semantic supply or graph machinery invents a weakness, manufactures a
+candidate, or adds public friction. If no pressure payload exists, this case
+does not test consumer absorption.
 
 ### Acceptance criteria
 
@@ -224,6 +255,9 @@ pressure was selected.
       the arm is a completed-zero stand-down.
 - [ ] Any manufactured mechanism, graph candidate, or public pressure is
       recorded as a failure, not a richer answer.
+- [ ] No claim about fresh or trajectory absorption is made when no pressure
+      payload reaches a consumer; a known-weak pressure case would require a
+      separate future authorization.
 - [ ] The useful and quiet cases retain separate evidence and costs.
 - [ ] No graph or runtime promotion follows automatically.
 
@@ -293,8 +327,9 @@ Stop and preserve the current boundary when:
 - graph arms add no unique value or create forced association/friction;
 - a provider contract is missing any route, budget, privacy, retry, or stop
   field;
-- a pre-pressure checkpoint cannot be captured honestly, control and treatment
-  cannot be isolated, or source-label/payload differences confound context;
+- neither an honest pre-pressure host fork nor a same-endpoint role/attribution
+  representation test can be frozen, control and treatment cannot be isolated,
+  or complete request-envelope differences confound context;
 - work would require R4 revival, automatic Decision Work semantics, Atlas or
   interface expansion, or runtime mutation to make an evaluation look clean.
 

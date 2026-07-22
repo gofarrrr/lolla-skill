@@ -26,6 +26,7 @@ SUPPORTING_CURRENT_DOCS = (
     "docs/operations/lolla-repository-gardening-audit-2026-07-15.md",
     "docs/evals/lolla-public-handoff-cold-reader-review-2026-07-22.md",
     "docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md",
+    "docs/conversation-understanding/lolla-consumer-context-contract-v1-correction-result-2026-07-22.md",
     "docs/conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md",
     "docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md",
     "docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md",
@@ -46,7 +47,7 @@ REQUIRED_FILES = CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + (
     ".github/workflows/public-handoff.yml",
     "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json",
     "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json",
-    "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+    "docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json",
     "docs/evals/lolla-constitution-stage0-addendum-register-v1.json",
     "docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md",
     "docs/conversation-understanding/lolla-product-constitution-v5.md",
@@ -262,7 +263,7 @@ def validate(
             "preserve frozen experiment artifacts and pr104's blank human fields",
             "require a product choice between pressure-now and understand-later",
             "same-context self-justification",
-            "fresh-context over-absorption",
+            "mandatory absorption in either context",
         ),
         maintainer_skill_relative,
         errors,
@@ -411,11 +412,17 @@ def _validate_pressure_understanding_graph_package(
         errors.append(f"{label} must keep the conversation-to-graph comparison unstarted")
     context_ablation = bridge.get("consumer_context_ablation", {})
     expected_context_ablation = {
-        "status": "provider_free_design_complete_case_and_execution_unstarted",
-        "contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+        "status": "provider_free_design_shape_valid_execution_not_ready",
+        "contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json",
+        "predecessor_contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+        "design_shape_valid": True,
+        "execution_ready": False,
+        "single_draw_evidence_class": "single_draw_case_diagnostic",
+        "primary_estimand": "consumer_context_representation_interaction",
         "fresh_graph_supply_output_count": 4,
         "additional_trajectory_continuation_output_count": 2,
         "live_same_context_output_is_causal_evidence": False,
+        "context_interaction_identifies_self_justification": False,
         "fresh_context_is_independent_truth": False,
     }
     for key, expected in expected_context_ablation.items():

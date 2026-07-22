@@ -21,9 +21,10 @@ what only a human can decide.
 3. Read [the evidence-gate reference](references/evidence-gates.md) before
    proposing a new connection, traversal, reader, receipt field, or sidecar.
    For reconsideration or graph-value evaluation, also validate
-   `docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json` so
-   same-context self-justification is not confused with upstream graph
-   deletion or fresh-context over-absorption.
+   `docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json` so
+   same-context self-justification is not confused with upstream or payload
+   deletion, legitimate rejection, semantic non-consideration laundering, or
+   mandatory absorption in either context. V0 is the preserved predecessor.
 4. Treat dated experiments as evidence for their named checkpoint, never as
    current authorization.
 
@@ -38,8 +39,8 @@ State one falsifiable question and one allowed causal change. Examples:
   no-graph control?
 - Does this receipt expose complete bounded path custody without implying
   relevance?
-- Does a fixed pressure payload receive materially different treatment in an
-  isolated trajectory continuation versus a fresh reconstruction?
+- Does a fixed pressure payload receive materially different treatment under
+  isolated trajectory-role versus attributed-transcript representations?
 
 Reject bundles such as “add incoming edges, two hops, global search, a graph
 database, and a new reader.”

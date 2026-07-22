@@ -29,10 +29,8 @@ universal set in order:
 Then read only the lane you will touch:
 
 - **Live skill:** `SKILL.md` and `docs/skill/STEPS.md`.
-- **Graph, compiler, or planner:**
-  `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`,
-  `references/knowledge-substrate-operations.md`, and
-  `docs/evals/lolla-self-contained-skill-readiness-v1.json`; for new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD and use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
+- **Graph, compiler, or planner:** read `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`, `references/knowledge-substrate-operations.md`, and `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
+  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, `docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json`, and `docs/conversation-understanding/lolla-consumer-context-contract-v1-correction-result-2026-07-22.md`, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
   `docs/README.md`. Also read
@@ -280,7 +278,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #382 tracks A/B/C; PR #383 adds its provider-free same-context/fresh-context pressure ablation without changing runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
+custody without semantic change. PR #382 tracks A/B/C; PR #383 adds its provider-free same-context/fresh-context pressure ablation; PR #384 tightens it prospectively in v1 without changing runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
+The current consumer-context contract is v1; v0 is its preserved predecessor. V1 is design-shape-valid and execution-not-ready. Its main estimand is a consumer-context-representation interaction with the complete fixed pressure package, not proof of self-justification; one draw per cell is only a case diagnostic.
+No complete pre-pressure host fork, source-first human target/rubric, request envelopes, provider contract, execution authorization, or runtime promotion exists.
 Atlas baseline PR #375 is historical; the
 checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
 Phase 2, Teacher revival, providers, and product claims are unauthorized. The
@@ -295,5 +295,5 @@ blank principal-human correction fields, with the explicit state
 `pause_until_human_review_capacity_returns`. The July Stage 1 can inspect
 checked-in-safe interface truthfulness only; it cannot validate conversation
 meaning or resolve the June pause.
-The provider-free A/B/C package separates pressure-now/process receipts, PR104 human review for understand-later, and a six-output source-first graph/context comparison before traversal expansion.
+The provider-free A/B/C package separates pressure-now/process receipts, PR104 human review for understand-later, and a six-output source-first graph/context diagnostic before traversal expansion.
 Its PRD/plan and repository-local audit skill authorize no human review, providers, graph/runtime changes, sidecar automation, or interface work.

@@ -37,7 +37,8 @@ usefulness, market value, and production readiness remain unknown.
 
 The current A/B/C pressure, understanding, and graph planning package is tracked by
 [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
-Its provider-free consumer-context extension defines four fresh graph-supply arms plus two isolated trajectory continuations; it changes no live context, graph, prompt, provider, or runtime behavior.
+The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. V1 defines four fresh graph-supply arms plus two isolated trajectory-representation cells and reports `design_shape_valid=true`, `execution_ready=false`, and one output per cell as `single_draw_case_diagnostic`, not causal identification.
+The repository has no complete branchable pre-pressure host checkpoint, frozen context implementation, principal-human target/rubric, complete request envelopes, provider contract, or execution authorization. This changes no live context, graph, prompt, provider, or runtime behavior.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
@@ -216,6 +217,7 @@ The repository does not currently establish:
 - that a revised answer is better, safer, or more useful;
 - that the four pressure lanes expose unique missed angles for real users;
 - independent validation of same-context reconsideration, or evidence that the host systematically domesticates external pressure rather than rejecting it legitimately;
+- causal evidence that a context-representation interaction is self-justification rather than role, reconstruction, lost-context, load, augmentation, or stochastic variation;
 - product-market fit, willingness to pay, or production readiness;
 - source-rights clearance, native screen-reader acceptance, or real-user
   learning value for the Mental Model Atlas;
@@ -287,12 +289,8 @@ about authority and missingness, but it cannot validate conversation meaning
 or supersede that pause. See the
 [Decision Trail stage lineage](docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
 
-A provider-free planning package now separates three later lanes: pressure-now
-plus process receipts; prospective principal-human PR104 review for understand-
-later; and source-first conversation-to-graph comparison before incoming,
-reserve, two-hop, or global expansion. Its repository-local audit skill
-authorizes no human review, provider, graph/runtime change, sidecar automation,
-Atlas, or interface work.
+A provider-free planning package separates pressure-now/process receipts, prospective principal-human PR104 review for understand-later, and source-first conversation-to-graph comparison before graph expansion. Its repository-local audit skill authorizes no human review, provider, graph/runtime change, sidecar automation, Atlas, or interface work.
+The next eligible graph/context action is provider-free case-freeze preparation against v1, not execution: select one honest context representation, create complete request previews and equality receipts, and obtain a signed source-first human target and rejection rubric. This is separate from the Constitution roadmap's still-unauthorized July Stage 1.
 
 ## Current repository boundary
 
