@@ -7,14 +7,20 @@
       "rationale_text": "Incentives helps prisoners-dilemma reveal when individually rational behavior is being produced by a payoff structure that rewards defection.",
       "source_quote": "The model helps separate bad actors from bad rules by making the payoff structure explicit.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Incentive structures are central to PD dynamics — the payoff matrix IS an incentive structure. Canonical: outcome 'changes drastically' depending on how incentives frame cooperation vs defection.",
+      "activation_condition": "When analyzing how payoff incentives drive cooperative or defective behavior in strategic interdependence scenarios."
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps prisoners-dilemma diagnose bad collective outcomes as the product of a flawed interaction structure rather than isolated bad intent.",
       "source_quote": "It serves as a diagnostic tool in systems thinking, helping users recognize archetypes of common system structures that produce characteristic patterns of behavior.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'The PD structure is itself a common system archetype. Recognizing this archetype helps diagnose complex organizational issues' — structural pattern recognition.",
+      "activation_condition": "When recognizing prisoner's dilemma patterns as systemic archetypes within organizational competition and collaboration dynamics."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias worsens prisoners-dilemma dynamics when ambiguous moves are read as confirming that the other side is defecting.",
       "source_quote": "prisoners-dilemma conflicts with confirmation-bias (confirmation bias) when players interpret ambiguous moves to confirm that the other party is defecting",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'Focusing solely on the competitive frame (betrayal as dominant strategy) without exploring alternative cooperative structures' when initial hypothesis is ingrained.",
+      "activation_condition": "When players interpret ambiguous moves to confirm defection assumptions, accelerating mutual betrayal even when cooperation was intended."
     }
   ],
   "structured_tensions": [
@@ -53,9 +62,12 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on payoff-structure diagnosis, systems archetype framing, and explicit current-vocabulary tensions against active-listening, empathy, and confirmation-bias.",
+    "summary": "Layer 1+2 enrichment complete. incentives at 0.90 (payoff matrix IS incentive structure), systems-thinking at 0.90 (PD is system archetype). confirmation-bias antagonist at 0.80. Canonical also mentions framing and logic-trees as allies.",
     "donor_drops": [
       "Did not preserve donor game-theory relation sprawl beyond the clean incentives, systems, and explicit tension surface."
+    ],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include framing (outcome changes drastically by frame) and logic-trees (disaggregation of strategic choices)."
     ]
   }
 }

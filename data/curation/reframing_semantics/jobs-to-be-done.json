@@ -1,0 +1,35 @@
+{
+    "model_id": "jobs-to-be-done",
+    "source_file": "Jobs_To_Be_Done_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question asks about a solution or product feature when the real question is about the outcome the user is trying to achieve — the drill is being discussed instead of the hole.",
+        "The question confuses the means (a specific tool, process, or approach) with the end (the progress the person is trying to make) — solution-space is being explored before problem-space is defined.",
+        "The question assumes the current framing of the problem is correct without checking whether the customer, stakeholder, or user would describe their need the same way.",
+        "The question focuses on functional requirements without surfacing the emotional or social job that is actually driving the decision."
+    ],
+    "frame_patterns_challenged": [
+        "proxy_optimization",
+        "means_end_conflation",
+        "symptom_as_problem"
+    ],
+    "reframing_move": "Shift from solution-space to problem-space: instead of 'how do we improve X?', ask 'what progress is the person actually trying to make, and is X even the right thing to improve?' — the quarter-inch-hole reframe forces the question back to the job being hired for.",
+    "reframing_move_types": [
+        "scope_expansion",
+        "perspective_shift"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Jobs-to-be-done is one of the strongest reframing models in the catalog because its entire function is questioning the question's framing. The drill/hole metaphor is a canonical example of question-level reframing. The source is explicit: 'the real job a product performs may be significantly different from what the creators initially assume.'",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: drill vs hole (Levitt/Christensen), means vs ends (strategic positioning example), user framing mismatch (empathy-driven research), and functional vs emotional job (superficial job definition anti-pattern)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Proxy optimization: optimizing the drill when the hole is the goal. Means-end conflation: confusing the solution category with the problem space. Symptom as problem: treating the presenting complaint instead of the underlying job."
+        }
+    }
+}

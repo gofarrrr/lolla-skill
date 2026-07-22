@@ -1,4 +1,6 @@
 import { relationCounts, type AtlasSelection } from "../atlasSelectors";
+import type { RelationType } from "../atlasState";
+import { cardFirstModelPageUrl } from "../cardFirstModelPage";
 import type { AtlasProjection } from "../projection";
 import { AppLink } from "../router";
 import { humanize } from "./StatusDisclosure";
@@ -6,10 +8,14 @@ import { humanize } from "./StatusDisclosure";
 export function SelectionPanel({
   projection,
   selection,
+  activeRelationTypes,
+  onFilterRelationType,
   onClear,
 }: {
   projection: AtlasProjection;
   selection: AtlasSelection;
+  activeRelationTypes: RelationType[];
+  onFilterRelationType: (type: RelationType) => void;
   onClear: () => void;
 }) {
   const modelNames = new Map(
@@ -70,30 +76,46 @@ export function SelectionPanel({
   if (selection.selectedModel) {
     const model = selection.selectedModel;
     const counts = relationCounts(projection.relations, model.model_id);
+    const completePageAvailable = Boolean(cardFirstModelPageUrl(model.slug));
     return (
       <aside className="selection-panel" aria-label="Selected model">
         <PanelHeader label="Selected model" onClear={onClear} />
         <h2>{model.display_name}</h2>
         <p className="panel-summary">{model.summary.text}</p>
+        <AppLink className="button panel-action" href={`/models/${model.slug}`}>
+          {completePageAvailable ? "Read complete model" : "Open summary-only page"}
+        </AppLink>
         <p className="helps-notice">
           <strong>Helps you notice</strong>
           {model.helps_notice.text}
         </p>
-        <p className="count-scope">Connections in this view</p>
-        <div className="count-cluster" aria-label="Connection counts in this view">
-          <span>
-            <strong>{counts.ally}</strong> allies
-          </span>
-          <span>
-            <strong>{counts.antagonist}</strong> antagonists
-          </span>
-          <span>
-            <strong>{counts.tension}</strong> tensions
-          </span>
+        <p className="count-scope">Filter connections</p>
+        <div className="count-cluster" role="group" aria-label="Filter relationships">
+          {(["ally", "antagonist", "tension"] as const).map((type) => {
+            const count = counts[type];
+            const active =
+              activeRelationTypes.length === 1 && activeRelationTypes[0] === type;
+            return (
+              <button
+                key={type}
+                type="button"
+                aria-pressed={active}
+                aria-label={`Show ${count} ${type} connections`}
+                onClick={() => onFilterRelationType(type)}
+              >
+                <strong>{count}</strong>
+                <span>{type}</span>
+              </button>
+            );
+          })}
         </div>
-        <AppLink className="button panel-action" href={`/models/${model.slug}`}>
-          Open full model page
-        </AppLink>
+        <details className="panel-relationship-guide">
+          <summary>How to read the map</summary>
+          <p>
+            Solid lines are allies, dashed lines are antagonists, and double lines
+            are tensions. Arrows preserve authored source → target direction.
+          </p>
+        </details>
       </aside>
     );
   }

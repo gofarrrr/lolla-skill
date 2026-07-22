@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive-load-theory helps anchoring work well by using familiar schemas to reduce working-memory burden during early orientation.",
       "source_quote": "Strategic anchoring reduces cognitive load.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Explains the benefit mechanism — 'Strategic anchoring reduces cognitive load' by connecting new concepts to existing schemas — but describes what anchoring achieves rather than how CLT strengthens anchoring's effectiveness.",
+      "activation_condition": "When presenting new information and can connect it to existing schemas to reduce working memory burden and improve processing efficiency"
     },
     {
       "target_model_id": "narratives",
       "rationale_text": "Narratives gives anchoring a memorable context that can orient attention before facts are unpacked in detail.",
       "source_quote": "Stories are highly effective anchors because they lodge in memory easily and get into the brain faster than raw data or statistics.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific amplification mechanism — 'Stories are highly effective anchors because they lodge in memory easily and get into the brain faster than raw data, often by triggering emotions' — describes how stories make anchors stick.",
+      "activation_condition": "When an initial reference point needs to be memorable and emotionally engaging to lodge effectively as an anchor in the audience's thinking"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Critical-thinking pushes back on anchoring by demanding that the first frame stay corrigible in the face of new evidence.",
       "source_quote": "Anchoring is diametrically opposed to critical thinking, which demands questioning one's own biases and continually updating beliefs based on new data.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "The strongest adversarial language in the corpus — 'Anchoring is diametrically opposed to critical thinking, which demands questioning one's own biases and continually updating beliefs based on new data.'",
+      "activation_condition": "When the anchoring effect is driving decisions and the decision-maker needs to step back, question the reference point, and update beliefs based on the full evidence base"
     },
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates counters anchoring by replacing the inside-view frame with an outside-view reference point grounded in broader outcomes.",
       "source_quote": "decision-making should be anchored instead to the outside view, focusing on general outcomes and external data",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Direct replacement mechanism — 'decision-making should be anchored instead to the outside view, focusing on general outcomes and external data' — provides the alternative reference point that displaces arbitrary anchors.",
+      "activation_condition": "When salient initial figures or anecdotes are displacing population-level frequency data from the estimate or decision"
     }
   ],
   "structured_tensions": [
@@ -44,12 +56,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on two clean allies and a strong antagonistic relationship to critical-thinking and outside-view correction.",
+    "summary": "Layer 1+2 enrichment complete. Allies: narratives 0.90 (strong — 'highly effective anchors'), cognitive-load-theory 0.80 (moderate — benefit mechanism). Antagonists: critical-thinking 0.95 (critical — 'diametrically opposed'), base-rates 0.90 (strong — direct replacement). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor persuasion relation sprawl beyond the source-backed memory, orientation, and anti-entrenchment surface."
     ],
     "open_questions": [
-      "Pyramid-principle and framing are source-real allies, but they were omitted because the current graph vocabulary does not expose them as clean target ids."
+      "Pyramid-principle and framing are source-real allies, but they were omitted because the current graph vocabulary does not expose them as clean target ids.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Framing as 'intrinsically linked to anchoring' — very strong, potentially constitutive ally."
     ]
   }
 }

@@ -2,6 +2,21 @@
   width: min(var(--shell-standard), calc(100% - var(--space-8)));
 }
 
+.library-route .content-hero {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(24rem, 1.2fr);
+  gap: var(--space-8);
+  align-items: end;
+  max-width: none;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+}
+
+.library-route .content-hero h1,
+.library-route .content-hero > p:last-child {
+  margin: 0;
+}
+
 .library-toolbar {
   display: flex;
   align-items: end;
@@ -17,10 +32,26 @@
   width: min(28rem, 100%);
 }
 
-.library-toolbar > p {
-  margin: 0 0 var(--space-2);
-  color: var(--color-ink-muted);
-  font-size: var(--text-sm);
+.library-featured {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 14rem;
+  border-left: var(--line-current) solid var(--color-ink);
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.library-featured:hover {
+  background: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.library-featured span {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .model-card-grid {

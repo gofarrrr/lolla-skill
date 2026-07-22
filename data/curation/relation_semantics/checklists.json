@@ -7,31 +7,54 @@
       "rationale_text": "Systems-thinking gives checklists the structural map needed to turn principles into repeatable workflows.",
       "source_quote": "The checklist is the practical realization of systemic understanding.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'the practical realization of systemic understanding' — checklists ARE how systems thinking gets operationalized into repeatable workflows, making this a constitutive implementation relationship.",
+      "activation_condition": "When systemic understanding of roles, responsibilities, and workflows needs to be converted into a repeatable operational format that ensures consistent execution"
     },
     {
       "target_model_id": "decomposition",
       "rationale_text": "Decomposition strengthens checklists by breaking complex problems into branches that can each be verified explicitly.",
       "source_quote": "Checklists guide the systematic breakdown of complex problems.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Structural tool — 'Checklists guide the systematic breakdown of complex problems' — provides the analytical cut that determines what goes on the checklist, but is a tool applied in checklist design rather than the execution mechanism.",
+      "activation_condition": "When complex problems need to be broken into explicit verification branches before the checklist can be structured to ensure all branches are addressed"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory explains why checklists work: they move procedural burden off limited working memory and into explicit steps.",
       "source_quote": "The model is a countermeasure to cognitive overload.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Explains why checklists work — 'The model is a countermeasure to cognitive overload' — CLT provides the scientific basis for externalizing procedural burden, making checklists not just practical but cognitively justified.",
+      "activation_condition": "When procedural complexity exceeds working memory capacity and explicit externalization into checklist steps is needed to prevent cognitive overload errors"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "Feynman-technique pairs with checklists by forcing a simple stepwise pass through explanation, blind-spot finding, and repair.",
       "source_quote": "A checklist ensures the learner systematically moves through the steps: identify the concept, explain it simply, find blind spots, and use analogies to fill the gaps.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Learning application pairing — 'A checklist ensures the learner systematically moves through the steps: identify the concept, explain it simply, find blind spots, and use analogies' — checklists structure Feynman's method but this is an application-level rather than structural relationship.",
+      "activation_condition": "When the Feynman learning process needs to be operationalized into a repeatable sequence of identify, simplify, find blind spots, and fill gaps"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines checklists by causing practitioners to apply a previously successful checklist to a genuinely novel problem, forcing reality into familiar steps rather than testing whether the checklist's assumptions still hold.",
+      "source_quote": "Checklists carry the danger of promoting the availability heuristic (or Maslow's hammer), where a familiar tool is used to 'torture reality so that it fits your models'. Assuming 'I have seen this one before' and applying a generic checklist to a genuinely novel problem risks disastrously wrong solutions.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific misapplication threat — 'applying a generic checklist to a genuinely novel problem risks disastrously wrong solutions' — cognitive entrenchment causes practitioners to reach for a familiar checklist when the situation demands a different framework entirely.",
+      "activation_condition": "When a previously successful checklist is being applied to a genuinely novel problem and the familiar steps are forcing reality into a framework whose assumptions no longer hold"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "flow",
@@ -51,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on ally logic around systems, decomposition, and load reduction; antagonists are concept-real but less cleanly targetable in the current vocabulary.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'practical realization of systemic understanding'), cognitive-load-theory 0.90 (strong — explains WHY checklists work), decomposition 0.80 (moderate — structural tool), feynman-technique 0.80 (moderate — learning application). Antagonists: einstellung-effect 0.90 (strong — 'disastrously wrong solutions' from familiar checklist misapplication). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor antagonists where the raw source only names broader creativity or theory-of-mind tensions without equally clean canonical ids."
     ],

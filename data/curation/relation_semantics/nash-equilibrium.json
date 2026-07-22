@@ -7,17 +7,34 @@
       "rationale_text": "Game-theory-payoffs provides the payoff structure that makes nash-equilibrium a practical response model instead of pure abstraction.",
       "source_quote": "Game theory itself is considered a powerful tool",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Nash Equilibrium IS a game theory solution concept — game-theory-payoffs provides the foundational framework of interdependent strategic interaction within which NE operates as the key stability result.",
+      "activation_condition": "When strategic decisions involve interdependent actors whose payoffs depend on each other's choices and a stable outcome prediction is needed"
     },
     {
       "target_model_id": "decision-trees",
       "rationale_text": "Decision-trees help nash-equilibrium lay out strategic branches and countermoves clearly enough to inspect.",
       "source_quote": "setting these scenarios out in a logic tree",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Analyzing payoffs and strategies 'often involves disaggregating the problem structure, such as using deductive logic trees' — decision trees structure the sequential analysis NE computation requires.",
+      "activation_condition": "When computing equilibria requires structured sequential analysis of strategy-payoff combinations rather than intuitive assessment of likely outcomes"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1 undermines nash-equilibrium by bypassing the cold rational analysis required to compute equilibrium payoffs, substituting primal emotional responses that distort strategic assessment.",
+      "source_quote": "NE analysis typically relies on cold, rational analysis performed by the neocortex (System 2). However, real-world decision-making and persuasion often bypass this logical system and are driven by hot cognitions directed toward the primal croc brain (System 1).",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "NE 'assumes perfectly rational agents — this clashes directly with the reality of bounded rationality' where humans rely on mental shortcuts leading to predictable errors that NE cannot account for.",
+      "activation_condition": "When real-world decision-makers use intuitive shortcuts and emotional heuristics rather than the rational computation that Nash Equilibrium assumes"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "prisoners-dilemma",
@@ -43,5 +60,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: game-theory-payoffs 0.95 (critical — NE IS a game theory solution concept), decision-trees 0.80 (moderate — structured sequential analysis tool). Antagonist: system-1 0.90 (strong — 'clashes directly' with bounded rationality). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies systems-thinking ('framework for seeing interrelationships rather than static snapshots') and rational/algorithmic-thinking ('hard, slow, rational thinking needed for NE computation') as ally candidates."
+    ]
+  }
 }

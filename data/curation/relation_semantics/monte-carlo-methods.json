@@ -7,21 +7,30 @@
       "rationale_text": "Probabilistic-thinking gives monte-carlo-methods the core commitment to ranges and distributions instead of point forecasts.",
       "source_quote": "The fundamental essence of this model is probabilistic thinking",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Monte Carlo IS probabilistic thinking operationalized computationally — provides the 'mathematical discipline to counteract the emotional tendency to skew results' through systematic probability sampling.",
+      "activation_condition": "When probability distributions need to be explored computationally rather than estimated intuitively, especially for complex systems with interacting uncertainties"
     },
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates ground monte-carlo-methods in reference classes so simulated inputs are not built from wishful stories alone.",
       "source_quote": "reference classes",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Monte Carlo requires 'grounding probability estimates in history, external data, and the experience of others through reference classes' — base rates provide the foundational input distributions.",
+      "activation_condition": "When simulation inputs need to be anchored in empirical frequency data rather than subjective estimates to prevent garbage-in-garbage-out distortion"
     },
     {
       "target_model_id": "game-theory-payoffs",
       "rationale_text": "Game-theory-payoffs helps monte-carlo-methods stress-test adversarial moves and countermoves rather than sampling only passive scenarios.",
       "source_quote": "Strategic War-Gaming",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'the practical tool for executing game theory strategies in complex competitive or adversarial settings' — simulation quantifies potential payoffs from competitive moves.",
+      "activation_condition": "When game-theoretic strategies need to be evaluated through simulated competitive scenarios rather than analytical closed-form solutions"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "False-precision-avoidance protects monte-carlo-methods from projecting exactness that the input assumptions have not earned.",
       "source_quote": "Risk of False Precision",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Monte Carlo distributions can 'create an illusion of precision around fundamentally unquantifiable inputs' — computational rigor can mask input uncertainty.",
+      "activation_condition": "When sophisticated simulation output creates false confidence in precise probability estimates that are ultimately only as reliable as the subjective inputs that seeded them"
     }
   ],
   "structured_tensions": [
@@ -50,5 +62,10 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: probabilistic-thinking 0.90 (strong — Monte Carlo IS probabilistic thinking operationalized), base-rates 0.90 (strong — foundational input distributions), game-theory-payoffs 0.90 (strong — 'practical tool for executing game theory'). Antagonist: false-precision-avoidance 0.80 (moderate — illusion of precision around unquantifiable inputs).",
+    "donor_drops": [],
+    "open_questions": []
+  }
 }

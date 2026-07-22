@@ -1,0 +1,33 @@
+{
+    "model_id": "regret-theory",
+    "source_file": "Regret_Theory_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question frames the decision in terms of expected outcomes without accounting for the asymmetric emotional weight of regret — losses from action versus losses from inaction are treated as equivalent when they are experienced very differently.",
+        "The question suppresses counterfactual thinking by focusing only on the chosen path, when explicitly imagining 'what will I regret not having done?' would reveal options the current frame hides.",
+        "The question escalates commitment to the current path because switching would force acknowledgment of a prior mistake — regret avoidance is driving the frame, not outcome quality.",
+        "The question treats risk symmetrically when the regret from commission (doing something wrong) and omission (failing to act) actually have very different psychological weights depending on the context."
+    ],
+    "frame_patterns_challenged": [
+        "counterfactual_suppression",
+        "commitment_escalation",
+        "temporal_fixation",
+        "option_space_collapse"
+    ],
+    "reframing_move": "Before choosing based on expected outcomes alone, ask: 'Which choice would I regret most if it turned out to be wrong — and is my frame designed to minimize regret or to maximize the outcome?' — the regret reframe exposes whether anticipated regret is silently shaping the frame.",
+    "reframing_move_types": ["inversion", "assumption_surfacing"],
+    "curation_confidence": "high",
+    "curation_note": "Regret Theory is a strong reframing model because anticipated regret is often the invisible force shaping how questions are framed. The source describes how 'people anticipate regret and factor it into decisions', the asymmetry between 'regret of action' and 'regret of inaction', and how 'regret aversion can lead to suboptimal choices'. The counterfactual_suppression challenge is direct: regret theory forces explicit counterfactual thinking ('what if I had chosen differently?'). The commitment_escalation challenge maps to the source's description of escalation driven by reluctance to crystallize regret.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Asymmetric emotional weight (regret anticipation concept), suppressed counterfactuals (model forces 'what if?'), escalation from regret avoidance (reluctance to admit prior error), action/inaction asymmetry (commission vs omission regret)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Counterfactual suppression: regret theory's core mechanism is explicit counterfactual comparison. Commitment escalation: regret avoidance drives staying the course. Temporal fixation: anticipated future regret reveals present constraints. Option space collapse: regret aversion narrows perceived safe options."
+        }
+    }
+}

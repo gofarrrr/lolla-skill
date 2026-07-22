@@ -7,14 +7,20 @@
       "rationale_text": "Critical-thinking strengthens cognitive-biases by turning bias awareness into active questioning of assumptions, evidence, and self-deception.",
       "source_quote": "Critical thinking requires self-reflection and questioning one's own assumptions, biases, and beliefs.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'essential for recognizing and overcoming biases' — canonical states 'Metacognition & Critical Thinking is essential' — the core cognitive capacity that makes bias awareness actionable rather than merely intellectual.",
+      "activation_condition": "When awareness of cognitive biases needs to be converted into active self-reflection that questions assumptions, evaluates evidence quality, and identifies where personal experience is distorting judgment"
     },
     {
       "target_model_id": "scientific-method-evidence-testing",
       "rationale_text": "Scientific-method-evidence-testing gives cognitive-biases a falsification path so judgments are checked against evidence instead of defended as intuitions.",
       "source_quote": "This often involves consulting base rates rather than trusting anecdotal evidence or vivid, singular experiences.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Falsification pathway — 'consulting base rates rather than trusting anecdotal evidence' — provides the evidence-checking discipline that catches biased judgments before they harden, though the extraction confidence is medium suggesting the link is less directly stated.",
+      "activation_condition": "When biased judgments need to be checked against objective evidence and base rates rather than defended as intuitively reasonable"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Authority-bias compounds cognitive-biases by making fluent confident claims feel credible before they are tested.",
       "source_quote": "Biases result precisely from System 1 taking over.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Amplification mechanism — 'making fluent confident claims feel credible before they are tested' — compounds cognitive biases by causing untested acceptance of authoritative-sounding assertions, though the canonical names this indirectly through System 1 takeover.",
+      "activation_condition": "When a fluent, confident claim from an authority figure is being accepted without the bias-checking scrutiny that cognitive-biases awareness demands"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. Allies: critical-thinking 0.90 (strong — 'essential for recognizing and overcoming biases'), scientific-method-evidence-testing 0.80 (moderate — falsification pathway). Antagonists: authority-bias 0.80 (moderate — amplifies uncritical acceptance). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes System 2 ('the mechanism for overriding initial biased responses') and Emotional Intelligence ('self-awareness needed to recognize emotional inputs that drive biases') as strong ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

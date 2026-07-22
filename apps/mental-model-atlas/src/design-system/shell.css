@@ -38,40 +38,29 @@
   min-height: 2.75rem;
   align-items: center;
   justify-self: start;
-  gap: var(--space-3);
   text-decoration: none;
 }
 
-.brand-mark {
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  place-items: center;
-  border: var(--line-structure) solid var(--color-ink);
-  border-radius: 50%;
-  color: var(--color-ink);
-  background: var(--color-surface-raised);
-  font-family: var(--font-display);
-}
-
-.brand strong,
-.brand small {
+.brand-wordmark {
   display: block;
 }
 
-.brand strong {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  line-height: 1;
+.brand-wordmark {
+  position: relative;
+  width: 5.25rem;
+  height: 1.75rem;
+  overflow: hidden;
+  background: var(--color-surface-raised);
 }
 
-.brand small {
-  margin-top: var(--space-1);
-  color: var(--color-ink-muted);
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.brand-wordmark img {
+  position: absolute;
+  top: -1.2rem;
+  left: -3.95rem;
+  width: 13.5rem;
+  max-width: none;
+  height: auto;
+  filter: contrast(1.5);
 }
 
 .site-header nav {

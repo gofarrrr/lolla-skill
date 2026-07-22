@@ -7,17 +7,34 @@
       "rationale_text": "Systems-thinking strengthens varied-practice-interleaving by helping teams compare frames around interrelationships and patterns of change instead of isolated facts.",
       "source_quote": "In systems thinking, VPI helps navigate complexity by recognizing that complex systems cannot be understood by merely accumulating isolated facts.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Interleaving diverse frameworks supports the development of systemic understanding across domains",
+      "activation_condition": "When interleaving diverse frameworks builds capacity for seeing interrelationships across domains"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "Feynman-technique helps varied-practice-interleaving turn frame contrast into deeper understanding by forcing explanation through multiple analogies and simple language.",
       "source_quote": "The crucial final step is to use an analogy to explain the concept, which is a key component of VPI.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical names the Feynman Technique as using analogy to test depth of understanding, a key VPI ally",
+      "activation_condition": "When using analogy and simplification tests depth of understanding across varied practice domains"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines varied-practice-interleaving by causing rapid pattern recognition to lock in the first frame, preventing the genuine frame rotation the model demands.",
+      "source_quote": "Expertise relies on rapid pattern recognition for efficiency. VPI disrupts this reliance, forcing the use of slower, more analytical thinking when the initial pattern recognized is potentially misleading.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes expertise and pattern recognition fixation as disrupted by VPI's requirement for varied analysis",
+      "activation_condition": "When expertise-driven pattern recognition fixation prevents genuine engagement with varied practice"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "anchoring",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on systems-aware frame contrast plus an explicit tension block around early lock-in and motivated frame selection.",
+    "summary": "Layer 1+2 enrichment complete. feynman-technique at 0.90 per direct canonical naming. einstellung antagonist at 0.90.",
     "donor_drops": [
       "Did not preserve broader specialization or synthesis relation sprawl where the current canonical target surface is thinner or less direct."
     ],
     "open_questions": [
-      "Iteration is source-adjacent in the hypothesis-testing language, but the current first-order surface is cleaner around systems-thinking and the explicit tensions."
+      "Iteration is source-adjacent in the hypothesis-testing language, but the current first-order surface is cleaner around systems-thinking and the explicit tensions.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests synthesis-and-integration as recovery candidate."
     ]
   }
 }

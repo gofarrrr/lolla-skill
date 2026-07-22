@@ -1,0 +1,34 @@
+{
+    "model_id": "falsifiability",
+    "source_file": "Falsifiability_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question seeks confirmation of an existing belief without defining what evidence would disprove it — the question is designed to succeed rather than to learn.",
+        "The question asks 'is X true?' without asking 'what would prove X false?' — the falsification frame is missing.",
+        "The question's implicit assumptions have not been spelled out concretely enough to be tested — the 'what would you have to believe?' analysis has not been done.",
+        "The question assumes a plan or strategy will work without identifying the specific conditions under which it would fail — the sensitivity analysis question ('by how much would assumptions need to change for this to be wrong?') is absent."
+    ],
+    "frame_patterns_challenged": [
+        "borrowed_premise",
+        "counterfactual_suppression"
+    ],
+    "reframing_move": "Invert the question toward disproof: instead of 'will X work?', ask 'what specific condition would prove X wrong, and can we test for that condition now?' — the hypothesis pyramid reframe makes assumptions concrete enough to break.",
+    "reframing_move_types": [
+        "inversion",
+        "assumption_surfacing"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Falsifiability is a reframing tool because it converts questions designed to confirm into questions designed to learn. The source is explicit: the Feynman standard ('lean over backwards to figure out where you could be wrong'), the hypothesis pyramid (sub-hypotheses specific enough to be disproven), and the WTWHTB test all operate on question structure. Distinct from inversion — falsifiability specifically targets the epistemic quality of the question, not just its direction.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: confirmation-seeking (Feynman standard), missing falsification frame (core principle), unspelled assumptions (WTWHTB test), and absent sensitivity analysis (assumption change threshold question)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Borrowed premise: inherited assumptions made testable by spelling them out. Counterfactual suppression: the disconfirmation question surfaces the paths the question's frame suppresses."
+        }
+    }
+}

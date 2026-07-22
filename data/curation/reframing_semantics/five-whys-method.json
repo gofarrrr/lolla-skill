@@ -1,0 +1,34 @@
+{
+    "model_id": "five-whys-method",
+    "source_file": "Five_Whys_Method_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question addresses a symptom or proximate cause without asking why that symptom exists — one why isn't enough.",
+        "The question has settled on a specific formulation ('how do we fix X?') without verifying that X is the root cause rather than a surface manifestation.",
+        "The question ends at an unexamined assertion or organizational assumption rather than a falsifiable fact — the chain of 'why' stopped at cultural myth instead of a first principle.",
+        "The question is about treating a recurring problem that keeps returning because the root cause has never been identified."
+    ],
+    "frame_patterns_challenged": [
+        "symptom_as_problem",
+        "premature_intellectualization"
+    ],
+    "reframing_move": "Ask 'why?' repeatedly until the question shifts from the presenting symptom to the underlying cause: 'why is X happening?' leads to 'why is Y happening?' which eventually reveals that the real question isn't about X at all, but about Z — a deeper structural issue the surface question cannot see.",
+    "reframing_move_types": [
+        "scope_expansion",
+        "assumption_surfacing"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Five whys operates directly on question structure by converting surface questions into deeper ones. The source is explicit: the method exists to 'separate reliable knowledge from assumption' and to reach first principles. It is a pure question-transformation tool — the output of five whys is a better question, not an answer.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: proximate vs root cause (core definition), premature formulation (clarity tip usage), myth vs first principle (hitting a first principle), and recurring problems (preventing recurrence)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Symptom as problem is the primary target — the question addresses the symptom, not the disease. Premature intellectualization: the question jumped to a specific formulation without observing the deeper structure."
+        }
+    }
+}

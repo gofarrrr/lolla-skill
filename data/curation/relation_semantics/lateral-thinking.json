@@ -7,10 +7,34 @@
       "rationale_text": "Reframing-perspective gives lateral-thinking a practical way to reopen option space by changing the question before changing the answer.",
       "source_quote": "Works when the blockage is conceptual, not effort-based.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Reframing IS the core mechanism through which lateral thinking generates novel solutions — 'comfort with ambiguity and the willingness to begin like a beginner to suppress assumptions'.",
+      "activation_condition": "When a problem requires suspending existing causal theories and generating genuinely new frames rather than optimizing within the current problem definition"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines lateral-thinking by causing the brain to default to the most available existing mental map, directly blocking the exploration of novel or difficult solution spaces.",
+      "source_quote": "The tendency to use an existing mental map because it is readily at hand (availability bias) or to substitute a simple, familiar model for a more complicated, actual one (substitution bias) directly blocks the exploration of novel or difficult solution spaces, leading to disastrously wrong solutions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "The tendency to use an existing mental map 'because it is readily at hand directly blocks the exploration of novel or difficult solution spaces, leading to disastrously wrong solutions'.",
+      "activation_condition": "When a familiar framework is applied reflexively to a genuinely novel problem, blocking exploration of the unconventional solution space that lateral thinking requires"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring undermines lateral-thinking by fixing attention on the first piece of information encountered, cutting off the flow of divergent ideas before alternative frames can form.",
+      "source_quote": "Anchoring Bias: Focusing too much on an initial piece of information, thereby cutting off the flow of better, more divergent ideas.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Focusing too much on an initial piece of information 'thereby cutting off the flow of better, more divergent ideas' — anchoring constrains the divergent exploration lateral thinking demands.",
+      "activation_condition": "When an initial framing or data point narrows the solution space before lateral exploration has had a chance to generate genuinely alternative perspectives"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "representativeness-heuristic",
@@ -38,8 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved one practical ally and the explicit anti-fixation tension block.",
-    "donor_drops": ["Did not preserve broader innovation-neighbor sprawl beyond the clearest current-vocabulary frame-shift link."],
-    "open_questions": ["The outside-view material is source-real but not yet a clean first-order canonical target here."]
+    "summary": "Layer 1+2 enrichment complete. Allies: reframing-perspective 0.90 (strong — reframing IS the core mechanism of lateral thinking). Antagonists differentiated: einstellung-effect 0.90 (strong — 'directly blocks exploration of novel solution spaces'), anchoring 0.80 (moderate — constrains divergent exploration). SPARSE_ALLY_RECOVERY: only 1 ally — high priority.",
+    "donor_drops": [
+      "Did not preserve broader innovation-neighbor sprawl beyond the clearest current-vocabulary frame-shift link."
+    ],
+    "open_questions": [
+      "The outside-view material is source-real but not yet a clean first-order canonical target here.",
+      "SPARSE_ALLY_RECOVERY: only 1 ally curated — high priority. Canonical article identifies design-thinking ('structured abductive framework'), synthesis-and-integration ('Symphony aptitude for synthesizing unrelated information'), and feynman-technique ('analogy as the final essential step') as ally candidates."
+    ]
   }
 }

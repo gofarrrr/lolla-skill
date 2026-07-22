@@ -7,10 +7,34 @@
       "rationale_text": "Scaffolding helps analogies-and-metaphors work by giving a staged bridge from what the audience already knows to what it needs to learn next.",
       "source_quote": "Analogies and metaphors are strongest when people do not yet have a usable mental bucket for the new concept but do have adjacent experience that can carry the explanation.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as the structural mechanism — 'Analogies provide the pre-existing mental model (the scaffold) off which new material can be piggybacked and built upon incrementally' — direct enabling mechanism for how analogies support learning.",
+      "activation_condition": "When the audience does not yet have a usable mental model for the new concept but does have working knowledge in a structurally similar domain"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "representativeness-heuristic",
+      "rationale_text": "Representativeness-heuristic undermines analogies-and-metaphors by driving analogy selection toward superficial surface similarity rather than deep structural correspondence, producing comparisons that feel right but mislead.",
+      "source_quote": "The primary challenge is either failing to see the conceptual similarity between domains or developing analogies based on superficial features, leading to poor quality ideas.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'the primary challenge' — analogies built on surface-level similarity rather than verified structural similarity between domains produce misleading transfers.",
+      "activation_condition": "When analogies are being selected based on surface resemblance rather than verified structural similarity between the source and target domains"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines analogies-and-metaphors by locking onto the first familiar comparison so firmly that the thinker never tests whether a different analogy would map the target domain more accurately.",
+      "source_quote": "This occurs when thinkers persist in using mental models that are unhelpful or misleading in a new context.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Related persistence mechanism — 'thinkers persist in using mental models that are unhelpful or misleading in a new context' — about stickiness of old analogies rather than a direct attack on analogical reasoning itself.",
+      "activation_condition": "When familiar analogies from past experience persist in guiding thinking even though the new context requires a genuinely different framing"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "abstraction",
@@ -30,8 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Kept the first-order surface tight around one support link and the explicit tension block.",
-    "donor_drops": ["Did not preserve broader communication relation sprawl beyond the clearest current-vocabulary seams."],
-    "open_questions": ["Additional allies are source-real, but the current first-order surface is cleanest around scaffolding and the explicit tensions."]
+    "summary": "Layer 1+2 enrichment complete. Allies: scaffolding 0.90 (strong — 'the scaffold off which new material can be piggybacked'). Antagonists: representativeness-heuristic 0.90 (strong — 'primary challenge' of surface vs. structural similarity), einstellung-effect 0.80 (moderate — persistence of old models). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 1 ally — high priority.",
+    "donor_drops": [
+      "Did not preserve broader communication relation sprawl beyond the clearest current-vocabulary seams."
+    ],
+    "open_questions": [
+      "Additional allies are source-real, but the current first-order surface is cleanest around scaffolding and the explicit tensions.",
+      "SPARSE_ALLY_RECOVERY: only 1 ally curated — high priority. Canonical article describes Cognitive Load Theory ('reduces amount of new material in working memory') and Concreteness/Storytelling ('transform abstract concepts into concrete images') as strong allies."
+    ]
   }
 }

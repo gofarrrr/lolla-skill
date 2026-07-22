@@ -7,21 +7,30 @@
       "rationale_text": "Root-cause-analysis is the closest ally of five-whys-method because the why-chain is a practical route from proximate symptom to deeper mechanism.",
       "source_quote": "The Five Whys is a core method for establishing the difference between proximate cause and root cause.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical describes five-whys as 'a core method for establishing the difference between proximate cause and root cause' — near-identity relationship where five-whys IS the operational tool for RCA.",
+      "activation_condition": "When a problem requires tracing beyond the immediate symptom to the underlying root cause through iterative causal questioning"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking benefits from five-whys-method because repeated questioning strips away assumptions until only the operative facts remain.",
       "source_quote": "The Five Whys serves as the practical tool for executing the philosophical mandate of First Principles.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states 'This relationship is fundamental. The Five Whys serves as the practical tool for executing the philosophical mandate of First Principles: stripping away layers of assumptions'.",
+      "activation_condition": "When the philosophical mandate to strip assumptions requires a practical, repeatable questioning protocol to reach fundamental facts"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking keeps five-whys-method honest by showing when the problem has interaction effects or parallel causes that a single why-chain would miss.",
       "source_quote": "The analyst may stop at five steps and miss critical variables or interconnected forces.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports understanding causal chains within systems but not named as a primary canonical ally — the Five Whys traces linear causality while systems thinking addresses circular and emergent dynamics.",
+      "activation_condition": "When the causal chain uncovered by iterative questioning reveals systemic interdependencies that require broader systems-level analysis"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias distorts five-whys-method when the questioning is steered toward the story the investigator already wants to prove.",
       "source_quote": "five-whys-method conflicts with confirmation-bias (confirmation bias) when confirmation Bias can hinder the Five Whys Method by leading to biased questioning and conclusions.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical warns that 'whys may be subtly steered to confirm the existing hypothesis' especially under corporate pressure — directly undermines the open-ended diagnostic inquiry.",
+      "activation_condition": "When the questioning process is unconsciously steered toward a predetermined root cause rather than following the evidence wherever it leads"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring corrupts five-whys-method when the first answer fixes the chain and all later questions orbit that initial suspect.",
       "source_quote": "five-whys-method conflicts with anchoring (anchoring) when anchoring may conflict with the Five Whys Method by causing initial answers to overly influence subsequent questions.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'initial answers overly influence subsequent questions', causing the first 'why' response to anchor the entire direction of the causal chain investigation.",
+      "activation_condition": "When the first answer to 'why' anchors subsequent questioning, narrowing the investigation to one causal branch before alternatives are explored"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on root-cause and first-principles allies plus two explicit tensions against biased or anchored questioning.",
+    "summary": "Layer 1+2 enrichment complete. Allies: root-cause-analysis 0.95 (critical — 'core method for' RCA), first-principles-thinking 0.95 (critical — 'fundamental', 'practical tool for the mandate'). Antagonists: confirmation-bias 0.90 (strong — steers inquiry), anchoring 0.80 (moderate — initial answers anchor direction). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor troubleshooting relation sprawl beyond the strongest diagnostic allies and explicit anti-bias tensions."
     ],

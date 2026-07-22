@@ -7,17 +7,34 @@
       "rationale_text": "Cognitive-load-theory gives scaffolding its operating logic by explaining why chunking and staged support reduce overload during learning.",
       "source_quote": "Scaffolding is the implementation mechanism for respecting the limitations described by Cognitive Load Theory.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical: 'This is the most crucial ally. Scaffolding is essentially the practical application of CLT' — reduces cognitive load by breaking complex material into manageable chunks.",
+      "activation_condition": "When complex material must be broken into incremental chunks to prevent working memory overload during learning or problem-solving."
     },
     {
       "target_model_id": "boundaries",
       "rationale_text": "Boundaries help scaffolding define what belongs inside the current learning frame so attention stays on the next useful increment.",
       "source_quote": "Scaffolding provides an essential structure that establishes boundaries, helping decision-makers focus on what is inside the frame.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: scaffolding provides structural boundaries that define the learning or problem-solving path. Not directly in canonical allies.",
+      "activation_condition": "When clear boundaries define the scope and sequence of scaffolded steps to prevent scope creep during structured learning."
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1 undermines scaffolding by producing snap judgments and substitution bias that bypass the deliberate, structured sequencing scaffolding requires.",
+      "source_quote": "Scaffolding, as a deliberate, structured process, requires the use of slow thinking (System 2). It counters the tendency of System 1 (instinctual, fast thinking) to produce snap judgments or substitution bias, where a simple, familiar model is used instead of understanding the more complicated reality.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: scaffolding aims to overcome System 1's preference for shortcuts by imposing structured, deliberate steps. Canonical antagonists focus on Curse of Knowledge and Maslow's Hammer.",
+      "activation_condition": "When the brain's preference for fast, automatic processing resists the deliberate, structured progression that scaffolding requires."
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "desirable-difficulties",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on CLT-backed support design and an explicit tension block around over-smoothing and diagnostic drift.",
+    "summary": "Layer 1+2 enrichment complete. cognitive-load-theory at 0.95 ('most crucial ally, practical application of CLT'). boundaries at 0.80. system-1 antagonist at 0.80. Canonical also lists feynman-technique and blooms-taxonomy as allies.",
     "donor_drops": [
       "Did not preserve broader pedagogy relation sprawl beyond the cleanest current-vocabulary support and tension links."
     ],
     "open_questions": [
-      "Blooms-taxonomy is source-real as an ally, but the first-order surface is cleaner around cognitive-load-theory and boundaries."
+      "Blooms-taxonomy is source-real as an ally, but the first-order surface is cleaner around cognitive-load-theory and boundaries.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include feynman-technique ('embedded within' scaffolding framework), blooms-taxonomy (structures learning journey hierarchically), first-principles-thinking (methodical decomposition path)."
     ]
   }
 }

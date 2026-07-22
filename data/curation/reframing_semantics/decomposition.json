@@ -1,0 +1,33 @@
+{
+    "model_id": "decomposition",
+    "source_file": "Decomposition_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question treats a complex, multi-dimensional problem as a single monolithic decision when breaking it into components would reveal that different parts have different optimal frames.",
+        "The question feels overwhelming or intractable because the frame is too coarse-grained — decomposition into sub-questions would make hidden structure visible.",
+        "The question conflates multiple independent dimensions (cost, quality, speed, risk) into a single judgment call when separating them would reveal that the apparent dilemma dissolves at the component level.",
+        "The question is stuck because the asker is trying to optimize everything at once instead of identifying which sub-problem is actually the binding constraint."
+    ],
+    "frame_patterns_challenged": [
+        "scope_lock",
+        "binary_collapse",
+        "proxy_optimization",
+        "symptom_as_problem"
+    ],
+    "reframing_move": "Before answering the question as a whole, ask: 'What are the independent sub-questions hidden inside this question, and does the dilemma survive when we address each one separately?' — the decomposition reframe reveals that apparent deadlocks often dissolve at a finer grain.",
+    "reframing_move_types": ["scope_expansion", "constraint_relaxation"],
+    "curation_confidence": "medium-high",
+    "curation_note": "Decomposition is a reframing model because breaking problems apart often reveals that the original framing conflated independent dimensions. The source describes 'breaking complex problems into smaller, manageable parts', 'identifying the structure within complexity', and 'solving sub-problems that compose into a solution'. The scope_lock challenge comes from decomposition revealing that the frame was too coarse. The binary_collapse challenge maps to discovering that an apparent dilemma has independent dimensions that can be addressed separately.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium-high",
+            "note": "Monolithic decision (decomposition reveals structure), overwhelming complexity (too-coarse framing), conflated dimensions (independent sub-problems), binding constraint (which sub-problem matters most)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium-high",
+            "note": "Scope lock: decomposition reveals the frame is too coarse. Binary collapse: independent dimensions dissolve false dilemmas. Proxy optimization: decomposition separates the real constraint from proxies. Symptom as problem: component analysis distinguishes symptoms from root causes."
+        }
+    }
+}

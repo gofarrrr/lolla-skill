@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive-load-theory helps generation-effect work by chunking complex material so active articulation builds real structure instead of overload.",
       "source_quote": "By forcing information into small, digestible chunks or steps, generation aligns with reducing cognitive load.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical states generation 'aligns with reducing cognitive load' by 'forcing information into small, digestible chunks', supporting the chunking mechanism but not the core generative principle.",
+      "activation_condition": "When generated material must be structured into manageable chunks to ensure working memory can process each piece before building toward the larger understanding"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "Feynman-technique operationalizes generation-effect by forcing plain-English explanation and analogy that reveal whether the idea is truly understood.",
       "source_quote": "The Analogy Test (Feynman Step 4)",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "The Feynman Technique provides the operational structure for generative learning — canonical references 'Step 4 of Feynman' as the method for moving generated knowledge into interconnected theoretical structures.",
+      "activation_condition": "When the generation process needs a structured protocol (explain, identify gaps, fill with analogies) to ensure generated knowledge builds genuine understanding rather than surface fluency"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias weakens generation-effect when self-produced explanations are treated as proof instead of being checked against evidence and outside correction.",
       "source_quote": "Danger when \"generate your own answer\" becomes an excuse to skip expert correction, evidence checks, or external calibration.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence — canonical describes biases that 'drive people to defend existing mental models', which generation opposes through systematic inquiry, but the mechanism is indirect.",
+      "activation_condition": "When generated explanations unconsciously defend existing mental models rather than genuinely testing understanding through open-ended articulation"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on active explanation, chunked understanding, and analogy testing, so the first-order relation surface stays compact.",
+    "summary": "Layer 1+2 enrichment complete. Allies: feynman-technique 0.90 (strong — provides operational structure for generative learning), cognitive-load-theory 0.80 (moderate — supports chunking mechanism). Antagonist: confirmation-bias 0.70 (supportive — medium confidence, indirect opposition). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve broader presentation-design relation sprawl because the cleanest current-vocabulary links are cognitive-load-theory and feynman-technique."
     ],
     "open_questions": [
-      "The confirmation-bias antagonist is source-backed as a calibration risk but not presented as a direct explicit tension block."
+      "The confirmation-bias antagonist is source-backed as a calibration risk but not presented as a direct explicit tension block.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names synthesis/symphony and latticework-of-mental-models as additional synergistic allies."
     ]
   }
 }

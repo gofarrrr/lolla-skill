@@ -1,27 +1,64 @@
 {
   "model_id": "representativeness-heuristic",
   "source_file": "Representativeness_Heuristic_rag.md",
-  "allies": [],
+  "allies": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias strengthens representativeness-heuristic by reinforcing the first stereotype or prototype match and filtering out disconfirming evidence.",
+      "source_quote": "Representativeness often provides the initial, favored hypothesis or frame. Confirmation bias then reinforces this choice.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Representativeness often provides the initial, favored hypothesis. Confirmation bias then reinforces this choice, causing individuals to seek confirming evidence.'",
+      "activation_condition": "When an initial similarity-based judgment is reinforced by selective evidence seeking that confirms the representative categorization."
+    },
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives makes representativeness-heuristic more seductive when a vivid story feels more diagnostic than the actual distribution of outcomes.",
+      "source_quote": "The fundamental essence of this mental model lies in the brain's preference for salient narratives over statistical realities.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Representativeness is fueled by WYSIATI and narrative coherence. A vivid story feels more diagnostic than the actual distribution of outcomes.'",
+      "activation_condition": "When story coherence and vividness make a scenario feel more probable than its actual base rate warrants."
+    }
+  ],
   "antagonists": [
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
       "source_quote": "Reference Class Forecasting uses historical outcomes from similar problems to predict the current outcome, thereby incorporating statistical reality.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical: 'RH, by definition, ignores critical components of rational probability, such as the base rate and statistical laws' — definitional opposition.",
+      "activation_condition": "When resemblance-based categorization overrides the actual statistical frequency of events in the reference class."
     },
     {
       "target_model_id": "bayesian",
       "rationale_text": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
       "source_quote": "Mitigating the risks of RH involves deliberately engaging System 2 thinking to police the quick judgments of System 1.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Bayesian reasoning requires incorporating prior probabilities and updating with evidence — directly corrects the representativeness heuristic's neglect of base rates.",
+      "activation_condition": "When proper Bayesian updating would correct the intuitive probability estimate distorted by surface similarity."
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking opposes representativeness-heuristic by slowing the jump from resemblance to belief and demanding verification of missing evidence.",
+      "source_quote": "System 2 can be trained to think statistically and logically, enabling it to incorporate base rates and overcome the bias of representativeness.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Critical thinking requires questioning one's mental models and actively seeking evidence that challenges them. RH promotes the opposite: defaulting to the familiar and confirmatory.'",
+      "activation_condition": "When deliberate critical analysis would reveal that the representative categorization is based on surface resemblance rather than structural evidence."
     }
   ],
   "structured_tensions": [
     {
       "target_model_id": "base-rates",
-      "tension_text": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency.",
+      "tension_text": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
       "source_quote": "representativeness-heuristic conflicts with base-rates (base rates) when vivid similarity overrides reference-class frequency.",
       "extraction_type": "explicit",
       "confidence": "high",
@@ -34,15 +71,25 @@
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "narratives",
+      "tension_text": "Representativeness-heuristic conflicts with narratives when narrative coherence makes a representative-seeming scenario feel more probable than its base rate warrants.",
+      "source_quote": "representativeness-bias conflicts with narratives (narratives) when narrative coherence makes a representative-seeming scenario feel more probable than its base rate warrants.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "Preserved the clearest denominator and updating antagonists to keep the first-order surface inspectable.",
+    "summary": "Layer 1+2 enrichment complete. confirmation-bias 0.90 (reinforcement loop), narratives 0.90 (fueled by narrative coherence). base-rates and bayesian antagonists both at 0.95 (definitional opposition), critical-thinking at 0.90.",
     "donor_drops": [
       "Did not preserve broader availability and outcome-bias sprawl beyond the clearest current-vocabulary corrections."
     ],
     "open_questions": [
-      "Law-of-large-numbers is source-real nearby, but the first-order surface is cleanest around base-rates and bayesian updating."
+      "Law-of-large-numbers is source-real nearby, but the first-order surface is cleanest around base-rates and bayesian updating.",
+      "Bias-blind-spot is source-real pressure too, but the retained set favors the stronger current-vocabulary base-rate and confirmation neighborhood.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include cognitive-load-theory (reduces mental effort via familiar patterns), framing (leverages representativeness to set evaluation context)."
     ]
   }
 }

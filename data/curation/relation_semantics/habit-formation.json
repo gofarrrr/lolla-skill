@@ -7,17 +7,44 @@
       "rationale_text": "Scaffolding helps habit-formation turn a hard routine into smaller repeatable units that can actually stick.",
       "source_quote": "small, incremental units",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes scaffolding as providing 'the incremental structure necessary for effective repetition, leading to the chunking of information that cements learning into long-term memory' — direct methodological ally.",
+      "activation_condition": "When new habits must be built incrementally from simpler component behaviors rather than attempted as complete behavioral shifts all at once"
     },
     {
       "target_model_id": "checklists",
       "rationale_text": "Checklists help habit-formation preserve reliable baseline behavior when attention is thin.",
       "source_quote": "preserve reliability under stress or limited attention",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the operational structure for habit execution by providing explicit behavioral triggers and completion criteria, though not named in canonical Latticework allies.",
+      "activation_condition": "When habit execution requires explicit external triggers and verification steps to bridge the gap between intention and consistent behavior"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines habit-formation by causing experts to stubbornly persist with deeply ingrained habitual frames when facing genuinely novel problems, turning automaticity from an asset into a trap.",
+      "source_quote": "The Danger of Cognitive Entrenchment: Experts, whose thinking relies heavily on deeply ingrained habits and patterns (schemas), risk cognitive entrenchment. When faced with genuinely novel problems, they may stubbornly persist in using frames that are unhelpful or misleading in the new and different context.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Established habits create fixation patterns that block adoption of better alternatives — the familiar behavioral pattern persists even when evidence suggests a more effective approach exists.",
+      "activation_condition": "When deeply ingrained habits create fixation on familiar behavioral patterns that block adoption of demonstrably better alternatives"
+    },
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization undermines habit-formation by hijacking the habitual response with emotion-driven motivated reasoning, overriding planned rational habits when the brain makes chemical choices to protect the self.",
+      "source_quote": "Motivated reasoning is the tendency to process information to reach a desired conclusion rather than the truth, often fueled by strong emotions. When the brain is hijacked by hardwired physiological processes, it makes chemical choices to protect the self, overriding planned, rational habits.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Related to canonical 'Motivated Reasoning' — the tendency to construct post-hoc justifications for maintaining existing habits even when evidence suggests change is needed.",
+      "activation_condition": "When post-hoc justifications are constructed to defend existing habits rather than honestly evaluating whether the habit still serves its intended purpose"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "deliberate-practice",
@@ -35,5 +62,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: scaffolding 0.90 (strong — 'incremental structure necessary'), checklists 0.80 (moderate — operational execution structure). Antagonists: einstellung-effect 0.80 (moderate — habit fixation blocks alternatives), rationalization 0.80 (moderate — post-hoc justification of outdated habits). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names system-2 thinking, commitment-consistency, and metacognition as additional synergistic allies."
+    ]
+  }
 }

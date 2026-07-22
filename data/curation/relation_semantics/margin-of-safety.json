@@ -7,7 +7,10 @@
       "rationale_text": "Probabilistic-thinking helps margin-of-safety size the buffer from realistic uncertainty instead of the cleanest forecast path.",
       "source_quote": "Probabilistic Thinking (Bayesian/Reference Class) quantifies the uncertainty that necessitates the margin.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'quantifying the uncertainty that necessitates the margin' — provides the quantitative foundation for evidence-based buffer sizing, making the margin rational rather than arbitrary.",
+      "activation_condition": "When sizing protective buffers requires quantifying uncertainty distributions rather than relying on best-case or point-estimate forecasts"
     }
   ],
   "antagonists": [
@@ -16,14 +19,20 @@
       "rationale_text": "Confirmation-bias undermines margin-of-safety by selecting a safety estimate that confirms the current exposure is acceptable.",
       "source_quote": "This prevents the acknowledgment of potential failure modes, disconfirming evidence, or systemic weaknesses that necessitate a larger MOS.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Prevents acknowledgment of potential failure modes — selects safety estimates that confirm the current exposure is acceptable rather than stress-testing honestly against adverse scenarios.",
+      "activation_condition": "When safety margin estimates are derived from data selected to validate the current plan rather than from adversarial stress-testing"
     },
     {
       "target_model_id": "optimism-bias-and-planning-fallacy",
       "rationale_text": "Optimism-bias-and-planning-fallacy directly undermines margin-of-safety by producing bold forecasts and thin buffers — the planning fallacy causes people to overestimate conjunctive success probability, making the required safety margin feel larger than necessary.",
       "source_quote": "Optimism/Resilience: high optimism often leads to under-awareness of risks. This results in 'bold forecasts and timid decisions', where the MOS is underestimated or ignored.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "The PRIMARY threat to margin sizing — described as producing 'bold forecasts and thin buffers' — directly causes people to overestimate conjunctive success probability and undersize required margins.",
+      "activation_condition": "When forecast confidence is high and the proposed safety buffer feels large enough based on the most likely scenario rather than the tail-risk distribution"
     }
   ],
   "structured_tensions": [
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on explicit tensions and the optimism antagonism; both are now wired. Availability-style conflicts remain deferred.",
+    "summary": "Layer 1+2 enrichment complete. Allies: probabilistic-thinking 0.90 (strong — 'quantifies the uncertainty that necessitates the margin'). Antagonists differentiated: optimism-bias 0.95 (critical — 'bold forecasts and thin buffers'), confirmation-bias 0.80 (moderate — validates thin margins). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 1 ally — high-priority candidate for sparse-ally recovery pass.",
     "donor_drops": [
       "Did not preserve donor relation sprawl where the raw relation surface is thinner than the explicit tension block."
     ],
     "open_questions": [
-      "Availability-style conflict is source-real but availability-heuristic as a distinct canonical target was not added to avoid overlap with representativeness-heuristic semantics."
+      "Availability-style conflict is source-real but availability-heuristic as a distinct canonical target was not added to avoid overlap with representativeness-heuristic semantics.",
+      "SPARSE_ALLY_RECOVERY: only 1 ally curated — high priority. Canonical article names inversion and redundancy as potential ally candidates for buffer-design synergy."
     ]
   }
 }

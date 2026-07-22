@@ -42,10 +42,10 @@ It does not contain a local frontend source app:
 - no local `vite.config.*`;
 - no local `svelte.config.*`.
 
-`observatory/serve_result.py` still records the app-era source note: the bundle
-under `observatory/build/` came from
-`Lolla-system-b/observatory/svelte-app`, a separate repo. That same header also
-says `/audit/*` and `/usage` are rendered from Python and stay portable when the
+`observatory/serve_result.py` records that the bundle under
+`observatory/build/` is optional app-era distribution material whose former
+source workspace is retired and is not a dependency. That same header says the
+repository-owned surfaces are rendered from Python and stay portable when the
 bundle is absent.
 
 `docs/how-it-works/live-flow.md` describes the current launch path as:
@@ -64,7 +64,7 @@ toolchain.
 | --- | --- | --- |
 | `observatory/serve_result.py` | Portable local Observatory server, read-only APIs, `/audit/*`, `/usage`, and `/teacher-learning` | Current owner for Teacher Learn until a source app owner is verified |
 | `observatory/build/*` | Compiled frontend bundle for the existing `/` case surface | Optional compiled artifact; do not hand-edit; not the local source of truth |
-| `Lolla-system-b/observatory/svelte-app` | Historical source path named by `serve_result.py` | External and unverified from this repo; do not depend on it until inspected |
+| Legacy bundle authoring source | Not present in the active project | Do not depend on another workspace; require repository-local source before replacement |
 | `scripts/skill/launch_observatory.py` | Skill launcher for the local post-run viewer | Runtime launcher boundary; not changed by Teacher UX planning |
 | `docs/how-it-works/live-flow.md` | Current live-flow doctrine | Evidence that portability is an intentional design constraint |
 | `docs/product/mental-model-teacher-observatory-*.md` | Teacher Observatory product planning trail | Product design owner for the learning surface, not runtime authorization |
@@ -139,13 +139,13 @@ Observatory telemetry UI.
 The previous candidate gate, `proceed_to_compiled_observatory_learn_source_port`,
 is now treated as a question, not an instruction.
 
-Before any compiled frontend port, a future PR must verify:
+Before any compiled frontend port, a future PR must establish:
 
-1. whether `Lolla-system-b/observatory/svelte-app` still exists and is current;
-2. whether that source path is intended to own the long-term Observatory UI;
-3. whether the portable skill repo should keep server-rendered product surfaces
+1. repository-local frontend source and a reproducible build contract;
+2. whether that source is intended to own the long-term Observatory UI;
+3. whether the portable skill should keep server-rendered product surfaces
    even if the compiled bundle exists;
-4. how source builds are copied into `observatory/build/` without hand-editing
+4. how source builds are generated into `observatory/build/` without hand-editing
    compiled assets;
 5. how to prevent Teacher Learn from diverging between Python-rendered and
    compiled app surfaces.
@@ -163,7 +163,7 @@ It changes the product plan:
 - Teacher Learn remains inside Observatory.
 - The portable Python Observatory server remains the current owner.
 - The compiled bundle remains optional and non-authoritative for new Teacher
-  work until its source owner is verified.
+  work until repository-local source and ownership are approved.
 - The next UX work should improve information flow inside the current portable
   Observatory path rather than start by porting to a missing source tree.
 

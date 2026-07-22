@@ -1,0 +1,47 @@
+{
+  "dimension_id": "competitive-dynamics",
+  "dimension_name": "Competitive Dynamics",
+  "cleaving_frame": "Collaborate vs Compete",
+  "description": "The problem involves strategic interaction where outcomes depend on the actions of rivals, partners, or adversaries. The structural question is how the other party will respond and whether this changes the optimal move.",
+  "question_types": ["decision-evaluation", "action-planning", "prediction"],
+  "detect_when": [
+    "The outcome depends on how another party reacts — a rival, partner, or counterparty",
+    "There are adversaries, competitors, or strategic partners whose moves materially affect the result",
+    "First-mover advantage, retaliation risk, or preemption dynamics are present",
+    "The interaction is repeated (multi-play) rather than one-shot, making reputation effects relevant"
+  ],
+  "coverage_signals": [
+    "The answer models competitor or counterparty responses — not just the actor's own move",
+    "The answer considers retaliation, imitation, or preemption scenarios",
+    "The answer addresses whether the interaction is one-shot or repeated and what that implies for strategy",
+    "The answer identifies the best alternative if negotiation or cooperation fails"
+  ],
+  "materiality_test": "Would anticipating the other party's best response change the recommended action?",
+  "reasoning_demanded": "game-theoretic analysis, competitor response modeling, multi-play reputation reasoning",
+  "models": [
+    "game-theory-payoffs",
+    "nash-equilibrium",
+    "prisoners-dilemma",
+    "batna",
+    "red-queen-effect"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Game-theory-payoffs provides the foundational framework for strategic interaction with quantifiable outcomes. Nash-equilibrium identifies stable strategy sets where no player benefits from unilateral change. Prisoners-dilemma captures cooperation vs defection tension. BATNA addresses walk-away alternatives in negotiation (canonical article is thin but curation file is solid). Red-queen-effect models the escalation dynamic where competitors must keep improving just to maintain position.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from game-theory-payoffs (adversarial situations, identifying players and payoffs), nash-equilibrium (best response + correct beliefs), prisoners-dilemma (one-shot vs repeated interaction). First-mover and retaliation from game-theory-payoffs' strategic moves framework."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Counterparty modeling from game-theory-payoffs' attack-team/defense-team simulation. One-shot vs repeated from prisoners-dilemma. Walk-away alternative from BATNA's functional territory."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All five models have explicit competitive-interaction activation. BATNA's canonical article is thin (term not in source material) but the curation file provides solid functional coverage for walk-away alternative reasoning."
+    }
+  }
+}

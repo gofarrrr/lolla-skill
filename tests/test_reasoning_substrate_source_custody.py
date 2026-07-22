@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
 from engine.system_b.source_custody import (
     DEFAULT_CANONICAL_SOURCE_DIR,
     build_source_custody_report,
@@ -33,11 +31,11 @@ def test_source_custody_files_exist_and_match_manifest_hashes() -> None:
 
 
 def test_source_custody_matches_canonical_markdown_bytes() -> None:
-    if not DEFAULT_CANONICAL_SOURCE_DIR.exists():
-        pytest.skip("canonical source directory is not available in this environment")
-
     report = build_source_custody_report(REPO_ROOT)
 
+    assert DEFAULT_CANONICAL_SOURCE_DIR == Path("data/model_sources")
+    assert report["canonical_source_dir"] == "data/model_sources"
+    assert report["canonical_source_authority"] == "repository_local"
     assert report["canonical_source_dir_exists"] is True
     assert report["missing_canonical_source_model_ids"] == []
     assert report["canonical_sha256_mismatch_model_ids"] == []

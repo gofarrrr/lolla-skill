@@ -7,14 +7,20 @@
       "rationale_text": "Risk-vs-uncertainty helps true-uncertainty-navigation keep robust action tied to how much of the uncertainty is actually reducible.",
       "source_quote": "uncertainty is materially affecting capital allocation, sequencing, or commitment decisions",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Risk-vs-uncertainty distinction is foundational; canonical describes five-level uncertainty schema for navigating ambiguity",
+      "activation_condition": "When distinguishing between quantifiable risk and true uncertainty determines which analytical tools apply"
     },
     {
       "target_model_id": "step-back",
       "rationale_text": "Step-back helps true-uncertainty-navigation avoid panic or premature commitment by forcing a wider look before choosing the next action.",
       "source_quote": "put your plan aside and focus elsewhere for a while",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical emphasizes metacognitive monitoring and problem reframing, which stepping back enables",
+      "activation_condition": "When reflective pause enables metacognitive assessment of the problem framing under uncertain conditions"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias makes true-uncertainty-navigation dishonest by adjusting uncertainty estimates to protect the expected answer.",
       "source_quote": "the mind is biased to just accept and applaud confirming evidence",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical structured tension identifies confirmation bias as adjusting uncertainty estimates to confirm expected outcomes",
+      "activation_condition": "When uncertainty estimates are adjusted to confirm expected outcomes rather than honestly reflecting information limits"
     }
   ],
   "structured_tensions": [
@@ -36,9 +45,9 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "True-uncertainty-navigation conflicts with representativeness-bias when familiar narratives are mistaken for reliable priors.",
-      "source_quote": "true-uncertainty-navigation vs representativeness-bias: true-uncertainty-navigation conflicts with representativeness-bias when familiar narratives are mistaken for reliable priors.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "True-uncertainty-navigation conflicts with representativeness-heuristic when familiar narratives are mistaken for reliable priors.",
+      "source_quote": "true-uncertainty-navigation vs representativeness-heuristic: true-uncertainty-navigation conflicts with representativeness-heuristic when familiar narratives are mistaken for reliable priors.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The file keeps the cleanest current-vocabulary surface from the raw source: uncertainty-splitting and reflective allies plus the explicit anti-bias tension block.",
+    "summary": "Layer 1+2 enrichment complete. risk-vs-uncertainty at 0.90 as foundational concept. confirmation-bias antagonist at 0.90.",
     "donor_drops": [
       "Did not widen into general strategy neighbors because the explicit tension block already gives a disciplined first-order graph surface."
     ],
     "open_questions": [
-      "Scenario analysis is a source-real ally, but risk-vs-uncertainty and step-back were the more bounded anchors."
+      "Scenario analysis is a source-real ally, but risk-vs-uncertainty and step-back were the more bounded anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests systems-thinking, bayesian as recovery candidates."
     ]
   }
 }

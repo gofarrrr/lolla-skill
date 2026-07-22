@@ -7,22 +7,39 @@
       "rationale_text": "Step-back helps baseline-establishment pause execution long enough to define the starting picture, output, and success frame first.",
       "source_quote": "The process requires synthesizing initial facts, hypotheses, and assumptions into an organized structure before commencing problem-solving or action.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Enabling mechanism — 'requires synthesizing initial facts, hypotheses, and assumptions into an organized structure' — the deliberate pause that allows principled baseline definition instead of rushing to execution.",
+      "activation_condition": "When the team is about to begin analysis or execution without having explicitly defined the starting conditions against which progress will be measured"
     },
     {
       "target_model_id": "auditability-traceability",
       "rationale_text": "Auditability-traceability gives baseline-establishment a durable record of what the starting condition actually was, so later change claims can be checked.",
       "source_quote": "Successful outcomes are predicated on defining a clear, accurate starting point ... against which all future actions, deviations, and results are measured.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Recording complement — 'Successful outcomes are predicated on defining a clear, accurate starting point against which all subsequent analysis and measurement can be compared' — preserves the baseline as a durable reference.",
+      "activation_condition": "When the baseline needs to be preserved as a traceable reference point for future comparison rather than being lost or distorted as the project evolves"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring undermines baseline-establishment by letting the first data point or frame encountered become the de facto baseline, preventing the team from defining a genuinely representative starting condition.",
+      "source_quote": "In decision-making, the Baseline acts as an anchor—the outside view that disciplines the inevitable biases of the inside view. Establishing this anchor first ensures that individual perspectives are married with what is true of the world in general.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly corrupts the model's core function — 'the Baseline acts as an anchor' — when the first data point encountered becomes the baseline without independent verification, the entire subsequent analysis is built on a biased foundation.",
+      "activation_condition": "When the first data point or frame encountered is being treated as the baseline without independent verification that it represents the actual starting conditions"
+    }
+  ],
   "structured_tensions": [
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Baseline-establishment conflicts with representativeness-bias when salient recent data points are mistaken for a robust baseline.",
-      "source_quote": "baseline-establishment vs representativeness-bias: baseline-establishment conflicts with representativeness-bias (representativeness bias) when salient recent points are mistaken for robust baseline.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Baseline-establishment conflicts with representativeness-heuristic when salient recent data points are mistaken for a robust baseline.",
+      "source_quote": "baseline-establishment vs representativeness-heuristic: baseline-establishment conflicts with representativeness-heuristic (representativeness bias) when salient recent points are mistaken for robust baseline.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -45,8 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved one setup ally, one traceability ally, and the explicit anti-fossilized-baseline tension block.",
-    "donor_drops": ["Did not preserve broader MECE and persona-design sprawl beyond the clearest current-vocabulary seams."],
-    "open_questions": ["Representativeness-bias wired as structured tension (Task 4.2 sweep) — explicit in source structured tension block."]
+    "summary": "Layer 1+2 enrichment complete. Allies: step-back 0.90 (strong — enabling pause for principled definition), auditability-traceability 0.80 (moderate — recording complement). Antagonists: anchoring 0.90 (strong — corrupts baseline with biased first impression). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
+    "donor_drops": [
+      "Did not preserve broader MECE and persona-design sprawl beyond the clearest current-vocabulary seams."
+    ],
+    "open_questions": [
+      "Representativeness-bias wired as structured tension (Task 4.2 sweep) — explicit in source structured tension block.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Feynman Technique ('explicitly relies on establishing a knowledge baseline') and First Principles Thinking ('getting back to first principles') as strong allies."
+    ]
   }
 }

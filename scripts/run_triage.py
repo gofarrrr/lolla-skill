@@ -16,18 +16,15 @@ import json
 import sys
 from pathlib import Path
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT / "engine"))
+
+from system_b.published_knowledge_substrate import PublishedKnowledgeSubstrate
 
 
 def load_tendency_catalog():
     """Load tendencies from the compiled knowledge graph."""
-    kg_path = DATA_DIR / "knowledge_graph.json"
-    if not kg_path.exists():
-        print(f"ERROR: knowledge_graph.json not found at {kg_path}", file=sys.stderr)
-        sys.exit(1)
-
-    with open(kg_path) as f:
-        kg = json.load(f)
+    kg = PublishedKnowledgeSubstrate.open(REPO_ROOT).require_snapshot().knowledge_graph_payload()
 
     tendencies = kg.get("tendencies", {})
     catalog = []

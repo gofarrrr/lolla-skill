@@ -87,12 +87,15 @@ export function App() {
       </a>
       <header className="site-header">
         <AppLink className="brand" href="/atlas" aria-label="Lolla Atlas home">
-          <span className="brand-mark" aria-hidden="true">
-            L
-          </span>
-          <span>
-            <strong>Lolla</strong>
-            <small>Mental Model Atlas</small>
+          <span className="brand-wordmark" aria-hidden="true">
+            <img
+              src="/brand/lolla-wordmark-original.png"
+              alt=""
+              width="2172"
+              height="724"
+              decoding="async"
+              fetchPriority="high"
+            />
           </span>
         </AppLink>
         <nav aria-label="Primary navigation">

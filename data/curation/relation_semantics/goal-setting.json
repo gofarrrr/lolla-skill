@@ -7,14 +7,20 @@
       "rationale_text": "Prioritization helps goal-setting convert one explicit outcome into concrete trade-offs, sequencing, and measurement discipline.",
       "source_quote": "Most useful when effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports selection of which goals matter most, though not named as a primary canonical ally. Relates to the 5-Step Process where different steps require different focus.",
+      "activation_condition": "When multiple competing goals require systematic ranking to focus effort on the highest-leverage objectives"
     },
     {
       "target_model_id": "metacognitive-questioning",
       "rationale_text": "Metacognitive-questioning helps goal-setting keep goals connected to deliberate planning rather than to unexamined aspiration.",
       "source_quote": "Goal setting is deeply tied to metacognition (thinking about thinking).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states 'Goal setting is deeply tied to metacognition (thinking about thinking)' — the 'planning aspect' of metacognition explicitly includes setting goals and defining necessary background knowledge.",
+      "activation_condition": "When goal definition requires self-reflective questioning about what is truly being pursued and what background knowledge is needed to achieve it"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias turns goal-setting into direction defense by gathering evidence only to justify the existing target.",
       "source_quote": "goal-setting conflicts with confirmation-bias (confirmation bias) when teams gather evidence only to confirm the existing direction rather than evaluate whether the goal remains valid.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'teams gather evidence only to confirm the existing direction rather than evaluate whether the goal remains valid', preventing necessary goal revision.",
+      "activation_condition": "When evidence about goal validity is selectively gathered to confirm the current direction rather than genuinely testing whether the goal should be revised"
     }
   ],
   "structured_tensions": [
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on explicit tension blocks and concrete alignment logic, so the file preserves those and avoids broader speculative symmetry.",
+    "summary": "Layer 1+2 enrichment complete. Allies: metacognitive-questioning 0.90 (strong — 'deeply tied to metacognition'), prioritization 0.80 (moderate — supports goal ranking). Antagonist: confirmation-bias 0.80 (moderate — prevents goal revision). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor relation expansion beyond the named output-accountability and stale-goal conflict surface."
     ],
     "open_questions": [
-      "Design-thinking and Feynman-technique are source-real allies, but this pass kept the smaller relation surface closest to execution coordination."
+      "Design-thinking and Feynman-technique are source-real allies, but this pass kept the smaller relation surface closest to execution coordination.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names systems-thinking (5-Step Process), design-thinking, and feynman-technique as additional synergistic allies."
     ]
   }
 }

@@ -7,21 +7,30 @@
       "rationale_text": "Circle-of-competence prevents deliberate-practice from being misapplied to problems outside one's domain — knowing your competence boundary ensures practice targets the right skill area instead of entrenching the most available framework.",
       "source_quote": "Practice intellectual humility—acknowledging what you don't know and staying within a well-defined circle of competence. If less believable, start by adopting the role of a student.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Mentioned in canonical risks section for defining practice boundaries — 'staying within a well-defined circle of competence' guides focused practice, though not named as a primary Latticework ally.",
+      "activation_condition": "When practice efforts need to be focused within well-defined competence boundaries to prevent diffuse skill development without depth"
     },
     {
       "target_model_id": "feedback-loops",
       "rationale_text": "Feedback-loops make deliberate-practice real by converting reps into correction, comparison, and visible improvement.",
       "source_quote": "Deliberate Practice thrives within environments that provide constant, high-quality feedback.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states DP 'thrives within environments that provide constant, high-quality feedback' and 'Realistic practice incorporates feedback from the social and physical world, which is essential for achieving genuine mastery'.",
+      "activation_condition": "When skill development requires structured feedback mechanisms that provide constant, high-quality signals for calibrating and adjusting practice approaches"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking supports deliberate-practice by helping the practitioner see how sub-skills, benchmarks, and feedback conditions fit together as a capability-building system.",
       "source_quote": "Systems Thinking and Mental Models: DP is the route to developing fluency in mental models from major academic disciplines.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Provides the theoretical framework that DP operationalizes — 'DP is the route to developing fluency in mental models from major academic disciplines', building interconnected knowledge structures.",
+      "activation_condition": "When deliberate practice aims to build fluency across interconnected mental models rather than isolated skill domains"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Status-quo-bias turns deliberate-practice into routine repetition by preserving familiar drills after the evidence says stretch is needed.",
       "source_quote": "deliberate-practice conflicts with status-quo-bias (status quo bias) when routine repetition replaces feedback-driven skill stretch.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'routine repetition replaces feedback-driven skill stretch', causing practitioners to settle into comfortable patterns rather than pushing beyond current competence levels.",
+      "activation_condition": "When practice has become comfortable routine repetition rather than the deliberate stretch beyond current ability that genuine improvement requires"
     },
     {
       "target_model_id": "commitment-bias",
       "rationale_text": "Commitment-bias keeps practitioners attached to ineffective drills simply because they have already invested in them.",
       "source_quote": "deliberate-practice conflicts with commitment-bias (commitment bias) when practitioners persist with ineffective drills despite evidence.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'practitioners persist with ineffective drills despite evidence', escalating commitment to a practice approach that has stopped producing improvement.",
+      "activation_condition": "When accumulated investment in a particular practice method creates resistance to abandoning it even as evidence shows diminishing returns"
     }
   ],
   "structured_tensions": [
@@ -67,7 +82,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on feedback-linked practice and an explicit tension block around routine drift, sunk drills, and model entrenchment.",
+    "summary": "Layer 1+2 enrichment complete. Allies: feedback-loops 0.90 (strong — 'essential for genuine mastery'), circle-of-competence 0.80 (moderate — defines practice boundaries), systems-thinking 0.80 (moderate — provides theoretical framework). Antagonists: status-quo-bias 0.80 (moderate — routine replaces stretch), commitment-bias 0.80 (moderate — persistence with ineffective drills). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor training-program relation sprawl beyond the strongest feedback and anti-entrenchment links."
     ],

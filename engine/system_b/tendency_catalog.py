@@ -5,6 +5,10 @@ import json
 from pathlib import Path
 import re
 
+from .published_knowledge_substrate import (
+    PublishedKnowledgeSnapshot,
+    PublishedKnowledgeSubstrate,
+)
 from .subpattern_catalog import SourceRef
 
 
@@ -51,9 +55,17 @@ class TendencyCatalog:
     @classmethod
     def load(cls, root: Path) -> "TendencyCatalog":
         root = Path(root)
-        graph_path = root / "build" / "knowledge_graph.json"
-        graph = json.loads(graph_path.read_text(encoding="utf-8"))
-        tendencies_data = graph.get("tendencies", {})
+        snapshot = PublishedKnowledgeSubstrate.open(root).require_snapshot(allow_partial=True)
+        return cls.from_snapshot(root, snapshot)
+
+    @classmethod
+    def from_snapshot(
+        cls,
+        root: Path,
+        snapshot: PublishedKnowledgeSnapshot,
+    ) -> "TendencyCatalog":
+        root = Path(root)
+        tendencies_data = snapshot.tendencies
         routing_data = cls._load_routing_overlay(root)
 
         tendencies: dict[str, TendencyRef] = {}

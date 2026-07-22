@@ -1,0 +1,33 @@
+{
+    "model_id": "empathy",
+    "source_file": "Empathy_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question frames the situation from a single actor's perspective, treating other stakeholders' experiences as externalities rather than as structurally relevant information that would change the problem definition.",
+        "The question conflates the means (a specific intervention) with the end (the human outcome it serves) because the decision-maker hasn't inhabited the perspective of the people affected.",
+        "The question assumes rational self-interest explains all parties' behavior when emotional, relational, or contextual factors are actually driving the dynamics.",
+        "The question treats disagreement or resistance as obstacles to be overcome rather than as signals containing information about what the frame is missing."
+    ],
+    "frame_patterns_challenged": [
+        "single_actor_assumption",
+        "means_end_conflation",
+        "externalized_agency",
+        "scope_lock"
+    ],
+    "reframing_move": "Before deciding from your own vantage point, ask: 'If I fully inhabited the perspective of the person most affected by this decision, what problem would I see?' — the empathy reframe reveals frame distortions that are invisible from the decision-maker's position.",
+    "reframing_move_types": ["perspective_shift", "stakeholder_reframe"],
+    "curation_confidence": "high",
+    "curation_note": "Empathy is a natural reframing model because perspective-taking inherently challenges single-frame assumptions. The source describes cognitive empathy as 'understanding another person's perspective and feelings', affective empathy as 'sharing another person's emotional experience', and emphasizes that empathy 'bridges divides' and reveals 'needs and concerns' invisible from one's own vantage point. The single_actor_assumption challenge is the core mechanism. Means-end conflation challenge comes from discovering that what the affected person needs differs from what the decision-maker assumed.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Single perspective (cognitive empathy's perspective-taking), means-end gap (discovering real needs), rational assumption (affective empathy reveals emotional drivers), resistance as signal (empathic listening reframes opposition)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Single actor assumption: empathy's core function is multi-perspective awareness. Means-end conflation: discovering the affected person's actual need. Externalized agency: resistance reframed as information. Scope lock: other perspectives widen the problem boundary."
+        }
+    }
+}

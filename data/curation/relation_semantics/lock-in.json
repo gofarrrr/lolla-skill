@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive-load-theory explains the beneficial side of lock-in: chunked, repeatable patterns can become useful schemas that reduce mental friction.",
       "source_quote": "Scaffolding and chunking information into small, manageable units facilitate the transfer of new knowledge into long-term memory, effectively establishing a beneficial cognitive lock-in.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Explains the mechanism behind WHY lock-in has value — schema formation 'effectively establishing a beneficial cognitive lock-in' — the theoretical foundation for lock-in's positive side.",
+      "activation_condition": "When evaluating whether procedural stickiness represents beneficial schema formation that reduces mental friction or harmful rigidity that resists needed adaptation"
     },
     {
       "target_model_id": "checklists",
       "rationale_text": "Checklists turn beneficial lock-in into explicit repeatable structure so execution does not depend on rediscovering the routine each time.",
       "source_quote": "Systematizing principles and using checklists locks work processes into consistent, repeatable patterns.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Practical tool for operationalizing beneficial lock-in ('locks work processes into consistent, repeatable patterns') — a tool-level relationship rather than the deeper mechanism that cognitive-load-theory provides.",
+      "activation_condition": "When turning beneficial lock-in patterns into explicit, repeatable operational structures that do not depend on rediscovering the routine each time"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "First-principles-thinking breaks unhealthy lock-in by stripping away inherited convention and asking what the path would look like from fundamental facts.",
       "source_quote": "This approach explicitly breaks the lock of convention by stripping away assumptions to leave only fundamental facts and the desired outcome.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly breaks unhealthy lock-in — 'explicitly breaks the lock of convention by stripping away assumptions to leave only fundamental facts and the desired outcome.'",
+      "activation_condition": "When inherited processes or conventions persist through inertia rather than because they have been re-derived from fundamental requirements"
     },
     {
       "target_model_id": "optionality",
       "rationale_text": "Optionality resists lock-in when irreversible commitments are closing off adaptive branch choices too early.",
       "source_quote": "lock-in conflicts with optionality (optionality) when irreversible commitments eliminate adaptive branch choices.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Preserves adaptive alternatives — resists lock-in when irreversible commitments eliminate adaptive branch choices, but acts as a preservation mechanism rather than actively breaking existing lock-in.",
+      "activation_condition": "When irreversible commitments are closing off future adaptive choices and the team has not explicitly evaluated what options are being eliminated"
     }
   ],
   "structured_tensions": [
@@ -52,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on beneficial procedural stickiness, reversal-cost risks, and two clean explicit tensions against adaptive reframing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: cognitive-load-theory 0.90 (strong — mechanism behind beneficial lock-in via schema formation), checklists 0.80 (moderate — practical operationalization tool). Antagonists differentiated: first-principles-thinking 0.90 (strong — directly breaks convention lock-in), optionality 0.80 (moderate — preserves adaptive alternatives). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies — consider adding habit-formation or path-dependence from canonical article review.",
     "donor_drops": [
       "Did not preserve donor migration or path-dependence overlays beyond the bounded first-order allies and explicit source tensions."
     ],
     "open_questions": [
-      "The source also names multidisciplinary reframing, but first-principles-thinking and optionality were the cleaner bounded antagonists inside the current curated surface."
+      "The source also names multidisciplinary reframing, but first-principles-thinking and optionality were the cleaner bounded antagonists inside the current curated surface.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes habit formation and path-dependence as related mechanisms worth evaluating as allies."
     ]
   }
 }

@@ -7,14 +7,20 @@
       "rationale_text": "Base-rates helps statistics-concepts anchor judgments in background frequencies instead of vivid but misleading case details.",
       "source_quote": "background information (base rates)",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Base rates are foundational statistical building blocks; canonical warns against base-rate neglect as a primary failure mode",
+      "activation_condition": "When statistical analysis requires integrating background frequency data into probability assessments"
     },
     {
       "target_model_id": "correlation-vs-causation",
       "rationale_text": "Correlation-vs-causation helps statistics-concepts distinguish pattern from mechanism when the team is tempted to jump from association to cause.",
       "source_quote": "differentiate between events that are merely associated and those that are causally related",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states statistics enable the differentiation between events that are merely associated and those causally related",
+      "activation_condition": "When differentiating between associated events and causally related phenomena"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Narratives can overpower statistics-concepts when emotionally compelling stories displace distributional reasoning and evidence weighting.",
       "source_quote": "Narrative Thinking",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical identifies narrative thinking as an antagonist to raw data, as emotional decision-making can undermine statistical objectivity",
+      "activation_condition": "When raw statistical findings resist the narrative packaging needed for audience comprehension"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation surface stays on base-rate and causality allies, with narrative drift preserved as the clearest bounded antagonist.",
+    "summary": "Layer 1+2 enrichment complete. correlation-vs-causation elevated to 0.95 as canonical describes it as a core statistical function.",
     "donor_drops": [
       "Did not widen into broader decision-theory neighbors because the raw source is stronger on signal, baselines, and story-versus-data tension."
     ],
     "open_questions": [
-      "Game-theory-payoffs is a source-real ally, but base-rates and correlation-vs-causation were the cleaner first-order anchors."
+      "Game-theory-payoffs is a source-real ally, but base-rates and correlation-vs-causation were the cleaner first-order anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests scientific-method-evidence-testing, game-theory as recovery candidates."
     ]
   }
 }

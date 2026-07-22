@@ -27,6 +27,7 @@ evidence audit is the
 | Four-lane pressure skill | **LIVE / EXPERIMENTAL** | Implemented ordinary path; semantic and human value remain under evaluation. |
 | Conversation source custody | **LIVE / BOUNDED** | Preserves complete available user/assistant prose. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
 | Deterministic custody and graph survival | **LIVE** | Owns identity, bounds, provenance, replay, budgets, ledgers, and pressure survival—not semantic truth. |
+| Graph authoring and publication custody | **LIVE SOURCE / PROVIDER-FREE VALIDATION** | All 222 Markdown sources, reviewed curation, 1,358 rich relations, compiler inputs, one published read boundary, and the exact current pressure policy are repository-local and reproducible. Complete multi-path custody remains candidate-only. |
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
 | Decision Trail and Product Delta | **BOUNDED / OFFLINE** | Read completed artifacts later; they do not influence the live answer. |
 | Decision Work | **BOUNDED / OPERATOR-DIRECTED** | Validates and packages supplied interpretations; no trustworthy arbitrary-run semantic supplier exists. |
@@ -87,6 +88,18 @@ mkdir -p ~/.codex/skills
 ln -s "$PWD" ~/.codex/skills/lolla
 ```
 
+Before adding provider credentials, validate the entire packaged skill and
+graph chain from the clone:
+
+```bash
+PYTHONPATH=. python3 scripts/evals/validate_self_contained_skill.py --validate-only
+```
+
+This check makes no provider or embedding calls. It validates the skill's
+named files, 222 source documents, reviewed graph inputs, byte-equivalent
+candidate compilation, published snapshot, and all 163 frozen windows of the
+current constitutional pressure policy.
+
 Store credentials outside the repository, for example in
 `~/.config/lolla/.env`:
 
@@ -119,7 +132,9 @@ questions, or as the sole basis for medical, legal, financial, safety-critical,
 or otherwise consequential action.
 
 The detailed live contract is [SKILL.md](SKILL.md) and the step procedure is
-[docs/skill/STEPS.md](docs/skill/STEPS.md).
+[docs/skill/STEPS.md](docs/skill/STEPS.md). Maintainers should use the
+[knowledge-substrate operations reference](references/knowledge-substrate-operations.md)
+for graph ownership, validation, and prospective/live boundaries.
 
 ## Outputs and boundaries
 
@@ -193,9 +208,15 @@ system is deliberately achromatic precise editorial cartography. Frozen
 fixtures and Canvas are explicit review-only paths, not competing ordinary
 routes. See the [canonical Atlas publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
 and its [reviewed predecessor baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
-Its next bounded decision is a provider-free canonical human acceptance review,
+Its local first-viewport repair now awaits provider-free founder re-review,
 not deployment, Phase 2, Teacher journeys, runtime links, provider use, or a
 product-usefulness claim.
+
+The graph-authoring recovery did not rewrite the frozen Atlas V1 packages. The
+active Atlas now reads a prospective V2 projection with current repository-local
+custody. A recursive proof classifies all 2,182 V1/V2 differences as custody
+fields and finds zero unexpected semantic, identity, layout, paging, or
+interface changes. See the [custody V2 result](docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md).
 
 See the
 [post-Stage-0 restart roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).

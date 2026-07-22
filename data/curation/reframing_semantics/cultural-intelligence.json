@@ -1,0 +1,33 @@
+{
+    "model_id": "cultural-intelligence",
+    "source_file": "Cultural_Intelligence_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question assumes its framing is culturally neutral when the values, priorities, and problem definitions embedded in it reflect a specific cultural lens that other stakeholders would not share.",
+        "The question treats one stakeholder group's norms as universal — 'obviously the priority is efficiency' or 'of course we optimize for individual choice' — when cultural context determines which frame is appropriate.",
+        "The question frames cross-cultural friction as a communication problem when it is actually a framing problem — the parties define the problem differently because their cultural frames differ.",
+        "The question exports a Western, corporate, or disciplinary frame to a context where that frame creates more problems than it solves."
+    ],
+    "frame_patterns_challenged": [
+        "borrowed_premise",
+        "single_actor_assumption",
+        "scope_lock",
+        "externalized_agency"
+    ],
+    "reframing_move": "Before treating the current framing as shared, ask: 'Whose cultural frame shaped this question, and how would the problem look different through the cultural lens of the people most affected?' — the cultural intelligence reframe reveals frame-level ethnocentrism.",
+    "reframing_move_types": ["perspective_shift", "assumption_surfacing"],
+    "curation_confidence": "medium",
+    "curation_note": "Cultural Intelligence challenges frame-level ethnocentrism — the assumption that one's own cultural frame is neutral. The source describes 'adapting to different cultural contexts', 'recognizing that behaviors and norms vary across cultures', and 'avoiding the projection of one's own cultural framework'. The borrowed_premise challenge is direct: cultural norms become invisible imported premises. The single_actor_assumption challenge maps to the source's emphasis on understanding multiple cultural perspectives rather than assuming one set of norms. Slightly lower confidence because the reframing activation is contextual — it fires most strongly when cross-cultural dynamics are present.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium",
+            "note": "False neutrality (cultural projection concept), universalized norms (ethnocentrism), friction misdiagnosed (framing difference vs communication difference), exported frame (cultural imperialism in problem-setting)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Borrowed premise: cultural norms imported as neutral premises. Single actor assumption: one cultural frame ≠ shared frame. Scope lock: cultural lens constrains what counts as relevant. Externalized agency: projecting one's frame onto others' behavior."
+        }
+    }
+}

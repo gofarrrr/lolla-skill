@@ -7,17 +7,44 @@
       "rationale_text": "Simplification helps complexity-bias-resistance strip away decorative detail as long as the causal core stays intact.",
       "source_quote": "The disciplined commitment to simplicity and clarity.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Core mechanism — 'The disciplined commitment to simplicity and clarity' — simplification IS the practical technique that CBR employs; CBR is the disposition and simplification is the execution.",
+      "activation_condition": "When analysis or communication has become more complex than the underlying problem requires and disciplined simplification is needed to strip away decorative detail while preserving the causal core"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking helps complexity-bias-resistance test whether a reduction preserves the real logic of the case instead of just sounding neat.",
       "source_quote": "Ensuring decisions and communications are grounded in essential clarity.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Validation discipline — 'Ensuring decisions and communications are grounded in essential clarity' — tests whether simplification preserves the real logic rather than producing a neat but misleading reduction.",
+      "activation_condition": "When a simplified model needs to be tested to verify that the reduction preserved the governing causal logic rather than producing a superficially clean but inaccurate story"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines complexity-bias-resistance by making experts instinctively jump to higher abstraction and methodological detail instead of the essential core the audience needs, defeating the simplification discipline CBR requires.",
+      "source_quote": "The chief antagonist. This bias makes it difficult for experts to communicate simply because they forget what it's like not to know.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Explicitly called 'the chief antagonist' — 'makes it difficult for experts to communicate simply because they forget what it is like not to know' — the primary force that defeats CBR's simplification discipline.",
+      "activation_condition": "When the expert's deep knowledge is causing them to communicate at higher abstraction levels or stress methodological details that the audience cannot process, defeating the simplification discipline"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring undermines complexity-bias-resistance by locking problem framing onto the first piece of information encountered, preventing recognition of a simpler and more accurate explanatory cut.",
+      "source_quote": "Focusing too heavily on the first piece of information or the initial problem framing (the 'anchor') can prevent the recognition of a simpler, better solution.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Frame-fixation — 'Focusing too heavily on the first piece of information or the initial problem framing prevents the recognition of a simpler, better solution' — locks analysis into the first frame rather than seeking the simplest accurate cut.",
+      "activation_condition": "When the initial problem framing is preventing recognition that a simpler and more accurate explanatory cut exists because attention is anchored to the first framework encountered"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "systems-thinking",
@@ -37,7 +64,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "Kept the relation surface narrow around disciplined simplification and critical scrutiny of what belongs in the core.",
+    "summary": "Layer 1+2 enrichment complete. Allies: simplification 0.90 (strong — core execution mechanism), critical-thinking 0.80 (moderate — validates simplification quality). Antagonists: curse-of-knowledge 0.95 (critical — 'the chief antagonist'), anchoring 0.80 (moderate — frame fixation). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve broader teaching and communication sprawl beyond the clearest current-vocabulary seams."
     ],

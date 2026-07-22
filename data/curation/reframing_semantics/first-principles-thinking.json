@@ -1,0 +1,33 @@
+{
+  "model_id": "first-principles-thinking",
+  "source_file": "First_Principles_Thinking_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question inherits premises from authority, convention, or industry norms without examining whether those premises are actually true — stripping them reveals a different problem.",
+    "The question is built on analogy to past situations rather than on the elemental truths of the current situation, and the analogy may not hold.",
+    "The question accepts existing categories or market definitions as given when those categories are the very thing distorting the solution space.",
+    "The question jumps to 'how do we optimize X' without first asking 'is X the right thing to be doing at all' — the forward-only formulation skips the foundational question."
+  ],
+  "frame_patterns_challenged": [
+    "borrowed_premise",
+    "scope_lock",
+    "proxy_optimization",
+    "option_space_collapse"
+  ],
+  "reframing_move": "Strip the question to its elemental truths: what do we actually know is true here, independent of what we've been told or assumed? Rebuild the question from those truths — the reframed question often has a different subject than the original.",
+  "reframing_move_types": ["inversion", "scope_expansion"],
+  "curation_confidence": "high",
+  "curation_note": "First-principles thinking is a primary reframing tool because it directly attacks inherited premises in questions. The source is explicit: 'systematically question every assumption underlying a problem' and the 'What would you have to believe?' technique both operate on question-level framing.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All four activations from explicit source material: assumption stripping, analogy-over-truth, category distortion, and the foundational-question-skip pattern."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Borrowed premise is the primary target (inherited framing). Scope lock via category acceptance. Proxy optimization via 'is X the right thing'. Option space collapse via stripping artificial constraints."
+    }
+  }
+}

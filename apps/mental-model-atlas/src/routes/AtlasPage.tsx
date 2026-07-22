@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   EMPTY_EPHEMERAL_STATE,
   parseAtlasState,
+  type RelationType,
   updateAtlasState,
 } from "../atlasState";
 import { selectAtlasView } from "../atlasSelectors";
@@ -109,12 +110,23 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
     changeState({
       selectedModelId: modelId,
       selectedRelationId: null,
+      query: "",
       relationPage: 1,
     });
   }
 
   function selectRelation(relationId: string): void {
     changeState({ selectedRelationId: relationId });
+  }
+
+  function filterToRelationType(type: RelationType): void {
+    const alreadyExclusive =
+      durableState.relationTypes.length === 1 &&
+      durableState.relationTypes[0] === type;
+    changeState({
+      relationTypes: alreadyExclusive ? [] : [type],
+      relationPage: 1,
+    });
   }
 
   function clearSelection(): void {
@@ -156,10 +168,10 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
   }
 
   const scopeText = selection.selectedModel
-    ? `${selection.selectedModel.display_name} · ${selection.focusedRelations.length} connections shown.`
+    ? `${selection.selectedModel.display_name} neighborhood`
     : selection.selectedRelation
-      ? "One relationship selected."
-      : `${selection.visibleModels.length} mental models · choose one to see its connections.`;
+      ? "Selected relationship"
+      : null;
 
   return (
     <main id="main" className="atlas-route">
@@ -168,16 +180,13 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
         state={durableState}
         fixtureId={projectionState.fixtureId}
         renderer={renderer}
+        models={projection.models}
+        matchingModels={selection.visibleModels}
         onStateChange={changeState}
+        onSelectModel={selectModel}
         onFixtureChange={switchFixture}
         onRendererChange={switchRenderer}
         showPrototypeControls={reviewMode}
-      />
-      <PageNavigation
-        projection={projection}
-        onPageChange={(pageNumber) =>
-          changeState({ relationPage: pageNumber })
-        }
       />
 
       <section
@@ -186,33 +195,33 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
         data-projection-id={projection.projection_id}
         data-coordinate-sha256={projection.layout.coordinate_sha256}
         data-atlas-ready="true"
-        aria-labelledby="atlas-scope"
+        aria-label="Mental model Atlas workspace"
       >
+        <SelectionPanel
+          projection={projection}
+          selection={selection}
+          activeRelationTypes={durableState.relationTypes}
+          onFilterRelationType={filterToRelationType}
+          onClear={clearSelection}
+        />
         <div className="graph-column">
-          <div className="scope-strip">
-            <p id="atlas-scope" role="status">
-              {scopeText}
-            </p>
-            {reviewMode ? (
-              <span>
-                {renderer === "canvas" ? "Canvas 2D comparison" : "SVG editorial"}
-              </span>
-            ) : null}
-          </div>
-
-          {durableState.view === "graph" ? (
-            <div className="mobile-atlas-entry">
-              <p className="eyebrow">Small-screen view</p>
-              <h2>Start with the model list.</h2>
-              <p>
-                The visual map needs more room. The same models, connections, and
-                full pages are available below in a touch-friendly list.
-              </p>
-              <a className="button" href="#accessible-atlas">
-                Browse models and relations
-              </a>
+          {scopeText || reviewMode ? (
+            <div className="scope-strip">
+              {scopeText ? <p role="status">{scopeText}</p> : <span />}
+              {reviewMode ? (
+                <span>
+                  {renderer === "canvas" ? "Canvas 2D comparison" : "SVG editorial"}
+                </span>
+              ) : null}
             </div>
           ) : null}
+
+          <PageNavigation
+            projection={projection}
+            onPageChange={(pageNumber) =>
+              changeState({ relationPage: pageNumber })
+            }
+          />
 
           {selection.visibleModels.length === 0 ? (
             <div className="graph-zero-state" role="status">
@@ -279,11 +288,6 @@ export default function AtlasPage({ motionPaused }: { motionPaused: boolean }) {
             </div>
           )}
         </div>
-        <SelectionPanel
-          projection={projection}
-          selection={selection}
-          onClear={clearSelection}
-        />
       </section>
 
       <AccessibleAtlas
@@ -325,14 +329,14 @@ function PageNavigation({
   return (
     <nav className="page-navigation" aria-label="Relation record pages">
       <div>
-        <p className="eyebrow">Exact deterministic paging</p>
+        <p className="eyebrow">Connections</p>
         <strong>
           Page {currentPage} of {pageCount}
         </strong>
         <span>
           {projection.page.before_count + 1}–
           {projection.page.before_count + projection.page.shown_count} of{" "}
-          {projection.page.eligible_count} exact source-authored connections
+          {projection.page.eligible_count} in this exact source view
         </span>
       </div>
       <div className="button-row">
@@ -358,11 +362,10 @@ function PageNavigation({
 function AtlasHero() {
   return (
     <header className="atlas-hero">
-      <p className="eyebrow">Mental Model Atlas</p>
       <h1>Explore how ideas connect.</h1>
       <p>
-        Choose a model, follow a relationship, and open the full idea when you want
-        to understand it in depth.
+        Choose a model or search by name. Its meaning and exact relationships will
+        appear here.
       </p>
     </header>
   );

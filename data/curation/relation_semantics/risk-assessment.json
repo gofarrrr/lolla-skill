@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking helps risk-assessment see interdependencies and unknown-unknowns before the downside is misread as a set of isolated variables.",
       "source_quote": "integrated ecosystem",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Risk assessment is fundamentally supported by systems thinking, which enables the perception of the system as a whole, rather than isolated facts.'",
+      "activation_condition": "When risk assessment requires viewing the business as an integrated ecosystem to uncover interdependencies and unknown unknowns."
     },
     {
       "target_model_id": "constraints",
       "rationale_text": "Constraints help risk-assessment identify the bottlenecks and exposure limits that most shape downside behavior under pressure.",
       "source_quote": "focus on the wrong variables",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: understanding constraints shapes the boundary conditions within which risks must be assessed. Not directly in canonical allies.",
+      "activation_condition": "When risk assessment must account for constraints that define the boundaries and limitations of possible mitigation strategies."
     },
     {
       "target_model_id": "checklists",
       "rationale_text": "Checklists give risk-assessment a disciplined surface for thresholds, mitigations, and monitoring so key exposures are not left to memory.",
       "source_quote": "explicit mitigations, thresholds, and monitoring",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: checklists provide systematic coverage of risk factors, reducing the chance of omission. Practical assessment tool.",
+      "activation_condition": "When systematic enumeration of risk factors is needed to ensure comprehensive coverage and prevent oversight."
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Optimism-bias-and-planning-fallacy undermines risk-assessment when downside scenarios are underweighted because the plan feels internally coherent and success feels conjunctively plausible.",
       "source_quote": "downside scenarios are underweighted",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'the general tendency to overestimate the probability of conjunctive events leads to unwarranted optimism in evaluating plan success.'",
+      "activation_condition": "When optimistic assumptions about sequential success probabilities lead to underestimation of overall project risk."
     },
     {
-      "target_model_id": "representativeness-bias",
+      "target_model_id": "representativeness-heuristic",
       "rationale_text": "Representativeness-bias undermines risk-assessment by causing estimators to judge likelihood based on how much a situation resembles a vivid past case rather than on distributional base rates — salient analogies displace the reference-class evidence risk assessment requires.",
-      "source_quote": "risk-assessment vs representativeness-bias: risk-assessment conflicts with representativeness-bias (representativeness bias) when salient analogies replace distributional risk estimates.",
+      "source_quote": "risk-assessment vs representativeness-heuristic: risk-assessment conflicts with representativeness-heuristic (representativeness bias) when salient analogies replace distributional risk estimates.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Curated tension: 'salient analogies replace distributional risk estimates' — surface resemblance overrides proper statistical risk quantification.",
+      "activation_condition": "When vivid analogies to past successes override the distributional analysis needed for accurate risk estimation."
     }
   ],
   "structured_tensions": [
@@ -50,16 +65,16 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Risk-assessment conflicts with representativeness-bias when salient analogies replace distributional risk estimates — the vivid similarity of a situation to a past case overrides the reference-class base rates that accurate risk quantification requires.",
-      "source_quote": "risk-assessment vs representativeness-bias: risk-assessment conflicts with representativeness-bias (representativeness bias) when salient analogies replace distributional risk estimates.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Risk-assessment conflicts with representativeness-heuristic when salient analogies replace distributional risk estimates — the vivid similarity of a situation to a past case overrides the reference-class base rates that accurate risk quantification requires.",
+      "source_quote": "risk-assessment vs representativeness-heuristic: risk-assessment conflicts with representativeness-heuristic (representativeness bias) when salient analogies replace distributional risk estimates.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on systems, constraints, and thresholding allies plus explicit conflicts with underweighted downside imagination and representativeness-driven analogy substitution.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking 0.90 ('fundamentally supported'), constraints and checklists at 0.80. optimism-bias antagonist at 0.90, representativeness at 0.80.",
     "donor_drops": [
       "Did not preserve donor risk-framework widening beyond the clearly named systems, controls, and anti-optimism neighborhood."
     ],

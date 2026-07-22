@@ -1,0 +1,47 @@
+{
+  "dimension_id": "scope-boundary",
+  "dimension_name": "Scope & Boundary Definition",
+  "cleaving_frame": "Inside vs Outside the boundary",
+  "description": "The problem's outcome depends on where boundaries are drawn — what's in scope, who decides, what the unit of analysis is. The structural question is whether the chosen boundary reveals or hides the real drivers.",
+  "question_types": ["decision-evaluation", "action-planning", "causal-diagnosis"],
+  "detect_when": [
+    "The problem could be defined more narrowly or more broadly with different implications",
+    "The unit of analysis (team, product, company, market, industry) is not explicitly chosen or justified",
+    "Someone's scope of competence is being stretched beyond their domain of reliable judgment",
+    "The answer's boundary excludes factors that could change the conclusion if included"
+  ],
+  "coverage_signals": [
+    "The answer explicitly states what's in scope and what's out of scope",
+    "The answer justifies the chosen unit of analysis and considers alternatives",
+    "The answer considers whether narrowing or expanding the boundary would change the answer",
+    "The answer identifies where the decision-maker is operating outside their circle of competence"
+  ],
+  "materiality_test": "Would redefining the boundary (wider or narrower) change the recommendation?",
+  "reasoning_demanded": "boundary analysis, scope discipline, unit-of-analysis selection, competence assessment",
+  "models": [
+    "circle-of-competence",
+    "constraints",
+    "boundaries",
+    "problem-framing-and-reframing",
+    "specialization"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Circle-of-competence defines the zone of reliable judgment and flags when decisions extend beyond it. Constraints identifies the binding limitations that define the feasible set. Boundaries addresses where systems begin and end and what crosses the interface. Problem-framing-and-reframing provides the meta-cognitive awareness that how you define the problem dictates the solution space. Specialization covers the depth-vs-breadth trade-off in scope definition.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from circle-of-competence (competence stretch), problem-framing-and-reframing (problem definition determines solutions), boundaries (system interface definition), constraints (binding limitations)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Scope statement from boundaries. Unit of analysis from problem-framing-and-reframing. Boundary sensitivity from constraints. Competence assessment from circle-of-competence."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Five models — tightly focused on the boundary/scope structural territory. Note potential overlap with Lane 3 (frame pressure) on problem-framing-and-reframing: Lane 3 uses this model to audit the question's embedded assumptions; this dimension uses it to assess whether the answer's scope definition is appropriate. Different structural purposes, acceptable overlap."
+    }
+  }
+}

@@ -149,7 +149,7 @@ def test_global_design_defines_source_ownership_decision() -> None:
         "The source of the compiled bundle is not present in this repo.",
         "Source Ownership Decision Resolved",
         "`observatory/serve_result.py` owns the active portable skill-presentation surface",
-        "`Lolla-system-b/observatory/svelte-app` is verified as historical legacy source",
+        "no external frontend workspace is an active source or build dependency",
         "the current product direction is portable Python/server-rendered Observatory",
         "not port the global shell to Svelte",
         "proceed_to_observatory_portable_server_view_model_contracts",

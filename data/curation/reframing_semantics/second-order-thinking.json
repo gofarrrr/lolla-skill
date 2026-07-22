@@ -1,0 +1,32 @@
+{
+  "model_id": "second-order-thinking",
+  "source_file": "Second_Order_Thinking_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question asks about the immediate outcome of a decision without considering what happens next — the real question is about the cascading consequences, not the first-order result.",
+    "The question frames the decision as a static snapshot when the situation is dynamic — actors will adapt, incentives will shift, and the second-order effects may reverse the first-order win.",
+    "The question optimizes a local metric that may degrade trust, coordination, resilience, or future option value downstream — the question needs a longer time horizon."
+  ],
+  "frame_patterns_challenged": [
+    "temporal_fixation",
+    "counterfactual_suppression",
+    "proxy_optimization",
+    "single_actor_assumption"
+  ],
+  "reframing_move": "Extend the time horizon: ask 'and then what?' — push past the first-order answer to the second and third order consequences. The reframed question is about the trajectory, not the snapshot.",
+  "reframing_move_types": ["scope_expansion"],
+  "curation_confidence": "high",
+  "curation_note": "Second-order-thinking reframes by extending the temporal and causal horizon of the question. The source is explicit on the domino metaphor, the machine-level vs case-at-hand distinction, and the 'what would you have to believe' technique. Strongest on temporal fixation and proxy optimization.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Three activations from source material: cascading-consequence blindness, static-snapshot framing, and local-metric optimization at downstream cost."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Temporal fixation is the primary target. Counterfactual suppression via missing 'and then what' analysis. Proxy optimization via local-metric focus. Single actor assumption via missing adaptive responses."
+    }
+  }
+}

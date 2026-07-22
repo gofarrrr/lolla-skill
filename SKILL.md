@@ -1,10 +1,10 @@
 ---
 name: lolla
 description: >
-  Conversation-aware reasoning audit for Codex and Claude Code. Captures the current conversation,
-  extracts decision structure, and runs the full Lolla pipeline
-  (structural pressure, model companion, frame pressure) via OpenRouter
-  against a curated substrate of 222 mental models. Use when asked to
+  Audit a strategic conversation in Codex or Claude Code by preserving its source,
+  extracting its decision structure, introducing traceable pressure from four
+  reasoning lanes and a curated substrate of 222 mental models, asking the
+  reasoner to reconsider, and recording the result. Use when asked to
   "audit this", "check my reasoning", "find blind spots", "stress test",
   "what am I missing", "challenge this", "devil's advocate", "lolla",
   "what are we not seeing", or "pre-mortem". Also use proactively when
@@ -61,9 +61,10 @@ This skill was originally authored for Claude Code and now also supports Codex s
 ## Preamble (run first)
 
 ```bash
-# Locate the external setup script, then let it perform full initialization.
+# Locate this repository-contained skill package, then run its bundled setup.
 _LOLLA_SETUP_DIR=""
-[ -d "$HOME/.codex/skills/lolla" ] && _LOLLA_SETUP_DIR="$HOME/.codex/skills/lolla"
+[ -f "./SKILL.md" ] && [ -f "./scripts/skill/setup.sh" ] && _LOLLA_SETUP_DIR="."
+[ -z "$_LOLLA_SETUP_DIR" ] && [ -d "$HOME/.codex/skills/lolla" ] && _LOLLA_SETUP_DIR="$HOME/.codex/skills/lolla"
 [ -z "$_LOLLA_SETUP_DIR" ] && [ -d ".codex/skills/lolla" ] && _LOLLA_SETUP_DIR=".codex/skills/lolla"
 [ -z "$_LOLLA_SETUP_DIR" ] && [ -d "$HOME/.claude/skills/lolla" ] && _LOLLA_SETUP_DIR="$HOME/.claude/skills/lolla"
 [ -z "$_LOLLA_SETUP_DIR" ] && [ -d ".claude/skills/lolla" ] && _LOLLA_SETUP_DIR=".claude/skills/lolla"
@@ -121,6 +122,16 @@ capture, normalize, run the lanes, render private tables, persist ledgers,
 validate hygiene, compute costs, launch Observatory, and archive artifacts.
 They must not make hidden final-quality or answer-selection decisions. Step 6
 remains the cognitive synthesis point.
+
+The mental-model substrate has one repository-local ownership chain: canonical
+Markdown and reviewed curation compile into candidate artifacts; a published,
+read-only snapshot supplies exact model and authored relation identity; and the
+versioned constitutional planner owns the current bounded outgoing one-hop
+active/reserve portfolio. The graph introduces inspectable pressure. It does
+not prove relevance, causation, correctness, or usefulness. For maintenance,
+validation commands, and the boundary between current behavior and prospective
+graph work, read
+[`references/knowledge-substrate-operations.md`](references/knowledge-substrate-operations.md).
 
 Run the steps in order. Do not skip Step 6b ledger finalization, Step 8b
 pressure-check-state persistence, Step 8c memo fields, Step 9 finalizers, or
@@ -295,5 +306,6 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |
 | `references/presentation-research.md` | When thinking about how to present findings in chat vs. Observatory — book research on scanning, BLUF, story turns, formatting overuse |
+| `references/knowledge-substrate-operations.md` | When maintaining, validating, or proposing changes to the 222-model source, graph compiler, published substrate, pressure planner, or prospective complete-path custody |
 | `HOW_IT_WORKS.md` (repo root) | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |
 | `docs/cost-and-telemetry.md` | When the user asks about cost, call counts, prompt caching, or what's measured per run — single canonical doc covering the `usage_summary` block, vendor tracking, pricing table, and how to add a new vendor or stage |

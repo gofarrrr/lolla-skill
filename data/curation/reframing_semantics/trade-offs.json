@@ -1,0 +1,35 @@
+{
+    "model_id": "trade-offs",
+    "source_file": "Trade_Offs_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question asks 'should we do X?' without naming what is given up by doing X — the hidden cost of saying yes is invisible.",
+        "The question pursues one objective as though it has no tension with other objectives — competing demands are unacknowledged.",
+        "The question treats resource allocation as unbounded ('we should do everything') when time, money, or attention are scarce and force explicit prioritization.",
+        "The question optimizes for a single metric without asking what other metrics degrade when that one improves — the compression-vs-comprehensiveness tension is unexamined."
+    ],
+    "frame_patterns_challenged": [
+        "proxy_optimization",
+        "option_space_collapse",
+        "borrowed_premise"
+    ],
+    "reframing_move": "Surface the hidden cost: instead of 'should we do X?', ask 'what are we giving up by doing X, and is that sacrifice worth making?' — forces the question to acknowledge that every yes is a no to something else.",
+    "reframing_move_types": [
+        "cost_surfacing",
+        "constraint_relaxation"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Trade-offs is a primary reframing tool because its core function is making invisible costs visible at the question level. The source is explicit: 'if one cannot think in terms of trade-offs, they are a danger to the rest of the people when serious thinking is being done.' The model converts single-objective questions into multi-objective ones.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations derived from source: hidden cost of yes (Kelleher example), competing objectives (balancing act analogy), resource scarcity forcing prioritization (don't boil the ocean), and single-metric optimization (compression vs comprehensiveness)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Proxy optimization: the question optimizes for a proxy without surfacing what degrades. Option space collapse: surfacing trade-offs reveals hidden alternatives. Borrowed premise: inherited framing hides the cost of the chosen path."
+        }
+    }
+}

@@ -7,17 +7,34 @@
       "rationale_text": "Decomposition helps cognitive-load-theory break a problem into logical pieces that working memory can actually manage.",
       "source_quote": "Logic trees make it easy to see the structure of the problem. This limits the number of variables the working memory must consider simultaneously.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly serves CLT's core mechanism — 'Logic trees make it easy to see the structure of the problem. This limits the number of variables the working memory must consider simultaneously' — decomposition IS the structural technique that reduces working memory demand.",
+      "activation_condition": "When problem complexity is exceeding working memory capacity and decomposition into logical branches is needed to limit the number of variables that must be held simultaneously"
     },
     {
       "target_model_id": "habit-formation",
       "rationale_text": "Habit-formation frees working memory by automating routine tasks so cognitive effort can shift to the genuinely new challenge.",
       "source_quote": "Habits reduce the cognitive load necessary for routine tasks, allowing the conscious mind to conserve effort for higher-level problems.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly reduces cognitive load — 'Habits reduce the cognitive load necessary for routine tasks, allowing the conscious mind to conserve effort for higher-level problems' — automaticity frees the bottleneck resource for genuinely novel challenges.",
+      "activation_condition": "When routine procedural tasks are consuming working memory that should be reserved for higher-level analytical challenges, and automation through habit can free that capacity"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines cognitive-load-theory by causing experts to communicate at their own level of abstraction, directly increasing the novice's cognitive load instead of reducing it.",
+      "source_quote": "The innate tendency of experts to communicate complexity, directly increasing the novice's cognitive load.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly increases the load CLT manages — 'The innate tendency of experts to communicate complexity, directly increasing the novice's cognitive load' — experts communicate at their own abstraction level, imposing unnecessary extrinsic load.",
+      "activation_condition": "When expert communication is adding unnecessary complexity that increases the audience's cognitive load because the expert has forgotten what it is like not to know the material"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "first-principles-thinking",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on ally structure and explicit tensions, so the file stays sparse rather than forcing weak antagonist mappings.",
+    "summary": "Layer 1+2 enrichment complete. Allies: decomposition 0.90 (strong — limits variables in working memory), habit-formation 0.90 (strong — reduces routine load through automaticity). Antagonists: curse-of-knowledge 0.90 (strong — directly increases novice load). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor relation sprawl where the raw canonical id surface is weaker than the explicit ally and tension blocks."
     ],
     "open_questions": [
-      "Curse-of-knowledge and boiling-the-ocean are source-real antagonists, but the current canonical target surface does not expose clean direct ids for them."
+      "Curse-of-knowledge and boiling-the-ocean are source-real antagonists, but the current canonical target surface does not expose clean direct ids for them.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Scaffolding/Chunking ('directly implements CLT by breaking down large tasks into bite-sized pieces') and Minto Pyramid Principle ('minimizes cognitive load during communication') as strong ally candidates."
     ]
   }
 }

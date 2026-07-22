@@ -1,0 +1,33 @@
+{
+    "model_id": "intellectual-humility",
+    "source_file": "Intellectual_Humility_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question is asked with high certainty about the problem definition itself — the confidence is in the frame, not just the answer, and that frame-level confidence has not been examined.",
+        "The question treats the asker's expertise or track record as sufficient warrant for the current framing, when the situation may be novel enough that past success is misleading.",
+        "The question dismisses alternative framings too quickly because the asker's identity is invested in the current frame — being wrong about the question feels threatening.",
+        "The question assumes completeness of the asker's knowledge ('I know what the issue is') when acknowledging the limits of that knowledge would open a structurally different problem definition."
+    ],
+    "frame_patterns_challenged": [
+        "borrowed_premise",
+        "habitual_frame",
+        "counterfactual_suppression",
+        "scope_lock"
+    ],
+    "reframing_move": "Before proceeding with the current framing, ask: 'How confident am I that I have framed this correctly, and what would I need to be wrong about for a better frame to exist?' — the humility reframe makes frame-level certainty visible and testable.",
+    "reframing_move_types": ["assumption_surfacing", "constraint_relaxation"],
+    "curation_confidence": "high",
+    "curation_note": "Intellectual Humility directly targets frame-level overconfidence. The source describes 'recognizing the limits of one's knowledge', 'being open to revising one's beliefs', and 'distinguishing between intellectual confidence and intellectual arrogance'. The borrowed_premise challenge comes from the model's insistence on examining whether inherited beliefs are warranted. The habitual_frame challenge maps to the source's emphasis on identity-protective cognition — defending frames because changing them threatens the self-concept.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Frame-level certainty (source's 'recognizing limits'), expertise as warrant (past success ≠ current validity), identity investment ('intellectual arrogance'), assumed completeness ('open to revising beliefs')."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Borrowed premise: inherited beliefs examined for warrant. Habitual frame: identity-protective cognition maintains default frames. Counterfactual suppression: humility opens space for alternative frames. Scope lock: acknowledging knowledge limits widens the frame."
+        }
+    }
+}

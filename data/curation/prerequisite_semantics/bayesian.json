@@ -1,0 +1,30 @@
+{
+  "model_id": "bayesian",
+  "source_file": "Bayesian_rag.md",
+  "prerequisites": [
+    {
+      "prerequisite_model_id": "base-rates",
+      "dependency_type": "foundation-for",
+      "rationale_text": "Bayesian updating requires a prior probability (base rate) to be established before new evidence can be incorporated. Without a base rate anchor, the posterior is uncalibrated.",
+      "source_quote": "Bayesian statistics requires a prior probability (base rate) to be established before new evidence is incorporated. These reliable base rates must be derived from large samples.",
+      "source_article": "Law_of_Large_Numbers_rag.md",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "validation_status": "confirmed"
+    },
+    {
+      "prerequisite_model_id": "law-of-large-numbers",
+      "dependency_type": "foundation-for",
+      "rationale_text": "Reliable base rates — the priors that Bayesian updating depends on — can only be derived from large samples. LLN provides the statistical foundation that makes Bayesian priors trustworthy.",
+      "source_quote": "The LLN provides the critical statistical foundation for Bayesian reasoning.",
+      "source_article": "Law_of_Large_Numbers_rag.md",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "validation_status": "confirmed"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Both prerequisites are explicitly stated in the LLN article's latticework section. The Bayesian article also confirms via its alliance with Reference Class Forecasting (which depends on base rates from large samples).",
+    "validation_date": "2026-04-07"
+  }
+}

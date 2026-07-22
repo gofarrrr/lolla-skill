@@ -39,7 +39,7 @@ let navigationIndexPromise: Promise<AtlasNavigationIndex> | null = null;
 export function loadNavigationIndex(): Promise<AtlasNavigationIndex> {
   if (!navigationIndexPromise) {
     navigationIndexPromise = fetch(
-      assetUrl("data/navigation-v1/neighborhood-index.json"),
+      assetUrl("data/navigation-v2/neighborhood-index.json"),
       { headers: { Accept: "application/json" } },
     )
       .then(async (response) => {

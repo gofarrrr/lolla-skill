@@ -1,0 +1,32 @@
+{
+  "model_id": "opportunity-cost",
+  "source_file": "Opportunity_Cost_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question asks 'how should we do X' without asking 'should we be doing X at all given what else we could do with the same resources' — the displaced alternative is invisible.",
+    "The question treats a continuation or default path as free when the real cost is the best alternative use of the same resources, attention, or time.",
+    "The question frames the decision in terms of explicit costs only and suppresses the implicit costs — the non-financial opportunity costs (optionality, learning, trust) are hidden."
+  ],
+  "frame_patterns_challenged": [
+    "counterfactual_suppression",
+    "commitment_escalation",
+    "proxy_optimization",
+    "scope_lock"
+  ],
+  "reframing_move": "Surface the displaced alternative: ask 'compared to what?' — the question shifts from 'should we do X' to 'what is the best alternative use of the same resources, and is X better than that?'",
+  "reframing_move_types": ["scope_expansion", "inversion"],
+  "curation_confidence": "high",
+  "curation_note": "Opportunity-cost reframes by making invisible displaced alternatives visible. The source is explicit on 'Compared to what?' as the seminal reframing question, implicit vs explicit cost distinction, and the sponge-vs-sieve metaphor. Strongest on counterfactual suppression and commitment escalation.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Three activations from source material: displaced-alternative blindness, free-continuation illusion, and suppressed implicit costs."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Counterfactual suppression is the primary target ('compared to what?'). Commitment escalation via continuation-as-free illusion. Proxy optimization via explicit-cost-only framing. Scope lock via narrow resource-boundary definition."
+    }
+  }
+}

@@ -7,21 +7,30 @@
       "rationale_text": "Critical-mass helps compounding distinguish between early accumulation and the threshold where gains start accelerating.",
       "source_quote": "Critical Mass",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Threshold concept — 'the threshold needed before rapid growth and compounding can occur. Once critical mass is reached, the positive effects begin to accelerate and compound' — critical mass defines when compounding shifts from linear to exponential.",
+      "activation_condition": "When early-stage effort has not yet reached the threshold where compound acceleration begins and understanding the distance to critical mass is needed to maintain patience and investment"
     },
     {
       "target_model_id": "feedback-loops",
       "rationale_text": "Feedback-loops explain how repeated gains or losses become self-reinforcing over time.",
       "source_quote": "continuous improvement is achieved through feedback loops",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Self-reinforcing mechanism — 'continuous improvement is achieved through feedback loops' — feedback loops ARE the mechanism through which compounding gains become self-reinforcing over time.",
+      "activation_condition": "When compounding depends on outputs being fed back as inputs that amplify subsequent cycles, and understanding the feedback structure is needed to protect or accelerate the compounding engine"
     },
     {
       "target_model_id": "margin-of-safety",
       "rationale_text": "Margin-of-safety gives compounding the downside protection needed to preserve the base that future gains depend on.",
       "source_quote": "protecting downside is as important as amplifying upside",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Protective complement — 'protecting downside is as important as amplifying upside' — preserves the base that future compounding depends on, but operates as a defensive mechanism rather than the compounding engine itself.",
+      "activation_condition": "When the base on which compounding depends is at risk and downside protection is needed to prevent a loss that would reset the accumulated compound gains"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias turns compounding dangerous when people keep scaling a flawed thesis instead of checking whether the foundation is wrong.",
       "source_quote": "confirmation bias",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Scaling risk — causes 'teams to keep scaling a flawed thesis instead of checking whether the foundation is wrong' — compounding a flawed thesis makes confirmation bias especially dangerous because the error also compounds.",
+      "activation_condition": "When compound growth is being projected forward without checking whether the foundational thesis is actually correct, because confirming evidence is being sought while disconfirming signals are ignored"
     }
   ],
   "structured_tensions": [
@@ -50,5 +62,10 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: critical-mass 0.90 (strong — threshold for acceleration), feedback-loops 0.90 (strong — self-reinforcing mechanism), margin-of-safety 0.80 (moderate — base protection). Antagonists: confirmation-bias 0.80 (moderate — scales flawed thesis). Activation conditions assigned.",
+    "donor_drops": [],
+    "open_questions": []
+  }
 }

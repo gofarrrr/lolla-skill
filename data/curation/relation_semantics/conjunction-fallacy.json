@@ -8,21 +8,30 @@
       "source_quote": "Conditional Probability/Bayesian Thinking: This is a direct conceptual ally, as it formalizes the calculation of how the probability of an event changes based on prior events having occurred.",
       "extraction_type": "normalized",
       "confidence": "high",
-      "note": "Mapped the source's conditional probability and Bayesian phrasing to the current canonical model id."
+      "note": "Mapped the source's conditional probability and Bayesian phrasing to the current canonical model id.",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Direct conceptual ally — canonical states 'Conditional Probability/Bayesian Thinking: This is a direct conceptual ally' that 'formalizes the calculation of how the probability of an event changes based on prior events' — the mathematical foundation that exposes the fallacy.",
+      "activation_condition": "When a multi-step plan feels more plausible due to narrative coherence and formal probability calculation is needed to reveal that adding conjunctive conditions can only reduce overall likelihood"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems Thinking helps reveal how apparently separate plan steps are causally linked and jointly fragile.",
       "source_quote": "systems thinking illuminates how seemingly independent steps in a plan are, in fact, causally linked, confirming their conjunctive nature.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Reveals hidden dependencies — 'systems thinking illuminates how seemingly independent steps in a plan are, in fact, causally linked, confirming their conjunctive nature' — exposes the interconnection that makes conjunction fragility visible.",
+      "activation_condition": "When seemingly independent steps in a plan are actually causally linked and systems analysis is needed to reveal the conjunctive fragility that narrative coherence obscures"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "The Feynman Technique exposes weak assumptions and compounding risks by forcing the plan into simpler, checkable language.",
       "source_quote": "By forcing the user to distill complex ideas into simple terms and identify all blind spots, it helps expose the shaky assumptions and compounding risks inherent in an overly optimistic conjunctive plan.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Diagnostic tool — 'forcing the user to distill complex ideas into simple terms and identify all blind spots' helps 'expose the shaky assumptions and compounding risks' in conjunctive plans. Operates as reveal mechanism rather than formal correction.",
+      "activation_condition": "When complex multi-step plans need to be simplified to expose hidden assumptions and compounding probability risks that are invisible in the detailed narrative"
     }
   ],
   "antagonists": [
@@ -31,21 +40,30 @@
       "rationale_text": "Confirmation bias drives the fallacy by making the team collect only evidence that supports the optimistic sequential plan.",
       "source_quote": "Confirmation bias makes it difficult for a team to identify the low likelihood of a sequential plan succeeding, as they only look for data points supporting their initial, optimistic hypothesis.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Primary driver — 'Confirmation bias makes it difficult for a team to identify the low likelihood of a sequential plan succeeding, as they only look for data points supporting their initial, optimistic hypothesis.'",
+      "activation_condition": "When the team is selectively gathering evidence that supports the conjunctive plan's viability while overlooking data points that would reveal its fragility"
     },
     {
       "target_model_id": "wysiati",
-      "rationale_text": "WYSIATI amplifies the conjunction fallacy by treating the coherent multi-step plan narrative as a complete picture \u2014 the individual step probabilities that would reveal compound fragility are simply absent from the story System 1 constructs.",
+      "rationale_text": "WYSIATI amplifies the conjunction fallacy by treating the coherent multi-step plan narrative as a complete picture — the individual step probabilities that would reveal compound fragility are simply absent from the story System 1 constructs.",
       "source_quote": "WYSIATI and Maslow's Hammer are strong antagonistic pressures in the raw source.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Reinforces false certainty — 'people operate using the information immediately available, failing to acknowledge how little they actually know about future steps or external variables' — directly inflates conjunctive confidence.",
+      "activation_condition": "When the assessment of a multi-step plan's probability is based on currently available information without acknowledging the vast unknowns about future steps and external variables"
     },
     {
       "target_model_id": "einstellung-effect",
-      "rationale_text": "Einstellung-effect blocks conjunction-fallacy mitigation by locking the analyst in familiar linear projection tools \u2014 the single-tool fixation ensures compound probabilities are assessed through a distorted lens rather than proper probabilistic methods.",
+      "rationale_text": "Einstellung-effect blocks conjunction-fallacy mitigation by locking the analyst in familiar linear projection tools — the single-tool fixation ensures compound probabilities are assessed through a distorted lens rather than proper probabilistic methods.",
       "source_quote": "Maslow's Hammer/Law of the Instrument: An executive too reliant on simple linear projection, ignoring probabilistic tools, will routinely fall victim to the Conjunction Fallacy.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Tool fixation — 'An executive too reliant on simple linear projection, ignoring probabilistic tools, will routinely fall victim to the Conjunction Fallacy' — familiar frameworks prevent adoption of proper probability analysis.",
+      "activation_condition": "When reliance on familiar linear projection methods prevents the decision-maker from applying probabilistic tools that would reveal conjunctive fragility in the plan"
     }
   ],
   "structured_tensions": [
@@ -67,7 +85,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source clearly supports allies and at least one canonical antagonist, but it has no explicit structured tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: probabilistic-thinking 0.95 (critical — 'direct conceptual ally'), systems-thinking 0.90 (strong — reveals hidden dependencies), feynman-technique 0.80 (moderate — diagnostic simplification). Antagonists: confirmation-bias 0.90 (strong — primary driver), wysiati 0.90 (strong — inflates conjunctive confidence), einstellung-effect 0.80 (moderate — tool fixation). Activation conditions assigned.",
     "donor_drops": [
       "Did not convert narrative risk-table pressure into invented structured tensions."
     ],

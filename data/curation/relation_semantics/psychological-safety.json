@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking helps psychological-safety treat suppressed dissent as a structural signal about the whole organization rather than as isolated interpersonal friction.",
       "source_quote": "Systems Thinking",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'necessary for understanding the complexity of human and organizational dynamics' — safety encourages the engagement needed for organizational learning.",
+      "activation_condition": "When understanding complex organizational dynamics requires an environment where people can surface systemic issues without fear."
     },
     {
       "target_model_id": "boundaries",
       "rationale_text": "Boundaries help psychological-safety pair openness with clear ownership, standards, and decision rights so candor actually improves the system.",
       "source_quote": "ownership, standards, or decision rights",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: clear boundaries define the safe space for open dialogue. Not directly in canonical allies but conceptually supports the structure of psychological safety.",
+      "activation_condition": "When establishing clear behavioral boundaries creates the structured environment needed for safe, open dialogue."
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking turns psychological-safety into a truth-seeking asset by making challenge serve decision quality rather than comfort or status display.",
       "source_quote": "candid truth in service of better decisions",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'The ability to engage System 2 (slow, reflective thinking) requires the emotional brain to be managed. Creating space for clear thinking is the prerequisite for critical thought.'",
+      "activation_condition": "When a psychologically safe environment enables the slow, reflective thinking necessary for rigorous critical analysis."
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Authority-bias suppresses the upward challenge that psychological-safety exists to make possible.",
       "source_quote": "formal status discourages upward challenge despite visible risk",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical tension: 'formal status discourages upward challenge despite visible risk' — authority hierarchy directly undermines psychological safety.",
+      "activation_condition": "When formal authority status discourages team members from challenging decisions or surfacing risks they observe."
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias grows when teams suppress dissent and filter evidence to match the prevailing leadership view instead of surfacing contradictions.",
       "source_quote": "absence of safety causes teams to suppress dissent and filter evidence",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical tension: 'absence of safety causes teams to suppress dissent and filter evidence to match the prevailing leadership view.'",
+      "activation_condition": "When unsafe environments lead teams to suppress contradicting evidence and conform to the prevailing leadership hypothesis."
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on systems and truth-seeking allies plus explicit conflicts with status-suppressed challenge and filtered evidence, so the file preserves that conservative surface.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking 0.90, critical-thinking 0.90 (safety is 'prerequisite' for System 2), boundaries 0.80. Both antagonists at 0.90 (authority-bias and confirmation-bias directly undermine safety).",
     "donor_drops": [
       "Did not preserve donor culture-program relation sprawl beyond the clearly named candor, authority, and anti-confirmation neighborhood."
     ],

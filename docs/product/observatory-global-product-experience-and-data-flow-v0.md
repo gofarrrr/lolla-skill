@@ -479,11 +479,12 @@ The source audit resolved the near-term direction:
 
 - `observatory/serve_result.py` owns the active portable skill-presentation
   surface;
-- `Lolla-system-b/observatory/svelte-app` is verified as historical legacy
-  source for the old root SPA;
+- no external frontend workspace is an active source or build dependency for
+  the old root SPA;
 - `observatory/build/*` is a distribution artifact, not source;
 - the current product direction is portable Python/server-rendered Observatory;
-- a Svelte revival or bundle sync would require a separate explicit decision.
+- a Svelte revival or bundle replacement would require repository-local source
+  and a separate explicit decision.
 
 Therefore, the next PR should define product-safe view models for the portable
 server-rendered shell, not port the global shell to Svelte.

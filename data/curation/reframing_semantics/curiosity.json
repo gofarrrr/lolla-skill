@@ -1,0 +1,33 @@
+{
+    "model_id": "curiosity",
+    "source_file": "Curiosity_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question has already settled on what is interesting or important about the situation, closing off exploratory inquiry that might redefine the problem space entirely.",
+        "The question treats unknowns as threats to be managed rather than as signals pointing toward where the real leverage lies — curiosity about what is not yet understood would open new frames.",
+        "The question assumes the problem is well-defined and ready for solution-mode when the situation actually calls for open-ended exploration to discover what the right question is.",
+        "The question frames learning as a cost ('we don't have time to investigate') when the information gap itself is the highest-risk element in the decision."
+    ],
+    "frame_patterns_challenged": [
+        "premature_intellectualization",
+        "scope_lock",
+        "symptom_as_problem",
+        "option_space_collapse"
+    ],
+    "reframing_move": "Before converging on a solution, ask: 'What are we most curious about in this situation, and what would change if we followed that curiosity before deciding?' — the curiosity reframe reopens the problem space by treating unknowns as opportunities rather than obstacles.",
+    "reframing_move_types": ["perspective_shift", "scope_expansion"],
+    "curation_confidence": "high",
+    "curation_note": "Curiosity directly challenges premature closure in problem framing. The source describes curiosity as 'the engine of intellectual growth', 'openness to experience', and the drive that 'pushes individuals to seek new information and experiences'. The model's emphasis on diversive curiosity (broad exploration) and epistemic curiosity (gap-driven inquiry) maps to challenging both scope lock and premature intellectualization. The 'curiosity gap' concept — tension between what you know and what you want to know — is a natural reframing lever.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Settled framing (diversive curiosity opens new territory), unknowns as threats (epistemic curiosity reframes gaps), well-defined assumption (exploratory vs specific curiosity), learning as cost (curiosity gap theory)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Premature intellectualization: curiosity resists premature convergence. Scope lock: diversive curiosity broadens the frame. Symptom as problem: epistemic curiosity asks 'what don't we know yet?'. Option space collapse: curiosity reopens closed option spaces."
+        }
+    }
+}

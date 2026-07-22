@@ -7,17 +7,44 @@
       "rationale_text": "Schema-acquisition supports perceptual-learning by turning repeated cue exposure into stable patterns that can be retrieved and updated later.",
       "source_quote": "Its core definition and purpose involve the development of mental models or schemas that represent external reality.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: PL is 'the engine that builds these models', converting observations into compressed, usable structure — essential mechanism.",
+      "activation_condition": "When building domain expertise through repeated observation and pattern recognition that solidifies into reusable schemas."
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory supports perceptual-learning by freeing working memory so meaningful cues can consolidate into usable patterns.",
       "source_quote": "PL reduces cognitive load. By developing stable patterns and chunks of information, the working memory is freed up.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'PL reduces cognitive load' by developing stable patterns and chunks, freeing working memory for new schema formation.",
+      "activation_condition": "When complex information needs to be chunked into manageable patterns to reduce working memory demand."
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines perceptual-learning by causing the brain to lock onto a previously learned pattern and torture new stimuli to fit it, blocking the updated discrimination that perceptual learning requires.",
+      "source_quote": "Over-reliance on existing, well-developed mental models leads one to torture reality so that it fits your models. Experts sometimes persist in using frames that are unhelpful or misleading when encountering genuinely novel problems.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Curated tension: prior pattern expectations suppress anomaly detection; established perceptual templates resist updating.",
+      "activation_condition": "When established perceptual patterns suppress detection of novel anomalies or contradicting evidence."
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines perceptual-learning by making refined perceptual schemas impossible to communicate to novices, blocking the transfer of expert pattern recognition that the model is built to enable.",
+      "source_quote": "Experts, having refined their models through PL, find it difficult to remember what it was like not to know something. This high-level, abstract thinking conflicts with the need to communicate clearly with novices.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'experts find it difficult to remember what it was like *not* to know something' — high-level abstraction hinders novice communication.",
+      "activation_condition": "When expert-level pattern recognition creates difficulty communicating insights to novice audiences."
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confirmation-bias",
@@ -37,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on schema formation, load management, and an explicit tension block around entrenchment and missed anomalies.",
+    "summary": "Layer 1+2 enrichment complete. schema-acquisition at 0.90 (PL is 'the engine'), cognitive-load-theory at 0.80 (moderate reduction). Both antagonists at 0.80. Canonical also mentions system-1 and analogies as allies.",
     "donor_drops": [
       "Did not preserve broader communication or empathy relation sprawl beyond the cleanest current-vocabulary learning links."
     ],
     "open_questions": [
-      "Abstraction is source-adjacent in the communication material, but the first-order surface is cleaner around schema-acquisition and CLT."
+      "Abstraction is source-adjacent in the communication material, but the first-order surface is cleaner around schema-acquisition and CLT.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include system-1 (PL feeds intuitive expertise), analogies-and-metaphors (scaffold reasoning via existing perceptual structures)."
     ]
   }
 }

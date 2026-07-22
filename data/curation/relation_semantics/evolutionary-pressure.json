@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking helps evolutionary-pressure reveal which incentives and constraints are selecting behavior across the larger environment.",
       "source_quote": "works when systems adapt around pressure, not around ideals",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Provides the systemic framework for understanding how evolutionary dynamics shape behavior across interconnected systems, though not named as a primary canonical ally.",
+      "activation_condition": "When evolutionary dynamics need to be understood as systemic forces shaping interconnected behaviors rather than isolated biological pressures"
     },
     {
       "target_model_id": "emotional-intelligence",
       "rationale_text": "Emotional-intelligence helps evolutionary-pressure be used diagnostically rather than fatalistically by reading the human signals produced under selection.",
       "source_quote": "emotional intelligence provides the necessary self-awareness and social skills",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states EI 'provides the necessary self-awareness and social skills to manage these primal forces effectively' — since evolution drives the emotional reactions EI must manage.",
+      "activation_condition": "When managing primal emotional responses requires the self-awareness and social skills that EI provides to override evolutionary defaults"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "First-principles-thinking resists evolutionary-pressure when inherited heuristics and survival shortcuts need to be stripped away.",
       "source_quote": "First Principles Thinking strips away conventional assumptions",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical describes the tension: first-principles 'demands stripping away conventional assumptions' while 'evolutionary pressure favors heuristics and assumptive thinking because they save mental energy'.",
+      "activation_condition": "When evolutionary defaults toward familiar heuristics conflict with the need to reconstruct solutions from fundamental principles in novel situations"
     }
   ],
   "structured_tensions": [
@@ -36,21 +45,22 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
-      "tension_text": "Evolutionary-pressure conflicts with commitment-and-consistency-bias when legacy identity prevents fitness-driven change.",
-      "source_quote": "evolutionary-pressure vs commitment-and-consistency-bias: legacy identity prevents fitness-driven change.",
+      "target_model_id": "commitment-bias",
+      "tension_text": "Evolutionary-pressure conflicts with commitment-bias when legacy identity prevents fitness-driven change.",
+      "source_quote": "evolutionary-pressure vs commitment-bias: legacy identity prevents fitness-driven change.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: emotional-intelligence 0.90 (strong — 'provides the necessary self-awareness to manage primal forces'), systems-thinking 0.80 (moderate — systemic framework). Antagonist: first-principles-thinking 0.80 (moderate — demands stripping assumptions evolution favors). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names system-1/system-2 thinking and narrative/storytelling as additional synergistic allies."
     ]
   },
   "deferred_higher_order_notes": {

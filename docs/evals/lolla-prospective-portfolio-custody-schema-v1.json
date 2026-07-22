@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.prospective_constitutional_portfolio_custody.v1",
+  "title": "Lolla Prospective Constitutional Portfolio Custody V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "candidate_only",
+    "live_reasoner_connected",
+    "live_receipt_connected",
+    "decision_trail_connected",
+    "provider_calls",
+    "policy_identity",
+    "substrate_identity",
+    "scope",
+    "unexpanded_direct_reserve",
+    "enumerated_graph_targets",
+    "path_accounting",
+    "coverage",
+    "live_equivalence",
+    "input_custody",
+    "non_claims",
+    "candidate_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.prospective_constitutional_portfolio_custody.v1"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial"
+      ]
+    },
+    "candidate_only": {
+      "const": true
+    },
+    "live_reasoner_connected": {
+      "const": false
+    },
+    "live_receipt_connected": {
+      "const": false
+    },
+    "decision_trail_connected": {
+      "const": false
+    },
+    "provider_calls": {
+      "const": 0
+    },
+    "policy_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "version",
+        "sha256"
+      ],
+      "properties": {
+        "policy_id": {
+          "const": "lolla.constitutional_pressure_planner"
+        },
+        "version": {
+          "const": "1.0.0"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "substrate_identity": {
+      "type": "object"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expansion_seed_rule",
+        "direction",
+        "hop_depth",
+        "allowed_relation_types",
+        "expanded_direct_active_seed_ids",
+        "unexpanded_direct_reserve_count",
+        "safety_path_bound"
+      ],
+      "properties": {
+        "expansion_seed_rule": {
+          "const": "direct_active_only"
+        },
+        "direction": {
+          "const": "outgoing_authored_relations"
+        },
+        "hop_depth": {
+          "const": 1
+        },
+        "allowed_relation_types": {
+          "const": [
+            "antagonist",
+            "tension",
+            "ally"
+          ]
+        },
+        "expanded_direct_active_seed_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "unexpanded_direct_reserve_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "safety_path_bound": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "unexpanded_direct_reserve": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/unexpandedReserve"
+      }
+    },
+    "enumerated_graph_targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/graphTarget"
+      }
+    },
+    "path_accounting": {
+      "type": "object"
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "live_equivalence": {
+      "type": "object"
+    },
+    "input_custody": {
+      "type": "object"
+    },
+    "non_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "candidate_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  },
+  "$defs": {
+    "unexpandedReserve": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_id",
+        "disposition",
+        "neighborhood_status",
+        "neighborhood",
+        "semantic_rejection_performed",
+        "reactivation_condition"
+      ],
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "disposition": {
+          "const": "direct_capacity_reserve_unexpanded"
+        },
+        "neighborhood_status": {
+          "const": "not_enumerated_by_current_policy"
+        },
+        "neighborhood": {
+          "const": null
+        },
+        "semantic_rejection_performed": {
+          "const": false
+        },
+        "reactivation_condition": {
+          "type": "string"
+        }
+      }
+    },
+    "graphTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_model_id",
+        "disposition",
+        "selected_relation_slot",
+        "admission_path",
+        "provenance_paths",
+        "path_coverage",
+        "semantic_rejection_performed"
+      ],
+      "properties": {
+        "target_model_id": {
+          "type": "string"
+        },
+        "disposition": {
+          "enum": [
+            "active_graph_slot",
+            "reserve_graph_capacity",
+            "reserve_duplicate_of_direct_active"
+          ]
+        },
+        "selected_relation_slot": {
+          "type": "string"
+        },
+        "admission_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/path"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "path_coverage": {
+          "type": "object"
+        },
+        "semantic_rejection_performed": {
+          "const": false
+        }
+      }
+    },
+    "path": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_id",
+        "source_model_id",
+        "target_model_id",
+        "edge_type",
+        "direction",
+        "hop_count",
+        "source_order",
+        "compiled_pointer",
+        "authoring_pointer",
+        "source_custody"
+      ],
+      "properties": {
+        "relation_id": {
+          "type": "string"
+        },
+        "source_model_id": {
+          "type": "string"
+        },
+        "target_model_id": {
+          "type": "string"
+        },
+        "edge_type": {
+          "enum": [
+            "ally",
+            "antagonist",
+            "tension"
+          ]
+        },
+        "direction": {
+          "const": "outgoing_authored_relation"
+        },
+        "hop_count": {
+          "const": 1
+        },
+        "source_order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "compiled_pointer": {
+          "type": "string"
+        },
+        "authoring_pointer": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "source_custody": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

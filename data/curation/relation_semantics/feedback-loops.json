@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking treats feedback loops as foundational structures for understanding growth, stability, and interdependence in a system.",
       "source_quote": "Feedback loops are foundational structures in systems; they determine if the system grows or stabilizes.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes feedback loops as 'foundational structures in systems; they determine if the system grows or stabilizes' — analyzing loops is how systems thinkers search for interdependencies.",
+      "activation_condition": "When system behavior requires understanding whether feedback mechanisms are amplifying (positive) or stabilizing (negative) to predict trajectory and intervene effectively"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory relies on feedback loops to adjust pacing and scaffolding so the learner is not overwhelmed.",
       "source_quote": "Scaffolding requires constant feedback and correction to avoid overwhelming the student's limited working memory.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the learning application of feedback — scaffolding 'requires constant feedback and correction to avoid overwhelming the student's limited working memory', but is not core to feedback loop mechanics.",
+      "activation_condition": "When feedback-driven learning requires pacing adjustments to avoid overwhelming working memory with too much corrective information at once"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias blocks effective feedback loops by resisting the evidence that should change the next action.",
       "source_quote": "Effective feedback loops require one to acknowledge, reflect on, and learn from mistakes and failures.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'resistance to disconfirming evidence' that acts as 'model-defending behavior' — directly blocks the acknowledgment and learning from mistakes that effective feedback loops require.",
+      "activation_condition": "When feedback signals contain disconfirming evidence that the recipient is psychologically wired to dismiss in favor of existing beliefs"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on systems allies, explicit tensions, and one clean antagonist, so the file stays intentionally bounded.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'foundational structures in systems'), cognitive-load-theory 0.80 (moderate — supports learning pacing). Antagonist: confirmation-bias 0.90 (strong — 'resistance to disconfirming evidence'). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor topology or iterative-agent overlays because the raw first-order relation surface is already sufficient for this conservative pass."
     ],
     "open_questions": [
-      "Inside-view and curse-of-knowledge are source-real conflicts but were left omitted rather than forced into weaker target mappings."
+      "Inside-view and curse-of-knowledge are source-real conflicts but were left omitted rather than forced into weaker target mappings.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names metacognition and hypothesis-driven problem solving as additional synergistic allies."
     ]
   }
 }

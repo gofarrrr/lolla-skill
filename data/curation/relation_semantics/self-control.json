@@ -7,14 +7,20 @@
       "rationale_text": "Habit-formation helps self-control shift good behavior from effortful restraint into automatic support.",
       "source_quote": "developing better habits",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Self-control is directly supported by the development of better habits' and 'Habits reduce cognitive load, freeing up the limited pool of effort available for self-control.'",
+      "activation_condition": "When building automatic habits reduces the cognitive load of conscious self-regulation, freeing capacity for higher-order decisions."
     },
     {
       "target_model_id": "metacognitive-questioning",
       "rationale_text": "Metacognitive-questioning helps self-control create the pause needed to inspect impulse before action.",
-      "source_quote": "What\u2019s happening?",
+      "source_quote": "What’s happening?",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Metacognition provides the overarching structure necessary for the reflective mind (System 2) to consciously monitor intuitive (System 1) decision-making.'",
+      "activation_condition": "When conscious monitoring of one's own thinking process is needed to exercise self-control over automatic impulses."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias makes self-control rationalize a preferred impulse instead of examining it honestly.",
       "source_quote": "confirmation bias",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'Cognitive dissonance conflicts with self-control, which requires the discipline to identify and reconcile disconfirming evidence and scrutinize one's own models.'",
+      "activation_condition": "When the brain's model-defending behavior resists the objective self-assessment necessary for genuine self-control."
     }
   ],
   "structured_tensions": [
@@ -43,5 +52,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. habit-formation 0.90 ('directly supported'), metacognitive-questioning 0.90 ('overarching structure'). confirmation-bias antagonist at 0.80. Canonical also mentions first-principles-thinking and emotional-intelligence as allies.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include emotional-intelligence/self-awareness (recognizing emotional triggers), first-principles-thinking (requires intellectual humility and self-control)."
+    ]
+  }
 }

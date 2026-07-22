@@ -7,14 +7,20 @@
       "rationale_text": "System-2 is the essential cognitive mode for applying base rates — slow, reflective, contemplative processing is required to invoke reference-class thinking and override the vivid specifics that System 1 uses to neglect base rates.",
       "source_quote": "Applying base rates is a process that requires effort, logic, and deliberation, classifying it as a System 2 function (slow, reflective, contemplative thinking). Consciously invoking System 2 is necessary to override the quick, intuitive responses of System 1 that often lead to base-rate neglect.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "The canonical classifies base-rate thinking AS a System 2 activity — 'Applying base rates is a process that requires effort, logic, and deliberation, classifying it as a System 2 function.' System 2 IS the cognitive mode that makes base-rate analysis possible.",
+      "activation_condition": "When base-rate analysis requires deliberate, effortful processing to override intuitive System 1 shortcuts that would ignore population-level frequency data"
     },
     {
       "target_model_id": "scientific-method-evidence-testing",
       "rationale_text": "The scientific method supports base rates by forcing beliefs to be calibrated against repeatable historical evidence instead of vivid specifics.",
       "source_quote": "Base rates embody a scientific mindset by demanding that beliefs be calibrated based on objective, repeatable evidence (historical frequency).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific calibration mechanism — 'demands that beliefs be calibrated based on objective, repeatable evidence (historical frequency)' — the discipline that makes base-rate estimates evidence-based rather than intuitive.",
+      "activation_condition": "When base-rate priors need to be validated against repeatable, objective historical evidence rather than accepted as intuitively reasonable estimates"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "System-1's fast, intuitive processing is the primary cognitive source of base-rate neglect — heuristic shortcuts substitute vivid, representative details for statistical regularities, causing people to ignore base rates when System 1's automatic narrative feels compelling.",
       "source_quote": "System 1 Thinking (Heuristics and Biases): System 1 is fast and automatic, relying on heuristics and biases that can lead to base-rate neglect. These shortcuts substitute vivid, representative details for statistical regularities.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Explicitly called 'the primary antagonist' — System 1's automatic heuristic processing is the cognitive source of base-rate neglect, substituting vivid individual cases for population-level data.",
+      "activation_condition": "When fast, automatic heuristic processing is substituting vivid individual cases or available examples for population-level frequency data in the estimate"
     },
     {
       "target_model_id": "einstellung-effect",
       "rationale_text": "Einstellung-effect (cognitive entrenchment) causes experts to dismiss base-rate data that contradicts their specialized mental models — the fixation on domain-specific frameworks blocks the reference-class correction that base rates provide.",
       "source_quote": "Cognitive Entrenchment: Experts who have deep mastery of a field may suffer from cognitive entrenchment, making them less flexible and more prone to ignore external, general data (base rates) that contradict their internal specialized mental models.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Secondary mechanism through expertise — 'Experts who have deep mastery may suffer from cognitive entrenchment' — causes dismissal of base-rate data that contradicts established expert patterns.",
+      "activation_condition": "When deep domain expertise makes the expert dismiss population-level evidence that contradicts their established pattern recognition from prior cases"
     }
   ],
   "structured_tensions": [
@@ -52,13 +64,14 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strong on explicit tensions, but most ally and antagonist prose does not map cleanly to the current canonical id surface without forcing outside-view or System 1 approximations.",
+    "summary": "Layer 1+2 enrichment complete. Allies: system-2 0.95 (critical — base-rate thinking IS System 2 activity), scientific-method-evidence-testing 0.90 (strong — evidence calibration). Antagonists: system-1 0.95 (critical — 'the primary antagonist'), einstellung-effect 0.80 (moderate — expert entrenchment). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor-added relation overlays beyond the raw ally, antagonist, and structured tension sections."
     ],
     "open_questions": [
       "Cognitive entrenchment wired in Task 2.5 sweep via einstellung-effect mapping.",
-      "System-2 wired as ally, system-1 wired as antagonist (Task 4.1 sweep). Outside-view remains deferred — embedded in base-rates itself, no clean standalone canonical id."
+      "System-2 wired as ally, system-1 wired as antagonist (Task 4.1 sweep). Outside-view remains deferred — embedded in base-rates itself, no clean standalone canonical id.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Analogy/Reference Classes ('correctly identifying a reference class, and base rates provide the statistical verification') as a strong ally."
     ]
   },
   "deferred_higher_order_notes": {

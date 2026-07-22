@@ -7,17 +7,34 @@
       "rationale_text": "Cognitive-load-theory is the clearest ally for scaffolding-educational because staged support reduces overload and helps schemas form.",
       "source_quote": "This is the most crucial ally. Scaffolding is essentially the practical application of CLT.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical: 'This is the most crucial ally. Scaffolding is essentially the practical application of CLT' — ensures learning chunks respect working memory limits.",
+      "activation_condition": "When educational content must be structured in incremental units that respect the brain's working memory capacity."
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "Feynman-technique complements scaffolding-educational by forcing the learner to simplify and restate understanding at each stage.",
       "source_quote": "The Feynman technique requires the learner to simplify a concept in plain English and use analogies to fill knowledge gaps.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Scaffolding is embedded within this learning framework' — Feynman's simplify-and-analogize process is a form of self-scaffolding.",
+      "activation_condition": "When learning requires simplifying concepts in plain language and using analogies to bridge knowledge gaps as scaffolded steps."
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "expertise-reversal-effect",
+      "rationale_text": "Expertise-reversal-effect undermines scaffolding-educational by making explicit instructional steps interfere with experts' established schemas, turning support into cognitive friction.",
+      "source_quote": "The Expertise Reversal Effect: For experts, too many explicit instructions (over-scaffolding) can interfere with their established methods and mental schemas, making the process less efficient than if they had operated freely.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Related to Curse of Knowledge: scaffolding designed for novices can become redundant and counterproductive for experts who need less structure.",
+      "activation_condition": "When scaffolding designed for novices becomes counterproductive for experts whose existing schemas make the structured guidance redundant."
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "first-principles-thinking",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. cognitive-load-theory at 0.95 ('most crucial, practical application'). feynman-technique at 0.90 ('embedded within'). expertise-reversal-effect antagonist at 0.80.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include blooms-taxonomy (structures learning hierarchy), first-principles-thinking (methodical decomposition)."
     ]
   },
   "deferred_higher_order_notes": {

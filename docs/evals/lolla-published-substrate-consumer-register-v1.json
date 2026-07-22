@@ -1,0 +1,163 @@
+{
+  "schema_version": "lolla.published_substrate_consumer_register.v1",
+  "created_date": "2026-07-22",
+  "status": "complete_for_phase3",
+  "policy": {
+    "publication_read_owner": "engine/system_b/published_knowledge_substrate.py",
+    "runtime_compilation_allowed": false,
+    "runtime_semantic_repair_allowed": false,
+    "provider_calls_allowed": 0,
+    "direction_contract": "outgoing_incoming_reference_and_incident_are_separate_and_never_reverse_authored_edges"
+  },
+  "migrated_runtime_consumers": [
+    {
+      "path": "engine/system_b/pipeline.py",
+      "role": "canonical_live_pipeline",
+      "read_mode": "one_snapshot_shared_by_catalog_relation_and_companion_consumers",
+      "ranking_or_admission_owner": "existing_lane_and_companion_policies",
+      "semantic_output_change": false
+    },
+    {
+      "path": "engine/system_b/relation_graph.py",
+      "role": "lane1_outgoing_relation_adapter",
+      "read_mode": "immutable_snapshot_relations",
+      "ranking_or_admission_owner": "RelationGraph.neighborhood",
+      "semantic_output_change": false
+    },
+    {
+      "path": "engine/system_b/tendency_catalog.py",
+      "role": "tendency_catalog_adapter",
+      "read_mode": "immutable_snapshot_tendencies",
+      "ranking_or_admission_owner": "TendencyCatalog",
+      "semantic_output_change": false
+    },
+    {
+      "path": "engine/system_b/pressure_router.py",
+      "role": "standalone_pressure_router",
+      "read_mode": "one_shared_snapshot",
+      "ranking_or_admission_owner": "PressureRouter",
+      "semantic_output_change": false
+    },
+    {
+      "path": "engine/system_b/v60_enrichment.py",
+      "role": "v60_display_name_join",
+      "read_mode": "exact_snapshot_model_identity",
+      "ranking_or_admission_owner": "V60_enrichment_policy",
+      "semantic_output_change": false
+    },
+    {
+      "path": "engine/system_b/authority_phase1_builder.py",
+      "role": "default_off_live_promotion_workspace_builder",
+      "read_mode": "snapshot_payload_and_validated_artifact_copy",
+      "ranking_or_admission_owner": "authority_phase1_builder",
+      "semantic_output_change": false
+    },
+    {
+      "path": "engine/system_b/stress_phase1_builder.py",
+      "role": "default_off_live_promotion_workspace_builder",
+      "read_mode": "snapshot_payload_and_validated_artifact_copy",
+      "ranking_or_admission_owner": "stress_phase1_builder",
+      "semantic_output_change": false
+    },
+    {
+      "path": "scripts/run_route.py",
+      "role": "legacy_standalone_route_helper",
+      "read_mode": "snapshot_legacy_payload_adapter",
+      "ranking_or_admission_owner": "run_route_existing_policy",
+      "semantic_output_change": false,
+      "deletion_or_review_milestone": "Phase6_skill_entrypoint_review"
+    },
+    {
+      "path": "scripts/run_triage.py",
+      "role": "legacy_standalone_triage_helper",
+      "read_mode": "snapshot_legacy_payload_adapter",
+      "ranking_or_admission_owner": "run_triage_existing_policy",
+      "semantic_output_change": false,
+      "deletion_or_review_milestone": "Phase6_skill_entrypoint_review"
+    },
+    {
+      "path": "scripts/run_companion.py",
+      "role": "legacy_standalone_companion_helper",
+      "read_mode": "snapshot_legacy_payload_adapter",
+      "ranking_or_admission_owner": "run_companion_existing_policy",
+      "semantic_output_change": false,
+      "deletion_or_review_milestone": "Phase6_skill_entrypoint_review"
+    }
+  ],
+  "direct_reference_inventory": [
+    {
+      "path": "engine/system_b/published_knowledge_substrate.py",
+      "disposition": "sole_published_reader",
+      "reason": "owns validated read-only publication loading and indexes"
+    },
+    {
+      "path": "engine/system_b/compilation_bundle.py",
+      "disposition": "candidate_compiler_not_runtime_reader",
+      "reason": "reads candidate outputs and compares them with frozen publication; cannot promote"
+    },
+    {
+      "path": "engine/system_b/operational_curation.py",
+      "disposition": "compiler_and_review_tooling",
+      "reason": "reconciles authoring inputs during provider-free compilation and review"
+    },
+    {
+      "path": "engine/system_b/intervention_semantics.py",
+      "disposition": "compiler_and_preview_tooling",
+      "reason": "validates Wave 2 authoring and compiler previews"
+    },
+    {
+      "path": "engine/system_b/relation_semantics.py",
+      "disposition": "compiler_and_preview_tooling",
+      "reason": "validates Wave 3 authoring and compiler previews"
+    },
+    {
+      "path": "engine/system_b/reasoning_substrate_packet.py",
+      "disposition": "offline_research_packet_builder",
+      "reason": "accepts explicit file fixtures for V60 replay labs; it is not the live skill graph path"
+    },
+    {
+      "path": "engine/system_b/reasoning_substrate_coverage.py",
+      "disposition": "provider_free_coverage_evaluator",
+      "reason": "compares declared files and manifests; it does not supply live pressure"
+    },
+    {
+      "path": "engine/system_b/source_custody.py",
+      "disposition": "provider_free_custody_evaluator",
+      "reason": "checks source-manifest reconciliation; it does not supply live pressure"
+    },
+    {
+      "path": "engine/system_b/mental_model_teacher_substrate_inventory.py",
+      "disposition": "parked_teacher_product_projection",
+      "reason": "Teacher and interface work are outside the current runtime scope"
+    },
+    {
+      "path": "engine/system_b/authority_phase1_builder.py",
+      "disposition": "migrated_runtime_adapter_with_artifact_output_refs",
+      "reason": "graph input comes from the snapshot; filename references name generated workspace outputs"
+    },
+    {
+      "path": "engine/system_b/stress_phase1_builder.py",
+      "disposition": "migrated_runtime_adapter_with_artifact_output_refs",
+      "reason": "graph input comes from the snapshot; filename references name generated workspace outputs"
+    },
+    {
+      "path": "engine/system_b/constitutional_graph_survival.py",
+      "disposition": "current_planner_with_source_ref_strings_only",
+      "reason": "receives graph payload from the pipeline and emits exact locators; Phase4 extracts its policy"
+    }
+  ],
+  "temporary_adapters": {
+    "snapshot_payload_copy_methods": {
+      "owner": "engine/system_b/published_knowledge_substrate.py",
+      "purpose": "preserve exact existing dict/list inputs while consumers migrate",
+      "deletion_milestone": "remove_each_copy_adapter_when_its_consumer_accepts_typed_snapshot_records",
+      "runtime_semantic_change_authorized": false
+    }
+  },
+  "non_claims": [
+    "shared_read_boundary_is_not_shared_ranking_policy",
+    "incident_access_does_not_make_edges_reciprocal",
+    "complete_loading_is_not_semantic_correctness",
+    "consumer_migration_is_not_product_usefulness"
+  ]
+}

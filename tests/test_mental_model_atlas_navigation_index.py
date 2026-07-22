@@ -3,14 +3,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.product.build_mental_model_atlas_navigation_index import (
-    build_navigation_package,
-    canonical_json_bytes,
+from scripts.product.build_mental_model_atlas_custody_v2 import (
+    build_navigation_custody_v2_package as build_navigation_package,
 )
+from scripts.product.build_mental_model_atlas_navigation_index import canonical_json_bytes
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "apps/mental-model-atlas/public/data/navigation-v1"
+DATA_DIR = ROOT / "apps/mental-model-atlas/public/data/navigation-v2"
 
 
 def test_checked_in_navigation_index_rebuilds_from_canonical_graph() -> None:
@@ -73,7 +73,7 @@ def test_orientation_slice_uses_exact_canonical_model_and_relation_records() -> 
     orientation = json.loads(
         (
             ROOT
-            / "apps/mental-model-atlas/public/data/phase1/ordinary-navigation.json"
+            / "apps/mental-model-atlas/public/data/phase1-v2/ordinary-navigation.json"
         ).read_text(encoding="utf-8")
     )
     canonical_models = {item["model_id"]: item for item in index["models"]}

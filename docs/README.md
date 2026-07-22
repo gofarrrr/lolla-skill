@@ -30,9 +30,13 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT AUDIT:** [Constitution Stage 0 addendum](conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
 - **CURRENT CORRECTION:** [Stage 0.6 long-conversation truthfulness result](conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md)
 - **CURRENT REGISTER:** [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
+- **CURRENT GRAPH/SKILL RESULT:** [Self-contained graph substrate and skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
+- **CURRENT GRAPH AUDIT:** [Graph and knowledge-substrate workbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md)
+- **CURRENT GRAPH READINESS:** [Provider-free self-contained skill register](evals/lolla-self-contained-skill-readiness-v1.json)
+- **CURRENT ATLAS DATA:** [Atlas custody V2 result](product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
+- **CURRENT ATLAS CUSTODY PROOF:** [Atlas custody V2 evidence](evals/lolla-mental-model-atlas-custody-v2-evidence.json)
 - **CURRENT ROADMAP:** [Post-Stage-0 restart roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
 - **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
-- **OPERATIONS / CUSTODY:** [Founder desktop worktree closeout](operations/lolla-founder-desktop-worktree-custody-closeout-2026-07-17.md)
 - **LOCAL PRODUCT REVIEW:** [Mental Model Atlas Phase 1 result](product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
 - **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
 - **LOCAL CARD-FIRST CORRECTION:** [Atlas card-first truthfulness result](product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
@@ -47,9 +51,10 @@ Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
 - **CURRENT LOCAL GRAPH EVIDENCE:** [Atlas graph-legibility evidence](evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
 - **CURRENT LOCAL NEIGHBORHOOD REPAIR:** [Atlas neighborhood-navigation repair](product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
 - **CURRENT LOCAL NEIGHBORHOOD EVIDENCE:** [Atlas neighborhood-navigation evidence](evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
-- **CONTROLLING CANONICAL ATLAS STATUS:** [Atlas baseline publication](product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
+- **FROZEN CANONICAL ATLAS V1 STATUS:** [Atlas baseline publication](product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
 - **REVIEWED PREPUBLICATION ATLAS BASELINE:** [Atlas baseline consolidation](product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
 - **CURRENT LOCAL BASELINE EVIDENCE:** [Atlas baseline consolidation evidence](evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
+- **CURRENT LOCAL FIRST-VIEWPORT REPAIR:** [Atlas first-viewport interaction result](product/lolla-mental-model-atlas-first-viewport-repair-result-2026-07-17.md)
 
 These current entrypoints control over old “next step,” “current,” or
 “integration” language preserved inside historical evidence.
@@ -58,6 +63,7 @@ These current entrypoints control over old “next step,” “current,” or
 
 - **LIVE:** [Skill orchestration contract](../SKILL.md)
 - **LIVE:** [Detailed skill steps](skill/STEPS.md)
+- **LIVE / MAINTENANCE:** [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
 - **LIVE:** [Live-flow explanation](how-it-works/live-flow.md)
 - **LIVE:** [Cost and telemetry](cost-and-telemetry.md)
 - **LIVE / BOUNDED:** [Agent result contract](lolla-agent-result-contract.md)

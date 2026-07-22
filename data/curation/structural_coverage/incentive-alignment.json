@@ -1,0 +1,48 @@
+{
+  "dimension_id": "incentive-alignment",
+  "dimension_name": "Incentive Alignment",
+  "cleaving_frame": "Principal vs Agent",
+  "description": "The problem involves actors whose interests may diverge from those they serve or work with. Someone is deciding on behalf of, or dependent on, someone else. The structural question is whether incentive structures produce the desired behavior.",
+  "question_types": ["decision-evaluation", "action-planning", "causal-diagnosis"],
+  "detect_when": [
+    "Multiple parties have different payoff structures or objectives",
+    "Someone acts on behalf of someone else (delegation, outsourcing, advisory, fiduciary)",
+    "Rewards or penalties are decoupled from the outcomes they should drive",
+    "Information is asymmetric between parties — one side knows more than the other",
+    "Effort or action is unobservable, so payment cannot be based on actual input"
+  ],
+  "coverage_signals": [
+    "The answer identifies whose incentives drive the decision and whether those incentives align with the stated goal",
+    "The answer discusses monitoring, accountability, or alignment mechanisms",
+    "The answer addresses what happens when interests diverge — the failure mode of misalignment",
+    "The answer considers whether the information gap between parties distorts the outcome"
+  ],
+  "materiality_test": "Would realigning incentives or changing the monitoring structure change the recommended action?",
+  "reasoning_demanded": "incentive-structure analysis, monitoring design, alignment mechanism evaluation",
+  "models": [
+    "principal-agent-problem",
+    "moral-hazard",
+    "incentives",
+    "adverse-selection",
+    "information-asymmetry"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Principal-agent-problem is the foundational model (delegator vs executor, misaligned objectives). Moral-hazard addresses the unobservability of effort — when consequences are borne by another party. Incentives covers the mechanism design (autonomy, mastery, purpose vs carrot-and-stick). Adverse-selection addresses pre-transaction information gaps. Information-asymmetry covers the knowledge imbalance that enables exploitation. Together they span the full principal-agent structural territory.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from principal-agent-problem (delegation, misaligned objectives), moral-hazard (unobservability of effort), information-asymmetry (knowledge gap elasticity, curse of knowledge). Payoff structure divergence is the common thread."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Signals map to canonical material: incentive identification from principal-agent-problem's alignment challenge, monitoring from moral-hazard's accountability structures, divergence failure mode from incentives' Motivation 3.0 framework, information gap from information-asymmetry."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All five models have explicit incentive-alignment activation in canonical articles. Adverse-selection's canonical article is thinner (term not explicitly in source material) but the curation file exists and covers pre-transaction information gap dynamics."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "dimension_id": "information-quality",
+  "dimension_name": "Information Quality",
+  "cleaving_frame": "Signal vs Noise",
+  "description": "The problem depends on evidence, data, or observations whose reliability, representativeness, or completeness is in question. The structural question is whether the evidence base is strong enough to support the conclusion.",
+  "question_types": ["causal-diagnosis", "decision-evaluation", "prediction"],
+  "detect_when": [
+    "Key claims rest on data that may be biased, small, or unrepresentative",
+    "Survivorship or selection effects may distort the picture — only winners are visible",
+    "The answer treats noisy, preliminary, or anecdotal evidence as settled fact",
+    "Correlation is being presented as causation without ruling out confounders"
+  ],
+  "coverage_signals": [
+    "The answer assesses evidence quality — sample size, selection bias, measurement reliability",
+    "The answer distinguishes between correlation and causation and tests for confounders",
+    "The answer identifies what evidence is missing and what would change the conclusion",
+    "The answer checks base rates before interpreting specific observations"
+  ],
+  "materiality_test": "Would different or better evidence change the conclusion?",
+  "reasoning_demanded": "evidential reasoning, base-rate analysis, sample assessment, falsification testing",
+  "models": [
+    "survivorship-bias",
+    "base-rates",
+    "correlation-vs-causation",
+    "statistical-discipline",
+    "law-of-large-numbers",
+    "falsifiability"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Survivorship-bias addresses the selection effect distortion (seeing only survivors). Base-rates provides the prior probability anchor before updating on new evidence. Correlation-vs-causation separates co-occurrence from causal relationship. Statistical-discipline covers sample size, measurement, and inference rigor. Law-of-large-numbers addresses small-sample unreliability. Falsifiability provides the 'what would disprove this' test. Together they cover the full evidence-quality reasoning surface.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from survivorship-bias (selection distortion), base-rates (prior probability neglect), correlation-vs-causation (confounder blindness), statistical-discipline (small sample unreliability)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Evidence quality assessment from statistical-discipline. Correlation/causation distinction from correlation-vs-causation. Missing evidence from falsifiability. Base-rate checking from base-rates."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All six models have explicit evidence-quality activation in canonical articles. This dimension bridges models that are often applied individually but gain structural power when combined — together they constitute a complete evidence audit."
+    }
+  }
+}

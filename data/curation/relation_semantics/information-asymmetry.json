@@ -7,21 +7,30 @@
       "rationale_text": "The Feynman Technique helps expose blind spots and convert hidden unknowns into inspectable knowledge.",
       "source_quote": "By forcing the practitioner to simplify a concept until it can be explained in \"plain English\" ... it reveals blind spots and \"chinks in your armor,\" thereby transforming known unknowns into known knowns.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states FT 'directly addresses personal IA' by 'forcing the practitioner to simplify a concept until it can be explained in plain English, revealing blind spots and chinks in your armor'.",
+      "activation_condition": "When personal information asymmetry must be surfaced by forcing simplification that reveals what is genuinely understood versus what is merely familiar"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive Load Theory disciplines how hidden knowledge gets transferred so expert complexity does not overwhelm the learner.",
       "source_quote": "Applying CLT principles (like scaffolding) mitigates IA in teaching by simplifying complex material into small, incremental chunks.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical states CLT 'mitigates IA in teaching by simplifying complex material into small, incremental chunks, ensuring the student builds knowledge schemas gradually' — supports IA mitigation in knowledge transfer contexts.",
+      "activation_condition": "When knowledge transfer across an information asymmetry gap requires scaffolded delivery that respects the receiver's working memory constraints"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems Thinking helps classify known and unknown risks so information gaps become visible rather than assumed away.",
       "source_quote": "This matrix helps systematically identify the risks that create IA, such as \"known unknowns\" ... and \"unknown unknowns\".",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states 'The IA model fits perfectly within the Knowns and Unknowns framework' — systems thinking provides the matrix for systematically identifying the risks that create information gaps.",
+      "activation_condition": "When information gaps must be systematically mapped using the knowns-unknowns framework to convert hidden risks into identified, manageable uncertainties"
     }
   ],
   "antagonists": [
@@ -30,21 +39,30 @@
       "rationale_text": "System-1 entrenches information asymmetry by jumping to conclusions from available evidence — its speed-optimized shortcuts avoid the deliberative effort System 2 would use to recognize and investigate informational gaps, so IA persists undetected.",
       "source_quote": "System 1 is optimized for speed and uses shortcuts (heuristics). When IA presents complexity, System 1 tends to avoid the 'rigors of thinking' and jumps to conclusions based on intuitive, often erroneous, patterns, rather than slowing down to engage the deliberative effort required by System 2 to gather missing information and recognize bias.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes System 1 as avoiding 'the rigors of thinking' when IA presents complexity, jumping to conclusions 'based on intuitive, often erroneous, patterns' rather than gathering missing information.",
+      "activation_condition": "When complexity caused by information gaps triggers fast intuitive shortcuts rather than the deliberate investigation needed to identify what information is missing"
     },
     {
       "target_model_id": "wysiati",
       "rationale_text": "WYSIATI amplifies information asymmetry by suppressing recognition of one's own informational gaps — available information feels complete, preventing the investigation that would surface what the other party knows and the observer does not.",
       "source_quote": "The raw source is rich on WYSIATI, Maslow's Hammer / Availability Heuristic, and fast System 1 as antagonistic pressure.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical calls WYSIATI 'the chief antagonist to recognizing IA' — it causes 'confident judgments based only on the evidence at hand, ignoring the possibility that critical information is missing'.",
+      "activation_condition": "When confident decisions are made from available evidence without recognizing that the missing information could fundamentally change the assessment"
     },
     {
       "target_model_id": "einstellung-effect",
       "rationale_text": "Einstellung-effect undermines information-asymmetry analysis by substituting familiar diagnostic tools for genuine investigation — the existing-solution fixation blocks the problem-recognition step needed to surface hidden informational gaps.",
       "source_quote": "Maslow's Hammer / Availability Heuristic: These models describe the tendency to rely on the tools or mental models that are most familiar or 'handy'... This prevents necessary investigation into the underlying informational gaps.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Mapped from canonical 'Maslow's Hammer / Availability Heuristic' — 'rely on tools most familiar, substituting a simple known model, preventing necessary investigation into underlying informational gaps'.",
+      "activation_condition": "When familiar analytical frameworks are applied without investigating whether the information gaps make those frameworks inappropriate for the novel situation"
     }
   ],
   "structured_tensions": [
@@ -66,7 +84,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is unusually strong on allies and explicit tensions, but several named antagonists do not map cleanly to current canonical model ids.",
+    "summary": "Layer 1+2 enrichment complete. Allies: feynman-technique 0.90 (strong — 'directly addresses personal IA'), systems-thinking 0.90 (strong — 'fits perfectly within' knowns/unknowns), cognitive-load-theory 0.80 (moderate — scaffolded delivery across gaps). Antagonists differentiated: wysiati 0.95 (critical — 'the chief antagonist'), system-1 0.90 (strong — avoids rigorous investigation), einstellung-effect 0.80 (moderate — familiar tools prevent gap investigation). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor-added relation overlays beyond what the raw source itself supports.",
       "Did not force WYSIATI or System 1 phrases into broader target ids just to inflate antagonist counts."

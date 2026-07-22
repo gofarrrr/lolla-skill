@@ -7,14 +7,20 @@
       "rationale_text": "Anchoring supports endowment-effect because owned assets become reference points that distort later valuation and comparison.",
       "source_quote": "anchored to the past status quo",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Related to canonical 'Framing' — the endowment effect frames valuation around 'what I already have' rather than 'what I could gain', anchoring the reference point to current ownership.",
+      "activation_condition": "When valuation is anchored to current ownership status rather than objective market worth, inflating the perceived value of possessed assets"
     },
     {
       "target_model_id": "rationalization",
       "rationale_text": "Rationalization amplifies endowment-effect when owners spin persuasive stories to justify a value that their attachment is already inflating.",
       "source_quote": "This self-focused perspective can engage motivated reasoning, where individuals process information specifically to get a conclusion we want.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the post-hoc justification of inflated valuations — once ownership inflates perceived value, rationalization provides the narrative machinery to defend the higher price as reasonable.",
+      "activation_condition": "When ownership-inflated valuations are defended through post-hoc justifications rather than acknowledged as bias-driven deviations from objective worth"
     }
   ],
   "antagonists": [
@@ -23,21 +29,30 @@
       "rationale_text": "Sunk-cost-fallacy conflicts with endowment-effect by worsening the tendency to hold owned assets long after their value or usefulness has deteriorated.",
       "source_quote": "endowment-effect conflicts with sunk-cost-fallacy when owned assets are overvalued and held despite deteriorating value.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'owned assets are overvalued and held despite deteriorating value'. Sunk-cost compounds the endowment effect by adding past investment as additional justification for holding.",
+      "activation_condition": "When past investment in an asset compounds ownership attachment, making the rational divestment case even harder to accept"
     },
     {
       "target_model_id": "status-quo-bias",
       "rationale_text": "Status-quo-bias conflicts with endowment-effect when attachment to current holdings suppresses rational switching or divestment.",
       "source_quote": "endowment-effect conflicts with status-quo-bias when attachment to current holdings suppresses rational switching.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'attachment to current holdings suppresses rational switching'. Status-quo preference reinforces the endowment effect's resistance to change.",
+      "activation_condition": "When the default preference for current holdings prevents objective evaluation of whether switching to an alternative would produce better outcomes"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking counters endowment-effect by forcing a re-evaluation of owned assets based on underlying facts instead of ownership-derived value.",
       "source_quote": "endowment-effect conflicts with first-principles-thinking when ownership inflates perceived value beyond what the underlying facts justify.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states it 'forces a rational re-evaluation of the item's worth independent of the assumed value derived from ownership' by stripping away assumptions — directly counters the bias.",
+      "activation_condition": "When rational re-evaluation of asset worth requires stripping away the ownership premium to assess value from fundamental facts alone"
     }
   ],
   "structured_tensions": [
@@ -67,12 +82,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays very close to the source: ownership anchoring, rationalization pressure, and three explicit structured tensions that cleanly fit current ids.",
+    "summary": "Layer 1+2 enrichment complete. Allies: anchoring 0.80 (moderate — ownership frames valuation reference point), rationalization 0.80 (moderate — post-hoc justification). Antagonists differentiated: first-principles-thinking 0.90 (strong — 'forces rational re-evaluation'), sunk-cost-fallacy 0.80 (moderate — compounds overvaluation), status-quo-bias 0.80 (moderate — suppresses switching). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve broader System 1 or framing expansion because the current vocabulary already supports a cleaner valuation-distortion surface."
     ],
     "open_questions": [
-      "Opportunity-cost is source-real, but the explicit structured-tension surface was stronger and cleaner on sunk-cost-fallacy, status-quo-bias, and first-principles-thinking."
+      "Opportunity-cost is source-real, but the explicit structured-tension surface was stronger and cleaner on sunk-cost-fallacy, status-quo-bias, and first-principles-thinking.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names loss-aversion, framing, and system-1 thinking as primary synergistic mechanisms."
     ]
   }
 }

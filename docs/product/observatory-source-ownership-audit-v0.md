@@ -7,9 +7,8 @@ Decision gate: `proceed_to_observatory_portable_server_view_model_contracts`
 ## One Sentence
 
 Observatory is one portable skill-presentation product shell: the Python server
-in this repo owns the active product direction for now, while
-`Lolla-system-b/observatory/svelte-app` is verified as the historical legacy
-source for the old root SPA, not the future product source by default.
+in this repo owns the active product direction and the checked-in legacy root
+bundle is optional distribution material, not an external source dependency.
 
 ## Why This Exists
 
@@ -45,15 +44,14 @@ Related design trail:
 
 ## Short Verdict
 
-The source owner is split by role, but the current product direction is not
-split:
+The source owner and current product direction are both repository-local:
 
 | Responsibility | Owner today | Decision |
 | --- | --- | --- |
 | Local serving, routing, archive/run loading, read-only APIs | `observatory/serve_result.py` in this repo | Keep here. This is the portable runtime boundary. |
 | Server-rendered audit, usage, Learn, Receipts, and process-brief status | `observatory/serve_result.py` in this repo | Keep here as the active product surface direction. |
-| Historical root SPA source for `/` | `Lolla-system-b/observatory/svelte-app` | Treat as legacy source evidence for the old app-era shell, not as the default future owner. |
-| Checked-in runtime bundle | `observatory/build/*` in this repo | Treat as copied compiled output, not source. Do not hand-edit. |
+| Legacy root SPA authoring source | Not present and not an active dependency | Do not maintain or replace the legacy bundle until repository-local source and a reproducible build are approved. |
+| Checked-in runtime bundle | `observatory/build/*` in this repo | Treat as optional compiled distribution output, not source. Do not hand-edit. |
 | Product IA and contracts | `docs/product/*`, future view-model modules in this repo | Keep here because the portable runtime must own product-safe translation. |
 | Future global selected-run shell | Portable Python/server-rendered Observatory first | Build here unless a later explicit frontend decision says otherwise. |
 
@@ -110,14 +108,10 @@ server-rendered while the skill presentation surface is still being shaped.
 ### Source Note In Server
 
 `observatory/serve_result.py` states that the bundle in `observatory/build/`
-is compiled output from:
-
-```text
-Lolla-system-b/observatory/svelte-app
-```
-
-The same header says `/audit/*` and `/usage` are rendered from the Python file
-and stay portable when `observatory/build/` is empty.
+is a checked-in legacy distribution artifact whose former source workspace is
+retired and is not a dependency or editing path. The same header says the
+repository-owned surfaces are rendered from the Python file and stay portable
+when `observatory/build/` is empty.
 
 ### Portability Doctrine
 
@@ -131,41 +125,21 @@ It also states that every audit panel is server-rendered HTML and works whether
 or not the Svelte SPA bundle exists. That is the portability boundary: the skill
 runtime must keep a useful local Observatory without a Node toolchain.
 
-## Evidence From The External Svelte Source
+## Retired Source Boundary
 
-A local sibling checkout was inspected read-only:
+Any former sibling frontend source is outside the current project boundary.
+It is neither an installation prerequisite nor a future editing location. A
+fresh clone must keep a useful Observatory with only this repository.
 
-```text
-Lolla-system-b/observatory/svelte-app
-```
-
-Observed facts:
-
-- Git remote: `gofarrrr/lolla-system-b`;
-- branch inspected: `feat/skill-backport-quality-improvements`;
-- head inspected: `85dc10b`;
-- app package name: `observatory`;
-- stack: Svelte 5, Vite 6, TypeScript, Vitest;
-- source files include `src/App.svelte`, `ReasoningGraph.svelte`,
-  `ModelDetailPanel.svelte`, `FamiliesView.svelte`, `KpiHeader.svelte`,
-  `RunHealthView.svelte`, and related component tests;
-- the Svelte app fetches `/api/cases`, `/api/case/<id>`,
-  `/api/case/<id>/graph`, `/api/model/<model_id>`, and `/api/families`;
-- the root app still presents a case/family picker and selected-case
-  dashboard, not the new global product tabs;
-- the source does not contain the newer Teacher Learn, Decision Work,
-  Conversation Understanding, process brief, Models/Relations/Map/Receipts
-  product shell work.
-
-This verifies that the historical root SPA source exists and is real. It also
-verifies the user's concern: the Svelte source is app-era legacy for the current
-product direction. It is not current with the latest product-surface additions
-in this runtime repo and should not be treated as the default future UI owner.
+The optional compiled root bundle remains app-era legacy material. Because its
+authoring source is not present here, it cannot be treated as a maintainable
+frontend. Any future replacement must introduce repository-local source, an
+explicit build contract, and reproducible artifact hashes in one reviewed
+change.
 
 ## Bundle Provenance Finding
 
-The runtime bundle and the external app build have matching `index.html` content
-and matching asset filenames:
+The runtime bundle contains these checked-in legacy assets:
 
 ```text
 index-DDa-RNf7.js
@@ -173,24 +147,19 @@ index-DHa6Vrq4.css
 index-H3UEopEj.js
 ```
 
-Two checked asset hashes matched during inspection; one main JS asset with the
-same filename differed between the runtime repo and the external local build.
-
-This does not prove manual editing. It does prove that the current local
-external build snapshot and the checked-in runtime bundle are not fully
-byte-identical. Therefore, if we ever intentionally maintain or replace the
-legacy root bundle, it needs a controlled sync path:
+There is no supported external rebuild path. If we intentionally maintain or
+replace the legacy root bundle, it needs a repository-local reproducible path:
 
 ```text
-external Svelte source
+repository-local frontend source
   -> clean build
   -> recorded artifact manifest / hashes
-  -> copied observatory/build/*
+  -> generated observatory/build/*
   -> runtime smoke tests
 ```
 
-Do not treat `observatory/build/*` as editable source. Do not assume the local
-external checkout is already a clean rebuild of the runtime bundle.
+Do not treat `observatory/build/*` as editable source and do not direct a
+maintainer to another repository.
 
 ## Product Ownership Decision
 
@@ -211,15 +180,11 @@ Reason: this repo ships with the skill runtime. It must remain useful without a
 frontend toolchain, and it is closest to the archive artifacts and product
 boundaries.
 
-### External Svelte Source Is Legacy Evidence, Not Current Direction
+### No External Frontend Source Owns Current Direction
 
-The external Svelte app proves where the old compiled root SPA came from. It
-should not own the next Observatory product surface by default.
-
-Reason: the current product goal is not to return to the old app project. The
-goal is to make Observatory the portable presentation layer for the skill. The
-old Svelte source can remain useful as visual/reference evidence, but a future
-Svelte revival would require a separate explicit decision.
+The current product goal is to make Observatory the portable presentation
+layer for the skill. A future compiled-frontend revival would require a
+separate explicit decision and repository-local source.
 
 ### The Compiled Bundle Is A Distribution Artifact
 
@@ -227,9 +192,9 @@ Svelte revival would require a separate explicit decision.
 
 Allowed:
 
-- copy a clean external build into this repo as a deliberate PR;
-- record source commit and build hashes;
-- smoke test the copied bundle through `observatory/serve_result.py`.
+- replace it from approved repository-local source in a deliberate PR;
+- record source commit, toolchain, and build hashes;
+- smoke test the generated bundle through `observatory/serve_result.py`.
 
 Not allowed:
 
@@ -334,10 +299,11 @@ compiled SPA remains available as legacy/advanced navigation.
 
 Stop before deleting or replacing the checked-in bundle.
 
-### PR-SO6 Optional Legacy Bundle Sync Decision
+### PR-SO6 Optional Repository-Local Bundle Source Decision
 
 Only if there is a strong reason to keep the old Svelte root shell, create a
-separate decision and sync package for the legacy bundle.
+separate decision and repository-local reproducible source package for the
+legacy bundle.
 
 Stop before Svelte source changes or bundle copies.
 
@@ -352,8 +318,7 @@ Stop if implementation would require:
 - wiring or changing runtime behavior;
 - mutating archives by default;
 - hand-editing compiled JS/CSS;
-- treating the external Svelte source as the future product owner without a new
-  explicit decision;
+- introducing another repository as a frontend owner or build dependency;
 - porting the global shell to the legacy app by default;
 - claiming product proof;
 - claiming human validation;

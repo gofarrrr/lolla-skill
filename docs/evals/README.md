@@ -2,7 +2,7 @@
 
 Status: GitHub-facing eval navigation
 
-## Current lifecycle boundary — 2026-07-15
+## Current lifecycle boundary — 2026-07-22
 
 The [Constitution Stage 0 addendum audit](../conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
 and its [machine register](lolla-constitution-stage0-addendum-register-v1.json)
@@ -12,8 +12,25 @@ builders; R3/R4 are immutable research evidence; the incremental R4 reader is
 retired. Eval files, fixtures, tests, and successful schemas do not prove
 ordinary runtime reachability or product usefulness.
 
+The current provider-free graph and skill package is controlled by the
+[self-contained graph result](../conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
+and its [readiness register](lolla-self-contained-skill-readiness-v1.json).
+Supporting current registers include the
+[graph baseline](lolla-graph-substrate-baseline-v1.json),
+[published-consumer boundary](lolla-published-substrate-consumer-register-v1.json),
+and [prospective complete portfolio baseline](lolla-prospective-portfolio-custody-baseline-v1.json).
+They establish repository-local custody, deterministic reconstruction, and
+policy replay. They do not establish semantic relevance or product usefulness,
+and the complete-path projection is not connected to live behavior.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
+Its active data packages are now governed by the
+[`custody V2 proof`](lolla-mental-model-atlas-custody-v2-evidence.json): all six
+V1 artifacts remain hash-locked, all 2,182 V1/V2 differences are declared
+custody fields, and zero unexpected semantic, identity, layout, paging, or
+interface differences were found. V1 remains historical evidence; V2 carries
+the current repository-local source authority.
 Its additive
 [`card-first repair evidence`](lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
 corrects the current Abstraction-page coverage claim without changing the

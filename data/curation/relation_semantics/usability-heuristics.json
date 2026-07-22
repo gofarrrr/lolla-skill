@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive-load-theory helps usability-heuristics reduce working-memory strain by chunking tasks and simplifying interface or process demands.",
       "source_quote": "CLT reminds us that working memory is a limited resource.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states heuristics and CLT work synergistically, as heuristics directly reduce cognitive load on limited working memory",
+      "activation_condition": "When heuristic design patterns reduce working memory burden during user interactions"
     },
     {
       "target_model_id": "problem-framing-and-reframing",
       "rationale_text": "Problem-framing-and-reframing helps usability-heuristics act as a first cut on the problem instead of a frozen answer to it.",
       "source_quote": "cleave problems into insightful parts",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical describes heuristics as integral to initial hypothesis generation and problem-solving framing",
+      "activation_condition": "When reframing usability problems through different lenses reveals overlooked interaction patterns"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "First-principles-thinking resists usability-heuristics when the shortcut masks a genuinely novel problem that needs fresh reconstruction from facts.",
       "source_quote": "First Principles Thinking strips away assumptions and conventional methods.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states heuristics involve applying existing patterns while FPT strips away assumptions for novel solutions",
+      "activation_condition": "When applying established usability patterns prevents novel interface solutions that first-principles design would generate"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The file preserves the source's strongest first-order relation surface: load-reducing heuristic support, framing aid, and the tension against overusing familiar shortcuts.",
+    "summary": "Layer 1+2 enrichment complete. cognitive-load-theory at 0.90 per direct CLT synergy. first-principles-thinking antagonist at 0.90.",
     "donor_drops": [
       "Did not manufacture structured tensions because the raw file is stronger on general antagonism than on explicit named conflict blocks."
     ],
     "open_questions": [
-      "Critical-thinking is also a source-real antagonist, but first-principles-thinking was the cleaner current-vocabulary anchor."
+      "Critical-thinking is also a source-real antagonist, but first-principles-thinking was the cleaner current-vocabulary anchor.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests scaffolding as recovery candidate."
     ]
   }
 }

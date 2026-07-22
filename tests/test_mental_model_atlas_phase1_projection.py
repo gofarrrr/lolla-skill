@@ -6,10 +6,12 @@ from pathlib import Path
 
 import pytest
 
+from scripts.product.build_mental_model_atlas_custody_v2 import (
+    CURRENT_SOURCE_HASHES as EXPECTED_SOURCE_HASHES,
+    build_phase1_custody_v2_package as build_phase1_package,
+)
 from scripts.product.build_mental_model_atlas_phase1_projection import (
-    EXPECTED_SOURCE_HASHES,
     AtlasProjectionError,
-    build_phase1_package,
     canonical_json_bytes,
     sha256_bytes,
     validate_projection,
@@ -17,7 +19,7 @@ from scripts.product.build_mental_model_atlas_phase1_projection import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "apps/mental-model-atlas/public/data/phase1"
+DATA_DIR = ROOT / "apps/mental-model-atlas/public/data/phase1-v2"
 EVIDENCE_PATH = (
     ROOT / "docs/evals/lolla-mental-model-atlas-phase1-evidence-v1.json"
 )
@@ -59,9 +61,8 @@ def test_source_custody_is_hash_bound_and_model_sources_are_verified() -> None:
     custody = package["manifest"]["source_custody"]
 
     assert custody["source_hash_status"] == "verified"
-    assert custody["canonical_data_commit"] == (
-        "2f05fd1ca7081f602317d670faad8d1293d5b0ff"
-    )
+    assert custody["canonical_data_commit"] is None
+    assert custody["source_authority"] == "repository_local"
     assert {
         item["path"]: item["sha256"] for item in custody["sources"]
     } == EXPECTED_SOURCE_HASHES

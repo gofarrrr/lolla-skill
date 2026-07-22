@@ -7,17 +7,44 @@
       "rationale_text": "Resilience gives internal-locus-of-control a practical recovery frame by keeping focus on controllable responses to setbacks.",
       "source_quote": "Resilience is strongly linked to this internal focus",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Internal LOC's agency principle requires self-discipline and managing the emotional self — resilience provides the persistence mechanism that sustains agency through adversity.",
+      "activation_condition": "When maintaining a sense of personal agency requires bouncing back from setbacks rather than ceding control to external circumstances"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps internal-locus-of-control distinguish between agency and the system structure that must be redesigned.",
       "source_quote": "viewing the organization as a machine",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Internal LOC provides the 'necessary motivation (agency) to fix faulty systems' while systems thinking provides 'the map necessary to identify the high-leverage points within the system that are actually controllable' — agency plus map.",
+      "activation_condition": "When personal agency needs to be directed at the right leverage points within a complex system rather than wasted on uncontrollable variables"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1 undermines internal-locus-of-control by allowing the emotional lower-level brain to override conscious agency, making chemical choices that protect the self before the deliberate mind can intervene.",
+      "source_quote": "Internal LOC requires the logical, higher-level self to manage the emotional, lower-level self (the two yous). Conflict arises because the emotional part often resists necessary self-discipline or painful truths.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "The 'emotional brain system constantly shapes 90-95% of our decisions nonconsciously' — System 1 undermines the conscious, deliberate control that internal LOC demands.",
+      "activation_condition": "When automatic emotional reactions override the deliberate, conscious agency that internal locus of control requires for effective self-directed action"
+    },
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "rationale_text": "Optimism-bias undermines internal-locus-of-control by inflating the sense of personal causation, leading to false confidence that spins better narratives rather than discovering what is actually within one's influence.",
+      "source_quote": "False Confidence: Motivated reasoning (processing information to get a desired conclusion rather than discovering truth). Being smart can worsen this bias by allowing for better narrative spinning.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Internal LOC can produce false confidence through motivated reasoning — overestimating what is controllable when optimism inflates perceived agency beyond reality.",
+      "activation_condition": "When a strong sense of personal agency leads to overestimating control over outcomes that are actually driven by external or systemic factors"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "status-quo-bias",
@@ -43,5 +70,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'necessary motivation plus the map'), resilience 0.80 (moderate — persistence mechanism for sustained agency). Antagonists: system-1 0.80 (moderate — unconscious decisions undermine deliberate control), optimism-bias 0.80 (moderate — false confidence from inflated agency). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article names critical-thinking/metacognition ('demands critical thinking, involves questioning own biases') as an ally candidate."
+    ]
+  }
 }

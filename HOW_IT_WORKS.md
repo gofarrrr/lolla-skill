@@ -138,10 +138,25 @@ outputs are pressure hypotheses.
 
 ## 5. Mental-model substrate and constitutional graph survival
 
-The repository contains a curated mental-model registry, retrieval machinery,
-optional embeddings, and a relationship graph. Deterministic code controls
-canonical IDs, provenance, traversal, deduplication, ordering under declared
-nonsemantic rules, and volume bounds.
+The repository contains all 222 canonical Markdown sources, reviewed model and
+relation curation, explicit source-anchor and compiler-input manifests, the
+published model and relationship projections, optional activation embeddings,
+and the candidate-only compiler needed to reproduce the published graph bytes.
+No other checkout is needed. Deterministic code controls canonical IDs,
+provenance, authored direction, traversal, deduplication, ordering under
+declared nonsemantic rules, and volume bounds.
+
+Current consumers load one immutable published-substrate snapshot. The snapshot
+owns exact model and relation identity, source order, available custody, and
+outgoing, incoming-reference, and incident indexes without reversing authored
+edges. It does not compile, repair aliases, rank models, allocate pressure, or
+call a provider.
+
+One named, versioned constitutional pressure planner owns the current policy:
+six direct-active candidates, expansion from direct-active seeds only, authored
+outgoing relations only, one hop, antagonist/tension/ally slots, deterministic
+ordering and deduplication, and explicit reserve. This extraction preserved the
+exact active and reserve output for all 163 frozen corpus windows.
 
 Constitution v5 requires bounded graph candidates to survive before a
 probabilistic verifier can remove them. The live system therefore writes an
@@ -156,6 +171,17 @@ This is the key distinction:
 - rejection is a valid outcome;
 - application does not prove the model correct;
 - reserve is capacity custody, not semantic rejection.
+
+A prospective provider-free custody projection can serialize every exact path
+inside that same bounded scope, including convergent paths that the current
+outer active item does not carry. It preserves current active identity and
+order but is deliberately not connected to the live reasoner, receipt,
+Decision Trail, Atlas, or Observatory. Incoming-reference pressure, two-hop
+traversal, graph-wide summaries, and new ranking policies remain separate
+experiments, not latent current behavior.
+
+The operational boundary and validation commands are in
+[references/knowledge-substrate-operations.md](references/knowledge-substrate-operations.md).
 
 ## 6. Reconsideration and disposition
 
@@ -323,7 +349,7 @@ achromatic design system uses one shared solid/dashed/double relationship
 grammar and route-scoped styles. See the
 [canonical Atlas publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
 and the [reviewed predecessor baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
-The next bounded step is provider-free human acceptance review. Later Atlas
+The local first-viewport repair now awaits provider-free human re-review. Later Atlas
 phases, deployment, Teacher journeys, provider use, and runtime or Observatory
 links remain unauthorized.
 
@@ -335,6 +361,7 @@ For the current architecture and public handoff:
 PYTHONPATH=. python3 scripts/evals/validate_constitution_stage0_addendum_register.py \
   --register docs/evals/lolla-constitution-stage0-addendum-register-v1.json
 PYTHONPATH=. python3 scripts/evals/validate_stage0_public_handoff.py
+PYTHONPATH=. python3 scripts/evals/validate_self_contained_skill.py --validate-only
 PYTHONPATH=. pytest -q tests/test_constitution_stage0_addendum_register.py \
   tests/test_stage0_public_handoff.py
 PYTHONPATH=. pytest -q

@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking helps BATNA compare alternatives in the full interacting system instead of a static snapshot of the negotiation.",
       "source_quote": "This holistic view ensures the selected alternative accounts for interrelationships rather than just static snapshots.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as providing a 'holistic view' that 'ensures the selected alternative accounts for interrelationships rather than just static snapshots' — essential for evaluating alternatives in their full systemic context.",
+      "activation_condition": "When evaluating walk-away alternatives requires understanding how each option interacts with the broader system of relationships, costs, and dependencies"
     },
     {
       "target_model_id": "scaffolding",
       "rationale_text": "Scaffolding is an ally to BATNA because identifying a clear, manageable walk-away alternative creates an incremental framework for building negotiation competence — starting from the grounded fallback option and progressively constructing more sophisticated positioning.",
       "source_quote": "Scaffolding | Enables Mastery: Choosing a manageable alternative or starting point allows for the gradual, incremental building of a complex structure, supporting the path from novice to expert.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Incremental building mechanism — 'Choosing a manageable alternative or starting point allows for the gradual, incremental building of a complex structure' — supports BATNA development but is a tool-level relationship.",
+      "activation_condition": "When the team needs a concrete, manageable starting point for building negotiation alternatives rather than facing an overwhelming landscape of options"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Curse-of-knowledge undermines BATNA by preventing the expert negotiator from accurately modeling what a walk-away alternative looks like from the other party's knowledge perspective — expert assumptions about shared context distort assessment of the fallback's attractiveness.",
       "source_quote": "Inside view / motivated reasoning and curse-of-knowledge are explicit raw antagonists that remain deferred because the current target-id surface is still thinner than the prose.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Communication and modeling failure — 'experts struggle to remember what it was like not to know the solution' — prevents accurate modeling of what the other party sees, but doesn't directly corrupt BATNA evaluation.",
+      "activation_condition": "When the negotiator's expertise prevents them from accurately modeling what the other party knows, values, and perceives about the available alternatives"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring undermines BATNA by making the first attractive option feel like the only serious alternative worth considering.",
       "source_quote": "If the first available alternative is attractive, anchoring prevents exploring truly superior options.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly blocks BATNA exploration — 'If the first available alternative is attractive, anchoring prevents exploring truly superior options' — narrows the search space prematurely.",
+      "activation_condition": "When the first attractive walk-away option encountered anchors the negotiator and prevents genuine exploration of potentially superior alternatives"
     }
   ],
   "structured_tensions": [
@@ -60,12 +72,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "BATNA remains somewhat proxy-derived on the ally/antagonist side, but its explicit structured tensions are strong enough to preserve without stretching the contract.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — holistic alternative evaluation), scaffolding 0.80 (moderate — incremental building). Antagonists: anchoring 0.90 (strong — narrows search prematurely), curse-of-knowledge 0.80 (moderate — modeling failure). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor status-quo or sunk-cost overlays beyond what the raw tension block already supports."
     ],
     "open_questions": [
-      "Symphony, inside-view, motivated reasoning, and curse-of-knowledge remain source-real relation material but were left out rather than overfit to the current canonical id surface."
+      "Symphony, inside-view, motivated reasoning, and curse-of-knowledge remain source-real relation material but were left out rather than overfit to the current canonical id surface.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Cognitive Load Theory ('defining a clear, simple path reduces cognitive load') as an additional ally."
     ]
   },
   "deferred_higher_order_notes": {

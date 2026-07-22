@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import ordinaryProjection from "../../public/data/phase1/ordinary-navigation.json";
+import ordinaryProjection from "../../public/data/phase1-v2/ordinary-navigation.json";
 import { ProjectionProvider } from "../projectionContext";
 import LibraryPage from "./LibraryPage";
 

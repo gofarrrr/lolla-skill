@@ -7,14 +7,20 @@
       "rationale_text": "Second-order-thinking strengthens regulatory-horizon-scanning by pushing the team to visualize downstream dominoes before rules fully arrive.",
       "source_quote": "visualizing all the dominoes",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "RHS is fundamentally about anticipating second-order regulatory effects. Canonical: 'foresee how a decision at one point will ramify to create a distant effect' — core to horizon scanning.",
+      "activation_condition": "When regulatory foresight requires anticipating the downstream consequences and cascading effects of emerging policy changes."
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking strengthens regulatory-horizon-scanning by converting static regulation snapshots into changing interdependent system patterns.",
       "source_quote": "seeing interrelationships and patterns of change rather than static snapshots",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'RHS is dependent on Systems Thinking, which provides the high-level competence model necessary to maintain a big-picture view, identify pattern recognition, and visualize system dynamics.'",
+      "activation_condition": "When understanding regulatory impact requires mapping how system components interact and what emerges from regulatory changes."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias weakens regulatory-horizon-scanning when teams collect policy signals mainly to support the roadmap they already prefer.",
       "source_quote": "Confirmation Bias and Motivated Reasoning",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Confirmation bias actively undermines the objectivity required for effective RHS' — model-defending behavior blocks recognition of emerging regulatory signals.",
+      "activation_condition": "When existing strategic assumptions filter out emerging regulatory signals that contradict the organization's preferred trajectory."
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. second-order-thinking 0.90 (anticipating downstream effects), systems-thinking 0.90 ('dependent on'). confirmation-bias antagonist at 0.90 ('actively undermines').",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include cognitive-load-theory (streamlining complex foresight), feynman-technique (simplifying regulatory concepts for actionable communication)."
     ]
   },
   "deferred_higher_order_notes": {

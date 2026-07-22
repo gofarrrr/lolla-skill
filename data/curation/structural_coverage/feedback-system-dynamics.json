@@ -1,0 +1,48 @@
+{
+  "dimension_id": "feedback-system-dynamics",
+  "dimension_name": "Feedback & System Dynamics",
+  "cleaving_frame": "Linear cause-effect vs Feedback loops",
+  "description": "The problem involves a system where outputs feed back into inputs, creating reinforcing or balancing dynamics that a linear analysis would miss. The structural question is whether the proposed intervention accounts for how the system will respond.",
+  "question_types": ["prediction", "causal-diagnosis", "action-planning"],
+  "detect_when": [
+    "Actions create reactions that amplify or dampen the original effect — reinforcing or balancing loops",
+    "There are delays between action and visible consequence that distort feedback",
+    "The system has self-correcting or self-reinforcing behavior that the answer treats as static",
+    "The answer recommends an intervention without considering how the system will adapt or respond"
+  ],
+  "coverage_signals": [
+    "The answer identifies feedback loops — reinforcing (virtuous/vicious cycles) or balancing (homeostatic)",
+    "The answer accounts for delays between cause and effect — not just immediate consequences",
+    "The answer considers second and third-order consequences of the proposed action",
+    "The answer identifies leverage points where small interventions produce large systemic effects"
+  ],
+  "materiality_test": "Would accounting for feedback dynamics change the recommended intervention or its expected outcome?",
+  "reasoning_demanded": "systems analysis, loop identification, delay recognition, leverage point detection",
+  "models": [
+    "systems-thinking",
+    "feedback-loops",
+    "second-order-thinking",
+    "non-linear-dynamics",
+    "leverage-points",
+    "delays"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Systems-thinking provides the foundational framework for seeing interconnections rather than linear cause-effect chains. Feedback-loops identifies the specific loop structures (reinforcing and balancing). Second-order-thinking extends analysis beyond immediate consequences. Non-linear-dynamics addresses disproportionate cause-effect relationships. Leverage-points identifies where small interventions produce outsized systemic effects. Delays addresses the temporal gap between action and consequence that distorts feedback. Note: systems-thinking also appears in causal-diagnosis — there it traces causal chains; here it identifies systemic feedback structures.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from feedback-loops (reinforcing/balancing dynamics), delays (temporal gap distortion), second-order-thinking (beyond immediate consequences), leverage-points (small input, large effect)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Loop identification from feedback-loops. Delay accounting from delays. Higher-order consequences from second-order-thinking. Leverage points from leverage-points."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Six models — comprehensive coverage of the system dynamics territory. Systems-thinking cross-listed with causal-diagnosis: acceptable because structural purposes differ (causal tracing vs feedback structure identification)."
+    }
+  }
+}

@@ -7,21 +7,30 @@
       "rationale_text": "System-1 is the cognitive engine that generates and sustains confirmation bias — automatic pattern-matching builds a coherent story from confirming evidence and suppresses ambiguity before deliberate reasoning can intervene.",
       "source_quote": "Confirmation bias is a prime example of a bias stemming from System 1 (reflexive, quick) thinking. System 1 automatically generates a coherent story from the evidence at hand and suppresses ambiguity, leading to the bias of overconfidence and WYSIATI.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Described as 'a prime example of a bias stemming from System 1' — constitutive relationship where System 1 is the cognitive engine that generates and sustains the bias.",
+      "activation_condition": "When automatic pattern-matching and coherence-building drive evidence evaluation before deliberate System 2 analysis can intervene"
     },
     {
       "target_model_id": "cognitive-dissonance",
       "rationale_text": "Cognitive-dissonance powers confirmation bias by making inconsistent information psychologically painful — the discomfort of conflicting beliefs drives the bias to selectively filter incoming evidence so that new information aligns with previous decisions or self-image.",
       "source_quote": "The bias reduces the discomfort caused by inconsistent beliefs or actions. Confirmation bias serves as the protective mechanism, ensuring new information aligns with previous decisions or self-image, thereby avoiding the rigors of conflicting thought.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Direct causal driver — cognitive dissonance creates the psychological discomfort that confirmation bias 'serves as the protective mechanism' against, making it the underlying need the bias fulfills.",
+      "activation_condition": "When new information conflicts with prior decisions, self-image, or publicly stated positions, creating psychological pressure to filter selectively"
     },
     {
       "target_model_id": "rationalization",
       "rationale_text": "Rationalization helps confirmation-bias survive by laundering preferred conclusions into respectable stories after disconfirming evidence has already been filtered out.",
       "source_quote": "the mind defends the conclusion instead of reopening it",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Normalized inference from the article's motivated reasoning discussion — real downstream relationship but not described with the constitutive directness of system-1 or the causal specificity of cognitive-dissonance.",
+      "activation_condition": "When conclusions have been reached and the reasoning process shifts from truth-seeking to post-hoc justification of the preferred outcome"
     }
   ],
   "antagonists": [
@@ -30,21 +39,30 @@
       "rationale_text": "Dialectical reasoning opposes confirmation bias by institutionalizing challenge and antithesis before synthesis.",
       "source_quote": "This formal team norm requires every idea (thesis) to be met with its antithesis (challenge) before synthesis can occur.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Institutionalizes challenge by requiring every thesis to meet its antithesis before synthesis — a structured process-level counter that directly opposes one-sided evidence filtering.",
+      "activation_condition": "When team decision-making needs a formal structure to ensure contradictory evidence receives equal deliberation weight"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "The Feynman Technique counters confirmation bias by forcing blind spots and missing evidence into the open.",
       "source_quote": "This technique systematically forces the user to identify their blind spots and knowledge gaps by trying to explain a concept simply.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Diagnostic tool that forces blind spots and knowledge gaps into the open — indirectly surfaces areas where confirmation bias operates but is not a direct counter-mechanism.",
+      "activation_condition": "When self-assessment of understanding may be inflated by familiar-feeling knowledge that has not been tested against explanation gaps"
     },
     {
       "target_model_id": "intellectual-humility",
       "rationale_text": "Intellectual-humility directly counters confirmation bias by replacing the ego-protective drive to confirm existing beliefs with the disposition to genuinely question whether one's view is optimal.",
       "source_quote": "Radical Open-Mindedness: This is the primary antidote, driven by the genuine worry that one might not be seeing one's choices optimally. It is the ability to explore different points of view without letting ego or blind spots interfere.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Described as 'the primary antidote' — the foundational disposition that replaces the ego-protective drive to confirm existing beliefs with genuine openness to being wrong.",
+      "activation_condition": "When the decision-maker's identity or reputation is entangled with the conclusion, making disconfirming evidence feel personally threatening"
     }
   ],
   "structured_tensions": [
@@ -66,7 +84,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "Confirmation Bias is relation-rich, but many of its most important allies are psychological mechanisms rather than cleanly targetable current model ids.",
+    "summary": "Layer 1+2 enrichment complete. Allies: system-1 0.95 (critical — constitutive engine generating the bias), cognitive-dissonance 0.90 (strong — psychological need the bias fulfills), rationalization 0.80 (moderate — downstream defense mechanism). Antagonists differentiated: intellectual-humility 0.95 (critical — described as 'the primary antidote'), dialectical-reasoning 0.90 (strong — structured process counter), feynman-technique 0.80 (moderate — indirect diagnostic). Activation conditions assigned to all allies and antagonists.",
     "donor_drops": [
       "Did not preserve donor relation overlays beyond what the source tables and explicit tensions justify."
     ],

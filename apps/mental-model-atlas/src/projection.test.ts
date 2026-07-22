@@ -1,14 +1,14 @@
 import { describe, expect, it, vi } from "vitest";
 
-import hubProjection from "../public/data/phase1/confirmation-bias-hub-page-1.json";
-import hubProjectionPage2 from "../public/data/phase1/confirmation-bias-hub-page-2.json";
-import hubProjectionPage6 from "../public/data/phase1/confirmation-bias-hub-page-6.json";
-import bidirectionalProjection from "../public/data/phase1/explicit-bidirectionality.json";
-import mediumConfidenceProjection from "../public/data/phase1/medium-confidence-relation.json";
-import parallelProjection from "../public/data/phase1/mixed-parallel-relations.json";
-import ordinaryProjection from "../public/data/phase1/ordinary-navigation.json";
-import modelPage from "../public/data/phase1/pages/model-abstraction.json";
-import relationPage from "../public/data/phase1/pages/relation-abstraction-first-principles-thinking-ally.json";
+import hubProjection from "../public/data/phase1-v2/confirmation-bias-hub-page-1.json";
+import hubProjectionPage2 from "../public/data/phase1-v2/confirmation-bias-hub-page-2.json";
+import hubProjectionPage6 from "../public/data/phase1-v2/confirmation-bias-hub-page-6.json";
+import bidirectionalProjection from "../public/data/phase1-v2/explicit-bidirectionality.json";
+import mediumConfidenceProjection from "../public/data/phase1-v2/medium-confidence-relation.json";
+import parallelProjection from "../public/data/phase1-v2/mixed-parallel-relations.json";
+import ordinaryProjection from "../public/data/phase1-v2/ordinary-navigation.json";
+import modelPage from "../public/data/phase1-v2/pages/model-abstraction.json";
+import relationPage from "../public/data/phase1-v2/pages/relation-abstraction-first-principles-thinking-ally.json";
 import {
   ProjectionContractError,
   loadProjection,

@@ -78,6 +78,7 @@ def test_pilot_manifest_enumerates_exactly_ten_existing_records() -> None:
     assert manifest["status"] == "draft_review_only"
     assert manifest["target_base_branch"] == "feature/knowledge-use-schema"
     assert manifest["source_residency"]["decision"] == "A"
+    assert manifest["source_residency"]["source_authority"] == "repository_local"
 
     records = _pilot_records()
     assert len(records) == 10
@@ -147,6 +148,7 @@ def test_model_ids_match_active_knowledge_graph() -> None:
 def test_source_manifest_hashes_match_actual_files() -> None:
     source_manifest = _load_json(SOURCE_MANIFEST_PATH)
     assert source_manifest["source_root"] == "data/model_sources"
+    assert source_manifest["source_authority"] == "repository_local"
     assert source_manifest["hash_algorithm"] == "sha256"
 
     files = source_manifest["files"]

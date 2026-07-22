@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive-load-theory provides the mechanism behind expertise-reversal-effect by explaining how redundant guidance creates harmful load once expertise is high enough.",
       "source_quote": "The Expertise Reversal Effect is a mental model rooted in cognitive science, specifically the constraints outlined by Cognitive Load Theory.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states 'The ERE is a direct outcome of CLT' — CLT explains the specific mechanism where detailed instruction imposes redundant load on working memory when schemas are already formed. Foundational relationship.",
+      "activation_condition": "When instruction design must account for the cognitive load reversal where scaffolding that helps novices becomes redundant processing burden for experts"
     },
     {
       "target_model_id": "boundaries",
       "rationale_text": "Boundaries support expertise-reversal-effect by helping teams define where detailed guidance is still needed and where it has crossed into drag.",
       "source_quote": "The model adds value when the system should deliberately remove supports that have become drag.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence — supports the calibration of instruction across expertise levels by defining where one level's optimal approach ends and another's begins, though not named in canonical Latticework.",
+      "activation_condition": "When instruction calibration requires clear boundaries between expertise levels to avoid both under-scaffolding novices and over-scaffolding experts"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias makes expertise-reversal-effect worse when experts keep interpreting new cases through their entrenched schema instead of adapting support to the actual situation.",
       "source_quote": "Experts are prone to seeking information that confirms their specialized view, reinforcing their existing schemas and leading to cognitive entrenchment.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical describes how experts are 'prone to seeking information that confirms their specialized view, reinforcing existing schemas and leading to cognitive entrenchment' — prevents the flexibility ERE awareness demands.",
+      "activation_condition": "When expert entrenchment causes confirmation of familiar patterns rather than adapting instruction and communication to the actual audience expertise level"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on its CLT grounding and on expert entrenchment risk, so the file stays sparse rather than forcing a bigger relation neighborhood.",
+    "summary": "Layer 1+2 enrichment complete. Allies: cognitive-load-theory 0.95 (critical — 'direct outcome of CLT'), boundaries 0.70 (supportive — medium confidence, instruction calibration). Antagonist: confirmation-bias 0.80 (moderate — reinforces expert entrenchment). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve AI-prompt or curse-of-knowledge relation sprawl where the current canonical target surface is thinner or less clean."
     ],
     "open_questions": [
-      "The boundaries ally is reviewed normalization built from support-fit language rather than from a named explicit ally block."
+      "The boundaries ally is reviewed normalization built from support-fit language rather than from a named explicit ally block.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated (one at medium confidence). Canonical article names curse-of-knowledge, feynman-technique, and systems-thinking as additional synergistic allies."
     ]
   }
 }

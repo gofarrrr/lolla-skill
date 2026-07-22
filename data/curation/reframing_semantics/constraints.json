@@ -1,0 +1,34 @@
+{
+    "model_id": "constraints",
+    "source_file": "Constraints_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question treats a human-chosen boundary as an immutable wall when that constraint could be relaxed, removed, or redefined — the frame/lens is being mistaken for reality.",
+        "The question has no explicit constraints and is therefore too vague to produce actionable answers — adding the right boundary would sharpen the inquiry.",
+        "The question includes constraints that were inherited from a prior context but no longer apply — organizational or technical boundaries have shifted but the question hasn't.",
+        "The question asks 'how do we do everything?' when the real question is 'what should we cut?' — the absence of a don't-do constraint leads to boiling the ocean."
+    ],
+    "frame_patterns_challenged": [
+        "scope_lock",
+        "option_space_collapse"
+    ],
+    "reframing_move": "Test the walls: ask 'which of these constraints are real (physics, law, budget) and which are assumed (organizational habit, precedent, fear)?' — then reframe the question with only the real constraints, opening the space that the assumed ones were closing.",
+    "reframing_move_types": [
+        "constraint_relaxation",
+        "scope_expansion"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Constraints operates on question structure by distinguishing real boundaries from assumed ones. The source is explicit: constraints can be 'helpful, even inspiring' when they are the right constraints, and dangerous when inherited from a prior context. The Cukier framing research (RFC) independently identifies 'mutable constraints treated as walls' as a core frame pattern — this model provides the reframing lens.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: wall vs door (creative catalyst analogy), missing constraints causing vagueness (TOSCA framework), inherited constraints (boundaries of analysis example), and absence of don't-do list (boil the ocean anti-pattern)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Scope lock: the question's boundaries may be assumed, not real. Option space collapse: testing constraints opens alternatives the question's frame was hiding."
+        }
+    }
+}

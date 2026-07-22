@@ -7,17 +7,44 @@
       "rationale_text": "Empathy strengthens feedback-models-sbi by helping the giver model how the receiver will interpret the situation, impact, and invitation.",
       "source_quote": "To provide meaningful feedback, the giver must adopt the receiver's Point of View.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes structured feedback aligning with the Design Thinking 'Empathize' phase — the feedback giver must 'adopt the receiver's Point of View, analyzing and synthesizing observations about how the person acts, thinks, and feels'.",
+      "activation_condition": "When feedback delivery requires genuine modeling of the receiver's perspective to ensure the message is tailored and actionable rather than generic"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory strengthens feedback-models-sbi by breaking corrective information into manageable chunks the receiver can process.",
       "source_quote": "Structured feedback like scaffolding is a powerful ally because it breaks complex problems into bite-sized chunks.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical states structured feedback 'breaks complex problems into bite-sized chunks and focuses attention incrementally, reducing cognitive load and facilitating schema creation'.",
+      "activation_condition": "When complex performance feedback must be chunked into manageable pieces to avoid overwhelming the receiver's working memory"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization undermines feedback-models-sbi by allowing the feedback giver to process information toward a desired conclusion rather than surfacing what actually happened, corrupting the Information step with motivated reasoning.",
+      "source_quote": "Motivated Reasoning and Inside View Bias: This occurs when the feedback provider processes information to reach a desired conclusion rather than discovering what is true.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Post-hoc justification distorts both feedback delivery and reception — related to canonical 'Motivated Reasoning and Inside View Bias' where information is processed to reach a desired conclusion.",
+      "activation_condition": "When feedback is rationalized to support a pre-existing narrative about the receiver's performance rather than reflecting genuine behavioral observations"
+    },
+    {
+      "target_model_id": "hindsight-bias",
+      "rationale_text": "Hindsight-bias undermines feedback-models-sbi by shifting the conversation from evaluating the decision process to judging the outcome, collapsing the structured separation of situation, behavior, and impact.",
+      "source_quote": "Outcome Bias (Hindsight Bias): Judging the quality of a decision based on the outcome, rather than evaluating the decision process ex ante.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "After-the-fact reinterpretation distorts feedback quality by making past behavior seem more predictable than it was, undermining the specificity that structured feedback models require.",
+      "activation_condition": "When feedback about past decisions is colored by knowledge of outcomes, making the behavior seem obviously right or wrong when it was not at the time"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confirmation-bias",
@@ -37,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. Allies: empathy 0.90 (strong — enables perspective-taking for meaningful feedback), cognitive-load-theory 0.80 (moderate — supports chunked delivery). Antagonists: rationalization 0.80 (moderate — distorts delivery), hindsight-bias 0.80 (moderate — after-the-fact reinterpretation). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names design-thinking (empathy phase) and idea-meritocracy/radical-transparency as additional synergistic allies."
     ]
   },
   "deferred_higher_order_notes": {

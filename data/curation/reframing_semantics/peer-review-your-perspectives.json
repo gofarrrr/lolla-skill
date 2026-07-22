@@ -1,0 +1,33 @@
+{
+    "model_id": "peer-review-your-perspectives",
+    "source_file": "Peer_Review_Your_Perspectives_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question rests on a single perspective that has never been stress-tested by someone who sees the situation differently — the frame has not survived adversarial review.",
+        "The question treats its framing as obvious or shared ('everyone agrees that...') when exposing it to a genuinely different viewpoint would reveal hidden assumptions or blind spots.",
+        "The question collapses a multi-sided situation into a binary by failing to solicit the perspective that would introduce the missing third option.",
+        "The question filters out disconfirming viewpoints by treating them as noise rather than as structural signals about what the frame is missing — survivorship in perspective selection."
+    ],
+    "frame_patterns_challenged": [
+        "survivorship_frame",
+        "binary_collapse",
+        "counterfactual_suppression",
+        "borrowed_premise"
+    ],
+    "reframing_move": "Before accepting your framing, ask: 'Who would disagree with how I have framed this problem, and what would their version of the question look like?' — the peer review reframe subjects the question itself to adversarial scrutiny from a genuinely different vantage point.",
+    "reframing_move_types": ["perspective_shift", "assumption_surfacing"],
+    "curation_confidence": "high",
+    "curation_note": "Peer Review Your Perspectives is a direct reframing model — its purpose is to subject one's own thinking to external challenge. The source describes 'actively seeking out feedback from others', 'testing your ideas against alternative viewpoints', and 'exposing blind spots in your reasoning'. The survivorship_frame challenge comes from the model's insistence on seeking disconfirming perspectives. The binary_collapse challenge maps to the source's emphasis on incorporating diverse viewpoints that reveal options invisible from a single vantage point.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Untested perspective (source's core mechanism of seeking external review), false consensus (challenging 'obvious' framing), binary from single viewpoint (diverse perspectives reveal third options), perspective survivorship (filtering out disagreement)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Survivorship frame: model insists on seeking perspectives that survived the filter. Binary collapse: multiple perspectives introduce missing options. Counterfactual suppression: adversarial review surfaces suppressed alternatives. Borrowed premise: peer review challenges imported assumptions."
+        }
+    }
+}

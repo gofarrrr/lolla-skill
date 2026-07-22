@@ -7,15 +7,15 @@ Usage:
     python3 observatory/serve_result.py --result /tmp/lolla_result.json
     python3 observatory/serve_result.py --result /tmp/lolla_result.json --port 9000
 
-SPA source: the bundle in ``observatory/build/`` is compiled output from
-``Lolla-system-b/observatory/svelte-app`` (separate repo). To change SPA
-behaviour, edit the Svelte source there, run ``npm run build``, and copy
-``build/`` over the skill's ``observatory/build/``. The root workspace,
-``/workspace``, ``/audit/*``, and ``/usage`` panels rendered from this Python
-file are independent of the SPA bundle and stay portable when
-``observatory/build/`` is empty. ``/teacher-learning`` is a compatibility
-redirect into the workspace Learn surface. The legacy compiled app remains
-available at ``/index.html`` when the bundle is present.
+The optional bundle in ``observatory/build/`` is a checked-in legacy
+distribution artifact. Its former source workspace is retired and is not a
+dependency or editing path. The root workspace, ``/workspace``, ``/audit/*``,
+and ``/usage`` panels rendered from this Python file are the repository-owned
+product surface and stay portable when ``observatory/build/`` is empty.
+``/teacher-learning`` is a compatibility redirect into the workspace Learn
+surface. The legacy compiled app remains available at ``/index.html`` when the
+bundle is present. Replacing that bundle would require repository-local source
+and a separately reviewed reproducible build contract.
 """
 from __future__ import annotations
 

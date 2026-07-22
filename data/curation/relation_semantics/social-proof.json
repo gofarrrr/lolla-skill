@@ -7,21 +7,30 @@
       "rationale_text": "Signaling helps distinguish context-matched proof from mere prestige transfer by asking what adoption evidence actually communicates underlying quality.",
       "source_quote": "credible adoption evidence",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Signaling mechanisms underlie how social proof transmits behavioral information through observable choices",
+      "activation_condition": "When collective behavior communicates information through observable choices and actions"
     },
     {
       "target_model_id": "authority-bias",
       "rationale_text": "Authority-bias amplifies social-proof contagion when endorsement from high-status members spreads faster than direct evaluation.",
       "source_quote": "opinions from high-status members are especially contagious",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical lists Authority alongside Social Proof as part of the same group of influence principles that amplify when combined",
+      "activation_condition": "When influence from expert or authority figures amplifies conformity behavior"
     },
     {
       "target_model_id": "incentives",
       "rationale_text": "Incentives clarify why copied behavior can drift from truth when actors are rewarded for prestige, affiliation, or conformity rather than causal accuracy.",
       "source_quote": "context, incentives, or constraints do not match the current decision",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Incentive structures interact with social proof by aligning reward mechanisms with herd behavior patterns",
+      "activation_condition": "When reward structures align with or amplify herd behavior patterns"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Critical-thinking resists social-proof pressure by asking for evidence quality and disconfirming analysis instead of external affirmation.",
       "source_quote": "Social Proof encourages accepting an idea based on external affirmation, which runs counter to the objectives of Critical Thinking.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states social proof encourages accepting ideas based on external affirmation, which runs counter to critical thinking objectives",
+      "activation_condition": "When independent evidence evaluation is bypassed in favor of external social validation"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking conflicts with social proof by stripping away inherited group assumptions instead of accepting collective behavior as a starting point.",
       "source_quote": "First Principles Thinking",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical describes first principles as stripping away conventional means including social norms; social proof is built on accepting collective behavioral assumptions",
+      "activation_condition": "When collective behavioral assumptions prevent reasoning from foundational facts"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays conservative around prestige contagion, authority amplification, evidence substitution, and the explicit source conflict with critical-thinking.",
+    "summary": "Layer 1+2 enrichment complete. authority-bias at 0.90 per canonical group of influence principles. first-principles-thinking antagonist elevated to 0.95 as canonical describes it as built on opposing assumptions.",
     "donor_drops": [
       "Did not preserve broader conformity or norm-spread neighborhoods outside the current curated vocabulary."
     ],

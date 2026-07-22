@@ -124,6 +124,23 @@
         },
         "note": {
           "type": "string"
+        },
+        "affinity_strength": {
+          "type": "number",
+          "enum": [
+            0.7,
+            0.8,
+            0.9,
+            0.95
+          ]
+        },
+        "affinity_rationale": {
+          "type": "string",
+          "minLength": 12
+        },
+        "activation_condition": {
+          "type": "string",
+          "minLength": 12
         }
       }
     },

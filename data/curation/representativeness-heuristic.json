@@ -5,32 +5,39 @@
     "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
     "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
     "The risk is that a compelling pattern match will crowd out denominator discipline.",
-    "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification."
+    "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification.",
+    "A vivid story, category label, or familiar prototype is overpowering statistical reasoning in a forecast or judgment.",
+    "A recommendation depends on forcing a handoff from intuitive categorization to explicit outside-view checking before action.",
+    "Problem solvers are at risk of declaring that they have seen this pattern before and skipping verification of whether the old frame still fits."
   ],
   "avoid_when": [
     "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
-    "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it."
+    "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it.",
+    "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
+    "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
   ],
   "input_type": "similarity-driven judgment",
-  "output_type": "pattern-match challenge",
+  "output_type": "pattern-match challenge with base-rate correction",
   "reasoning_types": [
     "probabilistic",
-    "diagnostic"
+    "diagnostic",
+    "counterfactual"
   ],
   "curation_notes": {
-    "summary": "Kept the file on resemblance-driven substitution and denominator discipline rather than on broad bias taxonomy sprawl.",
+    "summary": "Merged from representativeness-heuristic and representativeness-bias. Covers both the cognitive shortcut (heuristic framing) and the systematic errors it produces (bias framing). Centered on resemblance-driven substitution, denominator discipline, and forced outside-view correction.",
     "donor_drops": [
-      "Did not preserve wider probability-bias sprawl because the raw source is already strongest on pattern-match overreach."
+      "Did not preserve wider probability-bias sprawl because the raw source is already strongest on pattern-match overreach.",
+      "Did not preserve donor heuristics-and-biases sprawl beyond the raw source's stronger base-rate, WYSIATI, and false-pattern-recognition surface."
     ],
     "open_questions": [
       "The source overlaps with availability and outcome-bias, but the operational file stays on similarity-driven substitution."
     ]
   },
   "provenance_notes": {
-    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on similarity-based judgment, substitution, and crowding out statistical or causal discipline."},
-    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly implies the need to avoid treating all intuitive resemblance as invalid when supported by stronger evidence."},
-    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses the raw resemblance-driven activation conditions."},
-    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the intervention as challenging the pattern match with denominator or causal checks."},
-    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model is strongest as a probabilistic and diagnostic check on intuitive classification."}
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "Merged select_when from both representativeness-heuristic and representativeness-bias curations. The raw sources are explicit on similarity-based judgment, substitution, base-rate override, and crowding out statistical or causal discipline."},
+    "avoid_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "Merged avoid_when from both curations. Covers both the anti-intuition-slogan trap and the redundant-bias-warning trap."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses the raw resemblance-driven activation conditions from both sources."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures both pattern-match challenge and base-rate correction framing."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "Combined probabilistic and diagnostic from heuristic source with probabilistic and counterfactual from bias source."}
   }
 }

@@ -7,28 +7,40 @@
       "rationale_text": "Critical-mass gives network-effects its threshold logic by marking the point where participation becomes self-sustaining.",
       "source_quote": "The core definition and purpose of Critical Mass is the idea that a system, concept, or product must reach a certain threshold or minimum density before it can become viable or self-sustaining.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Network effects are defined by the critical mass threshold that triggers self-reinforcing growth — without reaching critical mass, network effects remain latent and the system cannot achieve self-sustaining adoption.",
+      "activation_condition": "When network growth dynamics depend on reaching a specific adoption threshold below which the network provides insufficient value to attract new participants"
     },
     {
       "target_model_id": "feedback-loops",
       "rationale_text": "Feedback-loops explain how participation can reinforce future participation once the system starts communicating success back into itself.",
       "source_quote": "The process itself creates feedback loops that communicate success or failure and allow for continuous improvement.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Feedback loops ARE the mechanism through which network effects self-reinforce — 'creates feedback loops that communicate success or failure and allow for continuous improvement'.",
+      "activation_condition": "When network value grows through self-reinforcing cycles where each new participant increases value for existing participants, creating positive feedback"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps network-effects focus on interrelationships and adoption structure rather than isolated user counts.",
       "source_quote": "Network Effects are fundamentally based on understanding how parts in a system interact, leading to smarter planning and better decisions.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Network effects require 'seeing interrelationships rather than things' — systems thinking provides the analytical framework for understanding how network dynamics create emergent value.",
+      "activation_condition": "When analyzing network dynamics requires understanding the full system of interdependencies rather than measuring individual node value in isolation"
     },
     {
       "target_model_id": "pareto-principle",
       "rationale_text": "Pareto-principle supports network-effects by concentrating effort on the small share of users or features most likely to push the system past the threshold.",
       "source_quote": "Pareto Principle (80/20 Rule)",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Identifies the '20% of core users or features that will most effectively drive the system past the critical mass threshold' — maximizes input-to-output ratio for network growth.",
+      "activation_condition": "When limited resources for network growth need to be focused on the small subset of users or features that disproportionately drive adoption toward critical mass"
     }
   ],
   "antagonists": [
@@ -37,14 +49,20 @@
       "rationale_text": "Cognitive-load-theory conflicts with network-effects when a complex product explanation overloads the audience before adoption can spread.",
       "source_quote": "When explaining a complex network or product, overloading the audience's working memory with too many features or abstract details hinders the assimilation of new information.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Overloading the audience's working memory 'hinders the assimilation of new information' — complexity is a practical barrier to the rapid adoption network effects require.",
+      "activation_condition": "When network product complexity creates cognitive barriers to adoption that prevent new users from experiencing the network value proposition"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias distorts network-effects by mistaking local traction for true critical mass and ignoring disconfirming evidence about viability.",
       "source_quote": "Mistaking Local Success for Critical Mass",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Causes 'mistaking local success for critical mass' through selective evidence interpretation — teams seek confirming signals of network traction while ignoring disconfirming data.",
+      "activation_condition": "When early adoption metrics are selectively interpreted to confirm that critical mass is being reached while growth stalls or reverses are dismissed"
     }
   ],
   "structured_tensions": [
@@ -66,7 +84,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays conservative around thresholds, feedback, system structure, and anti-false-critical-mass discipline.",
+    "summary": "Layer 1+2 enrichment complete. Allies: critical-mass 0.95 (critical — network effects defined by critical mass threshold), feedback-loops 0.90 (strong — self-reinforcing mechanism), systems-thinking 0.80 (moderate — interrelationship framework), pareto-principle 0.80 (moderate — resource focus for growth). Antagonists: cognitive-load-theory 0.80 (moderate — complexity barrier to adoption), confirmation-bias 0.80 (moderate — premature network traction claims).",
     "donor_drops": [
       "Did not preserve broader social-influence expansion because the current vocabulary already supports a tighter threshold-and-feedback surface."
     ],

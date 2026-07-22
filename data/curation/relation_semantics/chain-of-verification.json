@@ -7,21 +7,30 @@
       "rationale_text": "Critical-thinking gives chain-of-verification the questioning discipline that checks whether each premise deserves to stay in the argument.",
       "source_quote": "Critical thinking involves systematically evaluating evidence ... The goal of CoV, in this context, is to cultivate a sound path to conclusions.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Core questioning discipline — 'Critical thinking involves systematically evaluating evidence' and 'the goal of CoV is to cultivate a sound path to conclusions' — provides the evaluative rigor that makes each verification step genuinely probative.",
+      "activation_condition": "When each link in the verification chain needs genuine evaluative scrutiny of evidence quality and logical validity rather than ceremonial confirmation of prior steps"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps chain-of-verification trace the machine-level cause structure behind a conclusion rather than validating isolated fragments.",
       "source_quote": "In systems thinking, CoV aligns with the need to trace causal links.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Complementary tracing mechanism — 'CoV aligns with the need to trace causal links' — helps verification follow the machine-level cause structure rather than validating isolated fragments, but operates as a complement to CoV's sequential discipline.",
+      "activation_condition": "When verification needs to trace cause-and-effect chains across system interdependencies rather than checking each premise in isolation from its structural context"
     },
     {
       "target_model_id": "delays",
       "rationale_text": "Delays reinforce chain-of-verification by slowing commitment until the foundation and dependencies are actually checked.",
       "source_quote": "Best when commitment should follow validated premises.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Timing reinforcement — 'Best when commitment should follow validated premises' — slows the commitment pace to allow verification to complete, but is a support mechanism rather than a core verification function.",
+      "activation_condition": "When the team is under pressure to commit before the verification chain has been completed, and deliberate slowing is needed to allow each step to be properly validated"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias pressures chain-of-verification to validate the preferred story rather than reconcile disconfirming evidence link by link.",
       "source_quote": "CoV demands radical open-mindedness and intellectual humility, forcing the thinker to identify and reconcile disconfirming evidence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly opposes the verification function — 'CoV demands radical open-mindedness and intellectual humility, forcing the thinker to identify and reconcile disconfirming evidence' — confirmation bias converts verification into validation of the preferred story.",
+      "activation_condition": "When the verification process is unconsciously confirming prior steps and preferred conclusions rather than genuinely testing each link for disconfirmation"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification can become an antagonist when it compresses away the building blocks that chain-of-verification needs to keep inspectable.",
       "source_quote": "Avoid presenting only high-level abstractions or punch lines; instead, convey the underlying building blocks of the solution.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Conditional antagonist — 'Avoid presenting only high-level abstractions; instead, convey the underlying building blocks' — simplification becomes harmful when it compresses away the inspectable premises that CoV needs to verify.",
+      "activation_condition": "When simplification is compressing the reasoning chain into high-level conclusions that hide the building blocks CoV needs to keep inspectable and testable"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on critical questioning, causal-link auditing, and anti-premature-closure pressure, so the file preserves that compact first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: critical-thinking 0.90 (strong — core evaluative rigor), systems-thinking 0.80 (moderate — causal-link tracing), delays 0.80 (moderate — timing reinforcement). Antagonists: confirmation-bias 0.90 (strong — 'demands radical open-mindedness'), simplification 0.80 (moderate — compresses inspectable premises). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation sprawl beyond the strongest current-vocabulary links around evidence-checking, sequential validation, and anti-bias review."
     ],

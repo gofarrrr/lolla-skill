@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive Load Theory is a direct ally because bottlenecks often show up as working-memory limits that need chunking and scaffolding.",
       "source_quote": "The central finding of CLT—that working memory is limited—is the primary cognitive bottleneck the theory seeks to manage.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'a direct ally' where 'the central finding of CLT—that working memory is limited—is the primary cognitive bottleneck the theory seeks to manage' — CLT defines the foundational constraint that bottleneck analysis targets.",
+      "activation_condition": "When bottleneck identification requires understanding that working memory limits are the primary cognitive constraint driving throughput failures in learning or decision-making"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "The Feynman Technique helps reveal the hidden intellectual bottleneck by forcing the idea into simple language.",
       "source_quote": "It aligns with the bottleneck model by forcing the user to explain a concept simply ... immediately revealing gaps or blind spots—the intellectual bottlenecks—in their understanding.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as 'aligning with the bottleneck model' by 'immediately revealing gaps or blind spots—the intellectual bottlenecks' — a diagnostic tool that surfaces hidden constraints but operates as a reveal mechanism rather than a core bottleneck framework.",
+      "activation_condition": "When hidden intellectual bottlenecks need to be surfaced by forcing complex ideas into simple language that exposes gaps in understanding"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "System-1's fast, intuitive, shortcut-driven processing directly opposes bottleneck thinking — bottleneck analysis requires the disciplined, slow, serial processing of System 2, while System 1's heuristics produce the pattern-jumping that misidentifies constraints and bypasses the real limit.",
       "source_quote": "The disciplined, slow, and serial nature of processing at the bottleneck (System 2 thinking) stands in contrast to Type 1 thinking, which is fast, intuitive, and relies on mental shortcuts (heuristics).",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly opposes the analysis mode — 'the disciplined, slow, and serial nature of processing at the bottleneck stands in contrast to Type 1 thinking, which is fast, intuitive, and relies on mental shortcuts' — heuristic processing actively misidentifies constraints.",
+      "activation_condition": "When fast intuitive processing is producing constraint diagnoses based on pattern-matching shortcuts rather than the disciplined serial analysis that bottleneck identification requires"
     }
   ],
   "structured_tensions": [
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Bottlenecks already had some compiled relation coverage, but reviewed curation strengthens provenance and keeps only the first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: cognitive-load-theory 0.90 (strong — 'direct ally', defines the primary cognitive constraint), feynman-technique 0.80 (moderate — diagnostic reveal mechanism). Antagonists: system-1 0.90 (strong — heuristic shortcuts misidentify constraints). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor topology or multihop relation artifacts."
     ],
     "open_questions": [
-      "Minto Pyramid Principle, Symphony, and law-of-the-instrument pressure remain source-real but were left deferred because the current canonical target surface is not yet stable enough."
+      "Minto Pyramid Principle, Symphony, and law-of-the-instrument pressure remain source-real but were left deferred because the current canonical target surface is not yet stable enough.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names Minto Pyramid Principle ('MECE structure prevents cognitive system from being overwhelmed') and Symphony ('synthesize seemingly unrelated pieces to form the big picture') as additional allies."
     ]
   },
   "deferred_higher_order_notes": {

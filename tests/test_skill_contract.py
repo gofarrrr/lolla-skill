@@ -81,7 +81,10 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
 
     assert "scripts/skill/setup.sh" in skill
     assert "$HOME/.codex/skills/lolla" in skill
-    assert ".codex/skills/lolla" in setup
+    assert "${BASH_SOURCE[0]}" in setup
+    assert "_LOLLA_SCRIPT_DIR/../.." in setup
+    assert 'SKILL_DIR="$HOME/.codex/skills/lolla"' not in setup
+    assert 'SKILL_DIR="$HOME/.claude/skills/lolla"' not in setup
     assert ".codex/lolla.env" in setup
     assert "make_run_id" in setup
     assert "LOLLA_EXPECTED_RUN_ID" in setup
@@ -231,6 +234,18 @@ def test_skill_stays_compact_but_not_overcompressed() -> None:
     line_count = len(_read("SKILL.md").splitlines())
     assert line_count < 500
     assert line_count >= 220
+
+
+def test_skill_exposes_one_level_substrate_operations_reference() -> None:
+    skill = _read("SKILL.md")
+    reference = _read("references/knowledge-substrate-operations.md")
+
+    assert "references/knowledge-substrate-operations.md" in skill
+    assert "validate_self_contained_skill.py --validate-only" in reference
+    assert "direct-active seeds" in reference
+    assert "authored outgoing relations" in reference
+    assert "candidate-only" in reference
+    assert "not proof" in reference
 
 
 def test_load_bearing_steps_use_helpers() -> None:

@@ -1,0 +1,33 @@
+{
+    "model_id": "brainstorming",
+    "source_file": "Brainstorming_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question has already converged on a small set of options when the problem space has not been adequately explored — judgment has been applied too early, killing generative thinking.",
+        "The question treats the first satisfactory option as the answer (satisficing) when deliberately generating a larger quantity of alternatives would reveal structurally different approaches.",
+        "The question frames the situation as requiring evaluation ('which of these options?') when it actually requires generation ('what options exist that we have not considered?').",
+        "The question suppresses wild or unconventional framings because they feel impractical, when those framings contain structural insights that can be tamed into practical alternatives."
+    ],
+    "frame_patterns_challenged": [
+        "option_space_collapse",
+        "binary_collapse",
+        "premature_intellectualization",
+        "counterfactual_suppression"
+    ],
+    "reframing_move": "Before evaluating options, ask: 'Have we generated enough options to be confident we have found the right problem framing, or are we judging too early?' — the brainstorming reframe separates generation from evaluation and insists on quantity before quality.",
+    "reframing_move_types": ["scope_expansion", "constraint_relaxation"],
+    "curation_confidence": "high",
+    "curation_note": "Brainstorming is a natural reframing model because its core rule — defer judgment, prioritize quantity — directly counters premature frame convergence. The source describes Osborn's rules: 'defer judgment', 'go for quantity', 'welcome wild ideas', and 'combine and improve'. The option_space_collapse challenge is the model's primary target. The binary_collapse challenge comes from the insistence on quantity — generating many options makes binary framing impossible. The counterfactual_suppression challenge maps to 'welcome wild ideas' — unconventional framings are protected rather than filtered.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Premature convergence (defer judgment rule), satisficing (quantity over satisficing), evaluation vs generation (Osborn's separation), suppressed wild framings ('welcome wild ideas')."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Option space collapse: quantity rule directly counters this. Binary collapse: many options make binary impossible. Premature intellectualization: defer judgment separates generation from evaluation. Counterfactual suppression: 'welcome wild ideas' protects unconventional frames."
+        }
+    }
+}

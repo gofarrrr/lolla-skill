@@ -7,21 +7,30 @@
       "rationale_text": "Decision-trees helps counterfactual-reasoning recover the missing branches that make the original choice intelligible.",
       "source_quote": "It allows decision-makers to view the outcome that occurred in the context of other potential outcomes at the time of the decision, helping to re-create the decision tree.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Structural tool — 'allows decision-makers to view the outcome that occurred alongside alternative outcomes' — provides the branching framework for organizing counterfactual scenarios, but is a tool rather than the reasoning mode itself.",
+      "activation_condition": "When counterfactual alternatives need to be organized into a structured branching framework that makes it possible to compare the actual outcome against what would have happened under different choices"
     },
     {
       "target_model_id": "premortem",
       "rationale_text": "Premortem gives counterfactual-reasoning a concrete way to work backward from failure and expose hidden branches before commitment.",
       "source_quote": "Conduct a Pre-Mortem",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Operational application — 'Conduct a Pre-Mortem' — the pre-mortem IS counterfactual reasoning applied prospectively before commitment, making it the most direct team-level application of the model.",
+      "activation_condition": "When prospective counterfactual reasoning needs to be structured as a team exercise that imagines the project has already failed and works backward to identify what went wrong"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking strengthens counterfactual-reasoning by surfacing interrelationships and unknown unknowns across the wider system.",
       "source_quote": "CR helps reveal interrelationships and unexpected results.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Scope expander — 'CR helps reveal interrelationships and unexpected results' — ensures counterfactual scenarios account for system-level interdependencies rather than tracing only the most obvious single-variable alternatives.",
+      "activation_condition": "When counterfactual analysis needs to account for system-level interdependencies and feedback loops rather than varying only a single obvious factor in isolation"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias undermines counterfactual-reasoning by resisting the search for plausible opposite explanations.",
       "source_quote": "CR directly opposes this by forcing the consideration of disconfirming evidence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly opposed — 'CR directly opposes this by forcing the consideration of disconfirming evidence' — confirmation bias constructs counterfactuals that conveniently confirm the actual decision was correct.",
+      "activation_condition": "When counterfactual scenarios are being constructed only to reinforce the belief that the actual decision was correct rather than genuinely exploring what would have happened under different choices"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring works against counterfactual-reasoning when the first judgment or first shared view narrows the branch set too early.",
       "source_quote": "This prevents anchoring (focusing too much on a single piece of information) and ensures that alternative perspectives are generated organically.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Limits scenario range — 'This prevents anchoring (focusing too much on a single piece of information)' — the actual outcome becomes an anchor that constrains the range of counterfactual alternatives considered.",
+      "activation_condition": "When the actual outcome is anchoring the counterfactual analysis so that alternative scenarios cluster narrowly around what happened rather than exploring genuinely different trajectories"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on branch-recovery allies and anti-confirmation discipline, so the file keeps that bounded first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: premortem 0.90 (strong — direct prospective application), decision-trees 0.80 (moderate — structural tool), systems-thinking 0.80 (moderate — scope expander). Antagonists: confirmation-bias 0.90 (strong — constructs self-serving counterfactuals), anchoring 0.80 (moderate — limits scenario range). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor multihop or scenario catalogs because this batch stops at first-order relations only."
     ],

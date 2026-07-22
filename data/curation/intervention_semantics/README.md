@@ -12,11 +12,11 @@ This layer is separate on purpose:
 
 ## Authority Order
 
-1. raw markdown in `MM_CANONICAL_216/`
-2. Wave 1 reviewed operational curation in `curation/*.json`
-3. Wave 2 reviewed intervention semantics in `curation/intervention_semantics/*.json`
-4. compiled preview artifacts under `.tmp/`
-5. runtime interpretation
+1. raw Markdown in `data/model_sources/`
+2. Wave 1 reviewed operational curation in `data/curation/*.json`
+3. Wave 2 reviewed intervention semantics in this directory
+4. candidate compiler artifacts in an explicit non-published output directory
+5. explicitly promoted runtime artifacts
 
 If a deepened item disagrees materially with the raw markdown, the markdown wins semantically.
 The disagreement should be documented in notes, not hidden in code.
@@ -26,7 +26,8 @@ The disagreement should be documented in notes, not hidden in code.
 - `schema.json`: machine-readable contract for Wave 2 files
 - `{model_id}.json`: one intervention-semantics file per already curated model
 
-This pilot is intentionally bounded to a small subset of the already curated models.
+The active set covers all 222 canonical models. The compiler-input manifest
+excludes two retained historical identity files.
 
 ## Required Fields
 
@@ -108,7 +109,7 @@ Allowed keys:
 
 These notes are for future curation planning only. They must not become live graph or runtime inputs in this wave.
 
-## Explicit Non-Goals For This Wave
+## Explicit Non-Goals For This Layer
 
 - no changes to Wave 1 contract fields
 - no `compound_contracts`
@@ -116,7 +117,7 @@ These notes are for future curation planning only. They must not become live gra
 - no topology or multihop logic
 - no embeddings implementation
 - no runtime use
-- no silent integration into the main compiler
+- no semantic regeneration or silent runtime publication
 
 ## Review Standard
 

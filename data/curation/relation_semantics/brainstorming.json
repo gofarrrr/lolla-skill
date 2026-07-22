@@ -7,10 +7,24 @@
       "rationale_text": "Lateral-thinking strengthens brainstorming by turning raw idea volume into genuinely reframed alternatives rather than more of the same answer.",
       "source_quote": "Works when idea volume is genuinely valuable because the search space is still underexplored.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Essential reframing mechanism — turns raw idea volume into 'genuinely reframed alternatives rather than more of the same answer' — differentiates productive brainstorming from mere repetition by providing the divergent quality that volume alone cannot.",
+      "activation_condition": "When brainstorming sessions need to produce genuinely novel alternatives rather than variations on the same underlying idea or the group's existing direction"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias undermines brainstorming by causing team members to suppress their own ideas and defer to the senior person's framing, collapsing the divergent space the session needs.",
+      "source_quote": "Team members suppress their ideas due to pressure, loyalty, or the presence of a senior person (checking hierarchy at the door).",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly suppresses the core function — 'Team members suppress their ideas due to pressure, loyalty, or the presence of a senior person' — kills divergent generation by collapsing the group's search space to the authority's frame.",
+      "activation_condition": "When the presence or status of a senior participant is causing team members to self-censor their ideas or defer to the authority's framing rather than generating independently"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confirmation-bias",
@@ -30,8 +44,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved one clear divergence ally and the explicit anti-anchoring / anti-confirmation tension block.",
-    "donor_drops": ["Did not preserve broader ideation-process sprawl beyond the clearest current-vocabulary seams."],
-    "open_questions": ["Additional divergence allies are source-real, but the current first-order surface is cleanest around lateral-thinking."]
+    "summary": "Layer 1+2 enrichment complete. Allies: lateral-thinking 0.90 (strong — essential divergent reframing). Antagonists: authority-bias 0.90 (strong — directly suppresses idea generation through hierarchy deference). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 1 ally.",
+    "donor_drops": [
+      "Did not preserve broader ideation-process sprawl beyond the clearest current-vocabulary seams."
+    ],
+    "open_questions": [
+      "Additional divergence allies are source-real, but the current first-order surface is cleanest around lateral-thinking.",
+      "SPARSE_ALLY_RECOVERY: only 1 ally curated — high priority. Canonical article describes Cognitive Load Theory ('working memory is freed up for free association') and Design Thinking ('inextricably linked to the Ideate phase') as strong ally candidates."
+    ]
   }
 }

@@ -7,23 +7,32 @@
       "rationale_text": "Systems-thinking helps cultural-intelligence interpret behavior as part of a broader machine of culture, people, and organizational feedback.",
       "source_quote": "Systems thinking provides the framework for seeing wholes and interrelationships.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as a 'fundamental' alliance — systems thinking provides the framework for seeing wholes and interrelationships, essential for understanding organizations as systems of culture and people.",
+      "activation_condition": "When cultural intelligence requires understanding organizational dynamics as interconnected systems rather than isolated cultural variables"
     },
     {
       "target_model_id": "emotional-intelligence",
       "rationale_text": "Emotional-intelligence gives cultural-intelligence the self-awareness and social awareness needed to read another context without flattening it.",
       "source_quote": "Emotional Intelligence (EI) forms the necessary foundation for CI.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states 'EI forms the necessary foundation for CI' — emotional intelligence provides self-awareness and social awareness enabling the implicit understanding, chemistry, and rapport required for cultural intelligence.",
+      "activation_condition": "When cross-cultural interaction requires reading emotional states and modeling others' inner realities as the foundation for culturally adaptive behavior"
     }
   ],
   "antagonists": [
     {
-      "target_model_id": "representativeness-bias",
+      "target_model_id": "representativeness-heuristic",
       "rationale_text": "Representativeness-bias turns cultural-intelligence into stereotype projection by treating surface familiarity as deep understanding.",
       "source_quote": "stereotypes replace context-specific interpretation",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From structured tensions — stereotypes replace context-specific interpretation, causing snap judgments based on cultural prototypes rather than nuanced, situation-specific cultural analysis.",
+      "activation_condition": "When cultural assessment defaults to stereotype-based pattern matching rather than deliberate, context-specific analysis of the individual and situation"
     }
   ],
   "structured_tensions": [
@@ -36,9 +45,9 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Cultural-intelligence conflicts with representativeness-bias when stereotypes replace context-specific interpretation.",
-      "source_quote": "cultural-intelligence vs representativeness-bias: cultural-intelligence conflicts with representativeness-bias when stereotypes replace context-specific interpretation.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Cultural-intelligence conflicts with representativeness-heuristic when stereotypes replace context-specific interpretation.",
+      "source_quote": "cultural-intelligence vs representativeness-heuristic: cultural-intelligence conflicts with representativeness-heuristic when stereotypes replace context-specific interpretation.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation file keeps the strongest bounded graph from the raw source: systems and emotional-awareness allies plus the explicit stereotype-and-default tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: emotional-intelligence 0.95 (critical — 'forms the necessary foundation'), systems-thinking 0.90 (strong — 'fundamental' alliance). Antagonist: representativeness-heuristic 0.80 (moderate — stereotypes replace context-specific interpretation). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies curated.",
     "donor_drops": [
       "Did not widen into broad communication neighbors because the explicit tension block already gives a disciplined first-order surface."
     ],
     "open_questions": [
-      "Analogical reasoning is a source-real ally too, but systems-thinking and emotional-intelligence were the stronger current-vocabulary anchors."
+      "Analogical reasoning is a source-real ally too, but systems-thinking and emotional-intelligence were the stronger current-vocabulary anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names analogical-reasoning/schemas as additional synergistic ally."
     ]
   }
 }

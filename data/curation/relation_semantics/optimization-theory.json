@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking keeps optimization attached to the structure of the whole system instead of chasing local improvement in isolation.",
       "source_quote": "Systems Thinking: The entire discipline of systems thinking is oriented toward optimizing complex interactions.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "The 'entire discipline of systems thinking is oriented toward optimizing complex interactions' — systems thinking provides the holistic framework within which optimization operates on interrelationships.",
+      "activation_condition": "When optimization requires understanding the full system of interacting components rather than optimizing a single variable in isolation"
     },
     {
       "target_model_id": "constraints",
       "rationale_text": "Constraints give optimization its real boundary conditions so the best option is defined by actual limits rather than by idealized freedom.",
       "source_quote": "Works when constraints are real rather than decorative.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Constraints define the solution space within which optimization operates — understanding cognitive limits (CLT), competitive boundaries (game theory), and structural boundaries shapes what optimal means.",
+      "activation_condition": "When optimization efforts need to respect real-world boundaries rather than pursuing theoretical optima that violate system constraints"
     },
     {
       "target_model_id": "leverage-points",
       "rationale_text": "Leverage-points sharpen optimization by directing effort toward the few system moves that change the outcome most.",
       "source_quote": "Optimization necessitates filtering out the nonessential to focus on the core leverage points.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Leverage points identify where optimization effort should be focused for maximum impact — concentrating resources on high-sensitivity variables rather than distributing effort uniformly.",
+      "activation_condition": "When optimization resources are limited and need to be focused on the variables that produce the largest output change per unit of input"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias makes optimization feel rigorous while quietly protecting the current objective, proxy, or favored frame from real challenge.",
       "source_quote": "Confirmation Bias and Groupthink",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Team members may feel pressure to confirm the optimization hypothesis rather than challenging it skeptically — optimization targets become self-confirming.",
+      "activation_condition": "When the optimization target has been set and the team selectively gathers evidence that the current approach is optimal while ignoring signs of suboptimality"
     },
     {
       "target_model_id": "risk-vs-uncertainty",
       "rationale_text": "Risk-vs-uncertainty pushes back when optimization language pretends the problem is knowable enough for strict maximization instead of de-risking and resilience work.",
       "source_quote": "The existence of Unknown Unknowns means optimization must shift to de-risking and resilience, rather than strict maximization.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "The model of Knowns and Unknowns 'introduces complexity that resists perfect optimization' — Unknown Unknowns mean optimization must shift to de-risking and resilience.",
+      "activation_condition": "When the optimization problem contains genuinely uncertain parameters that resist quantification, making precise optimization illusory and resilience more valuable"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on systems alignment, real constraints, and proxy-risk antagonism, so the file preserves that bounded first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'entire discipline oriented toward optimizing'), constraints 0.80 (moderate — defines solution space), leverage-points 0.80 (moderate — focuses effort for maximum impact). Antagonists: confirmation-bias 0.80 (moderate — optimization targets self-confirm), risk-vs-uncertainty 0.80 (moderate — unknown unknowns resist perfect optimization).",
     "donor_drops": [
       "Did not preserve donor optimization relations beyond the strongest systems, constraints, leverage, and anti-false-certainty links."
     ],

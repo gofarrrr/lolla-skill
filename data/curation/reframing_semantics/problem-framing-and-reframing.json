@@ -1,0 +1,34 @@
+{
+  "model_id": "problem-framing-and-reframing",
+  "source_file": "Problem_Framing_and_Reframing_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question imposes a single frame on a situation where multiple plausible frames exist and the cost of choosing the wrong one is high.",
+    "The question's unit of analysis, boundary, or success criteria may be wrong — progress depends on asking a better question, not finding a better answer within the current frame.",
+    "The question is stuck inside one familiar professional or disciplinary lens and alternative cuts through the problem would expose different insights.",
+    "The question treats a flawed problem definition as settled when refinement through different frameworks would reveal that the real problem is different from the stated one."
+  ],
+  "frame_patterns_challenged": [
+    "scope_lock",
+    "binary_collapse",
+    "borrowed_premise",
+    "symptom_as_problem",
+    "option_space_collapse"
+  ],
+  "reframing_move": "Test multiple frames: apply different lenses (economic, social, technical, user-centered) to the same situation and ask which frame produces the most insightful 'cut' through the problem — the right question often emerges from the frame comparison, not from deeper analysis within any single frame.",
+  "reframing_move_types": ["perspective_shift", "scope_expansion"],
+  "curation_confidence": "high",
+  "curation_note": "This is the most direct reframing model in the corpus — its entire purpose is changing the question. The source is explicit: 'how a problem is defined dictates the solution space' and the diamond-cutting metaphor directly describes question-level reframing. Challenges the widest range of frame patterns.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All four activations from explicit source material: multi-frame evaluation, boundary questioning, disciplinary lens lock, and the settled-definition trap."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Broadest pattern coverage of any pilot model. Scope lock and binary collapse are primary targets. Borrowed premise via inherited definitions. Symptom-as-problem via frame refinement. Option space collapse via multi-framework testing."
+    }
+  }
+}

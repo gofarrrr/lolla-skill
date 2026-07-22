@@ -7,17 +7,44 @@
       "rationale_text": "Empathy strengthens multicultural-team-dynamics by helping the team model how the same event looks from different cultural standpoints.",
       "source_quote": "The Empathize phase of Design Thinking requires viewing the problem from the perspective of the users and assessing the interests of multiple actors.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Emotional competence is described as 'necessary for success, particularly in roles involving coordination and group dynamics' — EQ enables management of the affective dimension of cross-cultural disagreements.",
+      "activation_condition": "When diverse team interactions require managing emotional and cultural friction rather than just exchanging analytical content"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking strengthens multicultural-team-dynamics by showing how local team interactions shape broader downstream effects.",
       "source_quote": "The goal of MCTD is congruent with Systems Thinking, striving to gain a full picture of the system to make better decisions.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "MCTD is 'congruent with Systems Thinking, striving to gain a full picture of the system to make better decisions' — diverse perspectives reveal how actions affect distant points in the system.",
+      "activation_condition": "When team decisions require understanding how cultural assumptions at one point in the system create ripple effects across distant organizational boundaries"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "social-proof",
+      "rationale_text": "Social-proof undermines multicultural-team-dynamics by pressuring team members to conform to the dominant group consensus, suppressing the dissenting perspectives that diversity is meant to surface.",
+      "source_quote": "The pressure on individuals to go with the flow despite private doubts (groupthink) is a major danger. This arises when the team prioritizes cohesion over truth and critical evaluation.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Social proof drives conformity pressure that suppresses the dissenting perspectives diversity is meant to provide — groupthink causes teams to coalesce around consensus quickly.",
+      "activation_condition": "When team consensus forms quickly around the majority cultural perspective, suppressing minority viewpoints that carry valuable disconfirming information"
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines multicultural-team-dynamics by causing specialists to communicate at an abstraction level incomprehensible to colleagues from other disciplines, nullifying the cross-pollination that diversity is designed to enable.",
+      "source_quote": "This bias acts as a major barrier to effective cross-disciplinary communication within a diverse team. Experts instinctively jump to a higher level of abstraction, making their communication incomprehensible to those outside their specialization, thus hindering the sharing of insight that diversity is meant to enable.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'a major barrier to effective cross-disciplinary communication within a diverse team' — experts jump to abstraction, making communication incomprehensible to those outside their specialization.",
+      "activation_condition": "When domain experts on the team communicate at abstraction levels that prevent knowledge transfer across cultural and disciplinary boundaries"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "status-quo-bias",
@@ -45,12 +72,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. Allies: empathy 0.90 (strong — emotional competence 'necessary for success' in diverse teams), systems-thinking 0.80 (moderate — 'congruent with' systems perspective). Antagonists differentiated: curse-of-knowledge 0.90 (strong — 'major barrier' to cross-disciplinary communication), social-proof 0.80 (moderate — conformity suppresses diverse perspectives). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies design-thinking ('Empathize phase requires multiple POVs') and scientific-method/hypothesis-driven-thinking ('forces team to find and reconcile disconfirming evidence') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

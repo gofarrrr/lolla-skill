@@ -33,7 +33,12 @@ from .pass2_runner import (
 from .conversation_context import ConversationContext
 from .ir_constructor import construct_conversation_ir
 from .companion import CompanionCard, DetectedModel, FingerprintMove, FingerprintPayload, build_companion_card
-from .constitutional_graph_survival import build_constitutional_graph_survival
+from .constitutional_graph_survival import (
+    build_constitutional_graph_survival,
+)
+from .constitutional_pressure_survival import (
+    build_constitutional_graph_survival_from_snapshot,
+)
 from .frame_pressure import (
     FramePressureCard,
     assemble_frame_card,
@@ -95,6 +100,11 @@ from .reciprocation_deep_check_packet_adapter import (
 from .pilot_deep_check_bridge import PilotDeepCheckBridge, PilotDeepCheckBridgeResult
 from .pressure_bundle_selector import PressureBundleSelector
 from .prompts import _joined_assistant_turns_text
+from .published_knowledge_substrate import (
+    PublishedKnowledgeSnapshot,
+    PublishedKnowledgeSubstrate,
+    PublishedSubstrateError,
+)
 from .relation_graph import RelationGraph
 from .reward_and_punishment_deep_check_packet_adapter import (
     map_reward_and_punishment_result_to_subpattern,
@@ -305,6 +315,7 @@ class SystemBPipeline:
         relation_graph: RelationGraph,
         boundary: BoundaryClient,
         bundle_selector: PressureBundleSelector | None = None,
+        knowledge_substrate_snapshot: PublishedKnowledgeSnapshot | None = None,
         companion_knowledge_graph: dict | None = None,
         companion_relation_graph: dict | list | None = None,
         companion_reasoning_signals: dict | None = None,
@@ -321,6 +332,7 @@ class SystemBPipeline:
         self._relation_graph = relation_graph
         self._boundary = boundary
         self._bundle_selector = bundle_selector
+        self._knowledge_substrate_snapshot = knowledge_substrate_snapshot
         self._companion_knowledge_graph = companion_knowledge_graph or {}
         self._companion_relation_graph = companion_relation_graph or {}
         self._companion_reasoning_signals = companion_reasoning_signals or {}
@@ -345,16 +357,20 @@ class SystemBPipeline:
         config: PipelineConfig | None = None,
     ) -> "SystemBPipeline":
         active_config = config or PipelineConfig()
+        substrate_snapshot = PublishedKnowledgeSubstrate.open(root).require_snapshot(
+            allow_partial=True
+        )
         overoptimism_bridge, overoptimism_warnings = _load_overoptimism_bridge(root, active_config)
         authority_bridge, authority_warnings = _load_authority_bridge(root, active_config)
         stress_bridge, stress_warnings = _load_stress_bridge(root, active_config)
         return cls(
-            catalog=TendencyCatalog.load(root),
-            relation_graph=RelationGraph.load(root),
+            catalog=TendencyCatalog.from_snapshot(root, substrate_snapshot),
+            relation_graph=RelationGraph.from_snapshot(substrate_snapshot),
             boundary=boundary,
             bundle_selector=_load_bundle_selector(root),
-            companion_knowledge_graph=_load_companion_knowledge_graph(root),
-            companion_relation_graph=_load_companion_relation_graph(root),
+            knowledge_substrate_snapshot=substrate_snapshot,
+            companion_knowledge_graph=substrate_snapshot.knowledge_graph_payload(),
+            companion_relation_graph=substrate_snapshot.relationship_graph_payload(),
             companion_reasoning_signals=_load_companion_reasoning_signals(root),
             overoptimism_bridge=overoptimism_bridge,
             authority_bridge=authority_bridge,
@@ -759,11 +775,18 @@ class SystemBPipeline:
         # active/reserve custody before the probabilistic verifier runs. The
         # verifier remains legacy interpretation telemetry and cannot delete
         # or rank survival candidates.
-        graph_survival = build_constitutional_graph_survival(
-            candidates=candidates,
-            knowledge_graph=self._companion_knowledge_graph,
-            relationship_graph=self._companion_relation_graph,
-        )
+        substrate_snapshot = getattr(self, "_knowledge_substrate_snapshot", None)
+        if substrate_snapshot is not None:
+            graph_survival = build_constitutional_graph_survival_from_snapshot(
+                candidates=candidates,
+                substrate=substrate_snapshot,
+            )
+        else:
+            graph_survival = build_constitutional_graph_survival(
+                candidates=candidates,
+                knowledge_graph=self._companion_knowledge_graph,
+                relationship_graph=self._companion_relation_graph,
+            )
         verification = run_verification_call_with_diagnostics(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
@@ -966,31 +989,19 @@ def _semantic_rerank_text(conversation_context: ConversationContext) -> str:
 
 
 def _load_companion_knowledge_graph(root: Path) -> dict:
-    # Loads the Wave 1+2+3 compiled knowledge graph from build/.
-    # This is NOT the authoritative knowledge source — edit curation/, then recompile.
-    # See CLAUDE.md and build/GENERATED.md for the knowledge layer doctrine.
-    path = Path(root) / "build" / "knowledge_graph.json"
-    if not path.exists():
-        return {}
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        snapshot = PublishedKnowledgeSubstrate.open(root).require_snapshot(allow_partial=True)
+    except PublishedSubstrateError:
         return {}
-    return payload if isinstance(payload, dict) else {}
+    return snapshot.knowledge_graph_payload()
 
 
 def _load_companion_relation_graph(root: Path) -> dict | list:
-    # Loads the Wave 3 compiled relationship graph from build/.
-    # This is NOT the authoritative relation source — edit curation/relation_semantics/, then recompile.
-    # See CLAUDE.md and build/GENERATED.md for the knowledge layer doctrine.
-    path = Path(root) / "build" / "relationship_graph.json"
-    if not path.exists():
-        return {}
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        snapshot = PublishedKnowledgeSubstrate.open(root).require_snapshot(allow_partial=True)
+    except PublishedSubstrateError:
         return {}
-    return payload if isinstance(payload, (dict, list)) else {}
+    return snapshot.relationship_graph_payload()
 
 
 def _load_companion_reasoning_signals(root: Path) -> dict:

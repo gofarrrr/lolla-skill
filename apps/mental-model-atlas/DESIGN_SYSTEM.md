@@ -18,14 +18,22 @@ glassmorphic surface, or a gamified learning product.
 The current candidate is deliberately achromatic. Color may return only after
 the structural contract is stable and reviewed.
 
+The shared shell uses the founder-supplied lowercase `lolla` raster wordmark
+from `public/brand/lolla-wordmark-original.png`. The repository copy preserves
+the supplied source bytes. CSS owns only its clipped presentation and contrast
+against the achromatic raised surface; it must not redraw, infer, or silently
+replace the letterforms. The enclosing home link supplies the accessible name,
+so the raster is decorative to assistive technology. The wordmark stands alone
+in the header; do not place a `Mental Model Atlas` descriptor beneath it.
+
 ## Geometry
 
 - Structural panels, cards, tables, disclosures, and navigation groups are
   square (`--radius-structure`).
 - Buttons and form controls use the two-pixel control radius
   (`--radius-control`).
-- Circles are reserved for graph nodes, numbered learning steps, loading-node
-  geometry, and the brand mark.
+- Circles are reserved for graph nodes, numbered learning steps, and
+  loading-node geometry.
 - A full capsule radius is reserved for compact status labels and the
   off-canvas skip link.
 - No other corner radius is part of the system.
@@ -50,8 +58,11 @@ the structural contract is stable and reviewed.
 - Model identity uses a small outlined node and a separately bounded label.
   Labels must remain inside the graph and must not collide with one another.
   Dense pages reserve two ordered label lanes rather than allowing overlap.
-- The relationship controls are the single visible legend. Do not repeat a
-  second key in the selection panel.
+- Before selection, the first viewport prioritizes search and named canonical
+  model actions over relationship configuration or counts.
+- After selection, connection counts are filter controls in the selection
+  panel. The same panel owns one progressively disclosed line-and-direction
+  grammar; do not repeat a second visible legend elsewhere.
 - Every visible edge carries its exact relation type, a source-to-target
   arrowhead, and a traveling directional marker. Motion pauses through the
   global control and under reduced-motion preference.
@@ -101,6 +112,12 @@ Only three viewport breakpoints are active:
 
 Component-specific layout changes should prefer container-aware layout before
 adding another global breakpoint.
+
+At representative `1280x720` and `390x844` viewports, the first screen must
+contain a named canonical model action. A search exact match must be directly
+selectable, and selection must reveal the model name, summary, and available
+full-page action without requiring scroll. The compact route is list-first;
+the hidden visual renderer must not leave a dead presentation control.
 
 ## Allowed exceptions
 

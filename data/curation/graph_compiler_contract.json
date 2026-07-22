@@ -1,0 +1,37 @@
+{
+  "schema_version": "lolla.graph_compiler_contract.v1",
+  "status": "frozen_current_release_reconstruction",
+  "repository_authority": "sole_active_project_authority",
+  "provider_calls_allowed": 0,
+  "published_artifacts": {
+    "knowledge_graph": "data/knowledge_graph.json",
+    "relationship_graph": "data/relationship_graph.json"
+  },
+  "release_identity": {
+    "knowledge_graph_version": "1.0",
+    "compiled_date": "2026-04-21",
+    "compilation_mode": "layer2b-canonical"
+  },
+  "serialization": {
+    "json_indent": 2,
+    "ensure_ascii": true,
+    "sort_keys": false,
+    "trailing_newline": false
+  },
+  "candidate_policy": {
+    "explicit_output_directory_required": true,
+    "published_overwrite_allowed": false,
+    "compile_from_published_output_allowed": false,
+    "automatic_promotion_allowed": false
+  },
+  "input_manifests": [
+    "data/model_sources/manifest.json",
+    "data/curation/relation_semantics_manifest.json",
+    "data/curation/compiler_inputs_manifest.json"
+  ],
+  "non_claims": [
+    "byte_equivalence_is_not_semantic_correctness",
+    "successful_compilation_is_not_product_usefulness",
+    "candidate_generation_does_not_authorize_publication"
+  ]
+}

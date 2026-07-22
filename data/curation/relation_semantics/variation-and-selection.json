@@ -7,17 +7,34 @@
       "rationale_text": "Experimentation gives variation-and-selection the real-world testing discipline needed to separate promising variants from weak ones.",
       "source_quote": "Treating solutions as a portfolio of experiments allows real-world data to steer the subsequent direction.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Variation-and-selection IS experimentation; generating multiple approaches maximizes discovery probability",
+      "activation_condition": "When generating and testing multiple approaches maximizes the probability of finding optimal solutions"
     },
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates keep variation-and-selection from choosing attractive variants that collapse once the selection step is checked against reference-class reality.",
       "source_quote": "The Outside View provides the objective standard necessary for the Selection phase.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes the outside view as providing the objective standard necessary for the selection phase",
+      "activation_condition": "When reference-class data provides the objective standard for evaluating which variations to select"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines variation-and-selection by causing experts to leap directly to an overarching principle, skipping the divergent generation of concrete building blocks the model requires.",
+      "source_quote": "The Curse of Knowledge: Experts suffer from the inability to recall what it was like not to know something. Their expertise often causes them to immediately jump to the 'answer' or overarching principle (a form of premature Selection). This inhibits the necessary Variation needed to simplify ideas into the concrete, elementary building blocks required for effective communication or teaching.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states expertise causes premature selection by jumping to answers, inhibiting necessary variation",
+      "activation_condition": "When expertise causes premature selection by jumping to familiar answers, inhibiting necessary variation"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "status-quo-bias",
@@ -28,9 +45,9 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
-      "tension_text": "Variation-and-selection conflicts with commitment-and-consistency-bias when early commitments stop the team from generating or fairly selecting better alternatives.",
-      "source_quote": "variation-and-selection vs commitment-and-consistency-bias: variation-and-selection conflicts with commitment-and-consistency-bias (commitment and consistency bias) when commitment and Consistency Bias can hinder the Variation phase by discouraging deviation from initial choices, opposing the model's emphasis on exploring diverse options.",
+      "target_model_id": "commitment-bias",
+      "tension_text": "Variation-and-selection conflicts with commitment-bias when early commitments stop the team from generating or fairly selecting better alternatives.",
+      "source_quote": "variation-and-selection vs commitment-bias: variation-and-selection conflicts with commitment-bias (commitment and consistency bias) when commitment and Consistency Bias can hinder the Variation phase by discouraging deviation from initial choices, opposing the model's emphasis on exploring diverse options.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -45,8 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved the clearest experimentation and reference-class ally plus the explicit anti-status-quo / anti-confirmation tension block.",
-    "donor_drops": ["Did not preserve broader MECE and pedagogy sprawl beyond the clearest current-vocabulary seams."],
-    "open_questions": ["MECE and outside-view are source-real nearby, but the current first-order surface is cleanest around experimentation and a base-rates-safe reference-class seam."]
+    "summary": "Layer 1+2 enrichment complete. experimentation at 0.90 as variation IS experimentation. base-rates at 0.90 per outside view.",
+    "donor_drops": [
+      "Did not preserve broader MECE and pedagogy sprawl beyond the clearest current-vocabulary seams."
+    ],
+    "open_questions": [
+      "MECE and outside-view are source-real nearby, but the current first-order surface is cleanest around experimentation and a base-rates-safe reference-class seam.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests scaffolding as recovery candidate."
+    ]
   }
 }

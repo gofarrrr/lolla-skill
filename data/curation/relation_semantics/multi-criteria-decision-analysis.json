@@ -7,14 +7,20 @@
       "rationale_text": "Decision-trees strengthens multi-criteria-decision-analysis by making branches, outcomes, and trade-offs explicit before scoring.",
       "source_quote": "MCDA can be visualized as a decision tree",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Decision trees provide structured analytical frameworks for MCDA — hypothesis-driven problem solving 'ensures that analysis will unambiguously resolve an issue' through defined criteria.",
+      "activation_condition": "When multi-criteria evaluation needs structured branching frameworks to organize alternatives and criteria rather than holistic intuitive comparison"
     },
     {
       "target_model_id": "opportunity-cost",
       "rationale_text": "Opportunity-cost sharpens multi-criteria-decision-analysis by keeping trade-offs visible instead of pretending all criteria can be maximized together.",
       "source_quote": "compare options transparently across competing goals",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "MCDA inherently involves comparing alternatives against multiple criteria — opportunity cost analysis is implicit in every multi-criteria comparison since choosing one option means forgoing others.",
+      "activation_condition": "When evaluating options requires explicit accounting of what is sacrificed by each choice rather than evaluating alternatives in isolation against absolute criteria"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Commitment-bias distorts multi-criteria-decision-analysis when the matrix is reverse-engineered to defend a preferred option.",
       "source_quote": "criteria are subconsciously chosen or weighted to steer toward a desired conclusion",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Scoring weights get 'frozen around an already favored option' — commitment bias corrupts the mechanism that makes MCDA useful by steering criteria toward predetermined conclusions.",
+      "activation_condition": "When prior commitment to a preferred option causes criteria weights to be unconsciously manipulated to confirm the pre-existing preference rather than genuinely evaluating alternatives"
     }
   ],
   "structured_tensions": [
@@ -36,21 +45,22 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Multi-criteria-decision-analysis conflicts with representativeness-bias when salient criteria overshadow base-rate relevance.",
-      "source_quote": "multi-criteria-decision-analysis vs representativeness-bias: salient criteria overshadow base-rate relevance.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Multi-criteria-decision-analysis conflicts with representativeness-heuristic when salient criteria overshadow base-rate relevance.",
+      "source_quote": "multi-criteria-decision-analysis vs representativeness-heuristic: salient criteria overshadow base-rate relevance.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: decision-trees 0.80 (moderate — structured branching framework), opportunity-cost 0.80 (moderate — implicit in multi-criteria comparison). Antagonist: commitment-bias 0.90 (strong — corrupts scoring mechanism by freezing weights around favored option). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies systems-thinking ('mechanism for operating a complex organizational machine'), critical-thinking/bloom's-taxonomy ('supports highest levels of cognitive function'), and believability-weighting ('enhances MCDA by considering who is most likely to be right') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

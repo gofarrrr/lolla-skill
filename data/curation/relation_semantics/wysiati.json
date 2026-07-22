@@ -7,21 +7,30 @@
       "rationale_text": "Confirmation bias amplifies WYSIATI — not only does available evidence feel complete, but the search for more evidence is also biased toward confirming the story already constructed; WYSIATI closes the picture while confirmation bias reinforces it.",
       "source_quote": "Confirmation bias amplifies WYSIATI: not only does the available evidence feel complete, but the search for more evidence is also biased toward confirming the story already constructed.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states confirmation bias amplifies WYSIATI by biasing evidence search toward confirming the already-constructed story",
+      "activation_condition": "When the search for additional evidence is biased toward confirming the story already constructed from available information"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "The first piece of evidence encountered anchors the subsequent story-building that WYSIATI performs — the anchor is not just a reference point, it is the seed from which the entire coherent narrative grows.",
       "source_quote": "The first piece of evidence encountered anchors the subsequent story-building that WYSIATI performs.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical describes the anchor as the seed from which the entire coherent WYSIATI narrative grows",
+      "activation_condition": "When the first piece of evidence seeds the coherent narrative that WYSIATI then closes around"
     },
     {
       "target_model_id": "survivorship-bias",
       "rationale_text": "Survivorship bias produces the structured missing denominator that WYSIATI then fails to register — the survivors are in the picture, the failures are absent, and WYSIATI reports the picture as complete.",
       "source_quote": "Survivorship bias produces the structured missing denominator that WYSIATI then fails to register.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states survivorship bias produces the structured missing denominator that WYSIATI fails to register",
+      "activation_condition": "When absence of failure data produces the structured missing denominator that WYSIATI fails to register"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Base rates provide the outside-view evidence that WYSIATI excludes — the distributional facts about the reference class that are not in the immediate picture.",
       "source_quote": "Base rates provide the outside-view evidence that WYSIATI excludes: the distributional facts about the reference class not in the immediate picture.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states base rates force introduction of outside-view evidence that WYSIATI has excluded",
+      "activation_condition": "When outside-view reference-class data must be forced into a picture that WYSIATI has already closed"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical thinking's discipline of evidence quality assessment and assumption surfacing directly fights WYSIATI by inserting the 'what is missing?' question before conclusions are drawn.",
       "source_quote": "Critical thinking fights WYSIATI by inserting the 'what is missing?' question before conclusions are drawn.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states critical thinking directly fights WYSIATI through evidence quality assessment and assumption surfacing",
+      "activation_condition": "When evidence quality assessment and assumption surfacing must override the fluent coherence of available information"
     }
   ],
   "structured_tensions": [
@@ -75,7 +90,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "WYSIATI Wave 3 curated from the new source markdown. Key allies: confirmation-bias (amplifies closure), anchoring (seeds the narrative), survivorship-bias (produces the structured denominator gap). Key antagonists: base-rates (imports outside-view), critical-thinking (forces gap audit). Four structured tensions.",
+    "summary": "Layer 1+2 enrichment complete. confirmation-bias and anchoring elevated to 0.95 per amplification and seed language. base-rates antagonist at 0.95.",
     "donor_drops": [],
     "open_questions": []
   }

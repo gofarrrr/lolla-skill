@@ -2,7 +2,28 @@
   "model_id": "input-vs-output-goals",
   "source_file": "Input_Vs_Output_Goals_rag.md",
   "allies": [],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines input-vs-output-goals by causing practitioners to force new problems into a familiar input framework rather than selecting the right method for the actual output desired.",
+      "source_quote": "Maslow's Hammer describes the cognitive bias where if the only tool you have is a hammer, you treat every problem as if it were a nail, forcing the output to fit the available input method.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Standard availability/substitution mechanism — persists in using unhelpful frameworks (familiar Inputs) in genuinely novel contexts, forcing Output to fit Input method.",
+      "activation_condition": "When familiar execution frameworks are applied reflexively to genuinely novel goal structures rather than designing input processes from the output backward"
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines input-vs-output-goals by causing experts to communicate complex process details instead of translating their insight into a clear, actionable output message.",
+      "source_quote": "Experts, having dedicated years to mastering the how (complex inputs), often struggle to synthesize and communicate the simple what (clear output/message) to a novice audience. They prioritize the structural edifice over the compelling building blocks.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Experts prioritize the structural edifice of complex inputs over compelling building blocks — impairs translation of simple output goals to team execution.",
+      "activation_condition": "When experts communicate goal architecture in abstract jargon rather than translating output goals into concrete, actionable input steps for non-expert executors"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "commitment-bias",
@@ -22,12 +43,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. No allies curated. Antagonists: einstellung-effect 0.80 (moderate — reflexive framework application), curse-of-knowledge 0.80 (moderate — impairs output→input translation). SPARSE_ALLY_RECOVERY: 0 allies — CRITICAL priority. Canonical article names systems-thinking, cognitive-load-theory, and commander's-intent as ally candidates.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 0 allies curated — CRITICAL priority. Canonical article identifies systems-thinking ('Output Goal serves as the telos of the entire system'), cognitive-load-theory ('scientific method for optimizing the Input Process'), and commander's-intent ('high-level Output Goal that allows autonomy in execution') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

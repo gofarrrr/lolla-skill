@@ -7,17 +7,34 @@
       "rationale_text": "Systems-thinking strengthens cybersecurity-thinking-models by revealing cross-layer interdependencies and feedback paths.",
       "source_quote": "Systems thinking is the discipline for seeing interrelationships rather than things.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'highly synergistic' — systems thinking provides the framework for seeing interrelationships and emergent properties within complex security networks.",
+      "activation_condition": "When security analysis requires understanding interconnected system dynamics rather than evaluating threats against isolated components"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking strengthens cybersecurity-thinking-models by forcing assumption checks and evidence review inside adversarial analysis.",
       "source_quote": "Critical thinking, which involves evaluating evidence and noticing bias, is the how of learning.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as a 'fundamental ally' — metacognition and critical evaluation allow practitioners to stand outside their mental models and assess whether security frameworks are working effectively.",
+      "activation_condition": "When security decision-making requires standing outside current threat models to question assumptions and evaluate whether existing frameworks are actually effective"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "wysiati",
+      "rationale_text": "WYSIATI undermines cybersecurity-thinking-models by letting defenders accept the most visible threat narrative as the full picture, suppressing adversarial hypotheses that require imagining attack surfaces beyond currently available evidence.",
+      "source_quote": "The inside view (reasoning based solely on personal beliefs and experiences) is an antagonist because it is the source of many cognitive biases and inaccuracies, especially motivated reasoning.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Mapped from canonical 'Inside View' antagonist — described as 'the source of many cognitive biases and inaccuracies, especially motivated reasoning', causing security teams to reason from available evidence rather than seeking the outside view.",
+      "activation_condition": "When security teams reason from internal project details and available evidence rather than actively seeking external threat intelligence and base-rate data from comparable incidents"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confirmation-bias",
@@ -45,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'highly synergistic'), critical-thinking 0.90 (strong — 'fundamental ally'). Antagonist: wysiati 0.90 (strong — mapped from 'inside view', 'source of many cognitive biases'). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies curated.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names organizational-psychology (CWD model) as additional synergistic ally for multi-agent security systems."
     ]
   },
   "deferred_higher_order_notes": {

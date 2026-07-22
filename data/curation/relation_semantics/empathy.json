@@ -7,14 +7,20 @@
       "rationale_text": "Liking-principle helps empathy create receptivity when the audience needs to feel understood before a message can land.",
       "source_quote": "Empathy is the mechanism required to build an empathic bridge.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence — social affinity provides initial receptivity and rapport that empathic engagement can build upon, but the canonical Latticework does not name this as a primary ally.",
+      "activation_condition": "When social affinity and rapport create the initial receptivity needed for deeper empathic engagement with another's perspective"
     },
     {
       "target_model_id": "narratives",
       "rationale_text": "Narratives helps empathy make another person's world concrete enough to be felt, remembered, and acted on.",
       "source_quote": "Storytelling triggers narrative thinking mode in the brain.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes stories as 'essential for making abstract ideas concrete and memorable' that 'inherently create empathy and connect with the audience's emotional system' — a primary mechanism for empathic engagement.",
+      "activation_condition": "When abstract situations need to be made emotionally concrete through narrative to enable genuine empathic connection with others' experiences"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias undermines empathy when assumed motivations are fitted to prior stories rather than checked against lived reality.",
       "source_quote": "empathy conflicts with confirmation-bias (confirmation bias) when assumed motivations are read selectively to fit prior narratives.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'assumed motivations are read selectively to fit prior narratives', causing empathic inference to confirm existing beliefs about others rather than genuinely modeling their actual perspective.",
+      "activation_condition": "When empathic inferences about others' motivations are filtered through pre-existing narratives rather than genuinely open perspective-taking"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on one clear receptivity ally, one strong narrative ally, and two explicit current-vocabulary tension blocks.",
+    "summary": "Layer 1+2 enrichment complete. Allies: narratives 0.90 (strong — 'essential', 'inherently create empathy'), liking-principle 0.70 (supportive — medium confidence, initial rapport). Antagonist: confirmation-bias 0.80 (moderate — selectively reads assumed motivations). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor human-centered relation sprawl beyond the clean trust, story, and anti-story-fitting surface."
     ],
     "open_questions": [
-      "The liking-principle ally remains interpretively lighter because the strongest source block is an explicit tension against affinity being mistaken for understanding."
+      "The liking-principle ally remains interpretively lighter because the strongest source block is an explicit tension against affinity being mistaken for understanding.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated (one at medium confidence). Canonical article names perspective-taking, emotional-intelligence, design-thinking, and metacognition as additional synergistic allies."
     ]
   }
 }

@@ -7,14 +7,20 @@
       "rationale_text": "Prioritization uses opportunity-cost to decide what not to fund, schedule, or pursue when resources are scarce.",
       "source_quote": "The Prioritization Filter: OC is crucial for determining how to allocate constrained resources like time and attention.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "OC IS the economic foundation that makes prioritization rational — provides the rigorous framework for determining the value of pursuing a task versus forgoing the best alternative.",
+      "activation_condition": "When resource allocation decisions need to be grounded in explicit comparison against the value of the best foregone alternative rather than absolute merit alone"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking helps opportunity-cost strip away inherited assumptions and compare alternatives against real fundamentals.",
       "source_quote": "OC forces the strip-down of conventional assumptions. By questioning the premise of an action and comparing it objectively to alternatives, OC aids in forging a unique solution based purely on facts and desired outcomes.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "OC 'forces the strip-down of conventional assumptions' by requiring objective comparison to alternatives — 'Compared to what?' aids in forging solutions based on facts rather than convention.",
+      "activation_condition": "When evaluating an opportunity requires decomposing past the surface value proposition to compare against fundamentally different alternatives"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Sunk-cost-fallacy fights opportunity-cost by making past investment feel more relevant than the better future alternative.",
       "source_quote": "Opportunity Cost directly opposes SCF, asserting that the only relevant factors are future costs and benefits, regardless of what was paid in the past.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "OC 'directly opposes' the sunk-cost fallacy — SCF drives continued investment based on past expenditure while OC asserts only future costs and benefits matter, including the value of alternative paths.",
+      "activation_condition": "When past investment creates psychological pressure to continue a course of action despite superior alternatives being available for the remaining resources"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias obstructs opportunity-cost by making an unfavored alternative hard to assess objectively.",
       "source_quote": "This obstructs the objective assessment of the opportunity cost, as it makes one reluctant to fully recognize the potential benefits of an unfavored alternative.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Confirmation bias 'obstructs the objective assessment of opportunity cost' by making one reluctant to recognize the potential benefits of unfavored alternatives.",
+      "activation_condition": "When the assessment of foregone alternatives is biased by preference for the current option rather than honest evaluation of what is being sacrificed"
     }
   ],
   "structured_tensions": [
@@ -60,12 +72,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is relation-rich on displaced alternatives and first-order conflicts that block honest reallocation.",
+    "summary": "Layer 1+2 enrichment complete. Allies: prioritization 0.90 (strong — OC IS the economic foundation for prioritization), first-principles-thinking 0.80 (moderate — forces strip-down of conventional assumptions). Antagonists differentiated: sunk-cost-fallacy 0.95 (critical — 'directly opposes' — definitional opposition), confirmation-bias 0.80 (moderate — obstructs honest alternative assessment). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not preserve donor relationship expansion beyond the source-supported trade-off and foreclosure surface."
     ],
     "open_questions": [
-      "Availability-style conflict is source-real but was omitted because the current canonical target surface is cleaner on sunk-cost, anchoring, and status-quo tension."
+      "Availability-style conflict is source-real but was omitted because the current canonical target surface is cleaner on sunk-cost, anchoring, and status-quo tension.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies pareto-principle ('provides the economic rationale for focusing on 20% yielding 80%') and scenario-analysis ('systematically uncovers potential outcomes under different futures') as ally candidates."
     ]
   }
 }

@@ -7,17 +7,34 @@
       "rationale_text": "Leverage-points gives tipping-points a concrete systems lens for locating where a small intervention can unlock disproportionate change.",
       "source_quote": "Leverage points are places to intervene in a system where minimum effort can lead to maximum possible change.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Tipping points are fundamentally about identifying high-leverage intervention points where small changes trigger disproportionate effects",
+      "activation_condition": "When identifying where small interventions will trigger disproportionate systemic change"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking helps tipping-points strip away default assumptions so the real threshold condition can be seen and tested.",
       "source_quote": "By stripping away conventional assumptions ... this method facilitates the breakthrough novel solutions needed to find a non-obvious tipping point.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states FPT facilitates breakthrough solutions needed to find non-obvious tipping points",
+      "activation_condition": "When finding non-obvious tipping points requires stripping away conventional assumptions"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "rationale_text": "Optimism-bias-and-planning-fallacy undermines tipping-points by causing teams to overestimate the probability that each sequential step will succeed, masking how far the system actually is from the threshold.",
+      "source_quote": "When a project requires many sequential steps to succeed, people tend to overestimate the overall probability of success. The successful completion of a new product development, for example, is conjunctive, meaning that even if each step is very likely, the overall probability of success can be low if the number of events is large.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Conjunctive bias causes overestimation of success probability when achieving a tipping point requires many sequential steps",
+      "activation_condition": "When overestimating probability of achieving planned tipping point due to conjunctive bias"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "status-quo-bias",
@@ -45,8 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved one leverage ally, one first-principles ally, and the explicit threshold-misreading tension block.",
-    "donor_drops": ["Did not preserve broader persuasion and social-threshold sprawl beyond the clearest current-vocabulary seams."],
-    "open_questions": ["Critical-mass is source-real nearby, but the first-order surface is cleanest around leverage-points and first-principles-thinking."]
+    "summary": "Layer 1+2 enrichment complete. Both allies at 0.90 for strong canonical support. optimism-bias antagonist at 0.80.",
+    "donor_drops": [
+      "Did not preserve broader persuasion and social-threshold sprawl beyond the clearest current-vocabulary seams."
+    ],
+    "open_questions": [
+      "Critical-mass is source-real nearby, but the first-order surface is cleanest around leverage-points and first-principles-thinking.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests systems-thinking as recovery candidate."
+    ]
   }
 }

@@ -7,14 +7,20 @@
       "rationale_text": "Empathy helps active-listening capture not just the facts but the felt reality that makes the message meaningful.",
       "source_quote": "Active listening involves paying attention to both the factual content and the emotional content.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Described as 'fundamentally the act of viewing the problem from the perspective of the users or stakeholders' — near-constitutive relationship where active listening IS perspective-taking operationalized as a listening discipline.",
+      "activation_condition": "When gathering information from stakeholders and need to capture not just facts but the felt meaning and emotional context behind the message"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking turns active-listening into better judgment by using the gathered data to separate facts, assumptions, and interpretations.",
       "source_quote": "Active listening gathers the raw, factual, and reliable data necessary for the frontal cortex to perform this logical, analytical work.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "One-directional enablement — 'gathers the raw, factual, and reliable data necessary for the frontal cortex to perform this logical, analytical work' — listening feeds data TO critical thinking rather than critical thinking strengthening the listening itself.",
+      "activation_condition": "When information gathered through listening needs to be evaluated for facts vs. assumptions vs. interpretations before acting on it"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Confirmation-bias blocks active-listening when incoming information is filtered to support what the listener already wants to believe.",
       "source_quote": "Active listening vs confirmation-bias",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Direct opposition — 'drives people to selectively focus only on what they want to hear' while active listening 'demands the opposite: an active openness to new ideas and data' — specific mechanism targeting the core of what listening requires.",
+      "activation_condition": "When the listener has prior expectations or preferences that could filter incoming information toward confirming existing assumptions rather than absorbing the speaker's actual meaning"
     },
     {
       "target_model_id": "optimization-theory",
       "rationale_text": "Optimization-theory can work against active-listening when pure metric logic suppresses the trust-building dialogue needed for alignment.",
       "source_quote": "active-listening conflicts with optimization-theory when pure metric optimization suppresses trust-building dialogue required for alignment.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Indirect suppression mechanism — 'pure metric optimization suppresses trust-building dialogue required for alignment' — about context suppression rather than direct cognitive opposition to the listening process.",
+      "activation_condition": "When efficiency metrics or optimization pressure create incentives to skip the trust-building dialogue needed for genuine stakeholder alignment"
     }
   ],
   "structured_tensions": [
@@ -60,12 +72,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on empathic and analytical allies plus three explicit current-vocabulary tension blocks.",
+    "summary": "Layer 1+2 enrichment complete. Allies: empathy 0.95 (critical — 'fundamentally the act of' perspective-taking), critical-thinking 0.80 (moderate — one-directional data feed). Antagonists differentiated: confirmation-bias 0.90 (strong — 'demands the opposite'), optimization-theory 0.80 (moderate — indirect suppression). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies — consider emotional-intelligence from canonical article.",
     "donor_drops": [
       "Did not preserve donor communication relation sprawl beyond the clean empathy, scrutiny, and explicit tension surface."
     ],
     "open_questions": [
-      "Authenticity is source-real ally pressure too, but the retained set favors the stronger listening-to-judgment bridge and explicit tensions."
+      "Authenticity is source-real ally pressure too, but the retained set favors the stronger listening-to-judgment bridge and explicit tensions.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Emotional Intelligence as an ally ('provides the crucial input that allows the listener to read the other person')."
     ]
   }
 }

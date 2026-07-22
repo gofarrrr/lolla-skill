@@ -1,8 +1,8 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import navigationIndex from "../../public/data/navigation-v1/neighborhood-index.json";
-import phase1RelationPage from "../../public/data/phase1/pages/relation-abstraction-first-principles-thinking-ally.json";
+import navigationIndex from "../../public/data/navigation-v2/neighborhood-index.json";
+import phase1RelationPage from "../../public/data/phase1-v2/pages/relation-abstraction-first-principles-thinking-ally.json";
 import ModelPage from "./ModelPage";
 import RelationPage from "./RelationPage";
 
@@ -12,7 +12,7 @@ describe("canonical identity fallback", () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async (input: RequestInfo | URL) => {
-        const payload = String(input).includes("navigation-v1")
+        const payload = String(input).includes("navigation-v2")
           ? navigationIndex
           : phase1RelationPage;
         return new Response(JSON.stringify(payload), {

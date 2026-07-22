@@ -7,21 +7,30 @@
       "rationale_text": "First-principles-thinking strengthens the Feynman Technique by forcing the explainer to rebuild the idea from basics rather than repeat inherited phrasing.",
       "source_quote": "The FT demands that a concept be broken down to its underlying principles and logic.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states FT 'demands that a concept be broken down to its underlying principles and logic' — prevents memorizing and ensures the thinker can 'rederive concepts from the basics'.",
+      "activation_condition": "When understanding requires decomposition to underlying principles rather than memorized patterns, ensuring knowledge can be reconstructed from fundamentals"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory explains why the Feynman Technique works: simplifying and chunking the idea reduces working-memory strain enough for real learning to happen.",
       "source_quote": "The FT's emphasis on simplifying and chunking information directly mitigates the limits of short-term or working memory.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes FT's 'emphasis on simplifying and chunking information directly mitigates the limits of short-term or working memory' — ensures information is encoded into long-term schemas.",
+      "activation_condition": "When complex concepts must be simplified and chunked to respect working memory limits during the explanation and learning process"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification is the practical surface of the Feynman Technique when explanation compresses an idea enough to expose whether understanding is genuine.",
       "source_quote": "keeping the focus narrow and simple",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Simplification IS the Feynman Technique's core operational mandate — the canonical describes the technique as requiring 'explaining complex ideas in plain English' to expose blind spots.",
+      "activation_condition": "When expert-level knowledge must be translated into plain language to reveal whether the understanding is genuine or merely verbal fluency over gaps"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Authority-bias undermines the Feynman Technique when expert language is accepted and repeated without comprehension checks.",
       "source_quote": "accepted expert language is repeated without comprehension checks",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'accepted expert language is repeated without comprehension checks', bypassing the simplification mandate that would reveal whether the authority's explanation is genuinely understood.",
+      "activation_condition": "When deference to expert language prevents the comprehension checking that FT demands, allowing jargon to substitute for genuine understanding"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias weakens the Feynman Technique when the explanation is used to feel competent rather than to reveal what still does not make sense.",
       "source_quote": "identify mental blind spots",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'simplified explanations are constructed to confirm prior understanding rather than to expose gaps that require revision', distorting FT's diagnostic purpose.",
+      "activation_condition": "When the simplification process is unconsciously steered to confirm existing understanding rather than to honestly expose knowledge gaps"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on first-principles, cognitive-load, and simplification allies plus one explicit conflict with authority-bias, so the file preserves that conservative surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: first-principles-thinking 0.90 (strong — 'demands decomposition to principles'), cognitive-load-theory 0.90 (strong — 'directly mitigates' memory limits), simplification 0.90 (strong — core mandate of FT). Antagonists: authority-bias 0.80 (moderate — deference prevents checking), confirmation-bias 0.80 (moderate — confirms rather than exposes). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation widening beyond the clearly named explanation, learning, and anti-authority-without-understanding surface."
     ],

@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
-import cardFirstPage from "../../public/data/card-first-v1/pages/model-abstraction.json";
+import cardFirstPage from "../../public/data/card-first-v2/pages/model-abstraction.json";
 import {
   CARD_FIRST_SUBSTANTIVE_LINES,
   validateCardFirstModelPage,

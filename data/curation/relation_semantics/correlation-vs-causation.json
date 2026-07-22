@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking helps correlation-vs-causation map relations and context so the team can reason about causes instead of reading isolated symptoms.",
       "source_quote": "Systems thinking demands attention to relations and contexts, and the ultimate goal is to understand the underlying system of an area of expertise, including the nature of cause and effect.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Structural framework — 'Systems thinking demands attention to relations and contexts' — provides the structural lens for tracing actual causal pathways through interdependencies rather than accepting surface correlations.",
+      "activation_condition": "When a statistical correlation needs to be traced through the actual causal mechanism within the system to determine whether the relationship is genuinely causal or merely co-occurring"
     },
     {
       "target_model_id": "experimentation",
       "rationale_text": "Experimentation gives correlation-vs-causation a disciplined way to test whether the claimed driver actually produces the observed result.",
       "source_quote": "Understanding causation drivers leads toward statistical analysis and experiments.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Verification mechanism — 'Understanding causation drivers leads toward statistical analysis' and controlled experimentation — the empirical tool that definitively separates causal from correlational relationships.",
+      "activation_condition": "When a correlation has been identified and controlled experimentation is needed to isolate the causal variable and rule out confounders before drawing causal conclusions"
     },
     {
       "target_model_id": "root-cause-analysis",
       "rationale_text": "Root-cause-analysis complements correlation-vs-causation by pushing the team past the proximate event toward the deeper mechanism that generated it.",
       "source_quote": "This involves striving to separate the proximate cause (what happened immediately before) from the root cause (the true underlying driver).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Diagnostic complement — 'striving to separate the proximate cause from the root cause' — pushes past surface correlations to underlying generative mechanisms, but operates as a diagnostic tool within the correlation-causation framework.",
+      "activation_condition": "When a correlational observation needs to be investigated further to separate the proximate co-occurring factors from the actual root cause driving both variables"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias interferes with causal diagnosis by filtering evidence toward the cause story the team already wants to believe.",
       "source_quote": "Confirmation Bias ... directly interferes with accurate causal analysis.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly interferes — 'Confirmation Bias directly interferes with accurate causal analysis' — causes teams to accept correlations that confirm their preferred causal story while ignoring alternative explanations.",
+      "activation_condition": "When a correlation that confirms the team's preferred causal story is being accepted without testing alternative explanations or seeking disconfirming evidence"
     }
   ],
   "structured_tensions": [
@@ -52,7 +64,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on mechanism-tracing allies and one clean anti-bias conflict rather than on an explicit structured tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — structural causal tracing), experimentation 0.90 (strong — empirical verification), root-cause-analysis 0.80 (moderate — diagnostic complement). Antagonists: confirmation-bias 0.90 (strong — 'directly interferes' with causal analysis). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation sprawl where the raw source mainly supports systems, experimentation, and root-cause links."
     ],

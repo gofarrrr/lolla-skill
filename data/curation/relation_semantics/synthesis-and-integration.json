@@ -7,17 +7,34 @@
       "rationale_text": "Scaffolding supports synthesis-and-integration by connecting smaller units into a larger structure that people can actually hold and use.",
       "source_quote": "Scaffolding / Chunking",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes synthesis as building complex concepts from smaller, simpler units (chunks) through scaffolding",
+      "activation_condition": "When integrating disparate knowledge requires building up from chunked, scaffolded components"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking gives synthesis-and-integration the ability to turn dispersed observations into a coherent picture of interrelationships.",
       "source_quote": "Systems thinking explicitly calls for synthesis to see interrelationships rather than static snapshots.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Synthesis applies multidisciplinary thinking to weave together disparate knowledge, which supports systemic understanding",
+      "activation_condition": "When weaving together knowledge from multiple disciplines requires systemic integration"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization undermines synthesis-and-integration by processing information toward a desired conclusion, distorting the objective assembly of facts and external perspectives into a coherent whole.",
+      "source_quote": "Motivated reasoning processes information to reach a desired conclusion, actively distorting the objective synthesis of facts and external perspectives (the outside view).",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes motivated reasoning as actively distorting objective synthesis by processing information toward desired conclusions",
+      "activation_condition": "When desire for a specific conclusion distorts the objective integration of evidence from multiple sources"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "decomposition",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Kept the relation surface sparse around the two clearest support models rather than forcing weaker antagonists.",
+    "summary": "Layer 1+2 enrichment complete. scaffolding at 0.90 for chunking support. rationalization antagonist at 0.90 as motivated reasoning distorts synthesis.",
     "donor_drops": [
       "Did not preserve broader communication or data-analysis relation sprawl beyond the clearest current-vocabulary supports."
     ],
     "open_questions": [
-      "Prioritization is source-adjacent, but the first-order surface is cleaner around scaffolding and systems-thinking."
+      "Prioritization is source-adjacent, but the first-order surface is cleaner around scaffolding and systems-thinking.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests critical-thinking, analogies-and-metaphors as recovery candidates."
     ]
   }
 }

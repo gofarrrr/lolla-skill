@@ -4,17 +4,43 @@
   "allies": [
     {
       "target_model_id": "cognitive-dissonance",
-      "rationale_text": "Cognitive dissonance is the psychological engine that powers commitment bias \u2014 the discomfort of holding 'I committed to X' alongside contrary evidence generates the motivated drive to maintain the committed position rather than update honestly.",
+      "rationale_text": "Cognitive dissonance is the psychological engine that powers commitment bias -- the discomfort of holding 'I committed to X' alongside contrary evidence generates the motivated drive to maintain the committed position rather than update honestly.",
       "source_quote": "The bias reduces the discomfort caused by inconsistent beliefs or actions. Confirmation bias serves as the protective mechanism, ensuring new information aligns with previous decisions.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Constitutive engine — 'Commitment is the fuel for cognitive dissonance' — cognitive dissonance is the psychological mechanism that PRODUCES commitment bias; the discomfort of inconsistency drives the rationalizing behavior.",
+      "activation_condition": "When a prior commitment is generating psychological discomfort (dissonance) that drives the individual to rationalize and adjust beliefs to match the committed position rather than update honestly"
     },
     {
       "target_model_id": "scaffolding",
       "rationale_text": "Scaffolding turns consistency into incremental learning by building reliable progress in structured stages.",
       "source_quote": "Consistency is the engine of incremental learning and skill building, moving from simple ideas to complex ones in structured, reliable stages.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Positive-use complement — 'Consistency is the engine of incremental learning and skill building' — scaffolding channels the consistency drive productively for structured learning, but this is a tool-level application rather than a core mechanism.",
+      "activation_condition": "When the consistency drive can be channeled productively through structured incremental learning stages rather than becoming defensive rigidity"
+    },
+    {
+      "target_model_id": "social-proof",
+      "rationale_text": "Social-proof helps commitment bias spread because public alignment with a group makes later reversal feel more costly.",
+      "source_quote": "Loyalty and the craving to belong to a community",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Social amplifier — 'Loyalty and the craving to belong to a community' — makes commitment reversal more costly through social dynamics, but the extraction confidence is medium and the mechanism is indirect.",
+      "activation_condition": "When public alignment with a group or community makes reversing a commitment feel socially costly, amplifying the psychological pressure to maintain the committed position"
+    },
+    {
+      "target_model_id": "sunk-cost-fallacy",
+      "rationale_text": "Sunk-cost-fallacy reinforces commitment bias by making prior investment feel like a reason to keep going.",
+      "source_quote": "What would I do if I had no sunk costs invested in this outcome?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Direct reinforcement — 'prior investment emotionally reinforces the consistency imperative, making each additional commitment harder to reverse' — sunk costs create the escalating ratchet that makes commitment bias cumulative.",
+      "activation_condition": "When prior investment in time, resources, or reputation is making the commitment feel harder to reverse because walking away would mean admitting the investment was wasted"
     }
   ],
   "antagonists": [
@@ -23,14 +49,20 @@
       "rationale_text": "Confirmation bias compounds commitment bias by making the operator search for evidence that justifies the existing commitment.",
       "source_quote": "Consistency amplifies confirmation bias by driving individuals to seek information that confirms their existing commitment or belief.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific amplification — 'Consistency amplifies confirmation bias by driving individuals to seek information that confirms their existing commitment' — the commitment acts as a filter that biases all subsequent evidence gathering.",
+      "activation_condition": "When the drive for consistency with a prior commitment is biasing evidence evaluation to confirm the original decision rather than genuinely testing it against new information"
     },
     {
       "target_model_id": "intellectual-humility",
-      "rationale_text": "Commitment-bias is driven by the ego barrier and the need for consistency, which is directly antagonistic to intellectual humility's core demand \u2014 acknowledging you may be wrong and genuinely updating on evidence rather than defending the committed position.",
+      "rationale_text": "Commitment bias is driven by the ego barrier and the need for consistency, which is directly antagonistic to intellectual humility's core demand -- acknowledging you may be wrong and genuinely updating on evidence rather than defending the committed position.",
       "source_quote": "To be radically open-minded requires a willingness to objectively explore different viewpoints, motivated by the genuine worry that one might not be seeing their choices optimally. Commitment bias, conversely, is driven by the ego barrier and the need to be right, preventing the necessary humility to consider being wrong.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Directly opposed dispositions — 'driven by the ego barrier and the need to be right, preventing the necessary humility to consider being wrong' vs. 'radical open-mindedness requires the genuine worry that one might not be seeing choices optimally.'",
+      "activation_condition": "When the ego barrier and need to appear consistent are preventing genuine openness to the possibility that the committed position is suboptimal and should be revised"
     }
   ],
   "structured_tensions": [
@@ -57,15 +89,24 @@
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "tension_text": "Commitment-bias conflicts with scientific-method-evidence-testing when the need to honor prior commitments overrides willingness to update beliefs based on new experimental evidence.",
+      "source_quote": "commitment-bias conflicts with scientific-method-evidence-testing (scientific method evidence testing) when the need to honor prior commitments overrides willingness to update beliefs based on new experimental evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "Commitment Bias antagonizes confirmation-bias (amplification) and intellectual-humility (ego barrier vs. genuine openness). Most richer ally material still points to models outside the canonical surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: cognitive-dissonance 0.95 (critical — constitutive engine), sunk-cost-fallacy 0.90 (strong — escalating ratchet), scaffolding 0.80 (moderate — positive-use channeling), social-proof 0.70 (supportive — social amplifier). Antagonists: intellectual-humility 0.95 (critical — directly opposed dispositions), confirmation-bias 0.90 (strong — amplifies evidence filtering). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor-added relation overlays that widened beyond the raw relation tables."
     ],
     "open_questions": [
-      "Cognitive dissonance wired in Task 3.3 sweep via new canonical model."
+      "Cognitive dissonance wired in Task 3.3 sweep via new canonical model.",
+      "The social-proof ally is interpretive but remains well grounded in the raw source's community and loyalty material."
     ]
   },
   "deferred_higher_order_notes": {

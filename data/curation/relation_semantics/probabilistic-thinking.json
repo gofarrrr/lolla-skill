@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking helps probabilistic-thinking map the interdependencies first so the probability frame reflects the real system rather than isolated variables.",
       "source_quote": "When facing highly complex systems (e.g., banking or climate), one must first apply systems thinking to understand the totality and subtle interrelationships of components before creating a probabilistic framework.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'PT is often nested within a systems perspective. When facing highly complex systems, one must first apply systems thinking' — prerequisite framework.",
+      "activation_condition": "When complex system interrelationships must be understood before constructing a probabilistic framework."
     },
     {
       "target_model_id": "expected-value",
       "rationale_text": "Expected-value gives probabilistic-thinking an operational way to compare choices with mixed upside and downside instead of hunting for certainty.",
       "source_quote": "Expected Value Calculations",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Expected value IS a core probabilistic calculation — fundamental mathematical tool for weighing outcomes by their probabilities. Intrinsic relationship.",
+      "activation_condition": "When decisions require weighting outcomes by their probabilities to determine optimal expected returns."
     },
     {
       "target_model_id": "falsifiability",
       "rationale_text": "Falsifiability keeps probabilistic-thinking honest by forcing the team to define what evidence would actually resolve the uncertain claim.",
       "source_quote": "Strong hypotheses must be framed clearly so they are easier to challenge and pressure test.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical (via HDPS): 'Strong hypotheses must be framed clearly so they are easier to challenge and pressure test' — falsifiability enables probabilistic hypothesis testing.",
+      "activation_condition": "When probabilistic estimates require testable, falsifiable hypotheses to validate or refine probability assignments."
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias corrupts probabilistic-thinking by treating belief defense as if it were evidence weighting.",
       "source_quote": "PT, conversely, requires intellectual humility to actively identify and reconcile disconfirming evidence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'This bias represents a failure of critical thinking, where people seek information that confirms existing beliefs. PT requires intellectual humility to identify disconfirming evidence.'",
+      "activation_condition": "When existing beliefs distort probability estimates by selectively seeking confirming rather than disconfirming evidence."
     },
     {
-      "target_model_id": "representativeness-bias",
+      "target_model_id": "representativeness-heuristic",
       "rationale_text": "Representativeness-bias can make probabilistic-thinking judge likelihood by resemblance to a familiar story instead of by the actual odds.",
       "source_quote": "The conflict is illustrated by the representativeness heuristic, where probabilities are incorrectly judged based on resemblance to a stereotype rather than mathematical likelihood.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'probabilities are incorrectly judged based on resemblance to a stereotype rather than mathematical likelihood' — System 1 substitution that defeats probabilistic reasoning.",
+      "activation_condition": "When resemblance-based intuitions override proper base-rate calculations and statistical reasoning."
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on allies and antagonists rather than on explicit structured tensions, so the file preserves that smaller first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking 0.90 (nested prerequisite), expected-value 0.90 (core calculation), falsifiability 0.80 (hypothesis testing). Both antagonists at 0.90.",
     "donor_drops": [
       "Did not preserve donor-style statistical relation sprawl where the source did not provide an explicit tension block."
     ],

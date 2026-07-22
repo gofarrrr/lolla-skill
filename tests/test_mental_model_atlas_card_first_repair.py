@@ -7,6 +7,9 @@ from pathlib import Path
 
 import pytest
 
+from scripts.product.build_mental_model_atlas_custody_v2 import (
+    build_card_first_custody_v2_package as build_card_first_package,
+)
 from scripts.product.build_mental_model_atlas_card_first_repair import (
     BULLET_ITEM_LINES,
     CARD_FIRST_SCHEMA_VERSION,
@@ -21,14 +24,13 @@ from scripts.product.build_mental_model_atlas_card_first_repair import (
     SUBSTANTIVE_LINES,
     TABLE_TEXT_LINES,
     AtlasProjectionError,
-    build_card_first_package,
     canonical_json_bytes,
     validate_card_first_page,
 )
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = ROOT / "apps/mental-model-atlas/public/data/card-first-v1"
+OUTPUT_DIR = ROOT / "apps/mental-model-atlas/public/data/card-first-v2"
 SOURCE_PATH = ROOT / "data/model_sources/abstraction_rag.md"
 
 

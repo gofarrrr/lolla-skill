@@ -7,14 +7,20 @@
       "rationale_text": "Empathy helps user-experience-research-methods interpret what people say, do, feel, and avoid without flattening it into internal product language.",
       "source_quote": "deep personal understanding",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "User experience research is fundamentally empathy research, capturing emotional and experiential dimensions of user interaction",
+      "activation_condition": "When research methods must capture the emotional and experiential dimensions of user interaction"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps user-experience-research-methods treat journeys and interactions as connected system behavior rather than isolated moments.",
       "source_quote": "A user journey map, for instance, is a systems map.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states UXRM is deeply complementary to systems thinking for mapping interrelationships across touchpoints",
+      "activation_condition": "When mapping user journeys requires understanding systemic interrelationships across touchpoints"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias turns user-experience-research-methods into interview theater by using research to validate an answer that leadership already prefers.",
       "source_quote": "when interview design seeks validation instead of discovery",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical structured tension identifies interview design seeking validation instead of discovery",
+      "activation_condition": "When interview design seeks validation of existing assumptions instead of genuine discovery"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation file keeps the raw source's cleanest current-vocabulary surface: empathy and systems as allies, plus the explicit anti-validation tension block.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking at 0.90 as canonical says deeply complementary. confirmation-bias antagonist at 0.90.",
     "donor_drops": [
       "Did not widen toward broader design-ops relations because the explicit current-vocabulary tensions already give this model a disciplined first-order surface."
     ],
     "open_questions": [
-      "Storytelling is a source-real ally for communicating research, but empathy and systems-thinking were the stronger bounded anchors."
+      "Storytelling is a source-real ally for communicating research, but empathy and systems-thinking were the stronger bounded anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests cognitive-load-theory as recovery candidate."
     ]
   }
 }

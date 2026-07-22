@@ -1,0 +1,31 @@
+{
+  "model_id": "step-back",
+  "source_file": "Step_Back_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question is stuck at the detail or execution level when the real uncertainty is at the strategy or purpose level — stepping up one level of abstraction would reveal a different question.",
+    "The question assumes the goal is correct and asks about tactics, but the goal itself hasn't been examined — 'How does what you're doing solve the problem?' has not been asked.",
+    "The question was formulated reactively in response to an immediate stimulus and a deliberate pause would reframe it toward the underlying structural issue."
+  ],
+  "frame_patterns_challenged": [
+    "symptom_as_problem",
+    "scope_lock",
+    "proxy_optimization"
+  ],
+  "reframing_move": "Step up one level: before answering 'how', ask 'what is the actual problem we are trying to solve, and is this question addressing it or addressing a symptom?' — the meta-question often displaces the original.",
+  "reframing_move_types": ["scope_expansion", "perspective_shift"],
+  "curation_confidence": "high",
+  "curation_note": "Step-back is a metacognitive reframing tool — it reframes by elevating the level of abstraction. The source is explicit on shifting from detail-fog to structure, and on checking alignment between effort and the actual problem. The 'So What?' test and 'How does this solve the problem?' are direct question-level challenges.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Three activations from source material: detail-to-strategy elevation, unexamined goal assumption, and reactive formulation detection."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Symptom-as-problem is the primary target (detail-level question about a structure-level issue). Scope lock via arbitrary boundary acceptance. Proxy optimization via unexamined goal."
+    }
+  }
+}

@@ -17,24 +17,22 @@ import json
 import sys
 from pathlib import Path
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = REPO_ROOT / "data"
+sys.path.insert(0, str(REPO_ROOT / "engine"))
+
+from system_b.published_knowledge_substrate import PublishedKnowledgeSubstrate
 
 
 def load_kg():
-    kg_path = DATA_DIR / "knowledge_graph.json"
-    with open(kg_path) as f:
-        return json.load(f)
+    return PublishedKnowledgeSubstrate.open(REPO_ROOT).require_snapshot().knowledge_graph_payload()
 
 
 def load_relation_graph():
     """Load relationship graph. Returns list of edge dicts."""
-    rg_path = DATA_DIR / "relationship_graph.json"
-    if not rg_path.exists():
-        return []
-    with open(rg_path) as f:
-        data = json.load(f)
-    # Graph is a flat list of edges
-    return data if isinstance(data, list) else data.get("edges", [])
+    return PublishedKnowledgeSubstrate.open(
+        REPO_ROOT
+    ).require_snapshot().relationship_graph_payload()
 
 
 def load_curation(model_id: str) -> dict:

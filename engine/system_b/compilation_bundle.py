@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date
+import hashlib
 import json
 from pathlib import Path
 import re
+import sqlite3
 import tempfile
 
 from .intervention_semantics import InterventionSemanticItem, load_intervention_semantics
@@ -33,6 +34,10 @@ class CompilationResult:
     warnings: tuple[str, ...] = ()
 
 
+class GraphCompilationError(RuntimeError):
+    pass
+
+
 class KnowledgeCompiler:
     def __init__(self, root: Path) -> None:
         self._root = Path(root)
@@ -41,13 +46,17 @@ class KnowledgeCompiler:
     def load(cls, root: Path) -> "KnowledgeCompiler":
         return cls(root)
 
-    def compile(self) -> CompilationResult:
-        build_dir = self._root / "build"
+    def compile(self, *, output_dir: Path | None = None) -> CompilationResult:
+        if output_dir is None:
+            raise GraphCompilationError(
+                "An explicit candidate output directory is required; published graph overwrite is forbidden"
+            )
+        contract = _load_compiler_contract(self._root)
         return self._compile_to_directory(
-            output_dir=build_dir,
+            output_dir=Path(output_dir),
             use_operational_curation=True,
             include_operational_curation_review=False,
-            mode_name="layer2b-canonical",
+            mode_name=str(contract["release_identity"]["compilation_mode"]),
         )
 
     def compile_preview(
@@ -111,7 +120,13 @@ class KnowledgeCompiler:
         )
 
     def validate_existing_bundle(self) -> CompilationResult:
-        return self._validate_bundle_directory(self._root / "build")
+        raise GraphCompilationError(
+            "Published artifacts are validated through PublishedKnowledgeSubstrate; "
+            "pass a candidate directory to validate_candidate_directory()"
+        )
+
+    def validate_candidate_directory(self, output_dir: Path) -> CompilationResult:
+        return self._validate_bundle_directory(Path(output_dir).resolve())
 
     def _compile_to_directory(
         self,
@@ -121,21 +136,18 @@ class KnowledgeCompiler:
         include_operational_curation_review: bool,
         mode_name: str,
     ) -> CompilationResult:
+        output_dir = _require_candidate_output_dir(self._root, output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
 
         curation_metadata: dict[str, object] = _empty_curation_metadata()
-        if _has_source_assets(self._root):
-            kg, relationship_graph, curation_metadata = _compile_from_source_assets(
-                self._root,
-                use_operational_curation=use_operational_curation,
+        if not _has_source_assets(self._root):
+            raise GraphCompilationError(
+                "Repository-local compiler inputs are incomplete; compile-from-published-output is forbidden"
             )
-        else:
-            _bundle, kg, relationship_graph = self._load_bundle_source(self._root / "build")
-            if use_operational_curation and (self._root / "curation").exists():
-                curation_metadata = _apply_operational_curation_to_models(
-                    self._root,
-                    kg.get("models", {}) if isinstance(kg, dict) else {},
-                )
+        kg, relationship_graph, curation_metadata = _compile_from_source_assets(
+            self._root,
+            use_operational_curation=use_operational_curation,
+        )
 
         _apply_wave5_reframing_overlay(
             self._root,
@@ -143,6 +155,10 @@ class KnowledgeCompiler:
             kg if isinstance(kg, dict) else {},
         )
         _apply_prerequisite_edges_overlay(
+            self._root,
+            kg if isinstance(kg, dict) else {},
+        )
+        _apply_wave6_structural_coverage_overlay(
             self._root,
             kg if isinstance(kg, dict) else {},
         )
@@ -266,7 +282,42 @@ class KnowledgeCompiler:
 
 
 def _has_source_assets(root: Path) -> bool:
-    return (root / "MM_CANONICAL_216").exists() and (root / "munger_structural_mapping.md").exists()
+    required = (
+        root / "data" / "model_sources" / "manifest.json",
+        root / "data" / "curation" / "compiler_inputs_manifest.json",
+        root / "data" / "curation" / "relation_semantics_manifest.json",
+        root / "data" / "curation" / "tendency_semantics" / "munger_structural_mapping.md",
+        root / "data" / "curation" / "tendency_semantics" / "munger_routing_table.json",
+    )
+    return all(path.is_file() for path in required)
+
+
+def _load_compiler_contract(root: Path) -> dict[str, object]:
+    path = root / "data" / "curation" / "graph_compiler_contract.json"
+    if not path.is_file():
+        raise GraphCompilationError(f"Graph compiler contract is missing: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("status") != "frozen_current_release_reconstruction":
+        raise GraphCompilationError("Graph compiler contract is not frozen")
+    return payload
+
+
+def _require_candidate_output_dir(root: Path, output_dir: Path) -> Path:
+    resolved = Path(output_dir)
+    if not resolved.is_absolute():
+        resolved = root / resolved
+    resolved = resolved.resolve()
+    published = {
+        (root / "data" / "knowledge_graph.json").resolve(),
+        (root / "data" / "relationship_graph.json").resolve(),
+    }
+    candidate_paths = {
+        (resolved / "knowledge_graph.json").resolve(),
+        (resolved / "relationship_graph.json").resolve(),
+    }
+    if published.intersection(candidate_paths):
+        raise GraphCompilationError("Candidate output may not overwrite published artifacts")
+    return resolved
 
 
 def _atomic_write_text(path: Path, content: str) -> None:
@@ -291,7 +342,7 @@ def _bundle_from_payloads(
     *,
     build_dir: Path | None = None,
 ) -> CompilationBundle:
-    build_dir = build_dir or (root / "build")
+    build_dir = build_dir or (root / "artifacts" / "graph-substrate-candidate")
     return CompilationBundle(
         root=root,
         knowledge_graph_path=build_dir / "knowledge_graph.json",
@@ -310,16 +361,18 @@ def _compile_from_source_assets(
     *,
     use_operational_curation: bool = False,
 ) -> tuple[dict[str, object], list[dict[str, object]], dict[str, object]]:
-    corpus_dir = root / "MM_CANONICAL_216"
+    contract = _load_compiler_contract(root)
+    release_identity = contract["release_identity"]
+    corpus_dir = root / "data" / "model_sources"
     models = _compile_models(corpus_dir)
     curation_metadata: dict[str, object] = dict(_empty_curation_metadata())
-    if use_operational_curation and (root / "curation").exists():
+    if use_operational_curation and (root / "data" / "curation").exists():
         curation_metadata.update(_apply_operational_curation_to_models(root, models))
     if use_operational_curation and _intervention_semantics_dir(root).exists():
         curation_metadata.update(_apply_intervention_semantics_overlay(root, models))
     tendencies = _compile_tendencies(
-        root / "munger_structural_mapping.md",
-        root / "munger_routing_table.json",
+        root / "data" / "curation" / "tendency_semantics" / "munger_structural_mapping.md",
+        root / "data" / "curation" / "tendency_semantics" / "munger_routing_table.json",
         models,
     )
     edges: list[dict[str, object]] = []
@@ -341,8 +394,8 @@ def _compile_from_source_assets(
 
     kg = {
         "metadata": {
-            "version": "1.0",
-            "compiled_date": date.today().isoformat(),
+            "version": str(release_identity["knowledge_graph_version"]),
+            "compiled_date": str(release_identity["compiled_date"]),
             "source_file_count": len(list(corpus_dir.glob("*.md"))),
             "total_models_processed": len(models),
             "total_edges": len(edges),
@@ -360,7 +413,7 @@ def _apply_operational_curation_to_models(
     root: Path,
     models: dict[str, dict[str, object]],
 ) -> dict[str, object]:
-    records = load_operational_curation(root)
+    records = load_operational_curation(root, model_ids=tuple(models))
     applied_model_ids: list[str] = []
     missing_model_ids: list[str] = []
     overwritten_non_empty_field_count = 0
@@ -454,7 +507,7 @@ def _apply_wave5_reframing_overlay(
 
     When the directory is absent, this is a no-op (existing KG unchanged).
     """
-    reframing_dir = root / "curation" / "reframing_semantics"
+    reframing_dir = root / "data" / "curation" / "reframing_semantics"
     if not reframing_dir.is_dir():
         return
 
@@ -496,7 +549,7 @@ def _apply_prerequisite_edges_overlay(root: Path, kg: dict[str, object]) -> None
     ``prerequisite_edges`` list to the KG dict.  No-op when the directory
     is absent.
     """
-    prereq_dir = root / "curation" / "prerequisite_semantics"
+    prereq_dir = root / "data" / "curation" / "prerequisite_semantics"
     if not prereq_dir.is_dir():
         return
 
@@ -527,6 +580,42 @@ def _apply_prerequisite_edges_overlay(root: Path, kg: dict[str, object]) -> None
         kg["prerequisite_edges"] = edges
 
 
+def _apply_wave6_structural_coverage_overlay(
+    root: Path,
+    kg: dict[str, object],
+) -> None:
+    """Build the Lane 4 structural-coverage routing table from reviewed inputs."""
+    coverage_dir = root / "data" / "curation" / "structural_coverage"
+    if not coverage_dir.is_dir():
+        return
+
+    dimensions: dict[str, dict[str, object]] = {}
+    dimension_ids: list[str] = []
+    for path in sorted(coverage_dir.glob("*.json")):
+        if path.name.startswith("_"):
+            continue
+        entry = json.loads(path.read_text(encoding="utf-8"))
+        dimension_id = str(entry.get("dimension_id", ""))
+        if not dimension_id:
+            continue
+        dimensions[dimension_id] = {
+            "dimension_name": entry.get("dimension_name", ""),
+            "cleaving_frame": entry.get("cleaving_frame", ""),
+            "detect_when": list(entry.get("detect_when", [])),
+            "coverage_signals": list(entry.get("coverage_signals", [])),
+            "materiality_test": entry.get("materiality_test", ""),
+            "models": list(entry.get("models", [])),
+            "question_types": list(entry.get("question_types", [])),
+        }
+        dimension_ids.append(dimension_id)
+
+    if dimensions:
+        kg["structural_coverage_routing"] = {
+            "dimensions": dimensions,
+            "dimension_ids": dimension_ids,
+        }
+
+
 def _empty_curation_metadata() -> dict[str, object]:
     return {
         "applied_model_ids": [],
@@ -546,11 +635,11 @@ def _empty_curation_metadata() -> dict[str, object]:
 
 
 def _intervention_semantics_dir(root: Path) -> Path:
-    return root / "curation" / "intervention_semantics"
+    return root / "data" / "curation" / "intervention_semantics"
 
 
 def _relation_semantics_dir(root: Path) -> Path:
-    return root / "curation" / "relation_semantics"
+    return root / "data" / "curation" / "relation_semantics"
 
 
 def _compiled_failure_mode_item(item: InterventionSemanticItem) -> dict[str, object]:
@@ -581,7 +670,7 @@ def _apply_intervention_semantics_overlay(
     root: Path,
     models: dict[str, dict[str, object]],
 ) -> dict[str, object]:
-    records = load_intervention_semantics(root)
+    records = load_intervention_semantics(root, model_ids=tuple(models))
     model_keys = set(models.keys())
     applied: list[str] = []
     missing = sorted(model_keys.difference(records))
@@ -623,12 +712,20 @@ def _wave3_confidence_to_risk_affinity(confidence: str) -> float:
     return {"high": 0.25, "medium": 0.22, "weak": 0.2}.get(str(confidence).strip(), 0.2)
 
 
+def _affinity_strength_to_risk(strength: float) -> float:
+    return {0.95: 0.30, 0.90: 0.25, 0.80: 0.22, 0.70: 0.20}.get(strength, 0.22)
+
+
 def _build_wave3_relationship_graph(
     root: Path,
     models: dict[str, dict[str, object]],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     valid_ids = set(models.keys())
-    records = load_relation_semantics(root, valid_model_ids=valid_ids)
+    records = load_relation_semantics(
+        root,
+        model_ids=tuple(models),
+        valid_model_ids=valid_ids,
+    )
     graph: list[dict[str, object]] = []
     seen: set[tuple[str, str, str]] = set()
 
@@ -643,6 +740,8 @@ def _build_wave3_relationship_graph(
         confidence: str,
         composition_affinity: float,
         tension_type: str = "",
+        affinity_rationale: str = "",
+        activation_condition: str = "",
     ) -> None:
         if target_model_id not in valid_ids:
             return
@@ -666,6 +765,10 @@ def _build_wave3_relationship_graph(
         }
         if tension_type:
             edge["tension_type"] = tension_type
+        if affinity_rationale:
+            edge["affinity_rationale"] = affinity_rationale
+        if activation_condition:
+            edge["activation_condition"] = activation_condition
         graph.append(edge)
 
     for model_id, record in records.items():
@@ -680,7 +783,13 @@ def _build_wave3_relationship_graph(
                 source_quote=item.source_quote,
                 extraction_type=item.extraction_type,
                 confidence=item.confidence,
-                composition_affinity=_wave3_confidence_to_ally_affinity(item.confidence),
+                composition_affinity=(
+                    item.affinity_strength
+                    if item.affinity_strength > 0
+                    else _wave3_confidence_to_ally_affinity(item.confidence)
+                ),
+                affinity_rationale=item.affinity_rationale,
+                activation_condition=item.activation_condition,
             )
         for item in record.antagonists:
             append_edge(
@@ -691,7 +800,13 @@ def _build_wave3_relationship_graph(
                 source_quote=item.source_quote,
                 extraction_type=item.extraction_type,
                 confidence=item.confidence,
-                composition_affinity=_wave3_confidence_to_risk_affinity(item.confidence),
+                composition_affinity=(
+                    _affinity_strength_to_risk(item.affinity_strength)
+                    if item.affinity_strength > 0
+                    else _wave3_confidence_to_risk_affinity(item.confidence)
+                ),
+                affinity_rationale=item.affinity_rationale,
+                activation_condition=item.activation_condition,
             )
         for item in record.structured_tensions:
             append_edge(
@@ -704,6 +819,8 @@ def _build_wave3_relationship_graph(
                 confidence=item.confidence,
                 composition_affinity=_wave3_confidence_to_risk_affinity(item.confidence),
                 tension_type=item.tension_type,
+                affinity_rationale=item.affinity_rationale,
+                activation_condition=item.activation_condition,
             )
 
     meta = {
@@ -1695,8 +1812,28 @@ def _build_manifest_payload(
     use_operational_curation: bool,
     curation_metadata: dict[str, object],
 ) -> dict[str, object]:
+    artifact_paths = {
+        "knowledge_graph": bundle.knowledge_graph_path,
+        "relationship_graph": bundle.relationship_graph_path,
+        "report": bundle.report_path,
+    }
+    input_manifest_paths = (
+        bundle.root / "data" / "model_sources" / "manifest.json",
+        bundle.root / "data" / "curation" / "relation_semantics_manifest.json",
+        bundle.root / "data" / "curation" / "compiler_inputs_manifest.json",
+        bundle.root / "data" / "curation" / "graph_compiler_contract.json",
+    )
+    published_paths = {
+        "knowledge_graph": bundle.root / "data" / "knowledge_graph.json",
+        "relationship_graph": bundle.root / "data" / "relationship_graph.json",
+    }
+    relationship_graph = json.loads(bundle.relationship_graph_path.read_text(encoding="utf-8"))
+    embedding_staleness = _embedding_staleness_report(bundle.root, relationship_graph)
     payload = {
-        "schema_version": "1.0",
+        "schema_version": "lolla.graph_compilation_candidate_manifest.v1",
+        "candidate_only": True,
+        "published_overwrite_performed": False,
+        "automatic_promotion_allowed": False,
         "compilation_mode": mode_name,
         "uses_operational_curation": use_operational_curation,
         "artifacts": {
@@ -1704,6 +1841,51 @@ def _build_manifest_payload(
             "relationship_graph": bundle.relationship_graph_path.name,
             "report": bundle.report_path.name,
         },
+        "artifact_identity": {
+            name: {
+                "path": path.name,
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "bytes": path.stat().st_size,
+            }
+            for name, path in artifact_paths.items()
+        },
+        "input_manifest_identity": [
+            {
+                "path": path.relative_to(bundle.root).as_posix(),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "bytes": path.stat().st_size,
+            }
+            for path in input_manifest_paths
+        ],
+        "published_comparison": {
+            name: {
+                "path": published.relative_to(bundle.root).as_posix(),
+                "sha256": hashlib.sha256(published.read_bytes()).hexdigest(),
+                "byte_equivalent": artifact_paths[name].read_bytes() == published.read_bytes(),
+            }
+            for name, published in published_paths.items()
+        },
+        "coverage_state_definitions": {
+            "complete": "the declared layer is present and fully reconciled for this release",
+            "completed_zero": "the declared layer ran successfully and produced no records",
+            "partial": "some declared records are unavailable, stale, or truncated",
+            "failed": "the declared validation could not complete",
+            "missing": "the declared layer is unavailable",
+        },
+        "coverage": {
+            "model_sources": "complete",
+            "operational_curation": "complete",
+            "intervention_semantics": "complete",
+            "relation_semantics": "complete",
+            "tendency_semantics": "complete",
+            "reframing_semantics": "complete",
+            "prerequisite_semantics": "complete",
+            "structural_coverage": "complete",
+            "compact_projection": "complete",
+            "rich_projection": "complete",
+            "activation_embeddings": embedding_staleness["coverage_state"],
+        },
+        "embedding_staleness": embedding_staleness,
         "artifact_counts": {
             "model_count": bundle.model_count,
             "knowledge_edge_count": bundle.knowledge_edge_count,
@@ -1733,6 +1915,97 @@ def _build_manifest_payload(
     return payload
 
 
+def _embedding_staleness_report(
+    root: Path,
+    relationship_graph: object,
+    *,
+    database_path: Path | None = None,
+) -> dict[str, object]:
+    database_path = database_path or (root / "data" / "embeddings.db")
+    if not database_path.is_file():
+        return {
+            "status": "missing",
+            "coverage_state": "missing",
+            "path": database_path.relative_to(root).as_posix()
+            if database_path.is_relative_to(root)
+            else str(database_path),
+            "provider_calls": 0,
+        }
+    if not isinstance(relationship_graph, list):
+        return {
+            "status": "failed",
+            "coverage_state": "failed",
+            "reason": "relationship_graph_not_a_list",
+            "provider_calls": 0,
+        }
+
+    expected: dict[tuple[str, str, str], tuple[str, str]] = {}
+    for edge in relationship_graph:
+        if not isinstance(edge, dict):
+            continue
+        activation = str(edge.get("activation_condition", "")).strip()
+        if not activation:
+            continue
+        identity = (
+            str(edge.get("source_model_id", "")),
+            str(edge.get("target_model_id", "")),
+            str(edge.get("edge_type", "")),
+        )
+        expected[identity] = (
+            activation,
+            hashlib.sha256(activation.encode("utf-8")).hexdigest()[:16],
+        )
+
+    try:
+        connection = sqlite3.connect(f"file:{database_path}?mode=ro", uri=True)
+        try:
+            rows = connection.execute(
+                "SELECT source_model_id, target_model_id, edge_type, "
+                "activation_condition_text, content_hash "
+                "FROM edge_activation_conditions"
+            ).fetchall()
+        finally:
+            connection.close()
+    except (sqlite3.Error, OSError) as exc:
+        return {
+            "status": "failed",
+            "coverage_state": "failed",
+            "reason": type(exc).__name__,
+            "provider_calls": 0,
+        }
+
+    observed = {
+        (str(source), str(target), str(edge_type)): (str(text), str(content_hash))
+        for source, target, edge_type, text, content_hash in rows
+    }
+    missing = sorted(set(expected).difference(observed))
+    extra = sorted(set(observed).difference(expected))
+    stale = sorted(
+        identity
+        for identity in set(expected).intersection(observed)
+        if expected[identity] != observed[identity]
+    )
+    status = "current" if not missing and not extra and not stale else "stale"
+    return {
+        "status": status,
+        "coverage_state": "complete" if status == "current" else "partial",
+        "path": database_path.relative_to(root).as_posix()
+        if database_path.is_relative_to(root)
+        else str(database_path),
+        "expected_record_count": len(expected),
+        "observed_record_count": len(observed),
+        "current_record_count": len(expected) - len(missing) - len(stale),
+        "missing_record_count": len(missing),
+        "extra_record_count": len(extra),
+        "stale_record_count": len(stale),
+        "missing_identities": [list(identity) for identity in missing],
+        "extra_identities": [list(identity) for identity in extra],
+        "stale_identities": [list(identity) for identity in stale],
+        "provider_calls": 0,
+        "automatic_rebuild_attempted": False,
+    }
+
+
 def _manifest_drift_errors(
     manifest: dict[str, object],
     bundle: CompilationBundle,
@@ -1753,6 +2026,26 @@ def _manifest_drift_errors(
             errors.append(
                 f"Compilation manifest drift: {key}={actual} actual={expected}"
             )
+
+    identities = manifest.get("artifact_identity", {})
+    if not isinstance(identities, dict):
+        errors.append("Compilation manifest drift: artifact_identity is missing or invalid")
+    else:
+        paths = {
+            "knowledge_graph": bundle.knowledge_graph_path,
+            "relationship_graph": bundle.relationship_graph_path,
+            "report": bundle.report_path,
+        }
+        for key, path in paths.items():
+            identity = identities.get(key, {})
+            if not isinstance(identity, dict):
+                errors.append(f"Compilation manifest drift: {key} identity is invalid")
+                continue
+            expected_sha = hashlib.sha256(path.read_bytes()).hexdigest()
+            if identity.get("sha256") != expected_sha or _coerce_int(
+                identity.get("bytes"), default=None
+            ) != path.stat().st_size:
+                errors.append(f"Compilation manifest drift: {key} byte identity changed")
 
     counts = manifest.get("artifact_counts", {})
     if not isinstance(counts, dict):

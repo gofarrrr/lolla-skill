@@ -7,17 +7,44 @@
       "rationale_text": "Growth-mindset gives persistence-grit the belief that hard effort can actually build capacity over time.",
       "source_quote": "behavioral expression of the Growth Mindset",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Grit is a behavioral expression of the Growth Mindset, which believes intelligence and character are dynamic and can be developed' — intrinsic relationship.",
+      "activation_condition": "When sustained effort requires the belief that abilities can develop through dedication and hard work."
     },
     {
       "target_model_id": "deliberate-practice",
       "rationale_text": "Deliberate-practice gives persistence-grit a structured way to turn endurance into improvement rather than mere repetition.",
       "source_quote": "specific skills and knowledge",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: Deep Work (close cousin of deliberate practice) 'requires the ability to concentrate without distraction'; grit provides the stamina for persistent engagement.",
+      "activation_condition": "When persistence must be directed through structured, focused practice to build genuine expertise."
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines persistence-grit by channeling sustained effort into a familiar but inappropriate framework, turning grit into stubborn repetition of the wrong approach.",
+      "source_quote": "Persistence can lead to the inappropriate application of familiar mental models to genuinely novel problems. This is the trap of Maslow's hammer: If the only tool you have is a hammer, to treat everything as if it were a nail. This results in persisting with frameworks that are unhelpful or misleading.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical risks: 'Inertia / Doubling Down — refusing to quit a failing course of action' due to rigid persistence in familiar approaches.",
+      "activation_condition": "When rigid persistence in a familiar approach prevents adoption of more effective strategies."
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "rationale_text": "Status-quo-bias undermines persistence-grit by converting purposeful endurance into inertia, causing people and organizations to double down on existing courses of action driven by the momentum of previous commitment rather than evidence.",
+      "source_quote": "Inertia Default: This bias causes people and organizations to double down on existing courses of action, even when they are fundamentally wrong, driven by the sheer momentum of previous commitment.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical risks: persistence can anchor to current course; 'Ambiguity Aversion' leads to forcing conclusions rather than adapting.",
+      "activation_condition": "When persistence anchors to the current course rather than adapting to changing conditions or evidence."
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "sunk-cost-fallacy",
@@ -43,5 +70,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. growth-mindset at 0.90 ('behavioral expression of'), deliberate-practice at 0.80. Both antagonists at 0.80. Canonical structured tensions also flag sunk-cost-fallacy and commitment-bias as conflicts.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical mentions commitment-and-consistency (psychological reinforcement loop) and hypothesis-driven-problem-solving (iterative testing requires grit)."
+    ]
+  }
 }

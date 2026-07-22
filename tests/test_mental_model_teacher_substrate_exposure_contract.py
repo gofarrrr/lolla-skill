@@ -149,7 +149,7 @@ def test_manifest_path_marker_is_detected_without_leaking_path() -> None:
     summary = build_inventory(REPO_ROOT)
     manifest = _asset(summary, "model_source_manifest")
 
-    assert manifest["discovered"]["raw_contains_local_path_marker"] is True
+    assert manifest["discovered"]["raw_contains_local_path_marker"] is False
 
     rendered = json.dumps(summary, sort_keys=True)
     assert "/" + "Users/" not in rendered

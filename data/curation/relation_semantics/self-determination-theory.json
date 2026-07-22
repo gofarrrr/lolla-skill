@@ -7,21 +7,30 @@
       "rationale_text": "Psychological-safety supports self-determination-theory by making relatedness and candid learning feel possible inside the group.",
       "source_quote": "belonging and connection with others",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: SDT's Relatedness need requires environments where individuals feel connected and valued. Psychological safety provides the trust foundation for autonomy and competence expression.",
+      "activation_condition": "When fostering intrinsic motivation requires a psychologically safe environment where autonomy, competence, and relatedness can flourish."
     },
     {
       "target_model_id": "growth-mindset",
       "rationale_text": "Growth-mindset strengthens self-determination-theory by reinforcing competence as something that can be built rather than fixed.",
       "source_quote": "Competence: The need to feel effective and capable",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'The SDT principle of Mastery/Competence implies a continuous hunger to progress and change, driven by an understanding of one's dynamic potential.'",
+      "activation_condition": "When the belief in developable abilities fuels the competence drive that self-determination theory identifies as a core motivational need."
     },
     {
       "target_model_id": "emotional-intelligence",
       "rationale_text": "Emotional-intelligence helps self-determination-theory read the human conditions that are supporting or suppressing motivation.",
       "source_quote": "Relatedness: The need to experience belonging and connection with others",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'The Relatedness need aligns with EI, which involves recognizing one's own emotions and transferring that awareness to others to understand their motivations.'",
+      "activation_condition": "When emotional awareness enables understanding of others' motivations and needs, directly supporting the relatedness component of SDT."
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias can make leaders keep a controlling system while telling themselves people just need more effort.",
       "source_quote": "Availability Heuristic",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence: not a primary canonical antagonist (which focuses on Taylorism and Availability Heuristic). Confirmation bias can reinforce false beliefs about what motivates people.",
+      "activation_condition": "When assumptions about what motivates team members go untested because confirming evidence is selectively sought."
     }
   ],
   "structured_tensions": [
@@ -50,5 +62,10 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. emotional-intelligence 0.90 (Relatedness aligns with EI), psychological-safety and growth-mindset at 0.80. confirmation-bias antagonist at 0.70 (medium). Canonical primary antagonist is Taylorism/external control.",
+    "donor_drops": [],
+    "open_questions": []
+  }
 }

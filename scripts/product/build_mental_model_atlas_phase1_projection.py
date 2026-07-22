@@ -13,7 +13,7 @@ import json
 import math
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 
 SCHEMA_VERSION = "lolla.atlas_projection.v1"
@@ -92,9 +92,21 @@ def sha256_path(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
 
 
-def build_phase1_package(root: Path) -> dict[str, Any]:
+def build_phase1_package(
+    root: Path,
+    *,
+    source_hashes: Mapping[str, str] | None = None,
+    source_authority: str = "frozen_checkpoint",
+    canonical_data_commit: str | None = CANONICAL_DATA_COMMIT,
+) -> dict[str, Any]:
     root = root.resolve()
-    custody = _load_and_verify_sources(root)
+    resolved_source_hashes = dict(source_hashes or EXPECTED_SOURCE_HASHES)
+    custody = _load_and_verify_sources(
+        root,
+        source_hashes=resolved_source_hashes,
+        source_authority=source_authority,
+        canonical_data_commit=canonical_data_commit,
+    )
     manifest_payload = _load_json(root / "data/model_sources/manifest.json")
     knowledge_graph = _load_json(root / "data/knowledge_graph.json")
     relationship_graph = _load_json(root / "data/relationship_graph.json")
@@ -104,7 +116,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
     }
     models = knowledge_graph["models"]
     relation_records = [
-        _relation_record(root, item, index)
+        _relation_record(root, item, index, resolved_source_hashes)
         for index, item in enumerate(relationship_graph)
     ]
 
@@ -129,6 +141,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         models=models,
         source_records=source_records,
         custody=custody,
+        source_hashes=resolved_source_hashes,
         layout_variant="ordinary",
         extra_scope={
             "description": "frozen_16_model_real_data_review_slice",
@@ -155,6 +168,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         models=models,
         source_records=source_records,
         custody=custody,
+        source_hashes=resolved_source_hashes,
         layout_variant="pair",
         extra_scope={"semantic_fixture": "parallel_ally_and_tension"},
     )
@@ -177,6 +191,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         models=models,
         source_records=source_records,
         custody=custody,
+        source_hashes=resolved_source_hashes,
         layout_variant="pair",
         extra_scope={"semantic_fixture": "two_source_authored_directions"},
     )
@@ -223,6 +238,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         models=models,
         source_records=source_records,
         custody=custody,
+        source_hashes=resolved_source_hashes,
         layout_variant="hub",
         page_number=page_number,
         layout_universe_ids=hub_layout_model_ids,
@@ -258,6 +274,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         models=models,
         source_records=source_records,
         custody=custody,
+        source_hashes=resolved_source_hashes,
         layout_variant="pair",
         extra_scope={
             "semantic_fixture": "medium_confidence_not_certification"
@@ -269,6 +286,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         models["abstraction"],
         source_records["abstraction"],
         custody,
+        resolved_source_hashes,
     )
     artifacts["pages/model-abstraction.json"] = model_page
 
@@ -276,6 +294,7 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
         relationship_graph=relationship_graph,
         translated_relations=relation_records,
         custody=custody,
+        source_hashes=resolved_source_hashes,
     )
     artifacts[
         "pages/relation-abstraction-first-principles-thinking-ally.json"
@@ -328,8 +347,15 @@ def build_phase1_package(root: Path) -> dict[str, Any]:
     return {"artifacts": artifacts, "manifest": manifest}
 
 
-def _load_and_verify_sources(root: Path) -> dict[str, Any]:
-    for relative_path, expected in EXPECTED_SOURCE_HASHES.items():
+def _load_and_verify_sources(
+    root: Path,
+    *,
+    source_hashes: Mapping[str, str] | None = None,
+    source_authority: str = "frozen_checkpoint",
+    canonical_data_commit: str | None = CANONICAL_DATA_COMMIT,
+) -> dict[str, Any]:
+    resolved_source_hashes = dict(source_hashes or EXPECTED_SOURCE_HASHES)
+    for relative_path, expected in resolved_source_hashes.items():
         path = root / relative_path
         if not path.is_file():
             raise AtlasProjectionError(f"missing canonical source: {relative_path}")
@@ -339,11 +365,12 @@ def _load_and_verify_sources(root: Path) -> dict[str, Any]:
                 f"canonical source hash drift: {relative_path}: {actual}"
             )
     return {
-        "canonical_data_commit": CANONICAL_DATA_COMMIT,
+        "canonical_data_commit": canonical_data_commit,
+        "source_authority": source_authority,
         "source_hash_status": "verified",
         "sources": [
             {"path": path, "sha256": sha256}
-            for path, sha256 in sorted(EXPECTED_SOURCE_HASHES.items())
+            for path, sha256 in sorted(resolved_source_hashes.items())
         ],
     }
 
@@ -353,7 +380,9 @@ def _model_record(
     model_id: str,
     model: dict[str, Any],
     source_record: dict[str, Any],
+    source_hashes: Mapping[str, str] | None = None,
 ) -> dict[str, Any]:
+    resolved_source_hashes = dict(source_hashes or EXPECTED_SOURCE_HASHES)
     source_ref = {
         "source_type": "canonical_model_markdown",
         "path": source_record["path"],
@@ -367,7 +396,7 @@ def _model_record(
         "source_type": "compiled_checked_in_curation",
         "path": "data/knowledge_graph.json",
         "json_pointer": f"/models/{_json_pointer_escape(model_id)}/select_when/0",
-        "sha256": EXPECTED_SOURCE_HASHES["data/knowledge_graph.json"],
+        "sha256": resolved_source_hashes["data/knowledge_graph.json"],
     }
     status = _publication_status()
     return {
@@ -393,8 +422,12 @@ def _model_record(
 
 
 def _relation_record(
-    root: Path, raw: dict[str, Any], source_record_index: int
+    root: Path,
+    raw: dict[str, Any],
+    source_record_index: int,
+    source_hashes: Mapping[str, str] | None = None,
 ) -> dict[str, Any]:
+    resolved_source_hashes = dict(source_hashes or EXPECTED_SOURCE_HASHES)
     source_id = raw["source_model_id"]
     target_id = raw["target_model_id"]
     relation_type = raw["edge_type"]
@@ -402,7 +435,7 @@ def _relation_record(
         "source_type": "curated_relationship_graph_record",
         "path": "data/relationship_graph.json",
         "json_pointer": f"/{source_record_index}",
-        "sha256": EXPECTED_SOURCE_HASHES["data/relationship_graph.json"],
+        "sha256": resolved_source_hashes["data/relationship_graph.json"],
     }
     curation_path = f"data/curation/relation_semantics/{source_id}.json"
     refs = [graph_ref]
@@ -436,6 +469,7 @@ def _projection(
     models: dict[str, dict[str, Any]],
     source_records: dict[str, dict[str, Any]],
     custody: dict[str, Any],
+    source_hashes: Mapping[str, str],
     layout_variant: str,
     extra_scope: dict[str, Any],
     page_number: int = 1,
@@ -466,7 +500,13 @@ def _projection(
         "source_custody": custody,
         "scope": scope,
         "models": [
-            _model_record(root, model_id, models[model_id], source_records[model_id])
+            _model_record(
+                root,
+                model_id,
+                models[model_id],
+                source_records[model_id],
+                source_hashes,
+            )
             for model_id in model_ids
         ],
         "relations": records,
@@ -550,6 +590,7 @@ def _model_page(
     model: dict[str, Any],
     source_record: dict[str, Any],
     custody: dict[str, Any],
+    source_hashes: Mapping[str, str],
 ) -> dict[str, Any]:
     model_id = "abstraction"
     source_ref = {
@@ -562,7 +603,7 @@ def _model_page(
         "source_type": "compiled_checked_in_curation",
         "path": "data/knowledge_graph.json",
         "json_pointer": f"/models/{model_id}",
-        "sha256": EXPECTED_SOURCE_HASHES["data/knowledge_graph.json"],
+        "sha256": source_hashes["data/knowledge_graph.json"],
     }
     sections = {
         "definition": _text_section(
@@ -630,6 +671,7 @@ def _relation_page(
     relationship_graph: list[dict[str, Any]],
     translated_relations: list[dict[str, Any]],
     custody: dict[str, Any],
+    source_hashes: Mapping[str, str],
 ) -> dict[str, Any]:
     selected_raw = next(
         item
@@ -680,7 +722,7 @@ def _relation_page(
                     "source_type": "parallel_tension_boundary",
                     "path": "data/relationship_graph.json",
                     "json_pointer": f"/{relationship_graph.index(tension_raw)}",
-                    "sha256": EXPECTED_SOURCE_HASHES[
+                    "sha256": source_hashes[
                         "data/relationship_graph.json"
                     ],
                 }

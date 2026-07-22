@@ -1,0 +1,48 @@
+{
+  "dimension_id": "behavioral-intervention",
+  "dimension_name": "Behavioral Intervention",
+  "cleaving_frame": "Regulate vs Incent vs Nudge",
+  "description": "The problem requires changing people's behavior — through rules, incentive design, friction reduction, or environmental shaping. The structural question is which mechanism will actually produce the desired behavior change.",
+  "question_types": ["action-planning", "causal-diagnosis"],
+  "detect_when": [
+    "Success depends on people doing something differently than they currently do",
+    "The problem involves compliance, adoption, habit change, or culture shift",
+    "Rules or mandates exist but aren't producing the desired behavior",
+    "The answer proposes a solution without specifying the behavior-change mechanism"
+  ],
+  "coverage_signals": [
+    "The answer specifies the mechanism for behavior change (rules, incentives, nudges, defaults, feedback)",
+    "The answer considers why current behavior persists — the forces maintaining the status quo",
+    "The answer addresses enforcement or sustainability of the change over time",
+    "The answer distinguishes between intrinsic and extrinsic motivation and matches the mechanism to the task type"
+  ],
+  "materiality_test": "Would choosing a different behavior-change mechanism (e.g., incentives instead of rules, or nudges instead of mandates) change the outcome?",
+  "reasoning_demanded": "behavioral mechanism design, motivation analysis, friction/default assessment",
+  "models": [
+    "incentives",
+    "persuasion-principles",
+    "habit-formation",
+    "self-determination-theory",
+    "usability-heuristics",
+    "feedback-models-sbi"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Incentives covers mechanism design (autonomy/mastery/purpose, if-then vs now-that rewards, algorithmic vs heuristic tasks). Persuasion-principles addresses influence levers (reciprocity, social proof, authority). Habit-formation covers the cue-routine-reward loop and environmental design. Self-determination-theory provides the intrinsic motivation framework (autonomy, competence, relatedness). Usability-heuristics addresses friction reduction and default design. Feedback-models-sbi provides the observation-based feedback loop for behavior correction.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from incentives (behavior driven by motives and consequences), habit-formation (cue-routine-reward persistence), self-determination-theory (intrinsic vs extrinsic motivation mismatch). The 'rules not working' trigger from persuasion-principles' distinction between compliance and genuine behavior change."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Mechanism specification from incentives' Motivation 3.0 framework. Status quo persistence from habit-formation. Sustainability from self-determination-theory (intrinsic motivation is self-sustaining, extrinsic is not). Intrinsic/extrinsic distinction from incentives' if-then vs now-that reward taxonomy."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Note: incentives also appears in the incentive-alignment dimension. This is intentional — incentives serves different structural purposes in each: in incentive-alignment it's about aligning principal and agent; here it's about selecting the right behavior-change mechanism. The models span the full behavioral intervention surface: motivation theory, influence, habit mechanics, friction design, and feedback."
+    }
+  }
+}

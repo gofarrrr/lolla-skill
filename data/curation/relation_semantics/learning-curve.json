@@ -7,14 +7,20 @@
       "rationale_text": "Deliberate-practice makes the learning-curve compound by linking repetition to sub-skill diagnosis, feedback, and measurable improvement.",
       "source_quote": "Performance improves through repetition, feedback, and chunked skill-building.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Deep/deliberate practice is described as 'the concentrated effort necessary to isolate the relevant neural circuits required to learn hard things quickly. Learning, in essence, is an act of deep work.'",
+      "activation_condition": "When advancing along the learning curve requires focused, intentional practice that isolates specific skills rather than passive repetition or undirected exposure"
     },
     {
       "target_model_id": "checklists",
       "rationale_text": "Checklists support the learning-curve by stabilizing routine steps so growing capability is not lost to preventable procedural errors.",
       "source_quote": "Checklists and protocols are required to handle sophisticated activities to reduce errors and ensure the fundamental steps of the process are not overlooked.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "As mastery advances, 'checklists and protocols are required to handle sophisticated activities to reduce errors and ensure fundamental steps are not overlooked' — checklists preserve learning gains.",
+      "activation_condition": "When accumulated expertise needs to be systematized into reliable protocols to prevent regression and ensure consistent application of learned procedures"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Status-quo-bias weakens the learning-curve when an initially successful routine gets protected long after it should be updated or deepened.",
       "source_quote": "Excessive reliance on established patterns developed through mastery can lead to cognitive entrenchment.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Resistance to engaging in effortful new learning when existing competence feels sufficient — status quo bias causes stagnation on the learning curve plateau.",
+      "activation_condition": "When current competence level feels adequate and the effort required to advance further on the learning curve is perceived as unnecessary disruption"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on compounding practice, protocol support, and the risk of early-skill routines hardening into drag.",
+    "summary": "Layer 1+2 enrichment complete. Allies: deliberate-practice 0.90 (strong — 'learning is an act of deep work'), checklists 0.80 (moderate — systematize learning gains). Antagonist: status-quo-bias 0.70 (supportive — medium confidence, stagnation on plateau). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not preserve deep-work or analogical-reasoning relation sprawl where the cleanest current-vocabulary first-order links are deliberate-practice and checklists."
     ],
     "open_questions": [
-      "The status-quo-bias antagonist is a reviewed normalization of entrenchment material rather than a named explicit pair block."
+      "The status-quo-bias antagonist is a reviewed normalization of entrenchment material rather than a named explicit pair block.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies analogical-reasoning ('analogies act as bridges connecting existing understanding to new ideas') and mental-models/latticework ('accumulation of models acts as the substrate for the learning curve') as ally candidates."
     ]
   }
 }

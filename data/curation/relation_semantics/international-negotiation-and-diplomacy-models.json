@@ -2,7 +2,28 @@
   "model_id": "international-negotiation-and-diplomacy-models",
   "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
   "allies": [],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines international-negotiation-and-diplomacy-models by causing practitioners to default to a familiar negotiation framework rather than diagnosing the actual structure of the current multi-party interaction.",
+      "source_quote": "The Hammer-in-Search-of-a-Nail (Maslow's Hammer): This pitfall occurs when practitioners rely unquestioningly on familiar conceptual frameworks, adopting the mental model of a function or industry with all its assumptions. This is dangerous when the underlying assumptions of the framework are not met.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Decision-maker defaults to a simple model they know rather than understanding the complicated reality — causes incorrect framing and 'disastrously wrong solutions' in negotiation contexts.",
+      "activation_condition": "When negotiation strategy defaults to familiar frameworks rather than building context-specific understanding of the counterparty's actual reality and constraints"
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines international-negotiation-and-diplomacy-models by causing experts to communicate strategy at a level of abstraction the counterparty or stakeholder cannot absorb, blocking the persuasion and influence the model requires.",
+      "source_quote": "The difficulty experts have in remembering what it is like not to know something. This impairs communication because the expert instinctively talks at a higher level of abstraction than the audience can absorb, leading to ineffective transfer of strategy.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Expert difficulty remembering what it is like not to know something impairs communication — 'instinctively talks at a higher level of abstraction than the audience can absorb'.",
+      "activation_condition": "When diplomatic or negotiation communication fails because expert-level framing exceeds the counterparty's conceptual framework or knowledge base"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "first-principles-thinking",
@@ -22,12 +43,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. No allies curated. Antagonists: einstellung-effect 0.80 (moderate — defaults to familiar frameworks), curse-of-knowledge 0.80 (moderate — impairs cross-expertise communication). SPARSE_ALLY_RECOVERY: 0 allies — CRITICAL priority. Canonical names emotional-intelligence, systems-thinking, design-thinking, and outside-view/reference-class-forecasting as ally candidates.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 0 allies curated — CRITICAL priority. Canonical article identifies emotional-intelligence ('foundational for understanding others' motivations'), systems-thinking ('see interrelationships and causal links'), and design-thinking ('Empathize step for qualitative POV data') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

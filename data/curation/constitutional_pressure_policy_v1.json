@@ -1,0 +1,31 @@
+{
+  "schema_version": "lolla.constitutional_pressure_policy.v1",
+  "policy_id": "lolla.constitutional_pressure_planner",
+  "version": "1.0.0",
+  "direct_active_cap": 6,
+  "graph_relation_slots": [
+    "antagonist",
+    "tension",
+    "ally"
+  ],
+  "expansion_seed_rule": "direct_active_only",
+  "direction": "outgoing_authored_relations",
+  "hop_depth": 1,
+  "direct_order": "input_recall_order_via_zero_padded_rank_mechanisms",
+  "graph_order": "relation_slot_then_source_id_then_target_id_ascending",
+  "direct_deduplication": "first_canonical_input_occurrence",
+  "graph_deduplication": "one_active_target_across_relation_slots",
+  "affinity_used_for_admission": false,
+  "probabilistic_prefilter_used": false,
+  "provider_calls_allowed": 0,
+  "reserve_policy": {
+    "direct_capacity_overflow_preserved": true,
+    "graph_capacity_and_direct_duplicates_preserved": true,
+    "semantic_rejection_performed": false
+  },
+  "non_claims": [
+    "active_admission_is_not_relevance_proof",
+    "reserve_is_not_semantic_rejection",
+    "one_hop_path_is_not_transitive_meaning"
+  ]
+}

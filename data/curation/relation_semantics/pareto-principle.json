@@ -7,21 +7,30 @@
       "rationale_text": "Prioritization is the operational partner that turns Pareto from a ratio observation into a decision about what to do and what to stop doing.",
       "source_quote": "The principle serves as the basis for answering the critical problem-solving question: \"How do you prioritize what to do and what not to do?\".",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Pareto IS the quintessential prioritization heuristic — the vital-few/trivial-many distinction provides the framework for deciding which parts to focus on and which to drop.",
+      "activation_condition": "When resource allocation needs to distinguish the vital few inputs that drive the majority of results from the trivial many that consume effort without proportionate impact"
     },
     {
       "target_model_id": "leverage-points",
       "rationale_text": "Leverage-points gives Pareto its search target by identifying the small set of factors most likely to move the outcome disproportionately.",
       "source_quote": "The core purpose of applying the Pareto Principle is to encourage efficiency and achieve the greatest ratio of input to output. It directs analytical effort toward the most important factors to maximize impact.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Identifying the vital 20% that produces 80% of results IS finding leverage points in the outcome distribution — Pareto and leverage points are complementary identification mechanisms.",
+      "activation_condition": "When the search for high-impact intervention points can be guided by empirical distribution analysis showing which inputs disproportionately drive outputs"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification helps Pareto cut the trivial many so attention stays on the few elements that actually change the result.",
       "source_quote": "search for the vital few in the vast landscape of the trivial many",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Pareto 'simplifies complexity and directs focus to the vital few factors' — eliminating the trivial many reduces cognitive load and enables clearer analysis of what matters.",
+      "activation_condition": "When analytical complexity needs to be reduced by eliminating the majority of low-impact factors to enable focused attention on the critical few"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias can quietly preselect the supposed vital few so Pareto becomes a justification for the priorities the team already wanted.",
       "source_quote": "Confirmation Bias: Using the Pareto analysis to confirm pre-existing beliefs about what is important.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Using the Pareto analysis 'to confirm pre-existing beliefs about what is important' — the vital-few selection may reflect preference rather than independent impact analysis.",
+      "activation_condition": "When the selection of vital-few priorities confirms already-favored areas rather than being derived from objective impact measurement"
     },
     {
       "target_model_id": "circle-of-control",
       "rationale_text": "Circle-of-control resists Pareto when the highest-impact levers sit outside execution authority and the model starts optimizing imaginary influence.",
       "source_quote": "pareto-principle vs circle-of-control: pareto-principle conflicts with circle-of-control (circle of control) when high-impact levers sit outside current execution authority.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "High-impact levers identified by Pareto may sit outside current execution authority — the gap between what is impactful and what is controllable limits practical application.",
+      "activation_condition": "When the highest-leverage 20% of factors identified by Pareto analysis falls outside the decision-maker's sphere of influence or organizational authority"
     }
   ],
   "structured_tensions": [
@@ -67,7 +82,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on prioritization, leverage pruning, and an explicit structured tension block around simplification risk, so the file preserves that compact surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: prioritization 0.90 (strong — Pareto IS the quintessential prioritization heuristic), leverage-points 0.90 (strong — vital-few identification IS finding leverage points), simplification 0.80 (moderate — eliminates trivial many). Antagonists: confirmation-bias 0.80 (moderate — vital-few selection reflects preference), circle-of-control 0.80 (moderate — high-impact levers may be outside authority).",
     "donor_drops": [
       "Did not preserve donor relation sprawl beyond the strongest current-vocabulary links around prioritization, simplification, and anti-lazy vital-few selection."
     ],

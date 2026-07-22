@@ -7,21 +7,30 @@
       "rationale_text": "Cognitive-load-theory gives false-precision-avoidance the core constraint that makes unnecessary detail actively harmful rather than merely inconvenient.",
       "source_quote": "FPA directly supports this model by acknowledging that working memory is limited.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states FPA 'directly supports this model by acknowledging that working memory is limited' — reduces cognitive load by filtering out redundant or extraneous precision details.",
+      "activation_condition": "When excessive precision details overload working memory and must be filtered to allow focus on building accurate mental schemas"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification helps false-precision-avoidance compress the landscape into a usable map without carrying every decorative branch forward.",
       "source_quote": "acting like maps that reveal key information while ignoring nonessential details",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "FPA operationalizes simplification for precision filtering — the canonical core function of stripping unnecessary detail to reveal essential insight, ensuring the 'punch line' is clear.",
+      "activation_condition": "When detailed analysis outputs must be simplified to their essential governing insight without losing decision-relevant information"
     },
     {
       "target_model_id": "prioritization",
       "rationale_text": "Prioritization keeps false-precision-avoidance focused on the detail that changes action while dropping precision that does not change the decision.",
       "source_quote": "The model is essential during the problem disaggregation and prioritization phase of problem-solving.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the selection of which information to preserve and which precision to discard, though not explicitly named as a primary canonical ally.",
+      "activation_condition": "When multiple precision-laden data points compete for attention and the most decision-relevant subset must be selected"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Anchoring makes false-precision-avoidance necessary because one precise number can dominate judgment long after it stops being the right guide.",
       "source_quote": "This cognitive bias occurs when people focus too much on a single, specific piece of information (the anchor).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes how 'people focus too much on a single, specific piece of information (the anchor), often a precise number, to misleadingly influence overall judgment' — directly opposes FPA's mission.",
+      "activation_condition": "When a precise number anchors judgment and misleadingly influences the overall assessment, even though the number's precision exceeds the reliability of the underlying data"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias turns detail into camouflage by collecting exhaustive support for the preferred conclusion instead of clarifying what actually matters.",
       "source_quote": "Confirmation bias drives people to process information to get the conclusion they want.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Manifests as 'an inability to kill your babies' — refusing to discard precise but misleading hypotheses or data points, leading to exhaustive presentation that counters FPA's simplicity mandate.",
+      "activation_condition": "When attachment to detailed data prevents discarding precise but misleading information that obscures rather than clarifies the core decision"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on bounded approximation, cognitive-load relief, and anti-false-certainty pressure, so the file preserves that compact surface without forcing extra tensions.",
+    "summary": "Layer 1+2 enrichment complete. Allies: cognitive-load-theory 0.90 (strong — 'directly supports'), simplification 0.90 (strong — FPA operationalizes precision filtering), prioritization 0.80 (moderate — selection of decision-relevant info). Antagonists differentiated: anchoring 0.90 (strong — precise numbers mislead judgment), confirmation-bias 0.80 (moderate — inability to discard misleading detail). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor simplification relations beyond the strongest current-vocabulary links around cognitive load, prioritization, and anti-anchor pressure."
     ],

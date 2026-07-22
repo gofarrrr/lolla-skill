@@ -7,21 +7,30 @@
       "rationale_text": "Abstraction helps narratives compress complex facts into a clear causal line without making the audience hold every detail at once.",
       "source_quote": "turn scattered evidence into one clear line of meaning",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Narratives compress complex reality into memorable story patterns — schemas and abstractions provide the cognitive shortcuts that make stories instantly understandable and transferable.",
+      "activation_condition": "When complex information needs to be compressed into memorable patterns that audiences can absorb and recall without requiring deep domain expertise"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification helps narratives keep the core message concrete and memorable enough that people can act on it.",
       "source_quote": "Focus on the Core and Concrete: identify the core message and eliminate any detail that does not serve the central purpose.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Simplification enables narrative power by focusing on the core message — 'stories help convey abstract ideas in emotional terms' through ruthless elimination of non-essential detail.",
+      "activation_condition": "When information overload threatens narrative clarity and the core message needs to be distilled into a few concrete, sticky points"
     },
     {
       "target_model_id": "signaling",
       "rationale_text": "Signaling helps narratives communicate belief-shifting meaning in a legible form when adoption depends on identity or causal coherence.",
       "source_quote": "Works best when adoption depends on belief shift, identity shift, or coherent sequencing rather than on dumping more disconnected facts at the audience.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Narratives function as signals of values, identity, and competence — the choice of story, framing, and emphasis communicates what the speaker prioritizes and how they see the world.",
+      "activation_condition": "When the narrative choice itself communicates strategic intent, organizational values, or cultural identity beyond the literal content of the story"
     }
   ],
   "antagonists": [
@@ -30,21 +39,30 @@
       "rationale_text": "Formal-reasoning conflicts with narratives when story quality outruns explicit logic and proof structure.",
       "source_quote": "The structured rigor of methodologies like the McKinsey-pioneered MECE principle contrasts with the sequential, character-driven nature of narratives.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Structured rigor of MECE 'demands precise, non-overlapping parts — this purely logical approach contrasts with the sequential, character-driven nature of narratives' as humans are storytelling creatures not logical robots.",
+      "activation_condition": "When the persuasive power of narrative coherence competes with the analytical precision of formal logical decomposition for how a problem should be communicated"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking resists narratives when a compelling arc starts erasing uncertainty, trade-offs, or missing evidence.",
       "source_quote": "story coherence outruns evidence quality",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Narratives conflict with critical thinking 'when story coherence outruns evidence quality' — the safeguard is mapping each key claim to explicit evidence before acting.",
+      "activation_condition": "When a compelling narrative creates certainty that hasn't been earned through evidence verification and disconfirming-evidence checks"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias intensifies narratives when rhetorical skill is used to defend a desired conclusion rather than test it.",
       "source_quote": "Smart individuals can use their rhetorical skills to spin compelling narratives to persuade themselves toward a desired conclusion, rather than seeking objective truth.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Narrative coherence is 'constructed by selectively including supporting evidence and omitting disconfirming data' — confirmation bias directly corrupts narrative construction and interpretation.",
+      "activation_condition": "When the story selectively includes evidence that supports the desired conclusion while omitting contradictory data that would weaken narrative coherence"
     }
   ],
   "structured_tensions": [
@@ -66,7 +84,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays conservative around meaning compression, legibility, and the risk that story quality outruns logic or proof.",
+    "summary": "Layer 1+2 enrichment complete. Allies: abstraction 0.80 (moderate — compresses reality into memorable patterns), simplification 0.80 (moderate — enables narrative power through focus), signaling 0.80 (moderate — story choice communicates values). Antagonists differentiated: confirmation-bias 0.90 (strong — selectively constructs narrative coherence), formal-reasoning 0.80 (moderate — logical precision vs narrative flow), critical-thinking 0.80 (moderate — coherence outruns evidence).",
     "donor_drops": [
       "Did not preserve broader System 1 or backstory expansion because the current vocabulary already supports a tighter evidence-versus-arc surface."
     ],

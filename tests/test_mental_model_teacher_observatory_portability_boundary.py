@@ -27,7 +27,7 @@ def test_boundary_doc_records_current_observatory_owner() -> None:
         "current Observatory owner is the portable local Python server",
         "observatory/serve_result.py",
         "observatory/build/",
-        "Lolla-system-b/observatory/svelte-app",
+        "Legacy bundle authoring source",
         "no root `package.json`",
         "no local `vite.config.*`",
         "no local `svelte.config.*`",

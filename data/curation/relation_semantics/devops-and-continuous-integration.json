@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking helps devops-and-continuous-integration optimize the whole service instead of treating build, release, and operate steps as disconnected work.",
       "source_quote": "seeing interrelationships rather than things",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes systems thinking as 'the discipline for seeing wholes and patterns of change, ensuring the models fit within the larger reality' — provides the macro perspective essential for accurate pipeline design.",
+      "activation_condition": "When pipeline design and optimization require understanding how changes at one point will ramify across the broader system rather than optimizing locally"
     },
     {
       "target_model_id": "debugging-strategies",
       "rationale_text": "Debugging-strategies gives devops-and-continuous-integration the root-cause discipline needed when faster flow exposes brittle failures and hidden integration faults.",
       "source_quote": "build, observe, diagnose, and adjust",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the iterative improvement cycle central to DevOps — debugging provides the diagnostic methodology for identifying and resolving pipeline and deployment failures.",
+      "activation_condition": "When CI/CD pipeline failures require systematic root-cause analysis rather than quick-fix patches that mask underlying systemic issues"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias causes devops-and-continuous-integration teams to protect a preferred pipeline model instead of actively testing alternatives against reliability reality.",
       "source_quote": "confirmation-bias",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'teams seek evidence that confirms the chosen pipeline model or hypothesis rather than actively testing alternatives', leading to optimization of an unquestioned process.",
+      "activation_condition": "When pipeline metrics are interpreted to confirm the current CI/CD approach rather than genuinely testing whether alternative configurations would produce better outcomes"
     }
   ],
   "structured_tensions": [
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation surface stays on the raw source's cleanest first-order graph: systems and diagnosis as allies, plus the explicit pressure block on safety, speed, and belief protection.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'discipline for seeing wholes'), debugging-strategies 0.80 (moderate — diagnostic methodology). Antagonist: confirmation-bias 0.80 (moderate — confirms chosen pipeline model). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not widen into broader engineering-culture relations because the current source-backed tension block is already strong and inspectable."
     ],
     "open_questions": [
-      "Game-theory and design-thinking are source-real allies, but systems-thinking and debugging-strategies were the stronger operational anchors."
+      "Game-theory and design-thinking are source-real allies, but systems-thinking and debugging-strategies were the stronger operational anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names cognitive-load-theory, design-thinking, and game-theory as additional synergistic allies."
     ]
   }
 }

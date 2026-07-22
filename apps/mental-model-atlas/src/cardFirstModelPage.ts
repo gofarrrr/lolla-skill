@@ -223,7 +223,7 @@ export interface CardFirstModelPage {
 
 export function cardFirstModelPageUrl(slug: string): string | null {
   return slug === "abstraction"
-    ? assetUrl("data/card-first-v1/pages/model-abstraction.json")
+    ? assetUrl("data/card-first-v2/pages/model-abstraction.json")
     : null;
 }
 

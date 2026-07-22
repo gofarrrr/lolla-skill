@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 
 from .authority_phase1_definition import AuthorityPhase1Definition, default_authority_phase1_definition
+from .published_knowledge_substrate import PublishedKnowledgeSubstrate
 
 
 @dataclass(frozen=True)
@@ -36,7 +37,10 @@ class AuthorityPhase1Builder:
 
     def compile(self) -> AuthorityPhase1Artifacts:
         definition = default_authority_phase1_definition()
-        knowledge_graph = json.loads((self._source_root / "build" / "knowledge_graph.json").read_text(encoding="utf-8"))
+        substrate = PublishedKnowledgeSubstrate.open(self._source_root).require_snapshot(
+            allow_partial=True
+        )
+        knowledge_graph = substrate.knowledge_graph_payload()
         _require_authority_groundwork(knowledge_graph, definition)
         mapping_section = _read_authority_mapping_section(self._source_root / "munger_structural_mapping.md")
         psychology_text = (self._source_root / "The_Psychology_of_Human_Misjudgment.md").read_text(encoding="utf-8")
@@ -47,8 +51,8 @@ class AuthorityPhase1Builder:
 
         knowledge_graph_path = build_dir / "knowledge_graph.json"
         relationship_graph_path = build_dir / "relationship_graph.json"
-        _copy_if_needed(self._source_root / "build" / "knowledge_graph.json", knowledge_graph_path)
-        _copy_if_needed(self._source_root / "build" / "relationship_graph.json", relationship_graph_path)
+        _copy_if_needed(substrate.data_directory / "knowledge_graph.json", knowledge_graph_path)
+        _copy_if_needed(substrate.data_directory / "relationship_graph.json", relationship_graph_path)
 
         subpattern_catalog = _build_subpattern_catalog(
             knowledge_graph=knowledge_graph,

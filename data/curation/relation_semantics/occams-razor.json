@@ -7,21 +7,30 @@
       "rationale_text": "Simplification gives Occam's Razor its practical expression by stripping away ornamental complexity so the explanation can be judged on what the evidence actually supports.",
       "source_quote": "avoid overcomplicating explanations or systems",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Simplification IS the core principle Occam's Razor operationalizes — selecting the simplest adequate explanation while stripping away non-essential complexity and jargon.",
+      "activation_condition": "When multiple explanations exist and the simplest one consistent with evidence should be preferred to avoid unnecessary complexity in reasoning"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory complements Occam's Razor because pruning unnecessary complexity reduces the mental burden that makes weak explanations feel harder to test.",
       "source_quote": "the best explanation is often the one with the least unnecessary complexity",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "OR 'supports the application of this theory by emphasizing simplicity and chunking, thereby reducing the mental energy required for working memory to assimilate new information'.",
+      "activation_condition": "When explanatory or analytical complexity exceeds working memory capacity and needs to be reduced to enable effective processing and schema formation"
     },
     {
       "target_model_id": "prioritization",
       "rationale_text": "Prioritization helps Occam's Razor focus attention on the assumptions that matter instead of treating every possible complication as equally important.",
       "source_quote": "select the explanation that makes the fewest assumptions",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Occam's Razor helps prioritize by eliminating unnecessary complexity — focusing attention on the most parsimonious explanation rather than spreading analysis across all possible causes.",
+      "activation_condition": "When analytical resources need to be focused on the most likely explanation rather than exhaustively investigating all possibilities"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias corrupts Occam's Razor when the thinker chooses the simpler story because it feels congenial, not because it best fits the evidence.",
       "source_quote": "the simplest explanation is not always the correct one if reality is genuinely complex",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Seeking evidence that supports the preferred simpler hypothesis while overlooking disconfirming information that might introduce necessary complexity.",
+      "activation_condition": "When preference for simplicity causes selective evidence gathering that confirms the simpler hypothesis while ignoring data requiring a more complex explanation"
     },
     {
       "target_model_id": "representativeness-heuristic",
       "rationale_text": "Representativeness-heuristic corrupts Occam's Razor by substituting story-based parsimony for evidence-based parsimony — the most familiar and vivid explanation feels like the simplest one even when it isn't the most grounded.",
       "source_quote": "occams-razor vs representativeness-heuristic: occams-razor conflicts with representativeness-heuristic (representativeness heuristic) when the tension between story simplicity and causal accuracy causes the easiest explanation to substitute for the most evidentially grounded one.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Tension between story simplicity and causal accuracy — the easiest explanation substitutes for the most evidentially grounded one through representativeness matching.",
+      "activation_condition": "When the simplest explanation is accepted because it fits a familiar narrative pattern rather than because evidence actually rules out more complex alternatives"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on simplification, assumption pruning, and conflicts with evidence-resistant neat stories and representativeness-driven story parsimony.",
+    "summary": "Layer 1+2 enrichment complete. Allies: simplification 0.90 (strong — IS the core principle operationalized), cognitive-load-theory 0.80 (moderate — supports working memory efficiency), prioritization 0.80 (moderate — focuses on most parsimonious explanation). Antagonists: confirmation-bias 0.80 (moderate — selective evidence for simpler hypothesis), representativeness-heuristic 0.80 (moderate — narrative pattern matching overrides evidence).",
     "donor_drops": [
       "Did not preserve donor relation widening beyond the clean simplification and anti-confirmation neighborhood."
     ],

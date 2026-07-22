@@ -7,21 +7,30 @@
       "rationale_text": "Incentives explain why nominal authority can lose to the actor controlling the operational payoff, the next move, or the real fallback lane.",
       "source_quote": "Power Dynamics works best in combination with models that clarify incentives",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Complementary framing — 'together they explain why formal authority often loses' — but not described as the primary or essential mechanism for power-dynamics analysis.",
+      "activation_condition": "When mapping which party controls the operational payoff, the next move, or the real outside option in a power relationship"
     },
     {
       "target_model_id": "lock-in",
       "rationale_text": "Lock-in clarifies how integration, retraining, and dependency costs narrow the future option set and invert leverage after commitment.",
       "source_quote": "Lock In explains how commitment changes the future option set",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly feeds the model's core mechanism — lock-in drives leverage inversion, one of power-dynamics' key heuristics ('Track leverage inversion over time'), with a concrete example of buyer losing leverage after migration.",
+      "activation_condition": "When analyzing negotiations or partnerships where commitment costs are asymmetric and leverage may invert after integration or migration"
     },
     {
       "target_model_id": "optionality",
       "rationale_text": "Optionality strengthens power-dynamics analysis by preserving live fallback paths and reversible exits before leverage collapses.",
       "source_quote": "preserve leverage by keeping a live fallback lane and a reversible exit path",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as 'strengthening' power-dynamics analysis — useful tactical complement for preserving fallback lanes, but extracted from strengths section rather than the explicit ally table.",
+      "activation_condition": "When designing strategies to preserve fallback lanes and reversible exit paths before leverage consolidates with one party"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
       "source_quote": "Teams often see the leverage structure they want to see",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly distorts the core leverage analysis — makes teams see the leverage structure they want rather than the outside option evidence actually supports.",
+      "activation_condition": "When assessing relative bargaining position and the team's evidence for its outside option has not been independently tested"
     },
     {
       "target_model_id": "opportunity-cost",
       "rationale_text": "Opportunity-cost counters power-dynamics tunnel vision by asking whether winning the negotiation is even worth pursuing relative to better alternatives.",
       "source_quote": "over-focus on winning the negotiation instead of asking whether the game is worth playing relative to better alternatives",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Broader perspective correction — asks whether winning the negotiation is worth pursuing relative to better alternatives, rather than targeting the leverage analysis itself.",
+      "activation_condition": "When teams are deeply invested in winning a specific negotiation without comparing to the value of their next-best alternative"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays close to the source's leverage lattice: incentives, lock-in, optionality, and the explicit conflict with confirmation-bias.",
+    "summary": "Layer 1+2 enrichment complete. Allies: lock-in 0.90 (strong — drives leverage inversion mechanism), incentives 0.80 (moderate — foundational context), optionality 0.80 (moderate — tactical fallback preservation). Antagonists differentiated: confirmation-bias 0.90 (strong — distorts leverage perception), opportunity-cost 0.80 (moderate — broader perspective). Activation conditions assigned to all allies and antagonists.",
     "donor_drops": [
       "Did not preserve broader game-theory or information-asymmetry expansion because the current vocabulary already supports a cleaner leverage surface."
     ],

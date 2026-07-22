@@ -1,0 +1,33 @@
+{
+  "model_id": "reframing-perspective",
+  "source_file": "Reframing_Perspective_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question is trapped in a single story that makes one option feel inevitable or impossible — a deliberate viewpoint shift would change what counts as success.",
+    "The same facts could support different actions depending on whose perspective the question is asked from, and the question locks in one perspective without examining others.",
+    "The question embeds a false binary that a better frame could reopen into a richer option space.",
+    "The question's implicit assumptions need to be surfaced through 'What would you have to believe?' to test whether the frame is valid."
+  ],
+  "frame_patterns_challenged": [
+    "binary_collapse",
+    "borrowed_premise",
+    "single_actor_assumption",
+    "scope_lock"
+  ],
+  "reframing_move": "Shift the viewpoint: ask the same question from a different stakeholder's perspective, or from the inverse — 'What would you have to believe for this framing to be correct?' surfaces assumptions that feel invisible from inside the original frame.",
+  "reframing_move_types": ["perspective_shift"],
+  "curation_confidence": "high",
+  "curation_note": "Reframing-perspective is the viewpoint-shift specialist. The source is explicit on trapped stories, false binaries, and the 'What would you have to believe?' challenge. Strongest on perspective_shift moves rather than structural inversion.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All four activations from explicit source material: trapped stories, multi-perspective facts, false binary reopening, and assumption surfacing via belief challenge."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Binary collapse and single actor assumption are primary targets. Borrowed premise via assumption surfacing. Scope lock via viewpoint shift revealing wider boundaries."
+    }
+  }
+}

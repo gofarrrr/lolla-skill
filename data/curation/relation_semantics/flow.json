@@ -7,14 +7,20 @@
       "rationale_text": "Feedback-loops supports flow because immediate performance signals let the person adjust inside the activity without breaking immersion.",
       "source_quote": "a defining feature of the flow state is the expectation of an immediate feedback loop",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states 'The flow state inherently relies on an Immediate Feedback Loop. This self-correcting loop ensures rapid adaptation and sustained performance' — a core sustaining mechanism.",
+      "activation_condition": "When sustained peak performance requires immediate feedback signals that enable rapid self-correction without breaking the state of focused engagement"
     },
     {
       "target_model_id": "goal-setting",
       "rationale_text": "Goal-setting supports flow by keeping attention tied to a clear objective instead of diffuse effort.",
       "source_quote": "Flow requires clarity regarding the goal",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states 'Flow requires clarity regarding the goal' and aligning activity with a larger purpose 'prevents becoming fetishistically obsessed with trivial details' — a necessary precondition.",
+      "activation_condition": "When entering a flow state requires clear goal definition that provides directional clarity without micromanaging the moment-to-moment activity"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Cognitive-load-theory conflicts with flow when overload or too many unrelated inputs disrupt the synchronized concentration flow depends on.",
       "source_quote": "overwhelming the working memory with too many unrelated pieces of information prevents the synchronized engagement required for flow",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states cognitive overload 'conflicts directly with the synchronized, purposeful engagement required for flow' — overwhelming working memory breaks the flow state.",
+      "activation_condition": "When too many novel or unrelated information demands overwhelm working memory, breaking the synchronized engagement that flow requires"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: feedback-loops 0.90 (strong — 'inherently relies on' immediate feedback), goal-setting 0.90 (strong — 'requires clarity regarding the goal'). Antagonist: cognitive-load-theory 0.90 (strong — 'conflicts directly with' engagement). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names deep-work and systems-thinking (group flow) as additional synergistic allies."
     ]
   },
   "deferred_higher_order_notes": {

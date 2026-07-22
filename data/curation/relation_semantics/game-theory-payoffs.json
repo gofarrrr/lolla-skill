@@ -7,21 +7,30 @@
       "rationale_text": "Incentives clarify what each player is trying to maximize, avoid, or preserve inside the game.",
       "source_quote": "Game theory applies broadly to situations like bargaining, auctions, voting, and the design of incentives.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Incentives are what game theory models ('what each side is trying to maximize, avoid, or preserve') — foundational context for the game rather than a mechanism that strengthens game-theoretic analysis itself.",
+      "activation_condition": "When identifying what each player is trying to maximize, avoid, or preserve within the game structure before modeling payoffs"
     },
     {
       "target_model_id": "signaling",
       "rationale_text": "Signaling matters because commitments, threats, and promises only change the game when the other side updates its expectations credibly.",
       "source_quote": "Works when commitment, threat, promise, or signaling can change the game",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Signaling is described as the core mechanism for 'changing the game' — commitments, threats, and promises are integral to game theory's most powerful applications, not external supplements.",
+      "activation_condition": "When analyzing how commitments, threats, promises, or credibility signals can change the strategic landscape between interdependent players"
     },
     {
       "target_model_id": "decision-trees",
       "rationale_text": "Decision-trees help game-theory-payoffs lay out options, counter-options, and outcome branches when choices are explicit and interdependent.",
       "source_quote": "When options and associated costs and benefits are uncertain or probabilistic, game theory often guides the use of more sophisticated decision tools, such as the decision tree.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as a practical analytical tool that game theory 'often guides the use of' — useful complement for structured analysis but a tool-level relationship, not a core mechanism.",
+      "activation_condition": "When laying out structured option-counter-option-outcome branches for probabilistic or uncertain multi-move payoff scenarios"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias distorts game-theory-payoffs by locking in the wrong players, incentives, or payoff assumptions before contradictory evidence is considered.",
       "source_quote": "Confirmation Bias / Expert Tunnel Vision",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly distorts the game analysis — locks in the wrong players, incentives, or payoff assumptions and stops testing whether contradictory structural evidence invalidates the game model.",
+      "activation_condition": "When the team has settled on a game structure and payoff model without stress-testing whether the wrong players, incentives, or assumptions were chosen"
     }
   ],
   "structured_tensions": [
@@ -44,7 +56,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays close to the source's strongest current-vocabulary interactions: incentives, signaling, decision trees, and explicit anti-confirmation discipline.",
+    "summary": "Layer 1+2 enrichment complete. Allies: signaling 0.90 (strong — core game-changing mechanism), incentives 0.80 (moderate — foundational context for the game), decision-trees 0.80 (moderate — practical analysis tool). Antagonists differentiated: confirmation-bias 0.90 (strong — locks in wrong game structure). Activation conditions assigned to all allies and antagonists.",
     "donor_drops": [
       "Did not preserve broader theory-of-mind or red-queen expansion because the current vocabulary already supports a cleaner strategic interaction surface."
     ],

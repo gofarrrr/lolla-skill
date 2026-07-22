@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking helps understanding-motivations trace behavior back to organizational design, role structure, and coordinated incentives rather than to personality stories alone.",
       "source_quote": "Thinking of an organization as an evolutionary machine designed to achieve a goal requires a focus on motivation.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes organizational design as a machine requiring coordination of people with aligned motivations and goals",
+      "activation_condition": "When organizational design requires aligning roles, goals, and individual strengths to motivational structures"
     },
     {
       "target_model_id": "pareto-principle",
       "rationale_text": "Pareto-principle helps understanding-motivations focus on the few motive-linked actions that drive most of the observed result.",
       "source_quote": "The Pareto Principle ... Motivation clarifies which 20% to focus on",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical states understanding motivations guides which 20% of actions to focus on for 80% of results",
+      "activation_condition": "When identifying the 20% of actions that align with core values drives 80% of motivated outcomes"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Confirmation-bias distorts understanding-motivations when analysts read the hidden drivers they already expect instead of what the evidence supports.",
       "source_quote": "Confirmation Bias / Groupthink",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical structured tension identifies selective surfacing of drivers that confirm preferred interventions",
+      "activation_condition": "When motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention"
     },
     {
       "target_model_id": "constraints",
       "rationale_text": "Constraints checks understanding-motivations when a behavior that looks deeply psychological is actually driven by simpler situational limits.",
       "source_quote": "Danger when analysts become so committed to hidden-motive interpretation that they over-psychologize simple constraint or capability problems.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Constraints can limit the scope of motivational analysis, but the canonical does not directly name this relationship",
+      "activation_condition": "When resource or structural limitations prevent full exploration of motivational landscape"
     }
   ],
   "structured_tensions": [
@@ -52,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on system-level motive diagnosis, leverage focus, and anti-overpsychologizing checks, but it does not offer a clean explicit current-vocabulary tension block.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking at 0.90 per machine analogy. constraints antagonist at 0.70, not directly supported by canonical.",
     "donor_drops": [
       "Did not preserve donor motivation relation sprawl beyond the clearer systems, leverage, and anti-story-fitting surface."
     ],
     "open_questions": [
-      "The constraints antagonist is source-explicit and cleaner than many of the source's softer social neighbors, which is why it survived the bounded set."
+      "The constraints antagonist is source-explicit and cleaner than many of the source's softer social neighbors, which is why it survived the bounded set.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests emotional-intelligence as recovery candidate."
     ]
   }
 }

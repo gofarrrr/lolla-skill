@@ -7,16 +7,22 @@
       "rationale_text": "Growth-mindset can soften the fatalistic reading of the Peter Principle by treating capability gaps as learnable if support and design are real.",
       "source_quote": "The Growth Mindset emphasizes the dynamic potential of intelligence, ability, and character to progress and change.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Canonical classifies this as antagonist ('implies fixed limit vs dynamic potential'). As ally: growth mindset provides mitigation path but fundamentally challenges the principle's premise.",
+      "activation_condition": "When assuming competence can be developed in a new role to counter the Peter Principle's prediction of fixed capability limits."
     }
   ],
   "antagonists": [
     {
-      "target_model_id": "commitment-and-consistency-bias",
+      "target_model_id": "commitment-bias",
       "rationale_text": "Commitment-and-consistency-bias can keep organizations defending a promotion decision after capability mismatch becomes visible.",
       "source_quote": "the leader must cultivate intellectual humility",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence: organizational commitment to promotion decisions can prevent acknowledging role mismatch, but not the primary antagonist in canonical.",
+      "activation_condition": "When organizational commitment to a promotion decision prevents acknowledging that the promoted person is mismatched to the role."
     }
   ],
   "structured_tensions": [
@@ -38,12 +44,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. NOTE: growth-mindset curated as ally but canonical classifies it as antagonist. Rated 0.70 (canonical tension). commitment-bias antagonist at 0.70 (medium confidence). Canonical allies: feynman-technique, organizational orchestration, purpose-and-clarity.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: Only 1 curated ally (growth-mindset, which canonical classifies as antagonist). Canonical allies: feynman-technique (reveals surface knowledge in promoted experts), organizational orchestration (structural fix for role-person mismatch)."
     ]
   },
   "deferred_higher_order_notes": {
