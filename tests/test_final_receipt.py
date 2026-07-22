@@ -18,6 +18,10 @@ def test_final_receipt_reports_live_observatory_when_liveness_checked() -> None:
     )
 
     assert "Observatory is live at http://localhost:8084." in receipt
+    assert (
+        "Reconsideration stayed in this conversation's context; "
+        "it was not an external check."
+    ) in receipt
     assert "Cost estimate: $0.06." in receipt
     assert receipt.endswith("Archived to /tmp/archive/run.")
 
@@ -35,6 +39,7 @@ def test_final_receipt_does_not_claim_dead_observatory_is_live() -> None:
     )
 
     assert "Observatory is live at" not in receipt
+    assert "it was not an external check" in receipt
     assert "Observatory did not stay live; memo and archive are still available." in receipt
 
 

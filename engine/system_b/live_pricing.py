@@ -9,8 +9,11 @@ from __future__ import annotations
 
 
 PRICES_LAST_VERIFIED = "2026-07-13"
+PRICES_VERIFICATION_SCOPE = "active_openrouter_route_only"
+TABLE_WIDE_LAST_VERIFIED = "2026-05-25"
 
-# On this date OpenRouter's model and endpoint metadata still reported Gemini
-# 3.1 Flash Lite at $0.25/M fresh input, $0.025/M cached input, and $1.50/M
-# output for google-vertex/global. The numerical table therefore needed no
-# change; only the live verification timestamp advanced.
+# The frozen provider-boundary contract uses the 2026-07-13 active-route check
+# as its freshness date. That check covered Gemini/OpenRouter only; it did not
+# re-verify every OpenRouter, OpenAI, and Anthropic row. New usage summaries
+# therefore disclose both the narrow scope and the older table-wide date. A
+# prospective pricing-table version is required to update historical rates.

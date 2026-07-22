@@ -20,6 +20,19 @@ repository. It is the short canonical status. The full architecture and
 evidence audit is the
 [Constitution Stage 0 addendum](docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md).
 
+## New human or AI coder
+
+This GitHub repository is the complete current project authority. A fresh clone
+does not need chat history, the founder's machine, another checkout, or provider
+credentials to understand and validate the current graph and skill package.
+Start with [AGENTS.md](AGENTS.md), which gives a short universal cold start and
+then routes graph, skill, Atlas, Decision Work, and research tasks to their own
+evidence. Do not infer current work from `PROGRESS.md`, `TODOS.md`, an old PRD,
+or a dated result's “next step”; those files preserve historical reasoning.
+
+The repository-local graph, skill, and Atlas-custody checkpoint is present on
+`main` through [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379).
+
 ## Current status
 
 | Area | Lifecycle | What that means |
@@ -27,11 +40,12 @@ evidence audit is the
 | Four-lane pressure skill | **LIVE / EXPERIMENTAL** | Implemented ordinary path; semantic and human value remain under evaluation. |
 | Conversation source custody | **LIVE / BOUNDED** | Preserves complete available user/assistant prose. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
 | Deterministic custody and graph survival | **LIVE** | Owns identity, bounds, provenance, replay, budgets, ledgers, and pressure survival—not semantic truth. |
-| Graph authoring and publication custody | **LIVE SOURCE / PROVIDER-FREE VALIDATION** | All 222 Markdown sources, reviewed curation, 1,358 rich relations, compiler inputs, one published read boundary, and the exact current pressure policy are repository-local and reproducible. Complete multi-path custody remains candidate-only. |
+| Graph authoring and publication custody | **LIVE SOURCE / PROVIDER-FREE VALIDATION** | All 222 Markdown sources, reviewed curation, 1,358 rich authored directed relations, compiler inputs, one published read boundary, and the declared current pressure policy are repository-local and reproducible. Complete multi-path custody remains candidate-only. |
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
 | Decision Trail and Product Delta | **BOUNDED / OFFLINE** | Read completed artifacts later; they do not influence the live answer. |
 | Decision Work | **BOUNDED / OPERATOR-DIRECTED** | Validates and packages supplied interpretations; no trustworthy arbitrary-run semantic supplier exists. |
-| Mental Model Atlas / Teacher | **PARKED / LOCAL PHASE 1 REVIEW** | The founder-selected Atlas job has a source-bound local tracer bullet; visual, native screen-reader, rights, and real-user gates remain open. |
+| Mental Model Atlas | **PARKED / CHECKED-IN PHASE 1 REVIEW** | A source-bound, undeployed interface candidate exists; founder visual, native screen-reader, rights, and real-user gates remain open. |
+| Mental Model Teacher | **PARKED** | The wider lesson and learning-product journey is preserved but has not earned active product development. |
 | R3/R4 conversation readers | **RESEARCH ONLY / RETIRED** | Evidence is preserved; the incremental R4 architecture must not supply live or Decision Work state. |
 | Real-user usefulness | **UNKNOWN** | Mechanical tests and simulations do not establish customer value or better decisions. |
 
@@ -63,13 +77,17 @@ shape, not semantic correctness. A receipt proves that a process occurred, not
 that the result is wise or safe.
 
 See [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for implementation boundaries and
-[docs/README.md](docs/README.md) for lifecycle-organized documentation.
+[docs/README.md](docs/README.md) for lifecycle-organized documentation. In this
+repository, “repository-published” means merged to the canonical GitHub branch;
+it does not mean deployed, production-ready, rights-cleared, or proven useful.
 
 ## Install
 
 Requirements:
 
-- Python 3;
+- Python 3.13 or later for the documented and hosted verification path;
+- a POSIX shell on macOS, Linux, or WSL (native Windows is not currently a
+  documented path);
 - an OpenRouter key for the live LLM jobs;
 - optionally, a direct OpenAI key for the documented embedding layer.
 
@@ -100,6 +118,10 @@ named files, 222 source documents, reviewed graph inputs, byte-equivalent
 candidate compilation, published snapshot, and all 163 frozen windows of the
 current constitutional pressure policy.
 
+GitHub also runs this provider-free public-handoff gate on pull requests and
+`main`. Contributors can reproduce its Python environment with
+`requirements-dev.txt`; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 Store credentials outside the repository, for example in
 `~/.config/lolla/.env`:
 
@@ -111,6 +133,22 @@ OPENAI_API_KEY=your-optional-embedding-key
 Never commit that file. Current provider routes, model behavior, prices, and
 privacy policies can change; verify the live operating docs before a
 provider-facing run.
+
+## Data, providers, and local archives
+
+Before running Lolla on sensitive material, understand the data boundary:
+
+- live semantic stages send captured conversation content or derived prompts
+  to OpenRouter under the operator's credentials;
+- optional embedding work sends its declared inputs directly to OpenAI and is
+  not silently rerouted through OpenRouter;
+- local archives may retain conversation prose, provider outputs, and custody
+  metadata under `~/.local/share/lolla/runs/`;
+- the provider-free readiness and public-handoff validators send nothing to a
+  model or embedding provider;
+- provider retention, routing, price, and privacy terms can change, so review
+  the current [live-flow boundary](docs/how-it-works/live-flow.md) and
+  [cost and telemetry contract](docs/cost-and-telemetry.md) before use.
 
 ## Use
 
@@ -197,8 +235,8 @@ Stage 1 is not started by this README or by cloning the repository. It must not
 inspect private archives, create a new semantic reader, call a provider,
 automate Decision Work, reopen R4/R5, or change runtime behavior.
 
-Separately, the provider-free Mental Model Atlas is canonically consolidated around
-one canonical identity path. A 16-model orientation view opens exact,
+Separately, the provider-free Mental Model Atlas is consolidated around one
+canonical identity path. A 16-model orientation view opens exact,
 40-record-paged neighborhoods from all 222 canonical models and 1,358 authored
 relations; model and relation identities survive route changes, while reviewed
 teaching-page availability remains a separate card-first contract. The
@@ -206,14 +244,14 @@ Abstraction source is complete and presented through five source-bound human
 chapters; the wider Teacher product remains partial and parked. The visual
 system is deliberately achromatic precise editorial cartography. Frozen
 fixtures and Canvas are explicit review-only paths, not competing ordinary
-routes. See the [canonical Atlas publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
-and its [reviewed predecessor baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
-Its local first-viewport repair now awaits provider-free founder re-review,
+routes. See the current [Atlas custody V2 result](docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
+and the frozen [V1 publication checkpoint](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md).
+Its checked-in, undeployed first-viewport repair now awaits provider-free founder re-review,
 not deployment, Phase 2, Teacher journeys, runtime links, provider use, or a
 product-usefulness claim.
 
 The graph-authoring recovery did not rewrite the frozen Atlas V1 packages. The
-active Atlas now reads a prospective V2 projection with current repository-local
+active Atlas now reads the V2 projection with current repository-local
 custody. A recursive proof classifies all 2,182 V1/V2 differences as custody
 fields and finds zero unexpected semantic, identity, layout, paging, or
 interface changes. See the [custody V2 result](docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md).

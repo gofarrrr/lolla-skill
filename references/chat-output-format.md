@@ -93,7 +93,7 @@ The chat surface across a `/lolla` run has **four substantive content beats** an
 
 **Substantive content beats** present audit findings, counterarguments, position changes, and divergences. They follow the rules in their respective sections below.
 
-**Functional receipts** state what just happened and what's next — nothing more. They are not opportunities for decorative prose, narrative summary, or sales register. Step 3 receipt names the work in human terms (e.g., *"Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5–8 minutes."*). The final receipt names the artifacts and the cost (e.g., *"Observatory is live at http://localhost:8080. Memo at /tmp/lolla_*_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/<case>/<run_id>/."*). If `run_health.overall` is `degraded`, add one plain warning sentence before the receipt; do not let a degraded run close like a clean run.
+**Functional receipts** state what just happened and what's next — nothing more. They are not opportunities for decorative prose, narrative summary, or sales register. Step 3 receipt names the work in human terms (e.g., *"Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. This may take several minutes; provider latency varies."*). The final receipt names the artifacts and the cost (e.g., *"Observatory is live at http://localhost:8080. Memo at /tmp/lolla_*_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/<case>/<run_id>/."*). If `run_health.overall` is `degraded`, add one plain warning sentence before the receipt; do not let a degraded run close like a clean run.
 
 Do not blur the categories. A Step 3 receipt that drifts into prose is status theater; a final receipt that drifts into narrative is the *"Audited your equity decision for Marcus..."* failure mode.
 
@@ -144,7 +144,7 @@ After Step 2 extract returns `status: ok`, present a short readback that demonst
    - **Long-conversation clarification:** On conversations over 15 turns, the exact-quote rule still applies. Pick one load-bearing user quote that anchors the case structure. Paraphrasing the user's framing is not a substitute for quoting them; the user wants to be seen, not summarized.
 3. **1–2 sentence readback of what the orchestrator argued back**, with an exact assistant quote only if it earns its place. (Often the assistant's argument is best summarized rather than quoted; a verbatim quote is for moments where one sentence captures the position.)
 4. **One-sentence dropped-thread note** only when `extraction.dropped_threads` contains something material. No filler line when the field is empty or the threads are weak.
-5. **Closing operational status receipt:** *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
+5. **Closing operational status receipt:** *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This may take several minutes; provider latency varies."*
 
 ### What does NOT go in
 

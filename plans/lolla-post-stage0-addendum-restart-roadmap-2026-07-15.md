@@ -2,7 +2,8 @@
 
 Date: 2026-07-15
 
-Status: canonical provider-gated restart sequence; no evidence stage authorized
+Status: canonical provider-gated restart sequence; Stage 0 and 0.6 are
+repository-published; no later evidence stage is authorized
 
 Canonical audit base: `f4493e20634544addd6633d8e92a836c6488f61e`
 
@@ -133,7 +134,12 @@ market hypotheses kept as separate dimensions.
 
 ## Immediate decision
 
-The Stage 0 addendum and public handoff are published, and the Stage 0.6
-source-coverage prerequisite is complete locally. Decide only whether to
-publish the exact correction and then authorize Stage 1. Publication does not
-start Stage 1, and no work beyond Stage 1 is implied.
+The Stage 0 addendum, public handoff, and Stage 0.6 source-coverage correction
+are repository-published. Decide only whether to authorize Stage 1.
+
+This roadmap is a sequence, not the frozen Stage 1 execution contract. An
+authorization must name the exact checked-in-safe case packet, review rubric,
+reviewer boundary, record format, provider-call ceiling of zero, and stop rules
+before Stage 1 begins. Repository publication, a green validator, or work on a
+separate graph/Atlas package does not start Stage 1, and no later stage is
+implied.

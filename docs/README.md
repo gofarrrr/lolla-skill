@@ -1,160 +1,186 @@
 # Lolla documentation map
 
-This index organizes the repository by current lifecycle rather than by file
-count or creation chronology. A link proves that an artifact exists; it does
-not prove that its proposal is live, its semantics are correct, or users value
-it.
+This is the routing page for a new human or AI coder. It separates current
+contracts from bounded product surfaces, parked work, and immutable research.
+A link proves that an artifact exists; it does not prove semantic correctness,
+runtime reachability, deployment, rights clearance, or user value.
 
-Start with [PROJECT_STATUS.md](../PROJECT_STATUS.md) and the
-[Constitution Stage 0 addendum](conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md).
+When files disagree, use this precedence:
 
-## Lifecycle labels
+1. the binding Constitution;
+2. `PROJECT_STATUS.md` and the newest explicit closeout/result for the surface;
+3. reachable code plus its validators;
+4. dated plans and historical evidence only inside their declared checkpoint.
 
-- **LIVE:** ordinary supported runtime path.
-- **BOUNDED:** offline, read-only, operator-directed, default-off, or limited.
-- **EXPERIMENTAL:** implemented or testable; reliability/value unproven.
-- **PARKED:** preserved, but no current user job or evidence gate.
-- **RETIRED:** stopped architecture; no incremental extension or integration.
-- **RESEARCH ONLY:** evidence and harnesses, not product behavior.
-- **HISTORICAL EVIDENCE:** immutable or superseded record.
-- **PROPOSAL:** future possibility, not current implementation truth.
-- **FIXTURE / TEST ONLY:** bounded contract proof, not reachability or value.
+Old “next step,” “current,” and “publish” language inside frozen evidence is not
+current authorization.
+
+Constitution v5 incorporates earlier constitutional rules and product-evil
+boundaries. It does not reactivate dated status, provider choices, architecture
+descriptions, or next-step instructions from the earlier files. Where v5 names
+a fresh-context reasoner, treat that as the constitutional target; the current
+ordinary live skill is same-context and only partially conforms on that axis.
+
+## Universal cold start
+
+Read these five documents before proposing architecture or the next experiment:
+
+1. [Project status](../PROJECT_STATUS.md) — what is live, bounded, parked,
+   retired, demonstrated, and still unknown.
+2. [Product Constitution v5](conversation-understanding/lolla-product-constitution-v5.md)
+   — the binding division of semantic and deterministic authority.
+3. [How it works](../HOW_IT_WORKS.md) — the reachable architecture and seams.
+4. This map — choose the task-specific lane below.
+5. [Post-Stage-0 roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
+   — eligible evidence stages and their authorization gates.
+
+For repository operation also follow [AGENTS.md](../AGENTS.md). The root
+[README](../README.md) is the public installation and product orientation.
+`PROGRESS.md` and `TODOS.md` are historical snapshots retained for chronology;
+they are not active queues.
+
+## Vocabulary
+
+- **LIVE:** reachable through the ordinary supported skill path.
+- **BOUNDED:** implemented but offline, read-only, operator-directed,
+  default-off, or otherwise intentionally limited.
+- **EXPERIMENTAL:** reachable or testable, but semantic reliability or human
+  value is unproven.
+- **PARKED:** preserved but not authorized for active extension or runtime use;
+  reopen only through the named founder/evidence gate.
+- **RETIRED:** stopped architecture; do not integrate or incrementally extend.
+- **RESEARCH ONLY:** evidence or harness, not current product behavior.
+- **HISTORICAL EVIDENCE:** immutable or superseded record; dated future tense
+  is not current authorization.
+- **PROPOSAL:** possible future shape, not implemented truth.
+- **FIXTURE / TEST ONLY:** bounded contract proof, not ordinary reachability or
+  usefulness.
 - **UNKNOWN:** evidence is insufficient.
 
-## Current controlling documents
+“Repository-published” means merged to the canonical GitHub branch. “Published
+graph artifact” means the immutable checked-in projection read by the runtime.
+Neither means deployed, production-ready, rights-cleared, provider-current, or
+proven useful.
 
-- **LIVE / CURRENT:** [Root README](../README.md)
-- **LIVE / CURRENT:** [Project status](../PROJECT_STATUS.md)
-- **LIVE / CURRENT:** [How it works](../HOW_IT_WORKS.md)
-- **BINDING:** [Product Constitution v5](conversation-understanding/lolla-product-constitution-v5.md)
-- **CURRENT AUDIT:** [Constitution Stage 0 addendum](conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
-- **CURRENT CORRECTION:** [Stage 0.6 long-conversation truthfulness result](conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md)
-- **CURRENT REGISTER:** [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
-- **CURRENT GRAPH/SKILL RESULT:** [Self-contained graph substrate and skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
-- **CURRENT GRAPH AUDIT:** [Graph and knowledge-substrate workbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md)
-- **CURRENT GRAPH READINESS:** [Provider-free self-contained skill register](evals/lolla-self-contained-skill-readiness-v1.json)
-- **CURRENT ATLAS DATA:** [Atlas custody V2 result](product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
-- **CURRENT ATLAS CUSTODY PROOF:** [Atlas custody V2 evidence](evals/lolla-mental-model-atlas-custody-v2-evidence.json)
-- **CURRENT ROADMAP:** [Post-Stage-0 restart roadmap](../plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
-- **OPERATIONS:** [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
-- **LOCAL PRODUCT REVIEW:** [Mental Model Atlas Phase 1 result](product/lolla-mental-model-atlas-phase1-visual-truth-tracer-bullet-result-2026-07-15.md)
-- **LOCAL EVIDENCE:** [Mental Model Atlas Phase 1 evidence](evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
-- **LOCAL CARD-FIRST CORRECTION:** [Atlas card-first truthfulness result](product/lolla-mental-model-atlas-card-first-truthfulness-repair-result-2026-07-16.md)
-- **LOCAL CARD-FIRST EVIDENCE:** [Atlas card-first evidence](evals/lolla-mental-model-atlas-card-first-repair-evidence-v1.json)
-- **CURRENT LOCAL VISUAL STUDY:** [Atlas monochrome structure result](product/lolla-mental-model-atlas-monochrome-structure-study-result-2026-07-16.md)
-- **CURRENT LOCAL VISUAL EVIDENCE:** [Atlas monochrome structure evidence](evals/lolla-mental-model-atlas-monochrome-structure-study-evidence-v1.json)
-- **CURRENT LOCAL GUIDED-ENTRY REPAIR:** [Atlas guided-entry result](product/lolla-mental-model-atlas-guided-entry-repair-result-2026-07-16.md)
-- **CURRENT LOCAL GUIDED-ENTRY EVIDENCE:** [Atlas guided-entry evidence](evals/lolla-mental-model-atlas-guided-entry-repair-evidence-v1.json)
-- **CURRENT LOCAL DESIGN SYSTEM:** [Atlas design-system consolidation](product/lolla-mental-model-atlas-design-system-consolidation-result-2026-07-16.md)
-- **CURRENT LOCAL DESIGN-SYSTEM EVIDENCE:** [Atlas design-system evidence](evals/lolla-mental-model-atlas-design-system-consolidation-evidence-v1.json)
-- **CURRENT LOCAL GRAPH REPAIR:** [Atlas graph-legibility repair](product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
-- **CURRENT LOCAL GRAPH EVIDENCE:** [Atlas graph-legibility evidence](evals/lolla-mental-model-atlas-graph-legibility-repair-evidence-v1.json)
-- **CURRENT LOCAL NEIGHBORHOOD REPAIR:** [Atlas neighborhood-navigation repair](product/lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
-- **CURRENT LOCAL NEIGHBORHOOD EVIDENCE:** [Atlas neighborhood-navigation evidence](evals/lolla-mental-model-atlas-neighborhood-navigation-repair-evidence-v1.json)
-- **FROZEN CANONICAL ATLAS V1 STATUS:** [Atlas baseline publication](product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
-- **REVIEWED PREPUBLICATION ATLAS BASELINE:** [Atlas baseline consolidation](product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
-- **CURRENT LOCAL BASELINE EVIDENCE:** [Atlas baseline consolidation evidence](evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
-- **CURRENT LOCAL FIRST-VIEWPORT REPAIR:** [Atlas first-viewport interaction result](product/lolla-mental-model-atlas-first-viewport-repair-result-2026-07-17.md)
+## Choose a task lane
 
-These current entrypoints control over old “next step,” “current,” or
-“integration” language preserved inside historical evidence.
+### Live skill or ordinary runtime
 
-## Live skill documentation
+Read:
 
-- **LIVE:** [Skill orchestration contract](../SKILL.md)
-- **LIVE:** [Detailed skill steps](skill/STEPS.md)
-- **LIVE / MAINTENANCE:** [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
-- **LIVE:** [Live-flow explanation](how-it-works/live-flow.md)
-- **LIVE:** [Cost and telemetry](cost-and-telemetry.md)
-- **LIVE / BOUNDED:** [Agent result contract](lolla-agent-result-contract.md)
+- [Skill orchestration contract](../SKILL.md)
+- [Detailed skill steps](skill/STEPS.md)
+- [Live-flow explanation](how-it-works/live-flow.md)
+- [Agent result contract](lolla-agent-result-contract.md)
+- [Cost and telemetry](cost-and-telemetry.md)
 
-Provider and model facts age. Recheck operating documentation before a live
-run or provider-facing change.
+The host reasoner owns reconsideration and apply/reject/park dispositions. The
+provider-backed lanes introduce candidate pressure. Neither a lane nor the host
+certifies answer quality. Provider/model/pricing facts age and must be checked
+before provider-facing changes.
 
-## Bounded completed-run and inspection systems
+### Mental-model Markdown, graph, compiler, or portfolio planner
 
-- **BOUNDED / OFFLINE:** Decision Trail and Product Delta material in
-  [the eval index](evals/README.md)
-- **BOUNDED / OPERATOR-DIRECTED:** Decision Work material in
-  [the board index](board/README.md)
-- **BOUNDED / READ-ONLY:** Observatory implementation and product notes in
-  [the product index](product/README.md)
-- **BOUNDED:** portable Markdown and agent-memory projections referenced by the
-  Stage 0 register
+Read:
 
-These systems consume or display artifacts. They do not automatically create
-source authority or action permission.
+- [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
+- [Graph audit workbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md)
+- [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
+- [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
-## Parked families
+Current facts: the fresh clone contains 222 canonical Markdown models and 1,358
+rich authored directed relations. Candidate compilation reproduces both
+published graph files byte-for-byte, and all 163 frozen policy windows replay
+exactly. This is a curated pressure graph—not GraphRAG over arbitrary documents,
+a causal fact graph, or proof that a reachable relation applies to a user.
 
-- **PARKED / LOCAL PHASE 1 REVIEW:** Mental Model Teacher contracts,
-  renderers, packets, Observatory projections, and the new source-bound Atlas
-  tracer bullet in [the product index](product/README.md). Its current local
-  candidate is a consolidated achromatic precise-editorial-cartography system;
-  no final palette is selected.
-  Founder visual, native screen-reader, rights, and real-user gates remain open.
-- **PARKED:** general arbitrary-run Decision Work semantic generation in the
-  board and conversation-understanding families
+The current policy has one declared versioned wrapper and snapshot, while a
+frozen historical serializer remains executable for compatibility and the live
+pipeline declares a degraded raw-payload fallback when the snapshot is absent.
+Do not describe that as one physical implementation owner.
 
-Reopening either family requires a founder-selected user problem, a bounded
-falsifier, and a real-user evidence plan.
+### Mental Model Atlas or Teacher
 
-## Retired and research-only conversation readers
+Read:
 
-- **RETIRED:** incremental R4 residual and separated-surface readers
-- **RESEARCH ONLY:** R3 and earlier conversation-reader variants
-- **HISTORICAL EVIDENCE:** protected targets, prompts, schemas, requests,
-  raw responses, contracts, runners, manifests, and closeouts
+- [Atlas custody V2 result](product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
+- [Atlas custody V2 evidence](evals/lolla-mental-model-atlas-custody-v2-evidence.json)
+- [Atlas design system](../apps/mental-model-atlas/DESIGN_SYSTEM.md)
+- [Atlas application README](../apps/mental-model-atlas/README.md)
 
-Key closeouts:
+V2 is the current repository-custody package; V1 is immutable comparison
+evidence. The checked-in Atlas uses the canonical 222-model / 1,358-relation
+identity path and includes the first-viewport repair. It is undeployed and
+parked behind founder visual acceptance, native screen-reader review,
+publication-rights review, and real-user usefulness. The wider Teacher journey
+is a separate parked product hypothesis.
 
-- [R4 product and architecture closeout](conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md)
+For a named frozen checkpoint only, read the
+[V1 baseline publication](product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md),
+[V1 consolidation result](product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md),
+and [V1 evidence](evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json).
+Older visual result notes are indexed in [the product index](product/README.md).
+
+### Constitution, source custody, or Decision Trail
+
+Read:
+
+- [Stage 0 addendum audit](conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md)
+- [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
+- [Stage 0.6 source-coverage correction](conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md)
+- [Current cold-reader review](evals/lolla-public-handoff-cold-reader-review-2026-07-22.md)
+
+The Stage 0 register is a rolling coverage map with a frozen audit identity.
+Its older publication/restart wording records that checkpoint; current status
+and next authorization come from `PROJECT_STATUS.md` and the roadmap.
+
+### Decision Work, Product Delta, or Observatory
+
+- **BOUNDED / OPERATOR-DIRECTED:** use [the board index](board/README.md) for
+  Decision Work schemas, validation, packaging, and explicit sidecar writing.
+- **BOUNDED / OFFLINE:** use [the evaluation index](evals/README.md) for
+  Decision Trail and Product Delta completed-artifact work.
+- **BOUNDED / READ-ONLY:** use [the product index](product/README.md) for
+  Observatory adapters and product notes.
+
+These surfaces consume, package, compare, or display supplied artifacts. They
+do not automatically create trustworthy conversation meaning, source authority,
+answer approval, or action permission. Decision Work still lacks a trustworthy
+arbitrary-run semantic supplier.
+
+### Retired conversation-reader research
+
+Read only when investigating the retired line:
+
+- [R4 product/architecture closeout](conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md)
 - [Final R4 A2 result](conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md)
 - [R4 evaluation index](evals/README.md)
 
-These files remain inspectable for scientific custody. They must not be treated
-as live semantic supply merely because their modules import or their tests pass.
+R4 preserved genuine findings but retained unsafe opposite-surface and
+governed-machinery false positives. Its incremental readers are retired and
+disconnected from the live skill, Decision Work semantic supply, and
+Observatory meaning generation. Sources, protected targets, prompts, requests,
+responses, contracts, runners, and closeouts remain immutable research evidence.
 
-## Product proposals, prototypes, and reviews
+## Repository and historical operations
 
-[The product index](product/README.md) contains a mixed historical inventory of
-Observatory and Teacher implementation slices, prototypes, reviews, and
-proposals. Read its lifecycle header before individual titles.
-
-[The board index](board/README.md) contains historical product narratives and
-Decision Work briefs. Those narratives are useful hypotheses, not current
-proof of integration or customer value.
-
-## Historical evidence and superseded plans
-
+- [Contributing](../CONTRIBUTING.md) — setup, source ownership, PR shape, and
+  verification.
+- [Repository gardening audit](operations/lolla-repository-gardening-audit-2026-07-15.md)
+  — classified operational debt; not an instruction to delete historical work.
 - [Historical documentation guidance](history/README.md)
-- [Decision Work and Product Delta historical discoverability registry](history/decision-work-product-delta-discoverability.md)
-- [Earlier constitutional audit](conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md)
-- [Historical post-v1 roadmap](../plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md)
-- `research/` — frozen and generated experiment evidence
-- `reviews/` — human and automated review artifacts
+- `research/` — frozen or generated experiment evidence.
+- `reviews/` — human and automated review artifacts.
 
-Historical files are preserved because chronology, exact inputs, and failed
-approaches matter. Their old future tense does not authorize new work.
+Tests, schemas, hashes, and replay are mechanical evidence. They do not prove
+semantic correctness, independent reconsideration, real-user usefulness,
+rights clearance, market demand, or production readiness.
 
-## Tests and fixtures
+## Current next decision
 
-- **FIXTURE / TEST ONLY:** `tests/fixtures/`
-- **RESEARCH ONLY:** experiment fake transports and replay builders
-- **MECHANICAL EVIDENCE:** automated tests and validators
-
-Tests prove the behavior they assert under their declared inputs. They do not
-by themselves prove ordinary runtime reachability, semantic correctness,
-real-user usefulness, or market value.
-
-## Current unknowns
-
-- real-user usefulness and correction burden;
-- whether live pressure exposes unique missed angles;
-- same-context reconsideration independence;
-- reliable rich longitudinal interpretation;
-- privacy acceptability on consented real material;
-- a coherent product job with adoption or willingness to pay.
-
-Unknown is an explicit evidence state, not a request to fill the gap with
-optimism.
+No evidence stage starts automatically. The next eligible decision is whether
+the founder authorizes a provider-free, checked-in-safe Stage 1 Decision Trail
+truthfulness review. Authorization must name the exact frozen review packet and
+record. It may not imply provider calls, private archive inspection, semantic
+generation, runtime changes, R4/R5, Atlas Phase 2, deployment, or usefulness
+claims.

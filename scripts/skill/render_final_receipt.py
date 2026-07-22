@@ -29,7 +29,8 @@ def build_final_receipt(
         observatory_status=observatory_status,
     )
     return (
-        f"{prefix}{observatory_text} "
+        f"{prefix}Reconsideration stayed in this conversation's context; "
+        f"it was not an external check. {observatory_text} "
         f"Memo at {memo_path}. Cost estimate: {cost_text}. "
         f"Archived to {archive_path}."
     )

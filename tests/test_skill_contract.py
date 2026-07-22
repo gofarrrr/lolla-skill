@@ -85,7 +85,10 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
     assert "_LOLLA_SCRIPT_DIR/../.." in setup
     assert 'SKILL_DIR="$HOME/.codex/skills/lolla"' not in setup
     assert 'SKILL_DIR="$HOME/.claude/skills/lolla"' not in setup
-    assert ".codex/lolla.env" in setup
+    assert ".codex/lolla.env" not in setup
+    assert ".claude/lolla.env" not in setup
+    assert "optional embedding retrieval and query expansion" in setup
+    assert "full accuracy" not in setup
     assert "make_run_id" in setup
     assert "LOLLA_EXPECTED_RUN_ID" in setup
     assert "LOLLA_ENV_STATE" in setup

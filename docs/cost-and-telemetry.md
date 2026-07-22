@@ -199,18 +199,32 @@ The `/audit/v60` Observatory panel is the process-comparison surface: it renders
 
 ## Pricing
 
-Hardcoded in `engine/system_b/pricing.py`. The constant `PRICES_LAST_VERIFIED` is surfaced into every `usage_summary` so consumers can tell whether the estimate is fresh.
+Rates are looked up in `engine/system_b/pricing.py`. That file is also covered
+by historical evaluation hashes, so current maintenance must not casually
+rewrite it. The frozen provider-boundary contract retains its 2026-07-13
+active-route freshness date. New `usage_summary` receipts qualify it with
+`pricing_verification_scope = active_openrouter_route_only` and separately
+report `pricing_table_wide_last_verified = 2026-05-25`. A narrow check of one
+active route is no longer presented as verification of every vendor and model.
 
-To bump prices:
+Known current limitation: the optional Step 7 Anthropic entries are historical
+calibration rates, not a current model-selection or budgeting contract. The
+Opus 4.7 row was found stale against official Anthropic pricing on 2026-07-22.
+Step 7 is default-off; do not budget from that row. Before any future optional
+run, verify the exact reported model and current rate in
+[Anthropic's official pricing documentation](https://platform.claude.com/docs/en/about-claude/pricing).
+Correcting the table requires a prospective version plus receipt migration and
+tests, not an edit that rewrites frozen evidence.
 
-1. Edit `engine/system_b/pricing.py`.
-2. Update `PRICES_LAST_VERIFIED` to today's date.
-3. Cross-check against the provider's pricing page. Specifically:
-   - OpenRouter: `https://openrouter.ai/docs#models` (per-model rates)
-   - OpenAI: `https://openai.com/api/pricing/`
-   - Anthropic: `https://www.anthropic.com/pricing#anthropic-api`
+For a prospective price-table revision:
 
-If the model used on a run isn't in the price table, the call counts and tokens still record but `estimated_cost_usd` for that vendor only includes the priced calls. `cost_estimate_state` becomes `partial` or `unknown`, and `cost_estimate_coverage.calls_with_unknown_price` is non-zero. Treat `estimated_total_cost_usd` as a lower bound until the missing model is added to `pricing.py`.
+1. freeze the current table and the receipts that depend on it;
+2. add a new versioned table and update the live lookup prospectively;
+3. verify every retained row against the provider's official price source;
+4. record per-vendor/per-model verification scope and date;
+5. test unknown-model and partial-estimate behavior before switching receipts.
+
+If the model used on a run is not in the price table, the call counts and tokens still record but `estimated_cost_usd` for that vendor only includes the priced calls. `cost_estimate_state` becomes `partial` or `unknown`, and `cost_estimate_coverage.calls_with_unknown_price` is non-zero. Treat `estimated_total_cost_usd` as a lower bound. A known but stale row is also unsuitable for budgeting even though the current schema cannot yet distinguish it from a current row.
 
 OpenRouter call telemetry records both `requested_model` and `served_model` when the provider returns a model ID. The compatibility `model` field is the served/billing model when available. Provider version aliases such as `deepseek/deepseek-v4-flash` being served as `deepseek/deepseek-v4-flash-20260423` are recorded as `served_version_alias`. If OpenRouter routes a request to a materially different model, `vendors.openrouter.model_attribution.mismatch_count` becomes non-zero and the mismatch is listed in `vendors.openrouter.model_attribution.mismatches`.
 

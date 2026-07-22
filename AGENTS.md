@@ -13,62 +13,42 @@ external pressure, asks a reasoner to reconsider that pressure, and records the
 process. Lolla is designed to make another angle inspectable—not to guarantee a
 better answer, certify reasoning quality, or remove human decision authority.
 
-## Read first
+## Universal cold start
 
-Read these in order before proposing architecture or the next experiment:
+Before changing architecture, claims, or the next experiment, read only this
+universal set in order:
 
-1. `PROJECT_STATUS.md` and `docs/README.md` — the concise current product,
-   lifecycle, authorization, and documentation map.
-2. `docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md`
-   and `docs/evals/lolla-constitution-stage0-addendum-register-v1.json` — the
-   current reachability, evidence, disposition, and Decision Trail coverage
-   map. This is the controlling cold-start status.
-3. `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`,
-   `references/knowledge-substrate-operations.md`, and its readiness register —
-   the current repository-local graph, policy, path, and skill boundary.
-4. `plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md` — the
-   current gated sequence. Stage 1 begins with checked-in-safe truthfulness;
-   later real-run, live-pressure, and architecture decisions require separate
-   founder authorization.
-5. `docs/conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md`
-   — the current source-coverage correction: complete source custody is
-   distinct from the partial initial extraction view above 80,000 characters.
-6. `docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md`,
-   `docs/evals/lolla-mental-model-atlas-custody-v2-evidence.json`,
-   `docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md`,
-   `apps/mental-model-atlas/DESIGN_SYSTEM.md`, and
-   `apps/mental-model-atlas/README.md` — the controlling canonical Atlas baseline,
-   its one canonical identity path, review/historical boundaries, exact restart
-   checks, and open founder, screen-reader, rights, and usefulness gates. V1 is
-   immutable evidence; V2 is the active repository-local projection.
-7. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
-   future-development rules. Earlier constitutions are immutable historical
-   evidence, not the current contract.
-8. `README.md`, `HOW_IT_WORKS.md`, `SKILL.md`, and `docs/skill/STEPS.md` — the
-   public orientation and ordinary live-skill behavior.
-9. `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`
-   — ground-up product and architecture assessment, including the defects R1
-   and R2 repaired.
-10. `docs/conversation-understanding/lolla-r4-product-architecture-closeout-2026-07-14.md`
-   and `plans/lolla-r4-product-architecture-closeout-plan-2026-07-14.md` — the
-   decision that stopped the incremental R4 reader while preserving the live
-   pressure path, bounded sidecars, and research evidence.
-11. `docs/conversation-understanding/lolla-r4-separated-surface-execution-a2-result-2026-07-14.md`
-   and `plans/lolla-r4-separated-surface-execution-a2-plan-2026-07-14.md`
-   — immutable final R4 evidence and the frozen
-   `separated_tasks_ineffective_companions_persist` decision.
-12. `docs/conversation-understanding/lolla-r4-separated-surface-execution-result-2026-07-14.md`
-   and `plans/lolla-r4-separated-surface-execution-a1-plan-2026-07-14.md`
-   — immutable A1 first-failure evidence and frozen
-   `semantic_result_not_evaluable` decision. Do not combine A1 calls with A2.
-13. `docs/board/decision-work-sidecar-internal-v1-current-state.md` and
-   `docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md`
-   — the implemented sidecar boundary and the richer, still-provisional
-   interpretation target.
+1. `PROJECT_STATUS.md` — the single current-state and authorization contract.
+2. `docs/conversation-understanding/lolla-product-constitution-v5.md` — binding
+   development rules.
+3. `HOW_IT_WORKS.md` — reachable architecture and explicit absent edges.
+4. `docs/README.md` — lifecycle navigation and task-specific routes.
+5. `plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md` — the gated
+   sequence; an eligible stage is not an authorized stage.
 
-Older PRDs, research branches, and historical result files remain valuable,
-but do not treat their proposals as current runtime behavior. Follow the newest
-explicit status and preserve frozen historical evidence.
+Then read only the lane you will touch:
+
+- **Live skill:** `SKILL.md` and `docs/skill/STEPS.md`.
+- **Graph, compiler, or planner:**
+  `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`,
+  `references/knowledge-substrate-operations.md`, and
+  `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
+- **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
+  result, sidecar current state, and interpretation contract linked by
+  `docs/README.md`.
+- **Atlas:** the custody V2 result/evidence, canonical baseline publication,
+  `apps/mental-model-atlas/README.md`, and its `DESIGN_SYSTEM.md`.
+- **R1–R4 research history:** the current-state audit, R4 closeout, and frozen
+  A1/A2 results/plans. Read them to understand a named decision, never as a
+  current implementation sequence.
+- **Provider-facing work:** reread the provider, key, cost, and privacy rules
+  below and freeze a new exact authorization contract before transport.
+
+`PROGRESS.md`, `TODOS.md`, older PRDs, and dated result files preserve why the
+project made earlier choices. They are not the current backlog or authority.
+The current sixteen-question repository handoff review is
+`docs/evals/lolla-public-handoff-cold-reader-review-2026-07-22.md`; it is
+maintainer/agent evidence, not independent human acceptance.
 
 ## Binding way to think about the system
 
@@ -162,6 +142,11 @@ Consequences:
   exact provider-reported cost when available, and safe hashes/redactions.
 - Current prices, model behavior, schemas, and provider policies are unstable.
   Recheck official sources at the time of any future provider-facing change.
+- The frozen provider-boundary receipt retains its 2026-07-13 active-route
+  date. New usage summaries qualify it as `active_openrouter_route_only` and
+  separately report the 2026-05-25 whole-table check. Optional Step 7
+  Anthropic rates are historical and must not be used for current budgeting
+  without a prospective price-table version and exact official recheck.
 
 ## Frozen evidence and repository discipline
 
@@ -253,6 +238,8 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   accounts for all exact bounded paths, including 808 prior convergent paths,
   with no live/receipt/Atlas edge. Root `SKILL.md` remains the one skill; setup
   self-resolves and isolated credential-free readiness passes for Claude/Codex.
+  The host reasoner owns Step 6 reconsideration and graph dispositions. Optional
+  Step 7 remains Claude Code-specific and default-off; it is not a Codex path.
 - Decision Work remains an optional, post-run, operator-directed sidecar. Its
   packaging and read-only Observatory surfaces exist; trustworthy automatic
   semantic generation for arbitrary runs does not. Do not use R4 as that
@@ -289,8 +276,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. Atlas baseline PR #375 is historical; local
-first-viewport work awaits founder and native accessibility review. Deployment,
+custody without semantic change. PR #379 is the current repository-local graph,
+skill, and Atlas V2 checkpoint. Atlas baseline PR #375 is historical; the
+checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
 Phase 2, Teacher revival, providers, and product claims are unauthorized. The
 next eligible roadmap goal is the separately authorized, checked-in-safe Stage 1
 Decision Trail review; no private archives, semantics generation, providers,

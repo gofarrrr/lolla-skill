@@ -9,7 +9,11 @@ pipeline. The high-level orchestration overview stays in `SKILL.md`.
 
 Extract the full conversation from your context into a temp file. Include only user messages and your (assistant) prose responses. Skip tool call inputs, tool results, system messages, and file contents.
 
-Start with a header line summarizing the conversation shape, then format each turn:
+Start with a header line summarizing the conversation shape, then format each
+message block. The legacy wire format calls each role block a `turn`; a
+user/assistant pair shares the same display number. Counts used by the
+80,000-character processing-view policy are message-block counts, not pair
+counts:
 
 ```
 CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses
@@ -40,7 +44,7 @@ fi
 cat > /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt << 'LOLLA_CONV_EOF'
 {paste the formatted conversation here}
 LOLLA_CONV_EOF
-echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) bytes, $(grep -c '^\[Turn' /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) turns"
+echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) bytes, $(grep -c '^\[Turn' /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) message blocks"
 ```
 
 **Rules:**
@@ -51,6 +55,9 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 - Preserve the complete available prose conversation even when it exceeds 100 turns. Do not pre-truncate the authoritative transcript.
 - Long-conversation compaction belongs to a separately named processing view. `run_extract.py` may create `conversation_processing_view.txt` plus exact omission metadata, while the original `conversation.txt` remains authoritative and is archived unchanged.
 - The current initial-extraction threshold is 80,000 characters, not words or provider tokens. Above it, the bounded view contains exactly the first 3 and last 15 parsed user/assistant message blocks. Later conversation-native pipeline input still loads the full authoritative transcript.
+- Compatibility fields such as `authoritative_turn_count`, `total_turns`, and
+  `omitted_turns` currently count those parsed message blocks. Do not reinterpret
+  them as user/assistant exchange-pair counts in a new consumer.
 
 <a id="step-2-extract-decision-structure"></a>
 
@@ -90,7 +97,7 @@ The conversation capture is fundamentally broken — more than half the assistan
 
 ## Step 2.5: Readback + Audit Promise (Beat 1 — internal name)
 
-**Before launching the pipeline (Step 3), render the readback + audit-promise content directly.** This fills the pipeline wait with a concrete product receipt: what Lolla captured, what it is about to test, and how long it will take. Without it the user sees a bash command and 5–8 minutes of silence.
+**Before launching the pipeline (Step 3), render the readback + audit-promise content directly.** This fills the pipeline wait with a concrete product receipt: what Lolla captured and what it is about to test. Provider latency varies; do not promise a fixed duration.
 
 **Render the content directly. Do NOT introduce it with "Beat 1," "Step 2.5," "Readback section," or any internal section label.** The user does not see the scaffolding; they read the prose. The label "Beat 1" exists in this file and in `references/chat-output-format.md` for instruction architecture only — never for rendering.
 
@@ -100,7 +107,7 @@ Length: **120–170 words** in normal mode; **70–110 words** in thin mode (whe
 
 Always include at least one exact quote from a user turn in this readback. **On long conversations (>15 turns), the exact-quote rule still applies.** Pick one load-bearing user quote that anchors the case structure; do not replace the quote with a paraphrase of the user's framing.
 
-The closing operational receipt is: *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
+The closing operational receipt is: *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This may take several minutes; provider latency varies."*
 
 Do not link to Observatory; the server is not running until Step 9. See `plans/voice-examples-2026-04-30.md` § Beat 1 for examples (Marcus / Mother / Short fixture), § Bad — therapy recap for the soft-recap failure mode, and § Bad — visible internal labels for the scaffolding-leak failure mode this section exists to prevent.
 
@@ -110,7 +117,7 @@ Do not link to Observatory; the server is not running until Step 9. See `plans/v
 
 **Before launching the pipeline call, present the Step 3 status receipt** — a short functional receipt (~25–35 words) that names the work in human terms:
 
-> *"Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5–8 minutes."*
+> *"Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. This may take several minutes; provider latency varies."*
 
 This is a functional receipt, not a content beat. Do not extend it with prose. Then launch:
 
@@ -390,7 +397,14 @@ Memo generation is not user-facing until the final functional receipt. Do not wr
 
 **Default path: do not launch post-Step-6 pressure-check sub-agents.** The current operating choice is to simplify the live skill, reduce cost, and put more value into the pre-Step-6 thinking table. Step 7 is preserved as an explicit deeper-review mode for later use, but it is not part of the normal run.
 
-Run Step 7 only when the user/operator explicitly asks for deeper review or sets `LOLLA_STEP7_PRESSURE_CHECK=on` for this run. Do not infer that a hard case, sensitive case, or long answer automatically enables Step 7. If optional mode is not active, skip directly to Step 8b and persist the default-off pressure-check state.
+Run Step 7 only in Claude Code, when the user/operator explicitly asks for
+deeper review or sets `LOLLA_STEP7_PRESSURE_CHECK=on` for this run. The current
+prompt construction, launch behavior, and telemetry depend on Claude Code's
+Agent tool. In Codex, Step 7 is unsupported: do not improvise an agent substitute.
+If deeper review was requested there, explain the boundary and ask whether to
+continue with the default-off flow. Do not infer that a hard case, sensitive
+case, or long answer automatically enables Step 7. If optional mode is not
+active, skip directly to Step 8b and persist the default-off pressure-check state.
 
 **Optional mode timing:** if Step 7 is explicitly enabled, launch it only AFTER Step 6b finalization succeeds. The V60 ledger gate comes first. If `scripts/skill/finalize_step6_ledgers.sh --v60-only` failed, repair the ledger and rerun finalization before starting any pressure-check agent.
 
@@ -398,7 +412,7 @@ Run Step 7 only when the user/operator explicitly asks for deeper review or sets
 
 If optional mode is active, spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
 
-**Why this exists:** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1-4 respect this — Grok does the detection. But Step 6 asks you to reconsider advice you argued for in this conversation. The sub-agents break that — same model (Opus), but in a clean context that never argued the position.
+**Why this exists:** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1-4 introduce provider-backed pressure before Step 6 asks the host reasoner to reconsider advice it argued for in this conversation. The optional Claude Code agents add clean-context pressure, but they use the same host model family and do not prove independent validation.
 
 **Procedure:**
 
@@ -610,7 +624,11 @@ if state not in {'complete', 'not_applicable'}:
 "
 ```
 
-Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-sonnet-4-6`, etc.) for `model`. Sub-agents inherit the parent model. If you don't know the exact model ID with confidence, use `"unknown"` — calls and tokens still record, and `cost_estimate_state` will mark the total as incomplete until pricing is known.
+Use the exact model identity reported by the current Claude Code run for
+`model`; do not infer it from an old calibration example. Optional agents
+inherit the parent model. If you do not know the exact model ID with confidence,
+use `"unknown"`—calls and tokens still record, and `cost_estimate_state` marks
+the total as incomplete until pricing is known.
 
 <a id="step-8c-prepare-and-render-memo"></a>
 
@@ -670,6 +688,12 @@ bash "$SKILL_DIR/scripts/skill/render_memo_step.sh"
 ```
 
 The helper persists the memo fields into result JSON, renders `/tmp/lolla_${LOLLA_RUN_ID}_memo.md`, writes render diagnostics to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints the memo path. This produces a persistent markdown artifact the user can reference or share without the Observatory. In new runs, the default memo is product-clean: decision-note layer plus capped unanswered questions, with the full audit trace kept in Observatory. If an operator explicitly needs a markdown audit appendix, run the helper again with `--include-audit-appendix`. Older result JSONs without memo fields still render in the legacy format.
+
+After the helper succeeds, send the exact user-facing bridge *"Audit complete.
+I'm opening the full breakdown now."* Append it to the live transcript exactly
+as sent, following the Live Product Surface Rule in `SKILL.md`. Then continue to
+Step 9. This is the only normal-flow bridge between the persisted memo and the
+final functional receipt.
 
 <a id="step-9-open-observatory"></a>
 
@@ -737,6 +761,10 @@ The archive script:
 ## Completion
 
 After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → pressure-check state → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
+
+The generated receipt must state that reconsideration stayed in the current
+conversation context and was not an external check. This is a process boundary,
+not a generic health warning, so it appears on healthy and degraded runs alike.
 
 If Step 9 printed `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END`, send exactly the receipt between those markers. The helper has already written it to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appended it to the live transcript, and re-archived the run. Do not append a second hand-written receipt after checking Observatory logs; if the generated receipt must change, use the override helper path below.
 
