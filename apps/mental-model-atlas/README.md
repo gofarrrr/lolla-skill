@@ -1,14 +1,14 @@
 # Lolla Mental Model Atlas — canonical Phase 1 experimental baseline
 
-This is a private, source-controlled React/TypeScript review application for
+This is a local, source-controlled React/TypeScript review application for
 the Mental Model Atlas Phase 1 visual truth gate. It is not deployed, connected
 to the ordinary Lolla runtime, connected to Observatory, or cleared for public
 content distribution.
 
-Requires Node.js `>=20.19.0`. The controlling cold-start status is the
-[Atlas baseline publication result](../../docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md),
-with the [baseline consolidation result](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
-preserved as its reviewed prepublication checkpoint.
+Requires Node.js `>=20.19.0`. The controlling data status is the
+[Atlas custody V2 result](../../docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md).
+The [Atlas baseline publication result](../../docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
+and its V1 packages remain immutable reviewed checkpoints.
 
 ## What is implemented
 
@@ -46,14 +46,14 @@ Missing pages are not generated or repaired.
 
 ## Run locally
 
-From the repository root, reproduce the checked-in projection first:
+From the repository root, validate the checked-in V2 projection and its frozen
+V1 boundary first:
 
 ```bash
-PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_phase1_projection.py --validate-only
+PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_custody_v2.py --validate-only
+PYTHONPATH=. pytest -q tests/test_mental_model_atlas_custody_v2.py
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_phase1_projection.py
-PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_card_first_repair.py --validate-only
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_card_first_repair.py
-PYTHONPATH=. python3 scripts/product/build_mental_model_atlas_navigation_index.py --validate-only
 PYTHONPATH=. pytest -q tests/test_mental_model_atlas_navigation_index.py
 ```
 
@@ -95,11 +95,12 @@ npm run build
 
 ## Source and projection boundary
 
-The deterministic builder reads the checked-in model manifest, knowledge graph,
-relationship graph, model Markdown, and curation files only after verifying the
-frozen primary source hashes. It copies or presentation-normalizes source text;
-it does not call a provider, infer relation meaning, assign importance, or fill
-missing sections.
+The deterministic V2 builder reads the checked-in model manifest, knowledge
+graph, relationship graph, model Markdown, and curation files only after
+verifying their current repository-local hashes. It hash-locks every V1 package,
+then proves that V2 differs only in declared custody fields. It copies or
+presentation-normalizes source text; it does not call a provider, infer relation
+meaning, assign importance, or fill missing sections.
 
 The public review projection declares:
 
@@ -147,6 +148,17 @@ The latest founder-feedback repair keeps `Model Library / Abstraction` on one
 aligned line and removes the repeated source-title introduction: `Understand`
 now enters the chapter reader directly, while the exact title returns in the
 explicit full-source mode.
+The current local first-viewport repair shortens the Atlas, Library, and model
+openings; exposes deterministic named model actions; makes exact search results
+selectable by click or Enter; keeps selected meaning and the available full-page
+action in the first representative laptop/mobile viewport; turns connection
+counts into filters; and progressively discloses relationship grammar. It adds
+no model, relation, teaching content, inference, provider, or product claim.
+The shared application shell now uses the founder-supplied lowercase `lolla`
+wordmark. Its exact original bytes and provenance note live under
+`public/brand/`; the checkerboard is part of the RGB source, so CSS clips and
+contrasts the original at display time without rewriting the asset. The header
+uses the wordmark alone without a descriptive subtitle beneath it.
 The previous vibrant-editorial pass is superseded historical evidence; no
 future palette has been selected. The Mental Model Teacher component remains `park` because four gates
 are still open: founder learning-journey acceptance, native screen-reader review,
@@ -156,7 +168,10 @@ and Observatory links are not authorized.
 
 See:
 
+- [Current Atlas custody V2 result](../../docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
+- [Current Atlas custody V2 evidence](../../docs/evals/lolla-mental-model-atlas-custody-v2-evidence.json)
 - [Canonical Atlas baseline publication](../../docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
+- [Current first-viewport interaction repair](../../docs/product/lolla-mental-model-atlas-first-viewport-repair-result-2026-07-17.md)
 - [Controlling Atlas baseline consolidation](../../docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
 - [Current Atlas baseline evidence](../../docs/evals/lolla-mental-model-atlas-baseline-consolidation-evidence-v1.json)
 - [Current graph-legibility repair](../../docs/product/lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)

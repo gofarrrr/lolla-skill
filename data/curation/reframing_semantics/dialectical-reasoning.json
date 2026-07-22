@@ -1,0 +1,35 @@
+{
+    "model_id": "dialectical-reasoning",
+    "source_file": "Dialectical_Reasoning_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question presents a single thesis without generating its antithesis — the dialectic standard (thesis, antithesis, synthesis) has not been applied to the question itself.",
+        "The question asks 'is X true?' or 'should we do X?' without asking 'what is the strongest counter-argument to X, and what would a synthesis of both look like?'",
+        "The question is being asked in a context where conflicting perspectives exist but only one is represented in the framing — the question has already taken a side.",
+        "The question seeks a single clean answer when the situation contains genuine tensions that should be held and navigated, not resolved — the question is collapsing a dialectic into a binary."
+    ],
+    "frame_patterns_challenged": [
+        "binary_collapse",
+        "borrowed_premise",
+        "counterfactual_suppression"
+    ],
+    "reframing_move": "Generate the counter-question: for any question X, ask 'what is the strongest question that contradicts or challenges X?' — then seek the synthesis question that holds both in productive tension. The WTWHTB question ('what would you have to believe?') is the operationalized version of this move.",
+    "reframing_move_types": [
+        "inversion",
+        "perspective_shift"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Dialectical reasoning is a meta-reframing model — its function is to generate the opposing question for any given question. The source is explicit about the 'conceptual jazz' that emerges when conflicting perspectives are held together, and about the WTWHTB question as the operationalized tool. Distinct from falsifiability (which seeks disproof) — dialectical reasoning seeks synthesis through structured opposition.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: missing antithesis (dialectic standard), absent counter-argument (constructive confrontation), one-sided framing (perspective taking technique), and collapsing dialectic to binary (balancing act analogy)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Binary collapse: the dialectic opens the space between thesis and antithesis. Borrowed premise: WTWHTB exposes the inherited assumptions. Counterfactual suppression: the antithesis is the suppressed counter-question."
+        }
+    }
+}

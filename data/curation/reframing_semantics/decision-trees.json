@@ -1,0 +1,31 @@
+{
+  "model_id": "decision-trees",
+  "source_file": "Decision_Trees_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question collapses a multi-branch decision into a yes/no binary when the real structure involves distinct options with different payoffs and probabilities.",
+    "The question hides the option structure by pre-selecting which alternatives exist — making the tree explicit reveals branches the question suppressed.",
+    "The question skips the threshold question ('should we do this at all?') and jumps to 'how should we do this?' — the tree's first branch is missing."
+  ],
+  "frame_patterns_challenged": [
+    "binary_collapse",
+    "option_space_collapse",
+    "counterfactual_suppression"
+  ],
+  "reframing_move": "Make the decision tree explicit: draw the branches the question suppresses, including the 'do nothing' and 'do something else entirely' branches — the question often becomes 'which branch?' rather than 'should we?'",
+  "reframing_move_types": ["scope_expansion"],
+  "curation_confidence": "high",
+  "curation_note": "Decision-trees reframes by making hidden option structure visible. The source is explicit on disaggregation exposing elegant pathways and on pruning branches — the reframing comes from revealing that the question pre-pruned branches that should have been evaluated.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Three activations from source material: binary-to-multi-branch exposure, suppressed option revelation, and missing threshold-branch detection."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Binary collapse is the primary target. Option space collapse via pre-pruned alternatives. Counterfactual suppression via missing 'do nothing' branch."
+    }
+  }
+}

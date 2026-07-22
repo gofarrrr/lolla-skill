@@ -7,21 +7,30 @@
       "rationale_text": "Probabilistic-thinking gives confidence-calibration the language of ranges and uncertainty so confidence can be expressed as earned odds rather than vibes.",
       "source_quote": "Thinking in bets means acknowledging that decisions are inherently probabilistic and based on imperfect beliefs.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Core mechanism — 'Thinking in bets means acknowledging that decisions are inherently probabilistic and based on imperfect beliefs' — probabilistic thinking IS the cognitive mode that makes calibration meaningful rather than just hedging.",
+      "activation_condition": "When confidence estimates need to be treated as probabilistic beliefs rather than binary certainties, and communicating uncertainty invites genuine updating"
     },
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates anchor confidence-calibration to the outside view so conviction is disciplined by what tends to happen in the world.",
       "source_quote": "Calibration anchors the inside view (personal perspective) to the outside view (what is generally true in the world).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Calibration anchor — 'anchors the inside view to the outside view' and 'accuracy lives at the intersection of these two views' — base rates provide the external reality check that prevents calibration from drifting into subjective comfort.",
+      "activation_condition": "When personal confidence needs to be anchored to population-level frequencies so that the inside view is calibrated against what is generally true rather than what feels true from personal experience"
     },
     {
       "target_model_id": "decision-trees",
       "rationale_text": "Decision-trees benefit from confidence-calibration because branch precision is only trustworthy when the branch probabilities have actually been earned.",
       "source_quote": "Most useful when a decision tree, integration model, or capital-allocation spreadsheet is carrying more certainty than the evidence base has earned.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Structural tool — 'Most useful when a decision tree, integration model, or capital allocation decision' — provides the framework for applying calibrated probabilities to branching outcomes, but operates as an application tool.",
+      "activation_condition": "When calibrated probability estimates need to be applied across branching decision paths to compare expected values of alternative courses of action"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias corrupts confidence-calibration by defending a favored belief instead of updating confidence against disconfirming evidence.",
       "source_quote": "Calibration directly opposes confirmation bias.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Direct opposition — 'Calibration directly opposes confirmation bias' — the drive to defend existing beliefs prevents the honest uncertainty assessment that calibration demands.",
+      "activation_condition": "When the drive to defend existing beliefs is causing confidence estimates to be inflated in the direction of the preferred conclusion rather than honestly assessed"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring can freeze confidence-calibration around an early estimate so later evidence fails to widen or narrow the range appropriately.",
       "source_quote": "Unwarranted Optimism | Planning Fallacy / Anchoring",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Miscalibration vector — 'Unwarranted Optimism / Planning Fallacy / Anchoring' — initial estimates create a reference point that prevents proper recalibration as new evidence arrives.",
+      "activation_condition": "When an initial confidence estimate is resisting adjustment despite accumulating evidence because the original anchor is exerting disproportionate pull on subsequent estimates"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on outside-view allies and on anti-overconfidence conflicts rather than on an explicit structured tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: probabilistic-thinking 0.90 (strong — calibration IS probabilistic acknowledgment), base-rates 0.90 (strong — outside-view anchor), decision-trees 0.80 (moderate — application framework). Antagonists: confirmation-bias 0.90 (strong — 'directly opposes'), anchoring 0.80 (moderate — miscalibration through initial estimate fixation). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation inflation where the raw source mainly supports a bounded set of confidence, probability, and anti-bias links."
     ],

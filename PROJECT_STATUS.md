@@ -1,15 +1,16 @@
 # Lolla project status
 
-Status date: 2026-07-17 (Mental Model Atlas canonical baseline publication)
+Status date: 2026-07-22 (self-contained graph and Atlas custody V2 packaging)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
 
-Workspace restart state: the normal Desktop checkout is clean canonical
-`main`. The former 64-entry July 14 founder-strategy package is preserved
-noncanonically at commit `4162e3efa0cb919e8d4ac4504fedc1ff64950a4f`;
-see the [custody closeout](docs/operations/lolla-founder-desktop-worktree-custody-closeout-2026-07-17.md).
+Workspace restart state: this repository is the sole active authoring,
+compiler, publication, runtime, documentation, and skill authority. No current
+setup path, manifest, validator, or development instruction depends on another
+checkout. Historical evidence remains immutable but is not a supported project
+location or source of current behavior.
 
 ## Five-sentence status
 
@@ -23,6 +24,27 @@ attempt to build a general conversation-state reader produced unsafe false
 positives and has been retired rather than integrated. Lolla's real-user
 usefulness, market value, and ability to improve decisions remain open
 questions that require explicit human evidence gates.
+
+The provider-free graph-substrate reconstruction is complete. All 222 canonical
+Markdown files, reviewed model and relation curation, 1,358 rich directed
+relations, compiler inputs, source anchors, and release identities are local to
+this repository. The existing compiler recreates both published graph files
+byte-for-byte in an explicit candidate directory; one strict published snapshot
+now supplies current consumers; and one versioned planner reproduces the exact
+constitutional active/reserve portfolio across all 163 frozen corpus windows.
+Prospective complete one-hop path custody accounts for all 808 previously
+unserialized convergent active-target paths without changing active identities
+or entering the live reasoner. The root Lolla skill remains the only skill and
+now has a self-locating setup path, Codex metadata, a one-level substrate
+operations reference, and an isolated provider-free readiness check.
+
+The immutable Atlas V1 evidence packages remain byte-exact. A new V2 data
+package records the repository-local manifest and relation-curation hashes, and
+the three active data routes now read it. The recursive V1/V2 proof classified
+all 2,182 changed leaves as custody-only and found zero unexpected differences:
+model and relation meaning, membership, order, layout, paging, and interface
+behavior remain equal. All 17 exact-replay checks now pass against the right
+version without restoring retired-worktree metadata or rewriting V1.
 
 Stage 0.6 repaired one deterministic long-conversation custody defect. Above
 80,000 characters, the authoritative transcript remains complete, but initial
@@ -47,6 +69,20 @@ line form, direction, motion, shells, and responsive behavior. The competing
 monolithic and restraint override sheets have been removed. The earlier
 vibrant-editorial packet is superseded historical evidence, not the current
 direction.
+
+The local first-viewport follow-up preserves that system while moving the
+ordinary interaction above the fold. Exact search matches are directly
+selectable, named canonical model actions are visible at representative laptop
+and mobile sizes, selected meaning and the available full-page action remain in
+the first viewport, displayed connection counts are filters, and the Library
+and Abstraction openings no longer postpone their first useful action. This is
+provider-free browser-geometry evidence, not final founder or accessibility
+acceptance.
+
+The shared Atlas shell now uses the exact founder-supplied lowercase `lolla`
+wordmark. Its original RGB PNG is preserved with a recorded SHA-256 under
+`apps/mental-model-atlas/public/brand/`; the live shell clips and contrasts that
+source without redrawing the letterforms.
 
 This consolidation is canonically published through PR #375 at merge
 `17f3c887915b746b6c34fe6a6a26ae75841d1d6c`. It establishes a maintainable
@@ -108,7 +144,8 @@ Active components:
 - provisional `ConversationContext` and `ConversationIR` extraction;
 - tendency, mental-model companion, frame, and structural coverage pressure;
 - canonical mental-model identity, retrieval, relationship graph, active set,
-  reserve, and constitutional graph survival;
+  one immutable published read boundary, one versioned active/reserve planner,
+  and constitutional graph survival;
 - same-context reconsideration and apply/reject/park custody;
 - revision, memo, archive, manifests, run health, usage, cost, provider,
   privacy, agent-result, and receipt artifacts.
@@ -240,11 +277,11 @@ canonical identity path. The 16-model landing presentation is deterministically
 checked against the 222-model / 1,358-relation navigation index; model and
 relation identities survive route changes; complete teaching-page availability
 has one card-first owner; and fixtures/Canvas are explicit review-only paths.
-Its next bounded decision is whether a provider-free canonical human acceptance
-review finds the ordinary graph and teaching-page journey truthful, navigable,
-and accessible enough to justify a narrowly defined repair or representative
-page expansion. Native screen-reader, source-rights, deployment, and real-user
-usefulness gates remain open before any Phase 2 decision.
+Its current bounded first-viewport repair now requires provider-free founder
+re-review. The ordinary graph and teaching-page journey must still be checked
+with mouse, keyboard, reduced motion, and a native screen reader before any
+representative page expansion decision. Native screen-reader, source-rights,
+deployment, and real-user usefulness gates remain open before Phase 2.
 
 The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human

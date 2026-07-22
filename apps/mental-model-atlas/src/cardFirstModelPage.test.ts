@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import cardFirstPage from "../public/data/card-first-v1/pages/model-abstraction.json";
+import cardFirstPage from "../public/data/card-first-v2/pages/model-abstraction.json";
 import {
   CARD_FIRST_RELATION_INDICES,
   CardFirstContractError,

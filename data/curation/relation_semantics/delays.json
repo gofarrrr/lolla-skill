@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking makes delays visible as part of the larger causal structure so teams stop misreading lagged results as immediate truth.",
       "source_quote": "Delays themselves are one of the most powerful leverage points in a system.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states 'Delays themselves are one of the most powerful leverage points in a system' — understanding delay dynamics is core to effective system intervention and diagnosis.",
+      "activation_condition": "When system behavior appears puzzling because delayed feedback causes corrective actions to overshoot or undershoot their targets"
     },
     {
       "target_model_id": "feedback-loops",
       "rationale_text": "Feedback-loops and delays belong together because the timing of the return signal determines whether the system learns or overreacts.",
       "source_quote": "Analyzing delayed feedback helps managers understand why their corrective actions might be too aggressive or too timid, leading to oscillation or drift in system performance.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Core mechanism — 'delayed feedback helps managers understand why their corrective actions might be too aggressive or too timid', making delay-awareness essential for interpreting feedback loop dynamics.",
+      "activation_condition": "When feedback signals arrive with significant lag, creating risk of oscillation or drift if corrective actions are calibrated to immediate rather than delayed responses"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory supports delays when paced sequencing gives working memory time to absorb one manageable load at a time.",
       "source_quote": "Since working memory is a limited resource, complex topics must be broken down temporally, focusing on steps or stages in a sequence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as 'mandates strategic delays' — working memory limitations require temporal pacing of complex information, providing a cognitive rationale for beneficial delay in learning contexts.",
+      "activation_condition": "When complex information delivery requires temporal pacing to respect working memory constraints rather than front-loading all content simultaneously"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Naive prioritization can clash with delays when urgency ranking favors short-latency tasks and ignores the high-impact work whose signal arrives later.",
       "source_quote": "delays conflicts with prioritization (prioritization) when urgency ranking ignores lagged effects and rewards short-latency tasks over high-impact work.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'urgency ranking ignores lagged effects and rewards short-latency tasks over high-impact work', causing systematic deprioritization of delayed-payoff activities.",
+      "activation_condition": "When urgency-based prioritization systematically favors quick-feedback tasks over high-impact activities whose results materialize only after significant delay"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias exploits delays by filling the lag with self-serving interpretations before the true outcome becomes visible.",
       "source_quote": "delays conflicts with confirmation-bias (confirmation bias) when the lag between action and feedback creates space for confirming interpretations of ambiguous signals before the true outcome becomes visible.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'the lag between action and feedback creates space for confirming interpretations of ambiguous signals before the true outcome becomes visible'.",
+      "activation_condition": "When the delay between action and outcome creates an ambiguity window that allows confirmation-seeking interpretation of early signals"
     }
   ],
   "structured_tensions": [
@@ -67,7 +82,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on delayed-feedback allies and an explicit structured tension block around urgency, routing before signal maturity, and interpretation drift.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'one of the most powerful leverage points'), feedback-loops 0.90 (strong — core mechanism of delayed system response), cognitive-load-theory 0.80 (moderate — 'mandates strategic delays'). Antagonists: prioritization 0.80 (moderate — urgency ignores lag), confirmation-bias 0.80 (moderate — lag enables confirming interpretations). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor scheduling or productivity overlays beyond the bounded timing, feedback, and explicit tension surface."
     ],

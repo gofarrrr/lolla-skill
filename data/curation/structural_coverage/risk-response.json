@@ -1,0 +1,48 @@
+{
+  "dimension_id": "risk-response",
+  "dimension_name": "Risk Response",
+  "cleaving_frame": "Mitigate vs Adapt",
+  "description": "The problem involves exposure to downside outcomes. The structural question is whether to prevent the risk, transfer it, absorb it, or restructure to benefit from it.",
+  "question_types": ["decision-evaluation", "action-planning", "prediction"],
+  "detect_when": [
+    "There are identifiable downside scenarios with meaningful probability or impact",
+    "The problem involves deciding how much risk to accept vs mitigate",
+    "A single failure could cascade or be irreversible — tail risk is present",
+    "The answer treats risk as binary (safe/dangerous) rather than sizing it on a spectrum"
+  ],
+  "coverage_signals": [
+    "The answer distinguishes between risks to prevent, transfer, absorb, or exploit",
+    "The answer sizes the downside — quantifies or bounds the exposure, not just names it",
+    "The answer addresses reversibility and recovery paths if the risk materializes",
+    "The answer considers whether the system becomes stronger under stress (antifragile) or more brittle"
+  ],
+  "materiality_test": "Would a different risk posture (more cautious or more aggressive) change the recommended action?",
+  "reasoning_demanded": "risk sizing, tail-risk analysis, fragility assessment, margin-of-safety evaluation",
+  "models": [
+    "risk-assessment",
+    "black-swan-events",
+    "antifragility",
+    "margin-of-safety",
+    "calculated-risk-taking",
+    "resilience"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Risk-assessment provides the systematic framework for identifying and sizing risks. Black-swan-events addresses tail risks and the limits of prediction in fat-tailed domains. Antifragility reframes the question from 'how to survive risk' to 'how to benefit from disorder.' Margin-of-safety provides the buffer discipline against estimation error. Calculated-risk-taking covers deliberate risk acceptance with bounded downside. Resilience addresses recovery capacity after adverse events.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from risk-assessment (downside identification), black-swan-events (tail risk, cascading failure), antifragility (fragile vs robust vs antifragile spectrum). Binary risk treatment is the common vanilla gap."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Risk posture taxonomy (prevent/transfer/absorb/exploit) from risk-assessment. Downside sizing from margin-of-safety. Reversibility from calculated-risk-taking. Stress response from antifragility and resilience."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All six models have explicit risk-response activation in canonical articles. Strong complementarity: risk-assessment provides the framework, black-swan-events covers the tails, antifragility reframes the posture, margin-of-safety provides the buffer, calculated-risk-taking covers deliberate exposure, resilience covers recovery."
+    }
+  }
+}

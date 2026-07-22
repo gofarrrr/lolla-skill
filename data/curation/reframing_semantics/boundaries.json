@@ -1,0 +1,33 @@
+{
+    "model_id": "boundaries",
+    "source_file": "Boundaries_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question assumes that the current system boundary is the right boundary — who is inside, who is outside, what is 'our problem' versus 'their problem' — when moving the boundary would redefine the problem.",
+        "The question treats scope as fixed ('this is a marketing problem', 'this is an engineering problem') when the real leverage comes from redrawing the boundary to include or exclude stakeholders, costs, or effects.",
+        "The question externalizes consequences by drawing the system boundary too narrowly, so that effects on parties outside the boundary are invisible in the problem definition.",
+        "The question conflates the organizational boundary with the problem boundary, assuming that the problem stops where the org chart stops."
+    ],
+    "frame_patterns_challenged": [
+        "scope_lock",
+        "single_actor_assumption",
+        "externalized_agency",
+        "proxy_optimization"
+    ],
+    "reframing_move": "Before accepting the problem scope as given, ask: 'Where have we drawn the boundary of this problem, and what changes if we move it — inward, outward, or to include a different set of actors?' — the boundary reframe makes the scope choice explicit and negotiable.",
+    "reframing_move_types": ["scope_expansion", "assumption_surfacing"],
+    "curation_confidence": "medium",
+    "curation_note": "Boundaries is a reframing model because system boundary choice determines problem definition. The source describes 'defining what is inside and outside the system', 'the importance of where you draw the line', and how 'boundary decisions shape what problems you can see and solve'. The scope_lock challenge is direct: boundaries are the mechanism by which scope gets locked. The externalized_agency challenge comes from drawing boundaries that exclude affected parties. Moderate confidence because the model is more of a systems-thinking lens than a standalone cognitive tool, but the reframing application is genuine.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Fixed boundary assumption (boundary as choice), departmental scope lock (organizational vs problem boundary), externalized consequences (narrow boundary hides effects), org chart conflation (organizational ≠ problem boundary)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Scope lock: boundary choice is the scope mechanism. Single actor assumption: narrow boundary excludes relevant actors. Externalized agency: effects on excluded parties become invisible. Proxy optimization: narrow boundary optimizes a subset."
+        }
+    }
+}

@@ -7,14 +7,20 @@
       "rationale_text": "Experimentation gives lean-startup-methodology the concrete test loop it needs to turn fragile product beliefs into validated learning.",
       "source_quote": "validated learning through rapid, focused experimentation",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "LSM IS a framework for systematic experimentation — 'the continuous validation loop (Measure/Learn) is the formal application of the scientific method — testing hypotheses and iterating based on results'.",
+      "activation_condition": "When product or market hypotheses need to be tested through structured build-measure-learn cycles rather than theoretical analysis or intuition-based development"
     },
     {
       "target_model_id": "empathy",
       "rationale_text": "Empathy helps lean-startup-methodology measure the right user reality instead of optimizing a product around internal assumptions.",
       "source_quote": "deeply understanding the customer",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "LSM depends on deep customer empathy through its Design Thinking alliance — 'synthesizing qualitative data to build understanding' of customer needs drives the hypothesis formation process.",
+      "activation_condition": "When the build-measure-learn cycle requires genuine understanding of customer pain points rather than internal assumptions about what users need"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Status-quo-bias pushes lean-startup-methodology back toward premature planning and continuation when evidence should force change.",
       "source_quote": "iterative feedback loop",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Legacy delivery cadence blocks build-measure-learn iteration — LSM 'explicitly acknowledges that business systems are living systems not amenable to mechanical, step-by-step beliefs'.",
+      "activation_condition": "When organizational inertia and traditional linear delivery processes resist the rapid iteration and pivoting that lean methodology demands"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The file keeps the strongest first-order relations from the raw source: experimentation and empathy as allies, plus explicit anti-persistence pressure.",
+    "summary": "Layer 1+2 enrichment complete. Allies: experimentation 0.90 (strong — LSM IS systematic experimentation through build-measure-learn), empathy 0.80 (moderate — drives hypothesis formation through customer understanding). Antagonist: status-quo-bias 0.80 (moderate — legacy processes block iteration). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not widen into generic startup culture neighbors because the raw source is stronger on validated learning and anti-commitment pressure."
     ],
     "open_questions": [
-      "The commitment-bias and status-quo-bias tensions are source-real even though the raw file names them in synthesized rather than narrow framework form."
+      "The commitment-bias and status-quo-bias tensions are source-real even though the raw file names them in synthesized rather than narrow framework form.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies hypothesis-driven-problem-solving ('uses strong hypotheses to guide work planning') and cognitive-load-theory ('MVP and iterative chunking reduces cognitive energy') as ally candidates."
     ]
   }
 }

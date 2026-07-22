@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking gives branch-solve-merge the structural map that makes branching and merging reflect the real interdependencies instead of arbitrary work splits.",
       "source_quote": "BSM operationalizes systems thinking",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "BSM is described as operationalizing systems thinking — 'BSM operationalizes systems thinking, seeing interrelationships rather than things' — BSM is the practical workflow that turns systems thinking into structured analytical output.",
+      "activation_condition": "When complex problems require mapping interdependencies across the system before branching into parallel analysis streams that will later need coherent integration"
     },
     {
       "target_model_id": "decomposition",
       "rationale_text": "Decomposition gives branch-solve-merge its practical entry point by turning a large problem into logical pieces that can actually be worked.",
       "source_quote": "MECE Decomposition",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Practical entry tool — 'turning a large problem into logical pieces that can actually be worked' — provides the Branch phase's analytical cut but is a tool applied within BSM rather than the framework itself.",
+      "activation_condition": "When the Branch phase needs a specific methodology for dividing the problem into non-overlapping, workable sub-problems"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification strengthens the merge phase by forcing the final answer into a form the audience can actually understand and use.",
       "source_quote": "radical simplification",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Serves the Merge phase — 'radical simplification' forces the final synthesis into a form the audience can understand — important but phase-specific rather than structurally essential to the BSM framework.",
+      "activation_condition": "When branch findings need to be merged into a coherent synthesis that the audience can actually understand without requiring the analyst's full context"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Commitment-bias undermines branch-solve-merge when the team sticks to one merge path even after branch evidence diverges from it.",
       "source_quote": "continue one merge path despite branch evidence divergence",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific merge-phase threat — teams 'continue one merge path despite branch evidence divergence' — sunk cost in the preferred narrative prevents adaptive merging when branches reveal contradictory evidence.",
+      "activation_condition": "When the team has invested in a preferred merge narrative and branch evidence is diverging from it, creating pressure to force-fit findings rather than revise the synthesis"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring weakens branch-solve-merge when the first frame or branch structure hardens too early and later evidence gets forced back into it.",
       "source_quote": "apply familiar frameworks routinely and unquestioningly",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Framework-fixation risk — 'apply familiar frameworks routinely and unquestioningly' — the first analytical frame hardens before branch evidence can challenge it, but the language is conditional rather than describing a direct blocking mechanism.",
+      "activation_condition": "When the initial problem framing or analytical structure adopted in the Branch phase is constraining how later evidence is interpreted rather than being revised by it"
     }
   ],
   "structured_tensions": [
@@ -51,7 +66,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on systems and decomposition allies plus one explicit conflict with commitment-bias, so the file preserves that conservative surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'BSM operationalizes systems thinking'), decomposition 0.80 (moderate — Branch phase tool), simplification 0.80 (moderate — Merge phase tool). Antagonists: commitment-bias 0.90 (strong — blocks adaptive merging), anchoring 0.80 (moderate — framework fixation). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation widening beyond the clearly named issue-structuring and anti-premature-merge surface."
     ],

@@ -7,21 +7,30 @@
       "rationale_text": "Decomposition is the larger problem-structuring family that decision trees use to produce useful cuts through complexity.",
       "source_quote": "Decision Trees are part of the larger family of Logic Trees ... one may try several \"cuts\" at the tree.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'part of the larger family of Logic Trees' — decision trees are a specialized application of logical disaggregation, sharing the same structural DNA of breaking complexity into branching paths.",
+      "activation_condition": "When complex decisions need to be disaggregated into branching logical paths where each node represents a distinct choice or outcome"
     },
     {
       "target_model_id": "game-theory-payoffs",
       "rationale_text": "Game-theory-payoffs uses the branch structure of decision trees to make adversary choices and countermoves legible.",
       "source_quote": "Decision Trees provide the necessary logical structure for applying Game Theory Thinking in competitive settings, laying out choices and potential responses from adversaries.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as providing 'the necessary logical structure for applying Game Theory Thinking' — decision trees formalize the choice-and-response sequences that game theory analyzes.",
+      "activation_condition": "When competitive or adversarial decisions require mapping out sequences of choices and counter-responses with quantified payoffs"
     },
     {
       "target_model_id": "chain-of-thought",
       "rationale_text": "Chain of Thought aligns with decision trees by breaking a complex task into smaller sequential reasoning steps.",
       "source_quote": "the logical structure of the Decision Tree aligns perfectly with Chain of Thought prompts, where a complex task is broken down into a series of smaller, manageable steps",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as 'aligns perfectly with Chain of Thought prompts' — both share the principle of breaking complex reasoning into sequential, manageable steps for coherent analysis.",
+      "activation_condition": "When complex reasoning tasks benefit from explicit step-by-step logical decomposition to maintain focus and coherence"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "System-1 directly opposes decision-tree analysis — decision trees require slow, analytical System 2 processing, while System 1's hot cognition (fast, emotional, intuitive) produces the shortcuts and pattern-jumps that bypass the branching logic and probabilistic rigor a decision tree demands.",
       "source_quote": "Decision Trees are the epitome of slow, analytical System 2 thinking. They stand in opposition to the fast, emotional, and intuitive System 1.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Decision trees are described as 'the epitome of slow, analytical System 2 thinking' that 'stand in opposition to the fast, emotional, and intuitive System 1' — a fundamental cognitive conflict.",
+      "activation_condition": "When decision-making pressure favors quick intuitive judgments over the slow, structured analysis that decision tree methodology requires"
     },
     {
       "target_model_id": "curse-of-knowledge",
       "rationale_text": "Curse-of-knowledge undermines decision trees when the analyst presents the abstract synthesized conclusion instead of the concrete branching details — audiences receive the punch line without the decision structure that makes it actionable.",
       "source_quote": "Experts who use Decision Trees and other complex tools to arrive at an answer often struggle with the Curse of Knowledge. They present the abstract, synthesized conclusion rather than the concrete details (stories/examples) that make the concept sticky and actionable for the audience.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Experts using decision trees 'present the abstract, synthesized conclusion rather than the concrete details' — the curse affects communication of tree-derived insights, not the tree methodology itself.",
+      "activation_condition": "When tree-derived conclusions need to be communicated to non-expert audiences but the analyst presents abstract summaries instead of the concrete decision path"
     }
   ],
   "structured_tensions": [
@@ -67,7 +82,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "Decision Trees is strong on allies and explicit tensions, but the raw antagonist prose does not map cleanly to current canonical ids beyond the tension surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: decomposition 0.90 (strong — 'part of the larger family'), game-theory-payoffs 0.90 (strong — 'necessary logical structure'), chain-of-thought 0.80 (moderate — 'aligns perfectly'). Antagonists differentiated: system-1 0.90 (strong — 'the epitome of System 2 in opposition'), curse-of-knowledge 0.80 (moderate — hinders communication of conclusions). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor topology or compound suggestions because this pilot is first-order only."
     ],

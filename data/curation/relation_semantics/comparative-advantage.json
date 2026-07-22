@@ -7,14 +7,20 @@
       "rationale_text": "Opportunity-cost sharpens comparative-advantage by showing what is lost when work stays with the wrong owner.",
       "source_quote": "highest input-to-output ratio",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Foundational concept — opportunity cost IS what makes comparative advantage calculable; without understanding what is lost when work stays with the wrong owner, the allocation decision has no basis.",
+      "activation_condition": "When task or resource allocation needs to account for what is being sacrificed elsewhere by keeping work with its current owner rather than reallocating by relative efficiency"
     },
     {
       "target_model_id": "specialization",
       "rationale_text": "Specialization gives comparative-advantage the concentrated expertise that makes role reallocation worth doing.",
       "source_quote": "specialization, efficiency, and leveraging unique strengths",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Practical output — 'specialization, efficiency, and leveraging unique strengths' — specialization is what comparative advantage produces when properly applied, but is a consequence rather than a constitutive mechanism.",
+      "activation_condition": "When identifying comparative advantages reveals opportunities for concentrated expertise that would make role reallocation more productive than generalist distribution"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias makes comparative-advantage defend an existing role map even after the evidence says the allocation is wrong.",
       "source_quote": "preventing them from detecting contradictory information",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Blocks reallocation — 'preventing them from detecting contradictory information' — causes teams to defend existing role allocations even when evidence shows the current distribution is suboptimal.",
+      "activation_condition": "When evidence suggests the current task allocation is suboptimal but the team is defending the existing role map based on familiarity or politics rather than comparative efficiency"
     }
   ],
   "structured_tensions": [
@@ -43,5 +52,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: opportunity-cost 0.90 (strong — foundational calculation concept), specialization 0.80 (moderate — practical output). Antagonists: confirmation-bias 0.80 (moderate — defends suboptimal allocations). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Trade-offs and game-theory-payoffs are potential ally candidates for adversarial allocation scenarios."
+    ]
+  }
 }

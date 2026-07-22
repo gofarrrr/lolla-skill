@@ -7,14 +7,20 @@
       "rationale_text": "Intellectual-humility gives falsifiability the stance needed to expose flaws instead of defend identity.",
       "source_quote": "Falsifiability requires intellectual humility - the acknowledging of what you don't know.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states falsifiability 'requires intellectual humility — the acknowledging of what you don't know' — the necessary disposition for genuine self-testing of beliefs.",
+      "activation_condition": "When testing beliefs requires the willingness to acknowledge ignorance and adopt a student role rather than defending existing positions"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking strips away assumptions and falsifiability pressure-tests whether the rebuilt claim survives contact with reality.",
       "source_quote": "First Principles Thinking involves stripping away assumptions and conventional methods to arrive at a set of fundamental facts and desired outcomes. Falsifiability is then used to test the new solutions forged from these fundamental facts.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes a sequential relationship: first-principles 'strips away assumptions to arrive at fundamental facts' and 'Falsifiability is then used to test the new solutions forged from these facts'.",
+      "activation_condition": "When solutions built from fundamental facts need to be subjected to rigorous testing to ensure they are grounded in reality rather than untested constructions"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Confirmation-bias is the psychological enemy of falsifiability because it searches for validating evidence instead of disconfirming tests.",
       "source_quote": "This bias is the psychological enemy of Falsifiability, as it causes individuals to seek out information that validates their existing beliefs.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Described as 'the psychological enemy of Falsifiability' — causes individuals to seek validating information rather than the disconfirming evidence that falsifiability demands.",
+      "activation_condition": "When evidence gathering is shaped by the desire to validate beliefs rather than genuinely testing whether they can be disproven"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
+      "target_model_id": "commitment-bias",
       "rationale_text": "Commitment-and-consistency-bias makes it psychologically difficult to accept the evidence that should kill the original hypothesis.",
       "source_quote": "People have a strong psychological tendency to remain consistent with prior commitments or interpretations. This mechanism fights against the acceptance of disconfirming evidence required by Falsifiability.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes how people 'reduce internal inconsistencies, even if it requires fooling themselves' — the consistency pressure fights against accepting disconfirming evidence.",
+      "activation_condition": "When prior public commitments create psychological resistance to accepting evidence that would require abandoning the original position"
     }
   ],
   "structured_tensions": [
@@ -43,21 +55,22 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
-      "tension_text": "Falsifiability conflicts with commitment-and-consistency-bias when prior commitments make it too costly to accept disconfirming evidence.",
-      "source_quote": "falsifiability vs commitment-and-consistency-bias: falsifiability conflicts with commitment-and-consistency-bias (commitment and consistency bias) when the desire to remain consistent with prior commitments makes it psychologically difficult to accept disconfirming evidence that would require abandoning the original hypothesis.",
+      "target_model_id": "commitment-bias",
+      "tension_text": "Falsifiability conflicts with commitment-bias when prior commitments make it too costly to accept disconfirming evidence.",
+      "source_quote": "falsifiability vs commitment-bias: falsifiability conflicts with commitment-bias (commitment and consistency bias) when the desire to remain consistent with prior commitments makes it psychologically difficult to accept disconfirming evidence that would require abandoning the original hypothesis.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on explicit allies and direct conflicts, so the file stays close to those named first-order relations.",
+    "summary": "Layer 1+2 enrichment complete. Allies: intellectual-humility 0.90 (strong — 'requires intellectual humility'), first-principles-thinking 0.90 (strong — builds foundations that falsifiability tests). Antagonists differentiated: confirmation-bias 0.95 (critical — 'the psychological enemy'), commitment-bias 0.90 (strong — consistency pressure blocks disconfirming evidence). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor relation expansion beyond the explicitly named testing and belief-defense surface."
     ],
     "open_questions": [
-      "Motivated reasoning and hammer effects remain source-real antagonists, but confirmation and commitment were the cleaner canonical mappings for this conservative pass."
+      "Motivated reasoning and hammer effects remain source-real antagonists, but confirmation and commitment were the cleaner canonical mappings for this conservative pass.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names metacognition and outside-view as additional synergistic allies."
     ]
   }
 }

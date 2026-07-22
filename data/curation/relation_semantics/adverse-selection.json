@@ -7,28 +7,40 @@
       "rationale_text": "System-2 is the cognitive engine that adverse-selection analysis requires — deliberate, rule-governed processing provides the structures and logic needed to override System 1's lazy shortcuts and evaluate hidden-information signals objectively.",
       "source_quote": "System 2, the deliberate and rational system, directs attention and searches memory to find answers. Mental models provide System 2 with the necessary structures and logic to engage in non-intuitive, algorithmic thinking, overriding the lazy or emotional responses of System 1.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as providing 'the necessary structures and logic to engage in non-intuitive, algorithmic thinking, overriding the lazy or emotional responses of System 1' — the cognitive engine that adverse-selection analysis requires for deliberate screening.",
+      "activation_condition": "When hidden-information problems require deliberate, rule-governed analysis rather than intuitive pattern-matching that System 1 might shortcut"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking helps adverse-selection strip away inherited assumptions and inspect the real selection mechanism underneath a screening problem.",
       "source_quote": "This model involves stripping away assumptions to leave only a set of core facts and a desired outcome, allowing a problem solver to forge a novel solution.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Generic description of FPT's capability ('stripping away assumptions to leave only core facts') applied to adverse-selection — useful but not described with specific adverse-selection mechanism language.",
+      "activation_condition": "When screening mechanisms have inherited assumptions about counterparty quality that need to be re-examined from fundamental market structure facts"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps adverse-selection trace how hidden-information filters interact with broader system structure and incentives.",
       "source_quote": "Mental models enhance systems thinking by helping ascertain how parts in a system interact and what emerges from that interaction, leading to smarter planning and better decisions.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Generic systems-thinking capability ('helps ascertain how parts in a system interact') applied to adverse-selection context — complementary analysis tool rather than a specific adverse-selection mechanism.",
+      "activation_condition": "When information asymmetry effects need to be traced through broader system interactions beyond the immediate screening decision"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking supports adverse-selection by stepping outside the current frame and testing whether the chosen model is actually working.",
       "source_quote": "Critical thinking requires stepping outside one's current mental models to examine neutrally whether they are working and how.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Generic reflective capability — 'stepping outside one's current mental models to examine neutrally whether they are working' — supports but does not specifically strengthen adverse-selection analysis.",
+      "activation_condition": "When the screening model needs to be tested for whether it is actually detecting hidden-information signals or just confirming prior quality assumptions"
     }
   ],
   "antagonists": [
@@ -37,21 +49,30 @@
       "rationale_text": "System-1's fast, emotional, and shortcut-driven processing undermines adverse-selection analysis by substituting intuitive pattern-matching for the deliberate hypothesis testing needed to identify hidden-information traps.",
       "source_quote": "The 'lower-level emotional part' of the brain often fights the 'upper-level logical part'... Mental models, which rely on logic and evidence, struggle when decisions are driven by strong emotions, which tend to reduce one's capacity for methodical deliberation.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Direct cognitive opposition — System 1's fast emotional shortcuts fight the deliberate analysis that adverse-selection requires, substituting intuitive pattern-matching for the hypothesis testing needed to identify hidden-information traps.",
+      "activation_condition": "When screening decisions are being driven by gut feeling or emotional pattern-matching rather than deliberate analysis of information asymmetry signals"
     },
     {
       "target_model_id": "curse-of-knowledge",
       "rationale_text": "Curse-of-knowledge corrupts adverse-selection by making experts unable to communicate the reasoning behind screening decisions — they present abstract conclusions rather than the concrete stories that make the selection mechanism legible to others.",
       "source_quote": "Experts struggle to communicate their mental models because they cannot remember what it was like not to know the information. This often leads experts to communicate in abstract, jargon-filled slogans rather than concrete, useful stories, which ultimately renders their sophisticated model useless to the audience.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Communication failure mechanism — experts 'communicate in abstract, jargon-filled slogans rather than concrete, useful stories' — about downstream usability of the screening analysis rather than the core adverse-selection mechanism.",
+      "activation_condition": "When expert screening rationale cannot be communicated to stakeholders because the expert has lost touch with what non-experts don't know about the information asymmetry"
     },
     {
       "target_model_id": "cognitive-biases",
       "rationale_text": "Cognitive-biases undermine adverse-selection analysis by pushing the operator toward shortcut-driven judgment instead of objective hypothesis testing.",
       "source_quote": "Mental models are used to combat biases, which are the tendency of the brain to take shortcuts.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Extremely generic — 'Mental models are used to combat biases, which are the tendency of the brain to take shortcuts' — barely specific enough to be useful for adverse-selection in particular.",
+      "activation_condition": "When cognitive shortcuts in the screening process may produce systematically biased assessments of counterparty quality or information signals"
     }
   ],
   "structured_tensions": [
@@ -81,7 +102,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "This tail model turned out stronger than expected because the raw file contains a clean explicit tension block and several conservative first-order ally mappings.",
+    "summary": "Layer 1+2 enrichment complete. Allies: system-2 0.90 (strong — 'necessary structures and logic' for deliberate analysis), first-principles-thinking 0.80 (moderate — generic decomposition), systems-thinking 0.80 (moderate — generic systems analysis), critical-thinking 0.80 (moderate — generic reflective support). Antagonists differentiated: system-1 0.90 (strong — direct cognitive opposition), curse-of-knowledge 0.80 (moderate — communication failure), cognitive-biases 0.70 (supportive — generic bias umbrella). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor-added relation overlays such as moral-hazard because this batch stays source-first and first-order only."
     ],

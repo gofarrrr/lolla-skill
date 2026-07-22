@@ -1,0 +1,34 @@
+{
+    "model_id": "leverage-points",
+    "source_file": "Leverage_Points_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question asks about a low-leverage intervention when a higher-leverage point of intervention exists in the same system — the question is about the 80% of effort that produces 20% of results.",
+        "The question treats all interventions as equally promising without prioritizing based on which variables the team can actually influence and which have the biggest system-wide impact.",
+        "The question asks 'how do we improve X?' when X is a downstream metric driven by an upstream variable Y that the question doesn't mention — the question is chasing the effect, not the cause.",
+        "The question is about optimizing within the current paradigm when the highest leverage point is changing the paradigm itself — the system resists this change, which is why the question avoids it."
+    ],
+    "frame_patterns_challenged": [
+        "proxy_optimization",
+        "scope_lock"
+    ],
+    "reframing_move": "Shift the question upstream: instead of asking about the metric or symptom, ask 'what is the highest-leverage variable in this system, and are we asking the right question about it?' — the Pareto reframe directs the question toward the 20% of variables that drive 80% of outcomes.",
+    "reframing_move_types": [
+        "scope_expansion",
+        "perspective_shift"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Leverage points operates on question framing by redirecting inquiry from low-leverage to high-leverage intervention points. The source is explicit: the model demands 'focusing on issues that have the biggest impact and that they can actually influence.' The paradigm-level leverage point (the highest tier) is the most powerful reframing move — changing what the system believes, not what it does.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: low vs high leverage (Pareto principle), influence-based prioritization (problem disaggregation), upstream vs downstream (return on capital tree), and paradigm change (highest-order leverage point)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Proxy optimization: the question optimizes a downstream metric when the upstream driver is the real lever. Scope lock: the question's scope excludes the highest-leverage intervention because it would require changing the paradigm."
+        }
+    }
+}

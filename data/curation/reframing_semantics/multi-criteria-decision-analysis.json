@@ -1,0 +1,33 @@
+{
+    "model_id": "multi-criteria-decision-analysis",
+    "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question optimizes on a single proxy metric ('what is cheapest?', 'what is fastest?') when the decision actually involves multiple criteria that trade off against each other in non-obvious ways.",
+        "The question collapses a multi-dimensional evaluation into a binary ('should we do this or not?') when the real question is how to weight competing priorities.",
+        "The question treats all criteria as equally important by default, or weights them implicitly based on which is easiest to measure rather than which matters most.",
+        "The question frames the decision as choosing between options when the real leverage is in clarifying what criteria to optimize — the frame determines which option looks best."
+    ],
+    "frame_patterns_challenged": [
+        "proxy_optimization",
+        "binary_collapse",
+        "borrowed_premise",
+        "scope_lock"
+    ],
+    "reframing_move": "Before evaluating options, ask: 'What criteria are we actually optimizing, how should we weight them, and would different weights change which option looks best?' — the MCDA reframe makes the implicit weighting explicit and testable.",
+    "reframing_move_types": ["assumption_surfacing", "scope_expansion"],
+    "curation_confidence": "medium-high",
+    "curation_note": "MCDA is a reframing model because it reveals that the criteria-weighting is often the real decision, not the option selection. The source describes 'evaluating alternatives against multiple, often conflicting criteria', 'making trade-offs explicit', and 'sensitivity analysis to test how weight changes affect the ranking'. The proxy_optimization challenge is direct: MCDA forces all relevant criteria into the evaluation. The binary_collapse challenge comes from the multi-dimensional scoring that replaces yes/no with a nuanced ranking.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium-high",
+            "note": "Single proxy (multi-criteria vs single-metric evaluation), binary collapse (scoring replaces yes/no), implicit weighting (explicit weight elicitation), option vs criteria focus (sensitivity analysis concept)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium-high",
+            "note": "Proxy optimization: MCDA forces all criteria into the evaluation. Binary collapse: multi-dimensional scoring reveals nuance. Borrowed premise: implicit weights are imported assumptions. Scope lock: adding criteria widens the evaluation frame."
+        }
+    }
+}

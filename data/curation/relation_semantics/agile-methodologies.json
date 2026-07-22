@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking helps agile-methodologies see interdependencies and feedback loops instead of treating sprint activity as isolated local work.",
       "source_quote": "Agile’s need for continuous adaptation aligns directly with Systems Thinking.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'aligns directly with Systems Thinking' — seeing interrelationships and feedback loops in complex implementations, 'exposing the complexity' that Agile must manage.",
+      "activation_condition": "When sprint-level execution needs to account for system-wide interdependencies and feedback loops rather than treating tasks as isolated work items"
     },
     {
       "target_model_id": "experimentation",
       "rationale_text": "Experimentation gives agile-methodologies the test-everything discipline needed to turn iteration into real learning instead of opinion recycling.",
       "source_quote": "testing every single possibility and comparing outcomes",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "The canonical article describes hypothesis-driven problem solving as 'a core ally' — the disciplined test-everything approach that converts sprint cycles into genuine learning rather than opinion recycling.",
+      "activation_condition": "When iterative delivery needs a test-everything discipline to convert sprint cycles into genuine validated learning rather than recycled assumptions"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias turns agile-methodologies into ritualized hypothesis protection by using sprints to confirm a favored conclusion.",
       "source_quote": "This disciplined approach minimizes the risk of confirmation bias.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Generic confirmation bias applied to the Agile context — 'hypothesis-driven sprints are used to confirm a mandated conclusion' — the mechanism is about misuse of Agile rather than a specific anti-Agile force.",
+      "activation_condition": "When sprint hypotheses are pre-determined to confirm a mandated conclusion rather than genuinely testing the underlying assumptions"
     }
   ],
   "structured_tensions": [
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation file keeps the clearest current-vocabulary surface from the raw source: systems and testing allies plus the explicit tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'aligns directly'), experimentation 0.90 (strong — 'core ally' for hypothesis-driven testing). Antagonists differentiated: confirmation-bias 0.80 (moderate — generic misuse pattern). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies — consider design-thinking from canonical article.",
     "donor_drops": [
       "Did not widen the ally set into broader design or collaboration neighbors because the current source-backed graph surface is already strong."
     ],
     "open_questions": [
-      "Design-thinking is a source-real ally, but experimentation and systems-thinking were the cleaner current-vocabulary anchors."
+      "Design-thinking is a source-real ally, but experimentation and systems-thinking were the cleaner current-vocabulary anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Design Thinking as a closely aligned ally ('iterative approach... aligns closely with Agile by emphasizing early experimentation')."
     ]
   }
 }

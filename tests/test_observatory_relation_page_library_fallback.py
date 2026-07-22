@@ -124,7 +124,7 @@ def test_relationship_graph_library_relation_fallback_renders(monkeypatch) -> No
     assert "Relation page not found" not in html
     assert "Analogies And Metaphors and Representativeness Heuristic" in html
     assert "Library Relation Context" in html
-    assert "Relationship Graph" in html
+    assert "Relation Semantics" in html
     assert "Representativeness-heuristic undermines analogies-and-metaphors" in html
     assert "data/relationship_graph.json" in html
     assert "composition_affinity" not in html

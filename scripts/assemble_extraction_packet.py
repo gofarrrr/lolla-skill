@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import shutil
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -30,7 +29,6 @@ class SourceResidency:
     model_id: str
     source_file: str
     local_path: Path
-    canonical_path: Path
     sha256: str
     byte_count: int
 
@@ -74,7 +72,7 @@ def assemble_extraction_packet(
         "source": {
             "source_file": source_residency.source_file,
             "source_path": _display_path(source_residency.local_path, root),
-            "canonical_source_path": str(source_residency.canonical_path),
+            "source_authority": "repository_local",
             "sha256": source_residency.sha256,
             "bytes": source_residency.byte_count,
             "markdown": source_residency.local_path.read_text(encoding="utf-8"),
@@ -139,25 +137,15 @@ def ensure_source_residency(
         raise ExtractionPacketError(f"{model_id}: activation curation lacks source_file")
 
     manifest = _load_json(source_manifest_path)
-    copied_from = Path(str(manifest.get("copied_from") or ""))
-    if not copied_from.is_absolute():
-        copied_from = _resolve(root, copied_from)
-    canonical_path = copied_from / source_file
     local_path = source_dir / source_file
 
     if not local_path.exists():
-        if not copy_source:
-            raise ExtractionPacketError(f"{model_id}: local source is missing: {local_path}")
-        if not canonical_path.exists():
-            raise ExtractionPacketError(
-                f"{model_id}: canonical source is missing: {canonical_path}"
-            )
-        source_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(canonical_path, local_path)
-
-    if canonical_path.exists() and local_path.read_bytes() != canonical_path.read_bytes():
         raise ExtractionPacketError(
-            f"{model_id}: local source differs from canonical source"
+            f"{model_id}: repository-local canonical source is missing: {local_path}"
+        )
+    if manifest.get("source_authority") != "repository_local":
+        raise ExtractionPacketError(
+            "source manifest must declare repository_local authority"
         )
 
     data = local_path.read_bytes()
@@ -174,7 +162,6 @@ def ensure_source_residency(
         model_id=model_id,
         source_file=source_file,
         local_path=local_path,
-        canonical_path=canonical_path,
         sha256=sha256,
         byte_count=len(data),
     )

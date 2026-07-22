@@ -7,10 +7,34 @@
       "rationale_text": "Scaffolding-educational supports divergent-vs-convergent-thinking by giving learners a staged way to expand and then synthesize understanding.",
       "source_quote": "In learning, new concepts are typically introduced by presenting a complex idea broken down into smaller, simpler units (scaffolding/chunking), which facilitates both the focused work and the diffuse synthesis.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical describes scaffolding/chunking as facilitating 'both the focused work (CT) and the diffuse synthesis (DT)' — supports the learning dimension of the D/C cycle by managing cognitive load during both phases.",
+      "activation_condition": "When complex problems need to be broken into manageable chunks to allow effective cycling between divergent exploration and convergent evaluation"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring undermines divergent-vs-convergent-thinking by letting the first compelling idea act as a reference point that prematurely collapses the divergent phase, cutting off originality before the option space is explored.",
+      "source_quote": "If a compelling solution comes to mind during the question generation phase, it can act as an anchor, cutting off the flow of good problems.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Premature fixation on initial ideas constrains the open-ended exploration that divergent thinking requires, related to the canonical description of System 1 'jumping to conclusions'.",
+      "activation_condition": "When initial ideas or first proposals anchor the team's thinking, preventing the broad exploration of alternatives that divergent thinking requires"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines divergent-vs-convergent-thinking by causing experts to perceive novel problems through patterns they already know, blocking genuine divergence and forcing premature convergence onto familiar solutions.",
+      "source_quote": "Expertise can create a constraint on novel problem-solving by leading to an 'illusion of understanding' and overconfidence. Experts sometimes struggle because they perceive concrete details as symbols of patterns they already know.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Mapped from canonical 'Expertise (Potential Antagonist)' — expertise-driven fixation causes perception of 'concrete details as symbols of patterns they already know', constraining novel divergent exploration.",
+      "activation_condition": "When expertise causes familiar solution patterns to dominate ideation, preventing genuine divergent thinking about novel approaches"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "cognitive-biases",
@@ -22,12 +46,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. Allies: scaffolding-educational 0.80 (moderate — facilitates D/C learning cycle). Antagonists: anchoring 0.80 (moderate — premature fixation), einstellung-effect 0.80 (moderate — expertise-driven fixation). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 1 ally — high priority.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: only 1 ally curated — high priority. Canonical article names multidisciplinary-thinking, diversity-of-thought, and abductive-reasoning as additional synergistic allies."
     ]
   },
   "deferred_higher_order_notes": {

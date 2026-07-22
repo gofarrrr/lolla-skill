@@ -1,0 +1,32 @@
+{
+  "model_id": "optionality",
+  "source_file": "Optionality_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question forces a premature commitment to a single path when the situation has enough uncertainty that preserving multiple paths would be more valuable than choosing one now.",
+    "The question presents only two options when the 3+ principle suggests the problem isn't fully understood until at least three genuine alternatives exist.",
+    "The question frames the decision as irreversible when it may actually be reversible — the framing forecloses cheap experiments that could buy learning."
+  ],
+  "frame_patterns_challenged": [
+    "binary_collapse",
+    "option_space_collapse",
+    "temporal_fixation",
+    "counterfactual_suppression"
+  ],
+  "reframing_move": "Reopen the option space: ask 'what are three genuinely different ways we could approach this?' and 'what cheap experiment would tell us which path is right before we commit?' — the question shifts from 'which option' to 'how do we learn which option'.",
+  "reframing_move_types": ["scope_expansion", "constraint_relaxation"],
+  "curation_confidence": "high",
+  "curation_note": "Optionality reframes by exposing premature closure. The source is explicit on the 3+ principle, binary thinking as a sign of incomplete understanding, and the decision multiverse. The reframing targets the question's assumption that a choice must be made now.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Three activations from source material: premature commitment, binary-to-multi-option expansion, and reversibility reframing."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Binary collapse and option space collapse are primary targets. Temporal fixation via 'must decide now' assumption. Counterfactual suppression via 'what if we don't choose yet'."
+    }
+  }
+}

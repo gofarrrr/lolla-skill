@@ -7,14 +7,20 @@
       "rationale_text": "Anchoring helps explain why reference points and initial frames distort how prospect-theory choices are evaluated.",
       "source_quote": "This phenomenon also interacts with cognitive biases like Anchoring.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'anchoring bias occurs in the evaluation of complex, disjunctive events' — anchoring is one mechanism within the PT framework for reference-dependent evaluation.",
+      "activation_condition": "When reference points anchor the evaluation of gains and losses in prospect-theoretic decision scenarios."
     },
     {
       "target_model_id": "incentives",
       "rationale_text": "Incentives interact with prospect-theory because gain and loss framing can change behavior without changing the underlying economics.",
       "source_quote": "framing outcomes around relative gains or losses (emotional incentives)",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: PT describes how loss aversion and reference dependence affect incentive design. Understanding PT is necessary for designing effective behavioral incentives.",
+      "activation_condition": "When incentive structures must account for loss aversion and reference-dependent evaluation of outcomes."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Critical-thinking counters prospect-theory distortions by forcing a colder review of whether the frame is changing the choice more than the fundamentals are.",
       "source_quote": "not a plausible normative decision theory",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'PT stands against the notion that implementation or persuasion is a fundamentally rational process solved via logical, step-by-step methods' — hot cognition vs cold cognition.",
+      "activation_condition": "When deliberate rational analysis would override the emotional and reference-dependent heuristics that PT describes as driving actual behavior."
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays narrow around framing, reference points, and the descriptive-versus-normative boundary.",
+    "summary": "Layer 1+2 enrichment complete. Both allies at 0.80 (anchoring as mechanism, incentives moderate). critical-thinking antagonist at 0.90 (rational vs emotional processing). Canonical primary antagonist is Expected Utility Theory (not curated).",
     "donor_drops": [
       "Did not preserve broader System 1 or theory-of-mind expansion because those targets would widen the current vocabulary surface."
     ],
     "open_questions": [
-      "The source is clearer on ally and antagonist pressure than on explicit current-vocabulary tension blocks, so structured tensions stay omitted."
+      "The source is clearer on ally and antagonist pressure than on explicit current-vocabulary tension blocks, so structured tensions stay omitted.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include system-1 (PT features are System 1 characteristics), framing (sensitivity of decisions to presentation), theory-of-mind (leveraging PT requires understanding others' reference points)."
     ]
   }
 }

@@ -7,14 +7,20 @@
       "rationale_text": "Narratives helps pre-suasion create a mental bucket before the audience evaluates the main idea in detail.",
       "source_quote": "Stories and analogies provide instant context.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: stories 'provide instant context and are processed emotionally (System 1)', bypassing abstract analysis that might challenge the message — core pre-suasion tool.",
+      "activation_condition": "When priming the audience's emotional and cognitive state through story before presenting the core argument."
     },
     {
       "target_model_id": "empathy",
       "rationale_text": "Empathy helps pre-suasion tune the preliminary frame to the audience's actual concerns rather than to the speaker's assumptions.",
       "source_quote": "tune the message to the mind of the target",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Having a strong theory of mind is essential for Pre-Suasion' — enables tuning the message to the target audience's perspective.",
+      "activation_condition": "When understanding the target audience's perspective is essential for calibrating the pre-suasive context."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Scientific-method-evidence-testing resists pre-suasion when associative priming starts substituting for rigorous evidence and hypothesis checking.",
       "source_quote": "undermines rigorous hypothesis testing",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical tension: 'priming a favorable associative pattern leads to motivated reasoning that undermines rigorous hypothesis testing' — structural opposition.",
+      "activation_condition": "When pre-suasive framing creates motivated reasoning that undermines objective hypothesis testing and evidence evaluation."
     }
   ],
   "structured_tensions": [
@@ -37,12 +46,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation file keeps the strongest first-order graph from the raw source: framing allies plus the explicit tension against evidence-testing discipline.",
+    "summary": "Layer 1+2 enrichment complete. Both allies at 0.90 (narratives core tool, empathy 'essential'). scientific-method antagonist at 0.90 (priming vs rigorous testing). Canonical also lists framing and MECE as allies.",
     "donor_drops": [
       "Did not widen into broader rhetoric neighbors because the explicit tension block already anchors the boundary clearly."
     ],
     "open_questions": [
-      "Framing is a source-real ally, but narratives and empathy were the cleaner current-vocabulary anchors."
+      "Framing is a source-real ally, but narratives and empathy were the cleaner current-vocabulary anchors.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include framing (inseparable from pre-suasion — controls initial perception), MECE (sustains persuasive effect with rigorous structure)."
     ]
   }
 }

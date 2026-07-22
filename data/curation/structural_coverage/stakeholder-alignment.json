@@ -1,0 +1,47 @@
+{
+  "dimension_id": "stakeholder-alignment",
+  "dimension_name": "Stakeholder Alignment",
+  "cleaving_frame": "Who needs to agree vs Who needs to comply",
+  "description": "The problem's implementation depends on multiple stakeholders who may have different perspectives, power, or veto authority. The structural question is whether the technically correct answer is organizationally feasible.",
+  "question_types": ["action-planning", "decision-evaluation"],
+  "detect_when": [
+    "Multiple people or groups must agree or cooperate for the solution to work",
+    "Power dynamics or political considerations affect feasibility beyond technical merit",
+    "The technical answer and the organizationally feasible answer may differ",
+    "Key stakeholders have veto authority or blocking power that the answer doesn't address"
+  ],
+  "coverage_signals": [
+    "The answer identifies key stakeholders and their positions — who supports, who opposes, who is indifferent",
+    "The answer addresses how to build agreement or manage resistance — the influence strategy",
+    "The answer distinguishes technical correctness from organizational feasibility",
+    "The answer considers psychological safety — whether people can voice concerns without penalty"
+  ],
+  "materiality_test": "Would a different stakeholder strategy change whether the recommendation actually gets implemented?",
+  "reasoning_demanded": "stakeholder mapping, influence and consensus analysis, organizational feasibility assessment",
+  "models": [
+    "power-dynamics",
+    "empathy",
+    "psychological-safety",
+    "six-thinking-hats",
+    "social-proof"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Power-dynamics maps who holds influence and how it flows through the organization. Empathy enables understanding stakeholders' perspectives and concerns. Psychological-safety addresses whether the environment allows honest dissent and concern-raising. Six-thinking-hats provides the structured multi-perspective framework for surfacing different viewpoints. Social-proof addresses how stakeholder consensus builds through demonstrated adoption by others.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from power-dynamics (political feasibility, veto authority), empathy (perspective differences), psychological-safety (voicing concerns), six-thinking-hats (multiple perspectives needed)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Stakeholder mapping from power-dynamics. Influence strategy from social-proof and empathy. Technical vs organizational feasibility from six-thinking-hats. Psychological safety from psychological-safety."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Five models — focused on the organizational/human dimension of implementation. Persuasion-principles was considered but is already assigned to behavioral-intervention where it fits more naturally. Social-proof serves the consensus-building function here."
+    }
+  }
+}

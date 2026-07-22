@@ -1,0 +1,33 @@
+{
+    "model_id": "reasoning-mode-router",
+    "source_file": "Reasoning_Mode_Router_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question defaults to analytical reasoning when the situation actually calls for intuitive, creative, or dialectical thinking — the reasoning mode is mismatched to the problem type.",
+        "The question applies a convergent reasoning mode (narrowing to one answer) when the problem is still in a divergent phase (generating possibilities) or vice versa.",
+        "The question treats all problems as the same type — optimization, decision, exploration — when recognizing the problem type would reveal that a completely different reasoning approach is needed.",
+        "The question has been cycling through variations of the same approach because the reasoning mode is locked and no one has asked whether the mode itself is appropriate for the problem structure."
+    ],
+    "frame_patterns_challenged": [
+        "premature_intellectualization",
+        "habitual_frame",
+        "option_space_collapse",
+        "scope_lock"
+    ],
+    "reframing_move": "Before continuing in the current reasoning mode, ask: 'What type of problem is this actually, and does our current reasoning mode match?' — the mode-routing reframe treats the choice of reasoning strategy as a first-class decision rather than an unconscious default.",
+    "reframing_move_types": ["mode_switch", "assumption_surfacing"],
+    "curation_confidence": "high",
+    "curation_note": "Reasoning Mode Router is inherently a meta-reframing model — it routes thinking to the appropriate mode rather than applying a default. The source describes multiple reasoning modes (analytical, intuitive, creative, dialectical, systems) and emphasizes that 'selecting the right reasoning approach is often more important than executing any single approach well'. The premature_intellectualization challenge is direct: the model questions the reasoning mode before engaging content. The habitual_frame challenge maps to the source's warning about defaulting to analytical mode regardless of problem type.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Mode mismatch (source's core routing concept), convergent/divergent mismatch (phase-appropriate reasoning), problem type blindness (analytical default), locked cycling (failure to question the mode)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Premature intellectualization: model questions reasoning mode before content. Habitual frame: analytical default is a habitual frame. Option space collapse: wrong mode narrows options prematurely. Scope lock: mode choice constrains what counts as relevant."
+        }
+    }
+}

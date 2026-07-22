@@ -32,9 +32,9 @@ def test_source_ownership_doc_declares_hybrid_owner_decision() -> None:
 
     for phrase in [
         "Observatory is one portable skill-presentation product shell",
-        "the Python server in this repo owns the active product direction for now",
-        "`Lolla-system-b/observatory/svelte-app` is verified as the historical legacy source",
-        "not the future product source by default",
+        "the Python server in this repo owns the active product direction",
+        "not an external source dependency",
+        "The source owner and current product direction are both repository-local",
         "The next PR should not be another UI patch and should not be a Svelte revival.",
         "proceed_to_observatory_portable_server_view_model_contracts",
     ]:
@@ -83,16 +83,16 @@ def test_current_repo_shape_matches_local_evidence() -> None:
     assert all(not marker.exists() for marker in source_markers)
 
 
-def test_server_source_and_docs_still_name_external_spa_and_portable_doctrine() -> None:
+def test_server_source_and_docs_name_repository_local_portable_doctrine() -> None:
     serve_result = " ".join(_read(SERVE_RESULT).split())
     live_flow = " ".join(_read(LIVE_FLOW).split())
 
     for phrase in [
-        "Lolla-system-b/observatory/svelte-app",
-        "To change SPA",
-        "copy",
+        "former source workspace is retired",
+        "not a dependency or editing path",
+        "repository-local source",
         "observatory/build/",
-        "independent of the SPA bundle",
+        "stay portable",
     ]:
         assert phrase in serve_result
 
@@ -124,20 +124,16 @@ def test_server_routes_show_portable_runtime_owns_new_product_surfaces() -> None
         assert phrase in serve_result
 
 
-def test_source_ownership_doc_records_external_source_and_bundle_drift_evidence() -> None:
+def test_source_ownership_doc_records_retired_source_and_local_rebuild_boundary() -> None:
     text = " ".join(_read(DOC).split())
 
     for phrase in [
-        "Git remote: `gofarrrr/lolla-system-b`",
-        "branch inspected: `feat/skill-backport-quality-improvements`",
-        "head inspected: `85dc10b`",
-        "Svelte 5, Vite 6, TypeScript, Vitest",
-        "the source does not contain the newer Teacher Learn, Decision Work",
-        "Svelte source is app-era legacy for the current product direction",
-        "should not be treated as the default future UI owner",
-        "Two checked asset hashes matched during inspection; one main JS asset",
-        "manual editing",
-        "controlled sync path",
+        "Any former sibling frontend source is outside the current project boundary.",
+        "neither an installation prerequisite nor a future editing location",
+        "repository-local source",
+        "reproducible artifact hashes",
+        "There is no supported external rebuild path.",
+        "do not direct a maintainer to another repository",
     ]:
         assert phrase in text
 
@@ -154,7 +150,7 @@ def test_source_ownership_doc_defines_port_readiness_and_sequence() -> None:
         "fallback policy",
         "Server-Rendered Global Workspace",
         "Legacy Root Bundle Bypass Or Retirement Plan",
-        "Optional Legacy Bundle Sync Decision",
+        "Optional Repository-Local Bundle Source Decision",
     ]:
         assert phrase in text
 
@@ -187,8 +183,9 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
         decision["current_rendering_direction"]
         == "portable_python_server_rendered_html"
     )
-    assert decision["legacy_spa_source"] == "Lolla-system-b/observatory/svelte-app"
+    assert decision["legacy_spa_source"] == "not_present_in_active_repository"
     assert decision["legacy_spa_is_future_product_owner_by_default"] is False
+    assert decision["external_frontend_dependency"] is False
     assert decision["compiled_bundle_role"] == "distribution_artifact"
     assert decision["svelte_revival_authorized_now"] is False
     assert decision["global_shell_port_authorized_now"] is False
@@ -199,24 +196,21 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
     assert local["compiled_bundle_present"] is True
     assert local["local_package_json_present"] is False
     assert local["local_observatory_svelte_app_present"] is False
-    assert local["server_header_names_external_source"] is True
+    assert local["server_header_names_external_source"] is False
+    assert local["server_header_declares_repository_local_authority"] is True
 
-    external = data["external_source_evidence"]
-    assert external["observed_read_only"] is True
-    assert external["repo"] == "gofarrrr/lolla-system-b"
-    assert external["source_role"] == "historical_legacy_root_spa_source"
-    assert external["root_spa_source_exists"] is True
-    assert external["contains_new_teacher_learn_shell"] is False
-    assert external["contains_decision_work_receipts_flow"] is False
-    assert external["contains_global_tabs"] is False
+    retired = data["retired_source_boundary"]
+    assert retired["active_dependency"] is False
+    assert retired["editing_path"] is False
+    assert retired["installation_requirement"] is False
+    assert retired["repository_local_replacement_required"] is True
 
     bundle = data["bundle_provenance"]
-    assert bundle["runtime_and_external_index_html_matched"] is True
-    assert bundle["asset_filenames_matched"] is True
-    assert bundle["all_asset_hashes_matched"] is False
-    assert bundle["main_js_asset_hash_drift_observed"] is True
-    assert bundle["manual_editing_proven"] is False
-    assert bundle["controlled_sync_required_before_bundle_copy"] is True
+    assert bundle["checked_in_distribution_artifact"] is True
+    assert bundle["repository_local_authoring_source_present"] is False
+    assert bundle["manual_editing_allowed"] is False
+    assert bundle["replacement_requires_repository_local_source"] is True
+    assert bundle["reproducible_build_contract_required"] is True
 
     requirements = data["portable_server_direction_requirements"]
     assert requirements["product_view_model_contracts"] is True
@@ -230,7 +224,7 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
     assert boundary["provider_or_model_calls"] is False
     assert boundary["runtime_behavior_changed"] is False
     assert boundary["compiled_js_or_css_edited"] is False
-    assert boundary["external_repo_modified"] is False
+    assert boundary["other_repository_required"] is False
     assert boundary["bundle_copied"] is False
     assert boundary["svelte_revival_authorized"] is False
 

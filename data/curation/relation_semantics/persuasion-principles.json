@@ -7,14 +7,20 @@
       "rationale_text": "Narratives helps persuasion-principles bind an idea to emotion and memory so it can travel farther than raw logic alone.",
       "source_quote": "Storytelling/Narrative",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Stories are the single most powerful way to activate the brain and integrate emotion with logical arguments' — fundamental persuasion tool.",
+      "activation_condition": "When emotional resonance and memorability are needed to make ideas stick with the audience."
     },
     {
       "target_model_id": "empathy",
       "rationale_text": "Empathy helps persuasion-principles tune the message to what the audience actually cares about rather than to what the expert wants to say.",
       "source_quote": "Perspective taking is vital for crafting messages that resonate",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Understanding the audience's motives and feelings (Theory of Mind) is crucial for packaging the message correctly' — essential for resonance.",
+      "activation_condition": "When crafting messages requires deep understanding of the audience's motives, fears, and desires."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Critical-thinking slows persuasion-principles down by asking whether the message is merely effective or actually well grounded.",
       "source_quote": "Critical Thinking/System 2",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Persuasion aims for fast, automatic compliance (System 1). Critical thinking requires slow, deliberate evaluation of evidence and assumptions' — structural opposition.",
+      "activation_condition": "When deliberate System 2 analysis would reveal persuasive framing as manipulative or logically weak."
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation file keeps the source's clearest bounded graph: story and perspective as allies, with critical-thinking as the strongest current-vocabulary antagonist.",
+    "summary": "Layer 1+2 enrichment complete. Both allies at 0.90 (narratives 'most powerful', empathy 'crucial'). critical-thinking antagonist at 0.90 (System 1 vs System 2 opposition). Canonical also lists cognitive-load-theory and pyramid-principle as allies.",
     "donor_drops": [
       "Did not manufacture structured tensions because the raw file is rich in allies and antagonists but not in explicit named tension blocks."
     ],
     "open_questions": [
-      "Cognitive-load-theory is a source-real ally too, but narratives and empathy were the more central operational anchors."
+      "Cognitive-load-theory is a source-real ally too, but narratives and empathy were the more central operational anchors.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include cognitive-load-theory (simplify to reduce audience effort), latticework-of-mental-models (broad knowledge base for finding right frames)."
     ]
   }
 }

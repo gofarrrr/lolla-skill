@@ -77,7 +77,7 @@ def load_intervention_semantics(
     *,
     model_ids: tuple[str, ...] | None = None,
 ) -> dict[str, InterventionSemanticsRecord]:
-    semantics_dir = Path(root) / "curation" / "intervention_semantics"
+    semantics_dir = Path(root) / "data" / "curation" / "intervention_semantics"
     if not semantics_dir.exists():
         raise InterventionSemanticsValidationError(
             f"Missing intervention semantics directory: {semantics_dir}"
@@ -85,9 +85,12 @@ def load_intervention_semantics(
 
     selected_ids = set(model_ids or ())
     records: dict[str, InterventionSemanticsRecord] = {}
-    for path in sorted(semantics_dir.glob("*.json")):
-        if path.name == "schema.json":
-            continue
+    paths = (
+        sorted(semantics_dir / f"{model_id}.json" for model_id in selected_ids)
+        if selected_ids
+        else [path for path in sorted(semantics_dir.glob("*.json")) if path.name != "schema.json"]
+    )
+    for path in paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
         validate_intervention_semantics_payload(payload, path=path, root=Path(root))
         record = InterventionSemanticsRecord.from_payload(payload, path)
@@ -134,13 +137,13 @@ def validate_intervention_semantics_payload(
     source_file = str(payload["source_file"]).strip()
     if not source_file.endswith(".md"):
         raise InterventionSemanticsValidationError(f"{path}: source_file must end with .md")
-    source_path = Path(root) / "MM_CANONICAL_216" / source_file
+    source_path = Path(root) / "data" / "model_sources" / source_file
     if not source_path.exists():
         raise InterventionSemanticsValidationError(
             f"{path}: source file does not exist: {source_path}"
         )
 
-    wave1_path = Path(root) / "curation" / f"{model_id}.json"
+    wave1_path = Path(root) / "data" / "curation" / f"{model_id}.json"
     if not wave1_path.exists():
         raise InterventionSemanticsValidationError(
             f"{path}: corresponding Wave 1 curation file is missing: {wave1_path}"
@@ -242,7 +245,7 @@ def build_intervention_semantics_delta_report(
 ) -> dict[str, object]:
     root = Path(root)
     records = load_intervention_semantics(root, model_ids=model_ids)
-    knowledge_graph = json.loads((root / "build" / "knowledge_graph.json").read_text(encoding="utf-8"))
+    knowledge_graph = json.loads((root / "data" / "knowledge_graph.json").read_text(encoding="utf-8"))
     graph_models = knowledge_graph.get("models", {}) if isinstance(knowledge_graph, dict) else {}
 
     models_summary: dict[str, object] = {}
@@ -567,7 +570,7 @@ def _stronger_than_graph_reasons(field_summary: dict[str, object]) -> list[str]:
         "adds source_quote, extraction_type, and confidence to every curated item",
     ]
     if any(payload["recovers_missing_graph_field"] for payload in field_summary.values()):
-        reasons.append("recovers at least one field that is currently missing in build/knowledge_graph.json")
+        reasons.append("recovers at least one field that is currently missing in data/knowledge_graph.json")
     if any(payload["current_graph_count"] > 0 and payload["curated_item_count"] > 0 for payload in field_summary.values()):
         reasons.append("deepens existing graph fields into provenance-rich chunk-ready records")
     return reasons

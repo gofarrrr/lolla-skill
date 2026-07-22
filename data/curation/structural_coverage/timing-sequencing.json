@@ -1,0 +1,47 @@
+{
+  "dimension_id": "timing-sequencing",
+  "dimension_name": "Timing & Sequencing",
+  "cleaving_frame": "Now vs Later / Sequential vs Parallel",
+  "description": "The problem involves when to act, in what order, and whether timing itself changes the outcome. The structural question is whether the sequence or timing of actions materially affects the result.",
+  "question_types": ["action-planning", "decision-evaluation", "prediction"],
+  "detect_when": [
+    "The order of actions affects the outcome — sequencing matters, not just content",
+    "There are deadlines, windows of opportunity, or first-mover dynamics at play",
+    "Delays compound or create threshold effects — waiting has non-linear consequences",
+    "Parallel execution is possible but may create coordination risk or resource contention"
+  ],
+  "coverage_signals": [
+    "The answer specifies sequencing rationale — why this order rather than another",
+    "The answer identifies the critical path and dependencies between actions",
+    "The answer addresses whether delay helps (more information, better conditions) or hurts (opportunity loss, compounding cost)",
+    "The answer identifies tipping points or thresholds where timing creates discontinuous effects"
+  ],
+  "materiality_test": "Would a different sequence or timing change the outcome?",
+  "reasoning_demanded": "sequencing analysis, threshold and tipping-point detection, critical-path identification",
+  "models": [
+    "critical-mass",
+    "tipping-points",
+    "network-effects",
+    "iteration",
+    "second-order-thinking"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Critical-mass identifies the threshold of adoption or commitment below which the initiative fails. Tipping-points addresses discontinuous change and when small additional inputs produce large shifts. Network-effects captures how value changes with scale and timing of adoption. Iteration provides the build-test-learn cycle where sequencing determines what you learn and when. Second-order-thinking addresses the downstream consequences of timing choices — what happens next, and then what happens after that.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from critical-mass (threshold behavior), tipping-points (discontinuous change dynamics), iteration (order-dependent learning cycles), second-order-thinking (delayed consequences). Network-effects adds the timing-of-adoption dimension."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Sequencing rationale from iteration's build-test-learn cycle. Critical path from critical-mass threshold analysis. Delay assessment from second-order-thinking. Tipping points from tipping-points."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Five models rather than six — this dimension is naturally tighter. All have explicit timing/sequencing activation. Delays model was considered but its canonical coverage overlaps with tipping-points and second-order-thinking."
+    }
+  }
+}

@@ -7,14 +7,20 @@
       "rationale_text": "Systems-thinking helps regression-to-the-mean distinguish ordinary reversion from a real structural change in the system.",
       "source_quote": "Systems thinking teaches us that common system structures produce characteristic patterns of behavior.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'RTM is a core concept in seeing patterns of change. Systems thinking teaches us that common system structures produce characteristic patterns of behavior.'",
+      "activation_condition": "When understanding performance patterns requires recognizing RTM as a self-correcting feedback loop within the broader system."
     },
     {
       "target_model_id": "probabilistic-thinking",
       "rationale_text": "Probabilistic-thinking gives regression-to-the-mean the prior and base-rate discipline needed to treat extremes as less likely to persist.",
       "source_quote": "Bayesian statistics (probabilistic thinking) provides the mathematical discipline to fight inherent biases and integrate new data with existing background knowledge (the prior probability or base rate).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Bayesian statistics provides the mathematical discipline to fight inherent biases. RTM provides crucial prior knowledge: extreme results are less probable than results near the mean.'",
+      "activation_condition": "When probability-based reasoning is needed to correctly interpret extreme outcomes as likely regression rather than persistent signal."
     }
   ],
   "antagonists": [
@@ -23,14 +29,17 @@
       "rationale_text": "Confirmation-bias makes regression-to-the-mean look false because observers prefer the treatment story to the reversion story.",
       "source_quote": "confirmation bias will cause them to attribute the change to the reprimand, ignoring the RTM mechanism.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'individuals seek or interpret information that affirms their existing beliefs' — e.g., attributing improved performance to a reprimand rather than recognizing natural regression.",
+      "activation_condition": "When observers attribute natural regression toward the mean to their own interventions because it confirms their preferred causal narrative."
     }
   ],
   "structured_tensions": [
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Regression-to-the-mean conflicts with representativeness-bias when extreme streaks are misread as persistent signal.",
-      "source_quote": "regression-to-the-mean vs representativeness-bias: regression-to-the-mean conflicts with representativeness-bias (representativeness bias) when extreme streaks are misread as persistent signal.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Regression-to-the-mean conflicts with representativeness-heuristic when extreme streaks are misread as persistent signal.",
+      "source_quote": "regression-to-the-mean vs representativeness-heuristic: regression-to-the-mean conflicts with representativeness-heuristic (representativeness bias) when extreme streaks are misread as persistent signal.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -53,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on explicit conflict blocks and on the alliance with statistical outside-view discipline, so the file stays close to that surface.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking 0.90 (core concept), probabilistic-thinking 0.90 (mathematical discipline). confirmation-bias antagonist at 0.80. Canonical also flags correlation-vs-causation and outside-view as allies.",
     "donor_drops": [
       "Did not preserve donor relation expansion beyond the named variance-vs-story conflict set."
     ],
     "open_questions": [
-      "Availability bias remains source-real as an antagonist, but the explicit tension block already captured the stronger persistent-signal conflicts."
+      "Availability bias remains source-real as an antagonist, but the explicit tension block already captured the stronger persistent-signal conflicts.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include correlation-vs-causation (separating regression from causation), bayesian (integrates RTM as prior knowledge)."
     ]
   }
 }

@@ -7,21 +7,30 @@
       "rationale_text": "The Feynman Technique is the operational antidote to the curse of knowledge — it forces the expert to translate their understanding into language accessible to a person with no prior exposure, exposing exactly where the curse was operating.",
       "source_quote": "The Feynman Technique is the operational antidote to the curse of knowledge: it forces the expert to translate understanding into language accessible to a person with no prior exposure.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Described as 'the operational antidote to the curse of knowledge' — forces the expert to translate understanding into accessible language, revealing exactly where the curse was operating.",
+      "activation_condition": "When expert knowledge compression makes communication opaque and the expert needs a structured method to reconstruct their explanation from the novice's starting point"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive Load Theory provides the recipient-side model that curse-of-knowledge ignores — working memory is finite, and curse-afflicted communication regularly exceeds it by delivering compressed, unfamiliar content simultaneously.",
       "source_quote": "CLT provides the recipient-side model: working memory is finite, and expert communication regularly exceeds it by delivering too much compressed, unfamiliar content simultaneously.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'provides the recipient-side model that CoK ignores' — understanding working memory constraints enables the expert to calibrate communication to actual processing capacity rather than assumed knowledge.",
+      "activation_condition": "When expert communication exceeds novice working memory capacity because the expert cannot perceive their own knowledge compression"
     },
     {
       "target_model_id": "expertise-reversal-effect",
       "rationale_text": "Expertise-reversal-effect provides a complementary lens: while curse-of-knowledge describes the expert's failure to serve novices, ERE describes how overly scaffolded instruction can backfire with experts — together they define the adaptive communication challenge.",
       "source_quote": "ERE describes when instructional methods optimized for novices actually harm experts; CoK is the inverse failure: communication optimized for experts that fails novices.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as 'a complementary lens' — together with CoK they define the adaptive communication challenge across the full expertise spectrum, but each addresses different audience segments.",
+      "activation_condition": "When instruction must dynamically adjust to varying expertise levels, avoiding both curse-of-knowledge failures for novices and expertise-reversal failures for advanced learners"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Empathy is the disposition that, when activated, motivates the expert to genuinely attempt to model the novice's state — but the curse of knowledge structurally impairs the simulation even when the motivation is present.",
       "source_quote": "Empathy is the motivational counterpart to the cognitive failure: CoK makes the simulation difficult; empathy makes it worth trying.",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence — canonical lists empathy as an ally ('motivational counterpart to the cognitive failure'). The antagonistic dimension is that CoK impairs the cognitive simulation empathy motivates, making genuine perspective-taking fail even when the expert is motivated.",
+      "activation_condition": "When the expert's motivation to empathize with the novice is undermined by the cognitive impossibility of accurately simulating the novice's ignorance state"
     }
   ],
   "structured_tensions": [
@@ -60,7 +72,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "Curse-of-knowledge Wave 3 curated from the new source markdown. Key allies: feynman-technique (operational antidote), cognitive-load-theory (recipient-side model), expertise-reversal-effect (complementary lens). Key tensions: feynman-technique, cognitive-load-theory, scaffolding.",
+    "summary": "Layer 1+2 enrichment complete. Allies: feynman-technique 0.95 (critical — 'the operational antidote'), cognitive-load-theory 0.90 (strong — 'provides the recipient-side model'), expertise-reversal-effect 0.80 (moderate — 'complementary lens'). Antagonist: empathy 0.70 (supportive — medium confidence; NOTE: canonical lists empathy as an ally, not antagonist — the antagonistic dimension is that CoK impairs empathy-based simulation). Activation conditions assigned.",
     "donor_drops": [],
     "open_questions": [
       "Empathy wired as antagonist with medium confidence — the relation is real but the directionality is subtle: empathy motivates the attempt but does not overcome the structural simulation failure."

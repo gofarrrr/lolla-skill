@@ -6,9 +6,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 
-DEFAULT_CANONICAL_SOURCE_DIR = Path(
-    "/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216"
-)
+DEFAULT_CANONICAL_SOURCE_DIR = Path("data/model_sources")
 
 
 def build_source_custody_report(
@@ -38,7 +36,7 @@ def build_source_custody_report(
         for entry in manifest_entries
         if str(entry.get("model_id", "")).strip()
     }
-    canonical_dir = Path(canonical_source_dir) if canonical_source_dir is not None else None
+    canonical_dir = _resolve_optional_path(root, canonical_source_dir)
     canonical_exists = bool(canonical_dir and canonical_dir.exists())
 
     missing_manifest = sorted(runtime_model_ids - set(manifest_by_model))
@@ -100,7 +98,10 @@ def build_source_custody_report(
         "source_file_mismatch_model_ids": sorted(source_file_mismatch),
         "local_sha256_mismatch_model_ids": sorted(set(local_hash_mismatch)),
         "local_byte_mismatch_model_ids": sorted(local_byte_mismatch),
-        "canonical_source_dir": str(canonical_dir or ""),
+        "canonical_source_dir": _display_path(root, canonical_dir),
+        "canonical_source_authority": (
+            "repository_local" if canonical_dir is not None else "not_configured"
+        ),
         "canonical_source_dir_exists": canonical_exists,
         "missing_canonical_source_model_ids": sorted(missing_canonical),
         "canonical_sha256_mismatch_model_ids": sorted(canonical_hash_mismatch),
@@ -118,6 +119,22 @@ def _duplicates(values: Any) -> list[str]:
             duplicated.add(text)
         seen.add(text)
     return sorted(duplicated)
+
+
+def _resolve_optional_path(root: Path, value: Path | None) -> Path | None:
+    if value is None:
+        return None
+    path = Path(value)
+    return path if path.is_absolute() else root / path
+
+
+def _display_path(root: Path, path: Path | None) -> str:
+    if path is None:
+        return ""
+    try:
+        return str(path.relative_to(root))
+    except ValueError:
+        return str(path)
 
 
 def _load_json(path: Path) -> dict[str, Any]:

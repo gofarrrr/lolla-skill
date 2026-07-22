@@ -7,10 +7,24 @@
       "rationale_text": "Scaffolding supports six-thinking-hats by making complex review work manageable through temporary structure and role separation.",
       "source_quote": "This model acts as cognitive scaffolding.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes the model as cognitive scaffolding that provides mental support and structure through temporary frameworks",
+      "activation_condition": "When structured group decision-making requires cognitive support through temporary frameworks"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "wysiati",
+      "rationale_text": "WYSIATI undermines six-thinking-hats by limiting attention to readily available information and jumping to conclusions, preventing the genuine perspective rotation the hats demand.",
+      "source_quote": "WYSIATI (What You See Is All There Is): This System 1 bias conflicts with the structured model because System 1 limits attention to readily available information and excels at jumping to conclusions, often substituting an easier question for the difficult one that should be addressed.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical identifies WYSIATI as conflicting with structured thinking because System 1 limits attention to readily available information",
+      "activation_condition": "When System 1 limits attention to readily available information, preventing full perspective exploration"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "anchoring",
@@ -38,8 +52,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Kept the relation surface tight around scaffolding and the explicit anti-dominant-frame tension block.",
-    "donor_drops": ["Did not preserve broader bias or role-based relation sprawl beyond the clearest current-vocabulary links."],
-    "open_questions": ["The outside-view material is source-real but not yet a clean direct canonical target here."]
+    "summary": "Layer 1+2 enrichment complete. scaffolding at 0.90 based on cognitive scaffolding language. wysiati antagonist at 0.90 for System 1 conflict.",
+    "donor_drops": [
+      "Did not preserve broader bias or role-based relation sprawl beyond the clearest current-vocabulary links."
+    ],
+    "open_questions": [
+      "The outside-view material is source-real but not yet a clean direct canonical target here.",
+      "SPARSE_ALLY_RECOVERY: only 1 curated ally. Canonical suggests system-2, emotional-intelligence as recovery candidates."
+    ]
   }
 }

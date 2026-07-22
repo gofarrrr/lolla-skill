@@ -7,14 +7,20 @@
       "rationale_text": "Scientific-method-evidence-testing helps first-principles-thinking pressure-test the rebuilt premises against reality instead of treating them as elegant abstractions.",
       "source_quote": "By pushing clients to formalize reasoning and prove causal links with evidence, FPT can overturn preconceived ideas.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Hypothesis-driven problem solving is described as 'fundamentally deductive reasoning, grounded in FPT' — strong foundational relationship where evidence-testing operationalizes first-principles decomposition.",
+      "activation_condition": "When decomposed premises need empirical validation rather than acceptance as elegant abstractions detached from reality"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification helps first-principles-thinking turn stripped-down truths into usable building blocks instead of leaving them as abstract philosophy.",
       "source_quote": "FPT aims for \"Simplicity\" (finding the essential core), serving as the starting point for effective communication.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "FPT 'aims for' simplicity as its output — the relationship is real but framed as FPT producing simplification rather than simplification strengthening FPT. Also carries a tension entry, suggesting a complex rather than purely synergistic relationship.",
+      "activation_condition": "When stripped-down fundamental truths need to be reconstructed into usable, communicable building blocks for action"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Anchoring undermines first-principles-thinking by locking attention onto the first frame or premise before alternative cuts are tested.",
       "source_quote": "Anchoring and Framing Biases",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly blocks re-derivation by locking attention onto the first frame or premise encountered before alternative decompositions can be tested.",
+      "activation_condition": "When the initial problem framing or inherited convention provides a strong anchor that discourages stripping back to fundamental facts"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias makes first-principles-thinking defend the chosen premises instead of challenging them with contradictory evidence.",
       "source_quote": "Confirmation Bias and Groupthink",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "General bias that makes the thinker defend chosen premises rather than challenging them with contradictory evidence — amplifies failure mode but not specific to FPT's decomposition mechanism.",
+      "activation_condition": "When the first-principles decomposition has produced premises that feel elegant and the thinker stops testing them against contradictory evidence"
     }
   ],
   "structured_tensions": [
@@ -52,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on ally and antagonist logic rather than on an explicit tension block, so the file preserves that smaller first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: scientific-method-evidence-testing 0.90 (strong — operationalizes FPT through evidence validation), simplification 0.80 (moderate — output relationship plus tension). Antagonists differentiated: anchoring 0.90 (strong — directly blocks re-derivation), confirmation-bias 0.80 (moderate — general premise-defense). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies — consider adding decomposition, five-whys-method, or lateral-thinking from canonical article review.",
     "donor_drops": [
       "Did not preserve donor-style relation inflation where the raw source itself is more conceptual than explicitly relational."
     ],
     "open_questions": [
-      "Latticework and scaffolding remain source-real allies, but scientific-method-evidence-testing and simplification were the cleaner bounded anchors into the current graph."
+      "Latticework and scaffolding remain source-real allies, but scientific-method-evidence-testing and simplification were the cleaner bounded anchors into the current graph.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names latticework/scaffolding and Socratic questioning as additional ally candidates worth evaluating."
     ]
   }
 }

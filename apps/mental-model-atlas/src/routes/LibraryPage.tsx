@@ -34,10 +34,6 @@ export default function LibraryPage() {
           .includes(needle)
       : true,
   );
-  const completePageCount = models.filter((model) =>
-    cardFirstModelPageUrl(model.slug),
-  ).length;
-
   function updateQuery(value: string): void {
     const params = new URLSearchParams(location.searchParams);
     if (value) {
@@ -59,13 +55,18 @@ export default function LibraryPage() {
             type="search"
             value={query}
             onChange={(event) => updateQuery(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key !== "Enter" || filteredModels.length === 0) return;
+              event.preventDefault();
+              navigate(`/models/${filteredModels[0].slug}`);
+            }}
             placeholder="Try ‘abstraction’ or ‘systems’"
           />
         </label>
-        <p role="status">
-          {filteredModels.length} of {models.length} models · {completePageCount}{" "}
-          available to read in depth
-        </p>
+        <AppLink className="library-featured" href="/models/abstraction">
+          <span>Complete reading page</span>
+          <strong>Read Abstraction</strong>
+        </AppLink>
       </section>
 
       {filteredModels.length === 0 ? (
@@ -111,7 +112,6 @@ function LibraryFrame({ children }: { children: React.ReactNode }) {
   return (
     <main id="main" className="content-route library-route">
       <header className="content-hero">
-        <p className="eyebrow">Model Library</p>
         <h1>Browse mental models.</h1>
         <p>
           Find an idea by name, read its summary, then open the full page or see how

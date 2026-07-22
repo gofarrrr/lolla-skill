@@ -7,14 +7,20 @@
       "rationale_text": "Emotional-intelligence helps cross-cultural-communication-frameworks read the audience's social and emotional context before choosing tone or structure.",
       "source_quote": "CCC-F relies heavily on EI",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical states the framework 'relies heavily on EI' — emotional intelligence provides the capacity for perspective-taking and social awareness that forms the foundation of effective cross-cultural communication.",
+      "activation_condition": "When cross-cultural communication requires reading emotional states and modeling others' inner realities to adapt messages beyond surface-level cultural scripts"
     },
     {
       "target_model_id": "active-listening",
       "rationale_text": "Active-listening helps cross-cultural-communication-frameworks understand the audience's actual frame instead of projecting one onto them.",
       "source_quote": "Perspective Taking",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the communication framework by providing receptive capacity, though not explicitly named in the canonical Latticework section as a primary ally.",
+      "activation_condition": "When cultural nuances in communication require attentive reception and interpretation beyond the speaker's explicit words"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias undermines cross-cultural-communication-frameworks when the sender interprets audience signals only as support for the original frame.",
       "source_quote": "Confirmation Bias / Groupthink",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From the risks section — confirmation bias causes communicators to seek or interpret evidence supporting existing hypotheses about cultural patterns rather than genuinely adapting to the audience.",
+      "activation_condition": "When cross-cultural observations are filtered through pre-existing cultural stereotypes rather than genuinely adapting to the specific audience's actual communication patterns"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The relation file keeps the cleanest current-vocabulary graph from the raw source: emotional and listening allies, with confirmation-bias as the clearest bounded antagonist.",
+    "summary": "Layer 1+2 enrichment complete. Allies: emotional-intelligence 0.95 (critical — 'relies heavily on EI'), active-listening 0.80 (moderate — supports receptive capacity). Antagonist: confirmation-bias 0.80 (moderate — filters cultural observations through stereotypes). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies curated.",
     "donor_drops": [
       "Did not widen into broad communication theory neighbors because the source is strongest on frame fit and stereotype avoidance."
     ],
     "open_questions": [
-      "Systems-thinking is a source-real ally, but emotional-intelligence and active-listening were the more immediate communication anchors."
+      "Systems-thinking is a source-real ally, but emotional-intelligence and active-listening were the more immediate communication anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names systems-thinking and feynman-technique as additional synergistic allies."
     ]
   }
 }

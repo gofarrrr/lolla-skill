@@ -2,7 +2,18 @@
   "model_id": "storytelling-frameworks",
   "source_file": "Storytelling_Frameworks_rag.md",
   "allies": [],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines storytelling-frameworks by causing experts to communicate abstract slogans instead of the concrete, sticky stories that actually change behavior.",
+      "source_quote": "The Curse of Knowledge: This is the archvillain of sticky ideas. Experts suffer from this bias, which prevents them from remembering what it was like not to know something. They often communicate abstractly (e.g., 'maximize shareholder value'), which is accurate but useless because it doesn't guide action.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Canonical calls the Curse of Knowledge the archvillain of sticky ideas that prevents experts from communicating accessibly",
+      "activation_condition": "When expert knowledge prevents translation of complex ideas into concrete, actionable stories for the audience"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "algorithmic-thinking",
@@ -30,12 +41,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. curse-of-knowledge antagonist at 0.95 as canonical calls it the archvillain of sticky ideas.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 0 curated allies. Canonical suggests system-1, analogies-and-metaphors as recovery candidates."
     ]
   },
   "deferred_higher_order_notes": {

@@ -84,15 +84,27 @@ class OperationalCurationRecord:
 
 
 def load_operational_curation(root: Path, model_ids: tuple[str, ...] | None = None) -> dict[str, OperationalCurationRecord]:
-    curation_dir = Path(root) / "curation"
+    curation_dir = Path(root) / "data" / "curation"
     if not curation_dir.exists():
         raise OperationalCurationValidationError(f"Missing curation directory: {curation_dir}")
 
     selected_ids = set(model_ids or ())
     records: dict[str, OperationalCurationRecord] = {}
-    for path in sorted(curation_dir.glob("*.json")):
-        if path.name == "schema.json":
-            continue
+    paths = (
+        sorted(curation_dir / f"{model_id}.json" for model_id in selected_ids)
+        if selected_ids
+        else [
+            path
+            for path in sorted(curation_dir.glob("*.json"))
+            if path.name not in {
+                "schema.json",
+                "compiler_inputs_manifest.json",
+                "graph_compiler_contract.json",
+                "relation_semantics_manifest.json",
+            }
+        ]
+    )
+    for path in paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
         validate_operational_curation_payload(payload, path=path, root=Path(root))
         record = OperationalCurationRecord.from_payload(payload, path)
@@ -138,7 +150,7 @@ def validate_operational_curation_payload(
     source_file = str(payload["source_file"]).strip()
     if not source_file.endswith(".md"):
         raise OperationalCurationValidationError(f"{path}: source_file must end with .md")
-    source_path = root / "MM_CANONICAL_216" / source_file
+    source_path = root / "data" / "model_sources" / source_file
     if not source_path.exists():
         raise OperationalCurationValidationError(
             f"{path}: source file does not exist: {source_path}"
@@ -284,8 +296,8 @@ def build_operational_curation_audit(
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "curation_root": str(root / "curation"),
-        "schema_path": str(root / "curation" / "schema.json"),
+        "curation_root": str(root / "data" / "curation"),
+        "schema_path": str(root / "data" / "curation" / "schema.json"),
         "all_files_valid": True,
         "validated_model_count": len(records),
         "validated_model_ids": list(model_ids),
@@ -301,7 +313,7 @@ def load_operational_curation_comparison_graph(
     root: Path,
 ) -> tuple[dict[str, object], str]:
     root = Path(root)
-    build_graph = json.loads((root / "build" / "knowledge_graph.json").read_text(encoding="utf-8"))
+    build_graph = json.loads((root / "data" / "knowledge_graph.json").read_text(encoding="utf-8"))
     metadata = build_graph.get("metadata", {}) if isinstance(build_graph, dict) else {}
     if metadata.get("uses_operational_curation"):
         from .compilation_bundle import KnowledgeCompiler

@@ -2,13 +2,16 @@ import { describe, expect, it } from "vitest";
 
 // The application intentionally excludes Node types. Vitest still runs in Node,
 // so these tests read the exact checked-in CSS contract.
-// @ts-expect-error -- test-only Node built-ins
+// @ts-ignore -- test-only Node built-ins may or may not be typed by the installed test runner
+import { createHash } from "node:crypto";
+// @ts-ignore -- test-only Node built-ins may or may not be typed by the installed test runner
 import { existsSync, readFileSync } from "node:fs";
 
 declare const process: { cwd: () => string };
 
 const root = process.cwd();
 const mainSource = readFileSync(`${root}/src/main.tsx`, "utf8");
+const appSource = readFileSync(`${root}/src/App.tsx`, "utf8");
 const contractPath = `${root}/src/design-system/index.css`;
 
 const activeFiles = [
@@ -61,6 +64,17 @@ describe("Mental Model Atlas design-system contract", () => {
     expect(mainSource).not.toContain('import "./restraint.css"');
     expect(existsSync(`${root}/src/styles.css`)).toBe(false);
     expect(existsSync(`${root}/src/restraint.css`)).toBe(false);
+  });
+
+  it("uses the preserved founder-supplied Lolla wordmark in the shared shell", () => {
+    const logoPath = `${root}/public/brand/lolla-wordmark-original.png`;
+    expect(existsSync(logoPath)).toBe(true);
+    expect(createHash("sha256").update(readFileSync(logoPath)).digest("hex")).toBe(
+      "8a94f61304d51850b758c198a9349ffa1ae33552b5b768427be45659bef67c01",
+    );
+    expect(appSource).toContain('src="/brand/lolla-wordmark-original.png"');
+    expect(appSource).toContain('aria-label="Lolla Atlas home"');
+    expect(appSource).not.toContain("Mental Model Atlas</small>");
   });
 
   it("imports the complete ordered design-system layer", () => {
@@ -146,7 +160,11 @@ describe("Mental Model Atlas design-system contract", () => {
     expect(relation).toContain("background: var(--color-surface-raised)");
     expect(states).toContain("animation: loading-node var(--duration-structural)");
     expect(responsive).toContain(".graph-stage {\n    display: none;");
-    expect(responsive).toContain(".mobile-atlas-entry {\n    display: block;");
+    expect(responsive).toContain(".mobile-atlas-entry {\n    display: none;");
+    expect(responsive).toContain(".segmented-control {\n    display: none;");
+    expect(responsive).toContain(
+      ".quick-models > div {\n    display: grid;\n    grid-template-columns: repeat(2, minmax(0, 1fr));",
+    );
   });
 
   it("defines every public route and state in the shared language", () => {

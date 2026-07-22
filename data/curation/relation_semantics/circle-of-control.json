@@ -7,17 +7,34 @@
       "rationale_text": "First-principles-thinking helps circle-of-control decompose constraints into assumptions and testable actions instead of treating the whole situation as one helpless block.",
       "source_quote": "Circle of Control works well with First Principles Thinking, where constraints are decomposed into controllable assumptions and testable actions.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Complement — 'works well with First Principles Thinking, where constraints are decomposed into controllable assumptions and testable actions' — useful pairing but 'works well with' indicates moderate complement rather than deep dependency.",
+      "activation_condition": "When items classified as uncontrollable need to be decomposed into underlying assumptions to test whether some component is actually within the team's influence"
     },
     {
       "target_model_id": "risk-vs-uncertainty",
       "rationale_text": "Risk-vs-uncertainty helps circle-of-control distinguish what should be hedged from what can actually be changed.",
       "source_quote": "It also complements Risk vs. Uncertainty by distinguishing what should be hedged versus what can be actively changed.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Complement — 'complements Risk vs. Uncertainty by distinguishing what should be hedged versus what can be actively changed' — helps calibrate the circle boundaries but uses complement language indicating moderate partnership.",
+      "activation_condition": "When the team needs to distinguish between factors that should be hedged against versus factors where direct action can change the outcome"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "status-quo-bias",
+      "rationale_text": "Status-quo-bias undermines circle-of-control by causing teams to classify difficult-but-influenceable factors as 'outside control' without testing whether influence could actually be increased, turning the model into avoidance disguised as realism.",
+      "source_quote": "A common anti-pattern is labeling difficult-but-influenceable factors as 'outside control' too early, which can become avoidance disguised as realism.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly corrupts the model's core function — 'labeling difficult-but-influenceable factors as outside control too early, which can become avoidance disguised as realism' — turns the control classification exercise into a tool for avoiding difficult action.",
+      "activation_condition": "When the team is classifying difficult-but-influenceable factors as uncontrollable without testing whether influence could actually be increased through effort, changed incentives, or new information"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "systems-thinking",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is concise and strongest on two named complements and two named tensions, so the file preserves that bounded surface without inventing extra antagonists.",
+    "summary": "Layer 1+2 enrichment complete. Allies: first-principles-thinking 0.80 (moderate — 'works well with'), risk-vs-uncertainty 0.80 (moderate — 'complements'). Antagonists: status-quo-bias 0.90 (strong — 'avoidance disguised as realism'). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor relation sprawl where the raw file itself keeps the relational surface tight and explanatory."
     ],
     "open_questions": [
-      "The source does not provide a formal structured tension block, so the tension items remain normalized from the latticework discussion."
+      "The source does not provide a formal structured tension block, so the tension items remain normalized from the latticework discussion.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article is concise but notes periodic reclassification requirement — pre-mortem checks and recurring review could connect to metacognitive-questioning as an ally."
     ]
   }
 }

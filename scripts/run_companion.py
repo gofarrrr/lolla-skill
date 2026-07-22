@@ -23,13 +23,15 @@ import json
 import sys
 from pathlib import Path
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = REPO_ROOT / "data"
+sys.path.insert(0, str(REPO_ROOT / "engine"))
+
+from system_b.published_knowledge_substrate import PublishedKnowledgeSubstrate
 
 
 def load_kg():
-    kg_path = DATA_DIR / "knowledge_graph.json"
-    with open(kg_path) as f:
-        return json.load(f)
+    return PublishedKnowledgeSubstrate.open(REPO_ROOT).require_snapshot().knowledge_graph_payload()
 
 
 def load_curation(model_id: str) -> dict:
@@ -50,12 +52,9 @@ def load_intervention(model_id: str) -> dict:
 
 def load_relations(model_id: str) -> list:
     """Load relationship edges where this model is the source."""
-    rg_path = DATA_DIR / "relationship_graph.json"
-    if not rg_path.exists():
-        return []
-    with open(rg_path) as f:
-        data = json.load(f)
-    edges = data if isinstance(data, list) else data.get("edges", [])
+    edges = PublishedKnowledgeSubstrate.open(
+        REPO_ROOT
+    ).require_snapshot().relationship_graph_payload()
     return [
         e for e in edges
         if e.get("source_model_id") == model_id or e.get("target_model_id") == model_id

@@ -7,21 +7,30 @@
       "rationale_text": "Feynman-technique helps theory-induced-blindness reveal where the model falls apart by forcing plain-language explanation.",
       "source_quote": "By forcing an individual to explain a concept in plain language, it reveals where the model starts to fall apart.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states the Feynman Technique directly attacks TIB blind spots by revealing where the model starts to fall apart",
+      "activation_condition": "When explaining concepts in plain language reveals where theoretical assumptions start to fall apart"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking counters theory-induced-blindness by stripping away inherited assumptions and rebuilding from facts.",
       "source_quote": "First Principles Thinking serves as an antidote by stripping away all those assumptions, leaving only a set of facts and a desired outcome.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes FPT as an antidote to TIB by stripping away assumptions, leaving only facts and desired outcomes",
+      "activation_condition": "When stripping away theoretical assumptions exposes blind spots hidden by conventional frameworks"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking helps theory-induced-blindness by slowing the thinker down enough to compare frames instead of defaulting to the familiar one.",
       "source_quote": "The ally is System 2, the reflective mind. System 2 allows us to slow down and ask for reinforcement by engaging in comparison, choice, and ordered reasoning.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical allies include System 2 deliberative thinking; critical thinking represents the slow, reflective process that mitigates automatic theory adherence",
+      "activation_condition": "When questioning the validity of established theories requires slow, deliberate System 2 engagement"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias perpetuates theory-induced-blindness by absorbing contradictory evidence into the current frame instead of revising it.",
       "source_quote": "These psychological drivers perpetuate TIB.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical identifies confirmation bias and motivated reasoning as psychological drivers that perpetuate TIB",
+      "activation_condition": "When motivated reasoning perpetuates adherence to failing theories by filtering for confirming evidence"
     }
   ],
   "structured_tensions": [
@@ -43,21 +55,21 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
-      "tension_text": "Theory-induced-blindness conflicts with commitment-and-consistency-bias when public attachment to theory blocks reframing.",
-      "source_quote": "theory-induced-blindness vs commitment-and-consistency-bias: theory-induced-blindness conflicts with commitment-and-consistency-bias (commitment and consistency bias) when public attachment to theory blocks reframing.",
+      "target_model_id": "commitment-bias",
+      "tension_text": "Theory-induced-blindness conflicts with commitment-bias when public attachment to theory blocks reframing.",
+      "source_quote": "theory-induced-blindness vs commitment-bias: theory-induced-blindness conflicts with commitment-bias (commitment and consistency bias) when public attachment to theory blocks reframing.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on reframing allies that break model lock-in plus an explicit tension surface around confirmation and public attachment to theory.",
+    "summary": "Layer 1+2 enrichment complete. feynman-technique and first-principles at 0.90 as canonical names them as direct attacks and antidotes to TIB.",
     "donor_drops": [
       "Did not preserve donor philosophy sprawl beyond the source-backed anti-frame-lock and anti-confirmation surface."
     ],
     "open_questions": [
-      "Availability-style substitution is source-real antagonist, but confirmation-bias and commitment-and-consistency-bias were the cleaner bounded conflicts into the current graph vocabulary."
+      "Availability-style substitution is source-real antagonist, but confirmation-bias and commitment-bias were the cleaner bounded conflicts into the current graph vocabulary."
     ]
   }
 }

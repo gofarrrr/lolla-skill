@@ -7,24 +7,44 @@
       "rationale_text": "Active-listening gives emotional-intelligence a practical behavior for reading people without rushing past what they feel.",
       "source_quote": "show the other person they are truly being listened to and understood",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the social awareness component of EI by providing the receptive capacity to accurately read others' emotional states, though not named as a primary ally in the canonical Latticework.",
+      "activation_condition": "When social awareness requires attentive reception of emotional signals beyond the explicit content of what others are saying"
     },
     {
       "target_model_id": "empathy",
       "rationale_text": "Empathy gives emotional-intelligence its strongest route into social awareness and accurate perspective-taking.",
       "source_quote": "Recognizing emotions in others",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Core competence within EI — canonical describes empathy as enabling effective use of analogies by 'invoking existing cognitive schemas' and helping communicators 'dodge the Curse of Knowledge by making abstract ideas concrete'.",
+      "activation_condition": "When understanding others' perspectives requires the ability to model their emotional states and knowledge gaps as a foundation for effective interaction"
     },
     {
       "target_model_id": "psychological-safety",
       "rationale_text": "Psychological-safety helps emotional-intelligence turn emotional candor into group trust instead of defensive silence.",
       "source_quote": "work smoothly toward common goals",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the environment in which EI can be effectively applied — psychological safety enables the open emotional expression and vulnerability that EI skills are designed to navigate.",
+      "activation_condition": "When team dynamics require an environment where emotional expression is safe enough for EI skills like empathic concern and conflict navigation to function effectively"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization undermines emotional-intelligence by converting genuine emotional signals into self-serving narratives, corrupting the self-awareness and empathy loops that EI depends on.",
+      "source_quote": "People rarely use pure expected value calculations for major life decisions, instead relying on the Affect Heuristic (where feelings, rather than calculated values, drive assessment).",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence — canonical points to cold rationality vs. emotional processing as the core tension. Rationalization as post-hoc justification can mask genuine emotional signals, but the canonical mechanism is different from the curation's mapping.",
+      "activation_condition": "When post-hoc rational justifications mask the genuine emotional signals that EI is designed to detect and respond to authentically"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "critical-thinking",
@@ -42,5 +62,10 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: empathy 0.90 (strong — core competence enabling social awareness), active-listening 0.80 (moderate — receptive capacity for emotional signals), psychological-safety 0.80 (moderate — enabling environment). Antagonist: rationalization 0.70 (supportive — medium confidence; canonical tension is cold rationality vs. emotional processing). Activation conditions assigned.",
+    "donor_drops": [],
+    "open_questions": []
+  }
 }

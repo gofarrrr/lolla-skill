@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import ordinaryProjection from "../../public/data/phase1/ordinary-navigation.json";
+import ordinaryProjection from "../../public/data/phase1-v2/ordinary-navigation.json";
 import type { AtlasProjection } from "../projection";
 import {
   GRAPH_HEIGHT,

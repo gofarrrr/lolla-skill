@@ -21,13 +21,26 @@ It is also intentionally separate from higher-order relation logic such as:
 ## Authority Order
 
 The authority order for this layer is:
-1. raw markdown in `MM_CANONICAL_216/*.md`
-2. reviewed relation curation in this directory
-3. preview-only compiled relation artifacts
-4. any future compiler or runtime use
 
-Donor relation artifacts may be consulted as draft reference only.
-They are not canonical truth and must not be bulk-imported.
+1. repository-local raw Markdown in `data/model_sources/*.md`
+2. reviewed relation curation in this directory
+3. the lifecycle and inclusion boundary in
+   `data/curation/relation_semantics_manifest.json`
+4. candidate compiler outputs
+5. explicitly promoted runtime artifacts
+
+The current 222-record authoring set was reconciled once against the published
+1,358-relation graph and admitted byte-for-byte. The temporary recovery
+snapshot is not a project dependency. A fresh clone validates the complete set
+with:
+
+```bash
+PYTHONPATH=. python3 scripts/product/adopt_relation_semantics_authoring.py --validate-only
+```
+
+Historical identity records remain in this directory as immutable source
+evidence, but the manifest excludes them from active compilation. Runtime
+aliasing is not authorized.
 
 ## Contract
 
@@ -59,6 +72,9 @@ Each item must contain:
 
 Optional:
 - `note`
+- `affinity_strength`
+- `affinity_rationale`
+- `activation_condition`
 
 ### `antagonists`
 
@@ -73,6 +89,9 @@ Each item must contain:
 
 Optional:
 - `note`
+- `affinity_strength`
+- `affinity_rationale`
+- `activation_condition`
 
 ### `structured_tensions`
 
@@ -127,13 +146,18 @@ Values must be short lists of meaningful strings.
 
 ## Current Wave Boundary
 
-Wave 3 in this repo is preview-only.
+Wave 3 authoring is now repository-local and complete for the currently
+published 222-model / 1,358-relation graph. That custody fact does not itself
+authorize publication of new graph bytes or establish semantic correctness or
+product usefulness.
 
-This run does not:
-- integrate into the main compiler
-- change `build/knowledge_graph.json`
-- change `build/relationship_graph.json`
-- change runtime behavior
-- add embeddings
+This admission does not:
+
+- change `data/knowledge_graph.json`
+- change `data/relationship_graph.json`
+- change runtime selection or portfolio behavior
+- add, regenerate, or refresh embeddings
+- infer reciprocity, reverse edges, or transitive relations
+- authorize broader graph traversal
 
 The quality bar is usefulness with inspectability, not relation volume.

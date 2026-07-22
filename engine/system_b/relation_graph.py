@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-import json
 import math
 from pathlib import Path
 from typing import Any, Callable
+
+from .published_knowledge_substrate import (
+    PublishedKnowledgeSnapshot,
+    PublishedKnowledgeSubstrate,
+)
 
 
 # Phase 3 Commit B calibration constants (commit 43d39e4, 2026-04-21).
@@ -110,34 +114,22 @@ class RelationGraph:
 
     @classmethod
     def load(cls, root: Path) -> "RelationGraph":
-        # Loads relationship_graph.json — Wave 3–derived when compiled with operational curation
-        # and curation/relation_semantics/ present; otherwise legacy markdown extraction.
-        # See CLAUDE.md and build/GENERATED.md for the knowledge layer doctrine.
-        path = Path(root) / "build" / "relationship_graph.json"
-        if not path.exists():
+        result = PublishedKnowledgeSubstrate.open(root)
+        if result.snapshot is None:
             return cls({})
+        return cls.from_snapshot(result.require_snapshot(allow_partial=True))
 
-        try:
-            raw_edges = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            return cls({})
-
+    @classmethod
+    def from_snapshot(cls, snapshot: PublishedKnowledgeSnapshot) -> "RelationGraph":
         graph: dict[str, list[RelationNeighbor]] = {}
-        edges = raw_edges if isinstance(raw_edges, list) else raw_edges.get("edges", [])
-        if not isinstance(edges, list):
-            return cls({})
-
-        for edge in edges:
-            if not isinstance(edge, dict):
-                continue
-            source_model_id = str(edge.get("source_model_id", "")).strip()
-            target_model_id = str(edge.get("target_model_id", "")).strip()
-            if not source_model_id or not target_model_id:
-                continue
+        for relation in snapshot.relations:
+            edge = relation.payload
+            source_model_id = relation.source_model_id
+            target_model_id = relation.target_model_id
             graph.setdefault(source_model_id, []).append(
                 RelationNeighbor(
                     model_id=target_model_id,
-                    edge_type=str(edge.get("edge_type", "")).strip().lower(),
+                    edge_type=relation.edge_type.lower(),
                     composition_affinity=float(edge.get("composition_affinity", 0.0) or 0.0),
                     source_description=str(edge.get("source_description", "") or ""),
                     affinity_rationale=str(edge.get("affinity_rationale", "") or ""),

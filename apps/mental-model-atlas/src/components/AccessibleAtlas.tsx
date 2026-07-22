@@ -21,12 +21,12 @@ export function AccessibleAtlas({
     <section id="accessible-atlas" className="accessible-atlas" aria-labelledby="text-atlas-title">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Browse by name</p>
+          <p className="eyebrow">Choose a model</p>
           <h2 id="text-atlas-title">Models and their connections</h2>
         </div>
         <p>
-          {selection.visibleModels.length} of {projection.models.length} models match
-          the current text filter.
+          Select a named model to inspect its exact neighborhood or open its
+          available reading page.
         </p>
       </div>
 

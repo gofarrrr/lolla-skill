@@ -7,21 +7,30 @@
       "rationale_text": "Cognitive-load-theory explains why constraints help: boundaries reduce working-memory burden and make focused processing possible.",
       "source_quote": "Constraints are the implementation mechanism of CLT.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Implementation mechanism — 'Constraints are the implementation mechanism of CLT' — constraints ARE how CLT's principles get operationalized by limiting information processed at once and structuring working memory demand.",
+      "activation_condition": "When working memory limits need to be operationalized through explicit constraints that limit the amount of new information processed at once"
     },
     {
       "target_model_id": "checklists",
       "rationale_text": "Checklists turn constraints into explicit operating boundaries so teams can focus on what belongs inside the frame.",
       "source_quote": "The primary purpose of identifying and applying constraints is to introduce clarity and consistency.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Operational tool — 'The primary purpose of identifying and applying constraints' is served through checklist enforcement, turning constraints into repeatable execution discipline.",
+      "activation_condition": "When identified constraints need to be converted into repeatable operational procedures that ensure consistent enforcement across team members and situations"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification helps constraints cut away everything that does not serve the main goal so the signal stays usable.",
       "source_quote": "The guiding principle is to Make Everything Earn Its Place.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Guiding principle — 'The guiding principle is to Make Everything Earn Its Place' — simplification helps constraints focus on the essential rather than accumulating decorative restrictions.",
+      "activation_condition": "When constraints are accumulating beyond what the problem requires and each restriction needs to justify its existence by demonstrating that it addresses a real limit"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias turns a useful boundary into a rigid mental cage that resists updating when the frame is wrong.",
       "source_quote": "Confirmation bias is the enemy of adapting or abandoning an outdated framework, as it resists disconfirming evidence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific threat — 'Confirmation bias is the enemy of adapting or abandoning an outdated framework' — prevents constraint revision when evidence shows the constraint no longer serves the objective.",
+      "activation_condition": "When evidence suggests a constraint has become outdated or counterproductive but the team is defending it because it is familiar rather than because it still serves the objective"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring distorts constraints when the initial boundary gets over-weighted after the real problem or environment changes.",
       "source_quote": "Over-focusing on an initial constraint or piece of information (the anchor) and failing to incorporate subsequent, potentially contradictory or more relevant data.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Frame fixation — 'Over-focusing on an initial constraint or piece of information' — the first constraint identified absorbs disproportionate attention, preventing recognition of more binding limits.",
+      "activation_condition": "When the first constraint identified is receiving disproportionate attention and the team is not testing whether a different constraint is actually the binding limit on the system"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on load-reduction allies and conflicts with stale, sticky frames rather than on an explicit tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: cognitive-load-theory 0.90 (strong — 'implementation mechanism of CLT'), checklists 0.80 (moderate — operational enforcement), simplification 0.80 (moderate — 'Make Everything Earn Its Place'). Antagonists: confirmation-bias 0.90 (strong — blocks constraint adaptation), anchoring 0.80 (moderate — fixes attention on first constraint). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation inflation where the raw source mainly supports bounded allies and two clean anti-bias conflicts."
     ],

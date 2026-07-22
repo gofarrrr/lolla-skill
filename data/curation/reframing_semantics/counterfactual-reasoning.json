@@ -1,0 +1,35 @@
+{
+    "model_id": "counterfactual-reasoning",
+    "source_file": "Counterfactual_Reasoning_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question treats the current situation as the only plausible outcome without exploring what alternative paths were available at the decision point — the past feels inevitable but wasn't.",
+        "The question accepts a single causal story without asking what conditions would need to have been different for the outcome to change — hidden assumptions about causation go untested.",
+        "The question asks 'what should we do next?' without first asking 'what would we have to believe for our current path to be the right one?' — implicit assumptions remain unspelled.",
+        "The question frames success or failure as proof that the decision process was right or wrong, without recovering the missing branches that make the original choice intelligible."
+    ],
+    "frame_patterns_challenged": [
+        "counterfactual_suppression",
+        "borrowed_premise",
+        "option_space_collapse"
+    ],
+    "reframing_move": "Force the question to recover its missing branches: instead of asking about the path taken, ask 'what alternative paths existed at the decision point, and what would have had to be true for each to be the better choice?' — the WTWHTB analysis makes hidden assumptions concrete and testable.",
+    "reframing_move_types": [
+        "counterfactual_recovery",
+        "assumption_surfacing"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Counterfactual reasoning operates directly on question structure by forcing recovery of omitted scenarios. The source is explicit: WTWHTB analysis, decision trees, and the knowns/unknowns matrix all demand that the question be expanded to include paths not taken. The model's core function is making the invisible alternative realities visible.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded in source: recovering missing branches (decision trees), WTWHTB analysis (spelling out implicit assumptions), challenging the initial hypothesis (seeking disconfirmation), and separating outcome quality from decision quality (counterfactual evaluation)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Counterfactual suppression is the primary target (the question doesn't explore what-if). Borrowed premise via WTWHTB (inherited assumptions made testable). Option space collapse via scenario analysis (recovering omitted paths)."
+        }
+    }
+}

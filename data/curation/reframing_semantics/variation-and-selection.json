@@ -1,0 +1,33 @@
+{
+    "model_id": "variation-and-selection",
+    "source_file": "Variation_and_Selection_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question assumes that the best approach can be identified by analysis alone, when the situation is complex enough that generating multiple variations and selecting based on real feedback would be more effective.",
+        "The question collapses to a single 'best' option prematurely when the environment is uncertain and maintaining variation across approaches would hedge against prediction failure.",
+        "The question treats the current winning approach as permanent when it is actually the survivor of a selection process that may have changed — the selection environment has shifted but the approach hasn't.",
+        "The question optimizes within a single lineage of ideas when cross-pollination between competing approaches would generate novel combinations."
+    ],
+    "frame_patterns_challenged": [
+        "option_space_collapse",
+        "survivorship_frame",
+        "temporal_fixation",
+        "habitual_frame"
+    ],
+    "reframing_move": "Before converging on one approach, ask: 'Is this a situation where maintaining multiple competing variations and letting the environment select would outperform picking the analytically best option now?' — the variation-selection reframe replaces prediction with exploration.",
+    "reframing_move_types": ["scope_expansion", "mode_switch"],
+    "curation_confidence": "medium",
+    "curation_note": "Variation and Selection applies evolutionary thinking to problem framing — generate variety, select by feedback. The source describes how 'blind variation plus selective retention drives adaptive change', 'diversity of approaches is maintained to hedge against uncertainty', and 'the environment selects, not the designer'. The option_space_collapse challenge is direct: the model insists on maintaining variation. The survivorship_frame challenge maps to questioning why the current survivor is still the right choice. Medium confidence because the model requires a specific kind of uncertain, multi-option context to activate, but when it fires, the reframing is strong.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Analysis vs variation (blind variation concept), premature convergence (maintaining diversity), shifted selection environment (changed context), single lineage (cross-pollination of approaches)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Option space collapse: model insists on maintaining variation. Survivorship frame: current winner may reflect past selection, not present fitness. Temporal fixation: selection environment changes. Habitual frame: single lineage becomes default."
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "model_id": "authority-bias",
+    "source_file": "Authority_Bias_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question imports its framing from an authority figure, expert consensus, or institutional position without testing whether that authority's frame actually fits the current situation.",
+        "The question treats the authority's framing as the premise rather than as one hypothesis — the borrowed frame has not been earned through examination of the specific situation.",
+        "The question dismisses alternative framings because they contradict expert or institutional opinion, rather than evaluating them on structural merit.",
+        "The question conflates the authority's domain expertise with frame-setting authority — the expert may know the answer space but may be framing the wrong question."
+    ],
+    "frame_patterns_challenged": [
+        "borrowed_premise",
+        "externalized_agency",
+        "habitual_frame",
+        "counterfactual_suppression"
+    ],
+    "reframing_move": "Before accepting the authority's framing, ask: 'Is this expert right about the problem definition, or just about the answer to a problem they defined? What would the question look like if we set the frame ourselves?' — the authority-bias reframe separates expertise within a frame from expertise at choosing the frame.",
+    "reframing_move_types": ["assumption_surfacing", "constraint_relaxation"],
+    "curation_confidence": "medium-high",
+    "curation_note": "Authority Bias is a strong reframing model because it targets the specific mechanism by which frames get imported uncritically. The source describes 'excessive reliance on the opinions of authorities', 'deference that bypasses independent judgment', and how 'authority bias can be particularly harmful when the authority's domain does not match the problem domain'. The borrowed_premise challenge is the core mechanism — authority opinion becomes an unexamined premise. The externalized_agency challenge maps to the model's description of deferring judgment to external authority.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium-high",
+            "note": "Imported framing (deference concept), unearned premise (bypassed judgment), dismissed alternatives (authority as filter), domain mismatch (expertise ≠ frame-setting authority)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium-high",
+            "note": "Borrowed premise: authority's frame imported as given. Externalized agency: judgment deferred to authority. Habitual frame: authority opinion becomes the default. Counterfactual suppression: alternatives dismissed because they contradict authority."
+        }
+    }
+}

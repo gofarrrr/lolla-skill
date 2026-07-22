@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking gives auditability-traceability the machine-level view needed to connect outputs, levers, and responsibility into one inspectable chain.",
       "source_quote": "Systems thinking focuses on interrelationships, feedback loops, and seeing patterns of change.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Structural enabler — 'focuses on interrelationships, feedback loops, and seeing patterns of change' — provides the conceptual framework for audit trails that capture systemic rather than isolated events.",
+      "activation_condition": "When the audit trail needs to capture interrelationships, feedback loops, and patterns of change rather than isolated individual events"
     },
     {
       "target_model_id": "feedback-loops",
       "rationale_text": "Feedback-loops make auditability-traceability useful over time by turning visible trails into diagnosis, correction, and learning rather than static records.",
       "source_quote": "It facilitates building a synthesis of issues from specific data, allowing the organization to see patterns of mistakes.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific operational mechanism — 'building a synthesis of issues from specific data, allowing the organization to see patterns of mistakes' — converts audit data into organizational learning.",
+      "activation_condition": "When building organizational learning from audit data requires synthesizing patterns of mistakes and recurring issues across multiple incidents"
     },
     {
       "target_model_id": "constraints",
       "rationale_text": "Constraints help auditability-traceability stay actionable by making boundaries, assumptions, and operating limits explicit inside the trail.",
       "source_quote": "Explicit Workplanning ... including data sources and end products. This creates the definitive audit trail.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Operational tool — 'Explicit Workplanning... creates the definitive audit trail' — provides the structural framework for traceability but is a tool-level complement rather than a core mechanism.",
+      "activation_condition": "When explicit workplanning with defined data sources and end products needs to create a definitive, step-by-step audit trail for downstream accountability"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias corrupts auditability-traceability when the trail is built to justify a wanted answer instead of to expose how the judgment really formed.",
       "source_quote": "The tendency to process information to get a conclusion we want, rather than discovering what is true, obscuring the objective audit trail.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Generic bias application — 'The tendency to process information to get a conclusion we want' — standard bias-vs-model relationship without auditability-specific mechanism.",
+      "activation_condition": "When audit findings are being interpreted to confirm the desired conclusion about system health rather than objectively assessing the evidence trail"
     },
     {
       "target_model_id": "simplification",
       "rationale_text": "Simplification becomes an antagonist when it strips away the trail needed for others to reconstruct assumptions, changes, and failure points.",
       "source_quote": "may communicate the \"punchline\" ... without providing the necessary concrete, traceable steps for action",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly undermines the model's core function — 'may communicate the punchline without providing the necessary concrete, traceable steps for action' — strips the traceability that makes auditability valuable.",
+      "activation_condition": "When communicating audit results through simplified summaries strips out the concrete traceable reasoning steps needed for accountability and reproducibility"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on reconstructable causal trails, visible logic, and trust through inspectability, so the file preserves that bounded first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — systemic patterns), feedback-loops 0.90 (strong — pattern synthesis), constraints 0.80 (moderate — structural framework). Antagonists: simplification 0.90 (strong — strips traceability), confirmation-bias 0.80 (moderate — biased interpretation). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor documentation relations beyond the strongest current-vocabulary links around systems, feedback, constraints, and anti-distortion pressure."
     ],

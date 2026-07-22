@@ -1,0 +1,48 @@
+{
+  "dimension_id": "resource-allocation",
+  "dimension_name": "Resource Allocation",
+  "cleaving_frame": "Supply vs Demand / Scarcity vs Abundance",
+  "description": "The problem involves finite resources (capital, time, talent, attention) that must be distributed across competing uses. The structural question is where to deploy scarce resources for maximum return.",
+  "question_types": ["decision-evaluation", "action-planning"],
+  "detect_when": [
+    "Multiple uses compete for the same pool of resources (capital, time, headcount, attention)",
+    "Choosing one option means forgoing another — the displaced alternative matters",
+    "The constraint is how much is available, not what to do with it",
+    "A continuation or default path is being treated as free when it consumes real resources"
+  ],
+  "coverage_signals": [
+    "The answer explicitly identifies what is being given up (the displaced alternative)",
+    "The answer compares marginal returns across options, not just absolute returns",
+    "The answer sizes the resource constraint and tests whether it binds",
+    "The answer distinguishes between the vital few uses and the trivial many"
+  ],
+  "materiality_test": "Would reallocating the same resources differently change the recommended outcome?",
+  "reasoning_demanded": "opportunity cost analysis, marginal return comparison, constraint sizing",
+  "models": [
+    "opportunity-cost",
+    "comparative-advantage",
+    "trade-offs",
+    "pareto-principle",
+    "prioritization",
+    "optimization-theory"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "All six models validated against canonical articles. Opportunity-cost provides the 'compared to what?' forcing function. Comparative-advantage directs effort to highest input-to-output ratio. Trade-offs addresses balancing competing demands under scarcity. Pareto-principle identifies the vital few vs trivial many. Prioritization provides the exclusion discipline. Optimization-theory frames constrained maximization. Together they cover the full resource allocation reasoning surface.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions drawn from opportunity-cost ('compared to what?', displaced alternatives), trade-offs (forces constantly conflicting, scarce resources), and prioritization (what to do and what not to do). The continuation-as-free trigger from opportunity-cost's 'sponge vs sieve' metaphor."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Signals map to source material: displaced alternative from opportunity-cost, marginal return comparison from trade-offs CBA framework, constraint sizing from optimization-theory's constrained optimization, vital few from pareto-principle."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All six models have explicit resource allocation activation in their canonical articles. Opportunity-cost and trade-offs are the primary pair. Pareto and prioritization reinforce the 'what not to do' discipline. Comparative-advantage and optimization-theory round out the structural reasoning."
+    }
+  }
+}

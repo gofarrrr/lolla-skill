@@ -7,21 +7,30 @@
       "rationale_text": "Bayesian reasoning depends on law-of-large-numbers logic because reliable priors and base rates need enough data to be trustworthy.",
       "source_quote": "The LLN provides the critical statistical foundation for Bayesian reasoning.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "LLN 'provides the critical statistical foundation for Bayesian reasoning' — Bayesian statistics requires reliable base rates derived from large samples, making LLN a foundational prerequisite.",
+      "activation_condition": "When Bayesian updating requires statistically reliable priors that can only be established from sufficiently large sample populations"
     },
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates operationalizes law-of-large-numbers by turning large-sample frequencies into usable priors for judgment.",
       "source_quote": "Bayesian statistics requires a prior probability (base rate) to be established before new evidence is incorporated.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as deeply intertwined — 'reliable base rates must be derived from large samples' — LLN provides the statistical guarantee that base rates converge to true population parameters.",
+      "activation_condition": "When base-rate estimates need to be trusted as stable population parameters rather than small-sample artifacts vulnerable to regression effects"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps law-of-large-numbers reason about emergence and large-scale interactions instead of isolated datapoints.",
       "source_quote": "The LLN aligns with the systemic concept of emergence, which suggests that the whole system acquires qualitatively new properties that cannot be predicted from the simple addition of individual components.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "LLN aligns with the systemic concept of emergence — 'the whole system acquires qualitatively new properties that cannot be predicted from simple addition of individual components'.",
+      "activation_condition": "When aggregate system behavior diverges from individual component behavior and only becomes visible through large-sample observation of the whole"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Representativeness-heuristic fights law-of-large-numbers by replacing frequency data with similarity-based judgment.",
       "source_quote": "This heuristic, a primary antagonist, causes people to evaluate probability based on similarity (representativeness) rather than actual frequency data (base rates).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Described as 'a primary antagonist' — causes people to evaluate probability based on similarity rather than actual frequency data, leading directly to base-rate neglect which is the core failure LLN prevents.",
+      "activation_condition": "When vivid individual cases or compelling personality sketches override population-level frequency data that only stabilize at large sample sizes"
     },
     {
       "target_model_id": "narratives",
       "rationale_text": "Narratives can work against law-of-large-numbers when vivid stories seduce the team away from population logic.",
       "source_quote": "It is a strong fit when teams need population logic instead of narrative seduction.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Narrative coherence produces 'exaggerated coherence' where System 1 constructs rich images from few scraps of evidence — compelling stories override the statistical discipline LLN demands.",
+      "activation_condition": "When a coherent narrative constructed from limited data points substitutes for the systematic large-sample evidence that LLN requires for reliable inference"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on statistical allies and anti-small-sample conflicts, so the file preserves that first-order surface directly.",
+    "summary": "Layer 1+2 enrichment complete. Allies: bayesian 0.90 (strong — 'critical statistical foundation'), base-rates 0.90 (strong — 'reliable base rates must be derived from large samples'), systems-thinking 0.80 (moderate — emergence alignment). Antagonists differentiated: representativeness-heuristic 0.95 (critical — 'a primary antagonist' causing base-rate neglect), narratives 0.80 (moderate — coherence illusion overrides statistical discipline).",
     "donor_drops": [
       "Did not preserve donor relation inflation beyond the raw large-sample, base-rate, and anti-vivid-story structure."
     ],

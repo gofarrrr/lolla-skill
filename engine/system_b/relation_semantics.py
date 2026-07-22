@@ -43,6 +43,9 @@ class RelationItem:
     confidence: str
     note: str
     tension_type: str
+    affinity_strength: float = 0.0
+    affinity_rationale: str = ""
+    activation_condition: str = ""
 
 
 @dataclass(frozen=True)
@@ -81,7 +84,7 @@ def load_relation_semantics(
     model_ids: tuple[str, ...] | None = None,
     valid_model_ids: set[str] | None = None,
 ) -> dict[str, RelationSemanticsRecord]:
-    relation_dir = Path(root) / "curation" / "relation_semantics"
+    relation_dir = Path(root) / "data" / "curation" / "relation_semantics"
     if not relation_dir.exists():
         raise RelationSemanticsValidationError(
             f"Missing relation semantics directory: {relation_dir}"
@@ -89,9 +92,12 @@ def load_relation_semantics(
 
     selected_ids = set(model_ids or ())
     records: dict[str, RelationSemanticsRecord] = {}
-    for path in sorted(relation_dir.glob("*.json")):
-        if path.name == "schema.json":
-            continue
+    paths = (
+        sorted(relation_dir / f"{model_id}.json" for model_id in selected_ids)
+        if selected_ids
+        else [path for path in sorted(relation_dir.glob("*.json")) if path.name != "schema.json"]
+    )
+    for path in paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
         validate_relation_semantics_payload(
             payload,
@@ -145,20 +151,20 @@ def validate_relation_semantics_payload(
     source_file = str(payload["source_file"]).strip()
     if not source_file.endswith(".md"):
         raise RelationSemanticsValidationError(f"{path}: source_file must end with .md")
-    source_path = root / "MM_CANONICAL_216" / source_file
+    source_path = root / "data" / "model_sources" / source_file
     if not source_path.exists():
         raise RelationSemanticsValidationError(
             f"{path}: source file does not exist: {source_path}"
         )
 
-    wave1_path = root / "curation" / f"{model_id}.json"
+    wave1_path = root / "data" / "curation" / f"{model_id}.json"
     if not wave1_path.exists():
         raise RelationSemanticsValidationError(
             f"{path}: corresponding Wave 1 curation file is missing: {wave1_path}"
         )
 
     if valid_model_ids is None:
-        kg_path = root / "build" / "knowledge_graph.json"
+        kg_path = root / "data" / "knowledge_graph.json"
         if not kg_path.exists():
             raise RelationSemanticsValidationError(
                 f"{path}: knowledge graph required for relation target validation: {kg_path}"
@@ -284,7 +290,7 @@ def build_relation_semantics_delta_report(
 ) -> dict[str, object]:
     root = Path(root)
     records = load_relation_semantics(root, model_ids=model_ids)
-    knowledge_graph = json.loads((root / "build" / "knowledge_graph.json").read_text(encoding="utf-8"))
+    knowledge_graph = json.loads((root / "data" / "knowledge_graph.json").read_text(encoding="utf-8"))
     graph_models = knowledge_graph.get("models", {}) if isinstance(knowledge_graph, dict) else {}
     graph_edges = knowledge_graph.get("edges", []) if isinstance(knowledge_graph, dict) else []
 
@@ -638,6 +644,9 @@ def _items_from_payload(items_payload: object, *, text_key: str) -> tuple[Relati
                 confidence=str(entry["confidence"]),
                 note=str(entry.get("note", "")).strip(),
                 tension_type=str(entry.get("tension_type", "")).strip(),
+                affinity_strength=float(entry.get("affinity_strength", 0.0)),
+                affinity_rationale=str(entry.get("affinity_rationale", "")).strip(),
+                activation_condition=str(entry.get("activation_condition", "")).strip(),
             )
         )
     return tuple(items)
@@ -661,7 +670,17 @@ def _validate_item_list(
             raise RelationSemanticsValidationError(
                 f"{path}: {field_name}[{index}] must be an object"
             )
-        allowed = {"target_model_id", text_key, "source_quote", "extraction_type", "confidence", "note"}
+        allowed = {
+            "target_model_id",
+            text_key,
+            "source_quote",
+            "extraction_type",
+            "confidence",
+            "note",
+            "affinity_strength",
+            "affinity_rationale",
+            "activation_condition",
+        }
         if allow_tension_type:
             allowed.add("tension_type")
         unknown_fields = sorted(set(entry).difference(allowed))

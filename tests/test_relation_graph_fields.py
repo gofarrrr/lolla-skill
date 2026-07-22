@@ -1,9 +1,8 @@
 """Section 14 Phase 0: verify affinity_rationale + activation_condition
 flow from relationship_graph.json into the skill-side RelationNeighbor.
 
-Mirrors Lolla-system-b/tests/test_relation_graph.py's Phase0FieldPlumbingTests.
-Both sides keep the same guard because the two relation_graph.py files are
-maintained in parallel — this test catches accidental divergence.
+Preserves the original Phase 0 relation-field plumbing coverage locally after
+the loader migrated to the one published-substrate boundary.
 """
 from __future__ import annotations
 
@@ -19,6 +18,21 @@ from engine.system_b.relation_graph import RelationGraph, RelationNeighbor
 
 
 class Phase0FieldPlumbingTests(unittest.TestCase):
+    @staticmethod
+    def _write_model_registry(build: Path) -> None:
+        (build / "knowledge_graph.json").write_text(
+            json.dumps(
+                {
+                    "models": {
+                        "a": {"display_name": "A"},
+                        "b": {"display_name": "B"},
+                    },
+                    "tendencies": {},
+                }
+            ),
+            encoding="utf-8",
+        )
+
     def test_relation_neighbor_accepts_new_fields(self) -> None:
         neighbor = RelationNeighbor(
             model_id="m",
@@ -40,6 +54,7 @@ class Phase0FieldPlumbingTests(unittest.TestCase):
             root = Path(tmpdir)
             build = root / "build"
             build.mkdir()
+            self._write_model_registry(build)
             (build / "relationship_graph.json").write_text(
                 json.dumps([
                     {
@@ -64,6 +79,7 @@ class Phase0FieldPlumbingTests(unittest.TestCase):
             root = Path(tmpdir)
             build = root / "build"
             build.mkdir()
+            self._write_model_registry(build)
             (build / "relationship_graph.json").write_text(
                 json.dumps([
                     {

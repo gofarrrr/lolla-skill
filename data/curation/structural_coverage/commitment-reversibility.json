@@ -1,0 +1,48 @@
+{
+  "dimension_id": "commitment-reversibility",
+  "dimension_name": "Commitment & Reversibility",
+  "cleaving_frame": "Lock-in vs Optionality",
+  "description": "The problem involves a decision whose reversibility matters. Sunk costs, switching costs, or escalation dynamics are structurally present. The structural question is how much optionality is being consumed or preserved.",
+  "question_types": ["decision-evaluation", "action-planning"],
+  "detect_when": [
+    "Past investments create pressure to continue on the current path regardless of merit",
+    "Switching away from the current course would be costly or disruptive",
+    "The decision forecloses future options or locks in a trajectory",
+    "Escalation of commitment is a risk — the more invested, the harder to reverse"
+  ],
+  "coverage_signals": [
+    "The answer distinguishes sunk costs from future costs — past spend is not a reason to continue",
+    "The answer identifies exit costs, switching barriers, and contractual lock-in provisions",
+    "The answer values the optionality being consumed or preserved by the decision",
+    "The answer considers whether the commitment can be staged or made reversible"
+  ],
+  "materiality_test": "Would treating the decision as more reversible (or less) change the recommendation?",
+  "reasoning_demanded": "path-dependence analysis, option value assessment, sunk cost separation, switching cost evaluation",
+  "models": [
+    "sunk-cost-fallacy",
+    "lock-in",
+    "commitment-bias",
+    "switching-costs",
+    "optionality",
+    "path-dependence"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Sunk-cost-fallacy provides the cognitive trap (past investment shouldn't drive future decisions). Lock-in covers contractual and technical constraints that prevent switching. Commitment-bias addresses the escalation dynamic. Switching-costs quantifies the barrier to change. Optionality values the right to decide later. Path-dependence explains how early choices constrain future trajectories. Together they cover both the psychological and structural aspects of commitment.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from sunk-cost-fallacy (past investment pressure), lock-in (switching barriers), commitment-bias (escalation dynamics), optionality (foreclosed future options). Direct alignment with canonical article activation conditions."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Sunk vs future cost distinction from sunk-cost-fallacy. Exit costs from switching-costs and lock-in. Optionality valuation from optionality. Staged commitment from commitment-bias reversal conditions."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All six models have direct commitment/reversibility activation. This is one of the most tightly coherent dimension-model sets — every model addresses the same structural territory from a different angle."
+    }
+  }
+}

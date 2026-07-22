@@ -1,0 +1,34 @@
+{
+    "model_id": "root-cause-analysis",
+    "source_file": "Root_Cause_Analysis_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question is about an action to take when the diagnostic step has been skipped — 'what should we do?' is being asked before 'what is actually going wrong?'",
+        "The question confuses a proximate cause (the immediate trigger) with the root cause (the systemic flaw) — the question is about the match, not the powder keg.",
+        "The question asks how to fix a specific component without first disaggregating the problem to understand which components actually matter — diamond-cutting precision is missing.",
+        "The question jumps to a solution based on pattern-matching from a prior similar case without verifying that the same root cause applies this time."
+    ],
+    "frame_patterns_challenged": [
+        "symptom_as_problem",
+        "premature_intellectualization"
+    ],
+    "reframing_move": "Disaggregate before solving: instead of 'how do we fix X?', ask 'what is the root cause of X, and which specific component of X has the highest leverage for change?' — the logic tree reframe breaks the monolithic question into testable parts.",
+    "reframing_move_types": [
+        "scope_expansion",
+        "assumption_surfacing"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Root cause analysis complements five-whys with a structural approach — five-whys goes deep via sequential 'why', while RCA goes wide via disaggregation and logic trees. Both convert surface questions into deeper ones, but RCA specifically adds the spatial dimension of breaking the problem apart. The source is explicit: 'a root cause is a reason, not an action' — the reframing move converts action-questions into reason-questions.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: skipped diagnosis (Dalio loop), proximate vs root (core definition), missing disaggregation (diamond-cutting analogy), and pattern-matching without verification (expert problem-solving anti-pattern)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Symptom as problem: the question addresses the proximate cause, not the root. Premature intellectualization: jumped to a formulation without disaggregating the problem space first."
+        }
+    }
+}

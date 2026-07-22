@@ -7,14 +7,20 @@
       "rationale_text": "Premortem complements regret-theory by turning prospective hindsight into a structured review of what could go wrong before commitment.",
       "source_quote": "RMF functions as an emotionally driven premortem",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'RMF functions as an emotionally driven premortem — uses mental time travel to picture future failure/regret and looks back to analyze what caused the outcome.'",
+      "activation_condition": "When anticipating potential regret requires prospective hindsight — imagining the future failure and diagnosing its causes before committing."
     },
     {
       "target_model_id": "optionality",
       "rationale_text": "Optionality strengthens regret-theory by checking whether action can be made more reversible before anticipated regret hardens the choice.",
       "source_quote": "If the decision is reversible, there is nothing to lose and only information and speed to gain",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'If the RMF indicates action, it is powerful to consider if the decision is reversible. If reversible, there is nothing to lose and only information and speed to gain.'",
+      "activation_condition": "When regret minimization favors reversible decisions that preserve future options while avoiding the regret of inaction."
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias is countered by regret-theory when the framework forces the decision maker to consider the regretted path of inaction instead of only the comfortable default story.",
       "source_quote": "helps fight the confirmation bias that typically favors the comfortable status quo",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'By forcing the decision maker to consider the outcome of *inaction*, the RMF helps fight confirmation bias that typically favors the comfortable status quo.'",
+      "activation_condition": "When comfort with the status quo prevents honestly evaluating the regret of inaction alongside the regret of action."
     }
   ],
   "structured_tensions": [
@@ -37,12 +46,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays narrow around prospective hindsight, reversibility, and the explicit conflict with comfort-preserving confirmation-bias.",
+    "summary": "Layer 1+2 enrichment complete. premortem 0.90 ('emotionally driven premortem'), optionality 0.80 (reversible decisions). confirmation-bias antagonist at 0.80. Canonical also lists inverse-thinking and satisficing as allies.",
     "donor_drops": [
       "Did not preserve broader expected-utility or satisficing expansion because the current vocabulary already supports a cleaner decision-pressure surface."
     ],
     "open_questions": [
-      "The source also gestures toward outside-view and data discipline, but the retained set favors the clearest current-vocabulary ids."
+      "The source also gestures toward outside-view and data discipline, but the retained set favors the clearest current-vocabulary ids.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include inversion (achieving goals by avoiding negative consequences) and satisficing (regret minimization leads to 'good enough' decisions)."
     ]
   }
 }

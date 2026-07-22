@@ -10,9 +10,11 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from scripts.product.build_mental_model_atlas_phase1_projection import (
+    CANONICAL_DATA_COMMIT,
+    EXPECTED_SOURCE_HASHES,
     NON_CLAIMS,
     _load_and_verify_sources,
     _load_json,
@@ -32,9 +34,21 @@ class AtlasNavigationIndexError(ValueError):
     """Raised when deterministic navigation-index custody is invalid."""
 
 
-def build_navigation_package(root: Path) -> dict[str, Any]:
+def build_navigation_package(
+    root: Path,
+    *,
+    source_hashes: Mapping[str, str] | None = None,
+    source_authority: str = "frozen_checkpoint",
+    canonical_data_commit: str | None = CANONICAL_DATA_COMMIT,
+) -> dict[str, Any]:
     root = root.resolve()
-    custody = _load_and_verify_sources(root)
+    resolved_source_hashes = dict(source_hashes or EXPECTED_SOURCE_HASHES)
+    custody = _load_and_verify_sources(
+        root,
+        source_hashes=resolved_source_hashes,
+        source_authority=source_authority,
+        canonical_data_commit=canonical_data_commit,
+    )
     source_manifest = _load_json(root / "data/model_sources/manifest.json")
     knowledge_graph = _load_json(root / "data/knowledge_graph.json")
     relationship_graph = _load_json(root / "data/relationship_graph.json")
@@ -48,12 +62,18 @@ def build_navigation_package(root: Path) -> dict[str, Any]:
             model_id,
             knowledge_graph["models"][model_id],
             source_records[model_id],
+            resolved_source_hashes,
         )
         for model_id in model_ids
     ]
     relations = []
     for source_record_index, raw in enumerate(relationship_graph):
-        relation = _relation_record(root, raw, source_record_index)
+        relation = _relation_record(
+            root,
+            raw,
+            source_record_index,
+            resolved_source_hashes,
+        )
         relation.pop("source_record_index", None)
         relations.append(relation)
 

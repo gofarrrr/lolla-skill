@@ -7,14 +7,20 @@
       "rationale_text": "Scientific-method-evidence-testing gives experimentation the hypothesis and evidence discipline that keeps tests from becoming activity without learning.",
       "source_quote": "The fundamental essence of Experimentation is the systematic effort to explore a problem or test a hypothesis to find insight.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Experimentation is the operational expression of the scientific method's hypothesis-testing cycle — the canonical emphasizes 'rigorously framing a hypothesis before performing complex analysis' as the shared core methodology.",
+      "activation_condition": "When hypotheses need to be subjected to structured empirical testing rather than validated through argumentation or authority alone"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps experimentation test causality without overgeneralizing a local win beyond the real system interactions.",
       "source_quote": "Experimentation relies on understanding causality. Using systems tools like Diagrams of Causal Chain helps organize the variables in a system and reveal how parts interact.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states experimentation 'relies on understanding causality' and that systems tools 'reveal how parts interact, providing the basis for smarter testing and prediction'.",
+      "activation_condition": "When experimental design requires understanding how system variables interact causally to isolate the factor being tested from confounding systemic effects"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Confirmation-bias turns experimentation into hypothesis protection by designing or reading tests to support the favored story.",
       "source_quote": "Experimentation requires intellectual humility and a willingness to seek out and reconcile disconfirming evidence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes the direct opposition: experimentation 'requires intellectual humility and willingness to seek disconfirming evidence' while confirmation bias drives processing information 'to reach a desired conclusion'.",
+      "activation_condition": "When experiments are designed or interpreted to confirm the preferred hypothesis rather than genuinely testing whether it can be falsified"
     },
     {
       "target_model_id": "narratives",
       "rationale_text": "Narratives can resist experimental revision by making the expected story feel truer than the observed result.",
       "source_quote": "experimentation conflicts with narratives (narratives) when compelling stories about expected outcomes resist revision even when experimental results contradict the narrative.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "From tensions — 'compelling stories about expected outcomes resist revision even when experimental results contradict the narrative', creating emotional attachment to pre-experimental beliefs.",
+      "activation_condition": "When a compelling narrative about expected outcomes creates emotional resistance to accepting experimental results that contradict the story"
     }
   ],
   "structured_tensions": [
@@ -52,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on explicit conflict blocks and on the alliance between disciplined testing and causal system understanding, so the file keeps that compact surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: scientific-method-evidence-testing 0.90 (strong — operational expression of hypothesis testing), systems-thinking 0.90 (strong — 'relies on understanding causality'). Antagonists differentiated: confirmation-bias 0.90 (strong — blocks disconfirming evidence), narratives 0.80 (moderate — stories resist revision by results). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve donor relation sprawl beyond the named experimentation, systems, and anti-story conflict set."
     ],
     "open_questions": [
-      "Feynman-technique and MECE decomposition are source-real allies, but scientific-method-evidence-testing and systems-thinking were the cleaner bounded anchors here."
+      "Feynman-technique and MECE decomposition are source-real allies, but scientific-method-evidence-testing and systems-thinking were the cleaner bounded anchors here.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names logic-trees/MECE decomposition and feynman-technique as additional synergistic allies."
     ]
   }
 }

@@ -7,21 +7,48 @@
       "rationale_text": "Systems-thinking complements gestalt-principles-of-perception by helping a visible whole map onto real interrelationships instead of isolated parts.",
       "source_quote": "Systems thinking focuses on interrelationships and feedback loops. Gestalt provides a way of perceiving the whole before the parts.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes Gestalt as 'integral to the concept of a latticework of theory' — systems thinking focuses on seeing interrelationships, patterns, and wholes, sharing the core principle of perceiving organized totalities.",
+      "activation_condition": "When understanding a complex situation requires perceiving organized patterns and interrelationships rather than analyzing individual components in isolation"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory strengthens gestalt-principles-of-perception by turning structured grouping into lower cognitive burden and faster comprehension.",
       "source_quote": "By promoting the organization of information into structured chunks or schemas, Gestalt reduces cognitive load.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical states Gestalt 'reduces cognitive load' by 'promoting the organization of information into structured chunks or schemas', supporting perceptual organization for efficient processing.",
+      "activation_condition": "When information must be organized into perceptual schemas to reduce the working memory burden of processing unstructured individual data points"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines gestalt-principles-of-perception by locking the brain onto the first recognized pattern, preventing the reorganization of sensory data into a more accurate or useful whole.",
+      "source_quote": "The most significant danger is that the brain's preference for recognized patterns (Gestalts) leads to cognitive biases. This is often called the law of the instrument or Maslow's hammer.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Pattern fixation can lock perception into familiar gestalt interpretations, preventing recognition of genuinely novel patterns that don't fit established perceptual frameworks.",
+      "activation_condition": "When familiar perceptual patterns dominate interpretation, causing novel configurations to be force-fitted into known gestalts rather than perceived on their own terms"
+    },
+    {
+      "target_model_id": "theory-induced-blindness",
+      "rationale_text": "Theory-induced-blindness undermines gestalt-principles-of-perception by making the brain resist evidence that challenges an established perceptual organization, treating a satisfying pattern as settled truth rather than a provisional frame.",
+      "source_quote": "Once a coherent pattern (model) is established, the brain resists evidence that challenges it, leading to model-defending behavior. This often prevents rewriting models of reality.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Theoretical frameworks can create blind spots in perceptual grouping — related to canonical warning that 'overreliance on perceived coherence of a Gestalt can hide flaws'.",
+      "activation_condition": "When theoretical commitment to a particular gestalt interpretation creates blind spots that hide flaws in the perceived coherence"
+    }
+  ],
   "structured_tensions": [
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Gestalt-principles-of-perception conflicts with representativeness-bias when a familiar-looking pattern is treated as evidence of the underlying cause.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Gestalt-principles-of-perception conflicts with representativeness-heuristic when a familiar-looking pattern is treated as evidence of the underlying cause.",
       "source_quote": "gestalt-principles-of-perception conflicts with representativeness-heuristic (representativeness heuristic) when surface pattern grouping is treated as causal proof.",
       "extraction_type": "explicit",
       "confidence": "high",
@@ -37,12 +64,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'integral to', shared whole-pattern perception), cognitive-load-theory 0.80 (moderate — organized schemas reduce load). Antagonists: einstellung-effect 0.80 (moderate — pattern fixation locks perception), theory-induced-blindness 0.80 (moderate — coherence illusion hides flaws). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names analogical-reasoning and design-thinking as additional synergistic allies."
     ]
   },
   "deferred_higher_order_notes": {

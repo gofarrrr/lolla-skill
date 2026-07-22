@@ -11,6 +11,10 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from .conversation_context import ConversationContext
+from .published_knowledge_substrate import (
+    PublishedKnowledgeSubstrate,
+    PublishedSubstrateError,
+)
 
 _LOGGER = logging.getLogger("system_b.v60_enrichment")
 
@@ -1593,17 +1597,17 @@ def _hybrid_rrf_rank(lane_rank: Sequence[str], embedding_rank: Sequence[str], *,
 
 
 def _load_graph_display_names(root: Path) -> dict[str, str]:
-    path = Path(root) / "data" / "knowledge_graph.json"
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        snapshot = PublishedKnowledgeSubstrate.open(root).require_snapshot(
+            allow_partial=True
+        )
+    except PublishedSubstrateError:
         return {}
-    models = _mapping(payload.get("models"))
     return {
-        model_id: _text(_mapping(model).get("display_name"))
-        or _text(_mapping(model).get("name"))
+        model_id: _text(model.payload.get("display_name"))
+        or _text(model.payload.get("name"))
         or model_id
-        for model_id, model in models.items()
+        for model_id, model in snapshot.models.items()
     }
 
 

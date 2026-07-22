@@ -7,28 +7,40 @@
       "rationale_text": "Systems Thinking helps OCM map how obligations and controls interact across a larger operational whole.",
       "source_quote": "OCM provides the defined Obligations and Controls necessary to articulate the \"wholes\" and understand the patterns of change.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "OCM 'provides the defined Obligations and Controls necessary to articulate the wholes and understand patterns of change' — operationalizes systems thinking by mapping obligations to controls within the system.",
+      "activation_condition": "When compliance or operational requirements need to be mapped to specific control mechanisms within a complex system of interconnected components"
     },
     {
       "target_model_id": "decomposition",
       "rationale_text": "Decomposition gives OCM the procedural structure needed to break obligations into analyzable and controllable parts.",
       "source_quote": "Logic trees disaggregate the problem, keep track of parts for analysis, and build insights toward solutions.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Decomposition is described as 'the procedural Control required to successfully structure any complex Obligation' — logic trees disaggregate obligations into analyzable, actionable parts.",
+      "activation_condition": "When complex obligations need to be broken into discrete, verifiable control requirements rather than addressed as monolithic compliance targets"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive Load Theory supports OCM by forcing control design into manageable steps that people can actually follow.",
       "source_quote": "OCM’s emphasis on breaking down tasks into small, manageable steps (scaffolding) aligns directly with the brain’s limitation of processing only a few pieces of new information.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "OCM's emphasis on 'breaking down tasks into small, manageable steps aligns directly with the brain's limitation of processing only a few pieces of new information in working memory'.",
+      "activation_condition": "When the obligation-control mapping becomes too complex to hold in working memory and needs to be chunked into cognitively manageable units"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "The Feynman Technique helps OCM expose blind spots in the mapping by forcing simple explanation of a complex obligation.",
       "source_quote": "It is a powerful method for identifying blind spots in one’s existing Mapping by forcing one to explain the concept simply.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Described as 'a powerful method for identifying blind spots in one's existing Mapping' — forces simple explanation of complex obligation-control relationships to test genuine understanding.",
+      "activation_condition": "When the mapping's apparent completeness needs to be tested by attempting to explain the obligation-control chain in plain language to expose hidden gaps"
     }
   ],
   "antagonists": [
@@ -37,21 +49,30 @@
       "rationale_text": "Curse-of-knowledge undermines OCM by making the expert designer unable to remember what it was like not to know the obligation structure — they communicate the abstract mapping without the concrete analogies and stories that would make the controls actionable for others.",
       "source_quote": "A powerful antagonist where the expert OCM designer cannot remember what it was like not to know the underlying structure. They communicate the abstract punch line (the Obligation) without the necessary concrete analogy or story (the simple Controls/Mapping) required for others, especially novices, to internalize the idea.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "The expert OCM designer 'cannot remember what it was like not to know the underlying structure' — communicates abstract obligations without the concrete controls and mappings others need.",
+      "activation_condition": "When OCM documentation communicates abstract compliance requirements without translating them into concrete, actionable control steps for non-expert implementers"
     },
     {
       "target_model_id": "cognitive-dissonance",
       "rationale_text": "Cognitive-dissonance resists OCM revision by making it psychologically painful to acknowledge flaws in an existing mapping — the discomfort of inconsistency between 'I built this framework' and 'this framework has a gap' drives motivated distortion rather than honest updating.",
       "source_quote": "Cognitive Dissonance: This psychological phenomenon (an Obligation to maintain consistency) can cause individuals to distort their perception of reality to align with an existing commitment. If a flaw is revealed in the OCM, dissonance makes it psychologically difficult to abandon or critique the existing framework.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "If a flaw is revealed in the OCM, 'dissonance makes it psychologically difficult to abandon or critique the existing framework' — resistance to updating established mappings.",
+      "activation_condition": "When evidence of control gaps creates psychological discomfort that leads to rationalization of the existing mapping rather than honest gap acknowledgment"
     },
     {
       "target_model_id": "einstellung-effect",
       "rationale_text": "Einstellung-effect corrupts OCM by forcing every obligation through a single familiar control — the fixation on a proven tool prevents the novel control design that new obligation types require.",
       "source_quote": "Maslow's Hammer (Law of the Instrument): This bias occurs when a thinker, relying heavily on a specific, proven Control, views every Obligation as solvable only by that tool (the nail). It results in torturing reality to fit a familiar model, preventing novel solutions.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Relies on a specific proven Control approach and 'views every Obligation as solvable only by that tool' — prevents novel solutions when familiar controls are applied reflexively.",
+      "activation_condition": "When familiar control mechanisms are applied to new obligations without assessing whether the obligation's unique characteristics require a different control approach"
     }
   ],
   "structured_tensions": [
@@ -81,7 +102,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "OCM is especially strong on explicit allies and explicit structured tensions, while its raw antagonists do not resolve cleanly to current canonical ids.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — operationalizes systems thinking through obligation-control mapping), decomposition 0.90 (strong — 'procedural Control required to structure complex Obligations'), cognitive-load-theory 0.80 (moderate — respects working memory limits), feynman-technique 0.80 (moderate — identifies mapping blind spots). Antagonists: curse-of-knowledge 0.80, cognitive-dissonance 0.80, einstellung-effect 0.80 (all moderate — impair mapping communication, updating, and novelty).",
     "donor_drops": [
       "Did not bring donor topology-style relation additions into the pilot layer."
     ],

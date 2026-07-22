@@ -1,0 +1,35 @@
+{
+    "model_id": "status-quo-bias",
+    "source_file": "Status_Quo_Bias_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question asks how to improve the current approach without considering whether the current approach should exist at all — the status quo is an invisible assumption.",
+        "The question frames staying the course as prudent when it may be disguising loss aversion, sunk costs, or unchallenged precedent.",
+        "The question asks 'should we change?' when the more diagnostic question is 'is the current path surviving because it is actually superior, or because changing feels costly?'",
+        "The question inherits defaults from organizational habit, executive vision, or prior decisions without testing whether those defaults still serve the stated goal."
+    ],
+    "frame_patterns_challenged": [
+        "scope_lock",
+        "commitment_escalation",
+        "borrowed_premise"
+    ],
+    "reframing_move": "Apply the WTWHTB test to the default: ask 'what would you have to believe for the current path to be the right one?' — if the assumptions behind the status quo don't survive scrutiny, the question should be about which alternative to pursue, not whether to change.",
+    "reframing_move_types": [
+        "assumption_surfacing",
+        "inversion"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Status quo bias operates on question structure by revealing when the question's frame protects the current state instead of evaluating it. The source is explicit: the bias operates as an 'invisible assumption' that 'sneakily intrudes' into objective decisions. The WTWHTB test and 'drift to low performance' concept both target question-level framing where the default is unexamined.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: invisible assumption (core principle), disguised loss aversion (connection to prospect theory), survival-by-inertia diagnostic (comfortable sofa analogy), and inherited defaults (organizational vision example)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Scope lock: the question's boundaries protect the status quo. Commitment escalation: continuing because of past commitment, not future value. Borrowed premise: the default is an inherited, unexamined assumption."
+        }
+    }
+}

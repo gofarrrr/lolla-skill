@@ -7,14 +7,20 @@
       "rationale_text": "Systems Thinking helps prioritization find the highest-leverage levers and anticipate where local choices ramify elsewhere.",
       "source_quote": "Prioritization is enhanced by Systems Thinking, which involves the ability to visualize the dynamics of complex systems and foresee how a decision at one point will ramify elsewhere.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'enhanced by Systems Thinking, which involves the ability to visualize the dynamics of complex systems' — selects highest-leverage levers within the system.",
+      "activation_condition": "When prioritization requires understanding how decisions at one point will ramify elsewhere in a complex system."
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive Load Theory supports prioritization by reducing information overload and making the core priority memorable.",
       "source_quote": "By prioritizing and simplifying information, this process deliberately works with the brain's limitations.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'deliberately works *with* the brain's limitations' — breaking information into chunks reduces cognitive load to surface the core priority.",
+      "activation_condition": "When simplifying and chunking information is needed to surface the most important priority for the audience."
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Confirmation bias blocks objective prioritization by making the team overweight the evidence that fits its current hypothesis.",
       "source_quote": "This directly conflicts with objective prioritization, as it prevents the rational assessment of alternative options or critical, disconfirming evidence.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'The tendency to prioritize or seek out information that confirms existing beliefs. This directly conflicts with objective prioritization.'",
+      "activation_condition": "When existing beliefs or hypotheses bias the selection of priorities over objective assessment of alternatives."
     },
     {
       "target_model_id": "einstellung-effect",
-      "rationale_text": "Einstellung-effect distorts prioritization by making the most familiar framework feel like the most applicable one \u2014 solutions that fit existing tools rise in the priority queue regardless of actual fit.",
+      "rationale_text": "Einstellung-effect distorts prioritization by making the most familiar framework feel like the most applicable one — solutions that fit existing tools rise in the priority queue regardless of actual fit.",
       "source_quote": "Maslow's Hammer / Availability Heuristic: This bias occurs when a person is over-reliant on a single mental model or framework, causing them to 'torture reality so that it fits your models'. This is dangerous because it leads to prioritizing solutions that fit the existing toolset.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical (as Maslow's Hammer): 'over-reliant on a single mental model, causing them to torture reality so that it fits your models' — familiar tools override proper prioritization.",
+      "activation_condition": "When familiar frameworks are applied to prioritize solutions rather than selecting the framework appropriate for the problem."
     }
   ],
   "structured_tensions": [
@@ -52,14 +64,15 @@
     }
   ],
   "curation_notes": {
-    "summary": "Prioritization scales cleanly into Wave 3, but most of its remaining relation richness depends on future canonical ids rather than this frozen first-order contract.",
+    "summary": "Layer 1+2 enrichment complete. systems-thinking at 0.90 (visualize dynamics), cognitive-load-theory at 0.80 (works with brain limits). confirmation-bias antagonist at 0.90 ('directly conflicts'), einstellung at 0.80.",
     "donor_drops": [
       "Did not preserve donor-added relation overlays beyond the raw ally and antagonist prose."
     ],
     "open_questions": [
-      "Hypothesis-driven problem solving and commander's intent remain deferred \u2014 no clean canonical ids.",
+      "Hypothesis-driven problem solving and commander's intent remain deferred — no clean canonical ids.",
       "Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping.",
-      "Curse-of-knowledge remains deferred \u2014 no canonical model id exists yet."
+      "Curse-of-knowledge remains deferred — no canonical model id exists yet.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include hypothesis-driven-problem-solving (structured prioritization of analytical work) and commander's intent (aligns low-level goals to single top-level purpose)."
     ]
   },
   "deferred_higher_order_notes": {

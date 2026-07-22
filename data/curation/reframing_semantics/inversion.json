@@ -1,0 +1,33 @@
+{
+  "model_id": "inversion",
+  "source_file": "Inversion_rag.md",
+  "has_reframing_activation": true,
+  "reframing_when": [
+    "The question assumes a positive goal without examining what would guarantee failure — flipping from 'how do we achieve X' to 'what would ensure we fail at X' changes the answer set.",
+    "The question takes a forward-only framing where the path to success is unclear but paths to ruin are identifiable and more tractable.",
+    "The question inherits a commitment or continuation baseline without asking what conditions would make abandoning the current path the obvious move.",
+    "The question asks how to optimize or improve without first asking what to stop doing — addition-by-subtraction is being skipped."
+  ],
+  "frame_patterns_challenged": [
+    "counterfactual_suppression",
+    "commitment_escalation",
+    "proxy_optimization",
+    "binary_collapse"
+  ],
+  "reframing_move": "Flip the question: instead of 'how do we achieve X', ask 'what would guarantee we fail at X, and are any of those conditions already present?' — the negative formulation surfaces specific, tractable interventions that the positive formulation obscures.",
+  "reframing_move_types": ["inversion"],
+  "curation_confidence": "high",
+  "curation_note": "Inversion is a primary reframing tool — it operates directly on the question structure by reversing the direction of inquiry. The raw source is explicit: Jacobi's maxim, Munger's backward-thinking discipline, and the RAF survivorship example all demonstrate question-level reframing, not just answer-level correction.",
+  "provenance_notes": {
+    "reframing_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All four activations derived from explicit source material: anti-goal formulation, paths-to-ruin identification, commitment questioning via zero-base thinking, and addition-by-subtraction."
+    },
+    "frame_patterns_challenged": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Counterfactual suppression is the primary target (the question doesn't ask 'what if we fail'). Commitment escalation via zero-base thinking. Proxy optimization via 'stop doing the wrong thing'. Binary collapse via opening the negative space."
+    }
+  }
+}

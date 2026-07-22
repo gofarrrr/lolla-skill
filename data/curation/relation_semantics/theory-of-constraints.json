@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking gives theory-of-constraints the whole-structure view it needs to see the real throughput governor instead of local noise.",
       "source_quote": "Constraint management is a meta-model that leverages systems thinking—the discipline of seeing interrelationships rather than things.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states constraint management leverages systems thinking, the discipline of seeing interrelationships rather than things",
+      "activation_condition": "When understanding interrelationships reveals how constraint at one point limits entire system throughput"
     },
     {
       "target_model_id": "bottlenecks",
       "rationale_text": "Bottlenecks is the practical language of theory-of-constraints because the model lives or dies by naming the one limiting lane first.",
       "source_quote": "The fundamental essence of this mental model is the recognition that in any complex system, performance is ultimately limited by one key restricting element, or constraint.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Bottleneck identification is the core mechanism of ToC; the entire model operates on finding and exploiting the binding constraint",
+      "activation_condition": "When identifying the single binding constraint determines where intervention will actually improve system performance"
     },
     {
       "target_model_id": "cognitive-load-theory",
       "rationale_text": "Cognitive-load-theory reinforces theory-of-constraints by showing why simplification and chunking around the central bottleneck matter.",
       "source_quote": "Constraint management supports Cognitive Load Theory by insisting on simplification and chunking, reducing the mental energy required to solve a problem or learn a new skill.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states constraint management supports CLT by insisting on simplification and chunking",
+      "activation_condition": "When simplification and chunking reduce the mental energy required to focus on the true constraint"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias corrupts theory-of-constraints by making the team protect its favorite bottleneck story instead of measuring the real cap.",
       "source_quote": "Confirmation bias drives people to process information to get a conclusion they want rather than discovering what is objectively true.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes confirmation bias as encouraging substitution of familiar frameworks for objective constraint identification",
+      "activation_condition": "When teams substitute a familiar framework for objective identification of the actual binding constraint"
     }
   ],
   "structured_tensions": [
@@ -52,7 +64,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on systems and bottleneck allies plus explicit tensions against local-optimization illusion and stale commitment.",
+    "summary": "Layer 1+2 enrichment complete. bottlenecks elevated to 0.95 as the core mechanism ToC operates on.",
     "donor_drops": [
       "Did not preserve donor operations sprawl beyond the source-backed bottleneck, measurement, and anti-local-optimization surface."
     ],

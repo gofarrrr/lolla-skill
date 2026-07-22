@@ -75,6 +75,8 @@ def test_packet_helper_assembles_source_backed_packet(tmp_path: Path) -> None:
     assert packet["packet_schema_version"] == "model_affordance_extraction_packet.v1"
     assert packet["model_id"] == "circle-of-control"
     assert packet["source"]["source_file"] == "Circle_Of_Control_rag.md"
+    assert packet["source"]["source_authority"] == "repository_local"
+    assert "canonical_source_path" not in packet["source"]
     assert packet["source"]["markdown"] == (
         SOURCE_DIR / "Circle_Of_Control_rag.md"
     ).read_text(encoding="utf-8")

@@ -1,0 +1,47 @@
+{
+  "dimension_id": "uncertainty-type",
+  "dimension_name": "Uncertainty Type",
+  "cleaving_frame": "Measurable risk vs True uncertainty vs Ignorance",
+  "description": "The problem involves unknowns, and the type of unknown determines the appropriate decision approach. The structural question is whether the uncertainty is reducible (more data helps) or irreducible (a different decision strategy is needed).",
+  "question_types": ["decision-evaluation", "prediction", "action-planning"],
+  "detect_when": [
+    "The answer treats an uncertain situation as if outcomes are known or precisely estimable",
+    "There's a meaningful difference between what can be estimated with data and what is genuinely unknown",
+    "The decision strategy should differ based on whether uncertainty is reducible through experimentation",
+    "Confidence is expressed without calibration — the answer is more certain than the evidence warrants"
+  ],
+  "coverage_signals": [
+    "The answer classifies what kind of uncertainty is present — aleatory (inherent randomness), epistemic (reducible with information), or Knightian (truly unknown)",
+    "The answer matches the decision approach to the uncertainty type — probability for risk, robustness for true uncertainty, optionality for ignorance",
+    "The answer identifies what would reduce the uncertainty (experiments, data, time, prototypes)",
+    "The answer calibrates confidence to the actual evidence base — no false precision"
+  ],
+  "materiality_test": "Would recognizing a different type of uncertainty change the decision approach?",
+  "reasoning_demanded": "uncertainty classification, confidence calibration, appropriate decision strategy matching",
+  "models": [
+    "aleatory-epistemic-uncertainty-recognition",
+    "true-uncertainty-navigation",
+    "probabilistic-thinking",
+    "confidence-calibration",
+    "experimentation"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Aleatory-epistemic-uncertainty-recognition provides the classification framework (inherent randomness vs reducible ignorance). True-uncertainty-navigation addresses decisions under Knightian uncertainty where probability distributions don't exist. Probabilistic-thinking provides the Bayesian updating framework for measurable risk. Confidence-calibration ensures that expressed certainty matches actual evidence. Experimentation provides the uncertainty-reduction strategy — design tests to convert unknowns into knowns.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from aleatory-epistemic-uncertainty-recognition (uncertainty type classification), true-uncertainty-navigation (Knightian uncertainty), confidence-calibration (uncalibrated certainty), experimentation (reducibility test)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Uncertainty classification from aleatory-epistemic-uncertainty-recognition. Decision strategy matching from true-uncertainty-navigation. Reduction strategy from experimentation. Calibration from confidence-calibration."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Five models — tightly coherent around the uncertainty structural territory. Each addresses a different facet: classification, navigation under true uncertainty, probabilistic reasoning, calibration, and reduction through experimentation."
+    }
+  }
+}

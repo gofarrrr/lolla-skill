@@ -7,28 +7,40 @@
       "rationale_text": "Incentives explain whether signals are costly enough to be trustworthy or cheap enough to reward appearance over substance.",
       "source_quote": "cheap symbolic signals are rewarded over costly truth-aligned behavior",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical tension reveals core dynamic: signaling and incentive structures are deeply intertwined — 'agents rewarded for appearance-trustworthy behavior rather than be-trustworthy behavior.'",
+      "activation_condition": "When signal design must align with incentive structures to ensure that truthful signaling is rewarded over cheap symbolic compliance."
     },
     {
       "target_model_id": "principal-agent-problem",
       "rationale_text": "Principal-agent-problem clarifies why signaling matters: the actor sending the signal may benefit from looking trustworthy even when underlying quality is weak.",
       "source_quote": "appearance-trustworthy behavior rather than be-trustworthy behavior",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical tension: 'agents optimize appearance for principals instead of underlying outcomes' — signaling is the mechanism through which PA dynamics manifest.",
+      "activation_condition": "When agents use signals to manage principal perception rather than demonstrating genuine competence or compliance."
     },
     {
       "target_model_id": "abstraction",
       "rationale_text": "Abstraction helps signaling compress a complex reality into a legible form without forcing the receiver through every underlying detail.",
       "source_quote": "simplify complex systems",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'Analogies activate pre-existing schemas, providing instant context and comprehension' — abstraction enables efficient signaling through compressed meaning.",
+      "activation_condition": "When complex information must be compressed into abstract signals that activate pre-existing schemas in the receiver."
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
+      "target_model_id": "commitment-bias",
       "rationale_text": "Commitment-and-consistency-bias becomes stronger when signaling turns a private view into a public identity marker, making later reversal feel reputationally costly.",
       "source_quote": "publicly observable signals can bind future behavior by making reversal more expensive",
       "extraction_type": "normalized",
-      "confidence": "medium"
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence: canonical notes 'Once a verbal commitment or initial choice is signaled, psychological pressure ensures that subsequent behavior aligns with it.'",
+      "activation_condition": "When initial signals of commitment create consistency pressure that reinforces subsequent aligned behavior."
     }
   ],
   "antagonists": [
@@ -37,7 +49,10 @@
       "rationale_text": "Confirmation-bias degrades signaling when receivers filter evidence toward a preferred conclusion regardless of signal quality.",
       "source_quote": "accurate signals to fail regardless of their quality",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'the audience may actively process information to reach a desired conclusion, filtering out signals that contradict their existing beliefs or political loyalties.'",
+      "activation_condition": "When receivers filter incoming signals through existing beliefs, causing accurate signals to fail regardless of their quality."
     }
   ],
   "structured_tensions": [
@@ -59,12 +74,12 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on incentives, principal-agent distortion, and an explicit conflict with cheap-symbolic and confirmation-biased signal failure, so the file preserves that conservative surface.",
+    "summary": "Layer 1+2 enrichment complete. incentives and principal-agent-problem at 0.90 (core signaling dynamics), abstraction at 0.80, commitment-bias at 0.70. confirmation-bias antagonist at 0.80.",
     "donor_drops": [
       "Did not preserve donor relation widening beyond the clearly named incentive, agency, and anti-confirmation neighborhood."
     ],
     "open_questions": [
-      "Optionality-like commitment pressure is source-real and is now partially wired through commitment-and-consistency-bias, but future sweeps may still sharpen the exact public-identity language."
+      "Optionality-like commitment pressure is source-real and is now partially wired through commitment-bias, but future sweeps may still sharpen the exact public-identity language."
     ]
   }
 }

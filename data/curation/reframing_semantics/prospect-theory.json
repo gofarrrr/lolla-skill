@@ -1,0 +1,34 @@
+{
+    "model_id": "prospect-theory",
+    "source_file": "Prospect_Theory_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question is framed entirely around avoiding a loss when an equivalent gain frame would open different options — loss aversion is shaping the question's reference point.",
+        "The question assumes a specific reference point (current state, past performance, competitor benchmark) without examining whether that reference point is the right one — reference dependence is invisible.",
+        "The question triggers a threat response ('how do we avoid losing X?') when a desire frame ('how do we create Y?') would produce less defensive, more generative answers.",
+        "The question makes a choice seem binary because one option is framed as a loss and the other as a gain, when both are actually equivalent outcomes seen from different reference points."
+    ],
+    "frame_patterns_challenged": [
+        "binary_collapse",
+        "borrowed_premise"
+    ],
+    "reframing_move": "Flip the reference point: if the question is framed around loss, reframe it around gain (and vice versa) — then ask whether the choice changes. If it does, the original question's frame was doing the deciding, not the facts.",
+    "reframing_move_types": [
+        "perspective_shift",
+        "inversion"
+    ],
+    "curation_confidence": "medium",
+    "curation_note": "Prospect theory's reframing power is narrower than pure reframing models — it specifically targets questions where gain/loss framing or reference point choice is shaping the inquiry. The source is explicit about framing effects ('the way a situation or explanation is presented changes the audience's perspective') but the model is more diagnostic than generative. Confidence is medium because the reframing move is specific: flip the reference point.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Activations grounded: loss aversion shaping the frame (core PT principle), reference dependence (temperature analogy), threat vs desire frames (marketing/sales examples), and framing-induced false binaries (risk preference analysis)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "medium",
+            "note": "Binary collapse: gain/loss framing creates false binaries. Borrowed premise: the reference point is inherited and unexamined. Narrower than Tier 1 models — applies specifically to gain/loss distortions."
+        }
+    }
+}

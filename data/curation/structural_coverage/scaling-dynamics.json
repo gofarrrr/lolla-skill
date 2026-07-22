@@ -1,0 +1,48 @@
+{
+  "dimension_id": "scaling-dynamics",
+  "dimension_name": "Scaling Dynamics",
+  "cleaving_frame": "What changes with scale",
+  "description": "The problem involves growth, expansion, or replication where the dynamics at current scale may not hold at target scale. The structural question is what breaks, accelerates, or fundamentally changes as scale increases or decreases.",
+  "question_types": ["prediction", "action-planning", "decision-evaluation"],
+  "detect_when": [
+    "A solution that works at current scale may not work at 10x scale (or vice versa)",
+    "There are network effects, economies of scale, or diseconomies that change the dynamics",
+    "Growth introduces coordination costs, complexity, or threshold behavior",
+    "The answer extrapolates linearly from current state without considering structural change at scale"
+  ],
+  "coverage_signals": [
+    "The answer considers what breaks at scale — coordination costs, bottlenecks, complexity",
+    "The answer identifies non-linearities — accelerating returns, diminishing returns, phase transitions",
+    "The answer distinguishes linear extrapolation from structural change at different scale points",
+    "The answer identifies bottlenecks that constrain throughput regardless of other inputs"
+  ],
+  "materiality_test": "Would the answer be different at 10x or 0.1x the current scale?",
+  "reasoning_demanded": "non-linear analysis, network and compounding effects, bottleneck identification, phase-transition detection",
+  "models": [
+    "scale-economies",
+    "network-effects",
+    "compounding",
+    "power-laws",
+    "complexity-bias-resistance",
+    "bottlenecks"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Scale-economies covers cost behavior as volume increases (economies and diseconomies). Network-effects captures value changes with participant count. Compounding addresses exponential growth dynamics and the asymmetry between early and late stages. Power-laws provides the non-linear distribution framework. Complexity-bias-resistance addresses the cognitive tendency to overcomplicate when simpler solutions scale better. Bottlenecks identifies the constraint that limits throughput regardless of scale in other areas.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from scale-economies (cost structure change with volume), network-effects (value change with adoption), bottlenecks (constraint that doesn't scale), compounding (non-linear growth). Linear extrapolation trap from power-laws."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "What breaks at scale from bottlenecks and scale-economies. Non-linearities from power-laws and compounding. Linear vs structural change from network-effects. Bottleneck identification from bottlenecks."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "All six models have explicit scaling activation in canonical articles. Complexity-bias-resistance may seem tangential but its canonical article directly addresses the failure mode of adding complexity as a response to scale when simpler approaches would work better."
+    }
+  }
+}

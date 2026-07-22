@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from .published_knowledge_substrate import PublishedKnowledgeSubstrate
 from .relation_graph import RelationGraph
 from .subpattern_catalog import SourceRef, SubpatternCatalog, SubpatternRef
 from .tendency_catalog import TendencyCatalog
@@ -39,10 +40,11 @@ class PressureRouter:
     @classmethod
     def load(cls, root: Path) -> "PressureRouter":
         root = Path(root)
+        snapshot = PublishedKnowledgeSubstrate.open(root).require_snapshot(allow_partial=True)
         return cls(
-            catalog=TendencyCatalog.load(root),
+            catalog=TendencyCatalog.from_snapshot(root, snapshot),
             subpatterns=SubpatternCatalog.load(root),
-            relation_graph=RelationGraph.load(root),
+            relation_graph=RelationGraph.from_snapshot(snapshot),
         )
 
     def route(

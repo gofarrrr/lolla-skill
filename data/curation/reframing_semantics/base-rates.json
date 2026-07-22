@@ -1,0 +1,35 @@
+{
+    "model_id": "base-rates",
+    "source_file": "Base_Rates_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question is framed entirely from the inside view — the specific case, the vivid narrative, the founders' passion — without anchoring to the outside view of what historically happens in the reference class.",
+        "The question asks 'will our plan work?' without first asking 'what is the historical success rate for plans like ours?' — base-rate neglect is shaping the inquiry.",
+        "The question treats the current case as unique when a credible reference class exists that would set a very different expectation for the outcome.",
+        "The question focuses on the mean or expected outcome without asking about the distribution — particularly the tail outcomes one or two standard deviations from the base case."
+    ],
+    "frame_patterns_challenged": [
+        "borrowed_premise",
+        "survivorship_frame",
+        "counterfactual_suppression"
+    ],
+    "reframing_move": "Anchor to the outside view: instead of asking about your specific case, ask 'what happens historically when companies/teams/projects like ours attempt this?' — the reference class forecasting reframe replaces inherited narrative with empirical prior.",
+    "reframing_move_types": [
+        "perspective_shift",
+        "scope_expansion"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Base rates operates on question framing by replacing the inside view (which shapes the question's assumptions) with the outside view (which challenges them). The source is explicit: 'accuracy lives at the intersection between the inside view and the outside view' — the reframing move is to bring the outside view into a question that is stuck in the inside view.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: inside vs outside view (core principle), base-rate neglect in planning (project management example), uniqueness assumption vs reference class (venture capital example), and tail outcome blindness (financial advising example)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Borrowed premise: the question inherits assumptions from the inside view. Survivorship frame: base rates include the failures the question's frame selects away. Counterfactual suppression: the outside view surfaces the 'what if this fails?' that the inside view suppresses."
+        }
+    }
+}

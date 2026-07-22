@@ -7,17 +7,34 @@
       "rationale_text": "Confidence-calibration gives dunning-kruger-effect the practical measurement discipline needed to compare self-belief against actual performance.",
       "source_quote": "Calibration: regularly use objective instruments like quizzes, practice tests, or external review processes.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Provides the systematic methodology for correcting the self-assessment failures that DKE describes — where DKE diagnoses the miscalibration, confidence-calibration offers the tools to remedy it.",
+      "activation_condition": "When self-assessment of competence needs systematic calibration methods to overcome the metacognitive blindness that DKE describes"
     },
     {
       "target_model_id": "intellectual-humility",
       "rationale_text": "Intellectual-humility helps dunning-kruger-effect create the mindset needed to admit what is not yet known well enough.",
       "source_quote": "The essential antidotes are radical open-mindedness and humility.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes intellectual humility and radical open-mindedness as 'essential antidotes to the DKE' — the disposition that makes DKE awareness actionable by acknowledging what one doesn't know.",
+      "activation_condition": "When genuine acknowledgment of knowledge gaps is needed to overcome the overconfidence that DKE produces in low-competence domains"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "wysiati",
+      "rationale_text": "WYSIATI undermines dunning-kruger-effect awareness by letting individuals construct a coherent-feeling story from sparse evidence, which inflates confidence and suppresses the metacognitive signal that competence is lacking.",
+      "source_quote": "This confidence is often based on the quality of the 'story' they can tell, even when evidence is sparse (WYSIATI).",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly maps to the knowledge-gap blindness that DKE describes — WYSIATI causes individuals to build confident narratives from available information without recognizing what information they are missing.",
+      "activation_condition": "When confident self-assessments are built from the visible evidence alone, without recognizing the vast unknown-unknowns that actual competence would reveal"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confidence-calibration",
@@ -37,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved the strongest calibration and humility allies to keep the first-order surface on evidence-bearing skill checks.",
+    "summary": "Layer 1+2 enrichment complete. Allies: confidence-calibration 0.90 (strong — systematic self-assessment correction), intellectual-humility 0.90 (strong — 'essential antidotes'). Antagonist: wysiati 0.90 (strong — knowledge-gap blindness). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not preserve broader System 1/System 2 and guru-effect sprawl beyond the clearest current-vocabulary seams."
     ],
     "open_questions": [
-      "Feynman-technique is source-real nearby, but the current first-order surface is cleanest around confidence-calibration and intellectual-humility."
+      "Feynman-technique is source-real nearby, but the current first-order surface is cleanest around confidence-calibration and intellectual-humility.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names system-1/system-2 thinking and the knowns-unknowns matrix as additional contextual allies."
     ]
   }
 }

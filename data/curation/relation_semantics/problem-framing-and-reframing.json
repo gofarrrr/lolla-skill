@@ -7,21 +7,30 @@
       "rationale_text": "Metacognitive-questioning gives problem-framing-and-reframing the self-inspection needed to notice when the current lens is producing weak answers.",
       "source_quote": "When approaching a problem, expert practitioners often start by reflecting on how the problem is framed, engaging in a form of metacognition.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Framing requires thinking about thinking (metacognition)' — planning and monitoring aspects enable effective frame selection and evaluation.",
+      "activation_condition": "When selecting or evaluating a problem frame requires reflective awareness of one's own reasoning process and assumptions."
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps reframing move from surface symptoms to better boundaries, interdependencies, and underlying structure.",
       "source_quote": "Framing helps systems thinkers see the entire picture, searching for interdependencies and focusing on structure rather than fault.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Locates causal structure — framing helps systems thinkers see the entire picture, searching for interdependencies and focusing on structure rather than fault.'",
+      "activation_condition": "When framing a problem requires mapping interdependencies and understanding how components interact within the larger system."
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring is a useful ally only in reverse pressure here: it marks why reframing must generate alternatives before the first lens hardens into the answer.",
       "source_quote": "They should be generated separately from solutions to prevent anchoring.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moderate: frames inherently set cognitive anchors that guide subsequent analysis. Canonical mentions HMW questions and reference frames as structuring tools.",
+      "activation_condition": "When an initial reference frame is needed to structure problem exploration, provided it remains open to reframing."
     }
   ],
   "antagonists": [
@@ -30,21 +39,30 @@
       "rationale_text": "Confirmation-bias resists reframing by defending the initial problem statement even after disconfirming evidence suggests a better cut.",
       "source_quote": "Confirmation bias drives problem solvers to seek evidence that confirms their initial framing or hypothesis.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Resists reframing: Confirmation bias drives problem solvers to seek evidence that confirms their initial framing, making them unwilling to investigate deeply enough to justify a reframing.'",
+      "activation_condition": "When existing beliefs lock the problem frame in place and prevent exploring alternative framings despite disconfirming evidence."
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring becomes an antagonist when the first framing or salient cue keeps the team from testing alternative boundaries and causal structures.",
       "source_quote": "Anchoring and Substitution Bias: Focusing too much on a single, salient piece of information (the anchor).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical risks: 'Focusing too much on a single, salient piece of information (the anchor)' — root cause of the hammer-and-nail problem in framing.",
+      "activation_condition": "When an initial frame anchors subsequent analysis so strongly that alternative frames are never seriously tested."
     },
     {
       "target_model_id": "representativeness-heuristic",
       "rationale_text": "Representativeness-heuristic locks in the first pattern-matched frame by making it feel like the right one — the familiar structure activates fast and feels complete, which actively blocks the reframing process needed to find better causal boundaries.",
       "source_quote": "problem-framing-and-reframing vs representativeness-heuristic: problem-framing-and-reframing conflicts with representativeness-heuristic (representativeness heuristic) when first familiar frame blocks alternative causal structures.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical tension: 'first familiar frame blocks alternative causal structures' — pattern matching overrides proper frame selection.",
+      "activation_condition": "When a problem is classified by surface resemblance to a familiar type, blocking exploration of its unique causal structure."
     }
   ],
   "structured_tensions": [
@@ -66,7 +84,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on metacognitive frame-checking, systems boundary shifts, and explicit conflicts with confirmation-bias and representativeness-heuristic.",
+    "summary": "Layer 1+2 enrichment complete. metacognitive-questioning 0.90 ('requires metacognition'), systems-thinking 0.90 (causal structure), anchoring 0.80. Anchoring appears as both ally (0.80) and antagonist (0.80) — dual role. confirmation-bias antag at 0.90.",
     "donor_drops": [
       "Did not preserve donor reframing relations beyond the strongest current-vocabulary links around systems, self-inspection, and anti-lock-in pressure."
     ],

@@ -7,21 +7,30 @@
       "rationale_text": "Prioritization helps trade-offs turn constrained choice into explicit ranking instead of rhetorical balance.",
       "source_quote": "Prioritization and Focus",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Trade-off decisions require systematic ranking and resource allocation among competing alternatives",
+      "activation_condition": "When focusing resources requires systematic ranking of competing alternatives"
     },
     {
       "target_model_id": "opportunity-cost",
       "rationale_text": "Opportunity-cost sharpens trade-offs by making the hidden cost of saying yes visible.",
       "source_quote": "Best when decision quality depends on naming the hidden cost of saying yes",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Every trade-off implies a foregone alternative; opportunity cost is the intrinsic mechanism of trade-offs",
+      "activation_condition": "When every choice implies a foregone alternative that must be explicitly valued"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps trade-offs reveal the interrelationships and feedback loops that make one compromise carry costs elsewhere.",
       "source_quote": "This framework enables the visualization of interrelationships and feedback loops, revealing the causal links that necessitate trade-offs.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes systems thinking as enabling visualization of feedback loops that reveal causal links necessitating trade-offs",
+      "activation_condition": "When visualizing feedback loops reveals the causal links that necessitate trade-offs"
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Anchoring undermines trade-offs by over-weighting the first frame or metric and obscuring better reallocations.",
       "source_quote": "This cognitive bias causes over-focus on a single piece of information, preventing objective analysis of trade-offs.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states anchoring causes over-focus on a single piece of information, preventing objective trade-off analysis",
+      "activation_condition": "When over-focus on a single data point prevents objective analysis of alternatives"
     }
   ],
   "structured_tensions": [
@@ -52,7 +64,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strongest on allocation allies and explicit conflicts with default-preserving and legacy-priority distortions, so the file preserves that surface directly.",
+    "summary": "Layer 1+2 enrichment complete. opportunity-cost and systems-thinking at 0.90. anchoring antagonist at 0.90.",
     "donor_drops": [
       "Did not preserve donor relation sprawl beyond the named prioritization, hidden-cost, and anti-default conflict surface."
     ],

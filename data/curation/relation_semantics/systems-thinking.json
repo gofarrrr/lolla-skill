@@ -7,7 +7,10 @@
       "rationale_text": "Decomposition supports systems thinking by breaking a complex system into analyzable parts without losing the larger structure.",
       "source_quote": "The discipline complements structured problem-solving processes ... The fundamental essence of problem disaggregation uses logic trees to cleave a problem into parts for analysis.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes problem disaggregation using logic trees to cleave problems into parts, which is decomposition in practice",
+      "activation_condition": "When systems analysis requires disaggregating complex problems into analyzable sub-components"
     }
   ],
   "antagonists": [
@@ -16,7 +19,10 @@
       "rationale_text": "Specialization narrows attention to one discipline and undermines the multidisciplinary picture systems thinking depends on.",
       "source_quote": "Systems thinking counters the natural human inclination for specialization.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states systems thinking counters the natural human inclination for specialization that creates blind spots",
+      "activation_condition": "When single-discipline expertise misses interconnections that require multidisciplinary systemic analysis"
     },
     {
       "target_model_id": "cognitive-biases",
@@ -24,14 +30,20 @@
       "source_quote": "Systems thinking requires actively working against this bias by seeking out and incorporating information beyond the surface level.",
       "extraction_type": "normalized",
       "confidence": "high",
-      "note": "The source names WYSIATI directly; the target id uses the existing broader canonical model."
+      "note": "The source names WYSIATI directly; the target id uses the existing broader canonical model.",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical identifies WYSIATI and System 1 biases as requiring active resistance through systems-level information seeking",
+      "activation_condition": "When cognitive shortcuts limit information gathering to surface-level data, preventing systemic understanding"
     },
     {
       "target_model_id": "einstellung-effect",
-      "rationale_text": "Einstellung-effect undermines systems thinking by anchoring attention to the first familiar disciplinary framework \u2014 the fixated lens misses the cross-system interconnections that require multi-model synthesis.",
+      "rationale_text": "Einstellung-effect undermines systems thinking by anchoring attention to the first familiar disciplinary framework — the fixated lens misses the cross-system interconnections that require multi-model synthesis.",
       "source_quote": "The Law of the Instrument (Maslow's Hammer): Relying exclusively on frameworks derived from a single area of expertise leads to blind spots because they miss the complicated interconnections explained by other models.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical describes the Law of the Instrument as applying familiar frameworks to novel problems, which is the Einstellung effect",
+      "activation_condition": "When fixation on familiar solution patterns prevents recognition of novel systemic interactions"
     }
   ],
   "structured_tensions": [
@@ -53,12 +65,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Systems Thinking has strong first-order ally and antagonist prose, but no explicit structured tension block in the raw file.",
+    "summary": "Layer 1+2 enrichment complete. decomposition at 0.90 per disaggregation language. specialization and einstellung antagonists at 0.90.",
     "donor_drops": [
       "Did not import donor tension overlays or compound logic because this pilot is first-order relation semantics only."
     ],
     "open_questions": [
-      "Law-of-the-instrument / Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping."
+      "Law-of-the-instrument / Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping.",
+      "SPARSE_ALLY_RECOVERY: only 1 curated ally. Canonical suggests latticework-of-mental-models, system-2 as recovery candidates."
     ]
   },
   "deferred_higher_order_notes": {

@@ -7,21 +7,30 @@
       "rationale_text": "Critical-thinking turns metacognitive questioning into disciplined probing of evidence, assumptions, and argumentative weak spots.",
       "source_quote": "The Socratic method and Critical Thinking: MCQ is the engine behind the Socratic Method.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "MCQ is a core critical thinking tool — the canonical describes it as 'essential for evaluating evidence and questioning assumptions' through structured self-inquiry.",
+      "activation_condition": "When evidence evaluation requires structured self-inquiry to detect when reasoning is being driven by assumptions rather than verified premises"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps metacognitive questioning move beyond isolated facts and ask how the parts hang together before committing.",
       "source_quote": "MCQ is essential for understanding the structure and dynamics of a system. It forces the thinker to look beyond facts and see how things hang together.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "MCQ is described as 'essential for understanding the structure and dynamics of a system' — forces the thinker to 'look beyond facts and see how things hang together'.",
+      "activation_condition": "When understanding a system requires asking questions about cause-and-effect relationships and underlying structure rather than accepting surface-level descriptions"
     },
     {
       "target_model_id": "experimentation",
       "rationale_text": "Experimentation keeps metacognitive questioning honest by turning reflection into testable next moves instead of endless introspection.",
       "source_quote": "The model is misused when reflective questions keep postponing commitment, experimentation, or ownership instead of sharpening the next concrete move.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "MCQ generates the questions that guide experimental design — structured self-inquiry identifies what needs to be tested and which hypotheses need validation.",
+      "activation_condition": "When experimental design requires clearly formulated questions about what is unknown rather than testing what is convenient or already suspected"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias makes metacognitive questioning ceremonial by asking questions that protect the current story instead of challenging it.",
       "source_quote": "MCQ directly challenges the natural human tendency to process information to get a conclusion we want.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "MCQ 'directly challenges the natural human tendency to process information to get a conclusion we want' — confirmation bias is the primary cognitive enemy of genuine self-inquiry.",
+      "activation_condition": "When questions are unconsciously framed to confirm existing beliefs rather than genuinely probing for disconfirming evidence or alternative explanations"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring weakens metacognitive questioning when the first framing or answer keeps pulling the inquiry back to the same assumptions.",
       "source_quote": "Persisting in using familiar frames that are unhelpful or misleading for genuinely novel problems.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Anchoring constrains the question space MCQ explores — initial framing or data points narrow inquiry before the full space of relevant questions has been explored.",
+      "activation_condition": "When initial assumptions or prominent data points narrow the questioning process before alternative framings and broader inquiry have been attempted"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on guided self-audit, systems-aware questioning, and anti-autopilot pressure, so the file preserves that bounded first-order surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: critical-thinking 0.90 (strong — core critical thinking tool), systems-thinking 0.90 (strong — 'essential for understanding system dynamics'), experimentation 0.80 (moderate — generates questions for experimental design). Antagonists differentiated: confirmation-bias 0.90 (strong — 'directly challenges' motivated reasoning), anchoring 0.80 (moderate — constrains question space).",
     "donor_drops": [
       "Did not preserve donor reflection relations beyond the strongest current-vocabulary links around questioning discipline and anti-frame lock."
     ],

@@ -7,21 +7,30 @@
       "rationale_text": "Incentives is the direct partner model that helps moral-hazard turn hidden risk-taking into a redesign problem around consequence alignment.",
       "source_quote": "Incentives and Consequences: Moral hazard is the negative outcome of poorly calibrated consequences.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Moral hazard IS fundamentally an incentive misalignment problem — described as 'the negative outcome of poorly calibrated consequences' where incentive design is 'essential to engineering a system that mitigates this risk'.",
+      "activation_condition": "When protected agents are making decisions that externalize risk, and the root cause is misaligned reward structures rather than individual bad faith"
     },
     {
       "target_model_id": "information-asymmetry",
       "rationale_text": "Information-asymmetry grounds moral-hazard because the action or effort that matters is hidden from the principal.",
       "source_quote": "The main problem of moral hazard is the unobservability of a worker's action or effort.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Moral hazard 'thrives on hidden actions' — information asymmetry is the structural prerequisite condition that enables moral hazard by preventing principals from observing agent behavior.",
+      "activation_condition": "When the inability to observe or verify agent actions creates the structural conditions for risk-shifting behavior that moral hazard analysis predicts"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking keeps moral-hazard aimed at the machine that produces protected risk-taking instead of blaming only the actor in the current case.",
       "source_quote": "Thinking in Systems: Moral hazard requires seeing the entire system, especially the cause-and-effect chain.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Moral hazard 'requires seeing the entire system, especially the cause-and-effect chain' — a systems perspective helps identify the underlying structure that produces undesirable behavior.",
+      "activation_condition": "When addressing moral hazard requires fixing the system structure that produces the behavior rather than managing individual cases of risk-shifting"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias worsens moral-hazard analysis when protected actors and reviewers alike accept narratives that rationalize hidden risk-taking.",
       "source_quote": "Smart people are particularly good at spinning narratives to justify their choices, potentially worsening the effect.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Under moral hazard protection, agents are susceptible to motivated reasoning — 'smart people are particularly good at spinning narratives to justify their choices' when shielded from consequences.",
+      "activation_condition": "When agents protected from downside risk use motivated reasoning to justify risk-taking rather than honestly assessing whether their actions externalize harm"
     },
     {
       "target_model_id": "risk-vs-uncertainty",
       "rationale_text": "Risk-vs-uncertainty pushes back on moral-hazard overreach by reminding the team that not every bad outcome is incentive distortion rather than luck or genuine uncertainty.",
       "source_quote": "Danger when every poor outcome gets attributed to moral hazard even when the dominant driver is uncertainty, bad luck, or weak capability rather than distorted incentives.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Moral hazard shifts outcome distributions making worst-case more likely — teams 'place too much emphasis on the mean outcome and insufficient weight on outcomes far from the mean'.",
+      "activation_condition": "When moral hazard shifts the risk distribution in ways that make catastrophic outcomes more probable than base-rate analysis suggests"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on incentive alignment, hidden-action structure, and an explicit structured tension block around adjacent agency models, so the file preserves that compact surface.",
+    "summary": "Layer 1+2 enrichment complete. Allies: incentives 0.95 (critical — moral hazard IS an incentive misalignment problem, 'essential to engineering mitigation'), information-asymmetry 0.90 (strong — 'thrives on hidden actions'), systems-thinking 0.90 (strong — 'requires seeing the entire system'). Antagonists: confirmation-bias 0.80 (moderate — enables rationalization under protection), risk-vs-uncertainty 0.80 (moderate — shifts outcome distributions).",
     "donor_drops": [
       "Did not preserve donor relation sprawl beyond the strongest current-vocabulary links around incentives, information asymmetry, and post-contract risk transfer."
     ],

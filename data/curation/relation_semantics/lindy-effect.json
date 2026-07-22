@@ -2,7 +2,28 @@
   "model_id": "lindy-effect",
   "source_file": "Lindy_Effect_rag.md",
   "allies": [],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "theory-induced-blindness",
+      "rationale_text": "Theory-induced-blindness undermines lindy-effect by making loyalty to a long-lived model prevent recognition of evidence that falls outside its frame, turning longevity from a valid heuristic into a blinder against disruptive forces.",
+      "source_quote": "Theory-Induced Blindness: The phenomenon where loyalty to an existing model or theory prevents recognizing evidence that falls outside its frame. Relying solely on models proven by the past might blind decision-makers to disruptive future forces.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Loyalty to existing long-lived models 'prevents recognizing evidence that falls outside its frame' — Lindy's bias toward proven entities may blind decision-makers to genuinely disruptive future forces.",
+      "activation_condition": "When faith in time-tested models prevents recognition of paradigm-shifting evidence that the model's historical track record cannot account for"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines lindy-effect by causing practitioners to default to a known long-lived framework simply because it is readily available, substituting familiarity for fit when the problem is genuinely novel.",
+      "source_quote": "This preference can devolve into the availability heuristic (using the handy framework you know) or substitution bias (replacing a complicated real problem with a simpler model you know) when facing genuinely novel problems.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Lindy's preference for proven approaches can devolve into availability heuristic — 'using the handy framework you know' or substitution bias when facing genuinely novel problems.",
+      "activation_condition": "When defaulting to time-tested approaches becomes reflexive rather than deliberate, blocking exploration of novel solutions that may be superior in changed contexts"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "creative-destruction",
@@ -22,12 +43,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. No allies curated. Antagonists: theory-induced-blindness 0.90 (strong — loyalty to proven models blocks paradigm-shift recognition), einstellung-effect 0.80 (moderate — Lindy preference devolves into availability bias). SPARSE_ALLY_RECOVERY: 0 allies — CRITICAL priority. Canonical identifies first-principles-thinking ('strips away assumptions to reach fundamental truths'), system-2 ('deliberate reflection before hype-based decisions'), and scaffolding ('complex structures built from time-tested units') as ally candidates.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 0 allies curated — CRITICAL priority. Canonical article identifies first-principles-thinking ('identifies which foundational principles have lasted the longest'), system-2 ('encourages deliberate reflection aligning with slower analytical process'), and scaffolding ('complex structures built gradually from time-tested units') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

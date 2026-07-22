@@ -252,12 +252,12 @@ export function projectionUrl(
     fixtureId === "confirmation-bias-hub"
       ? `confirmation-bias-hub-page-${pageNumber}.json`
       : fixture.filename;
-  return assetUrl(`data/phase1/${filename}`);
+  return assetUrl(`data/phase1-v2/${filename}`);
 }
 
 export function relationPageUrl(): string {
   return assetUrl(
-    "data/phase1/pages/relation-abstraction-first-principles-thinking-ally.json",
+    "data/phase1-v2/pages/relation-abstraction-first-principles-thinking-ally.json",
   );
 }
 

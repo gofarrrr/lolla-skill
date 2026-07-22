@@ -2,7 +2,18 @@
   "model_id": "tradition-vs-innovation-balance",
   "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
   "allies": [],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines tradition-vs-innovation-balance by causing a currently held idea or strategy to block consideration of fresh alternatives, collapsing the balance toward tradition.",
+      "source_quote": "Einstellung (Mental Set): The psychological phenomenon where an idea or strategy currently held in mind (tradition/expertise) blocks the consideration of fresh thoughts, preventing creative breakthroughs.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical names Einstellung as blocking consideration of innovative alternatives when existing mental sets dominate",
+      "activation_condition": "When existing mental sets and expertise block consideration of innovative alternatives"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "status-quo-bias",
@@ -13,9 +24,9 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
-      "tension_text": "Tradition-vs-innovation-balance conflicts with commitment-and-consistency-bias when prior commitments harden into overreliance on old methods.",
-      "source_quote": "tradition-vs-innovation-balance conflicts with commitment-and-consistency-bias (commitment and consistency bias) when commitment and Consistency Bias can lead to an over-reliance on traditional methods, hindering the flexibility required for innovation.",
+      "target_model_id": "commitment-bias",
+      "tension_text": "Tradition-vs-innovation-balance conflicts with commitment-bias when prior commitments harden into overreliance on old methods.",
+      "source_quote": "tradition-vs-innovation-balance conflicts with commitment-bias (commitment and consistency bias) when commitment and Consistency Bias can lead to an over-reliance on traditional methods, hindering the flexibility required for innovation.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -30,12 +41,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. einstellung antagonist at 0.90 per canonical risks section.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 0 curated allies. Canonical suggests cognitive-load-theory, design-thinking as recovery candidates."
     ]
   },
   "deferred_higher_order_notes": {

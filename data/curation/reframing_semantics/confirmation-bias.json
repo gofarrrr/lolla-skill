@@ -1,0 +1,33 @@
+{
+    "model_id": "confirmation-bias",
+    "source_file": "Confirmation_Bias_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question is framed to seek validating evidence for a position already taken — the search for information is asymmetric, looking for reasons to confirm rather than reasons to doubt.",
+        "The question treats the absence of disconfirming evidence as confirmation, ignoring that the frame itself determines what evidence gets noticed — survivorship bias in the evidence search.",
+        "The question suppresses counterfactuals by treating the current trajectory as the natural one, making alternatives feel like deviations that need justification rather than live options.",
+        "The question weighs evidence asymmetrically — favorable information is taken at face value while unfavorable information is scrutinized, debunked, or dismissed as exceptional."
+    ],
+    "frame_patterns_challenged": [
+        "survivorship_frame",
+        "counterfactual_suppression",
+        "borrowed_premise",
+        "habitual_frame"
+    ],
+    "reframing_move": "Before accepting the evidence base as given, ask: 'What evidence would I expect to see if this frame were wrong, and have I looked for it with the same energy I used to confirm it?' — the disconfirmation reframe forces symmetric evidence search.",
+    "reframing_move_types": ["assumption_surfacing", "inversion"],
+    "curation_confidence": "high",
+    "curation_note": "Confirmation Bias is one of the strongest reframing models because it directly names the mechanism by which frames self-reinforce. The source describes 'seeking information that supports pre-existing beliefs', 'interpretation bias' (reading ambiguous evidence as confirming), and 'memory bias' (recalling confirming instances more easily). The survivorship_frame challenge is explicit: absence of disconfirming evidence is not evidence of absence. The evidence_asymmetry pattern maps directly to the model's description of asymmetric scrutiny.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Asymmetric evidence search (source's 'selective search for information'), absence as confirmation (interpretation bias), suppressed alternatives (status quo bias variant), asymmetric scrutiny (motivated reasoning concept)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Survivorship frame: the frame filters what evidence gets noticed. Counterfactual suppression: confirming frame makes alternatives feel unnatural. Borrowed premise: pre-existing beliefs function as imported premises. Habitual frame: confirmation bias reinforces habitual frames by selectively filtering for confirming evidence."
+        }
+    }
+}

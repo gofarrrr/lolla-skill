@@ -1,0 +1,33 @@
+{
+    "model_id": "einstellung-effect",
+    "source_file": "Einstellung_Effect_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question keeps producing variations of the same answer because the asker's expertise has installed a default frame that blocks alternative formulations — the solution arrived suspiciously fast.",
+        "The question is locked into one disciplinary lens ('this is a marketing problem', 'this is a cost problem') when cross-domain reframing would expose a structurally different problem definition.",
+        "The question assumes a known problem type ('we've seen this before') without testing whether the situation is genuinely novel and the familiar frame is misleading.",
+        "The question frames improvement as refinement of the existing approach when the real leverage comes from switching modes entirely — from focused mode to diffuse mode, from optimization to exploration."
+    ],
+    "frame_patterns_challenged": [
+        "habitual_frame",
+        "scope_lock",
+        "borrowed_premise",
+        "option_space_collapse"
+    ],
+    "reframing_move": "Interrupt the expert default: instead of asking 'how do we improve X within the current frame?', ask 'what would we do if we had never seen this kind of problem before and had to start from the structure of the situation rather than from prior solutions?' — the de-fixation reframe forces cross-domain alternatives before expertise narrows the field.",
+    "reframing_move_types": ["perspective_shift", "constraint_relaxation"],
+    "curation_confidence": "high",
+    "curation_note": "Einstellung is a primary reframing model — its entire purpose is diagnosing and breaking frame fixation caused by expertise. The source is explicit: 'getting stuck as a result of becoming fixated on a flawed approach', the word-search game analogy, and the consulting example of assuming 'I have seen this one before'. The reframing move maps directly to the source's 'switching modes' heuristic and 'interrogative self-talk' technique.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: expert fixation (cognitive template concept), disciplinary lock (Maslow's hammer), false pattern recognition (consulting example), and mode switching (focused vs diffuse thinking)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Habitual frame: the core target — expertise installs default frames. Scope lock: disciplinary lens narrows the problem definition. Borrowed premise: 'we've seen this before' imports a prior frame. Option space collapse: fixation blocks alternatives."
+        }
+    }
+}

@@ -7,21 +7,30 @@
       "rationale_text": "Anchoring gives price-discrimination a way to shape perceived value before the final price is judged.",
       "source_quote": "Setting an initial, high reference point",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Setting an initial, high reference point (the anchor) significantly influences the perception of subsequent prices' — core pricing mechanism.",
+      "activation_condition": "When setting initial reference prices that shape subsequent perceptions of value and willingness to pay."
     },
     {
       "target_model_id": "jobs-to-be-done",
       "rationale_text": "Jobs-to-be-done helps price-discrimination separate segments by the outcome they hire the offer to achieve rather than by shallow demographics.",
       "source_quote": "different customer segments",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Conceptually relevant for segmentation — understanding distinct customer needs enables differentiated pricing — but not directly listed in canonical allies.",
+      "activation_condition": "When understanding distinct customer needs enables segmentation for differentiated pricing strategies."
     },
     {
       "target_model_id": "pareto-principle",
       "rationale_text": "Pareto-principle helps price-discrimination focus differentiated effort on the highest-value customer segments.",
       "source_quote": "focus differentiation efforts on the Power 4% of customers",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'focusing differentiation efforts on the Power 4% of customers who drive 80% of revenue' — strategic focus for pricing.",
+      "activation_condition": "When focusing pricing strategy on the high-value customer segments that drive disproportionate revenue."
     }
   ],
   "antagonists": [
@@ -30,7 +39,10 @@
       "rationale_text": "Confirmation-bias can make price-discrimination defend a preferred pricing structure instead of testing what buyers actually value.",
       "source_quote": "Confirmation Bias",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical: 'makes people process information to get the conclusion they *want* rather than discovering what is true (that different markets demand different prices)'.",
+      "activation_condition": "When belief in standardized pricing prevents recognizing that different markets demand different prices."
     }
   ],
   "structured_tensions": [
@@ -50,5 +62,10 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. anchoring 0.90 ('significantly influences'), pareto-principle 0.90 (Power 4%), jobs-to-be-done 0.80 (conceptual, not in canonical). confirmation-bias antagonist at 0.80.",
+    "donor_drops": [],
+    "open_questions": []
+  }
 }

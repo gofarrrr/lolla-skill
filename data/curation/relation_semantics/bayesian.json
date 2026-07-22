@@ -7,21 +7,30 @@
       "rationale_text": "Scientific-method-evidence-testing gives bayesian reasoning a disciplined way to generate hypotheses and update beliefs with empirical data.",
       "source_quote": "The deliberative structure of Bayesianism aligns directly with the scientific method, emphasizing testable hypotheses and empirical data gathering.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'aligns directly with the scientific method, emphasizing testing and evidence' — provides the disciplined hypothesis-testing structure that Bayesian updating requires.",
+      "activation_condition": "When Bayesian updating needs a disciplined structure for generating hypotheses and testing them against evidence rather than updating informally on impressions"
     },
     {
       "target_model_id": "base-rates",
       "rationale_text": "Base-rates stabilizes bayesian reasoning by supplying the outside-view prior before case-specific evidence is layered in.",
       "source_quote": "To provide an objective outside view, one must anchor initial estimates to reference classes (what has happened in similar past situations).",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "Constitutive — 'anchor initial estimates to reference classes' — base rates ARE the prior probability that Bayesian reasoning starts from. Without a principled prior, the entire updating process is ungrounded.",
+      "activation_condition": "When Bayesian analysis needs an objective outside-view prior grounded in population-level frequencies before incorporating case-specific evidence"
     },
     {
       "target_model_id": "expected-value",
       "rationale_text": "Expected-value pairs with bayesian reasoning by turning updated probabilities into better decision stakes under uncertainty.",
       "source_quote": "It underpins all optimal decision-making under uncertainty.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Downstream application — 'underpins all optimal decision-making under uncertainty' — converts updated posteriors into actionable decision scores, but is a consumer of Bayesian output rather than a mechanism that strengthens the updating itself.",
+      "activation_condition": "When updated posterior probabilities need to be translated into actionable decision scores that weight both likelihood and impact magnitude"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias blocks bayesian updating by filtering evidence so the posterior never honestly moves.",
       "source_quote": "Bayesianism's explicit requirement to incorporate disconfirming evidence to update the prior belief fundamentally clashes with this tendency.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly blocks the updating mechanism — 'Bayesianism's explicit requirement to incorporate disconfirming evidence' is defeated when confirmation bias filters the evidence stream before it can shift the posterior.",
+      "activation_condition": "When the Bayesian updater is encountering evidence that should shift their posterior but motivated reasoning prevents genuine incorporation of disconfirming data"
     },
     {
       "target_model_id": "anchoring",
       "rationale_text": "Anchoring distorts bayesian reasoning when the initial prior keeps too much weight after contradictory evidence arrives.",
       "source_quote": "Anchoring occurs when too much focus is placed on a single, often initial, piece of information.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Specific Bayesian failure mode — 'too much focus is placed on a single, often initial, piece of information' — the prior absorbs disproportionate weight and subsequent evidence fails to shift the posterior adequately.",
+      "activation_condition": "When the initial prior estimate is keeping disproportionate weight despite accumulating evidence that should have shifted the posterior substantially"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on ally logic around scientific testing and outside-view priors, plus an explicit structured tension block.",
+    "summary": "Layer 1+2 enrichment complete. Allies: base-rates 0.95 (critical — constitutive prior), scientific-method-evidence-testing 0.90 (strong — 'aligns directly'), expected-value 0.80 (moderate — downstream application). Antagonists: confirmation-bias 0.90 (strong — blocks updating), anchoring 0.90 (strong — sticky prior). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor relation expansion beyond the named testing, prior, and anti-bias surface."
     ],

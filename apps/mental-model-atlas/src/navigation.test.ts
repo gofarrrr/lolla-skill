@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import navigationIndex from "../public/data/navigation-v1/neighborhood-index.json";
+import navigationIndex from "../public/data/navigation-v2/neighborhood-index.json";
 import {
   buildNeighborhoodProjection,
   validateNavigationIndex,

@@ -7,14 +7,20 @@
       "rationale_text": "Cognitive Load Theory helps the router choose simpler structures so complexity is processed without overload.",
       "source_quote": "By routing complex ideas through simple organizational structures, concept maps, or analogies, the RMR ensures that new information is broken into absorbable chunks.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'The RMR's goal is to minimize unnecessary cognitive load' — routes complex ideas through simple structures to maximize learning efficiency.",
+      "activation_condition": "When routing reasoning through appropriate modes requires managing cognitive load to avoid overwhelming working memory."
     },
     {
       "target_model_id": "meta-cognitive-reflection",
       "rationale_text": "Metacognitive reflection gives the router the self-monitoring needed to test whether the current mode is actually working.",
       "source_quote": "Metacognition includes the planning aspect (\"What are my goals?\") and the monitoring aspect (\"Could I learn this idea in a different way?\").",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'This is the self-awareness required for effective routing' — metacognition enables planning ('What are my goals?') and monitoring ('Could I learn this differently?').",
+      "activation_condition": "When conscious awareness of one's own reasoning process is needed to select the most effective reasoning mode."
     }
   ],
   "antagonists": [
@@ -23,21 +29,27 @@
       "rationale_text": "Confirmation bias hijacks routing by pushing the problem-solving path toward defending a preferred conclusion.",
       "source_quote": "This bypasses objective mode selection, forcing the problem-solving effort to defend a preconceived idea.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'Motivated reasoning actively hijacks the RMR, forcing the problem-solving effort to defend a preconceived idea regardless of contradictory evidence.'",
+      "activation_condition": "When motivated reasoning hijacks mode selection to defend preconceived conclusions rather than genuinely discriminating problem structure."
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
+      "target_model_id": "commitment-bias",
       "rationale_text": "Commitment and consistency bias blocks route correction even when new evidence indicates another reasoning mode is needed.",
       "source_quote": "This desire to avoid the \"rigors of thinking\" or the appearance of being inconsistent suppresses the RMR’s function to seek truth over comfort.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'creates discomfort with inconsistency, leading people to stick with initial interpretations... suppresses the RMR's function to seek truth over comfort.'",
+      "activation_condition": "When the desire to appear consistent suppresses route correction even when new evidence indicates a different reasoning mode is needed."
     }
   ],
   "structured_tensions": [
     {
-      "target_model_id": "representativeness-bias",
-      "tension_text": "Reasoning-mode-router conflicts with representativeness-bias when familiar labels force premature mode routing.",
-      "source_quote": "reasoning-mode-router conflicts with representativeness-bias when familiar labels force premature mode routing.",
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Reasoning-mode-router conflicts with representativeness-heuristic when familiar labels force premature mode routing.",
+      "source_quote": "reasoning-mode-router conflicts with representativeness-heuristic when familiar labels force premature mode routing.",
       "extraction_type": "explicit",
       "confidence": "high",
       "tension_type": "conflicts"
@@ -59,21 +71,22 @@
       "tension_type": "conflicts"
     },
     {
-      "target_model_id": "commitment-and-consistency-bias",
-      "tension_text": "Reasoning-mode-router conflicts with commitment-and-consistency-bias when discomfort with inconsistency suppresses route correction.",
-      "source_quote": "reasoning-mode-router conflicts with commitment-and-consistency-bias (commitment and consistency bias) when the discomfort of appearing inconsistent suppresses route correction even when new evidence indicates a different reasoning mode is needed.",
+      "target_model_id": "commitment-bias",
+      "tension_text": "Reasoning-mode-router conflicts with commitment-bias when discomfort with inconsistency suppresses route correction.",
+      "source_quote": "reasoning-mode-router conflicts with commitment-bias (commitment and consistency bias) when the discomfort of appearing inconsistent suppresses route correction even when new evidence indicates a different reasoning mode is needed.",
       "extraction_type": "normalized",
       "confidence": "high",
       "tension_type": "conflicts"
     }
   ],
   "curation_notes": {
-    "summary": "The router source is close to relation-ready because it names both supporting discipline and explicit structured conflicts.",
+    "summary": "Layer 1+2 enrichment complete. cognitive-load-theory 0.90 (RMR's goal), meta-cognitive-reflection 0.90 ('required for effective routing'). Both antagonists at 0.90 (confirmation-bias 'actively hijacks', commitment-bias 'suppresses function').",
     "donor_drops": [
       "Did not preserve donor topology or multihop routing artifacts in a first-order relation pilot."
     ],
     "open_questions": [
-      "The raw source also contains inside-view pressure, but that relation is not cleanly targetable to a current canonical id."
+      "The raw source also contains inside-view pressure, but that relation is not cleanly targetable to a current canonical id.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include system-2 (RMR relies on System 2 for conscious mode selection) and multidisciplinary-thinking (translating knowledge across disciplines requires mode routing)."
     ]
   },
   "deferred_higher_order_notes": {

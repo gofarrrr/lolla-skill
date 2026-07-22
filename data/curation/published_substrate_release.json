@@ -1,0 +1,64 @@
+{
+  "schema_version": "lolla.published_knowledge_substrate_release.v1",
+  "status": "published",
+  "release_id": "lolla-graph-2026-04-21-v1",
+  "custody_reconstructed_date": "2026-07-22",
+  "repository_authority": "sole_active_project_authority",
+  "runtime_generation_allowed": false,
+  "provider_calls_allowed": 0,
+  "artifacts": {
+    "knowledge_graph": {
+      "path": "data/knowledge_graph.json",
+      "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae",
+      "bytes": 2129575,
+      "record_count": 222
+    },
+    "relationship_graph": {
+      "path": "data/relationship_graph.json",
+      "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf",
+      "bytes": 1263715,
+      "record_count": 1358
+    }
+  },
+  "custody_inputs": {
+    "model_source_manifest": {
+      "path": "data/model_sources/manifest.json",
+      "sha256": "ac9c07ae82f5f6686390de1eaefc69a29491062cf66a48fb71a80e101bae7c83",
+      "bytes": 59788
+    },
+    "relation_authoring_manifest": {
+      "path": "data/curation/relation_semantics_manifest.json",
+      "sha256": "2634e0f200362d4daa30a43b03b46d5ba27716005195b6ee20dbb7f6d177e581",
+      "bytes": 54619
+    },
+    "relation_source_anchor_register": {
+      "path": "data/curation/relation_source_anchor_register.json",
+      "sha256": "cb54070a2e14f2aa8c8e644acd88b34b20edcb89c6f9ee52963887443073a5ef",
+      "bytes": 1110445
+    },
+    "compiler_input_manifest": {
+      "path": "data/curation/compiler_inputs_manifest.json",
+      "sha256": "ae9e32f08687bd84678eef33b9547ca783c70c5ebe83ba072d75b3dfe0877032",
+      "bytes": 138446
+    },
+    "compiler_contract": {
+      "path": "data/curation/graph_compiler_contract.json",
+      "sha256": "10c03eb027f2a114dae207834d49fd37e44d5b193914132c682cdbb5a242198f",
+      "bytes": 1190
+    }
+  },
+  "coverage": {
+    "model_registry": "complete",
+    "compact_graph_projection": "complete",
+    "rich_graph_projection": "complete",
+    "model_source_custody": "complete",
+    "relation_authoring_custody": "complete",
+    "relation_source_anchor_classification": "complete"
+  },
+  "non_claims": [
+    "published_status_is_not_semantic_correctness",
+    "source_custody_is_not_relevance_proof",
+    "graph_path_is_not_causation",
+    "release_validation_does_not_authorize_runtime_mutation"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+    "model_id": "premortem",
+    "source_file": "Premortem_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question assumes the plan will succeed and asks how to execute it — prospective hindsight from a simulated failure would surface risks the forward-looking question suppresses.",
+        "The question asks 'how do we achieve X?' without asking 'what would guarantee we fail at X?' — the anti-goal formulation is missing.",
+        "The question inherits optimistic assumptions about a multi-step plan without stress-testing whether each conjunctive step actually has a high probability of success.",
+        "The question is being asked in a social context where executive momentum or groupthink suppresses dissent — the premortem creates psychological safety for airing doubts about the question itself."
+    ],
+    "frame_patterns_challenged": [
+        "counterfactual_suppression",
+        "borrowed_premise",
+        "option_space_collapse"
+    ],
+    "reframing_move": "Assume the plan has already failed spectacularly and ask 'what went wrong?' — the shift from forward-looking optimism to backward-looking failure analysis surfaces specific, tractable risks that the success-framed question cannot see.",
+    "reframing_move_types": [
+        "inversion",
+        "assumption_surfacing"
+    ],
+    "curation_confidence": "high",
+    "curation_note": "Premortem is a distinct reframing tool from inversion — both flip the question direction, but premortem specifically introduces prospective hindsight (imagining the future failure as already having occurred) while inversion is a more general negative-space exploration. The source is explicit: the premortem counters the 'inside view' by forcing the 'outside view' through simulated failure.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "All four activations grounded: prospective hindsight (Gary Klein core), anti-goal formulation (inverse thinking), conjunctive event overestimation (planning fallacy), and groupthink suppression (psychological safety for dissent)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Counterfactual suppression: the question doesn't explore failure paths. Borrowed premise: WTWHTB stress-tests inherited assumptions. Option space collapse: premortem surfaces paths the success framing hides."
+        }
+    }
+}

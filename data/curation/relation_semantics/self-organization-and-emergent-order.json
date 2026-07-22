@@ -7,17 +7,34 @@
       "rationale_text": "Emergence gives self-organization-and-emergent-order the system-level lens for understanding how coherent patterns arise from local interactions.",
       "source_quote": "A coherent whole comes into existence through the integration and synthesis of many components.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: self-organization produces 'emergence of novel insight' — emergence IS the outcome of self-organization. Definitionally intertwined concepts.",
+      "activation_condition": "When novel system-level properties arise from the interactions of simpler components through self-organizing processes."
     },
     {
       "target_model_id": "feedback-loops",
       "rationale_text": "Feedback-loops help self-organization-and-emergent-order explain how local responses stabilize, amplify, or redirect distributed behavior.",
       "source_quote": "Order depends on interactions and the signals circulating among parts of the system.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical: 'continuous learning from feedback enables the organization to constantly reinvent itself' — feedback mechanisms drive the self-organizing adaptation cycle.",
+      "activation_condition": "When self-organizing systems require feedback mechanisms to learn from outcomes and adapt their emergent behavior."
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines self-organization-and-emergent-order by forcing novel emergent phenomena into familiar but misleading frameworks, suppressing the recognition of genuinely new patterns.",
+      "source_quote": "This is the tendency to assume a familiar framing for a new problem, or to substitute a simple model known to the thinker for the complicated reality. This bias actively suppresses emergence by forcing novel phenomena into misleading, existing structures.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical (as Maslow's Hammer): 'actively suppresses emergence by forcing novel phenomena into misleading, existing structures.'",
+      "activation_condition": "When familiar frameworks are imposed on novel emergent phenomena, suppressing the self-organizing dynamics that produce genuine innovation."
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "authority-bias",
@@ -45,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved one emergence ally and one feedback ally to keep the first-order surface clean and inspectable.",
+    "summary": "Layer 1+2 enrichment complete. emergence 0.90 (definitionally intertwined), feedback-loops 0.90 (enables reinvention cycle). einstellung antagonist at 0.90 ('actively suppresses emergence'). Canonical also lists MECE, systems-mapping, and metacognition as allies.",
     "donor_drops": [
       "Did not preserve broader governance and ecology sprawl beyond the clearest current-vocabulary seams."
     ],
     "open_questions": [
-      "Additional centralized-control tensions are source-real, but the first-order surface is cleanest through emergence and feedback-loops."
+      "Additional centralized-control tensions are source-real, but the first-order surface is cleanest through emergence and feedback-loops.",
+      "SPARSE_ALLY_RECOVERY: 2 curated allies. Canonical allies include systems-mapping (visualize organizational interactions), metacognition (monitor framing of emergent phenomena)."
     ]
   }
 }

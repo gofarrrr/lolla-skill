@@ -7,14 +7,20 @@
       "rationale_text": "Metacognitive-questioning helps circle-of-competence inspect whether current judgment is genuinely earned or only feels familiar.",
       "source_quote": "It relies heavily on metacognition (thinking about thinking), enabling an expert to frame a problem and reflect on whether their proposed answer seems reasonable.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.95,
+      "affinity_rationale": "The article states CoC 'relies heavily on metacognition' and calls self-awareness 'key to success' — metacognition IS the operating mechanism of knowing your circle, not just a useful supplement.",
+      "activation_condition": "When assessing whether current judgment is genuinely earned expertise or merely comfortable familiarity that feels like competence"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "The Feynman technique helps circle-of-competence expose the perimeter by revealing what cannot yet be explained simply.",
       "source_quote": "The Feynman Technique: This powerful learning framework is a direct tool for defining the perimeter of the CoC.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'a direct tool for defining the perimeter' — directly serves CoC's core function of boundary definition through a specific, actionable method.",
+      "activation_condition": "When defining the precise boundary between what is actually understood versus what is assumed or inherited without verification"
     }
   ],
   "antagonists": [
@@ -23,14 +29,20 @@
       "rationale_text": "Authority-bias can pull judgment outside the earned perimeter by making borrowed expertise feel sufficient.",
       "source_quote": "circle-of-competence vs authority-bias: circle-of-competence conflicts with authority-bias (authority bias) when external expert status is accepted outside proven domain boundaries.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly pulls judgment outside the earned perimeter — external expert status gets accepted without testing whether it falls within proven domain boundaries.",
+      "activation_condition": "When borrowing expertise from an authority figure or credential and the alignment with one's own proven domain boundaries has not been explicitly tested"
     },
     {
       "target_model_id": "confirmation-bias",
       "rationale_text": "Confirmation-bias makes circle-of-competence count only the evidence that flatters the current boundary story.",
       "source_quote": "When relying on the CoC, a person may seek information that only confirms their pre-existing framing of the problem.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "General bias applied to boundary assessment — selectively counts successes to confirm operating inside the circle rather than honestly mapping its edges.",
+      "activation_condition": "When evaluating one's own competence boundary and the evidence base consists primarily of past successes without systematic failure tracking"
     }
   ],
   "structured_tensions": [
@@ -60,12 +72,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source gives unusually explicit first-order conflict language, so the file preserves those tensions directly and keeps allies close to the named perimeter-check tools.",
+    "summary": "Layer 1+2 enrichment complete. Allies: metacognitive-questioning 0.95 (critical — 'relies heavily on' it for self-awareness), feynman-technique 0.90 (strong — 'direct tool for defining the perimeter'). Antagonists differentiated: authority-bias 0.90 (strong — pulls judgment outside earned perimeter), confirmation-bias 0.80 (moderate — general success-counting bias). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies — consider adding deliberate-practice or intellectual-humility from canonical article review.",
     "donor_drops": [
       "Did not preserve donor relation sprawl beyond the named self-monitoring and bias-conflict surface."
     ],
     "open_questions": [
-      "Dunning-Kruger and curse-of-knowledge remain source-real antagonists, but this pass kept the stronger direct conflicts and named perimeter allies."
+      "Dunning-Kruger and curse-of-knowledge remain source-real antagonists, but this pass kept the stronger direct conflicts and named perimeter allies.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names Dunning-Kruger awareness and deliberate practice as potential ally candidates for boundary expansion."
     ]
   }
 }

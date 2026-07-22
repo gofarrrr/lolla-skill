@@ -2,7 +2,18 @@
   "model_id": "extreme-performance-evaluation",
   "source_file": "Extreme_Performance_Evaluation_rag.md",
   "allies": [],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "survivorship-bias",
+      "rationale_text": "Survivorship-bias undermines extreme-performance-evaluation by directing evaluation attention only toward visible successes and away from the failures, near-misses, and eliminated candidates whose patterns carry the sharpest diagnostic signal.",
+      "source_quote": "Over-reliance on Experience: Expertise can lead to overconfidence and an unwillingness to investigate new problems fully, assuming 'I have seen this one before'.",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "affinity_strength": 0.7,
+      "affinity_rationale": "Medium confidence — evaluation of extreme performance risks focusing only on visible survivors or successes, missing the base rate of failures that would contextualize the extreme outcome.",
+      "activation_condition": "When extreme performance evaluation focuses only on visible success cases without accounting for the base rate of attempts that failed under similar conditions"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confirmation-bias",
@@ -22,12 +33,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved only current-vocabulary first-order seams that were explicit or cleanly warranted by the raw source.",
+    "summary": "Layer 1+2 enrichment complete. No allies curated. Antagonist: survivorship-bias 0.70 (supportive — medium confidence, evaluation bias toward visible survivors). Activation conditions assigned. SPARSE_ALLY_RECOVERY: 0 allies — critical priority.",
     "donor_drops": [
       "Did not keep donor-shaped or out-of-vocabulary relation surfaces; omission beat weak forcing."
     ],
     "open_questions": [
-      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch."
+      "Higher-order candidates remain observational only and belong in later selective review rather than in this closure batch.",
+      "SPARSE_ALLY_RECOVERY: 0 allies curated — critical priority. Canonical article names hypothesis-driven problem solving, MECE decomposition, feynman-technique, and first-principles-thinking as synergistic allies."
     ]
   },
   "deferred_higher_order_notes": {

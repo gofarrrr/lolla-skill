@@ -7,14 +7,20 @@
       "rationale_text": "Game-theory-payoffs helps calculated-risk-taking reason through adversarial choices, countermoves, and payoff structure before committing.",
       "source_quote": "Game Theory in Competition",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Adversarial reasoning tool — helps 'reason through adversarial choices, countermoves, and payoff structure' — useful for competitive risk scenarios but operates as one analytical tool among several rather than the core risk-calculation mechanism.",
+      "activation_condition": "When risk calculation involves adversarial dynamics where the outcome depends on competitors' countermoves and the resulting payoff matrix rather than pure probability estimation"
     },
     {
       "target_model_id": "decision-trees",
       "rationale_text": "Decision-trees gives calculated-risk-taking a concrete branching structure for comparing uncertain paths and explicit payoffs.",
       "source_quote": "Decision Trees",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Structural comparison tool — 'concrete branching structure for comparing uncertain paths and explicit payoffs' — provides the analytical scaffolding for risk comparison but is a tool applied within the risk framework.",
+      "activation_condition": "When uncertain risk paths need to be laid out as an explicit branching structure with probability-weighted payoffs to enable systematic comparison of alternatives"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Optimism-bias-and-planning-fallacy undermines calculated-risk-taking by overweighting upside scenarios and underestimating the real downside exposure.",
       "source_quote": "focusing too heavily on the mean outcome",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Directly corrupts risk calculation — 'focusing too heavily on the mean outcome' and 'unwarranted optimism about success' — overweights upside scenarios and underestimates real downside exposure, making the 'calculated' part of risk-taking illusory.",
+      "activation_condition": "When risk estimates are anchored to the most likely (mean) scenario rather than properly weighting the full distribution including tail risks and conjunctive failure probabilities"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The file keeps the strongest first-order relation surface: explicit branch-comparison allies and a clear antagonist in upside-biased risk sizing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: game-theory-payoffs 0.80 (moderate — adversarial reasoning tool), decision-trees 0.80 (moderate — structural comparison). Antagonists: optimism-bias-and-planning-fallacy 0.90 (strong — 'unwarranted optimism' corrupts risk estimation). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not manufacture structured tensions because the raw source is more ally-and-anti-pattern heavy than explicit tension-block based."
     ],
     "open_questions": [
-      "Reference classes are source-real here too, but decision-trees and game-theory-payoffs were the more operational anchors."
+      "Reference classes are source-real here too, but decision-trees and game-theory-payoffs were the more operational anchors.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Systems Thinking ('strong ally' for seeing interconnected variables) and Critical Thinking/Metacognition ('integral' for monitoring reasoning quality) as strong ally candidates."
     ]
   }
 }

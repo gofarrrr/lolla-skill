@@ -7,14 +7,20 @@
       "rationale_text": "Root-cause-analysis helps hanlons-razor move from blame toward the process or design failure that actually produced the bad outcome.",
       "source_quote": "The process of asking why, why, why allows a systemic approach to emerge.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Hanlon's Razor supports root cause analysis by removing malice as the default explanation, directing investigation toward systemic and competence-based causes that are more often the true root.",
+      "activation_condition": "When root cause investigation benefits from assuming incompetence or systemic failure before malice, directing diagnostic effort toward more probable explanations"
     },
     {
       "target_model_id": "psychological-safety",
       "rationale_text": "Psychological-safety gives hanlons-razor a team context where errors can be investigated without instantly escalating into hostile accusations.",
       "source_quote": "It establishes a norm of psychological safety necessary for candid feedback and true collaborative problem-solving.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Creates the environment where charitable attribution of error over malice can be sustained — psychological safety enables teams to discuss failures without fear of blame or accusation.",
+      "activation_condition": "When team dynamics require an environment where errors can be discussed openly without fear that mistakes will be attributed to malicious intent"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias pushes hanlons-razor off course by encouraging people to treat ambiguous evidence as proof of hostile intent.",
       "source_quote": "Hanlon’s Razor directly fights confirmation bias by demanding the consideration of disconfirming evidence.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical states 'If a leader already believes an employee is lazy or hostile, confirmation bias encourages interpreting ambiguous actions as proof of malice. Hanlon's Razor directly fights this.'",
+      "activation_condition": "When pre-existing negative beliefs about a person cause ambiguous actions to be interpreted as confirming malicious intent rather than incompetence or circumstance"
     }
   ],
   "structured_tensions": [
@@ -37,8 +46,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Preserved the clearest system-diagnosis ally, one collaborative ally, and the explicit accountability tension with moral-hazard.",
-    "donor_drops": ["Did not preserve broader theory-of-mind sprawl beyond the clearest current-vocabulary seams."],
-    "open_questions": ["Occams-razor is source-real nearby, but the first-order surface is cleanest around root-cause-analysis and psychological-safety."]
+    "summary": "Layer 1+2 enrichment complete. Allies: root-cause-analysis 0.80 (moderate — directs toward systemic causes), psychological-safety 0.80 (moderate — enables charitable attribution). Antagonist: confirmation-bias 0.90 (strong — 'directly fights this'). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
+    "donor_drops": [
+      "Did not preserve broader theory-of-mind sprawl beyond the clearest current-vocabulary seams."
+    ],
+    "open_questions": [
+      "Occams-razor is source-real nearby, but the first-order surface is cleanest around root-cause-analysis and psychological-safety.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names occams-razor, system-2 thinking, and theory-of-mind/perspective-taking as additional synergistic allies."
+    ]
   }
 }

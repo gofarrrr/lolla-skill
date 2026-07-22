@@ -1,0 +1,33 @@
+{
+    "model_id": "user-centered-design",
+    "source_file": "User_Centered_Design_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question frames the problem from the builder's or decision-maker's perspective without asking whose experience is actually at stake — the end-user's frame is missing entirely.",
+        "The question conflates the means (a specific solution or feature) with the end (the user need it is supposed to serve), locking the frame to implementation rather than outcome.",
+        "The question treats the decision as binary ('should we do X or not?') when observing actual user behavior would reveal a richer problem space with multiple possible interventions.",
+        "The question assumes the problem definition is correct without testing it against the people who will live with the consequences of the decision."
+    ],
+    "frame_patterns_challenged": [
+        "means_end_conflation",
+        "binary_collapse",
+        "scope_lock",
+        "single_actor_assumption"
+    ],
+    "reframing_move": "Before deciding on a solution, ask: 'Whose experience does this decision shape, and what would they tell us the real problem is?' — the user-centered reframe shifts the frame from the decision-maker's abstractions to the lived experience of the people affected.",
+    "reframing_move_types": ["perspective_shift", "stakeholder_reframe"],
+    "curation_confidence": "high",
+    "curation_note": "User-Centered Design is a strong reframing model because its core insight is that problem definitions are often wrong when they exclude the user's perspective. The source emphasizes 'understanding the needs of end-users', 'iterative design based on user feedback', and 'empathize with users to understand their needs and pain points'. The means-end challenge is explicit: UCD distinguishes user needs from proposed solutions. The binary collapse challenge comes from the iterative, observational methodology that reveals richer option spaces.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Builder vs user frame (empathy phase), means vs ends (need vs solution distinction), binary to rich (iterative observation), untested problem definition (user testing methodology)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Means-end conflation: UCD's core distinction between user need and proposed solution. Binary collapse: iterative observation reveals multiple interventions. Scope lock: user perspective often redefines the problem boundary. Single actor assumption: brings affected stakeholders into the frame."
+        }
+    }
+}

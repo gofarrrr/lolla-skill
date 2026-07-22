@@ -8,6 +8,13 @@ import struct
 from collections import Counter
 from pathlib import Path
 
+from scripts.product.build_mental_model_atlas_custody_v2 import (
+    CURRENT_SOURCE_HASHES,
+)
+from scripts.product.build_mental_model_atlas_phase1_projection import (
+    EXPECTED_SOURCE_HASHES,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "docs/evals/lolla-mental-model-atlas-prd-v1.json"
@@ -84,7 +91,13 @@ def test_atlas_prd_contract_is_grounded_in_the_canonical_substrate() -> None:
     assert contract["canonical_planning_base"] == "2f05fd1ca7081f602317d670faad8d1293d5b0ff"
     assert contract["status"] == "phase1_relational_editorial_tracer_founder_gate_pending"
 
-    assert _sha256(manifest_path) == baseline["model_source_manifest"]["sha256"]
+    assert baseline["model_source_manifest"]["sha256"] == (
+        EXPECTED_SOURCE_HASHES["data/model_sources/manifest.json"]
+    )
+    assert _sha256(manifest_path) == CURRENT_SOURCE_HASHES[
+        "data/model_sources/manifest.json"
+    ]
+    assert manifest["source_authority"] == "repository_local"
     assert _sha256(knowledge_path) == baseline["knowledge_graph"]["sha256"]
     assert _sha256(relationship_path) == baseline["relationship_graph"]["sha256"]
     assert _sha256(affordance_path) == baseline["v60_affordances"]["sha256"]

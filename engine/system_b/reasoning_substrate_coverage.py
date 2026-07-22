@@ -6,9 +6,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 
-DEFAULT_CANONICAL_SOURCE_DIR = Path(
-    "/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216"
-)
+DEFAULT_CANONICAL_SOURCE_DIR = Path("data/model_sources")
 RUNTIME_GRAPH_FIELDS = (
     "select_when",
     "danger_when",
@@ -71,6 +69,7 @@ def build_enrichment_coverage_audit(
         graph_only_model_ids=set(missing_v4),
     )
     canonical_availability = _canonical_markdown_availability(
+        root=root,
         models=models,
         canonical_source_dir=canonical_source_dir,
     )
@@ -192,12 +191,14 @@ def _static_lane_signal_priorities(
 
 def _canonical_markdown_availability(
     *,
+    root: Path,
     models: Mapping[str, Any],
     canonical_source_dir: Path | None,
 ) -> dict[str, Any]:
     if canonical_source_dir is None:
         return {
             "canonical_source_dir": "",
+            "canonical_source_authority": "not_configured",
             "directory_exists": False,
             "available_model_count": 0,
             "missing_model_count": len(models),
@@ -205,7 +206,10 @@ def _canonical_markdown_availability(
             "missing_model_ids": sorted(str(model_id) for model_id in models),
         }
 
-    source_dir = Path(canonical_source_dir)
+    configured_dir = Path(canonical_source_dir)
+    source_dir = (
+        configured_dir if configured_dir.is_absolute() else root / configured_dir
+    )
     available: list[str] = []
     missing: list[str] = []
     directory_exists = source_dir.exists()
@@ -216,7 +220,8 @@ def _canonical_markdown_availability(
         else:
             missing.append(str(model_id))
     return {
-        "canonical_source_dir": str(source_dir),
+        "canonical_source_dir": str(configured_dir),
+        "canonical_source_authority": "repository_local",
         "directory_exists": directory_exists,
         "available_model_count": len(available),
         "missing_model_count": len(missing),

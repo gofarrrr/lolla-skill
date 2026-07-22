@@ -7,14 +7,20 @@
       "rationale_text": "Feedback-loops gives natural-selection-analogy the evaluation cycle needed for variation, selection, and retention to work in practice.",
       "source_quote": "iterative refinement mirror the feedback loops of natural selection",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Natural selection IS a feedback/selection loop mechanism — 'supports the need for continuous feedback and self-correction' where the 5-Step process is 'explicitly described as an evolutionary process'.",
+      "activation_condition": "When organizational or system improvement requires a continuous variation-selection-retention loop rather than top-down design"
     },
     {
       "target_model_id": "experimentation",
       "rationale_text": "Experimentation operationalizes natural-selection-analogy by generating variants and letting evidence eliminate weak options.",
       "source_quote": "generate a multitude of ideas and let the environment select the winner",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Iterative improvement 'directly implements the selection/retention loop' — experimentation generates the variations that natural selection operates upon.",
+      "activation_condition": "When generating the variety of options that selection can act upon requires structured experimentation rather than theoretical prediction"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Survivorship-bias distorts natural-selection-analogy when analysts study only the winners and ignore what failed variants would have revealed.",
       "source_quote": "focusing only on the successful outcomes and not analyzing the failures",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Survivorship bias directly corrupts conclusions drawn from natural selection by hiding the failure data — we see only survivors, not the failures that selection eliminated, creating false lessons about success factors.",
+      "activation_condition": "When drawing lessons from evolutionary outcomes focuses only on surviving entities while ignoring the vastly larger population of failures that were selected against"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: feedback-loops 0.90 (strong — natural selection IS a feedback/selection loop), experimentation 0.80 (moderate — generates variations for selection). Antagonist: survivorship-bias 0.90 (strong — hides failure data from selection outcomes). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies analogical-thinking ('the underlying mechanism that allows the analogy to transfer from biology to business') and latticework-of-mental-models ('power is magnified when combined with tools from other fields') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

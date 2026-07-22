@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import shutil
 
+from .published_knowledge_substrate import PublishedKnowledgeSubstrate
 from .stress_phase1_definition import StressPhase1Definition, default_stress_phase1_definition
 
 
@@ -36,9 +37,10 @@ class StressPhase1Builder:
 
     def compile(self) -> StressPhase1Artifacts:
         definition = default_stress_phase1_definition()
-        knowledge_graph = json.loads(
-            (self._source_root / "build" / "knowledge_graph.json").read_text(encoding="utf-8")
+        substrate = PublishedKnowledgeSubstrate.open(self._source_root).require_snapshot(
+            allow_partial=True
         )
+        knowledge_graph = substrate.knowledge_graph_payload()
         _require_stress_groundwork(knowledge_graph, definition)
         mapping_section = _read_stress_mapping_section(self._source_root / "munger_structural_mapping.md")
         psychology_text = (
@@ -51,8 +53,8 @@ class StressPhase1Builder:
 
         knowledge_graph_path = build_dir / "knowledge_graph.json"
         relationship_graph_path = build_dir / "relationship_graph.json"
-        _copy_if_needed(self._source_root / "build" / "knowledge_graph.json", knowledge_graph_path)
-        _copy_if_needed(self._source_root / "build" / "relationship_graph.json", relationship_graph_path)
+        _copy_if_needed(substrate.data_directory / "knowledge_graph.json", knowledge_graph_path)
+        _copy_if_needed(substrate.data_directory / "relationship_graph.json", relationship_graph_path)
 
         subpattern_catalog = _build_subpattern_catalog(
             knowledge_graph=knowledge_graph,

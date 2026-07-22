@@ -7,17 +7,44 @@
       "rationale_text": "Decision-trees help markov-chains expose explicit branches and state transitions instead of leaving the sequence implicit.",
       "source_quote": "Logical Decomposition and Decision Trees",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports quantitative prediction through 'Bayesian statistics and Monte Carlo simulation' — decision trees provide the structured probability framework for transition analysis.",
+      "activation_condition": "When sequential state transitions need to be evaluated probabilistically using structured decision frameworks rather than intuitive path estimates"
     },
     {
       "target_model_id": "scaffolding",
       "rationale_text": "Scaffolding helps markov-chains model cumulative progression through bounded steps rather than giant leaps.",
       "source_quote": "Scaffolding describes the process of ramping up mastery",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'aligns perfectly by advocating for breaking complex material into smaller chunks and feeding them into long-term memory slowly and steadily' — scaffolding mirrors the incremental, structured nature of state transitions.",
+      "activation_condition": "When complex sequential processes need to be decomposed into manageable state-by-state chunks that respect cognitive load limits"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "path-dependence",
+      "rationale_text": "Path-dependence undermines markov-chains by introducing historical memory into state transitions, violating the memoryless assumption that makes the Markov simplification tractable.",
+      "source_quote": "Danger when memory, path dependence, or hidden state matters more than the current visible state, making the Markov simplification misleading.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "The Markov property assumes memoryless transitions where future states depend only on the present — path-dependence assumes history matters, creating structural mathematical tension.",
+      "activation_condition": "When modeling sequential processes, the assumption of memoryless transitions may be invalid because accumulated history fundamentally shapes available future states"
+    },
+    {
+      "target_model_id": "divergent-vs-convergent-thinking",
+      "rationale_text": "Divergent-vs-convergent-thinking undermines markov-chains by demanding free-form recombination of ideas that cannot be captured in a fixed sequence of discrete states, breaking the structured progression the model depends on.",
+      "source_quote": "Divergent Thinking/Creativity: The highly structured, sequential nature can oppose creativity, which relies on free-form recombination of ideas and deliberately seeking ways to generate new ideas outside of established patterns.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "The highly structured sequential nature 'can oppose creativity, which relies on free-form recombination of ideas' — divergent thinking requires the diffuse mode that structured models constrain.",
+      "activation_condition": "When sequential rigor and structured analysis constrain the creative exploration needed to discover non-obvious state transitions or reframe the problem space entirely"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "optionality",
@@ -35,5 +62,12 @@
       "confidence": "high",
       "tension_type": "conflicts"
     }
-  ]
+  ],
+  "curation_notes": {
+    "summary": "Layer 1+2 enrichment complete. Allies: scaffolding 0.90 (strong — 'aligns perfectly' with incremental chunking), decision-trees 0.80 (moderate — structured probability framework). Antagonists: path-dependence 0.80 (moderate — memoryless vs history-dependent tension), divergent-vs-convergent-thinking 0.80 (moderate — sequential rigor constrains creativity). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
+    "donor_drops": [],
+    "open_questions": [
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies systems-thinking ('deeply intertwined — sequential paths define movement within larger system') and metacognition/logical-rigor ('supports thinking about thinking') as ally candidates."
+    ]
+  }
 }

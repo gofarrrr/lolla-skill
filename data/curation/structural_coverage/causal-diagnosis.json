@@ -1,0 +1,47 @@
+{
+  "dimension_id": "causal-diagnosis",
+  "dimension_name": "Causal Diagnosis",
+  "cleaving_frame": "Root cause vs Symptom",
+  "description": "The problem requires understanding why something is happening before deciding what to do about it. The structural question is whether the proposed intervention targets the root cause or merely a symptom.",
+  "question_types": ["causal-diagnosis", "action-planning"],
+  "detect_when": [
+    "The answer proposes a fix or intervention without establishing what caused the problem",
+    "Multiple causes could explain the same symptom — the causal hypothesis is not tested",
+    "The problem is recurring, suggesting the root cause hasn't been identified or addressed",
+    "A proximate cause is being treated as the root cause without tracing the causal chain"
+  ],
+  "coverage_signals": [
+    "The answer distinguishes symptoms from causes — it names the mechanism, not just the observation",
+    "The answer tests competing causal hypotheses rather than jumping to the most available explanation",
+    "The answer traces the causal chain to an actionable root — deep enough to intervene effectively",
+    "The answer considers systemic factors and feedback loops that reproduce the problem"
+  ],
+  "materiality_test": "Would a different causal diagnosis lead to a different intervention?",
+  "reasoning_demanded": "causal reasoning, diagnostic analysis, hypothesis testing, root-cause tracing",
+  "models": [
+    "root-cause-analysis",
+    "five-whys-method",
+    "correlation-vs-causation",
+    "causal-attribution-resistance",
+    "systems-thinking"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Root-cause-analysis provides the systematic framework for tracing symptoms to causes. Five-whys-method provides the iterative depth tool for causal chains. Correlation-vs-causation separates co-occurrence from causation. Causal-attribution-resistance addresses the cognitive resistance to accepting accurate causal explanations when they are uncomfortable. Systems-thinking addresses the systemic feedback loops that reproduce problems. Note: correlation-vs-causation also appears in information-quality — there it tests evidence quality; here it tests causal reasoning. Different structural purposes.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from root-cause-analysis (fix without diagnosis), five-whys-method (proximate vs root cause), causal-attribution-resistance (jumping to available explanation), systems-thinking (recurring problems from unaddressed structural causes)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Symptom vs cause distinction from root-cause-analysis. Competing hypotheses from correlation-vs-causation. Causal chain depth from five-whys-method. Systemic factors from systems-thinking."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Five models — tight coherence. Correlation-vs-causation cross-listed with information-quality: acceptable overlap because the structural purpose differs (evidence quality vs causal reasoning)."
+    }
+  }
+}

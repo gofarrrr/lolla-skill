@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-# Resolve skill directory
-SKILL_DIR=""
-[ -d "$HOME/.codex/skills/lolla" ] && SKILL_DIR="$HOME/.codex/skills/lolla"
-[ -z "$SKILL_DIR" ] && [ -d ".codex/skills/lolla" ] && SKILL_DIR=".codex/skills/lolla"
-[ -z "$SKILL_DIR" ] && [ -d "$HOME/.claude/skills/lolla" ] && SKILL_DIR="$HOME/.claude/skills/lolla"
-[ -z "$SKILL_DIR" ] && [ -d ".claude/skills/lolla" ] && SKILL_DIR=".claude/skills/lolla"
-if [ -z "$SKILL_DIR" ]; then
-  echo "FATAL: Cannot find lolla skill directory"
-else
-  # Resolve symlinks so paths work regardless of install method
-  SKILL_DIR=$(python3 -c "from pathlib import Path; print(Path('$SKILL_DIR').resolve())" 2>/dev/null || echo "$SKILL_DIR")
-  echo "SKILL_DIR: $SKILL_DIR"
+# Resolve the root of this bundled skill from this script's own location.
+# This works from a repository clone, a copied installation, or a symlinked
+# Claude Code/Codex installation and never searches for another project tree.
+_LOLLA_SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+if [ -z "$_LOLLA_SCRIPT_DIR" ]; then
+  echo "FATAL: Cannot resolve the bundled lolla setup directory"
+  exit 1
 fi
+SKILL_DIR="$(CDPATH= cd -- "$_LOLLA_SCRIPT_DIR/../.." 2>/dev/null && pwd -P)"
+if [ -z "$SKILL_DIR" ] || [ ! -f "$SKILL_DIR/SKILL.md" ]; then
+  echo "FATAL: Cannot resolve the lolla skill root from scripts/skill/setup.sh"
+  exit 1
+fi
+export SKILL_DIR
+echo "SKILL_DIR: $SKILL_DIR"
 
 # Verify engine is bundled
 if [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/engine/system_b/__init__.py" ]; then

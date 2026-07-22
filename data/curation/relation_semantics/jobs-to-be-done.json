@@ -7,28 +7,40 @@
       "rationale_text": "First-principles-thinking helps jobs-to-be-done strip away the familiar solution and recover the underlying need that actually matters.",
       "source_quote": "JTBD operates like a form of arguing from first principles.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "JTBD 'operates like a form of arguing from first principles' — requires stripping away conventional assumptions to get back to the basic, undeniable need.",
+      "activation_condition": "When identifying the true customer job requires decomposing past the product category and conventional market assumptions to the fundamental need being served"
     },
     {
       "target_model_id": "critical-thinking",
       "rationale_text": "Critical-thinking supports jobs-to-be-done by repeatedly questioning whether the team has identified the real job or only a convenient surface explanation.",
       "source_quote": "constantly ask why, why, why",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "JTBD is described as 'inherently dependent on critical thinking' — requires constantly asking 'why, why, why?' to uncover the root cause and ensure the identified job is correct.",
+      "activation_condition": "When the initially stated customer need may be a symptom rather than the root job, requiring disciplined interrogation to reach the true underlying motivation"
     },
     {
       "target_model_id": "systems-thinking",
       "rationale_text": "Systems-thinking helps jobs-to-be-done connect the identified user purpose to the broader machine that must deliver that outcome.",
       "source_quote": "structure the rest of the business or product as a machine",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "JTBD 'helps structure the rest of the business as a machine designed to achieve that specific goal' — the job provides the telos that organizes system design.",
+      "activation_condition": "When the identified job needs to be translated into an organizational or product system designed around delivering that specific outcome"
     },
     {
       "target_model_id": "feynman-technique",
       "rationale_text": "Feynman-technique supports jobs-to-be-done by forcing the job definition into plain language before the team commits to a solution story.",
       "source_quote": "Mitigation often relies on metacognition and using structured processes, like the Feynman Technique, to simplify the complex job definition into plain language.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Positioned as a practical tool to 'simplify the complex job definition into plain language and use analogies to fill knowledge gaps' — ensures deep understanding of the core job.",
+      "activation_condition": "When the job definition has become complex or abstract and needs to be pressure-tested through plain-language explanation to verify genuine understanding"
     }
   ],
   "antagonists": [
@@ -37,7 +49,10 @@
       "rationale_text": "Confirmation-bias corrupts jobs-to-be-done when the team defines the job to fit a preferred solution instead of pressure-testing what the user is really hiring for.",
       "source_quote": "Identifying the Job based on a desired conclusion or a pre-selected solution, rather than objective reality.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Identifying the 'Job' based on a desired conclusion or a pre-selected solution rather than objective reality — directly corrupts the discovery process that JTBD demands.",
+      "activation_condition": "When the job definition is framed to confirm an existing product hypothesis rather than discovered through genuine observation of user behavior and motivations"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The retained relation surface stays close to the source's strongest current-vocabulary interactions: first-principles, critical inquiry, systems purpose, and anti-solution-bias pressure.",
+    "summary": "Layer 1+2 enrichment complete. Allies: first-principles-thinking 0.90 (strong — 'operates like a form of arguing from first principles'), critical-thinking 0.90 (strong — 'inherently dependent on'), systems-thinking 0.80 (moderate — provides organizational structure around the job), feynman-technique 0.80 (moderate — simplifies complex job definitions). Antagonist: confirmation-bias 0.90 (strong — corrupts job discovery).",
     "donor_drops": [
       "Did not preserve broader empathy or design-thinking expansion because the current vocabulary already supports a cleaner job-clarity surface."
     ],

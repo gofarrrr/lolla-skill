@@ -1,0 +1,33 @@
+{
+    "model_id": "lock-in",
+    "source_file": "Lock_In_rag.md",
+    "has_reframing_activation": true,
+    "reframing_when": [
+        "The question treats the current platform, vendor, standard, or approach as a fixed constraint when it is actually a lock-in effect that can be broken — the constraint is economic or political, not physical.",
+        "The question escalates commitment to the current approach because switching costs feel prohibitive, without comparing those costs to the long-term cost of staying locked in.",
+        "The question frames the decision as 'how to optimize within our current system' when the real question is whether the system itself should be changed — the lock-in has collapsed the option space.",
+        "The question assumes that widespread adoption or institutional commitment validates the current frame, when network effects and switching costs explain the persistence better than quality does."
+    ],
+    "frame_patterns_challenged": [
+        "commitment_escalation",
+        "option_space_collapse",
+        "temporal_fixation",
+        "borrowed_premise"
+    ],
+    "reframing_move": "Before optimizing within the current system, ask: 'Are we optimizing within this frame because it is the best frame, or because switching costs make alternatives feel impossible?' — the lock-in reframe separates quality from stickiness.",
+    "reframing_move_types": ["constraint_relaxation", "assumption_surfacing"],
+    "curation_confidence": "high",
+    "curation_note": "Lock-In is a direct reframing model for commitment and constraint patterns. The source describes how 'switching costs create barriers to change', 'network effects reinforce incumbents', and 'lock-in can persist even when superior alternatives exist'. The commitment_escalation challenge is the core mechanism — lock-in makes escalation feel rational. The option_space_collapse challenge maps to the source's description of how lock-in makes alternatives invisible. Closely related to path-dependence but focused specifically on the switching-cost barrier.",
+    "provenance_notes": {
+        "reframing_when": {
+            "sources": ["raw_markdown", "reviewed_normalization"],
+            "confidence": "high",
+            "note": "Fixed constraint illusion (switching costs are breakable), escalation dynamics (sunk cost + switching cost), collapsed optimization (optimizing within lock-in), persistence ≠ quality (network effects explain adoption)."
+        },
+        "frame_patterns_challenged": {
+            "sources": ["reviewed_normalization"],
+            "confidence": "high",
+            "note": "Commitment escalation: lock-in's core mechanism. Option space collapse: switching costs make alternatives invisible. Temporal fixation: lock-in makes the present feel permanent. Borrowed premise: 'we use X' becomes an unexamined constraint."
+        }
+    }
+}

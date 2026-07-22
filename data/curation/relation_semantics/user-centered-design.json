@@ -7,14 +7,20 @@
       "rationale_text": "Empathy gives user-centered-design the perspective-taking discipline needed to understand user fears, goals, and contradictions before solutioning.",
       "source_quote": "Both approaches emphasize empathy as foundational.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Empathy is the foundational entry point of UCD; the Empathize phase requires deep engagement with user perspectives",
+      "activation_condition": "When understanding user needs requires deep engagement with their perspective, emotions, and context"
     },
     {
       "target_model_id": "experimentation",
       "rationale_text": "Experimentation helps user-centered-design turn prototypes into evidence instead of design intuition or advocacy.",
       "source_quote": "iterative and complementary",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Canonical describes UCD's iterative build-test cycle for validating design decisions against real user behavior",
+      "activation_condition": "When iterative prototyping and testing validates design decisions against real user behavior"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias undermines user-centered-design when observation and testing are quietly steered to protect the design story the team already prefers.",
       "source_quote": "willingness to suppress assumptions",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Canonical warns teams suppress skepticism under groupthink rather than letting user research challenge assumptions",
+      "activation_condition": "When teams suppress skepticism in favor of prevailing design vision rather than letting user research challenge assumptions"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The file preserves the clearest first-order relation surface from the raw source: empathy and testing as allies, with authority and confirmation pressures as design antagonists.",
+    "summary": "Layer 1+2 enrichment complete. empathy at 0.90 as foundational UCD entry point. confirmation-bias antagonist at 0.90.",
     "donor_drops": [
       "Did not widen into broader service-design neighbors because the current source-backed target surface is already strong."
     ],
     "open_questions": [
-      "The two structured tensions are source-real but phrased through the batch's current-vocabulary graph surface."
+      "The two structured tensions are source-real but phrased through the batch's current-vocabulary graph surface.",
+      "SPARSE_ALLY_RECOVERY: only 2 curated allies. Canonical suggests analogies-and-metaphors as recovery candidate."
     ]
   }
 }

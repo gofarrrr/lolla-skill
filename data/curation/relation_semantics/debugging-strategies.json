@@ -7,21 +7,30 @@
       "rationale_text": "Systems-thinking gives debugging the whole-machine view needed to trace how components interact instead of treating failures as isolated symptoms.",
       "source_quote": "Systems Thinking: Debugging strategies are deeply synergistic with Systems Thinking, as diagnostic frameworks are specifically designed to show how units interact as a system.",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'deeply synergistic' — diagnostic frameworks are 'specifically designed to show how units interact as a system' and trace cause-and-effect activities, making systems thinking the natural map for debugging.",
+      "activation_condition": "When debugging requires tracing cause-and-effect across system components rather than isolating a single point of failure in a vacuum"
     },
     {
       "target_model_id": "decomposition",
       "rationale_text": "Decomposition makes debugging tractable by breaking a tangled problem into parts that can be tested and compared without losing the underlying structure.",
       "source_quote": "This is the most important step in problem solving, involving breaking down a complicated problem into logical parts to understand the underlying causes and drivers.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Supports the analytical process of breaking problems into structured parts for diagnosis, though not explicitly named as a primary ally in the canonical Latticework section.",
+      "activation_condition": "When a complex bug requires systematic disaggregation into testable components before root-cause analysis can proceed"
     },
     {
       "target_model_id": "decision-trees",
       "rationale_text": "Decision-trees support debugging by giving the team a concrete way to separate branches, conditions, and tests instead of arguing from intuition.",
       "source_quote": "This process uses various visualization tools, such as logic trees ... and decision trees.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Provides structured diagnostic branching paths for systematic elimination of failure hypotheses, though not named in the canonical Latticework section.",
+      "activation_condition": "When debugging requires a structured decision path to systematically eliminate competing failure hypotheses"
     }
   ],
   "antagonists": [
@@ -30,14 +39,20 @@
       "rationale_text": "Confirmation-bias makes debugging protect the current hypothesis by noticing supportive clues and overlooking more important disconfirming evidence.",
       "source_quote": "Confirmation bias drives individuals to seek supporting evidence while overlooking disconfirming information.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as driving individuals to 'seek supporting evidence while overlooking disconfirming information' — directly opposes the objective diagnostic analysis that debugging demands.",
+      "activation_condition": "When the debugger's initial hypothesis about the root cause biases the search toward confirming evidence while overlooking disconfirming signals"
     },
     {
       "target_model_id": "authority-bias",
       "rationale_text": "Authority-bias weakens debugging when challenging a leader's diagnosis is treated as political disloyalty instead of necessary skeptical review.",
-      "source_quote": "challenging a CEO\u2019s strategic vision ... may be seen as political sabotage, inhibiting the necessary skeptical challenge.",
+      "source_quote": "challenging a CEO’s strategic vision ... may be seen as political sabotage, inhibiting the necessary skeptical challenge.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Organizational dynamics inhibit diagnostic challenge — 'challenging a CEO's strategic vision may be seen as political sabotage', blocking the skeptical inquiry debugging requires.",
+      "activation_condition": "When organizational hierarchy prevents challenging assumptions made by senior stakeholders about where the problem lies"
     }
   ],
   "structured_tensions": [
@@ -59,7 +74,7 @@
     }
   ],
   "curation_notes": {
-    "summary": "The raw source is strong on systems diagnosis, logical problem cuts, and anti-bias challenge pressure, so the file preserves that bounded surface without forcing extra tensions.",
+    "summary": "Layer 1+2 enrichment complete. Allies: systems-thinking 0.90 (strong — 'deeply synergistic'), decomposition 0.80 (moderate — supports problem breakdown), decision-trees 0.80 (moderate — structured diagnostic paths). Antagonists differentiated: confirmation-bias 0.90 (strong — blocks objective diagnosis), authority-bias 0.80 (moderate — organizational inhibition). Activation conditions assigned.",
     "donor_drops": [
       "Did not preserve donor debugging relations beyond the strongest systems, decomposition, and anti-premature-conviction links."
     ],

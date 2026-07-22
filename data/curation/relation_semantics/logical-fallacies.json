@@ -7,14 +7,20 @@
       "rationale_text": "Falsifiability strengthens logical-fallacies detection by forcing claims to survive disconfirming evidence rather than rhetorical confidence.",
       "source_quote": "the scientific method requires one to be able to test and disprove a theory",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Fallacy identification 'directly supports Falsifiability by helping to identify and reconcile disconfirming evidence' — mutual reinforcement between logical rigor and scientific testability.",
+      "activation_condition": "When evaluating claims requires both detecting logical errors in the argument structure and ensuring the claims are empirically testable and falsifiable"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking strengthens logical-fallacies work by rebuilding the reasoning chain from facts instead of assumptions.",
       "source_quote": "strips away these assumptions, leaving only a set of facts",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Fallacies arise from building reasoning on assumptions — first-principles 'strips away these assumptions, forcing the creation of a logic chain from the ground up', preventing fallacious foundations.",
+      "activation_condition": "When argument evaluation reveals that the reasoning chain is built on inherited assumptions rather than verified foundational premises"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Confirmation-bias drives logical fallacies by protecting the desired conclusion instead of the valid inference.",
       "source_quote": "the team seeks only facts that confirm the initial hypothesis",
       "extraction_type": "explicit",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'persistent and dangerous' — confirmation bias causes problem solvers to ignore evidence that challenges preconceptions, directly enabling logical fallacies to go undetected.",
+      "activation_condition": "When the desire to confirm a preferred conclusion causes fallacious reasoning to be accepted as valid because it supports the desired outcome"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: falsifiability 0.90 (strong — 'directly supports' through disconfirming evidence reconciliation), first-principles-thinking 0.90 (strong — strips assumptions that create fallacious foundations). Antagonist: confirmation-bias 0.90 (strong — 'persistent and dangerous', enables fallacies to go undetected). SPARSE_ALLY_RECOVERY: only 2 allies — moderate priority.",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated — moderate priority. Canonical article identifies critical-thinking/scientific-method ('following analytic rigor minimizes errors') and system-mapping/causal-loops ('diagrams reveal flawed causal assumptions') as ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

@@ -7,14 +7,20 @@
       "rationale_text": "Decomposition strengthens chain-of-thought by forcing the problem into smaller linked units before any final answer is trusted.",
       "source_quote": "decomposition of a complex problem into a sequence of smaller, logically connected steps",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Practical structuring tool — 'decomposition of a complex problem into a sequence of smaller, logically connected steps' — provides the analytical cut that gives CoT its step-by-step character but is a tool applied within CoT rather than the reasoning mode itself.",
+      "activation_condition": "When the problem needs to be broken into smaller, logically connected steps before sequential reasoning can meaningfully progress through the chain"
     },
     {
       "target_model_id": "step-back",
       "rationale_text": "Step-back prevents chain-of-thought from getting lost in local detail by reconnecting the reasoning to the big picture.",
       "source_quote": "Loss of Big Picture",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Corrective mechanism — prevents CoT from 'loss of big picture' — reconnects sequential reasoning to the broader objective, but operates as an error-correction layer rather than a core CoT mechanism.",
+      "activation_condition": "When sequential step-by-step reasoning has gone deep into local detail and needs reconnection to the overarching problem frame to avoid solving the wrong sub-problem"
     }
   ],
   "antagonists": [
@@ -23,7 +29,10 @@
       "rationale_text": "Anchoring can corrupt chain-of-thought when the first plausible answer determines the later steps instead of being tested by them.",
       "source_quote": "the tendency to jump to conclusions before the chain is tested",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Conditional corruption — 'the tendency to jump to conclusions before the chain is tested' — the first plausible intermediate answer can anchor subsequent steps, but the mechanism is conditional rather than a direct blocking force.",
+      "activation_condition": "When an early intermediate conclusion in the reasoning chain is being accepted and subsequent steps are being constructed to support it rather than genuinely testing it"
     }
   ],
   "structured_tensions": [
@@ -45,12 +54,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "summary": "Layer 1+2 enrichment complete. Allies: decomposition 0.80 (moderate — structuring tool for step-by-step reasoning), step-back 0.80 (moderate — big-picture corrective). Antagonists: anchoring 0.80 (moderate — conditional conclusion-jumping). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies.",
     "donor_drops": [
       "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
     ],
     "open_questions": [
-      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article describes Metacognition/Critical Thinking ('CoT IS structured critical thinking') and Causal Chain Diagrams/Systems Thinking ('fundamentally about establishing cause-and-effect') as strong ally candidates."
     ]
   },
   "deferred_higher_order_notes": {

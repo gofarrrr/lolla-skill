@@ -7,17 +7,34 @@
       "rationale_text": "Critical-thinking gives curiosity a disciplined way to evaluate evidence, notice bias, and compare perspectives rather than just asking more questions.",
       "source_quote": "Curiosity provides the drive for critical thinking.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'provides the drive for critical thinking' — curiosity motivates the evaluative process of examining evidence, noticing biases, and considering multiple perspectives.",
+      "activation_condition": "When critical evaluation requires the motivational drive to actively seek out evidence and multiple perspectives rather than settling for the first satisfactory answer"
     },
     {
       "target_model_id": "first-principles-thinking",
       "rationale_text": "First-principles-thinking channels curiosity into fundamental questions that strip away assumptions and expose the elemental truths underneath the current frame.",
       "source_quote": "Curiosity drives the continuous process of asking fundamental questions that strip away assumptions to arrive at the elemental truths.",
       "extraction_type": "normalized",
-      "confidence": "high"
+      "confidence": "high",
+      "affinity_strength": 0.9,
+      "affinity_rationale": "Described as 'drives the continuous process of asking fundamental questions that strip away assumptions to arrive at elemental truths' — curiosity fuels the relentless questioning that first-principles reasoning demands.",
+      "activation_condition": "When assumption-stripping requires the persistent questioning drive that prevents premature closure on conventional explanations"
     }
   ],
-  "antagonists": [],
+  "antagonists": [
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines curiosity by locking the thinker onto a familiar framework so that the drive to investigate further is short-circuited before new inquiry paths can open.",
+      "source_quote": "Curiosity is inhibited when an expert relies on frameworks that worked previously ('I have seen this one before') when faced with a genuinely novel problem.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "affinity_strength": 0.8,
+      "affinity_rationale": "Mapped from canonical Maslow's Hammer — fixation on familiar tools causes practitioners to 'torture reality so that it fits your models', which curiosity overcomes by pushing for a multidisciplinary approach.",
+      "activation_condition": "When familiarity with existing solution patterns creates fixation that blocks the exploratory questioning curiosity demands"
+    }
+  ],
   "structured_tensions": [
     {
       "target_model_id": "confirmation-bias",
@@ -45,12 +62,13 @@
     }
   ],
   "curation_notes": {
-    "summary": "The source is strongest on frame-changing inquiry plus an explicit tension block around belief protection, unstructured exploration, and overload.",
+    "summary": "Layer 1+2 enrichment complete. Allies: critical-thinking 0.90 (strong — 'provides the drive for'), first-principles-thinking 0.90 (strong — 'drives the continuous process'). Antagonist: einstellung-effect 0.80 (moderate — mapped from Maslow's Hammer, fixation on familiar tools). Activation conditions assigned. SPARSE_ALLY_RECOVERY: only 2 allies curated.",
     "donor_drops": [
       "Did not preserve broader empathy or relationship relation sprawl beyond the cleanest current-vocabulary inquiry links."
     ],
     "open_questions": [
-      "The logic-tree ally is source-real, but the first-order surface is cleaner around critical-thinking and first-principles-thinking."
+      "The logic-tree ally is source-real, but the first-order surface is cleaner around critical-thinking and first-principles-thinking.",
+      "SPARSE_ALLY_RECOVERY: only 2 allies curated. Canonical article names design-thinking (empathy) and logic-trees/disaggregation as additional synergistic models."
     ]
   }
 }

@@ -40,6 +40,9 @@ truth tracer bullet is now implemented locally:
 - [Current graph-legibility repair](lolla-mental-model-atlas-graph-legibility-repair-result-2026-07-17.md)
 - [Current neighborhood-navigation repair](lolla-mental-model-atlas-neighborhood-navigation-repair-result-2026-07-17.md)
 - [Controlling Atlas baseline consolidation](lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md)
+- [Current first-viewport interaction repair](lolla-mental-model-atlas-first-viewport-repair-result-2026-07-17.md)
+- [Current custody V2 migration result](lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
+- [Current custody V2 evidence](../evals/lolla-mental-model-atlas-custody-v2-evidence.json)
 - [Vibrant-editorial result — historical / superseded](lolla-mental-model-atlas-vibrant-editorial-refinement-result-2026-07-16.md)
 - [Renderer decision](lolla-mental-model-atlas-phase1-renderer-decision-2026-07-15.md)
 - [Machine-readable evidence](../evals/lolla-mental-model-atlas-phase1-evidence-v1.json)
@@ -82,6 +85,17 @@ This does not rewrite historical Teacher artifacts or change the Stage 0
 `park` disposition. Founder card-first acceptance, native screen-reader review,
 publication rights, and real-user usefulness remain open. No full-corpus build,
 deployment, runtime connection, provider call, or Phase 2 work is implied.
+
+The current local follow-up is a bounded first-viewport repair. Search now
+selects exact canonical results directly, named model actions and selection
+feedback stay above the fold at representative laptop and mobile sizes,
+connection counts act as filters, and the Library and Abstraction entries no
+longer spend their first viewport on non-actionable metrics or empty hero
+height. This is local structural and browser-geometry evidence; final founder,
+native screen-reader, rights, and real-user gates remain open. Separately, the
+active data routes now use additive V2 packages with repository-local custody.
+All six V1 artifacts are immutable; a recursive comparison found 2,182
+custody-only differences and zero unexpected semantic or interface differences.
 
 ## Historical planning, prototype, and review inventory
 

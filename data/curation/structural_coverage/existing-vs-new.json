@@ -1,0 +1,47 @@
+{
+  "dimension_id": "existing-vs-new",
+  "dimension_name": "Existing vs New (Growth Decomposition)",
+  "cleaving_frame": "Protect the base vs Expand the frontier",
+  "description": "The problem involves both an existing operation (to protect or optimize) and a new opportunity (to build or explore), and the answer treats them as one thing. The structural question is whether the existing base and the new initiative require different strategies, metrics, and risk profiles.",
+  "question_types": ["decision-evaluation", "action-planning"],
+  "detect_when": [
+    "The problem mixes existing business, product, or market with new initiatives in a single analysis",
+    "Growth could come from optimizing what exists or building something new — and the answer doesn't separate these",
+    "The new initiative might cannibalize or distract from the existing base",
+    "Different success criteria apply to protect-the-base vs expand-the-frontier but only one set is used"
+  ],
+  "coverage_signals": [
+    "The answer separates performance of existing operations from new initiatives — different metrics for each",
+    "The answer addresses cannibalization risk — whether the new erodes the existing",
+    "The answer addresses distraction risk — whether the new diverts attention and resources from the base",
+    "The answer applies different risk profiles and success criteria to existing (optimize, de-risk) vs new (explore, validate)"
+  ],
+  "materiality_test": "Would the answer change if the existing base and new opportunity were analyzed separately?",
+  "reasoning_demanded": "base-vs-expansion disaggregation, cannibalization analysis, dual-criteria evaluation",
+  "models": [
+    "creative-destruction",
+    "opportunity-cost",
+    "calculated-risk-taking",
+    "lean-startup-methodology",
+    "trade-offs"
+  ],
+  "curation_confidence": "high",
+  "curation_note": "Creative-destruction addresses how new innovations displace existing ones — the fundamental tension between base and frontier. Opportunity-cost surfaces what the base gives up to fund the frontier (and vice versa). Calculated-risk-taking distinguishes the risk profile appropriate for exploration vs exploitation. Lean-startup-methodology provides the build-measure-learn framework for new initiatives where the base's optimization metrics don't apply. Trade-offs addresses the balancing act between protecting what works and investing in what might. Note: opportunity-cost and trade-offs also appear in resource-allocation — there they address general scarcity; here they specifically address the existing-vs-new decomposition.",
+  "provenance_notes": {
+    "detect_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Detection conditions from creative-destruction (new displacing old), opportunity-cost (hidden cost of diverting resources from base), lean-startup-methodology (different metrics for exploration vs optimization), trade-offs (balancing competing demands)."
+    },
+    "coverage_signals": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Separation of existing vs new from creative-destruction. Cannibalization risk from creative-destruction. Distraction risk from opportunity-cost. Dual-criteria evaluation from lean-startup-methodology (validated learning vs revenue optimization)."
+    },
+    "models": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Five models. Opportunity-cost and trade-offs are cross-listed with resource-allocation: acceptable because structural purposes differ (general scarcity vs existing-vs-new decomposition). Creative-destruction is the anchor model — it directly addresses the 'should the new destroy the old' question."
+    }
+  }
+}
