@@ -31,7 +31,7 @@ usefulness, market value, and production readiness remain unknown.
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
 | What is unproven? | Reliable longitudinal understanding, answer improvement, real-user value, market demand, and production readiness. |
-| What may start next? | Nothing automatically. Stage 1 Decision Trail truthfulness is eligible but not authorized. |
+| What may start next? | Nothing automatically. June's richer Decision Trail interpretation lane remains paused at an unfilled human-review packet. July's narrower Stage 1 truthfulness review is a separate eligible option, not an authorization or semantic restart. |
 
 ## Latest published checkpoint
 
@@ -278,6 +278,14 @@ Stage 1 remains unauthorized and unstarted. It permits no provider call,
 private archive inspection, new semantic reader, new fixture, automatic
 sidecar supply, runtime change, R4/R5, model comparison, or product-usefulness
 claim.
+
+This July Stage 1 is not the next numbered step of June's richer Decision Trail
+specialist-output program. The June program stopped after three Codex-assisted
+candidate reads; PR104's principal-human intake remains unfilled and explicitly
+paused. July Stage 1 can test whether checked-in-safe labels tell the truth
+about authority and missingness, but it cannot validate conversation meaning
+or supersede that pause. See the
+[Decision Trail stage lineage](docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
 
 ## Current repository boundary
 

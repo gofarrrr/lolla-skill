@@ -129,6 +129,9 @@ Read:
 - [Stage 0 machine register](evals/lolla-constitution-stage0-addendum-register-v1.json)
 - [Stage 0.6 source-coverage correction](conversation-understanding/lolla-stage0-6-long-conversation-truthfulness-result-2026-07-15.md)
 - [Current cold-reader review](evals/lolla-public-handoff-cold-reader-review-2026-07-22.md)
+- [Decision Trail stage lineage](conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md)
+  — distinguishes the paused June semantic-review intake from the separate,
+  unauthorized July Stage 1 interface-truthfulness option.
 
 The Stage 0 register is a rolling coverage map with a frozen audit identity.
 Its older publication/restart wording records that checkpoint; current status
@@ -178,9 +181,10 @@ rights clearance, market demand, or production readiness.
 
 ## Current next decision
 
-No evidence stage starts automatically. The next eligible decision is whether
-the founder authorizes a provider-free, checked-in-safe Stage 1 Decision Trail
-truthfulness review. Authorization must name the exact frozen review packet and
-record. It may not imply provider calls, private archive inspection, semantic
-generation, runtime changes, R4/R5, Atlas Phase 2, deployment, or usefulness
-claims.
+No evidence stage starts automatically. July's provider-free, checked-in-safe
+Stage 1 Decision Trail truthfulness review is eligible but unstarted; any
+authorization must freeze its packet and record and cannot imply providers,
+private archives, semantic generation, runtime/R4/R5 changes, Atlas Phase 2,
+deployment, or usefulness claims. It does not replace June's specialist
+program: PR104 remains blank and paused. Stage 1 can test interface honesty,
+not establish semantic understanding or validate the June reads.

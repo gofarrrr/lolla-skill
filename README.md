@@ -229,12 +229,12 @@ for its place in the wider system.
 
 ## Current development gate
 
-The provider-free Stage 0.6 source-coverage prerequisite is complete. The next
-eligible product decision is whether to authorize Stage 1: a provider-free
-truthfulness review of checked-in-safe Decision Trail material.
-Stage 1 is not started by this README or by cloning the repository. It must not
-inspect private archives, create a new semantic reader, call a provider,
-automate Decision Work, reopen R4/R5, or change runtime behavior.
+Stage 0.6 is complete. Nothing starts automatically. July's provider-free,
+checked-in-safe Stage 1 truthfulness review is eligible but unstarted; it may
+not inspect private archives, generate semantics, call providers, automate
+Decision Work, reopen R4/R5, or change runtime behavior.
+The separate June specialist program stopped after three Codex-assisted reads;
+its PR104 principal-human packet remains blank and paused. Stage 1 tests interface honesty, not conversation meaning; see the [stage lineage](docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
 
 Separately, the provider-free Mental Model Atlas is consolidated around one
 canonical identity path. A 16-model orientation view opens exact,

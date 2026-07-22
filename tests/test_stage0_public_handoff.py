@@ -83,6 +83,27 @@ def test_public_handoff_rejects_stale_live_skill_claim() -> None:
     assert "forbidden stale public claim: you are a **pure orchestrator**" in errors
 
 
+def test_public_handoff_requires_decision_trail_stage_lineage() -> None:
+    validator = _load_validator()
+    roadmap_path = "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md"
+    roadmap = (ROOT / roadmap_path).read_text(encoding="utf-8")
+    errors, receipt = validator.validate(
+        ROOT,
+        text_overrides={
+            roadmap_path: roadmap.replace(
+                "does not supersede",
+                "is the next step after",
+            )
+        },
+    )
+
+    assert receipt["status"] == "invalid"
+    assert (
+        f"{roadmap_path} missing required public-handoff term: "
+        "does not supersede the pr104 pause"
+    ) in errors
+
+
 def test_current_entrypoint_links_resolve() -> None:
     validator = _load_validator()
     errors, receipt = validator.validate(ROOT)
