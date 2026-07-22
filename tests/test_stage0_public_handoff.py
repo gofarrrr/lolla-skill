@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts/evals/validate_stage0_public_handoff.py"
 PACKET_PATH = ROOT / "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json"
 EVIDENCE_PACKAGE_PATH = ROOT / "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json"
+CONSUMER_CONTEXT_PATH = ROOT / "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json"
 
 
 def _load_validator():
@@ -36,6 +37,7 @@ def test_public_handoff_validates_from_cli() -> None:
     assert receipt["status"] == "valid"
     assert receipt["cold_reader_question_count"] == 17
     assert receipt["current_entrypoint_count"] == 6
+    assert receipt["consumer_context_contract_status"] == "valid"
     assert receipt["required_file_count"] >= 20
     assert receipt["local_link_count"] >= 50
     assert receipt["pressure_understanding_graph_package_status"] == (
@@ -99,6 +101,27 @@ def test_public_handoff_rejects_graph_package_execution_or_policy_drift() -> Non
         "pressure/understanding/graph evidence package "
         "authorization.provider_calls must be 0"
     ) in errors
+
+
+def test_public_handoff_rejects_naive_consumer_context_promotion() -> None:
+    validator = _load_validator()
+    contract = json.loads(CONSUMER_CONTEXT_PATH.read_text(encoding="utf-8"))
+    candidate = copy.deepcopy(contract)
+    candidate["claim_ledger"][3]["status"] = "verified"
+    candidate["authorization"]["fresh_context_promotion"] = True
+
+    errors, receipt = validator.validate(
+        ROOT,
+        consumer_context_override=candidate,
+    )
+
+    assert receipt["status"] == "invalid"
+    assert receipt["consumer_context_contract_status"] == "invalid"
+    assert (
+        "consumer-context claim fresh_context_eliminates_the_vanilla_frame "
+        "must remain not_assumed"
+    ) in errors
+    assert "consumer-context authorization.fresh_context_promotion must be False" in errors
 
 
 def test_public_handoff_rejects_stale_live_skill_claim() -> None:

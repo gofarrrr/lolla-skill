@@ -20,6 +20,10 @@ what only a human can decide.
    `docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md`.
 3. Read [the evidence-gate reference](references/evidence-gates.md) before
    proposing a new connection, traversal, reader, receipt field, or sidecar.
+   For reconsideration or graph-value evaluation, also validate
+   `docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json` so
+   same-context self-justification is not confused with upstream graph
+   deletion or fresh-context over-absorption.
 4. Treat dated experiments as evidence for their named checkpoint, never as
    current authorization.
 
@@ -34,6 +38,8 @@ State one falsifiable question and one allowed causal change. Examples:
   no-graph control?
 - Does this receipt expose complete bounded path custody without implying
   relevance?
+- Does a fixed pressure payload receive materially different treatment in an
+  isolated trajectory continuation versus a fresh reconstruction?
 
 Reject bundles such as “add incoming edges, two hops, global search, a graph
 database, and a new reader.”
@@ -113,6 +119,8 @@ Stop and return the decision to the founder when work would:
 - inspect private archives or fill principal-human fields;
 - change graph direction, hop depth, active/reserve policy, ranking, or live
   receipt claims;
+- replace the live same-context host with a fresh consumer or call either mode
+  independent judgment;
 - connect a candidate reader or sidecar to runtime;
 - revive R3/R4, expand Atlas/Teacher, or claim usefulness;
 - require a product choice between pressure-now and understand-later.

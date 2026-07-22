@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-22 (self-contained graph and Atlas custody V2 packaging)
+Status date: 2026-07-22 (graph evidence and consumer-context boundary)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -36,7 +36,8 @@ usefulness, market value, and production readiness remain unknown.
 ## Latest published checkpoint
 
 The current A/B/C pressure, understanding, and graph planning package is tracked by
-[PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
+[PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
+Its provider-free consumer-context extension defines four fresh graph-supply arms plus two isolated trajectory continuations; it changes no live context, graph, prompt, provider, or runtime behavior.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
@@ -214,7 +215,7 @@ The repository does not currently establish:
   runs;
 - that a revised answer is better, safer, or more useful;
 - that the four pressure lanes expose unique missed angles for real users;
-- independent validation of same-context reconsideration;
+- independent validation of same-context reconsideration, or evidence that the host systematically domesticates external pressure rather than rejecting it legitimately;
 - product-market fit, willingness to pay, or production readiness;
 - source-rights clearance, native screen-reader acceptance, or real-user
   learning value for the Mental Model Atlas;

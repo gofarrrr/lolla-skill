@@ -12,7 +12,7 @@ Provider cost: $0.00
 
 Publication: [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380)
 
-Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381) and [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382)
+Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381), [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), and [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
 
 ## Question
 
@@ -105,6 +105,11 @@ questions.
 The seventeenth question was added in the subsequent provider-free A/B/C
 planning package. It checks that pressure-now, PR104 human review, and the
 conversation-to-graph comparison remain separate and unstarted where required.
+The later consumer-context extension keeps the same question ID while adding a
+six-output nested contract: four fresh graph-supply arms and two isolated
+trajectory continuations. This prevents candidate survival from being mistaken
+for independent consideration and prevents fresh-context uptake from being
+mistaken for improvement.
 This is a maintainer/cold-start contract extension, not a claim that the three
 original repository-only readers were rerun or that a principal human accepted
 the package.
