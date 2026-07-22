@@ -276,8 +276,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #379 is the current repository-local graph,
-skill, and Atlas V2 checkpoint. Atlas baseline PR #375 is historical; the
+custody without semantic change. PR #380 tracks the current public handoff and
+live-skill contract; PR #379 is its foundational repository-local graph and
+Atlas V2 checkpoint. Atlas baseline PR #375 is historical; the
 checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
 Phase 2, Teacher revival, providers, and product claims are unauthorized. The
 next eligible roadmap goal is the separately authorized, checked-in-safe Stage 1

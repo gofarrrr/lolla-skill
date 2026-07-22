@@ -35,8 +35,10 @@ usefulness, market value, and production readiness remain unknown.
 
 ## Latest published checkpoint
 
-The repository-local graph, skill, and Atlas-custody package is on `main`
-through [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
+The current public cold-start handoff is tracked by
+[PR #380](https://github.com/gofarrrr/lolla-skill/pull/380). Its foundational
+repository-local graph and Atlas-custody package was published through
+[PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
 compiler inputs, source anchors, release identities, one published read

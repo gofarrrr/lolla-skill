@@ -10,6 +10,8 @@ Provider calls: 0
 
 Provider cost: $0.00
 
+Publication: [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380)
+
 ## Question
 
 Can a new human or AI coder start from the GitHub repository and correctly

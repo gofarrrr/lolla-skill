@@ -30,8 +30,9 @@ then routes graph, skill, Atlas, Decision Work, and research tasks to their own
 evidence. Do not infer current work from `PROGRESS.md`, `TODOS.md`, an old PRD,
 or a dated result's “next step”; those files preserve historical reasoning.
 
-The repository-local graph, skill, and Atlas-custody checkpoint is present on
-`main` through [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379).
+The foundational graph and Atlas checkpoint is
+[PR #379](https://github.com/gofarrrr/lolla-skill/pull/379). The current public
+handoff and live-skill contract is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380).
 
 ## Current status
 
