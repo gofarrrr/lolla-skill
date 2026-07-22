@@ -4,7 +4,7 @@
 
 Date: 2026-07-22
 Status: tracer-bullet plan complete; documentation, skill, and provider-free consumer-context design completed; human and experiment slices not automatically authorized
-Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context addendum pending publication
+Publication tracking: [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); consumer-context extension [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
 Provider calls authorized by this plan: 0
 Private-source review, runtime, graph-policy, and interface changes authorized by this plan: none
 

@@ -280,7 +280,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #382 tracks A/B/C plus a provider-free same-context/fresh-context pressure ablation; it changes no runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
+custody without semantic change. PR #382 tracks A/B/C; PR #383 adds its provider-free same-context/fresh-context pressure ablation without changing runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
 Atlas baseline PR #375 is historical; the
 checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
 Phase 2, Teacher revival, providers, and product claims are unauthorized. The
