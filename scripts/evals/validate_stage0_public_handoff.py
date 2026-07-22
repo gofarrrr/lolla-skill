@@ -25,10 +25,12 @@ SUPPORTING_CURRENT_DOCS = (
     "docs/operations/lolla-repository-gardening-audit-2026-07-15.md",
     "docs/evals/lolla-public-handoff-cold-reader-review-2026-07-22.md",
     "docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md",
+    "docs/conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md",
     "docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md",
     "docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md",
     "references/knowledge-substrate-operations.md",
     "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md",
+    "plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md",
 )
 
 LIVE_CONTRACTS = (
@@ -42,9 +44,13 @@ REQUIRED_FILES = CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + (
     "requirements-dev.txt",
     ".github/workflows/public-handoff.yml",
     "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json",
+    "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json",
     "docs/evals/lolla-constitution-stage0-addendum-register-v1.json",
     "docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md",
     "docs/conversation-understanding/lolla-product-constitution-v5.md",
+    ".codex/skills/audit-lolla-boundaries/SKILL.md",
+    ".codex/skills/audit-lolla-boundaries/agents/openai.yaml",
+    ".codex/skills/audit-lolla-boundaries/references/evidence-gates.md",
 )
 
 QUESTION_IDS = (
@@ -64,6 +70,7 @@ QUESTION_IDS = (
     "q14_next_stage",
     "q15_provider_and_data_boundary",
     "q16_host_reasoner_and_codex",
+    "q17_pressure_understanding_graph_lanes",
 )
 
 FORBIDDEN_CURRENT_PHRASES = (
@@ -98,6 +105,7 @@ def validate(
     *,
     text_overrides: dict[str, str] | None = None,
     packet_override: dict | None = None,
+    evidence_package_override: dict | None = None,
 ) -> tuple[list[str], dict]:
     errors: list[str] = []
     overrides = text_overrides or {}
@@ -237,6 +245,40 @@ def validate(
         lineage_relative,
         errors,
     )
+    maintainer_skill_relative = ".codex/skills/audit-lolla-boundaries/SKILL.md"
+    maintainer_skill_text = overrides.get(
+        maintainer_skill_relative,
+        (root / maintainer_skill_relative).read_text(encoding="utf-8"),
+    )
+    _require_terms(
+        maintainer_skill_text,
+        (
+            "do not use this maintainer skill to run a user-facing lolla audit",
+            "do not create a second compiler",
+            "human: semantic correction, usefulness, and action authority",
+            "preserve frozen experiment artifacts and pr104's blank human fields",
+            "require a product choice between pressure-now and understand-later",
+        ),
+        maintainer_skill_relative,
+        errors,
+    )
+    evidence_gates_relative = ".codex/skills/audit-lolla-boundaries/references/evidence-gates.md"
+    evidence_gates_text = overrides.get(
+        evidence_gates_relative,
+        (root / evidence_gates_relative).read_text(encoding="utf-8"),
+    )
+    _require_terms(
+        evidence_gates_text,
+        (
+            "the layer after an error cannot certify the layer before it",
+            "a. pressure now",
+            "b. understand later",
+            "c. improve the conversation-to-graph bridge",
+            "one alternative",
+        ),
+        evidence_gates_relative,
+        errors,
+    )
 
     link_count = 0
     for relative in CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + LIVE_CONTRACTS[:2]:
@@ -270,7 +312,7 @@ def validate(
         errors.append("cold-reader provider_cost_usd must be 0.00")
     questions = packet.get("questions", [])
     if tuple(item.get("id") for item in questions) != QUESTION_IDS:
-        errors.append("cold-reader questions must match the sixteen-question orientation contract")
+        errors.append("cold-reader questions must match the seventeen-question orientation contract")
     for item in questions:
         if not item.get("expected_answer"):
             errors.append(f"cold-reader answer missing: {item.get('id')}")
@@ -280,6 +322,20 @@ def validate(
         for relative in evidence:
             if not (root / relative).exists():
                 errors.append(f"cold-reader evidence path missing: {relative}")
+
+    evidence_package_path = root / "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json"
+    if evidence_package_override is not None:
+        evidence_package = evidence_package_override
+    elif evidence_package_path.exists():
+        try:
+            evidence_package = json.loads(evidence_package_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            evidence_package = {}
+            errors.append(f"pressure/understanding/graph evidence package is invalid JSON: {exc}")
+    else:
+        evidence_package = {}
+
+    _validate_pressure_understanding_graph_package(root, evidence_package, errors)
 
     register_path = root / "docs/evals/lolla-constitution-stage0-addendum-register-v1.json"
     if register_path.exists():
@@ -300,11 +356,145 @@ def validate(
         "local_link_count": link_count,
         "provider_calls": packet.get("provider_calls"),
         "provider_cost_usd": float(packet.get("provider_cost_usd", -1)),
+        "pressure_understanding_graph_package_status": evidence_package.get("status"),
         "required_file_count": len(REQUIRED_FILES),
         "schema_version": "lolla.public_handoff_validation.v2",
         "status": "valid" if not errors else "invalid",
     }
     return errors, receipt
+
+
+def _validate_pressure_understanding_graph_package(
+    root: Path,
+    package: dict,
+    errors: list[str],
+) -> None:
+    label = "pressure/understanding/graph evidence package"
+    if package.get("schema_version") != "lolla.pressure_understanding_graph_evidence_package.v1":
+        errors.append(f"{label} has unexpected schema_version")
+    if package.get("status") != "planning_package_complete_evidence_execution_unstarted":
+        errors.append(f"{label} must remain planning-complete and execution-unstarted")
+
+    lanes = package.get("product_lanes", {})
+    pressure = lanes.get("a_pressure_now", {})
+    understanding = lanes.get("b_understand_later", {})
+    bridge = lanes.get("c_conversation_to_graph_bridge", {})
+    if pressure.get("status") != "live_experimental_core_preserved":
+        errors.append(f"{label} must preserve the pressure-now live experimental core")
+    if understanding.get("status") != "paused_at_pr104_principal_human_review":
+        errors.append(f"{label} must preserve the PR104 human-review pause")
+    if understanding.get("human_fields_filled") is not False:
+        errors.append(f"{label} must not claim PR104 human fields are filled")
+    expected_arms = (
+        "transcript_only_strong_reconsideration",
+        "current_live_bridge_plus_current_graph",
+        "human_controlled_fact_free_direct_only",
+        "human_controlled_fact_free_plus_current_graph",
+    )
+    if tuple(bridge.get("evaluation_arms", ())) != expected_arms:
+        errors.append(f"{label} must preserve the four-arm bridge comparison")
+    if bridge.get("status") != "planned_unstarted":
+        errors.append(f"{label} must keep the conversation-to-graph comparison unstarted")
+
+    lineage = package.get("decision_trail_lineage", {})
+    if lineage.get("pr104_state") != "pause_until_human_review_capacity_returns":
+        errors.append(f"{label} has incorrect PR104 state")
+    if lineage.get("july_stage1_supersedes_pr104") is not False:
+        errors.append(f"{label} must keep July Stage 1 separate from PR104")
+    if lineage.get("july_stage1_can_validate_semantic_understanding") is not False:
+        errors.append(f"{label} must not let July Stage 1 validate semantics")
+
+    connections = {
+        item.get("id"): item.get("state")
+        for item in package.get("connection_states", [])
+        if isinstance(item, dict)
+    }
+    expected_connections = {
+        "live_conversation_to_companion_recall": "live_probabilistic",
+        "published_substrate_to_constitutional_planner": "live_deterministic",
+        "reasoning_pattern_packet_to_live_graph": "absent_research_only",
+        "pr104_human_review_to_runtime": "absent",
+        "decision_work_automatic_semantic_supplier": "missing",
+        "prospective_complete_paths_to_live_receipt": "absent_candidate_only",
+    }
+    if connections != expected_connections:
+        errors.append(f"{label} connection states must preserve live, absent, and missing boundaries")
+
+    graph = package.get("current_graph_policy", {})
+    expected_graph = {
+        "policy_id": "lolla.constitutional_pressure_planner",
+        "version": "1.0.0",
+        "model_count": 222,
+        "rich_relation_count": 1358,
+        "direct_active_cap": 6,
+        "expansion_seed_rule": "direct_active_only",
+        "direction": "outgoing_authored_relations",
+        "hop_depth": 1,
+        "provider_calls_allowed": 0,
+        "policy_change_authorized": False,
+    }
+    for key, expected in expected_graph.items():
+        if graph.get(key) != expected:
+            errors.append(f"{label} current_graph_policy.{key} must be {expected!r}")
+
+    policy_path = root / "data/curation/constitutional_pressure_policy_v1.json"
+    if policy_path.exists():
+        policy = json.loads(policy_path.read_text(encoding="utf-8"))
+        for key in (
+            "policy_id",
+            "version",
+            "direct_active_cap",
+            "expansion_seed_rule",
+            "direction",
+            "hop_depth",
+            "provider_calls_allowed",
+        ):
+            if graph.get(key) != policy.get(key):
+                errors.append(f"{label} current_graph_policy.{key} must match the published policy")
+        if graph.get("relation_slots") != policy.get("graph_relation_slots"):
+            errors.append(f"{label} relation slots must match the published policy")
+
+    knowledge_graph_path = root / "data/knowledge_graph.json"
+    relationship_graph_path = root / "data/relationship_graph.json"
+    if knowledge_graph_path.exists() and relationship_graph_path.exists():
+        knowledge_graph = json.loads(knowledge_graph_path.read_text(encoding="utf-8"))
+        relationship_graph = json.loads(relationship_graph_path.read_text(encoding="utf-8"))
+        if graph.get("model_count") != len(knowledge_graph.get("models", {})):
+            errors.append(f"{label} model_count must match the published graph")
+        if graph.get("rich_relation_count") != len(relationship_graph):
+            errors.append(f"{label} rich_relation_count must match the published graph")
+
+    authorization = package.get("authorization", {})
+    expected_authorization = {
+        "provider_calls": 0,
+        "provider_cost_usd": 0.0,
+        "embedding_calls": 0,
+        "private_archive_inspection": False,
+        "principal_human_review_completed": False,
+        "runtime_change": False,
+        "graph_policy_change": False,
+        "sidecar_automation": False,
+        "atlas_or_interface_work": False,
+        "product_usefulness_claim": False,
+    }
+    for key, expected in expected_authorization.items():
+        if authorization.get(key) != expected:
+            errors.append(f"{label} authorization.{key} must be {expected!r}")
+
+    artifacts = package.get("artifacts", {})
+    for role, relative in artifacts.items():
+        if not isinstance(relative, str) or not relative or not (root / relative).exists():
+            errors.append(f"{label} artifact missing for {role}: {relative}")
+
+    intake_path = root / "reviews/human/decision-trail-human-review-intake-packet-v0/intake.json"
+    if intake_path.exists():
+        intake = json.loads(intake_path.read_text(encoding="utf-8"))
+        if intake.get("boundary", {}).get("human_fields_filled") is not False:
+            errors.append("PR104 historical intake human fields must remain blank")
+        if intake.get("scope", {}).get("case_count") != understanding.get("case_count"):
+            errors.append(f"{label} PR104 case count must match the historical intake")
+        if intake.get("next_state", {}).get("recommended_status") != lineage.get("pr104_state"):
+            errors.append(f"{label} PR104 state must match the historical intake")
 
 
 def _require_terms(text: str, terms: tuple[str, ...], label: str, errors: list[str]) -> None:

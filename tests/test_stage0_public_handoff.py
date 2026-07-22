@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts/evals/validate_stage0_public_handoff.py"
 PACKET_PATH = ROOT / "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json"
+EVIDENCE_PACKAGE_PATH = ROOT / "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json"
 
 
 def _load_validator():
@@ -33,10 +34,13 @@ def test_public_handoff_validates_from_cli() -> None:
     assert completed.returncode == 0, completed.stderr
     receipt = json.loads(completed.stdout)
     assert receipt["status"] == "valid"
-    assert receipt["cold_reader_question_count"] == 16
+    assert receipt["cold_reader_question_count"] == 17
     assert receipt["current_entrypoint_count"] == 6
     assert receipt["required_file_count"] >= 20
     assert receipt["local_link_count"] >= 50
+    assert receipt["pressure_understanding_graph_package_status"] == (
+        "planning_package_complete_evidence_execution_unstarted"
+    )
     assert receipt["provider_calls"] == 0
     assert receipt["provider_cost_usd"] == 0.0
 
@@ -66,7 +70,35 @@ def test_public_handoff_rejects_provider_activity_and_question_drift() -> None:
     assert receipt["status"] == "invalid"
     assert "cold-reader provider_calls must be 0" in errors
     assert "cold-reader provider_cost_usd must be 0.00" in errors
-    assert "cold-reader questions must match the sixteen-question orientation contract" in errors
+    assert "cold-reader questions must match the seventeen-question orientation contract" in errors
+
+
+def test_public_handoff_rejects_graph_package_execution_or_policy_drift() -> None:
+    validator = _load_validator()
+    package = json.loads(EVIDENCE_PACKAGE_PATH.read_text(encoding="utf-8"))
+    candidate = copy.deepcopy(package)
+    candidate["product_lanes"]["c_conversation_to_graph_bridge"]["status"] = "live"
+    candidate["current_graph_policy"]["hop_depth"] = 2
+    candidate["authorization"]["provider_calls"] = 1
+
+    errors, receipt = validator.validate(
+        ROOT,
+        evidence_package_override=candidate,
+    )
+
+    assert receipt["status"] == "invalid"
+    assert (
+        "pressure/understanding/graph evidence package must keep the "
+        "conversation-to-graph comparison unstarted"
+    ) in errors
+    assert (
+        "pressure/understanding/graph evidence package "
+        "current_graph_policy.hop_depth must be 1"
+    ) in errors
+    assert (
+        "pressure/understanding/graph evidence package "
+        "authorization.provider_calls must be 0"
+    ) in errors
 
 
 def test_public_handoff_rejects_stale_live_skill_claim() -> None:

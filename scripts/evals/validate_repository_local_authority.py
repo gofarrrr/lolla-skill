@@ -31,6 +31,7 @@ ACTIVE_DIRECTORIES = (
     Path("docs/skill"),
     Path("docs/how-it-works"),
     Path("data/curation"),
+    Path(".codex/skills"),
 )
 ACTIVE_DOCUMENTS = (
     Path("docs/README.md"),
@@ -38,10 +39,14 @@ ACTIVE_DOCUMENTS = (
     Path("docs/product/mental-model-teacher-observatory-ownership-portability-boundary-v0.md"),
     Path("docs/product/observatory-global-product-experience-and-data-flow-v0.md"),
     Path("docs/conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md"),
+    Path("docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md"),
+    Path("docs/conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md"),
     Path("docs/conversation-understanding/lolla-graph-substrate-custody-and-reproducibility-prd-v0.md"),
     Path("docs/conversation-understanding/lolla-constitutional-pressure-portfolio-custody-prd-v0.md"),
     Path("docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md"),
     Path("plans/lolla-self-contained-graph-substrate-and-skill-plan-2026-07-22.md"),
+    Path("plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md"),
+    Path("docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json"),
     Path("docs/evals/lolla-self-contained-skill-readiness-v1.json"),
     Path("data/model_sources/manifest.json"),
     Path("data/model_affordances/pilot_manifest.json"),

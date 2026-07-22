@@ -32,7 +32,7 @@ Then read only the lane you will touch:
 - **Graph, compiler, or planner:**
   `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`,
   `references/knowledge-substrate-operations.md`, and
-  `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
+  `docs/evals/lolla-self-contained-skill-readiness-v1.json`; for new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD and use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
   `docs/README.md`. Also read
@@ -50,7 +50,7 @@ Then read only the lane you will touch:
 
 `PROGRESS.md`, `TODOS.md`, older PRDs, and dated result files preserve why the
 project made earlier choices. They are not the current backlog or authority.
-The current sixteen-question repository handoff review is
+The current seventeen-question repository handoff review is
 `docs/evals/lolla-public-handoff-cold-reader-review-2026-07-22.md`; it is
 maintainer/agent evidence, not independent human acceptance.
 
@@ -296,3 +296,5 @@ blank principal-human correction fields, with the explicit state
 `pause_until_human_review_capacity_returns`. The July Stage 1 can inspect
 checked-in-safe interface truthfulness only; it cannot validate conversation
 meaning or resolve the June pause.
+The provider-free A/B/C package separates pressure-now/process receipts, PR104 human review for understand-later, and source-first conversation-to-graph comparison before traversal expansion.
+Its PRD/plan and repository-local audit skill authorize no human review, providers, graph/runtime changes, sidecar automation, or interface work.

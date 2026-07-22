@@ -287,6 +287,13 @@ about authority and missingness, but it cannot validate conversation meaning
 or supersede that pause. See the
 [Decision Trail stage lineage](docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
 
+A provider-free planning package now separates three later lanes: pressure-now
+plus process receipts; prospective principal-human PR104 review for understand-
+later; and source-first conversation-to-graph comparison before incoming,
+reserve, two-hop, or global expansion. Its repository-local audit skill
+authorizes no human review, provider, graph/runtime change, sidecar automation,
+Atlas, or interface work.
+
 ## Current repository boundary
 
 The root entrypoints are intentionally small. The repository still contains a
