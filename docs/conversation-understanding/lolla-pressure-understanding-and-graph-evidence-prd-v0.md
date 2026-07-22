@@ -308,7 +308,7 @@ No scalar score, winner label, or majority vote may replace this vector.
 | Every graph arm creates forced association or burden | Graph contribution is not earned | Stand down or materially redesign; more hops are contraindicated |
 | Human source target cannot be produced fairly | Semantic evidence unavailable | Preserve pause; do not substitute AI agreement |
 | Any arm invents high-stakes facts or causation | Answer-integrity failure | Stop the case; preserve first result; no retry under same authorization |
-| T3 loses a grounded F3 pressure delta relative to T0/F0 | Same-context coherence defense is a candidate mechanism | Repeat prospectively before any runtime decision; do not call rejection alone failure |
+| `(T3−T0)` loses a grounded `(F3−F0)` pressure delta | Same-context coherence defense is a candidate mechanism | Repeat prospectively before any runtime decision; do not call rejection alone failure |
 | F3 applies more pressure but loses value or adds unsupported friction | Fresh-context over-absorption | Do not promote a fresh consumer merely because uptake rose |
 | Context interaction is absent or T3 dispositions are equally grounded | Same-context devaluation is not supported on this case | Keep the limitation label but do not redesign runtime from the hypothesis |
 
