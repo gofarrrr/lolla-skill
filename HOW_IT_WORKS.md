@@ -199,12 +199,10 @@ of three dispositions:
   condition and forcing risk recorded;
 - `park`: evidence or timing is insufficient, with a reopening condition.
 
-The live reconsideration occurs in the same conversational context. It is real
-friction and auditable custody, but it is not independent validation. Same-
-context rationalization remains a known risk.
+The live reconsideration occurs in the same conversational context. It is real friction and auditable custody, but it is not independent validation. Same-context rationalization remains a known risk, not an observed systematic effect.
 
-Constitutional graph survival only proves that bounded candidates reached this reasoner; it does not prove that the authoring trajectory seriously tested disruptive pressure. A fresh consumer is research-only and is not automatically better: it can inherit the supplied vanilla frame or force selected noise into the answer. The provider-free
-[consumer-context contract](docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json) compares pressure-specific deltas in isolated trajectory continuations and fresh reconstructions before any context architecture change.
+Constitutional graph survival proves that bounded candidates reached the reasoner; it does not prove serious consideration. A fresh consumer is research-only and may inherit the vanilla frame or force selected noise into the answer. The provider-free [consumer-context contract v1](docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json) defines a six-output, single-draw case diagnostic under declared context representations.
+It is not execution-ready and cannot by itself identify self-justification or causal graph value. V0 is the preserved predecessor, not the current contract.
 
 ## 7. Revision, archive, receipts, and health
 

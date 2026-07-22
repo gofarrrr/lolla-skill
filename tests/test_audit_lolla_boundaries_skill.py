@@ -39,7 +39,7 @@ def test_skill_is_not_a_second_runtime_or_semantic_authority() -> None:
         "Preserve frozen experiment artifacts and PR104's blank human fields",
         "call a provider or rebuild embeddings",
         "same-context self-justification",
-        "fresh-context over-absorption",
+        "mandatory absorption in either context",
     ):
         assert required in text_flat
     for required in (

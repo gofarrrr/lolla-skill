@@ -23,6 +23,14 @@ They establish repository-local custody, deterministic reconstruction, and
 policy replay. They do not establish semantic relevance or product usefulness,
 and the complete-path projection is not connected to live behavior.
 
+The current provider-free consumer-context boundary is
+[`lolla-consumer-context-pressure-ablation-contract-v1.json`](lolla-consumer-context-pressure-ablation-contract-v1.json).
+Its six-cell design shape is valid, but execution readiness is false. It labels
+one output per cell as a case diagnostic rather than causal identification and
+requires complete request-envelope, F2/F3 direct-component, active-candidate/
+payload, principal-human-rubric, blinding, and stochasticity custody before a
+case can be frozen. V0 is its preserved prospective predecessor.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
 Its active data packages are now governed by the

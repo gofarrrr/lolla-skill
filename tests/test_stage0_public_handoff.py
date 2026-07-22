@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts/evals/validate_stage0_public_handoff.py"
 PACKET_PATH = ROOT / "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json"
 EVIDENCE_PACKAGE_PATH = ROOT / "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json"
-CONSUMER_CONTEXT_PATH = ROOT / "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json"
+CONSUMER_CONTEXT_PATH = ROOT / "docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json"
 
 
 def _load_validator():

@@ -12,7 +12,7 @@ Provider cost: $0.00
 
 Publication: [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380)
 
-Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381), [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), and [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383)
+Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381), [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383), and the current provider-free consumer-context v1 correction
 
 ## Question
 
@@ -113,6 +113,14 @@ mistaken for improvement.
 This is a maintainer/cold-start contract extension, not a claim that the three
 original repository-only readers were rerun or that a principal human accepted
 the package.
+
+The current v1 correction narrows that addendum after two separate fresh-
+context repository-only AI diagnostics. It calls the two additional outputs
+trajectory representations, names the result a single-draw case diagnostic,
+and records `execution_ready=false`. It treats mandatory absorption as possible
+in either context and forbids inferring self-justification from a context
+interaction alone. The original three handoff readers were not rerun; the two
+new diagnostics are not principal-human or causal evidence.
 
 ## Result
 

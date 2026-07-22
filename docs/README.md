@@ -15,11 +15,8 @@ When files disagree, use this precedence:
 Old “next step,” “current,” and “publish” language inside frozen evidence is not
 current authorization.
 
-Constitution v5 incorporates earlier constitutional rules and product-evil
-boundaries. It does not reactivate dated status, provider choices, architecture
-descriptions, or next-step instructions from the earlier files. Where v5 names
-a fresh-context reasoner, treat that as the constitutional target; the current
-ordinary live skill is same-context and only partially conforms. Fresh context is not assumed better: it may over-absorb selected noise. The provider-free contract tests both risks before any runtime change.
+Constitution v5 incorporates earlier rules and product-evil boundaries without reactivating dated status, provider choices, architecture, or next-step instructions. Its fresh-context reasoner is a target; the ordinary live skill is same-context and only partially conforms.
+Fresh context is not assumed better, and mandatory absorption can occur in either mode. Provider-free v1 defines how a future diagnostic could examine both risks before a runtime change; it is not execution-ready.
 
 ## Universal cold start
 
@@ -85,14 +82,12 @@ Read:
 
 - [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
 - [Graph audit workbook/scriptbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md), [pressure/understanding/graph PRD](conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md), [tracer-bullet plan](../plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md), and [machine evidence package](evals/lolla-pressure-understanding-graph-evidence-package-v1.json)
+- [Current consumer-context contract v1](evals/lolla-consumer-context-pressure-ablation-contract-v1.json) and its [provider-free correction result](conversation-understanding/lolla-consumer-context-contract-v1-correction-result-2026-07-22.md). V0 is the preserved predecessor, not the current execution boundary.
 - [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
 - [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
-Current facts: the fresh clone contains 222 canonical Markdown models and 1,358
-rich authored directed relations. Candidate compilation reproduces both
-published graph files byte-for-byte, and all 163 frozen policy windows replay
-exactly. This is a curated pressure graph—not GraphRAG over arbitrary documents,
-a causal fact graph, or proof that a reachable relation applies to a user.
+Current facts: the fresh clone contains 222 canonical Markdown models and 1,358 rich authored directed relations. Candidate compilation reproduces both published graph files byte-for-byte, and all 163 frozen policy windows replay exactly. This is a curated pressure graph—not GraphRAG over arbitrary documents, a causal fact graph, or proof that a reachable relation applies.
+The current consumer-context contract has a valid six-cell design shape but is not execution-ready. It defines a single-draw case diagnostic under declared context representations; it does not identify self-justification, causal graph value, expected model behavior, or a runtime architecture.
 
 The current policy has one declared versioned wrapper and snapshot, while a
 frozen historical serializer remains executable for compatibility and the live
