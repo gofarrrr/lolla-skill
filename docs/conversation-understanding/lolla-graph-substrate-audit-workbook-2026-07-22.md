@@ -1,7 +1,7 @@
 # Lolla Graph and Knowledge-Substrate Audit Workbook
 
 Date: 2026-07-22
-Status: audit evidence with Phases 0–6 completed provider-free; prospective complete-path custody is not runtime-promoted
+Status: current graph/substrate audit scriptbook; Phases 0–6 completed provider-free; prospective path custody and later semantic opportunities are not runtime-promoted
 Provider calls authorized or made for this audit: zero
 Published graph bytes, live selection semantics, embedding generation, Atlas, frontend, Teacher, and provider changes made: none
 
@@ -644,6 +644,8 @@ This register records possibilities. It does not authorize implementation.
 | O-08 | Motif/convergence summaries | Repeated relation shapes may help portfolio diversity | A named motif produces stable, reviewable path sets and a consumer can disposition them | Research only |
 | O-09 | Graph-active model to V60 affordance/absence handoff | A graph-only model may need richer source-backed transaction material for fair evaluation | Offline paired packets show better grounded disposition without forced use or context overflow | Separate authorization |
 | O-10 | Atlas/interface exposure | Humans may understand the substrate and paths better visually | Founder and accessibility gates plus real-user usefulness evidence | Parked by current task |
+| O-11 | Source-first conversation-to-graph bridge comparison | A fair controlled semantic input may distinguish a bridge miss from a graph miss | Human-controlled current-policy arm is compared separately with current-live, direct-only, and transcript-only arms | Before O-05/O-06/O-07 |
+| O-12 | PR104 principal-human correction | Rich longitudinal meaning may be useful if a human can correct it without excessive burden | One source-first case is corrected, rejected, simplified, or marked unavailable without altering PR104 | Separate human gate |
 
 ## Decisions made by this audit
 
@@ -718,3 +720,103 @@ Stop and return to the founder if any next step would:
 - infer a relation from a multi-hop path;
 - expose Atlas/frontend work inside this goal;
 - convert a traceability improvement into a semantic-quality claim.
+
+## Prospective continuation — pressure, understanding, and graph evidence
+
+Date: 2026-07-22
+Evidence class: maintainer architectural audit and planning, not human semantic
+review or product-usefulness evidence
+Provider calls and cost: 0 and `$0.00`
+
+### Why this continuation exists
+
+The ownership repair closed the structural graph problem. A later inside-out
+audit found a different unresolved boundary: the system can prove which source,
+model, relation, path, disposition, and receipt existed, but it has not proved
+that the conversation supplied the right semantic problem to the graph.
+
+This is the key distinction:
+
+```text
+videotape / process receipt
+  strong: bytes, hashes, calls, paths, ledgers, costs, omissions
+
+semantic table of contents
+  unproven: change of mind, adoption, influence, values, option lifecycle,
+            unresolved matters, preserved and lost value
+```
+
+More graph traversal works on the second layer's output. It cannot repair that
+output merely by finding more reachable models.
+
+### Decision Trail lineage note
+
+The June specialist-output program and July roadmap Stage 1 are different.
+June stopped after three Codex-assisted candidate reads. PR104 remains blank
+and paused until principal-human review capacity returns. July Stage 1 is an
+unstarted checked-in-safe interface-truthfulness option. It could show that
+labels are honest while semantic understanding remains unresolved.
+
+The controlling correction is
+`lolla-decision-trail-stage-lineage-2026-07-22.md`. No note here changes PR104,
+authorizes Stage 1, or reopens R4.
+
+### Inside-out caller finding
+
+The current live Lane 2 caller does not receive a validated fact-free reasoning
+pattern packet. It builds a lane packet from `ConversationIR`, asks a provider
+for a fingerprint, combines that fingerprint with assistant-turn recall text,
+recalls direct model candidates, then runs the deterministic current planner.
+The graph/planner portion is mechanically strong; the candidate-supply meaning
+remains provisional.
+
+The repository also contains a research-only `ReasoningPatternPacket` and
+reasoning-mechanism ontology. Their controlled decontextualization boundary is
+useful, but automatic role-record-to-pattern interpretation previously failed
+invariance and protected-mechanism gates. The minimum viable loop later earned
+one narrow useful-pressure case and one quiet stand-down using source-reviewed
+materials while preserving answer and evaluation-contract failures. None of
+that authorizes live replacement.
+
+### A/B/C decision recorded
+
+1. **A — Pressure now.** Retain the live four-lane pressure core and truthful
+   process receipt as the primary experimental product boundary. Sidecars and
+   projections stay bounded.
+2. **B — Understand later.** Preserve the richer job, but resume only at a new
+   prospective principal-human review derived from PR104. Do not overwrite the
+   blank packet or substitute AI agreement.
+3. **C — Test the bridge before the graph scope.** Compare transcript-only,
+   current-live, human-controlled direct-only, and human-controlled current-
+   graph arms on identical source. This isolates semantic supply from direct
+   recall and relationship expansion.
+
+The detailed contract and sequence are:
+
+- `lolla-pressure-understanding-and-graph-evidence-prd-v0.md`;
+- `../../plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md`.
+
+### New decision order
+
+1. Keep current graph bytes and policy unchanged.
+2. Obtain principal-human/source capacity or preserve the PR104 unavailable
+   state.
+3. Freeze one checked-in-safe bridge case provider-free.
+4. Execute only after an exact human/provider authorization.
+5. Require both a useful-pressure case and a quiet stand-down.
+6. If and only if a fair-input current-policy run misses one named lens, test
+   one alternative: incoming references, direct-reserve expansion, or bounded
+   two-edge outgoing paths.
+7. Treat live promotion as a separate product decision.
+
+### Areas deliberately not entered
+
+- no graph database, MCP transport, community detection, or global search;
+- no automatic relation extraction or graph mutation;
+- no new conversation reader, R4/R5, or Decision Work semantic supplier;
+- no sidecar queue/resolver/interface work;
+- no Atlas, Teacher, Observatory, or frontend work;
+- no private archive read or principal-human field completion;
+- no provider or embedding call;
+- no runtime receipt or graph-policy change;
+- no accuracy, cost-saving, usefulness, or production claim.

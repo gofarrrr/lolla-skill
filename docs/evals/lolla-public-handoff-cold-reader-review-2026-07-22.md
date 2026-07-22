@@ -12,6 +12,8 @@ Provider cost: $0.00
 
 Publication: [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380)
 
+Subsequent boundary addenda: [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381) and [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382)
+
 ## Question
 
 Can a new human or AI coder start from the GitHub repository and correctly
@@ -96,14 +98,21 @@ not a current budgeting contract.
 
 `requirements-dev.txt` and a provider-free GitHub Actions handoff gate make the
 documented fresh-clone validation reproducible. The existing public validator
-now reads the live skill and setup contract and checks sixteen cold-reader
+now reads the live skill and setup contract and checks seventeen cold-reader
 questions instead of checking only the six root entrypoints and ten orientation
 questions.
+
+The seventeenth question was added in the subsequent provider-free A/B/C
+planning package. It checks that pressure-now, PR104 human review, and the
+conversation-to-graph comparison remain separate and unstarted where required.
+This is a maintainer/cold-start contract extension, not a claim that the three
+original repository-only readers were rerun or that a principal human accepted
+the package.
 
 ## Result
 
 The repository is now a materially better self-contained handoff for further
-development. It answers the sixteen questions in the V2 packet from current
+development. It answers the seventeen questions in the V2 packet from current
 entrypoints and live contracts, with source links and zero provider calls.
 
 This is not independent human acceptance. It does not prove that an arbitrary

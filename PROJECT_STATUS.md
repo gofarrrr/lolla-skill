@@ -35,11 +35,10 @@ usefulness, market value, and production readiness remain unknown.
 
 ## Latest published checkpoint
 
-The current public cold-start handoff is tracked by
-[PR #380](https://github.com/gofarrrr/lolla-skill/pull/380). Its foundational
-repository-local graph and Atlas-custody package was published through
-[PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
-`1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. A fresh clone contains all 222
+The current A/B/C pressure, understanding, and graph planning package is tracked by
+[PR #382](https://github.com/gofarrrr/lolla-skill/pull/382); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
+The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
+`1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
 compiler inputs, source anchors, release identities, one published read
 boundary, one declared versioned pressure policy wrapper, and its frozen
@@ -286,6 +285,13 @@ paused. July Stage 1 can test whether checked-in-safe labels tell the truth
 about authority and missingness, but it cannot validate conversation meaning
 or supersede that pause. See the
 [Decision Trail stage lineage](docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
+
+A provider-free planning package now separates three later lanes: pressure-now
+plus process receipts; prospective principal-human PR104 review for understand-
+later; and source-first conversation-to-graph comparison before incoming,
+reserve, two-hop, or global expansion. Its repository-local audit skill
+authorizes no human review, provider, graph/runtime change, sidecar automation,
+Atlas, or interface work.
 
 ## Current repository boundary
 

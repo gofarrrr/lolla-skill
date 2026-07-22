@@ -84,7 +84,7 @@ before provider-facing changes.
 Read:
 
 - [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
-- [Graph audit workbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md)
+- [Graph audit workbook/scriptbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md), [pressure/understanding/graph PRD](conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md), [tracer-bullet plan](../plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md), and [machine evidence package](evals/lolla-pressure-understanding-graph-evidence-package-v1.json)
 - [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
 - [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
