@@ -644,8 +644,9 @@ This register records possibilities. It does not authorize implementation.
 | O-08 | Motif/convergence summaries | Repeated relation shapes may help portfolio diversity | A named motif produces stable, reviewable path sets and a consumer can disposition them | Research only |
 | O-09 | Graph-active model to V60 affordance/absence handoff | A graph-only model may need richer source-backed transaction material for fair evaluation | Offline paired packets show better grounded disposition without forced use or context overflow | Separate authorization |
 | O-10 | Atlas/interface exposure | Humans may understand the substrate and paths better visually | Founder and accessibility gates plus real-user usefulness evidence | Parked by current task |
-| O-11 | Source-first conversation-to-graph bridge comparison | A fair controlled semantic input may distinguish a bridge miss from a graph miss | Human-controlled current-policy arm is compared separately with current-live, direct-only, and transcript-only arms | Before O-05/O-06/O-07 |
+| O-11 | Source-first conversation-to-graph bridge comparison | A fair controlled semantic input may distinguish a bridge miss from a graph miss | Four fresh graph-supply arms plus two isolated trajectory continuations separate bridge, traversal, and consumer-context effects | Before O-05/O-06/O-07 |
 | O-12 | PR104 principal-human correction | Rich longitudinal meaning may be useful if a human can correct it without excessive burden | One source-first case is corrected, rejected, simplified, or marked unavailable without altering PR104 | Separate human gate |
+| O-13 | Consumer-context pressure-survival ablation | The self-authored trajectory may defend vanilla coherence, while a fresh consumer may over-absorb selected noise | Compare pressure-specific deltas in cloned trajectory continuations and fresh reconstructions with payload and source-label custody fixed | With O-11; before runtime architecture |
 
 ## Decisions made by this audit
 
@@ -820,3 +821,142 @@ The detailed contract and sequence are:
 - no provider or embedding call;
 - no runtime receipt or graph-policy change;
 - no accuracy, cost-saving, usefulness, or production claim.
+
+## Prospective continuation — consumer context and the smoothness cage
+
+Date: 2026-07-22
+Evidence class: founder-framed product-risk analysis plus provider-free
+contract design; not an executed comparison or usefulness result
+Provider calls and cost: 0 and `$0.00`
+
+### The corrected falsifiable question
+
+The live graph-survival repair answers:
+
+> Did every bounded graph candidate reach the host reasoner?
+
+It does not answer:
+
+> Did the host reasoner give disruptive pressure a serious hearing after
+> authoring the vanilla frame it now has to revise?
+
+The new hypothesis is that the same-context host may treat graph pressure as
+inferior noise because it fights the coherence of its own prior answer. That
+hypothesis is plausible and constitutionally anticipated, but it is not yet an
+observed general effect. The ordinary live limitation and the empirical claim
+must remain separate.
+
+### Hard-critique ledger
+
+Contradicting evidence and alternative explanations come first:
+
+- no matched current evidence shows that same-context treatment is
+  systematically worse than fresh reconstruction;
+- graph candidates are deliberately noisy, so rejecting more of them may be
+  correct rather than defensive;
+- the fresh minimum-loop useful case also emitted unsupported quantitative
+  precision, demonstrating that distance from the authoring trajectory can
+  increase a different failure;
+- same-context access may preserve tacit constraints or qualifications that a
+  reconstructed context weakens;
+- graph label, payload length, ordering, or a generic second pass could explain
+  an apparent context difference.
+
+For the same-context hypothesis to work, the source-reviewed pressure must be
+fair, both pressure payloads must be byte-identical, the context checkpoint
+must be clonable, model/settings must match, controls must remain isolated, and
+review must distinguish serious rejection from circular defense. Every one of
+those beliefs is untested for the future case.
+
+The hypothesis is falsified on a case if the pressure-specific context
+interaction is absent or the trajectory-continuation dispositions are at
+least as source-grounded and specific. Fresh-context promotion is blocked if
+it merely raises uptake while losing useful original value, adding friction,
+or inventing support.
+
+Rejected designs:
+
+- raw live output versus one fresh answer, because it has no matched
+  transcript-only controls;
+- control followed by treatment in one session, because pressure contaminates
+  the control;
+- application-rate scoring, because correct rejection and forced absorption
+  point in opposite directions;
+- an eight-cell full cross of all graph arms, because only F0/F3 need the
+  additional context factor for the first causal question;
+- immediate replacement of live Step 6, because a planning contract and one
+  diagnostic case cannot earn runtime architecture.
+
+### Three evils, not one
+
+1. **Upstream probabilistic re-domestication.** A selector deletes strange
+   graph pressure before reconsideration. Constitutional graph survival now
+   controls this mechanically.
+2. **Downstream same-context self-justification.** The original reasoner sees
+   the candidate but defends, paraphrases, or circularly restores its prior
+   frame. This remains a live risk.
+3. **Opposite mandatory absorption.** A fresh or strongly instructed consumer
+   applies selected noise because it believes the graph must matter. More
+   uptake then creates unsupported claims, answer bloat, caution, paralysis,
+   or friction theater.
+
+A lower application rate does not establish evil 2. A higher application rate
+does not establish that a fresh consumer is better. Serious consideration is
+shown by a source-grounded attempted application, a specific failed condition
+when rejected, or an accountable reopen condition when parked.
+
+### Why a simple same-session/fresh-session pair is invalid
+
+One pair would confound graph pressure with ordinary second-pass elaboration.
+Running control and treatment sequentially in one session would contaminate
+the control. Calling a new session independent would also overclaim: it still
+sees a reconstruction of the conversation and prior answer and may share the
+same model family.
+
+The minimum design is therefore six outputs:
+
+```text
+fresh reconstruction:       F0 transcript only
+                            F1 current bridge + graph
+                            F2 fair direct only
+                            F3 fair direct + current graph
+
+cloned trajectory:          T0 transcript only
+                            T3 byte-identical F3 pressure
+```
+
+F0–F3 preserve the original four-arm graph-supply test. F0/F3/T0/T3 form the
+context × pressure ablation. T0 and T3 are isolated continuations cloned from
+one exact pre-pressure checkpoint; neither sees the other output. The context
+claim comes from comparing `(T3−T0)` with `(F3−F0)`, not from comparing raw
+answer polish, length, confidence, or candidate uptake.
+
+### Competing explanations that must survive into review
+
+- the same-context trajectory circularly defends vanilla coherence;
+- the fresh consumer over-absorbs pressure or loses useful original value;
+- the graph adds no distinct value in either mode;
+- payload, graph-authority label, context reconstruction, model route, order,
+  or token-volume differences explain the apparent effect.
+
+The result must be source-first and non-scalar. One diagnostic case cannot
+select a production architecture.
+
+### Exact boundary created
+
+The provider-free contract is
+`../evals/lolla-consumer-context-pressure-ablation-contract-v0.json`. It owns
+the six cell IDs, paired comparisons, context definitions, custody fields,
+interpretation rules, missing prerequisites, stop rules, and zero-authority
+state. The existing PRD and plan own the product sequence. No new runner,
+prompt, graph path, context switch, provider call, or live integration was
+created.
+
+### Next gate
+
+Before execution, one exact case still needs a source-first principal-human
+target, authoritative source hash, clonable pre-pressure checkpoint, fixed
+pressure payload and label visibility, prompts/schemas, matched model route,
+blind-review boundary, call/cost ceiling, and separate founder authorization.
+If the checkpoint cannot be captured honestly, the live same-context result
+remains observational and cannot support a causal context claim.

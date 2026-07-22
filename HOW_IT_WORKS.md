@@ -203,6 +203,9 @@ The live reconsideration occurs in the same conversational context. It is real
 friction and auditable custody, but it is not independent validation. Same-
 context rationalization remains a known risk.
 
+Constitutional graph survival only proves that bounded candidates reached this reasoner; it does not prove that the authoring trajectory seriously tested disruptive pressure. A fresh consumer is research-only and is not automatically better: it can inherit the supplied vanilla frame or force selected noise into the answer. The provider-free
+[consumer-context contract](docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json) compares pressure-specific deltas in isolated trajectory continuations and fresh reconstructions before any context architecture change.
+
 ## 7. Revision, archive, receipts, and health
 
 A complete ordinary run persists a revised answer, memo, disposition records,

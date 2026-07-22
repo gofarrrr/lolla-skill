@@ -280,7 +280,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #382 tracks the A/B/C planning package; PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; and PR #379 is the foundational graph/Atlas V2 checkpoint.
+custody without semantic change. PR #382 tracks A/B/C plus a provider-free same-context/fresh-context pressure ablation; it changes no runtime. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
 Atlas baseline PR #375 is historical; the
 checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
 Phase 2, Teacher revival, providers, and product claims are unauthorized. The
@@ -295,5 +295,5 @@ blank principal-human correction fields, with the explicit state
 `pause_until_human_review_capacity_returns`. The July Stage 1 can inspect
 checked-in-safe interface truthfulness only; it cannot validate conversation
 meaning or resolve the June pause.
-The provider-free A/B/C package separates pressure-now/process receipts, PR104 human review for understand-later, and source-first conversation-to-graph comparison before traversal expansion.
+The provider-free A/B/C package separates pressure-now/process receipts, PR104 human review for understand-later, and a six-output source-first graph/context comparison before traversal expansion.
 Its PRD/plan and repository-local audit skill authorize no human review, providers, graph/runtime changes, sidecar automation, or interface work.

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import re
 import sys
@@ -45,6 +46,7 @@ REQUIRED_FILES = CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + (
     ".github/workflows/public-handoff.yml",
     "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json",
     "docs/evals/lolla-pressure-understanding-graph-evidence-package-v1.json",
+    "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
     "docs/evals/lolla-constitution-stage0-addendum-register-v1.json",
     "docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md",
     "docs/conversation-understanding/lolla-product-constitution-v5.md",
@@ -106,6 +108,7 @@ def validate(
     text_overrides: dict[str, str] | None = None,
     packet_override: dict | None = None,
     evidence_package_override: dict | None = None,
+    consumer_context_override: dict | None = None,
 ) -> tuple[list[str], dict]:
     errors: list[str] = []
     overrides = text_overrides or {}
@@ -258,6 +261,8 @@ def validate(
             "human: semantic correction, usefulness, and action authority",
             "preserve frozen experiment artifacts and pr104's blank human fields",
             "require a product choice between pressure-now and understand-later",
+            "same-context self-justification",
+            "fresh-context over-absorption",
         ),
         maintainer_skill_relative,
         errors,
@@ -274,6 +279,8 @@ def validate(
             "a. pressure now",
             "b. understand later",
             "c. improve the conversation-to-graph bridge",
+            "candidate survival also cannot prove independent consideration",
+            "lower application rate does not establish domestication",
             "one alternative",
         ),
         evidence_gates_relative,
@@ -337,6 +344,12 @@ def validate(
 
     _validate_pressure_understanding_graph_package(root, evidence_package, errors)
 
+    consumer_context_errors, consumer_context_receipt = _validate_consumer_context_contract(
+        root,
+        contract_override=consumer_context_override,
+    )
+    errors.extend(consumer_context_errors)
+
     register_path = root / "docs/evals/lolla-constitution-stage0-addendum-register-v1.json"
     if register_path.exists():
         try:
@@ -352,6 +365,7 @@ def validate(
 
     receipt = {
         "cold_reader_question_count": len(questions),
+        "consumer_context_contract_status": consumer_context_receipt.get("status"),
         "current_entrypoint_count": len(texts),
         "local_link_count": link_count,
         "provider_calls": packet.get("provider_calls"),
@@ -395,6 +409,18 @@ def _validate_pressure_understanding_graph_package(
         errors.append(f"{label} must preserve the four-arm bridge comparison")
     if bridge.get("status") != "planned_unstarted":
         errors.append(f"{label} must keep the conversation-to-graph comparison unstarted")
+    context_ablation = bridge.get("consumer_context_ablation", {})
+    expected_context_ablation = {
+        "status": "provider_free_design_complete_case_and_execution_unstarted",
+        "contract": "docs/evals/lolla-consumer-context-pressure-ablation-contract-v0.json",
+        "fresh_graph_supply_output_count": 4,
+        "additional_trajectory_continuation_output_count": 2,
+        "live_same_context_output_is_causal_evidence": False,
+        "fresh_context_is_independent_truth": False,
+    }
+    for key, expected in expected_context_ablation.items():
+        if context_ablation.get(key) != expected:
+            errors.append(f"{label} consumer_context_ablation.{key} must be {expected!r}")
 
     lineage = package.get("decision_trail_lineage", {})
     if lineage.get("pr104_state") != "pause_until_human_review_capacity_returns":
@@ -416,6 +442,7 @@ def _validate_pressure_understanding_graph_package(
         "pr104_human_review_to_runtime": "absent",
         "decision_work_automatic_semantic_supplier": "missing",
         "prospective_complete_paths_to_live_receipt": "absent_candidate_only",
+        "fresh_context_consumer_to_live_runtime": "absent_research_only",
     }
     if connections != expected_connections:
         errors.append(f"{label} connection states must preserve live, absent, and missing boundaries")
@@ -473,6 +500,7 @@ def _validate_pressure_understanding_graph_package(
         "principal_human_review_completed": False,
         "runtime_change": False,
         "graph_policy_change": False,
+        "fresh_context_promotion": False,
         "sidecar_automation": False,
         "atlas_or_interface_work": False,
         "product_usefulness_claim": False,
@@ -495,6 +523,25 @@ def _validate_pressure_understanding_graph_package(
             errors.append(f"{label} PR104 case count must match the historical intake")
         if intake.get("next_state", {}).get("recommended_status") != lineage.get("pr104_state"):
             errors.append(f"{label} PR104 state must match the historical intake")
+
+
+def _validate_consumer_context_contract(
+    root: Path,
+    *,
+    contract_override: dict | None,
+) -> tuple[list[str], dict]:
+    validator_path = root / "scripts/evals/validate_consumer_context_pressure_ablation.py"
+    if not validator_path.exists():
+        return ["missing consumer-context validator"], {"status": "invalid"}
+    spec = importlib.util.spec_from_file_location(
+        "lolla_consumer_context_pressure_validator",
+        validator_path,
+    )
+    if spec is None or spec.loader is None:
+        return ["could not load consumer-context validator"], {"status": "invalid"}
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.validate(root, contract_override=contract_override)
 
 
 def _require_terms(text: str, terms: tuple[str, ...], label: str, errors: list[str]) -> None:

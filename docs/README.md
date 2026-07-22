@@ -19,7 +19,7 @@ Constitution v5 incorporates earlier constitutional rules and product-evil
 boundaries. It does not reactivate dated status, provider choices, architecture
 descriptions, or next-step instructions from the earlier files. Where v5 names
 a fresh-context reasoner, treat that as the constitutional target; the current
-ordinary live skill is same-context and only partially conforms on that axis.
+ordinary live skill is same-context and only partially conforms. Fresh context is not assumed better: it may over-absorb selected noise. The provider-free contract tests both risks before any runtime change.
 
 ## Universal cold start
 

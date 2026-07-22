@@ -38,6 +38,8 @@ def test_skill_is_not_a_second_runtime_or_semantic_authority() -> None:
         "human: semantic correction, usefulness, and action authority",
         "Preserve frozen experiment artifacts and PR104's blank human fields",
         "call a provider or rebuild embeddings",
+        "same-context self-justification",
+        "fresh-context over-absorption",
     ):
         assert required in text_flat
     for required in (
@@ -45,6 +47,8 @@ def test_skill_is_not_a_second_runtime_or_semantic_authority() -> None:
         "### A. Pressure now",
         "### B. Understand later",
         "### C. Improve the conversation-to-graph bridge",
+        "Candidate survival also cannot prove independent consideration",
+        "A lower application rate does not establish domestication",
         "test exactly one alternative",
     ):
         assert required in reference_flat
