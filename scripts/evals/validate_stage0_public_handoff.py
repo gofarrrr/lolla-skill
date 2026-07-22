@@ -24,6 +24,7 @@ SUPPORTING_CURRENT_DOCS = (
     "docs/history/README.md",
     "docs/operations/lolla-repository-gardening-audit-2026-07-15.md",
     "docs/evals/lolla-public-handoff-cold-reader-review-2026-07-22.md",
+    "docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md",
     "docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md",
     "docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md",
     "references/knowledge-substrate-operations.md",
@@ -203,14 +204,37 @@ def validate(
         "scripts/skill/setup.sh",
         errors,
     )
+    roadmap_relative = "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md"
+    roadmap_text = overrides.get(
+        roadmap_relative,
+        (root / roadmap_relative).read_text(encoding="utf-8"),
+    )
     _require_terms(
-        (root / "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md").read_text(encoding="utf-8"),
+        roadmap_text,
         (
             "stage 0 and 0.6 are",
             "exact checked-in-safe case packet",
             "no later evidence stage is authorized",
+            "does not supersede the pr104 pause",
         ),
-        "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md",
+        roadmap_relative,
+        errors,
+    )
+    lineage_relative = "docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md"
+    lineage_text = overrides.get(
+        lineage_relative,
+        (root / lineage_relative).read_text(encoding="utf-8"),
+    )
+    _require_terms(
+        lineage_text,
+        (
+            "future_human_review_queue_not_filled",
+            "pause_until_human_review_capacity_returns",
+            "unauthorized and unstarted",
+            "could produce a clean interface-truthfulness result",
+            "cannot prove that lolla understands conversations correctly",
+        ),
+        lineage_relative,
         errors,
     )
 

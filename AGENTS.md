@@ -35,7 +35,11 @@ Then read only the lane you will touch:
   `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
-  `docs/README.md`.
+  `docs/README.md`. Also read
+  `docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md`:
+  June's specialist-output program remains paused at an unfilled PR104 human-
+  review packet, while July's Stage 1 is a separate, narrower, unauthorized
+  interface-truthfulness option that does not supersede the pause.
 - **Atlas:** the custody V2 result/evidence, canonical baseline publication,
   `apps/mental-model-atlas/README.md`, and its `DESIGN_SYSTEM.md`.
 - **R1–R4 research history:** the current-state audit, R4 closeout, and frozen
@@ -285,3 +289,10 @@ next eligible roadmap goal is the separately authorized, checked-in-safe Stage 1
 Decision Trail review; no private archives, semantics generation, providers,
 automation, runtime/R4/R5 changes, or usefulness claims. Real-run and live-
 pressure usefulness remain separately authorized stages.
+
+Do not read that eligibility as continuation of the June Decision Trail
+specialist program. PR104 still contains three unvalidated candidate reads and
+blank principal-human correction fields, with the explicit state
+`pause_until_human_review_capacity_returns`. The July Stage 1 can inspect
+checked-in-safe interface truthfulness only; it cannot validate conversation
+meaning or resolve the June pause.

@@ -30,6 +30,23 @@ long-context reader or provider experiment.
 
 ## Stage 1 — Decision Trail truthfulness on checked-in-safe artifacts
 
+### Lineage boundary
+
+This July Stage 1 is not a continuation of the June Decision Trail specialist-
+output program. That program was closed after three Codex-assisted one-case
+pilots. PR104 then prepared a principal-human intake packet, left every human
+correction field blank, and recommended
+`pause_until_human_review_capacity_returns`. No later artifact completes that
+human review.
+
+The Stage 1 below is a new and narrower interface-truthfulness option. It can
+test whether checked-in-safe fields disclose their authority and missingness;
+it cannot validate conversation interpretation, answer usefulness, graph
+relevance, or the June candidate reads. It could pass while the richer
+conversation-understanding problem remains unresolved. It does not supersede
+the PR104 pause. See the
+[current lineage correction](../docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
+
 **Product question:** Can a cold human reviewer use the existing completed-run
 projection to distinguish source custody, provisional interpretation,
 missingness, human-review requirements, and action prohibition?
@@ -135,7 +152,9 @@ market hypotheses kept as separate dimensions.
 ## Immediate decision
 
 The Stage 0 addendum, public handoff, and Stage 0.6 source-coverage correction
-are repository-published. Decide only whether to authorize Stage 1.
+are repository-published. The June semantic-review lane remains paused at its
+blank PR104 principal-human intake. Decide only whether the separate, narrower
+Stage 1 interface-truthfulness question is worth authorizing now.
 
 This roadmap is a sequence, not the frozen Stage 1 execution contract. An
 authorization must name the exact checked-in-safe case packet, review rubric,
