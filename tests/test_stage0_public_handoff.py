@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts/evals/validate_stage0_public_handoff.py"
-PACKET_PATH = ROOT / "docs/evals/lolla-stage0-public-handoff-cold-reader-answers-v1.json"
+PACKET_PATH = ROOT / "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json"
 
 
 def _load_validator():
@@ -33,9 +33,9 @@ def test_public_handoff_validates_from_cli() -> None:
     assert completed.returncode == 0, completed.stderr
     receipt = json.loads(completed.stdout)
     assert receipt["status"] == "valid"
-    assert receipt["cold_reader_question_count"] == 10
+    assert receipt["cold_reader_question_count"] == 16
     assert receipt["current_entrypoint_count"] == 6
-    assert receipt["required_file_count"] == 16
+    assert receipt["required_file_count"] >= 20
     assert receipt["local_link_count"] >= 50
     assert receipt["provider_calls"] == 0
     assert receipt["provider_cost_usd"] == 0.0
@@ -66,7 +66,21 @@ def test_public_handoff_rejects_provider_activity_and_question_drift() -> None:
     assert receipt["status"] == "invalid"
     assert "cold-reader provider_calls must be 0" in errors
     assert "cold-reader provider_cost_usd must be 0.00" in errors
-    assert "cold-reader questions must match the ten-question orientation contract" in errors
+    assert "cold-reader questions must match the sixteen-question orientation contract" in errors
+
+
+def test_public_handoff_rejects_stale_live_skill_claim() -> None:
+    validator = _load_validator()
+    skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    errors, receipt = validator.validate(
+        ROOT,
+        text_overrides={
+            "SKILL.md": skill + "\nYou are a **pure orchestrator**.\n"
+        },
+    )
+
+    assert receipt["status"] == "invalid"
+    assert "forbidden stale public claim: you are a **pure orchestrator**" in errors
 
 
 def test_current_entrypoint_links_resolve() -> None:

@@ -1,7 +1,7 @@
 {
   "schema_version": "lolla.published_substrate_consumer_register.v1",
   "created_date": "2026-07-22",
-  "status": "complete_for_phase3",
+  "status": "complete_for_current_published_reader_migration_with_declared_compatibility_paths",
   "policy": {
     "publication_read_owner": "engine/system_b/published_knowledge_substrate.py",
     "runtime_compilation_allowed": false,
@@ -142,8 +142,20 @@
     },
     {
       "path": "engine/system_b/constitutional_graph_survival.py",
-      "disposition": "current_planner_with_source_ref_strings_only",
-      "reason": "receives graph payload from the pipeline and emits exact locators; Phase4 extracts its policy"
+      "disposition": "frozen_compatibility_serializer_and_degraded_raw_payload_fallback",
+      "reason": "remains executable because the current snapshot wrapper uses its public shape and the live pipeline calls it explicitly when no snapshot is available; it is not the sole current policy owner"
+    }
+  ],
+  "policy_compatibility_paths": [
+    {
+      "path": "engine/system_b/constitutional_pressure_survival.py",
+      "disposition": "current_policy_wrapper_with_frozen_serializer_compatibility",
+      "reason": "plans from the published snapshot, renders through the frozen serializer, and asserts exact active identity compatibility"
+    },
+    {
+      "path": "engine/system_b/constitutional_graph_survival.py",
+      "disposition": "also_called_by_degraded_raw_payload_fallback",
+      "reason": "the pipeline calls the frozen serializer directly when no published snapshot is available"
     }
   ],
   "temporary_adapters": {

@@ -12,91 +12,60 @@ setup path, manifest, validator, or development instruction depends on another
 checkout. Historical evidence remains immutable but is not a supported project
 location or source of current behavior.
 
-## Five-sentence status
+## Ninety-second current state
 
 Lolla is an experimental reasoning-pressure skill for consequential AI
 conversations. It preserves the available user/assistant exchange, introduces
 traceable challenges through four reasoning lanes and a curated mental-model
-graph, asks the reasoner to reconsider, and records the resulting process. Its
-deterministic custody, constitutional graph-survival, archive, cost, privacy,
-and inspection machinery are implemented and extensively tested. A separate
-attempt to build a general conversation-state reader produced unsafe false
-positives and has been retired rather than integrated. Lolla's real-user
-usefulness, market value, and ability to improve decisions remain open
-questions that require explicit human evidence gates.
+graph, asks the reasoner to reconsider, and records the process. Its strongest
+evidence is mechanical: source and artifact custody, graph-pressure survival,
+apply/reject/park disposition, archive, cost, privacy, replay, and inspection.
+A separate general conversation-state reader produced unsafe false positives
+and is retired rather than integrated. Better decisions, unique real-user
+usefulness, market value, and production readiness remain unknown.
 
-The provider-free graph-substrate reconstruction is complete. All 222 canonical
-Markdown files, reviewed model and relation curation, 1,358 rich directed
-relations, compiler inputs, source anchors, and release identities are local to
-this repository. The existing compiler recreates both published graph files
-byte-for-byte in an explicit candidate directory; one strict published snapshot
-now supplies current consumers; and one versioned planner reproduces the exact
-constitutional active/reserve portfolio across all 163 frozen corpus windows.
-Prospective complete one-hop path custody accounts for all 808 previously
-unserialized convergent active-target paths without changing active identities
-or entering the live reasoner. The root Lolla skill remains the only skill and
-now has a self-locating setup path, Codex metadata, a one-level substrate
-operations reference, and an isolated provider-free readiness check.
+| Question | Current answer |
+|---|---|
+| What is live? | The four-lane pressure skill, repository-local graph snapshot and one-hop planner, reconsideration, disposition, archive, and read-only inspection. |
+| What is bounded? | Decision Trail, Product Delta, Decision Work packaging, portable views, and Observatory projections. |
+| What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
+| What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
+| What is unproven? | Reliable longitudinal understanding, answer improvement, real-user value, market demand, and production readiness. |
+| What may start next? | Nothing automatically. Stage 1 Decision Trail truthfulness is eligible but not authorized. |
 
-The immutable Atlas V1 evidence packages remain byte-exact. A new V2 data
-package records the repository-local manifest and relation-curation hashes, and
-the three active data routes now read it. The recursive V1/V2 proof classified
-all 2,182 changed leaves as custody-only and found zero unexpected differences:
-model and relation meaning, membership, order, layout, paging, and interface
-behavior remain equal. All 17 exact-replay checks now pass against the right
-version without restoring retired-worktree metadata or rewriting V1.
+## Latest published checkpoint
 
-Stage 0.6 repaired one deterministic long-conversation custody defect. Above
-80,000 characters, the authoritative transcript remains complete, but initial
-semantic extraction uses a first-3-plus-last-15 message view. New health and
-archive artifacts now report that partial coverage and its exact omitted
-window; this does not establish long-context semantic adequacy.
+The current public cold-start handoff is tracked by
+[PR #380](https://github.com/gofarrrr/lolla-skill/pull/380). Its foundational
+repository-local graph and Atlas-custody package was published through
+[PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
+`1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. A fresh clone contains all 222
+canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
+compiler inputs, source anchors, release identities, one published read
+boundary, one declared versioned pressure policy wrapper, and its frozen
+compatibility serializer. Candidate
+compilation reproduces the two published graph files byte-for-byte and all 163
+frozen portfolio windows replay exactly. No current setup path, manifest,
+validator, or development instruction depends on another checkout.
 
-In a separate product lane, the provider-free Mental Model Atlas Phase 1
-tracer bullet is implemented with real hash-bound source data, a polished
-interactive graph, one model route with a complete primary Markdown card and
-explicit partial-page coverage, one complete relation page, and
-non-canvas/reduced-motion equivalents. Compiled KG guidance and all exact
-incident relationships are separately labelled additive layers. Teacher
-remains parked pending founder visual acceptance, native screen-reader review,
-publication rights, and real-user evidence.
+Prospective complete one-hop custody accounts for all 808 previously
+unserialized convergent active-target paths without entering the live reasoner
+or changing the active portfolio. It is transparency evidence, not a graph
+expansion or relevance claim.
 
-The current local visual candidate is deliberately achromatic across Atlas,
-Library, Abstraction, the exact relation page, Learn, and all application
-states. One binding precise-editorial-cartography contract and one modular
-stylesheet entrypoint now govern typography, spacing, geometry, rule weight,
-line form, direction, motion, shells, and responsive behavior. The competing
-monolithic and restraint override sheets have been removed. The earlier
-vibrant-editorial packet is superseded historical evidence, not the current
-direction.
+Atlas V1 remains immutable evidence. The active V2 packages carry current
+repository-local custody; all 2,182 V1/V2 differences are classified as custody
+fields, with zero unexpected semantic, identity, order, layout, paging, or
+interface differences. The checked-in Atlas and first-viewport repair remain
+undeployed and parked behind founder, native screen-reader, source-rights, and
+real-user usefulness gates. Canonical visual baseline PR #375 is an earlier
+frozen checkpoint, not the latest repository handoff.
 
-The local first-viewport follow-up preserves that system while moving the
-ordinary interaction above the fold. Exact search matches are directly
-selectable, named canonical model actions are visible at representative laptop
-and mobile sizes, selected meaning and the available full-page action remain in
-the first viewport, displayed connection counts are filters, and the Library
-and Abstraction openings no longer postpone their first useful action. This is
-provider-free browser-geometry evidence, not final founder or accessibility
-acceptance.
-
-The shared Atlas shell now uses the exact founder-supplied lowercase `lolla`
-wordmark. Its original RGB PNG is preserved with a recorded SHA-256 under
-`apps/mental-model-atlas/public/brand/`; the live shell clips and contrasts that
-source without redrawing the letterforms.
-
-This consolidation is canonically published through PR #375 at merge
-`17f3c887915b746b6c34fe6a6a26ae75841d1d6c`. It establishes a maintainable
-visual baseline, not final visual
-approval, native screen-reader acceptance, publication-rights clearance,
-learning usefulness, deployment, or Phase 2.
-
-The interactive Atlas now begins with a bounded 16-model orientation slice and
-rebuilds each selection from a sanitized index of all 222 canonical models and
-1,358 exact checked-in relations. Newly revealed neighbors can become the next
-center; high-fan-in neighborhoods paginate without hidden truncation. Small
-nodes, collision-free labels, one relation key, arrows, and pausable traveling
-markers preserve legibility and direction. This is deterministic traversal of
-existing graph records, not new relationship discovery or semantic proof.
+Stage 0.6 separately repaired long-conversation reporting. Above 80,000
+characters, the authoritative transcript remains complete while the initial
+semantic extraction sees the first 3 and last 15 message blocks. Health and
+archive artifacts report the exact omitted window. This proves custody
+truthfulness, not long-context semantic adequacy.
 
 ## Status vocabulary
 
@@ -107,7 +76,7 @@ These labels control how current indexes describe the repository:
 | **LIVE** | Reachable through the ordinary supported skill path. |
 | **BOUNDED** | Implemented, but offline, read-only, operator-directed, default-off, or otherwise intentionally limited. |
 | **EXPERIMENTAL** | Reachable or testable, but semantic reliability or human value is unproven. |
-| **PARKED** | Preserved work with no current user job or evidence gate; do not extend without a new founder decision. |
+| **PARKED** | Preserved work that is not authorized for active extension or runtime use; reopen only through its named founder/evidence gate. |
 | **RETIRED** | A stopped architecture that must not be integrated or incrementally extended. |
 | **RESEARCH ONLY** | Evidence, runner, fixture, or harness retained for reproducibility, not current product behavior. |
 | **HISTORICAL EVIDENCE** | An immutable or superseded record whose old next-step language is not current authorization. |
@@ -119,6 +88,18 @@ When a historical file conflicts with this page, the binding Constitution and
 the latest explicit closeout or audit control the current status. Frozen
 experiment artifacts remain immutable even when their old prose describes a
 then-current next step.
+
+Constitution v5 carries forward earlier constitutional rules and named product
+evils. It does not make dated provider choices, implementation status, or
+next-step prose from v0-v4 current again. V5's fresh-context reasoner is still a
+target, not the ordinary live implementation: live reconsideration remains
+same-context and therefore is not independent validation.
+
+“Published” is qualified throughout this repository. **Repository-published**
+means merged to the canonical GitHub branch. It does not mean deployed,
+production-ready, rights-cleared, provider-verified, or proven useful. A graph
+“published artifact” is the immutable checked-in projection consumed by the
+runtime; it is not a public factual knowledge base.
 
 ## Current product map
 
@@ -144,8 +125,9 @@ Active components:
 - provisional `ConversationContext` and `ConversationIR` extraction;
 - tendency, mental-model companion, frame, and structural coverage pressure;
 - canonical mental-model identity, retrieval, relationship graph, active set,
-  one immutable published read boundary, one versioned active/reserve planner,
-  and constitutional graph survival;
+  one immutable published read boundary, one declared versioned policy wrapper,
+  its frozen compatibility serializer, an explicit degraded fallback when no
+  snapshot is available, and constitutional graph survival;
 - same-context reconsideration and apply/reject/park custody;
 - revision, memo, archive, manifests, run health, usage, cost, provider,
   privacy, agent-result, and receipt artifacts.
@@ -171,10 +153,13 @@ and Observatory does not create meaning.
 
 ### Parked
 
-- **Mental Model Teacher:** the founder-selected Atlas job now has a local,
-  source-bound Phase 1 visual tracer bullet. It remains parked because founder
-  visual acceptance, native screen-reader review, publication rights, and
-  real-user usefulness are still open.
+- **Mental Model Atlas:** a checked-in, source-bound Phase 1 interface candidate
+  exists and carries current V2 repository custody. It is undeployed and parked
+  behind founder visual acceptance, native screen-reader review, publication
+  rights, and real-user usefulness gates.
+- **Mental Model Teacher:** its wider lesson, journey, and learning-product
+  program remains parked. Atlas is a bounded exploration surface, not evidence
+  that Teacher as a product works.
 - **General Decision Work semantic generation:** desired contracts and intake
   exist, but no reliable arbitrary-run semantic supplier does.
 
@@ -272,16 +257,17 @@ made that map findable from a fresh clone. Stage 0.6 then corrected
 long-conversation source-coverage reporting without changing semantic prompts,
 the 80,000-character policy, provider behavior, or pressure architecture.
 
-The separate Mental Model Atlas canonical baseline is consolidated around one
-canonical identity path. The 16-model landing presentation is deterministically
-checked against the 222-model / 1,358-relation navigation index; model and
-relation identities survive route changes; complete teaching-page availability
-has one card-first owner; and fixtures/Canvas are explicit review-only paths.
-Its current bounded first-viewport repair now requires provider-free founder
-re-review. The ordinary graph and teaching-page journey must still be checked
-with mouse, keyboard, reduced motion, and a native screen reader before any
-representative page expansion decision. Native screen-reader, source-rights,
-deployment, and real-user usefulness gates remain open before Phase 2.
+The separate Mental Model Atlas candidate is consolidated around one canonical
+identity path. The 16-model landing presentation is deterministically checked
+against the 222-model / 1,358-relation navigation index; model and relation
+identities survive route changes; reviewed teaching-page availability has one
+card-first owner; and fixtures/Canvas are explicit review-only paths. Atlas V2
+is the current repository-custody package; V1 is immutable evidence. The
+checked-in first-viewport repair now requires provider-free founder re-review.
+The ordinary graph and teaching-page journey must still be checked with mouse,
+keyboard, reduced motion, and a native screen reader before any representative
+page expansion decision. Native screen-reader, source-rights, deployment, and
+real-user usefulness gates remain open before Phase 2.
 
 The Constitution roadmap's next eligible decision remains whether to authorize **Stage 1:
 checked-in-safe Decision Trail truthfulness**. Stage 1 asks whether a cold human
@@ -305,16 +291,19 @@ No historical branch, experiment artifact, or large generated family was
 deleted in this pass. Classification precedes deletion, archival, branch
 closure, or storage migration.
 
-## Read in this order
+## Universal cold-start route
 
-1. [README.md](README.md) — public product orientation and installation.
-2. [PROJECT_STATUS.md](PROJECT_STATUS.md) — this current-state contract.
+1. [PROJECT_STATUS.md](PROJECT_STATUS.md) — the current-state contract.
+2. [Product Constitution v5](docs/conversation-understanding/lolla-product-constitution-v5.md) — binding development rules.
 3. [HOW_IT_WORKS.md](HOW_IT_WORKS.md) — reachable architecture and boundaries.
-4. [Product Constitution v5](docs/conversation-understanding/lolla-product-constitution-v5.md) — binding development rule.
-5. [Constitution Stage 0 addendum](docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md) — evidence-backed system audit.
-6. [Post-Stage-0 roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md) — gated next decisions.
-7. [Documentation map](docs/README.md) — lifecycle-organized deeper material.
-8. [Atlas canonical publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md) — published Atlas flow, boundaries, verification, and next review gate.
+4. [Documentation map](docs/README.md) — choose the relevant task lane.
+5. [Post-Stage-0 roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md) — eligible decisions and authorization gates.
+
+The root [README](README.md) is the public orientation and installation page;
+[AGENTS.md](AGENTS.md) is the cold-start operating contract for an AI coder.
+Do not read every research result before beginning ordinary maintenance. Use the
+task lanes in the documentation map to load only the controlling evidence for
+the surface being changed.
 
 ## Constitutional nonclaims
 

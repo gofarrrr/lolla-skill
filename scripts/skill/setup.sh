@@ -30,15 +30,14 @@ else
   echo "FATAL: Missing data/knowledge_graph.json"
 fi
 
-# Load API keys: project .codex/lolla.env → project .claude/lolla.env → skill .env → global ~/.config/lolla/.env
+# Load API keys from the skill package or the documented global config. A key
+# already exported by the operator remains available. Do not advertise a
+# project-local env file that later fresh-shell entrypoints cannot rediscover.
 # Always load so ALL keys (OPENROUTER + OPENAI) are available.
 # Research-only overrides live in .env.research and are loaded only when
 # LOLLA_RESEARCH_MODE=1/true/on/yes is set before setup runs, or inside .env.
 _ENV_FILE=""
-_CWD_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-[ -n "$_CWD_ROOT" ] && [ -f "$_CWD_ROOT/.codex/lolla.env" ] && _ENV_FILE="$_CWD_ROOT/.codex/lolla.env"
-[ -z "$_ENV_FILE" ] && [ -n "$_CWD_ROOT" ] && [ -f "$_CWD_ROOT/.claude/lolla.env" ] && _ENV_FILE="$_CWD_ROOT/.claude/lolla.env"
-[ -z "$_ENV_FILE" ] && [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/.env" ] && _ENV_FILE="$SKILL_DIR/.env"
+[ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/.env" ] && _ENV_FILE="$SKILL_DIR/.env"
 [ -z "$_ENV_FILE" ] && [ -f "$HOME/.config/lolla/.env" ] && _ENV_FILE="$HOME/.config/lolla/.env"
 if [ -n "$_ENV_FILE" ]; then
   set -a; source "$_ENV_FILE" 2>/dev/null; set +a
@@ -66,7 +65,7 @@ else
 fi
 
 if [ -z "$OPENAI_API_KEY" ]; then
-  echo "WARNING: OPENAI_API_KEY not set — embeddings layer will be disabled. Add it to your .env for full accuracy."
+  echo "WARNING: OPENAI_API_KEY not set — optional embedding retrieval and query expansion will be disabled; no accuracy claim is implied."
 else
   echo "OPENAI: configured"
 fi

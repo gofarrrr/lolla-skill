@@ -28,7 +28,10 @@ The preamble is a bash block that runs before anything else. It checks:
 2. **API key** — `OPENROUTER_API_KEY` or `LOLLA_OPENROUTER_API_KEY` must be set. Fatal if missing.
 3. **Data files** — `data/knowledge_graph.json` must exist. Fatal if missing.
 4. **Pipeline engine** — the bundled engine at `engine/system_b/` must be present. Fatal if missing.
-5. **Environment source** — project `.codex/lolla.env`, project `.claude/lolla.env`, then skill `.env`, then `~/.config/lolla/.env`.
+5. **Environment source** — keys already exported by the operator, then skill
+   `.env`, then `~/.config/lolla/.env`. Project-local `.codex/lolla.env` and
+   `.claude/lolla.env` files are not supported because later fresh-shell
+   entrypoints cannot rediscover them safely.
 6. **Run files** — generates `LOLLA_RUN_ID` and initializes `/tmp/lolla_<run_id>_live_transcript.txt` plus `/tmp/lolla_<run_id>_operator.log`.
 7. **Reports config** — which OpenRouter model (default: `google/gemini-3.1-flash-lite`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), whether a pre-Step-6 cached-card directory is configured, and whether V60 is enabled.
 
@@ -109,7 +112,10 @@ The default production pipeline (`SystemBPipeline.run()`) calls `construct_conve
 
 ### Step 2.5: Readback + Audit Promise
 
-Before launching the pipeline, Claude renders a short readback directly in chat. This is not a card summary. It tells the user what was captured, names the specific recommendation that will be stress-tested, and sets the 5-8 minute expectation for the audit run.
+Before launching the pipeline, the host reasoner renders a short readback
+directly in chat. This is not a card summary. It tells the user what was
+captured and names the specific recommendation that will be stress-tested.
+Provider latency varies, so the skill does not promise a fixed duration.
 
 Required shape:
 
@@ -132,7 +138,7 @@ The helper calls `scripts/run_pipeline.py` with the extraction file, conversatio
 
 Immediately before launching the command, Claude sends one functional receipt, not a content section:
 
-> Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5-8 minutes.
+> Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. This may take several minutes; provider latency varies.
 
 ```
                          ┌──────────────────────────────┐
@@ -241,13 +247,17 @@ Step 6b also rolls the ledger status back into `run_health` with the transaction
 
 The final memo is **not** rendered immediately after Step 6b. The memo waits until Step 8b has persisted the pressure-check state. In the default flow that state says Step 7 was intentionally not run; in explicit deeper-review mode it contains the completed comparison.
 
-### Step 7: Optional Pressure-Check Sub-Agents (default off)
+### Step 7: Optional Claude Code Pressure-Check Agents (default off)
 
 Post-Step-6 pressure-check sub-agents are rested by default. This is now a product simplification choice: the live skill pushes value into the pre-Step-6 thinking table and avoids paying for a second post-Step-6 cognitive layer unless the user/operator explicitly asks for deeper review.
 
 If optional mode is enabled, up to 4 Agent sub-agents (one per non-empty lane) are spawned in parallel via the Agent tool **in the background** (`run_in_background: true`), but only after Step 6b validation succeeds. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
 
-**Why this exists.** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1–4 honor this — Grok does the detection. But Step 6 asks Claude to reconsider advice it argued for in this conversation. Sub-agents break that loop: same model class as the orchestrator (Opus), but in a clean context that never argued the position.
+**Why this exists.** Steps 1–4 introduce provider-backed pressure before Step 6
+asks the host reasoner to reconsider advice it argued for in this conversation.
+Optional Claude Code agents add clean-context pressure, but they share the host
+model family and do not prove independent validation. Their Agent-tool launch
+and telemetry contract is not implemented for Codex, where Step 7 remains off.
 
 **Skip conditions.** A lane's sub-agent is skipped when its card is empty:
 - Lane 1: `delta_card.top_findings` empty/null
@@ -293,6 +303,11 @@ The Python renderer remains deterministic and does not call an LLM. For new runs
 The full deterministic audit appendix — challenge points, model connections, alternative frames, and delivery profile — is no longer included by default because it leaks machinery into the portable product artifact. Operators can explicitly render it through the memo helper with `--include-audit-appendix` when needed; Observatory remains the normal full-trace surface.
 
 Before persisting the memo fields, Claude checks for hidden sequencing contradictions, removes or labels unverified numbers, preserves any materially different pressure-check path, and keeps the unanswered-questions section priority-shaped. The renderer can fall back to sections in `revised_answer` when individual memo fields are missing, but a complete Step 8c writes all fields explicitly.
+
+After the memo helper succeeds, the host sends and records the exact bridge
+*"Audit complete. I'm opening the full breakdown now."* Only then does Step 9
+launch the local Observatory. This closes the previously implicit default-flow
+transition without exposing persistence machinery.
 
 Old archived `result.json` files without the memo fields still render in the legacy section-dump format, so existing archives remain readable.
 

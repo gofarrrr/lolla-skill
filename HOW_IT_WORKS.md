@@ -152,11 +152,15 @@ outgoing, incoming-reference, and incident indexes without reversing authored
 edges. It does not compile, repair aliases, rank models, allocate pressure, or
 call a provider.
 
-One named, versioned constitutional pressure planner owns the current policy:
+One named, versioned planner and policy snapshot declare the current policy:
 six direct-active candidates, expansion from direct-active seeds only, authored
 outgoing relations only, one hop, antagonist/tension/ally slots, deterministic
-ordering and deduplication, and explicit reserve. This extraction preserved the
-exact active and reserve output for all 163 frozen corpus windows.
+ordering and deduplication, and explicit reserve. For compatibility, the
+current wrapper renders that plan through the frozen historical serializer and
+asserts that identities match. The live pipeline also declares a degraded
+raw-payload fallback when no published snapshot is available. This is one
+policy contract, not one physical implementation owner. Exact active and
+reserve output is preserved for all 163 frozen corpus windows.
 
 Constitution v5 requires bounded graph candidates to survive before a
 probabilistic verifier can remove them. The live system therefore writes an
@@ -257,22 +261,22 @@ The post-archive hook is disabled unless explicitly enabled. It is nonblocking
 and fails closed. A sidecar is derivative and operator-directed; it does not
 authorize action.
 
-### Mental Model Teacher
+### Mental Model Atlas and Teacher
 
-Teacher has substantial contracts, renderers, lesson graphs, packets, and
-Observatory projections. The founder-selected Atlas job now also has a local,
-source-bound Phase 1 visual tracer bullet and additive card-first/guided-reader
-repairs. On the Abstraction page, the exact Markdown source is primary and is
-presented through five reviewed human chapters with persistent orientation and
-an optional full-source mode. Dated relationship-curation residue is kept in a
-collapsed appendix; compiled operational guidance and all exact incident
-connections remain separately labelled, progressively disclosed layers. The
-default guided entry omits repeated document-title and reading-instruction
-residue; the exact source title appears when full-source mode is requested. The
-source is complete, while the wider Teacher product remains partial.
-Teacher remains parked because founder visual acceptance, native screen-reader
-review, publication rights, and real-user usefulness are open. It does not
-participate in the ordinary pressure runtime.
+The Atlas is a checked-in, source-bound Phase 1 interface candidate over the
+canonical model and relation identities. Atlas V2 owns current repository
+custody; V1 is frozen comparison evidence. The Abstraction source is primary
+and is presented through five reviewed human chapters with persistent
+orientation and an optional full-source mode. Dated relationship-curation
+residue is kept in a collapsed appendix; compiled operational guidance and all
+incident connections remain separately labelled, progressively disclosed
+layers. The source is complete while the broader learning page remains partial.
+
+Atlas remains undeployed and parked because founder visual acceptance, native
+screen-reader review, publication rights, and real-user usefulness are open.
+Teacher's wider lessons, journeys, packets, and learning-product hypothesis are
+a separate parked family. Neither participates in the ordinary pressure
+runtime.
 
 ## 10. Retired R4 readers
 
@@ -338,8 +342,8 @@ checked-in-safe Decision Trail truthfulness. It is not authorization for a new
 reader, private archive access, a provider run, runtime change, R4/R5,
 automation, Teacher expansion, or integration.
 
-The separate Atlas canonical implementation is consolidated around one
-identity source. Its 16-model orientation view is a bounded presentation of the
+The separate Atlas implementation is consolidated around one identity source.
+Its 16-model orientation view is a bounded presentation of the
 same records owned by the 222-model / 1,358-relation navigation index; selecting
 a model builds its exact incident neighborhood, and model/relation routes retain
 that identity even when no complete teaching page exists. Card-first artifacts
@@ -347,8 +351,8 @@ alone own complete model-page availability. The ordinary renderer is SVG;
 Canvas and frozen fixtures require explicit review mode. The binding
 achromatic design system uses one shared solid/dashed/double relationship
 grammar and route-scoped styles. See the
-[canonical Atlas publication result](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md)
-and the [reviewed predecessor baseline](docs/product/lolla-mental-model-atlas-baseline-consolidation-result-2026-07-17.md).
+[current Atlas custody V2 result](docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md)
+and the [frozen V1 publication checkpoint](docs/product/lolla-mental-model-atlas-baseline-publication-result-2026-07-17.md).
 The local first-viewport repair now awaits provider-free human re-review. Later Atlas
 phases, deployment, Teacher journeys, provider use, and runtime or Observatory
 links remain unauthorized.

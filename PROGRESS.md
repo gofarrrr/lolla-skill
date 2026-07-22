@@ -1,5 +1,11 @@
 # Lolla Progress Report
 
+> **HISTORICAL / SUPERSEDED PROJECT REPORT.** This is not the current status,
+> backlog, or development authority. It is preserved for chronology and for
+> tests that reconstruct earlier Decision Work milestones. Start with
+> [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`AGENTS.md`](AGENTS.md), and the
+> [current roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md).
+
 Status: Living PM report
 Last updated: 2026-07-03
 

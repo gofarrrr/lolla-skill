@@ -844,7 +844,7 @@ def main() -> int:
         print(json.dumps({"status": "error", "error": contract_error}))
         return 1
 
-    # Load env: explicit flag → project .claude/lolla.env → repo .env → ~/.config/lolla/.env
+    # Load env: explicit flag -> bundled skill .env -> global config.
     if args.env_file:
         _load_env_file(Path(args.env_file))
     else:

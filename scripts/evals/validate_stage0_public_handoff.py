@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the provider-free Stage 0 public and cold-start handoff."""
+"""Validate the provider-free current public and cold-start handoff."""
 from __future__ import annotations
 
 import argparse
@@ -22,15 +22,25 @@ CURRENT_ENTRYPOINTS = (
 
 SUPPORTING_CURRENT_DOCS = (
     "docs/history/README.md",
-    "docs/history/decision-work-product-delta-discoverability.md",
     "docs/operations/lolla-repository-gardening-audit-2026-07-15.md",
-    "docs/evals/lolla-stage0-public-handoff-cold-reader-review-2026-07-15.md",
-    "plans/lolla-stage0-public-handoff-plan-2026-07-15.md",
+    "docs/evals/lolla-public-handoff-cold-reader-review-2026-07-22.md",
+    "docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md",
+    "docs/product/lolla-mental-model-atlas-custody-v2-result-2026-07-22.md",
+    "references/knowledge-substrate-operations.md",
     "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md",
 )
 
+LIVE_CONTRACTS = (
+    "SKILL.md",
+    "docs/skill/STEPS.md",
+    "scripts/skill/setup.sh",
+)
+
 REQUIRED_FILES = CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + (
-    "docs/evals/lolla-stage0-public-handoff-cold-reader-answers-v1.json",
+    *LIVE_CONTRACTS,
+    "requirements-dev.txt",
+    ".github/workflows/public-handoff.yml",
+    "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json",
     "docs/evals/lolla-constitution-stage0-addendum-register-v1.json",
     "docs/conversation-understanding/lolla-constitution-stage0-addendum-audit-2026-07-15.md",
     "docs/conversation-understanding/lolla-product-constitution-v5.md",
@@ -38,15 +48,21 @@ REQUIRED_FILES = CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + (
 
 QUESTION_IDS = (
     "q01_product_job",
-    "q02_strongest_capability",
-    "q03_unproven",
-    "q04_live_path",
-    "q05_r4_status",
-    "q06_decision_work_status",
-    "q07_teacher_status",
-    "q08_observatory_authority",
-    "q09_next_stage",
-    "q10_provider_authorization",
+    "q02_nonpurpose",
+    "q03_strongest_evidence",
+    "q04_unproven",
+    "q05_live_path",
+    "q06_source_boundary",
+    "q07_graph_role_and_policy",
+    "q08_repository_boundary",
+    "q09_r4_status",
+    "q10_decision_work_status",
+    "q11_atlas_teacher_status",
+    "q12_observatory_authority",
+    "q13_historical_authority",
+    "q14_next_stage",
+    "q15_provider_and_data_boundary",
+    "q16_host_reasoner_and_codex",
 )
 
 FORBIDDEN_CURRENT_PHRASES = (
@@ -58,6 +74,10 @@ FORBIDDEN_CURRENT_PHRASES = (
     "decision work automatically understands",
     "provider calls currently authorized: four",
     "local and unpublished",
+    "you are a **pure orchestrator**",
+    "all semantic judgment runs through openrouter",
+    "also use proactively when",
+    "add it to your .env for full accuracy",
 )
 
 SIZE_LIMITS = {
@@ -99,7 +119,12 @@ def validate(
         if word_count > max_words:
             errors.append(f"{relative} exceeds current-entrypoint word limit: {word_count}>{max_words}")
 
-    current_joined = "\n".join(texts.values()).lower()
+    contract_texts = {
+        relative: overrides.get(relative, (root / relative).read_text(encoding="utf-8"))
+        for relative in LIVE_CONTRACTS
+        if (root / relative).exists() or relative in overrides
+    }
+    current_joined = "\n".join((*texts.values(), *contract_texts.values())).lower()
     for phrase in FORBIDDEN_CURRENT_PHRASES:
         if phrase in current_joined:
             errors.append(f"forbidden stale public claim: {phrase}")
@@ -157,9 +182,40 @@ def validate(
         "AGENTS.md",
         errors,
     )
+    _require_terms(
+        contract_texts.get("SKILL.md", ""),
+        (
+            "host reasoner and",
+            "four distinct pressure products",
+            "known haiku 4.5",
+            "optional step 7 is claude code-specific",
+            "audit complete. i'm opening the full breakdown now.",
+        ),
+        "SKILL.md",
+        errors,
+    )
+    _require_terms(
+        contract_texts.get("scripts/skill/setup.sh", ""),
+        (
+            "optional embedding retrieval and query expansion",
+            "skill package or the documented global config",
+        ),
+        "scripts/skill/setup.sh",
+        errors,
+    )
+    _require_terms(
+        (root / "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md").read_text(encoding="utf-8"),
+        (
+            "stage 0 and 0.6 are",
+            "exact checked-in-safe case packet",
+            "no later evidence stage is authorized",
+        ),
+        "plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md",
+        errors,
+    )
 
     link_count = 0
-    for relative in CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS:
+    for relative in CURRENT_ENTRYPOINTS + SUPPORTING_CURRENT_DOCS + LIVE_CONTRACTS[:2]:
         path = root / relative
         if not path.exists():
             continue
@@ -168,7 +224,7 @@ def validate(
         link_count += count
         errors.extend(link_errors)
 
-    packet_path = root / "docs/evals/lolla-stage0-public-handoff-cold-reader-answers-v1.json"
+    packet_path = root / "docs/evals/lolla-public-handoff-cold-reader-answers-v2.json"
     if packet_override is not None:
         packet = packet_override
     elif packet_path.exists():
@@ -180,9 +236,9 @@ def validate(
     else:
         packet = {}
 
-    if packet.get("schema_version") != "lolla.stage0_public_handoff_cold_reader.v1":
+    if packet.get("schema_version") != "lolla.public_handoff_cold_reader.v2":
         errors.append("unexpected cold-reader schema_version")
-    if packet.get("reviewer_class") != "maintainer_self_review_not_independent_human_evidence":
+    if packet.get("reviewer_class") != "maintainer_and_repository_only_agent_review_not_independent_human_evidence":
         errors.append("cold-reader review must not claim independent human evidence")
     if packet.get("provider_calls") != 0:
         errors.append("cold-reader provider_calls must be 0")
@@ -190,7 +246,7 @@ def validate(
         errors.append("cold-reader provider_cost_usd must be 0.00")
     questions = packet.get("questions", [])
     if tuple(item.get("id") for item in questions) != QUESTION_IDS:
-        errors.append("cold-reader questions must match the ten-question orientation contract")
+        errors.append("cold-reader questions must match the sixteen-question orientation contract")
     for item in questions:
         if not item.get("expected_answer"):
             errors.append(f"cold-reader answer missing: {item.get('id')}")
@@ -221,7 +277,7 @@ def validate(
         "provider_calls": packet.get("provider_calls"),
         "provider_cost_usd": float(packet.get("provider_cost_usd", -1)),
         "required_file_count": len(REQUIRED_FILES),
-        "schema_version": "lolla.stage0_public_handoff_validation.v1",
+        "schema_version": "lolla.public_handoff_validation.v2",
         "status": "valid" if not errors else "invalid",
     }
     return errors, receipt

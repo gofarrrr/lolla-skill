@@ -1,5 +1,11 @@
 # TODOS
 
+> **HISTORICAL / SUPERSEDED DEBT NOTE.** This is not the current backlog or
+> development authority. It is preserved as the context for an earlier
+> Observatory design task. Use [`PROJECT_STATUS.md`](PROJECT_STATUS.md) and the
+> [current roadmap](plans/lolla-post-stage0-addendum-restart-roadmap-2026-07-15.md)
+> for current work and authorization.
+
 Design and product debt tracked here. Each entry: what, why, pros, cons, depends on.
 
 ---

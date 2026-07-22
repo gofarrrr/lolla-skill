@@ -36,7 +36,11 @@ from pathlib import Path
 from typing import Mapping, Sequence
 
 from .boundary_provider import BoundaryCallRecord
-from .live_pricing import PRICES_LAST_VERIFIED
+from .live_pricing import (
+    PRICES_LAST_VERIFIED,
+    PRICES_VERIFICATION_SCOPE,
+    TABLE_WIDE_LAST_VERIFIED,
+)
 from .pricing import (
     estimate_chat_cost_usd,
     estimate_embedding_cost_usd,
@@ -616,6 +620,8 @@ def build_usage_summary(
     usage_summary = {
         "run_id": run_id,
         "pricing_table_version": PRICES_LAST_VERIFIED,
+        "pricing_verification_scope": PRICES_VERIFICATION_SCOPE,
+        "pricing_table_wide_last_verified": TABLE_WIDE_LAST_VERIFIED,
         "vendors": {
             "openrouter": openrouter_block,
             "openai_embeddings": embedding_block,
@@ -623,11 +629,13 @@ def build_usage_summary(
         },
         "notes": [
             "Cost estimates use the hardcoded pricing table at "
-            "engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when "
-            "rates change.",
+            "engine/system_b/pricing.py. pricing_table_version is the last "
+            "active-route check; pricing_table_wide_last_verified is the last "
+            "whole-table check. Neither guarantees current provider pricing.",
             "Anthropic sub-agent costs are conservative — only total_tokens "
             "is surfaced by Claude Code task notifications, so the full "
-            "amount is billed as input tokens.",
+            "amount is estimated as input tokens. Optional Step 7 must also "
+            "verify that its exact model has a current local rate.",
             "Embedding costs cover OpenAI text-embedding-3-large and the "
             "gpt-4o-mini query-expansion calls made inside the pipeline.",
         ],

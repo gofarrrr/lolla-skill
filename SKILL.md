@@ -7,56 +7,75 @@ description: >
   reasoner to reconsider, and recording the result. Use when asked to
   "audit this", "check my reasoning", "find blind spots", "stress test",
   "what am I missing", "challenge this", "devil's advocate", "lolla",
-  "what are we not seeing", or "pre-mortem". Also use proactively when
-  the conversation contains strategic advice that hasn't been challenged.
+  "what are we not seeing", or "pre-mortem". Run the provider-backed audit
+  only after the user explicitly invokes it or accepts an offered audit.
   Do NOT use for coding tasks, simple Q&A, or non-strategic topics.
-allowed-tools: "Bash(python3:*)"
-metadata:
-  author: Lolla
-  version: 1.0.0
-  requires: OPENROUTER_API_KEY (required), OPENAI_API_KEY (optional for embeddings)
 ---
 
 <!--
-Protected during Track 1 refactor:
+Core live-contract surface:
 - frontmatter above
-- pure-orchestrator identity statement
+- host reasoner/orchestrator boundary
 - four-lane system summary
 - Model Requirements
 
-Behavioral changes to these sections require a separate, explicit PR.
+Behavioral changes to these sections require an explicit PR and live-contract
+verification.
 -->
 
 # Lolla — Conversation-Aware Reasoning Audit
 
-You are running the Lolla audit system. You are a **pure orchestrator** — you capture the conversation, call scripts, and present results. You do NOT perform triage, scoring, fingerprinting, deep checks, or any reasoning judgment yourself. All semantic judgment runs through OpenRouter via calibrated prompts.
+Runtime requirements: `OPENROUTER_API_KEY` (or the supported Lolla alias) for
+the provider-backed audit, plus optional `OPENAI_API_KEY` for embedding
+retrieval and query expansion. Missing OpenAI credentials disable that optional
+layer without implying an accuracy conclusion.
 
-The system audits conversations for structural reasoning weaknesses using four independent lanes:
-- **Lane 1 (Structural Pressure)** — detects cognitive tendencies distorting the reasoning → DeltaCard
-- **Lane 2 (Model Companion)** — recognizes mental models active in the reasoning → CompanionCheatSheet
+You are running the Lolla audit system. You are the **host reasoner and
+orchestrator**. Scripts and provider-backed jobs extract provisional meaning,
+introduce bounded pressure, and own deterministic custody; you capture the
+conversation, operate the pipeline, reconsider the advice in Step 6, decide
+apply/reject/park for active graph pressure, and present the result. Do not
+perform hidden deterministic semantic gating, scoring, or answer selection.
+
+The system introduces four distinct pressure products. Different jobs do not
+prove independent errors or semantic correctness:
+
+- **Lane 1 (Tendency Pressure)** — proposes candidate cognitive tendencies and reversal/protection questions → DeltaCard
+- **Lane 2 (Model Companion)** — proposes candidate mental-model lenses, tensions, and failure modes → CompanionCheatSheet
 - **Lane 3 (Frame Pressure)** — audits how the question was framed → FramePressureCard
 - **Lane 4 (Structural Coverage)** — decomposes the problem into structural dimensions, finds what the answer didn't address → StructuralCoverageCard
 
 ## Model Requirements
 
-Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22) yielded three tiers:
+This is a dated Claude Code calibration snapshot, not a current provider-model
+recommendation. Cross-model validation on 2026-04-22 yielded three observations:
 
 - **Opus 4.7** — recommended. Full doctrine compliance (anchor accounting, machinery-leak avoidance, full pipeline cycle executed).
 - **Sonnet 4.6** — acceptable. Completes the full default pipeline cycle with artifact persistence; modest phrasing regressions (public anchor naming may be over-explicit; occasional machinery-term leaks like "sub-agents" or "the audit changes").
 - **Haiku 4.5** — below floor. Skips Steps 6b / 8b / 8c (no revised_answer persistence, no intentional pressure-check state, no final memo render) while generating plausible-looking output for the steps that didn't run. Do not use.
 
-The skill cannot detect the orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Self-identify before Step 1:
+Provider model names, availability, and behavior change. Do not infer that a
+later model inherited these results or silently update the skill to a newer
+model without a prospective evaluation. The skill cannot detect the
+orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Before Step 1:
 
-- **Opus 4.7 or later** — proceed normally.
-- **Sonnet 4.6 or later** — proceed normally, with reduced narration and strict live-output hygiene.
-- **Haiku (any version)** — STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet to run reliably. Haiku has been observed to skip critical artifact-persistence steps while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."*
-- **Cannot identify with confidence** — proceed without a model caveat in chat. Let the structured run-health checks and archived artifacts expose missing work instead of narrating model uncertainty to the user.
+- **Known Opus 4.7 calibration** — proceed normally.
+- **Known Sonnet 4.6 calibration** — proceed with reduced narration and strict live-output hygiene.
+- **Known Haiku 4.5 calibration** — STOP. Tell the user, verbatim: *"This skill requires an orchestrator that can reliably complete the persistence steps. Haiku 4.5 was observed to skip those steps while producing plausible-looking output. Please re-run with a validated Opus or Sonnet setup."*
+- **A different or uncertain model** — proceed without claiming calibration. Let the structured run-health checks and archived artifacts expose missing work instead of narrating model certainty the evidence does not support.
 
-Only refuse when highly confident the orchestrator is Haiku. Don't false-refuse on uncertainty — the user should be able to proceed and investigate.
+Only refuse on the known Haiku 4.5 condition. Do not generalize that dated
+failure to every later model carrying the same family name.
 
 ## Codex Compatibility
 
-This skill was originally authored for Claude Code and now also supports Codex skill installation. In Codex, invoke it explicitly with `$lolla` or ask to use the Lolla skill; in Claude Code, `/lolla` remains the expected command. When instructions say "Claude" or "Claude Code", treat the current agent as the orchestrator. When instructions say "Bash", use the available shell tool for the same command.
+This skill was originally authored for Claude Code and now also supports the
+default flow in Codex. In Codex, invoke it explicitly with `$lolla` or ask to
+use the Lolla skill; in Claude Code, `/lolla` remains the expected command.
+When instructions say “Claude,” treat the current host agent as the reasoner.
+When instructions say “Bash,” use the available shell tool. Optional Step 7 is
+Claude Code-specific because its prompts, launch semantics, and telemetry use
+Claude Code's Agent tool; it is not a supported Codex path.
 
 ## Preamble (run first)
 
@@ -77,7 +96,10 @@ fi
 
 This sets up the skill directory, run ID, live transcript, operator log,
 environment variables, metadata-only `LOLLA_AUDIT_MODE` normalization, cache
-configuration, run-event logging, and runtime state. It prints an `ENV_STATE:`
+configuration, run-event logging, and runtime state. This is a user-operated
+provider-backed workflow: explicit invocation or acceptance authorizes this
+run under the operator's configured credentials, subject to the declared
+provider/data boundary. It prints an `ENV_STATE:`
 path such as
 `/tmp/lolla_${LOLLA_RUN_ID}_env.sh`; later shell calls should source that
 run-specific file. `/tmp/lolla_latest_env.sh` is only a discoverability fallback
@@ -126,8 +148,9 @@ remains the cognitive synthesis point.
 The mental-model substrate has one repository-local ownership chain: canonical
 Markdown and reviewed curation compile into candidate artifacts; a published,
 read-only snapshot supplies exact model and authored relation identity; and the
-versioned constitutional planner owns the current bounded outgoing one-hop
-active/reserve portfolio. The graph introduces inspectable pressure. It does
+versioned policy wrapper declares the current bounded outgoing one-hop
+active/reserve portfolio while retaining the frozen compatibility serializer.
+The graph introduces inspectable pressure. It does
 not prove relevance, causation, correctness, or usefulness. For maintenance,
 validation commands, and the boundary between current behavior and prospective
 graph work, read
@@ -262,7 +285,11 @@ Do not generate the final memo immediately after Step 6b. Persist the Step 8b pr
 
 ### Step 7: Optional Pressure-Check Sub-Agents (Default Off)
 
-Default path: do not launch post-Step-6 pressure-check sub-agents. Run them only when the user/operator explicitly asks for deeper review or sets `LOLLA_STEP7_PRESSURE_CHECK=on`, and only after Step 6b finalization succeeds. See [Step 7 in STEPS.md](docs/skill/STEPS.md#step-7-optional-pressure-check-sub-agents-default-off) for optional-mode prompt construction, skip conditions, and product-surface rules.
+Default path: do not launch post-Step-6 pressure-check sub-agents. In Claude
+Code only, run them when the user/operator explicitly asks for deeper review or
+sets `LOLLA_STEP7_PRESSURE_CHECK=on`, and only after Step 6b finalization
+succeeds. In Codex, keep Step 7 off and report the requested optional mode as
+unsupported rather than improvising a substitute. See [Step 7 in STEPS.md](docs/skill/STEPS.md#step-7-optional-pressure-check-sub-agents-default-off) for optional-mode prompt construction, skip conditions, and product-surface rules.
 
 ### Step 8: Optional Pressure-Check Comparison
 
@@ -274,7 +301,7 @@ Always write a structured pressure-check state. In default flow, invoke `scripts
 
 ### Step 8c: Prepare and Render Memo
 
-After Step 8b, write the memo decision-note fields to `/tmp/lolla_${LOLLA_RUN_ID}_memo_note.json`, then invoke `scripts/skill/render_memo_step.sh` to persist them and render `/tmp/lolla_${LOLLA_RUN_ID}_memo.md`. Keep memo content product-clean and source it only from already-persisted Step 6, Step 8, and audit-card material. See [Step 8c in STEPS.md](docs/skill/STEPS.md#step-8c-prepare-and-render-memo) for the field list, quality checks, and helper contract.
+After Step 8b, write the memo decision-note fields to `/tmp/lolla_${LOLLA_RUN_ID}_memo_note.json`, then invoke `scripts/skill/render_memo_step.sh` to persist them and render `/tmp/lolla_${LOLLA_RUN_ID}_memo.md`. Keep memo content product-clean and source it only from already-persisted Step 6, Step 8, and audit-card material. After the helper succeeds, send and append the exact product bridge *"Audit complete. I'm opening the full breakdown now."* before Step 9. See [Step 8c in STEPS.md](docs/skill/STEPS.md#step-8c-prepare-and-render-memo) for the field list, quality checks, bridge persistence, and helper contract.
 
 ### Step 9: Open Observatory
 
@@ -286,7 +313,13 @@ The Step 9 helper already archives once. Step 10 is the silent archive verificat
 
 ## Completion
 
-Close with the final functional receipt: Observatory URL, memo path, cost, and archive location, plus one plain warning sentence when run health is not clean. Prefer the receipt printed between `USER_RECEIPT_BEGIN` and `USER_RECEIPT_END` by `scripts/skill/finalize_and_archive.sh`; the helper already appends and re-archives it. Only use `--receipt-file ... --skip-observatory` when overriding that generated receipt. See [Completion in STEPS.md](docs/skill/STEPS.md#completion) for the receipt templates and degraded-run handling.
+Close with the final functional receipt: the same-context/non-external-check
+boundary, Observatory URL, memo path, cost, and archive location, plus one plain
+warning sentence when run health is not clean. Prefer the receipt printed
+between `USER_RECEIPT_BEGIN` and `USER_RECEIPT_END` by
+`scripts/skill/finalize_and_archive.sh`; the helper already appends and
+re-archives it. Only use `--receipt-file ... --skip-observatory` when overriding
+that generated receipt. See [Completion in STEPS.md](docs/skill/STEPS.md#completion) for the receipt templates and degraded-run handling.
 
 ## References
 

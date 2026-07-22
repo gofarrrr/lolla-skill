@@ -170,6 +170,9 @@ def test_usage_summary_prices_served_model_and_flags_attribution_mismatch():
 
     openrouter = summary["vendors"]["openrouter"]
     assert summary["cost_estimate_state"] == "complete"
+    assert summary["pricing_table_version"] == "2026-07-13"
+    assert summary["pricing_verification_scope"] == "active_openrouter_route_only"
+    assert summary["pricing_table_wide_last_verified"] == "2026-05-25"
     assert openrouter["estimated_cost_usd"] == 3.75
     assert openrouter["models_seen"] == ["x-ai/grok-4.3"]
     assert openrouter["requested_models_seen"] == ["x-ai/grok-4.1-fast"]

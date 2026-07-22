@@ -14,7 +14,8 @@ extra runtime step and does not authorize provider calls or graph expansion.
   -> deterministic candidate compiler
   -> published knowledge_graph.json + relationship_graph.json
   -> one immutable published-substrate snapshot
-  -> one versioned constitutional pressure planner
+  -> one declared versioned constitutional pressure policy
+     (current planner wrapper + frozen compatibility serializer)
   -> active pressure + reserve
   -> reasoner applies, rejects, or parks active pressure
 ```
@@ -29,8 +30,11 @@ Each layer has one job:
 - The published-substrate reader owns exact canonical identity, authored edge
   direction, immutable indexes, and load-state reporting. It does not compile,
   repair aliases, rank, or call a provider.
-- The constitutional planner owns the existing direct cap, outgoing one-hop
-  expansion, relationship slots, ordering, deduplication, and reserve policy.
+- The current planner wrapper and versioned snapshot declare the direct cap,
+  outgoing one-hop expansion, relationship slots, ordering, deduplication, and
+  reserve policy. The wrapper still renders through the frozen historical
+  serializer and checks exact identity compatibility. The live pipeline has an
+  explicit degraded raw-payload fallback when no snapshot is available.
 - The reconsidering reasoner owns apply/reject/park. The human owns the
   decision.
 
@@ -51,6 +55,11 @@ The live constitutional planner is deliberately bounded:
   rest as reserve;
 - no affinity score or probabilistic applicability filter may silently remove
   graph pressure before the reconsidering reasoner sees the active set.
+
+This is one declared policy contract, not one physical implementation owner.
+Do not delete or rewrite the frozen serializer in the name of consolidation.
+Any future removal of the compatibility path or fallback is a prospective
+runtime change with its own replay and authorization boundary.
 
 This is not GraphRAG over arbitrary documents. The nodes are curated reasoning
 lenses and the edges are pressure relationships, not extracted real-world

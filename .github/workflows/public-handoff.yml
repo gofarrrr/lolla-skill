@@ -1,0 +1,51 @@
+name: Public handoff
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provider-free-handoff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install contributor dependencies
+        run: python -m pip install --requirement requirements-dev.txt
+
+      - name: Validate constitutional register
+        run: >-
+          PYTHONPATH=. python scripts/evals/validate_constitution_stage0_addendum_register.py
+          --register docs/evals/lolla-constitution-stage0-addendum-register-v1.json
+
+      - name: Validate public cold start
+        run: PYTHONPATH=. python scripts/evals/validate_stage0_public_handoff.py
+
+      - name: Validate repository-contained skill and graph
+        run: PYTHONPATH=. python scripts/evals/validate_self_contained_skill.py --validate-only
+
+      - name: Run focused handoff tests
+        run: >-
+          PYTHONPATH=. pytest -q
+          tests/test_constitution_stage0_addendum_register.py
+          tests/test_stage0_public_handoff.py
+          tests/test_self_contained_skill_readiness.py
+          tests/test_skill_contract.py
+          tests/test_final_receipt.py
+          tests/test_model_cost_hardening.py
+          tests/test_published_substrate_consumer_register.py
