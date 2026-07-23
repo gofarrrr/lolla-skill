@@ -83,14 +83,15 @@ Read:
 - [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
 - [Graph audit workbook/scriptbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md), [pressure/understanding/graph PRD](conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md), [tracer-bullet plan](../plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md), and [machine evidence package](evals/lolla-pressure-understanding-graph-evidence-package-v1.json)
 - [Current consumer-context contract v1](evals/lolla-consumer-context-pressure-ablation-contract-v1.json), its [provider-free correction](conversation-understanding/lolla-consumer-context-contract-v1-correction-result-2026-07-22.md), and the [role/attribution case-candidate result](conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md). V0 is the preserved predecessor.
-- [Agent-only paired-delta result](conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md), [graph-increment result](conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md), [variance contract](evals/lolla-agent-only-graph-variance-calibration-contract-v1.json), and [plan](../plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md)
-  — blind Product Delta diagnosis and exact reruns, without human validation,
-  completed F2/F3, graph attribution, or traversal permission.
+- [Agent-only paired-delta result](conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md), [graph-increment result](conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md), [variance result](conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md), [variance contract](evals/lolla-agent-only-graph-variance-calibration-contract-v1.json), and [plan](../plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md)
+  — blind Product Delta diagnosis, exact reruns, and an honestly not-evaluable
+  calibration after one unreplaced terminal failure. They provide no human
+  validation, completed F2/F3, graph attribution, or traversal permission.
 - [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
 - [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
 Current facts: the fresh clone contains 222 canonical Markdown models and 1,358 rich authored directed relations. Candidate compilation reproduces both published graph files byte-for-byte, and all 163 frozen policy windows replay exactly. This is a curated pressure graph—not GraphRAG over arbitrary documents, a causal fact graph, or proof that a reachable relation applies.
-The current consumer-context contract and retrospective role/attribution case candidate are not execution-ready. Five provider-neutral envelopes and the mechanical equality/bijection controls pass; F1, principal-human review, provider contract, cost ceiling, and authorization remain missing. The founder-declined human lane stays paused. The completed agent-only rehearsal is a separate Product Delta evidence class: both blind reviewers found a material pair difference but could not infer lineage. That is not self-justification, causal graph value, expected model behavior, human usefulness, or runtime evidence.
+The current consumer-context contract and retrospective role/attribution case candidate are not execution-ready. Five provider-neutral envelopes and the mechanical equality/bijection controls pass; F1, principal-human review, provider contract, cost ceiling, and authorization remain missing. The founder-declined human lane stays paused. The completed agent-only rehearsal is a separate Product Delta evidence class: both blind reviewers found a material pair difference but could not infer lineage. Its variance follow-up is `not_evaluable`: one direct draw failed without replacement, two comparisons are unavailable, and both reviewers found a material difference inside the complete graph-condition pair. This is not self-justification, causal graph value, expected model behavior, human usefulness, or runtime evidence.
 
 The current policy has one declared versioned wrapper and snapshot, while a
 frozen historical serializer remains executable for compatibility and the live
@@ -179,9 +180,7 @@ rights clearance, market demand, or production readiness.
 
 ## Current next decision
 
-After its contract is published, graph-variance calibration may use four
-generation and two blind-review contexts. It allows no provider, retry, graph
-change, human label, score, winner, wider case, or traversal expansion.
+Graph-variance calibration is complete and not evaluable. Three generation outputs and one unreplaced terminal failure are frozen; both blind reviews are frozen. No repeat, provider, graph change, human-label substitution, score, winner, wider case, or traversal expansion is authorized.
 
 July's checked-in-safe Stage 1 Decision Trail truthfulness review remains a
 separate eligible but unstarted lane. It does not replace June's specialist

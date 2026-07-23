@@ -32,7 +32,7 @@ Then read only the lane you will touch:
 
 - **Live skill:** `SKILL.md` and `docs/skill/STEPS.md`.
 - **Graph, compiler, or planner:** read `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`, `references/knowledge-substrate-operations.md`, and `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
-  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, and `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
+  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, and `docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md`, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
   `docs/README.md`. Also read
@@ -265,9 +265,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   can package/read artifacts but cannot generate trustworthy arbitrary meaning.
 - Product Delta's agent-only paired screen preserves mixed moves, harms,
   disagreement, nulls, and stand-down; it validates no graph or usefulness.
-- The graph-increment result is frozen. Its prospective variance calibration
-  freezes two reruns per condition and five blind pairs. After merge, four generation and two review contexts are authorized; providers, retries, wider
-  cases, graph changes, scores, causal claims, and usefulness claims remain unauthorized.
+- The graph-increment result and variance calibration are frozen. Three of four generations completed; one direct draw failed without a recoverable payload and was not replaced.
+  Both blind reviews completed. The within-graph pair was materially different in both reviews; a historical cross pair drew `present / uncertain`; the missing draw removed the within-direct and one cross pair.
+  The result is `not_evaluable`; no repeat, wider case, provider, graph change, score, causal/usefulness claim, or traversal is authorized.
 - Atlas opens exact neighborhoods from the 222-model / 1,358-relation index.
   V1 is immutable; V2 has 2,182 custody-only and zero unexpected differences.
   Teacher and review surfaces remain parked. Design/viewport mechanics are not
@@ -285,15 +285,14 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 - Prospective path-custody promotion, incoming-reference or two-hop pressure,
   direct-reserve expansion, new graph ranking, wider-corpus semantic execution,
   model comparison, production-model selection, new receipt claims, and scalar
-  scoring: unauthorized. The exact single-case, same-packet variance
-  calibration is the only newly authorized graph-evaluation continuation.
+  scoring: unauthorized. The completed exact single-case, same-packet variance
+  calibration consumed its authorization and created no graph-evaluation
+  continuation.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#389 carry graph/Atlas custody, the public handoff, Decision Trail
-lineage, A/B/C plan, case freeze, paired-delta screen, and rehearsal contract.
+PRs #379–#390 carry graph/Atlas custody, the public handoff, Decision Trail lineage, A/B/C plan, case freeze, paired-delta screen, rehearsal, and variance contract.
 The founder declines human review; that v1 experiment stays unfilled and paused.
-The completed graph rehearsal does not prove graph value or human usefulness.
-Its variance contract freezes six contexts; Atlas and Stage 1 remain gated.
+The completed graph rehearsal does not prove graph value or human usefulness. Its variance calibration is not evaluable and creates no next graph authorization; Atlas and Stage 1 remain gated.
 
 Stage 1 is not June's Decision Trail specialist program; PR104 remains paused
 with unvalidated reads and blank human corrections. A/B/C authorizes no review,

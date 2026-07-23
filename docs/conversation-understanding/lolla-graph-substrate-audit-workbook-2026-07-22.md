@@ -376,6 +376,39 @@ protocol, not expanding traversal. The next informative design would first add
 predeclared direct/direct and graph/graph replications across complete cases;
 that wider replication is not authorized by this result.
 
+### Completed within-case variance calibration
+
+The frozen follow-up attempted two more isolated generations per condition and
+two fresh blind reviews. Three generation attempts completed and compiled; one
+direct-condition attempt ended without a recoverable terminal answer. The
+failed draw was not retried, healed, replaced, or imputed.
+
+After both reviews froze, unblinding showed:
+
+- within direct fresh: not evaluable because of the missing draw;
+- within graph fresh: `present / present` material-difference reads;
+- historical direct versus graph: `present / uncertain`;
+- fresh direct versus graph draw 1: `present / present`;
+- fresh direct versus graph draw 2: not evaluable because of the missing draw.
+
+Both reviewers still marked the duplicate null `absent` and supported the
+legitimate stand-down. The available graph-condition answers accounted for all
+five active candidates but differed on `incentives` (`reject` versus `park`)
+and `abstraction` (`park` versus `apply`). The historical graph draw had applied
+both. This demonstrates candidate custody and probabilistic disposition
+variation, not relevance or quality.
+
+The prospective question is `not_evaluable`: the missing direct draw removes
+one required within-condition baseline and one cross-condition pair, while the
+complete within-graph pair already shows material same-condition variation.
+Do not attribute the earlier single difference to the graph and do not expand
+traversal. Preserve the result as an automation and experiment-design lesson.
+
+See the
+[variance result](lolla-agent-only-graph-variance-calibration-result-2026-07-23.md)
+and
+[machine consolidation](../../research/agent-only-graph-variance-calibration-2026-07-23/consolidated-diagnostic.json).
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,
