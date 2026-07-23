@@ -27,7 +27,7 @@ def test_canonical_stage0_register_validates() -> None:
         "connection_count": 24,
         "constitution_rule_count": 17,
         "decision_trail_field_group_count": 26,
-        "implementation_file_count": 668,
+        "implementation_file_count": 670,
         "provider_calls": 0,
         "provider_cost_usd": 0.0,
         "schema_version": "lolla.constitution_stage0_addendum_validation.v1",

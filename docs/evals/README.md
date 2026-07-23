@@ -57,17 +57,32 @@ After freeze, Arm A unblinded as direct-only and Arm B as the current one-hop
 graph increment. No causal, relevance, answer-quality, or usefulness claim
 follows.
 
-The prospective
+The completed
 [graph-variance calibration contract](lolla-agent-only-graph-variance-calibration-contract-v1.json)
-and [plan](../../plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md)
-address the completed run's largest confound without changing the tested
-system. They preserve the two historical outputs as draw zero and freeze two
-additional exact reruns per condition. Five later blind comparisons cover
-direct-versus-direct, graph-versus-graph, the historical cross-condition pair,
-and two fresh cross-condition pairs. The six new Codex contexts are authorized
-only after the pre-output contract merges. Provider/API calls, retries, wider
-cases, graph changes, traversal expansion, scores, winners, causal claims, and
-human-usefulness claims remain unauthorized.
+the [plan](../../plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md),
+and the
+[result](../conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md)
+preserve the first same-packet variance attempt. Three of four generation
+outputs completed, one direct draw failed without replacement, and both blind
+reviews completed. The available within-graph pair was materially different
+in both reviews; the missing draw removed the within-direct and one cross pair,
+so the frozen question is `not_evaluable`. The old contract is consumed and
+does not authorize another run. Provider/API calls, retries, wider cases, graph
+changes, traversal expansion, scores, winners, causal claims, and
+human-usefulness claims remain unauthorized outside the new exact replication.
+
+The prospective
+[agent-only graph replication contract](lolla-agent-only-graph-replication-contract-v1.json)
+and [plan](../../plans/lolla-agent-only-graph-replication-2026-07-23.md)
+freeze the authorized follow-up without changing the tested packets. Four new
+draws per condition produce four disjoint within-condition and four aligned
+cross-condition pairs. Direct first-terminal capture is required from the
+start, and the missingness gate remains satisfiable after any one generation
+failure. Two blind reviews remain non-scalar. Two later review-specific
+post-reveal interpretations run only if that gate passes and may interpret
+only already-frozen observations. The maximum is twelve Codex development
+contexts; provider/API calls and cost remain zero. No graph, runtime,
+principal-human, score, causal, usefulness, or traversal work is authorized.
 
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
@@ -516,10 +531,17 @@ python3 scripts/evals/build_product_delta_graph_increment_rehearsal.py --validat
 python3 scripts/evals/build_product_delta_graph_increment_rehearsal_result.py --validate-complete
 ```
 
-Validate the prospective graph-variance calibration packets:
+Validate the completed graph-variance calibration:
 
 ```bash
 python3 scripts/evals/build_product_delta_graph_variance_calibration.py --validate-only
+python3 scripts/evals/build_product_delta_graph_variance_calibration_result.py --validate-complete
+```
+
+Validate the prospective graph-replication packets:
+
+```bash
+python3 scripts/evals/build_product_delta_graph_replication.py --validate-only
 ```
 
 Run the focused Product Delta tests:
@@ -536,6 +558,7 @@ python3 -m pytest -q \
   tests/test_product_delta_graph_increment_rehearsal.py \
   tests/test_product_delta_graph_increment_rehearsal_result.py \
   tests/test_product_delta_graph_variance_calibration.py \
+  tests/test_product_delta_graph_replication.py \
   tests/test_product_delta_paired_screen.py \
   tests/test_product_delta_batch_fixture.py \
   tests/test_product_delta_readiness.py
@@ -568,6 +591,7 @@ Start with these:
 | [Agent-Only Paired-Delta Screen Contract](lolla-agent-only-paired-delta-screen-contract-v1.json) | Frozen non-scalar blind-review contract over existing checked-in-safe pairs, reviewer traps, duplicate null, and stand-down. |
 | [Agent-Only Paired-Delta Screen Result](../conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) | Provider-free fresh-agent diagnostic result; mixed deltas and disagreement survive, while graph causation and human usefulness remain unknown. |
 | [Agent-Only Graph-Increment Rehearsal Result](../conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) | Six-context automated Product Delta rehearsal; both blind reviewers saw a material pair difference without inferring lineage, while causation, relevance, answer quality, and human usefulness remain unknown. |
+| [Agent-Only Graph Replication Contract](lolla-agent-only-graph-replication-contract-v1.json) | Prospective restart-safe single-case replication: eight exact generation attempts, two blind reviews, and two conditional review-specific post-reveal interpretations; no provider, graph, runtime, causal, usefulness, or traversal authority. |
 
 ## Runtime And Skill Opportunities
 
