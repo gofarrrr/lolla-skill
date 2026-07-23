@@ -1,0 +1,368 @@
+{
+  "agent_proxy_response_schema": {
+    "$defs": {
+      "complete_source_read": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/source_read_shape"
+          },
+          {
+            "required": [
+              "current_decision_or_position",
+              "strong_original_reasoning_to_preserve",
+              "material_unresolved_questions",
+              "what_would_count_as_new_decision_leverage",
+              "what_would_count_as_circular_restatement",
+              "what_would_count_as_forced_absorption_or_harm",
+              "uncertainty_and_alternative_readings"
+            ]
+          }
+        ]
+      },
+      "source_read_shape": {
+        "additionalProperties": false,
+        "properties": {
+          "current_decision_or_position": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "material_unresolved_questions": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "strong_original_reasoning_to_preserve": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "uncertainty_and_alternative_readings": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "what_would_count_as_circular_restatement": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "what_would_count_as_forced_absorption_or_harm": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "what_would_count_as_new_decision_leverage": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "complete"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "$ref": "#/$defs/complete_source_read"
+            },
+            "source_read_complete": {
+              "const": true
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": true
+                },
+                "state_reason": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "completed_zero"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "type": "null"
+            },
+            "source_read_complete": {
+              "const": true
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "partial"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/source_read_shape"
+                },
+                {
+                  "minProperties": 1
+                }
+              ]
+            },
+            "source_read_complete": {
+              "const": false
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "enum": [
+                "failed",
+                "missing"
+              ]
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "type": "null"
+            },
+            "source_read_complete": {
+              "const": false
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "properties": {
+      "boundary": {
+        "additionalProperties": false,
+        "properties": {
+          "ground_truth": {
+            "const": false
+          },
+          "human_validated": {
+            "const": false
+          },
+          "provider_calls": {
+            "const": 0
+          },
+          "routing_authority": {
+            "const": false
+          }
+        },
+        "required": [
+          "human_validated",
+          "ground_truth",
+          "routing_authority",
+          "provider_calls"
+        ],
+        "type": "object"
+      },
+      "fresh_context": {
+        "const": true
+      },
+      "review_id": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "reviewer_type": {
+        "const": "fresh_agent_source_first_proxy"
+      },
+      "saw_candidate_identities_before_freeze": {
+        "const": false
+      },
+      "saw_prior_outputs_before_freeze": {
+        "const": false
+      },
+      "schema_version": {
+        "const": "lolla.agent_source_first_proxy_review.v1"
+      },
+      "source_only_read": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/complete_source_read"
+          },
+          {
+            "$ref": "#/$defs/source_read_shape"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "source_read_complete": {
+        "type": "boolean"
+      },
+      "terminal_receipt": {
+        "additionalProperties": false,
+        "properties": {
+          "first_terminal_result_preserved": {
+            "const": true
+          },
+          "post_seal_stage_eligible": {
+            "type": "boolean"
+          },
+          "source_only_visibility_preserved": {
+            "const": true
+          },
+          "state_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "first_terminal_result_preserved",
+          "source_only_visibility_preserved",
+          "post_seal_stage_eligible",
+          "state_reason"
+        ],
+        "type": "object"
+      },
+      "terminal_status": {
+        "enum": [
+          "complete",
+          "completed_zero",
+          "partial",
+          "failed",
+          "missing"
+        ]
+      }
+    },
+    "required": [
+      "schema_version",
+      "review_id",
+      "reviewer_type",
+      "fresh_context",
+      "terminal_status",
+      "source_read_complete",
+      "saw_candidate_identities_before_freeze",
+      "saw_prior_outputs_before_freeze",
+      "source_only_read",
+      "terminal_receipt",
+      "boundary"
+    ],
+    "type": "object"
+  },
+  "authoritative_source": {
+    "content": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+    "coverage": "complete_checked_in_conversation",
+    "omissions": [],
+    "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef",
+    "utf8_bytes": 4936
+  },
+  "authority": {
+    "action_authority_created": false,
+    "agent_proxy_is_principal_human": false,
+    "human_usefulness_validated": false,
+    "semantic_correctness_certified": false,
+    "source_read_is_human_target": false
+  },
+  "evidence_class": "checked_in_safe_complete_source_for_agent_proxy_not_human_evidence",
+  "instruction_order": [
+    "Read the complete supplied source before forming the response.",
+    "Use only the supplied source words.",
+    "Preserve uncertainty, unresolved matters, and strong existing reasoning.",
+    "Do not infer missing private context, select an answer, or create action authority.",
+    "Return only the declared structured response."
+  ],
+  "non_claims": [
+    "not principal-human evidence",
+    "not ground truth",
+    "not answer-quality certification",
+    "not product-usefulness evidence",
+    "not action authority"
+  ],
+  "packet_id": "agent-only-source-first-proxy-2026-07-23",
+  "schema_version": "lolla.product_delta_agent_source_first_packet.v1",
+  "status": "source_only_agent_proxy_packet"
+}
