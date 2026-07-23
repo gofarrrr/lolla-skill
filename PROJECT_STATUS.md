@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-23 (automated graph-increment rehearsal contract)
+Status date: 2026-07-23 (automated graph-increment rehearsal result)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -39,7 +39,7 @@ The current A/B/C pressure, understanding, and graph planning package is tracked
 The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. [PR #385](https://github.com/gofarrrr/lolla-skill/pull/385) publishes the [provider-free role/attribution case candidate](docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md): one retrospective checked-in-safe case, five provider-neutral envelopes plus one honest blocked F1 slot, and passing direct/graph/context equality and active-payload bijection gates.
 Execution remains not ready: the principal-human source-first target and reference approval, exact current-live F1 semantic supply, provider/model/generation contract, token/cost estimate, and exact founder authorization are missing. The package is a single-draw case diagnostic preparation, not causal identification, and changes no live context, graph, prompt, provider, or runtime behavior.
 The provider-free [agent-only paired-delta screen](docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) preserves mixed benefit/harm reads, disagreement, duplicate-null equivalence, and stand-down across existing checked-in pairs. It does not isolate graph contribution or establish human usefulness.
-The founder has declined review participation. The preserved human lane remains blank and paused; a prospective [agent-only graph-increment rehearsal](plans/lolla-agent-only-graph-increment-rehearsal-2026-07-23.md) may automate one Product Delta development diagnostic without completing F2/F3, approving the reference condition, calling a provider, or creating human-usefulness evidence.
+The founder has declined review participation. The preserved human lane remains blank and paused. The separate [agent-only graph-increment rehearsal](docs/conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) completed its six predeclared contexts: both blind reviewers detected the duplicate null, supported the stand-down, found a material difference in the new pair, and could not infer lineage. After freeze, Arm A was direct-only and Arm B was direct plus the current one-hop increment. This is bounded Product Delta process evidence, not completed F2/F3, graph causation, reference approval, human usefulness, or permission to expand traversal.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
@@ -292,7 +292,7 @@ or supersede that pause. See the
 
 A provider-free planning package separates pressure-now/process receipts, prospective principal-human PR104 review for understand-later, and source-first conversation-to-graph comparison before graph expansion. Its repository-local audit skill authorizes no human review, provider, graph/runtime change, sidecar automation, Atlas, or interface work.
 The provider-free case-freeze candidate passes its mechanical gates, but F1 and the principal-human target remain missing. Because the founder declines review participation, that human experiment stays paused rather than being filled by AI.
-The frozen automated rehearsal contract reuses Product Delta to simulate only direct versus direct-plus-current-one-hop lineage. It records agent reads as provisional, leaves F2/F3 unrealized, and authorizes no provider, graph/runtime, or usefulness claim.
+The completed automated rehearsal reused Product Delta for one direct versus direct-plus-current-one-hop simulation. Six first-terminal agent contexts and their exact hashes are frozen; both blind reviewers found a material pair difference while declaring lineage indistinguishable. Agent reads remain provisional, F2/F3 remain unrealized, and no provider, graph/runtime, causal, relevance, or usefulness claim follows.
 
 ## Current repository boundary
 

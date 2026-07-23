@@ -40,8 +40,9 @@ Fresh agent reads found mixed moves, harms, and disagreement; this is review-
 method evidence, not graph attribution, human usefulness, or live judging.
 
 The [agent-only graph-increment rehearsal contract](lolla-agent-only-graph-increment-rehearsal-contract-v1.json)
-and [plan](../../plans/lolla-agent-only-graph-increment-rehearsal-2026-07-23.md)
-preserve the unfilled principal-human experiment and freeze a narrower automated
+the [plan](../../plans/lolla-agent-only-graph-increment-rehearsal-2026-07-23.md),
+and the [completed result](../conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md)
+preserve the unfilled principal-human experiment and run a narrower automated
 Product Delta development rehearsal. Neutral rehearsal arms inherit the exact
 direct-only and direct-plus-current-one-hop preview messages and schemas while
 remaining explicitly outside F2/F3 execution. Six fresh Codex collaboration
@@ -49,6 +50,12 @@ contexts are predeclared; their ambient platform context and unavailable route,
 token, and cost custody prevent exact-provider-envelope or free-computation
 claims. The contract authorizes no provider/API call, graph/runtime change,
 human-usefulness claim, reference approval, winner, or traversal expansion.
+The completed run preserves six first-terminal contexts. Both blind reviewers
+reported the exact duplicate as absent, the real pair as materially different,
+the stand-down as supported, and the real pair's lineage as indistinguishable.
+After freeze, Arm A unblinded as direct-only and Arm B as the current one-hop
+graph increment. No causal, relevance, answer-quality, or usefulness claim
+follows.
 
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
@@ -490,10 +497,11 @@ python3 scripts/evals/build_product_delta_paired_screen.py --validate-only
 python3 scripts/evals/validate_product_delta_paired_screen_reviews.py --validate-only
 ```
 
-Validate the frozen pre-output graph-increment rehearsal protocol:
+Validate the complete graph-increment rehearsal result:
 
 ```bash
 python3 scripts/evals/build_product_delta_graph_increment_rehearsal.py --validate-only
+python3 scripts/evals/build_product_delta_graph_increment_rehearsal_result.py --validate-complete
 ```
 
 Run the focused Product Delta tests:
@@ -508,6 +516,7 @@ python3 -m pytest -q \
   tests/test_product_delta_specialist_contracts.py \
   tests/test_product_delta_boundary_lint.py \
   tests/test_product_delta_graph_increment_rehearsal.py \
+  tests/test_product_delta_graph_increment_rehearsal_result.py \
   tests/test_product_delta_paired_screen.py \
   tests/test_product_delta_batch_fixture.py \
   tests/test_product_delta_readiness.py
@@ -539,6 +548,7 @@ Start with these:
 | [Balanced Batch Candidate Selector / Readiness Builder Plan](balanced-batch-candidate-selector-readiness-builder-plan-v0.md) | PR237's plan-only selector/readiness-builder slice: define safe source signals, bucket hypotheses, readiness criteria, output shape, refusal/defer statuses, and anti-flattery rules before any selector implementation or Product Delta batch run. |
 | [Agent-Only Paired-Delta Screen Contract](lolla-agent-only-paired-delta-screen-contract-v1.json) | Frozen non-scalar blind-review contract over existing checked-in-safe pairs, reviewer traps, duplicate null, and stand-down. |
 | [Agent-Only Paired-Delta Screen Result](../conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) | Provider-free fresh-agent diagnostic result; mixed deltas and disagreement survive, while graph causation and human usefulness remain unknown. |
+| [Agent-Only Graph-Increment Rehearsal Result](../conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) | Six-context automated Product Delta rehearsal; both blind reviewers saw a material pair difference without inferring lineage, while causation, relevance, answer quality, and human usefulness remain unknown. |
 
 ## Runtime And Skill Opportunities
 

@@ -351,6 +351,31 @@ named source-reviewable differences. It cannot establish human usefulness,
 graph relevance, causal graph value, expected model behavior, or permission to
 expand beyond the current outgoing one-hop policy.
 
+### Completed automated result
+
+The six predeclared contexts completed without retry. The exact duplicate
+received `absent / absent` material-difference reads, the quiet case received
+`supported / supported` stand-down reads, and the new retailer pair received
+`present / present` material-difference reads. Both reviewers declared the
+pair's lineage indistinguishable. Only after both reviews froze did the sealed
+map reveal Arm A as direct-only and Arm B as direct plus the current outgoing
+one-hop increment.
+
+Both reviewers associated Arm B with symmetric evidence handling, reciprocal-
+exposure inquiry, and an explicit contrary-result rule. They also preserved
+burden, unsupported procedural additions, weaker visibility of exact gates,
+and uncertainty about real value. Arm A independently added a three-ledger
+structure, so one fresh output per condition cannot isolate graph causation
+from ordinary reasoner variation.
+
+The [bounded result](lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md)
+and
+[deterministic consolidation](../../research/agent-only-graph-increment-rehearsal-2026-07-23/consolidated-diagnostic.json)
+are the current evidence. They support preserving the automated Product Delta
+protocol, not expanding traversal. The next informative design would first add
+predeclared direct/direct and graph/graph replications across complete cases;
+that wider replication is not authorized by this result.
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,

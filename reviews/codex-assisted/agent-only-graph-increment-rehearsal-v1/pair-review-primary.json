@@ -1,0 +1,641 @@
+{
+  "schema_version": "lolla.product_delta_graph_increment_fresh_agent_review.v1",
+  "review_id": "agent-graph-increment-pair-primary-v1",
+  "fresh_context": true,
+  "saw_lineage_before_freeze": false,
+  "saw_sibling_review_before_freeze": false,
+  "saw_source_proxy_reads_before_freeze": false,
+  "boundary": {
+    "answer_quality_scored": false,
+    "ground_truth": false,
+    "human_validated": false,
+    "provider_calls": 0,
+    "winner_selected": false
+  },
+  "qualification_reviews": [
+    {
+      "case_id": "trap-thin-context-001",
+      "evidence_disposition": "blocked_thin_context",
+      "inferences_explicitly_not_made": [
+        "The revised answer has greater decision value because it mentions unspecified conditions.",
+        "The revised answer changes the likely next action.",
+        "Artifact presence or run health establishes semantic adequacy.",
+        "Length, caution, polish, or organization establishes usefulness."
+      ],
+      "missing_evidence": [
+        "The detailed decision question.",
+        "The basis and content of the vanilla likely next action.",
+        "The detailed revised action and conditions.",
+        "The source-specific evidence gates.",
+        "The complete conversation needed to assess preserved or lost values."
+      ],
+      "supported_observations": [
+        "Both an original and a revised answer existed.",
+        "The safe paraphrase says the revised answer mentioned conditions.",
+        "Only case identity, artifact presence, and a run-health summary are available."
+      ],
+      "uncertainty_notes": [
+        "The unspecified conditions could be material, redundant, generic, unsupported, or contrary to the user's values.",
+        "No bounded semantic comparison of the actions is possible from the supplied safe context."
+      ]
+    },
+    {
+      "case_id": "trap-longer-no-action-002",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The revised answer is more useful because it is longer or better organized.",
+        "The two answers are semantically identical in every respect.",
+        "The shared pilot recommendation is appropriate for the underlying decision.",
+        "Additional caveats necessarily help or harm the user."
+      ],
+      "missing_evidence": [
+        "The complete conversation and source-specific stakes.",
+        "The content of the added caveats.",
+        "Evidence about whether the shared sponsor condition and two-week duration are justified."
+      ],
+      "supported_observations": [
+        "Both surfaces recommend starting the same two-week pilot next Monday.",
+        "Both use confirmation of one sponsor as the same precondition.",
+        "The supplied context identifies added structure and prose but no changed action, threshold, sequence, gate, or stop rule."
+      ],
+      "uncertainty_notes": [
+        "The additional prose might clarify implementation or might merely add burden; its content is not supplied.",
+        "The bounded comparison supports absence of an identified action delta, not a general conclusion about answer quality."
+      ]
+    },
+    {
+      "case_id": "trap-caution-no-leverage-003",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "More caution makes the revised answer safer or more valuable.",
+        "The vanilla action is the correct action.",
+        "The revised answer is globally worse.",
+        "Stakeholder alignment is unnecessary in the underlying case."
+      ],
+      "missing_evidence": [
+        "The complete conversation and actual stakeholder constraints.",
+        "Any concrete operational meaning behind the revised caution.",
+        "Evidence supporting or opposing the vanilla proposal to contact three buyers."
+      ],
+      "supported_observations": [
+        "The vanilla surface preserves a small-launch path and a concrete action involving three named buyers this week.",
+        "The revised surface adds generic caution, stakeholder process, and downside reminders.",
+        "No usable action, threshold, sequence, evidence gate, stop rule, or user-answerable question is identified in the revised surface."
+      ],
+      "uncertainty_notes": [
+        "The revised reminders could be relevant, but the supplied form does not show how they alter the decision.",
+        "The comparison exposes lost actionable specificity without establishing the correct balance between speed and caution."
+      ]
+    },
+    {
+      "case_id": "trap-gate-already-present-004",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The repeated evidence gate is a new contribution.",
+        "Repetition makes the revised answer better or worse.",
+        "Three paying commitments is an appropriate threshold for the actual feature decision.",
+        "No other semantic difference exists outside the supplied paraphrases."
+      ],
+      "missing_evidence": [
+        "The complete conversation.",
+        "Any revised reasoning beyond the repeated gate.",
+        "Evidence establishing why three paying commitments is the relevant threshold."
+      ],
+      "supported_observations": [
+        "Both surfaces condition feature construction on commitments from three paying prospects.",
+        "The revised surface repeats the same prospect count and build condition already present in the vanilla surface.",
+        "No new evidence gate is supported by the supplied context."
+      ],
+      "uncertainty_notes": [
+        "The repetition could improve salience, but salience is not shown to change the action or decision rule.",
+        "The bounded finding concerns novelty of the gate, not the underlying recommendation's validity."
+      ]
+    },
+    {
+      "case_id": "trap-lost-live-option-005",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The enterprise pilot should or should not be selected.",
+        "The self-serve waitlist is necessarily equally viable.",
+        "The revised narrowing reflects the user's settled preference.",
+        "Preserving both options requires indefinitely postponing a choice."
+      ],
+      "missing_evidence": [
+        "The complete discussion of the enterprise pilot and self-serve waitlist.",
+        "The user's comparative criteria and current preference strength.",
+        "Evidence that either option was explicitly rejected after the supplied conversation surface."
+      ],
+      "supported_observations": [
+        "The user still treats an enterprise pilot and a self-serve waitlist as live options.",
+        "The revised surface assumes the enterprise pilot is the only serious path.",
+        "The revised surface therefore narrows the live decision beyond what the supplied conversation establishes."
+      ],
+      "uncertainty_notes": [
+        "The enterprise path may ultimately be selected, but that conclusion is not supported merely by treating the other live option as closed.",
+        "The material risk is premature option removal, not proof that the removed option is preferable."
+      ]
+    },
+    {
+      "case_id": "trap-ambition-buried-006",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Fast action is necessarily the correct response.",
+        "Generic caution has no relevance to the underlying risks.",
+        "The reversible test will succeed.",
+        "The revised answer is safer merely because it recommends waiting."
+      ],
+      "missing_evidence": [
+        "The nature and duration of the closing window.",
+        "The concrete risks that additional alignment would reduce.",
+        "The reversibility and cost details of the proposed test.",
+        "The user's acceptable trade-off between speed and risk."
+      ],
+      "supported_observations": [
+        "The conversation surface identifies speed and preserved agency as central user values in a potentially narrow window.",
+        "The vanilla surface proposes a reversible test this week.",
+        "The revised surface replaces that timing with open-ended alignment and generic risk reduction.",
+        "Momentum, ambition, simplicity, courage, and timing may therefore be weakened or buried."
+      ],
+      "uncertainty_notes": [
+        "The evidence supports a value-preservation concern, not a direction about whether the user should act.",
+        "It is unknown whether a specific short alignment step could preserve both caution and the time-sensitive value."
+      ]
+    },
+    {
+      "case_id": "trap-assistant-influence-007",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The enterprise-risk frame is wholly user-originated.",
+        "The user's later vocabulary proves independent endorsement of the assistant's frame.",
+        "The assistant's reframe is incorrect.",
+        "The user's initial customer-choice frame remains unchanged or must control the final decision."
+      ],
+      "missing_evidence": [
+        "The exact turns and strength of the user's tentative adoption.",
+        "Any explicit user comparison between the initial and reframed questions.",
+        "Evidence about whether the user later revised, rejected, or independently justified the assistant's frame."
+      ],
+      "supported_observations": [
+        "The user begins with a customer-choice question.",
+        "The assistant introduces an enterprise-risk reframe.",
+        "The user subsequently asks questions using the assistant's reframed vocabulary.",
+        "A reviewer who attributes the resulting frame entirely to the user would omit visible assistant influence."
+      ],
+      "uncertainty_notes": [
+        "The supplied sequence supports influence but does not establish coercion, error, or the user's degree of endorsement.",
+        "Later user adoption may be genuine while still requiring provenance-aware interpretation."
+      ]
+    },
+    {
+      "case_id": "trap-disagreement-survives-008",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The added stop rule makes the revised answer better overall.",
+        "The lost customer commitment or unresolved stakeholder concern makes the revised answer worse overall.",
+        "One review dimension overrides the others.",
+        "The stakeholder concern is settled."
+      ],
+      "missing_evidence": [
+        "The complete source conversation.",
+        "The content and operational quality of the stop rule.",
+        "The motivating customer commitment and its reliability.",
+        "The unresolved stakeholder concern and its decision relevance."
+      ],
+      "supported_observations": [
+        "The revised answer adds a clear stop rule.",
+        "The revised answer treats an unresolved stakeholder concern as settled.",
+        "The revised answer drops a motivating customer commitment that made the original plan actionable.",
+        "The supplied reads therefore preserve a mixed result rather than a single-direction delta."
+      ],
+      "uncertainty_notes": [
+        "The stop rule can be structurally useful while interpretation adequacy and value preservation remain weak.",
+        "No scalar or net conclusion follows from the disagreement among these dimensions."
+      ]
+    },
+    {
+      "case_id": "trap-clean-artifact-009",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Complete, lint-clean artifacts establish decision usefulness.",
+        "Conservative metadata establishes semantic correctness.",
+        "The generic recommendation has no possible value.",
+        "The absence of a privacy marker proves the absence of every privacy risk."
+      ],
+      "missing_evidence": [
+        "The complete advice and source conversation.",
+        "A concrete changed action, threshold, gate, or question in the revised recommendation.",
+        "Evidence of how the recommendation affects the user's decision."
+      ],
+      "supported_observations": [
+        "Required artifacts exist and schema checks pass.",
+        "The metadata is described as conservative and no privacy marker is present.",
+        "The revised recommendation remains generic and no concrete changed action is identified.",
+        "Artifact health and reviewability can therefore be reported separately from decision usefulness."
+      ],
+      "uncertainty_notes": [
+        "The artifact is mechanically reviewable, but the supplied context does not establish a material semantic contribution.",
+        "A generic recommendation may still help presentation or reflection, but that effect is not evidence here."
+      ]
+    },
+    {
+      "case_id": "trap-provisional-hardening-010",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The provisional candidate has been validated, proved, approved, or made ready for agent use.",
+        "A structured artifact has authority merely because it conforms to a schema.",
+        "The underlying candidate read is necessarily false.",
+        "Codex assistance constitutes human validation."
+      ],
+      "missing_evidence": [
+        "Independent validation evidence.",
+        "Human review and correction.",
+        "Evidence supporting deployment or agent-use readiness.",
+        "The underlying source and candidate reasoning needed to assess the substantive conclusion."
+      ],
+      "supported_observations": [
+        "The artifact is provisional and Codex-assisted.",
+        "Its prose uses authority terms that harden provisional conclusions.",
+        "The terms validated, proved, approved, and ready for agent use exceed the status established by the supplied context."
+      ],
+      "uncertainty_notes": [
+        "The artifact may contain useful candidate observations, but those observations must remain explicitly provisional.",
+        "This finding concerns overclaiming and status language, not the truth or falsity of the candidate's underlying content."
+      ]
+    }
+  ],
+  "paired_reviews": [
+    {
+      "case_id": "retailer-pilot-exact-duplicate-null",
+      "source_interpretation": {
+        "decision_or_question": "Whether to run a bounded three-month retailer pilot while treating it as retailer-channel learning rather than evidence of product demand outside that retailer's context.",
+        "material_constraints": [
+          "The retailer guarantees no purchase volume while the manufacturer must finance inventory and commit scarce capacity.",
+          "Pilot economics require positive contribution margin after custom costs, returns no higher than eight percent, and reorders from at least half of pilot stores.",
+          "Pilot inventory is capped, delayed smaller-buyer relationships remain relevant, and national exclusivity depends on self-financed production capacity.",
+          "Preferred-partner language must be removable and first-negotiation rights must remain narrow.",
+          "Retailer prestige, selection, and merchandising cannot silently substitute for independent-demand evidence."
+        ],
+        "source_limits": [
+          "The source is a complete checked-in synthetic conversation, not real-user evidence.",
+          "No results from the proposed pilot or an independent-demand test are available.",
+          "The source does not establish human usefulness, ground truth, or the wisdom of the final decision."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "duplicate-01-channel-not-validation",
+          "summary": "Frame the pilot as retailer-channel learning rather than broad product validation.",
+          "presence": "shared",
+          "reasoning_operation": "counterframe",
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Limits the claim earned by pilot approval or success to performance in the retailer channel.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user explicitly chooses channel learning rather than product validation.",
+            "The conversation says the pilot cannot establish demand outside the retailer's merchandising, audience, or brand signal."
+          ]
+        },
+        {
+          "move_id": "duplicate-02-repeat-commercial-gates",
+          "summary": "Repeat the existing economic, return, reorder, exclusivity, inventory, and contract protections.",
+          "presence": "shared",
+          "reasoning_operation": "restatement",
+          "cognitive_effect": "repeats",
+          "decision_effect": "None beyond restating the already established conditions for a bounded pilot.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user already specifies positive contribution margin, an eight-percent return ceiling, a half-store reorder gate, capped inventory, and limits on exclusivity and negotiation rights."
+          ]
+        },
+        {
+          "move_id": "duplicate-03-independent-demand-gap",
+          "summary": "Keep broader demand unresolved until a separate validation step exists.",
+          "presence": "shared",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Prevents retailer selection or pilot performance from satisfying the independent-demand question.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user says no approval gate requires independent-demand evidence.",
+            "The source concludes that a separate validation step is needed before claiming demand beyond the retailer."
+          ]
+        },
+        {
+          "move_id": "duplicate-04-correctness-closure",
+          "summary": "Declare the existing conclusion correct and state that no different outcome is supported.",
+          "presence": "shared",
+          "reasoning_operation": "unsupported_specificity",
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Could discourage further reconsideration by converting a source-grounded position into an unqualified correctness claim.",
+          "source_grounding": "unsupported",
+          "source_evidence": [
+            "The source preserves the user's current position and its limits but supplies no ground-truth standard establishing that it is the uniquely correct conclusion."
+          ]
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the distinction between retailer-channel evidence and independent product-demand evidence.",
+            "Preserves the economic, operational, capacity, relationship, and contractual gates.",
+            "Preserves the concern that prestige may distort the evidence standard."
+          ],
+          "lost_or_weakened_source_value": [
+            "No arm-relative source-value loss is identifiable because the two supplied arm contents are exact duplicates."
+          ],
+          "unsupported_additions": [
+            "The normative assertion that the conclusion remains correct exceeds the source's process evidence and non-ground-truth boundary."
+          ],
+          "cognitive_burden": [
+            "Compresses many already settled gates into a dense recap without adding a new decision operation."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the distinction between retailer-channel evidence and independent product-demand evidence.",
+            "Preserves the economic, operational, capacity, relationship, and contractual gates.",
+            "Preserves the concern that prestige may distort the evidence standard."
+          ],
+          "lost_or_weakened_source_value": [
+            "No arm-relative source-value loss is identifiable because the two supplied arm contents are exact duplicates."
+          ],
+          "unsupported_additions": [
+            "The normative assertion that the conclusion remains correct exceeds the source's process evidence and non-ground-truth boundary."
+          ],
+          "cognitive_burden": [
+            "Compresses many already settled gates into a dense recap without adding a new decision operation."
+          ]
+        }
+      },
+      "material_decision_difference": "absent",
+      "inspection_limits": [
+        "The supplied arms contain the same text, so no semantic arm difference is available to inspect.",
+        "No lineage, generation context, or provenance information is available.",
+        "This review compares atomic reasoning moves and does not assess answer quality or human usefulness."
+      ],
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "indistinguishable",
+        "basis": [
+          "The supplied arm contents are exact duplicates.",
+          "No substantive move appears in one arm but not the other.",
+          "Arm labels and presentation provide no permissible provenance basis."
+        ]
+      }
+    },
+    {
+      "case_id": "retailer-graph-increment-rehearsal-blind",
+      "source_interpretation": {
+        "decision_or_question": "How to run the proposed retailer pilot on bounded commercial terms without allowing prestige, selection, or retailer-specific performance to become unsupported evidence of broad product demand.",
+        "material_constraints": [
+          "The letter of intent guarantees no purchase volume, while the manufacturer finances inventory and commits scarce production capacity.",
+          "The pilot must satisfy the stated contribution-margin, return, reorder, inventory, capacity-financing, relationship, and contract-rights protections.",
+          "The preferred-partner announcement and first-negotiation rights must not imply a national commitment or block existing buyers and unrelated lines.",
+          "Weekly retailer data can inform channel economics and operations but remains conditioned by the retailer's audience, merchandising, and brand.",
+          "Any conclusion about demand outside this retailer requires a separate evidence path."
+        ],
+        "source_limits": [
+          "The source is a synthetic checked-in case and cannot establish human usefulness.",
+          "No pilot result, negotiation outcome, or independent-demand result is available.",
+          "The source does not establish which additional governance procedure or reciprocal contract term is feasible.",
+          "The pair lacks a treatment arm that could establish graph-specific causation."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "rehearsal-01-bounded-channel-claim",
+          "summary": "Approve or assess the pilot as a bounded retailer-channel experiment rather than broad product validation.",
+          "presence": "shared",
+          "reasoning_operation": "counterframe",
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Separates the commercial decision to test this channel from the evidentiary claim that the product has general demand.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user explicitly adopts channel learning rather than product validation.",
+            "The conversation says retailer-specific performance cannot establish demand elsewhere."
+          ]
+        },
+        {
+          "move_id": "rehearsal-02-preserve-commercial-gates",
+          "summary": "Retain the existing economics, return, reorder, inventory, capacity, relationship, and contract protections.",
+          "presence": "shared",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "repeats",
+          "decision_effect": "Keeps pilot continuation and expansion tied to the user's already defined bounded conditions.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user defines positive contribution margin, an eight-percent return ceiling, reorders from half the stores, capped inventory, and a self-financed capacity condition for exclusivity."
+          ]
+        },
+        {
+          "move_id": "rehearsal-03-claim-discipline",
+          "summary": "Limit internal and external claims to truthful pilot selection and avoid implying validation or a national commitment.",
+          "presence": "shared",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Changes what the board and company may infer or communicate from partner status and pilot participation.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The retailer wants preferred-partner language but has made no national or volume commitment.",
+            "The conversation calls for bounded, removable announcement language."
+          ]
+        },
+        {
+          "move_id": "rehearsal-04-price-asymmetric-exposure",
+          "summary": "Treat retailer prestige separately from the manufacturer's inventory, capacity, and relationship exposure.",
+          "presence": "shared",
+          "reasoning_operation": "counterframe",
+          "cognitive_effect": "opens_path",
+          "decision_effect": "Requires the pilot to be defensible on economics and learning value without treating the retailer's logo as payment.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The retailer guarantees no volume while the manufacturer finances inventory and delays smaller orders.",
+            "A board member explicitly worries that the company is pricing the logo rather than the contract."
+          ]
+        },
+        {
+          "move_id": "rehearsal-05-independent-test-precommitment",
+          "summary": "Define a separate demand test outside the retailer's context and set its claim and criteria before seeing results.",
+          "presence": "shared",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Creates a separate route for deciding whether broader product-demand claims are warranted.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source identifies the absence of independent-demand evidence as unresolved.",
+            "The source says validation beyond the retailer requires a separate step."
+          ]
+        },
+        {
+          "move_id": "rehearsal-06-three-ledger-structure",
+          "summary": "Organize the decision record into pilot-business, partnership-signal, and independent-demand ledgers.",
+          "presence": "a_exclusive",
+          "reasoning_operation": "other",
+          "cognitive_effect": "adds_burden",
+          "decision_effect": "Could make claim boundaries auditable, while adding a new recordkeeping structure before approval and at reporting.",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source already separates commercial gates, partner prestige, and independent demand.",
+            "The source does not require a formal three-ledger procedure."
+          ]
+        },
+        {
+          "move_id": "rehearsal-07-symmetric-evidence-record",
+          "summary": "Pre-record observations that support, oppose, or leave channel continuation ambiguous and apply the same record to favorable and unfavorable evidence.",
+          "presence": "b_exclusive",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could change how the board interprets pilot results by preserving adverse and ambiguous observations alongside favorable ones.",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source already defines success and risk gates.",
+            "The source does not explicitly create symmetric favorable, unfavorable, and ambiguous evidence categories."
+          ]
+        },
+        {
+          "move_id": "rehearsal-08-reciprocal-exposure-question",
+          "summary": "Ask whether retailer rights and signaling value should be matched by proportionate reciprocal exposure or obligations.",
+          "presence": "b_exclusive",
+          "reasoning_operation": "question",
+          "cognitive_effect": "opens_path",
+          "decision_effect": "Could add a pre-signing negotiation issue or change the contract if the parties identify a feasible reciprocal obligation.",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The retailer receives announcement and negotiation rights without guaranteeing volume.",
+            "The manufacturer bears inventory, capacity, financing, and smaller-buyer relationship exposure.",
+            "The source does not establish that a reciprocal obligation is available or required."
+          ]
+        },
+        {
+          "move_id": "rehearsal-09-partner-signal-conduct",
+          "summary": "Tie any stronger interpretation of partner status to observable retailer or market conduct rather than prestige alone.",
+          "presence": "uncertain_equivalence",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could limit what partner status supports and identify additional conduct to record before making stronger partnership claims.",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source distinguishes selection and a conditional letter from purchasing and demand.",
+            "Arm A gives examples including retailer stake, shared downside, purchasing, reorders, and acceptable economics.",
+            "Arm B ties stronger claims to observable behavior and separately raises reciprocal exposure, but packages the operation differently."
+          ]
+        },
+        {
+          "move_id": "rehearsal-10-explicit-contrary-result",
+          "summary": "Require the later independent-demand standard to state what contrary result would prevent the broader claim.",
+          "presence": "b_exclusive",
+          "reasoning_operation": "falsifier",
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could prevent the board from redefining the independent-demand standard after observing a favorable retailer result.",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source requires separate independent validation and warns against substituting prestige for evidence.",
+            "The source does not explicitly formulate a contrary-result rule."
+          ]
+        },
+        {
+          "move_id": "rehearsal-11-limit-success-conclusion",
+          "summary": "Treat a successful pilot as evidence for this channel only, leaving demand elsewhere unresolved.",
+          "presence": "shared",
+          "reasoning_operation": "evidence_gate",
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Allows a profitable retailer channel to continue without closing the separate independent-demand question.",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source says the economic and operational gates govern whether this channel works.",
+            "The source explicitly leaves validation beyond the retailer unresolved."
+          ]
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the user's channel-learning versus product-validation distinction.",
+            "Preserves the stated commercial gates, capacity exposure, delayed-buyer relationship effects, removable partner language, and narrow negotiation rights.",
+            "Preserves the unresolved status of independent demand.",
+            "Preserves the warning against assigning assumed value to the retailer's logo."
+          ],
+          "lost_or_weakened_source_value": [
+            "The user's concrete commitment to keep the two smaller buyers informed is represented mainly as a relationship effect rather than retained as an explicit action.",
+            "The source's simple current position becomes a more administratively elaborate approval and reporting procedure."
+          ],
+          "unsupported_additions": [
+            "The formal three-ledger structure is new and is not required by the source.",
+            "An enforceable retailer stake and shared downside are introduced as hypothetical examples even though the source does not establish their availability.",
+            "A board-selected comparison-setting process is a new procedural specification, though it is framed without inventing a result."
+          ],
+          "cognitive_burden": [
+            "Maintaining three separate ledgers and a three-part end report adds recordkeeping and board-process work.",
+            "The long list of possible partnership-signal conduct may require care to avoid treating retailer commitment as customer-demand evidence."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the user's channel-learning versus product-validation distinction.",
+            "Preserves the commercial, operational, capacity, relationship, and contractual protections.",
+            "Preserves disciplined preferred-partner language and the absence of a national commitment.",
+            "Preserves independent demand as a separate unresolved question."
+          ],
+          "lost_or_weakened_source_value": [
+            "The user's concrete commitment to keep the two smaller buyers informed is represented as wholesale-relationship risk rather than retained as an explicit action.",
+            "Attention may shift from executing the already bounded pilot toward a new reciprocal-obligation negotiation."
+          ],
+          "unsupported_additions": [
+            "A possible reciprocal-exposure or proportional-obligation negotiation is new; the source establishes asymmetry but not the feasibility or necessity of such a term.",
+            "The favorable, unfavorable, and ambiguous evidence-record procedure is new.",
+            "The explicit contrary-result rule for the later independent-demand test is new, though it responds to the source's evidence-standard concern."
+          ],
+          "cognitive_burden": [
+            "The evidence-and-claims record adds prospective classification and board-process work.",
+            "Exploring reciprocal obligations could consume negotiation time even though the arm does not require a particular concession.",
+            "Separating channel questions, claim language, commitment allocation, and independent-demand design creates several parallel workstreams before and after the pilot."
+          ]
+        }
+      },
+      "material_decision_difference": "present",
+      "inspection_limits": [
+        "Both arms preserve the same broad pilot direction, so the identified difference concerns pre-signing process, contract inquiry, evidence handling, and claim discipline rather than a different selected arm of the user's decision.",
+        "The source cannot establish whether the added recordkeeping or reciprocal-exposure inquiry would help this cooperative in practice.",
+        "No lineage or source-proxy material is available, and provenance cannot be inferred from length, organization, or polish.",
+        "No direct-only versus graph-expanded treatment comparison is supplied, so no graph-specific causal claim is available."
+      ],
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "indistinguishable",
+        "basis": [
+          "Both arms add source-responsive structures and reasoning operations beyond a direct recap.",
+          "Arm A uniquely formalizes three ledgers, while Arm B uniquely formalizes symmetric evidence treatment, an explicit falsifier, and a reciprocal-exposure question.",
+          "Those substantive differences do not identify which arm received added external context without forbidden lineage information."
+        ]
+      }
+    }
+  ],
+  "standdown_reviews": [
+    {
+      "case_id": "library-laptop-standdown",
+      "source_basis": [
+        "The user defines a six-week, one-branch pilot with half of the laptops remaining walk-in only.",
+        "Online, phone, desk, staff-assisted, paper-fallback, and large-print access paths are preserved.",
+        "The conversation defines measures for waiting, completed sessions, turn-aways, staff workload, assisted bookings, privacy, and accessibility.",
+        "The user defines early restoration triggers for repeated walk-in harm or a substantiated privacy failure.",
+        "The vendor is month-to-month, requires no hardware, supports export, and uses a seven-day reservation-record deletion policy without collecting browsing activity.",
+        "Relevant advisory groups reviewed the booking paths and their requested changes were incorporated.",
+        "The user rejects first-week online uptake as a permanence criterion and preserves the full six-week review.",
+        "The user explicitly states that no material decision question or unresolved concern remains before launch.",
+        "The mechanical observation reports zero unresolved mechanisms, zero candidates, zero graph calls, and no required graph traversal."
+      ],
+      "standdown_support": "supported",
+      "semantic_limits_of_mechanical_observation": [
+        "Zero candidates and zero graph calls establish the deterministic routing outcome, not semantic correctness or completeness.",
+        "The mechanical observation cannot prove that the pilot will be useful, equitable, private, accessible, or well executed.",
+        "It cannot detect undisclosed facts, future operational failures, or concerns that emerge during the pilot.",
+        "It does not make the source reasoning ground truth or human-validated."
+      ],
+      "risk_of_forced_additional_analysis": [
+        "Additional public revision could manufacture an unresolved concern after the user has already specified a reversible protocol, evidence gates, and restoration rules.",
+        "Forced pressure could increase cognitive and administrative burden without changing a live pre-launch decision.",
+        "It could obscure the user's explicit stopping point and weaken agency by treating a bounded decision as perpetually incomplete.",
+        "It could introduce unsupported conditions or delay a time-limited experiment that already contains monitoring and rollback.",
+        "Stand-down should not prevent reconsideration if new evidence, harm, or a genuinely unresolved concern appears during execution."
+      ]
+    }
+  ]
+}
