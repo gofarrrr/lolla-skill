@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-23 (graph-variance calibration result)
+Status date: 2026-07-23 (prospective agent-only graph replication contract)
 Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
@@ -28,7 +28,7 @@ usefulness, market value, and production readiness remain unknown.
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
 | What is unproven? | Reliable longitudinal understanding, answer improvement, real-user value, market demand, and production readiness. |
-| What may start next? | No graph-evaluation continuation is authorized. The variance calibration is complete but not evaluable after one unreplaced terminal failure; do not attribute or expand the graph. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
+| What may start next? | The exact provider-free agent-only graph replication may start only after its prospective contract PR merges: eight isolated generation contexts, two blind reviews, and—only if the missingness gate passes—two post-reveal review-specific interpretations. No provider, graph, runtime, human-label, usefulness, or traversal work is authorized. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
 
 ## Latest published checkpoint
 
@@ -38,8 +38,8 @@ Execution remains not ready: the principal-human source-first target and referen
 The provider-free [agent-only paired-delta screen](docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) preserves mixed benefit/harm reads, disagreement, duplicate-null equivalence, and stand-down across existing checked-in pairs. It does not isolate graph contribution or establish human usefulness.
 The founder has declined review participation. The preserved human lane remains blank and paused. The separate [agent-only graph-increment rehearsal](docs/conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) completed its six predeclared contexts: both blind reviewers detected the duplicate null, supported the stand-down, found a material difference in the new pair, and could not infer lineage. After freeze, Arm A was direct-only and Arm B was direct plus the current one-hop increment. This is bounded Product Delta process evidence, not completed F2/F3, graph causation, reference approval, human usefulness, or permission to expand traversal.
 The [graph-variance calibration](docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md) is complete. Three of four new generation attempts produced valid first-terminal outputs; one direct draw ended without a recoverable terminal answer and was not retried or replaced. Both blind reviews completed. The within-graph fresh pair received `present / present` material-difference reads, the available cross-condition pairs received `present / present` and `present / uncertain`, and the missing draw made the within-direct and second fresh cross pair unavailable. The frozen question is therefore `not_evaluable`. Ordinary same-condition variation is material in the available evidence; no graph attribution, answer-quality, expected-model-behavior, usefulness, or traversal decision follows.
-The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
-`1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
+The prospective [agent-only graph replication contract](docs/evals/lolla-agent-only-graph-replication-contract-v1.json) and [plan](plans/lolla-agent-only-graph-replication-2026-07-23.md) freeze the smallest disjoint single-case design that remains interpretable after any one generation failure: four new direct and four new direct-plus-current-one-hop draws, four within-condition pairs, four cross-condition pairs, two blind reviews, and two conditional post-reveal interpretations constrained to frozen review observations. Restart-safe direct terminal capture is required from the first attempt; all eight attempts run regardless of earlier failure; retry, healing, replacement, scoring, graph attribution, and product changes remain forbidden. The contract is prospective—no new semantic output exists until its first PR is merged.
+The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
 compiler inputs, source anchors, release identities, one published read
 boundary, one declared versioned pressure policy wrapper, and its frozen
@@ -293,7 +293,7 @@ The provider-free case-freeze candidate passes its mechanical gates, but F1 and 
 The completed automated rehearsal reused Product Delta for one direct versus direct-plus-current-one-hop simulation. Six first-terminal agent contexts and their exact hashes are frozen; both blind reviewers found a material pair difference while declaring lineage indistinguishable. Agent reads remain provisional, F2/F3 remain unrealized, and no provider, graph/runtime, causal, relevance, or usefulness claim follows.
 The follow-up variance calibration attempted four exact new generation contexts and completed both blind reviews without founder labeling. One direct draw failed without a recoverable terminal payload and was not replaced.
 The available within-graph pair itself had a material difference in both reviews, so ordinary run-to-run variation is not negligible. Because the within-direct pair and one cross pair are unavailable, the frozen question is not evaluable.
-No repeat, wider case, provider run, or graph change is authorized.
+The founder subsequently authorized one exact provider-free replication contract. It freezes eight new generation attempts, two blind reviews, and two conditional post-reveal interpretation contexts, with direct first-terminal capture and a mechanical gate that remains satisfiable after any single generation failure. No wider case, provider run, human-label substitution, graph change, traversal, score, causal claim, or usefulness claim is authorized.
 ## Current repository boundary
 
 The root entrypoints are intentionally small. The repository still contains a
