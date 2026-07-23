@@ -39,6 +39,17 @@ pairs, one exact duplicate, ten reviewer traps, and one legitimate stand-down.
 Fresh agent reads found mixed moves, harms, and disagreement; this is review-
 method evidence, not graph attribution, human usefulness, or live judging.
 
+The [agent-only graph-increment rehearsal contract](lolla-agent-only-graph-increment-rehearsal-contract-v1.json)
+and [plan](../../plans/lolla-agent-only-graph-increment-rehearsal-2026-07-23.md)
+preserve the unfilled principal-human experiment and freeze a narrower automated
+Product Delta development rehearsal. Neutral rehearsal arms inherit the exact
+direct-only and direct-plus-current-one-hop preview messages and schemas while
+remaining explicitly outside F2/F3 execution. Six fresh Codex collaboration
+contexts are predeclared; their ambient platform context and unavailable route,
+token, and cost custody prevent exact-provider-envelope or free-computation
+claims. The contract authorizes no provider/API call, graph/runtime change,
+human-usefulness claim, reference approval, winner, or traversal expansion.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
 Its active data packages are now governed by the
@@ -479,6 +490,12 @@ python3 scripts/evals/build_product_delta_paired_screen.py --validate-only
 python3 scripts/evals/validate_product_delta_paired_screen_reviews.py --validate-only
 ```
 
+Validate the frozen pre-output graph-increment rehearsal protocol:
+
+```bash
+python3 scripts/evals/build_product_delta_graph_increment_rehearsal.py --validate-only
+```
+
 Run the focused Product Delta tests:
 
 ```bash
@@ -490,6 +507,7 @@ python3 -m pytest -q \
   tests/test_product_delta_specialist_packets.py \
   tests/test_product_delta_specialist_contracts.py \
   tests/test_product_delta_boundary_lint.py \
+  tests/test_product_delta_graph_increment_rehearsal.py \
   tests/test_product_delta_paired_screen.py \
   tests/test_product_delta_batch_fixture.py \
   tests/test_product_delta_readiness.py

@@ -294,6 +294,63 @@ case numbers as case-specific outcome evidence.
 automatic continuous graph mutation without a concrete Lolla requirement and
 a separately frozen contract.
 
+## 2026-07-23 automated graph-increment rehearsal decision
+
+### Founder constraint
+
+The founder does not want to participate as a source-first reviewer or output
+labeler. The existing principal-human consumer-context experiment therefore
+remains blank, execution-not-ready, and paused. Agent output must not be copied
+into its target or used to approve its historical reference condition.
+
+### Authorized automated question
+
+The existing Product Delta owner may run one checked-in-safe development
+rehearsal:
+
+```text
+rehearsal_direct
+  exact lineage from the frozen direct-only preview
+
+versus
+
+rehearsal_direct_plus_current_one_hop
+  exact lineage from the frozen direct-plus-current-one-hop preview
+```
+
+The generated arms are not completed F2/F3 cells. Six isolated Codex
+collaboration contexts are predeclared for source-only proxy reads, generation,
+and blind paired review. Repository provider/API calls remain zero, while the
+ambient platform route, token use, and economic cost remain unavailable rather
+than being reported as zero.
+
+### Why this is not a parallel system
+
+The rehearsal reuses:
+
+- the existing case source, F2/F3 preview lineage, graph release, and planner
+  custody;
+- the existing response compiler and exact candidate-set validation;
+- the existing Product Delta traps, null, stand-down, atomic-move review, and
+  disagreement-preserving fan-in.
+
+No new semantic reader, graph evaluator, planner, compiler, scoring service, or
+runtime edge is authorized. Source-only agent reads remain provisional
+observations and cannot change the frozen routing input.
+
+### Falsifier and stop
+
+The rehearsal succeeds mechanically only if it preserves isolation, first
+terminal outputs, exact preview and wrapper hashes, direct-component identity,
+candidate/payload bijection, blind lineage, and non-scalar disagreement. A
+malformed arm, invented high-stakes fact, custody drift, proxy-as-human claim,
+or attempt to retry stops the case.
+
+Even a clean result may say only that one Codex-assisted simulation produced
+named source-reviewable differences. It cannot establish human usefulness,
+graph relevance, causal graph value, expected model behavior, or permission to
+expand beyond the current outgoing one-hop policy.
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,

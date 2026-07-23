@@ -1,0 +1,198 @@
+{
+  "agent_proxy_response_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "boundary": {
+        "additionalProperties": false,
+        "properties": {
+          "ground_truth": {
+            "const": false
+          },
+          "human_validated": {
+            "const": false
+          },
+          "provider_calls": {
+            "const": 0
+          },
+          "routing_changed": {
+            "const": false
+          }
+        },
+        "required": [
+          "human_validated",
+          "ground_truth",
+          "routing_changed",
+          "provider_calls"
+        ],
+        "type": "object"
+      },
+      "candidate_reviews": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "corrections_without_routing_effect": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "disposition": {
+              "enum": [
+                "source_consistent_observation",
+                "partly_source_consistent_observation",
+                "source_tension_observation",
+                "uncertain"
+              ]
+            },
+            "model_id": {
+              "enum": [
+                "signaling",
+                "social-proof"
+              ]
+            },
+            "source_grounded_reason": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "uncertainty": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "model_id",
+            "disposition",
+            "source_grounded_reason",
+            "corrections_without_routing_effect",
+            "uncertainty"
+          ],
+          "type": "object"
+        },
+        "maxItems": 2,
+        "minItems": 2,
+        "type": "array"
+      },
+      "disagreement_and_uncertainty": {
+        "items": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "reference_condition_read": {
+        "enum": [
+          "source_consistent_observation",
+          "partly_source_consistent_observation",
+          "source_tension_observation",
+          "uncertain_or_disputed"
+        ]
+      },
+      "review_id": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "reviewer_type": {
+        "const": "fresh_agent_post_seal_reference_proxy"
+      },
+      "schema_version": {
+        "const": "lolla.agent_reference_condition_proxy_review.v1"
+      },
+      "source_first_review_sha256": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "schema_version",
+      "review_id",
+      "reviewer_type",
+      "source_first_review_sha256",
+      "candidate_reviews",
+      "reference_condition_read",
+      "disagreement_and_uncertainty",
+      "boundary"
+    ],
+    "type": "object"
+  },
+  "evidence_class": "historical_direct_reference_candidate_review_by_agent_proxy_not_human_approval",
+  "historical_direct_reference_candidates": [
+    {
+      "candidate_origin": "direct_seed",
+      "consumer_locator": "result.json#/constitutional_graph_survival/active_pressure_items/0",
+      "model_id": "signaling",
+      "pressure_content": {
+        "candidate_origin": "direct_seed",
+        "challenge_card": {
+          "challenge_when": "Use as a pressure lens when the records support a credibility and signal-quality problem and a truth-aligned signal design could materially change the unresolved reasoning.",
+          "display_name": "Signaling",
+          "do_not_apply_when": "Do not apply without source support for a credibility and signal-quality problem, or when the pressure question could not materially change the truth-aligned signal design.",
+          "failure_signal": "Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.",
+          "model_id": "signaling",
+          "pressure_question": "What costly behavior would prove this signal is real rather than symbolic?",
+          "schema_version": "lolla.canonical_model_assessment_card.v3"
+        },
+        "model_id": "signaling",
+        "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+        "recalled_by_mechanism_ids": [
+          "lane2_recall_rank:000"
+        ]
+      },
+      "pressure_id": "constitutional_graph_pressure::direct_seed::signaling"
+    },
+    {
+      "candidate_origin": "direct_seed",
+      "consumer_locator": "result.json#/constitutional_graph_survival/active_pressure_items/1",
+      "model_id": "social-proof",
+      "pressure_content": {
+        "candidate_origin": "direct_seed",
+        "challenge_card": {
+          "challenge_when": "Use as a pressure lens when the records support a consensus and credibility shortcut problem and a social-proof stress test could materially change the unresolved reasoning.",
+          "display_name": "Social Proof",
+          "do_not_apply_when": "Do not apply without source support for a consensus and credibility shortcut problem, or when the pressure question could not materially change the social-proof stress test.",
+          "failure_signal": "Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+          "model_id": "social-proof",
+          "pressure_question": "Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?",
+          "schema_version": "lolla.canonical_model_assessment_card.v3"
+        },
+        "model_id": "social-proof",
+        "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+        "recalled_by_mechanism_ids": [
+          "lane2_recall_rank:001"
+        ]
+      },
+      "pressure_id": "constitutional_graph_pressure::direct_seed::social-proof"
+    }
+  ],
+  "historical_reference_boundary": {
+    "agent_proxy_dispositions_are_observations_not_approvals": true,
+    "is_oracle": false,
+    "principal_human_approved_now": false,
+    "source_reviewed_historically": true
+  },
+  "non_claims": [
+    "not principal-human review",
+    "not current human approval",
+    "not a routing instruction",
+    "not relevance or usefulness proof",
+    "not permission to edit the frozen generation pair"
+  ],
+  "open_only_after": {
+    "source_first_packet_sha256": "1d931928ec6d580e47b203db3ae3ae83b0e0cb79b40c7042aaaa0372496d4498",
+    "source_first_proxy_response_frozen": true
+  },
+  "rehearsal_id": "agent-only-graph-increment-rehearsal-2026-07-23",
+  "routing_boundary": {
+    "may_change_direct_candidate_ids": false,
+    "may_change_generation_packets": false,
+    "may_run_graph_or_planner": false,
+    "review_output_is_diagnostic_only": true,
+    "routing_input": false
+  },
+  "schema_version": "lolla.product_delta_agent_post_seal_reference_packet.v1",
+  "status": "post_source_seal_reference_review_only"
+}

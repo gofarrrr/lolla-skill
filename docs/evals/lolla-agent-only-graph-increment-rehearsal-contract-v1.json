@@ -1,0 +1,504 @@
+{
+  "schema_version": "lolla.product_delta_agent_graph_increment_rehearsal_contract.v1",
+  "date": "2026-07-23",
+  "status": "prospective_contract_frozen_before_agent_outputs",
+  "owner": "existing_offline_product_delta_evaluation",
+  "founder_decision": {
+    "decision": "automate_the_development_diagnostic_without_founder_review_participation",
+    "principal_human_lane": "preserved_unfilled_and_paused",
+    "agent_proxy_may_fill_principal_human_fields": false,
+    "agent_proxy_may_create_human_usefulness_evidence": false
+  },
+  "falsifiable_question": "In one retrospective checked-in-safe retailer case, what source-reviewable reasoning difference appears between an isolated rehearsal derived from the frozen direct-only preview and an isolated rehearsal derived from the frozen direct-plus-current-one-hop preview, and can blind fresh-agent reviewers distinguish new leverage from repetition, forced association, lost value, unsupported content, and burden without selecting a winner?",
+  "evidence_class": "codex_assisted_agent_only_development_rehearsal_not_principal_human_not_provider_execution_not_causal_identification",
+  "existing_owners_reused": {
+    "authoritative_source": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+    "case_candidate_manifest": "research/consumer-context-role-attribution-case-candidate-2026-07-23/manifest.json",
+    "pressure_components": "research/consumer-context-role-attribution-case-candidate-2026-07-23/pressure-components.json",
+    "direct_only_request_preview": "research/consumer-context-role-attribution-case-candidate-2026-07-23/request-previews/f2_fresh_human_controlled_fact_free_direct_only.json",
+    "direct_plus_graph_request_preview": "research/consumer-context-role-attribution-case-candidate-2026-07-23/request-previews/f3_fresh_human_controlled_fact_free_plus_current_graph.json",
+    "paired_delta_review_contract": "docs/evals/lolla-agent-only-paired-delta-screen-contract-v1.json",
+    "published_graph_reader": "engine.system_b.knowledge_substrate.PublishedKnowledgeSubstrate",
+    "planner": "engine.system_b.constitutional_pressure_planner.ConstitutionalPressurePlanner"
+  },
+  "input_locks": {
+    "source": {
+      "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+      "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+    },
+    "case_manifest": {
+      "path": "research/consumer-context-role-attribution-case-candidate-2026-07-23/manifest.json",
+      "sha256": "f97e86befdc9544c29c92c2be0986fb3f900d4ebde8efe41f1a843d2f8390810"
+    },
+    "pressure_components": {
+      "path": "research/consumer-context-role-attribution-case-candidate-2026-07-23/pressure-components.json",
+      "sha256": "55e0dc09c47dfa7e3aaaf1b60cd55698999699bec60267726ff951382c568075"
+    },
+    "f2_request_preview": {
+      "path": "research/consumer-context-role-attribution-case-candidate-2026-07-23/request-previews/f2_fresh_human_controlled_fact_free_direct_only.json",
+      "sha256": "4b6cf61d2990b6a6c937ade09c1308af8b2a5fc9f7d35f1671ede2059cd128c0"
+    },
+    "f3_request_preview": {
+      "path": "research/consumer-context-role-attribution-case-candidate-2026-07-23/request-previews/f3_fresh_human_controlled_fact_free_plus_current_graph.json",
+      "sha256": "35b5241a153221effc53b2d6cb2a38ec5f74a6a249336006912eb8f6ad4bc6ca"
+    }
+  },
+  "scope": {
+    "included_comparison": "rehearsal_direct_versus_rehearsal_direct_plus_current_one_hop",
+    "preview_lineage_only": {
+      "rehearsal_direct": "f2_fresh_human_controlled_fact_free_direct_only",
+      "rehearsal_direct_plus_current_one_hop": "f3_fresh_human_controlled_fact_free_plus_current_graph"
+    },
+    "rehearsal_outputs_complete_f2_or_f3": false,
+    "excluded_cells": [
+      "f0_fresh_transcript_only",
+      "f1_fresh_current_live_bridge_plus_current_graph",
+      "t0_trajectory_continuation_transcript_only",
+      "t3_trajectory_continuation_human_controlled_plus_current_graph"
+    ],
+    "context_mode": "fresh_reconstruction_prompt_level_role_attribution",
+    "direct_component_must_be_byte_identical": true,
+    "graph_increment_must_equal_existing_f3_increment": true,
+    "current_graph_policy_may_change": false,
+    "live_runtime_may_change": false,
+    "skill_may_change": false
+  },
+  "stage_order": [
+    {
+      "stage": "agent_proxy_source_reads",
+      "fresh_context_count": 2,
+      "visibility": "authoritative_source_only",
+      "freeze_before_next_stage": true,
+      "authority": "agent_proxy_diagnostic_only"
+    },
+    {
+      "stage": "post_seal_reference_condition_review",
+      "fresh_context_count": 2,
+      "visibility": "own_frozen_source_target_plus_historical_direct_reference_condition",
+      "freeze_before_next_stage": true,
+      "routing_effect": "none"
+    },
+    {
+      "stage": "isolated_generation_rehearsal",
+      "fresh_context_count": 2,
+      "visibility": "one_neutrally_aliased_request_packet_per_context",
+      "draws_per_arm": 1,
+      "automatic_retry": false,
+      "fallback": false,
+      "response_healing": false,
+      "preserve_first_terminal_result": true
+    },
+    {
+      "stage": "blind_paired_delta_review",
+      "fresh_context_count": 2,
+      "visibility": "authoritative_source_plus_anonymized_outputs_without_lineage",
+      "qualification_contract": "reuse_existing_agent_only_paired_delta_traps",
+      "freeze_before_lineage_reveal": true
+    },
+    {
+      "stage": "deterministic_consolidation",
+      "authority": "custody_and_shape_only",
+      "non_scalar_fan_in_only": true,
+      "preserve_disagreement": true
+    }
+  ],
+  "source_only_agent_proxy_read_fields": [
+    "source_read_complete",
+    "current_decision_or_position",
+    "strong_original_reasoning_to_preserve",
+    "material_unresolved_questions",
+    "what_would_count_as_new_decision_leverage",
+    "what_would_count_as_circular_restatement",
+    "what_would_count_as_forced_absorption_or_harm",
+    "uncertainty_and_alternative_readings"
+  ],
+  "source_first_agent_proxy_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "review_id",
+      "reviewer_type",
+      "fresh_context",
+      "source_read_complete",
+      "saw_candidate_identities_before_freeze",
+      "saw_prior_outputs_before_freeze",
+      "source_only_read",
+      "boundary"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "lolla.agent_source_first_proxy_review.v1"
+      },
+      "review_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "reviewer_type": {
+        "const": "fresh_agent_source_first_proxy"
+      },
+      "fresh_context": {
+        "const": true
+      },
+      "source_read_complete": {
+        "const": true
+      },
+      "saw_candidate_identities_before_freeze": {
+        "const": false
+      },
+      "saw_prior_outputs_before_freeze": {
+        "const": false
+      },
+      "source_only_read": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "current_decision_or_position",
+          "strong_original_reasoning_to_preserve",
+          "material_unresolved_questions",
+          "what_would_count_as_new_decision_leverage",
+          "what_would_count_as_circular_restatement",
+          "what_would_count_as_forced_absorption_or_harm",
+          "uncertainty_and_alternative_readings"
+        ],
+        "properties": {
+          "current_decision_or_position": {
+            "type": "string",
+            "minLength": 1
+          },
+          "strong_original_reasoning_to_preserve": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "material_unresolved_questions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "what_would_count_as_new_decision_leverage": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "what_would_count_as_circular_restatement": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "what_would_count_as_forced_absorption_or_harm": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "uncertainty_and_alternative_readings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "boundary": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "human_validated",
+          "ground_truth",
+          "routing_authority",
+          "provider_calls"
+        ],
+        "properties": {
+          "human_validated": {
+            "const": false
+          },
+          "ground_truth": {
+            "const": false
+          },
+          "routing_authority": {
+            "const": false
+          },
+          "provider_calls": {
+            "const": 0
+          }
+        }
+      }
+    }
+  },
+  "post_seal_reference_agent_proxy_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "review_id",
+      "reviewer_type",
+      "source_first_review_sha256",
+      "candidate_reviews",
+      "reference_condition_read",
+      "disagreement_and_uncertainty",
+      "boundary"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "lolla.agent_reference_condition_proxy_review.v1"
+      },
+      "review_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "reviewer_type": {
+        "const": "fresh_agent_post_seal_reference_proxy"
+      },
+      "source_first_review_sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "candidate_reviews": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "model_id",
+            "disposition",
+            "source_grounded_reason",
+            "corrections_without_routing_effect",
+            "uncertainty"
+          ],
+          "properties": {
+            "model_id": {
+              "enum": [
+                "signaling",
+                "social-proof"
+              ]
+            },
+            "disposition": {
+              "enum": [
+                "source_consistent_observation",
+                "partly_source_consistent_observation",
+                "source_tension_observation",
+                "uncertain"
+              ]
+            },
+            "source_grounded_reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "corrections_without_routing_effect": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "uncertainty": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "reference_condition_read": {
+        "enum": [
+          "source_consistent_observation",
+          "partly_source_consistent_observation",
+          "source_tension_observation",
+          "uncertain_or_disputed"
+        ]
+      },
+      "disagreement_and_uncertainty": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "boundary": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "human_validated",
+          "ground_truth",
+          "routing_changed",
+          "provider_calls"
+        ],
+        "properties": {
+          "human_validated": {
+            "const": false
+          },
+          "ground_truth": {
+            "const": false
+          },
+          "routing_changed": {
+            "const": false
+          },
+          "provider_calls": {
+            "const": 0
+          }
+        }
+      }
+    }
+  },
+  "post_seal_reference_review": {
+    "allowed_dispositions": [
+      "source_consistent_observation",
+      "partly_source_consistent_observation",
+      "source_tension_observation",
+      "uncertain"
+    ],
+    "approval_or_rejection_authority": false,
+    "corrections_are_review_observations_not_routing_changes": true,
+    "observations_are_hidden_from_generation_and_blind_pair_review": true,
+    "candidate_deletion_or_replacement_for_this_rehearsal": false,
+    "reason": "The experiment tests the already frozen current graph projection. Letting an agent proxy silently rewrite the seeds would probabilistically re-domesticate the pressure and change the tested condition."
+  },
+  "generation_rehearsal": {
+    "runner_type": "isolated_codex_subagent_development_rehearsal",
+    "predeclared_fresh_agent_context_count": 6,
+    "context_allocation": {
+      "source_first_and_post_seal_followup": 2,
+      "isolated_generation": 2,
+      "blind_paired_review": 2
+    },
+    "underlying_platform_model_route_token_and_cost_custody": "unavailable_to_repository_operator",
+    "do_not_call_agent_sessions_no_ai_calls_or_economically_free": true,
+    "ambient_platform_system_and_developer_context_present": true,
+    "exact_three_message_provider_envelope_claimed": false,
+    "task_wrapper_hash_required_separately_from_preview_hash": true,
+    "provider_api_call_from_repository": false,
+    "provider_contract_selected": false,
+    "model_identity_and_generation_settings_frozen": false,
+    "request_messages_and_response_schema_inherited_exactly_from_checked_in_previews": true,
+    "terminal_schema_validation_owner": "engine.system_b.simulated_reliability_v1.compile_pressure_response",
+    "invalid_first_terminal_result_stops_arm": true,
+    "invented_high_stakes_fact_or_causation_stops_case_without_retry": true,
+    "each_generation_context_sees_only_its_own_neutral_packet": true,
+    "generation_contexts_may_not_see_agent_proxy_reads_or_sibling_output": true,
+    "output_comparison_is_not_model_performance_evidence": true
+  },
+  "blind_review_contract": {
+    "unit": "one_atomic_reasoning_move_plus_answer_level_preservation_review",
+    "required_categories": [
+      "new_source_grounded_leverage",
+      "grounded_rejection",
+      "grounded_park",
+      "repetition_or_circular_restatement",
+      "forced_absorption",
+      "unsupported_fact_causation_or_specificity",
+      "useful_original_value_preserved",
+      "useful_original_value_lost",
+      "public_friction_or_cognitive_burden",
+      "reviewer_uncertainty_and_disagreement"
+    ],
+    "material_difference_values": [
+      "present",
+      "absent",
+      "uncertain"
+    ],
+    "arm_origin_guess_values": [
+      "A",
+      "B",
+      "indistinguishable"
+    ],
+    "winner_forbidden": true,
+    "scalar_score_forbidden": true,
+    "majority_vote_forbidden": true,
+    "lineage_hidden_until_reviews_frozen": true,
+    "reviewers_read_authoritative_source_independently": true,
+    "agent_proxy_source_reads_hidden_until_reviews_frozen": true
+  },
+  "null_and_stand_down_controls": {
+    "reuse_existing_qualification_traps": true,
+    "reuse_existing_exact_duplicate_null": true,
+    "reuse_existing_quiet_library_stand_down": true,
+    "new_graph_pair_may_not_be_interpreted_without_those_control_results": true
+  },
+  "predeclared_paths": {
+    "protocol_directory": "research/agent-only-graph-increment-rehearsal-2026-07-23",
+    "source_first_packet": "research/agent-only-graph-increment-rehearsal-2026-07-23/source-first-packet.json",
+    "post_seal_reference_packet": "research/agent-only-graph-increment-rehearsal-2026-07-23/post-seal-reference-packet.json",
+    "generation_packets": "research/agent-only-graph-increment-rehearsal-2026-07-23/generation-packets.json",
+    "sealed_manifest": "research/agent-only-graph-increment-rehearsal-2026-07-23/sealed-manifest.json",
+    "review_directory": "reviews/codex-assisted/agent-only-graph-increment-rehearsal-v1"
+  },
+  "stop_rules": [
+    "stop_if_an_agent_output_is_written_into_principal_human_fields",
+    "stop_if_the_existing_human_contract_or_blank_target_would_be_rewritten",
+    "stop_if_source_first_agents_receive_graph_candidates_prior_outputs_or_request_previews_before_freeze",
+    "stop_if_agent_proxy_corrections_silently_delete_or_replace_frozen_candidates",
+    "stop_if_direct_content_differs_between_the_two_generation_arms",
+    "stop_if_the_graph_arm_contains_any_increment_beyond_the_frozen_current_one_hop_projection",
+    "stop_on_the_first_terminal_generation_schema_or_custody_failure_without_retry",
+    "stop_if_reviewers_receive_lineage_before_their_substantive_reviews_are_frozen",
+    "stop_if_generation_agents_receive_proxy_reads_sibling_packets_or_sibling_outputs",
+    "stop_if_a_generated_answer_invents_a_high_stakes_fact_or_causation",
+    "stop_if_outputs_are_ranked_scored_voted_or_called_better",
+    "stop_if_agent_session_route_token_or_cost_is_reported_as_known_zero",
+    "stop_if_the_result_is_called_human_usefulness_graph_causation_expected_model_behavior_or_runtime_evidence",
+    "stop_before_any_provider_api_call_private_archive_read_graph_change_runtime_change_or_skill_change"
+  ],
+  "authorization": {
+    "codex_agent_only_rehearsal": true,
+    "provider_calls": 0,
+    "provider_cost_usd": 0.0,
+    "private_archive_inspection": false,
+    "principal_human_review": false,
+    "human_usefulness_claim": false,
+    "graph_policy_change": false,
+    "runtime_change": false,
+    "skill_change": false,
+    "provider_backed_execution": false
+  },
+  "non_claims": [
+    "not principal human review",
+    "not a source-first human target",
+    "not a substitute for the preserved principal human lane",
+    "not completion of consumer-context contract v1",
+    "not evidence that consumer-context contract v1 is execution-ready",
+    "not human usefulness evidence",
+    "not provider execution",
+    "not exact execution of the frozen F2 or F3 provider envelopes",
+    "not approval or rejection of the historical reference condition",
+    "not F1 semantic-bridge evidence",
+    "not consumer-context interaction evidence",
+    "not same-context self-justification evidence",
+    "not proof that fresh context is superior",
+    "not expected model behavior",
+    "not causal identification",
+    "not proof that graph relations are relevant or correct",
+    "not graph-value evidence",
+    "not graph-specific causal evidence",
+    "not proof that one hop is optimal",
+    "not permission to expand traversal",
+    "not answer quality scoring",
+    "not proof that either answer is correct or better",
+    "not evidence of a better decision or human aha",
+    "not a digital twin of founder or user preferences",
+    "not a winner selection",
+    "not agent or automatic action authority",
+    "not runtime graph planner compiler skill receipt or interface promotion",
+    "not product or production-readiness evidence"
+  ]
+}
