@@ -7,6 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PATH = ROOT / "scripts/evals/validate_stage0_public_handoff.py"
@@ -57,6 +59,65 @@ def test_public_handoff_rejects_stale_root_claim() -> None:
 
     assert receipt["status"] == "invalid"
     assert "forbidden stale public claim: architecture is sound" in errors
+
+
+@pytest.mark.parametrize(
+    ("source_text", "replacement", "required_term"),
+    (
+        (
+            "there may be no known correct answer or best lens",
+            "there is always one known correct answer and best lens",
+            "there may be no known correct answer or best lens",
+        ),
+        (
+            "source-first human target protects meaning and exposes effects",
+            "source-first human target supplies the correct answer",
+            "a source-first human target protects meaning and exposes effects; it is not",
+        ),
+        (
+            "A “digital twin” is a metaphor for an inspectable second reasoning surface",
+            "A “digital twin” reproduces the user's mind",
+            "a “digital twin” is a metaphor for an inspectable second reasoning surface",
+        ),
+        (
+            "A mental model contributes a reasoning operation",
+            "A mental model contributes a factual answer",
+            "a mental model contributes a reasoning operation",
+        ),
+        (
+            "Fact-free pressure is not fact-free judgment.",
+            "Fact-free pressure is a complete judgment.",
+            "fact-free pressure is not fact-free judgment",
+        ),
+        (
+            "Use Lolla as a camera, not an engine",
+            "Use Lolla as an engine, not a camera",
+            "use lolla as a camera, not an engine",
+        ),
+        (
+            "analysis theater",
+            "validated insight",
+            "analysis theater",
+        ),
+    ),
+)
+def test_public_handoff_requires_reasoning_camera_boundary(
+    source_text: str,
+    replacement: str,
+    required_term: str,
+) -> None:
+    validator = _load_validator()
+    agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    assert source_text in agents
+    errors, receipt = validator.validate(
+        ROOT,
+        text_overrides={"AGENTS.md": agents.replace(source_text, replacement, 1)},
+    )
+
+    assert receipt["status"] == "invalid"
+    assert (
+        f"AGENTS.md missing required public-handoff term: {required_term}"
+    ) in errors
 
 
 def test_public_handoff_rejects_provider_activity_and_question_drift() -> None:
