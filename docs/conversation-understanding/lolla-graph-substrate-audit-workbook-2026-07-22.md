@@ -991,3 +991,98 @@ stochasticity/order policy, blind-review boundary, and separate founder
 authorization. Later execution additionally needs a call/cost/privacy
 contract. If no honest context implementation can be frozen, the live same-
 context result remains observational and cannot support a causal context claim.
+
+## Prospective continuation — role/attribution case candidate
+
+Date: 2026-07-23
+Evidence class: retrospective mechanism-replay preparation and local
+structural/custody evidence; not principal-human, provider, causal, usefulness,
+or runtime evidence
+Provider calls and cost: 0 and `$0.00`
+
+### Question and one allowed change
+
+The case candidate freezes one question:
+
+> Does assistant-role history versus attributed transcript evidence change the
+> pressure-specific delta when the complete pressure presentation is fixed?
+
+The only allowed change is the prompt-level role/attribution representation.
+It is not an exact live trajectory fork. No graph direction, hop depth, slot,
+active/reserve policy, ranking, runtime, or receipt changed.
+
+### Case classification
+
+The checked-in retailer-pilot source at
+`../../research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt`
+was selected because it is shareable, realistic enough for a narrow mechanism
+test, and has a named unresolved evidence problem.
+
+It is not a clean prospective graph-value case. The historical
+signaling/social-proof target and earlier useful fresh-pressure output were
+already seen. The candidate is therefore classified as
+`retrospective_mechanism_replay_case_preparation`; reviewer expectancy and case
+selection remain explicit competing explanations.
+
+### Existing ownership chain
+
+The implementation reuses:
+
+- `PublishedKnowledgeSubstrate` for exact publication identity;
+- `ConstitutionalPressurePlanner` for direct/graph allocation;
+- constitutional graph survival for live-compatible active/reserve custody;
+- prospective portfolio custody for every exact path in the bounded scope;
+- simulated-reliability V1 for existing pressure packets, prompts, and schemas;
+- consumer-context contract V1 for the six cell IDs and claim limits.
+
+The new builder serializes a provider-free experiment candidate over those
+owners. It does not introduce a second graph loader, compiler, planner,
+semantic reader, or reconsideration runtime.
+
+### Mechanical graph result
+
+The proposed fact-free reference projects the two historically protected
+models `signaling` and `social-proof`. Principal-human approval remains
+missing. Under the unchanged current outgoing one-hop policy, both are direct
+active and the graph adds:
+
+- `confirmation-bias` through the antagonist slot;
+- `incentives` through the tension slot;
+- `abstraction` through the ally slot.
+
+Six eligible graph targets remain reserve. Every one of the five active
+pressure IDs maps to exactly one presented payload item. The receipt records
+zero missing, extra, merged, or duplicated items.
+
+### Request and review custody
+
+The generated candidate is
+`../../research/consumer-context-role-attribution-case-candidate-2026-07-23/`.
+It has six request-preview slots, a predeclared hash-randomized execution
+order, a one-draw/no-retry policy, a blank source-first target, and a
+non-scalar blind-review form.
+
+The following equality controls pass:
+
+- F2 direct content equals the direct component of F3;
+- F3 complete pressure presentation equals T3;
+- F0 explicit null pressure equals T0.
+
+Five provider-neutral envelopes are complete. F1 is explicitly blocked because
+this repository contains no current-live semantic-bridge output for the exact
+source. An older role/mechanism reader, R4, or a local deterministic proxy was
+not substituted. That missing state prevents a false “complete” receipt and
+keeps execution readiness false.
+
+### Gate and next owner
+
+The next owner is a principal human. They must read only the authoritative
+source, complete and sign the source-only target, and then approve, correct, or
+reject the proposed reference condition. The builder filled no human fields.
+
+Provider/model/interface settings, F1 semantic supply, tokenizer counts, call
+maximum, USD ceiling, and founder execution authorization remain missing.
+Provider execution is not the next automatic step. See
+`lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`
+and
+`../../plans/lolla-consumer-context-role-attribution-case-candidate-2026-07-23.md`.
