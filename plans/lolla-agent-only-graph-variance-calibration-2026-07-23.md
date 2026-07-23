@@ -2,10 +2,25 @@
 
 Date: 2026-07-23
 
-Status: prospective provider-free contract frozen before new semantic outputs;
-execute only after the contract PR is merged
+Status: completed; frozen question not evaluable after one unreplaced terminal
+failure
 
 Owner: existing offline Product Delta evaluation
+
+Result:
+[`lolla-agent-only-graph-variance-calibration-result-2026-07-23.md`](../docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md)
+
+Closeout decision:
+`preserve_not_evaluable_variance_result_and_do_not_attribute_or_expand_graph`
+
+Three of four new generation attempts produced valid first-terminal outputs.
+One direct-condition attempt ended without a recoverable terminal payload and
+was not retried or replaced. Both blind reviews completed. The within-graph
+fresh pair had a material difference in both reviews; available cross-condition
+pairs were `present/present` and `present/uncertain`. Because the within-direct
+pair and one cross-condition pair were unavailable, the prospective
+within-versus-cross comparison was not evaluable. The plan is closed, not a
+standing authorization for another calibration.
 
 Repository provider/API calls authorized: 0
 

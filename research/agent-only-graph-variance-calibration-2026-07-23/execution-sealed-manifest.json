@@ -1,0 +1,327 @@
+{
+  "blind_review_packet": {
+    "bytes": 55688,
+    "path": "research/agent-only-graph-variance-calibration-2026-07-23/blind-review-packet.json",
+    "sha256": "a528d7f6366ef34acdd268659c227dc5bac54c75ce1295e5e16365938f53280d"
+  },
+  "boundary": {
+    "answer_quality_scored": false,
+    "codex_blind_review_contexts_predeclared": 2,
+    "codex_contexts_called_no_ai_calls_or_economically_free": false,
+    "codex_generation_contexts_attempted": 4,
+    "codex_platform_route_token_and_cost": "unavailable_to_repository_operator",
+    "compiler_changed": false,
+    "graph_causation_established": false,
+    "graph_policy_changed": false,
+    "graph_relevance_established": false,
+    "graph_traversal_invoked": false,
+    "human_review_completed": false,
+    "human_usefulness_established": false,
+    "live_skill_invoked": false,
+    "planner_changed": false,
+    "private_archives_read": false,
+    "repository_provider_api_calls": 0,
+    "repository_provider_api_cost_usd": 0.0,
+    "repository_provider_execution_authorized": false,
+    "runtime_invoked": false,
+    "winner_selected": false
+  },
+  "calibration_id": "agent-only-graph-variance-calibration-2026-07-23",
+  "comparison_lineage": {
+    "calibration-pair-01": {
+      "availability": "not_evaluable",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 1,
+        "sample_alias": "sample-cinder",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-cinder.json"
+      },
+      "predeclared_pair_id": "within-direct-fresh",
+      "right": {
+        "condition": "rehearsal_direct",
+        "draw_number": 2,
+        "sample_alias": "sample-moss",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-failure-sample-moss.json"
+      },
+      "sealed_pair_role": "within_condition",
+      "terminal_refs": {
+        "left": {
+          "bytes": 5639,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-cinder.json",
+          "sha256": "fad275a550dd1efd1f320f25c10a6084629de86c241d9edaa622106670d3fffa"
+        },
+        "right": {
+          "bytes": 709,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-failure-sample-moss.json",
+          "sha256": "8de557bd6399837146360a21769c3fa024dcc20760caea48a611747d7a05a344"
+        }
+      }
+    },
+    "calibration-pair-02": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 1,
+        "sample_alias": "sample-slate",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json"
+      },
+      "predeclared_pair_id": "within-graph-fresh",
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 1,
+          "sample_alias": "sample-slate",
+          "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 2,
+          "sample_alias": "sample-linen",
+          "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-linen.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 2,
+        "sample_alias": "sample-linen",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-linen.json"
+      },
+      "sealed_pair_role": "within_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 9368,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json",
+          "sha256": "fc071aeb90cfde86270b9e5025a28acf2b705095622fa054168d0565295c3c5c"
+        },
+        "B": {
+          "bytes": 10134,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-linen.json",
+          "sha256": "fbd072c3b4decc89cd74a3e3ae819560744a9c63e578c8bc5e6ab8f187a59b72"
+        }
+      }
+    },
+    "calibration-pair-03": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 0,
+        "terminal_output_path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-B.json"
+      },
+      "predeclared_pair_id": "cross-historical",
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 0,
+          "terminal_output_path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-A.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct",
+          "draw_number": 0,
+          "terminal_output_path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-B.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 0,
+        "terminal_output_path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-A.json"
+      },
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 10965,
+          "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-A.json",
+          "sha256": "7bd109d722ab181a0fecdac32b014782daf7e706f9a5ec5a08e98cfdfb9a7fb2"
+        },
+        "B": {
+          "bytes": 7048,
+          "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-B.json",
+          "sha256": "31a7c066f9ef06461ae914abf6e95aa032c7be2c16c57a63cd3d2eb8ba0a4629"
+        }
+      }
+    },
+    "calibration-pair-04": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 1,
+        "sample_alias": "sample-cinder",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-cinder.json"
+      },
+      "predeclared_pair_id": "cross-fresh-1",
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct",
+          "draw_number": 1,
+          "sample_alias": "sample-cinder",
+          "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-cinder.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 1,
+          "sample_alias": "sample-slate",
+          "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 1,
+        "sample_alias": "sample-slate",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json"
+      },
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 5639,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-cinder.json",
+          "sha256": "fad275a550dd1efd1f320f25c10a6084629de86c241d9edaa622106670d3fffa"
+        },
+        "B": {
+          "bytes": 9368,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json",
+          "sha256": "fc071aeb90cfde86270b9e5025a28acf2b705095622fa054168d0565295c3c5c"
+        }
+      }
+    },
+    "calibration-pair-05": {
+      "availability": "not_evaluable",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 2,
+        "sample_alias": "sample-moss",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-failure-sample-moss.json"
+      },
+      "predeclared_pair_id": "cross-fresh-2",
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 2,
+        "sample_alias": "sample-linen",
+        "terminal_state_path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-linen.json"
+      },
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "left": {
+          "bytes": 709,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-failure-sample-moss.json",
+          "sha256": "8de557bd6399837146360a21769c3fa024dcc20760caea48a611747d7a05a344"
+        },
+        "right": {
+          "bytes": 10134,
+          "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-linen.json",
+          "sha256": "fbd072c3b4decc89cd74a3e3ae819560744a9c63e578c8bc5e6ab8f187a59b72"
+        }
+      }
+    }
+  },
+  "generation_state_validation": {
+    "sample-cinder": {
+      "all_active_candidates_accounted_for": true,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 2,
+      "first_terminal_result_preserved": true,
+      "invented_high_stakes_fact_or_causation_detected": false,
+      "response_schema_sha256": "ac7eb375552da114db10579694005678c717c790a6f47a36be660526b6146106",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-linen": {
+      "all_active_candidates_accounted_for": true,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 5,
+      "first_terminal_result_preserved": true,
+      "invented_high_stakes_fact_or_causation_detected": false,
+      "response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-moss": {
+      "first_terminal_result_preserved": false,
+      "retry_fallback_healing_replacement_or_imputation": false,
+      "semantic_correctness_validated": false,
+      "terminal_status": "failed"
+    },
+    "sample-slate": {
+      "all_active_candidates_accounted_for": true,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 5,
+      "first_terminal_result_preserved": true,
+      "invented_high_stakes_fact_or_causation_detected": false,
+      "response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    }
+  },
+  "handling": {
+    "failed_sample_retried_healed_replaced_or_imputed": false,
+    "show_to_blind_reviewers": false,
+    "show_to_generation_agents": false,
+    "unblind_only_after_both_reviews_are_frozen": true
+  },
+  "input_refs": {
+    "authoritative_source": {
+      "bytes": 4936,
+      "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+      "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+    },
+    "control_blind_packets": {
+      "bytes": 76286,
+      "path": "research/agent-only-paired-delta-screen-2026-07-23/blind-packets.json",
+      "sha256": "f6b026c069c73a5cc64775ad750edf9d6ef9fbbe845b3184f55067fba8811797"
+    },
+    "control_sealed_manifest": {
+      "bytes": 17443,
+      "path": "research/agent-only-paired-delta-screen-2026-07-23/sealed-manifest.json",
+      "sha256": "66db182caa656b6e560295e60a10225f1dee959fb1d4879d3d211db9692275ec"
+    },
+    "generation_packets": {
+      "bytes": 86894,
+      "path": "research/agent-only-graph-variance-calibration-2026-07-23/generation-packets.json",
+      "sha256": "8d78b10d1a2c7b477add834d916a049ca7ded20db87b896081986a84c35c8039"
+    },
+    "generation_states": {
+      "sample-cinder": {
+        "bytes": 5639,
+        "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-cinder.json",
+        "sha256": "fad275a550dd1efd1f320f25c10a6084629de86c241d9edaa622106670d3fffa"
+      },
+      "sample-linen": {
+        "bytes": 10134,
+        "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-linen.json",
+        "sha256": "fbd072c3b4decc89cd74a3e3ae819560744a9c63e578c8bc5e6ab8f187a59b72"
+      },
+      "sample-moss": {
+        "bytes": 709,
+        "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-failure-sample-moss.json",
+        "sha256": "8de557bd6399837146360a21769c3fa024dcc20760caea48a611747d7a05a344"
+      },
+      "sample-slate": {
+        "bytes": 9368,
+        "path": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-sample-slate.json",
+        "sha256": "fc071aeb90cfde86270b9e5025a28acf2b705095622fa054168d0565295c3c5c"
+      }
+    },
+    "portfolio_bundle": {
+      "bytes": 75572,
+      "path": "research/consumer-context-role-attribution-case-candidate-2026-07-23/portfolio-bundle.json",
+      "sha256": "5838cee65d8a731271997f8cd39ba09aa9ced221c04ff9f7de8727b0830df8ca"
+    },
+    "preoutput_sealed_manifest": {
+      "bytes": 10451,
+      "path": "research/agent-only-graph-variance-calibration-2026-07-23/sealed-manifest.json",
+      "sha256": "244cbc5a4178f8723e79b61625c56d5f7c77e27ad88e994dfcdf82e51f928148"
+    }
+  },
+  "non_claims": [
+    "not principal-human review",
+    "not provider execution or an exact standalone provider envelope",
+    "not a provider or model comparison",
+    "not a statistically powered variance estimate",
+    "not graph causation, relevance, value, or usefulness evidence",
+    "not proof that either answer is better",
+    "not expected model behavior",
+    "not completion of F2 or F3",
+    "not permission to expand traversal",
+    "not a live skill, runtime, planner, compiler, graph, or interface change"
+  ],
+  "schema_version": "lolla.product_delta_graph_variance_execution_sealed_manifest.v1",
+  "status": "three_generation_outputs_valid_one_first_terminal_failure_blind_inputs_frozen"
+}
