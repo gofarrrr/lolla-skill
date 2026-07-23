@@ -59,6 +59,26 @@ def test_public_handoff_rejects_stale_root_claim() -> None:
     assert "forbidden stale public claim: architecture is sound" in errors
 
 
+def test_public_handoff_requires_reasoning_camera_boundary() -> None:
+    validator = _load_validator()
+    agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    errors, receipt = validator.validate(
+        ROOT,
+        text_overrides={
+            "AGENTS.md": agents.replace(
+                "Fact-free pressure is not fact-free judgment.",
+                "Fact-free pressure is a complete judgment.",
+            )
+        },
+    )
+
+    assert receipt["status"] == "invalid"
+    assert (
+        "AGENTS.md missing required public-handoff term: "
+        "fact-free pressure is not fact-free judgment"
+    ) in errors
+
+
 def test_public_handoff_rejects_provider_activity_and_question_drift() -> None:
     validator = _load_validator()
     packet = json.loads(PACKET_PATH.read_text(encoding="utf-8"))

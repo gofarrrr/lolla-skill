@@ -1086,3 +1086,92 @@ Provider execution is not the next automatic step. See
 `lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`
 and
 `../../plans/lolla-consumer-context-role-attribution-case-candidate-2026-07-23.md`.
+
+## Founder clarification — reasoning camera, no answer oracle
+
+Date: 2026-07-23
+Evidence class: founder product-intent clarification plus maintainer
+architecture read; not provider, human-usefulness, traversal, runtime, or
+answer-quality evidence
+Provider calls and cost: 0 and `$0.00`
+
+### What was inspected
+
+The clarification was compared with the current Constitution v5,
+`AGENTS.md`, `PROJECT_STATUS.md`, `HOW_IT_WORKS.md`, the repository-local graph
+result and operations reference, the evidence gates, and consumer-context
+contract v1. Venkatesh Rao's 2026 essay
+[“A Camera, Not an Engine II”](https://contraptions.venkateshrao.com/p/a-camera-not-an-engine-ii)
+was read as an external conceptual reference, not as Lolla evidence or
+authority.
+
+### Product intent clarified
+
+Lolla is aimed at consequential, low-playability situations where the facts,
+frame, values, trade-offs, and possible actions are incomplete. There may be no
+known correct answer, best framing, or best mental model before pressure is
+seen. A source-first human target is therefore not an answer key. It preserves
+the current meaning, uncertainties, valuable reasoning, forcing risks, and
+review conditions so later effects can be inspected without declaring the
+decision in advance.
+
+The conversation is both authoritative evidence and a conditioning field. A
+fluent model tends to continue the frame, omissions, sycophancy, and coherence
+already present. Mental-model pressure is meant to introduce a bounded
+reasoning operation that this field may not summon: invert the problem, inspect
+incentives, expose a feedback loop, test second-order effects, consider
+optionality, or ask a different failure question. The lens supplies a way to
+look, not a case fact, conclusion, or obligation to use it.
+
+“Fact-free” applies to controlled recall, not final judgment. Withholding case
+facts from routing helps prevent semantic similarity from defining the limits
+of thinkability. The authoritative conversation must return before the
+reasoner applies, rejects, or parks a lens. The reasoner and human may discover
+usefulness only after inspection; neither prior selection nor graph
+reachability certifies it.
+
+The camera/engine distinction names the desired posture. Lolla should increase
+inspectable information, alternative frames, and feedback before action outruns
+understanding. It must not become an engine of activity whose proxy for success
+is more applied models, more prose, more certainty, or a smoother revised
+answer. Bounds and stopping rules remain necessary because unlimited
+exploration can become analysis theater. They control volume and time; they
+must not smuggle a contextual relevance oracle back in.
+
+The “digital twin” metaphor means an inspectable second reasoning surface over
+the preserved exchange. It does not mean that Lolla reproduces the user, the
+agent, their mind, or an independently correct judge.
+
+### What changed and did not change
+
+`AGENTS.md` now makes the no-oracle, reasoning-operation, fact-free
+recall/fact-constrained judgment, digital-twin, camera/engine, and stopping
+boundaries explicit. The existing public-handoff validator and regression test
+make the clarification durable.
+
+No prompt, graph relation, direct seed, traversal direction, hop depth, active
+or reserve budget, planner, compiler, pressure payload, provider route, runtime,
+receipt claim, Atlas surface, or human field changed.
+
+### Remaining product questions
+
+The current graph only partially tests this vision. Its direct supply is still
+conditioned by semantic interpretation, while deterministic outgoing one-hop
+expansion creates bounded opportunities beyond those seeds. It is unknown
+whether that policy produces enough non-obvious reasoning operations, whether
+the reasoner seriously attempts them, and whether the human can discover an
+`aha` that the public revision does not preserve.
+
+Those questions do not authorize exhaustive 222-lens use, a relevance scorer,
+incoming or two-hop traversal, deterministic rotation, functional portfolios,
+or direct human pressure exposure. Each is a separate future product or
+experimental choice.
+
+### Next decision and owner
+
+The founder owns the next product question: after this clarification, which
+observable outcome would show that Lolla increased the space of thought without
+pretending to know the answer and without causing analysis theater? That future
+contract should examine information gain, non-obvious questions or options,
+grounded rejection/parking, human `aha`, correction burden, lost value, and
+stopping behavior as separate observations—not one “good answer” score.

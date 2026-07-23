@@ -6,12 +6,14 @@ project boundary or the next decision.
 
 ## Product in one paragraph
 
-Lolla is an experimental reasoning-pressure and audit system. It preserves a
-rich conversation, uses LLMs to interpret its messy meaning, uses deterministic
-machinery and a curated mental-model graph to introduce provenance-bearing
-external pressure, asks a reasoner to reconsider that pressure, and records the
-process. Lolla is designed to make another angle inspectable—not to guarantee a
-better answer, certify reasoning quality, or remove human decision authority.
+Lolla is an experimental reasoning-pressure and audit system for consequential,
+open situations where facts, frames, values, and trade-offs are incomplete and
+there may be no known correct answer or best lens. It preserves a rich
+conversation, uses LLMs to interpret its messy meaning, and uses deterministic
+machinery plus a curated mental-model graph to introduce provenance-bearing
+external pressure. The reasoner reconsiders; the system records the process.
+Lolla makes additional ways of seeing inspectable. It does not select an oracle
+answer, certify reasoning quality, or remove human decision authority.
 
 ## Universal cold start
 
@@ -68,6 +70,29 @@ The human owns the decision and its consequences.
 
 Consequences:
 
+- Do not define “good” as agreement with a reference answer, maximum pressure
+  application, or selection of the lenses most similar to the conversation.
+  A source-first human target protects meaning and exposes effects; it is not
+  an oracle for the correct decision or the best mental model.
+- Treat the conversation as both authoritative evidence and a conditioning
+  field. A fluent model may continue its framing, omissions, sycophancy, and
+  coherence. Probabilistic familiarity is not the boundary of thinkability.
+- A “digital twin” is a metaphor for an inspectable second reasoning surface,
+  not a claim to reproduce the user, the agent, or their mind. It preserves the
+  exchange and introduces reasoning operations the prompt may never summon.
+- A mental model contributes a reasoning operation, question, counterframe,
+  failure mode, or test—not a case fact or conclusion. Inversion, for example,
+  tells the reasoner how to look again; it does not supply the answer.
+- Fact-free pressure is not fact-free judgment. Case facts may be withheld from
+  controlled graph recall so routing does not collapse into semantic matching;
+  reattach the authoritative conversation before application or disposition.
+- Use Lolla as a camera, not an engine: increase inspectable information and
+  resolution before action outruns understanding. More applied lenses, words,
+  certainty, or activity are not success when they add only analysis theater.
+- Bound volume and preserve stopping rules without using predicted relevance to
+  domesticate pressure. The aim is not exhaustive use of all 222 lenses; it is
+  a tractable opportunity for a non-obvious lens to create an `aha`, a useful
+  question, a grounded rejection, or an honest unresolved path.
 - Do not build keyword, turn-count, chronology, or nested deterministic gates
   to decide semantic role, relevance, materiality, relationship meaning, or
   answer quality.
@@ -229,38 +254,19 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   partial, health degrades as `extraction_processing_view_partial`, and
   `agent_result.source_coverage` preserves the exact window. The threshold and
   first-3-plus-last-15 policy remain unchanged; semantic adequacy is unproven.
-- The live four-lane pressure engine, mental-model graph recall,
-  constitutional graph-survival portfolio, and apply/reject/park custody remain
-  the experimental core. They operate mechanically but have not established
-  unique real-user usefulness.
-- This repository is the sole active graph and skill authority: all 222 sources,
-  compiler inputs, 1,358 relations, anchors, and publication identities are
-  local; candidate compilation is byte-exact; one snapshot supplies consumers;
-  and the V1 planner replays all 163 windows. Candidate-only complete custody
-  accounts for all exact bounded paths, including 808 prior convergent paths,
-  with no live/receipt/Atlas edge. Root `SKILL.md` remains the one skill; setup
-  self-resolves and isolated credential-free readiness passes for Claude/Codex.
-  The host reasoner owns Step 6 reconsideration and graph dispositions. Optional
-  Step 7 remains Claude Code-specific and default-off; it is not a Codex path.
-- Decision Work remains an optional, post-run, operator-directed sidecar. Its
-  packaging and read-only Observatory surfaces exist; trustworthy automatic
-  semantic generation for arbitrary runs does not. Do not use R4 as that
-  generator.
-- The Atlas candidate's 16-model orientation opens exact neighborhoods from the
-  222-model / 1,358-relation index; card-first owns reviewed-page availability,
-  fixtures/Canvas are `review=1`, and Teacher remains parked. Immutable V1
-  remains byte-exact; active V2 records repository-local custody. Its proof
-  classifies 2,182 custody-only differences and zero unexpected differences,
-  restoring all 17 exact-replay checks without interface or semantic change.
-- The guided-entry repair preserves custody while removing redundant entry.
-  `apps/mental-model-atlas/DESIGN_SYSTEM.md` binds the achromatic system and only
-  `src/design-system/index.css` is active; old sheets are historical. One owner
-  governs relation grammar, labels, paging, arrows, and pausable motion. No
-  palette is selected.
-- The first-viewport repair makes exact results and named model actions directly
-  selectable, puts meaning/action before the graph, turns counts into filters,
-  and compresses entry geometry. Screenshots/coordinates are structural only,
-  not founder, screen-reader, rights, or usefulness acceptance.
+- The live four-lane pressure path, graph recall, graph-survival portfolio, and
+  apply/reject/park custody are the experimental core; unique usefulness is
+  unproven. This repository alone owns all 222 sources, compiler inputs, 1,358
+  relations, publication identities, and the one root skill. Compilation is
+  byte-exact, one snapshot supplies consumers, and all 163 policy windows
+  replay. Complete candidate-only path custody is not wired live. The host owns
+  reconsideration; optional Step 7 is Claude Code-specific and default-off.
+- Decision Work is an optional operator-directed sidecar; it and Observatory
+  can package/read artifacts but cannot generate trustworthy arbitrary meaning.
+- Atlas opens exact neighborhoods from the 222-model / 1,358-relation index.
+  V1 is immutable; V2 has 2,182 custody-only and zero unexpected differences.
+  Teacher and review surfaces remain parked. Design/viewport mechanics are not
+  founder, screen-reader, rights, deployment, or usefulness acceptance.
 - Preserve the exact founder-supplied `lolla` RGB wordmark and SHA-256 note in
   `apps/mental-model-atlas/public/brand/`; CSS must not redraw its letterforms.
 - The Stage 0 addendum was canonically published through PR #372 at merge
@@ -277,24 +283,17 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   model comparison, production-model selection, new receipt claims, and scalar
   scoring: unauthorized.
 
-Stage 0.5 made the map clone-legible; Stage 0.6 corrected long-conversation
-custody without semantic change. PR #382 tracks A/B/C; PR #383 adds its provider-free same-context/fresh-context pressure ablation; PR #384 tightens it prospectively in v1; PR #385 freezes the first role/attribution case candidate without execution or runtime change. PR #381 fixes Decision Trail lineage; PR #380 carries the public/live-skill handoff; PR #379 is the graph/Atlas V2 checkpoint.
-The current consumer-context contract is v1; v0 is its preserved predecessor. V1 is design-shape-valid and execution-not-ready. Its main estimand is a consumer-context-representation interaction with the complete fixed pressure package, not proof of self-justification; one draw per cell is only a case diagnostic.
-A retrospective checked-in-safe retailer case now selects the prompt-level role/attribution representation. Five provider-neutral envelopes, current-policy custody, F2/F3 and F3/T3 byte identities, null-control identity, active-payload bijection, execution order, and non-scalar/blind-review templates are frozen provider-free.
-F1 remains blocked because no current-live semantic-bridge output exists for the exact source; do not substitute R4, older role/mechanism readers, or a deterministic proxy. Principal-human source-first target/reference approval, provider/model/settings/token/cost contract, exact authorization, and runtime promotion remain missing.
-Atlas baseline PR #375 is historical; the
-checked-in, undeployed first-viewport work awaits founder and native accessibility review. Deployment,
-Phase 2, Teacher revival, providers, and product claims are unauthorized. The
-next eligible roadmap goal is the separately authorized, checked-in-safe Stage 1
-Decision Trail review; no private archives, semantics generation, providers,
-automation, runtime/R4/R5 changes, or usefulness claims. Real-run and live-
-pressure usefulness remain separately authorized stages.
+Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
+PRs #379–#385 carry the current graph/Atlas custody, public handoff, Decision
+Trail lineage, A/B/C plan, consumer-context contract, and first case freeze.
+The v1 diagnostic is execution-not-ready and single-draw only; F1, human review,
+provider/settings/cost contract, authorization, and runtime promotion are
+missing. Atlas remains gated. The separate Stage 1 option is eligible but
+unstarted and permits no providers, private archives, semantics, automation,
+runtime/R4/R5 changes, or usefulness claims.
 
-Do not read that eligibility as continuation of the June Decision Trail
-specialist program. PR104 still contains three unvalidated candidate reads and
-blank principal-human correction fields, with the explicit state
-`pause_until_human_review_capacity_returns`. The July Stage 1 can inspect
-checked-in-safe interface truthfulness only; it cannot validate conversation
-meaning or resolve the June pause.
-The provider-free A/B/C package separates pressure-now/process receipts, PR104 human review for understand-later, and a six-output source-first graph/context diagnostic before traversal expansion.
-Its PRD/plan and repository-local audit skill authorize no human review, providers, graph/runtime changes, sidecar automation, or interface work.
+Stage 1 is not June's Decision Trail specialist program; PR104 has three unvalidated reads, blank human corrections, and state
+`pause_until_human_review_capacity_returns`; Stage 1 cannot validate meaning or
+resolve that pause. A/B/C separates pressure-now receipts, PR104 human review,
+and a six-output diagnostic before traversal change; it authorizes no review,
+provider, runtime/graph, sidecar, or interface work.

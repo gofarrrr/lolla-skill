@@ -189,6 +189,13 @@ def validate(
         texts.get("AGENTS.md", ""),
         (
             "project_status.md",
+            "there may be no known correct answer or best lens",
+            "a source-first human target protects meaning and exposes effects; it is not",
+            "a “digital twin” is a metaphor for an inspectable second reasoning surface",
+            "a mental model contributes a reasoning operation",
+            "fact-free pressure is not fact-free judgment",
+            "use lolla as a camera, not an engine",
+            "analysis theater",
             "provider calls authorized for repository development: zero",
             "stage 1",
         ),
