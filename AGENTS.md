@@ -265,6 +265,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   can package/read artifacts but cannot generate trustworthy arbitrary meaning.
 - Product Delta's agent-only paired screen preserves mixed moves, harms,
   disagreement, nulls, and stand-down; it validates no graph or usefulness.
+- The graph-increment result is frozen. Its prospective variance calibration
+  freezes two reruns per condition and five blind pairs. After merge, four generation and two review contexts are authorized; providers, retries, wider
+  cases, graph changes, scores, causal claims, and usefulness claims remain unauthorized.
 - Atlas opens exact neighborhoods from the 222-model / 1,358-relation index.
   V1 is immutable; V2 has 2,182 custody-only and zero unexpected differences.
   Teacher and review surfaces remain parked. Design/viewport mechanics are not
@@ -276,24 +279,21 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   machine register assigns every canonical implementation file to an explicit
   lifecycle disposition and distinguishes live calls from artifact handoffs,
   optional hooks, offline paths, read-only projections, and absent links.
-- Provider calls authorized for repository development: zero. A1 and A2 authorizations are
-  consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
+- Provider calls authorized for repository development: zero. A1 and A2 authorizations are consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
   completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
   tweak, model comparison, or integration is authorized.
 - Prospective path-custody promotion, incoming-reference or two-hop pressure,
   direct-reserve expansion, new graph ranking, wider-corpus semantic execution,
   model comparison, production-model selection, new receipt claims, and scalar
-  scoring: unauthorized.
+  scoring: unauthorized. The exact single-case, same-packet variance
+  calibration is the only newly authorized graph-evaluation continuation.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#388 carry graph/Atlas custody, the public handoff, Decision Trail
+PRs #379–#389 carry graph/Atlas custody, the public handoff, Decision Trail
 lineage, A/B/C plan, case freeze, paired-delta screen, and rehearsal contract.
 The founder declines human review; that v1 experiment stays unfilled and paused.
-The completed agent-only graph-increment rehearsal preserves six first-terminal
-contexts and a non-scalar blind fan-in; it does not complete F2/F3, approve
-inputs, or prove graph/human value. Atlas remains gated. Stage 1 is eligible but
-unstarted and permits no providers, private archives, semantics, automation,
-runtime/R4/R5 changes, or usefulness claims.
+The completed graph rehearsal proves no graph/human value. Its variance contract
+freezes the next six contexts before execution; Atlas and Stage 1 remain gated.
 
 Stage 1 is not June's Decision Trail specialist program; PR104 remains paused
 with unvalidated reads and blank human corrections. A/B/C authorizes no review,

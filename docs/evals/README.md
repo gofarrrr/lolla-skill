@@ -57,6 +57,18 @@ After freeze, Arm A unblinded as direct-only and Arm B as the current one-hop
 graph increment. No causal, relevance, answer-quality, or usefulness claim
 follows.
 
+The prospective
+[graph-variance calibration contract](lolla-agent-only-graph-variance-calibration-contract-v1.json)
+and [plan](../../plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md)
+address the completed run's largest confound without changing the tested
+system. They preserve the two historical outputs as draw zero and freeze two
+additional exact reruns per condition. Five later blind comparisons cover
+direct-versus-direct, graph-versus-graph, the historical cross-condition pair,
+and two fresh cross-condition pairs. The six new Codex contexts are authorized
+only after the pre-output contract merges. Provider/API calls, retries, wider
+cases, graph changes, traversal expansion, scores, winners, causal claims, and
+human-usefulness claims remain unauthorized.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
 Its active data packages are now governed by the
@@ -504,6 +516,12 @@ python3 scripts/evals/build_product_delta_graph_increment_rehearsal.py --validat
 python3 scripts/evals/build_product_delta_graph_increment_rehearsal_result.py --validate-complete
 ```
 
+Validate the prospective graph-variance calibration packets:
+
+```bash
+python3 scripts/evals/build_product_delta_graph_variance_calibration.py --validate-only
+```
+
 Run the focused Product Delta tests:
 
 ```bash
@@ -517,6 +535,7 @@ python3 -m pytest -q \
   tests/test_product_delta_boundary_lint.py \
   tests/test_product_delta_graph_increment_rehearsal.py \
   tests/test_product_delta_graph_increment_rehearsal_result.py \
+  tests/test_product_delta_graph_variance_calibration.py \
   tests/test_product_delta_paired_screen.py \
   tests/test_product_delta_batch_fixture.py \
   tests/test_product_delta_readiness.py
