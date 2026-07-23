@@ -1,8 +1,7 @@
 # Lolla project status
 
-Status date: 2026-07-23 (automated graph-increment rehearsal result)
-Authority: current public handoff derived from the canonical Constitution Stage
-0 addendum
+Status date: 2026-07-23 (graph-variance calibration contract)
+Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
 
@@ -31,7 +30,7 @@ usefulness, market value, and production readiness remain unknown.
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
 | What is unproven? | Reliable longitudinal understanding, answer improvement, real-user value, market demand, and production readiness. |
-| What may start next? | Nothing automatically. June's richer Decision Trail interpretation lane remains paused at an unfilled human-review packet. July's narrower Stage 1 truthfulness review is a separate eligible option, not an authorization or semantic restart. |
+| What may start next? | After its pre-output contract is merged, the exact provider-free graph-variance calibration may run four generation and two blind-review contexts. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
 
 ## Latest published checkpoint
 
@@ -40,6 +39,7 @@ The current consumer-context contract is v1 through [PR #384](https://github.com
 Execution remains not ready: the principal-human source-first target and reference approval, exact current-live F1 semantic supply, provider/model/generation contract, token/cost estimate, and exact founder authorization are missing. The package is a single-draw case diagnostic preparation, not causal identification, and changes no live context, graph, prompt, provider, or runtime behavior.
 The provider-free [agent-only paired-delta screen](docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) preserves mixed benefit/harm reads, disagreement, duplicate-null equivalence, and stand-down across existing checked-in pairs. It does not isolate graph contribution or establish human usefulness.
 The founder has declined review participation. The preserved human lane remains blank and paused. The separate [agent-only graph-increment rehearsal](docs/conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) completed its six predeclared contexts: both blind reviewers detected the duplicate null, supported the stand-down, found a material difference in the new pair, and could not infer lineage. After freeze, Arm A was direct-only and Arm B was direct plus the current one-hop increment. This is bounded Product Delta process evidence, not completed F2/F3, graph causation, reference approval, human usefulness, or permission to expand traversal.
+The [graph-variance calibration contract](docs/evals/lolla-agent-only-graph-variance-calibration-contract-v1.json) and [plan](plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md) freeze two exact reruns per condition and two within-condition versus three cross-condition blind pairs. Its six new Codex contexts may start only after the contract merges; they cannot call providers, retry, mix older pipelines, change the graph, score answers, or claim causation or usefulness.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
@@ -293,7 +293,6 @@ or supersede that pause. See the
 A provider-free planning package separates pressure-now/process receipts, prospective principal-human PR104 review for understand-later, and source-first conversation-to-graph comparison before graph expansion. Its repository-local audit skill authorizes no human review, provider, graph/runtime change, sidecar automation, Atlas, or interface work.
 The provider-free case-freeze candidate passes its mechanical gates, but F1 and the principal-human target remain missing. Because the founder declines review participation, that human experiment stays paused rather than being filled by AI.
 The completed automated rehearsal reused Product Delta for one direct versus direct-plus-current-one-hop simulation. Six first-terminal agent contexts and their exact hashes are frozen; both blind reviewers found a material pair difference while declaring lineage indistinguishable. Agent reads remain provisional, F2/F3 remain unrealized, and no provider, graph/runtime, causal, relevance, or usefulness claim follows.
-
 ## Current repository boundary
 
 The root entrypoints are intentionally small. The repository still contains a

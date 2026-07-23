@@ -83,8 +83,9 @@ Read:
 - [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
 - [Graph audit workbook/scriptbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md), [pressure/understanding/graph PRD](conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md), [tracer-bullet plan](../plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md), and [machine evidence package](evals/lolla-pressure-understanding-graph-evidence-package-v1.json)
 - [Current consumer-context contract v1](evals/lolla-consumer-context-pressure-ablation-contract-v1.json), its [provider-free correction](conversation-understanding/lolla-consumer-context-contract-v1-correction-result-2026-07-22.md), and the [role/attribution case-candidate result](conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md). V0 is the preserved predecessor.
-- [Agent-only paired-delta screen result](conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md), [automated graph-increment rehearsal contract](evals/lolla-agent-only-graph-increment-rehearsal-contract-v1.json), [plan](../plans/lolla-agent-only-graph-increment-rehearsal-2026-07-23.md), and [completed result](conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md)
-  — blind Product Delta development diagnosis with six frozen first-terminal contexts, but without human validation, completed F2/F3, graph causation, or graph-value attribution.
+- [Agent-only paired-delta result](conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md), [graph-increment result](conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md), [variance contract](evals/lolla-agent-only-graph-variance-calibration-contract-v1.json), and [plan](../plans/lolla-agent-only-graph-variance-calibration-2026-07-23.md)
+  — blind Product Delta diagnosis and exact reruns, without human validation,
+  completed F2/F3, graph attribution, or traversal permission.
 - [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
 - [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
@@ -178,10 +179,11 @@ rights clearance, market demand, or production readiness.
 
 ## Current next decision
 
-No evidence stage starts automatically. July's provider-free, checked-in-safe
-Stage 1 Decision Trail truthfulness review is eligible but unstarted; any
-authorization must freeze its packet and record and cannot imply providers,
-private archives, semantic generation, runtime/R4/R5 changes, Atlas Phase 2,
-deployment, or usefulness claims. It does not replace June's specialist
+After its contract is published, graph-variance calibration may use four
+generation and two blind-review contexts. It allows no provider, retry, graph
+change, human label, score, winner, wider case, or traversal expansion.
+
+July's checked-in-safe Stage 1 Decision Trail truthfulness review remains a
+separate eligible but unstarted lane. It does not replace June's specialist
 program: PR104 remains blank and paused. Stage 1 can test interface honesty,
 not establish semantic understanding or validate the June reads.

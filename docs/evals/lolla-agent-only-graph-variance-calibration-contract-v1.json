@@ -1,0 +1,183 @@
+{
+  "authorization": {
+    "answer_quality_scoring": false,
+    "codex_agent_only_development_rehearsal": true,
+    "graph_policy_change": false,
+    "human_review": false,
+    "human_usefulness_claim": false,
+    "live_skill_invocation": false,
+    "private_archive_inspection": false,
+    "provider_api_calls": 0,
+    "provider_api_cost_usd": 0.0,
+    "provider_backed_execution": false,
+    "runtime_change": false,
+    "traversal_expansion": false
+  },
+  "blind_review_contract": {
+    "fresh_context_count": 2,
+    "lineage_hidden_until_both_reviews_are_frozen": true,
+    "pair_count": 5,
+    "pair_roles_hidden_from_reviewers": true,
+    "predeclared_pair_roles": [
+      "within_direct_fresh",
+      "within_graph_fresh",
+      "cross_condition_historical",
+      "cross_condition_fresh_1",
+      "cross_condition_fresh_2"
+    ],
+    "review_unit": "one_atomic_reasoning_move_plus_answer_level_preservation_review",
+    "reviewers_receive": [
+      "the_complete_checked_in_authoritative_source",
+      "five_neutrally_named_answer_pairs",
+      "the_existing_qualification_cases",
+      "the_existing_exact_duplicate_null",
+      "the_existing_legitimate_stand_down",
+      "the_existing_non_scalar_atomic_review_contract"
+    ],
+    "reviewers_may_not_receive_before_freeze": [
+      "condition_lineage",
+      "pair_role",
+      "candidate_origin",
+      "candidate_disposition_ledgers",
+      "source_first_agent_proxy_reads",
+      "sibling_review"
+    ],
+    "scalar_score_forbidden": true,
+    "winner_forbidden": true
+  },
+  "comparison_contract": {
+    "cross_condition_pairs": 3,
+    "decision_rule": "Preserve every pair-level and reviewer-level observation side by side. Compare the pattern of cross-condition material differences with the two within-condition material differences without a score, threshold, vote, significance claim, or automatic graph decision.",
+    "historical_draws_per_condition": 1,
+    "interpretation_states": [
+      "cross_condition_difference_more_consistent_than_observed_within_condition_variation",
+      "cross_condition_difference_not_distinguishable_from_observed_within_condition_variation",
+      "mixed_or_reviewer_disagreement",
+      "not_evaluable"
+    ],
+    "new_draws_per_condition": 2,
+    "statistical_inference_authorized": false,
+    "total_draws_per_condition_after_completion": 3,
+    "within_condition_pairs": 2
+  },
+  "date": "2026-07-23",
+  "evidence_class": "provider_free_codex_agent_product_delta_variance_calibration",
+  "falsifiable_question": "When the exact frozen direct-only and direct-plus-current-one-hop request packets are each given to two more isolated fresh Codex contexts, are the blind source-reviewable differences across conditions more consistent than the ordinary differences between two fresh outputs from the same condition?",
+  "founder_decision": "Automate the next graph evaluation without founder labeling or participation. Keep provider calls at zero and do not change the graph, planner, compiler, runtime, skill, or interface.",
+  "generation_rehearsal": {
+    "ambient_platform_context_remains_present": true,
+    "each_context_receives_one_packet_only": true,
+    "exact_standalone_provider_envelope_claimed": false,
+    "fresh_context_count": 4,
+    "generation_settings_inherited_without_repair": true,
+    "invalid_first_terminal_result_stops_that_sample": true,
+    "model_route_token_and_platform_cost": "unavailable_to_repository_operator",
+    "new_draws": [
+      {
+        "condition": "rehearsal_direct",
+        "count": 2
+      },
+      {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "count": 2
+      }
+    ],
+    "repository_provider_api_calls": 0,
+    "request_messages_inherited_byte_for_byte": true,
+    "response_schema_inherited_byte_for_byte": true,
+    "retry_fallback_healing_or_replacement": false,
+    "runner_type": "isolated_codex_subagent_development_rehearsal"
+  },
+  "input_locks": {
+    "authoritative_source": {
+      "bytes": 4936,
+      "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+      "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+    },
+    "completed_predecessor_consolidation": {
+      "bytes": 89018,
+      "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/consolidated-diagnostic.json",
+      "sha256": "e849c00a90bd7eac3212827a2112f948c9b8474fae6d33385295c60c858d750f"
+    },
+    "historical_terminal_output_condition_A": {
+      "bytes": 10965,
+      "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-A.json",
+      "sha256": "7bd109d722ab181a0fecdac32b014782daf7e706f9a5ec5a08e98cfdfb9a7fb2"
+    },
+    "historical_terminal_output_condition_B": {
+      "bytes": 7048,
+      "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/terminal-output-condition-B.json",
+      "sha256": "31a7c066f9ef06461ae914abf6e95aa032c7be2c16c57a63cd3d2eb8ba0a4629"
+    },
+    "predecessor_contract": {
+      "bytes": 25209,
+      "path": "docs/evals/lolla-agent-only-graph-increment-rehearsal-contract-v1.json",
+      "sha256": "52067f507d2f12bebf3e8473f7dc9f2820af48f748c23bd7e346370babafc021"
+    },
+    "predecessor_generation_packets": {
+      "bytes": 43662,
+      "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/generation-packets.json",
+      "sha256": "a9e1e2ed9db951bee9b1d1c5cc667320ef71ac7209ad7f75f63185e1c052a91f"
+    },
+    "predecessor_sealed_manifest": {
+      "bytes": 8751,
+      "path": "research/agent-only-graph-increment-rehearsal-2026-07-23/sealed-manifest.json",
+      "sha256": "ea44d41e058cf26442ff1d1496c01c2b557859ae21d459dc2d2560135e80acc2"
+    }
+  },
+  "non_claims": [
+    "not principal human review",
+    "not a source-first human target",
+    "not provider execution",
+    "not exact execution of a standalone provider envelope",
+    "not a provider or model comparison",
+    "not a statistically powered variance estimate",
+    "not graph causation or graph value evidence",
+    "not proof that graph relations are relevant or correct",
+    "not proof that either answer is better safer clearer or more useful",
+    "not expected model behavior",
+    "not human usefulness or decision-quality evidence",
+    "not completion of F2 or F3",
+    "not permission to expand graph traversal",
+    "not runtime skill planner compiler graph or interface promotion"
+  ],
+  "owner": "existing_offline_product_delta_evaluation",
+  "predeclared_paths": {
+    "blind_review_packet": "research/agent-only-graph-variance-calibration-2026-07-23/blind-review-packet.json",
+    "completed_consolidation": "research/agent-only-graph-variance-calibration-2026-07-23/consolidated-diagnostic.json",
+    "execution_sealed_manifest": "research/agent-only-graph-variance-calibration-2026-07-23/execution-sealed-manifest.json",
+    "generation_packets": "research/agent-only-graph-variance-calibration-2026-07-23/generation-packets.json",
+    "preoutput_sealed_manifest": "research/agent-only-graph-variance-calibration-2026-07-23/sealed-manifest.json",
+    "primary_blind_review": "reviews/codex-assisted/agent-only-graph-variance-calibration-v1/pair-review-primary.json",
+    "skeptical_blind_review": "reviews/codex-assisted/agent-only-graph-variance-calibration-v1/pair-review-skeptical.json",
+    "terminal_output_pattern": "research/agent-only-graph-variance-calibration-2026-07-23/terminal-output-{sample_alias}.json"
+  },
+  "schema_version": "lolla.product_delta_agent_graph_variance_calibration_contract.v1",
+  "scope": {
+    "authoritative_case_count": 1,
+    "authoritative_case_id": "phase5-independent-useful-retailer-pilot",
+    "candidate_portfolios_may_change": false,
+    "current_one_hop_projection_may_change": false,
+    "direct_component_may_change": false,
+    "historical_first_terminal_outputs_reused_as_draw_zero": true,
+    "multi_case_replication": "deferred_until_this_within_case_variance_calibration_is_consolidated",
+    "reason_for_not_mixing_older_cases": "No second checked-in case currently has both exact current F2 and F3 request envelopes. Older three-arm bundles belong to earlier calibration machinery or deterministic stand-downs; mixing them would change the tested system.",
+    "source_first_agent_proxy_reads_reused_not_rerun": true
+  },
+  "status": "prospective_contract_frozen_before_new_agent_outputs",
+  "stop_rules": [
+    "stop_if_any_locked_predecessor_artifact_or_hash_drifts",
+    "stop_if_the_previous_completed_rehearsal_no_longer_validates",
+    "stop_if_any_new_generation_packet_changes_messages_schema_or_generation_settings",
+    "stop_if_the_four_new_packets_are_not_exactly_two_per_condition",
+    "stop_if_a_generation_context_receives_a_sibling_packet_output_review_or_lineage",
+    "stop_on_each_first_terminal_generation_failure_without_retry_healing_fallback_or_replacement",
+    "stop_if_a_generated_answer_invents_a_high_stakes_fact_or_causation",
+    "stop_if_reviewers_receive_lineage_pair_role_candidate_origin_or_sibling_review_before_freeze",
+    "stop_if_outputs_are_ranked_scored_voted_or_called_better",
+    "stop_if_pair_observations_are collapsed_into_one_scalar_or_statistical_claim",
+    "stop_if_codex_route_token_or_platform_cost_is reported_as known zero",
+    "stop_if_the_result_is called human usefulness graph causation graph relevance expected model behavior or runtime evidence",
+    "stop_before_any provider API call private archive read graph traversal change planner change compiler change runtime change skill invocation or interface work"
+  ]
+}
