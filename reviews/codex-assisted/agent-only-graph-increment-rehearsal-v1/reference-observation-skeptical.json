@@ -1,0 +1,55 @@
+{
+  "schema_version": "lolla.agent_reference_condition_proxy_review.v1",
+  "review_id": "agent-reference-observation-skeptical-v1",
+  "reviewer_type": "fresh_agent_post_seal_reference_proxy",
+  "source_first_review_sha256": "b89a123605bfa600f71ac263745601b4d2a1449088294923614b257f73a70f55",
+  "candidate_reviews": [
+    {
+      "model_id": "signaling",
+      "disposition": "partly_source_consistent_observation",
+      "source_grounded_reason": "The source explicitly separates the retailer's prestige, willingness to test, and customer demand at sustainable economics; it also treats the letter of intent as a conditional signal with no purchase-volume commitment and the preferred-partner announcement as language that must not imply a national commitment. Asking what costly behavior would make the retailer's signal more than symbolic is therefore source-consistent. A purchase-volume commitment could provide evidence of retailer commitment, but neither that commitment nor another costly signal would by itself prove independent customer demand or product validation beyond the retailer's context.",
+      "corrections_without_routing_effect": [
+        "Distinguish a signal of retailer commitment from evidence of customer demand.",
+        "Do not treat costly retailer behavior as proof that the product works outside the retailer's merchandising, audience, or brand signal.",
+        "Preserve the stated economic and operational gates and the unresolved need for an independent-demand gate.",
+        "Treat preferred-partner language, national attention, and the retailer's logo as credibility hypotheses unless supported by separate evidence."
+      ],
+      "uncertainty": [
+        "The source does not establish which costly behavior, at what level, would make the retailer's signal sufficiently reliable.",
+        "A purchase-volume commitment could strengthen the evidence of retailer commitment while still leaving broader product demand unresolved.",
+        "The candidate may sharpen the difference between symbolic and committed retailer behavior, but the source-first reasoning already identifies the letter of intent as a conditional signal and the logo as an unpriced hypothesis."
+      ]
+    },
+    {
+      "model_id": "social-proof",
+      "disposition": "partly_source_consistent_observation",
+      "source_grounded_reason": "The source directly supports a prestige and credibility-shortcut concern: board members expect the retailer's name to make future buyers take the manufacturer seriously, one member worries that the board is pricing the logo rather than the contract, and the current position rejects using the retailer's reputation as evidence merely because the partnership is exciting. The candidate's prestige-leakage failure signal is therefore source-consistent. Its pressure question is only partly aligned, however, because the source presents one retailer as a launch channel and partner, not a set of admired adopters established as structurally comparable to the manufacturer.",
+      "corrections_without_routing_effect": [
+        "Treat the retailer as the pilot channel and prospective partner described in the source, not as an adopter established to be structurally similar to the manufacturer.",
+        "Ask whether observed demand survives outside the retailer's merchandising, audience, and brand signal rather than assuming that adopter similarity is the decisive comparison.",
+        "Do not infer unsupported facts about the retailer's incentives, constraints, relevance, or similarity.",
+        "Keep future-buyer credibility separate from sustainable customer demand and broader product validation."
+      ],
+      "uncertainty": [
+        "The source provides no comparison among multiple admired adopters and no facts establishing which organizations are structurally similar.",
+        "The retailer's prestige may create future-buyer credibility, but the source treats that benefit as an unmeasured hypothesis.",
+        "The candidate may restate the source's already explicit concern that prestige is leaking into the evidence standard rather than adding new decision leverage.",
+        "Independent demand outside the retailer's stores remains unresolved even if the social-proof concern is accepted."
+      ]
+    }
+  ],
+  "reference_condition_read": "partly_source_consistent_observation",
+  "disagreement_and_uncertainty": [
+    "Both candidates have clear source support at the level of prestige, credibility, and signal-quality risk, but their incremental value is uncertain because the source-first reasoning already separates retailer status from purchase volume and broader demand.",
+    "The signaling candidate could confuse stronger retailer commitment with independent customer validation unless those claims remain separate.",
+    "The social-proof candidate could misdescribe the retailer as a structurally comparable adopter even though the source describes it as a launch channel and partner.",
+    "Neither candidate resolves what independent-demand gate should be used or what evidence would distinguish retailer-specific merchandising success from broader product demand.",
+    "These dispositions are diagnostic observations only; they do not establish relevance, usefulness, semantic correctness, or authority to change routing."
+  ],
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "routing_changed": false,
+    "provider_calls": 0
+  }
+}

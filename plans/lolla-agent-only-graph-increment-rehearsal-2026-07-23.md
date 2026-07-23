@@ -2,7 +2,8 @@
 
 Date: 2026-07-23
 
-Status: prospective provider-free contract; freeze before agent outputs
+Status: completed provider-free repository-development rehearsal; exact
+pre-output contract remains the frozen execution boundary
 
 Owner: existing offline Product Delta evaluation
 
@@ -256,3 +257,25 @@ Stop before:
    dated bounded result in a second PR.
 4. Do not reopen the principal-human lane unless the founder later changes the
    no-participation decision.
+
+## Completion
+
+The pre-output package was merged through PR #388 before any semantic output
+was generated. The six predeclared contexts then completed without retry:
+
+- two source-first reads and their same-context post-seal observations;
+- two isolated first-terminal generation outputs;
+- two isolated blind paired reviews.
+
+The deterministic result validates with zero shape/custody errors. Both
+reviewers found the exact duplicate materially identical, supported the
+legitimate stand-down, found a material difference in the new pair, and
+declared its lineage indistinguishable. After freeze, Arm A unblinded as
+direct-only and Arm B as direct plus the current one-hop graph increment.
+
+See the
+[bounded result](../docs/conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md)
+and
+[deterministic consolidation](../research/agent-only-graph-increment-rehearsal-2026-07-23/consolidated-diagnostic.json).
+The result changes no graph, runtime, skill, interface, or human-authorization
+boundary.

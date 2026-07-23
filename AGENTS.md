@@ -286,12 +286,12 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#387 carry graph/Atlas custody, the public handoff, Decision Trail
-lineage, A/B/C plan, consumer-context case freeze, and paired-delta screen.
+PRs #379–#388 carry graph/Atlas custody, the public handoff, Decision Trail
+lineage, A/B/C plan, case freeze, paired-delta screen, and rehearsal contract.
 The founder declines human review; that v1 experiment stays unfilled and paused.
-The prospective agent-only graph-increment rehearsal is Product Delta
-development evidence only: it does not complete F2/F3, approve inputs, or prove
-graph/human value. Atlas remains gated. The separate Stage 1 option is eligible but
+The completed agent-only graph-increment rehearsal preserves six first-terminal
+contexts and a non-scalar blind fan-in; it does not complete F2/F3, approve
+inputs, or prove graph/human value. Atlas remains gated. Stage 1 is eligible but
 unstarted and permits no providers, private archives, semantics, automation,
 runtime/R4/R5 changes, or usefulness claims.
 
