@@ -5,6 +5,7 @@ Status: provider-free case candidate valid; execution not ready
 Evidence class: retrospective mechanism-replay preparation, local structural
 and custody evidence; not principal-human, provider, causal, usefulness, or
 runtime evidence
+Publication: [PR #385](https://github.com/gofarrrr/lolla-skill/pull/385)
 
 ## Outcome
 
