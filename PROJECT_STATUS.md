@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-22 (graph evidence and consumer-context boundary)
+Status date: 2026-07-23 (consumer-context case-freeze candidate)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -37,8 +37,8 @@ usefulness, market value, and production readiness remain unknown.
 
 The current A/B/C pressure, understanding, and graph planning package is tracked by
 [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
-The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. V1 defines four fresh graph-supply arms plus two isolated trajectory-representation cells and reports `design_shape_valid=true`, `execution_ready=false`, and one output per cell as `single_draw_case_diagnostic`, not causal identification.
-The repository has no complete branchable pre-pressure host checkpoint, frozen context implementation, principal-human target/rubric, complete request envelopes, provider contract, or execution authorization. This changes no live context, graph, prompt, provider, or runtime behavior.
+The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. A [provider-free role/attribution case candidate](docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md) now selects one retrospective checked-in-safe case, locks five provider-neutral envelopes plus one honest blocked F1 slot, and passes direct/graph/context equality and active-payload bijection gates.
+Execution remains not ready: the principal-human source-first target and reference approval, exact current-live F1 semantic supply, provider/model/generation contract, token/cost estimate, and exact founder authorization are missing. The package is a single-draw case diagnostic preparation, not causal identification, and changes no live context, graph, prompt, provider, or runtime behavior.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
@@ -290,7 +290,7 @@ or supersede that pause. See the
 [Decision Trail stage lineage](docs/conversation-understanding/lolla-decision-trail-stage-lineage-2026-07-22.md).
 
 A provider-free planning package separates pressure-now/process receipts, prospective principal-human PR104 review for understand-later, and source-first conversation-to-graph comparison before graph expansion. Its repository-local audit skill authorizes no human review, provider, graph/runtime change, sidecar automation, Atlas, or interface work.
-The next eligible graph/context action is provider-free case-freeze preparation against v1, not execution: select one honest context representation, create complete request previews and equality receipts, and obtain a signed source-first human target and rejection rubric. This is separate from the Constitution roadmap's still-unauthorized July Stage 1.
+The provider-free case-freeze candidate now selects the honest role/attribution representation and passes source, graph-policy, direct-component, F3/T3, null-control, and active-payload custody gates. Five provider-neutral previews are complete; F1 remains explicitly blocked rather than borrowing an old reader. The next graph/context owner is a principal human: sign the source-only target and then approve, correct, or reject the proposed reference condition. No provider execution follows automatically.
 
 ## Current repository boundary
 

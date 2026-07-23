@@ -1,0 +1,602 @@
+{
+  "arms": {
+    "direct_pressure": {
+      "call_required": true,
+      "packet": {
+        "arm_id": "direct_pressure",
+        "authoritative_conversation": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+        "boundary": {
+          "all_active_candidates_preserved": true,
+          "canonical_ids_only": true,
+          "case_facts_reattached_after_graph_recall": true,
+          "fresh_context_required": true,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "reserve_preserved_by_ledger_reference": true
+        },
+        "case_id": "phase5-independent-useful-retailer-pilot",
+        "instructions": {
+          "allowed_dispositions": [
+            "apply",
+            "reject",
+            "park"
+          ],
+          "applied_lenses_remain_conditional": true,
+          "applied_lenses_require_reopening_evidence": true,
+          "candidate_deletion_before_reconsideration": false,
+          "every_active_candidate_must_be_inspected": true,
+          "graph_recall_is_applicability_proof": false,
+          "lens_alone_may_set_risk_level_or_recommendation": false,
+          "mental_model_is_evidence_about_case": false,
+          "preserve_strong_original_reasoning": true,
+          "rejection_is_valid": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "e3b2f18f7a7c1d234f4e59f44d740fadd94d2e2373ac367d33bd9e11f653cdaf",
+        "portfolio_ledger_refs": [
+          {
+            "ledger_type": "direct",
+            "sha256": "17f90f67ab32794d0014d8792974687c0f63557c1218fe2d028cd64b72206e41"
+          }
+        ],
+        "pressure_portfolio": [
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a credibility and signal-quality problem and a truth-aligned signal design could materially change the unresolved reasoning.",
+              "display_name": "Signaling",
+              "do_not_apply_when": "Do not apply without source support for a credibility and signal-quality problem, or when the pressure question could not materially change the truth-aligned signal design.",
+              "failure_signal": "Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.",
+              "model_id": "signaling",
+              "pressure_question": "What costly behavior would prove this signal is real rather than symbolic?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "signaling",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:000"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a consensus and credibility shortcut problem and a social-proof stress test could materially change the unresolved reasoning.",
+              "display_name": "Social Proof",
+              "do_not_apply_when": "Do not apply without source support for a consensus and credibility shortcut problem, or when the pressure question could not materially change the social-proof stress test.",
+              "failure_signal": "Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+              "model_id": "social-proof",
+              "pressure_question": "Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "social-proof",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:001"
+            ]
+          }
+        ],
+        "schema_version": "lolla.simulated_reliability_pressure_input.v1",
+        "source_refs": [
+          {
+            "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+            "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+          },
+          {
+            "path": "docs/evals/independent-useful-fresh-pressure-pair-target-v1.json",
+            "sha256": "6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation using every canonical pressure candidate as an intentionally noisy hypothesis. Apply only what changes or usefully tests the reasoning; explicitly reject or park the rest. Graph recall is not proof. Do not manufacture facts or quantitative precision. A mental model is a source of questions, alternatives, and tests; it is not evidence about the case. A lens alone cannot establish that risk is low or high, predict how a person will respond, or justify a recommendation.",
+        "system_prompt_sha256": "bfd08474c767a626723f3aaa044e7c28057633d1da9d1b1bd170bcec50726b60",
+        "user_prompt": "SIMULATED RELIABILITY V1 PRESSURE PACKET\n{\"arm_id\":\"direct_pressure\",\"authoritative_conversation\":\"CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\\n\\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\\n\\nCase ID: phase5-independent-useful-retailer-pilot\\nStratum: small_manufacturer_retail_partnership\\nProspectively authored synthetic holdout; not used in architecture development.\\n\\n[Turn 1] USER:\\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\\n\\n[Turn 1] ASSISTANT:\\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\\n\\n[Turn 2] USER:\\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\\n\\n[Turn 2] ASSISTANT:\\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\\n\\n[Turn 3] USER:\\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\\n\\n[Turn 3] ASSISTANT:\\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\\n\\n[Turn 4] USER:\\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\\n\\n[Turn 4] ASSISTANT:\\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\\n\\n[Turn 5] USER:\\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\\n\\n[Turn 5] ASSISTANT:\\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\\n\\n[Turn 6] USER:\\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\\n\\n[Turn 6] ASSISTANT:\\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\\n\\n[Turn 7] USER:\\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\\n\\n[Turn 7] ASSISTANT:\\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\\n\",\"boundary\":{\"all_active_candidates_preserved\":true,\"canonical_ids_only\":true,\"case_facts_reattached_after_graph_recall\":true,\"fresh_context_required\":true,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"reserve_preserved_by_ledger_reference\":true},\"case_id\":\"phase5-independent-useful-retailer-pilot\",\"instructions\":{\"allowed_dispositions\":[\"apply\",\"reject\",\"park\"],\"applied_lenses_remain_conditional\":true,\"applied_lenses_require_reopening_evidence\":true,\"candidate_deletion_before_reconsideration\":false,\"every_active_candidate_must_be_inspected\":true,\"graph_recall_is_applicability_proof\":false,\"lens_alone_may_set_risk_level_or_recommendation\":false,\"mental_model_is_evidence_about_case\":false,\"preserve_strong_original_reasoning\":true,\"rejection_is_valid\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"e3b2f18f7a7c1d234f4e59f44d740fadd94d2e2373ac367d33bd9e11f653cdaf\",\"portfolio_ledger_refs\":[{\"ledger_type\":\"direct\",\"sha256\":\"17f90f67ab32794d0014d8792974687c0f63557c1218fe2d028cd64b72206e41\"}],\"pressure_portfolio\":[{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a credibility and signal-quality problem and a truth-aligned signal design could materially change the unresolved reasoning.\",\"display_name\":\"Signaling\",\"do_not_apply_when\":\"Do not apply without source support for a credibility and signal-quality problem, or when the pressure question could not materially change the truth-aligned signal design.\",\"failure_signal\":\"Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.\",\"model_id\":\"signaling\",\"pressure_question\":\"What costly behavior would prove this signal is real rather than symbolic?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"signaling\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:000\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a consensus and credibility shortcut problem and a social-proof stress test could materially change the unresolved reasoning.\",\"display_name\":\"Social Proof\",\"do_not_apply_when\":\"Do not apply without source support for a consensus and credibility shortcut problem, or when the pressure question could not materially change the social-proof stress test.\",\"failure_signal\":\"Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.\",\"model_id\":\"social-proof\",\"pressure_question\":\"Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"social-proof\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:001\"]}],\"schema_version\":\"lolla.simulated_reliability_pressure_input.v1\",\"source_refs\":[{\"path\":\"research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt\",\"sha256\":\"0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef\"},{\"path\":\"docs/evals/independent-useful-fresh-pressure-pair-target-v1.json\",\"sha256\":\"6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nInspect every active candidate exactly once. apply means the lens materially changes, sharpens, or supplies a concrete test for the reasoning. reject means its strongest plausible application fails in this case; name the failed condition and the risk of forcing it. park means the lens remains plausible but needs evidence or is not decision-relevant enough to use now; name the reopening condition. Cite exact source turn numbers for every disposition. Preserve strong existing reasoning. Do not invent external facts, numerical thresholds, percentages, dates, quantities, or cutoffs. If a value is unknown, state the evidence or decision process needed and leave it unresolved. Even an applied lens must remain conditional and name the source evidence, observation, or outcome that would weaken or overturn its use; 'no reopening condition' is not acceptable. Do not convert a lens into confidence that the source conversation did not earn. Then write a self-contained reconsidered answer and a concise change summary. Candidate names and the mechanical disposition checklist must remain private unless a name is genuinely useful to the user.",
+        "user_prompt_sha256": "4cb54e8eb6480949a4584eb066e71f73d184f77291b94735826df0247a4c977e"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_dispositions": {
+            "description": "Exactly one accountable disposition for every active pressure candidate.",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "disposition": {
+                  "description": "Apply a materially useful lens, reject a failed application, or park a plausible lens until a stated condition reopens it.",
+                  "enum": [
+                    "apply",
+                    "reject",
+                    "park"
+                  ],
+                  "type": "string"
+                },
+                "disposition_reason": {
+                  "description": "Why the lens is applied, rejected, or parked, including the failed condition for a rejection.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "effect": {
+                  "description": "The candidate's decision-relevant effect, or no material effect when rejected.",
+                  "enum": [
+                    "reframe",
+                    "new_condition",
+                    "new_alternative",
+                    "uncertainty_change",
+                    "reversal_rule",
+                    "reinforces_existing",
+                    "no_material_effect"
+                  ],
+                  "type": "string"
+                },
+                "model_id": {
+                  "description": "The exact canonical candidate identity from the supplied portfolio.",
+                  "enum": [
+                    "signaling",
+                    "social-proof"
+                  ],
+                  "type": "string"
+                },
+                "reopen_condition": {
+                  "description": "The evidence, observation, or outcome that would weaken, overturn, or reopen this disposition. Applied lenses must retain a real falsifier and may not say none is needed.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "risk_if_forced": {
+                  "description": "What would become misleading, duplicative, or harmful if this lens were forced into the reasoning.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source_turn_numbers": {
+                  "description": "Exact authoritative conversation turns supporting this disposition.",
+                  "items": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "maxItems": 7,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "strongest_plausible_application": {
+                  "description": "The strongest good-faith way this lens could bear on the conversation before deciding its disposition.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "model_id",
+                "disposition",
+                "source_turn_numbers",
+                "effect",
+                "strongest_plausible_application",
+                "disposition_reason",
+                "risk_if_forced",
+                "reopen_condition"
+              ],
+              "type": "object"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "change_summary": {
+            "description": "A concise factual account of what changed, stayed unchanged, or remained unresolved after reconsideration.",
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "description": "A self-contained public answer that preserves strong original reasoning and includes only earned friction.",
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidate_dispositions",
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    },
+    "graph_expanded_pressure": {
+      "call_required": true,
+      "packet": {
+        "arm_id": "graph_expanded_pressure",
+        "authoritative_conversation": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+        "boundary": {
+          "all_active_candidates_preserved": true,
+          "canonical_ids_only": true,
+          "case_facts_reattached_after_graph_recall": true,
+          "fresh_context_required": true,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "reserve_preserved_by_ledger_reference": true
+        },
+        "case_id": "phase5-independent-useful-retailer-pilot",
+        "instructions": {
+          "allowed_dispositions": [
+            "apply",
+            "reject",
+            "park"
+          ],
+          "applied_lenses_remain_conditional": true,
+          "applied_lenses_require_reopening_evidence": true,
+          "candidate_deletion_before_reconsideration": false,
+          "every_active_candidate_must_be_inspected": true,
+          "graph_recall_is_applicability_proof": false,
+          "lens_alone_may_set_risk_level_or_recommendation": false,
+          "mental_model_is_evidence_about_case": false,
+          "preserve_strong_original_reasoning": true,
+          "rejection_is_valid": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "cf29d37a919da76e584c2e50ba694ea146936945c383d175043fd0b12cf4439c",
+        "portfolio_ledger_refs": [
+          {
+            "ledger_type": "direct",
+            "sha256": "17f90f67ab32794d0014d8792974687c0f63557c1218fe2d028cd64b72206e41"
+          },
+          {
+            "ledger_type": "graph",
+            "sha256": "606fe21c2efedd5707f72a654e2626f97839c88a78caef1dc563875c2bb84b04"
+          }
+        ],
+        "pressure_portfolio": [
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a credibility and signal-quality problem and a truth-aligned signal design could materially change the unresolved reasoning.",
+              "display_name": "Signaling",
+              "do_not_apply_when": "Do not apply without source support for a credibility and signal-quality problem, or when the pressure question could not materially change the truth-aligned signal design.",
+              "failure_signal": "Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.",
+              "model_id": "signaling",
+              "pressure_question": "What costly behavior would prove this signal is real rather than symbolic?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "signaling",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:000"
+            ]
+          },
+          {
+            "candidate_origin": "direct_seed",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a consensus and credibility shortcut problem and a social-proof stress test could materially change the unresolved reasoning.",
+              "display_name": "Social Proof",
+              "do_not_apply_when": "Do not apply without source support for a consensus and credibility shortcut problem, or when the pressure question could not materially change the social-proof stress test.",
+              "failure_signal": "Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+              "model_id": "social-proof",
+              "pressure_question": "Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "model_id": "social-proof",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:001"
+            ]
+          },
+          {
+            "candidate_origin": "graph_expansion",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.",
+              "display_name": "Confirmation Bias",
+              "do_not_apply_when": "Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.",
+              "failure_signal": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+              "model_id": "confirmation-bias",
+              "pressure_question": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "graph_path": {
+              "activation_condition": "When receivers filter incoming signals through existing beliefs, causing accurate signals to fail regardless of their quality.",
+              "affinity_rationale": "Canonical: 'the audience may actively process information to reach a desired conclusion, filtering out signals that contradict their existing beliefs or political loyalties.'",
+              "edge_type": "antagonist",
+              "source_description": "Confirmation-bias degrades signaling when receivers filter evidence toward a preferred conclusion regardless of signal quality.",
+              "source_model_id": "signaling",
+              "target_model_id": "confirmation-bias"
+            },
+            "model_id": "confirmation-bias",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:000"
+            ],
+            "selected_relation_slot": "antagonist"
+          },
+          {
+            "candidate_origin": "graph_expansion",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a behavior-and-reward system and a incentive-misalignment diagnosis could materially change the unresolved reasoning.",
+              "display_name": "Incentives",
+              "do_not_apply_when": "Do not apply without source support for a behavior-and-reward system, or when the pressure question could not materially change the incentive-misalignment diagnosis.",
+              "failure_signal": "Ignoring extreme downside can make a reward scheme look acceptable until one ugly tail outcome lands.",
+              "model_id": "incentives",
+              "pressure_question": "What factors are involved in the worst-case scenario, and how can we prevent them?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "graph_path": {
+              "activation_condition": "",
+              "affinity_rationale": "",
+              "edge_type": "tension",
+              "source_description": "Signaling conflicts with incentives when cheap symbolic signals are rewarded over costly truth-aligned behavior.",
+              "source_model_id": "signaling",
+              "target_model_id": "incentives"
+            },
+            "model_id": "incentives",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:000",
+              "lane2_recall_rank:001"
+            ],
+            "selected_relation_slot": "tension"
+          },
+          {
+            "candidate_origin": "graph_expansion",
+            "challenge_card": {
+              "challenge_when": "Use as a pressure lens when the records support a detail-heavy pattern-formation problem and a higher-level working model could materially change the unresolved reasoning.",
+              "display_name": "Abstraction",
+              "do_not_apply_when": "Do not apply without source support for a detail-heavy pattern-formation problem, or when the pressure question could not materially change the higher-level working model.",
+              "failure_signal": "Abstraction fails when the framework becomes a substitute for understanding the actual causal structure.",
+              "model_id": "abstraction",
+              "pressure_question": "What concrete mechanism might this elegant abstraction be hiding?",
+              "schema_version": "lolla.canonical_model_assessment_card.v3"
+            },
+            "graph_path": {
+              "activation_condition": "When complex information must be compressed into abstract signals that activate pre-existing schemas in the receiver.",
+              "affinity_rationale": "Canonical: 'Analogies activate pre-existing schemas, providing instant context and comprehension' — abstraction enables efficient signaling through compressed meaning.",
+              "edge_type": "ally",
+              "source_description": "Abstraction helps signaling compress a complex reality into a legible form without forcing the receiver through every underlying detail.",
+              "source_model_id": "signaling",
+              "target_model_id": "abstraction"
+            },
+            "model_id": "abstraction",
+            "portfolio_status": "intentionally_noisy_pressure_hypothesis",
+            "recalled_by_mechanism_ids": [
+              "lane2_recall_rank:000"
+            ],
+            "selected_relation_slot": "ally"
+          }
+        ],
+        "schema_version": "lolla.simulated_reliability_pressure_input.v1",
+        "source_refs": [
+          {
+            "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+            "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+          },
+          {
+            "path": "docs/evals/independent-useful-fresh-pressure-pair-target-v1.json",
+            "sha256": "6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation using every canonical pressure candidate as an intentionally noisy hypothesis. Apply only what changes or usefully tests the reasoning; explicitly reject or park the rest. Graph recall is not proof. Do not manufacture facts or quantitative precision. A mental model is a source of questions, alternatives, and tests; it is not evidence about the case. A lens alone cannot establish that risk is low or high, predict how a person will respond, or justify a recommendation.",
+        "system_prompt_sha256": "bfd08474c767a626723f3aaa044e7c28057633d1da9d1b1bd170bcec50726b60",
+        "user_prompt": "SIMULATED RELIABILITY V1 PRESSURE PACKET\n{\"arm_id\":\"graph_expanded_pressure\",\"authoritative_conversation\":\"CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\\n\\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\\n\\nCase ID: phase5-independent-useful-retailer-pilot\\nStratum: small_manufacturer_retail_partnership\\nProspectively authored synthetic holdout; not used in architecture development.\\n\\n[Turn 1] USER:\\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\\n\\n[Turn 1] ASSISTANT:\\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\\n\\n[Turn 2] USER:\\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\\n\\n[Turn 2] ASSISTANT:\\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\\n\\n[Turn 3] USER:\\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\\n\\n[Turn 3] ASSISTANT:\\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\\n\\n[Turn 4] USER:\\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\\n\\n[Turn 4] ASSISTANT:\\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\\n\\n[Turn 5] USER:\\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\\n\\n[Turn 5] ASSISTANT:\\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\\n\\n[Turn 6] USER:\\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\\n\\n[Turn 6] ASSISTANT:\\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\\n\\n[Turn 7] USER:\\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\\n\\n[Turn 7] ASSISTANT:\\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\\n\",\"boundary\":{\"all_active_candidates_preserved\":true,\"canonical_ids_only\":true,\"case_facts_reattached_after_graph_recall\":true,\"fresh_context_required\":true,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"reserve_preserved_by_ledger_reference\":true},\"case_id\":\"phase5-independent-useful-retailer-pilot\",\"instructions\":{\"allowed_dispositions\":[\"apply\",\"reject\",\"park\"],\"applied_lenses_remain_conditional\":true,\"applied_lenses_require_reopening_evidence\":true,\"candidate_deletion_before_reconsideration\":false,\"every_active_candidate_must_be_inspected\":true,\"graph_recall_is_applicability_proof\":false,\"lens_alone_may_set_risk_level_or_recommendation\":false,\"mental_model_is_evidence_about_case\":false,\"preserve_strong_original_reasoning\":true,\"rejection_is_valid\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"cf29d37a919da76e584c2e50ba694ea146936945c383d175043fd0b12cf4439c\",\"portfolio_ledger_refs\":[{\"ledger_type\":\"direct\",\"sha256\":\"17f90f67ab32794d0014d8792974687c0f63557c1218fe2d028cd64b72206e41\"},{\"ledger_type\":\"graph\",\"sha256\":\"606fe21c2efedd5707f72a654e2626f97839c88a78caef1dc563875c2bb84b04\"}],\"pressure_portfolio\":[{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a credibility and signal-quality problem and a truth-aligned signal design could materially change the unresolved reasoning.\",\"display_name\":\"Signaling\",\"do_not_apply_when\":\"Do not apply without source support for a credibility and signal-quality problem, or when the pressure question could not materially change the truth-aligned signal design.\",\"failure_signal\":\"Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.\",\"model_id\":\"signaling\",\"pressure_question\":\"What costly behavior would prove this signal is real rather than symbolic?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"signaling\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:000\"]},{\"candidate_origin\":\"direct_seed\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a consensus and credibility shortcut problem and a social-proof stress test could materially change the unresolved reasoning.\",\"display_name\":\"Social Proof\",\"do_not_apply_when\":\"Do not apply without source support for a consensus and credibility shortcut problem, or when the pressure question could not materially change the social-proof stress test.\",\"failure_signal\":\"Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.\",\"model_id\":\"social-proof\",\"pressure_question\":\"Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"model_id\":\"social-proof\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:001\"]},{\"candidate_origin\":\"graph_expansion\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a claim-under-review and a disconfirming-evidence challenge could materially change the unresolved reasoning.\",\"display_name\":\"Confirmation Bias\",\"do_not_apply_when\":\"Do not apply without source support for a claim-under-review, or when the pressure question could not materially change the disconfirming-evidence challenge.\",\"failure_signal\":\"Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.\",\"model_id\":\"confirmation-bias\",\"pressure_question\":\"What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"graph_path\":{\"activation_condition\":\"When receivers filter incoming signals through existing beliefs, causing accurate signals to fail regardless of their quality.\",\"affinity_rationale\":\"Canonical: 'the audience may actively process information to reach a desired conclusion, filtering out signals that contradict their existing beliefs or political loyalties.'\",\"edge_type\":\"antagonist\",\"source_description\":\"Confirmation-bias degrades signaling when receivers filter evidence toward a preferred conclusion regardless of signal quality.\",\"source_model_id\":\"signaling\",\"target_model_id\":\"confirmation-bias\"},\"model_id\":\"confirmation-bias\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:000\"],\"selected_relation_slot\":\"antagonist\"},{\"candidate_origin\":\"graph_expansion\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a behavior-and-reward system and a incentive-misalignment diagnosis could materially change the unresolved reasoning.\",\"display_name\":\"Incentives\",\"do_not_apply_when\":\"Do not apply without source support for a behavior-and-reward system, or when the pressure question could not materially change the incentive-misalignment diagnosis.\",\"failure_signal\":\"Ignoring extreme downside can make a reward scheme look acceptable until one ugly tail outcome lands.\",\"model_id\":\"incentives\",\"pressure_question\":\"What factors are involved in the worst-case scenario, and how can we prevent them?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"graph_path\":{\"activation_condition\":\"\",\"affinity_rationale\":\"\",\"edge_type\":\"tension\",\"source_description\":\"Signaling conflicts with incentives when cheap symbolic signals are rewarded over costly truth-aligned behavior.\",\"source_model_id\":\"signaling\",\"target_model_id\":\"incentives\"},\"model_id\":\"incentives\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:000\",\"lane2_recall_rank:001\"],\"selected_relation_slot\":\"tension\"},{\"candidate_origin\":\"graph_expansion\",\"challenge_card\":{\"challenge_when\":\"Use as a pressure lens when the records support a detail-heavy pattern-formation problem and a higher-level working model could materially change the unresolved reasoning.\",\"display_name\":\"Abstraction\",\"do_not_apply_when\":\"Do not apply without source support for a detail-heavy pattern-formation problem, or when the pressure question could not materially change the higher-level working model.\",\"failure_signal\":\"Abstraction fails when the framework becomes a substitute for understanding the actual causal structure.\",\"model_id\":\"abstraction\",\"pressure_question\":\"What concrete mechanism might this elegant abstraction be hiding?\",\"schema_version\":\"lolla.canonical_model_assessment_card.v3\"},\"graph_path\":{\"activation_condition\":\"When complex information must be compressed into abstract signals that activate pre-existing schemas in the receiver.\",\"affinity_rationale\":\"Canonical: 'Analogies activate pre-existing schemas, providing instant context and comprehension' — abstraction enables efficient signaling through compressed meaning.\",\"edge_type\":\"ally\",\"source_description\":\"Abstraction helps signaling compress a complex reality into a legible form without forcing the receiver through every underlying detail.\",\"source_model_id\":\"signaling\",\"target_model_id\":\"abstraction\"},\"model_id\":\"abstraction\",\"portfolio_status\":\"intentionally_noisy_pressure_hypothesis\",\"recalled_by_mechanism_ids\":[\"lane2_recall_rank:000\"],\"selected_relation_slot\":\"ally\"}],\"schema_version\":\"lolla.simulated_reliability_pressure_input.v1\",\"source_refs\":[{\"path\":\"research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt\",\"sha256\":\"0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef\"},{\"path\":\"docs/evals/independent-useful-fresh-pressure-pair-target-v1.json\",\"sha256\":\"6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nInspect every active candidate exactly once. apply means the lens materially changes, sharpens, or supplies a concrete test for the reasoning. reject means its strongest plausible application fails in this case; name the failed condition and the risk of forcing it. park means the lens remains plausible but needs evidence or is not decision-relevant enough to use now; name the reopening condition. Cite exact source turn numbers for every disposition. Preserve strong existing reasoning. Do not invent external facts, numerical thresholds, percentages, dates, quantities, or cutoffs. If a value is unknown, state the evidence or decision process needed and leave it unresolved. Even an applied lens must remain conditional and name the source evidence, observation, or outcome that would weaken or overturn its use; 'no reopening condition' is not acceptable. Do not convert a lens into confidence that the source conversation did not earn. Then write a self-contained reconsidered answer and a concise change summary. Candidate names and the mechanical disposition checklist must remain private unless a name is genuinely useful to the user.",
+        "user_prompt_sha256": "c4070266fda40c699c7c2e7abc62e1d3d8f9e67a427a7e4ea13c44096dfbdc63"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_dispositions": {
+            "description": "Exactly one accountable disposition for every active pressure candidate.",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "disposition": {
+                  "description": "Apply a materially useful lens, reject a failed application, or park a plausible lens until a stated condition reopens it.",
+                  "enum": [
+                    "apply",
+                    "reject",
+                    "park"
+                  ],
+                  "type": "string"
+                },
+                "disposition_reason": {
+                  "description": "Why the lens is applied, rejected, or parked, including the failed condition for a rejection.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "effect": {
+                  "description": "The candidate's decision-relevant effect, or no material effect when rejected.",
+                  "enum": [
+                    "reframe",
+                    "new_condition",
+                    "new_alternative",
+                    "uncertainty_change",
+                    "reversal_rule",
+                    "reinforces_existing",
+                    "no_material_effect"
+                  ],
+                  "type": "string"
+                },
+                "model_id": {
+                  "description": "The exact canonical candidate identity from the supplied portfolio.",
+                  "enum": [
+                    "signaling",
+                    "social-proof",
+                    "confirmation-bias",
+                    "incentives",
+                    "abstraction"
+                  ],
+                  "type": "string"
+                },
+                "reopen_condition": {
+                  "description": "The evidence, observation, or outcome that would weaken, overturn, or reopen this disposition. Applied lenses must retain a real falsifier and may not say none is needed.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "risk_if_forced": {
+                  "description": "What would become misleading, duplicative, or harmful if this lens were forced into the reasoning.",
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source_turn_numbers": {
+                  "description": "Exact authoritative conversation turns supporting this disposition.",
+                  "items": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "maxItems": 7,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "strongest_plausible_application": {
+                  "description": "The strongest good-faith way this lens could bear on the conversation before deciding its disposition.",
+                  "maxLength": 700,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "model_id",
+                "disposition",
+                "source_turn_numbers",
+                "effect",
+                "strongest_plausible_application",
+                "disposition_reason",
+                "risk_if_forced",
+                "reopen_condition"
+              ],
+              "type": "object"
+            },
+            "maxItems": 5,
+            "minItems": 5,
+            "type": "array"
+          },
+          "change_summary": {
+            "description": "A concise factual account of what changed, stayed unchanged, or remained unresolved after reconsideration.",
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "description": "A self-contained public answer that preserves strong original reasoning and includes only earned friction.",
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidate_dispositions",
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    },
+    "transcript_only": {
+      "call_required": true,
+      "packet": {
+        "authoritative_conversation": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+        "boundary": {
+          "graph_candidates_included": false,
+          "graph_runtime_effect": "none",
+          "production_authorization": false,
+          "treatment": "transcript_only_fresh_reconsideration"
+        },
+        "case_id": "phase5-independent-useful-retailer-pilot",
+        "instructions": {
+          "external_pressure_portfolio_included": false,
+          "fresh_context_required": true,
+          "preserve_strong_original_reasoning": true,
+          "unknown_thresholds_must_remain_questions_or_selection_tasks": true,
+          "unsupported_case_facts_allowed": false,
+          "unsupported_quantitative_thresholds_allowed": false
+        },
+        "packet_sha256": "313883a23985d8fa97322df0ae455eb6504ac0b98e163dff8871d553d83c47e5",
+        "schema_version": "lolla.fresh_reasoning_control_input.v2",
+        "source_refs": [
+          {
+            "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+            "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+          },
+          {
+            "path": "docs/evals/independent-useful-fresh-pressure-pair-target-v1.json",
+            "sha256": "6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad"
+          }
+        ],
+        "source_turn_numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "prompts": {
+        "system_prompt": "You are a fresh-context reasoner. Reconsider the authoritative conversation from the ground up, preserve strong existing reasoning, and improve it only where the conversation supports a material change. Do not manufacture quantitative precision.",
+        "system_prompt_sha256": "0ba40e1d6752e37d26307333d5193a39bad8f98cb3ccfb8afcd0e77e794dc397",
+        "user_prompt": "TRANSCRIPT-ONLY CONTROL PACKET V2\n{\"authoritative_conversation\":\"CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\\n\\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\\n\\nCase ID: phase5-independent-useful-retailer-pilot\\nStratum: small_manufacturer_retail_partnership\\nProspectively authored synthetic holdout; not used in architecture development.\\n\\n[Turn 1] USER:\\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\\n\\n[Turn 1] ASSISTANT:\\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\\n\\n[Turn 2] USER:\\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\\n\\n[Turn 2] ASSISTANT:\\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\\n\\n[Turn 3] USER:\\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\\n\\n[Turn 3] ASSISTANT:\\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\\n\\n[Turn 4] USER:\\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\\n\\n[Turn 4] ASSISTANT:\\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\\n\\n[Turn 5] USER:\\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\\n\\n[Turn 5] ASSISTANT:\\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\\n\\n[Turn 6] USER:\\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\\n\\n[Turn 6] ASSISTANT:\\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\\n\\n[Turn 7] USER:\\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\\n\\n[Turn 7] ASSISTANT:\\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\\n\",\"boundary\":{\"graph_candidates_included\":false,\"graph_runtime_effect\":\"none\",\"production_authorization\":false,\"treatment\":\"transcript_only_fresh_reconsideration\"},\"case_id\":\"phase5-independent-useful-retailer-pilot\",\"instructions\":{\"external_pressure_portfolio_included\":false,\"fresh_context_required\":true,\"preserve_strong_original_reasoning\":true,\"unknown_thresholds_must_remain_questions_or_selection_tasks\":true,\"unsupported_case_facts_allowed\":false,\"unsupported_quantitative_thresholds_allowed\":false},\"packet_sha256\":\"313883a23985d8fa97322df0ae455eb6504ac0b98e163dff8871d553d83c47e5\",\"schema_version\":\"lolla.fresh_reasoning_control_input.v2\",\"source_refs\":[{\"path\":\"research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt\",\"sha256\":\"0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef\"},{\"path\":\"docs/evals/independent-useful-fresh-pressure-pair-target-v1.json\",\"sha256\":\"6a6fefb19ecd8fff5aaff1bfecf923950548b6224de760e77ae815901aebaaad\"}],\"source_turn_numbers\":[1,2,3,4,5,6,7]}\n\nWrite a self-contained reconsidered answer and a concise change summary. Do not invent facts. Never invent a numerical threshold, percentage, date, quantity, or cutoff merely to make a condition sound concrete. If the conversation does not support a value, state the evidence needed or the decision process for choosing it and leave the value unresolved. This control contains no external mental-model pressure portfolio; reason only from the authoritative conversation.",
+        "user_prompt_sha256": "f61d9da118ffed944bdc71d009ef285f6d95593d50c9b6a8bd5fd939a356a7b2"
+      },
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "change_summary": {
+            "maxLength": 1500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconsidered_answer": {
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reconsidered_answer",
+          "change_summary"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "bundle_sha256": "79bd56b4c291de87ddbdee49acab365a54f7968e65cfa497b3f7708093333d88",
+  "case_id": "phase5-independent-useful-retailer-pilot",
+  "comparison_contract": {
+    "direct_candidates_identical_between_pressure_arms": true,
+    "graph_only_difference_from_direct_arm": true,
+    "no_provider_transport_in_builder": true,
+    "no_scalar_quality_score": true,
+    "same_authoritative_conversation": true
+  },
+  "direct_ledger_sha256": "17f90f67ab32794d0014d8792974687c0f63557c1218fe2d028cd64b72206e41",
+  "graph_ledger_sha256": "606fe21c2efedd5707f72a654e2626f97839c88a78caef1dc563875c2bb84b04",
+  "production_authorization": false,
+  "runtime_effect": "none",
+  "schema_version": "lolla.simulated_reliability_three_arm_bundle.v1"
+}

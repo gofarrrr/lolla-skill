@@ -202,7 +202,7 @@ of three dispositions:
 The live reconsideration occurs in the same conversational context. It is real friction and auditable custody, but it is not independent validation. Same-context rationalization remains a known risk, not an observed systematic effect.
 
 Constitutional graph survival proves that bounded candidates reached the reasoner; it does not prove serious consideration. A fresh consumer is research-only and may inherit the vanilla frame or force selected noise into the answer. The provider-free [consumer-context contract v1](docs/evals/lolla-consumer-context-pressure-ablation-contract-v1.json) defines a six-output, single-draw case diagnostic under declared context representations.
-It is not execution-ready and cannot by itself identify self-justification or causal graph value. V0 is the preserved predecessor, not the current contract.
+The [role/attribution case candidate](docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md) freezes one retrospective safe case, five provider-neutral envelopes, byte-equality and payload-bijection receipts, and an honest blocked F1 slot. It is still not execution-ready and cannot identify self-justification or causal graph value. V0 is the preserved predecessor, not the current contract.
 
 ## 7. Revision, archive, receipts, and health
 
@@ -367,6 +367,7 @@ PYTHONPATH=. python3 scripts/evals/validate_constitution_stage0_addendum_registe
   --register docs/evals/lolla-constitution-stage0-addendum-register-v1.json
 PYTHONPATH=. python3 scripts/evals/validate_stage0_public_handoff.py
 PYTHONPATH=. python3 scripts/evals/validate_self_contained_skill.py --validate-only
+PYTHONPATH=. python3 scripts/evals/validate_consumer_context_case_freeze_candidate.py
 PYTHONPATH=. pytest -q tests/test_constitution_stage0_addendum_register.py \
   tests/test_stage0_public_handoff.py
 PYTHONPATH=. pytest -q
