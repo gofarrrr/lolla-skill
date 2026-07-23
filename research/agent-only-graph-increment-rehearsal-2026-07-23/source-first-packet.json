@@ -1,52 +1,25 @@
 {
   "agent_proxy_response_schema": {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "additionalProperties": false,
-    "properties": {
-      "boundary": {
-        "additionalProperties": false,
-        "properties": {
-          "ground_truth": {
-            "const": false
+    "$defs": {
+      "complete_source_read": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/source_read_shape"
           },
-          "human_validated": {
-            "const": false
-          },
-          "provider_calls": {
-            "const": 0
-          },
-          "routing_authority": {
-            "const": false
+          {
+            "required": [
+              "current_decision_or_position",
+              "strong_original_reasoning_to_preserve",
+              "material_unresolved_questions",
+              "what_would_count_as_new_decision_leverage",
+              "what_would_count_as_circular_restatement",
+              "what_would_count_as_forced_absorption_or_harm",
+              "uncertainty_and_alternative_readings"
+            ]
           }
-        },
-        "required": [
-          "human_validated",
-          "ground_truth",
-          "routing_authority",
-          "provider_calls"
-        ],
-        "type": "object"
+        ]
       },
-      "fresh_context": {
-        "const": true
-      },
-      "review_id": {
-        "minLength": 1,
-        "type": "string"
-      },
-      "reviewer_type": {
-        "const": "fresh_agent_source_first_proxy"
-      },
-      "saw_candidate_identities_before_freeze": {
-        "const": false
-      },
-      "saw_prior_outputs_before_freeze": {
-        "const": false
-      },
-      "schema_version": {
-        "const": "lolla.agent_source_first_proxy_review.v1"
-      },
-      "source_only_read": {
+      "source_read_shape": {
         "additionalProperties": false,
         "properties": {
           "current_decision_or_position": {
@@ -100,19 +73,249 @@
             "type": "array"
           }
         },
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "complete"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "$ref": "#/$defs/complete_source_read"
+            },
+            "source_read_complete": {
+              "const": true
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": true
+                },
+                "state_reason": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "completed_zero"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "type": "null"
+            },
+            "source_read_complete": {
+              "const": true
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "partial"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/source_read_shape"
+                },
+                {
+                  "minProperties": 1
+                }
+              ]
+            },
+            "source_read_complete": {
+              "const": false
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "enum": [
+                "failed",
+                "missing"
+              ]
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_only_read": {
+              "type": "null"
+            },
+            "source_read_complete": {
+              "const": false
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "properties": {
+      "boundary": {
+        "additionalProperties": false,
+        "properties": {
+          "ground_truth": {
+            "const": false
+          },
+          "human_validated": {
+            "const": false
+          },
+          "provider_calls": {
+            "const": 0
+          },
+          "routing_authority": {
+            "const": false
+          }
+        },
         "required": [
-          "current_decision_or_position",
-          "strong_original_reasoning_to_preserve",
-          "material_unresolved_questions",
-          "what_would_count_as_new_decision_leverage",
-          "what_would_count_as_circular_restatement",
-          "what_would_count_as_forced_absorption_or_harm",
-          "uncertainty_and_alternative_readings"
+          "human_validated",
+          "ground_truth",
+          "routing_authority",
+          "provider_calls"
         ],
         "type": "object"
       },
-      "source_read_complete": {
+      "fresh_context": {
         "const": true
+      },
+      "review_id": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "reviewer_type": {
+        "const": "fresh_agent_source_first_proxy"
+      },
+      "saw_candidate_identities_before_freeze": {
+        "const": false
+      },
+      "saw_prior_outputs_before_freeze": {
+        "const": false
+      },
+      "schema_version": {
+        "const": "lolla.agent_source_first_proxy_review.v1"
+      },
+      "source_only_read": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/complete_source_read"
+          },
+          {
+            "$ref": "#/$defs/source_read_shape"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "source_read_complete": {
+        "type": "boolean"
+      },
+      "terminal_receipt": {
+        "additionalProperties": false,
+        "properties": {
+          "first_terminal_result_preserved": {
+            "const": true
+          },
+          "post_seal_stage_eligible": {
+            "type": "boolean"
+          },
+          "source_only_visibility_preserved": {
+            "const": true
+          },
+          "state_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "first_terminal_result_preserved",
+          "source_only_visibility_preserved",
+          "post_seal_stage_eligible",
+          "state_reason"
+        ],
+        "type": "object"
+      },
+      "terminal_status": {
+        "enum": [
+          "complete",
+          "completed_zero",
+          "partial",
+          "failed",
+          "missing"
+        ]
       }
     },
     "required": [
@@ -120,10 +323,12 @@
       "review_id",
       "reviewer_type",
       "fresh_context",
+      "terminal_status",
       "source_read_complete",
       "saw_candidate_identities_before_freeze",
       "saw_prior_outputs_before_freeze",
       "source_only_read",
+      "terminal_receipt",
       "boundary"
     ],
     "type": "object"

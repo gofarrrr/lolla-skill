@@ -69,6 +69,10 @@
       "fresh_context_count": 2,
       "visibility": "authoritative_source_only",
       "freeze_before_next_stage": true,
+      "post_seal_transition_statuses": [
+        "complete"
+      ],
+      "other_terminal_statuses_are_sealed_without_semantic_stand_down": true,
       "authority": "agent_proxy_diagnostic_only"
     },
     {
@@ -103,6 +107,7 @@
     }
   ],
   "source_only_agent_proxy_read_fields": [
+    "terminal_status",
     "source_read_complete",
     "current_decision_or_position",
     "strong_original_reasoning_to_preserve",
@@ -110,58 +115,15 @@
     "what_would_count_as_new_decision_leverage",
     "what_would_count_as_circular_restatement",
     "what_would_count_as_forced_absorption_or_harm",
-    "uncertainty_and_alternative_readings"
+    "uncertainty_and_alternative_readings",
+    "terminal_receipt"
   ],
   "source_first_agent_proxy_schema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "additionalProperties": false,
-    "required": [
-      "schema_version",
-      "review_id",
-      "reviewer_type",
-      "fresh_context",
-      "source_read_complete",
-      "saw_candidate_identities_before_freeze",
-      "saw_prior_outputs_before_freeze",
-      "source_only_read",
-      "boundary"
-    ],
-    "properties": {
-      "schema_version": {
-        "const": "lolla.agent_source_first_proxy_review.v1"
-      },
-      "review_id": {
-        "type": "string",
-        "minLength": 1
-      },
-      "reviewer_type": {
-        "const": "fresh_agent_source_first_proxy"
-      },
-      "fresh_context": {
-        "const": true
-      },
-      "source_read_complete": {
-        "const": true
-      },
-      "saw_candidate_identities_before_freeze": {
-        "const": false
-      },
-      "saw_prior_outputs_before_freeze": {
-        "const": false
-      },
-      "source_only_read": {
+    "$defs": {
+      "source_read_shape": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "current_decision_or_position",
-          "strong_original_reasoning_to_preserve",
-          "material_unresolved_questions",
-          "what_would_count_as_new_decision_leverage",
-          "what_would_count_as_circular_restatement",
-          "what_would_count_as_forced_absorption_or_harm",
-          "uncertainty_and_alternative_readings"
-        ],
         "properties": {
           "current_decision_or_position": {
             "type": "string",
@@ -215,6 +177,112 @@
           }
         }
       },
+      "complete_source_read": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/source_read_shape"
+          },
+          {
+            "required": [
+              "current_decision_or_position",
+              "strong_original_reasoning_to_preserve",
+              "material_unresolved_questions",
+              "what_would_count_as_new_decision_leverage",
+              "what_would_count_as_circular_restatement",
+              "what_would_count_as_forced_absorption_or_harm",
+              "uncertainty_and_alternative_readings"
+            ]
+          }
+        ]
+      }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "review_id",
+      "reviewer_type",
+      "fresh_context",
+      "terminal_status",
+      "source_read_complete",
+      "saw_candidate_identities_before_freeze",
+      "saw_prior_outputs_before_freeze",
+      "source_only_read",
+      "terminal_receipt",
+      "boundary"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "lolla.agent_source_first_proxy_review.v1"
+      },
+      "review_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "reviewer_type": {
+        "const": "fresh_agent_source_first_proxy"
+      },
+      "fresh_context": {
+        "const": true
+      },
+      "terminal_status": {
+        "enum": [
+          "complete",
+          "completed_zero",
+          "partial",
+          "failed",
+          "missing"
+        ]
+      },
+      "source_read_complete": {
+        "type": "boolean"
+      },
+      "saw_candidate_identities_before_freeze": {
+        "const": false
+      },
+      "saw_prior_outputs_before_freeze": {
+        "const": false
+      },
+      "source_only_read": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/complete_source_read"
+          },
+          {
+            "$ref": "#/$defs/source_read_shape"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "terminal_receipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "first_terminal_result_preserved",
+          "source_only_visibility_preserved",
+          "post_seal_stage_eligible",
+          "state_reason"
+        ],
+        "properties": {
+          "first_terminal_result_preserved": {
+            "const": true
+          },
+          "source_only_visibility_preserved": {
+            "const": true
+          },
+          "post_seal_stage_eligible": {
+            "type": "boolean"
+          },
+          "state_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
       "boundary": {
         "type": "object",
         "additionalProperties": false,
@@ -239,7 +307,150 @@
           }
         }
       }
-    }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "complete"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_read_complete": {
+              "const": true
+            },
+            "source_only_read": {
+              "$ref": "#/$defs/complete_source_read"
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": true
+                },
+                "state_reason": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "completed_zero"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_read_complete": {
+              "const": true
+            },
+            "source_only_read": {
+              "type": "null"
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "const": "partial"
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_read_complete": {
+              "const": false
+            },
+            "source_only_read": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/source_read_shape"
+                },
+                {
+                  "minProperties": 1
+                }
+              ]
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "terminal_status": {
+              "enum": [
+                "failed",
+                "missing"
+              ]
+            }
+          },
+          "required": [
+            "terminal_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "source_read_complete": {
+              "const": false
+            },
+            "source_only_read": {
+              "type": "null"
+            },
+            "terminal_receipt": {
+              "properties": {
+                "post_seal_stage_eligible": {
+                  "const": false
+                },
+                "state_reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
   },
   "post_seal_reference_agent_proxy_schema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -274,6 +485,38 @@
         "type": "array",
         "minItems": 2,
         "maxItems": 2,
+        "allOf": [
+          {
+            "contains": {
+              "type": "object",
+              "required": [
+                "model_id"
+              ],
+              "properties": {
+                "model_id": {
+                  "const": "signaling"
+                }
+              }
+            },
+            "minContains": 1,
+            "maxContains": 1
+          },
+          {
+            "contains": {
+              "type": "object",
+              "required": [
+                "model_id"
+              ],
+              "properties": {
+                "model_id": {
+                  "const": "social-proof"
+                }
+              }
+            },
+            "minContains": 1,
+            "maxContains": 1
+          }
+        ],
         "items": {
           "type": "object",
           "additionalProperties": false,

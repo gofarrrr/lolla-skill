@@ -742,6 +742,7 @@ def _validate_contract_boundary(contract: Mapping[str, Any]) -> None:
         raise ProductDeltaGraphIncrementRehearsalError(
             "contract economic nonclaim drifted"
         )
+    _validate_agent_proxy_schema_boundaries(contract)
     post_seal = contract.get("post_seal_reference_review")
     if not isinstance(post_seal, Mapping):
         raise ProductDeltaGraphIncrementRehearsalError(
@@ -760,6 +761,91 @@ def _validate_contract_boundary(contract: Mapping[str, Any]) -> None:
     ]:
         raise ProductDeltaGraphIncrementRehearsalError(
             "contract post-seal observation vocabulary drifted"
+        )
+
+
+def _validate_agent_proxy_schema_boundaries(contract: Mapping[str, Any]) -> None:
+    source_schema = _agent_proxy_schema(contract, "source_first")
+    source_required = source_schema.get("required")
+    required_source_fields = {
+        "terminal_status",
+        "source_read_complete",
+        "source_only_read",
+        "terminal_receipt",
+    }
+    if not isinstance(source_required, list) or not required_source_fields.issubset(
+        set(source_required)
+    ):
+        raise ProductDeltaGraphIncrementRehearsalError(
+            "source-first schema does not preserve terminal-state custody"
+        )
+    source_properties = _required_mapping(source_schema, "properties")
+    terminal_status = _required_mapping(source_properties, "terminal_status")
+    if terminal_status.get("enum") != [
+        "complete",
+        "completed_zero",
+        "partial",
+        "failed",
+        "missing",
+    ]:
+        raise ProductDeltaGraphIncrementRehearsalError(
+            "source-first terminal-state vocabulary drifted"
+        )
+    if _required_mapping(source_properties, "source_read_complete").get("type") != (
+        "boolean"
+    ):
+        raise ProductDeltaGraphIncrementRehearsalError(
+            "source-first completion flag is not state-dependent"
+        )
+    receipt = _required_mapping(source_properties, "terminal_receipt")
+    receipt_required = receipt.get("required")
+    if not isinstance(receipt_required, list) or {
+        "first_terminal_result_preserved",
+        "source_only_visibility_preserved",
+        "post_seal_stage_eligible",
+        "state_reason",
+    } != set(receipt_required):
+        raise ProductDeltaGraphIncrementRehearsalError(
+            "source-first terminal receipt drifted"
+        )
+    state_conditions: set[str] = set()
+    for raw_rule in _required_sequence(source_schema, "allOf"):
+        rule = _as_mapping(raw_rule, "source-first terminal-state rule")
+        condition = _required_mapping(_required_mapping(rule, "if"), "properties")
+        status_condition = _required_mapping(condition, "terminal_status")
+        if isinstance(status_condition.get("const"), str):
+            state_conditions.add(str(status_condition["const"]))
+        elif isinstance(status_condition.get("enum"), list):
+            state_conditions.update(str(item) for item in status_condition["enum"])
+    if state_conditions != {
+        "complete",
+        "completed_zero",
+        "partial",
+        "failed",
+        "missing",
+    }:
+        raise ProductDeltaGraphIncrementRehearsalError(
+            "source-first terminal-state receipt conditions drifted"
+        )
+
+    post_seal_schema = _agent_proxy_schema(contract, "post_seal_reference")
+    post_properties = _required_mapping(post_seal_schema, "properties")
+    candidate_reviews = _required_mapping(post_properties, "candidate_reviews")
+    contains_ids: list[str] = []
+    for raw_rule in _required_sequence(candidate_reviews, "allOf"):
+        rule = _as_mapping(raw_rule, "candidate review uniqueness rule")
+        if rule.get("minContains") != 1 or rule.get("maxContains") != 1:
+            raise ProductDeltaGraphIncrementRehearsalError(
+                "candidate review exact-cardinality rule drifted"
+            )
+        contains = _required_mapping(rule, "contains")
+        properties = _required_mapping(contains, "properties")
+        model_id = _required_mapping(properties, "model_id").get("const")
+        if isinstance(model_id, str):
+            contains_ids.append(model_id)
+    if sorted(contains_ids) != ["signaling", "social-proof"]:
+        raise ProductDeltaGraphIncrementRehearsalError(
+            "candidate review uniqueness coverage drifted"
         )
 
 

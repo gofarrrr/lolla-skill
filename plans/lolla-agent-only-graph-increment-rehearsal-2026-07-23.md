@@ -117,7 +117,12 @@ Each records:
 These are `fresh_agent_source_first_proxy` reads. They are not targets,
 signatures, human corrections, ground truth, routing authority, or an oracle.
 
-Both artifacts and hashes must exist before Stage 2.
+Each first terminal result is sealed as `complete`, `completed_zero`, `partial`,
+`failed`, or `missing`; those states are never collapsed. Only `complete` may
+continue into Stage 2. The other four states retain a reason and stop that
+source-review lane without being interpreted as semantic stand-down.
+
+Both complete artifacts and hashes must exist before Stage 2.
 
 ## Stage 2 — post-seal reference-condition review
 
@@ -134,6 +139,9 @@ they do not silently delete, replace, or rerank candidates for this rehearsal.
 
 That rule is constitutional: an agent proxy must not domesticate the current
 graph condition by rewriting it after seeing the source.
+
+The two-item response must contain exactly one `signaling` review and exactly
+one `social-proof` review. Duplicate review entries cannot satisfy the schema.
 
 ## Stage 3 — isolated generation rehearsal
 

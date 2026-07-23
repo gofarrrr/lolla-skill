@@ -28,6 +28,38 @@
         "type": "object"
       },
       "candidate_reviews": {
+        "allOf": [
+          {
+            "contains": {
+              "properties": {
+                "model_id": {
+                  "const": "signaling"
+                }
+              },
+              "required": [
+                "model_id"
+              ],
+              "type": "object"
+            },
+            "maxContains": 1,
+            "minContains": 1
+          },
+          {
+            "contains": {
+              "properties": {
+                "model_id": {
+                  "const": "social-proof"
+                }
+              },
+              "required": [
+                "model_id"
+              ],
+              "type": "object"
+            },
+            "maxContains": 1,
+            "minContains": 1
+          }
+        ],
         "items": {
           "additionalProperties": false,
           "properties": {
@@ -182,7 +214,7 @@
     "not permission to edit the frozen generation pair"
   ],
   "open_only_after": {
-    "source_first_packet_sha256": "1d931928ec6d580e47b203db3ae3ae83b0e0cb79b40c7042aaaa0372496d4498",
+    "source_first_packet_sha256": "e44f221490b7bb46dfc1a33e106d9cd8096155a2ad254d4befea79d407aa533c",
     "source_first_proxy_response_frozen": true
   },
   "rehearsal_id": "agent-only-graph-increment-rehearsal-2026-07-23",

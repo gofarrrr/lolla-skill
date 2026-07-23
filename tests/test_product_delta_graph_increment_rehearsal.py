@@ -98,6 +98,47 @@ def test_source_first_packet_has_no_candidate_or_lineage_artifacts() -> None:
     assert "source_only_target" not in render_json(schema)
 
 
+def test_source_first_schema_preserves_all_terminal_states() -> None:
+    source_first, _, _, _ = _build()
+    schema = source_first["agent_proxy_response_schema"]
+
+    assert schema["properties"]["terminal_status"]["enum"] == [
+        "complete",
+        "completed_zero",
+        "partial",
+        "failed",
+        "missing",
+    ]
+    assert schema["properties"]["source_read_complete"] == {"type": "boolean"}
+    assert {
+        "terminal_status",
+        "source_read_complete",
+        "source_only_read",
+        "terminal_receipt",
+    }.issubset(schema["required"])
+    assert set(schema["properties"]["terminal_receipt"]["required"]) == {
+        "first_terminal_result_preserved",
+        "source_only_visibility_preserved",
+        "post_seal_stage_eligible",
+        "state_reason",
+    }
+
+    covered_states: set[str] = set()
+    for rule in schema["allOf"]:
+        status = rule["if"]["properties"]["terminal_status"]
+        if "const" in status:
+            covered_states.add(status["const"])
+        else:
+            covered_states.update(status["enum"])
+    assert covered_states == {
+        "complete",
+        "completed_zero",
+        "partial",
+        "failed",
+        "missing",
+    }
+
+
 def test_post_seal_packet_reveals_reference_without_routing_authority() -> None:
     _, post_seal, _, _ = _build()
 
@@ -133,6 +174,20 @@ def test_post_seal_packet_reveals_reference_without_routing_authority() -> None:
         "source_tension_observation",
         "uncertain",
     ]
+    candidate_schema = post_seal["agent_proxy_response_schema"]["properties"][
+        "candidate_reviews"
+    ]
+    exact_contains = {
+        rule["contains"]["properties"]["model_id"]["const"]: (
+            rule["minContains"],
+            rule["maxContains"],
+        )
+        for rule in candidate_schema["allOf"]
+    }
+    assert exact_contains == {
+        "signaling": (1, 1),
+        "social-proof": (1, 1),
+    }
 
 
 def test_aliases_are_deterministic_neutral_and_cover_both_conditions() -> None:
