@@ -1,0 +1,977 @@
+{
+  "schema_version": "lolla.product_delta_fresh_agent_review.v1",
+  "review_id": "fresh-pair-primary",
+  "input_path": "research/agent-only-paired-delta-screen-2026-07-23/blind-packets.json",
+  "screen_id": "agent-only-paired-delta-screen-2026-07-23",
+  "sealed_manifest_seen": false,
+  "other_repository_material_seen": false,
+  "provider_calls": 0,
+  "provider_cost_usd": 0,
+  "human_validated": false,
+  "paired_reviews": [
+    {
+      "case_id": "retailer-pilot-exact",
+      "source_interpretation": {
+        "decision_or_question": "Whether to run a bounded three-month retailer pilot while refusing to treat retailer selection or retailer-channel results as independent product-demand validation.",
+        "material_constraints": [
+          "The letter of intent guarantees no purchase volume.",
+          "Custom packaging, six weeks of inventory, financing, and delayed smaller wholesale orders create cash, capacity, and relationship exposure.",
+          "The user has already proposed contribution-margin, return-rate, store-reorder, capacity-financing, inventory-cap, partner-language, and first-negotiation constraints.",
+          "The unresolved question is independent demand outside the retailer's merchandising, audience, and brand signal."
+        ],
+        "source_limits": [
+          "The complete checked-in synthetic conversation is supplied.",
+          "The conversation does not supply empirical conversion rates, cash-risk tolerances, purchase-commitment norms, or audience-demographic facts."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "retailer-01-channel-not-product-validation",
+          "summary": "Preserve the distinction between retailer-channel learning and broader product validation.",
+          "reasoning_operation": "counterframe",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user explicitly calls the pilot channel learning rather than product validation, and the final source response says a separate validation step is needed."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Constrains the claims that may be drawn from a successful pilot without changing the user's current intention to run it."
+        },
+        {
+          "move_id": "retailer-02-plan-independent-demand-test",
+          "summary": "Turn the unresolved independent-demand question into a planned later direct-to-consumer or non-retailer-channel test.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source requires a separate validation step but does not select a direct-to-consumer test, another wholesale channel, or the timing of that step."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Adds a subsequent experiment before any broader product-demand conclusion."
+        },
+        {
+          "move_id": "retailer-03-week-six-reversal",
+          "summary": "Pre-commit to early exit if a store exceeds twelve percent returns or has zero reorder potential by week six.",
+          "reasoning_operation": "reversal",
+          "presence": "b_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source supports bounded duration and a return gate, but supplies neither a twelve-percent store threshold, a week-six checkpoint, nor a defined measure of zero reorder potential."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could terminate the pilot before its planned three-month review under newly introduced criteria."
+        },
+        {
+          "move_id": "retailer-04-twenty-percent-cash-trigger",
+          "summary": "Calculate packaging, carrying, and delayed-order exposure and restructure if it exceeds twenty percent of operating cash.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source asks the user to estimate contribution margin, cash at risk, inventory exposure, and delayed-order costs, but it gives no twenty-percent tolerance."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could require restructuring the pilot under a new cash-exposure threshold."
+        },
+        {
+          "move_id": "retailer-05-retailer-costly-signal",
+          "summary": "Condition preferred-partner publicity on a retailer inventory commitment or marketing co-investment.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "unsupported",
+          "source_evidence": [
+            "The source notes the absence of a guaranteed purchase volume and bounds public language, but it does not require a costly signal or specify a fifty-percent inventory commitment."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Could withhold the announcement or reopen commercial negotiations before launch."
+        },
+        {
+          "move_id": "retailer-06-audience-transfer-map",
+          "summary": "Map retailer characteristics against typical buyers before generalizing pilot results.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source explicitly warns that retailer merchandising and audience limit generalization, but it does not state that the audience is higher-income or design-forward."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Adds a transferability check before using retailer results as evidence about the core market."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the user's bounded-pilot position and the exact channel-learning versus product-validation distinction.",
+            "Preserves the existing economic, operational, capacity, relationship, and public-language gates.",
+            "Keeps prestige as an evidence-standard risk rather than converting it into demand evidence."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not operationalize the still-unresolved separate validation step, although the source itself also leaves that step undefined."
+          ],
+          "unsupported_additions": [
+            "The phrase 'unassisted customer choice' extends slightly beyond the source's stated contrast with the retailer's stores, merchandising, audience, and brand signal.",
+            "Calling the conclusion 'correct' is evaluative authority language rather than additional source evidence."
+          ],
+          "cognitive_burden": [
+            "Low incremental burden because the response mainly consolidates the source's final position."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the bounded-pilot position and the boundary between channel learning and broader product validation.",
+            "Retains attention to cash, capacity, retailer-specific demand evidence, and public partner signaling."
+          ],
+          "lost_or_weakened_source_value": [
+            "The user's already-bounded pilot is recast as requiring several additional conditions, which weakens the source's distinction between governing this channel and separately validating the product.",
+            "The source's open question about independent validation is narrowed to suggested test forms without evidence that those are the relevant alternatives."
+          ],
+          "unsupported_additions": [
+            "Twelve-percent returns, week six, twenty percent of operating cash, and a fifty-percent inventory commitment are new numerical thresholds.",
+            "Marketing co-investment and higher-income or design-forward audience characteristics are not supplied by the conversation."
+          ],
+          "cognitive_burden": [
+            "Adds five workstreams: early-exit design, a later demand experiment, cash-at-risk quantification, retailer commitment negotiation, and market-transfer mapping.",
+            "Introduced thresholds may appear operationally precise despite lacking a source basis."
+          ]
+        }
+      },
+      "material_decision_difference": "present",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "B",
+        "basis": [
+          "Only after comparing the substantive moves, Arm B contains multiple case-external numerical thresholds, suggested test channels, commitment structures, and audience examples.",
+          "The guess does not establish provenance or graph causation."
+        ]
+      },
+      "inspection_limits": [
+        "This is a synthetic source-first text comparison, not evidence of human usefulness.",
+        "The added conditions cannot be evaluated for commercial appropriateness from the supplied conversation.",
+        "No conclusion about which arm is better is made."
+      ]
+    },
+    {
+      "case_id": "museum-license-exact",
+      "source_interpretation": {
+        "decision_or_question": "Whether a tightly scoped archive-search pilot can offer a meaningful exit when removable data and an adapter coexist with non-removable engineering learning, researcher expectations, contributor trust effects, and public identity effects.",
+        "material_constraints": [
+          "The pilot excludes oral histories and sensitive records and is limited to metadata and reviewed photographs.",
+          "Item provenance, search logs, no generated biographies, independent red-team review, adapter deletion, experimental-partner language, and renewed contributor review bound the proposal.",
+          "The user says complaint, removal, false-association, and sensitive-query thresholds will be set before signing.",
+          "Collection-specific associations must not be reconstructable from retained engineering lessons."
+        ],
+        "source_limits": [
+          "The complete checked-in synthetic conversation is supplied.",
+          "The exact thresholds, legal commitments, technical reconstruction test, and contributor responses are not supplied."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "museum-01-formal-exit-not-full-reversal",
+          "summary": "Preserve the distinction between deleting pilot artifacts and reversing social or technical learning.",
+          "reasoning_operation": "time_horizon",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source identifies removable data and adapter layers alongside non-removable company learning, researcher expectations, contributor trust, and public identity."
+          ],
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Keeps residual effects central to the approval decision."
+        },
+        {
+          "move_id": "museum-02-early-reversal-trigger",
+          "summary": "Require an explicit early-termination condition tied to red-team reconstruction or a contributor complaint.",
+          "reasoning_operation": "reversal",
+          "presence": "b_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The user already commits to setting complaint, removal, false-association, and sensitive-query thresholds before signing, but the source does not say which threshold causes immediate termination."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could make approval conditional on a more explicit early-exit protocol."
+        },
+        {
+          "move_id": "museum-03-worst-case-acceptability",
+          "summary": "Ask whether persistent engineering, expectation, trust, and identity effects make the worst case unacceptable.",
+          "reasoning_operation": "premortem",
+          "presence": "b_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user's unresolved issue is precisely whether a meaningful contributor exit can be promised despite learning that survives the pilot."
+          ],
+          "cognitive_effect": "opens_path",
+          "decision_effect": "Could cause the user to reject, redesign, or delay the pilot if residual effects are outside tolerance."
+        },
+        {
+          "move_id": "museum-04-mitigation-sufficiency",
+          "summary": "Ask whether the full mitigation bundle reduces the residual worst case to an acceptable level.",
+          "reasoning_operation": "question",
+          "presence": "b_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The conversation lists the mitigation bundle while explicitly leaving meaningful exit unresolved."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Creates an additional approval inquiry without defining its answer or threshold."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the pilot's bounded scope and the distinction between formal deletion and persistent learning.",
+            "Preserves non-technical effects on trust, expectations, and institutional identity."
+          ],
+          "lost_or_weakened_source_value": [
+            "Leaves the unresolved exit question descriptive rather than converting it into an answerable approval inquiry."
+          ],
+          "unsupported_additions": [
+            "No substantive case fact beyond the supplied source was identified."
+          ],
+          "cognitive_burden": [
+            "Low incremental burden; it restates the source's final unresolved issue."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the bounded scope, mitigation bundle, and persistent social and technical effects.",
+            "Keeps contributor exit, rather than file deletion alone, as the decision focus."
+          ],
+          "lost_or_weakened_source_value": [
+            "Saying no reversal condition was specified overlooks that the user already promised to set four classes of threshold before signing.",
+            "The response risks reframing fundamentally non-reversible learning as a problem solved mainly by terminating earlier."
+          ],
+          "unsupported_additions": [
+            "The specific suggestion that one reconstruction finding or one contributor complaint should trigger termination is not established by the source.",
+            "The generic point at which harms outweigh benefits is not operationally defined in the conversation."
+          ],
+          "cognitive_burden": [
+            "Adds two meta-level approval questions and a trigger-design task to an already extensive governance bundle.",
+            "Repeats the complete mitigation list while asking for a further sufficiency judgment."
+          ]
+        }
+      },
+      "material_decision_difference": "uncertain",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "B",
+        "basis": [
+          "Arm B adds a reversal-condition frame, concrete trigger examples, and a worst-case sufficiency test not present in Arm A.",
+          "Those additions support only a blind origin guess, not a lineage finding."
+        ]
+      },
+      "inspection_limits": [
+        "The source does not reveal whether any proposed technical or governance safeguard is feasible.",
+        "The new questions may affect approval, but the response does not resolve them, so their ultimate decision effect is uncertain.",
+        "No arm selection or answer-quality judgment is made."
+      ]
+    },
+    {
+      "case_id": "consulting-launch-exact",
+      "source_interpretation": {
+        "decision_or_question": "Whether to leave a senior product role in six weeks to launch consulting, using a four-week checkpoint on spouse alignment, concrete network demand, and readiness for early business development.",
+        "material_constraints": [
+          "Eight months of zero-revenue runway is available, but the spouse has not reviewed the specific financial timeline.",
+          "Four or five friendly network expressions are not commitments.",
+          "The source proposes testing specific fractional asks while recognizing capacity trade-offs.",
+          "The source assistant introduced unsupported conversion probabilities, timing claims, and fractional-retainer figures."
+        ],
+        "source_limits": [
+          "The complete checked-in conversation is supplied.",
+          "No external market evidence supports the stated conversion rate, engagement timing, administrative timing, or retainer range.",
+          "The source does not report the outcome of the spouse conversation or network asks."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "consulting-01-core-checkpoint",
+          "summary": "Preserve a near-term checkpoint based on spouse alignment, concrete network testing, and readiness for business development.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source ends with a four-week checkpoint on the spouse conversation, specific network asks, and the early business-development plan."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Keeps both launching and delaying live pending observable information."
+        },
+        {
+          "move_id": "consulting-02-conversion-and-timeline-takeback",
+          "summary": "Set aside the network-conversion probability and first-engagement timing as ungrounded predictive metrics.",
+          "reasoning_operation": "lost_value",
+          "presence": "a_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source conversation contains the numerical assertions but supplies no data, reference class, or external evidence for them."
+          ],
+          "cognitive_effect": "opens_path",
+          "decision_effect": "Reduces the authority of forecasts that were used to characterize the six-week launch as tight."
+        },
+        {
+          "move_id": "consulting-03-retainer-range-caveat",
+          "summary": "Treat the stated fractional-retainer range as a possibility rather than a reliable baseline.",
+          "reasoning_operation": "lost_value",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source gives a ten-to-twenty-thousand-dollar monthly range without supporting evidence."
+          ],
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Prevents the runway plan from relying on the stated retainer amount."
+        },
+        {
+          "move_id": "consulting-04-fractional-option-not-expectation",
+          "summary": "Reframe fractional work as an option to test rather than an expected fallback.",
+          "reasoning_operation": "counterframe",
+          "presence": "a_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "No fractional commitment exists; the source only proposes making a specific ask to the network."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Keeps the bridge strategy available without allowing assumed fractional revenue to anchor launch timing."
+        },
+        {
+          "move_id": "consulting-05-external-rate-heterogeneity",
+          "summary": "Explain fractional compensation variance through company size, geography, and role type and suggest checking trusted contacts.",
+          "reasoning_operation": "unsupported_specificity",
+          "presence": "b_exclusive",
+          "source_grounding": "unsupported",
+          "source_evidence": [
+            "The conversation contains no market segmentation by company size, geography, fractional CPO, or senior-PM advisory role, and does not propose a trusted-contact pricing check."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Adds a pricing-validation task before relying on a fractional compensation range."
+        },
+        {
+          "move_id": "consulting-06-delay-trigger-paraphrase",
+          "summary": "Restate when lack of traction or lack of alignment should delay launch.",
+          "reasoning_operation": "stop_rule",
+          "presence": "uncertain_equivalence",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source uses a conjunctive example involving zero fractional commitments and spouse misalignment; Arm A says otherwise delay after broader clarity and testing conditions, while Arm B says delay only if fundamentals show no traction."
+          ],
+          "cognitive_effect": "unclear",
+          "decision_effect": "The different paraphrases could alter the checkpoint threshold, but neither precisely preserves the source's stated conjunction."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the spouse, network-signal, business-development, and four-week checkpoint structure.",
+            "Preserves fractional work as a live de-risking option.",
+            "Makes visible that several apparently factual numerical claims came from the assistant rather than from supplied evidence."
+          ],
+          "lost_or_weakened_source_value": [
+            "Its 'otherwise delay' phrasing may make the delay condition broader than the source's specific example.",
+            "It softens the timeline claims without replacing them with a supported planning range, leaving the runway stress test less operational."
+          ],
+          "unsupported_additions": [
+            "No new market figure is introduced.",
+            "Describing the timing assertions as general caution is an interpretive repair; the conversation itself provides no evidence even for their directional typicality."
+          ],
+          "cognitive_burden": [
+            "Adds the task of separating qualitative cautions from three categories of unsupported numerical authority.",
+            "The structured inventory is longer than the core checkpoint but keeps the corrections itemized."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the core spouse, network, business-development, and fractional-work considerations.",
+            "Retains the source's emphasis on responding to fundamentals rather than nerves."
+          ],
+          "lost_or_weakened_source_value": [
+            "Leaves the unsupported network-conversion and engagement-timing claims standing while caveating only fractional compensation.",
+            "The broad phrase 'fundamentals show no traction' is less exact than the source's stated checkpoint conditions."
+          ],
+          "unsupported_additions": [
+            "The asserted sources of market-rate variance and the trusted-contact pricing-validation method are not in the conversation.",
+            "The uncertainty about the user's true risk tolerance after seeing real numbers is plausible but not directly reported by the user."
+          ],
+          "cognitive_burden": [
+            "Adds a pricing-reference-class task but does not surface the same reference-class problem for the other numerical claims.",
+            "The response is concise, but its selectivity may require the reader to infer why only one number was qualified."
+          ]
+        }
+      },
+      "material_decision_difference": "uncertain",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "B",
+        "basis": [
+          "Arm B uniquely invokes market segmentation by company size, geography, and role form, which is absent from the source.",
+          "Arm A makes a broader source-custody correction but does not itself supply external market facts."
+        ]
+      },
+      "inspection_limits": [
+        "The record cannot establish actual consulting conversion, timing, or pricing conditions.",
+        "Both arms preserve the high-level checkpoint, while their evidence corrections and delay phrasing differ; the action-level effect is therefore uncertain.",
+        "No arm preference or forecast of user outcome is made."
+      ]
+    },
+    {
+      "case_id": "founder-equity-partial",
+      "source_interpretation": {
+        "decision_or_question": "Whether and how to structure Marcus's equity, governance, and commitment path without converting current technical and team dependency into an immediate fifteen-percent grant and board seat.",
+        "material_constraints": [
+          "Marcus drives major technical capability and may pull Jake and Lina.",
+          "The supplied valuation range is unaudited and should not carry the decision as established fact.",
+          "Intermediate instruments are already live options.",
+          "The supplied audit identifies systems feedback loops and measurable leverage design as gaps."
+        ],
+        "source_limits": [
+          "Only partial checked-in excerpts are supplied.",
+          "The excerpts cannot establish the complete negotiation history, the meaning of Friday, the exact prototype state, legal constraints, prior commitments, or the adequacy of either response."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "equity-01-dependency-before-price",
+          "summary": "Treat the request as dependency and commitment-system design before pricing the equity package.",
+          "reasoning_operation": "counterframe",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source names Marcus's technical and team leverage and identifies systems feedback and measurable leverage as gaps."
+          ],
+          "cognitive_effect": "opens_path",
+          "decision_effect": "Shifts the immediate task from accepting or rejecting the opening package to designing a staged relationship."
+        },
+        {
+          "move_id": "equity-02-intermediate-instruments",
+          "summary": "Keep staged equity, phantom equity, revenue share, milestone grants, and smaller non-board grants live.",
+          "reasoning_operation": "option",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source explicitly says intermediate instruments are already covered and remain relevant, though the excerpts do not verify every listed instrument."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Avoids a binary choice between a bonus or the full requested package."
+        },
+        {
+          "move_id": "equity-03-staged-evidence",
+          "summary": "Use a staged evidence period to test platform durability, team continuity, knowledge transfer, delivery, and governance behavior.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "shared",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "Measurable leverage design is a supplied gap, but the excerpts do not establish a ninety-day sprint or the complete measurement list."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Defers a larger equity or governance commitment until observable dependency-reduction and capability evidence exists."
+        },
+        {
+          "move_id": "equity-04-refusal-feedback-loop",
+          "summary": "Warn that vague delay or flat refusal could trigger Marcus disengagement and team, platform, and client continuity effects.",
+          "reasoning_operation": "premortem",
+          "presence": "a_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source states Marcus may pull Jake and Lina and identifies systems feedback loops as a gap, but the additional platform and client consequences are not established in the excerpts."
+          ],
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Changes how the staged decision should be communicated even while withholding the full package."
+        },
+        {
+          "move_id": "equity-05-valuation-caveat",
+          "summary": "Keep the nine-to-thirteen-million-dollar exit math from carrying the decision until buyer assumptions are tested.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The source explicitly calls the valuation unaudited and the valuation pressure duplicate rather than a new gap."
+          ],
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Prevents the equity decision from being anchored to the supplied exit range."
+        },
+        {
+          "move_id": "equity-06-partnership-conversation",
+          "summary": "Frame the immediate conversation around the company to be built, mutual partnership requirements, and evidence that unlocks later commitment.",
+          "reasoning_operation": "stakeholder_view",
+          "presence": "a_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The dependency and feedback-loop excerpts support a relationship frame, but the exact Friday conversation protocol is absent from the partial view."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Offers a communication path intended to retain Marcus while preserving staged commitment."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the no-immediate-full-package position, intermediate instruments, practical leverage, and measurable dependency-reduction focus.",
+            "Makes the potential disengagement feedback loop explicit."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not explicitly preserve the supplied warning that the valuation math is unaudited.",
+            "The broad measurement list may obscure which few leverage measures are actually decisive."
+          ],
+          "unsupported_additions": [
+            "Platform delivery, client delivery, exit story, and governance behavior are not demonstrably grounded in the supplied excerpts.",
+            "Because the source is partial, these details are classified as not established by the packet rather than disproved."
+          ],
+          "cognitive_burden": [
+            "Adds a broad multi-domain sprint scorecard and a relationship-framing task.",
+            "The response requires simultaneous attention to retention, delivery, governance, knowledge transfer, and exit logic."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves dependency-system framing, team-retention questions, intermediate instruments, measurable milestones, and the valuation caveat.",
+            "Keeps a staged upside path open without immediate governance control."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not make the risk of a poorly communicated refusal or delay as explicit as Arm A.",
+            "Saying not to diagnose a software architecture problem may narrow a systems concern whose full meaning cannot be recovered from the partial excerpts."
+          ],
+          "unsupported_additions": [
+            "The ninety-day period, prototype-to-durable-value framing, and exact milestone structure are not established by the supplied excerpts.",
+            "The statement about software architecture responds to a diagnosis not visible in the partial source view."
+          ],
+          "cognitive_burden": [
+            "Adds valuation-assumption testing alongside retention, platform, governance, and milestone design.",
+            "The staging remains operationally underspecified despite naming several instruments."
+          ]
+        }
+      },
+      "material_decision_difference": "uncertain",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "A",
+        "basis": [
+          "Arm A more explicitly adds the refusal-to-disengagement feedback loop and a broader operational evidence set, matching the supplied description of net-new systems and measurable-leverage gaps.",
+          "The partial source prevents a confident provenance inference."
+        ]
+      },
+      "inspection_limits": [
+        "Only partial excerpts were inspected, so silence in the packet cannot establish that a detail was absent from the full conversation.",
+        "Both arms stage commitment and reject the immediate full package; whether their different emphases materially alter the real negotiation is uncertain.",
+        "No legal, valuation, governance, or negotiation recommendation is certified."
+      ]
+    },
+    {
+      "case_id": "consultant-report-partial",
+      "source_interpretation": {
+        "decision_or_question": "How a sole witness to apparent evidence destruction should preserve safety and evidence while obtaining independent counsel before confrontation, self-investigation, or choosing a reporting channel.",
+        "material_constraints": [
+          "The witness is mid-level and the apparent actor is a senior partner.",
+          "The current answer already calls for personal documentation, independent whistleblower counsel, broad disclosure to a spouse, normal Wednesday attendance, and no confrontation or unusual access.",
+          "The supplied pressure check identifies counsel incentives, a Wednesday protocol, distinct internal channels, and retaliation or evidence-risk tripwires.",
+          "Power-dynamics leverage language is identified as a poor fit for this non-negotiated reporting decision."
+        ],
+        "source_limits": [
+          "Only partial checked-in excerpts are supplied.",
+          "The packet cannot establish jurisdiction, privilege, employer policy, physical risk, exact observed conduct, or the legal suitability of any reporting path."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "report-01-preserve-and-seek-counsel",
+          "summary": "Preserve the observation, avoid confrontation or investigation, and promptly contact independent whistleblower counsel.",
+          "reasoning_operation": "option",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The control-answer excerpt states this sequence directly."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Makes counsel-led preservation the immediate path while excluding self-directed accusation and evidence gathering."
+        },
+        {
+          "move_id": "report-02-counsel-incentive-screen",
+          "summary": "Screen prospective counsel for incentives and bias toward internal or external reporting channels.",
+          "reasoning_operation": "stakeholder_view",
+          "presence": "a_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The supplied pressure check says counsel has incentives and internal channels differ."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Changes attorney intake and selection before any reporting-channel decision."
+        },
+        {
+          "move_id": "report-03-wednesday-encounter-protocol",
+          "summary": "Prepare a brief, non-accusatory response if the partner raises the encounter and avoid elaboration or follow-up questions.",
+          "reasoning_operation": "option",
+          "presence": "a_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The pressure check says Wednesday needs a protocol, but the exact script and conversational prohibitions are not supplied."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Provides concrete conduct for an unplanned interaction before counsel changes the instructions."
+        },
+        {
+          "move_id": "report-04-channel-separation",
+          "summary": "Treat general counsel, the audit committee, and regulators as separate channels for counsel to assess.",
+          "reasoning_operation": "option",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The pressure check says internal channels differ, and the control answer lists these channels for independent counsel to assess."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Prevents the witness from treating one organizational reporting route as automatically aligned or exclusive."
+        },
+        {
+          "move_id": "report-05-retaliation-tripwires",
+          "summary": "Use concrete retaliation or evidence-risk tripwires without allowing the planning task to delay preservation and attorney calls.",
+          "reasoning_operation": "stop_rule",
+          "presence": "a_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The supplied pressure check explicitly calls for career-risk tripwires."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Adds pre-identified signals that could alter counsel-led timing or safety measures."
+        },
+        {
+          "move_id": "report-06-broad-spouse-disclosure",
+          "summary": "Preserve broad, limited disclosure to the spouse if needed.",
+          "reasoning_operation": "stakeholder_view",
+          "presence": "b_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The control-answer excerpt expressly includes telling the spouse broadly."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Keeps a limited personal-support disclosure available without expanding evidence circulation."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the evidence-and-safety sequence, prompt attorney contact, normal Wednesday posture, and avoidance of self-investigation.",
+            "Adds the supplied concerns about counsel incentives, meeting protocol, channel distinctions, and tripwires."
+          ],
+          "lost_or_weakened_source_value": [
+            "Omits the control answer's limited spouse-disclosure option.",
+            "Says to preserve what was seen without repeating the source's more explicit personal-documentation formulation."
+          ],
+          "unsupported_additions": [
+            "The exact Wednesday script and advice to avoid being alone with the partner are not established by the supplied excerpts.",
+            "Because jurisdiction and safety facts are missing, the practical suitability of the script cannot be assessed."
+          ],
+          "cognitive_burden": [
+            "Adds attorney-bias screening, encounter rehearsal, channel mapping, and retaliation planning to an urgent preservation task.",
+            "The response partly manages this burden by saying planning must not delay documentation and calls."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Closely preserves the control sequence: document, disclose narrowly if needed, obtain independent counsel, attend normally, and do not investigate.",
+            "Preserves multiple possible reporting channels for counsel to assess."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not surface the supplied concern about counsel incentives or channel bias.",
+            "Does not give the supplied Wednesday-protocol and retaliation-tripwire gaps an operational answer."
+          ],
+          "unsupported_additions": [
+            "The instruction not to file before counsel review is consistent with the control sequence but is not separately stated in the excerpts.",
+            "No jurisdiction-specific legal claim is supported by the packet."
+          ],
+          "cognitive_burden": [
+            "Lower procedural load than Arm A, but the witness still must contact multiple attorneys and preserve normal conduct under uncertainty."
+          ]
+        }
+      },
+      "material_decision_difference": "present",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "A",
+        "basis": [
+          "Arm A uniquely operationalizes all four supplied pressure-check additions: counsel incentives, Wednesday protocol, channel differentiation, and tripwires.",
+          "This remains a blind textual inference and not proof of the arm's production process."
+        ]
+      },
+      "inspection_limits": [
+        "The partial packet is inadequate for legal advice or safety assessment.",
+        "The material difference concerns immediate attorney selection and Wednesday conduct, not a judgment that one arm produces a better outcome.",
+        "No reporting channel is selected here."
+      ]
+    },
+    {
+      "case_id": "phd-direction-partial",
+      "source_interpretation": {
+        "decision_or_question": "Whether a third-year PhD student should pursue a promising hybrid direction when data access, collaboration depth, advisor timing, and the continuing reality of a safer fallback are unresolved.",
+        "material_constraints": [
+          "The direction deadline is three months and the advisor expects to retire in two to three years.",
+          "The lab lacks single-cell experience and collaborators.",
+          "The current sequence is advisor first, Dr. Silva second, and committee third, with data access as a binding constraint.",
+          "The supplied pressure check says the advisor is not neutral and option one may cease to be a real fallback after enough option-three work.",
+          "The audit identifies undefined base-rate reference class, incomplete option expansion, and under-specified constraint retesting."
+        ],
+        "source_limits": [
+          "Only partial checked-in excerpts are supplied.",
+          "The packet cannot establish the complete set of options, the student's values, funding terms, advisor relationship, committee authority, data-sharing rules, or actual timelines for a pivot."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "phd-01-two-week-constraint-test",
+          "summary": "Delay choosing the hybrid path and first run a two-week test of data access, collaboration depth, and fallback viability.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "shared",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The source identifies data access and constraint retesting as central, but the supplied excerpts do not establish the two-week duration."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Defers the direction choice until concrete feasibility information is available."
+        },
+        {
+          "move_id": "phd-02-advisor-silva-committee-sequence",
+          "summary": "Preserve the sequence of advisor first, Silva second, and committee third.",
+          "reasoning_operation": "stakeholder_view",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The current-answer excerpt states this sequence directly."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Avoids presenting a finished pivot proposal to the committee before feasibility and advisor discussions."
+        },
+        {
+          "move_id": "phd-03-fallback-must-survive-pivot",
+          "summary": "Require explicit protection that the fallback will still have supervision, funding, and lab continuity after substantial hybrid-path work.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The pressure check explicitly warns that option one may stop being a real fallback after enough option-three work."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could block the hybrid direction if the future fallback cannot be credibly protected."
+        },
+        {
+          "move_id": "phd-04-current-fallback-viability",
+          "summary": "Test whether the safer path is currently advisor-backed, resourced, technically ready, identity-coherent, and governed by stop-loss criteria.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "a_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "Fallback viability and constraint retesting are supported concerns, but identity coherence and the exact stop-loss formulation are not visible in the excerpts."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Makes the fallback itself earn credibility rather than assuming it is safe."
+        },
+        {
+          "move_id": "phd-05-role-reality-check",
+          "summary": "Ask what concrete collaborator role would exist if the hybrid direction became the dissertation path.",
+          "reasoning_operation": "question",
+          "presence": "b_exclusive",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The lab lacks relevant collaborators and Silva is a proposed reality check, but the exact role question is not supplied."
+          ],
+          "cognitive_effect": "adds_test",
+          "decision_effect": "Could disqualify the hybrid option if collaboration is nominal rather than durable."
+        },
+        {
+          "move_id": "phd-06-base-rate-reference-class",
+          "summary": "Keep broad success-rate claims qualitative unless a comparable dissertation reference class is found.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "b_exclusive",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The audit excerpt explicitly flags an undefined base-rate reference class."
+          ],
+          "cognitive_effect": "adds_caution",
+          "decision_effect": "Prevents generic success rates from carrying the direction decision."
+        },
+        {
+          "move_id": "phd-07-preserve-finishing-value",
+          "summary": "Anchor the option choice to keeping completion of the PhD realistically available.",
+          "reasoning_operation": "preserved_value",
+          "presence": "shared",
+          "source_grounding": "partly_supported",
+          "source_evidence": [
+            "The excerpts concern dissertation feasibility under deadline, retirement, experience, and collaboration constraints, but the complete value hierarchy is unavailable."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Makes completion viability the stated decision criterion."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the stakeholder sequence, data-access constraint, and need for a viable fallback.",
+            "Treats both the hybrid path and the safer fallback as plans requiring evidence."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not explicitly state that a fallback viable now may erode after substantial work on the hybrid path.",
+            "Does not surface the supplied undefined base-rate reference-class problem."
+          ],
+          "unsupported_additions": [
+            "Identity coherence, an exact two-week period, and a prohibition on running all three options in parallel are not established by the excerpts.",
+            "The source is partial, so these additions may exist in omitted context but are not packet-grounded."
+          ],
+          "cognitive_burden": [
+            "Adds two multi-part gates covering data, permissions, collaboration, funding, readiness, identity, and stop-loss design.",
+            "The gate list may be difficult to complete within a short exploratory window."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the sequence, data-access test, fallback concern, and completion focus.",
+            "Makes fallback erosion over time and the missing base-rate reference class explicit."
+          ],
+          "lost_or_weakened_source_value": [
+            "Requiring the retiring advisor to explicitly protect the fallback may understate the supplied warning that the advisor is not a neutral guarantor.",
+            "The response does not expand the option set despite the audit's incomplete-option-expansion gap."
+          ],
+          "unsupported_additions": [
+            "The eighteen-month pivot period and exact request for advisor permission are not established in the supplied excerpts.",
+            "The proposed collaborator-role inquiry is plausible but only partly grounded in the partial source."
+          ],
+          "cognitive_burden": [
+            "Adds future-state fallback guarantees, a collaborator-role probe, and reference-class research.",
+            "The response asks the student to secure commitments whose durability may be difficult to verify."
+          ]
+        }
+      },
+      "material_decision_difference": "absent",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "B",
+        "basis": [
+          "Arm B more directly introduces the supplied pressure about fallback decay and the audit's base-rate reference-class gap.",
+          "At the action level, both arms still prescribe the same two-stage feasibility and fallback test, so this origin guess is not a claim of material superiority."
+        ]
+      },
+      "inspection_limits": [
+        "The partial excerpts prevent assessment of whether the advisor, Silva, committee, or fallback conditions are represented adequately.",
+        "The arms differ in emphasis and some subtests, but share the same immediate sequence and gating logic.",
+        "No dissertation-direction choice is made."
+      ]
+    },
+    {
+      "case_id": "retailer-pilot-exact-duplicate-null",
+      "source_interpretation": {
+        "decision_or_question": "Whether to run the bounded retailer pilot as channel learning without treating prestige or retailer-context performance as broader product validation.",
+        "material_constraints": [
+          "The pilot has explicit economic, return, reorder, capacity, inventory, relationship, and public-language boundaries.",
+          "Independent demand outside the retailer context remains untested.",
+          "A separate validation step would be needed before a broader product-demand conclusion."
+        ],
+        "source_limits": [
+          "The complete checked-in synthetic conversation is supplied.",
+          "The two arm contents are exactly equivalent in the packet."
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "retailer-null-01-prestige-not-demand",
+          "summary": "Keep retailer prestige and selection separate from evidence of broader product-market fit.",
+          "reasoning_operation": "counterframe",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The conversation repeatedly separates prestige, retailer willingness, and sustainable customer demand."
+          ],
+          "cognitive_effect": "narrows_path",
+          "decision_effect": "Limits the claims that can follow from selection or pilot success."
+        },
+        {
+          "move_id": "retailer-null-02-preserve-bounded-gates",
+          "summary": "Preserve the user's existing economic, operational, capacity, relationship, and signaling gates.",
+          "reasoning_operation": "restatement",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The listed gates and contract boundaries are all stated in the complete conversation."
+          ],
+          "cognitive_effect": "repeats",
+          "decision_effect": "None beyond consolidating the existing pilot constraints."
+        },
+        {
+          "move_id": "retailer-null-03-channel-learning-boundary",
+          "summary": "Run the pilot as channel learning and leave broader validation unresolved pending a separate step.",
+          "reasoning_operation": "evidence_gate",
+          "presence": "shared",
+          "source_grounding": "supported",
+          "source_evidence": [
+            "The user's final position and the source assistant's final response state this boundary directly."
+          ],
+          "cognitive_effect": "preserves_option",
+          "decision_effect": "Preserves the pilot while deferring any broader product-validation claim."
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "Preserves the bounded pilot, the channel-versus-product distinction, the existing gates, and prestige risk."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not define the separate validation step, matching the source's unresolved state."
+          ],
+          "unsupported_additions": [
+            "No arm-specific unsupported addition exists because the arm texts are identical.",
+            "Both arms use the evaluative phrase 'correct conclusion,' which is not additional evidence."
+          ],
+          "cognitive_burden": [
+            "The arm consolidates existing reasoning without adding a new task."
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "Preserves the bounded pilot, the channel-versus-product distinction, the existing gates, and prestige risk."
+          ],
+          "lost_or_weakened_source_value": [
+            "Does not define the separate validation step, matching the source's unresolved state."
+          ],
+          "unsupported_additions": [
+            "No arm-specific unsupported addition exists because the arm texts are identical.",
+            "Both arms use the evaluative phrase 'correct conclusion,' which is not additional evidence."
+          ],
+          "cognitive_burden": [
+            "The arm consolidates existing reasoning without adding a new task."
+          ]
+        }
+      },
+      "material_decision_difference": "absent",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": "indistinguishable",
+        "basis": [
+          "The arm contents are exactly identical, so there is no substantive or stylistic basis for an origin guess."
+        ]
+      },
+      "inspection_limits": [
+        "Exact textual equivalence supports only a null arm-delta finding for this packet.",
+        "It does not establish semantic quality, human usefulness, provenance, or production readiness."
+      ]
+    }
+  ],
+  "standdown_reviews": [
+    {
+      "case_id": "library-laptop-standdown",
+      "source_basis": [
+        "The complete conversation defines a one-branch, six-week pilot with half of laptops preserved for walk-ins and online, phone, desk, and staff-assisted reservation paths.",
+        "The protocol includes measures by access path, minimal data collection, seven-day deletion, a paper fallback, stakeholder review, explicit success and failure conditions, early restoration triggers, and a fixed final review.",
+        "The user explicitly states that no material decision question or unresolved concern remains before launch.",
+        "The mechanical observation records zero candidates, zero graph calls, no traversal requirement, and no unresolved fact-free mechanism entering deterministic routing."
+      ],
+      "standdown_support": "supported",
+      "risk_of_forced_additional_analysis": [
+        "Additional public revision could reopen a decision whose constraints, measures, reversal triggers, and review date are already explicit.",
+        "Forcing more analysis could add generic caution or new conditions without a source-grounded unresolved question.",
+        "Extra reasoning could displace the user's stated readiness, delay the bounded test, or weaken the commitment to execute the predefined evidence contract before reconsidering permanence."
+      ],
+      "semantic_limits_of_mechanical_observation": [
+        "A zero-candidate mechanical result does not prove that the pilot is wise, complete in every real-world respect, or useful to humans.",
+        "Deterministic standdown does not certify semantic adequacy, accessibility, privacy, vendor behavior, or future execution.",
+        "The support finding depends jointly on the supplied complete conversation and the narrow mechanical observation; it does not show that graph traversal would have been useless in another case.",
+        "No human validation, ground truth, answer-quality score, or production-readiness claim follows."
+      ]
+    }
+  ],
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not evidence that either answer is better for a human",
+    "not evidence that the graph caused any observed difference",
+    "not answer-quality scoring",
+    "not a score, ranking, vote, pass/fail result, certification, or arm selection",
+    "not agent authority",
+    "not runtime or graph integration",
+    "not production readiness"
+  ]
+}

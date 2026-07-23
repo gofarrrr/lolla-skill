@@ -1,0 +1,211 @@
+{
+  "schema_version": "lolla.product_delta_agent_paired_screen_contract.v1",
+  "status": "provider_free_checked_in_safe_diagnostic_contract",
+  "purpose": "Test whether fresh agents can detect source-grounded atomic reasoning differences, repetition, lost value, unsupported additions, ambiguity, and legitimate stand-down across existing paired artifacts without turning the result into a score or product claim.",
+  "falsifiable_question": "Can a fresh agent distinguish source-grounded answer-exclusive reasoning moves from repetition, lost value, and unsupported additions across a mixed paired corpus that includes complete cases, partial-view cases, a duplicate null, and a legitimate no-pressure stand-down?",
+  "evidence_classes": {
+    "complete_exact_pair": "The complete checked-in conversation and both exact answer artifacts are available.",
+    "partial_source_view_research_calibration": "Both exact answer cores are available, but the source supplied to the reviewer is only a checked-in excerpt view. Conclusions must remain partial-view limited.",
+    "exact_duplicate_null": "Both labels contain the same exact answer. Any claimed semantic delta is a reviewer failure signal.",
+    "complete_conversation_deterministic_standdown": "The complete checked-in conversation and a deterministic zero-candidate observation are available. This tests whether the reviewer can preserve no-pressure behavior without treating it as semantic perfection.",
+    "adversarial_qualification_case": "A synthetic or paraphrased safe-context trap tests review discipline. Sealed expected and forbidden behaviors are withheld."
+  },
+  "blind_review_contract": {
+    "reviewer_boundary": {
+      "fresh_context_required": true,
+      "blind_packets_only": true,
+      "sealed_manifest_forbidden_before_freeze": true,
+      "other_repository_search_forbidden_before_freeze": true,
+      "provider_calls": 0,
+      "human_validated": false,
+      "ground_truth": false,
+      "product_proof": false,
+      "answer_quality_scored": false
+    },
+    "qualification_response_shape": {
+      "case_id": "string",
+      "evidence_disposition": [
+        "sufficient_for_bounded_comparison",
+        "blocked_thin_context",
+        "inconclusive",
+        "needs_human_review"
+      ],
+      "supported_observations": [
+        "string"
+      ],
+      "missing_evidence": [
+        "string"
+      ],
+      "inferences_explicitly_not_made": [
+        "string"
+      ],
+      "uncertainty_notes": [
+        "string"
+      ]
+    },
+    "paired_response_shape": {
+      "case_id": "string",
+      "source_interpretation": {
+        "decision_or_question": "string",
+        "material_constraints": [
+          "string"
+        ],
+        "source_limits": [
+          "string"
+        ]
+      },
+      "atomic_moves": [
+        {
+          "move_id": "case-local stable string",
+          "summary": "one reasoning move only",
+          "presence": [
+            "shared",
+            "a_exclusive",
+            "b_exclusive",
+            "contradictory",
+            "uncertain_equivalence"
+          ],
+          "reasoning_operation": [
+            "question",
+            "option",
+            "counterframe",
+            "falsifier",
+            "reversal",
+            "evidence_gate",
+            "stop_rule",
+            "premortem",
+            "stakeholder_view",
+            "time_horizon",
+            "preserved_value",
+            "lost_value",
+            "restatement",
+            "generic_caution",
+            "unsupported_specificity",
+            "other"
+          ],
+          "source_grounding": [
+            "supported",
+            "partly_supported",
+            "unsupported",
+            "unclear"
+          ],
+          "source_evidence": [
+            "short source-grounded paraphrase"
+          ],
+          "decision_effect": "what this move could change, or none",
+          "cognitive_effect": [
+            "opens_path",
+            "narrows_path",
+            "adds_test",
+            "adds_caution",
+            "preserves_option",
+            "removes_option",
+            "repeats",
+            "adds_burden",
+            "unclear"
+          ]
+        }
+      ],
+      "arm_observations": {
+        "A": {
+          "preserved_source_value": [
+            "string"
+          ],
+          "lost_or_weakened_source_value": [
+            "string"
+          ],
+          "unsupported_additions": [
+            "string"
+          ],
+          "cognitive_burden": [
+            "string"
+          ]
+        },
+        "B": {
+          "preserved_source_value": [
+            "string"
+          ],
+          "lost_or_weakened_source_value": [
+            "string"
+          ],
+          "unsupported_additions": [
+            "string"
+          ],
+          "cognitive_burden": [
+            "string"
+          ]
+        }
+      },
+      "material_decision_difference": [
+        "present",
+        "absent",
+        "uncertain"
+      ],
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": [
+          "A",
+          "B",
+          "indistinguishable"
+        ],
+        "basis": [
+          "string"
+        ]
+      },
+      "inspection_limits": [
+        "string"
+      ]
+    },
+    "standdown_response_shape": {
+      "case_id": "string",
+      "standdown_support": [
+        "supported",
+        "unsupported",
+        "uncertain"
+      ],
+      "source_basis": [
+        "string"
+      ],
+      "risk_of_forced_additional_analysis": [
+        "string"
+      ],
+      "semantic_limits_of_mechanical_observation": [
+        "string"
+      ]
+    },
+    "forbidden_review_behavior": [
+      "Do not select a better arm.",
+      "Do not emit a score, ranking, vote, pass/fail, certification, or product recommendation.",
+      "Do not infer provenance from answer length, tone, or polish alone.",
+      "Do not treat a strict schema or clean artifact as semantic correctness.",
+      "Do not treat agreement between reviewers as ground truth.",
+      "Do not silently delete disagreement or uncertain equivalence.",
+      "Do not claim graph-specific causation because the corpus has no direct-only versus graph-expanded treatment arm.",
+      "Do not claim human usefulness, better decisions, or production readiness."
+    ],
+    "fresh_review_freeze_rule": "A fresh reviewer must finish and save the substantive qualification, pair, and stand-down responses before seeing the sealed lineage manifest or any historical comparison."
+  },
+  "boundary": {
+    "provider_calls": 0,
+    "provider_cost_usd": 0,
+    "private_archives_read": false,
+    "runtime_invoked": false,
+    "graph_traversal_invoked": false,
+    "graph_or_runtime_changed": false,
+    "human_validated": false,
+    "ground_truth": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "scalar_judgment_created": false
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not evidence that either answer is better for a human",
+    "not evidence that the graph caused any observed difference",
+    "not answer-quality scoring",
+    "not agent authority",
+    "not runtime or graph integration"
+  ]
+}

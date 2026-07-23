@@ -243,11 +243,12 @@ prototypes, and proposals. The lifecycle-organized entrypoint is
 
 ### Decision Trail and Product Delta
 
-Offline builders inspect existing completed-run artifacts. Checked-in-safe
-views prefer hashes, source locators, declared fields, and missingness over raw
-private prose. Product Delta can prepare review material about changes between
-original and revised outputs, but preserved value and overcorrection remain
-human judgments.
+Offline builders inspect existing completed-run artifacts. Product Delta's
+provider-free [agent-only paired-delta screen](docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md)
+can blind existing exact pairs and record moves, grounding, repetition, lost
+value, unsupported additions, burden, null equivalence, and stand-down.
+Preserved value and overcorrection remain human judgments; no included pair
+isolates graph expansion, and the screen does not measure human usefulness.
 
 Neither system changes the live answer.
 
