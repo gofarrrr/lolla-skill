@@ -9,6 +9,7 @@ call a provider, fill principal-human fields, or change runtime behavior.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import re
@@ -104,6 +105,14 @@ REQUEST_SYSTEM_FALLBACK = (
     "existing reasoning, inspect every presented item exactly once, and do not "
     "manufacture facts, causation, or quantitative precision."
 )
+FRESH_CONTEXT_SYSTEM_PREFIX = "You are a fresh-context reasoner."
+NEUTRAL_CONTEXT_SYSTEM_PREFIX = "You are a reconsidering reasoner."
+PRESSURE_RESPONSE_VALIDATOR_OWNER = (
+    "engine.system_b.simulated_reliability_v1.compile_pressure_response"
+)
+CONTROL_RESPONSE_VALIDATOR_OWNER = (
+    "engine.system_b.fresh_reasoning_pressure.compile_control_response"
+)
 
 
 class CaseFreezeCandidateError(ValueError):
@@ -191,6 +200,113 @@ def _prompt_tail(prompt: str) -> str:
     if len(parts) != 2 or not parts[1].strip():
         raise CaseFreezeCandidateError("existing prompt owner has no instruction tail")
     return parts[1].strip()
+
+
+def _context_neutral_system_prompt(prompt: str) -> str:
+    if not prompt.startswith(FRESH_CONTEXT_SYSTEM_PREFIX):
+        raise CaseFreezeCandidateError(
+            "existing prompt owner no longer has the expected context prefix"
+        )
+    if prompt.count(FRESH_CONTEXT_SYSTEM_PREFIX) != 1:
+        raise CaseFreezeCandidateError(
+            "existing prompt owner has an ambiguous context prefix"
+        )
+    return NEUTRAL_CONTEXT_SYSTEM_PREFIX + prompt[len(FRESH_CONTEXT_SYSTEM_PREFIX) :]
+
+
+def _exact_candidate_response_schema(
+    response_schema: Mapping[str, Any],
+    candidate_ids: Sequence[str],
+) -> dict[str, Any]:
+    """Add provider-neutral exact-ID-set constraints without changing the owner."""
+
+    ids = [str(value).strip() for value in candidate_ids]
+    if not ids or any(not value for value in ids) or len(ids) != len(set(ids)):
+        raise CaseFreezeCandidateError("case response candidate identities are invalid")
+    schema = copy.deepcopy(dict(response_schema))
+    try:
+        dispositions = schema["properties"]["candidate_dispositions"]
+        schema_ids = dispositions["items"]["properties"]["model_id"]["enum"]
+    except (KeyError, TypeError) as exc:
+        raise CaseFreezeCandidateError(
+            "existing pressure response schema shape drifted"
+        ) from exc
+    if list(schema_ids) != ids:
+        raise CaseFreezeCandidateError(
+            "existing pressure response schema identities drifted"
+        )
+    if dispositions.get("minItems") != len(ids) or dispositions.get(
+        "maxItems"
+    ) != len(ids):
+        raise CaseFreezeCandidateError(
+            "existing pressure response schema count bounds drifted"
+        )
+    dispositions["allOf"] = [
+        {
+            "contains": {
+                "type": "object",
+                "properties": {"model_id": {"const": model_id}},
+                "required": ["model_id"],
+            },
+            "minContains": 1,
+            "maxContains": 1,
+        }
+        for model_id in ids
+    ]
+    return schema
+
+
+def _pressure_response_validation_contract(
+    *,
+    arm_id: str,
+    candidate_ids: Sequence[str],
+    base_schema: Mapping[str, Any],
+    case_schema: Mapping[str, Any],
+) -> dict[str, Any]:
+    ids = [str(value) for value in candidate_ids]
+    return {
+        "status": "frozen_provider_free_deterministic_contract",
+        "validator_owner": PRESSURE_RESPONSE_VALIDATOR_OWNER,
+        "packet_ref": (
+            f"{OUTPUT_RELATIVE}/portfolio-bundle.json"
+            f"#/arms/{arm_id}/packet"
+        ),
+        "expected_model_ids": ids,
+        "exact_model_id_set_required": True,
+        "exactly_one_row_per_model_id_required": True,
+        "duplicate_model_ids_rejected": True,
+        "omitted_model_ids_rejected": True,
+        "unexpected_model_ids_rejected": True,
+        "schema_exact_set_mechanism": (
+            "json_schema_draft_2020_12_allOf_contains_minContains_maxContains"
+        ),
+        "base_response_schema_sha256": _sha_value(base_schema),
+        "case_response_schema_sha256": _sha_value(case_schema),
+        "provider_dialect_compatibility": (
+            "not_frozen_until_exact_provider_contract"
+        ),
+    }
+
+
+def _control_response_validation_contract(
+    *,
+    base_schema: Mapping[str, Any],
+) -> dict[str, Any]:
+    return {
+        "status": "frozen_provider_free_deterministic_contract",
+        "validator_owner": CONTROL_RESPONSE_VALIDATOR_OWNER,
+        "packet_ref": (
+            f"{OUTPUT_RELATIVE}/portfolio-bundle.json"
+            "#/arms/transcript_only/packet"
+        ),
+        "expected_model_ids": [],
+        "exact_model_id_set_required": False,
+        "base_response_schema_sha256": _sha_value(base_schema),
+        "case_response_schema_sha256": _sha_value(base_schema),
+        "provider_dialect_compatibility": (
+            "not_frozen_until_exact_provider_contract"
+        ),
+    }
 
 
 def _presented_item(
@@ -354,6 +470,7 @@ def _request_preview(
     pressure_block: str,
     pressure_state: str,
     response_schema: Mapping[str, Any] | None,
+    response_validation: Mapping[str, Any],
     source: str,
     preamble: str,
     source_messages: Sequence[Mapping[str, Any]],
@@ -387,8 +504,12 @@ def _request_preview(
             "through one future endpoint; it is not an exact live host trajectory."
         ),
         "pressure_supply_state": pressure_state,
+        "system_prompt_context_policy": (
+            "context_neutral_reconsidering_reasoner_across_context_modes"
+        ),
         "provider_request_eligible": False,
         "provider_execution_authorized": False,
+        "response_validation": dict(response_validation),
         "request_body_projection": {
             "model": None,
             "messages": messages,
@@ -439,6 +560,7 @@ def _request_preview(
             "preview_is_not_a_completed_provider_request",
             "role_attribution_representation_is_not_an_exact_live_trajectory",
             "one_future_output_is_only_a_single_draw_case_diagnostic",
+            "provider_schema_dialect_compatibility_is_not_frozen",
         ],
     }
 
@@ -646,10 +768,17 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
     control_arm = bundle["arms"]["transcript_only"]
     direct_arm = bundle["arms"]["direct_pressure"]
     graph_arm = bundle["arms"]["graph_expanded_pressure"]
-    control_system = control_arm["prompts"]["system_prompt"]
-    pressure_system = graph_arm["prompts"]["system_prompt"]
-    if pressure_system != direct_arm["prompts"]["system_prompt"]:
+    control_system = _context_neutral_system_prompt(
+        control_arm["prompts"]["system_prompt"]
+    )
+    if (
+        graph_arm["prompts"]["system_prompt"]
+        != direct_arm["prompts"]["system_prompt"]
+    ):
         raise CaseFreezeCandidateError("direct and graph pressure system prompts differ")
+    pressure_system = _context_neutral_system_prompt(
+        graph_arm["prompts"]["system_prompt"]
+    )
     control_tail = _prompt_tail(control_arm["prompts"]["user_prompt"])
     pressure_tail = _prompt_tail(graph_arm["prompts"]["user_prompt"])
     if pressure_tail != _prompt_tail(direct_arm["prompts"]["user_prompt"]):
@@ -666,6 +795,46 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
         '{"pressure_supply":"missing_current_live_semantic_bridge",'
         '"execution_prohibited":true}'
     )
+    direct_candidate_ids = [
+        row["model_id"] for row in direct_arm["packet"]["pressure_portfolio"]
+    ]
+    graph_candidate_ids = [
+        row["model_id"] for row in graph_arm["packet"]["pressure_portfolio"]
+    ]
+    control_schema = copy.deepcopy(control_arm["response_schema"])
+    direct_schema = _exact_candidate_response_schema(
+        direct_arm["response_schema"],
+        direct_candidate_ids,
+    )
+    graph_schema = _exact_candidate_response_schema(
+        graph_arm["response_schema"],
+        graph_candidate_ids,
+    )
+    control_validation = _control_response_validation_contract(
+        base_schema=control_arm["response_schema"],
+    )
+    direct_validation = _pressure_response_validation_contract(
+        arm_id="direct_pressure",
+        candidate_ids=direct_candidate_ids,
+        base_schema=direct_arm["response_schema"],
+        case_schema=direct_schema,
+    )
+    graph_validation = _pressure_response_validation_contract(
+        arm_id="graph_expanded_pressure",
+        candidate_ids=graph_candidate_ids,
+        base_schema=graph_arm["response_schema"],
+        case_schema=graph_schema,
+    )
+    missing_validation = {
+        "status": "blocked_missing_semantic_supply_and_response_schema",
+        "validator_owner": None,
+        "packet_ref": None,
+        "expected_model_ids": None,
+        "exact_model_id_set_required": None,
+        "provider_dialect_compatibility": (
+            "not_frozen_until_exact_provider_contract"
+        ),
+    }
     previews: dict[str, dict[str, Any]] = {}
     preview_specs = {
         "f0_fresh_transcript_only": (
@@ -674,7 +843,8 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             control_tail,
             null_pressure,
             "none_transcript_only",
-            control_arm["response_schema"],
+            control_schema,
+            control_validation,
         ),
         "f1_fresh_current_live_bridge_plus_current_graph": (
             "fresh_reconstruction",
@@ -683,6 +853,7 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             missing_f1,
             "missing_current_live_semantic_bridge_supply",
             None,
+            missing_validation,
         ),
         "f2_fresh_human_controlled_fact_free_direct_only": (
             "fresh_reconstruction",
@@ -690,7 +861,8 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             pressure_tail,
             components["presentations"]["direct_only"]["text"],
             "historical_source_review_reference_direct_only_awaiting_principal_human",
-            direct_arm["response_schema"],
+            direct_schema,
+            direct_validation,
         ),
         "f3_fresh_human_controlled_fact_free_plus_current_graph": (
             "fresh_reconstruction",
@@ -698,7 +870,8 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             pressure_tail,
             components["presentations"]["complete"]["text"],
             "historical_source_review_reference_plus_current_graph_awaiting_principal_human",
-            graph_arm["response_schema"],
+            graph_schema,
+            graph_validation,
         ),
         "t0_trajectory_continuation_transcript_only": (
             "trajectory_continuation",
@@ -706,7 +879,8 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             control_tail,
             null_pressure,
             "none_transcript_only",
-            control_arm["response_schema"],
+            control_schema,
+            control_validation,
         ),
         "t3_trajectory_continuation_human_controlled_plus_current_graph": (
             "trajectory_continuation",
@@ -714,11 +888,20 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             pressure_tail,
             components["presentations"]["complete"]["text"],
             "historical_source_review_reference_plus_current_graph_awaiting_principal_human",
-            graph_arm["response_schema"],
+            graph_schema,
+            graph_validation,
         ),
     }
     for cell_id in CELL_IDS:
-        mode, system_prompt, tail, block, state, schema = preview_specs[cell_id]
+        (
+            mode,
+            system_prompt,
+            tail,
+            block,
+            state,
+            schema,
+            response_validation,
+        ) = preview_specs[cell_id]
         previews[cell_id] = _request_preview(
             cell_id=cell_id,
             mode=mode,
@@ -727,6 +910,7 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             pressure_block=block,
             pressure_state=state,
             response_schema=schema,
+            response_validation=response_validation,
             source=source,
             preamble=preamble,
             source_messages=source_messages,
@@ -911,6 +1095,7 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
             "active_candidate_to_presented_payload_bijection": receipts[
                 "active_candidate_to_presented_payload_bijection"
             ]["passed"],
+            "pressure_response_exact_candidate_set_contract_frozen": True,
             "non_scalar_review_form_frozen": True,
             "stochasticity_and_order_policy_frozen": True,
             "blind_review_protocol_frozen": True,
@@ -1015,6 +1200,9 @@ def build(output: Path, *, root: Path = ROOT) -> dict[str, Any]:
         "selected_context_implementation": {
             "id": "prompt_level_role_attribution_representation",
             "same_future_endpoint_for_core_cells_required": True,
+            "system_prompt_context_policy": (
+                "context_neutral_reconsidering_reasoner_across_context_modes"
+            ),
             "exact_live_trajectory_claimed": False,
             "fresh_independent_truth_claimed": False,
         },

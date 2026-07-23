@@ -5,12 +5,12 @@
   "context_implementation": "prompt_level_role_attribution_representation",
   "custody": {
     "message_count": 17,
-    "messages_canonical_sha256": "2de623562a46bbfb0c411946e6a5fe58201499d02a7e61c1f5bd49852a1e71cc",
+    "messages_canonical_sha256": "ff5009737b3ee2c7bb606f8178719df376e6d9c39d2b5b26cb8317ca7d959b89",
     "provider_token_count": null,
     "provider_token_count_state": "missing_unselected_provider_tokenizer",
-    "request_body_projection_canonical_sha256": "cbe13380511617f518d2ffa6f46c2ffbb72c3f48f702fcb368cbd4a35de4449d",
+    "request_body_projection_canonical_sha256": "805a6fd994b43405364581c10af7d5edf387ac2adc7dd6e148789791e68fb66e",
     "request_utf8_bytes": 15107,
-    "response_schema_canonical_sha256": "9408c07963d52155a2a38332e7035e8ab1b10ea735e048274283568e6ffb17a3"
+    "response_schema_canonical_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d"
   },
   "injection": {
     "final_instruction_sha256": "49bd3122caf0fef2eb64b4942c3d760428f2be8cd1e721acae49ca9e22d40772",
@@ -23,7 +23,8 @@
     "preview_is_not_provider_authorization",
     "preview_is_not_a_completed_provider_request",
     "role_attribution_representation_is_not_an_exact_live_trajectory",
-    "one_future_output_is_only_a_single_draw_case_diagnostic"
+    "one_future_output_is_only_a_single_draw_case_diagnostic",
+    "provider_schema_dialect_compatibility_is_not_frozen"
   ],
   "pressure_supply_state": "historical_source_review_reference_plus_current_graph_awaiting_principal_human",
   "provider_execution_authorized": false,
@@ -38,7 +39,7 @@
     },
     "messages": [
       {
-        "content": "You are a fresh-context reasoner. Reconsider the authoritative conversation using every canonical pressure candidate as an intentionally noisy hypothesis. Apply only what changes or usefully tests the reasoning; explicitly reject or park the rest. Graph recall is not proof. Do not manufacture facts or quantitative precision. A mental model is a source of questions, alternatives, and tests; it is not evidence about the case. A lens alone cannot establish that risk is low or high, predict how a person will respond, or justify a recommendation.",
+        "content": "You are a reconsidering reasoner. Reconsider the authoritative conversation using every canonical pressure candidate as an intentionally noisy hypothesis. Apply only what changes or usefully tests the reasoning; explicitly reject or park the rest. Graph recall is not proof. Do not manufacture facts or quantitative precision. A mental model is a source of questions, alternatives, and tests; it is not evidence about the case. A lens alone cannot establish that risk is low or high, predict how a person will respond, or justify a recommendation.",
         "role": "system"
       },
       {
@@ -111,6 +112,83 @@
       "additionalProperties": false,
       "properties": {
         "candidate_dispositions": {
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "model_id": {
+                    "const": "signaling"
+                  }
+                },
+                "required": [
+                  "model_id"
+                ],
+                "type": "object"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "model_id": {
+                    "const": "social-proof"
+                  }
+                },
+                "required": [
+                  "model_id"
+                ],
+                "type": "object"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "model_id": {
+                    "const": "confirmation-bias"
+                  }
+                },
+                "required": [
+                  "model_id"
+                ],
+                "type": "object"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "model_id": {
+                    "const": "incentives"
+                  }
+                },
+                "required": [
+                  "model_id"
+                ],
+                "type": "object"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "model_id": {
+                    "const": "abstraction"
+                  }
+                },
+                "required": [
+                  "model_id"
+                ],
+                "type": "object"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ],
           "description": "Exactly one accountable disposition for every active pressure candidate.",
           "items": {
             "additionalProperties": false,
@@ -221,6 +299,28 @@
       "type": "object"
     }
   },
+  "response_validation": {
+    "base_response_schema_sha256": "9408c07963d52155a2a38332e7035e8ab1b10ea735e048274283568e6ffb17a3",
+    "case_response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+    "duplicate_model_ids_rejected": true,
+    "exact_model_id_set_required": true,
+    "exactly_one_row_per_model_id_required": true,
+    "expected_model_ids": [
+      "signaling",
+      "social-proof",
+      "confirmation-bias",
+      "incentives",
+      "abstraction"
+    ],
+    "omitted_model_ids_rejected": true,
+    "packet_ref": "research/consumer-context-role-attribution-case-candidate-2026-07-23/portfolio-bundle.json#/arms/graph_expanded_pressure/packet",
+    "provider_dialect_compatibility": "not_frozen_until_exact_provider_contract",
+    "schema_exact_set_mechanism": "json_schema_draft_2020_12_allOf_contains_minContains_maxContains",
+    "status": "frozen_provider_free_deterministic_contract",
+    "unexpected_model_ids_rejected": true,
+    "validator_owner": "engine.system_b.simulated_reliability_v1.compile_pressure_response"
+  },
   "schema_version": "lolla.consumer_context_request_preview.v1",
-  "status": "complete_provider_neutral_envelope_execution_blocked"
+  "status": "complete_provider_neutral_envelope_execution_blocked",
+  "system_prompt_context_policy": "context_neutral_reconsidering_reasoner_across_context_modes"
 }

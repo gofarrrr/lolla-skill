@@ -7,6 +7,13 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
+from engine.system_b.simulated_reliability_v1 import (
+    SimulatedReliabilityError,
+    compile_pressure_response,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDER_PATH = (
@@ -91,6 +98,7 @@ def test_case_candidate_reuses_current_policy_and_preserves_bijection() -> None:
 
 
 def test_case_candidate_preserves_required_byte_identities() -> None:
+    builder = _load_builder()
     components = _load("pressure-components.json")
     receipts = _load("custody-receipts.json")
     f2 = _load(
@@ -123,6 +131,84 @@ def test_case_candidate_preserves_required_byte_identities() -> None:
     assert f3["injection"]["final_instruction_sha256"] == t3["injection"][
         "final_instruction_sha256"
     ]
+
+    f0 = _load("request-previews/f0_fresh_transcript_only.json")
+    t0 = _load("request-previews/t0_trajectory_continuation_transcript_only.json")
+    assert f0["request_body_projection"]["messages"][0] == t0[
+        "request_body_projection"
+    ]["messages"][0]
+    assert f3["request_body_projection"]["messages"][0] == t3[
+        "request_body_projection"
+    ]["messages"][0]
+    for preview in (f0, f2, f3, t0, t3):
+        system_prompt = preview["request_body_projection"]["messages"][0]["content"]
+        assert system_prompt.startswith("You are a reconsidering reasoner.")
+        assert "fresh-context reasoner" not in system_prompt
+
+    bundle = _load("portfolio-bundle.json")
+    pressure_cases = (
+        (f2, "direct_pressure"),
+        (f3, "graph_expanded_pressure"),
+        (t3, "graph_expanded_pressure"),
+    )
+    for preview, arm_id in pressure_cases:
+        packet = bundle["arms"][arm_id]["packet"]
+        expected_ids = [
+            row["model_id"] for row in packet["pressure_portfolio"]
+        ]
+        validation = preview["response_validation"]
+        dispositions = preview["request_body_projection"]["response_schema"][
+            "properties"
+        ]["candidate_dispositions"]
+        constrained_ids = [
+            constraint["contains"]["properties"]["model_id"]["const"]
+            for constraint in dispositions["allOf"]
+        ]
+        assert validation["validator_owner"] == (
+            builder.PRESSURE_RESPONSE_VALIDATOR_OWNER
+        )
+        assert validation["expected_model_ids"] == expected_ids
+        assert constrained_ids == expected_ids
+        assert all(
+            constraint["minContains"] == constraint["maxContains"] == 1
+            for constraint in dispositions["allOf"]
+        )
+
+    packet = bundle["arms"]["direct_pressure"]["packet"]
+    expected_ids = [row["model_id"] for row in packet["pressure_portfolio"]]
+    valid_rows = [
+        {
+            "model_id": model_id,
+            "disposition": "reject",
+            "source_turn_numbers": [1],
+            "effect": "no_material_effect",
+            "strongest_plausible_application": "A plausible application.",
+            "disposition_reason": "The source does not support using it.",
+            "risk_if_forced": "It would manufacture leverage.",
+            "reopen_condition": "Reopen if new source evidence appears.",
+        }
+        for model_id in expected_ids
+    ]
+
+    def compile_rows(rows: list[dict]) -> None:
+        compile_pressure_response(
+            response={
+                "candidate_dispositions": rows,
+                "reconsidered_answer": "Preserve the source-grounded answer.",
+                "change_summary": "No material change.",
+            },
+            packet=packet,
+        )
+
+    compile_rows(valid_rows)
+    invalid_rows = (
+        valid_rows[:-1],
+        [valid_rows[0], {**valid_rows[-1], "model_id": valid_rows[0]["model_id"]}],
+        [valid_rows[0], {**valid_rows[-1], "model_id": "unexpected-model"}],
+    )
+    for rows in invalid_rows:
+        with pytest.raises(SimulatedReliabilityError):
+            compile_rows(rows)
 
 
 def test_case_candidate_keeps_f1_human_and_provider_gates_missing() -> None:

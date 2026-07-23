@@ -73,6 +73,10 @@ It contains:
 - exact direct and graph pressure components;
 - six request-preview slots;
 - equality and active-to-payload bijection receipts;
+- a context-neutral system instruction shared across each fresh/trajectory
+  pair;
+- exact candidate-ID-set response constraints bound to the existing
+  deterministic pressure-response compiler;
 - a blank source-first principal-human target;
 - a non-scalar blind-review form;
 - a predeclared single-draw and execution-order policy;
@@ -114,6 +118,14 @@ The following byte-identity gates pass:
 - F2's direct component equals F3's direct component;
 - F3's complete pressure presentation equals T3's;
 - F0's explicit null-pressure block equals T0's.
+
+The paired system instruction is also context-neutral. It asks for
+reconsideration without telling either arm that it is “fresh,” so the prompt
+does not contradict the trajectory condition. For pressure arms, the
+provider-neutral schema requires every expected model ID exactly once, while
+the existing deterministic compiler independently rejects duplicate, omitted,
+or unexpected IDs. A later provider contract must still verify which schema
+keywords its exact interface supports.
 
 These are custody and experimental-control results. They do not show that any
 lens is relevant, that either context will consider it seriously, or that an

@@ -78,6 +78,14 @@ The deterministic validator establishes:
 - every active planner pressure ID appears exactly once in the presented
   payload;
 - no active pressure ID is missing, extra, merged, or duplicated;
+- every pressure response preview names the existing deterministic compiler,
+  freezes its exact candidate-ID set, and adds provider-neutral JSON Schema
+  constraints requiring each active model ID exactly once;
+- duplicate, omitted, and unexpected response model IDs are rejected by the
+  existing compiler and covered by regression tests;
+- all paired fresh/trajectory system instructions use the same
+  context-neutral “reconsidering reasoner” wording, so the instruction itself
+  does not falsely tell a trajectory arm that it is fresh;
 - a six-cell order, single-draw policy, non-scalar review form, and blinding
   protocol are predeclared;
 - provider calls and cost are zero;
@@ -85,6 +93,12 @@ The deterministic validator establishes:
 
 These facts prove custody and experimental shape. They do not prove semantic
 relevance, serious consideration, an answer improvement, or self-justification.
+
+The exact-ID constraints are provider-neutral Draft 2020-12 schema mechanics.
+They are not a claim that a future provider accepts that dialect. Provider
+compatibility must be checked and frozen at the later provider-contract gate;
+the deterministic compiler remains authoritative even when a provider schema
+can express less.
 
 ## The honest incompleteness
 
