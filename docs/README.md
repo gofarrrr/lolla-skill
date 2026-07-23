@@ -83,6 +83,8 @@ Read:
 - [Knowledge-substrate operations](../references/knowledge-substrate-operations.md)
 - [Graph audit workbook/scriptbook](conversation-understanding/lolla-graph-substrate-audit-workbook-2026-07-22.md), [pressure/understanding/graph PRD](conversation-understanding/lolla-pressure-understanding-and-graph-evidence-prd-v0.md), [tracer-bullet plan](../plans/lolla-pressure-understanding-and-graph-evidence-plan-2026-07-22.md), and [machine evidence package](evals/lolla-pressure-understanding-graph-evidence-package-v1.json)
 - [Current consumer-context contract v1](evals/lolla-consumer-context-pressure-ablation-contract-v1.json), its [provider-free correction](conversation-understanding/lolla-consumer-context-contract-v1-correction-result-2026-07-22.md), and the [role/attribution case-candidate result](conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md). V0 is the preserved predecessor.
+- [Agent-only paired-delta screen result](conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md)
+  — blind Product Delta diagnosis without graph attribution or human validation.
 - [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
 - [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
@@ -136,8 +138,8 @@ and next authorization come from `PROJECT_STATUS.md` and the roadmap.
 
 - **BOUNDED / OPERATOR-DIRECTED:** use [the board index](board/README.md) for
   Decision Work schemas, validation, packaging, and explicit sidecar writing.
-- **BOUNDED / OFFLINE:** use [the evaluation index](evals/README.md) for
-  Decision Trail and Product Delta completed-artifact work.
+- **BOUNDED / OFFLINE:** use [the evaluation index](evals/README.md) for Decision Trail,
+  Product Delta, and the non-authoritative paired-delta diagnostic.
 - **BOUNDED / READ-ONLY:** use [the product index](product/README.md) for
   Observatory adapters and product notes.
 

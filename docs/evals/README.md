@@ -31,6 +31,14 @@ requires complete request-envelope, F2/F3 direct-component, active-candidate/
 payload, principal-human-rubric, blinding, and stochasticity custody before a
 case can be frozen. V0 is its preserved prospective predecessor.
 
+The [agent-only paired-delta screen contract](lolla-agent-only-paired-delta-screen-contract-v1.json)
+and [result](../conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md)
+reuse the bounded Product Delta owner over existing checked-in artifacts. The
+screen freshly blinds three complete exact pairs, three partial-view research
+pairs, one exact duplicate, ten reviewer traps, and one legitimate stand-down.
+Fresh agent reads found mixed moves, harms, and disagreement; this is review-
+method evidence, not graph attribution, human usefulness, or live judging.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
 Its active data packages are now governed by the
@@ -66,6 +74,7 @@ Product Delta eval lane:
   reads existing safe artifacts later
   checks whether cases are reviewable
   prepares provisional review packets
+  can blind existing exact pairs for non-scalar fresh-agent diagnosis
   preserves uncertainty and disagreement
   lints against overclaiming
   prepares later human validation
@@ -463,6 +472,13 @@ python3 scripts/evals/lint_product_delta_evidence.py --paths \
   reviews/codex-assisted/fan-in-disagreement-report-v0/report.json
 ```
 
+Validate the frozen paired-delta corpus and fresh-agent consolidation:
+
+```bash
+python3 scripts/evals/build_product_delta_paired_screen.py --validate-only
+python3 scripts/evals/validate_product_delta_paired_screen_reviews.py --validate-only
+```
+
 Run the focused Product Delta tests:
 
 ```bash
@@ -474,6 +490,7 @@ python3 -m pytest -q \
   tests/test_product_delta_specialist_packets.py \
   tests/test_product_delta_specialist_contracts.py \
   tests/test_product_delta_boundary_lint.py \
+  tests/test_product_delta_paired_screen.py \
   tests/test_product_delta_batch_fixture.py \
   tests/test_product_delta_readiness.py
 ```
@@ -502,6 +519,8 @@ Start with these:
 | [Product Delta Evaluation Readiness PRD](product-delta-evaluation-readiness-prd-v0.md) | PR235's eval-phase PRD: summarize existing Product Delta, Human Review, and Review Corpus lanes; preserve the downgrade signal; reject live judging as the immediate move; and choose a balanced offline Product Delta evidence batch next. |
 | [Balanced Offline Product Delta Evidence Batch Plan](balanced-offline-product-delta-evidence-batch-plan-v0.md) | PR236's plan-only balanced-batch slice: define buckets, source rules, privacy/custody rules, check-in policy, anti-overclaim rules, and the candidate-selector plan gate without selecting cases or running a batch. |
 | [Balanced Batch Candidate Selector / Readiness Builder Plan](balanced-batch-candidate-selector-readiness-builder-plan-v0.md) | PR237's plan-only selector/readiness-builder slice: define safe source signals, bucket hypotheses, readiness criteria, output shape, refusal/defer statuses, and anti-flattery rules before any selector implementation or Product Delta batch run. |
+| [Agent-Only Paired-Delta Screen Contract](lolla-agent-only-paired-delta-screen-contract-v1.json) | Frozen non-scalar blind-review contract over existing checked-in-safe pairs, reviewer traps, duplicate null, and stand-down. |
+| [Agent-Only Paired-Delta Screen Result](../conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) | Provider-free fresh-agent diagnostic result; mixed deltas and disagreement survive, while graph causation and human usefulness remain unknown. |
 
 ## Runtime And Skill Opportunities
 

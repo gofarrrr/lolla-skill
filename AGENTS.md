@@ -32,7 +32,7 @@ Then read only the lane you will touch:
 
 - **Live skill:** `SKILL.md` and `docs/skill/STEPS.md`.
 - **Graph, compiler, or planner:** read `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`, `references/knowledge-substrate-operations.md`, and `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
-  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, and `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
+  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, and `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
   `docs/README.md`. Also read
@@ -263,6 +263,8 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   reconsideration; optional Step 7 is Claude Code-specific and default-off.
 - Decision Work is an optional operator-directed sidecar; it and Observatory
   can package/read artifacts but cannot generate trustworthy arbitrary meaning.
+- Product Delta's agent-only paired screen preserves mixed moves, harms,
+  disagreement, nulls, and stand-down; it validates no graph or usefulness.
 - Atlas opens exact neighborhoods from the 222-model / 1,358-relation index.
   V1 is immutable; V2 has 2,182 custody-only and zero unexpected differences.
   Teacher and review surfaces remain parked. Design/viewport mechanics are not
@@ -284,16 +286,15 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   scoring: unauthorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#385 carry the current graph/Atlas custody, public handoff, Decision
+PRs #379–#385 carry the graph/Atlas custody, public handoff, Decision
 Trail lineage, A/B/C plan, consumer-context contract, and first case freeze.
+The later paired-delta screen is bounded Product Delta evidence only.
 The v1 diagnostic is execution-not-ready and single-draw only; F1, human review,
 provider/settings/cost contract, authorization, and runtime promotion are
 missing. Atlas remains gated. The separate Stage 1 option is eligible but
 unstarted and permits no providers, private archives, semantics, automation,
 runtime/R4/R5 changes, or usefulness claims.
 
-Stage 1 is not June's Decision Trail specialist program; PR104 has three unvalidated reads, blank human corrections, and state
-`pause_until_human_review_capacity_returns`; Stage 1 cannot validate meaning or
-resolve that pause. A/B/C separates pressure-now receipts, PR104 human review,
-and a six-output diagnostic before traversal change; it authorizes no review,
-provider, runtime/graph, sidecar, or interface work.
+Stage 1 is not June's Decision Trail specialist program; PR104 remains paused
+with unvalidated reads and blank human corrections. A/B/C authorizes no review,
+provider, graph/runtime, sidecar, or interface work.

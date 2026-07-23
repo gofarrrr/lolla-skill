@@ -1175,3 +1175,74 @@ pretending to know the answer and without causing analysis theater? That future
 contract should examine information gain, non-obvious questions or options,
 grounded rejection/parking, human `aha`, correction burden, lost value, and
 stopping behavior as separate observations—not one “good answer” score.
+
+## Agent-only paired-delta screen
+
+Date: 2026-07-23
+Evidence class: fresh-agent blind diagnostic over existing checked-in answer
+pairs; not human review, graph-specific causal evidence, answer-quality
+measurement, or real-user usefulness evidence
+New provider calls and cost: 0 and `$0.00`
+
+### Question
+
+Can fresh agents distinguish source-grounded answer-exclusive reasoning moves
+from repetition, lost value, unsupported additions, ambiguity, and legitimate
+stand-down without knowing which answer received external pressure?
+
+### Corpus and custody
+
+The bounded Product Delta screen reused three complete exact pairs, three
+partial-view research pairs, one exact duplicate null, ten existing reviewer
+traps, and one complete deterministic stand-down. Fourteen summary-only Product
+Delta cases were excluded rather than promoted to exact-pair evidence.
+
+A deterministic builder strips old outcomes and arm identity from the blind
+packet, assigns fresh A/B labels from a stable hash, and keeps exact source,
+answer, mapping, and exclusion custody in a sealed manifest. Two fresh pair
+review contexts froze their reads before lineage reveal. One of those contexts
+also completed the reviewer traps first; this dependence remains explicit.
+
+### Observations
+
+- The qualification review stopped on thin context, kept conflict
+  inconclusive, and did not confuse length, caution, clean schemas, or
+  provisional artifacts with decision value.
+- Both pair reviewers found the retailer difference material and detected both
+  independent-demand/transfer questions and invented numerical thresholds.
+- Both kept the museum difference uncertain: worst-case and reversal questions
+  appeared alongside repetition and an understated existing threshold
+  commitment.
+- Both detected the consulting arm's broader correction of unsupported
+  numerical authority, but both misidentified which arm received external
+  context.
+- The partial pairs reproduced mixed trade-offs rather than a treatment-win
+  pattern: measurement versus valuation humility; legal restraint versus
+  counsel/encounter nuance; operational fallback gates versus fallback decay
+  and reference-class humility.
+- Both reviewers classified the duplicate as no material difference and
+  supported the quiet stand-down.
+- Materiality reads agreed in five of seven cases and remained separate in the
+  other two.
+- Across twelve non-null identity guesses, six matched lineage, five did not,
+  and one declared indistinguishability. Atomic differences were more
+  recoverable than provenance.
+
+### Decision
+
+Keep the screen as a bounded Product Delta preflight. Do not use it as a live
+judge, human-field supplier, or argument for graph expansion. The present pairs
+do not isolate direct-only from graph-expanded pressure, so no observed move can
+be attributed to graph relationships.
+
+The next graph-specific evidence owner remains the existing F2/F3 comparison in
+consumer-context contract v1. The current role/attribution case candidate has
+provider-neutral envelopes and equality gates but lacks generated outputs,
+principal-human review, provider/model/cost freeze, and execution
+authorization. The paired screen can inspect those outputs later; it does not
+authorize creating them.
+
+See
+`lolla-agent-only-paired-delta-screen-result-2026-07-23.md`,
+`../evals/lolla-agent-only-paired-delta-screen-contract-v1.json`, and
+`../../research/agent-only-paired-delta-screen-2026-07-23/`.

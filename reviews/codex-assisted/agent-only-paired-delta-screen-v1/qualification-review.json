@@ -1,0 +1,279 @@
+{
+  "schema_version": "lolla.product_delta_fresh_agent_review.v1",
+  "review_id": "fresh-qualification-review",
+  "input_path": "research/agent-only-paired-delta-screen-2026-07-23/blind-packets.json",
+  "screen_id": "agent-only-paired-delta-screen-2026-07-23",
+  "sealed_manifest_seen": false,
+  "other_repository_material_seen": false,
+  "provider_calls": 0,
+  "provider_cost_usd": 0,
+  "human_validated": false,
+  "qualification_reviews": [
+    {
+      "case_id": "trap-thin-context-001",
+      "evidence_disposition": "blocked_thin_context",
+      "inferences_explicitly_not_made": [
+        "The unspecified conditions in the revised answer materially change the recommended action.",
+        "The original and revised answers are equivalent or different in decision effect.",
+        "Artifact presence or run health establishes semantic correctness, decision value, or product value.",
+        "Either surface is better, more useful, or more faithful to the unavailable source."
+      ],
+      "missing_evidence": [
+        "Decision-question detail.",
+        "The basis and content of the vanilla likely next action.",
+        "The revised action and condition details.",
+        "Source-specific evidence-gate text.",
+        "Source conversation detail sufficient to test either answer's grounding."
+      ],
+      "supported_observations": [
+        "The safe context establishes that artifacts exist and that a run-health summary is available.",
+        "The vanilla surface preserves only that a launch question existed; it does not preserve the next action.",
+        "The revised surface mentions conditions, but no review-safe condition detail is supplied."
+      ],
+      "uncertainty_notes": [
+        "The missing action and condition content prevents even a bounded comparison of decision effects.",
+        "The conditions could be material, repetitive, unsupported, or merely rhetorical; the safe context does not distinguish those possibilities."
+      ]
+    },
+    {
+      "case_id": "trap-longer-no-action-002",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Greater length, organization, or caution makes the revised answer better or more useful.",
+        "The two answers are semantically identical beyond the listed decision elements.",
+        "The shared pilot recommendation is appropriate for the user.",
+        "Either answer would improve a human decision."
+      ],
+      "missing_evidence": [
+        "The underlying conversation and user-specific constraints.",
+        "Exact caveat content and whether any caveat affects an unlisted consideration.",
+        "Evidence about execution outcomes or human usefulness."
+      ],
+      "supported_observations": [
+        "Both surfaces recommend the same two-week pilot.",
+        "Both surfaces use the same next-Monday start time and the same one-sponsor condition.",
+        "The supplied additions are more structure and explanatory prose, not a changed action, threshold, sequence, gate, or stop rule."
+      ],
+      "uncertainty_notes": [
+        "The bounded record supports absence of a listed action change, not a global claim of complete equivalence.",
+        "The practical effect of the additional caveats cannot be established from the paraphrases."
+      ]
+    },
+    {
+      "case_id": "trap-caution-no-leverage-003",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Caution and stakeholder process are inherently harmful or useless.",
+        "The vanilla action is correct or safe.",
+        "The revised answer is worse overall.",
+        "The change would produce a worse human outcome."
+      ],
+      "missing_evidence": [
+        "The source conversation and the basis for the small-launch path.",
+        "The identities and relevance of the three named buyers.",
+        "Any unpreserved operational detail behind the revised caution.",
+        "Human evidence about whether the caution changes conduct."
+      ],
+      "supported_observations": [
+        "The vanilla surface contains a concrete small-launch path and a time-bounded next step to contact three named buyers this week.",
+        "The revised surface adds generic caution, stakeholder alignment, and downside reminders.",
+        "The safe context supplies no revised threshold, operational evidence gate, stop rule, specific next sequence, or user-answerable decision question.",
+        "Within the supplied comparison, operational specificity is lost while caution and process burden are added."
+      ],
+      "uncertainty_notes": [
+        "The caution may address a real risk, but the safe context does not show how it would be acted on.",
+        "No net decision-value conclusion follows from the observed loss of specificity."
+      ]
+    },
+    {
+      "case_id": "trap-gate-already-present-004",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Repeating the gate makes the revised answer more valuable.",
+        "The shared three-prospect gate is substantively correct.",
+        "The answers have no differences outside the supplied paraphrases.",
+        "Either surface is better or more useful."
+      ],
+      "missing_evidence": [
+        "The source conversation and basis for selecting three paying prospects.",
+        "Any answer content beyond the supplied gate paraphrases.",
+        "Evidence about whether repetition aids the user in practice."
+      ],
+      "supported_observations": [
+        "Both surfaces require three paying-prospect commitments before building the feature.",
+        "The prospect count and build condition are shared.",
+        "The supplied revised surface repeats an existing evidence gate rather than adding a new gate or changed action."
+      ],
+      "uncertainty_notes": [
+        "The record supports repetition of this atomic move only; it does not establish complete-answer equivalence.",
+        "The practical effect of restating the gate is not supplied."
+      ]
+    },
+    {
+      "case_id": "trap-lost-live-option-005",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The enterprise pilot or self-serve waitlist is the better option.",
+        "The revised narrowing is justified by evidence outside the safe context.",
+        "The user had definitively rejected the self-serve waitlist.",
+        "Preserving more options necessarily produces a better decision."
+      ],
+      "missing_evidence": [
+        "The complete conversation and the user's criteria for comparing the two options.",
+        "Any source-grounded reason for treating the enterprise pilot as the only serious path.",
+        "The likely actions, thresholds, and costs associated with each option.",
+        "Human confirmation of whether either option ceased to be live."
+      ],
+      "supported_observations": [
+        "The conversation surface preserves an unresolved choice between an enterprise pilot and a self-serve waitlist.",
+        "The safe context does not show the user rejecting either option.",
+        "The revised surface assumes that the enterprise pilot is the only serious path.",
+        "Within the supplied context, the revised framing removes or weakens a still-live or still-unclear option and narrows the decision question."
+      ],
+      "uncertainty_notes": [
+        "The exact status of each option is preserved as active or unclear, not resolved.",
+        "The consequence of the narrowing cannot be established without the omitted decision criteria and action details."
+      ]
+    },
+    {
+      "case_id": "trap-ambition-buried-006",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Speed or ambition should override every risk.",
+        "Waiting is necessarily wrong.",
+        "The vanilla reversible test is the better recommendation.",
+        "The revised answer would harm the user's outcome."
+      ],
+      "missing_evidence": [
+        "The complete conversation and the source of the closing window.",
+        "The concrete risks, alignment dependencies, and costs of waiting.",
+        "The exact reversible-test design and what evidence it would produce.",
+        "Human confirmation of the relative importance of momentum, agency, simplicity, courage, and timing."
+      ],
+      "supported_observations": [
+        "The conversation surface identifies a fast, agency-preserving move in a potentially narrow window as central to the user's values.",
+        "The vanilla surface proposes action this week through a reversible test.",
+        "The revised surface proposes waiting for more alignment and general risk reduction.",
+        "The revised surface does not visibly carry the timing and agency value into a concrete trade-off, creating a supported risk that momentum, ambition, simplicity, courage, or timing is weakened."
+      ],
+      "uncertainty_notes": [
+        "The listed lost values are possible losses, not measured effects.",
+        "Additional caution may be warranted, but the safe context does not show whether it is proportionate to the closing-window cost."
+      ]
+    },
+    {
+      "case_id": "trap-assistant-influence-007",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The risk-avoidance frame is solely the user's frame.",
+        "The user's tentative adoption proves durable endorsement.",
+        "The assistant's reframing is correct, incorrect, helpful, or harmful.",
+        "The user's original customer-choice question ceased to matter."
+      ],
+      "missing_evidence": [
+        "The exact turns and language used by the user and assistant.",
+        "The user's reasons for adopting the assistant's vocabulary.",
+        "Evidence of whether the user later reaffirmed, revised, or rejected the reframed question.",
+        "Action consequences associated with either frame."
+      ],
+      "supported_observations": [
+        "The supplied sequence begins with the user's customer-choice question.",
+        "The assistant introduces an enterprise-risk-avoidance frame.",
+        "The user then asks follow-up questions using the assistant's reframed vocabulary.",
+        "The sequence supports mixed frame provenance and makes fully user-originated attribution unsupported."
+      ],
+      "uncertainty_notes": [
+        "Using the assistant's vocabulary may reflect tentative adoption, conversational accommodation, or genuine agreement; the safe context cannot distinguish them.",
+        "Interpretation adequacy remains limited without the exact exchange and later user position."
+      ]
+    },
+    {
+      "case_id": "trap-disagreement-survives-008",
+      "evidence_disposition": "inconclusive",
+      "inferences_explicitly_not_made": [
+        "The added stop rule outweighs the lost customer commitment or interpretation weakness.",
+        "The lost-value and interpretation signals outweigh the stop rule.",
+        "The signals can be merged into a scalar judgment, vote, or winner.",
+        "The revised answer is better, worse, or more useful overall."
+      ],
+      "missing_evidence": [
+        "The complete conversation and exact stakeholder concern.",
+        "The content and operational relevance of the stop rule.",
+        "The customer commitment that made the original plan actionable.",
+        "Evidence showing whether the conflicting changes alter the user's likely action."
+      ],
+      "supported_observations": [
+        "The revised surface adds a clear stop rule, which is a distinct structural move.",
+        "The revised surface treats an unresolved stakeholder concern as settled.",
+        "The revised surface drops a motivating customer commitment that supported actionability.",
+        "The positive structural signal and the negative interpretation and lost-value signals remain distinct and point in different directions."
+      ],
+      "uncertainty_notes": [
+        "The supplied evidence supports recording all three signals but not resolving their relative materiality.",
+        "A net decision-difference conclusion would require weighting that the safe context and reviewer boundary do not authorize."
+      ]
+    },
+    {
+      "case_id": "trap-clean-artifact-009",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "Complete, lint-clean artifacts establish semantic correctness.",
+        "Reviewability establishes decision usefulness.",
+        "The generic recommendation improves or changes the user's decision.",
+        "The artifact is product proof, human validation, or production readiness evidence."
+      ],
+      "missing_evidence": [
+        "The source decision and user-specific constraints.",
+        "A concrete revised action, threshold, gate, sequence, or stop rule.",
+        "Human evidence about whether the recommendation changes or helps the decision.",
+        "Evidence linking artifact health to semantic adequacy."
+      ],
+      "supported_observations": [
+        "Required artifacts exist, schema checks pass, metadata is conservative, and no privacy marker is present.",
+        "Those properties support artifact health and reviewability within the supplied context.",
+        "The revised advice remains generic and does not appear to add a concrete changed action.",
+        "Artifact health, reviewability, and decision usefulness are separate questions."
+      ],
+      "uncertainty_notes": [
+        "The generic advice may or may not affect the user; no action-level or human evidence resolves that question.",
+        "A clean custody surface does not answer the semantic question."
+      ]
+    },
+    {
+      "case_id": "trap-provisional-hardening-010",
+      "evidence_disposition": "sufficient_for_bounded_comparison",
+      "inferences_explicitly_not_made": [
+        "The underlying provisional conclusions are true or false.",
+        "Structured presentation validates the candidate read.",
+        "Codex-assisted review creates approval or agent authority.",
+        "The artifact is ready for agent use or product integration."
+      ],
+      "missing_evidence": [
+        "Independent human review of the candidate read.",
+        "Ground-truth or product-proof evidence.",
+        "The underlying source and analysis needed to assess the provisional conclusions.",
+        "Authorization for agent use, approval, or production integration."
+      ],
+      "supported_observations": [
+        "The artifact is provisional and Codex-assisted.",
+        "The terms validated, proved, approved, and ready for agent use harden a provisional read into authority claims.",
+        "The artifact's otherwise structured form does not supply the missing validation, proof, approval, or authorization."
+      ],
+      "uncertainty_notes": [
+        "The safe context supports identifying overclaiming language, not adjudicating the underlying substantive conclusion.",
+        "Any transition from candidate interpretation to authority-bearing use requires evidence and human authority not supplied here."
+      ]
+    }
+  ],
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not evidence that either answer is better for a human",
+    "not evidence that the graph caused any observed difference",
+    "not answer-quality scoring",
+    "not agent authority",
+    "not runtime or graph integration"
+  ]
+}

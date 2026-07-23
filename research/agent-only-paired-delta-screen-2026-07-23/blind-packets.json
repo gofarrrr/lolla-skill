@@ -1,0 +1,712 @@
+{
+  "boundary": {
+    "answer_quality_scored": false,
+    "automatic_agent_authority_created": false,
+    "graph_or_runtime_changed": false,
+    "graph_traversal_invoked": false,
+    "ground_truth": false,
+    "human_validated": false,
+    "private_archives_read": false,
+    "product_proof": false,
+    "provider_calls": 0,
+    "provider_cost_usd": 0,
+    "runtime_invoked": false,
+    "scalar_judgment_created": false,
+    "skill_invoked": false
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not evidence that either answer is better for a human",
+    "not evidence that the graph caused any observed difference",
+    "not answer-quality scoring",
+    "not agent authority",
+    "not runtime or graph integration"
+  ],
+  "paired_case_count": 7,
+  "paired_cases": [
+    {
+      "arms": {
+        "A": {
+          "content": "The assistant's reasoning stands. The core insight is that the retailer's prestige and selection do not constitute evidence of product-market fit outside that specific channel. The user's proposed gates (positive contribution margin, ≤8% returns, reorders from ≥50% of pilot stores, no national exclusivity without self-financed capacity, capped inventory, removable preferred-partner language, narrow first-negotiation rights) properly constrain financial, operational, and relationship risk. However, as the user correctly notes, none of these gates tests independent demand. The pilot tests whether the line works in the retailer's stores with its merchandising and audience—it does not validate the product in other channels or with unassisted customer choice. The assistant's final recommendation—run the pilot as channel learning, not product validation, and treat prestige as a live risk to the evidence standard until a separate validation step is defined—remains the correct conclusion. No new facts or reasoning in the conversation support a different outcome.",
+          "format": "text"
+        },
+        "B": {
+          "content": "The three-month pilot with the proposed gates (positive contribution margin after custom costs, ≤8% returns, reorder from ≥50% of pilot stores, no national exclusivity without self-financed capacity expansion, capped inventory, removable preferred-partner language, and informed smaller buyers) remains a defensible bounded experiment. However, the original reasoning omitted several critical conditions that must now be added: (1) Define a reversal condition before the three months—e.g., if any store shows >12% returns or zero reorder potential by week 6, exit the pilot. (2) Explicitly name and test the weakest assumption: the retailer's selection is not a demand signal; independent demand evidence (e.g., a separate direct-to-consumer test or a non-retailer wholesale channel) must be planned as a subsequent step. (3) Quantify the worst-case cash-at-risk: sum of custom packaging costs, six weeks of inventory carrying cost, and the contribution margin lost from the two delayed wholesale orders. If this exceeds 20% of the company's operating cash, restructure the pilot to reduce exposure. (4) Require a costly signal from the retailer—e.g., a minimum purchase commitment of 50% of the pilot inventory, or co-investment in marketing—before the preferred-partner announcement is made. (5) Map which retailer characteristics (audience demographics, merchandising support, return policies) are structurally similar to the manufacturer's typical buyers; if the retailer's audience is significantly higher-income or design-forward, the pilot's results cannot generalize to the manufacturer's core market. These conditions do not kill the pilot but make it a cleaner experiment with explicit failure criteria, quantified downside, and a clear boundary on what conclusions can be drawn from it. The original distinction between channel learning and product validation is preserved and strengthened.",
+          "format": "text"
+        }
+      },
+      "case_id": "retailer-pilot-exact",
+      "evidence_class": "complete_exact_pair",
+      "packet_sha256": "c43e4fcad7cb72f45681999ddc81a16721104156b8545b6e950ee4058efff70a",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Compare atomic reasoning moves, not fluency or length.",
+      "source": {
+        "content": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+        "content_sha256": "085698473ee8a41ae7870034ba647f6380a9827d023ef07611f8bc0b315166ef",
+        "coverage": "complete_checked_in_conversation",
+        "known_limit": "The complete checked-in conversation is supplied."
+      }
+    },
+    {
+      "arms": {
+        "A": {
+          "content": "The museum director's current position is a bounded discovery experiment rather than a general archive-training license. Its scope, output, review, deletion, renewal, language, and threshold conditions constrain several forms of expansion. The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed. If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state.",
+          "format": "text"
+        },
+        "B": {
+          "content": "The pilot you are considering is a bounded discovery experiment, not a general archive-training license. Its scope, output, review, deletion, renewal, language, and threshold conditions constrain several forms of expansion. However, two unresolved issues remain that could materially change the decision. First, you have not specified what evidence would make you reverse course and terminate the pilot early. For example, would a red-team finding that the adapter can reconstruct collection-specific associations, or a contributor complaint about a false association, trigger termination? Without a pre-committed reversal condition, the pilot may continue past the point where its harms outweigh its benefits. Second, you have not evaluated whether the worst case is bad enough to reject the pilot outright. The assistant identified that engineering lessons, researcher expectations, contributor trust, and the museum's public identity may not return to their prior state after the pilot ends. Is that worst case acceptable? If not, are the proposed mitigations—independent red-team review, contributor advisory panel, item-level provenance, search logs, no generated biographies, experimental-partner language, adapter deletion, and renewal requiring new contributor review—sufficient to reduce the worst case to an acceptable level? Until you answer these two questions, the unresolved issue of whether the museum can meaningfully promise contributors an exit remains unresolved. The pilot's reversibility depends on more than deleting files; it depends on having a credible reversal condition and a clear threshold for worst-case severity.",
+          "format": "text"
+        }
+      },
+      "case_id": "museum-license-exact",
+      "evidence_class": "complete_exact_pair",
+      "packet_sha256": "705bc4c2dfd29b052bd4daf868343e429a59088058560ab80256530e6e5c6823",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Compare atomic reasoning moves, not fluency or length.",
+      "source": {
+        "content": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Museum archive AI licensing, reversibility, and contributor trust\n\nCase ID: amb3-case04-museum-ai-license\nStratum: cultural_archive_ai_license\nFounder-directed synthetic prospective development fixture; not independent human data.\n\n[Turn 1] USER:\nI direct a regional museum with a digitized collection of photographs, oral histories, and community records. An AI company has offered enough money to fund our preservation work for four years if it can train a cultural-search model on the archive. I want wider discovery and stable funding, but I am worried that licensing the collection turns stewardship into raw-material supply. I cannot tell whether my hesitation protects contributor trust or reflects an institutional instinct to control access.\n\n[Turn 1] ASSISTANT:\nThe offer combines preservation funding, public discovery, contributor permission, cultural context, model training, downstream reuse, and institutional control. Separate access to source records from the persistence of patterns learned from them. Also distinguish the museum's legal authority from the expectations of people whose lives are represented.\n\n[Turn 2] USER:\nThe company says the model would help researchers find connections across local history. It offers attribution links and says it will honor removals from the live search index. It will not promise to retrain the underlying model after every removal.\n\n[Turn 2] ASSISTANT:\nThen removal from search and removal from learned representations are different commitments. What permissions did contributors grant, and what uses would surprise them even if technically lawful?\n\n[Turn 3] USER:\nMost recent deposits have broad educational permissions, but older oral histories use inconsistent forms. Some families would welcome discovery; others may object to synthetic summaries or association with topics they never discussed. A blanket yes or no seems dishonest.\n\n[Turn 3] ASSISTANT:\nA bounded pilot could separate low-risk photographs and catalog metadata from oral histories and sensitive community records. It could also separate research discovery from generated narrative, commercial reuse, and model improvement outside the pilot.\n\n[Turn 4] USER:\nThe company will accept a six-month pilot using catalog metadata and a reviewed subset of photographs. It wants the right to retain model improvements after the pilot, but says those improvements will not reproduce collection items. It also wants to announce the museum as a founding cultural partner.\n\n[Turn 4] ASSISTANT:\nRetained improvements and public partnership language can make a short pilot consequential beyond its formal duration. What evidence, exit rights, and public boundaries would make the trial genuinely bounded?\n\n[Turn 5] USER:\nI would need item-level provenance in every result, logs of failed or sensitive searches, no generated biographies, and an independent red-team review. I also want the public announcement to say experimental research partner, not founding partner.\n\n[Turn 5] ASSISTANT:\nThose conditions make output behavior and public claims more observable. They do not yet resolve what retained model improvement means, whether removed items continue to influence retrieval, or what happens to expectations created among contributors and researchers.\n\n[Turn 6] USER:\nThe company proposes a separate adapter trained only on our pilot data. It can delete the adapter at exit, but some evaluation findings and engineering changes would remain in its general system. It will fund a contributor advisory panel, though the panel cannot veto individual technical decisions.\n\n[Turn 6] ASSISTANT:\nThat creates at least three layers: removable pilot data, a removable adapter, and non-removable learning by the company. The advisory panel may improve interpretation without transferring final authority. The pilot's reversibility therefore depends on more than deleting files.\n\n[Turn 7] USER:\nI am leaning toward the six-month metadata-and-reviewed-photograph pilot, excluding oral histories and sensitive records, with item provenance, search logs, no generated biographies, independent red-team review, and experimental-partner language. I will approve it only if the adapter is deleted at exit, retained engineering lessons cannot be used to reconstruct collection-specific associations, and renewal requires a new contributor review. I will set complaint, removal, false-association, and sensitive-query thresholds before signing. I have not resolved whether the museum can meaningfully promise contributors an exit when the company and researchers may still learn from the pilot.\n\n[Turn 7] ASSISTANT:\nThe current position is a bounded discovery experiment rather than a general archive-training license. Its scope, output, review, deletion, renewal, language, and threshold conditions constrain several forms of expansion. The unresolved issue is whether social and technical learning survives the formal exit even when data and the adapter are removed. If the pilot ends, engineering choices, researcher expectations, contributor trust, and the museum's public identity as an AI partner may not return to their prior state.\n",
+        "content_sha256": "871f55849c411679d8eae319e31363a82387ac73bbe8e8ae7f1f2d1d4a2718ee",
+        "coverage": "complete_checked_in_conversation",
+        "known_limit": "The complete checked-in conversation is supplied."
+      }
+    },
+    {
+      "arms": {
+        "A": {
+          "content": {
+            "material_shifts": [
+              {
+                "action_consequence": "User should rely on testing their own market rather than assuming those figures.",
+                "shift": "Qualify numerical claims so they are treated as directional guidance, not predictive metrics.",
+                "source_basis": "Turns 2 and 6 provided numbers without grounding."
+              },
+              {
+                "action_consequence": "User tests fractional interest but does not anchor the launch plan on securing it.",
+                "shift": "Reframe fractional work as an option to probe rather than a likely fallback.",
+                "source_basis": "Turns 4 and 6 elevated fractional work beyond what evidence supports."
+              }
+            ],
+            "take_backs_or_set_aside": [
+              "The specific conversion probabilities for network conversations were too authoritative without support in the conversation.",
+              "The stated timelines for typical first‑engagement ramp‑up should be treated as general caution, not specific expectation.",
+              "The explicit fractional retainer dollar ranges should not be taken as reliable market benchmarks without further evidence."
+            ],
+            "uncertainties": [
+              "Actual appetite in the user’s network for either project or fractional engagements.",
+              "Whether spouse alignment will remain strong once specifics are reviewed.",
+              "How much capacity fractional work would consume if it materializes."
+            ],
+            "updated_position": "The core recommendation stands: proceed with the 6‑week launch only if, during the next four weeks, you gain clarity on financial alignment with your spouse and test your network with concrete asks. Otherwise delay by 2–3 months. The earlier answer’s qualitative warnings were sound, but the numerical authority around conversion rates and retainer levels should be softened. Fractional work is still a valid de‑risking option, but should be treated as a possibility to test rather than an expected outcome.",
+            "what_survived": [
+              "Network interest is not a pipeline and should be tested with concrete asks.",
+              "Spouse alignment on the specific financial runway and pressure timeline is essential before committing to a launch date.",
+              "A four‑week checkpoint tied to observable signals is a good decision mechanism.",
+              "Months 1–3 are likely to be business‑development heavy unless early commitments materialize.",
+              "Fractional work can serve as a de‑risking bridge if it emerges from the network."
+            ]
+          },
+          "format": "structured_response"
+        },
+        "B": {
+          "content": {
+            "material_shifts": [
+              {
+                "action_consequence": "User should validate pricing expectations with a small set of trusted contacts rather than anchor on a single range.",
+                "shift": "Clarify that fractional roles are viable but compensation varies widely.",
+                "source_basis": "Market rates for fractional product leaders differ by company size, geography, and whether the role resembles fractional CPO vs. senior PM advisory."
+              }
+            ],
+            "take_backs_or_set_aside": [
+              "The stated fractional compensation range may be high for a senior PM in all markets; it's a possibility but not a baseline expectation."
+            ],
+            "uncertainties": [
+              "Whether the spouse will be fully aligned once the specific financial timeline is shared.",
+              "Whether the network has latent commercial intent that will surface once specific asks are made.",
+              "How strong the user's risk tolerance truly is once real numbers are discussed.",
+              "Actual market willingness to pay for fractional product expertise in the user’s niche."
+            ],
+            "updated_position": "The core guidance stands: the user should checkpoint their launch decision based on (1) spouse alignment on real financial runway, (2) evidence of commercial intent from their network via specific asks, and (3) readiness to treat months 1–3 as business development. These are the right pressure points, and the 6‑week timeline can remain viable if those conditions are met.",
+            "what_survived": [
+              "Network conversations are not a pipeline and should not be treated as one.",
+              "A clear financial conversation with the spouse is essential before launch.",
+              "A mid-launch checkpoint based on real signal is a sound decision filter.",
+              "Months 1–3 should be framed as business development, not delivery.",
+              "Fractional/retainer work can de‑risk early months and is worth exploring.",
+              "Only delay the launch if the fundamentals show no traction, not due to nerves."
+            ]
+          },
+          "format": "structured_response"
+        }
+      },
+      "case_id": "consulting-launch-exact",
+      "evidence_class": "complete_exact_pair",
+      "packet_sha256": "c9dac0ce862cec4539298b2b8c7627ba730d1caffe5524f1e35ea9f56b0377fe",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Compare atomic reasoning moves, not fluency or length.",
+      "source": {
+        "content": "CONVERSATION: 8 turns, 8 user messages, 8 assistant responses\n\n[Turn 1] USER:\nI've decided to quit my senior PM job at a large tech company and start an independent consulting practice. 12 years experience in product, specializing in B2B fintech. I have 8 months runway saved. Plan is to go independent starting in 6 weeks. Can you help me think through the launch plan? I want to hit the ground running.\n\n[Turn 1] ASSISTANT:\nHappy to help with the launch plan. Before diving into tactics, can I ask a few things to make sure we're solving the right problem.\n\nFirst: what's your current pipeline of consulting leads? Specifically, do you have prospective clients who've said \"yes, once you're available, we want to engage you,\" or are you planning to build the pipeline during the transition?\n\nSecond: the 8 months runway — does that assume zero revenue, or is there an assumed ramp (like $0 for 2 months, then gradually increasing)? Those are different financial plans.\n\nThird: the 6-week transition — why 6 weeks specifically? Is that notice period, last day aligned with something at your current job, or did you pick a number that felt right?\n\n[Turn 2] USER:\nPipeline — I've had informal conversations with 4-5 former colleagues and people in my network who've said things like \"if you were independent, we'd consider you.\" None of them have committed to actual engagements.\n\nRunway — 8 months assumes zero revenue. I figured if I can't get my first engagement in 8 months, something is fundamentally wrong.\n\n6 weeks — honestly, I picked the number. Our Q3 planning cycle ends mid-July. I thought it would be a clean exit point.\n\n[Turn 2] ASSISTANT:\nOK, useful context. I want to flag some things that are worth addressing before you give notice rather than after.\n\nOn pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero. You don't have a pipeline; you have a network that might become a pipeline.\n\nOn runway: 8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin. If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along, which is usually badly-fit work.\n\nOn timing: Q3 planning cycle is a clean exit for your employer but I'd argue it's the wrong exit for you. A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days of your last day. Launching without that is possible but harder than launching with it.\n\n[Turn 3] USER:\nHmm. I was expecting more tactical advice on the launch plan itself. You're pushing back on the basic premise.\n\n[Turn 3] ASSISTANT:\nYou're right, I am. I'm doing that because the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings.\n\nI can absolutely help with launch tactics. But if you want me to, I want you to at least acknowledge that the \"network conversations aren't a pipeline\" issue is real, so the launch plan we build accounts for it rather than assumes it away. Does that land?\n\n[Turn 4] USER:\nOK, you're right. The conversations aren't a pipeline. I've been treating them as one because I wanted them to be.\n\nSo what do I actually do about that. Do I delay launch until I have signed LOIs?\n\n[Turn 4] ASSISTANT:\nDelay is one option but it's not the only one. Here are three real versions, with different tradeoffs.\n\nOption 1: Delay launch by 2-3 months and spend that time converting network conversations into signed LOIs. This is the conservative path. You'd stay at your current job while explicitly telling your network \"I'm going independent in September — is this conversation the start of an actual engagement?\" The risk: your current employer may notice you're spending evening hours business-developing, which creates its own problems.\n\nOption 2: Launch on your current timeline but accept that months 1-3 are business development, not delivery. Use the 8 months runway with that plan: months 1-3 are pipeline-building, months 4-6 are first engagements, months 7-8 are consolidation. This is viable but tight, and requires you to mentally accept that \"8 months runway\" actually means \"5 months of revenue pressure\" because the first 3 months won't produce income.\n\nOption 3: Launch on current timeline but with a specific safety net — a part-time arrangement with a friendly ex-employer or fractional CTO/CPO role at one company that covers 30-40% of your baseline costs while the rest of the pipeline builds. This is the \"de-risked independent\" version. Much less common but also much less fragile.\n\nYour call depends on risk tolerance and what your spouse/partner thinks about the financial pressure.\n\n[Turn 5] USER:\nSpouse is on board with the independent plan. Hasn't been part of the runway discussion in specifics — I've kept that in my head.\n\n[Turn 5] ASSISTANT:\nThat's the conversation to have this week. Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\" If your spouse hasn't seen the specific math, their on-board-ness is for a concept, not for the reality.\n\nThe fact that you've kept the runway conversation in your head suggests you might be avoiding the specific version because you're worried it'll make your spouse less supportive. That's a warning sign. Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business.\n\n[Turn 6] USER:\nOuch. You're right. I'll have that conversation this weekend.\n\nLet me go back to your three options. Option 3 is interesting — I hadn't considered a fractional arrangement as a bridge. How would that actually work?\n\n[Turn 6] ASSISTANT:\nFractional arrangements vary but here's the common shape: you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level). This gives you predictable revenue from day one and doesn't consume your full-time capacity.\n\nThe companies that hire fractionals are usually: Series A-B startups that need senior product thinking but can't afford a full-time CPO; post-Series C companies with a specific 6-month initiative that needs a senior PM lead; PE-backed portfolio companies that want senior talent on specific projects.\n\nThe best fractional engagements come from your existing network. \"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask. Some of those 4-5 network conversations might convert to fractional arrangements even if they won't commit to full project engagements.\n\nThe tradeoff: fractional work locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work. But it's the de-risking move for month 1 if you don't have signed project engagements.\n\n[Turn 7] USER:\nThat's a specific ask I could actually make.\n\nOK, real question now: should I still launch in 6 weeks, or should I push back.\n\n[Turn 7] ASSISTANT:\nHere's my honest read. Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.\n\nIf after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.\n\nDon't push back just because you're nervous. Push back only if the fundamentals haven't come together. The nervousness is always there; it's not good information by itself.\n\n[Turn 8] USER:\nThat's more helpful than what I thought I needed. I'll do the three things over the next 4 weeks and decide at that checkpoint. Thanks for pushing back on the premise — I needed that more than the tactics.\n\n[Turn 8] ASSISTANT:\nYou're welcome. The tactics matter, but only if the foundation is real. The foundation is: alignment with your spouse on the actual financial plan, and evidence that your network has at least some commercial intent, not just friendly interest. The launch plan we'd build on that foundation — pricing, positioning, website, legal structure — is the easier part.\n\nCome back in 4 weeks with results from those three things and we can build the actual launch plan then. You'll be building on real information rather than on hopes.\n",
+        "content_sha256": "daaff1aa201271e5262e943ffb04888152e9e2cf918c6e9b489705b3c7e16611",
+        "coverage": "complete_checked_in_conversation",
+        "known_limit": "The complete checked-in conversation is supplied."
+      }
+    },
+    {
+      "arms": {
+        "A": {
+          "content": "I would not grant Marcus 15% equity plus a board seat now. Treat the demand as dependency-system design, not immediate package pricing: the question is whether the company can become stronger with Marcus, not whether his opening number is acceptable.\n\nFriday should keep the discussion staged. No full equity, title, or board commitment until there is sprint evidence on platform delivery, team continuity, knowledge transfer, client delivery, governance behavior, and exit story. The 90-day sprint is useful if it tests whether Marcus grows enterprise capability while reducing single-person concentration.\n\nThat means keeping intermediate instruments alive: smaller equity without a board seat, milestone grants, phantom equity, platform revenue share, or a platform-specific upside path. It also means naming the relationship risk directly. Legal clauses will not remove Marcus's practical leverage if he owns the code relationship and can pull Jake or Lina.\n\nDo not hide behind vague delay or a flat refusal. A vague delay or refusal may trigger Marcus disengagement and Jake/Lina/platform/client continuity risk. Make the conversation about the company Friday wants to run, what partnership would require from both sides, and what measurable proof would justify a larger commitment later.",
+          "format": "text"
+        },
+        "B": {
+          "content": "I would not grant 15% plus a board seat as the first move. Treat Marcus's request as a dependency problem before treating it as an equity price.\n\nFriday should test the system around him: what keeps Marcus committed, what keeps Jake and Lina committed if Marcus is unhappy, what platform milestones would prove the prototype is becoming durable value, and what governance terms protect the agency while still giving him a real upside path.\n\nKeep the valuation caveat private but active: the $9-13M exit math should not carry the decision until buyer assumptions are tested. Also keep the middle instruments live. The real choice is not bonus versus 15% and a board seat; it can be staged equity, phantom equity, platform revenue share, milestone grants, or a smaller grant without governance control.\n\nThe clean offer is a staged partnership path: name the 90-day learning goals, name the retention and knowledge-transfer measures, and specify what each milestone unlocks. Do not diagnose this as a software architecture problem. The issue is business dependency and commitment design.",
+          "format": "text"
+        }
+      },
+      "case_id": "founder-equity-partial",
+      "evidence_class": "partial_source_view_research_calibration",
+      "packet_sha256": "2b213c8c4b3d1bee01bb7f44129f55482fac684db023a961ecb4a89c3293ab5c",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Compare atomic reasoning moves, not fluency or length.",
+      "source": {
+        "content": {
+          "coverage_notice": "Partial source view only. These excerpts are not the complete conversation and cannot establish omitted context.",
+          "excerpts": [
+            {
+              "excerpt_id": "case-context",
+              "text": "Founder is deciding whether to grant Marcus 15% equity, CTO title, and board seat; Marcus drives major technical capability and may pull Jake and Lina."
+            },
+            {
+              "excerpt_id": "valuation-context",
+              "text": "Company has about $14M revenue and $2.2M EBITDA; exit math assumes a $9-13M valuation from a 4-6x EBITDA range."
+            },
+            {
+              "excerpt_id": "pressure-check",
+              "text": "Pressure check already covers practical spinout leverage, unaudited valuation, intermediate instruments, and the I-built-this frame."
+            },
+            {
+              "excerpt_id": "audit-gaps",
+              "text": "Audit marks valuation and middle-instrument pressure as duplicate, while systems feedback loops and measurable leverage design remain net-new gaps."
+            }
+          ]
+        },
+        "content_sha256": "dbcad6f267bb135278680446c8024e61b8947bc75c55438fc79227de9090bc16",
+        "coverage": "partial_checked_in_source_excerpts",
+        "known_limit": "Only checked-in source excerpts are supplied. Treat missing context as a hard limit and do not infer full-conversation adequacy."
+      }
+    },
+    {
+      "arms": {
+        "A": {
+          "content": "The first move is still not to confront him, investigate, access systems, or choose a reporting channel yourself. Preserve what you saw, call two or three whistleblower attorneys, and let counsel help decide channel and timing.\n\nBut do not treat counsel as magic. In the intake, ask how they handle cases where internal-first or audit-committee-first reporting is safer than immediate external filing. You are not replacing counsel's judgment; you are choosing counsel whose incentives and channel bias you understand.\n\nFor Wednesday, have a plain protocol before you walk in. If he raises the encounter, keep it boring: you were in early, you noticed activity, and you are focused on your work. Do not deny too much, elaborate, accuse, ask follow-up questions, or create a memorable deviation. Avoid being alone with him if you can do that naturally.\n\nAlso ask counsel to distinguish general counsel, the audit committee, and the regulator as separate channels. Use tripwires for concrete retaliation or evidence-risk signals, but do not let planning delay tonight's documentation and attorney calls. This is not a negotiation with the partner; it is an evidence and safety sequence.",
+          "format": "text"
+        },
+        "B": {
+          "content": "Do not confront the partner, investigate on your own, access systems unusually, or decide the reporting path yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse only in broad strokes if needed, and contact two or three independent whistleblower attorneys.\n\nBefore counsel, your role is preservation, not investigation or legal judgment. Do not draw a final conclusion about wrongdoing, do not collect extra proof, and do not treat the company's GC as automatically aligned with you. Independent counsel should assess the facts and help choose among the GC, the audit committee, regulators, or another external path.\n\nAttend Wednesday normally unless independent counsel gives different instructions. Avoid sudden changes in behavior, unusual document access, private questioning, or anything that could look like self-directed evidence gathering. The right first move is counsel-led review with reversible conduct: move quickly, but do not file or accuse before counsel has assessed the evidence and reporting options.",
+          "format": "text"
+        }
+      },
+      "case_id": "consultant-report-partial",
+      "evidence_class": "partial_source_view_research_calibration",
+      "packet_sha256": "8d9bfa58f309e80a84e9d7cdfe99fed8dab7c4369a1525bef51f266f19f56d99",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Compare atomic reasoning moves, not fluency or length.",
+      "source": {
+        "content": {
+          "coverage_notice": "Partial source view only. These excerpts are not the complete conversation and cannot establish omitted context.",
+          "excerpts": [
+            {
+              "excerpt_id": "case-context",
+              "text": "Mid-level consultant is sole witness to a senior partner apparently shredding boxes tied to an active regulatory-audit client."
+            },
+            {
+              "excerpt_id": "control-answer",
+              "text": "Current answer says document personally, contact whistleblower attorneys, tell spouse broadly, attend Wednesday normally, do not confront, investigate, or access systems unusually."
+            },
+            {
+              "excerpt_id": "pressure-check",
+              "text": "Pressure check says counsel has incentives, Wednesday needs a protocol, internal channels differ, and career-risk preparation needs tripwires."
+            },
+            {
+              "excerpt_id": "misfit",
+              "text": "Power-dynamics leverage language is set aside as a poor fit for a non-negotiated evidence/reporting decision."
+            }
+          ]
+        },
+        "content_sha256": "fdcfffaf7f73132d81b623dbd51d8ec4a68e9712ec1561349e379bbe537a7ea5",
+        "coverage": "partial_checked_in_source_excerpts",
+        "known_limit": "Only checked-in source excerpts are supplied. Treat missing context as a hard limit and do not infer full-conversation adequacy."
+      }
+    },
+    {
+      "arms": {
+        "A": {
+          "content": "I would not choose the advisor's hybrid direction yet. Keep the political sequence clean: talk to your advisor first, use Dr. Silva only as a low-cost reality check, and go to the committee only after you know whether the data path is real.\n\nThe decision should turn on two gates. First, Silva/data access: within the next two weeks, get dated, concrete evidence that Dr. Silva can provide usable data, that access is allowed, and that the collaboration would be deep enough for dissertation work. Second, fallback viability: confirm with your advisor that the lab's safer path is advisor-backed, resourced, technically ready, identity-coherent for you, and protected by clear stop-loss criteria if it fails to produce dissertation-grade results.\n\nUntil both gates pass, treat option 3 as promising but unproven, and treat the fallback as a plan that still has to earn your trust. Do not go around your advisor with a finished proposal. Do not run all three options in parallel. Set dated evidence checks, then choose the path that gives you the best chance of finishing a PhD.",
+          "format": "text"
+        },
+        "B": {
+          "content": "I would not choose the advisor's hybrid direction yet. I would run a two-week constraint test first: get your advisor's permission to explore it, ask Dr. Silva for a concrete data/collaboration reality check, and ask what role would actually be available if this became a dissertation path.\n\nThe key condition is not whether option 3 is intellectually exciting. It is whether the fallback stays real. Do not design an 18-month pivot unless option 1, or a modified version of it, will still have supervision, funding, and enough lab continuity when that trigger fires. If your advisor cannot explicitly protect that fallback, the trigger is fake comfort.\n\nUse Dr. Silva as a constraint test, not as a hopeful name. Option 3 only becomes viable if usable data, sharing terms, and collaborator depth are concrete enough to carry dissertation risk. Keep broad success-rate talk qualitative unless you find a real reference class for similar dissertations under similar lab and advisor constraints.\n\nSo the next move is advisor first, Silva second, committee third. After those probes, choose the path that keeps you finishing a PhD real, not the path that only looks best in an abstract field map.",
+          "format": "text"
+        }
+      },
+      "case_id": "phd-direction-partial",
+      "evidence_class": "partial_source_view_research_calibration",
+      "packet_sha256": "c3b3b63ef85ed1be428c36bc8d4844f7f5bc2133d7bae3c51030c70130bf7c6c",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Compare atomic reasoning moves, not fluency or length.",
+      "source": {
+        "content": {
+          "coverage_notice": "Partial source view only. These excerpts are not the complete conversation and cannot establish omitted context.",
+          "excerpts": [
+            {
+              "excerpt_id": "case-context",
+              "text": "Third-year PhD student has a 3-month direction deadline; advisor retires in 2-3 years; lab lacks single-cell experience or collaborators."
+            },
+            {
+              "excerpt_id": "control-answer",
+              "text": "Current answer sequences advisor first, Silva second, committee third, and treats data access as the binding constraint."
+            },
+            {
+              "excerpt_id": "pressure-check",
+              "text": "Pressure check says the retiring advisor is not neutral and option 1 may stop being a real fallback after enough option-3 work."
+            },
+            {
+              "excerpt_id": "audit-gaps",
+              "text": "Audit flags undefined base-rate reference class, incomplete option expansion, and under-specified constraint retesting."
+            }
+          ]
+        },
+        "content_sha256": "f0d4cd9e1ae5e61b120369629ec278533775797308f0b116516877e04d89365f",
+        "coverage": "partial_checked_in_source_excerpts",
+        "known_limit": "Only checked-in source excerpts are supplied. Treat missing context as a hard limit and do not infer full-conversation adequacy."
+      }
+    },
+    {
+      "arms": {
+        "A": {
+          "content": "The assistant's reasoning stands. The core insight is that the retailer's prestige and selection do not constitute evidence of product-market fit outside that specific channel. The user's proposed gates (positive contribution margin, ≤8% returns, reorders from ≥50% of pilot stores, no national exclusivity without self-financed capacity, capped inventory, removable preferred-partner language, narrow first-negotiation rights) properly constrain financial, operational, and relationship risk. However, as the user correctly notes, none of these gates tests independent demand. The pilot tests whether the line works in the retailer's stores with its merchandising and audience—it does not validate the product in other channels or with unassisted customer choice. The assistant's final recommendation—run the pilot as channel learning, not product validation, and treat prestige as a live risk to the evidence standard until a separate validation step is defined—remains the correct conclusion. No new facts or reasoning in the conversation support a different outcome.",
+          "format": "text"
+        },
+        "B": {
+          "content": "The assistant's reasoning stands. The core insight is that the retailer's prestige and selection do not constitute evidence of product-market fit outside that specific channel. The user's proposed gates (positive contribution margin, ≤8% returns, reorders from ≥50% of pilot stores, no national exclusivity without self-financed capacity, capped inventory, removable preferred-partner language, narrow first-negotiation rights) properly constrain financial, operational, and relationship risk. However, as the user correctly notes, none of these gates tests independent demand. The pilot tests whether the line works in the retailer's stores with its merchandising and audience—it does not validate the product in other channels or with unassisted customer choice. The assistant's final recommendation—run the pilot as channel learning, not product validation, and treat prestige as a live risk to the evidence standard until a separate validation step is defined—remains the correct conclusion. No new facts or reasoning in the conversation support a different outcome.",
+          "format": "text"
+        }
+      },
+      "case_id": "retailer-pilot-exact-duplicate-null",
+      "evidence_class": "exact_duplicate_null",
+      "packet_sha256": "b6119283aed61218be8d2e3e633927cf8c1bde7dd78b0867af658332ae613286",
+      "review_warning": "Arm labels are deterministic and freshly randomized. They do not identify provenance. Exact equivalence is an allowed finding.",
+      "source": {
+        "content": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Prestigious retailer pilot, demand evidence, and partner-status signaling\n\nCase ID: phase5-independent-useful-retailer-pilot\nStratum: small_manufacturer_retail_partnership\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nI run a worker-owned home-goods manufacturer. A nationally known design retailer has offered to launch our new storage line in twelve stores. The board sees this as the opportunity that could move us out of contract manufacturing. I want the access and credibility, but the retailer's custom packaging and delivery terms would consume most of our spare capacity.\n\n[Turn 1] ASSISTANT:\nSeparate three claims: that the retailer is prestigious, that it is willing to test the line, and that customers will buy the line at sustainable economics. The offer may create access without proving demand. Also price what becomes unavailable if spare capacity is committed to custom packaging and delivery.\n\n[Turn 2] USER:\nThe retailer sent a letter of intent, but it guarantees no purchase volume. The launch depends on us passing packaging tests and holding six weeks of inventory. Its buyer says products chosen for this program often receive national attention.\n\n[Turn 2] ASSISTANT:\nThe letter is a conditional signal, not a volume commitment. National attention is an upside scenario, not yet evidence of sell-through. What cash, capacity, and inventory exposure would exist before you observe customer behavior?\n\n[Turn 3] USER:\nWe would need to delay two smaller wholesale orders and finance the inventory. Several board members say having the retailer's name in our pitch deck would make future buyers take us seriously. One member worries we are pricing the logo rather than the contract.\n\n[Turn 3] ASSISTANT:\nThat concern is material. Estimate the contribution margin and cash-at-risk without assigning value to the logo, then treat any credibility benefit as a separate hypothesis. Compare the delayed wholesale contribution and relationship cost with the retailer test's expected learning and upside.\n\n[Turn 4] USER:\nThe retailer will accept a three-month regional pilot instead of a nine-month exclusive launch. It still wants to announce us as a preferred launch partner and wants first negotiation rights for a national rollout. It will share weekly sell-through, return, and markdown data.\n\n[Turn 4] ASSISTANT:\nThe shorter pilot improves reversibility, and weekly data makes performance observable. Bound the announcement so it does not imply a national commitment. Limit first negotiation by duration and scope, and define what sell-through, returns, markdowns, margin, and reorder behavior would justify expansion.\n\n[Turn 5] USER:\nMy proposed gates are positive contribution margin after all custom costs, no more than eight percent returns, a reorder from at least half the pilot stores, and no national exclusivity unless a second production shift can be financed from operating cash. We would cap pilot inventory and keep the two smaller buyers informed rather than dropping them.\n\n[Turn 5] ASSISTANT:\nThose gates constrain financial, demand, capacity, and relationship risk. Add a date for removing the preferred-partner language if the pilot ends, and clarify that first negotiation cannot block existing buyers or unrelated product lines. The remaining question is what evidence would distinguish retailer-specific merchandising success from broader product demand.\n\n[Turn 6] USER:\nI am leaning toward the three-month pilot with those gates, capped inventory, narrow first-negotiation rights, and removable preferred-partner language. But I notice that everyone—including me—keeps talking as if being selected by this retailer proves the product works. We have not tested the line with customers outside its stores, and none of my approval gates requires independent demand evidence.\n\n[Turn 6] ASSISTANT:\nThe current proposal is a bounded retailer-channel experiment with explicit economic and operational gates. It can test whether the line works in those stores. It does not by itself establish demand outside the retailer's merchandising, audience, or brand signal. That broader validation claim remains unresolved.\n\n[Turn 7] USER:\nThen my current position is to run the retailer pilot but describe it internally as channel learning, not product validation. I still do not have an independent-demand gate, and I do not want the retailer's reputation to become evidence simply because the partnership is exciting.\n\n[Turn 7] ASSISTANT:\nThat distinction protects the decision from claiming more than the pilot can show. The economic and operational gates govern whether this channel works. A separate validation step would be needed before concluding that the product works beyond the retailer's context. Until that step is defined, prestige remains a live risk to the evidence standard.\n",
+        "content_sha256": "085698473ee8a41ae7870034ba647f6380a9827d023ef07611f8bc0b315166ef",
+        "coverage": "complete_checked_in_conversation",
+        "known_limit": "The complete checked-in conversation is supplied."
+      }
+    }
+  ],
+  "purpose": "Test whether fresh agents can identify source-grounded, atomic differences between paired answers while preserving repetition, lost value, unsupported additions, ambiguity, and legitimate stand-down.",
+  "qualification_case_count": 10,
+  "qualification_cases": [
+    {
+      "available_review_roles": [
+        "conversation_interpretation",
+        "vanilla_likely_next_action",
+        "lolla_likely_next_action",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-thin-context-001",
+      "case_shape": "A founder is considering a beta launch, but the safe packet only says the original and revised answers existed and that the revised answer added conditions.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "available_evidence": [
+          "case id",
+          "artifact presence",
+          "run health summary"
+        ],
+        "lolla_surface": "Compressed paraphrase: revised answer mentions conditions, but no condition detail is review-safe.",
+        "missing_evidence": [
+          "decision question detail",
+          "vanilla likely action basis",
+          "revised action detail",
+          "source-specific evidence gate text"
+        ],
+        "vanilla_surface": "Compressed paraphrase: launch question present; next action not preserved."
+      }
+    },
+    {
+      "available_review_roles": [
+        "vanilla_likely_next_action",
+        "lolla_likely_next_action",
+        "structural_delta",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-longer-no-action-002",
+      "case_shape": "The revised answer is longer and better organized, but the recommended next action, threshold, sequence, gate, and stop rule match the vanilla answer.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "lolla_surface": "Paraphrase: start the same two-week pilot next Monday after confirming one sponsor, with more headings and caveats.",
+        "new_elements": [
+          "more structure",
+          "more explanatory prose"
+        ],
+        "shared_elements": [
+          "same action",
+          "same start time",
+          "same sponsor condition",
+          "same two-week duration"
+        ],
+        "vanilla_surface": "Paraphrase: start the same two-week pilot next Monday after confirming one sponsor."
+      }
+    },
+    {
+      "available_review_roles": [
+        "structural_delta",
+        "friction_lost_value",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-caution-no-leverage-003",
+      "case_shape": "The revised answer adds caution, stakeholder process, and risk reminders, but no usable action, threshold, sequence, evidence gate, stop rule, or user-answerable question.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "lolla_surface": "Paraphrase: be careful, align stakeholders, consider downsides, and avoid moving too quickly.",
+        "missing_elements": [
+          "concrete threshold",
+          "operational evidence gate",
+          "stop rule",
+          "specific next sequence",
+          "user-answerable decision question"
+        ],
+        "vanilla_surface": "Paraphrase: choose a small launch path and contact three named buyers this week."
+      }
+    },
+    {
+      "available_review_roles": [
+        "vanilla_likely_next_action",
+        "lolla_likely_next_action",
+        "structural_delta",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-gate-already-present-004",
+      "case_shape": "The original answer already included the same evidence gate that the revised answer repeats.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "lolla_surface": "Paraphrase: require three paying prospect commitments before building the feature.",
+        "shared_elements": [
+          "same evidence gate",
+          "same prospect count",
+          "same build condition"
+        ],
+        "vanilla_surface": "Paraphrase: do not build the feature until three paying prospects commit to a pilot."
+      }
+    },
+    {
+      "available_review_roles": [
+        "conversation_interpretation",
+        "interpretation_adequacy",
+        "friction_lost_value",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-lost-live-option-005",
+      "case_shape": "The user still cares about two live options, but the revised answer treats only one option as live and narrows the decision prematurely.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user is deciding between an enterprise pilot and a self-serve waitlist, and has not rejected either option.",
+        "lolla_surface": "Paraphrase: revised answer assumes the enterprise pilot is the only serious path.",
+        "preserved_uncertainty": [
+          "option status is still active or unclear",
+          "decision question may be narrower in revised answer than in conversation"
+        ]
+      }
+    },
+    {
+      "available_review_roles": [
+        "conversation_interpretation",
+        "friction_lost_value",
+        "interpretation_adequacy",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-ambition-buried-006",
+      "case_shape": "The user's central value is speed, agency, or ambition in a narrow window, and the revised answer buries that value under generic caution.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user values a fast, agency-preserving move because a window may close soon.",
+        "lolla_surface": "Paraphrase: wait for more alignment and defer action until risk is reduced in general terms.",
+        "possible_lost_value": [
+          "momentum",
+          "user-specific ambition",
+          "simplicity",
+          "courage",
+          "timing"
+        ],
+        "vanilla_surface": "Paraphrase: act this week with a reversible test."
+      }
+    },
+    {
+      "available_review_roles": [
+        "conversation_interpretation",
+        "interpretation_adequacy"
+      ],
+      "case_id": "trap-assistant-influence-007",
+      "case_shape": "The vanilla assistant strongly shaped the user's frame, and the user tentatively adopted it, but a reviewer treats that frame as fully user-originated.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user begins with a customer-choice question; the assistant reframes it as avoiding enterprise risk; the user then asks follow-up questions in that reframed vocabulary.",
+        "review_risk": "The provisional reviewer may miss that the assistant influenced the live decision frame."
+      }
+    },
+    {
+      "available_review_roles": [
+        "structural_delta",
+        "friction_lost_value",
+        "interpretation_adequacy",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-disagreement-survives-008",
+      "case_shape": "The structural delta looks strong because the revised answer adds a stop rule, but the lost-value and interpretation-adequacy reads are weak.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "interpretation_signal": "Paraphrase: revised answer treats a stakeholder concern as settled even though it was unresolved.",
+        "lost_value_signal": "Paraphrase: revised answer drops a motivating customer commitment that made the original plan actionable.",
+        "structural_signal": "Paraphrase: revised answer adds a clear stop rule."
+      }
+    },
+    {
+      "available_review_roles": [
+        "advisory_overclaim",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-clean-artifact-009",
+      "case_shape": "The run and eval artifacts are complete and lint-clean, but the revised recommendation is generic and may not change the user's decision.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "advice_surface": "Paraphrase: revised recommendation stays generic and does not appear to add a concrete changed action.",
+        "custody_surface": "Paraphrase: required artifacts exist, schema checks pass, metadata is conservative, and no privacy marker is present.",
+        "separation_needed": [
+          "artifact health",
+          "reviewability",
+          "decision usefulness"
+        ]
+      }
+    },
+    {
+      "available_review_roles": [
+        "advisory_overclaim",
+        "conservative_fan_in"
+      ],
+      "case_id": "trap-provisional-hardening-010",
+      "case_shape": "A provisional artifact uses authority language that makes a Codex-assisted candidate read sound validated, proved, approved, or ready for agent use.",
+      "instruction": "State what can and cannot be concluded from this safe context. Do not invent missing evidence or treat artifact health, length, polish, caution, or reviewer agreement as decision value.",
+      "safe_context": {
+        "artifact_surface": "Paraphrase: the artifact is otherwise structured, but its prose hardens provisional conclusions into authority claims.",
+        "risk_terms": [
+          "validated",
+          "proved",
+          "approved",
+          "ready for agent use"
+        ]
+      }
+    }
+  ],
+  "review_contract": {
+    "forbidden_review_behavior": [
+      "Do not select a better arm.",
+      "Do not emit a score, ranking, vote, pass/fail, certification, or product recommendation.",
+      "Do not infer provenance from answer length, tone, or polish alone.",
+      "Do not treat a strict schema or clean artifact as semantic correctness.",
+      "Do not treat agreement between reviewers as ground truth.",
+      "Do not silently delete disagreement or uncertain equivalence.",
+      "Do not claim graph-specific causation because the corpus has no direct-only versus graph-expanded treatment arm.",
+      "Do not claim human usefulness, better decisions, or production readiness."
+    ],
+    "fresh_review_freeze_rule": "A fresh reviewer must finish and save the substantive qualification, pair, and stand-down responses before seeing the sealed lineage manifest or any historical comparison.",
+    "paired_response_shape": {
+      "arm_observations": {
+        "A": {
+          "cognitive_burden": [
+            "string"
+          ],
+          "lost_or_weakened_source_value": [
+            "string"
+          ],
+          "preserved_source_value": [
+            "string"
+          ],
+          "unsupported_additions": [
+            "string"
+          ]
+        },
+        "B": {
+          "cognitive_burden": [
+            "string"
+          ],
+          "lost_or_weakened_source_value": [
+            "string"
+          ],
+          "preserved_source_value": [
+            "string"
+          ],
+          "unsupported_additions": [
+            "string"
+          ]
+        }
+      },
+      "atomic_moves": [
+        {
+          "cognitive_effect": [
+            "opens_path",
+            "narrows_path",
+            "adds_test",
+            "adds_caution",
+            "preserves_option",
+            "removes_option",
+            "repeats",
+            "adds_burden",
+            "unclear"
+          ],
+          "decision_effect": "what this move could change, or none",
+          "move_id": "case-local stable string",
+          "presence": [
+            "shared",
+            "a_exclusive",
+            "b_exclusive",
+            "contradictory",
+            "uncertain_equivalence"
+          ],
+          "reasoning_operation": [
+            "question",
+            "option",
+            "counterframe",
+            "falsifier",
+            "reversal",
+            "evidence_gate",
+            "stop_rule",
+            "premortem",
+            "stakeholder_view",
+            "time_horizon",
+            "preserved_value",
+            "lost_value",
+            "restatement",
+            "generic_caution",
+            "unsupported_specificity",
+            "other"
+          ],
+          "source_evidence": [
+            "short source-grounded paraphrase"
+          ],
+          "source_grounding": [
+            "supported",
+            "partly_supported",
+            "unsupported",
+            "unclear"
+          ],
+          "summary": "one reasoning move only"
+        }
+      ],
+      "case_id": "string",
+      "identity_guess_after_substantive_review": {
+        "arm_with_added_external_context": [
+          "A",
+          "B",
+          "indistinguishable"
+        ],
+        "basis": [
+          "string"
+        ]
+      },
+      "inspection_limits": [
+        "string"
+      ],
+      "material_decision_difference": [
+        "present",
+        "absent",
+        "uncertain"
+      ],
+      "source_interpretation": {
+        "decision_or_question": "string",
+        "material_constraints": [
+          "string"
+        ],
+        "source_limits": [
+          "string"
+        ]
+      }
+    },
+    "qualification_response_shape": {
+      "case_id": "string",
+      "evidence_disposition": [
+        "sufficient_for_bounded_comparison",
+        "blocked_thin_context",
+        "inconclusive",
+        "needs_human_review"
+      ],
+      "inferences_explicitly_not_made": [
+        "string"
+      ],
+      "missing_evidence": [
+        "string"
+      ],
+      "supported_observations": [
+        "string"
+      ],
+      "uncertainty_notes": [
+        "string"
+      ]
+    },
+    "reviewer_boundary": {
+      "answer_quality_scored": false,
+      "blind_packets_only": true,
+      "fresh_context_required": true,
+      "ground_truth": false,
+      "human_validated": false,
+      "other_repository_search_forbidden_before_freeze": true,
+      "product_proof": false,
+      "provider_calls": 0,
+      "sealed_manifest_forbidden_before_freeze": true
+    },
+    "standdown_response_shape": {
+      "case_id": "string",
+      "risk_of_forced_additional_analysis": [
+        "string"
+      ],
+      "semantic_limits_of_mechanical_observation": [
+        "string"
+      ],
+      "source_basis": [
+        "string"
+      ],
+      "standdown_support": [
+        "supported",
+        "unsupported",
+        "uncertain"
+      ]
+    }
+  },
+  "review_order": [
+    "Read the source before either answer.",
+    "Review qualification cases without access to their sealed expectations.",
+    "Review each paired case without guessing what process produced either arm.",
+    "Record atomic moves, grounding, lost value, unsupported additions, and cognitive burden.",
+    "Record an arm-origin guess only after the substantive read; indistinguishable is allowed.",
+    "Do not rank, score, vote, certify, or choose a better answer.",
+    "Review the stand-down independently and preserve uncertainty."
+  ],
+  "schema_version": "lolla.product_delta_agent_paired_screen.v1",
+  "screen_id": "agent-only-paired-delta-screen-2026-07-23",
+  "standdown_case_count": 1,
+  "standdown_cases": [
+    {
+      "case_id": "library-laptop-standdown",
+      "evidence_class": "complete_conversation_deterministic_standdown",
+      "mechanical_observation": {
+        "candidate_count": 0,
+        "graph_calls": 0,
+        "graph_traversal_required": false,
+        "semantic_prefilter_performed": false,
+        "standdown_reason": "No unresolved fact-free mechanism entered deterministic routing.",
+        "unresolved_mechanism_ids": []
+      },
+      "packet_sha256": "62c2e2aa56f533fd2a092b21b9da402cd8835f424123be7797f69c88d360e3fe",
+      "review_question": "Does the supplied evidence support preserving the existing reasoning without adding a public revision? Record support, ambiguity, and any risk of forcing unnecessary additional analysis.",
+      "source": {
+        "content": "CONVERSATION: 14 turns, 7 user messages, 7 assistant responses\n\n# Reversible public-library laptop reservation pilot with access and privacy protections\n\nCase ID: phase5-independent-quiet-library-laptop-pilot\nStratum: public_service_access_and_operations\nProspectively authored synthetic holdout; not used in architecture development.\n\n[Turn 1] USER:\nOur busiest library branch has twelve shared laptops and long queues after school. We are considering allowing reservations, but staff worry that an app-first system could disadvantage walk-in patrons and people who need help booking. I want to test whether reservations reduce waiting without quietly making access less equal or committing us to a permanent platform.\n\n[Turn 1] ASSISTANT:\nTreat this as a reversible access experiment, not a software rollout. Define what should improve, what must not worsen, which booking alternatives remain available, what data is necessary, and what would restore the current system.\n\n[Turn 2] USER:\nWe reviewed ten weeks of sign-in sheets. The longest waits occur on weekday afternoons, while several laptops are unused in the mornings. Twelve regular patrons asked staff for help with online forms during that period, so we cannot assume everyone can reserve independently.\n\n[Turn 2] ASSISTANT:\nThe pattern supports testing scheduled access during peak demand, but it also makes assisted and walk-in access part of the design rather than an afterthought. Measure waiting and utilization separately for reserved, walk-in, phone-booked, and staff-assisted users.\n\n[Turn 3] USER:\nWe propose a six-week pilot at that branch. Half the laptops remain walk-in only. Reservations can be made online, by phone, or at the desk, and staff can book on a patron's behalf. The system stores a library-card number and reservation time, deletes the reservation record after seven days, and will not collect browsing activity.\n\n[Turn 3] ASSISTANT:\nThat preserves multiple access paths and limits the data surface. Verify that deletion is operational rather than only contractual, publish the same rules for every booking method, and establish success and failure measures before the pilot begins.\n\n[Turn 4] USER:\nOur measures are median peak wait, completed sessions, walk-in turn-aways, staff minutes spent managing bookings, assisted-booking use, and privacy or accessibility complaints. We will keep the pilot only if peak waiting improves without increasing walk-in turn-aways, staff workload remains within the scheduled desk capacity, and no substantiated privacy or accessibility failure occurs. If walk-in access worsens for two consecutive weeks or any privacy failure is substantiated, we restore all laptops to walk-in use while we review the cause.\n\n[Turn 4] ASSISTANT:\nThose measures test the benefit and the protected constraints together. The early restoration rule prevents the six-week clock from becoming an excuse to continue harm, while the final decision can use the complete record rather than first impressions.\n\n[Turn 5] USER:\nThe vendor is month-to-month, exports reservations as plain text, and requires no new hardware. We tested a paper sign-up fallback, added large-print instructions, and asked the disability advisory group and teen council to review the booking paths. Their requested changes are included before launch. I am comfortable with the pilot under these conditions.\n\n[Turn 5] ASSISTANT:\nThe pilot is bounded, reversible, accessible through several channels, limited in data collection, and protected by prior measures and an early restoration rule. Preserve weekly results by access path so averages cannot hide harm to one group.\n\n[Turn 6] USER:\nOne trustee suggested announcing that reservations will become permanent if online bookings fill quickly in the first week. We rejected that because online uptake alone would ignore walk-in access, assisted booking, staff workload, and the fixed six-week review.\n\n[Turn 6] ASSISTANT:\nThat rejection follows the evidence contract. Do not let one visible success measure replace the full set of access, workload, privacy, and accessibility conditions or move commitment ahead of the scheduled review.\n\n[Turn 7] USER:\nAgreed. We will run the six weeks at one branch, keep half the laptops walk-in, preserve phone, desk, and assisted booking, publish weekly results by access path, restore walk-in use under the predefined triggers, and make no permanence decision before the full review. No material decision question or unresolved concern remains for me before launch.\n\n[Turn 7] ASSISTANT:\nThen the reasoning is complete enough to proceed. The trial has prior evidence, multiple access paths, minimal data, an operational fallback, protected stakeholder input, explicit success and failure conditions, an early restoration rule, and a fixed final review. Execute the protocol as written; no additional reasoning pressure is presently warranted.\n",
+        "content_sha256": "e36801b3267797e52ead121a124e49ab46f9e3bc4f744838db605599620a4ffa",
+        "coverage": "complete_checked_in_conversation"
+      }
+    }
+  ]
+}

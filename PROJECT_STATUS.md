@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-23 (consumer-context case-freeze candidate)
+Status date: 2026-07-23 (agent-only paired-delta diagnostic)
 Authority: current public handoff derived from the canonical Constitution Stage
 0 addendum
 Provider calls authorized for repository development: **0**
@@ -39,6 +39,7 @@ The current A/B/C pressure, understanding, and graph planning package is tracked
 [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
 The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. [PR #385](https://github.com/gofarrrr/lolla-skill/pull/385) publishes the [provider-free role/attribution case candidate](docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md): one retrospective checked-in-safe case, five provider-neutral envelopes plus one honest blocked F1 slot, and passing direct/graph/context equality and active-payload bijection gates.
 Execution remains not ready: the principal-human source-first target and reference approval, exact current-live F1 semantic supply, provider/model/generation contract, token/cost estimate, and exact founder authorization are missing. The package is a single-draw case diagnostic preparation, not causal identification, and changes no live context, graph, prompt, provider, or runtime behavior.
+The provider-free [agent-only paired-delta screen](docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) preserves mixed benefit/harm reads, disagreement, duplicate-null equivalence, and stand-down across existing checked-in pairs. It does not isolate graph contribution or establish human usefulness.
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge
 `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
@@ -142,8 +143,7 @@ reliability and unique real-user value have not been established.
 - **Decision Trail:** completed-run, checked-in-safe or private-local reports;
   semantically rich fields remain provisional, human-reviewed, private, or
   unavailable.
-- **Product Delta:** offline evaluation of completed artifacts; no live-output
-  influence.
+- **Product Delta:** offline blind diagnosis; no live influence or authority.
 - **Decision Work:** validation, packaging, triage, rendering, explicit writing,
   and a default-off attachment path for supplied semantic interpretation.
 - **Portable views:** bounded Markdown and agent-memory projections.
@@ -216,6 +216,7 @@ The repository does not currently establish:
   runs;
 - that a revised answer is better, safer, or more useful;
 - that the four pressure lanes expose unique missed angles for real users;
+- that paired deltas were caused by graph expansion rather than other factors;
 - independent validation of same-context reconsideration, or evidence that the host systematically domesticates external pressure rather than rejecting it legitimately;
 - causal evidence that a context-representation interaction is self-justification rather than role, reconstruction, lost-context, load, augmentation, or stochastic variation;
 - product-market fit, willingness to pay, or production readiness;
@@ -291,6 +292,7 @@ or supersede that pause. See the
 
 A provider-free planning package separates pressure-now/process receipts, prospective principal-human PR104 review for understand-later, and source-first conversation-to-graph comparison before graph expansion. Its repository-local audit skill authorizes no human review, provider, graph/runtime change, sidecar automation, Atlas, or interface work.
 The provider-free case-freeze candidate now selects the honest role/attribution representation and passes source, graph-policy, direct-component, F3/T3, null-control, and active-payload custody gates. Five provider-neutral previews are complete; F1 remains explicitly blocked rather than borrowing an old reader. The next graph/context owner is a principal human: sign the source-only target and then approve, correct, or reject the proposed reference condition. No provider execution follows automatically.
+The paired-delta preflight does not fill the human target, produce F2/F3, or authorize execution.
 
 ## Current repository boundary
 
