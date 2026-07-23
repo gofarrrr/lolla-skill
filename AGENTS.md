@@ -292,8 +292,8 @@ Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
 PRs #379–#389 carry graph/Atlas custody, the public handoff, Decision Trail
 lineage, A/B/C plan, case freeze, paired-delta screen, and rehearsal contract.
 The founder declines human review; that v1 experiment stays unfilled and paused.
-The completed graph rehearsal proves no graph/human value. Its variance contract
-freezes the next six contexts before execution; Atlas and Stage 1 remain gated.
+The completed graph rehearsal does not prove graph value or human usefulness.
+Its variance contract freezes six contexts; Atlas and Stage 1 remain gated.
 
 Stage 1 is not June's Decision Trail specialist program; PR104 remains paused
 with unvalidated reads and blank human corrections. A/B/C authorizes no review,
