@@ -2,9 +2,9 @@
 
 Date: 2026-07-24
 
-Status: provider-free implementation and full-repository verification complete;
-canonical publication tracked by
-[PR #404](https://github.com/gofarrrr/lolla-skill/pull/404)
+Status: provider-free implementation and full-repository verification
+published through [PR #404](https://github.com/gofarrrr/lolla-skill/pull/404)
+at merge `f799152671730d631488841a039b1358182a16db`
 
 Source incident: user-operated run `20260724T182631Z_b8cec8`
 
