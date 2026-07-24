@@ -409,6 +409,46 @@ See the
 and
 [machine consolidation](../../research/agent-only-graph-variance-calibration-2026-07-23/consolidated-diagnostic.json).
 
+### Completed resilient replication and reviewer-envelope failure
+
+The authorized follow-up repaired the earlier missing-generation problem. All
+eight predeclared generation contexts returned valid first-terminal payloads:
+four direct-only and four direct-plus-current-one-hop. All eight compiled
+against their exact frozen candidate sets, leaving two within-direct, two
+within-graph, and four cross-condition pairs mechanically available.
+
+The graph question still remained unevaluable. The primary blind reviewer
+returned a valid frozen response. The skeptical blind reviewer returned JSON
+but encoded every one of 29 `cognitive_effect` fields as an array where the
+frozen validator required one enum string. The reviewer-facing shape displayed
+the set of allowed enum values as a JSON list, so this failure identifies an
+ambiguous execution envelope. It does not establish that the review's semantic
+observations were wrong.
+
+The exact skeptical payload and a separate 29-check failure receipt are
+preserved. There was no retry, healing, reformatting, replacement, or partial
+semantic salvage. Because two valid blind reviews were required, lineage
+remained sealed, the two conditional post-reveal contexts did not start, and
+the deterministic closeout is `not_evaluable`.
+
+Evidence class: checked-in-safe, agent-only, single-case Product Delta
+development evidence. Repository provider/API calls were zero and repository
+provider cost was `$0.00`; ten Codex development contexts were attempted, while
+their platform route, tokens, and economic cost were unavailable to the
+repository operator. No graph, compiler, planner, runtime, skill, Atlas,
+Decision Work, Observatory, private archive, or principal-human field changed.
+
+The next graph-evaluation decision is not a traversal expansion. If another
+semantic run is ever considered, first version a prospective reviewer envelope
+whose scalar enums are explicit or structurally enforced, test it
+provider-free with fixtures, and separately authorize the exact new contexts.
+Do not correct or rerun the consumed skeptical review.
+
+See the
+[replication result](lolla-agent-only-graph-replication-result-2026-07-23.md)
+and
+[machine closeout](../../research/agent-only-graph-replication-2026-07-23/consolidated-diagnostic.json).
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,
