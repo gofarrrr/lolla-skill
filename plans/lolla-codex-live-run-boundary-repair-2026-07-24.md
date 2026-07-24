@@ -2,8 +2,9 @@
 
 Date: 2026-07-24
 
-Status: provider-free implementation and verification complete; canonical
-publication tracked by [PR #404](https://github.com/gofarrrr/lolla-skill/pull/404)
+Status: complete — provider-free implementation and verification published
+through [PR #404](https://github.com/gofarrrr/lolla-skill/pull/404) at merge
+`f799152671730d631488841a039b1358182a16db`
 
 Source incident: user-operated run `20260724T182631Z_b8cec8`
 
@@ -96,7 +97,7 @@ Status values are `pending`, `in_progress`, `complete`, or `blocked`.
 | REPLAY-01 | P1 | complete | Add one provider-free Codex-style full-run mechanical replay gate. | The full 14-message Marcus fixture completes private capture/persistence/finalization with no network transport and no forbidden visible marker. |
 | DOCS-01 | P3 | complete | Update current entrypoints, skill instructions, and cold-start handoff; preserve historical evidence. | Fresh-clone docs describe the implemented boundary, known Codex-chrome limit, exact nonclaims, and next decision without relying on chat history. |
 | VERIFY-01 | P3 | complete | Run focused, handoff, frozen-boundary, and full verification. | All named focused tests, current Stage 0 validators, full suite, JSON/Python/Bash/whitespace/secret checks, and graph/frozen hash checks pass with explained counts. |
-| PUBLISH-01 | P3 | in_progress | Publish through a narrow GitHub PR and merge only when ready. | The exact reviewed commit is pushed, PR checks and actionable review are resolved, the PR is merged normally, and local `main` matches canonical GitHub. |
+| PUBLISH-01 | P3 | complete | Publish through a narrow GitHub PR and merge only when ready. | The exact reviewed commit is pushed, PR checks and actionable review are resolved, the PR is merged normally, and local `main` matches canonical GitHub. |
 
 ## Normal visible-surface contract
 
