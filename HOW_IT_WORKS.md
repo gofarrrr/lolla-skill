@@ -73,9 +73,7 @@ The ordinary entry contract is [SKILL.md](SKILL.md). Detailed steps live in
 [docs/skill/STEPS.md](docs/skill/STEPS.md), while setup and run-state helpers
 live under `scripts/skill/`.
 
-Setup creates a run ID, guarded state and logs. Private standard-input source
-capture writes the authoritative artifact owner-only and refuses replacement;
-run guards keep one run from borrowing another's artifacts.
+Setup creates a run ID, guarded state and logs. Private standard-input source capture writes the authoritative artifact owner-only and refuses replacement. For interactive input it disables terminal echo, then emits `PRIVATE_INPUT_READY`; the host must wait for that signal before sending source. If echo cannot be disabled, capture stops before reading. Run guards keep one run from borrowing another's artifacts.
 
 The skill is a conductor. It captures source, invokes bounded scripts, presents
 pressure to a reasoner, persists the reasoner's dispositions, and finalizes the
@@ -221,6 +219,8 @@ State semantics are explicit:
 - `missing`: no result exists.
 
 Missing is not zero. Schema-valid zero is not automatically semantically correct. A clean receipt proves mechanical completion and declared custody, not answer quality. An attempted provider-backed call with a non-`ok` terminal status is `provider_call_terminal_loss` and makes the run `partial`, separately from provider-boundary privacy health.
+
+The optional passage-quality profile receives all available user-turn prose plus a separately labelled provisional extraction scaffold. Its exact context length and hash are recorded, and global dropped-thread interpretations are not copied into every passage call. If one of those optional judgments is missing, the run stays `partial` and the receipt names the exact loss. An otherwise complete standard-mode core remains available for human inspection, while any second material issue, unsafe output, missing core artifact, or high-stakes mode keeps the caller action at `do_not_use_run_degraded`.
 
 ## 8. Observatory
 

@@ -48,16 +48,20 @@ fi
 python3 "$SKILL_DIR/scripts/skill/capture_conversation.py"
 ```
 
-Use the host's process-input channel to send the transcript after the process
-starts and then close standard input. Do not put the transcript in a command
+Wait for the helper's exact `PRIVATE_INPUT_READY` line, then use the host's
+process-input channel to send the transcript and close standard input. Do not
+send source bytes merely because the process has started: startup alone does
+not prove terminal echo is disabled. Do not put the transcript in a command
 argument. In Codex, do not use Apply Patch or another file editor for this
 step: that exposes a misleading `Added ...conversation.txt` edit to the user.
 The helper validates the wire format, writes the source artifact with
-owner-only permissions, records `conversation_captured`, and prints only a
-small `CAPTURE_STATUS` receipt. When standard input is an interactive terminal,
-the helper disables terminal echo while reading and restores it afterward. A
-host may still show that a runtime tool was used; the transcript is neither
-replayed by the terminal nor presented as a source-code edit.
+owner-only permissions, records `conversation_captured`, and prints only the
+readiness line plus a small `CAPTURE_STATUS` receipt. When standard input is an
+interactive terminal, the readiness line is emitted only after terminal echo
+is disabled; the helper restores echo afterward. If it cannot disable echo, it
+fails without reading the source. A host may still show that a runtime tool was
+used; the transcript is neither replayed by the terminal nor presented as a
+source-code edit.
 
 **Rules:**
 - Preserve the user's exact words — these contain constraints the pipeline needs

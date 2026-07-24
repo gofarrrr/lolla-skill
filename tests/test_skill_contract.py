@@ -329,6 +329,8 @@ def test_conversation_capture_is_a_private_runtime_operation_not_a_file_edit() -
     contract = "\n".join([skill, steps])
 
     assert "capture_conversation.py" in contract
+    assert "PRIVATE_INPUT_READY" in contract
+    assert "wait for" in contract.lower()
     assert "standard input" in contract
     assert "Apply Patch" in contract
     assert "file editor" in contract

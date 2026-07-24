@@ -362,6 +362,175 @@ def test_agent_result_contained_provider_boundary_plus_other_partial_stays_gener
     assert "Provider-boundary warning was contained" not in payload["notes"][0]
 
 
+def test_agent_result_allows_human_review_when_only_passage_profile_is_partial(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        {
+            "status": "ok",
+            "run_health": {
+                "overall": "partial",
+                "product_output_health": "clean",
+                "live_output_health": "not_checked",
+                "issues": ["bullshit_index_partial"],
+                "issue_details": [
+                    {
+                        "code": "bullshit_index_partial",
+                        "severity": "partial",
+                        "axis": "postprocessing",
+                        "evaluation_failures": 1,
+                    }
+                ],
+                "partial_health_causes": ["bullshit_index_partial"],
+                "bullshit_index_evaluation_failures": 1,
+                "bullshit_index_evaluation_count": 12,
+            },
+            "revised_answer": "Use the revised answer only after inspection.",
+        },
+    )
+    (run_dir / "conversation.txt").write_text(
+        "CONVERSATION\n\n[Turn 1] USER:\nReview this decision.\n",
+        encoding="utf-8",
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-passage-profile-partial",
+        created_at="2026-07-24T17:00:00Z",
+    )
+
+    assert payload["status"] == "partial"
+    assert payload["status_reason"] == (
+        "core audit is complete; 1 of 12 passage-quality checks is missing"
+    )
+    assert payload["caller_action"] == "review_revised_answer"
+    assert payload["do_not_act_before"] == [
+        "Use the revised answer only after inspection."
+    ]
+    assert (
+        "The core audit is available for human review, but 1 of 12 "
+        "passage-quality checks is missing"
+    ) in payload["notes"][0]
+
+
+def test_agent_result_keeps_passage_partial_blocking_when_another_issue_exists(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        {
+            "status": "ok",
+            "run_health": {
+                "overall": "partial",
+                "product_output_health": "clean",
+                "live_output_health": "not_checked",
+                "issues": ["bullshit_index_partial", "lane3_all_dropped"],
+                "issue_details": [
+                    {
+                        "code": "bullshit_index_partial",
+                        "severity": "partial",
+                        "axis": "postprocessing",
+                    },
+                    {
+                        "code": "lane3_all_dropped",
+                        "severity": "partial",
+                        "axis": "lane3",
+                    },
+                ],
+                "partial_health_causes": [
+                    "bullshit_index_partial",
+                    "lane3_all_dropped",
+                ],
+            },
+            "revised_answer": "Use the revised answer only after inspection.",
+        },
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-passage-plus-other-partial",
+        created_at="2026-07-24T17:00:00Z",
+    )
+
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+
+
+def test_agent_result_keeps_passage_partial_blocking_when_source_is_missing(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        {
+            "status": "ok",
+            "run_health": {
+                "overall": "partial",
+                "product_output_health": "clean",
+                "live_output_health": "not_checked",
+                "issues": ["bullshit_index_partial"],
+                "issue_details": [
+                    {
+                        "code": "bullshit_index_partial",
+                        "severity": "partial",
+                        "axis": "postprocessing",
+                    }
+                ],
+                "partial_health_causes": ["bullshit_index_partial"],
+                "bullshit_index_evaluation_failures": 1,
+                "bullshit_index_evaluation_count": 12,
+            },
+            "revised_answer": "Use the revised answer only after inspection.",
+        },
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-passage-partial-source-missing",
+        created_at="2026-07-24T17:00:00Z",
+    )
+
+    assert payload["artifact_status"]["conversation"] == "missing"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+
+
+def test_agent_result_keeps_passage_partial_blocking_in_high_stakes_mode(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        {
+            "status": "ok",
+            "risk_mode": "high_stakes",
+            "run_health": {
+                "overall": "partial",
+                "product_output_health": "clean",
+                "live_output_health": "not_checked",
+                "issues": ["bullshit_index_partial"],
+                "issue_details": [
+                    {
+                        "code": "bullshit_index_partial",
+                        "severity": "partial",
+                        "axis": "postprocessing",
+                    }
+                ],
+                "partial_health_causes": ["bullshit_index_partial"],
+                "bullshit_index_evaluation_failures": 1,
+                "bullshit_index_evaluation_count": 12,
+            },
+            "revised_answer": "Use the revised answer only after inspection.",
+        },
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-high-stakes-passage-partial",
+        created_at="2026-07-24T17:00:00Z",
+    )
+
+    assert payload["risk_mode"] == "high_stakes"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+
+
 def test_agent_result_unknown_provider_boundary_persistence_stays_conservative(
     tmp_path: Path,
 ) -> None:

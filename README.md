@@ -39,7 +39,7 @@ handoff and live-skill contract is [PR #380](https://github.com/gofarrrr/lolla-s
 | Area | Lifecycle | What that means |
 |---|---|---|
 | Four-lane pressure skill | **LIVE / EXPERIMENTAL** | Implemented ordinary path; semantic and human value remain under evaluation. |
-| Conversation and extraction custody | **LIVE / BOUNDED** | Captures through private runtime standard input, preserves complete available user/assistant prose, checks provider completion before semantic fields, append-preserves attempts, and seals failures before graph pressure. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
+| Conversation and extraction custody | **LIVE / BOUNDED** | Captures through private runtime standard input after an explicit no-echo readiness signal, preserves complete available user/assistant prose, checks provider completion before semantic fields, append-preserves attempts, and seals failures before graph pressure. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
 | Deterministic custody and graph survival | **LIVE** | Owns identity, bounds, provenance, replay, budgets, ledgers, and pressure survival—not semantic truth. |
 | Graph authoring and publication custody | **LIVE SOURCE / PROVIDER-FREE VALIDATION** | All 222 Markdown sources, reviewed curation, 1,358 rich authored directed relations, compiler inputs, one published read boundary, and the declared current pressure policy are repository-local and reproducible. Complete multi-path custody remains candidate-only. |
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
@@ -50,9 +50,7 @@ handoff and live-skill contract is [PR #380](https://github.com/gofarrrr/lolla-s
 | R3/R4 conversation readers | **RESEARCH ONLY / RETIRED** | Evidence is preserved; the incremental R4 architecture must not supply live or Decision Work state. |
 | Real-user usefulness | **UNKNOWN** | Mechanical tests and simulations do not establish customer value or better decisions. |
 
-No repository-development provider experiment is currently authorized. Running
-the installed skill is a separate user-operated action that uses the user's own
-provider credentials and can incur cost.
+No repository-development provider experiment is currently authorized. Running the installed skill is a separate user-operated action that uses the user's own provider credentials and can incur cost.
 
 ## What happens in a live run
 
@@ -76,6 +74,8 @@ available user/assistant prose
 Graph recall is a hypothesis, not relevance proof. A strict schema proves
 shape, not semantic correctness. A receipt proves that a process occurred, not
 that the result is wise or safe.
+
+The optional passage-quality profile receives all available user-turn prose so it can distinguish user-stated facts from unsupported additions. That source context is repeated across up to twelve provider calls and may increase input tokens and cost. A missing passage judgment remains explicitly partial; it does not erase an otherwise complete core audit or make the result decision-ready.
 
 See [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for implementation boundaries and
 [docs/README.md](docs/README.md) for lifecycle-organized documentation. In this

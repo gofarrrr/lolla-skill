@@ -88,3 +88,50 @@ def test_final_receipt_names_terminal_provider_call_loss_directly() -> None:
     assert "pass2" in receipt
     assert "availability-misweighing-tendency" in receipt
     assert "was not retried" in receipt
+
+
+def test_final_receipt_names_partial_passage_quality_check_exactly() -> None:
+    receipt = build_final_receipt(
+        result_payload={
+            "run_health": {
+                "overall": "partial",
+                "issues": ["bullshit_index_partial"],
+                "bullshit_index_evaluation_failures": 1,
+                "bullshit_index_evaluation_count": 12,
+            },
+            "usage_summary": {"estimated_total_cost_usd": 0.055599},
+        },
+        result_path=Path("/tmp/lolla_run_result.json"),
+        observatory_url="",
+        observatory_status="unavailable",
+        archive_path="/tmp/archive/run",
+    )
+
+    assert (
+        "1 of 12 passage-quality checks returned no usable judgment and was "
+        "not retried"
+    ) in receipt
+    assert "core audit and revised answer are present" in receipt
+    assert "inspect the archived artifacts for details" not in receipt
+
+
+def test_final_receipt_discloses_untrusted_live_terminal_capture() -> None:
+    receipt = build_final_receipt(
+        result_payload={
+            "run_health": {
+                "overall": "healthy",
+                "issues": [],
+                "live_output_health": "not_checked",
+            },
+            "usage_summary": {"estimated_total_cost_usd": 0.01},
+        },
+        result_path=Path("/tmp/lolla_run_result.json"),
+        observatory_url="",
+        observatory_status="skipped",
+        archive_path="/tmp/archive/run",
+    )
+
+    assert (
+        "The saved narration does not independently verify everything shown "
+        "in the live terminal."
+    ) in receipt
