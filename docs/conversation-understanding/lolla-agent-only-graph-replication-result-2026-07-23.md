@@ -6,6 +6,9 @@ Status: complete and honestly `not_evaluable`
 
 Owner: existing offline Product Delta evaluation
 
+Repository publication: [PR #393](https://github.com/gofarrrr/lolla-skill/pull/393),
+merge `4c4e45539c249c45e1e4df98ab14568a97de653f`
+
 Contract:
 [`lolla-agent-only-graph-replication-contract-v1.json`](../evals/lolla-agent-only-graph-replication-contract-v1.json)
 
