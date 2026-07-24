@@ -291,7 +291,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   The V3 provider-free custody decision is complete. Its prospective two-context post-reveal run remains unauthorized without the exact new authorization in the V3 machine contract.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair. The separate v2 execution result is tracked through PR #396.
+PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair. The separate V2 execution result is tracked through PR #396 and the provider-free V3 nonclaim-custody repair through PR #397.
 The founder declines human review; that v1 experiment stays unfilled and paused.
 The graph rehearsal proves no graph value. Calibration lost a generation baseline; replication lost one review to an ambiguous enum envelope; V2 fixed the blind shape, but both post-reveal contexts drifted the frozen nonclaim wording and were rejected without salvage. V3 repairs that response boundary provider-free by assigning exact nonclaim presentation to deterministic input custody.
 The semantic follow-ups remain `not_evaluable`; the V3 fixture result creates no graph, usefulness, Atlas, or Stage 1 authority.

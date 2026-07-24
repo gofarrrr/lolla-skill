@@ -15,6 +15,9 @@ Plan:
 Fixture receipt:
 [`fixture-validation-receipt.json`](../../research/agent-only-graph-review-nonclaim-custody-v3-2026-07-24/fixture-validation-receipt.json)
 
+Repository publication:
+[PR #397](https://github.com/gofarrrr/lolla-skill/pull/397)
+
 Provider/API calls: **0**
 
 Provider/API cost: **$0.00**
