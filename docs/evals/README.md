@@ -88,6 +88,20 @@ tokens, and economic cost remain unavailable. No corrected review, new semantic
 context, graph, runtime, principal-human, score, causal, usefulness, or
 traversal work is authorized.
 
+The provider-free
+[reviewer-envelope repair contract](lolla-agent-only-graph-review-envelope-repair-contract-v1.json)
+and [repair result](../conversation-understanding/lolla-agent-only-graph-review-envelope-repair-result-2026-07-24.md)
+froze a structured-output v2 boundary over the same eight answers. Its exact
+four-context authorization is now consumed. In the
+[v2 execution result](../conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md),
+both fresh blind reviews passed the repaired scalar-enum schema and existing
+Product Delta validator, so both conditional post-reveal contexts ran. Both
+post-reveal payloads then drifted the exact frozen nonclaim wording and failed
+one equality check each. Their first-terminal payloads and failure receipts
+were preserved without retry, repair, reformatting, or semantic salvage. The
+result is `not_evaluable`; it creates no graph, answer-quality, usefulness, or
+traversal evidence and authorizes no new semantic context.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
 Its active data packages are now governed by the
@@ -599,6 +613,8 @@ Start with these:
 | [Agent-Only Graph-Increment Rehearsal Result](../conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) | Six-context automated Product Delta rehearsal; both blind reviewers saw a material pair difference without inferring lineage, while causation, relevance, answer quality, and human usefulness remain unknown. |
 | [Agent-Only Graph Replication Contract](lolla-agent-only-graph-replication-contract-v1.json) | Consumed restart-safe single-case contract: eight exact generation attempts, two blind reviews, and two conditional review-specific post-reveal interpretations; no provider, graph, runtime, causal, usefulness, or traversal authority. |
 | [Agent-Only Graph Replication Result](../conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md) | Eight generation outputs completed; one required blind review failed an ambiguous scalar-enum shape, so no post-reveal context ran and the result is honestly `not_evaluable`. |
+| [Graph Reviewer-Envelope Repair Contract](lolla-agent-only-graph-review-envelope-repair-contract-v1.json) | Consumed v2 contract over the eight frozen answers: zero generation, two blind, and two conditional post-reveal contexts; exact first-terminal and no-retry boundary. |
+| [Graph Review-Envelope V2 Result](../conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md) | Both blind reviews passed; both post-reveal payloads failed exact nonclaim custody without repair or salvage, so the result remains `not_evaluable`. |
 
 ## Runtime And Skill Opportunities
 

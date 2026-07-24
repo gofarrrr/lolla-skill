@@ -32,7 +32,7 @@ Then read only the lane you will touch:
 
 - **Live skill:** `SKILL.md` and `docs/skill/STEPS.md`.
 - **Graph, compiler, or planner:** read `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`, `references/knowledge-substrate-operations.md`, and `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
-  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md`, the completed agent-only graph replication contract/plan/result, and the 2026-07-24 reviewer-envelope repair contract/plan/result, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
+  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md`, the completed agent-only graph replication contract/plan/result, the 2026-07-24 reviewer-envelope repair contract/plan/result, and `docs/conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md`, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
   `docs/README.md`. Also read
@@ -269,8 +269,8 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   Both blind reviews completed. The within-graph pair was materially different in both reviews; a historical cross pair drew `present / uncertain`; the missing draw removed the within-direct and one cross pair.
   The result is `not_evaluable`; it authorizes no graph attribution or expansion.
 - The graph replication is consumed: all eight generations completed, but one blind review failed 29 enum checks. It was preserved without repair; no post-reveal work ran. Result: `not_evaluable`; no retry is authorized.
-- The provider-free reviewer-envelope repair is complete. Its schemas accept the known-valid scalar fixture and reject all 29 array-shaped `cognitive_effect` fields in the historical failed payload.
-  No semantic context ran. The v2 contract freezes two fresh blind contexts plus two conditional post-reveal contexts, unauthorized without its exact authorization string.
+- The reviewer-envelope v2 authorization is consumed. Both blind reviews passed, so both post-reveal contexts ran; each then failed one exact `nonclaims_acknowledged` equality check because the schema fixed type and length but not the frozen wording.
+  All four first-terminal payloads are preserved without retry, repair, or semantic salvage. The result remains `not_evaluable`; it creates no graph or traversal evidence.
 - Atlas opens exact neighborhoods from the 222-model / 1,358-relation index.
   V1 is immutable; V2 has 2,182 custody-only and zero unexpected differences.
   Teacher and review surfaces remain parked. Design/viewport mechanics are not
@@ -286,12 +286,13 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
   tweak, model comparison, or integration is authorized.
 - Path-custody promotion, incoming/two-hop pressure, reserve expansion, new ranking, wider semantic execution, model comparison, receipt claims, scalar scoring, and graph-evaluation continuation are unauthorized.
-  Provider-free envelope design is complete; semantic reruns need the new exact authorization.
+  The only eligible graph-evaluation follow-up is a provider-free decision
+  about exact post-reveal nonclaim custody; no semantic rerun is authorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair.
+PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair. The separate v2 execution result awaits publication in the current result PR.
 The founder declines human review; that v1 experiment stays unfilled and paused.
-The graph rehearsal proves no graph value. Calibration lost a generation baseline; replication lost one review to an ambiguous enum envelope.
-Both are `not_evaluable` and create no graph, usefulness, Atlas, or Stage 1 authority. The v2 envelope repair catches the shape defect but creates no semantic evidence or execution authority.
+The graph rehearsal proves no graph value. Calibration lost a generation baseline; replication lost one review to an ambiguous enum envelope; V2 fixed the blind shape, but both post-reveal contexts drifted the frozen nonclaim wording and were rejected without salvage.
+All three follow-ups remain `not_evaluable` and create no graph, usefulness, Atlas, or Stage 1 authority.
 Stage 1 is separate from June's paused PR104 program. A/B/C authorizes no
 review, provider, graph/runtime, sidecar, or interface work.

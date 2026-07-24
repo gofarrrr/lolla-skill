@@ -501,6 +501,53 @@ The provider-free result is
 Decision: the known response-cardinality ambiguity is repaired
 prospectively. No new semantic context or graph continuation is authorized.
 
+### Consumed reviewer-envelope v2 execution
+
+Date: 2026-07-24
+
+Evidence class: checked-in-safe, agent-only, single-case Product Delta
+development evidence; not principal-human, provider, causal, answer-quality,
+usefulness, expected-model-behavior, or runtime evidence
+
+Repository provider calls and cost: 0 and `$0.00`
+
+The founder supplied the exact frozen four-context authorization. The
+deterministic import, terminal-failure, reveal-gate, and non-scalar
+consolidation machinery was committed and pushed before any semantic context
+started.
+
+Two fresh isolated blind reviews ran over the same eight frozen generation
+outputs. Both returned process exit code zero, used scalar enum fields, and
+passed the lane JSON Schema plus the existing Product Delta exact-case and
+enum validator. The deterministic gate therefore opened.
+
+Two isolated post-reveal contexts then received one frozen review each plus
+its deterministic pair-role and condition reveal. Both returned process exit
+code zero and a first-terminal JSON payload. Both payloads rewrote the ten
+required `nonclaims_acknowledged` strings rather than preserving their exact
+frozen values. The v2 schema constrained array length and string type but not
+the exact strings; the existing post-reveal validator rejected each payload
+with one `post-reveal nonclaims drifted` error.
+
+All four raw first-terminal payloads and terminal receipts, plus both post-
+reveal failure receipts, are preserved. There was no retry, repair,
+reformatting, replacement, or semantic salvage. The valid blind reads remain
+side by side, while the invalid post-reveal observations do not enter a
+recurrence conclusion. The deterministic result is `not_evaluable`.
+
+What changed: offline Product Delta result custody and current documentation.
+What did not change: source Markdown, relation curation, published graph bytes,
+direction, hop depth, active/reserve policy, planner, compiler, runtime, skill,
+Decision Trail, Decision Work, Observatory, Atlas, Teacher, interface, private
+archives, or principal-human fields.
+
+Decision: do not rerun and do not expand the graph. The smallest eligible
+follow-up is provider-free design work on exact nonclaim custody—either a
+schema-owned fixed acknowledgment shape or removal of model-generated
+free-text echo. No design, semantic execution, or graph continuation is
+authorized by this result. See
+`lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md`.
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,

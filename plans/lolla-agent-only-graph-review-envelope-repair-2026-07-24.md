@@ -2,13 +2,16 @@
 
 Date: 2026-07-24
 
-Status: provider-free implementation complete; semantic execution not
-authorized
+Status: provider-free repair and exact v2 execution consumed; final result
+honestly `not_evaluable`
 
 Owner: existing offline Product Delta evaluation
 
 Machine contract:
 [`lolla-agent-only-graph-review-envelope-repair-contract-v1.json`](../docs/evals/lolla-agent-only-graph-review-envelope-repair-contract-v1.json)
+
+Execution result:
+[`lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md`](../docs/conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md)
 
 Provider/API calls authorized or made: 0
 
@@ -117,7 +120,7 @@ The local gate requires:
 Passing those checks establishes only that the known response-cardinality
 ambiguity is repaired prospectively.
 
-## Exact future run, if separately authorized
+## Exact run boundary, now consumed
 
 No answer generation is repeated. The eight frozen admitted answers are
 reused because the purpose is to isolate the reviewer envelope. New answers
@@ -153,8 +156,9 @@ to the repository operator and must not be reported as zero.
 
 ## Authorization boundary
 
-The provider-free work in this plan is complete. It does not authorize the
-four contexts above.
+The provider-free work in this plan is complete. It did not itself authorize
+the four contexts above. The founder later supplied the exact authorization,
+and that authorization is now consumed.
 
 The exact separate authorization frozen in the machine contract is:
 
@@ -162,8 +166,14 @@ The exact separate authorization frozen in the machine contract is:
 AUTHORIZE_LOLLA_GRAPH_REVIEW_ENVELOPE_V2: reuse_frozen_generation_outputs=true; blind_review_contexts=2; conditional_post_reveal_contexts=2; maximum_codex_contexts=4; repository_provider_api_calls=0; repository_provider_api_cost_usd=0.00; no_retry=true
 ```
 
-“Continue,” “do it,” a green fixture, or the existence of the command
-templates is not that authorization.
+The run attempted exactly two blind and two conditional post-reveal contexts,
+with zero generation contexts, zero retries, zero repository provider calls,
+and `$0.00` repository provider cost. Both blind reviews passed. Both post-
+reveal payloads failed one exact nonclaim equality check and were preserved
+without repair or semantic salvage. The final state is `not_evaluable`.
+
+No reuse, retry, corrected acknowledgment, or additional semantic context is
+authorized by the consumed string.
 
 ## Stop rules
 

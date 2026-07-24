@@ -189,16 +189,22 @@ def test_contract_freezes_no_generation_and_four_context_ceiling() -> None:
         assert "read-only" in argv
 
 
-def test_no_unauthorized_semantic_result_exists() -> None:
+def test_authorized_semantic_result_lifecycle_is_complete() -> None:
+    from engine.system_b.product_delta_graph_review_envelope_v2_result import (
+        validate_complete_result,
+    )
+
     for relpath in (
         *FUTURE_REVIEW_RELPATHS.values(),
-        *FUTURE_REVIEW_FAILURE_RELPATHS.values(),
         *FUTURE_POST_REVEAL_PACKET_RELPATHS.values(),
         *FUTURE_INTERPRETATION_RELPATHS.values(),
         FUTURE_CONSOLIDATION_RELPATH,
         FUTURE_RESULT_RELPATH,
     ):
+        assert (REPO_ROOT / relpath).exists()
+    for relpath in FUTURE_REVIEW_FAILURE_RELPATHS.values():
         assert not (REPO_ROOT / relpath).exists()
+    assert validate_complete_result(repo_root=REPO_ROOT) == []
 
 
 def test_checked_in_artifacts_are_exact_builder_products() -> None:
@@ -210,7 +216,7 @@ def test_checked_in_artifacts_are_exact_builder_products() -> None:
         ) == render_json(payload)
 
 
-def test_cli_validates_without_starting_semantic_work() -> None:
+def test_cli_validates_frozen_repair_and_consumed_result_lifecycle() -> None:
     result = subprocess.run(
         [
             sys.executable,
