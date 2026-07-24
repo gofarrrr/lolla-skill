@@ -256,11 +256,11 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   first-3-plus-last-15 policy remain unchanged; semantic adequacy is unproven.
 - The live four-lane pressure path, graph recall, graph-survival portfolio, and
   apply/reject/park custody are the experimental core; unique usefulness is
-  unproven. This repository alone owns all 222 sources, compiler inputs, 1,358
-  relations, publication identities, and the one root skill. Compilation is
-  byte-exact, one snapshot supplies consumers, and all 163 policy windows
-  replay. Complete candidate-only path custody is not wired live. The host owns
-  reconsideration; optional Step 7 is Claude Code-specific and default-off.
+  unproven. Private stdin capture, provider-status-first admission,
+  append-preserved attempts, and terminal failure seals now guard entry to the
+  unchanged graph. This repository owns all 222 sources, 1,358 relations, and
+  the root skill; compilation is byte-exact and all 163 windows replay.
+  Candidate-only path custody is not live; optional Step 7 remains default-off.
 - Decision Work is an optional operator-directed sidecar; it and Observatory
   can package/read artifacts but cannot generate trustworthy arbitrary meaning.
 - Product Delta's agent-only paired screen preserves mixed moves, harms,
@@ -284,7 +284,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   machine register assigns every canonical implementation file to an explicit
   lifecycle disposition and distinguishes live calls from artifact handoffs,
   optional hooks, offline paths, read-only projections, and absent links.
-- Provider calls authorized for repository development: zero. A1 and A2 authorizations are consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
+- Provider calls authorized for repository development: zero. One unintended invalid-key repair-test request reached OpenRouter HTTP 401 before the new guard; no authenticated generation/output, provider-reported cost $0.00, conservative ledger $0.0085688, no retry/replacement. A1 and A2 authorizations are consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
   completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
   tweak, model comparison, or integration is authorized.
 - Path-custody promotion, incoming/two-hop pressure, reserve expansion, new ranking, wider semantic execution, model comparison, receipt claims, scalar scoring, and graph-evaluation continuation are unauthorized.

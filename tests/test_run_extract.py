@@ -77,6 +77,7 @@ class _RecordedFakeClient:
         *,
         error: Exception | None = None,
         status: str = "ok",
+        record_fields: dict | None = None,
     ) -> None:
         if isinstance(payload, list):
             self.payloads = payload or [{}]
@@ -84,6 +85,7 @@ class _RecordedFakeClient:
             self.payloads = [payload or {}]
         self.error = error
         self.status = status
+        self.record_fields = dict(record_fields or {})
         self.call_log: list[dict] = []
 
     def run_json(self, *args, **kwargs) -> dict:  # noqa: ANN002, ANN003, ARG002
@@ -103,6 +105,7 @@ class _RecordedFakeClient:
                 "total_tokens": 150,
                 "cached_tokens": 0,
                 "raw_message_content": json.dumps(payload),
+                **self.record_fields,
             }
         )
         if self.error is not None:
@@ -696,6 +699,125 @@ def test_missing_required_fields_path_writes_output_file_with_capture_diagnostic
         sidecar_path.unlink(missing_ok=True)
 
 
+def test_provider_finish_error_preempts_semantic_missing_fields(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_finish_error_custody"
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar_path.unlink(missing_ok=True)
+    _write_conversation(conversation_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _RecordedFakeClient(  # noqa: ARG005
+            {
+                "is_strategic": True,
+                "decision_situation": "",
+                "synthesized_position": "",
+            },
+            status="provider_finish_error",
+            record_fields={
+                "finish_reason": "error",
+                "provider_error_source": "choice",
+                "provider_error_type": "provider_unavailable",
+                "provider_error_code": "503",
+                "provider_error_provider_code": "UNAVAILABLE",
+                "provider_error_message_sha256": "a" * 64,
+            },
+        ),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    try:
+        assert run_extract.main() == 1
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["status"] == "error"
+        assert payload["error"] == (
+            "Extraction provider call did not complete: provider_finish_error"
+        )
+        assert "raw_extraction" not in payload
+        assert payload["provider_failure"] == {
+            "status": "provider_finish_error",
+            "finish_reason": "error",
+            "provider_error_source": "choice",
+            "provider_error_type": "provider_unavailable",
+            "provider_error_code": "503",
+            "provider_error_provider_code": "UNAVAILABLE",
+            "provider_error_message_sha256": "a" * 64,
+            "retry_after_seconds": None,
+            "response_id": "",
+            "raw_message_content_present": True,
+            "raw_message_content_chars": len(
+                json.dumps(
+                    {
+                        "is_strategic": True,
+                        "decision_situation": "",
+                        "synthesized_position": "",
+                    }
+                )
+            ),
+        }
+        custody = payload["provider_call_custody"]
+        assert custody["terminal_status"] == "provider_finish_error"
+        assert custody["admissible_extraction"] is False
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
+def test_extraction_call_sidecar_preserves_prior_process_attempts(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_id = "run_extract_preserve_prior_attempt"
+    output_path = tmp_path / f"lolla_{run_id}_extraction.json"
+    sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    prior = {
+        "stage": "extraction",
+        "status": "url_error",
+        "provider_attempted": True,
+        "budget_reservation_id": "reservation-one",
+    }
+    sidecar_path.write_text(json.dumps([prior]), encoding="utf-8")
+    client = _RecordedFakeClient(
+        {"is_strategic": True},
+        status="provider_finish_error",
+        record_fields={"budget_reservation_id": "reservation-two"},
+    )
+    client.run_json("system", "user", stage="extraction")
+
+    try:
+        custody = run_extract._persist_extraction_call_sidecar(
+            client,
+            run_id=run_id,
+            output_file=str(output_path),
+            terminal_status="provider_finish_error",
+            admissible_extraction=False,
+        )
+        records = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        assert [record["budget_reservation_id"] for record in records] == [
+            "reservation-one",
+            "reservation-two",
+        ]
+        assert custody["recorded_call_count"] == 2
+        assert custody["call_attempted"] is True
+    finally:
+        sidecar_path.unlink(missing_ok=True)
+
+
 def test_provider_exception_persists_failed_call_record_before_error_exit(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -731,12 +853,15 @@ def test_provider_exception_persists_failed_call_record_before_error_exit(
         assert run_extract.main() == 1
         payload = json.loads(output_path.read_text(encoding="utf-8"))
         assert payload["status"] == "error"
-        assert "OpenRouter call failed" in payload["error"]
+        assert payload["error"] == (
+            "Extraction provider call raised an unexpected RuntimeError."
+        )
+        assert payload["provider_failure"]["status"] == "unexpected_error"
         custody = payload["provider_call_custody"]
         assert custody["call_attempted"] is True
         assert custody["call_record_persisted"] is True
         assert custody["admissible_extraction"] is False
-        assert custody["terminal_status"] == "initial_provider_call_failed"
+        assert custody["terminal_status"] == "unexpected_error"
         records = json.loads(sidecar_path.read_text(encoding="utf-8"))
         assert records[0]["status"] == "unexpected_error"
     finally:

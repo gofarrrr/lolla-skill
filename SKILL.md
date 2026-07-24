@@ -242,11 +242,25 @@ live run must use reduced narration and maintain a live transcript:
 
 ### Step 1: Capture Conversation
 
-Capture the current conversation to `/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt`, preserving user words and assistant prose while omitting tool calls, tool results, system messages, and file contents. See [Step 1 in STEPS.md](docs/skill/STEPS.md#step-1-capture-conversation) for the exact transcript format and write command.
+Capture the current conversation through
+`scripts/skill/capture_conversation.py` on standard input. This is a private
+runtime operation: do not create the transcript with Apply Patch, a file
+editor, or a repository-writing tool, and do not narrate that a text file is
+being created. Preserve user words and assistant prose while omitting tool
+calls, tool results, system messages, and file contents. See
+[Step 1 in STEPS.md](docs/skill/STEPS.md#step-1-capture-conversation) for the
+exact transcript format and capture contract.
 
 ### Step 2: Extract Decision Structure
 
-Invoke `scripts/skill/run_extract_step.sh`; do not reconstruct the `run_extract.py` command yourself. Then branch on `EXTRACTION_STATUS`: decline for `not_strategic`, stop cleanly for `capture_critical`, and continue for `ok`. See [Step 2 in STEPS.md](docs/skill/STEPS.md#step-2-extract-decision-structure) for the helper and status handling.
+Invoke `scripts/skill/run_extract_step.sh`; do not reconstruct the
+`run_extract.py` command yourself. The helper seals every extraction attempt.
+It continues only for `ok`, declines for `not_strategic` or
+`capture_critical`, and stops with the exact failure receipt for provider or
+operational failure. Never retry a sealed run; a new attempt requires a new
+`$lolla` invocation and run ID. See
+[Step 2 in STEPS.md](docs/skill/STEPS.md#step-2-extract-decision-structure) for
+the helper and status handling.
 
 For source material above 80,000 characters, the helper preserves the full
 authoritative conversation but gives initial extraction a first-3-plus-last-15

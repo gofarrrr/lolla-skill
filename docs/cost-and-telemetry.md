@@ -80,7 +80,20 @@ coarser. Its payload reports `source_passage_count`,
 `evaluation_passage_count`, `max_evaluation_passages`, and
 `passage_compaction_applied` so the trade-off is visible.
 
-Per-call records carry: `stage`, `tendency_id`, `provider_name`, `model`, `status`, `finish_reason`, `raw_message_content`, `temperature`, `prompt_tokens`, `completion_tokens`, `total_tokens`, `cached_tokens`, `cache_write_tokens`, `reasoning_tokens`. Status is `ok` for successful calls, an HTTP error code, `timeout`, `missing_api_key`, or `response_json_error` for failures. `raw_message_content` is the full LLM response string per call — persisted so any LLM decision is investigable from `result.json` alone without re-running the pipeline. Adds ~10–50 KB to a typical `result.json`, scaling roughly linearly with call count and per-call output size.
+Per-call records carry: `stage`, `tendency_id`, `provider_name`,
+`served_provider_name`, `model`, `status`, `finish_reason`,
+`raw_message_content`, `temperature`, `prompt_tokens`, `completion_tokens`,
+`total_tokens`, `cached_tokens`, `cache_write_tokens`, and
+`reasoning_tokens`. Safe failure diagnostics additionally preserve
+`provider_error_source`, `provider_error_type`, `provider_error_code`,
+`provider_error_provider_code`, `provider_error_message_sha256`, and
+`retry_after_seconds`. The raw provider error message is not duplicated into
+those diagnostic fields. Status is `ok` for successful calls, an HTTP error
+code, `timeout`, `missing_api_key`, `response_json_error`, or
+`provider_finish_error` for failures. `raw_message_content` is the full model
+message content per call—persisted so any LLM decision is investigable from
+`result.json` alone without re-running the pipeline. Adds roughly 10–50 KB to a
+typical `result.json`, scaling with call count and per-call output size.
 
 Extraction call custody is transactional. `run_extract.py` atomically writes
 the run-scoped extraction sidecar immediately after the initial provider call,
@@ -131,7 +144,7 @@ Default-off runs do not write sub-agent usage records. Optional Step 8b (`SKILL.
 ```
 ┌────────────────┐     stage="extraction"          ┌────────────────────────────┐
 │ run_extract.py │────────────────────────────────▶│ /tmp/lolla_<run_id>_       │
-│                │   atomically writes call_log    │   extraction_calls.json    │
+│                │   atomically merges call_log    │   extraction_calls.json    │
 └────────────────┘   after each provider boundary  └────────────────────────────┘
                                                                 │
                                                                 ▼
@@ -175,7 +188,8 @@ Five input streams → one canonical `usage_summary` block. Per-run isolation is
 
 1. Each script invocation is its own Python process — boundary clients are instantiated fresh.
 2. The embedding `capture_usage()` context manager uses `ContextVar`, not module globals.
-3. The extraction sidecar path is namespaced by `$LOLLA_RUN_ID`.
+3. The extraction sidecar path is namespaced by `$LOLLA_RUN_ID`; each process
+   append-preserves earlier records instead of replacing them.
 4. Optional sub-agent records are passed in by the SKILL after Step 7, not pulled from any shared state. Default-off runs pass no sub-agent records.
 
 V60 and the pre-Step-6 private table add non-cost telemetry streams inside the same `result.json`:

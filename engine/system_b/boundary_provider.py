@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import os
@@ -54,12 +55,19 @@ DEFAULT_STAGE_MAX_OUTPUT_TOKENS = 2500
 @dataclass(frozen=True)
 class BoundaryCallMetadata:
     provider_name: str = ""
+    served_provider_name: str = ""
     requested_model: str = ""
     served_model: str = ""
     model: str = ""
     model_attribution_status: str = "not_observed"
     status: str = "not_called"
     finish_reason: str = ""
+    provider_error_source: str = ""
+    provider_error_type: str = ""
+    provider_error_code: str = ""
+    provider_error_provider_code: str = ""
+    provider_error_message_sha256: str = ""
+    retry_after_seconds: float | None = None
     raw_message_content: str = ""
     temperature: float = 0.0
     prompt_tokens: int = 0
@@ -101,12 +109,19 @@ class BoundaryCallRecord:
     stage: str = "unlabeled"
     tendency_id: str = ""
     provider_name: str = ""
+    served_provider_name: str = ""
     requested_model: str = ""
     served_model: str = ""
     model: str = ""
     model_attribution_status: str = "not_observed"
     status: str = "not_called"
     finish_reason: str = ""
+    provider_error_source: str = ""
+    provider_error_type: str = ""
+    provider_error_code: str = ""
+    provider_error_provider_code: str = ""
+    provider_error_message_sha256: str = ""
+    retry_after_seconds: float | None = None
     raw_message_content: str = ""
     temperature: float = 0.0
     prompt_tokens: int = 0
@@ -149,12 +164,19 @@ def _record_from_metadata(
         stage=stage or "unlabeled",
         tendency_id=tendency_id,
         provider_name=metadata.provider_name,
+        served_provider_name=metadata.served_provider_name,
         requested_model=metadata.requested_model,
         served_model=metadata.served_model,
         model=metadata.model,
         model_attribution_status=metadata.model_attribution_status,
         status=metadata.status,
         finish_reason=metadata.finish_reason,
+        provider_error_source=metadata.provider_error_source,
+        provider_error_type=metadata.provider_error_type,
+        provider_error_code=metadata.provider_error_code,
+        provider_error_provider_code=metadata.provider_error_provider_code,
+        provider_error_message_sha256=metadata.provider_error_message_sha256,
+        retry_after_seconds=metadata.retry_after_seconds,
         raw_message_content=metadata.raw_message_content,
         temperature=metadata.temperature,
         prompt_tokens=metadata.prompt_tokens,
@@ -532,21 +554,38 @@ class OpenAICompatibleBoundaryClient:
             headers=headers,
             method="POST",
         )
+        retry_after_seconds: float | None = None
         try:
             with request.urlopen(req, timeout=self.timeout) as response:
+                response_headers = getattr(response, "headers", {})
+                retry_after_seconds = _retry_after_seconds(
+                    response_headers.get("Retry-After")
+                    if hasattr(response_headers, "get")
+                    else None
+                )
                 payload = json.loads(response.read().decode("utf-8"))
         except error.HTTPError as exc:
             _LOGGER.warning("Boundary HTTP error %s: %s", exc.code, exc.reason)
-            return {}, self._finalize_metadata(
-                BoundaryCallMetadata(
+            error_payload: Mapping[str, object] = {}
+            try:
+                decoded = json.loads(exc.read().decode("utf-8"))
+                if isinstance(decoded, Mapping):
+                    error_payload = decoded
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+                error_payload = {}
+            metadata = _build_call_metadata(
                 provider_name=self.provider_name,
-                requested_model=self.model,
                 model=self.model,
-                model_attribution_status="not_observed",
+                payload=error_payload,
+                reasoning_config=reasoning_config,
                 status=f"http_error_{exc.code}",
-                reasoning_disabled=_reasoning_disabled(reasoning_config),
-                provider_attempted=True,
+                temperature=self.temperature,
+                retry_after_seconds=_retry_after_seconds(
+                    exc.headers.get("Retry-After") if exc.headers else None
                 ),
+            )
+            return {}, self._finalize_metadata(
+                metadata,
                 policy=policy,
                 maximum_call_cost_usd=maximum_call_cost,
                 reservation_id=reservation_id,
@@ -625,6 +664,7 @@ class OpenAICompatibleBoundaryClient:
                 reasoning_config=reasoning_config,
                 status="missing_choices",
                 temperature=self.temperature,
+                retry_after_seconds=retry_after_seconds,
             )
             return {}, self._finalize_metadata(
                 metadata,
@@ -651,6 +691,7 @@ class OpenAICompatibleBoundaryClient:
             status="ok",
             temperature=self.temperature,
             raw_message_content=raw_message_content,
+            retry_after_seconds=retry_after_seconds,
         )
         metadata = self._finalize_metadata(
             metadata,
@@ -1019,6 +1060,7 @@ def _build_call_metadata(
     status: str,
     temperature: float = 0.0,
     raw_message_content: str = "",
+    retry_after_seconds: float | None = None,
 ) -> BoundaryCallMetadata:
     usage = payload.get("usage", {})
     usage_map = usage if isinstance(usage, Mapping) else {}
@@ -1039,11 +1081,13 @@ def _build_call_metadata(
     effective_status = str(status or "")
     if effective_status.startswith("ok") and finish_reason.strip().lower() == "error":
         effective_status = "provider_finish_error"
+    provider_error = _provider_error_diagnostics(payload)
     requested_model = str(model or "").strip()
     served_model = str(payload.get("model", "") or "").strip()
     model_for_billing = served_model or requested_model
     return BoundaryCallMetadata(
         provider_name=provider_name,
+        served_provider_name=str(payload.get("provider", "") or "").strip(),
         requested_model=requested_model,
         served_model=served_model,
         model=model_for_billing,
@@ -1054,6 +1098,12 @@ def _build_call_metadata(
         ),
         status=effective_status,
         finish_reason=finish_reason,
+        provider_error_source=provider_error["source"],
+        provider_error_type=provider_error["error_type"],
+        provider_error_code=provider_error["code"],
+        provider_error_provider_code=provider_error["provider_code"],
+        provider_error_message_sha256=provider_error["message_sha256"],
+        retry_after_seconds=retry_after_seconds,
         raw_message_content=raw_message_content,
         temperature=temperature,
         prompt_tokens=_usage_int(usage_map, "prompt_tokens"),
@@ -1068,6 +1118,60 @@ def _build_call_metadata(
         response_id=str(payload.get("id", "") or ""),
         exact_cost_usd=_usage_float_or_none(usage_map, "cost"),
     )
+
+
+def _provider_error_diagnostics(payload: Mapping[str, object]) -> dict[str, str]:
+    """Return privacy-safe provider error fields from OpenAI-style envelopes.
+
+    OpenRouter may return a top-level ``error`` object or place an ``error``
+    beside a partially generated choice. The raw message can contain upstream
+    details, so custody keeps only stable type/code fields and a SHA-256 digest.
+    """
+
+    source = ""
+    error_value: object = None
+    choices = payload.get("choices")
+    if isinstance(choices, list) and choices:
+        first = choices[0]
+        if isinstance(first, Mapping) and isinstance(first.get("error"), Mapping):
+            source = "choice"
+            error_value = first.get("error")
+    if error_value is None and isinstance(payload.get("error"), Mapping):
+        source = "top_level"
+        error_value = payload.get("error")
+    if not isinstance(error_value, Mapping):
+        return {
+            "source": "",
+            "error_type": "",
+            "code": "",
+            "provider_code": "",
+            "message_sha256": "",
+        }
+
+    metadata_value = error_value.get("metadata")
+    metadata = metadata_value if isinstance(metadata_value, Mapping) else {}
+    message = str(error_value.get("message", "") or "")
+    return {
+        "source": source,
+        "error_type": str(
+            metadata.get("error_type")
+            or error_value.get("type")
+            or ""
+        ),
+        "code": str(error_value.get("code", "") or ""),
+        "provider_code": str(metadata.get("provider_code", "") or ""),
+        "message_sha256": (
+            hashlib.sha256(message.encode("utf-8")).hexdigest() if message else ""
+        ),
+    }
+
+
+def _retry_after_seconds(raw_value: object) -> float | None:
+    try:
+        value = float(str(raw_value or "").strip())
+    except ValueError:
+        return None
+    return max(0.0, value)
 
 
 def _reasoning_details_include_content(message: Mapping[str, object]) -> bool:
