@@ -230,6 +230,10 @@ def finalize_live_output_hygiene(
             "transcript_status": "missing",
             "capture_mode": "missing",
             "trusted_capture": False,
+            "observed_scope": [],
+            "complete_visible_surface_observed": False,
+            "complete_visible_surface_leak_count": None,
+            "leak_count_scope": "no_surface_observed",
             "transcript_sha256": None,
             "leak_count": 0,
             "leaks": [],
@@ -241,6 +245,9 @@ def finalize_live_output_hygiene(
         }
         run_health["live_output_health"] = "missing"
         run_health["live_output_leak_count"] = 0
+        run_health["live_output_observed_surface_leak_count"] = 0
+        run_health["complete_visible_surface_observed"] = False
+        run_health["complete_visible_surface_leak_count"] = None
         run_health["live_output_leaks"] = []
         run_health["live_output_semantic_mismatch_count"] = 0
         run_health["live_output_semantic_mismatches"] = []
@@ -273,6 +280,22 @@ def finalize_live_output_hygiene(
     scan["required"] = bool(require_live_output_clean)
     scan["trusted_capture"] = bool(trusted_capture)
     scan["capture_mode"] = "trusted" if trusted_capture else "manual_unverified"
+    scan["observed_scope"] = [
+        (
+            "trusted_host_visible_transcript"
+            if trusted_capture
+            else "curated_live_transcript_artifact"
+        )
+    ]
+    scan["complete_visible_surface_observed"] = bool(trusted_capture)
+    scan["complete_visible_surface_leak_count"] = (
+        scan["leak_count"] if trusted_capture else None
+    )
+    scan["leak_count_scope"] = (
+        "complete_visible_surface"
+        if trusted_capture
+        else "curated_live_transcript_artifact_only"
+    )
     scan["transcript_status"] = scan["status"]
     scan["transcript_sha256"] = _sha256_text(text)
     semantic_mismatches = _scan_updated_position_semantic_mismatches(
@@ -290,6 +313,11 @@ def finalize_live_output_hygiene(
 
     run_health["live_output_health"] = scan["status"]
     run_health["live_output_leak_count"] = scan["leak_count"]
+    run_health["live_output_observed_surface_leak_count"] = scan["leak_count"]
+    run_health["complete_visible_surface_observed"] = bool(trusted_capture)
+    run_health["complete_visible_surface_leak_count"] = (
+        scan["leak_count"] if trusted_capture else None
+    )
     run_health["live_output_leaks"] = scan["leaks"]
     run_health["live_output_semantic_mismatch_count"] = scan["semantic_mismatch_count"]
     run_health["live_output_semantic_mismatches"] = scan["semantic_mismatches"]

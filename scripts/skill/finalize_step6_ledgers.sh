@@ -45,17 +45,10 @@ EOF
   esac
 done
 
-if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
-  # shellcheck source=/dev/null
-  . "$LOLLA_ENV_STATE"
-elif [ -f /tmp/lolla_latest_env.sh ]; then
-  # shellcheck source=/dev/null
-  . /tmp/lolla_latest_env.sh
-fi
-
-if [ -n "$REQUESTED_RUN_ID" ]; then
-  export LOLLA_RUN_ID="$REQUESTED_RUN_ID"
-fi
+_LOLLA_HELPER_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+# shellcheck source=load_run_state.sh
+. "$_LOLLA_HELPER_DIR/load_run_state.sh"
+lolla_load_run_state "$REQUESTED_RUN_ID"
 if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
   echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}" >&2
   exit 1

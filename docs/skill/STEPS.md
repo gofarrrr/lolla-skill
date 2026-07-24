@@ -3,6 +3,15 @@
 This document contains detailed implementation procedures for the Lolla skill
 pipeline. The high-level orchestration overview stays in `SKILL.md`.
 
+> **Current Codex transport rule (2026-07-24):** read
+> [Codex live-run transport boundary](CODEX_LIVE_RUN_BOUNDARY.md) before
+> executing these semantic steps. Its exact run-handle, private-input,
+> schema-owned consumer-packet, Step 6, memo, verification, and surface-health
+> procedures supersede older environment-sourcing, heredoc, raw-file
+> inspection, and manual-ledger command examples in this document. Those older
+> examples remain temporarily for Claude Code compatibility and historical
+> explanation; they are forbidden in an ordinary Codex run.
+
 <a id="step-1-capture-conversation"></a>
 
 ## Step 1: Capture Conversation
@@ -35,17 +44,7 @@ Start the helper as a runtime process, then supply the formatted transcript on
 its standard input:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
-  echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}"
-  exit 1
-fi
-if [ -z "$LOLLA_RUN_ID" ]; then
-  echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — the preamble must initialize before Step 1."
-  exit 1
-fi
-python3 "$SKILL_DIR/scripts/skill/capture_conversation.py"
+bash scripts/skill/capture_step.sh --run-id RUN_HANDLE
 ```
 
 Wait for the helper's exact `PRIVATE_INPUT_READY` line, then use the host's
@@ -82,9 +81,8 @@ source-code edit.
 Invoke the Step 2 helper. Do not reconstruct the `run_extract.py` command, add `--run-id`, or guess file flags:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/run_extract_step.sh --run-id RUN_HANDLE
 ```
 
 The helper verifies the captured conversation, calls OpenRouter to extract the
@@ -133,6 +131,19 @@ The conversation capture is fundamentally broken — more than half the assistan
 
 **Before launching the pipeline (Step 3), render the readback + audit-promise content directly.** This fills the pipeline wait with a concrete product receipt: what Lolla captured and what it is about to test. Provider latency varies; do not promise a fixed duration.
 
+First prepare the exact run's bounded readback view:
+
+```bash
+bash scripts/skill/prepare_consumer_step.sh \
+  --run-id RUN_HANDLE \
+  --stage readback
+```
+
+After `CONSUMER_PACKET_STATUS: readback ready`, read the owner-only
+run-scoped consumer packet with the host's bounded file-read capability. Do not
+print or query the extraction artifact through the shell. Codex may show its
+own file-read card; do not copy the packet into narration.
+
 **Render the content directly. Do NOT introduce it with "Beat 1," "Step 2.5," "Readback section," or any internal section label.** The user does not see the scaffolding; they read the prose. The label "Beat 1" exists in this file and in `references/chat-output-format.md` for instruction architecture only — never for rendering.
 
 **Read `references/chat-output-format.md`** for the full specification (rule, what goes in, length targets, examples, voice contract). The voice rules apply across every section — load once and reuse for the counterargument lead, updated position, and pressure check that follow.
@@ -156,18 +167,27 @@ Do not link to Observatory; the server is not running until Step 9. See `plans/v
 This is a functional receipt, not a content beat. Do not extend it with prose. Then launch:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/run_pipeline_step.sh"
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/run_pipeline_step.sh --run-id RUN_HANDLE
 ```
 
-This runs the full Lolla pipeline — all four lanes — via OpenRouter. The entry point resolves the bundled engine from `SKILL_DIR`, so the caller does not need to start inside the repository or supply `PYTHONPATH`. With both `--extraction-file` and `--conversation-file`, the pipeline uses the production `ConversationContext` runtime by default: raw turns, extraction fields, and capture metadata are passed together so all four lanes audit the conversation directly. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
+This runs the full Lolla pipeline — all four lanes — via OpenRouter. The entry point resolves the bundled engine from `SKILL_DIR`, so the caller does not need to start inside the repository or supply `PYTHONPATH`. With both `--extraction-file` and `--conversation-file`, the pipeline uses the production `ConversationContext` runtime by default: raw turns, extraction fields, and capture metadata are passed together so all four lanes audit the conversation directly. The `--skip-revision` flag skips the OpenRouter revision step because the host reasoner produces the final revised position in Step 6, using the full conversation context and the four cards. The result is stored privately in the exact run's configured runtime root.
 
 By default this also attaches a private `v60_enrichment` block to `result.json`. That block is not user-facing and is not a fifth lane. It is source-backed consideration material selected after the lanes, with telemetry for selected chunks, skipped candidates, not-presented candidates, and embedding mode. To disable it for a run, set `LOLLA_V60_ENRICHMENT=off` before Step 3 or pass `--v60-enrichment off`.
 
-The `--pre-step6-portfolio step6_private` mode also writes `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md`: a compact private thinking table rendered from the four lanes, V60, and any cached pre-Step-6 card deck. It adds **zero** OpenRouter calls, never generates live cards on a cache miss, and never selects a visible answer. Its job is only to give Step 6 a cleaner table to think on.
+The `--pre-step6-portfolio step6_private` mode also writes a compact, owner-only
+private thinking table inside that run root, rendered from the four lanes, V60,
+and any cached pre-Step-6 card deck. It adds **zero** OpenRouter calls, never
+generates live cards on a cache miss, and never selects a visible answer. Its
+job is only to give Step 6 a cleaner table to think on.
 
-The helper preserves optional cache-dir/cache-ref routing, writes the operator-only private-table receipt to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, prints only a compact `PIPELINE_STATUS` / `RUN_HEALTH` / `PRE_STEP6_PRIVATE_TABLE` summary, and enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. This receipt is operator output, not user-facing prose; do not append it to the live transcript. It prevents cache misses from being mistaken for cached-card content tests. If the helper prints `FATAL`, stop; do not continue to Step 4 or Step 6.
+The helper preserves optional cache-dir/cache-ref routing, writes detail to
+owner-only operator custody, prints only a compact `PIPELINE_STATUS` /
+`RUN_HEALTH` / `PRE_STEP6_PRIVATE_TABLE` summary, and enforces
+`LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. This receipt is operator output, not
+user-facing prose; do not append it to the live transcript. It prevents cache
+misses from being mistaken for cached-card content tests. If the helper prints
+`FATAL`, stop; do not continue to Step 4 or Step 6.
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
@@ -177,7 +197,19 @@ The helper preserves optional cache-dir/cache-ref routing, writes the operator-o
 
 **Read `references/chat-output-format.md` § Beat 2** (the file should already be loaded from Step 2.5; reload if context elapsed). Also read `references/output-field-guide.md` for field definitions of the four cards.
 
-Then read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and **render the counterargument-lead content directly. Do NOT preface it with "Now Beat 2," "Beat 2," "Now the counterargument," "the strongest counterargument from the audit," or any implementation/section label.** The content opens at *"Here's the strongest case against what I told you"* (or equivalent) — that IS the user-facing surface.
+Prepare the exact reconsideration view:
+
+```bash
+bash scripts/skill/prepare_consumer_step.sh \
+  --run-id RUN_HANDLE \
+  --stage reconsideration
+```
+
+After `CONSUMER_PACKET_STATUS: reconsideration ready`, read the owner-only
+packet with the host's bounded file-read capability. Do not dump or query
+`result.json`.
+
+Then **render the counterargument-lead content directly. Do NOT preface it with "Now Beat 2," "Beat 2," "Now the counterargument," "the strongest counterargument from the audit," or any implementation/section label.** The content opens at *"Here's the strongest case against what I told you"* (or equivalent) — that IS the user-facing surface.
 
 Length: **220–300 words** in normal mode; **140–220 words** in thin mode. Hard cap: 350 words.
 
@@ -202,7 +234,13 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 - `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the accounting invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
 - `references/private-enrichment-treatment.md` — how to privately handle lane pressure and V60 chunks: freedom of conclusion, not freedom from consideration; strongest plausible application; rejection/deferral standards; public/private split.
 
-Also read `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md` if it exists. Treat it as private context: a cleaner table, not a command. It may include only the current run's compact lane/V60 material, or it may also include cached portfolio cards. If the Markdown says it was capped, also read `source_items` in `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.json`; every ledger-required item is either inline in the Markdown or exactly resolvable there. Do not disposition material you were unable to inspect. Use the table to think more clearly before writing; do not expose the table, source IDs, card IDs, lane labels, V60 labels, or cache state in user-facing prose.
+Use the `pre_step6_private_table` material and exact source items already carried
+by the reconsideration consumer packet. Treat them as private context: a
+cleaner table, not a command. The packet includes exact resolution for every
+ledger-required item even when the Markdown rendering would have been capped.
+Do not disposition material you were unable to inspect. Use the table to think
+more clearly before writing; do not expose the table, source IDs, card IDs,
+lane labels, V60 labels, or cache state in user-facing prose.
 
 After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
@@ -229,7 +267,13 @@ The audit findings are **hints, not commands — but not disposable hints.** The
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 - **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has.
 
-**Constitutional graph pressure.** If `constitutional_graph_survival.status == "active"`, read every `active_pressure_items[*]` object in full from `result.json`, even when the private Markdown table was capped. These are deliberately noisy canonical lenses admitted before the probabilistic verifier; graph admission is not relevance proof. For each active `pressure_id`, first state the strongest plausible application and attempted condition, then choose exactly one private disposition:
+**Constitutional graph pressure.** If
+`constitutional_graph_survival.status == "active"` in the reconsideration
+packet, read every `active_pressure_items[*]` object in full. These are
+deliberately noisy canonical lenses admitted before the probabilistic verifier;
+graph admission is not relevance proof. For each active `pressure_id`, first
+state the strongest plausible application and attempted condition, then choose
+exactly one private disposition:
 
 - `apply` when it earns a concrete test, condition, alternative, reversal rule, private guardrail, or visible shift;
 - `reject` when the strongest application fails—name the failed condition and the risk of forcing it;
@@ -237,7 +281,11 @@ The audit findings are **hints, not commands — but not disposable hints.** The
 
 Do not disposition the compact reserve in this run. Reserve means inspectable capacity custody, not semantic rejection. Do not force an active item into public prose: a fully grounded rejection or park is successful consideration, and public stand-down is allowed.
 
-**V60 private enrichment.** If `/tmp/lolla_${LOLLA_RUN_ID}_result.json` contains `v60_enrichment.status == "active"`, read it before writing the updated position. This is the source-backed affordance / absence layer selected after the four lanes. It is private consideration material, not user-facing content and not a command to name mental models.
+**V60 private enrichment.** If the reconsideration packet contains
+`v60_enrichment.status == "active"`, read it before writing the updated
+position. This is the source-backed affordance / absence layer selected after
+the four lanes. It is private consideration material, not user-facing content
+and not a command to name mental models.
 
 Use the V60 block like a silver platter:
 
@@ -277,153 +325,56 @@ When the audit returns 5+ candidate shifts, your job is selection — fold relat
 
 <a id="step-6b-persist-revised-answer"></a>
 
-## Step 6b: Persist Revised Answer
+## Step 6b: Persist Revised Answer and Decision Trail
 
-After writing your updated position in Step 6, persist it back into the pipeline result JSON so the Observatory can render it. This makes Claude's Step 6 output a first-class artifact of the run — not a transient message.
-
-Write your full Step 6 text (the "Updated Position" section — what survived, what you set aside, what shifted) to a temp file, then invoke the persistence helper. Do not reconstruct the JSON merge command yourself:
-
-```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-cat > /tmp/lolla_${LOLLA_RUN_ID}_revised.txt << 'LOLLA_REVISED_EOF'
-{paste your Step 6 updated position text here}
-LOLLA_REVISED_EOF
-
-python3 "$SKILL_DIR/scripts/skill/persist_revised_answer.py" --run-id "${LOLLA_RUN_ID}" --revised-file "/tmp/lolla_${LOLLA_RUN_ID}_revised.txt"
-```
-
-**If `constitutional_graph_survival.status == "active"`, persist its apply/reject/park ledger first.** Start from `constitutional_graph_survival.disposition_ledger_skeleton` in `result.json`. Copy every item and immutable field exactly. Fill only the empty decision fields. Every active item must appear once in packet order; `not_considered` is not allowed.
+Persist the updated position and all required consideration ledgers as one
+private unit. Use the ordinary Codex command:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-cat > /tmp/lolla_${LOLLA_RUN_ID}_constitutional_graph_survival_ledger.json << 'LOLLA_GRAPH_LEDGER_EOF'
-{
-  "schema_version": "lolla.constitutional_graph_survival_ledger.v1",
-  "status": "completed",
-  "portfolio_sha256": "<copy exact portfolio_sha256 from the skeleton>",
-  "items": [
-    {
-      "pressure_id": "<copy>",
-      "model_id": "<copy>",
-      "candidate_origin": "<copy>",
-      "consumer_locator": "<copy>",
-      "disposition": "reject",
-      "strongest_plausible_application": "The strongest case-specific application you tested.",
-      "attempted_application_condition": "The condition that would need to hold.",
-      "why": "Why the disposition follows.",
-      "failed_condition": "Required for reject; otherwise empty.",
-      "reopen_condition": "Required for park; otherwise empty.",
-      "visible_effect": "Required for a public apply; otherwise empty.",
-      "private_guardrail": "May satisfy a private-only apply; otherwise empty.",
-      "risk_if_forced": "What becomes misleading if forced.",
-      "risk_if_ignored": "What might be missed if ignored."
-    }
-  ],
-  "notes": ["Private custody only. Every active candidate received apply, reject, or park."]
-}
-LOLLA_GRAPH_LEDGER_EOF
-
-bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --graph-only
+bash scripts/skill/persist_private_step.sh \
+  --run-id RUN_HANDLE \
+  --kind step6
 ```
 
-If graph-ledger finalization exits non-zero, stop and repair it against the exact skeleton before continuing. A missing or `not_considered` active item is a technical custody failure, not a semantic judgment.
+Wait until the process prints `PRIVATE_INPUT_READY`. Then send exactly one
+private JSON packet through the process-input channel and close input. The
+packet shape is defined in
+[`CODEX_LIVE_RUN_BOUNDARY.md`](CODEX_LIVE_RUN_BOUNDARY.md#step-6-packet).
+Do not paste the packet into a shell command or visible tool argument.
 
-**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the atom-level table items and cached cards that were placed in front of you. Copy the provided `source_id` values exactly. Copy every skeleton item in full: preserve all source metadata without removing, renaming, aggregating, or adding fields. Fill only `disposition`, `why`, `visible_effect`, and `private_guardrail`. Use one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
+The packet contains only:
 
-```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-cat > /tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json << 'LOLLA_PRE_STEP6_LEDGER_EOF'
-{
-  "schema_version": "pre_step6_private_table_ledger.v1",
-  "status": "completed",
-  "items": [
-    {
-      "source_id": "<copy exact source_id from the skeleton>",
-      "source_kind": "<copy source_kind from the skeleton>",
-      "title": "<copy title from the skeleton>",
-      "disposition": "used",
-      "why": "Short private rationale for how this affected reasoning.",
-      "visible_effect": "Short public-facing effect, or empty if private-only.",
-      "private_guardrail": ""
-    }
-  ],
-  "notes": [
-    "Private telemetry only. Not rendered in chat."
-  ]
-}
-LOLLA_PRE_STEP6_LEDGER_EOF
+- the full updated position;
+- mutable judgments keyed by every exact graph pressure ID;
+- mutable judgments keyed by every exact private-table source ID;
+- mutable judgments keyed by every exact V60 chunk ID.
 
-bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --pre-step6-only
-```
+Deterministic code owns every immutable field, identity, order, and schema. It
+copies those values from the current run skeletons, requires exact item
+coverage, validates all active ledgers in memory, and only then replaces the
+runtime artifacts. The reasoner may apply, reject, defer, or park pressure as
+the governing schema permits; validation does not decide relevance.
 
-If the finalization helper exits non-zero, stop before V60 finalization, pressure checks, memo rendering, Observatory, or archive. Read the validation errors, repair `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json` against `pre_step6_private_table.consideration_ledger_skeleton`, rerun the same helper command, and continue only after `pre_step6_private_table_ledger` is `valid` (or `not_required` when the private table is absent).
+Continue only after the compact receipt says `step6 valid` and reports each
+required ledger as `valid` or `not_required`. On `invalid`, stop. The previous
+valid result remains authoritative, the private payload is not printed, and a
+safe failure event is recorded. Start a replacement packet from the current
+skeleton; do not patch a private JSON file in the terminal.
 
-**If `v60_enrichment.status == "active"`, persist the private V60 consideration ledger immediately after the revised answer.** This ledger is operator telemetry only. It accounts for what was picked up, what was skipped by your judgment, what was deferred, and what was presented but not used. Do not mention it in chat.
+Do not create or inspect `revised.txt`, graph ledger JSON, private-table ledger
+JSON, V60 ledger JSON, or `result.json` with heredocs, inline Python, `jq`,
+`sed`, Apply Patch, or an editor during the ordinary Codex flow. Those files
+are internal custody artifacts, not interaction surfaces.
 
-Start from the deterministic ledger skeleton, not from memory. Prefer `/tmp/lolla_${LOLLA_RUN_ID}_v60_ledger_skeleton.json`; if the sidecar is missing, read `v60_enrichment.consideration_ledger_skeleton` inside `/tmp/lolla_${LOLLA_RUN_ID}_result.json`. The skeleton contains exactly one transaction shell for every selected chunk. Do not change `chunk_id`, `card_id`, `model_id`, or `chunk_kind`; fill the empty decision fields.
+This step is required whenever its corresponding pressure surface is active.
+Without a valid revised answer and complete active ledgers, do not run the
+pressure-state helper, render the memo, open Observatory, or archive the run.
 
-Write exactly one completed transaction for every skeleton transaction:
+### Memo timing
 
-```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
-{
-  "schema_version": "v60_skill_consideration_ledger.v2",
-  "status": "completed",
-  "transactions": [
-    {
-      "chunk_id": "aff::example.model-affordance-id",
-      "card_id": "parent card id from v60_enrichment.selected_cards",
-      "model_id": "parent model id",
-      "chunk_kind": "affordance",
-      "disposition": "used",
-      "route": "updated_position",
-      "strongest_plausible_application": "Best honest way this chunk could apply to the case.",
-      "risk_if_forced": "What would go wrong if this chunk were forced despite weak fit, or empty if used cleanly.",
-      "why": "Short private rationale for how this affected reasoning.",
-      "visible_effect": "Short public-facing effect, or empty if private-only.",
-      "private_guardrail": "Short private guardrail if used privately, otherwise empty.",
-      "technical_blocker": "Empty unless the chunk is technically unusable."
-    }
-  ],
-  "notes": [
-    "Private telemetry only. Not rendered in chat."
-  ]
-}
-LOLLA_V60_LEDGER_EOF
-
-bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --v60-only
-```
-
-The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`, and `technical_failure`.
-
-If the finalization helper exits non-zero, stop before pressure checks, memo rendering, Observatory, or archive. Read the validation errors, repair `/tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json` against the skeleton, rerun the same helper command, and continue only after `v60_consideration_ledger` is `valid` (or `not_required` when V60 is inactive).
-
-Route compatibility:
-
-- `used`: `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`
-- `rejected`: `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`
-- `deferred`: `set_aside`, `missing_evidence`, `evidence_gate`, `diagnostic_question`
-- `not_considered`: `technical_failure` only
-
-For every readable transaction, fill `strongest_plausible_application`. For `used` transactions, fill either `visible_effect` or `private_guardrail`; a chunk can be used privately without changing public prose, but the guardrail must be named. For `rejected` and `deferred` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Use `not_considered` only when the chunk was malformed, inaccessible, or technically unusable; set `route: technical_failure` and fill `technical_blocker` instead of pretending to know its strongest application. A readable duplicate, already-covered item, or irrelevant item was considered and must be `rejected` with a concrete reason.
-
-For `chunk_kind == "absence"` and `disposition == "used"`, also fill at least one of:
-
-- `blocked_or_guarded_claim` — the overclaim or tempting unsupported move the absence blocked
-- `uncertainty_boundary` — the confidence/evidence boundary the absence preserved
-
-**This step is not optional.** Without it, the Observatory shows an incomplete run — four cards with no revised answer.
-
-### Memo Timing: Do Not Render Yet
-
-Do not generate the final memo immediately after Step 6b. First persist the pressure-check state in Step 8b. In the default flow this is an intentional `not_run_default_off` record; in explicit deeper-review mode it is the completed pressure-check comparison. Final memo preparation and rendering happen in **Step 8c**, after Step 8b persists whichever pressure-check state applies.
-
-Memo generation is not user-facing until the final functional receipt. Do not write *"Generating the memo now"*, *"All four pressure checks are in. Generating the memo now"*, or any other progress narration about memo rendering in chat. The memo path appears only in the final receipt.
+Do not render the memo yet. First persist the default-off or explicitly
+authorized pressure-check state in Step 8b. Step 8c prepares the memo only
+after that state exists.
 
 <a id="step-7-optional-pressure-check-sub-agents-default-off"></a>
 
@@ -534,12 +485,16 @@ This step always writes a pressure-check state so the run is complete and observ
 **Default path — Step 7 rested:**
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-python3 "$SKILL_DIR/scripts/skill/persist_default_off_pressure_check.py" --run-id "${LOLLA_RUN_ID}"
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/persist_default_pressure_step.sh --run-id RUN_HANDLE
 ```
 
-The helper writes `/tmp/lolla_${LOLLA_RUN_ID}_gapcheck.txt`, `/tmp/lolla_${LOLLA_RUN_ID}_gapcheck_lanes.json`, and the current result fields: `gap_check_summary`, `gap_check`, `has_gap_check`, `pressure_check_mode`, `gap_check_written_at`, and a back-compatible `pressure_check_state`. Default-off runs do not write `/tmp/lolla_${LOLLA_RUN_ID}_subagents.json` and do not merge Anthropic sub-agent usage. Continue to Step 8c after the helper succeeds.
+The helper writes the owner-only gap-check artifacts and current result fields
+inside the exact runtime root: `gap_check_summary`, `gap_check`,
+`has_gap_check`, `pressure_check_mode`, `gap_check_written_at`, and a
+back-compatible `pressure_check_state`. Default-off runs do not create an
+optional sub-agent usage artifact and do not merge Anthropic sub-agent usage.
+Continue to Step 8c after the compact success receipt.
 
 **Optional pressure-check mode only:**
 
@@ -668,66 +623,44 @@ the total as incomplete until pricing is known.
 
 ## Step 8c: Prepare and Render Memo
 
-After Step 8b persists the pressure-check state, write the memo decision-note layer per `references/memo-output-format.md`, persist those fields to `result.json`, then render the standalone markdown memo.
+After Step 8b persists the pressure-check state, read
+`references/memo-output-format.md` and prepare the six decision-note fields.
+The memo must lead with what changed in the advice, preserve material
+alternatives, remove or label unsupported precision, avoid hidden sequencing
+contradictions, and keep unanswered questions priority-shaped. It may use only
+already-persisted conversation evidence, the updated position, the pressure
+cards, and any material authorized pressure-check divergence. Do not expose
+internal lane, card, chunk, ledger, or provider machinery in the memo prose.
 
-**Read `references/memo-output-format.md`** before writing the memo fields. The memo is a decision note first and audit trace second. Its first screen should answer what changed in the advice; it should not begin with counts, card-derived categories, severity labels, or process recap.
-
-Use only already-persisted material:
-
-- captured conversation quotes
-- `revised_answer`
-- `gap_check_summary` (default-off runs may use this only as operator context; do not turn it into user-facing memo content unless optional pressure-check mode produced a material divergence)
-- `delta_card`
-- `companion_cheat_sheet`
-- `frame_pressure_card`
-- `structural_coverage_card`
-
-Produce these fields:
-
-- `memo_substantive_title` — structural observation, not recommendation
-- `memo_orientation_note` — 180-260 words; concrete, quote-grounded, no table-of-contents throat clearing
-- `memo_what_changed` — compressed Step 6 "What actually shifted"
-- `memo_what_still_holds` — compressed Step 6 "What survived"
-- `memo_take_back_or_set_aside` — compressed Step 6 self-corrections and set-asides
-- `memo_pressure_check` — optional Step 8 material divergence only; empty string in the default flow or when no material divergence survives
-
-Decision-note quality checks before persisting:
-
-- **No hidden sequencing contradiction.** If the changed advice alters order, distinguish the exact boundary. Example: *"formal proposal after advisor buy-in; low-cost availability probe before the meeting"* is clear. *"advisor first, Silva second"* plus *"probe Silva before advisor"* is not.
-- **Do not preserve unverified numbers as doctrine.** If the audit flagged a numerical/base-rate claim as ungrounded, either remove it from `memo_what_still_holds` or label it as an illustrative placeholder whose direction may survive but whose precision does not.
-- **Pressure check must preserve competing paths.** Scan every Step 8 divergence. If a reviewer surfaced a materially different decision path, instrument, channel, fallback, or commitment shape, include it or explicitly explain why it is set aside. Do not surface only implementation caveats while suppressing a genuine alternative.
-- **Keep "Questions still unanswered" priority-shaped.** Python renders the first three structural gap questions in the decision note and preserves the rest in the appendix. Do not answer or invent questions inside memo fields.
-
-Do not add a recommendation, risk, or claim that is not present in Step 6, Step 8, or the audit cards. Do not mention internal machinery (`Beat`, `Step`, `Lane`, `sub-agent`, card names, JSON fields, pipeline), and do not attribute memo pressure-check material to hidden review sources (`isolated review`, `independent review`, `reviewers`, `agents`, `alignment`). Do not write sales language (`compelling`, `unlock`, `deep dive`, `transform`, `powerful`, etc.).
-
-Do not mention V60, affordances, chunks, ledgers, internal IDs, or the private enrichment substrate in memo fields. Keep model names out of the memo decision-note layer unless a familiar model name is the clearest human-language handle for the mechanism. The exact model/chunk details belong in Observatory and archived audit artifacts.
-
-Persist the memo fields:
+Submit the six fields through private input:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-cat > /tmp/lolla_${LOLLA_RUN_ID}_memo_note.json << 'LOLLA_MEMO_NOTE_EOF'
-{
-  "memo_substantive_title": "...",
-  "memo_orientation_note": "...",
-  "memo_what_changed": "...",
-  "memo_what_still_holds": "...",
-  "memo_take_back_or_set_aside": "...",
-  "memo_pressure_check": ""
-}
-LOLLA_MEMO_NOTE_EOF
-
-bash "$SKILL_DIR/scripts/skill/render_memo_step.sh"
+bash scripts/skill/persist_private_step.sh \
+  --run-id RUN_HANDLE \
+  --kind memo
 ```
 
-The helper persists the memo fields into result JSON, renders `/tmp/lolla_${LOLLA_RUN_ID}_memo.md`, writes render diagnostics to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints the memo path. This produces a persistent markdown artifact the user can reference or share without the Observatory. In new runs, the default memo is product-clean: decision-note layer plus capped unanswered questions, with the full audit trace kept in Observatory. If an operator explicitly needs a markdown audit appendix, run the helper again with `--include-audit-appendix`. Older result JSONs without memo fields still render in the legacy format.
+Wait for `PRIVATE_INPUT_READY`, send the exact JSON object defined in
+[`CODEX_LIVE_RUN_BOUNDARY.md`](CODEX_LIVE_RUN_BOUNDARY.md#memo-packet), and
+close input. Do not author `memo_note.json` with a heredoc, editor, inline
+Python, or Apply Patch. Continue only after `PRIVATE_PERSIST_STATUS: memo_note
+ready`, then run:
 
-After the helper succeeds, send the exact user-facing bridge *"Audit complete.
-I'm opening the full breakdown now."* Append it to the live transcript exactly
-as sent, following the Live Product Surface Rule in `SKILL.md`. Then continue to
-Step 9. This is the only normal-flow bridge between the persisted memo and the
-final functional receipt.
+```bash
+bash scripts/skill/render_memo_step.sh --run-id RUN_HANDLE
+```
+
+The renderer is deterministic and makes no provider call. Its compact receipt
+is `MEMO_STATUS: ready`; it does not expose the temporary memo path. The memo
+is stored privately and later archived. Older archived results may still use
+the legacy renderer, but that is archive compatibility, not a second ordinary
+Codex authoring path.
+
+After the helper succeeds, send the exact user-facing bridge:
+
+> Audit complete. I am opening the full breakdown now.
+
+Persist that prose with the private narration helper, then continue to Step 9.
 
 <a id="step-9-open-observatory"></a>
 
@@ -738,9 +671,8 @@ After the full cycle is complete (cards, updated position, pressure-check state,
 **Always launch after Step 8c completes.** Do not wait for the user to ask:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/finalize_and_archive.sh --run-id RUN_HANDLE
 ```
 
 The helper finalizes the private-table ledger, V60 ledger, and live-output hygiene, starts the local Observatory server through `scripts/skill/launch_observatory.py`, archives the run, writes a final receipt to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appends that receipt to the live transcript, re-runs live-output hygiene, re-archives the run, writes Observatory/archive/cost details to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END` lines. The launcher starts `serve_result.py` in a detached local session and only returns `live` after an HTTP check succeeds. Keep these for the final receipt; do not narrate them as a separate Step 9 message.
@@ -748,9 +680,8 @@ The helper finalizes the private-table ledger, V60 ledger, and live-output hygie
 If you have a complete captured terminal transcript for the whole live session, pass it to the same finalizer:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh" --trusted-transcript "/path/to/complete-live-session.txt" --require-live-output-clean
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/finalize_and_archive.sh --run-id RUN_HANDLE --trusted-transcript "/path/to/complete-live-session.txt" --require-live-output-clean
 ```
 
 The trusted transcript must include the same user-visible prose the user saw. The helper appends the generated final receipt to that transcript before the second hygiene pass, syncs it into `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, and archives it as `live_transcript.txt`. Use this only for a complete capture; a manually maintained transcript without this flag remains `live_output_health: not_checked`.
@@ -761,7 +692,12 @@ The trusted transcript must include the same user-visible prose the user saw. Th
 
 ## Step 10: Archive Run
 
-Step 9's helper already archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or stability-harness analysis. Step 10 is the silent verification point: confirm the helper reported `ARCHIVE_PATH`. Do not reconstruct or rerun `archive_run.py` by hand unless the helper failed.
+Step 9's helper already archives the run's core artifacts into a persistent
+case folder under the configured private archive root so the run survives
+temporary-file cleanup and stays accessible for later review, memo re-rendering,
+or stability-harness analysis. Step 10 is the silent verification point:
+confirm the helper completed archive verification. Do not reconstruct or rerun
+`archive_run.py` by hand unless the helper failed.
 
 The launched browser Observatory opens on the currently served run. Its `Cases` tab also lists local archived runs from `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) and can load those archived runs into the main SPA view. The server-rendered `/audit/*` telemetry panels remain scoped to the active served run for now; use `scripts/compare_archived_runs.py` or `scripts/export_reasoning_trace_dataset.py` for historical comparison and dataset export.
 
@@ -789,55 +725,38 @@ The archive script:
 - `$LOLLA_ARCHIVE_DIR` — override the archive root (default: `~/.local/share/lolla/runs/`).
 - `$LOLLA_AUDIT_MODE` — metadata-only audit mode. Accepted values are `quick`, `standard`, `deep`, `high_stakes`, and `stability`; missing or empty defaults to `standard`, and invalid explicit values fail before model calls. The normalized value is persisted as `risk_mode` but does not change prompts, cost, Step 7, replay, or high-stakes policy yet.
 
-**Do not surface the archive path at Step 10 as a separate line.** It's consolidated in the final functional receipt at Completion. Step 10 runs silently from the user's perspective.
+**Do not surface the archive path at Step 10.** The final receipt says that the
+archive was saved privately without printing its location. Step 10 runs
+silently from the user's perspective.
 
 <a id="completion"></a>
 
 ## Completion
 
-After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → pressure-check state → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
+After the full cycle, send only the exact final receipt between
+`USER_RECEIPT_BEGIN` and `USER_RECEIPT_END`. Do not write a second summary or
+reconstruct a receipt by hand.
 
-The generated receipt must state that reconsideration stayed in the current
-conversation context and was not an external check. This is a process boundary,
-not a generic health warning, so it appears on healthy and degraded runs alike.
+The receipt always states the same-context boundary: the reconsideration
+happened in this conversation and was not an external check. It reports the
+actual Observatory URL when one is live, says that the memo and archive were
+saved privately, and reports the final estimated cost. It does not print
+runtime paths, archive paths, operator logs, environment-state files, or port
+fallback detail.
 
-If Step 9 printed `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END`, send exactly the receipt between those markers. The helper has already written it to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appended it to the live transcript, and re-archived the run. Do not append a second hand-written receipt after checking Observatory logs; if the generated receipt must change, use the override helper path below.
+If run health is not healthy, the receipt begins with one plain-language
+warning naming the incomplete stage or check. A partial provider result remains
+partial even when other artifacts completed; no later artifact erases missing
+semantic coverage. Do not call such a run clean.
 
-If an attempted provider-backed reasoning call ended without usable output,
-the generated receipt marks the run partial, names the affected stage/check,
-and states that the call was not retried. Other completed artifacts do not
-erase that missing semantic coverage.
+A manual narration artifact can reveal leaks but cannot prove that the whole
+Codex tool surface was clean. Only an explicitly supplied complete trusted
+capture can support complete-surface `clean`; otherwise the receipt and archive
+must preserve `not_checked` or the applicable incomplete state.
 
-If you must override the receipt text manually, write the exact receipt text to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, then run:
-
-```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh" --receipt-file "/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt" --skip-observatory
-```
-
-When overriding the receipt and using a complete captured transcript, include the same `--trusted-transcript "/path/to/complete-live-session.txt" --require-live-output-clean` flags. The helper appends the receipt to the selected transcript if it is not already there, syncs trusted captures into `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, reruns live-output hygiene, and re-archives the run so archived `result.json` and `live_transcript.txt` include the latest final receipt check. A manual transcript can record `unsafe`, `missing`, or `not_checked`; only a complete trusted capture checked through the finalizer can prove `clean`. If the helper fails, do not send the receipt as if the run completed cleanly.
-
-**If all lanes completed successfully and `run_health.overall` is `healthy`:**
-
-> *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Cost estimate: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
-
-**If the run completed but `run_health.overall` is `partial`, `degraded`, or `critical`:**
-
-Keep the functional receipt, but add one plain warning sentence before it. Name the issue in user language, not status codes. Example:
-
-> *Run completed with degraded health: the full conversation was preserved, but the initial extraction view omitted declared middle turns. Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Cost estimate: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
-
-Do not call a degraded run clean. If the issue is capture-related, say the user should rerun if they need a decision-grade audit.
-
-**Report the actual Observatory URL** — if the server fell back to a non-default port (e.g., 8081 because 8080 was held by an older run), use the actual URL. **Do NOT explain the port fallback in the receipt.** *"Observatory is live at http://localhost:8081 (port 8080 was held by an older run's server)"* leaks operational detail. The receipt stays artifact-focused; if the user asks why it's not 8080, explain then.
-
-This is a functional receipt: artifact paths, cost, archive location. It is **not** a narrative summary like *"Audited your equity decision for Marcus. Found 3 structural patterns…"* — that pattern is banned because it (a) restates what the user just read in Beats 2/3/4, (b) re-introduces machinery vocabulary at the close, and (c) drifts toward sales register. The functional receipt closes the run cleanly without narrative restatement.
-
-**If any lane had issues:**
-
-Add one sentence naming which aspect had problems and what the user can try. Example:
-
-> *Frame pressure analysis timed out — try running again or check the Observatory for partial results.*
-
-No status codes (`DONE`, `DONE_WITH_CONCERNS`). No lane numbers. No structured blocks. Just a human wrapping up a conversation.
+If a receipt genuinely requires an operator override, place the exact text in
+the private runtime with `persist_private_step.sh --kind receipt`, then
+invoke `finalize_and_archive.sh --run-id RUN_HANDLE
+--private-receipt-override`. Never author the override in a visible shell
+command, heredoc, edit card, or argument. The finalizer must succeed and
+re-archive before that receipt is sent.

@@ -1472,7 +1472,8 @@ def main() -> int:
     if _run_id and is_valid_run_id(_run_id) and isinstance(_v60_skeleton, dict):
         try:
             _write_private_text(
-                Path(f"/tmp/lolla_{_run_id}_v60_ledger_skeleton.json"),
+                Path(os.getenv("LOLLA_TMP_DIR", "/tmp")).expanduser()
+                / f"lolla_{_run_id}_v60_ledger_skeleton.json",
                 json.dumps(_v60_skeleton, indent=2, ensure_ascii=False),
             )
         except OSError as exc:

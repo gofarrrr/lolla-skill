@@ -39,7 +39,7 @@ handoff and live-skill contract is [PR #380](https://github.com/gofarrrr/lolla-s
 | Area | Lifecycle | What that means |
 |---|---|---|
 | Four-lane pressure skill | **LIVE / EXPERIMENTAL** | Implemented ordinary path; semantic and human value remain under evaluation. |
-| Conversation and extraction custody | **LIVE / BOUNDED** | Captures through private runtime standard input after an explicit no-echo readiness signal, preserves complete available user/assistant prose, checks provider completion before semantic fields, append-preserves attempts, and seals failures before graph pressure. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
+| Conversation and live-host custody | **LIVE / BOUNDED** | One exact run handle survives fresh shells. Conversation, narration, revised prose, disposition judgments, memo fields, and exceptional receipt overrides use private runtime standard input only after an explicit no-echo readiness signal. Schema-owned packets replace ordinary ad hoc artifact dumps. Complete available user/assistant prose is authoritative; above 80,000 characters, initial extraction uses a declared partial view. |
 | Deterministic custody and graph survival | **LIVE** | Owns identity, bounds, provenance, replay, budgets, ledgers, and pressure survival—not semantic truth. |
 | Graph authoring and publication custody | **LIVE SOURCE / PROVIDER-FREE VALIDATION** | All 222 Markdown sources, reviewed curation, 1,358 rich authored directed relations, compiler inputs, one published read boundary, and the declared current pressure policy are repository-local and reproducible. Complete multi-path custody remains candidate-only. |
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
@@ -74,6 +74,8 @@ available user/assistant prose
 Graph recall is a hypothesis, not relevance proof. A strict schema proves
 shape, not semantic correctness. A receipt proves that a process occurred, not
 that the result is wise or safe.
+
+In Codex, repository code can keep private payloads out of ordinary shell commands, patch previews, and raw diagnostic output. It cannot hide the host's own tool cards, so a clean curated narration remains `not_checked` unless a complete trusted host-visible capture is supplied. See the [Codex live-run boundary](docs/skill/CODEX_LIVE_RUN_BOUNDARY.md) and its [2026-07-24 provider-free repair evidence](docs/conversation-understanding/lolla-codex-live-run-boundary-repair-result-2026-07-24.md).
 
 The optional passage-quality profile receives all available user-turn prose so it can distinguish user-stated facts from unsupported additions. That source context is repeated across up to twelve provider calls and may increase input tokens and cost. A missing passage judgment remains explicitly partial; it does not erase an otherwise complete core audit or make the result decision-ready.
 
@@ -169,8 +171,8 @@ tradeoff, or strategic decision. It is not intended for coding tasks, simple
 questions, or as the sole basis for medical, legal, financial, safety-critical,
 or otherwise consequential action.
 
-The detailed live contract is [SKILL.md](SKILL.md) and the step procedure is
-[docs/skill/STEPS.md](docs/skill/STEPS.md). Maintainers should use the
+The detailed live contract is [SKILL.md](SKILL.md), the step procedure is [docs/skill/STEPS.md](docs/skill/STEPS.md), and Codex operators should also follow the
+[live-run transport boundary](docs/skill/CODEX_LIVE_RUN_BOUNDARY.md). Maintainers should use the
 [knowledge-substrate operations reference](references/knowledge-substrate-operations.md)
 for graph ownership, validation, and prospective/live boundaries.
 
@@ -189,8 +191,7 @@ the operator configures another archive directory. Typical outputs include:
 
 `evaluation.json` is a deterministic artifact/readiness receipt, not an answer
 score. `reasoning_trace.json` is custody metadata, not a hidden chain-of-thought
-claim. Missing, completed-zero, partial, failed, and complete states remain
-different. An attempted provider-backed call without usable output makes the run partial; the final receipt names the affected stage/check and preserves the no-retry boundary.
+claim. Missing, completed-zero, partial, failed, and complete states remain different. An attempted provider-backed call without usable output makes the run partial; the final receipt names the affected stage/check and preserves the no-retry boundary. `tool_calls: []` means no host tool stream was supplied to the trace builder, not that no tools ran. Owner-only local archives say nothing about provider egress or what the Codex interface displayed.
 
 For long runs, `conversation.txt` remains authoritative. A partial initial
 extraction view is reported as degraded source coverage rather than being

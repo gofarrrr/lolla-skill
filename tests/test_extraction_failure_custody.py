@@ -67,7 +67,7 @@ def test_private_capture_disables_terminal_echo_while_reading(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     sys.path.insert(0, str(REPO_ROOT / "scripts" / "skill"))
-    import capture_conversation
+    from engine.system_b import private_runtime
 
     original = [0, 0, 0, termios.ECHO | 0x20, 0, 0, []]
     transitions: list[tuple[int, int, list]] = []
@@ -84,19 +84,19 @@ def test_private_capture_disables_terminal_echo_while_reading(
             assert transitions[-1][2][3] & termios.ECHO == 0
             return _conversation()
 
-    monkeypatch.setattr(capture_conversation.sys, "stdin", _FakeTTY())
+    monkeypatch.setattr(private_runtime.sys, "stdin", _FakeTTY())
     monkeypatch.setattr(
-        capture_conversation.termios,
+        private_runtime.termios,
         "tcgetattr",
         lambda _fd: list(original),
     )
     monkeypatch.setattr(
-        capture_conversation.termios,
+        private_runtime.termios,
         "tcsetattr",
         lambda fd, when, attrs: transitions.append((fd, when, list(attrs))),
     )
 
-    assert capture_conversation._read_private_stdin() == _conversation()
+    assert private_runtime.read_private_stdin() == _conversation()
     assert transitions[0][0] == 91
     assert transitions[0][2][3] & termios.ECHO == 0
     assert transitions[-1] == (91, termios.TCSANOW, original)
@@ -182,7 +182,7 @@ def test_private_capture_fails_closed_when_tty_echo_cannot_be_disabled(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     sys.path.insert(0, str(REPO_ROOT / "scripts" / "skill"))
-    import capture_conversation
+    from engine.system_b import private_runtime
 
     class _UnreadableTTY:
         def fileno(self) -> int:
@@ -194,15 +194,15 @@ def test_private_capture_fails_closed_when_tty_echo_cannot_be_disabled(
         def read(self) -> str:
             raise AssertionError("source must not be read while terminal echo may be on")
 
-    monkeypatch.setattr(capture_conversation.sys, "stdin", _UnreadableTTY())
+    monkeypatch.setattr(private_runtime.sys, "stdin", _UnreadableTTY())
     monkeypatch.setattr(
-        capture_conversation.termios,
+        private_runtime.termios,
         "tcgetattr",
         lambda _fd: (_ for _ in ()).throw(termios.error("not a tty")),
     )
 
-    with pytest.raises(capture_conversation.PrivateInputError):
-        capture_conversation._read_private_stdin()
+    with pytest.raises(private_runtime.PrivateInputError):
+        private_runtime.read_private_stdin()
 
 
 def test_private_capture_helper_refuses_to_replace_different_source(

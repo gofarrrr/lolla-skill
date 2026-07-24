@@ -49,10 +49,22 @@ REQUIRED_PACKAGE_FILES = (
     "HOW_IT_WORKS.md",
     "agents/openai.yaml",
     "docs/skill/STEPS.md",
+    "docs/skill/CODEX_LIVE_RUN_BOUNDARY.md",
     "references/knowledge-substrate-operations.md",
+    "engine/system_b/private_runtime.py",
     "scripts/skill/setup.sh",
+    "scripts/skill/load_run_state.sh",
+    "scripts/skill/capture_step.sh",
     "scripts/skill/run_extract_step.sh",
     "scripts/skill/run_pipeline_step.sh",
+    "scripts/skill/persist_private_step.sh",
+    "scripts/skill/persist_private_artifact.py",
+    "scripts/skill/prepare_consumer_step.sh",
+    "scripts/skill/prepare_consumer_packet.py",
+    "scripts/skill/persist_default_pressure_step.sh",
+    "scripts/skill/persist_default_off_pressure_check.py",
+    "scripts/skill/render_memo_step.sh",
+    "scripts/skill/finalize_and_archive.sh",
     "data/knowledge_graph.json",
     "data/relationship_graph.json",
     "data/model_sources/manifest.json",
@@ -127,11 +139,18 @@ def _skill_structure(root: Path) -> dict[str, Any]:
         raise SelfContainedSkillError("SKILL.md does not expose the substrate reference directly")
 
     steps_text = (root / "docs/skill/STEPS.md").read_text(encoding="utf-8")
+    contract_text = skill_text + "\n" + steps_text
     invoked = sorted(
         set(
             re.findall(
                 r"\$SKILL_DIR/([A-Za-z0-9_./-]+)",
-                skill_text + "\n" + steps_text,
+                contract_text,
+            )
+        )
+        | set(
+            re.findall(
+                r"(?<![A-Za-z0-9_./-])(scripts/skill/[A-Za-z0-9_.-]+)",
+                contract_text,
             )
         )
     )

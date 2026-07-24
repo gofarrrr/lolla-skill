@@ -18,7 +18,10 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from engine.system_b.v60_enrichment import finalize_v60_consideration  # noqa: E402
-from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
+from engine.system_b.run_state import (  # noqa: E402
+    assert_expected_run_state,
+    runtime_tmp_dir,
+)
 
 
 _RESULT_RE = re.compile(r"^lolla_(?P<run_id>.+)_result\.json$")
@@ -29,14 +32,14 @@ def _infer_result_path(run_id: str | None, result: str | None) -> Path:
         return Path(result)
     if not run_id:
         raise SystemExit("Either --result or --run-id is required")
-    return Path("/tmp") / f"lolla_{run_id}_result.json"
+    return runtime_tmp_dir() / f"lolla_{run_id}_result.json"
 
 
 def _infer_ledger_path(result_path: Path, run_id: str | None, ledger: str | None) -> Path | None:
     if ledger:
         return Path(ledger)
     if run_id:
-        return Path("/tmp") / f"lolla_{run_id}_v60_ledger.json"
+        return runtime_tmp_dir() / f"lolla_{run_id}_v60_ledger.json"
     match = _RESULT_RE.match(result_path.name)
     if not match:
         return None

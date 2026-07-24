@@ -12,6 +12,8 @@ def _env_for(run_id: str, tmp_path: Path) -> dict[str, str]:
             [
                 f'export SKILL_DIR="{Path.cwd()}"',
                 f'export LOLLA_RUN_ID="{run_id}"',
+                f'export LOLLA_EXPECTED_RUN_ID="{run_id}"',
+                'export LOLLA_TMP_DIR="/tmp"',
             ]
         )
         + "\n",

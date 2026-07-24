@@ -16,6 +16,7 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     run_pipeline_helper = _read("scripts/skill/run_pipeline_step.sh")
     audit_mode_validator = _read("scripts/skill/validate_audit_mode.py")
     capture_validator = _read("scripts/skill/validate_conversation_capture.py")
+    private_persist_helper = _read("scripts/skill/persist_private_artifact.py")
     pressure_helper = _read("scripts/skill/persist_default_off_pressure_check.py")
     memo_helper = _read("scripts/skill/render_memo_step.sh")
     finalizer_helper = _read("scripts/skill/finalize_and_archive.sh")
@@ -28,6 +29,7 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
             run_pipeline_helper,
             audit_mode_validator,
             capture_validator,
+            private_persist_helper,
             pressure_helper,
             memo_helper,
             finalizer_helper,
@@ -46,33 +48,37 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     assert "Pre-Step-6 private table receipt:" in contract
     assert "operator cache ref:" in contract
     assert "expected cache file:" in contract
-    assert "/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md" in contract
+    assert "pre_step6_private_table" in contract
     assert "pre_step6_private_table_ledger" in contract
-    assert '"schema_version": "pre_step6_private_table_ledger.v1"' in contract
+    assert "finalize_pre_step6_private_table_ledger" in contract
 
     assert "Post-Step-6 pressure-check sub-agents are rested by default" in contract
     assert "LOLLA_STEP7_PRESSURE_CHECK=on" in contract
     assert '"status": "not_run_default_off"' in contract
     assert '"reason": "post_step6_pressure_check_default_off"' in contract
-    assert "Default-off runs do not write" in contract
+    assert "Default-off runs do not create" in contract
     assert "only AFTER Step 6b finalization succeeds" in contract
 
-    assert "Copy the provided `source_id` values exactly" in contract
+    assert "requires exact item" in contract
+    assert "copies all immutable" in contract
     assert "--require-valid" in contract
     assert "finalize_pre_step6_private_table_ledger.py" in contract
-    assert '"source_id": "<copy exact source_id from the skeleton>"' in contract
+    assert '"source_id": "<copy exact source_id from the skeleton>"' not in contract
     assert '"source_id": "lane1_structural_challenge"' not in contract
     assert "Launch these BEFORE writing Step 6" not in contract
     assert "Before you begin writing your reconsideration, launch" not in contract
 
 
-def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
+def test_run_state_is_pinned_to_exact_run_handle_not_latest_symlink_docs() -> None:
     skill = _read("SKILL.md")
     steps = _read("docs/skill/STEPS.md")
     setup = _read("scripts/skill/setup.sh")
     helper_paths = [
         "scripts/skill/run_extract_step.sh",
         "scripts/skill/run_pipeline_step.sh",
+        "scripts/skill/persist_private_step.sh",
+        "scripts/skill/prepare_consumer_step.sh",
+        "scripts/skill/persist_default_pressure_step.sh",
         "scripts/skill/finalize_step6_ledgers.sh",
         "scripts/skill/render_memo_step.sh",
         "scripts/skill/finalize_and_archive.sh",
@@ -93,25 +99,43 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
     assert "LOLLA_EXPECTED_RUN_ID" in setup
     assert "LOLLA_ENV_STATE" in setup
     assert "LOLLA_OPERATOR_LOG" in setup
-    assert "/tmp/lolla_${LOLLA_RUN_ID}_operator.log" in setup
+    assert "$LOLLA_TMP_DIR/lolla_${LOLLA_RUN_ID}_operator.log" in setup
+    assert 'LOLLA_TMP_DIR="${LOLLA_TMP_DIR:-/tmp}"' in setup
     assert "export LOLLA_AUDIT_MODE" in setup
     assert "risk_mode=\"$LOLLA_AUDIT_MODE\"" in setup
-    assert 'ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh' in setup
+    assert (
+        'ln -sf "$LOLLA_ENV_STATE" "$LOLLA_TMP_DIR/lolla_latest_env.sh"'
+        in setup
+    )
     assert setup.count("umask 077") >= 2
     assert "record_run_event.py" in setup
 
     docs = "\n".join([skill, steps])
-    assert ". \"$LOLLA_ENV_STATE\"" in docs
+    assert "RUN_HANDLE:" in docs
+    assert "--run-id RUN_HANDLE" in docs
+    assert "Do not copy or source an environment" in skill
     assert "source /tmp/lolla_latest_env.sh" not in docs
     assert ". /tmp/lolla_latest_env.sh" not in docs
-    assert "discoverability fallback" in skill
+    assert "compatibility/discoverability artifact only" in skill
 
     for path, text in helpers.items():
-        assert "LOLLA_ENV_STATE" in text, path
-        assert "LOLLA_EXPECTED_RUN_ID" in text, path
-        assert "run state mismatch" in text, path
+        assert "load_run_state.sh" in text, path
+        assert "lolla_load_run_state" in text, path
 
-    assert "assert_expected_run_state" in _read("scripts/skill/persist_revised_answer.py")
+    for path in [
+        "scripts/skill/run_extract_step.sh",
+        "scripts/skill/run_pipeline_step.sh",
+        "scripts/skill/finalize_step6_ledgers.sh",
+        "scripts/skill/render_memo_step.sh",
+        "scripts/skill/finalize_and_archive.sh",
+    ]:
+        assert "LOLLA_EXPECTED_RUN_ID" in helpers[path], path
+        assert "run state mismatch" in helpers[path], path
+
+    private_persist = _read("scripts/skill/persist_private_artifact.py")
+    assert "assert_expected_run_state" in private_persist
+    assert "read_private_stdin" in private_persist
+    assert "GRAPH_MUTABLE_FIELDS" in private_persist
     assert "assert_expected_run_state" in _read(
         "scripts/skill/persist_default_off_pressure_check.py"
     )
@@ -124,7 +148,8 @@ def test_skill_requires_live_transcript_artifact_and_gate_before_archive() -> No
     contract = "\n".join([skill, steps])
 
     assert "/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt" in contract
-    assert "append every user-visible" in contract
+    assert "Persist every user-visible" in contract
+    assert "persist_private_step.sh --kind narration" in contract
     assert "finalize_live_output_hygiene.py" in contract
     assert "--require-live-output-clean" in contract
     assert "--trusted-transcript" in contract
@@ -266,27 +291,44 @@ def test_load_bearing_steps_use_helpers() -> None:
     steps = _read("docs/skill/STEPS.md")
     run_extract_helper = _read("scripts/skill/run_extract_step.sh")
     run_pipeline_helper = _read("scripts/skill/run_pipeline_step.sh")
+    capture_helper = _read("scripts/skill/capture_step.sh")
     capture_validator = _read("scripts/skill/validate_conversation_capture.py")
-    revised_helper = _read("scripts/skill/persist_revised_answer.py")
+    private_persist_helper = _read("scripts/skill/persist_private_artifact.py")
+    consumer_helper = _read("scripts/skill/prepare_consumer_packet.py")
     ledger_helper = _read("scripts/skill/finalize_step6_ledgers.sh")
     finalizer_helper = _read("scripts/skill/finalize_and_archive.sh")
     memo_helper = _read("scripts/skill/render_memo_step.sh")
     pressure_helper = _read("scripts/skill/persist_default_off_pressure_check.py")
 
-    assert 'python3 "$SKILL_DIR/scripts/skill/capture_conversation.py"' in steps
-    assert 'bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"' in steps
-    assert 'bash "$SKILL_DIR/scripts/skill/run_pipeline_step.sh"' in steps
-    assert 'python3 "$SKILL_DIR/scripts/skill/persist_revised_answer.py"' in steps
-    assert 'bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --pre-step6-only' in steps
-    assert 'bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --v60-only' in steps
-    assert 'python3 "$SKILL_DIR/scripts/skill/persist_default_off_pressure_check.py"' in steps
-    assert 'bash "$SKILL_DIR/scripts/skill/render_memo_step.sh"' in steps
-    assert 'bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"' in steps
-    assert "--receipt-file" in steps
-    assert "--skip-observatory" in steps
+    assert "bash scripts/skill/capture_step.sh --run-id RUN_HANDLE" in steps
+    assert "bash scripts/skill/run_extract_step.sh --run-id RUN_HANDLE" in steps
+    assert "bash scripts/skill/run_pipeline_step.sh --run-id RUN_HANDLE" in steps
+    assert "persist_private_step.sh" in steps
+    assert "prepare_consumer_step.sh" in steps
+    assert "--kind step6" in steps
+    assert "--kind receipt" in steps
+    assert (
+        'bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --pre-step6-only'
+        not in steps
+    )
+    assert (
+        'bash "$SKILL_DIR/scripts/skill/finalize_step6_ledgers.sh" --v60-only'
+        not in steps
+    )
+    assert "persist_default_pressure_step.sh --run-id RUN_HANDLE" in steps
+    assert "bash scripts/skill/render_memo_step.sh --run-id RUN_HANDLE" in steps
+    assert "bash scripts/skill/finalize_and_archive.sh --run-id RUN_HANDLE" in steps
+    assert "--receipt-file" not in steps
+    assert "--receipt-file" in finalizer_helper
+    assert "--skip-observatory" in skill
+    assert "--skip-observatory" in finalizer_helper
+    assert "--private-receipt-override" in finalizer_helper
+    assert "lolla_${LOLLA_RUN_ID}_final_receipt_override.txt" in finalizer_helper
     assert "invoke the helper" in skill
-    assert "Every new Bash tool call starts in a fresh shell" in skill
+    assert "Every new shell tool call may start without prior exports" in skill
 
+    assert "load_run_state.sh" in capture_helper
+    assert "capture_conversation.py" in capture_helper
     assert "run_extract.py" in run_extract_helper
     assert "finalize_extraction_attempt.py" in run_extract_helper
     assert "extraction_terminal.json" in run_extract_helper
@@ -296,9 +338,16 @@ def test_load_bearing_steps_use_helpers() -> None:
     assert "--pre-step6-portfolio step6_private" in run_pipeline_helper
     assert "LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT" in run_pipeline_helper
     assert 'cache.get("state") != "cache_hit"' in run_pipeline_helper
-    assert "revised_answer_written_at" in revised_helper
-    assert '"--file"' in revised_helper
-    assert "LOLLA_LIVE_TRANSCRIPT" in revised_helper
+    assert "revised_answer_written_at" in private_persist_helper
+    assert "read_private_stdin" in private_persist_helper
+    assert "atomic_private_write_json" in private_persist_helper
+    assert "memo_note_written_at" in private_persist_helper
+    assert "graph_decisions" in private_persist_helper
+    assert "finalize_constitutional_graph_survival_ledger" in private_persist_helper
+    assert "finalize_pre_step6_private_table_ledger" in private_persist_helper
+    assert "finalize_v60_consideration" in private_persist_helper
+    assert "reconsideration" in consumer_helper
+    assert "verification" in consumer_helper
     assert "finalize_v60_telemetry.py" in ledger_helper
     assert "finalize_pre_step6_private_table_ledger.py" in ledger_helper
     assert "gap_check_summary" in pressure_helper
@@ -328,7 +377,7 @@ def test_conversation_capture_is_a_private_runtime_operation_not_a_file_edit() -
     steps = _read("docs/skill/STEPS.md")
     contract = "\n".join([skill, steps])
 
-    assert "capture_conversation.py" in contract
+    assert "capture_step.sh" in contract
     assert "PRIVATE_INPUT_READY" in contract
     assert "wait for" in contract.lower()
     assert "standard input" in contract

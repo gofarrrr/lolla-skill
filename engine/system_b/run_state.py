@@ -1,8 +1,9 @@
-"""Run identity helpers for Lolla scratch artifacts.
+"""Run identity helpers for Lolla runtime artifacts.
 
-The skill uses many ``/tmp/lolla_<run_id>_<artifact>`` files. This module keeps
-run-id parsing and expected-run validation in one place so a stale convenience
-pointer cannot silently mix two runs.
+The ordinary skill defaults to ``/tmp/lolla_<run_id>_<artifact>`` files. Tests
+and controlled operators may set ``LOLLA_TMP_DIR``. This module keeps the
+runtime root, run-id parsing, and expected-run validation in one place so a
+stale convenience pointer cannot silently mix two runs.
 """
 from __future__ import annotations
 
@@ -38,6 +39,9 @@ _KNOWN_ARTIFACT_SUFFIXES = tuple(
             "pre_step6_private_table_ledger",
             "live_transcript",
             "operator",
+            "consumer_readback",
+            "consumer_reconsideration",
+            "consumer_verification",
             "user_usefulness_review",
             "outcome_review",
             "run_events",
@@ -65,6 +69,12 @@ def make_run_id(
 def is_valid_run_id(run_id: str) -> bool:
     """Return True iff ``run_id`` is safe to interpolate into scratch paths."""
     return bool(run_id) and bool(RUN_ID_PATTERN.fullmatch(run_id))
+
+
+def runtime_tmp_dir() -> Path:
+    """Return the declared runtime-artifact root (``/tmp`` by default)."""
+
+    return Path(os.getenv("LOLLA_TMP_DIR", "/tmp")).expanduser()
 
 
 def infer_run_id_from_lolla_path(raw_path: str | os.PathLike[str] | None) -> str:

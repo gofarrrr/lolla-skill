@@ -2,6 +2,7 @@
 set -euo pipefail
 
 RECEIPT_FILE=""
+PRIVATE_RECEIPT_OVERRIDE=0
 SKIP_OBSERVATORY=0
 REQUESTED_RUN_ID=""
 TRUSTED_TRANSCRIPT=""
@@ -17,6 +18,10 @@ while [ "$#" -gt 0 ]; do
       RECEIPT_FILE="${2:-}"
       shift 2
       ;;
+    --private-receipt-override)
+      PRIVATE_RECEIPT_OVERRIDE=1
+      shift
+      ;;
     --skip-observatory)
       SKIP_OBSERVATORY=1
       shift
@@ -30,7 +35,7 @@ while [ "$#" -gt 0 ]; do
       shift
       ;;
     *)
-      echo "FATAL: unknown argument to finalize_and_archive.sh: $1" >&2
+      echo "FATAL: unknown finalization argument." >&2
       exit 2
       ;;
   esac
@@ -40,11 +45,12 @@ append_receipt_to_transcript() {
   local receipt_file="$1"
   local transcript_path="$2"
   if [ ! -s "$receipt_file" ]; then
-    echo "FATAL: receipt file missing or empty at $receipt_file" >&2
+    echo "FATAL: receipt override is missing or empty." >&2
     exit 1
   fi
   touch "$transcript_path"
-  python3 - "$receipt_file" "$transcript_path" <<'PY'
+  if ! python3 - "$receipt_file" "$transcript_path" \
+    2>>"${LOLLA_OPERATOR_LOG:-/dev/null}" <<'PY'
 import sys
 from pathlib import Path
 
@@ -58,6 +64,10 @@ if receipt and receipt not in transcript:
             handle.write("\n\n")
         handle.write(receipt + "\n")
 PY
+  then
+    echo "FATAL: receipt persistence failed. Details are in private operator custody." >&2
+    return 1
+  fi
 }
 
 observatory_http_ok() {
@@ -83,7 +93,11 @@ sync_trusted_transcript_to_default() {
   if [ -z "${TRUSTED_TRANSCRIPT:-}" ] || [ "$TRANSCRIPT_PATH" = "$DEFAULT_TRANSCRIPT_PATH" ]; then
     return 0
   fi
-  cp "$TRANSCRIPT_PATH" "$DEFAULT_TRANSCRIPT_PATH"
+  if ! cp "$TRANSCRIPT_PATH" "$DEFAULT_TRANSCRIPT_PATH" \
+    2>>"${LOLLA_OPERATOR_LOG:-/dev/null}"; then
+    echo "FATAL: trusted transcript synchronization failed. Details are in private operator custody." >&2
+    return 1
+  fi
 }
 
 finalize_live_output_hygiene_current() {
@@ -98,20 +112,13 @@ finalize_live_output_hygiene_current() {
   if [ "$REQUIRE_LIVE_OUTPUT_CLEAN" -eq 1 ]; then
     args+=(--require-live-output-clean)
   fi
-  "${args[@]}"
+  lolla_run_logged "finalize live-output hygiene" "${args[@]}"
 }
 
-if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
-  # shellcheck source=/dev/null
-  . "$LOLLA_ENV_STATE"
-elif [ -f /tmp/lolla_latest_env.sh ]; then
-  # shellcheck source=/dev/null
-  . /tmp/lolla_latest_env.sh
-fi
-
-if [ -n "$REQUESTED_RUN_ID" ]; then
-  export LOLLA_RUN_ID="$REQUESTED_RUN_ID"
-fi
+_LOLLA_HELPER_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+# shellcheck source=load_run_state.sh
+. "$_LOLLA_HELPER_DIR/load_run_state.sh"
+lolla_load_run_state "$REQUESTED_RUN_ID"
 if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
   echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}" >&2
   exit 1
@@ -140,45 +147,81 @@ record_run_event_quiet() {
     --quiet || true
 }
 
-RESULT_PATH="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
-DEFAULT_TRANSCRIPT_PATH="${LOLLA_LIVE_TRANSCRIPT:-/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt}"
+RUNTIME_TMP_DIR="${LOLLA_TMP_DIR:-/tmp}"
+RESULT_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_result.json"
+DEFAULT_TRANSCRIPT_PATH="${LOLLA_LIVE_TRANSCRIPT:-$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_live_transcript.txt}"
+if [ "$PRIVATE_RECEIPT_OVERRIDE" -eq 1 ]; then
+  if [ -n "$RECEIPT_FILE" ]; then
+    echo "FATAL: choose either --receipt-file or --private-receipt-override." >&2
+    exit 2
+  fi
+  RECEIPT_FILE="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_final_receipt_override.txt"
+fi
 TRANSCRIPT_PATH="$DEFAULT_TRANSCRIPT_PATH"
 if [ -n "$TRUSTED_TRANSCRIPT" ]; then
   if [ ! -s "$TRUSTED_TRANSCRIPT" ]; then
-    echo "FATAL: trusted transcript missing or empty at $TRUSTED_TRANSCRIPT" >&2
+    echo "FATAL: trusted transcript is missing or empty." >&2
     exit 1
   fi
   TRANSCRIPT_PATH="$TRUSTED_TRANSCRIPT"
 fi
 if [ ! -s "$RESULT_PATH" ]; then
-  echo "FATAL: result JSON missing at $RESULT_PATH. Cannot finalize." >&2
+  echo "FATAL: the exact run has no result artifact. Cannot finalize." >&2
   exit 1
 fi
 
 if [ -n "$RECEIPT_FILE" ]; then
   append_receipt_to_transcript "$RECEIPT_FILE" "$TRANSCRIPT_PATH"
   sync_trusted_transcript_to_default
+  record_run_event_quiet final_receipt_override_used \
+    --detail "private_transport=$PRIVATE_RECEIPT_OVERRIDE"
 fi
 
-python3 "$SKILL_DIR/scripts/finalize_constitutional_graph_survival_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
-python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
-python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
+if ! lolla_run_logged "finalize constitutional graph-survival ledger" \
+  python3 "$SKILL_DIR/scripts/finalize_constitutional_graph_survival_ledger.py" \
+    --run-id "${LOLLA_RUN_ID}" --quiet --require-valid; then
+  echo "FATAL: graph-disposition validation failed. Details are in private operator custody." >&2
+  exit 1
+fi
+if ! lolla_run_logged "finalize private-table ledger" \
+  python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" \
+    --run-id "${LOLLA_RUN_ID}" --quiet --require-valid; then
+  echo "FATAL: private-table validation failed. Details are in private operator custody." >&2
+  exit 1
+fi
+if ! lolla_run_logged "finalize V60 ledger" \
+  python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" \
+    --run-id "${LOLLA_RUN_ID}" --quiet --require-valid; then
+  echo "FATAL: V60 validation failed. Details are in private operator custody." >&2
+  exit 1
+fi
 sync_trusted_transcript_to_default
-finalize_live_output_hygiene_current
+if ! finalize_live_output_hygiene_current; then
+  echo "FATAL: live-output validation failed. Details are in private operator custody." >&2
+  exit 1
+fi
 
 OBSERVATORY_URL=""
 OBSERVATORY_STATUS="skipped"
 if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
-  OBS_LOG="/tmp/lolla_${LOLLA_RUN_ID}_observatory.log"
-  OBS_PID_FILE="/tmp/lolla_${LOLLA_RUN_ID}_observatory.pid"
+  OBS_LOG="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_observatory.log"
+  OBS_PID_FILE="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_observatory.pid"
   OBSERVATORY_STATUS="unavailable"
   record_run_event_quiet observatory_launch_attempted --detail "log=$OBS_LOG"
   : > "$OBS_LOG"
+  set +e
   LAUNCH_OUTPUT="$(python3 "$SKILL_DIR/scripts/skill/launch_observatory.py" \
     --result "$RESULT_PATH" \
     --log "$OBS_LOG" \
-    --pid-file "$OBS_PID_FILE")"
+    --pid-file "$OBS_PID_FILE" \
+    2>>"$LOLLA_OPERATOR_LOG")"
+  LAUNCH_STATUS="$?"
+  set -e
   lolla_operator_block "launch_observatory.py" "$LAUNCH_OUTPUT"
+  if [ "$LAUNCH_STATUS" -ne 0 ]; then
+    echo "FATAL: Observatory launch failed. Details are in private operator custody." >&2
+    exit 1
+  fi
   OBSERVATORY_STATUS="$(printf '%s\n' "$LAUNCH_OUTPUT" | awk -F= '/^OBSERVATORY_STATUS=/ {print $2; exit}')"
   OBSERVATORY_URL="$(printf '%s\n' "$LAUNCH_OUTPUT" | awk -F= '/^OBSERVATORY_URL=/ {print $2; exit}')"
   OBSERVATORY_PID="$(printf '%s\n' "$LAUNCH_OUTPUT" | awk -F= '/^OBSERVATORY_PID=/ {print $2; exit}')"
@@ -199,8 +242,16 @@ fi
 export LOLLA_OBSERVATORY_URL="$OBSERVATORY_URL"
 export LOLLA_OBSERVATORY_STATUS="$OBSERVATORY_STATUS"
 
-ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
+set +e
+ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" \
+  --run-id "${LOLLA_RUN_ID}" 2>>"$LOLLA_OPERATOR_LOG")"
+ARCHIVE_STATUS="$?"
+set -e
 lolla_operator_block "archive_run initial" "$ARCHIVE_OUTPUT"
+if [ "$ARCHIVE_STATUS" -ne 0 ]; then
+  echo "FATAL: archive finalization failed. Details are in private operator custody." >&2
+  exit 1
+fi
 ARCHIVE_PATH="$(printf '%s\n' "$ARCHIVE_OUTPUT" | awk -F'path:[[:space:]]*' '/path:/ {print $2; exit}')"
 if [ -n "$ARCHIVE_PATH" ]; then
   lolla_operator_note "ARCHIVE_PATH: $ARCHIVE_PATH"
@@ -227,21 +278,36 @@ lolla_operator_block "final cost and health" "$COST_HEALTH_OUTPUT"
 
 USER_RECEIPT=""
 if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
-  AUTO_RECEIPT_FILE="/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt"
-  python3 "$SKILL_DIR/scripts/skill/render_final_receipt.py" \
-    --result "$RESULT_PATH" \
-    --observatory-url "${OBSERVATORY_URL:-}" \
-    --observatory-status "$OBSERVATORY_STATUS" \
-    --archive-path "$ARCHIVE_PATH" \
-    --output "$AUTO_RECEIPT_FILE"
+  AUTO_RECEIPT_FILE="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_final_receipt.txt"
+  if ! lolla_run_logged "render final receipt" \
+    python3 "$SKILL_DIR/scripts/skill/render_final_receipt.py" \
+      --result "$RESULT_PATH" \
+      --observatory-url "${OBSERVATORY_URL:-}" \
+      --observatory-status "$OBSERVATORY_STATUS" \
+      --archive-path "$ARCHIVE_PATH" \
+      --output "$AUTO_RECEIPT_FILE"; then
+    echo "FATAL: final receipt rendering failed. Details are in private operator custody." >&2
+    exit 1
+  fi
   append_receipt_to_transcript "$AUTO_RECEIPT_FILE" "$TRANSCRIPT_PATH"
   sync_trusted_transcript_to_default
   record_run_event_quiet final_receipt_written \
     --detail "receipt_file=$AUTO_RECEIPT_FILE" \
     --detail "observatory_status=$OBSERVATORY_STATUS"
-  finalize_live_output_hygiene_current
-  ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
+  if ! finalize_live_output_hygiene_current; then
+    echo "FATAL: final live-output validation failed. Details are in private operator custody." >&2
+    exit 1
+  fi
+  set +e
+  ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" \
+    --run-id "${LOLLA_RUN_ID}" 2>>"$LOLLA_OPERATOR_LOG")"
+  ARCHIVE_STATUS="$?"
+  set -e
   lolla_operator_block "archive_run final" "$ARCHIVE_OUTPUT"
+  if [ "$ARCHIVE_STATUS" -ne 0 ]; then
+    echo "FATAL: final archive synchronization failed. Details are in private operator custody." >&2
+    exit 1
+  fi
   ARCHIVE_PATH="$(printf '%s\n' "$ARCHIVE_OUTPUT" | awk -F'path:[[:space:]]*' '/path:/ {print $2; exit}')"
   if [ -n "$ARCHIVE_PATH" ]; then
     lolla_operator_note "ARCHIVE_PATH: $ARCHIVE_PATH"
@@ -250,10 +316,18 @@ if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
 fi
 
 if [ -n "${ARCHIVE_PATH:-}" ] && [ -s "${LOLLA_OPERATOR_LOG:-}" ]; then
-  python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}" --quiet || true
+  if ! lolla_run_logged "archive final operator custody" \
+    python3 "$SKILL_DIR/scripts/archive_run.py" \
+      --run-id "${LOLLA_RUN_ID}" --quiet; then
+    echo "FATAL: final operator-custody archive sync failed. Details are in private operator custody." >&2
+    exit 1
+  fi
 fi
 
-echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
+if [ -n "$RECEIPT_FILE" ] && [ -s "$RECEIPT_FILE" ]; then
+  USER_RECEIPT="$(cat "$RECEIPT_FILE")"
+fi
+
 if [ -n "$USER_RECEIPT" ]; then
   echo "USER_RECEIPT_BEGIN"
   printf '%s\n' "$USER_RECEIPT"

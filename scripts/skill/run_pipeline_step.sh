@@ -1,24 +1,87 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
-  # shellcheck source=/dev/null
-  . "$LOLLA_ENV_STATE"
-elif [ -f /tmp/lolla_latest_env.sh ]; then
-  # shellcheck source=/dev/null
-  . /tmp/lolla_latest_env.sh
-fi
+REQUESTED_RUN_ID=""
+REQUESTED_EXTRACTION=""
+REQUESTED_CONVERSATION=""
+REQUESTED_OUTPUT=""
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --help|-h)
+      cat <<'EOF'
+Usage: bash scripts/skill/run_pipeline_step.sh
+
+Runs Step 3 using the current Lolla environment. Extra file/path arguments are
+not needed; the helper derives paths from the run-specific environment state.
+EOF
+      exit 0
+      ;;
+    --run-id)
+      REQUESTED_RUN_ID="${2:-}"
+      shift 2
+      ;;
+    --extraction-file)
+      REQUESTED_EXTRACTION="${2:-}"
+      shift 2
+      ;;
+    --conversation-file)
+      REQUESTED_CONVERSATION="${2:-}"
+      shift 2
+      ;;
+    --output-file)
+      REQUESTED_OUTPUT="${2:-}"
+      shift 2
+      ;;
+    --skip-revision)
+      shift
+      ;;
+    *)
+      case "$1" in
+        */lolla_*_extraction.json)
+          if [ -n "$REQUESTED_EXTRACTION" ]; then
+            echo "FATAL: run_pipeline_step.sh received multiple extraction paths." >&2
+            exit 2
+          fi
+          REQUESTED_EXTRACTION="$1"
+          shift
+          ;;
+        */lolla_*_conversation.txt)
+          if [ -n "$REQUESTED_CONVERSATION" ]; then
+            echo "FATAL: run_pipeline_step.sh received multiple conversation paths." >&2
+            exit 2
+          fi
+          REQUESTED_CONVERSATION="$1"
+          shift
+          ;;
+        */lolla_*_result.json)
+          if [ -n "$REQUESTED_OUTPUT" ]; then
+            echo "FATAL: run_pipeline_step.sh received multiple result paths." >&2
+            exit 2
+          fi
+          REQUESTED_OUTPUT="$1"
+          shift
+          ;;
+        *)
+          echo "FATAL: unknown argument to run_pipeline_step.sh." >&2
+          exit 2
+          ;;
+      esac
+      ;;
+  esac
+done
+
+_LOLLA_HELPER_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+# shellcheck source=load_run_state.sh
+. "$_LOLLA_HELPER_DIR/load_run_state.sh"
+lolla_load_run_state "$REQUESTED_RUN_ID"
 
 if [ -z "${SKILL_DIR:-}" ] || [ ! -f "$SKILL_DIR/scripts/run_pipeline.py" ]; then
-  echo "FATAL: SKILL_DIR is not set or run_pipeline.py is missing. Re-run /lolla — setup must initialize before Step 3." >&2
-  exit 1
-fi
-if [ -z "${LOLLA_RUN_ID:-}" ]; then
-  echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — setup must initialize before Step 3." >&2
+  echo "FATAL: Lolla runtime is incomplete. Re-run /lolla setup before Step 3." >&2
   exit 1
 fi
 if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
-  echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}" >&2
+  echo "FATAL: exact Lolla run state mismatch." >&2
   exit 1
 fi
 
@@ -41,72 +104,37 @@ record_run_event_quiet() {
     --quiet || true
 }
 
-EXPECTED_EXTRACTION="/tmp/lolla_${LOLLA_RUN_ID}_extraction.json"
-EXPECTED_CONVERSATION="/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt"
-EXPECTED_RESULT="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
+RUNTIME_TMP_DIR="${LOLLA_TMP_DIR:-/tmp}"
+EXPECTED_EXTRACTION="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_extraction.json"
+EXPECTED_CONVERSATION="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_conversation.txt"
+EXPECTED_RESULT="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_result.json"
 
-while [ "$#" -gt 0 ]; do
-  case "$1" in
-    --help|-h)
-      cat <<'EOF'
-Usage: bash scripts/skill/run_pipeline_step.sh
+if [ -n "$REQUESTED_EXTRACTION" ] && [ "$REQUESTED_EXTRACTION" != "$EXPECTED_EXTRACTION" ]; then
+  echo "FATAL: unexpected extraction artifact for the exact run." >&2
+  exit 2
+fi
+if [ -n "$REQUESTED_CONVERSATION" ] && [ "$REQUESTED_CONVERSATION" != "$EXPECTED_CONVERSATION" ]; then
+  echo "FATAL: unexpected conversation artifact for the exact run." >&2
+  exit 2
+fi
+if [ -n "$REQUESTED_OUTPUT" ] && [ "$REQUESTED_OUTPUT" != "$EXPECTED_RESULT" ]; then
+  echo "FATAL: unexpected result artifact for the exact run." >&2
+  exit 2
+fi
 
-Runs Step 3 using the current Lolla environment. Extra file/path arguments are
-not needed; the helper derives paths from the run-specific environment state.
-EOF
-      exit 0
-      ;;
-    --extraction-file)
-      if [ "${2:-}" != "$EXPECTED_EXTRACTION" ]; then
-        echo "FATAL: run_pipeline_step.sh received unexpected --extraction-file. Use the current run path: $EXPECTED_EXTRACTION" >&2
-        exit 2
-      fi
-      shift 2
-      ;;
-    --conversation-file)
-      if [ "${2:-}" != "$EXPECTED_CONVERSATION" ]; then
-        echo "FATAL: run_pipeline_step.sh received unexpected --conversation-file. Use the current run path: $EXPECTED_CONVERSATION" >&2
-        exit 2
-      fi
-      shift 2
-      ;;
-    --output-file)
-      if [ "${2:-}" != "$EXPECTED_RESULT" ]; then
-        echo "FATAL: run_pipeline_step.sh received unexpected --output-file. Use the current run path: $EXPECTED_RESULT" >&2
-        exit 2
-      fi
-      shift 2
-      ;;
-    --skip-revision)
-      shift
-      ;;
-    *)
-      case "$1" in
-        "$EXPECTED_EXTRACTION"|"$EXPECTED_CONVERSATION"|"$EXPECTED_RESULT")
-          shift
-          ;;
-        *)
-          echo "FATAL: unknown argument to run_pipeline_step.sh: $1" >&2
-          exit 2
-          ;;
-      esac
-      ;;
-  esac
-done
-
-if [ ! -s "/tmp/lolla_${LOLLA_RUN_ID}_extraction.json" ]; then
-  echo "FATAL: extraction JSON missing or empty at /tmp/lolla_${LOLLA_RUN_ID}_extraction.json. Step 2 failed." >&2
+if [ ! -s "$EXPECTED_EXTRACTION" ]; then
+  echo "FATAL: extraction JSON missing or empty for the exact run. Step 2 failed." >&2
   exit 1
 fi
-if [ ! -s "/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt" ]; then
-  echo "FATAL: conversation file missing or empty at /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt. Step 1 failed." >&2
+if [ ! -s "$EXPECTED_CONVERSATION" ]; then
+  echo "FATAL: conversation source is missing or empty for the exact run. Step 1 failed." >&2
   exit 1
 fi
 
 if ! lolla_run_logged "Step 3 validate_conversation_capture.py" \
   python3 "$SKILL_DIR/scripts/skill/validate_conversation_capture.py" \
     --conversation-file "$EXPECTED_CONVERSATION"; then
-  echo "FATAL: conversation capture is not parseable for Lolla. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: conversation capture is not parseable for Lolla. Details are in private operator custody." >&2
   exit 2
 fi
 
@@ -127,7 +155,7 @@ if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF:-}" ]; then
 fi
 
 if ! lolla_run_logged "Step 3 run_pipeline.py" "${args[@]}"; then
-  echo "FATAL: pipeline command failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: pipeline command failed. Details are in private operator custody." >&2
   exit 1
 fi
 
@@ -137,7 +165,8 @@ import os
 from pathlib import Path
 
 run_id = os.environ.get("LOLLA_RUN_ID", "")
-result_path = Path(f"/tmp/lolla_{run_id}_result.json")
+tmp_dir = Path(os.environ.get("LOLLA_TMP_DIR", "/tmp")).expanduser()
+result_path = tmp_dir / f"lolla_{run_id}_result.json"
 if not run_id or not result_path.exists():
     raise SystemExit("FATAL: cannot render pre-Step-6 receipt; result.json is missing.")
 
@@ -182,7 +211,7 @@ if require_hit and cache.get("state") != "cache_hit":
     raise SystemExit("FATAL: required pre-Step-6 cache hit, but cached cards were not loaded.")
 PY
 then
-  echo "FATAL: pre-Step-6 receipt validation failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: pre-Step-6 validation failed. Details are in private operator custody." >&2
   exit 1
 fi
 
@@ -192,7 +221,8 @@ import os
 from pathlib import Path
 
 run_id = os.environ.get("LOLLA_RUN_ID", "")
-path = Path(f"/tmp/lolla_{run_id}_result.json")
+tmp_dir = Path(os.environ.get("LOLLA_TMP_DIR", "/tmp")).expanduser()
+path = tmp_dir / f"lolla_{run_id}_result.json"
 try:
     payload = json.loads(path.read_text(encoding="utf-8"))
 except Exception:
@@ -211,7 +241,8 @@ import os
 from pathlib import Path
 
 run_id = os.environ.get("LOLLA_RUN_ID", "")
-result_path = Path(f"/tmp/lolla_{run_id}_result.json")
+tmp_dir = Path(os.environ.get("LOLLA_TMP_DIR", "/tmp")).expanduser()
+result_path = tmp_dir / f"lolla_{run_id}_result.json"
 result = json.loads(result_path.read_text(encoding="utf-8"))
 table = result.get("pre_step6_private_table") or {}
 source_items = table.get("source_items") or []
@@ -232,4 +263,3 @@ print(
     f"cache_state={cache.get('state', 'not_checked')}"
 )
 PY
-echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"

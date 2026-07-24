@@ -15,7 +15,14 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from engine.system_b.run_events import append_run_event  # noqa: E402
-from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
+from engine.system_b.private_runtime import (  # noqa: E402
+    atomic_private_write_json,
+    atomic_private_write_text,
+)
+from engine.system_b.run_state import (  # noqa: E402
+    assert_expected_run_state,
+    runtime_tmp_dir,
+)
 
 
 def _run_id_from_args(value: str | None) -> str:
@@ -25,7 +32,8 @@ def _run_id_from_args(value: str | None) -> str:
     return run_id
 
 
-def persist_default_off(run_id: str, *, tmp_dir: Path = Path("/tmp")) -> Path:
+def persist_default_off(run_id: str, *, tmp_dir: Path | None = None) -> Path:
+    tmp_dir = tmp_dir or runtime_tmp_dir()
     result_path = tmp_dir / f"lolla_{run_id}_result.json"
     assert_expected_run_state(
         actual_run_id=run_id,
@@ -33,7 +41,9 @@ def persist_default_off(run_id: str, *, tmp_dir: Path = Path("/tmp")) -> Path:
         phase="step8b_pressure_check_state",
     )
     if not result_path.exists():
-        raise SystemExit(f"FATAL: result JSON missing at {result_path}. Step 3 did not complete.")
+        raise SystemExit(
+            "FATAL: the exact run has no result artifact. Step 3 did not complete."
+        )
 
     summary = "No additional pressure check was run in the default flow."
     gap_check = {
@@ -44,10 +54,13 @@ def persist_default_off(run_id: str, *, tmp_dir: Path = Path("/tmp")) -> Path:
     }
     written_at = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    (tmp_dir / f"lolla_{run_id}_gapcheck.txt").write_text(summary + "\n", encoding="utf-8")
-    (tmp_dir / f"lolla_{run_id}_gapcheck_lanes.json").write_text(
-        json.dumps(gap_check, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
+    atomic_private_write_text(
+        tmp_dir / f"lolla_{run_id}_gapcheck.txt",
+        summary + "\n",
+    )
+    atomic_private_write_json(
+        tmp_dir / f"lolla_{run_id}_gapcheck_lanes.json",
+        gap_check,
     )
 
     payload = json.loads(result_path.read_text(encoding="utf-8"))
@@ -63,7 +76,7 @@ def persist_default_off(run_id: str, *, tmp_dir: Path = Path("/tmp")) -> Path:
         "sub_agent_usage": [],
         "written_at": written_at,
     }
-    result_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    atomic_private_write_json(result_path, payload)
     try:
         append_run_event(
             run_id=run_id,
@@ -80,8 +93,8 @@ def main() -> int:
     parser.add_argument("--run-id", default=None)
     args = parser.parse_args()
 
-    result_path = persist_default_off(_run_id_from_args(args.run_id))
-    print(f"Default-off pressure-check state persisted to {result_path}")
+    persist_default_off(_run_id_from_args(args.run_id))
+    print("PRESSURE_CHECK_STATUS: default_off ready")
     return 0
 
 

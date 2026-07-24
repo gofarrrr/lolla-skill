@@ -114,12 +114,18 @@ def build_reasoning_trace(
         "participants": _participants(extraction=extraction, result=result),
         "privacy": {
             "mode": "local_only",
+            "mode_scope": "archive_storage_only",
+            "provider_egress_covered_by_mode": False,
+            "interface_visibility_covered_by_mode": False,
             "raw_transcript_saved": (run_dir / "conversation.txt").exists(),
             "summary_saved": bool(extraction),
             "retention_days": None,
             "raw_text_duplicated_in_trace": False,
             "selected_commitment_snippets_saved": bool(candidate_commitments),
             "external_egress_by_trace_builder": False,
+            "non_claim": (
+                "local_only_describes_archive_storage_not_the_provider_or_host_ui"
+            ),
         },
         "case": {
             "case_id": case_id,
@@ -171,6 +177,12 @@ def build_reasoning_trace(
         "outcome_reviews": outcome_reviews,
         "model_calls": model_calls,
         "tool_calls": [],
+        "tool_call_coverage": {
+            "status": "not_observed",
+            "scope": "repository_run_events_only",
+            "complete_host_tool_stream_captured": False,
+            "non_claim": "empty_tool_calls_does_not_prove_no_host_tool_calls",
+        },
     }
     return trace
 
@@ -1040,6 +1052,13 @@ def _surface_divergence(*, run_dir: Path, result: Mapping[str, Any]) -> dict[str
     return {
         "schema_version": "lolla.surface_divergence.v0.1",
         "status": status,
+        "comparison_scope": (
+            "persisted_revised_artifact_vs_curated_live_transcript_artifact"
+        ),
+        "complete_visible_surface_compared": False,
+        "non_claim": (
+            "matched_does_not_prove_the_complete_host_visible_surface_matched"
+        ),
         "revised_artifact_present": revised_present,
         "live_transcript_present": live_present,
         "result_revised_answer_present": result_present,
