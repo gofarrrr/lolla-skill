@@ -23,7 +23,11 @@ def build_final_receipt(
     overall = str(run_health.get("overall") or "unknown")
     memo_path = result_path.with_name(result_path.name.replace("_result.json", "_memo.md"))
 
-    prefix = _run_health_prefix(overall=overall, issues=set(run_health.get("issues") or []))
+    prefix = _run_health_prefix(
+        overall=overall,
+        issues=set(run_health.get("issues") or []),
+        run_health=run_health,
+    )
     observatory_text = _observatory_text(
         observatory_url=observatory_url,
         observatory_status=observatory_status,
@@ -36,7 +40,12 @@ def build_final_receipt(
     )
 
 
-def _run_health_prefix(*, overall: str, issues: set[str]) -> str:
+def _run_health_prefix(
+    *,
+    overall: str,
+    issues: set[str],
+    run_health: Mapping[str, Any],
+) -> str:
     if overall in {"healthy", "ok"}:
         return ""
     if "quote_fabrication" in issues:
@@ -48,6 +57,31 @@ def _run_health_prefix(*, overall: str, issues: set[str]) -> str:
         return (
             "Run health is partial: the model provider returned reasoning details "
             "despite reasoning being disabled; product artifacts are present. "
+        )
+    if "provider_call_terminal_loss" in issues:
+        count = int(run_health.get("provider_failed_call_count") or 0)
+        stages = [
+            str(value).strip()
+            for value in (run_health.get("provider_failed_call_stages") or [])
+            if str(value).strip()
+        ]
+        tendency_ids = [
+            str(value).strip()
+            for value in (run_health.get("provider_failed_tendency_ids") or [])
+            if str(value).strip()
+        ]
+        call_text = f"{count} provider-backed reasoning call"
+        if count != 1:
+            call_text += "s"
+        details: list[str] = []
+        if stages:
+            details.append("stage " + ", ".join(stages))
+        if tendency_ids:
+            details.append("check " + ", ".join(tendency_ids))
+        detail_text = f" ({'; '.join(details)})" if details else ""
+        return (
+            f"Run health is partial: {call_text} ended without a usable result"
+            f"{detail_text} and was not retried; other product artifacts are present. "
         )
     if "pipeline_warnings" in issues:
         return (

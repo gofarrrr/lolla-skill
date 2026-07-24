@@ -4,7 +4,10 @@ import json
 import os
 import subprocess
 import sys
+import termios
 from pathlib import Path
+
+import pytest
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -54,6 +57,45 @@ def test_private_capture_helper_writes_valid_runtime_artifact_without_echoing_so
     assert [event["event_type"] for event in events["events"]] == [
         "conversation_captured"
     ]
+
+
+def test_private_capture_disables_terminal_echo_while_reading(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    sys.path.insert(0, str(REPO_ROOT / "scripts" / "skill"))
+    import capture_conversation
+
+    original = [0, 0, 0, termios.ECHO | 0x20, 0, 0, []]
+    transitions: list[tuple[int, int, list]] = []
+
+    class _FakeTTY:
+        def fileno(self) -> int:
+            return 91
+
+        def isatty(self) -> bool:
+            return True
+
+        def read(self) -> str:
+            assert transitions
+            assert transitions[-1][2][3] & termios.ECHO == 0
+            return _conversation()
+
+    monkeypatch.setattr(capture_conversation.sys, "stdin", _FakeTTY())
+    monkeypatch.setattr(
+        capture_conversation.termios,
+        "tcgetattr",
+        lambda _fd: list(original),
+    )
+    monkeypatch.setattr(
+        capture_conversation.termios,
+        "tcsetattr",
+        lambda fd, when, attrs: transitions.append((fd, when, list(attrs))),
+    )
+
+    assert capture_conversation._read_private_stdin() == _conversation()
+    assert transitions[0][0] == 91
+    assert transitions[0][2][3] & termios.ECHO == 0
+    assert transitions[-1] == (91, termios.TCSANOW, original)
 
 
 def test_private_capture_helper_refuses_to_replace_different_source(
@@ -196,6 +238,14 @@ def test_failed_extraction_is_sealed_archived_and_receipted_once(
     assert (run_archive / "failure_archive_manifest.json").exists()
     assert not (run_archive / "result.json").exists()
     assert not (run_archive / "memo.md").exists()
+    assert archive.stat().st_mode & 0o777 == 0o700
+    assert (archive / "_failed-extractions").stat().st_mode & 0o777 == 0o700
+    assert run_archive.stat().st_mode & 0o777 == 0o700
+    assert all(
+        path.stat().st_mode & 0o777 == 0o600
+        for path in run_archive.iterdir()
+        if path.is_file()
+    )
     receipt = (
         "Lolla stopped before the graph because the model provider interrupted "
         "the conversation read. No automatic retry was made. The source and "

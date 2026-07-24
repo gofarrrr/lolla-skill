@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import stat
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -30,6 +31,7 @@ from run_extract import (  # noqa: E402
     _validate_conversation_capture,
     _validate_canonical_key,
     _prepare_output_parent,
+    _write_conversation_processing_view,
 )
 
 
@@ -58,6 +60,29 @@ def _write_long_conversation(path: Path) -> str:
     text = "".join(parts)
     path.write_text(text, encoding="utf-8")
     return text
+
+
+def test_conversation_processing_view_is_owner_only(tmp_path: Path) -> None:
+    conversation_path = tmp_path / "lolla_private_conversation.txt"
+    source_text = (
+        "CONVERSATION: 2 turns, 1 user messages, 1 assistant responses\n\n"
+        "[Turn 1] USER:\nPrivate decision context.\n\n"
+        "[Turn 1] ASSISTANT:\nPrivate strategic response.\n"
+    )
+    conversation_path.write_text(source_text, encoding="utf-8")
+
+    metadata = _write_conversation_processing_view(
+        conversation_path=conversation_path,
+        authoritative_text=source_text,
+        processing_text=source_text,
+        truncation_info={"truncation_applied": False},
+    )
+
+    view_path = tmp_path / "lolla_private_conversation_processing_view.txt"
+    metadata_path = tmp_path / "lolla_private_conversation_processing_view.json"
+    assert metadata["status"] == "full"
+    assert stat.S_IMODE(view_path.stat().st_mode) == 0o600
+    assert stat.S_IMODE(metadata_path.stat().st_mode) == 0o600
 
 
 class _FakeClient:

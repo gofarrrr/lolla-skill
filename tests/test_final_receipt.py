@@ -61,3 +61,30 @@ def test_final_receipt_names_vendor_boundary_partial_health_directly() -> None:
     assert "Run health is partial" in receipt
     assert "reasoning details despite reasoning being disabled" in receipt
     assert "inspect the Observatory" not in receipt
+
+
+def test_final_receipt_names_terminal_provider_call_loss_directly() -> None:
+    receipt = build_final_receipt(
+        result_payload={
+            "run_health": {
+                "overall": "partial",
+                "issues": ["provider_call_terminal_loss"],
+                "provider_failed_call_count": 1,
+                "provider_failed_call_stages": ["pass2"],
+                "provider_failed_tendency_ids": [
+                    "availability-misweighing-tendency"
+                ],
+            },
+            "usage_summary": {"estimated_total_cost_usd": 0.055599},
+        },
+        result_path=Path("/tmp/lolla_run_result.json"),
+        observatory_url="",
+        observatory_status="unavailable",
+        archive_path="/tmp/archive/run",
+    )
+
+    assert "Run health is partial" in receipt
+    assert "1 provider-backed reasoning call ended without a usable result" in receipt
+    assert "pass2" in receipt
+    assert "availability-misweighing-tendency" in receipt
+    assert "was not retried" in receipt

@@ -143,8 +143,7 @@ Before running Lolla on sensitive material, understand the data boundary:
   to OpenRouter under the operator's credentials;
 - optional embedding work sends its declared inputs directly to OpenAI and is
   not silently rerouted through OpenRouter;
-- local archives may retain conversation prose, provider outputs, and custody
-  metadata under `~/.local/share/lolla/runs/`;
+- local archives may retain conversation prose, provider outputs, and custody metadata under `~/.local/share/lolla/runs/`; runtime setup and archive finalization keep directories `0700` and files `0600`;
 - the provider-free readiness and public-handoff validators send nothing to a
   model or embedding provider;
 - provider retention, routing, price, and privacy terms can change, so review
@@ -191,7 +190,7 @@ the operator configures another archive directory. Typical outputs include:
 `evaluation.json` is a deterministic artifact/readiness receipt, not an answer
 score. `reasoning_trace.json` is custody metadata, not a hidden chain-of-thought
 claim. Missing, completed-zero, partial, failed, and complete states remain
-different.
+different. An attempted provider-backed call without usable output makes the run partial; the final receipt names the affected stage/check and preserves the no-retry boundary.
 
 For long runs, `conversation.txt` remains authoritative. A partial initial
 extraction view is reported as degraded source coverage rather than being

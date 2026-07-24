@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-24 (bundled runtime import repair)
+Status date: 2026-07-24 (Marcus live-run trust repair)
 Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
@@ -22,7 +22,7 @@ usefulness, market value, and production readiness remain unknown.
 
 | Question | Current answer |
 |---|---|
-| What is live? | Private runtime conversation capture; terminal extraction custody; the four-lane pressure skill, repository-local graph snapshot and one-hop planner, reconsideration, disposition, archive, and read-only inspection. |
+| What is live? | Private runtime conversation capture with interactive terminal no-echo handling; terminal extraction custody; the four-lane pressure skill, repository-local graph snapshot and one-hop planner, reconsideration, disposition, owner-only archive, and read-only inspection. Attempted provider-backed reasoning calls that end without usable output now make run health partial instead of silently passing as healthy. See the [local Marcus run repair](docs/conversation-understanding/lolla-marcus-live-run-forensic-audit-and-trust-repair-result-2026-07-24.md). |
 | What is bounded? | Decision Trail, Product Delta, Decision Work packaging, portable views, and Observatory projections. |
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
@@ -33,7 +33,6 @@ usefulness, market value, and production readiness remain unknown.
 
 The [live extraction failure-custody repair](docs/conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md) was published through [PR #398](https://github.com/gofarrrr/lolla-skill/pull/398) at merge `04e5a84c7f9ab6623c8a4f95de2f51466f8fe188`. It corrects the failed Marcus-run boundary without changing graph, prompts, routing, or normal answers: private standard-input capture replaces the editor patch; provider status precedes semantic validation; attempts append; one terminal seal, event, receipt, and minimal failure archive stop before the graph. Its red test made one unintended invalid-key OpenRouter request: HTTP 401, provider-reported cost USD 0.00, conservative ledger amount USD 0.0085688, no authenticated generation, output, retry, or replacement.
 The [bundled runtime import repair](docs/conversation-understanding/lolla-bundled-runtime-import-repair-result-2026-07-24.md) was published through [PR #399](https://github.com/gofarrrr/lolla-skill/pull/399) at merge `1ef617f1d2354752a672330bbf93378aed789e67`. It corrects the separate post-extraction `No module named 'engine'` failure: the live entry point now resolves both historical package names from the bundled skill location, and the self-contained validator repeats that import from an unrelated directory with ambient Python paths disabled. It does not change graph, prompts, providers, or reasoning, and it did not retry the failed run or call a provider.
-
 The graph replication contract was published through [PR #392](https://github.com/gofarrrr/lolla-skill/pull/392); its completed `not_evaluable` result was published through [PR #393](https://github.com/gofarrrr/lolla-skill/pull/393) at merge `4c4e45539c249c45e1e4df98ab14568a97de653f`.
 The current A/B/C pressure, understanding, and graph planning package is tracked by [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
 The current consumer-context contract is v1 through [PR #384](https://github.com/gofarrrr/lolla-skill/pull/384); v0 is its preserved prospective predecessor. [PR #385](https://github.com/gofarrrr/lolla-skill/pull/385) publishes the [provider-free role/attribution case candidate](docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md): one retrospective checked-in-safe case, five provider-neutral envelopes plus one honest blocked F1 slot, and passing direct/graph/context equality and active-payload bijection gates.

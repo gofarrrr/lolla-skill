@@ -25,6 +25,32 @@ import tempfile
 from pathlib import Path
 
 
+def _write_private_text(path: Path, text: str) -> None:
+    """Atomically persist a conversation-derived artifact for its owner only."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            os.chmod(handle.name, 0o600)
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+            temporary = Path(handle.name)
+        os.replace(temporary, path)
+        path.chmod(0o600)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink(missing_ok=True)
+
+
 # ---------------------------------------------------------------------------
 # canonical_key slug validation (PR #1 of the extraction contract roadmap)
 # ---------------------------------------------------------------------------
@@ -276,10 +302,10 @@ def _write_conversation_processing_view(
         "omitted_turn_count": int(truncation_info.get("omitted_turns", 0) or 0),
         "omission_metadata": dict(truncation_info) if partial else {"truncation_applied": False},
     }
-    view_path.write_text(processing_text, encoding="utf-8")
-    metadata_path.write_text(
+    _write_private_text(view_path, processing_text)
+    _write_private_text(
+        metadata_path,
         json.dumps(metadata, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
     )
     return metadata
 
@@ -639,7 +665,7 @@ def _emit_result(
         result.update(capture_result)
     output_text = json.dumps(result, indent=2, ensure_ascii=False)
     if output_file:
-        Path(output_file).write_text(output_text, encoding="utf-8")
+        _write_private_text(Path(output_file), output_text)
     print(output_text)
 
 
@@ -1271,7 +1297,7 @@ def main() -> int:
 
     output_text = json.dumps(output, indent=2, ensure_ascii=False)
     if args.output_file:
-        Path(args.output_file).write_text(output_text, encoding="utf-8")
+        _write_private_text(Path(args.output_file), output_text)
         print(f"Extraction written to {args.output_file}")
     else:
         print(output_text)

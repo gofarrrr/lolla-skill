@@ -251,6 +251,9 @@ calls, tool results, system messages, and file contents. See
 [Step 1 in STEPS.md](docs/skill/STEPS.md#step-1-capture-conversation) for the
 exact transcript format and capture contract.
 
+The helper disables echo when its standard input is an interactive terminal,
+so supplying the source must not replay the conversation in runtime output.
+
 ### Step 2: Extract Decision Structure
 
 Invoke `scripts/skill/run_extract_step.sh`; do not reconstruct the

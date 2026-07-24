@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import stat
 import subprocess
 import sys
 from pathlib import Path
@@ -116,6 +117,7 @@ def _install_live_pipeline_fakes(
     bundle_chunks: tuple[object, ...] | None = None,
     companion_fingerprints: tuple[object, ...] = (),
     audit_warnings: tuple[str, ...] = (),
+    boundary_calls: tuple[object, ...] = (),
     embedding_retriever: object | None = None,
 ) -> list[object]:
     import system_b.boundary_provider as boundary_provider
@@ -143,6 +145,7 @@ def _install_live_pipeline_fakes(
                 audit=SimpleNamespace(
                     warnings=list(audit_warnings),
                     companion_fingerprint_validated=list(companion_fingerprints),
+                    boundary_calls=list(boundary_calls),
                 ),
                 prompt_versions={},
             )
@@ -713,6 +716,94 @@ def test_companion_verification_parse_failure_propagates_to_run_health(
     assert detail["raw_message_content_present"] is True
     assert detail["raw_content_has_accepted_token"] is True
     assert detail["raw_content_has_rejected_token"] is True
+
+
+def test_terminal_provider_call_loss_propagates_to_partial_run_health(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from system_b.boundary_tracing import BoundaryCallTrace
+
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    failed_call = BoundaryCallTrace(
+        stage="pass2",
+        tendency_id="availability-misweighing-tendency",
+        provider_name="openrouter",
+        served_provider_name="Google",
+        requested_model="google/gemini-3.1-flash-lite",
+        served_model="google/gemini-3.1-flash-lite",
+        model="google/gemini-3.1-flash-lite",
+        model_attribution_status="matched",
+        status="provider_finish_error",
+        finish_reason="error",
+        provider_error_source="choice",
+        provider_error_type="rate_limit_exceeded",
+        provider_error_code="429",
+        provider_attempted=True,
+    )
+    _install_live_pipeline_fakes(
+        monkeypatch,
+        tmp_path,
+        bundle_chunks=(object(),),
+        companion_fingerprints=(object(),),
+        boundary_calls=(failed_call,),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--embeddings",
+            "off",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert payload["run_health"]["overall"] == "partial"
+    assert payload["run_health"]["provider_call_health"] == "partial"
+    assert payload["run_health"]["provider_failed_call_count"] == 1
+    assert payload["run_health"]["provider_failed_call_stages"] == ["pass2"]
+    assert payload["run_health"]["provider_failed_tendency_ids"] == [
+        "availability-misweighing-tendency"
+    ]
+    assert payload["run_health"]["provider_failed_status_counts"] == {
+        "provider_finish_error": 1
+    }
+    assert "provider_call_terminal_loss" in payload["run_health"]["issues"]
+    assert payload["run_health"]["partial_health_causes"] == [
+        "provider_call_terminal_loss"
+    ]
+    detail = next(
+        item
+        for item in payload["run_health"]["issue_details"]
+        if item["code"] == "provider_call_terminal_loss"
+    )
+    assert detail["axis"] == "provider_call"
+    assert detail["failed_call_count"] == 1
+    assert detail["attempted_failed_call_count"] == 1
+    assert detail["stages"] == ["pass2"]
+    assert detail["tendency_ids"] == ["availability-misweighing-tendency"]
+    assert detail["status_counts"] == {"provider_finish_error": 1}
+    assert detail["provider_error_type_counts"] == {"rate_limit_exceeded": 1}
+    assert detail["provider_error_code_counts"] == {"429": 1}
+    assert payload["run_health"]["provider_boundary_health"]["status"] == "clean"
+    assert any(
+        "1 provider-backed reasoning call ended without a usable result" in warning
+        for warning in payload["run_health"]["warnings"]
+    )
+    assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
 
 
 def test_stakeholder_check_flag_persists_payload_and_usage(
