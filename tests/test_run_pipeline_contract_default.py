@@ -7,6 +7,8 @@ loading and post-processing calls, so they never call OpenRouter.
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -14,6 +16,41 @@ from types import SimpleNamespace
 import pytest
 
 import scripts.run_pipeline as run_pipeline
+
+
+def test_bundled_pipeline_imports_from_an_unrelated_working_directory(
+    tmp_path: Path,
+) -> None:
+    """The skill runtime must not depend on the caller starting in its repo."""
+
+    script = Path(run_pipeline.__file__).resolve()
+    probe = (
+        "import runpy\n"
+        f"runpy.run_path({str(script)!r}, run_name='lolla_runtime_import_probe')\n"
+        "from system_b.pipeline import SystemBPipeline\n"
+        "print(SystemBPipeline.__name__)\n"
+    )
+    env = os.environ.copy()
+    env.pop("PYTHONPATH", None)
+    env.update(
+        {
+            "OPENROUTER_API_KEY": "",
+            "LOLLA_OPENROUTER_API_KEY": "",
+            "OPENAI_API_KEY": "",
+        }
+    )
+
+    result = subprocess.run(
+        [sys.executable, "-I", "-c", probe],
+        cwd=tmp_path,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert result.stdout.strip() == "SystemBPipeline"
 
 
 def _write_extraction_and_conversation(

@@ -6,8 +6,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import tempfile
 from typing import Any, Mapping, Sequence
@@ -264,6 +266,50 @@ def _policy_replay(root: Path) -> dict[str, Any]:
     }
 
 
+def _runtime_import_boundary(root: Path) -> dict[str, Any]:
+    """Prove the bundled live pipeline imports without caller-cwd assistance."""
+
+    pipeline_script = root / "scripts/run_pipeline.py"
+    probe = (
+        "import runpy\n"
+        f"runpy.run_path({str(pipeline_script)!r}, "
+        "run_name='lolla_runtime_import_probe')\n"
+        "from system_b.pipeline import SystemBPipeline\n"
+        "print(SystemBPipeline.__name__)\n"
+    )
+    env = os.environ.copy()
+    env.pop("PYTHONPATH", None)
+    env.update(
+        {
+            "OPENROUTER_API_KEY": "",
+            "LOLLA_OPENROUTER_API_KEY": "",
+            "OPENAI_API_KEY": "",
+        }
+    )
+    with tempfile.TemporaryDirectory(prefix="lolla-runtime-import-") as temporary:
+        result = subprocess.run(
+            [sys.executable, "-I", "-c", probe],
+            cwd=temporary,
+            env=env,
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=30,
+        )
+    if result.returncode != 0 or result.stdout.strip() != "SystemBPipeline":
+        diagnostic = result.stderr.strip()[-1200:] or result.stdout.strip()[-1200:]
+        raise SelfContainedSkillError(
+            "bundled pipeline import depends on caller working directory: "
+            + diagnostic
+        )
+    return {
+        "status": "complete",
+        "caller_working_directory_required": False,
+        "python_isolated_mode": True,
+        "provider_calls": 0,
+    }
+
+
 def build_readiness_report(root: Path = REPO_ROOT) -> dict[str, Any]:
     root = Path(root).resolve()
     authority = build_repository_local_authority_register(root)
@@ -278,6 +324,7 @@ def build_readiness_report(root: Path = REPO_ROOT) -> dict[str, Any]:
         "source_and_curation": _source_and_curation(root),
         "compiled_and_published_substrate": _compile_and_load(root),
         "pressure_policy_replay": _policy_replay(root),
+        "runtime_import_boundary": _runtime_import_boundary(root),
         "repository_authority": {
             "status": authority["status"],
             "repository_role": authority["authority"]["repository_role"],
