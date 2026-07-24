@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-23 (agent-only graph replication closeout)
+Status date: 2026-07-24 (provider-free graph reviewer-envelope repair)
 Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
@@ -28,7 +28,7 @@ usefulness, market value, and production readiness remain unknown.
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
 | What is unproven? | Reliable longitudinal understanding, answer improvement, real-user value, market demand, and production readiness. |
-| What may start next? | No further graph semantic run is authorized. A prospective reviewer-envelope repair may be designed provider-free, but a corrected review, retry, new Codex context, wider case, or graph change requires a new exact founder authorization. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
+| What may start next? | No further graph semantic run is authorized. The prospective reviewer-envelope repair is complete provider-free: its schemas reject the exact 29-array failure pattern while preserving all frozen review material. Two fresh blind reviews and at most two conditional post-reveal contexts require the exact new authorization in the repair contract. A corrected historical review, retry, wider case, or graph change remains forbidden. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
 
 ## Latest published checkpoint
 
@@ -40,6 +40,8 @@ The provider-free [agent-only paired-delta screen](docs/conversation-understandi
 The founder has declined review participation. The preserved human lane remains blank and paused. The separate [agent-only graph-increment rehearsal](docs/conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) completed its six predeclared contexts: both blind reviewers detected the duplicate null, supported the stand-down, found a material difference in the new pair, and could not infer lineage. After freeze, Arm A was direct-only and Arm B was direct plus the current one-hop increment. This is bounded Product Delta process evidence, not completed F2/F3, graph causation, reference approval, human usefulness, or permission to expand traversal.
 The [graph-variance calibration](docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md) is complete. Three of four new generation attempts produced valid first-terminal outputs; one direct draw ended without a recoverable terminal answer and was not retried or replaced. Both blind reviews completed. The within-graph fresh pair received `present / present` material-difference reads, the available cross-condition pairs received `present / present` and `present / uncertain`, and the missing draw made the within-direct and second fresh cross pair unavailable. The frozen question is therefore `not_evaluable`. Ordinary same-condition variation is material in the available evidence; no graph attribution, answer-quality, expected-model-behavior, usefulness, or traversal decision follows.
 The [agent-only graph replication](docs/conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md) is complete and `not_evaluable`. All eight new generation attempts produced valid first-terminal outputs, so all four within-condition and four cross-condition pairs were mechanically available. One blind review completed; the second returned arrays for 29 scalar `cognitive_effect` enum fields and failed the frozen response shape. Its exact payload and failure receipt were preserved without repair or retry. Because two valid reviews were required, the post-reveal contexts did not start. The result identifies an ambiguous reviewer envelope, not graph value or failure: no graph attribution, answer-quality, expected-behavior, usefulness, or traversal decision follows.
+The [provider-free reviewer-envelope repair](docs/conversation-understanding/lolla-agent-only-graph-review-envelope-repair-result-2026-07-24.md) is complete. Lane-specific schemas passed the valid scalar fixture and rejected exactly all 29 historical array-shaped `cognitive_effect` fields. The packets preserve the frozen source, answers, controls, comparison orientation, and review grammar while making `--output-schema` the shape owner. No semantic context ran. Any two fresh blind reviews and two conditional post-reveal contexts require the exact separate authorization frozen in the [machine contract](docs/evals/lolla-agent-only-graph-review-envelope-repair-contract-v1.json); this repair creates no graph, answer-quality, usefulness, or traversal evidence.
+Its repository publication is tracked by [PR #395](https://github.com/gofarrrr/lolla-skill/pull/395).
 The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
 canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
 compiler inputs, source anchors, release identities, one published read
@@ -294,15 +296,13 @@ The provider-free case-freeze candidate passes its mechanical gates, but F1 and 
 The completed automated rehearsal reused Product Delta for one direct versus direct-plus-current-one-hop simulation. Six first-terminal agent contexts and their exact hashes are frozen; both blind reviewers found a material pair difference while declaring lineage indistinguishable. Agent reads remain provisional, F2/F3 remain unrealized, and no provider, graph/runtime, causal, relevance, or usefulness claim follows.
 The follow-up variance calibration attempted four exact new generation contexts and completed both blind reviews without founder labeling. One direct draw failed without a recoverable terminal payload and was not replaced.
 The available within-graph pair itself had a material difference in both reviews, so ordinary run-to-run variation is not negligible. Because the within-direct pair and one cross pair are unavailable, the frozen question is not evaluable.
-The provider-free replication is consumed. Eight generations completed, one
-blind review failed the enum shape, and the post-reveal gate stayed closed. No
-retry, new semantic context, graph change, or usefulness claim is authorized.
+The provider-free replication is consumed: eight generations completed, one blind review failed the enum shape, and the post-reveal gate stayed closed; no retry, graph change, or usefulness claim is authorized.
+The provider-free v2 envelope repair passes its valid fixture and rejects the known invalid fixture at exactly 29 scalar-enum paths. Zero semantic contexts ran; the exact four-context maximum remains separately unauthorized.
+
 ## Current repository boundary
 
-The root entrypoints are small, while the repository retains a large research
-and prototype estate. Use [docs/README.md](docs/README.md) for navigation and
-[docs/operations/lolla-repository-gardening-audit-2026-07-15.md](docs/operations/lolla-repository-gardening-audit-2026-07-15.md)
-for the operational snapshot and remaining gardening debt.
+The root entrypoints are small, while the repository retains a large research and prototype estate. Use [docs/README.md](docs/README.md) for navigation and
+[the repository gardening audit](docs/operations/lolla-repository-gardening-audit-2026-07-15.md) for the operational snapshot and remaining gardening debt.
 
 No historical branch, experiment artifact, or large generated family was
 deleted in this pass. Classification precedes deletion, archival, branch

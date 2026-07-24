@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "fresh_post_reveal_context": {
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    },
+    "interpretation_id": {
+      "enum": [
+        "agent-graph-review-envelope-v2-pattern-primary"
+      ],
+      "type": "string"
+    },
+    "nonclaims_acknowledged": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array"
+    },
+    "pair_assessments": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "burden_harm_or_lost_value_observation": {
+            "type": "string"
+          },
+          "case_id": {
+            "enum": [
+              "replication-pair-01",
+              "replication-pair-02",
+              "replication-pair-03",
+              "replication-pair-04",
+              "replication-pair-05",
+              "replication-pair-06",
+              "replication-pair-07",
+              "replication-pair-08"
+            ],
+            "type": "string"
+          },
+          "cited_frozen_move_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "frozen_material_decision_difference": {
+            "enum": [
+              "absent",
+              "present",
+              "uncertain"
+            ],
+            "type": "string"
+          },
+          "recurrence_observation": {
+            "type": "string"
+          },
+          "sealed_pair_role": {
+            "enum": [
+              "within_condition",
+              "cross_condition"
+            ],
+            "type": "string"
+          },
+          "uncertainty": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "case_id",
+          "sealed_pair_role",
+          "frozen_material_decision_difference",
+          "cited_frozen_move_ids",
+          "recurrence_observation",
+          "burden_harm_or_lost_value_observation",
+          "uncertainty"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "saw_sibling_review_or_interpretation": {
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "schema_version": {
+      "enum": [
+        "lolla.product_delta_graph_replication_post_reveal_interpretation.v2"
+      ],
+      "type": "string"
+    },
+    "source_review_id": {
+      "enum": [
+        "agent-graph-review-envelope-v2-primary"
+      ],
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "cross_condition_difference_more_consistent_than_observed_within_condition_variation",
+        "cross_condition_difference_not_distinguishable_from_observed_within_condition_variation",
+        "review_specific_pattern_mixed_or_uncertain"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "interpretation_id",
+    "source_review_id",
+    "fresh_post_reveal_context",
+    "saw_sibling_review_or_interpretation",
+    "state",
+    "pair_assessments",
+    "rationale",
+    "nonclaims_acknowledged"
+  ],
+  "title": "Lolla graph replication post-reveal read v2 (primary)",
+  "type": "object"
+}
