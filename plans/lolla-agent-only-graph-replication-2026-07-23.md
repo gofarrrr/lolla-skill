@@ -2,7 +2,8 @@
 
 Date: 2026-07-23
 
-Status: prospective contract and packets frozen; semantic execution not yet
+Status: consumed and complete; result honestly `not_evaluable` after one of two
+required blind reviews failed the frozen enum shape; no post-reveal contexts
 started
 
 Owner: existing offline Product Delta evaluation
@@ -15,6 +16,9 @@ Generated pre-output packet:
 
 Sealed lineage:
 [`sealed-manifest.json`](../research/agent-only-graph-replication-2026-07-23/sealed-manifest.json)
+
+Result:
+[`lolla-agent-only-graph-replication-result-2026-07-23.md`](../docs/conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md)
 
 Repository provider/API calls authorized: 0
 

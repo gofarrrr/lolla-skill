@@ -32,7 +32,7 @@ Then read only the lane you will touch:
 
 - **Live skill:** `SKILL.md` and `docs/skill/STEPS.md`.
 - **Graph, compiler, or planner:** read `docs/conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md`, `references/knowledge-substrate-operations.md`, and `docs/evals/lolla-self-contained-skill-readiness-v1.json`.
-  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md`, and the current prospective agent-only graph replication contract/plan, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
+  For new graph or semantic-supply opportunities also read the pressure/understanding/graph PRD, consumer-context contract v1, its 2026-07-22 correction, `docs/conversation-understanding/lolla-consumer-context-role-attribution-case-candidate-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md`, `docs/conversation-understanding/lolla-agent-only-graph-variance-calibration-result-2026-07-23.md`, and the completed agent-only graph replication contract/plan/result, then use `.codex/skills/audit-lolla-boundaries/SKILL.md`.
 - **Decision Trail or Decision Work:** the Stage 0 addendum/register, Stage 0.6
   result, sidecar current state, and interpretation contract linked by
   `docs/README.md`. Also read
@@ -268,7 +268,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 - The graph-increment result and variance calibration are frozen. Three of four generations completed; one direct draw failed without a recoverable payload and was not replaced.
   Both blind reviews completed. The within-graph pair was materially different in both reviews; a historical cross pair drew `present / uncertain`; the missing draw removed the within-direct and one cross pair.
   The result is `not_evaluable`; it authorizes no graph attribution or expansion.
-- The founder has authorized one prospective provider-free replication, frozen in `docs/evals/lolla-agent-only-graph-replication-contract-v1.json` and `plans/lolla-agent-only-graph-replication-2026-07-23.md`. It allows exactly eight isolated generation attempts, two blind reviews, and—only if the mechanical missingness gate passes—two post-reveal review-specific interpretations. Every generation attempt uses direct restart-safe terminal capture; all eight run regardless of earlier failure; no retry, replacement, provider, wider case, graph/runtime change, score, causal/usefulness claim, or traversal is allowed. Merge the contract PR before generating semantic output.
+- The graph replication is consumed: all eight generations completed, but one
+  blind review failed 29 enum checks. It was preserved without repair; no
+  post-reveal work ran. Result: `not_evaluable`; no retry is authorized.
 - Atlas opens exact neighborhoods from the 222-model / 1,358-relation index.
   V1 is immutable; V2 has 2,182 custody-only and zero unexpected differences.
   Teacher and review surfaces remain parked. Design/viewport mechanics are not
@@ -283,18 +285,16 @@ infer missing pages, or treat the local visual gate as deployment clearance.
 - Provider calls authorized for repository development: zero. A1 and A2 authorizations are consumed; A1 remains separate `semantic_result_not_evaluable` evidence. A2
   completed twelve calls for `$0.02148425`. No A3, retry, replacement, prompt
   tweak, model comparison, or integration is authorized.
-- Prospective path-custody promotion, incoming-reference or two-hop pressure,
-  direct-reserve expansion, new graph ranking, wider-corpus semantic execution,
-  model comparison, production-model selection, new receipt claims, and scalar
-  scoring: unauthorized. The only graph-evaluation continuation is the exact
-  prospective single-case replication above; it may not change the tested
-  packets or graph.
+- Path-custody promotion, incoming/two-hop pressure, reserve expansion, new
+  ranking, wider semantic execution, model comparison, receipt claims, scalar
+  scoring, and graph-evaluation continuation are unauthorized. Provider-free
+  envelope design is allowed; semantic reruns need new exact authorization.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
 PRs #379–#390 carry graph/Atlas custody, the public handoff, Decision Trail lineage, A/B/C plan, case freeze, paired-delta screen, rehearsal, and variance contract.
 The founder declines human review; that v1 experiment stays unfilled and paused.
-The completed graph rehearsal does not prove graph value or human usefulness. Its variance calibration is not evaluable. The newly authorized replication tests repeatability only and creates no graph-change, human-usefulness, Atlas, or Stage 1 authorization.
-
-Stage 1 is not June's Decision Trail specialist program; PR104 remains paused
-with unvalidated reads and blank human corrections. A/B/C authorizes no review,
-provider, graph/runtime, sidecar, or interface work.
+The graph rehearsal proves no graph value. Calibration lost a generation
+baseline; replication lost one review to an ambiguous enum envelope. Both are
+`not_evaluable` and create no graph, usefulness, Atlas, or Stage 1 authority.
+Stage 1 is separate from June's paused PR104 program. A/B/C authorizes no
+review, provider, graph/runtime, sidecar, or interface work.

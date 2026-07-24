@@ -1,0 +1,638 @@
+{
+  "blind_review_packet": {
+    "bytes": 98006,
+    "path": "research/agent-only-graph-replication-2026-07-23/blind-review-packet.json",
+    "sha256": "26d298f8c2f4d44ae9fce8704303e23d536d5d75c359d86a62d86b7db7a268ab"
+  },
+  "boundary": {
+    "answer_quality_scored": false,
+    "codex_blind_review_contexts_predeclared": 2,
+    "codex_contexts_called_no_ai_calls_or_economically_free": false,
+    "codex_generation_contexts_attempted": 8,
+    "codex_platform_route_token_and_cost": "unavailable_to_repository_operator",
+    "codex_post_reveal_contexts_conditionally_predeclared": 2,
+    "compiler_changed": false,
+    "graph_causation_established": false,
+    "graph_policy_changed": false,
+    "graph_relevance_established": false,
+    "graph_source_or_relation_changed": false,
+    "graph_traversal_invoked": false,
+    "human_review_completed": false,
+    "human_usefulness_established": false,
+    "live_skill_invoked": false,
+    "planner_changed": false,
+    "principal_human_target_completed": false,
+    "private_archives_read": false,
+    "repository_provider_api_calls": 0,
+    "repository_provider_api_cost_usd": 0.0,
+    "repository_provider_execution_authorized": false,
+    "runtime_invoked": false,
+    "winner_selected": false
+  },
+  "comparison_lineage": {
+    "replication-pair-01": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 3,
+        "sample_alias": "sample-dune",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct",
+          "draw_number": 4,
+          "sample_alias": "sample-cobalt",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct",
+          "draw_number": 3,
+          "sample_alias": "sample-dune",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct",
+        "draw_number": 4,
+        "sample_alias": "sample-cobalt",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json"
+      },
+      "sealed_pair_id": "within-direct-3-4",
+      "sealed_pair_role": "within_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 6710,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json",
+          "sha256": "8a391274813a18f80f80c77cfd4ed606983f1fdae11a276bf28fcba426e1ceeb"
+        },
+        "B": {
+          "bytes": 7646,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json",
+          "sha256": "f94d479cb58194294473862e19fcbb3a8e29ee3a57f172b2377f390d90f83945"
+        }
+      }
+    },
+    "replication-pair-02": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 5,
+        "sample_alias": "sample-grove",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct",
+          "draw_number": 6,
+          "sample_alias": "sample-amber",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct",
+          "draw_number": 5,
+          "sample_alias": "sample-grove",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct",
+        "draw_number": 6,
+        "sample_alias": "sample-amber",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json"
+      },
+      "sealed_pair_id": "within-direct-5-6",
+      "sealed_pair_role": "within_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 7762,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json",
+          "sha256": "4d3456beb139bf5c8f5bd60056deb96ccecb6bbe262b290831f84a70f6611e12"
+        },
+        "B": {
+          "bytes": 7720,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json",
+          "sha256": "0724d92d72f3d8e075994873c4c8e1163e5daccdac4ba472ab5d5db2582e5798"
+        }
+      }
+    },
+    "replication-pair-03": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 3,
+        "sample_alias": "sample-ember",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 3,
+          "sample_alias": "sample-ember",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 4,
+          "sample_alias": "sample-birch",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 4,
+        "sample_alias": "sample-birch",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json"
+      },
+      "sealed_pair_id": "within-graph-3-4",
+      "sealed_pair_role": "within_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 11032,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json",
+          "sha256": "a80832ecb65b543e9cbebb5f51c2af63ba67d263f661e2470706b34843b4ec65"
+        },
+        "B": {
+          "bytes": 12441,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json",
+          "sha256": "88359d567dd6d563d907819907541d0b5e243645371a82fd3dd7d5644740bb07"
+        }
+      }
+    },
+    "replication-pair-04": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 5,
+        "sample_alias": "sample-flint",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 5,
+          "sample_alias": "sample-flint",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 6,
+          "sample_alias": "sample-harbor",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 6,
+        "sample_alias": "sample-harbor",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json"
+      },
+      "sealed_pair_id": "within-graph-5-6",
+      "sealed_pair_role": "within_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 11203,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json",
+          "sha256": "46a51480ed40bd7539f05f4e1ffbdd0cdf646cd1d1ceb332db9bbe22dc281f53"
+        },
+        "B": {
+          "bytes": 11328,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json",
+          "sha256": "456bdb92fabeb28e3f4c39b5fecabbe4e6722d9ecf7107bb1bac9bcd540f8196"
+        }
+      }
+    },
+    "replication-pair-05": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 3,
+        "sample_alias": "sample-dune",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 3,
+          "sample_alias": "sample-ember",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct",
+          "draw_number": 3,
+          "sample_alias": "sample-dune",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 3,
+        "sample_alias": "sample-ember",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json"
+      },
+      "sealed_pair_id": "cross-3",
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 11032,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json",
+          "sha256": "a80832ecb65b543e9cbebb5f51c2af63ba67d263f661e2470706b34843b4ec65"
+        },
+        "B": {
+          "bytes": 7646,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json",
+          "sha256": "f94d479cb58194294473862e19fcbb3a8e29ee3a57f172b2377f390d90f83945"
+        }
+      }
+    },
+    "replication-pair-06": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 4,
+        "sample_alias": "sample-cobalt",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 4,
+          "sample_alias": "sample-birch",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct",
+          "draw_number": 4,
+          "sample_alias": "sample-cobalt",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 4,
+        "sample_alias": "sample-birch",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json"
+      },
+      "sealed_pair_id": "cross-4",
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 12441,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json",
+          "sha256": "88359d567dd6d563d907819907541d0b5e243645371a82fd3dd7d5644740bb07"
+        },
+        "B": {
+          "bytes": 6710,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json",
+          "sha256": "8a391274813a18f80f80c77cfd4ed606983f1fdae11a276bf28fcba426e1ceeb"
+        }
+      }
+    },
+    "replication-pair-07": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 5,
+        "sample_alias": "sample-grove",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct",
+          "draw_number": 5,
+          "sample_alias": "sample-grove",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 5,
+          "sample_alias": "sample-flint",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 5,
+        "sample_alias": "sample-flint",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json"
+      },
+      "sealed_pair_id": "cross-5",
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 7720,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json",
+          "sha256": "0724d92d72f3d8e075994873c4c8e1163e5daccdac4ba472ab5d5db2582e5798"
+        },
+        "B": {
+          "bytes": 11203,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json",
+          "sha256": "46a51480ed40bd7539f05f4e1ffbdd0cdf646cd1d1ceb332db9bbe22dc281f53"
+        }
+      }
+    },
+    "replication-pair-08": {
+      "availability": "available",
+      "left": {
+        "condition": "rehearsal_direct",
+        "draw_number": 6,
+        "sample_alias": "sample-amber",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json"
+      },
+      "review_arm_map": {
+        "A": {
+          "condition": "rehearsal_direct_plus_current_one_hop",
+          "draw_number": 6,
+          "sample_alias": "sample-harbor",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json"
+        },
+        "B": {
+          "condition": "rehearsal_direct",
+          "draw_number": 6,
+          "sample_alias": "sample-amber",
+          "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json"
+        }
+      },
+      "right": {
+        "condition": "rehearsal_direct_plus_current_one_hop",
+        "draw_number": 6,
+        "sample_alias": "sample-harbor",
+        "terminal_state_path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json"
+      },
+      "sealed_pair_id": "cross-6",
+      "sealed_pair_role": "cross_condition",
+      "terminal_refs": {
+        "A": {
+          "bytes": 11328,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json",
+          "sha256": "456bdb92fabeb28e3f4c39b5fecabbe4e6722d9ecf7107bb1bac9bcd540f8196"
+        },
+        "B": {
+          "bytes": 7762,
+          "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json",
+          "sha256": "4d3456beb139bf5c8f5bd60056deb96ccecb6bbe262b290831f84a70f6611e12"
+        }
+      }
+    }
+  },
+  "generation_state_validation": {
+    "sample-amber": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 2,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "ac7eb375552da114db10579694005678c717c790a6f47a36be660526b6146106",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-birch": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 5,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-cobalt": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 2,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "ac7eb375552da114db10579694005678c717c790a6f47a36be660526b6146106",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-dune": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 2,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "ac7eb375552da114db10579694005678c717c790a6f47a36be660526b6146106",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-ember": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 5,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-flint": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 5,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-grove": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 2,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "ac7eb375552da114db10579694005678c717c790a6f47a36be660526b6146106",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    },
+    "sample-harbor": {
+      "all_active_candidates_accounted_for": true,
+      "answer_quality_validated": false,
+      "compiled_schema_version": "lolla.simulated_reliability_pressure_response.v1",
+      "expected_candidate_count": 5,
+      "first_terminal_result_preserved": true,
+      "response_schema_sha256": "76c596172d0e3aa47c89ceaf0ad9664fa34c0034d55333dcc5c58a928066490d",
+      "semantic_correctness_validated": false,
+      "terminal_status": "complete"
+    }
+  },
+  "handling": {
+    "generation_retried_healed_replaced_or_imputed": false,
+    "show_to_blind_reviewers": false,
+    "show_to_generation_agents": false,
+    "unblind_only_after_both_reviews_are_frozen": true
+  },
+  "input_refs": {
+    "authoritative_source": {
+      "bytes": 4936,
+      "path": "research/independent-phase5-cases-2026-07-12/useful-pressure-case.txt",
+      "sha256": "0aa871e99c8923ebb50280e051b8401c224a1824510e5e07a6282970311cc2ef"
+    },
+    "control_blind_packets": {
+      "bytes": 76286,
+      "path": "research/agent-only-paired-delta-screen-2026-07-23/blind-packets.json",
+      "sha256": "f6b026c069c73a5cc64775ad750edf9d6ef9fbbe845b3184f55067fba8811797"
+    },
+    "control_sealed_manifest": {
+      "bytes": 17443,
+      "path": "research/agent-only-paired-delta-screen-2026-07-23/sealed-manifest.json",
+      "sha256": "66db182caa656b6e560295e60a10225f1dee959fb1d4879d3d211db9692275ec"
+    },
+    "generation_packets": {
+      "bytes": 175752,
+      "path": "research/agent-only-graph-replication-2026-07-23/generation-packets.json",
+      "sha256": "2292f1c2ff087d30032d18a1a43f382b30fb63a66fa6855b3785908d528ad68b"
+    },
+    "generation_states": {
+      "sample-amber": {
+        "bytes": 7762,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-amber.json",
+        "sha256": "4d3456beb139bf5c8f5bd60056deb96ccecb6bbe262b290831f84a70f6611e12"
+      },
+      "sample-birch": {
+        "bytes": 12441,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-birch.json",
+        "sha256": "88359d567dd6d563d907819907541d0b5e243645371a82fd3dd7d5644740bb07"
+      },
+      "sample-cobalt": {
+        "bytes": 6710,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-cobalt.json",
+        "sha256": "8a391274813a18f80f80c77cfd4ed606983f1fdae11a276bf28fcba426e1ceeb"
+      },
+      "sample-dune": {
+        "bytes": 7646,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-dune.json",
+        "sha256": "f94d479cb58194294473862e19fcbb3a8e29ee3a57f172b2377f390d90f83945"
+      },
+      "sample-ember": {
+        "bytes": 11032,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-ember.json",
+        "sha256": "a80832ecb65b543e9cbebb5f51c2af63ba67d263f661e2470706b34843b4ec65"
+      },
+      "sample-flint": {
+        "bytes": 11203,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-flint.json",
+        "sha256": "46a51480ed40bd7539f05f4e1ffbdd0cdf646cd1d1ceb332db9bbe22dc281f53"
+      },
+      "sample-grove": {
+        "bytes": 7720,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-grove.json",
+        "sha256": "0724d92d72f3d8e075994873c4c8e1163e5daccdac4ba472ab5d5db2582e5798"
+      },
+      "sample-harbor": {
+        "bytes": 11328,
+        "path": "research/agent-only-graph-replication-2026-07-23/terminal-output-sample-harbor.json",
+        "sha256": "456bdb92fabeb28e3f4c39b5fecabbe4e6722d9ecf7107bb1bac9bcd540f8196"
+      }
+    },
+    "portfolio_bundle": {
+      "bytes": 75572,
+      "path": "research/consumer-context-role-attribution-case-candidate-2026-07-23/portfolio-bundle.json",
+      "sha256": "5838cee65d8a731271997f8cd39ba09aa9ced221c04ff9f7de8727b0830df8ca"
+    },
+    "preoutput_sealed_manifest": {
+      "bytes": 19991,
+      "path": "research/agent-only-graph-replication-2026-07-23/sealed-manifest.json",
+      "sha256": "2a5e46e9eb66d533fb85ee85eeec7d94a342bc39947973f4f7f613264f9ca242"
+    }
+  },
+  "non_claims": [
+    "not principal-human review or a source-first human target",
+    "not provider execution or an exact standalone provider envelope",
+    "not a provider or model comparison",
+    "not a statistically powered variance estimate",
+    "not deterministic replay or expected model behavior",
+    "not graph causation relevance correctness value or usefulness evidence",
+    "not proof that either condition or answer is better",
+    "not completion of F2 or F3",
+    "not permission to expand traversal",
+    "not a live skill runtime graph planner compiler or interface change"
+  ],
+  "pre_review_mechanical_availability": {
+    "available_counts": {
+      "cross_condition": 4,
+      "within_direct": 2,
+      "within_graph": 2
+    },
+    "gate_passes": false,
+    "pair_receipts": [
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-01",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "within-direct-3-4",
+        "sealed_pair_role": "within_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-02",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "within-direct-5-6",
+        "sealed_pair_role": "within_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-03",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "within-graph-3-4",
+        "sealed_pair_role": "within_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-04",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "within-graph-5-6",
+        "sealed_pair_role": "within_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-05",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "cross-3",
+        "sealed_pair_role": "cross_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-06",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "cross-4",
+        "sealed_pair_role": "cross_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-07",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "cross-5",
+        "sealed_pair_role": "cross_condition"
+      },
+      {
+        "availability": "available",
+        "blind_case_id": "replication-pair-08",
+        "left_terminal_state": "complete",
+        "right_terminal_state": "complete",
+        "sealed_pair_id": "cross-6",
+        "sealed_pair_role": "cross_condition"
+      }
+    ],
+    "purpose": "missingness_gate_only_not_semantic_score_effect_threshold_or_vote",
+    "requirements": {
+      "at_least_one_available_within_direct_pair": true,
+      "at_least_one_available_within_graph_pair": true,
+      "at_least_three_available_cross_condition_pairs": true,
+      "both_blind_reviews_complete": false
+    },
+    "result_if_closed_now": "not_evaluable",
+    "schema_version": "lolla.product_delta_agent_graph_replication_mechanical_availability.v1"
+  },
+  "replication_id": "agent-only-graph-replication-2026-07-23",
+  "schema_version": "lolla.product_delta_graph_replication_execution_sealed_manifest.v1",
+  "status": "generation_outputs_admitted_blind_inputs_frozen"
+}

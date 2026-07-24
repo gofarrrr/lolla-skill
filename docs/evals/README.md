@@ -69,20 +69,24 @@ in both reviews; the missing draw removed the within-direct and one cross pair,
 so the frozen question is `not_evaluable`. The old contract is consumed and
 does not authorize another run. Provider/API calls, retries, wider cases, graph
 changes, traversal expansion, scores, winners, causal claims, and
-human-usefulness claims remain unauthorized outside the new exact replication.
+human-usefulness claims remain unauthorized. The later exact replication is
+now consumed and separately closed below.
 
-The prospective
-[agent-only graph replication contract](lolla-agent-only-graph-replication-contract-v1.json)
-and [plan](../../plans/lolla-agent-only-graph-replication-2026-07-23.md)
-freeze the authorized follow-up without changing the tested packets. Four new
-draws per condition produce four disjoint within-condition and four aligned
-cross-condition pairs. Direct first-terminal capture is required from the
-start, and the missingness gate remains satisfiable after any one generation
-failure. Two blind reviews remain non-scalar. Two later review-specific
-post-reveal interpretations run only if that gate passes and may interpret
-only already-frozen observations. The maximum is twelve Codex development
-contexts; provider/API calls and cost remain zero. No graph, runtime,
-principal-human, score, causal, usefulness, or traversal work is authorized.
+The consumed
+[agent-only graph replication contract](lolla-agent-only-graph-replication-contract-v1.json),
+[plan](../../plans/lolla-agent-only-graph-replication-2026-07-23.md), and
+[completed result](../conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md)
+preserve the exact authorized follow-up without changing the tested packets.
+All four direct and four graph generation draws completed, leaving every
+predeclared within- and cross-condition pair available. One blind review passed
+its frozen shape; the other returned arrays for 29 scalar `cognitive_effect`
+enum fields. The exact terminal payload and failure receipt were preserved
+without repair or retry. Because two valid blind reviews were required, neither
+conditional post-reveal context started and the result is `not_evaluable`.
+Repository provider/API calls and cost remained zero; Codex platform route,
+tokens, and economic cost remain unavailable. No corrected review, new semantic
+context, graph, runtime, principal-human, score, causal, usefulness, or
+traversal work is authorized.
 
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
@@ -538,10 +542,11 @@ python3 scripts/evals/build_product_delta_graph_variance_calibration.py --valida
 python3 scripts/evals/build_product_delta_graph_variance_calibration_result.py --validate-complete
 ```
 
-Validate the prospective graph-replication packets:
+Validate the consumed graph-replication inputs and complete result:
 
 ```bash
 python3 scripts/evals/build_product_delta_graph_replication.py --validate-only
+python3 scripts/evals/build_product_delta_graph_replication_result.py --validate-complete
 ```
 
 Run the focused Product Delta tests:
@@ -559,6 +564,7 @@ python3 -m pytest -q \
   tests/test_product_delta_graph_increment_rehearsal_result.py \
   tests/test_product_delta_graph_variance_calibration.py \
   tests/test_product_delta_graph_replication.py \
+  tests/test_product_delta_graph_replication_result.py \
   tests/test_product_delta_paired_screen.py \
   tests/test_product_delta_batch_fixture.py \
   tests/test_product_delta_readiness.py
@@ -591,7 +597,8 @@ Start with these:
 | [Agent-Only Paired-Delta Screen Contract](lolla-agent-only-paired-delta-screen-contract-v1.json) | Frozen non-scalar blind-review contract over existing checked-in-safe pairs, reviewer traps, duplicate null, and stand-down. |
 | [Agent-Only Paired-Delta Screen Result](../conversation-understanding/lolla-agent-only-paired-delta-screen-result-2026-07-23.md) | Provider-free fresh-agent diagnostic result; mixed deltas and disagreement survive, while graph causation and human usefulness remain unknown. |
 | [Agent-Only Graph-Increment Rehearsal Result](../conversation-understanding/lolla-agent-only-graph-increment-rehearsal-result-2026-07-23.md) | Six-context automated Product Delta rehearsal; both blind reviewers saw a material pair difference without inferring lineage, while causation, relevance, answer quality, and human usefulness remain unknown. |
-| [Agent-Only Graph Replication Contract](lolla-agent-only-graph-replication-contract-v1.json) | Prospective restart-safe single-case replication: eight exact generation attempts, two blind reviews, and two conditional review-specific post-reveal interpretations; no provider, graph, runtime, causal, usefulness, or traversal authority. |
+| [Agent-Only Graph Replication Contract](lolla-agent-only-graph-replication-contract-v1.json) | Consumed restart-safe single-case contract: eight exact generation attempts, two blind reviews, and two conditional review-specific post-reveal interpretations; no provider, graph, runtime, causal, usefulness, or traversal authority. |
+| [Agent-Only Graph Replication Result](../conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md) | Eight generation outputs completed; one required blind review failed an ambiguous scalar-enum shape, so no post-reveal context ran and the result is honestly `not_evaluable`. |
 
 ## Runtime And Skill Opportunities
 
