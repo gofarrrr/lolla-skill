@@ -2,7 +2,9 @@
 
 Date: 2026-07-24
 
-Status: implemented and verified locally; not yet repository-published
+Status: repository-published through
+[PR #399](https://github.com/gofarrrr/lolla-skill/pull/399) at merge
+`1ef617f1d2354752a672330bbf93378aed789e67`
 
 Scope: the ordinary `$lolla` boundary between completed conversation
 extraction and the four-lane reasoning pipeline
