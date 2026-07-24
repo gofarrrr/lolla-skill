@@ -258,8 +258,9 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   apply/reject/park custody are the experimental core; unique usefulness is
   unproven. Private stdin capture, provider-status-first admission,
   append-preserved attempts, and terminal failure seals now guard entry to the
-  unchanged graph. This repository owns all 222 sources, 1,358 relations, and
-  the root skill; compilation is byte-exact and all 163 windows replay.
+  unchanged graph. Its bundled engine now resolves independently of caller
+  cwd. This repository owns all 222 sources, 1,358 relations, and the root
+  skill; compilation is byte-exact and all 163 windows replay.
   Candidate-only path custody is not live; optional Step 7 remains default-off.
 - Decision Work is an optional operator-directed sidecar; it and Observatory
   can package/read artifacts but cannot generate trustworthy arbitrary meaning.

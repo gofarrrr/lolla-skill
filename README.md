@@ -116,8 +116,8 @@ PYTHONPATH=. python3 scripts/evals/validate_self_contained_skill.py --validate-o
 
 This check makes no provider or embedding calls. It validates the skill's
 named files, 222 source documents, reviewed graph inputs, byte-equivalent
-candidate compilation, published snapshot, and all 163 frozen windows of the
-current constitutional pressure policy.
+candidate compilation, published snapshot, all 163 frozen policy windows, and a bundled live
+pipeline from an unrelated working directory with ambient Python paths disabled.
 
 GitHub also runs this provider-free public-handoff gate on pull requests and
 `main`. Contributors can reproduce its Python environment with

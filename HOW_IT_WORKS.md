@@ -120,7 +120,8 @@ failure archive proves process custody rather than answer quality.
 ## 4. Four pressure lanes
 
 The live pipeline in `engine/system_b/pipeline.py` and `scripts/run_pipeline.py`
-creates four distinct forms of challenge:
+resolves its bundled engine from the skill location rather than the caller's
+working directory, then creates four distinct forms of challenge:
 
 1. **Tendency pressure** surfaces candidate cognitive tendencies and concrete
    reversal or protection questions.

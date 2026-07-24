@@ -1,12 +1,11 @@
 # Lolla project status
 
-Status date: 2026-07-24 (live extraction failure-custody repair)
+Status date: 2026-07-24 (bundled runtime import repair)
 Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
 
-Workspace restart state: this repository is the sole active authoring, compiler,
-publication, runtime, documentation, and skill authority. No current setup path,
+Workspace restart state: this repository is the sole active authoring, compiler, publication, runtime, documentation, and skill authority. No current setup path,
 manifest, validator, or development instruction depends on another checkout. Historical evidence remains immutable but is not a supported project location or source of current behavior.
 
 ## Ninety-second current state
@@ -32,7 +31,8 @@ usefulness, market value, and production readiness remain unknown.
 
 ## Latest published checkpoint
 
-The local [live extraction failure-custody repair](docs/conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md) corrects the failed Marcus-run boundary without changing graph, prompts, routing, or normal answers: private standard-input capture replaces the editor patch; provider status precedes semantic validation; attempts append; one terminal seal, event, receipt, and minimal failure archive stop before the graph. It is not yet repository-published. Its red test made one unintended invalid-key OpenRouter request: HTTP 401, provider-reported cost USD 0.00, conservative ledger amount USD 0.0085688, no authenticated generation, output, retry, or replacement.
+The [live extraction failure-custody repair](docs/conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md) was published through [PR #398](https://github.com/gofarrrr/lolla-skill/pull/398) at merge `04e5a84c7f9ab6623c8a4f95de2f51466f8fe188`. It corrects the failed Marcus-run boundary without changing graph, prompts, routing, or normal answers: private standard-input capture replaces the editor patch; provider status precedes semantic validation; attempts append; one terminal seal, event, receipt, and minimal failure archive stop before the graph. Its red test made one unintended invalid-key OpenRouter request: HTTP 401, provider-reported cost USD 0.00, conservative ledger amount USD 0.0085688, no authenticated generation, output, retry, or replacement.
+The local [bundled runtime import repair](docs/conversation-understanding/lolla-bundled-runtime-import-repair-result-2026-07-24.md) corrects the separate post-extraction `No module named 'engine'` failure: the live entry point now resolves both historical package names from the bundled skill location, and the self-contained validator repeats that import from an unrelated directory with ambient Python paths disabled. It does not change graph, prompts, providers, or reasoning, and it did not retry the failed run or call a provider.
 
 The graph replication contract was published through [PR #392](https://github.com/gofarrrr/lolla-skill/pull/392); its completed `not_evaluable` result was published through [PR #393](https://github.com/gofarrrr/lolla-skill/pull/393) at merge `4c4e45539c249c45e1e4df98ab14568a97de653f`.
 The current A/B/C pressure, understanding, and graph planning package is tracked by [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).

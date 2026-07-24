@@ -29,6 +29,11 @@ ENGINE_DIR = SKILL_ROOT / "engine"
 MAX_POSTPROCESSING_ASSISTANT_CHARS = 40_000
 
 if (ENGINE_DIR / "system_b" / "__init__.py").exists():
+    # The live package is historically imported as ``system_b``, while a
+    # bounded set of bundled modules still use ``engine.system_b``.  A Codex
+    # session may invoke this script from any working directory, so expose the
+    # bundled skill root explicitly instead of relying on the caller's cwd.
+    sys.path.insert(0, str(SKILL_ROOT))
     sys.path.insert(0, str(ENGINE_DIR))
 elif os.environ.get("LOLLA_REPO_ROOT"):
     sys.path.insert(0, os.environ["LOLLA_REPO_ROOT"])

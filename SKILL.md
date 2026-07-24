@@ -273,7 +273,7 @@ Render the user-facing readback and audit promise directly before launching the 
 
 ### Step 3: Run Pipeline
 
-Run the four-lane pipeline through `scripts/skill/run_pipeline_step.sh`; do not reconstruct the `run_pipeline.py` command yourself. The helper preserves cache-dir/cache-ref routing, writes the operator-only pre-Step-6 receipt to the operator log, and enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. See [Step 3 in STEPS.md](docs/skill/STEPS.md#step-3-run-pipeline) for the status receipt, V60/private-table notes, and stop conditions.
+Run the four-lane pipeline through `scripts/skill/run_pipeline_step.sh`; do not reconstruct the `run_pipeline.py` command yourself. The helper resolves the bundled engine independently of the session's working directory, preserves cache-dir/cache-ref routing, writes the operator-only pre-Step-6 receipt to the operator log, and enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. See [Step 3 in STEPS.md](docs/skill/STEPS.md#step-3-run-pipeline) for the status receipt, V60/private-table notes, and stop conditions.
 
 ### Step 4: Counterargument Lead (Beat 2 — internal name)
 
