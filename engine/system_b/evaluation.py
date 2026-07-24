@@ -13,7 +13,11 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
-from .agent_result import AGENT_RESULT_SCHEMA_VERSION, CALLER_ACTIONS
+from .agent_result import (
+    AGENT_RESULT_SCHEMA_VERSION,
+    CALLER_ACTIONS,
+    is_reviewable_passage_profile_partial,
+)
 from .capture_adequacy import (
     CAPTURE_ADEQUACY_SCHEMA_VERSION,
     capture_adequacy_from_artifacts,
@@ -287,7 +291,26 @@ def _agent_policy_checks(
         )
     ]
 
-    conservative_required = status in {"partial", "degraded", "incomplete"}
+    reviewable_passage_partial = (
+        status == "partial"
+        and caller_action == "review_revised_answer"
+        and is_reviewable_passage_profile_partial(run_health)
+    )
+    conservative_required = (
+        status in {"partial", "degraded", "incomplete"}
+        and not reviewable_passage_partial
+    )
+    if reviewable_passage_partial:
+        policy_message = (
+            "The core audit remains review-only while the optional passage "
+            "profile is incomplete."
+        )
+    elif conservative_required and caller_action == "do_not_use_run_degraded":
+        policy_message = "Partial/degraded/incomplete status remains conservative."
+    elif not conservative_required:
+        policy_message = "Run status does not require degraded caller action."
+    else:
+        policy_message = "Partial/degraded/incomplete status did not remain conservative."
     checks.append(
         _check(
             id="non_ok_status_conservative",
@@ -301,13 +324,7 @@ def _agent_policy_checks(
                 if not conservative_required or caller_action == "do_not_use_run_degraded"
                 else "blocking"
             ),
-            message=(
-                "Partial/degraded/incomplete status remains conservative."
-                if conservative_required and caller_action == "do_not_use_run_degraded"
-                else "Run status does not require degraded caller action."
-                if not conservative_required
-                else "Partial/degraded/incomplete status did not remain conservative."
-            ),
+            message=policy_message,
             artifact="agent_result.json",
         )
     )

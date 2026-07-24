@@ -243,6 +243,43 @@ def test_contained_provider_boundary_with_other_degraded_cause_stays_conservativ
     assert _check(evaluation, "provider_boundary_contained_policy")["status"] == "pass"
 
 
+def test_passage_profile_only_partial_is_reviewable_but_not_ready(
+    tmp_path: Path,
+) -> None:
+    health = _base_health(
+        overall="partial",
+        live_output_health="not_checked",
+    )
+    health.update(
+        {
+            "issues": ["bullshit_index_partial"],
+            "issue_details": [
+                {
+                    "code": "bullshit_index_partial",
+                    "severity": "partial",
+                    "axis": "postprocessing",
+                    "evaluation_failures": 1,
+                }
+            ],
+            "partial_health_causes": ["bullshit_index_partial"],
+            "bullshit_index_evaluation_failures": 1,
+            "bullshit_index_evaluation_count": 12,
+        }
+    )
+    health["provider_boundary_health"] = build_provider_boundary_health(health)
+    run_dir = _seed_run(tmp_path, health=health)
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+    agent_result = json.loads((run_dir / "agent_result.json").read_text(encoding="utf-8"))
+
+    assert agent_result["status"] == "partial"
+    assert agent_result["caller_action"] == "review_revised_answer"
+    assert evaluation["overall"] == "warn"
+    assert evaluation["caller_readiness"] == "inspect_first"
+    assert _check(evaluation, "non_ok_status_conservative")["status"] == "pass"
+    assert _check(evaluation, "live_output_health")["status"] == "warn"
+
+
 def test_product_output_unsafe_is_blocking(tmp_path: Path) -> None:
     health = _base_health(overall="degraded", product_output_health="unsafe")
     run_dir = _seed_run(tmp_path, health=health)

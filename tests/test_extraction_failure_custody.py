@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import json
 import os
+import pty
+import select
 import subprocess
 import sys
 import termios
+import time
 from pathlib import Path
 
 import pytest
@@ -45,6 +48,7 @@ def test_private_capture_helper_writes_valid_runtime_artifact_without_echoing_so
     )
 
     assert result.returncode == 0, result.stderr
+    assert "PRIVATE_INPUT_READY" in result.stdout
     assert "CAPTURE_STATUS: ready" in result.stdout
     assert "Should I accept this offer?" not in result.stdout
     assert "conversation.txt" not in result.stdout
@@ -96,6 +100,109 @@ def test_private_capture_disables_terminal_echo_while_reading(
     assert transitions[0][0] == 91
     assert transitions[0][2][3] & termios.ECHO == 0
     assert transitions[-1] == (91, termios.TCSANOW, original)
+
+
+def test_private_capture_true_pty_waits_for_ready_before_source_is_sent(
+    tmp_path: Path,
+) -> None:
+    """The host gets a deterministic signal only after terminal echo is off."""
+
+    run_id = "quiet_capture_true_pty"
+    marker = "PRIVATE_SOURCE_MUST_NOT_ECHO_4f9b"
+    source = _conversation().replace("Should I accept this offer?", marker)
+    env = {
+        **os.environ,
+        "LOLLA_RUN_ID": run_id,
+        "LOLLA_EXPECTED_RUN_ID": run_id,
+        "LOLLA_TMP_DIR": str(tmp_path),
+        "PYTHONPATH": str(REPO_ROOT),
+        "PYTHONUNBUFFERED": "1",
+    }
+    master_fd, slave_fd = pty.openpty()
+    process = subprocess.Popen(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts/skill/capture_conversation.py"),
+        ],
+        stdin=slave_fd,
+        stdout=slave_fd,
+        stderr=slave_fd,
+        env=env,
+        close_fds=True,
+    )
+    os.close(slave_fd)
+    output = bytearray()
+    deadline = time.monotonic() + 5
+    try:
+        while b"PRIVATE_INPUT_READY" not in output:
+            remaining = deadline - time.monotonic()
+            assert remaining > 0, output.decode("utf-8", errors="replace")
+            readable, _, _ = select.select([master_fd], [], [], remaining)
+            assert readable, output.decode("utf-8", errors="replace")
+            output.extend(os.read(master_fd, 4096))
+
+        os.write(master_fd, source.encode("utf-8"))
+        os.write(master_fd, b"\x04")
+
+        while process.poll() is None:
+            readable, _, _ = select.select([master_fd], [], [], 0.1)
+            if readable:
+                try:
+                    output.extend(os.read(master_fd, 4096))
+                except OSError:
+                    break
+        process.wait(timeout=5)
+        while True:
+            readable, _, _ = select.select([master_fd], [], [], 0)
+            if not readable:
+                break
+            try:
+                chunk = os.read(master_fd, 4096)
+            except OSError:
+                break
+            if not chunk:
+                break
+            output.extend(chunk)
+    finally:
+        if process.poll() is None:
+            process.kill()
+            process.wait(timeout=5)
+        os.close(master_fd)
+
+    rendered = output.decode("utf-8", errors="replace")
+    assert process.returncode == 0, rendered
+    assert "PRIVATE_INPUT_READY" in rendered
+    assert "CAPTURE_STATUS: ready" in rendered
+    assert marker not in rendered
+    captured = tmp_path / f"lolla_{run_id}_conversation.txt"
+    assert captured.read_text(encoding="utf-8") == source
+
+
+def test_private_capture_fails_closed_when_tty_echo_cannot_be_disabled(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    sys.path.insert(0, str(REPO_ROOT / "scripts" / "skill"))
+    import capture_conversation
+
+    class _UnreadableTTY:
+        def fileno(self) -> int:
+            return 91
+
+        def isatty(self) -> bool:
+            return True
+
+        def read(self) -> str:
+            raise AssertionError("source must not be read while terminal echo may be on")
+
+    monkeypatch.setattr(capture_conversation.sys, "stdin", _UnreadableTTY())
+    monkeypatch.setattr(
+        capture_conversation.termios,
+        "tcgetattr",
+        lambda _fd: (_ for _ in ()).throw(termios.error("not a tty")),
+    )
+
+    with pytest.raises(capture_conversation.PrivateInputError):
+        capture_conversation._read_private_stdin()
 
 
 def test_private_capture_helper_refuses_to_replace_different_source(

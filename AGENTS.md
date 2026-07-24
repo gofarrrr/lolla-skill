@@ -262,8 +262,8 @@ Do not regenerate source meaning in the browser, normalize exact relations, infe
   skill; compilation is byte-exact and all 163 windows replay.
   Candidate-only path custody is not live; optional Step 7 remains default-off.
 - The provider-free Marcus run repair is published through PR #401. It promotes a preserved `pass2` 429 hidden beneath `healthy` into partial health and the receipt, suppresses capture echo, and enforces `umask 077`, `0700` archive directories, and `0600` files. The inspected run's modes were remediated without content or graph changes; usefulness remains unproven.
-- Decision Work is an optional operator-directed sidecar; it and Observatory
-  can package/read artifacts but cannot generate trustworthy arbitrary meaning.
+- A later live run exposed a startup race that PR #401's in-read no-echo guard could not prevent on its own. The provider-free follow-up adds the exact `PRIVATE_INPUT_READY` handshake, true-PTY regression coverage, fail-closed echo setup, source-complete passage-check context with exact custody, no globally repeated dropped-thread hint, exact partial receipts, and a narrow review-only caller state when that optional profile is the sole partial cause. The graph is unchanged. See `docs/conversation-understanding/lolla-live-run-interface-and-passage-truthfulness-repair-result-2026-07-24.md`.
+- Decision Work is an optional operator-directed sidecar; it and Observatory can package/read artifacts but cannot generate trustworthy arbitrary meaning.
 - Product Delta's agent-only paired screen preserves mixed moves, harms,
   disagreement, nulls, and stand-down; it validates no graph or usefulness.
 - The graph-increment result and variance calibration are frozen. Three of four generations completed; one direct draw failed without a recoverable payload and was not replaced.

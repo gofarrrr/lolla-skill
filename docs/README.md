@@ -66,12 +66,12 @@ proven useful.
 Read:
 
 - [Skill orchestration contract](../SKILL.md)
-- [Detailed skill steps](skill/STEPS.md), the [live extraction failure-custody repair](conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md), the [bundled runtime import repair](conversation-understanding/lolla-bundled-runtime-import-repair-result-2026-07-24.md), and the [Marcus live-run forensic audit and trust repair](conversation-understanding/lolla-marcus-live-run-forensic-audit-and-trust-repair-result-2026-07-24.md)
+- [Detailed skill steps](skill/STEPS.md), the [live extraction failure-custody repair](conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md), the [bundled runtime import repair](conversation-understanding/lolla-bundled-runtime-import-repair-result-2026-07-24.md), the [Marcus live-run forensic audit and trust repair](conversation-understanding/lolla-marcus-live-run-forensic-audit-and-trust-repair-result-2026-07-24.md), and the [live-run interface and passage truthfulness repair](conversation-understanding/lolla-live-run-interface-and-passage-truthfulness-repair-result-2026-07-24.md)
 - [Live-flow explanation](how-it-works/live-flow.md)
 - [Agent result contract](lolla-agent-result-contract.md)
 - [Cost and telemetry](cost-and-telemetry.md)
 
-The host owns reconsideration and dispositions; provider-backed lanes introduce candidate pressure, and neither certifies quality. Provider/model/pricing facts require current checks. The simulated Marcus case is real operating evidence for complete source and one-hop graph delivery plus repaired call-loss, terminal-echo, and archive-mode defects—not isolated graph contribution.
+The host owns reconsideration and dispositions; provider-backed lanes introduce candidate pressure, and neither certifies quality. Provider/model/pricing facts require current checks. The simulated Marcus case is real operating evidence for complete source and one-hop graph delivery plus repaired call-loss, terminal-readiness, passage-context, receipt, and archive-mode defects—not isolated graph contribution.
 
 ### Mental-model Markdown, graph, compiler, or portfolio planner
 

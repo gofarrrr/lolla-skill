@@ -80,6 +80,14 @@ coarser. Its payload reports `source_passage_count`,
 `evaluation_passage_count`, `max_evaluation_passages`, and
 `passage_compaction_applied` so the trade-off is visible.
 
+Each passage evaluation now receives the complete available user-turn prose
+plus a provisional extraction scaffold. This prevents the compact extraction
+from silently hiding user-stated facts, but the same source context can be
+charged as input in up to twelve calls. Long-conversation passage checking may
+therefore cost more than older runs. Usage custody records the actual input
+tokens; do not infer future cost from a pre-repair run or truncate back to the
+incomplete fact list without a separately declared source-coverage policy.
+
 Per-call records carry: `stage`, `tendency_id`, `provider_name`,
 `served_provider_name`, `model`, `status`, `finish_reason`,
 `raw_message_content`, `temperature`, `prompt_tokens`, `completion_tokens`,

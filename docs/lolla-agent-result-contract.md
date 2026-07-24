@@ -220,7 +220,13 @@ The first implementation is conservative:
 - Clean completed standard runs return `review_revised_answer`. This means the
   revised artifact is available for inspection; it does not approve its
   recommendation, certify quality, or authorize an external action.
-- Partial, degraded, incomplete, or product/live-output-unsafe runs return
+- Partial, degraded, incomplete, or product/live-output-unsafe runs normally
+  return `do_not_use_run_degraded`.
+- One narrow exception is an otherwise complete standard-mode run whose only
+  partial cause is missing judgments in the optional passage-quality profile.
+  It returns `review_revised_answer`, keeps `status: partial`, names the exact
+  missing-check count, and remains inspection-only. Any second issue, unsafe
+  output, missing core artifact, or high-stakes mode restores
   `do_not_use_run_degraded`.
 - A contained provider-boundary warning (`provider_boundary_health.status:
   "warning_contained"`) is still conservative in this contract. It receives a

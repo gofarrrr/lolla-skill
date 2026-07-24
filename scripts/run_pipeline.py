@@ -12,6 +12,7 @@ Output: JSON to stdout with delta_card, companion_cheat_sheet, frame_pressure_ca
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -114,8 +115,11 @@ def _load_env_file(path: Path) -> list[str]:
 def _build_fact_registry(extraction: dict) -> str:
     """Build a structured fact registry from the extraction JSON.
 
-    Produces a compact context string for the BI judge, replacing raw
-    conversation truncation with structured facts the user established.
+    Produces a compact, explicitly provisional extraction scaffold for the BI
+    judge. The complete available user turns are supplied separately and remain
+    authoritative. Dropped-thread interpretations are intentionally excluded:
+    repeating one global thread in every passage check created a systematic
+    false-positive pressure.
     """
     ext = extraction.get("extraction", extraction)
     parts: list[str] = []
@@ -128,7 +132,7 @@ def _build_fact_registry(extraction: dict) -> str:
     # Live constraints
     constraints = ext.get("live_constraints", [])
     if constraints:
-        parts.append("\nEstablished facts:")
+        parts.append("\nExtracted candidate constraints:")
         for c in constraints:
             constraint = c.get("constraint", "")
             weight = c.get("weight", "")
@@ -136,17 +140,60 @@ def _build_fact_registry(extraction: dict) -> str:
             if constraint:
                 parts.append(f"- {constraint} (weight: {weight}, status: {status})")
 
-    # Dropped threads
-    threads = ext.get("dropped_threads", [])
-    if threads:
-        parts.append("\nDropped threads:")
-        for t in threads:
-            thread = t.get("thread", "")
-            status = t.get("status", "")
-            if thread:
-                parts.append(f"- DROPPED: {thread} (status: {status})")
-
     return "\n".join(parts) if parts else ""
+
+
+def _build_bi_context(
+    *,
+    extraction: dict,
+    user_context_text: str,
+    user_turn_count: int,
+    fallback_context_text: str = "",
+) -> tuple[str, dict[str, object]]:
+    """Build source-complete passage-check context with explicit custody."""
+
+    user_context = user_context_text.strip()
+    sections: list[str] = []
+    if user_context:
+        sections.append(
+            "Complete available user turns (authoritative for user-stated facts):\n"
+            + user_context
+        )
+
+    fact_registry = _build_fact_registry(extraction)
+    if fact_registry:
+        sections.append(
+            "Provisional extracted decision scaffold (may be incomplete):\n"
+            + fact_registry
+        )
+
+    if not sections and fallback_context_text.strip():
+        sections.append(
+            "Fallback decision context (complete user turns unavailable):\n"
+            + fallback_context_text.strip()
+        )
+
+    context = "\n\n".join(sections)
+    custody = {
+        "schema_version": "lolla.bullshit_index_context_custody.v1",
+        "source": (
+            "complete_available_user_turns_plus_provisional_extraction"
+            if user_context
+            else "provisional_extraction_or_fallback"
+        ),
+        "complete_available_user_turns": bool(user_context),
+        "user_turn_count": int(user_turn_count),
+        "user_context_char_count": len(user_context),
+        "user_context_sha256": hashlib.sha256(
+            user_context.encode("utf-8")
+        ).hexdigest(),
+        "passage_context_char_count": len(context),
+        "passage_context_sha256": hashlib.sha256(
+            context.encode("utf-8")
+        ).hexdigest(),
+        "dropped_threads_in_passage_context": False,
+    }
+    return context, custody
 
 
 def _joined_turn_text(ctx, speaker: str) -> str:
@@ -1211,21 +1258,22 @@ def main() -> int:
         from system_b.bullshit_index import evaluate_text
 
         client = load_boundary_client_from_env("openrouter")
-        # Prefer structured fact registry from extraction (compact, precise).
-        # Fall back to raw conversation truncation when extraction unavailable.
-        fact_registry = _build_fact_registry(extraction)
-        if fact_registry:
-            bi_context = fact_registry
-        elif user_context_text:
-            bi_context = user_context_text[:4000]
-        else:
-            bi_context = case_focus
+        bi_context, context_custody = _build_bi_context(
+            extraction=extraction,
+            user_context_text=user_context_text,
+            user_turn_count=sum(
+                1 for turn in pipeline_input.turns if turn.speaker == "user"
+            ),
+            fallback_context_text=case_focus,
+        )
         profile = evaluate_text(
             audit_target_assistant_text,
             client,
             context_summary=bi_context,
         )
-        return profile.to_payload(), list(getattr(client, "call_log", ()))
+        profile_payload = profile.to_payload()
+        profile_payload["context_custody"] = context_custody
+        return profile_payload, list(getattr(client, "call_log", ()))
 
     with ThreadPoolExecutor(max_workers=2) as post_pool:
         revision_future = post_pool.submit(_run_revision)
@@ -1481,6 +1529,12 @@ def main() -> int:
     _bi_evaluation_failures = int(
         ((bullshit_profile_payload or {}).get("summary", {}) or {}).get("evaluation_failures", 0) or 0
     )
+    _bi_evaluation_count = int(
+        ((bullshit_profile_payload or {}).get("summary", {}) or {}).get(
+            "evaluation_passage_count", 0
+        )
+        or 0
+    )
     # All frame elements dropped = Lane 3 effectively disabled by validation.
     # Partial drops are tolerated (some elements kept).
     _lane3_all_dropped = _lane3_drops_count > 0 and _lane3_kept_count == 0
@@ -1612,6 +1666,7 @@ def main() -> int:
             _health_issue_detail(
                 "bullshit_index_partial",
                 evaluation_failures=_bi_evaluation_failures,
+                evaluation_count=_bi_evaluation_count,
             )
         )
     if (
@@ -1655,6 +1710,7 @@ def main() -> int:
         "lane3_frame_drops_count": _lane3_drops_count,
         "lane3_frame_kept_count": _lane3_kept_count,
         "bullshit_index_evaluation_failures": _bi_evaluation_failures,
+        "bullshit_index_evaluation_count": _bi_evaluation_count,
         "issues": _health_issues,
         "issue_details": _health_issue_details,
         "issue_axis_counts": _health_issue_axis_counts(_health_issue_details),

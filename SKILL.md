@@ -252,7 +252,12 @@ calls, tool results, system messages, and file contents. See
 exact transcript format and capture contract.
 
 The helper disables echo when its standard input is an interactive terminal,
-so supplying the source must not replay the conversation in runtime output.
+then emits the exact readiness line `PRIVATE_INPUT_READY`. Wait for that line
+before supplying any source bytes through the host's process-input channel.
+Supplying source merely because the process has started can race terminal
+setup and echo the conversation. If echo cannot be disabled, the helper fails
+without reading the source. After the readiness line, supplying the source must
+not replay the conversation in runtime output.
 
 ### Step 2: Extract Decision Structure
 

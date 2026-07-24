@@ -26,6 +26,13 @@ from engine.system_b.run_state import (  # noqa: E402
 from validate_conversation_capture import validate_capture  # noqa: E402
 
 
+class PrivateInputError(RuntimeError):
+    """The helper could not establish a non-echoing interactive input channel."""
+
+
+PRIVATE_INPUT_READY = "PRIVATE_INPUT_READY"
+
+
 def _runtime_tmp_dir() -> Path:
     return Path(os.getenv("LOLLA_TMP_DIR", "/tmp")).expanduser()
 
@@ -58,6 +65,7 @@ def _read_private_stdin() -> str:
     """Read a supplied transcript without letting an interactive TTY echo it."""
 
     if not sys.stdin.isatty():
+        print(PRIVATE_INPUT_READY, flush=True)
         return sys.stdin.read()
 
     fd = sys.stdin.fileno()
@@ -66,10 +74,13 @@ def _read_private_stdin() -> str:
         quiet = list(original)
         quiet[3] &= ~termios.ECHO
         termios.tcsetattr(fd, termios.TCSANOW, quiet)
-    except (OSError, termios.error):
-        return sys.stdin.read()
+    except (OSError, termios.error) as exc:
+        raise PrivateInputError(
+            "could not disable terminal echo; source was not read"
+        ) from exc
 
     try:
+        print(PRIVATE_INPUT_READY, flush=True)
         return sys.stdin.read()
     finally:
         try:
@@ -110,7 +121,11 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 2
 
-    source = _read_private_stdin()
+    try:
+        source = _read_private_stdin()
+    except PrivateInputError as exc:
+        print(f"FATAL: private conversation capture unavailable: {exc}.", file=sys.stderr)
+        return 2
     if not source.strip():
         print(
             "FATAL: no conversation was supplied on standard input.",

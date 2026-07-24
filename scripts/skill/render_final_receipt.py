@@ -28,12 +28,13 @@ def build_final_receipt(
         issues=set(run_health.get("issues") or []),
         run_health=run_health,
     )
+    live_output_note = _live_output_note(run_health=run_health)
     observatory_text = _observatory_text(
         observatory_url=observatory_url,
         observatory_status=observatory_status,
     )
     return (
-        f"{prefix}Reconsideration stayed in this conversation's context; "
+        f"{prefix}{live_output_note}Reconsideration stayed in this conversation's context; "
         f"it was not an external check. {observatory_text} "
         f"Memo at {memo_path}. Cost estimate: {cost_text}. "
         f"Archived to {archive_path}."
@@ -83,12 +84,44 @@ def _run_health_prefix(
             f"Run health is partial: {call_text} ended without a usable result"
             f"{detail_text} and was not retried; other product artifacts are present. "
         )
+    if "bullshit_index_partial" in issues:
+        failures = int(run_health.get("bullshit_index_evaluation_failures") or 0)
+        total = int(run_health.get("bullshit_index_evaluation_count") or 0)
+        if total > 0:
+            check_text = (
+                f"{failures} of {total} passage-quality "
+                f"{'check' if total == 1 else 'checks'}"
+            )
+        else:
+            check_text = (
+                f"{failures} passage-quality "
+                f"{'check' if failures == 1 else 'checks'}"
+            )
+        return (
+            f"Run health is partial: {check_text} returned no usable judgment "
+            "and was not retried; the core audit and revised answer are present, "
+            "but the passage profile is incomplete. "
+        )
     if "pipeline_warnings" in issues:
         return (
             "Run health is partial: vendor boundary warnings were emitted; substantive "
             "artifacts are present. "
         )
     return f"Run health is {overall}; inspect the archived artifacts for details. "
+
+
+def _live_output_note(*, run_health: Mapping[str, Any]) -> str:
+    status = str(run_health.get("live_output_health") or "").strip()
+    if status == "not_checked":
+        return (
+            "The saved narration does not independently verify everything shown "
+            "in the live terminal. "
+        )
+    if status == "missing":
+        return "No saved live-terminal narration was available for hygiene review. "
+    if status == "unsafe":
+        return "The live terminal output was marked unsafe; inspect it before reuse. "
+    return ""
 
 
 def _observatory_text(*, observatory_url: str, observatory_status: str) -> str:

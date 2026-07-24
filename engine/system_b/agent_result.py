@@ -135,6 +135,7 @@ def build_agent_result(
             provider_boundary_health=provider_boundary_health,
             capture_adequacy=capture_adequacy,
             processing_view=processing_view,
+            run_health=run_health,
         ),
     }
 
@@ -196,6 +197,8 @@ def _status(
     if _text(capture_adequacy.get("status")) == "critical":
         return "degraded", "capture adequacy was marked critical"
     if overall == "partial":
+        if is_reviewable_passage_profile_partial(run_health):
+            return "partial", _passage_profile_partial_reason(run_health)
         if _contained_provider_boundary_warning_only(
             run_health=run_health,
             provider_boundary_health=provider_boundary_health,
@@ -225,6 +228,14 @@ def _caller_action(
     artifact_status: Mapping[str, str],
     risk_mode: str,
 ) -> str:
+    if (
+        status == "partial"
+        and risk_mode == "standard"
+        and is_reviewable_passage_profile_partial(run_health)
+        and artifact_status.get("revised_answer") == "present"
+        and artifact_status.get("memo") == "present"
+    ):
+        return "review_revised_answer"
     if status in {"partial", "degraded", "incomplete"}:
         return "do_not_use_run_degraded"
     if risk_mode == "high_stakes":
@@ -469,6 +480,45 @@ def _contained_provider_boundary_warning_only(
     return issues == {"vendor_boundary_reasoning_leak"}
 
 
+def is_reviewable_passage_profile_partial(run_health: Mapping[str, Any]) -> bool:
+    """True only when an optional passage profile is the sole partial cause."""
+
+    if _text(run_health.get("overall")) != "partial":
+        return False
+    if _text(run_health.get("product_output_health")) != "clean":
+        return False
+    if _text(run_health.get("live_output_health")) == "unsafe":
+        return False
+    issue_codes = {
+        _text(item.get("code"))
+        for item in _list(run_health.get("issue_details"))
+        if isinstance(item, Mapping)
+        and _text(item.get("severity")) in {"partial", "degraded", "critical"}
+    }
+    if not issue_codes:
+        issue_codes = set(_clean_items(run_health.get("partial_health_causes")))
+    if not issue_codes:
+        issue_codes = set(_clean_items(run_health.get("issues")))
+    return (
+        issue_codes == {"bullshit_index_partial"}
+        and int(run_health.get("bullshit_index_evaluation_failures") or 0) > 0
+    )
+
+
+def _passage_profile_partial_reason(run_health: Mapping[str, Any]) -> str:
+    failures = int(run_health.get("bullshit_index_evaluation_failures") or 0)
+    total = int(run_health.get("bullshit_index_evaluation_count") or 0)
+    if total > 0:
+        return (
+            f"core audit is complete; {failures} of {total} "
+            f"passage-quality checks {'is' if failures == 1 else 'are'} missing"
+        )
+    return (
+        f"core audit is complete; {failures} passage-quality "
+        f"{'check is' if failures == 1 else 'checks are'} missing"
+    )
+
+
 def _notes(
     *,
     status: str,
@@ -477,6 +527,7 @@ def _notes(
     provider_boundary_health: Mapping[str, Any],
     capture_adequacy: Mapping[str, Any],
     processing_view: Mapping[str, Any],
+    run_health: Mapping[str, Any],
 ) -> list[str]:
     capture_status = _text(capture_adequacy.get("status"))
     if capture_status == "critical":
@@ -498,6 +549,22 @@ def _notes(
             f"Capture adequacy is warning-level; {omitted} middle turns may be omitted, so inspect capture metadata before relying on this audit."
         ]
     if caller_action == "review_revised_answer":
+        if status == "partial" and is_reviewable_passage_profile_partial(run_health):
+            failures = int(run_health.get("bullshit_index_evaluation_failures") or 0)
+            total = int(run_health.get("bullshit_index_evaluation_count") or 0)
+            if total > 0:
+                count = f"{failures} of {total} passage-quality checks"
+            else:
+                count = (
+                    f"{failures} passage-quality "
+                    f"{'check' if failures == 1 else 'checks'}"
+                )
+            return [
+                "The core audit is available for human review, but "
+                f"{count} {'is' if failures == 1 else 'are'} missing; "
+                "the passage profile is incomplete and this is not approval "
+                "or proof of reasoning quality."
+            ]
         return [
             "Review the revised answer together with the memo and artifact pointers; complete custody is not approval, a safety guarantee, or proof of reasoning quality."
         ]
