@@ -190,6 +190,11 @@ The repair is covered by:
 - existing graph, risk-mode, archive, skill-contract, and passage-budget
   regressions.
 
+Final provider-free verification passed 5,221 repository tests and all 93
+subtests. The Constitution Stage 0 register, public handoff validator, packaged
+skill validator, Python compilation, Bash syntax, and `git diff --check` also
+passed. One existing `datetime.utcnow()` deprecation warning remained.
+
 No live Lolla run, provider call, embedding call, automatic retry, semantic
 healing, archive rewrite, or graph execution was used to validate the repair.
 
@@ -210,4 +215,3 @@ healing, archive rewrite, or graph execution was used to validate the repair.
   improvement, or prove real-user usefulness.
 - The same host reasoner still performs reconsideration; it is not independent
   validation.
-
