@@ -1,0 +1,700 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "answer_quality_scored": {
+          "enum": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "ground_truth": {
+          "enum": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "human_validated": {
+          "enum": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "provider_calls": {
+          "enum": [
+            0
+          ],
+          "type": "integer"
+        },
+        "winner_selected": {
+          "enum": [
+            false
+          ],
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "answer_quality_scored",
+        "ground_truth",
+        "human_validated",
+        "provider_calls",
+        "winner_selected"
+      ],
+      "type": "object"
+    },
+    "comparison_reviews": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "arm_observations": {
+            "additionalProperties": false,
+            "properties": {
+              "A": {
+                "additionalProperties": false,
+                "properties": {
+                  "cognitive_burden": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "lost_or_weakened_source_value": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "preserved_source_value": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "unsupported_additions": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "preserved_source_value",
+                  "lost_or_weakened_source_value",
+                  "unsupported_additions",
+                  "cognitive_burden"
+                ],
+                "type": "object"
+              },
+              "B": {
+                "additionalProperties": false,
+                "properties": {
+                  "cognitive_burden": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "lost_or_weakened_source_value": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "preserved_source_value": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "unsupported_additions": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "preserved_source_value",
+                  "lost_or_weakened_source_value",
+                  "unsupported_additions",
+                  "cognitive_burden"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "A",
+              "B"
+            ],
+            "type": "object"
+          },
+          "atomic_moves": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "cognitive_effect": {
+                  "enum": [
+                    "adds_burden",
+                    "adds_caution",
+                    "adds_test",
+                    "narrows_path",
+                    "opens_path",
+                    "preserves_option",
+                    "removes_option",
+                    "repeats",
+                    "unclear"
+                  ],
+                  "type": "string"
+                },
+                "decision_effect": {
+                  "type": "string"
+                },
+                "move_id": {
+                  "type": "string"
+                },
+                "presence": {
+                  "enum": [
+                    "a_exclusive",
+                    "b_exclusive",
+                    "contradictory",
+                    "shared",
+                    "uncertain_equivalence"
+                  ],
+                  "type": "string"
+                },
+                "reasoning_operation": {
+                  "enum": [
+                    "counterframe",
+                    "evidence_gate",
+                    "falsifier",
+                    "generic_caution",
+                    "lost_value",
+                    "option",
+                    "other",
+                    "premortem",
+                    "preserved_value",
+                    "question",
+                    "restatement",
+                    "reversal",
+                    "stakeholder_view",
+                    "stop_rule",
+                    "time_horizon",
+                    "unsupported_specificity"
+                  ],
+                  "type": "string"
+                },
+                "source_evidence": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "source_grounding": {
+                  "enum": [
+                    "partly_supported",
+                    "supported",
+                    "unclear",
+                    "unsupported"
+                  ],
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "move_id",
+                "summary",
+                "presence",
+                "reasoning_operation",
+                "source_evidence",
+                "source_grounding",
+                "cognitive_effect",
+                "decision_effect"
+              ],
+              "type": "object"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
+          },
+          "case_id": {
+            "enum": [
+              "replication-pair-01",
+              "replication-pair-02",
+              "replication-pair-03",
+              "replication-pair-04",
+              "replication-pair-05",
+              "replication-pair-06",
+              "replication-pair-07",
+              "replication-pair-08"
+            ],
+            "type": "string"
+          },
+          "inspection_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "material_decision_difference": {
+            "enum": [
+              "absent",
+              "present",
+              "uncertain"
+            ],
+            "type": "string"
+          },
+          "review_status": {
+            "enum": [
+              "reviewed"
+            ],
+            "type": "string"
+          },
+          "source_interpretation": {
+            "additionalProperties": false,
+            "properties": {
+              "decision_or_question": {
+                "type": "string"
+              },
+              "material_constraints": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "source_limits": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "decision_or_question",
+              "material_constraints",
+              "source_limits"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "case_id",
+          "review_status",
+          "source_interpretation",
+          "atomic_moves",
+          "arm_observations",
+          "material_decision_difference",
+          "inspection_limits"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    },
+    "duplicate_null_review": {
+      "additionalProperties": false,
+      "properties": {
+        "arm_observations": {
+          "additionalProperties": false,
+          "properties": {
+            "A": {
+              "additionalProperties": false,
+              "properties": {
+                "cognitive_burden": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "lost_or_weakened_source_value": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "preserved_source_value": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "unsupported_additions": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preserved_source_value",
+                "lost_or_weakened_source_value",
+                "unsupported_additions",
+                "cognitive_burden"
+              ],
+              "type": "object"
+            },
+            "B": {
+              "additionalProperties": false,
+              "properties": {
+                "cognitive_burden": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "lost_or_weakened_source_value": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "preserved_source_value": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "unsupported_additions": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preserved_source_value",
+                "lost_or_weakened_source_value",
+                "unsupported_additions",
+                "cognitive_burden"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "A",
+            "B"
+          ],
+          "type": "object"
+        },
+        "atomic_moves": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "cognitive_effect": {
+                "enum": [
+                  "adds_burden",
+                  "adds_caution",
+                  "adds_test",
+                  "narrows_path",
+                  "opens_path",
+                  "preserves_option",
+                  "removes_option",
+                  "repeats",
+                  "unclear"
+                ],
+                "type": "string"
+              },
+              "decision_effect": {
+                "type": "string"
+              },
+              "move_id": {
+                "type": "string"
+              },
+              "presence": {
+                "enum": [
+                  "a_exclusive",
+                  "b_exclusive",
+                  "contradictory",
+                  "shared",
+                  "uncertain_equivalence"
+                ],
+                "type": "string"
+              },
+              "reasoning_operation": {
+                "enum": [
+                  "counterframe",
+                  "evidence_gate",
+                  "falsifier",
+                  "generic_caution",
+                  "lost_value",
+                  "option",
+                  "other",
+                  "premortem",
+                  "preserved_value",
+                  "question",
+                  "restatement",
+                  "reversal",
+                  "stakeholder_view",
+                  "stop_rule",
+                  "time_horizon",
+                  "unsupported_specificity"
+                ],
+                "type": "string"
+              },
+              "source_evidence": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "source_grounding": {
+                "enum": [
+                  "partly_supported",
+                  "supported",
+                  "unclear",
+                  "unsupported"
+                ],
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "move_id",
+              "summary",
+              "presence",
+              "reasoning_operation",
+              "source_evidence",
+              "source_grounding",
+              "cognitive_effect",
+              "decision_effect"
+            ],
+            "type": "object"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "type": "array"
+        },
+        "case_id": {
+          "enum": [
+            "retailer-pilot-exact-duplicate-null"
+          ],
+          "type": "string"
+        },
+        "inspection_limits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "material_decision_difference": {
+          "enum": [
+            "absent",
+            "present",
+            "uncertain"
+          ],
+          "type": "string"
+        },
+        "review_status": {
+          "enum": [
+            "reviewed"
+          ],
+          "type": "string"
+        },
+        "source_interpretation": {
+          "additionalProperties": false,
+          "properties": {
+            "decision_or_question": {
+              "type": "string"
+            },
+            "material_constraints": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source_limits": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "decision_or_question",
+            "material_constraints",
+            "source_limits"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "case_id",
+        "review_status",
+        "source_interpretation",
+        "atomic_moves",
+        "arm_observations",
+        "material_decision_difference",
+        "inspection_limits"
+      ],
+      "type": "object"
+    },
+    "fresh_context": {
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    },
+    "qualification_reviews": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "enum": [
+              "trap-thin-context-001",
+              "trap-longer-no-action-002",
+              "trap-caution-no-leverage-003",
+              "trap-gate-already-present-004",
+              "trap-lost-live-option-005",
+              "trap-ambition-buried-006",
+              "trap-assistant-influence-007",
+              "trap-disagreement-survives-008",
+              "trap-clean-artifact-009",
+              "trap-provisional-hardening-010"
+            ],
+            "type": "string"
+          },
+          "evidence_disposition": {
+            "enum": [
+              "blocked_thin_context",
+              "inconclusive",
+              "needs_human_review",
+              "sufficient_for_bounded_comparison"
+            ],
+            "type": "string"
+          },
+          "inferences_explicitly_not_made": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "missing_evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "supported_observations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "uncertainty_notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "case_id",
+          "evidence_disposition",
+          "supported_observations",
+          "missing_evidence",
+          "inferences_explicitly_not_made",
+          "uncertainty_notes"
+        ],
+        "type": "object"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array"
+    },
+    "review_id": {
+      "enum": [
+        "agent-graph-review-envelope-v2-primary"
+      ],
+      "type": "string"
+    },
+    "saw_lineage_before_freeze": {
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "saw_sibling_review_before_freeze": {
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "schema_version": {
+      "enum": [
+        "lolla.product_delta_graph_replication_fresh_agent_review.v2"
+      ],
+      "type": "string"
+    },
+    "standdown_reviews": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "enum": [
+              "library-laptop-standdown"
+            ],
+            "type": "string"
+          },
+          "risk_of_forced_additional_analysis": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "semantic_limits_of_mechanical_observation": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "source_basis": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "standdown_support": {
+            "enum": [
+              "supported",
+              "uncertain",
+              "unsupported"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "case_id",
+          "standdown_support",
+          "source_basis",
+          "risk_of_forced_additional_analysis",
+          "semantic_limits_of_mechanical_observation"
+        ],
+        "type": "object"
+      },
+      "maxItems": 1,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "fresh_context",
+    "saw_lineage_before_freeze",
+    "saw_sibling_review_before_freeze",
+    "boundary",
+    "qualification_reviews",
+    "duplicate_null_review",
+    "comparison_reviews",
+    "standdown_reviews"
+  ],
+  "title": "Lolla graph replication blind review v2 (primary)",
+  "type": "object"
+}

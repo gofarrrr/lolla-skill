@@ -449,6 +449,58 @@ See the
 and
 [machine closeout](../../research/agent-only-graph-replication-2026-07-23/consolidated-diagnostic.json).
 
+### Provider-free reviewer-envelope repair
+
+Date: 2026-07-24
+
+Evidence class: provider-free structural-contract and development-fixture
+evidence; not a semantic rerun, graph result, answer-quality result, or
+human-usefulness result
+
+Provider calls and cost: 0 and `$0.00`
+
+The repair question was deliberately narrower than the graph question:
+
+> Can one authoritative structured-output schema remove the known
+> scalar-versus-array ambiguity while preserving the exact frozen review
+> material and without changing graph behavior?
+
+The existing offline Product Delta owner now produces two lane-specific
+blind-review schemas, two conditional post-reveal schemas, exact-semantic-input
+blind packets, structural fixtures, and a machine contract. The v1
+example-shaped response grammar is absent from the v2 packets. Every enum
+field declares one scalar JSON string, and future Codex command templates pass
+the schema through `--output-schema`.
+
+The known-valid scalar fixture produces zero structural errors. The untouched
+historical skeptical terminal payload, adapted only to prospective v2 identity
+for a development replay, produces exactly 29 errors at the 29 array-shaped
+`cognitive_effect` fields. Its semantic contents remain unused. Both
+post-reveal shape fixtures pass.
+
+The repair reuses the existing Product Delta exact-case and enum validator
+rather than creating another evaluator. It hash-locks the consumed replication
+contract, packet, sealed manifest, two terminal reviews, failure receipt, and
+`not_evaluable` consolidation. No review, post-reveal interpretation, graph
+decision, runtime edge, or human field was generated.
+
+If execution is later authorized, zero answers are regenerated. Two fresh
+blind reviewers must run symmetrically over the eight frozen answers, followed
+by at most two conditional post-reveal contexts. A skeptical-only correction
+or reuse of the historical primary as one v2 reviewer is forbidden. Maximum
+new Codex contexts are four; repository provider calls remain zero and
+repository provider cost is capped at `$0.00`. Codex platform route, tokens,
+and economic cost remain unavailable rather than zero.
+
+The exact separate authorization, first-terminal custody, no-retry rule,
+schemas, packets, command templates, paths, and stop rules are frozen in
+[`lolla-agent-only-graph-review-envelope-repair-contract-v1.json`](../evals/lolla-agent-only-graph-review-envelope-repair-contract-v1.json).
+The provider-free result is
+[`lolla-agent-only-graph-review-envelope-repair-result-2026-07-24.md`](lolla-agent-only-graph-review-envelope-repair-result-2026-07-24.md).
+
+Decision: the known response-cardinality ambiguity is repaired
+prospectively. No new semantic context or graph continuation is authorized.
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,
