@@ -2,7 +2,9 @@
 
 Date: 2026-07-24
 
-Status: implemented and verified locally; not yet repository-published
+Status: repository-published through
+[PR #401](https://github.com/gofarrrr/lolla-skill/pull/401) at merge
+`761c2e6d1f3387bc4a943ab8d933027a205b1214`
 
 Scope: retrospective inspection of completed run
 `20260724T150313Z_defca7`, followed by provider-free runtime truthfulness and

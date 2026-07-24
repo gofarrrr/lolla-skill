@@ -261,7 +261,7 @@ Do not regenerate source meaning in the browser, normalize exact relations, infe
   cwd. This repository owns all 222 sources, 1,358 relations, and the root
   skill; compilation is byte-exact and all 163 windows replay.
   Candidate-only path custody is not live; optional Step 7 remains default-off.
-- The local provider-free Marcus run repair promotes a preserved `pass2` 429 hidden beneath `healthy` into partial health and the receipt; it also suppresses capture echo and enforces `umask 077`, `0700` archive directories, and `0600` files. The inspected run's modes were remediated without content or graph changes; usefulness remains unproven.
+- The provider-free Marcus run repair is published through PR #401. It promotes a preserved `pass2` 429 hidden beneath `healthy` into partial health and the receipt, suppresses capture echo, and enforces `umask 077`, `0700` archive directories, and `0600` files. The inspected run's modes were remediated without content or graph changes; usefulness remains unproven.
 - Decision Work is an optional operator-directed sidecar; it and Observatory
   can package/read artifacts but cannot generate trustworthy arbitrary meaning.
 - Product Delta's agent-only paired screen preserves mixed moves, harms,
