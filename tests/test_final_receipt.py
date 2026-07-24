@@ -23,7 +23,10 @@ def test_final_receipt_reports_live_observatory_when_liveness_checked() -> None:
         "it was not an external check."
     ) in receipt
     assert "Cost estimate: $0.06." in receipt
-    assert receipt.endswith("Archived to /tmp/archive/run.")
+    assert receipt.endswith(
+        "The memo and archive were saved privately. Cost estimate: $0.06."
+    )
+    assert "/tmp/" not in receipt
 
 
 def test_final_receipt_does_not_claim_dead_observatory_is_live() -> None:

@@ -8,7 +8,7 @@ lolla_operator_log_init() {
     return 0
   fi
   if [ -z "${LOLLA_OPERATOR_LOG:-}" ]; then
-    LOLLA_OPERATOR_LOG="/tmp/lolla_${LOLLA_RUN_ID}_operator.log"
+    LOLLA_OPERATOR_LOG="${LOLLA_TMP_DIR:-/tmp}/lolla_${LOLLA_RUN_ID}_operator.log"
     export LOLLA_OPERATOR_LOG
   fi
   touch "$LOLLA_OPERATOR_LOG" 2>/dev/null || true

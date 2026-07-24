@@ -178,6 +178,23 @@ def test_usage_summary_prices_served_model_and_flags_attribution_mismatch():
     assert openrouter["requested_models_seen"] == ["x-ai/grok-4.1-fast"]
     assert openrouter["model_attribution"]["mismatch_count"] == 1
     assert openrouter["model_attribution"]["mismatches"][0]["served_model"] == "x-ai/grok-4.3"
+    assert summary["provider_budget_enforcement_scope"] == {
+        "status": "declared",
+        "covered_vendor_groups": ["openrouter"],
+        "excluded_vendor_groups": [
+            "openai_embeddings",
+            "anthropic_subagents",
+        ],
+        "ceiling_basis": (
+            "per-call reservation with provider-reported, locally estimated, "
+            "or reserved-worst-case final accounting"
+        ),
+        "separate_from_estimated_total_cost_usd": True,
+        "non_claim": (
+            "the OpenRouter hard ceiling is not a whole-run ceiling for "
+            "OpenAI embeddings or optional host sub-agents"
+        ),
+    }
 
 
 def test_usage_summary_prices_version_alias_without_mismatch():

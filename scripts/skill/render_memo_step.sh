@@ -33,8 +33,7 @@ while [ "$#" -gt 0 ]; do
       cat <<'EOF'
 Usage: bash scripts/skill/render_memo_step.sh
 
-Persists /tmp/lolla_${LOLLA_RUN_ID}_memo_note.json into result.json and renders
-/tmp/lolla_${LOLLA_RUN_ID}_memo.md.
+Persists the exact run's private memo-note fields and renders its private memo.
 EOF
       exit 0
       ;;
@@ -45,17 +44,10 @@ EOF
   esac
 done
 
-if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
-  # shellcheck source=/dev/null
-  . "$LOLLA_ENV_STATE"
-elif [ -f /tmp/lolla_latest_env.sh ]; then
-  # shellcheck source=/dev/null
-  . /tmp/lolla_latest_env.sh
-fi
-
-if [ -n "$REQUESTED_RUN_ID" ]; then
-  export LOLLA_RUN_ID="$REQUESTED_RUN_ID"
-fi
+_LOLLA_HELPER_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+# shellcheck source=load_run_state.sh
+. "$_LOLLA_HELPER_DIR/load_run_state.sh"
+lolla_load_run_state "$REQUESTED_RUN_ID"
 if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
   echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}" >&2
   exit 1
@@ -84,53 +76,26 @@ record_run_event_quiet() {
     --quiet || true
 }
 
-RESULT_PATH="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
-NOTE_PATH="${REQUESTED_NOTE:-/tmp/lolla_${LOLLA_RUN_ID}_memo_note.json}"
-MEMO_PATH="/tmp/lolla_${LOLLA_RUN_ID}_memo.md"
+RUNTIME_TMP_DIR="${LOLLA_TMP_DIR:-/tmp}"
+RESULT_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_result.json"
+NOTE_PATH="${REQUESTED_NOTE:-$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_memo_note.json}"
+MEMO_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_memo.md"
 
 if [ -n "$REQUESTED_RESULT" ] && [ "$REQUESTED_RESULT" != "$RESULT_PATH" ]; then
-  echo "FATAL: render_memo_step.sh received unexpected --result. Use the current run path: $RESULT_PATH" >&2
+  echo "FATAL: render_memo_step.sh received a result artifact for a different run." >&2
   exit 2
 fi
 if [ -n "$REQUESTED_OUTPUT" ] && [ "$REQUESTED_OUTPUT" != "$MEMO_PATH" ]; then
-  echo "FATAL: render_memo_step.sh received unexpected --output. Use the current run path: $MEMO_PATH" >&2
+  echo "FATAL: render_memo_step.sh received a memo target for a different run." >&2
   exit 2
 fi
 
 if [ ! -s "$RESULT_PATH" ]; then
-  echo "FATAL: result JSON missing at $RESULT_PATH. Step 3 did not complete." >&2
+  echo "FATAL: the exact run has no result artifact. Step 3 did not complete." >&2
   exit 1
 fi
 if [ ! -s "$NOTE_PATH" ]; then
-  echo "FATAL: memo note JSON missing at $NOTE_PATH. Step 8c memo fields were not written." >&2
-  exit 1
-fi
-
-if ! lolla_run_logged "Step 8c persist memo note fields" python3 - "$RESULT_PATH" "$NOTE_PATH" <<'PY'
-import datetime as dt
-import json
-import sys
-from pathlib import Path
-
-result_path = Path(sys.argv[1])
-note_path = Path(sys.argv[2])
-payload = json.loads(result_path.read_text(encoding="utf-8"))
-note = json.loads(note_path.read_text(encoding="utf-8"))
-for key in [
-    "memo_substantive_title",
-    "memo_orientation_note",
-    "memo_what_changed",
-    "memo_what_still_holds",
-    "memo_take_back_or_set_aside",
-    "memo_pressure_check",
-]:
-    payload[key] = str(note.get(key, "")).strip()
-payload["memo_note_written_at"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-result_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-print(f"Memo note fields persisted to {result_path}")
-PY
-then
-  echo "FATAL: memo note persistence failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: the exact run has no private memo note. Step 8c did not complete." >&2
   exit 1
 fi
 
@@ -139,11 +104,10 @@ if [ "$INCLUDE_APPENDIX" -eq 1 ]; then
   render_args+=(--include-audit-appendix)
 fi
 if ! lolla_run_logged "Step 8c render_memo.py" "${render_args[@]}"; then
-  echo "FATAL: memo rendering failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: memo rendering failed. Details are in private operator custody." >&2
   exit 1
 fi
 record_run_event_quiet memo_rendered \
   --detail "memo_path=$MEMO_PATH" \
   --detail "include_audit_appendix=$INCLUDE_APPENDIX"
-echo "MEMO_PATH: $MEMO_PATH"
-echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
+echo "MEMO_STATUS: ready"

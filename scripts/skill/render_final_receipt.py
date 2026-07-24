@@ -4,8 +4,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any, Mapping
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from engine.system_b.private_runtime import atomic_private_write_text  # noqa: E402
 
 
 def build_final_receipt(
@@ -21,8 +28,6 @@ def build_final_receipt(
     cost_text = f"${float(cost):.2f}" if cost is not None else "unavailable"
     run_health = result_payload.get("run_health") or {}
     overall = str(run_health.get("overall") or "unknown")
-    memo_path = result_path.with_name(result_path.name.replace("_result.json", "_memo.md"))
-
     prefix = _run_health_prefix(
         overall=overall,
         issues=set(run_health.get("issues") or []),
@@ -36,8 +41,7 @@ def build_final_receipt(
     return (
         f"{prefix}{live_output_note}Reconsideration stayed in this conversation's context; "
         f"it was not an external check. {observatory_text} "
-        f"Memo at {memo_path}. Cost estimate: {cost_text}. "
-        f"Archived to {archive_path}."
+        f"The memo and archive were saved privately. Cost estimate: {cost_text}."
     )
 
 
@@ -152,7 +156,7 @@ def main() -> int:
         observatory_status=args.observatory_status,
         archive_path=args.archive_path,
     )
-    Path(args.output).write_text(receipt + "\n", encoding="utf-8")
+    atomic_private_write_text(Path(args.output), receipt + "\n")
     return 0
 
 

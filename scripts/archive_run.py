@@ -800,6 +800,14 @@ def main() -> int:
             "Falls back to $LOLLA_CASE_ID if unset."
         ),
     )
+    ap.add_argument(
+        "--tmp-dir",
+        default=None,
+        help=(
+            "Override the runtime-artifact root. Falls back to "
+            "$LOLLA_TMP_DIR, then /tmp."
+        ),
+    )
     ap.add_argument("--quiet", action="store_true", help="Only print errors.")
     args = ap.parse_args()
 
@@ -810,10 +818,22 @@ def main() -> int:
     else:
         archive_root = DEFAULT_ARCHIVE_ROOT
 
+    if args.tmp_dir:
+        tmp_dir = Path(args.tmp_dir).expanduser()
+    elif os.environ.get("LOLLA_TMP_DIR"):
+        tmp_dir = Path(os.environ["LOLLA_TMP_DIR"]).expanduser()
+    else:
+        tmp_dir = Path("/tmp")
+
     override = args.case_id or os.environ.get("LOLLA_CASE_ID") or None
 
     try:
-        result = archive_run(args.run_id, archive_root, override_case_id=override)
+        result = archive_run(
+            args.run_id,
+            archive_root,
+            tmp_dir=tmp_dir,
+            override_case_id=override,
+        )
     except (ValueError, FileNotFoundError) as exc:
         print(f"Archive failed: {exc}", file=sys.stderr)
         return 1

@@ -47,6 +47,7 @@ from .pricing import (
     lookup_chat_price,
     lookup_embedding_price,
 )
+from .run_state import runtime_tmp_dir
 
 
 _LOGGER = logging.getLogger("system_b.usage_summary")
@@ -75,7 +76,7 @@ def load_extraction_sidecar(run_id: str) -> list[dict]:
     """
     if not is_valid_run_id(run_id):
         return []
-    path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    path = runtime_tmp_dir() / f"lolla_{run_id}_extraction_calls.json"
     if not path.exists():
         return []
     try:
@@ -622,6 +623,23 @@ def build_usage_summary(
         "pricing_table_version": PRICES_LAST_VERIFIED,
         "pricing_verification_scope": PRICES_VERIFICATION_SCOPE,
         "pricing_table_wide_last_verified": TABLE_WIDE_LAST_VERIFIED,
+        "provider_budget_enforcement_scope": {
+            "status": "declared",
+            "covered_vendor_groups": ["openrouter"],
+            "excluded_vendor_groups": [
+                "openai_embeddings",
+                "anthropic_subagents",
+            ],
+            "ceiling_basis": (
+                "per-call reservation with provider-reported, locally estimated, "
+                "or reserved-worst-case final accounting"
+            ),
+            "separate_from_estimated_total_cost_usd": True,
+            "non_claim": (
+                "the OpenRouter hard ceiling is not a whole-run ceiling for "
+                "OpenAI embeddings or optional host sub-agents"
+            ),
+        },
         "vendors": {
             "openrouter": openrouter_block,
             "openai_embeddings": embedding_block,
@@ -638,6 +656,10 @@ def build_usage_summary(
             "verify that its exact model has a current local rate.",
             "Embedding costs cover OpenAI text-embedding-3-large and the "
             "gpt-4o-mini query-expansion calls made inside the pipeline.",
+            "The provider-budget hard ceiling covers OpenRouter boundary calls. "
+            "OpenAI embedding/query-expansion and optional host sub-agent costs "
+            "are included in the later whole-run estimate when observed, but are "
+            "outside that hard ceiling.",
         ],
     }
     _apply_usage_totals(usage_summary)

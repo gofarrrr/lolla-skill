@@ -55,17 +55,10 @@ EOF
   esac
 done
 
-if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
-  # shellcheck source=/dev/null
-  . "$LOLLA_ENV_STATE"
-elif [ -f /tmp/lolla_latest_env.sh ]; then
-  # shellcheck source=/dev/null
-  . /tmp/lolla_latest_env.sh
-fi
-
-if [ -n "$REQUESTED_RUN_ID" ]; then
-  export LOLLA_RUN_ID="$REQUESTED_RUN_ID"
-fi
+_LOLLA_HELPER_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+# shellcheck source=load_run_state.sh
+. "$_LOLLA_HELPER_DIR/load_run_state.sh"
+lolla_load_run_state "$REQUESTED_RUN_ID"
 if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
   echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}" >&2
   exit 1
@@ -95,11 +88,11 @@ EXTRACTION_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_extraction.json"
 EXTRACTION_TERMINAL_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_extraction_terminal.json"
 
 if [ -n "$REQUESTED_CONVERSATION" ] && [ "$REQUESTED_CONVERSATION" != "$CONVERSATION_PATH" ]; then
-  echo "FATAL: run_extract_step.sh received unexpected --conversation-file. Use the current run path: $CONVERSATION_PATH" >&2
+  echo "FATAL: run_extract_step.sh received unexpected --conversation-file for the exact run." >&2
   exit 2
 fi
 if [ -n "$REQUESTED_OUTPUT" ] && [ "$REQUESTED_OUTPUT" != "$EXTRACTION_PATH" ]; then
-  echo "FATAL: run_extract_step.sh received unexpected --output-file. Use the current run path: $EXTRACTION_PATH" >&2
+  echo "FATAL: run_extract_step.sh received unexpected --output-file for the exact run." >&2
   exit 2
 fi
 
@@ -109,7 +102,7 @@ if [ -f "$EXTRACTION_TERMINAL_PATH" ]; then
 fi
 
 if [ ! -s "$CONVERSATION_PATH" ]; then
-  echo "FATAL: conversation file missing or empty at $CONVERSATION_PATH. Step 1 capture failed." >&2
+  echo "FATAL: conversation file missing or empty for the exact run. Step 1 failed." >&2
   exit 1
 fi
 
@@ -118,7 +111,7 @@ lolla_operator_note "Step 2 pre-extraction guard: conversation file present (${C
 if ! lolla_run_logged "Step 2 validate_conversation_capture.py" \
   python3 "$SKILL_DIR/scripts/skill/validate_conversation_capture.py" \
     --conversation-file "$CONVERSATION_PATH"; then
-  echo "FATAL: conversation capture is not parseable for Lolla. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: conversation capture is not parseable for Lolla. Details are in private operator custody." >&2
   exit 2
 fi
 
@@ -139,7 +132,7 @@ FINALIZE_EXIT="$?"
 set -e
 lolla_operator_block "Step 2 finalize_extraction_attempt.py" "$FINALIZE_OUTPUT"
 if [ "$FINALIZE_EXIT" -ne 0 ]; then
-  echo "FATAL: extraction closeout failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  echo "FATAL: extraction closeout failed. Details are in private operator custody." >&2
   exit 1
 fi
 printf '%s\n' "$FINALIZE_OUTPUT"
@@ -189,5 +182,4 @@ EXTRACTION_EXIT="$?"
 set -e
 # finalize_extraction_attempt.py records extraction_completed,
 # extraction_declined, or extraction_failed and seals this run against retries.
-echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
 exit "$EXTRACTION_EXIT"

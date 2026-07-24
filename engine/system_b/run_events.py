@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Mapping
 
-from .run_state import is_valid_run_id
+from .run_state import is_valid_run_id, runtime_tmp_dir
 
 
 RUN_EVENTS_SCHEMA_VERSION = "lolla.run_events.v0.1"
@@ -24,7 +24,7 @@ def append_run_event(
     """Append a run event and return the full ledger payload."""
     if not is_valid_run_id(run_id):
         raise ValueError(f"Invalid run_id for run event ledger: {run_id!r}")
-    ledger_path = path or Path("/tmp") / f"lolla_{run_id}_run_events.json"
+    ledger_path = path or runtime_tmp_dir() / f"lolla_{run_id}_run_events.json"
     payload = _load_payload(ledger_path, run_id=run_id)
     events = payload.setdefault("events", [])
     if not isinstance(events, list):
@@ -42,6 +42,7 @@ def append_run_event(
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
+    ledger_path.chmod(0o600)
     return payload
 
 

@@ -94,17 +94,16 @@ else
 fi
 ```
 
-This sets up the skill directory, run ID, live transcript, operator log,
-environment variables, metadata-only `LOLLA_AUDIT_MODE` normalization, cache
-configuration, run-event logging, and runtime state. This is a user-operated
+This sets up the skill directory, an exact run handle, private runtime
+artifacts, metadata-only `LOLLA_AUDIT_MODE` normalization, cache configuration,
+run-event logging, and guarded runtime state. This is a user-operated
 provider-backed workflow: explicit invocation or acceptance authorizes this
 run under the operator's configured credentials, subject to the declared
-provider/data boundary. It prints an `ENV_STATE:`
-path such as
-`/tmp/lolla_${LOLLA_RUN_ID}_env.sh`; later shell calls should source that
-run-specific file. `/tmp/lolla_latest_env.sh` is only a discoverability fallback
-before the active run is pinned. Guarded helpers keep
-`LOLLA_EXPECTED_RUN_ID` set and abort if stale state points at a different run.
+provider/data boundary. Setup prints a non-secret `RUN_HANDLE:`. Pass that
+exact value to every later helper with `--run-id`; each helper resolves and
+verifies its own state in a fresh shell. Do not copy or source an environment
+file, and do not use `/tmp/lolla_latest_env.sh` for an active run. The latest
+pointer remains a compatibility/discoverability artifact only.
 See `scripts/skill/setup.sh` for the full setup procedure.
 
 If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
@@ -127,12 +126,11 @@ multi-argument commands from prose or memory. The helper carries the current
 mechanical contract; your job is to invoke it, inspect its receipt, and stop on
 its fatal errors.
 
-Every new Bash tool call starts in a fresh shell. Source the run-specific
-`$LOLLA_ENV_STATE` file before invoking helper scripts, and keep
-`LOLLA_EXPECTED_RUN_ID` aligned with `LOLLA_RUN_ID`. If a new shell did not
-inherit variables, set `LOLLA_ENV_STATE` to the exact `ENV_STATE:` path printed
-by setup, then source it. Treat `/tmp/lolla_latest_env.sh` as a discoverability
-fallback only, not the active source of truth for a running audit.
+Every new shell tool call may start without prior exports. Keep the exact
+`RUN_HANDLE:` value returned by setup in the host conversation state and pass
+it to the named helper as `--run-id RUN_HANDLE`. The helper loads only that
+run's guarded state. A missing, stale, or mismatched run fails before private
+input is read. Never rediscover an active run through the latest pointer.
 
 The refactor is structural only. It does not activate curated atom retrieval,
 shadow private-table rendering, automatic graduation, production case-class
@@ -212,18 +210,15 @@ live run must use reduced narration and maintain a live transcript:
   If the next action is internal, stay silent unless there is a real blocker.
 - Before sending a visible progress line, mentally apply the product-output
   hygiene rule: if the line would fail as `live_narration`, do not send it.
-- Append every user-visible Claude Code prose line, status receipt, content
-  beat, and final functional receipt exactly as sent to
-  `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, separated by blank lines.
-  In short: append every user-visible prose/status/content message before the
-  run is archived.
-  Do not append raw bash output, JSON, Observatory pages, or operator-only
-  artifacts. This file is archived as `live_transcript.txt` and scanned as the
-  `live_narration` product surface.
-- Put verbose helper output, provider warnings, raw JSON inspections, validation
-  receipts, and exploratory diagnostics in
-  `/tmp/lolla_${LOLLA_RUN_ID}_operator.log` instead of chat prose or the live
-  transcript. The operator log is archived as `operator.log`.
+- Persist every user-visible prose/status/content message through
+  `persist_private_step.sh --kind narration --run-id RUN_HANDLE` after its
+  `PRIVATE_INPUT_READY` signal. Do not put narration in a command argument,
+  heredoc, inline script, Apply Patch, or file-editor call. The helper appends
+  it owner-only to the run's curated narration artifact.
+- Named helpers put verbose output and safe validation diagnostics in the
+  owner-only operator log. Do not run ad hoc `sed`, `jq`, inline Python, or
+  shell inspection against live result artifacts. Use the schema-owned
+  consumer packets defined below.
 - A manually maintained transcript is not proof that the full Claude Code
   console was captured. The hygiene finalizer records a manual transcript with
   no detected leaks as `live_output_health: not_checked`, not `clean`. It only
@@ -239,11 +234,15 @@ live run must use reduced narration and maintain a live transcript:
   live surface is unsafe and the run should be treated as degraded or rerun.
   Only correct the transcript when it contains a draft or operator note that was
   never sent.
+- Repository code cannot hide Codex/Claude tool cards or prove that their
+  complete host UI was captured. A clean curated narration therefore reports
+  zero leaks only for that artifact; the complete visible-surface leak count
+  remains unknown unless the host supplies a complete trusted capture.
 
 ### Step 1: Capture Conversation
 
 Capture the current conversation through
-`scripts/skill/capture_conversation.py` on standard input. This is a private
+`scripts/skill/capture_step.sh --run-id RUN_HANDLE` on standard input. This is a private
 runtime operation: do not create the transcript with Apply Patch, a file
 editor, or a repository-writing tool, and do not narrate that a text file is
 being created. Preserve user words and assistant prose while omitting tool
@@ -261,7 +260,7 @@ not replay the conversation in runtime output.
 
 ### Step 2: Extract Decision Structure
 
-Invoke `scripts/skill/run_extract_step.sh`; do not reconstruct the
+Invoke `scripts/skill/run_extract_step.sh --run-id RUN_HANDLE`; do not reconstruct the
 `run_extract.py` command yourself. The helper seals every extraction attempt.
 It continues only for `ok`, declines for `not_strategic` or
 `capture_critical`, and stops with the exact failure receipt for provider or
@@ -277,15 +276,31 @@ do not tell the user that the source conversation itself was truncated.
 
 ### Step 2.5: Readback + Audit Promise (Beat 1 — internal name)
 
-Render the user-facing readback and audit promise directly before launching the pipeline. Load `references/chat-output-format.md`, include one load-bearing user quote, avoid internal labels, and do not link to Observatory. See [Step 2.5 in STEPS.md](docs/skill/STEPS.md#step-25-readback-audit-promise) for length targets, thin-mode rules, and examples.
+Prepare the schema-owned `readback` consumer packet and read that bounded
+projection before rendering the user-facing readback and audit promise. Do not
+query the extraction JSON ad hoc. Load `references/chat-output-format.md`,
+include one load-bearing user quote, avoid internal labels, and do not link to
+Observatory. See [Step 2.5 in STEPS.md](docs/skill/STEPS.md#step-25-readback-audit-promise)
+for the exact helper, length targets, thin-mode rules, and examples.
 
 ### Step 3: Run Pipeline
 
-Run the four-lane pipeline through `scripts/skill/run_pipeline_step.sh`; do not reconstruct the `run_pipeline.py` command yourself. The helper resolves the bundled engine independently of the session's working directory, preserves cache-dir/cache-ref routing, writes the operator-only pre-Step-6 receipt to the operator log, and enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. See [Step 3 in STEPS.md](docs/skill/STEPS.md#step-3-run-pipeline) for the status receipt, V60/private-table notes, and stop conditions.
+Run the four-lane pipeline through
+`scripts/skill/run_pipeline_step.sh --run-id RUN_HANDLE`; do not reconstruct
+the `run_pipeline.py` command yourself. The helper resolves the bundled engine
+independently of the session's working directory, preserves cache-dir/cache-ref
+routing, writes the operator-only pre-Step-6 receipt to the operator log, and
+enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. See
+[Step 3 in STEPS.md](docs/skill/STEPS.md#step-3-run-pipeline) for the status
+receipt, V60/private-table notes, and stop conditions.
 
 ### Step 4: Counterargument Lead (Beat 2 — internal name)
 
-Read the result JSON plus the chat/output field references, then render the counterargument lead directly without internal labels or Observatory links. See [Step 4 in STEPS.md](docs/skill/STEPS.md#step-4-counterargument-lead) for length targets, required quote anchoring, and failure modes.
+Prepare and read the schema-owned `reconsideration` consumer packet plus the
+chat/output field references, then render the counterargument lead directly
+without internal labels or Observatory links. Do not dump or query
+`result.json`. See [Step 4 in STEPS.md](docs/skill/STEPS.md#step-4-counterargument-lead)
+for length targets, required quote anchoring, and failure modes.
 
 ### Step 5: Open Observatory
 
@@ -299,7 +314,16 @@ Read the Step 6 references and the pre-Step-6 private table, then render the upd
 
 ### Step 6b: Persist Revised Answer
 
-Persist the updated position with `scripts/skill/persist_revised_answer.py`, then complete and finalize both private custody ledgers with `scripts/skill/finalize_step6_ledgers.sh` before any pressure-check, memo, Observatory, or archive work continues. The pre-Step-6 private-table ledger allows `used`, `rejected`, `deferred`, `private_guardrail`, and `confirming_support`; the V60 ledger separately allows `not_considered` for technically unusable chunks. See [Step 6b in STEPS.md](docs/skill/STEPS.md#step-6b-persist-revised-answer) for the write-file shapes, skeleton-copying rules, validation gates, and repair loops.
+Submit one private Step 6 packet through
+`persist_private_step.sh --kind step6 --run-id RUN_HANDLE`, only after its
+`PRIVATE_INPUT_READY` signal. The packet contains the revised prose and only
+mutable judgment fields keyed by the exact graph pressure, private-table
+source, and V60 chunk identities from the consumer packet. Deterministic code
+copies all immutable skeleton fields and order, validates all required ledgers
+in memory, and replaces no artifact unless the complete packet is valid. Do
+not create revised/ledger files with heredocs, Apply Patch, or file editors;
+do not run the old manual finalizer/repair loop in an ordinary run. See
+[Step 6b in STEPS.md](docs/skill/STEPS.md#step-6b-persist-revised-answer).
 
 ### Memo Timing: Do Not Render Yet
 
@@ -319,15 +343,33 @@ In default flow, no Step 8 comparison renders because Step 7 did not run. Silent
 
 ### Step 8b: Persist Pressure-Check State
 
-Always write a structured pressure-check state. In default flow, invoke `scripts/skill/persist_default_off_pressure_check.py` rather than reconstructing the JSON write. In optional mode, persist the pressure-check text, per-lane divergences, and real sub-agent usage records only for completed calls. See [Step 8b in STEPS.md](docs/skill/STEPS.md#step-8b-persist-pressure-check-state) for the helper and optional-mode JSON shape.
+Always write a structured pressure-check state. In default flow, invoke
+`scripts/skill/persist_default_pressure_step.sh --run-id RUN_HANDLE` rather
+than reconstructing the JSON write. In optional mode, persist the
+pressure-check text, per-lane divergences, and real sub-agent usage records
+only for completed calls. See [Step 8b in
+STEPS.md](docs/skill/STEPS.md#step-8b-persist-pressure-check-state) for the
+helper and optional-mode JSON shape.
 
 ### Step 8c: Prepare and Render Memo
 
-After Step 8b, write the memo decision-note fields to `/tmp/lolla_${LOLLA_RUN_ID}_memo_note.json`, then invoke `scripts/skill/render_memo_step.sh` to persist them and render `/tmp/lolla_${LOLLA_RUN_ID}_memo.md`. Keep memo content product-clean and source it only from already-persisted Step 6, Step 8, and audit-card material. After the helper succeeds, send and append the exact product bridge *"Audit complete. I'm opening the full breakdown now."* before Step 9. See [Step 8c in STEPS.md](docs/skill/STEPS.md#step-8c-prepare-and-render-memo) for the field list, quality checks, bridge persistence, and helper contract.
+After Step 8b, submit the memo decision-note fields through
+`persist_private_step.sh --kind memo --run-id RUN_HANDLE` after its
+readiness signal, then invoke
+`render_memo_step.sh --run-id RUN_HANDLE`. Do not expose memo fields through a
+heredoc, edit card, or command argument. Keep memo content product-clean and
+source it only from already-persisted Step 6, Step 8, and audit-card material.
+After the helper succeeds, send and privately persist the exact product bridge
+*"Audit complete. I'm opening the full breakdown now."* before Step 9. See
+[Step 8c in STEPS.md](docs/skill/STEPS.md#step-8c-prepare-and-render-memo).
 
 ### Step 9: Open Observatory
 
-After the full cycle artifacts are persisted, invoke `scripts/skill/finalize_and_archive.sh` to validate private ledgers, finalize live-output hygiene, launch Observatory, and archive the run. Do not narrate Step 9 in chat; consolidate the URL in the final functional receipt. See [Step 9 in STEPS.md](docs/skill/STEPS.md#step-9-open-observatory) for the helper contract.
+After the full cycle artifacts are persisted, invoke
+`scripts/skill/finalize_and_archive.sh --run-id RUN_HANDLE` to validate private
+ledgers, finalize live-output hygiene, launch Observatory, and archive the run.
+Do not narrate Step 9 in chat; consolidate the URL in the final functional
+receipt. See [Step 9 in STEPS.md](docs/skill/STEPS.md#step-9-open-observatory).
 
 ### Step 10: Archive Run
 
@@ -336,12 +378,16 @@ The Step 9 helper already archives once. Step 10 is the silent archive verificat
 ## Completion
 
 Close with the final functional receipt: the same-context/non-external-check
-boundary, Observatory URL, memo path, cost, and archive location, plus one plain
+boundary, Observatory URL, private-save confirmation, and cost, plus one plain
 warning sentence when run health is not clean. Prefer the receipt printed
 between `USER_RECEIPT_BEGIN` and `USER_RECEIPT_END` by
 `scripts/skill/finalize_and_archive.sh`; the helper already appends and
 re-archives it. Only use `--receipt-file ... --skip-observatory` when overriding
-that generated receipt. See [Completion in STEPS.md](docs/skill/STEPS.md#completion) for the receipt templates and degraded-run handling.
+that generated receipt in a legacy operator flow. In ordinary Codex, persist
+an exceptional replacement through `persist_private_step.sh --kind
+receipt`, then use `--private-receipt-override`; never put receipt prose in a
+visible command. See [Completion in
+STEPS.md](docs/skill/STEPS.md#completion) for degraded-run handling.
 
 ## References
 

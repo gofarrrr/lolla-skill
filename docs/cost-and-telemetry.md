@@ -18,6 +18,11 @@ Every Lolla run produces a `usage_summary` block in the result JSON at `/tmp/lol
       "calls_with_unknown_price": 0,
       "unknown_price_models": []
     },
+    "provider_budget_enforcement_scope": {
+      "covered_vendor_groups": ["openrouter"],
+      "excluded_vendor_groups": ["openai_embeddings", "anthropic_subagents"],
+      "separate_from_estimated_total_cost_usd": true
+    },
     "vendors": {
       "openrouter":         { ... },
       "openai_embeddings":  { ... },
@@ -34,9 +39,17 @@ Three places to read it:
 |---|---|
 | Visual page | `http://localhost:8080/usage` (after launching the Observatory) |
 | API | `GET http://localhost:8080/api/case/<case_id>/usage` |
-| Raw | `cat /tmp/lolla_<run_id>_result.json \| jq .usage_summary` |
+| Owner-only packet | prepare the schema-owned `verification` consumer packet described in `docs/skill/CODEX_LIVE_RUN_BOUNDARY.md` |
 
 The live receipt prints a one-line cost estimate. If `cost_estimate_state` is not `complete`, treat the amount as a lower bound and inspect `usage_summary.cost_estimate_coverage`.
+
+The hard provider budget and the final whole-run estimate are not the same
+number. The reservation/ceiling ledger is enforced around OpenRouter boundary
+calls. Direct OpenAI embedding/query-expansion calls and optional host
+sub-agents are outside that hard ceiling; when observed, their costs are added
+to `estimated_total_cost_usd` afterward. Read
+`provider_budget_enforcement_scope` before describing a configured ceiling as
+a maximum cost for the entire run.
 
 The `/usage` page surfaces the following blocks (server-side rendered, no SPA rebuild required):
 

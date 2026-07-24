@@ -73,12 +73,10 @@ The ordinary entry contract is [SKILL.md](SKILL.md). Detailed steps live in
 [docs/skill/STEPS.md](docs/skill/STEPS.md), while setup and run-state helpers
 live under `scripts/skill/`.
 
-Setup creates a run ID, guarded state and logs. Private standard-input source capture writes the authoritative artifact owner-only and refuses replacement. For interactive input it disables terminal echo, then emits `PRIVATE_INPUT_READY`; the host must wait for that signal before sending source. If echo cannot be disabled, capture stops before reading. Run guards keep one run from borrowing another's artifacts.
+Setup creates one non-secret run handle, guarded state, and logs. Every ordinary helper receives that exact handle and reloads only its matching state, including from a fresh shell; it does not follow the compatibility latest-run pointer. Private standard-input capture writes an owner-only artifact and refuses replacement. For interactive input it disables terminal echo, emits `PRIVATE_INPUT_READY`, and requires the host to wait for that signal before sending conversation, narration, revised prose, dispositions, memo fields, or exceptional receipt overrides.
 
 The skill is a conductor. It captures source, invokes bounded scripts, presents
-pressure to a reasoner, persists the reasoner's dispositions, and finalizes the
-archive. It must not silently replace model judgment with keyword or
-turn-count rules.
+pressure to a reasoner, persists the reasoner's dispositions, and finalizes the archive. It must not silently replace model judgment with keyword or turn-count rules. Normal Codex consumption uses schema-owned `readback`, `reconsideration`, and `verification` packets instead of improvised artifact dumps. Deterministic code copies immutable ledger identity and provenance from exact skeletons, validates the complete candidate set before replacement, and reports compact status. See the [Codex live-run transport boundary](docs/skill/CODEX_LIVE_RUN_BOUNDARY.md).
 
 ## 2. Source capture and bounded views
 
@@ -210,6 +208,8 @@ manifest, `agent_result.json`, `evaluation.json`, and `reasoning_trace.json`.
 `agent_result.json` separately reports authoritative source preservation and
 initial extraction coverage under `source_coverage`.
 
+The revised answer, disposition judgments, and memo fields reach deterministic persistence through the post-no-echo private-input protocol, not ordinary shell arguments, heredocs, inline programs, or patch bodies. The generated final receipt omits temporary log, memo, environment-state, and archive paths.
+
 State semantics are explicit:
 
 - `complete`: required work and artifacts exist;
@@ -218,7 +218,7 @@ State semantics are explicit:
 - `failed`: a terminal failure occurred;
 - `missing`: no result exists.
 
-Missing is not zero. Schema-valid zero is not automatically semantically correct. A clean receipt proves mechanical completion and declared custody, not answer quality. An attempted provider-backed call with a non-`ok` terminal status is `provider_call_terminal_loss` and makes the run `partial`, separately from provider-boundary privacy health.
+Missing is not zero. Schema-valid zero is not automatically semantically correct. A clean receipt proves mechanical completion and declared custody, not answer quality. An attempted provider-backed call with a non-`ok` terminal status is `provider_call_terminal_loss` and makes the run `partial`, separately from provider-boundary privacy health. A curated narration is not a complete capture of Codex tool cards: without a trusted complete host-visible transcript, complete-surface coverage is false and its leak count is null. `tool_calls: []` is accompanied by `tool_call_coverage: not_observed`; owner-only local storage does not imply provider-local processing or invisible host UI.
 
 The optional passage-quality profile receives all available user-turn prose plus a separately labelled provisional extraction scaffold. Its exact context length and hash are recorded, and global dropped-thread interpretations are not copied into every passage call. If one of those optional judgments is missing, the run stays `partial` and the receipt names the exact loss. An otherwise complete standard-mode core remains available for human inspection, while any second material issue, unsafe output, missing core artifact, or high-stakes mode keeps the caller action at `do_not_use_run_degraded`.
 

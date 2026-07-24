@@ -2,6 +2,12 @@
 
 Detailed reference for the `/lolla` / `$lolla` skill flow from activation through archive. This should mirror SKILL.md, but SKILL.md remains the executable instruction source.
 
+For the ordinary Codex transport and terminal-privacy contract, read
+[`../skill/CODEX_LIVE_RUN_BOUNDARY.md`](../skill/CODEX_LIVE_RUN_BOUNDARY.md).
+It controls how private source, reasoning, ledgers, memo fields, and bounded
+consumer views cross the host boundary. The semantics described here are
+unchanged by that transport repair.
+
 ## Contents
 
 - Step 0-2.5: activation, preamble, capture, extraction, readback
@@ -32,7 +38,10 @@ The preamble is a bash block that runs before anything else. It checks:
    `.env`, then `~/.config/lolla/.env`. Project-local `.codex/lolla.env` and
    `.claude/lolla.env` files are not supported because later fresh-shell
    entrypoints cannot rediscover them safely.
-6. **Run files** — establishes `umask 077`, generates `LOLLA_RUN_ID`, and initializes owner-only `/tmp/lolla_<run_id>_live_transcript.txt` plus `/tmp/lolla_<run_id>_operator.log`. The persisted run environment re-establishes the same private creation policy in later fresh shells.
+6. **Run files** — establishes `umask 077`, generates the exact `RUN_HANDLE`,
+   and initializes owner-only runtime artifacts under `LOLLA_TMP_DIR` (`/tmp`
+   by default). Every later helper receives that exact handle and loads only
+   its matching state in a fresh shell.
 7. **Reports config** — which OpenRouter model (default: `google/gemini-3.1-flash-lite`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), whether a pre-Step-6 cached-card directory is configured, and whether V60 is enabled.
 
 If any check says `FATAL`, Claude stops and tells the user what's missing.
@@ -42,7 +51,7 @@ After Step 3, the skill writes an operator-only pre-Step-6 private-table receipt
 ### Step 1: Capture Conversation
 
 The host extracts the conversation from its context window and sends it to
-`scripts/skill/capture_conversation.py` on standard input. The helper validates
+`scripts/skill/capture_step.sh --run-id RUN_HANDLE` on standard input. The helper validates
 the transcript, writes the authoritative runtime artifact owner-only, records
 `conversation_captured`, and prints counts without echoing the source. For
 interactive terminals it clears terminal echo while reading and restores the
@@ -81,7 +90,7 @@ operator log, creates `/tmp/lolla_<run_id>_extraction.json`, and seals the
 attempt.
 
 ```bash
-bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"
+bash scripts/skill/run_extract_step.sh --run-id RUN_HANDLE
 ```
 
 The underlying extraction script reads the conversation, sends it to OpenRouter with a calibrated extraction prompt, and parses the structured response.
@@ -149,7 +158,7 @@ This beat exists because trust is built before the long wait: the user should se
 ### Step 3: Run Pipeline
 
 ```bash
-bash "$SKILL_DIR/scripts/skill/run_pipeline_step.sh"
+bash scripts/skill/run_pipeline_step.sh --run-id RUN_HANDLE
 ```
 
 The helper calls `scripts/run_pipeline.py` with the extraction file, conversation file, output path, `--skip-revision`, and `--pre-step6-portfolio step6_private`. The `--skip-revision` flag skips the OpenRouter revision step because Claude/Codex produces the final revised position itself in Step 6. With both `--extraction-file` and `--conversation-file`, `run_pipeline.py` wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext` by default. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
@@ -228,9 +237,14 @@ After the counterargument lead, Claude continues into the reasoning + persistenc
 
 Step 5 in the SKILL flow is intentionally a no-op. The Observatory is *not* offered here — it is deferred to Step 9 so the launched view contains the complete artifact set (cards + revised answer + pressure-check state + memo). Offering Observatory mid-cycle would show an incomplete run.
 
-### Step 6: Update Your Position (Claude reconsiders)
+### Step 6: Update Your Position (the host reasoner reconsiders)
 
-Before writing, Claude reads `/tmp/lolla_<run_id>_pre_step6_private_table.md` when present. This table is a compact private view of the four lanes, V60, and any cached portfolio cards. It is a cleaner thinking surface, not a command or public artifact. Claude may use, reject, defer, combine, or keep table items private, then records a compact `pre_step6_private_table_ledger` in Step 6b.
+Before writing in Codex, the host prepares and reads the schema-owned
+`reconsideration` consumer packet. It contains the pressure products and exact
+ledger skeletons needed for reconsideration without an ad hoc query or broad
+dump of `result.json`. The private-table material is a thinking surface, not a
+command or public artifact. The reasoner may use, reject, defer, combine, or
+keep items private, then records their disposition in Step 6b.
 
 After the counterargument lead, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to take back or set aside (self-corrections and audit-raised pressures Claude considered but chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging.
 
@@ -251,13 +265,28 @@ Claude integrates anchors into the "What survived" / "What I'd take back or set 
 
 The "What actually shifted" section is capped at 3-4 substantive shifts. A shift means a different action, threshold, sequence, condition, risk treatment, or decision question. Tail additions that merely add one more caveat are not allowed to bypass the cap; they must be folded into an existing shift or dropped.
 
-**Timing detail:** Claude/Codex does not launch Step 7 in the default flow. Current `SKILL.md` requires Step 6 to be written, the private-table and V60 ledger skeletons to be filled, and `scripts/skill/finalize_step6_ledgers.sh` to succeed before the default-off pressure-check state, memo rendering, Observatory, archive, or optional pressure-check work can proceed.
+**Timing detail:** Claude/Codex does not launch Step 7 in the default flow.
+Current `SKILL.md` requires the private Step 6 packet to pass whole-unit
+validation before the default-off pressure-check state, memo rendering,
+Observatory, archive, or optional pressure-check work can proceed.
 
 ### Step 6b: Persist Revised Answer
 
-The Step 6 reconsideration text is written into the result JSON via a small inline Python merge that sets `revised_answer`, `revised_answer_source: "claude_step6"`, `revised_answer_present: true`, and `revised_answer_written_at`. Without this step the Observatory would render an incomplete run (four cards but no revised answer). The persisted revised answer is the first-class artifact downstream tooling reads.
+The host sends one private packet to
+`persist_private_step.sh --kind step6 --run-id RUN_HANDLE` only after
+`PRIVATE_INPUT_READY`. The packet contains the reconsideration text and mutable
+judgment fields keyed by exact graph, private-table, and V60 identities.
+Deterministic code copies every immutable skeleton field, validates the
+complete unit in memory, and replaces no artifact when any required ledger is
+invalid. No revised prose or decision JSON belongs in a shell heredoc, edit
+card, or command argument.
 
-When the pre-Step-6 private table is present, Step 6b writes `pre_step6_private_table_ledger` into `result.json` and `/tmp/lolla_<run_id>_pre_step6_private_table_ledger.json`. When V60 is active, Step 6b also writes a private `v60_consideration_ledger` into `result.json` and `/tmp/lolla_<run_id>_v60_ledger.json`. The V60 ledger has one transaction for every presented V60 chunk and is validated by `validate_v60_consideration_ledger(...)`. These ledgers are operator telemetry only: they tell us which selected material was used, rejected, deferred, private-only, or merely confirming, while leaving the public answer free to be natural.
+On success, Step 6b persists the revised answer and every required decision
+ledger owner-only. The V60 ledger still has one transaction for every
+presented chunk, and the graph still preserves apply/reject/park custody. These
+ledgers are operator telemetry only: they tell us which selected material was
+used, rejected, deferred, private-only, or merely confirming while leaving the
+public answer natural.
 
 Step 6b also rolls the ledger status back into `run_health` with the transaction count, disposition counts, used chunk count, and presented-but-not-used count. That makes process comparison cheap: an operator can compare two runs by candidate pool, selected chunks, skipped/not-presented candidates, ledger uptake, and final-answer delta instead of reading only the final prose.
 
@@ -301,7 +330,15 @@ Two artifacts are persisted into `result.json`: a human-readable summary string 
 
 ### Step 8c: Prepare and Render Memo
 
-Claude/Codex writes a small decision-note layer into `result.json`, then `scripts/skill/render_memo_step.sh` persists those fields and calls `scripts/render_memo.py` to render the standalone markdown memo. The memo is the portable decision artifact: what changed in the advice first; the detailed audit trace stays in Observatory unless an operator explicitly asks for a markdown appendix.
+Claude/Codex sends the small decision-note layer through
+`persist_private_step.sh --kind memo --run-id RUN_HANDLE` after the readiness
+signal. That helper validates and privately persists both the exact memo-note
+fields and their result projection. Then `scripts/skill/render_memo_step.sh`
+calls `scripts/render_memo.py` to render the standalone Markdown memo. Memo
+prose is never authored in a visible heredoc or edit operation. The memo is
+the portable decision artifact: what changed in the advice first; the detailed
+audit trace stays in Observatory unless an operator explicitly asks for a
+Markdown appendix.
 
 New persisted fields:
 
@@ -334,17 +371,15 @@ Old archived `result.json` files without the memo fields still render in the leg
 After the full cycle is complete (cards, updated position, pressure-check state, memo fields, and memo all persisted), the finalizer launches the Observatory through the durable launcher and verifies that the reported URL answers before the receipt is written.
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/finalize_and_archive.sh --run-id RUN_HANDLE
 ```
 
 For a merge-readiness or product-surface proof, pass a complete captured transcript and require it to scan clean:
 
 ```bash
-: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
-. "$LOLLA_ENV_STATE"
-bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh" \
+# Exact run state is resolved by the named helper from --run-id RUN_HANDLE.
+bash scripts/skill/finalize_and_archive.sh --run-id RUN_HANDLE \
   --trusted-transcript "/path/to/complete-live-session.txt" \
   --require-live-output-clean
 ```
