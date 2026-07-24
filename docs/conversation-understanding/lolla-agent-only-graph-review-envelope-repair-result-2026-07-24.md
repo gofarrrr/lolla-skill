@@ -6,6 +6,9 @@ Status: provider-free structural repair complete; semantic rerun not authorized
 
 Owner: existing offline Product Delta evaluation
 
+Repository publication:
+[PR #395](https://github.com/gofarrrr/lolla-skill/pull/395)
+
 Machine contract:
 [`lolla-agent-only-graph-review-envelope-repair-contract-v1.json`](../evals/lolla-agent-only-graph-review-envelope-repair-contract-v1.json)
 

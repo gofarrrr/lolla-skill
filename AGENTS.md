@@ -289,7 +289,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   Provider-free envelope design is complete; semantic reruns need the new exact authorization.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#393 carry graph/Atlas custody, the public handoff, Decision Trail lineage, A/B/C plan, case freeze, paired-delta screen, rehearsal, variance, replication contract, and replication result. The provider-free reviewer-envelope repair is the next prospective publication checkpoint.
+PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair.
 The founder declines human review; that v1 experiment stays unfilled and paused.
 The graph rehearsal proves no graph value. Calibration lost a generation baseline; replication lost one review to an ambiguous enum envelope.
 Both are `not_evaluable` and create no graph, usefulness, Atlas, or Stage 1 authority. The v2 envelope repair catches the shape defect but creates no semantic evidence or execution authority.
