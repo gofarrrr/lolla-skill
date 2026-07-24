@@ -389,6 +389,10 @@ def test_agent_result_allows_human_review_when_only_passage_profile_is_partial(
             "revised_answer": "Use the revised answer only after inspection.",
         },
     )
+    (run_dir / "conversation.txt").write_text(
+        "CONVERSATION\n\n[Turn 1] USER:\nReview this decision.\n",
+        encoding="utf-8",
+    )
 
     payload = build_agent_result(
         run_dir,
@@ -449,6 +453,43 @@ def test_agent_result_keeps_passage_partial_blocking_when_another_issue_exists(
         created_at="2026-07-24T17:00:00Z",
     )
 
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+
+
+def test_agent_result_keeps_passage_partial_blocking_when_source_is_missing(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        {
+            "status": "ok",
+            "run_health": {
+                "overall": "partial",
+                "product_output_health": "clean",
+                "live_output_health": "not_checked",
+                "issues": ["bullshit_index_partial"],
+                "issue_details": [
+                    {
+                        "code": "bullshit_index_partial",
+                        "severity": "partial",
+                        "axis": "postprocessing",
+                    }
+                ],
+                "partial_health_causes": ["bullshit_index_partial"],
+                "bullshit_index_evaluation_failures": 1,
+                "bullshit_index_evaluation_count": 12,
+            },
+            "revised_answer": "Use the revised answer only after inspection.",
+        },
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-passage-partial-source-missing",
+        created_at="2026-07-24T17:00:00Z",
+    )
+
+    assert payload["artifact_status"]["conversation"] == "missing"
     assert payload["caller_action"] == "do_not_use_run_degraded"
 
 

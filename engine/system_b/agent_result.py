@@ -197,7 +197,10 @@ def _status(
     if _text(capture_adequacy.get("status")) == "critical":
         return "degraded", "capture adequacy was marked critical"
     if overall == "partial":
-        if is_reviewable_passage_profile_partial(run_health):
+        if (
+            is_reviewable_passage_profile_partial(run_health)
+            and _core_audit_artifacts_present(artifact_status)
+        ):
             return "partial", _passage_profile_partial_reason(run_health)
         if _contained_provider_boundary_warning_only(
             run_health=run_health,
@@ -232,8 +235,7 @@ def _caller_action(
         status == "partial"
         and risk_mode == "standard"
         and is_reviewable_passage_profile_partial(run_health)
-        and artifact_status.get("revised_answer") == "present"
-        and artifact_status.get("memo") == "present"
+        and _core_audit_artifacts_present(artifact_status)
     ):
         return "review_revised_answer"
     if status in {"partial", "degraded", "incomplete"}:
@@ -502,6 +504,19 @@ def is_reviewable_passage_profile_partial(run_health: Mapping[str, Any]) -> bool
     return (
         issue_codes == {"bullshit_index_partial"}
         and int(run_health.get("bullshit_index_evaluation_failures") or 0) > 0
+    )
+
+
+def _core_audit_artifacts_present(artifact_status: Mapping[str, str]) -> bool:
+    return all(
+        artifact_status.get(name) == "present"
+        for name in (
+            "conversation",
+            "extraction",
+            "result",
+            "revised_answer",
+            "memo",
+        )
     )
 
 
