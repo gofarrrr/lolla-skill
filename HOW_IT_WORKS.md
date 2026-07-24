@@ -220,9 +220,7 @@ State semantics are explicit:
 - `failed`: a terminal failure occurred;
 - `missing`: no result exists.
 
-Missing is not zero. Schema-valid zero is not automatically semantically
-correct. A clean receipt proves mechanical completion and declared custody, not
-answer quality.
+Missing is not zero. Schema-valid zero is not automatically semantically correct. A clean receipt proves mechanical completion and declared custody, not answer quality. An attempted provider-backed call with a non-`ok` terminal status is `provider_call_terminal_loss` and makes the run `partial`, separately from provider-boundary privacy health.
 
 ## 8. Observatory
 
@@ -314,7 +312,9 @@ authorization permits them.
 
 Secrets must never enter artifacts or Git. Only safe route policy,
 response/generation identity, usage, cost, hashes, and redactions belong in
-custody records.
+custody records. Fresh runs use `umask 077`, no-echo interactive capture,
+owner-only writes, `0700` archive directories, and `0600` files; these local
+controls do not change what authorized provider calls receive.
 
 ## 12. Evidence ladder
 

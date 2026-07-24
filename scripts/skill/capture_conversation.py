@@ -8,6 +8,7 @@ import json
 import os
 import sys
 import tempfile
+import termios
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -53,6 +54,30 @@ def _atomic_private_write(path: Path, text: str) -> None:
             temporary.unlink(missing_ok=True)
 
 
+def _read_private_stdin() -> str:
+    """Read a supplied transcript without letting an interactive TTY echo it."""
+
+    if not sys.stdin.isatty():
+        return sys.stdin.read()
+
+    fd = sys.stdin.fileno()
+    try:
+        original = termios.tcgetattr(fd)
+        quiet = list(original)
+        quiet[3] &= ~termios.ECHO
+        termios.tcsetattr(fd, termios.TCSANOW, quiet)
+    except (OSError, termios.error):
+        return sys.stdin.read()
+
+    try:
+        return sys.stdin.read()
+    finally:
+        try:
+            termios.tcsetattr(fd, termios.TCSANOW, original)
+        except (OSError, termios.error):
+            pass
+
+
 def _event_already_recorded(path: Path) -> bool:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -85,7 +110,7 @@ def main() -> int:
         print(str(exc), file=sys.stderr)
         return 2
 
-    source = sys.stdin.read()
+    source = _read_private_stdin()
     if not source.strip():
         print(
             "FATAL: no conversation was supplied on standard input.",

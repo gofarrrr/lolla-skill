@@ -54,8 +54,10 @@ argument. In Codex, do not use Apply Patch or another file editor for this
 step: that exposes a misleading `Added ...conversation.txt` edit to the user.
 The helper validates the wire format, writes the source artifact with
 owner-only permissions, records `conversation_captured`, and prints only a
-small `CAPTURE_STATUS` receipt. A host may still show that a runtime tool was
-used; the transcript is not presented as a source-code edit.
+small `CAPTURE_STATUS` receipt. When standard input is an interactive terminal,
+the helper disables terminal echo while reading and restores it afterward. A
+host may still show that a runtime tool was used; the transcript is neither
+replayed by the terminal nor presented as a source-code edit.
 
 **Rules:**
 - Preserve the user's exact words — these contain constraints the pipeline needs
@@ -769,6 +771,7 @@ The archive script:
 - Finds-or-creates a case folder. Matching uses **exact captured-conversation hash first**, then exact/fuzzy extractor fingerprint matching against stored fingerprints (token-set Jaccard ≥ 0.80). Identical captured reruns archive into the same case even when `decision_situation` is paraphrased differently by extraction. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching. Legacy manifests without `conversation_hashes` are still matchable because archive time can compute hashes from archived `conversation.txt` files.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
 - Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias), the run_id, and metadata-only `risk_mode`.
+- Enforces owner-only local custody before completion: archive/case/run directories are `0700`, and manifests plus archived files are `0600`. The setup environment also establishes `umask 077` for run-scoped temp artifacts.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/graph_survival_report.json` and `.md`, operator reports showing graph candidates, embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated signals, and visible/private survival.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/agent_result.json`, a compact `lolla_agent_result.v2` handoff for machine callers with neutral review action, risk mode, provider-boundary summary, exact/estimated usage custody, and compact capture-adequacy status, plus `/tmp/lolla_${LOLLA_RUN_ID}_agent_result.json` as a convenience copy.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/control_result.json` only when `control_input.json` was supplied. This optional `lolla_control_result.v1` wrapper maps Lolla's existing `caller_action` to control-plane outcome language and preserves compact external references; it does not approve actions or replace policy, sandbox, proxy, approval, identity, or observability systems. When present, it also writes `/tmp/lolla_${LOLLA_RUN_ID}_control_result.json` as a convenience copy.
@@ -795,6 +798,11 @@ conversation context and was not an external check. This is a process boundary,
 not a generic health warning, so it appears on healthy and degraded runs alike.
 
 If Step 9 printed `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END`, send exactly the receipt between those markers. The helper has already written it to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appended it to the live transcript, and re-archived the run. Do not append a second hand-written receipt after checking Observatory logs; if the generated receipt must change, use the override helper path below.
+
+If an attempted provider-backed reasoning call ended without usable output,
+the generated receipt marks the run partial, names the affected stage/check,
+and states that the call was not retried. Other completed artifacts do not
+erase that missing semantic coverage.
 
 If you must override the receipt text manually, write the exact receipt text to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, then run:
 

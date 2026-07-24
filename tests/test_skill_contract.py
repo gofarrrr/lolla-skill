@@ -97,6 +97,7 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
     assert "export LOLLA_AUDIT_MODE" in setup
     assert "risk_mode=\"$LOLLA_AUDIT_MODE\"" in setup
     assert 'ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh' in setup
+    assert setup.count("umask 077") >= 2
     assert "record_run_event.py" in setup
 
     docs = "\n".join([skill, steps])

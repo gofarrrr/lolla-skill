@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import stat
 from pathlib import Path
 
 
@@ -127,3 +128,46 @@ def test_archive_run_matches_identical_conversation_before_extractor_fingerprint
 
     trace = json.loads((Path(rearchived["run_dir"]) / "reasoning_trace.json").read_text())
     assert trace["case"]["how_matched"] == "conversation_match"
+
+
+def test_archive_run_enforces_owner_only_permissions_for_case_custody(
+    tmp_path: Path,
+) -> None:
+    archive_run = _load_archive_run_module()
+    tmp_dir = tmp_path / "tmp"
+    archive_root = tmp_path / "archive"
+    tmp_dir.mkdir()
+
+    run_id = "private_aaaaaa"
+    _seed_run(
+        tmp_dir=tmp_dir,
+        run_id=run_id,
+        decision_situation="Whether to preserve a private strategic conversation.",
+        conversation=(
+            "CONVERSATION: 2 turns, 1 user messages, 1 assistant responses\n\n"
+            "[Turn 1] USER:\nPrivate decision context.\n\n"
+            "[Turn 1] ASSISTANT:\nPrivate strategic response.\n"
+        ),
+    )
+    processing_view = tmp_dir / f"lolla_{run_id}_conversation_processing_view.txt"
+    processing_view.write_text("private derivative view", encoding="utf-8")
+    processing_view.chmod(0o644)
+
+    archived = archive_run.archive_run(
+        run_id,
+        archive_root=archive_root,
+        tmp_dir=tmp_dir,
+    )
+
+    case_dir = Path(archived["case_dir"])
+    run_dir = Path(archived["run_dir"])
+    assert stat.S_IMODE(archive_root.stat().st_mode) == 0o700
+    assert stat.S_IMODE(case_dir.stat().st_mode) == 0o700
+    assert stat.S_IMODE(run_dir.stat().st_mode) == 0o700
+    assert stat.S_IMODE((case_dir / ".case-manifest.json").stat().st_mode) == 0o600
+
+    for path in case_dir.rglob("*"):
+        if path.is_symlink():
+            continue
+        expected = 0o700 if path.is_dir() else 0o600
+        assert stat.S_IMODE(path.stat().st_mode) == expected, path

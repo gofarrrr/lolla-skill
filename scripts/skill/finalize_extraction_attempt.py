@@ -101,8 +101,13 @@ def _archive_failed_run(
     tmp_dir: Path,
     archive_root: Path,
 ) -> tuple[Path, dict[str, Any]]:
-    run_dir = archive_root / "_failed-extractions" / run_id
-    run_dir.mkdir(parents=True, exist_ok=True)
+    archive_root.mkdir(parents=True, exist_ok=True)
+    archive_root.chmod(0o700)
+    failed_root = archive_root / "_failed-extractions"
+    failed_root.mkdir(exist_ok=True)
+    failed_root.chmod(0o700)
+    run_dir = failed_root / run_id
+    run_dir.mkdir(exist_ok=True)
     run_dir.chmod(0o700)
     artifact_names = (
         ("conversation.txt", "conversation.txt"),

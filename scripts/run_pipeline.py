@@ -16,8 +16,35 @@ import json
 import os
 import sys
 import tempfile
+from collections import Counter
 from dataclasses import asdict
 from pathlib import Path
+
+
+def _write_private_text(path: Path, text: str) -> None:
+    """Atomically persist a conversation-derived artifact for its owner only."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            os.chmod(handle.name, 0o600)
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+            temporary = Path(handle.name)
+        os.replace(temporary, path)
+        path.chmod(0o600)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink(missing_ok=True)
 
 
 # ---------------------------------------------------------------------------
@@ -307,6 +334,90 @@ def _reasoning_detail_warning(records: list[object]) -> tuple[str, dict[str, obj
     }
 
 
+def _provider_call_failure_warning(
+    records: list[object],
+) -> tuple[str, dict[str, object]]:
+    """Summarize attempted boundary calls that ended without usable output.
+
+    Provider-boundary privacy health is intentionally a separate concern. This
+    helper owns execution completeness: an attempted call with any non-``ok``
+    terminal status is partial semantic coverage even when other lanes still
+    produce findings and the pipeline can safely continue.
+    """
+
+    failures: list[dict[str, object]] = []
+    statuses: Counter[str] = Counter()
+    error_types: Counter[str] = Counter()
+    error_codes: Counter[str] = Counter()
+    stages: set[str] = set()
+    tendency_ids: set[str] = set()
+    providers: set[str] = set()
+    models: set[str] = set()
+
+    for record in records:
+        rec = _boundary_record_dict(record)
+        if not rec or not bool(rec.get("provider_attempted")):
+            continue
+        status = str(rec.get("status") or "").strip()
+        if not status or status == "ok":
+            continue
+        failures.append(rec)
+        statuses[status] += 1
+        error_type = str(rec.get("provider_error_type") or "").strip()
+        error_code = str(rec.get("provider_error_code") or "").strip()
+        stage = str(rec.get("stage") or "").strip()
+        tendency_id = str(rec.get("tendency_id") or "").strip()
+        provider = str(
+            rec.get("served_provider_name") or rec.get("provider_name") or ""
+        ).strip()
+        model = str(rec.get("served_model") or rec.get("model") or "").strip()
+        if error_type:
+            error_types[error_type] += 1
+        if error_code:
+            error_codes[error_code] += 1
+        if stage:
+            stages.add(stage)
+        if tendency_id:
+            tendency_ids.add(tendency_id)
+        if provider:
+            providers.add(provider)
+        if model:
+            models.add(model)
+
+    if not failures:
+        return "", {
+            "status": "clean",
+            "failed_call_count": 0,
+            "attempted_failed_call_count": 0,
+            "stages": [],
+            "tendency_ids": [],
+            "status_counts": {},
+            "provider_error_type_counts": {},
+            "provider_error_code_counts": {},
+            "providers": [],
+            "models": [],
+        }
+
+    count = len(failures)
+    warning = (
+        f"{count} provider-backed reasoning call"
+        f"{'s' if count != 1 else ''} ended without a usable result; "
+        "the incomplete semantic coverage was preserved without automatic retry."
+    )
+    return warning, {
+        "status": "partial",
+        "failed_call_count": count,
+        "attempted_failed_call_count": count,
+        "stages": sorted(stages),
+        "tendency_ids": sorted(tendency_ids),
+        "status_counts": dict(sorted(statuses.items())),
+        "provider_error_type_counts": dict(sorted(error_types.items())),
+        "provider_error_code_counts": dict(sorted(error_codes.items())),
+        "providers": sorted(providers),
+        "models": sorted(models),
+    }
+
+
 _HEALTH_SEVERITY_RANK = {
     "info": 0,
     "optional_off": 0,
@@ -350,6 +461,15 @@ _HEALTH_ISSUE_DEFAULTS = {
         "trust_impact": (
             "A model provider returned reasoning details despite reasoning being disabled; "
             "product output may still be clean, but model-boundary comparisons need caution."
+        ),
+    },
+    "provider_call_terminal_loss": {
+        "severity": "partial",
+        "axis": "provider_call",
+        "trust_impact": (
+            "At least one attempted provider-backed reasoning call ended without usable "
+            "output, so the affected semantic check is incomplete even if other lanes "
+            "still produced findings."
         ),
     },
     "capture_critical": {
@@ -1303,9 +1423,9 @@ def main() -> int:
     )
     if _run_id and is_valid_run_id(_run_id) and isinstance(_v60_skeleton, dict):
         try:
-            Path(f"/tmp/lolla_{_run_id}_v60_ledger_skeleton.json").write_text(
+            _write_private_text(
+                Path(f"/tmp/lolla_{_run_id}_v60_ledger_skeleton.json"),
                 json.dumps(_v60_skeleton, indent=2, ensure_ascii=False),
-                encoding="utf-8",
             )
         except OSError as exc:
             _warnings_for_skeleton = serialized.setdefault("warnings", [])
@@ -1327,6 +1447,13 @@ def main() -> int:
         audit_warnings = serialized.setdefault("audit_summary", {}).setdefault("warnings", [])
         if isinstance(audit_warnings, list) and _reasoning_warning not in audit_warnings:
             audit_warnings.append(_reasoning_warning)
+    _provider_failure_warning, _provider_failure_meta = _provider_call_failure_warning(
+        all_chat_boundary_records
+    )
+    if _provider_failure_warning:
+        audit_warnings = serialized.setdefault("audit_summary", {}).setdefault("warnings", [])
+        if isinstance(audit_warnings, list) and _provider_failure_warning not in audit_warnings:
+            audit_warnings.append(_provider_failure_warning)
 
     serialized["usage_summary"] = build_usage_summary(
         run_id=_run_id,
@@ -1347,6 +1474,8 @@ def main() -> int:
     _warnings = list(result.audit.warnings)
     if _reasoning_warning and _reasoning_warning not in _warnings:
         _warnings.append(_reasoning_warning)
+    if _provider_failure_warning and _provider_failure_warning not in _warnings:
+        _warnings.append(_provider_failure_warning)
     _lane3_drops_count = len(getattr(result.frame_pressure_card, "dropped_frame_elements", ()) or ())
     _lane3_kept_count = len(getattr(result.frame_pressure_card, "frame_elements", ()) or ())
     _bi_evaluation_failures = int(
@@ -1410,8 +1539,37 @@ def main() -> int:
                 stages=list(_reasoning_warning_meta.get("stages") or []),
             )
         )
+    if int(_provider_failure_meta.get("failed_call_count") or 0) > 0:
+        _health_issue_details.append(
+            _health_issue_detail(
+                "provider_call_terminal_loss",
+                failed_call_count=int(
+                    _provider_failure_meta.get("failed_call_count") or 0
+                ),
+                attempted_failed_call_count=int(
+                    _provider_failure_meta.get("attempted_failed_call_count") or 0
+                ),
+                stages=list(_provider_failure_meta.get("stages") or []),
+                tendency_ids=list(_provider_failure_meta.get("tendency_ids") or []),
+                status_counts=dict(
+                    _provider_failure_meta.get("status_counts") or {}
+                ),
+                provider_error_type_counts=dict(
+                    _provider_failure_meta.get("provider_error_type_counts") or {}
+                ),
+                provider_error_code_counts=dict(
+                    _provider_failure_meta.get("provider_error_code_counts") or {}
+                ),
+                providers=list(_provider_failure_meta.get("providers") or []),
+                models=list(_provider_failure_meta.get("models") or []),
+            )
+        )
     _non_boundary_warnings = [
-        warning for warning in _warnings if warning and warning != _reasoning_warning
+        warning
+        for warning in _warnings
+        if warning
+        and warning != _reasoning_warning
+        and warning != _provider_failure_warning
     ]
     if _non_boundary_warnings:
         _health_issue_details.append(_health_issue_detail("pipeline_warnings"))
@@ -1510,6 +1668,21 @@ def main() -> int:
         "boundary_reasoning_leak_count": int(_reasoning_warning_meta.get("count") or 0),
         "boundary_reasoning_leak_models": list(_reasoning_warning_meta.get("models") or []),
         "boundary_reasoning_leak_stages": list(_reasoning_warning_meta.get("stages") or []),
+        "provider_call_health": str(
+            _provider_failure_meta.get("status") or "unknown"
+        ),
+        "provider_failed_call_count": int(
+            _provider_failure_meta.get("failed_call_count") or 0
+        ),
+        "provider_failed_call_stages": list(
+            _provider_failure_meta.get("stages") or []
+        ),
+        "provider_failed_tendency_ids": list(
+            _provider_failure_meta.get("tendency_ids") or []
+        ),
+        "provider_failed_status_counts": dict(
+            _provider_failure_meta.get("status_counts") or {}
+        ),
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
         "v60_enrichment": _v60_status or "unknown",
         "v60_selected_chunk_count": int(
@@ -1560,7 +1733,7 @@ def main() -> int:
 
     output_text = json.dumps(output, indent=2, ensure_ascii=False)
     if args.output_file:
-        Path(args.output_file).write_text(output_text, encoding="utf-8")
+        _write_private_text(Path(args.output_file), output_text)
         print(f"Pipeline result written to {args.output_file}")
     else:
         print(output_text)

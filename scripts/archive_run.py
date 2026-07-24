@@ -327,7 +327,26 @@ def _write_manifest(
     manifest["run_count"] = len(manifest["runs"])
 
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
+    manifest_path.chmod(0o600)
     return manifest
+
+
+def _enforce_private_archive_permissions(
+    *,
+    archive_root: Path,
+    case_dir: Path,
+) -> None:
+    """Keep durable conversation custody accessible only to its owner."""
+
+    archive_root.chmod(0o700)
+    case_dir.chmod(0o700)
+    for path in case_dir.rglob("*"):
+        if path.is_symlink():
+            continue
+        if path.is_dir():
+            path.chmod(0o700)
+        elif path.is_file():
+            path.chmod(0o600)
 
 
 # ---------------------------------------------------------------------------
@@ -375,6 +394,7 @@ def archive_run(
     conversation_hash = _conversation_hash_for_run(tmp_dir=tmp_dir, run_id=run_id)
 
     archive_root.mkdir(parents=True, exist_ok=True)
+    archive_root.chmod(0o700)
 
     # Resolve case folder: explicit override → existing fingerprint match → new case.
     if override_case_id:
@@ -399,10 +419,12 @@ def archive_run(
             case_dir = archive_root / slug
             case_dir.mkdir()
             how_matched = "new_case"
+    case_dir.chmod(0o700)
 
     run_dir = case_dir / run_id
     run_dir_existed = run_dir.exists()
     run_dir.mkdir(exist_ok=True)
+    run_dir.chmod(0o700)
 
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
     _finalize_product_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
@@ -414,7 +436,9 @@ def archive_run(
     for fname in CORE_FILES:
         src = tmp_dir / f"lolla_{run_id}_{fname}"
         if src.exists():
-            shutil.copy2(src, run_dir / fname)
+            destination = run_dir / fname
+            shutil.copy2(src, destination)
+            destination.chmod(0o600)
             copied.append(fname)
         else:
             missing.append(fname)
@@ -483,6 +507,10 @@ def archive_run(
     )
     decision_work_attachment = _maybe_write_decision_work_brief_runtime_attachment(
         run_dir=run_dir
+    )
+    _enforce_private_archive_permissions(
+        archive_root=archive_root,
+        case_dir=case_dir,
     )
 
     return {

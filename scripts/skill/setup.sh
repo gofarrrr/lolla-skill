@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Every fresh Lolla artifact can contain the user's private conversation or a
+# derivative of it. Keep new files owner-only even when the invoking shell has
+# a permissive default.
+umask 077
+
 # Resolve the root of this bundled skill from this script's own location.
 # This works from a repository clone, a copied installation, or a symlinked
 # Claude Code/Codex installation and never searches for another project tree.
@@ -88,6 +93,7 @@ echo "RUN_ID: $LOLLA_RUN_ID"
 LOLLA_LIVE_TRANSCRIPT="/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt"
 export LOLLA_LIVE_TRANSCRIPT
 : > "$LOLLA_LIVE_TRANSCRIPT"
+chmod 600 "$LOLLA_LIVE_TRANSCRIPT"
 echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
 
 # Operator-only log for verbose helper output, provider warnings, validation
@@ -96,6 +102,7 @@ echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
 LOLLA_OPERATOR_LOG="/tmp/lolla_${LOLLA_RUN_ID}_operator.log"
 export LOLLA_OPERATOR_LOG
 : > "$LOLLA_OPERATOR_LOG"
+chmod 600 "$LOLLA_OPERATOR_LOG"
 echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
 
 # Report config
@@ -132,6 +139,7 @@ fi
 LOLLA_ENV_STATE="/tmp/lolla_${LOLLA_RUN_ID}_env.sh"
 export LOLLA_ENV_STATE
 cat > "$LOLLA_ENV_STATE" << EOF
+umask 077
 export SKILL_DIR="$SKILL_DIR"
 export LOLLA_RUN_ID="$LOLLA_RUN_ID"
 export LOLLA_EXPECTED_RUN_ID="$LOLLA_EXPECTED_RUN_ID"
@@ -158,6 +166,7 @@ with open(path, "a", encoding="utf-8") as handle:
         if value:
             handle.write(f"export {key}={shlex.quote(value)}\n")
 PY
+chmod 600 "$LOLLA_ENV_STATE"
 ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh
 echo "ENV_STATE: $LOLLA_ENV_STATE"
 python3 "$SKILL_DIR/scripts/record_run_event.py" --run-id "$LOLLA_RUN_ID" --event-type run_initialized --detail latest_env_pointer=/tmp/lolla_latest_env.sh --detail risk_mode="$LOLLA_AUDIT_MODE" --quiet || true
