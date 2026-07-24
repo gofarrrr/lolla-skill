@@ -87,13 +87,13 @@ Read:
   — blind Product Delta diagnosis, exact reruns, and a not-evaluable calibration after one unreplaced terminal failure; no human validation, completed F2/F3, graph attribution, or traversal permission.
 - [Consumed graph replication contract](evals/lolla-agent-only-graph-replication-contract-v1.json), [plan](../plans/lolla-agent-only-graph-replication-2026-07-23.md), and [result](conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md)
   — eight generations completed; one blind review failed 29 enum checks without retry, so no post-reveal work ran and the result is `not_evaluable`.
-- [Provider-free reviewer-envelope repair contract](evals/lolla-agent-only-graph-review-envelope-repair-contract-v1.json), [plan](../plans/lolla-agent-only-graph-review-envelope-repair-2026-07-24.md), and [result](conversation-understanding/lolla-agent-only-graph-review-envelope-repair-result-2026-07-24.md)
-  — v2 schemas accept the scalar shape and reject all 29 historical array fields; no semantic context ran and the four-context ceiling is unauthorized.
+- [Provider-free reviewer-envelope repair contract](evals/lolla-agent-only-graph-review-envelope-repair-contract-v1.json), [plan](../plans/lolla-agent-only-graph-review-envelope-repair-2026-07-24.md), [repair result](conversation-understanding/lolla-agent-only-graph-review-envelope-repair-result-2026-07-24.md), and [v2 execution result](conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md)
+  — the blind shape was repaired and both fresh reviews passed; both conditional post-reveal payloads then failed one exact-nonclaim equality check without retry or salvage, so the result is `not_evaluable`.
 - [Self-contained graph/skill result](conversation-understanding/lolla-self-contained-graph-substrate-and-skill-result-2026-07-22.md)
 - [Self-contained readiness register](evals/lolla-self-contained-skill-readiness-v1.json)
 
 Current facts: the fresh clone contains 222 canonical Markdown models and 1,358 rich authored directed relations. Candidate compilation reproduces both published graph files byte-for-byte, and all 163 frozen policy windows replay exactly. This is a curated pressure graph—not GraphRAG over arbitrary documents, a causal fact graph, or proof that a reachable relation applies.
-The current consumer-context contract and retrospective role/attribution case candidate are not execution-ready. Five provider-neutral envelopes and the mechanical equality/bijection controls pass; F1, principal-human review, provider contract, cost ceiling, and authorization remain missing. The founder-declined human lane stays paused. The completed agent-only rehearsal is a separate Product Delta evidence class: both blind reviewers found a material pair difference but could not infer lineage. Its variance follow-up is `not_evaluable`: one direct draw failed without replacement, two comparisons are unavailable, and both reviewers found a material difference inside the complete graph-condition pair. The completed replication repaired generation missingness but not evaluator reliability: eight of eight generations completed, one blind review passed, and one blind review failed the frozen scalar-enum shape. The provider-free v2 envelope now catches that exact 29-field shape failure, but no new blind or post-reveal review ran. This is not self-justification, causal graph value, expected model behavior, human usefulness, or runtime evidence.
+The current consumer-context contract and retrospective role/attribution case candidate are not execution-ready. Five provider-neutral envelopes and the mechanical equality/bijection controls pass; F1, principal-human review, provider contract, cost ceiling, and authorization remain missing. The founder-declined human lane stays paused. The completed agent-only rehearsal is a separate Product Delta evidence class: both blind reviewers found a material pair difference but could not infer lineage. Its variance follow-up is `not_evaluable`: one direct draw failed without replacement, two comparisons are unavailable, and both reviewers found a material difference inside the complete graph-condition pair. The completed replication repaired generation missingness but not evaluator reliability: eight of eight generations completed, one blind review passed, and one blind review failed the frozen scalar-enum shape. The v2 execution fixed that blind-review shape, but both required post-reveal payloads drifted exact nonclaim wording and failed without retry or salvage. This is not self-justification, causal graph value, expected model behavior, human usefulness, or runtime evidence.
 
 The policy has one versioned wrapper and snapshot; a frozen serializer remains
 for compatibility and the live pipeline has a degraded raw-payload fallback.
@@ -181,10 +181,9 @@ rights clearance, market demand, or production readiness.
 
 ## Current next decision
 
-Graph calibration and replication are complete and `not_evaluable`. Replication preserved eight valid generations, one valid review, and one invalid review without retry; no post-reveal work ran.
-No corrected review, semantic context, provider, graph change, human label, score, or traversal is authorized.
-The provider-free response-envelope repair is complete and locally validated but authorizes no semantic context.
-Its contract contains the exact separate authorization for two fresh blind contexts and at most two conditional post-reveal contexts over the frozen answers.
+Graph calibration, replication, and reviewer-envelope v2 execution are complete and `not_evaluable`. V2 preserved two valid blind reviews, then two invalid post-reveal payloads after each drifted the frozen nonclaim wording.
+No corrected acknowledgment, retry, semantic context, provider, graph change, human label, score, or traversal is authorized.
+The smallest eligible follow-up is a provider-free decision about how nonclaim custody should be encoded.
 
 July's Stage 1 truthfulness review remains separate and unstarted; PR104 stays blank and paused.
 Stage 1 could test interface honesty, not semantic meaning or the June reads.

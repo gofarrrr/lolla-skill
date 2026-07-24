@@ -316,16 +316,25 @@ def validate_checked_in_artifacts(
             continue
         if actual != render_json(payload):
             errors.append(f"generated artifact drift:{relpath}")
-    for relpath in (
+    result_relpaths = (
         *FUTURE_REVIEW_RELPATHS.values(),
         *FUTURE_REVIEW_FAILURE_RELPATHS.values(),
         *FUTURE_POST_REVEAL_PACKET_RELPATHS.values(),
         *FUTURE_INTERPRETATION_RELPATHS.values(),
         FUTURE_CONSOLIDATION_RELPATH,
         FUTURE_RESULT_RELPATH,
-    ):
-        if _resolve_repo_path(root, relpath).exists():
-            errors.append(f"unauthorized semantic result exists:{relpath}")
+    )
+    if any(_resolve_repo_path(root, relpath).exists() for relpath in result_relpaths):
+        if not _resolve_repo_path(root, FUTURE_RESULT_RELPATH).exists():
+            errors.append("semantic result lifecycle is incomplete:result note missing")
+        from engine.system_b.product_delta_graph_review_envelope_v2_result import (
+            validate_complete_result,
+        )
+
+        errors.extend(
+            f"semantic result lifecycle:{error}"
+            for error in validate_complete_result(repo_root=root)
+        )
     return errors
 
 

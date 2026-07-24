@@ -4,6 +4,12 @@ Date: 2026-07-24
 
 Status: provider-free structural repair complete; semantic rerun not authorized
 
+Follow-up: the exact v2 authorization was later supplied and consumed. Both
+blind reviews passed; both conditional post-reveal payloads failed exact
+nonclaim custody without retry or salvage. The controlling execution result is
+[`lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md`](lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md).
+The provider-free findings below remain the frozen pre-execution checkpoint.
+
 Owner: existing offline Product Delta evaluation
 
 Repository publication:
