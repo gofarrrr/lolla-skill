@@ -46,7 +46,7 @@
   ],
   "connections": [
     {"id":"c01","source":"skill_orchestration","destination":"conversation_capture","type":"direct_runtime_call","trigger":"ordinary_skill_step_1","activation":"default_on","contract":"authoritative prose plus capture diagnostics","status":"implemented","failure_behavior":"capture-critical stops before provider work","evidence":["SKILL.md","scripts/skill/validate_conversation_capture.py"]},
-    {"id":"c02","source":"conversation_capture","destination":"semantic_extraction_ir","type":"direct_runtime_call","trigger":"step_2_helper","activation":"default_on","contract":"conversation.txt and optional processing view","status":"implemented","failure_behavior":"source remains authoritative; omitted ranges recorded","evidence":["scripts/skill/run_extract_step.sh","scripts/run_extract.py"]},
+    {"id":"c02","source":"conversation_capture","destination":"semantic_extraction_ir","type":"direct_runtime_call","trigger":"step_2_helper","activation":"default_on","contract":"private stdin capture, authoritative conversation, optional processing view, and terminal extraction seal","status":"implemented","failure_behavior":"source and all attempts remain authoritative; provider failure seals the run before graph pressure","evidence":["scripts/skill/capture_conversation.py","scripts/skill/run_extract_step.sh","scripts/skill/finalize_extraction_attempt.py","scripts/run_extract.py"]},
     {"id":"c03","source":"semantic_extraction_ir","destination":"four_lane_pressure","type":"direct_runtime_call","trigger":"step_3_helper","activation":"default_on","contract":"extraction JSON, ConversationContext, ConversationIR","status":"implemented","failure_behavior":"run health records failure and live flow stops","evidence":["scripts/run_pipeline.py","engine/system_b/conversation_loader.py"]},
     {"id":"c04","source":"mental_model_substrate","destination":"four_lane_pressure","type":"direct_runtime_call","trigger":"pipeline construction","activation":"default_on_with_optional_embeddings","contract":"canonical IDs, registry, candidate retrieval","status":"implemented","failure_behavior":"bounded deterministic fallback or explicit health warning","evidence":["engine/system_b/pipeline.py","engine/system_b/embedding_retriever.py"]},
     {"id":"c05","source":"relationship_graph","destination":"constitutional_graph_survival","type":"direct_runtime_call","trigger":"companion lane before verifier","activation":"default_on","contract":"seed and related canonical model IDs","status":"implemented","failure_behavior":"survival report preserves missingness","evidence":["engine/system_b/pipeline.py","engine/system_b/constitutional_graph_survival.py"]},
@@ -134,7 +134,7 @@
     {"family_id":"reviews","anchor":"reviews","implementation_status":"review_artifacts","evidence_status":"mixed_human_and_automated","disposition":"preserve_research_only","reason":"review evidence does not imply runtime connection","evidence":["reviews"]}
   ],
   "implementation_file_coverage": {
-    "expected_file_count": 678,
+    "expected_file_count": 680,
     "assignment_method":"ordered_first_match_rules_validated_against_canonical_tree",
     "ordered_assignment_rules":[
       {"pattern":"engine/system_b/r4_*.py","component_id":"r4_incremental_readers"},

@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-24 (provider-free graph review nonclaim-custody V3 repair)
+Status date: 2026-07-24 (live extraction failure-custody repair)
 Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
@@ -23,7 +23,7 @@ usefulness, market value, and production readiness remain unknown.
 
 | Question | Current answer |
 |---|---|
-| What is live? | The four-lane pressure skill, repository-local graph snapshot and one-hop planner, reconsideration, disposition, archive, and read-only inspection. |
+| What is live? | Private runtime conversation capture; terminal extraction custody; the four-lane pressure skill, repository-local graph snapshot and one-hop planner, reconsideration, disposition, archive, and read-only inspection. |
 | What is bounded? | Decision Trail, Product Delta, Decision Work packaging, portable views, and Observatory projections. |
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
@@ -31,6 +31,8 @@ usefulness, market value, and production readiness remain unknown.
 | What may start next? | No graph semantic run is authorized. The provider-free V3 repair now assigns exact nonclaim presentation to deterministic input custody and removes model-authored echo from the prospective response. Its separately described two-context post-reveal run remains unauthorized. A corrected V2 payload, semantic salvage, graph change, wider case, or ordinary “continue” is not authorization. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
 
 ## Latest published checkpoint
+
+The local [live extraction failure-custody repair](docs/conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md) corrects the failed Marcus-run boundary without changing graph, prompts, routing, or normal answers: private standard-input capture replaces the editor patch; provider status precedes semantic validation; attempts append; one terminal seal, event, receipt, and minimal failure archive stop before the graph. It is not yet repository-published. Its red test made one unintended invalid-key OpenRouter request: HTTP 401, provider-reported cost USD 0.00, conservative ledger amount USD 0.0085688, no authenticated generation, output, retry, or replacement.
 
 The graph replication contract was published through [PR #392](https://github.com/gofarrrr/lolla-skill/pull/392); its completed `not_evaluable` result was published through [PR #393](https://github.com/gofarrrr/lolla-skill/pull/393) at merge `4c4e45539c249c45e1e4df98ab14568a97de653f`.
 The current A/B/C pressure, understanding, and graph planning package is tracked by [PR #382](https://github.com/gofarrrr/lolla-skill/pull/382), with its consumer-context extension in [PR #383](https://github.com/gofarrrr/lolla-skill/pull/383); its Decision Trail lineage prerequisite is [PR #381](https://github.com/gofarrrr/lolla-skill/pull/381).
@@ -121,7 +123,8 @@ preserve available prose
 
 Active components:
 
-- skill orchestration and run-state guards;
+- skill orchestration, run-state guards, private standard-input capture,
+  extraction terminal seals, append-preserved attempts, and failure archives;
 - complete available user/assistant prose custody and declared bounded views;
 - provisional `ConversationContext` and `ConversationIR` extraction;
 - tendency, mental-model companion, frame, and structural coverage pressure;

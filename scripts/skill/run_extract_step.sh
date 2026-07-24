@@ -89,18 +89,10 @@ export LOLLA_AUDIT_MODE
 . "$SKILL_DIR/scripts/skill/operator_log.sh"
 lolla_operator_log_init
 
-record_run_event_quiet() {
-  local event_type="$1"
-  shift
-  python3 "$SKILL_DIR/scripts/record_run_event.py" \
-    --run-id "$LOLLA_RUN_ID" \
-    --event-type "$event_type" \
-    "$@" \
-    --quiet || true
-}
-
-CONVERSATION_PATH="/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt"
-EXTRACTION_PATH="/tmp/lolla_${LOLLA_RUN_ID}_extraction.json"
+RUNTIME_TMP_DIR="${LOLLA_TMP_DIR:-/tmp}"
+CONVERSATION_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_conversation.txt"
+EXTRACTION_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_extraction.json"
+EXTRACTION_TERMINAL_PATH="$RUNTIME_TMP_DIR/lolla_${LOLLA_RUN_ID}_extraction_terminal.json"
 
 if [ -n "$REQUESTED_CONVERSATION" ] && [ "$REQUESTED_CONVERSATION" != "$CONVERSATION_PATH" ]; then
   echo "FATAL: run_extract_step.sh received unexpected --conversation-file. Use the current run path: $CONVERSATION_PATH" >&2
@@ -109,6 +101,11 @@ fi
 if [ -n "$REQUESTED_OUTPUT" ] && [ "$REQUESTED_OUTPUT" != "$EXTRACTION_PATH" ]; then
   echo "FATAL: run_extract_step.sh received unexpected --output-file. Use the current run path: $EXTRACTION_PATH" >&2
   exit 2
+fi
+
+if [ -f "$EXTRACTION_TERMINAL_PATH" ]; then
+  echo "FATAL: this extraction run is already terminal; start a new \$lolla run instead of retrying the same run." >&2
+  exit 1
 fi
 
 if [ ! -s "$CONVERSATION_PATH" ]; then
@@ -124,13 +121,28 @@ if ! lolla_run_logged "Step 2 validate_conversation_capture.py" \
   echo "FATAL: conversation capture is not parseable for Lolla. See operator log: $LOLLA_OPERATOR_LOG" >&2
   exit 2
 fi
-if ! lolla_run_logged "Step 2 run_extract.py" \
+
+set +e
+lolla_run_logged "Step 2 run_extract.py" \
   python3 "$SKILL_DIR/scripts/run_extract.py" \
     --conversation-file "$CONVERSATION_PATH" \
-    --output-file "$EXTRACTION_PATH"; then
-  echo "FATAL: extraction command failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+    --output-file "$EXTRACTION_PATH"
+EXTRACTION_COMMAND_EXIT="$?"
+set -e
+
+set +e
+FINALIZE_OUTPUT="$(
+  python3 "$SKILL_DIR/scripts/skill/finalize_extraction_attempt.py" \
+    --command-exit "$EXTRACTION_COMMAND_EXIT"
+)"
+FINALIZE_EXIT="$?"
+set -e
+lolla_operator_block "Step 2 finalize_extraction_attempt.py" "$FINALIZE_OUTPUT"
+if [ "$FINALIZE_EXIT" -ne 0 ]; then
+  echo "FATAL: extraction closeout failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
   exit 1
 fi
+printf '%s\n' "$FINALIZE_OUTPUT"
 
 set +e
 python3 - <<'PY'
@@ -139,13 +151,13 @@ import os
 from pathlib import Path
 
 run_id = os.environ.get("LOLLA_RUN_ID", "")
-path = Path(f"/tmp/lolla_{run_id}_extraction.json")
+tmp_dir = Path(os.environ.get("LOLLA_TMP_DIR", "/tmp")).expanduser()
+path = tmp_dir / f"lolla_{run_id}_extraction.json"
 if not run_id or not path.exists():
     raise SystemExit("FATAL: extraction JSON was not written.")
 
 payload = json.loads(path.read_text(encoding="utf-8"))
 status = payload.get("status", "missing")
-print(f"EXTRACTION_STATUS: {status}")
 manifest = payload.get("capture_manifest") or {}
 if manifest:
     print(
@@ -154,40 +166,28 @@ if manifest:
         f"assistant_turns={manifest.get('actual_assistant_turns', 'unknown')} "
         f"chars={manifest.get('char_length', 'unknown')}"
     )
-if status == "ok":
-    raise SystemExit(0)
-
-reason = (
-    payload.get("decline_reason")
-    or (payload.get("extraction") or {}).get("decline_reason")
-    or "Extraction did not return an auditable strategic decision."
-)
-print(f"DECLINE_REASON: {reason}")
 if status == "not_strategic":
+    reason = (
+        payload.get("decline_reason")
+        or (payload.get("extraction") or {}).get("decline_reason")
+        or "The conversation was not classified as a strategic decision."
+    )
+    print(f"DECLINE_REASON: {reason}")
     raise SystemExit(3)
 if status == "capture_critical":
+    reason = (
+        payload.get("decline_reason")
+        or "The authoritative conversation capture was critically incomplete."
+    )
+    print(f"DECLINE_REASON: {reason}")
     raise SystemExit(4)
+if status == "ok":
+    raise SystemExit(0)
 raise SystemExit(5)
 PY
 EXTRACTION_EXIT="$?"
 set -e
-EXTRACTION_STATUS="$(python3 - <<'PY'
-import json
-import os
-from pathlib import Path
-
-run_id = os.environ.get("LOLLA_RUN_ID", "")
-path = Path(f"/tmp/lolla_{run_id}_extraction.json")
-try:
-    payload = json.loads(path.read_text(encoding="utf-8"))
-except Exception:
-    print("missing")
-else:
-    print(payload.get("status", "missing"))
-PY
-)"
-record_run_event_quiet extraction_completed \
-  --detail "status=$EXTRACTION_STATUS" \
-  --detail "exit_code=$EXTRACTION_EXIT"
+# finalize_extraction_attempt.py records extraction_completed,
+# extraction_declined, or extraction_failed and seals this run against retries.
 echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
 exit "$EXTRACTION_EXIT"

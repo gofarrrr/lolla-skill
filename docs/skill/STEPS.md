@@ -7,7 +7,10 @@ pipeline. The high-level orchestration overview stays in `SKILL.md`.
 
 ## Step 1: Capture Conversation
 
-Extract the full conversation from your context into a temp file. Include only user messages and your (assistant) prose responses. Skip tool call inputs, tool results, system messages, and file contents.
+Extract the full conversation from your context and pass it to Lolla's private
+runtime capture helper. Include only user messages and your (assistant) prose
+responses. Skip tool call inputs, tool results, system messages, and file
+contents.
 
 Start with a header line summarizing the conversation shape, then format each
 message block. The legacy wire format calls each role block a `turn`; a
@@ -28,7 +31,8 @@ CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses
 ...
 ```
 
-Write the result to a temp file:
+Start the helper as a runtime process, then supply the formatted transcript on
+its standard input:
 
 ```bash
 : "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
@@ -41,11 +45,17 @@ if [ -z "$LOLLA_RUN_ID" ]; then
   echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — the preamble must initialize before Step 1."
   exit 1
 fi
-cat > /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt << 'LOLLA_CONV_EOF'
-{paste the formatted conversation here}
-LOLLA_CONV_EOF
-echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) bytes, $(grep -c '^\[Turn' /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) message blocks"
+python3 "$SKILL_DIR/scripts/skill/capture_conversation.py"
 ```
+
+Use the host's process-input channel to send the transcript after the process
+starts and then close standard input. Do not put the transcript in a command
+argument. In Codex, do not use Apply Patch or another file editor for this
+step: that exposes a misleading `Added ...conversation.txt` edit to the user.
+The helper validates the wire format, writes the source artifact with
+owner-only permissions, records `conversation_captured`, and prints only a
+small `CAPTURE_STATUS` receipt. A host may still show that a runtime tool was
+used; the transcript is not presented as a source-code edit.
 
 **Rules:**
 - Preserve the user's exact words — these contain constraints the pipeline needs
@@ -71,9 +81,27 @@ Invoke the Step 2 helper. Do not reconstruct the `run_extract.py` command, add `
 bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"
 ```
 
-The helper verifies the captured conversation file, calls OpenRouter to extract the decision situation, constraints, synthesized position, reasoning passages, framing, and dropped threads, writes `/tmp/lolla_${LOLLA_RUN_ID}_extraction.json`, writes verbose diagnostics to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints `EXTRACTION_STATUS`. If the helper prints `FATAL`, stop. Tell the user the capture failed and ask them to re-run `/lolla`.
+The helper verifies the captured conversation, calls OpenRouter to extract the
+decision situation, constraints, synthesized position, reasoning passages,
+framing, and dropped threads, writes the run-scoped extraction artifact,
+writes verbose diagnostics to the operator log, seals the attempt, and prints
+`EXTRACTION_STATUS`.
 
-The helper also rejects unparseable Step 1 captures before any paid extraction call. If the conversation file uses `USER:` / `ASSISTANT:` without `[Turn N] USER:` / `[Turn N] ASSISTANT:` markers, or if it lacks a parseable `CONVERSATION:` header, fix Step 1 and rerun this helper before proceeding.
+Every extraction attempt is terminal. `ok` may proceed to the graph.
+`not_strategic` and `capture_critical` stop without the graph. A provider or
+operational failure also stops before the graph, records
+`extraction_failed`, preserves a minimal private failure archive under
+`$LOLLA_ARCHIVE_DIR/_failed-extractions/` (or the default local archive root),
+and prints an exact message between `USER_FAILURE_RECEIPT_BEGIN` and
+`USER_FAILURE_RECEIPT_END`. Send that message exactly. Do not retry the helper
+under the same run ID: the terminal seal blocks a second paid call. A retry is
+a new `$lolla` invocation with a new run ID.
+
+The Step 1 helper rejects unparseable captures before any paid extraction call.
+If the source uses `USER:` / `ASSISTANT:` without `[Turn N] USER:` /
+`[Turn N] ASSISTANT:` markers, lacks a parseable `CONVERSATION:` header, or
+ends without an assistant answer, start a new `$lolla` run and capture it
+correctly. Do not replace source text inside an existing run.
 
 When `conversation_processing_view.status == "partial"`, inspect
 `capture_adequacy` before Step 3. The result must distinguish complete source

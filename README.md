@@ -39,7 +39,7 @@ handoff and live-skill contract is [PR #380](https://github.com/gofarrrr/lolla-s
 | Area | Lifecycle | What that means |
 |---|---|---|
 | Four-lane pressure skill | **LIVE / EXPERIMENTAL** | Implemented ordinary path; semantic and human value remain under evaluation. |
-| Conversation source custody | **LIVE / BOUNDED** | Preserves complete available user/assistant prose. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
+| Conversation and extraction custody | **LIVE / BOUNDED** | Captures through private runtime standard input, preserves complete available user/assistant prose, checks provider completion before semantic fields, append-preserves attempts, and seals failures before graph pressure. Above 80,000 characters, initial extraction uses a declared partial view; later conversation-native pressure still loads the full source. |
 | Deterministic custody and graph survival | **LIVE** | Owns identity, bounds, provenance, replay, budgets, ledgers, and pressure survival—not semantic truth. |
 | Graph authoring and publication custody | **LIVE SOURCE / PROVIDER-FREE VALIDATION** | All 222 Markdown sources, reviewed curation, 1,358 rich authored directed relations, compiler inputs, one published read boundary, and the declared current pressure policy are repository-local and reproducible. Complete multi-path custody remains candidate-only. |
 | Observatory | **BOUNDED / READ-ONLY** | Displays artifacts it can locate; it does not create meaning or authorize action. |
@@ -58,7 +58,7 @@ provider credentials and can incur cost.
 
 ```text
 available user/assistant prose
-  -> authoritative conversation.txt
+  -> private stdin capture + authoritative conversation.txt
   -> bounded initial-extraction view when needed (exact omissions recorded)
   -> provisional ConversationContext / ConversationIR
   -> four pressure lanes

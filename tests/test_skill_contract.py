@@ -168,7 +168,11 @@ def test_reasoning_trace_archive_contract_is_preserved() -> None:
 
 def test_load_bearing_helpers_record_lifecycle_events() -> None:
     setup = _read("scripts/skill/setup.sh")
+    capture_helper = _read("scripts/skill/capture_conversation.py")
     run_extract_helper = _read("scripts/skill/run_extract_step.sh")
+    extraction_finalizer = _read(
+        "scripts/skill/finalize_extraction_attempt.py"
+    )
     run_pipeline_helper = _read("scripts/skill/run_pipeline_step.sh")
     revised_helper = _read("scripts/skill/persist_revised_answer.py")
     ledger_helper = _read("scripts/skill/finalize_step6_ledgers.sh")
@@ -180,7 +184,9 @@ def test_load_bearing_helpers_record_lifecycle_events() -> None:
     helper_contract = "\n".join(
         [
             setup,
+            capture_helper,
             run_extract_helper,
+            extraction_finalizer,
             run_pipeline_helper,
             revised_helper,
             ledger_helper,
@@ -191,8 +197,12 @@ def test_load_bearing_helpers_record_lifecycle_events() -> None:
     )
 
     assert "run_initialized" in setup
+    assert "conversation_captured" in capture_helper
     assert "record_run_event_quiet" in helper_contract
     assert "extraction_completed" in run_extract_helper
+    assert "extraction_failed" in extraction_finalizer
+    assert "extraction_declined" in extraction_finalizer
+    assert "append_run_event" in extraction_finalizer
     assert "pipeline_completed" in run_pipeline_helper
     assert "revised_answer_persisted" in revised_helper
     assert "step6_ledgers_finalized" in ledger_helper
@@ -207,7 +217,6 @@ def test_load_bearing_helpers_record_lifecycle_events() -> None:
     assert "final_receipt_written" in finalizer_helper
 
     for helper in [
-        run_extract_helper,
         run_pipeline_helper,
         ledger_helper,
         memo_helper,
@@ -263,6 +272,7 @@ def test_load_bearing_steps_use_helpers() -> None:
     memo_helper = _read("scripts/skill/render_memo_step.sh")
     pressure_helper = _read("scripts/skill/persist_default_off_pressure_check.py")
 
+    assert 'python3 "$SKILL_DIR/scripts/skill/capture_conversation.py"' in steps
     assert 'bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"' in steps
     assert 'bash "$SKILL_DIR/scripts/skill/run_pipeline_step.sh"' in steps
     assert 'python3 "$SKILL_DIR/scripts/skill/persist_revised_answer.py"' in steps
@@ -277,6 +287,8 @@ def test_load_bearing_steps_use_helpers() -> None:
     assert "Every new Bash tool call starts in a fresh shell" in skill
 
     assert "run_extract.py" in run_extract_helper
+    assert "finalize_extraction_attempt.py" in run_extract_helper
+    assert "extraction_terminal.json" in run_extract_helper
     assert "validate_conversation_capture.py" in run_extract_helper
     assert "validate_conversation_capture.py" in run_pipeline_helper
     assert "no [Turn N] ASSISTANT markers found" in capture_validator
@@ -308,6 +320,18 @@ def test_load_bearing_steps_use_helpers() -> None:
     )
     assert "launch_observatory.py" in finalizer_helper
     assert "nohup python3" not in finalizer_helper
+
+
+def test_conversation_capture_is_a_private_runtime_operation_not_a_file_edit() -> None:
+    skill = _read("SKILL.md")
+    steps = _read("docs/skill/STEPS.md")
+    contract = "\n".join([skill, steps])
+
+    assert "capture_conversation.py" in contract
+    assert "standard input" in contract
+    assert "Apply Patch" in contract
+    assert "file editor" in contract
+    assert "cat > /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt" not in contract
 
 
 def test_skill_docs_do_not_expose_direct_load_bearing_commands() -> None:

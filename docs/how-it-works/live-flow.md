@@ -41,7 +41,12 @@ After Step 3, the skill writes an operator-only pre-Step-6 private-table receipt
 
 ### Step 1: Capture Conversation
 
-Claude extracts the conversation from its context window into a temp file. This is purely mechanical — no judgment.
+The host extracts the conversation from its context window and sends it to
+`scripts/skill/capture_conversation.py` on standard input. The helper validates
+the transcript, writes the authoritative runtime artifact owner-only, records
+`conversation_captured`, and prints counts without echoing the source. This is
+mechanical custody, not a repository edit or semantic judgment. The skill must
+not use Apply Patch or a file editor for this step.
 
 **What gets included:**
 - User messages (the human's words — these contain constraints, questions, pushback)
@@ -68,7 +73,10 @@ What about the risk of...
 
 ### Step 2: Extract Decision Structure
 
-The live skill invokes `scripts/skill/run_extract_step.sh`; the helper validates the capture, calls `scripts/run_extract.py`, writes verbose diagnostics to the operator log, and creates `/tmp/lolla_<run_id>_extraction.json`.
+The live skill invokes `scripts/skill/run_extract_step.sh`; the helper validates
+the capture, calls `scripts/run_extract.py`, writes verbose diagnostics to the
+operator log, creates `/tmp/lolla_<run_id>_extraction.json`, and seals the
+attempt.
 
 ```bash
 bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"
@@ -103,6 +111,14 @@ Before sending the conversation to OpenRouter, the extraction script validates c
 - `_quote_validation` — after extraction, each `reasoning_passages` entry is checked against the transcript with `find_substring_tolerant(...)`. The matcher tries exact substring first, then case-insensitive match, then a narrow quote-safe fallback that removes a symmetric wrapper quote around the whole passage (`"..."`, `'...'`, smart quotes, guillemets). It still rejects paraphrase, punctuation drift, whitespace drift, and word substitutions. **If any fail, extraction retries once** with a correction prompt that lists the failed passages as examples of what NOT to do and demands character-for-character verbatim copies. If the retry produces fewer fabrications, its payload is adopted wholesale. Any fabrications that still remain after the retry are dropped from the final `reasoning_passages` list (the field contract is "literal transcript spans only"), a `capture_warning` is emitted, and `run_pipeline.py` surfaces `quote_fabrication` in `run_health`. `_quote_validation` also records `retry_attempted` and `retry_succeeded` for provenance.
 
 These diagnostics surface in every output path — `ok`, `error`, `not_strategic`, and `capture_critical`.
+
+Provider completion is checked before required extraction fields. A non-`ok`
+boundary status—including `finish_reason: error` promoted to
+`provider_finish_error`—cannot be reinterpreted as a semantic missing-field
+result. The helper preserves all call attempts, records `extraction_failed`,
+appends one exact failure receipt, writes a minimal private archive under
+`_failed-extractions/`, and stops before Step 3. The terminal seal forbids a
+second provider call under the same run ID; a retry starts a new `$lolla` run.
 
 **How the runtime reads these fields:**
 

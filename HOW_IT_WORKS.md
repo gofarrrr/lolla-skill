@@ -29,9 +29,9 @@ reliable general conversation-understanding system.
 ORDINARY LIVE PATH
 
 available user/assistant prose
-  -> capture and authoritative conversation.txt
+  -> private stdin capture and authoritative conversation.txt
   -> bounded initial-extraction view when needed
-  -> model extraction
+  -> model extraction or terminal stop before graph on provider interruption
   -> ConversationContext / ConversationIR
   -> four pressure lanes
        tendency | model companion | frame | structural coverage
@@ -73,9 +73,9 @@ The ordinary entry contract is [SKILL.md](SKILL.md). Detailed steps live in
 [docs/skill/STEPS.md](docs/skill/STEPS.md), while setup and run-state helpers
 live under `scripts/skill/`.
 
-Setup creates a run ID, run-specific state, transcript and operator logs, and
-guarded paths. Helpers reject stale or guessed run identity. This is mechanical
-custody: it keeps one run from accidentally borrowing another run's artifacts.
+Setup creates a run ID, guarded state and logs. Private standard-input source
+capture writes the authoritative artifact owner-only and refuses replacement;
+run guards keep one run from borrowing another's artifacts.
 
 The skill is a conductor. It captures source, invokes bounded scripts, presents
 pressure to a reasoner, persists the reasoner's dispositions, and finalizes the
@@ -110,13 +110,12 @@ A model interprets the decision situation and code normalizes the result into
 `ConversationContext` and `ConversationIR`. These objects support the live
 pressure pipeline, but their semantic fields remain provisional model output.
 
-Strict schemas and local admission can establish that fields exist, types are
-valid, bounds are respected, and source references resolve. They cannot prove
-that a conversational role, adoption state, chronology, or materiality judgment
-is correct.
-
-The system currently has no trustworthy arbitrary-run longitudinal reader for
-all Decision Trail fields.
+Strict schemas prove shape, not semantic correctness. Provider completion is
+checked before semantic completeness: transport, HTTP, malformed-response, or
+`finish_reason: error` failures preserve attempts, reconcile the budget ledger,
+seal same-run retry, archive minimal custody, and stop before the graph. The
+system still has no trustworthy arbitrary-run longitudinal reader, and a
+failure archive proves process custody rather than answer quality.
 
 ## 4. Four pressure lanes
 

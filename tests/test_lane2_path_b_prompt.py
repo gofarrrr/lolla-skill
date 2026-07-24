@@ -439,6 +439,48 @@ def test_build_call_metadata_promotes_finish_error_to_truthful_failure_status():
     assert md.completion_tokens == 0
 
 
+def test_build_call_metadata_preserves_safe_openrouter_choice_error_diagnostics():
+    payload = {
+        "id": "generation-safe-id",
+        "provider": "Google",
+        "choices": [
+            {
+                "message": {"content": '{"accepted": ['},
+                "finish_reason": "error",
+                "error": {
+                    "code": 503,
+                    "message": "upstream details that must not be persisted raw",
+                    "metadata": {
+                        "error_type": "provider_unavailable",
+                        "provider_code": "UNAVAILABLE",
+                    },
+                },
+            }
+        ],
+        "usage": {"prompt_tokens": 91, "completion_tokens": 0, "total_tokens": 91},
+    }
+    md = _build_call_metadata(
+        provider_name="openrouter",
+        model="google/gemini-3.1-flash-lite",
+        payload=payload,
+        reasoning_config={"enabled": False},
+        status="ok",
+        raw_message_content='{"accepted": [',
+    )
+
+    assert md.status == "provider_finish_error"
+    assert md.served_provider_name == "Google"
+    assert md.provider_error_source == "choice"
+    assert md.provider_error_type == "provider_unavailable"
+    assert md.provider_error_code == "503"
+    assert md.provider_error_provider_code == "UNAVAILABLE"
+    assert len(md.provider_error_message_sha256) == 64
+    assert (
+        md.provider_error_message_sha256
+        != "upstream details that must not be persisted raw"
+    )
+
+
 def test_build_call_metadata_defaults_when_temperature_and_content_omitted():
     """The new keyword-only parameters have safe defaults so existing
     construction sites in non-success paths (timeout, missing_choices, etc.)

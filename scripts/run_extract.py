@@ -676,6 +676,71 @@ def _call_record_payloads(client: object) -> list[dict]:
     return records
 
 
+def _runtime_tmp_dir() -> Path:
+    return Path(os.getenv("LOLLA_TMP_DIR", "/tmp")).expanduser()
+
+
+def _merge_call_records(
+    existing: list[dict],
+    current: list[dict],
+) -> list[dict]:
+    """Append new call records without erasing earlier process attempts."""
+
+    merged: list[dict] = []
+    seen: set[str] = set()
+    for record in [*existing, *current]:
+        reservation_id = str(record.get("budget_reservation_id") or "")
+        identity = (
+            f"reservation:{reservation_id}"
+            if reservation_id
+            else "record:"
+            + hashlib.sha256(
+                json.dumps(
+                    record,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                    ensure_ascii=False,
+                ).encode("utf-8")
+            ).hexdigest()
+        )
+        if identity in seen:
+            continue
+        seen.add(identity)
+        merged.append(record)
+    return merged
+
+
+def _last_call_record(client: object) -> dict:
+    records = _call_record_payloads(client)
+    return records[-1] if records else {}
+
+
+def _provider_failure_from_record(record: dict) -> dict:
+    raw_message_content = str(record.get("raw_message_content") or "")
+    retry_after = record.get("retry_after_seconds")
+    try:
+        retry_after_value = float(retry_after) if retry_after is not None else None
+    except (TypeError, ValueError):
+        retry_after_value = None
+    return {
+        "status": str(record.get("status") or ""),
+        "finish_reason": str(record.get("finish_reason") or ""),
+        "provider_error_source": str(record.get("provider_error_source") or ""),
+        "provider_error_type": str(record.get("provider_error_type") or ""),
+        "provider_error_code": str(record.get("provider_error_code") or ""),
+        "provider_error_provider_code": str(
+            record.get("provider_error_provider_code") or ""
+        ),
+        "provider_error_message_sha256": str(
+            record.get("provider_error_message_sha256") or ""
+        ),
+        "retry_after_seconds": retry_after_value,
+        "response_id": str(record.get("response_id") or ""),
+        "raw_message_content_present": bool(raw_message_content),
+        "raw_message_content_chars": len(raw_message_content),
+    }
+
+
 def _not_attempted_call_custody(*, run_id: str, terminal_status: str) -> dict:
     return {
         "schema_version": EXTRACTION_CALL_CUSTODY_SCHEMA_VERSION,
@@ -708,12 +773,12 @@ def _persist_extraction_call_sidecar(
     """
 
     active_run_id = run_id or infer_run_id_from_lolla_path(output_file)
-    records = _call_record_payloads(client)
+    current_records = _call_record_payloads(client)
     non_attempt_statuses = {"not_called", "missing_api_key", "budget_blocked_preflight"}
     provider_attempted = any(
         record.get("provider_attempted") is True
         or str(record.get("status") or "") not in non_attempt_statuses
-        for record in records
+        for record in current_records
     )
     custody = {
         "schema_version": EXTRACTION_CALL_CUSTODY_SCHEMA_VERSION,
@@ -721,14 +786,14 @@ def _persist_extraction_call_sidecar(
         "call_attempted": provider_attempted,
         "sidecar_persisted": False,
         "call_record_persisted": False,
-        "recorded_call_count": len(records),
+        "recorded_call_count": len(current_records),
         "admissible_extraction": bool(admissible_extraction),
         "terminal_status": terminal_status,
         "usage_evidence_state": (
             "recorded"
-            if provider_attempted and records
+            if provider_attempted and current_records
             else "preflight_non_attempt_recorded"
-            if records
+            if current_records
             else "missing_after_attempt"
         ),
         "sidecar_path": "",
@@ -744,10 +809,37 @@ def _persist_extraction_call_sidecar(
         custody["failure_reason"] = "invalid_run_id"
         return custody
 
-    sidecar_path = Path(f"/tmp/lolla_{active_run_id}_extraction_calls.json")
+    sidecar_path = _runtime_tmp_dir() / (
+        f"lolla_{active_run_id}_extraction_calls.json"
+    )
     custody["sidecar_path"] = str(sidecar_path)
     temporary_path: Path | None = None
     try:
+        existing_records: list[dict] = []
+        if sidecar_path.exists():
+            existing_value = json.loads(sidecar_path.read_text(encoding="utf-8"))
+            if isinstance(existing_value, list):
+                existing_records = [
+                    dict(record)
+                    for record in existing_value
+                    if isinstance(record, dict)
+                ]
+        records = _merge_call_records(existing_records, current_records)
+        provider_attempted = any(
+            record.get("provider_attempted") is True
+            or str(record.get("status") or "") not in non_attempt_statuses
+            for record in records
+        )
+        custody["call_attempted"] = provider_attempted
+        custody["recorded_call_count"] = len(records)
+        custody["usage_evidence_state"] = (
+            "recorded"
+            if provider_attempted and records
+            else "preflight_non_attempt_recorded"
+            if records
+            else "missing_after_attempt"
+        )
+        sidecar_path.parent.mkdir(parents=True, exist_ok=True)
         with tempfile.NamedTemporaryFile(
             mode="w",
             encoding="utf-8",
@@ -761,7 +853,7 @@ def _persist_extraction_call_sidecar(
             handle.flush()
             temporary_path = Path(handle.name)
         temporary_path.replace(sidecar_path)
-    except OSError as exc:
+    except (OSError, json.JSONDecodeError) as exc:
         if temporary_path is not None:
             temporary_path.unlink(missing_ok=True)
         custody["failure_reason"] = f"sidecar_write_failed:{type(exc).__name__}"
@@ -846,6 +938,24 @@ def main() -> int:
         )
     except SystemExit as exc:
         print(json.dumps({"status": "error", "error": str(exc)}))
+        return 1
+
+    terminal_path = _runtime_tmp_dir() / (
+        f"lolla_{run_id_for_guard}_extraction_terminal.json"
+    )
+    if run_id_for_guard and terminal_path.exists():
+        print(
+            json.dumps(
+                {
+                    "status": "error",
+                    "error": (
+                        "This extraction run is already terminal. Start a new "
+                        "$lolla run instead of retrying the same run."
+                    ),
+                    "same_run_retry_allowed": False,
+                }
+            )
+        )
         return 1
 
     # Read conversation
@@ -961,17 +1071,30 @@ def main() -> int:
             EXTRACTION_SYSTEM_PROMPT, user_prompt, stage="extraction"
         )
     except Exception as exc:
+        last_call = _last_call_record(client)
+        provider_status = str(last_call.get("status") or "")
         call_custody = _persist_extraction_call_sidecar(
             client,
             run_id=run_id_for_guard,
             output_file=args.output_file,
-            terminal_status="initial_provider_call_failed",
+            terminal_status=provider_status or "initial_provider_call_failed",
             admissible_extraction=False,
         )
         _emit_result(
             {
                 "status": "error",
-                "error": f"OpenRouter call failed: {exc}",
+                "error": (
+                    "Extraction provider call raised an unexpected "
+                    f"{type(exc).__name__}."
+                ),
+                "provider_failure": (
+                    _provider_failure_from_record(last_call)
+                    if last_call
+                    else {
+                        "status": "initial_provider_call_failed",
+                        "exception_type": type(exc).__name__,
+                    }
+                ),
                 "provider_call_custody": call_custody,
             },
             output_file=args.output_file,
@@ -989,6 +1112,28 @@ def main() -> int:
         terminal_status="initial_call_persisted_pending_validation",
         admissible_extraction=False,
     )
+
+    last_call = _last_call_record(client)
+    provider_status = str(last_call.get("status") or "")
+    if last_call and provider_status and not provider_status.startswith("ok"):
+        _emit_result(
+            {
+                "status": "error",
+                "error": (
+                    "Extraction provider call did not complete: "
+                    f"{provider_status}"
+                ),
+                "provider_failure": _provider_failure_from_record(last_call),
+                "provider_call_custody": _terminal_call_custody(
+                    call_custody,
+                    terminal_status=provider_status,
+                    admissible_extraction=False,
+                ),
+            },
+            output_file=args.output_file,
+            capture_result=capture_result,
+        )
+        return 1
 
     # Check if strategic
     if not payload.get("is_strategic", True):

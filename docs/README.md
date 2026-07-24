@@ -66,7 +66,7 @@ proven useful.
 Read:
 
 - [Skill orchestration contract](../SKILL.md)
-- [Detailed skill steps](skill/STEPS.md)
+- [Detailed skill steps](skill/STEPS.md) and the [live extraction failure-custody repair result](conversation-understanding/lolla-live-extraction-failure-custody-repair-result-2026-07-24.md)
 - [Live-flow explanation](how-it-works/live-flow.md)
 - [Agent result contract](lolla-agent-result-contract.md)
 - [Cost and telemetry](cost-and-telemetry.md)
