@@ -1971,6 +1971,7 @@ def _validate_post_reveal_interpretation(
     packet: Mapping[str, Any],
     expected_id: str,
     expected_review_id: str,
+    require_nonclaim_echo: bool = True,
 ) -> list[str]:
     errors: list[str] = []
     expected_keys = {
@@ -1982,8 +1983,9 @@ def _validate_post_reveal_interpretation(
         "state",
         "pair_assessments",
         "rationale",
-        "nonclaims_acknowledged",
     }
+    if require_nonclaim_echo:
+        expected_keys.add("nonclaims_acknowledged")
     if set(payload) != expected_keys:
         errors.append("post-reveal top-level keys mismatch")
     if (
@@ -2005,7 +2007,10 @@ def _validate_post_reveal_interpretation(
         or state not in REVIEW_SPECIFIC_PATTERN_STATES
     ):
         errors.append("post-reveal state is invalid")
-    if payload.get("nonclaims_acknowledged") != list(NON_CLAIMS):
+    if (
+        require_nonclaim_echo
+        and payload.get("nonclaims_acknowledged") != list(NON_CLAIMS)
+    ):
         errors.append("post-reveal nonclaims drifted")
     if not isinstance(payload.get("rationale"), str):
         errors.append("post-reveal rationale must be text")
