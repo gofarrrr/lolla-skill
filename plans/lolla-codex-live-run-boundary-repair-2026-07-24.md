@@ -3,7 +3,7 @@
 Date: 2026-07-24
 
 Status: provider-free implementation and verification complete; canonical
-publication in progress
+publication tracked by [PR #404](https://github.com/gofarrrr/lolla-skill/pull/404)
 
 Source incident: user-operated run `20260724T182631Z_b8cec8`
 
