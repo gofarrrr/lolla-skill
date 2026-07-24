@@ -291,7 +291,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   envelope design is allowed; semantic reruns need new exact authorization.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#390 carry graph/Atlas custody, the public handoff, Decision Trail lineage, A/B/C plan, case freeze, paired-delta screen, rehearsal, and variance contract.
+PRs #379–#393 carry graph/Atlas custody, the public handoff, Decision Trail lineage, A/B/C plan, case freeze, paired-delta screen, rehearsal, variance, replication contract, and replication result.
 The founder declines human review; that v1 experiment stays unfilled and paused.
 The graph rehearsal proves no graph value. Calibration lost a generation
 baseline; replication lost one review to an ambiguous enum envelope. Both are
