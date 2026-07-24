@@ -102,6 +102,20 @@ were preserved without retry, repair, reformatting, or semantic salvage. The
 result is `not_evaluable`; it creates no graph, answer-quality, usefulness, or
 traversal evidence and authorizes no new semantic context.
 
+The provider-free
+[V3 nonclaim-custody contract](lolla-agent-only-graph-review-nonclaim-custody-v3-contract-v1.json),
+[plan](../../plans/lolla-agent-only-graph-review-nonclaim-custody-v3-repair-2026-07-24.md),
+and
+[result](../conversation-understanding/lolla-agent-only-graph-review-nonclaim-custody-v3-repair-result-2026-07-24.md)
+assign exact nonclaim presentation to deterministic input packets under stable
+IDs, order, count, and SHA-256. The prospective response schemas remove
+`nonclaims_acknowledged` instead of replacing it with forced booleans or
+another free-text echo. Two no-echo fixtures pass, two legacy echo fixtures
+fail on the one unexpected field, and custody mutation fails exact statements
+and hash checks. Zero semantic contexts and zero provider/API calls ran. This
+proves response/input mechanics, not model compliance, graph value, or
+permission to execute the separately frozen two-context boundary.
+
 The separate provider-free Mental Model Atlas Phase 1 review is recorded in
 [`lolla-mental-model-atlas-phase1-evidence-v1.json`](lolla-mental-model-atlas-phase1-evidence-v1.json).
 Its active data packages are now governed by the
@@ -615,6 +629,8 @@ Start with these:
 | [Agent-Only Graph Replication Result](../conversation-understanding/lolla-agent-only-graph-replication-result-2026-07-23.md) | Eight generation outputs completed; one required blind review failed an ambiguous scalar-enum shape, so no post-reveal context ran and the result is honestly `not_evaluable`. |
 | [Graph Reviewer-Envelope Repair Contract](lolla-agent-only-graph-review-envelope-repair-contract-v1.json) | Consumed v2 contract over the eight frozen answers: zero generation, two blind, and two conditional post-reveal contexts; exact first-terminal and no-retry boundary. |
 | [Graph Review-Envelope V2 Result](../conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md) | Both blind reviews passed; both post-reveal payloads failed exact nonclaim custody without repair or salvage, so the result remains `not_evaluable`. |
+| [Graph Review Nonclaim-Custody V3 Contract](lolla-agent-only-graph-review-nonclaim-custody-v3-contract-v1.json) | Provider-free prospective boundary: exact nonclaims belong to deterministic input custody, model output contains no echo, and any two-context run requires separate exact authorization. |
+| [Graph Review Nonclaim-Custody V3 Result](../conversation-understanding/lolla-agent-only-graph-review-nonclaim-custody-v3-repair-result-2026-07-24.md) | Two no-echo fixtures pass and two legacy echo fixtures fail exactly; zero semantic contexts ran, so this is contract-mechanics evidence only. |
 
 ## Runtime And Skill Opportunities
 

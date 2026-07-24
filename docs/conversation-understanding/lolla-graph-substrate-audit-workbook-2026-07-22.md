@@ -548,6 +548,63 @@ free-text echo. No design, semantic execution, or graph continuation is
 authorized by this result. See
 `lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md`.
 
+### Provider-free nonclaim-custody V3 repair
+
+Date: 2026-07-24
+
+Evidence class: provider-free structural-contract, exact input-custody, and
+development-fixture evidence; not a semantic rerun, model-compliance result,
+graph result, answer-quality result, or human-usefulness result
+
+Provider calls and cost: 0 and `$0.00`
+
+The one falsifiable question was:
+
+> Can deterministic input-packet custody preserve the exact ten post-reveal
+> nonclaims while the model-authored response omits every nonclaim echo field?
+
+The audit selected input-side custody rather than schema-forced boolean
+acknowledgments. A forced `true` would prove response shape, not that the model
+understood or followed a nonclaim. V3 therefore gives the ten exact statements
+stable IDs `NC-01` through `NC-10`, preserves their order and count, and hashes
+the compact ordered string array. The packet declares that this proves input
+presentation and does not prove internal compliance.
+
+The prospective response schema removes only
+`nonclaims_acknowledged`. Every other V2 semantic response field remains. The
+existing Product Delta post-reveal validator remains the owner: historical
+calls require the echo by default, while the prospective V3 path disables only
+that requirement and still applies the exact case, role, frozen-read, move-ID,
+and enum checks.
+
+The provider-free fixture gate passes:
+
+- two no-echo V3 fixtures produce zero schema and Product Delta errors;
+- two legacy echo fixtures fail on exactly the unexpected
+  `nonclaims_acknowledged` field;
+- both deterministic input-custody blocks produce zero errors;
+- a mutated statement fails both the exact statement and hash checks.
+
+The builder locks the V2 contract, schemas, fixtures, packets, valid blind
+reviews, terminal failure receipts, and `not_evaluable` consolidation by byte
+count and SHA-256. It creates no second graph loader, compiler, planner,
+conversation reader, evaluator, sidecar, or runtime.
+
+What changed: one prospective offline response/input custody contract,
+fixtures, validator option, tests, and documentation.
+
+What did not change: either V2 terminal payload or result; source Markdown;
+relations; graph bytes; direction; hop depth; active/reserve policy; compiler;
+planner; runtime; live skill; Decision Trail; Decision Work; Observatory;
+Atlas; Teacher; interface; private archive; or principal-human fields.
+
+Decision: the provider-free nonclaim-custody repair is complete. A possible
+future run would reuse the two valid V2 blind reviews and run only two fresh
+post-reveal contexts. It is unauthorized without the exact separate string in
+[`lolla-agent-only-graph-review-nonclaim-custody-v3-contract-v1.json`](../evals/lolla-agent-only-graph-review-nonclaim-custody-v3-contract-v1.json).
+See the
+[provider-free result](lolla-agent-only-graph-review-nonclaim-custody-v3-repair-result-2026-07-24.md).
+
 ### Research conclusion for this PRD set
 
 The research strengthens the case for explicit relationships, provenance,

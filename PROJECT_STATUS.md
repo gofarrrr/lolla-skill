@@ -1,6 +1,6 @@
 # Lolla project status
 
-Status date: 2026-07-24 (consumed graph review-envelope v2 run)
+Status date: 2026-07-24 (provider-free graph review nonclaim-custody V3 repair)
 Authority: current public handoff derived from the canonical Constitution Stage 0 addendum
 Provider calls authorized for repository development: **0**
 Provider cost authorized for repository development: **$0.00**
@@ -28,7 +28,7 @@ usefulness, market value, and production readiness remain unknown.
 | What is parked? | Mental Model Teacher, broader Atlas product work, and general automatic Decision Work semantic generation. |
 | What is retired? | The incremental R4 residual/separated conversation-reader architecture; R3/R4 files remain research evidence only. |
 | What is unproven? | Reliable longitudinal understanding, answer improvement, real-user value, market demand, and production readiness. |
-| What may start next? | No further graph semantic run is authorized. The v2 authorization is consumed: two valid blind reviews opened the reveal gate, then both post-reveal payloads failed one exact-nonclaim equality check and were preserved without repair. A provider-free decision about exact nonclaim custody is eligible; a retry, corrected acknowledgment, new context, wider case, or graph change is not. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
+| What may start next? | No graph semantic run is authorized. The provider-free V3 repair now assigns exact nonclaim presentation to deterministic input custody and removes model-authored echo from the prospective response. Its separately described two-context post-reveal run remains unauthorized. A corrected V2 payload, semantic salvage, graph change, wider case, or ordinary “continue” is not authorization. June's richer Decision Trail interpretation lane remains paused; July's Stage 1 truthfulness review is a separate eligible option. |
 
 ## Latest published checkpoint
 
@@ -44,14 +44,9 @@ The [provider-free reviewer-envelope repair](docs/conversation-understanding/lol
 Its repository publication is tracked by [PR #395](https://github.com/gofarrrr/lolla-skill/pull/395).
 The separately authorized [review-envelope v2 run](docs/conversation-understanding/lolla-agent-only-graph-review-envelope-v2-result-2026-07-24.md) is complete and `not_evaluable`. Both fresh blind reviews passed the repaired scalar-enum schema and the existing Product Delta validator, so both post-reveal contexts started. Each post-reveal payload then paraphrased the required `nonclaims_acknowledged` values; each failed one exact-equality check. All four first-terminal payloads, terminal receipts, and both post-reveal failure receipts are preserved without retry, reformatting, or semantic salvage. Four Codex development contexts were attempted; repository provider/API calls and cost remained zero, while Codex platform route, tokens, and economic cost remain unavailable. This is another evaluator-envelope finding, not graph, answer-quality, expected-behavior, usefulness, or traversal evidence.
 Its repository publication is tracked by [PR #396](https://github.com/gofarrrr/lolla-skill/pull/396).
-The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222
-canonical Markdown sources, reviewed curation, 1,358 rich directed relations,
-compiler inputs, source anchors, release identities, one published read
-boundary, one declared versioned pressure policy wrapper, and its frozen
-compatibility serializer. Candidate
-compilation reproduces the two published graph files byte-for-byte and all 163
-frozen portfolio windows replay exactly. No current setup path, manifest,
-validator, or development instruction depends on another checkout.
+The [provider-free V3 nonclaim-custody repair](docs/conversation-understanding/lolla-agent-only-graph-review-nonclaim-custody-v3-repair-result-2026-07-24.md) is complete. The exact ten statements now live in deterministic input packets under stable IDs, order, count, and SHA-256; the prospective response schema has no nonclaim echo or forced boolean acknowledgment. Two no-echo fixtures pass, two legacy echo fixtures fail on the one unexpected field, and deliberate input-statement drift fails exact text and hash checks. Zero semantic contexts and zero provider/API calls ran. This proves input and response-boundary mechanics, not model compliance, semantic correctness, graph value, or permission to execute the prospective two-context run.
+The broad public handoff is [PR #380](https://github.com/gofarrrr/lolla-skill/pull/380), built on the repository-local graph and Atlas-custody [PR #379](https://github.com/gofarrrr/lolla-skill/pull/379) at merge `1663f8bb5ceabfaab59b51cfe0e36329ec28235c`. These newer planning documents do not change runtime. A fresh clone contains all 222 canonical Markdown sources, reviewed curation, 1,358 rich directed relations, compiler inputs, source anchors, release identities, one published read boundary, one declared versioned pressure policy wrapper, and its frozen compatibility serializer.
+Candidate compilation reproduces the two published graph files byte-for-byte and all 163 frozen portfolio windows replay exactly. No current setup path, manifest, validator, or development instruction depends on another checkout.
 
 Prospective complete one-hop custody accounts for all 808 previously
 unserialized convergent active-target paths without entering the live reasoner
@@ -300,6 +295,7 @@ The follow-up variance calibration attempted four exact new generation contexts 
 The available within-graph pair itself had a material difference in both reviews, so ordinary run-to-run variation is not negligible. Because the within-direct pair and one cross pair are unavailable, the frozen question is not evaluable.
 The provider-free replication is consumed: eight generations completed, one blind review failed the enum shape, and the post-reveal gate stayed closed; no retry, graph change, or usefulness claim is authorized.
 The v2 envelope authorization is consumed. Both blind reviews passed; both conditional post-reveal payloads failed exact nonclaim custody and were preserved without repair. The final state is `not_evaluable`; no retry or graph continuation is authorized.
+The provider-free V3 repair removes model-authored nonclaim echo and assigns exact presentation to deterministic input custody. Its fixtures pass; no semantic context ran and its separately frozen two-context boundary remains unauthorized.
 
 ## Current repository boundary
 
