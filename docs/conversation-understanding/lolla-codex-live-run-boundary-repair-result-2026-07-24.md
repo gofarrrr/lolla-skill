@@ -2,8 +2,8 @@
 
 Date: 2026-07-24
 
-Status: provider-free implementation candidate; full-repository verification
-and canonical publication are pending
+Status: provider-free implementation and full-repository verification complete;
+canonical publication in progress
 
 Source incident: user-operated run `20260724T182631Z_b8cec8`
 
@@ -200,8 +200,15 @@ The first full-repository pass produced 5,212 passes and 24 failures. Twenty
 were expected git-state gates that require the intentionally changed live-skill
 files to be committed. The remaining four exposed one repository-authority
 count drift and three positional-helper compatibility cases; those four were
-repaired and their focused tests pass. The suite will be repeated from the
-narrow committed checkpoint before publication.
+repaired and their focused tests pass.
+
+After the narrow live-skill checkpoint was committed, the complete suite passed
+with **5,236 tests, 93 subtests, and one pre-existing
+`datetime.utcnow()` deprecation warning**. The 59-test focused boundary group,
+98-test Stage 0 handoff group, constitutional register, public handoff,
+self-contained 222-model / 1,358-relation / 163-window replay, repository-local
+authority scan, changed JSON, Python compilation, Bash syntax, whitespace, and
+staged-secret checks also passed. No provider or embedding call was made.
 
 ## What a user should expect
 

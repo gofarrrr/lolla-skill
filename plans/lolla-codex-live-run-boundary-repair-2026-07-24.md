@@ -2,7 +2,8 @@
 
 Date: 2026-07-24
 
-Status: active provider-free implementation goal
+Status: provider-free implementation and verification complete; canonical
+publication in progress
 
 Source incident: user-operated run `20260724T182631Z_b8cec8`
 
@@ -94,8 +95,8 @@ Status values are `pending`, `in_progress`, `complete`, or `blocked`.
 | COST-01 | P2 | complete | Clarify enforced provider budget versus later whole-run estimated cost. | Detailed custody identifies which calls/costs the hard ceiling enforces and separately reports total known/estimated vendor use without changing routing or pricing. |
 | REPLAY-01 | P1 | complete | Add one provider-free Codex-style full-run mechanical replay gate. | The full 14-message Marcus fixture completes private capture/persistence/finalization with no network transport and no forbidden visible marker. |
 | DOCS-01 | P3 | complete | Update current entrypoints, skill instructions, and cold-start handoff; preserve historical evidence. | Fresh-clone docs describe the implemented boundary, known Codex-chrome limit, exact nonclaims, and next decision without relying on chat history. |
-| VERIFY-01 | P3 | in_progress | Run focused, handoff, frozen-boundary, and full verification. | All named focused tests, current Stage 0 validators, full suite, JSON/Python/Bash/whitespace/secret checks, and graph/frozen hash checks pass with explained counts. |
-| PUBLISH-01 | P3 | pending | Publish through a narrow GitHub PR and merge only when ready. | The exact reviewed commit is pushed, PR checks and actionable review are resolved, the PR is merged normally, and local `main` matches canonical GitHub. |
+| VERIFY-01 | P3 | complete | Run focused, handoff, frozen-boundary, and full verification. | All named focused tests, current Stage 0 validators, full suite, JSON/Python/Bash/whitespace/secret checks, and graph/frozen hash checks pass with explained counts. |
+| PUBLISH-01 | P3 | in_progress | Publish through a narrow GitHub PR and merge only when ready. | The exact reviewed commit is pushed, PR checks and actionable review are resolved, the PR is merged normally, and local `main` matches canonical GitHub. |
 
 ## Normal visible-surface contract
 
