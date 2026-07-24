@@ -2,7 +2,8 @@
 
 Date: 2026-07-24
 
-Status: implemented and provider-free validated; repository publication pending
+Status: repository-published through
+[PR #403](https://github.com/gofarrrr/lolla-skill/pull/403)
 
 Source incident: user-operated run `20260724T165556Z_76a156`
 
