@@ -15,6 +15,9 @@ Frozen repair contract:
 Repair plan:
 [`lolla-agent-only-graph-review-envelope-repair-2026-07-24.md`](../../plans/lolla-agent-only-graph-review-envelope-repair-2026-07-24.md)
 
+Repository publication:
+[PR #396](https://github.com/gofarrrr/lolla-skill/pull/396)
+
 Repository provider/API calls: **0**
 
 Repository provider/API cost: **$0.00**

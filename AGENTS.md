@@ -290,7 +290,7 @@ infer missing pages, or treat the local visual gate as deployment clearance.
   about exact post-reveal nonclaim custody; no semantic rerun is authorized.
 
 Stage 0.5 made the map clone-legible; Stage 0.6 corrected source custody.
-PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair. The separate v2 execution result awaits publication in the current result PR.
+PRs #379–#395 carry graph/Atlas custody, public handoffs, Decision Trail lineage, A/B/C planning, case freeze, paired-delta work, rehearsal, variance, replication, and the provider-free reviewer-envelope repair. The separate v2 execution result is tracked through PR #396.
 The founder declines human review; that v1 experiment stays unfilled and paused.
 The graph rehearsal proves no graph value. Calibration lost a generation baseline; replication lost one review to an ambiguous enum envelope; V2 fixed the blind shape, but both post-reveal contexts drifted the frozen nonclaim wording and were rejected without salvage.
 All three follow-ups remain `not_evaluable` and create no graph, usefulness, Atlas, or Stage 1 authority.
